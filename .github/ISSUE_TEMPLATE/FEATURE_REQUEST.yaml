@@ -59,7 +59,7 @@ body:
   - type: checkboxes
     id: terms
     attributes:
-      label: Review
+      label: Confirmations
       description: Please confirm the following.
       options:
         - label: I agree to follow this project's [Code of

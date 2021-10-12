@@ -1,0 +1,25 @@
+{
+  "name": "@carbon-platform/logging-service",
+  "description": "Carbon platform logging service",
+  "version": "0.1.0",
+  "main": "dist/main/index.js",
+  "license": "Apache-2.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+  },
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "service:build": "npm run build",
+    "start": "node dist/main/index.js"
+  },
+  "dependencies": {
+    "typescript": "^4.4.3"
+  }
+}

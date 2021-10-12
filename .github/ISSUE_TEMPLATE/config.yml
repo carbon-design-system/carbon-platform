@@ -1,8 +1,8 @@
 blank_issues_enabled: false
-contact_links:
-  - name: Carbon Platform roadmap
-    url: https://github.com/orgs/carbon-design-system/projects/36
-    about: Learn what we're working on and what we have planned for the future.
-  - name: Carbon feedback
-    url: https://github.com/carbon-design-system/carbon/discussions
-    about: Share your feedback with the Carbon team.
+# contact_links:
+#   - name: Carbon Platform roadmap
+#     url: https://github.com/orgs/carbon-design-system/projects/36
+#     about: Learn what we're working on and what we have planned for the future.
+#   - name: Carbon feedback
+#     url: https://github.com/carbon-design-system/carbon/discussions
+#     about: Share your feedback with the Carbon team.

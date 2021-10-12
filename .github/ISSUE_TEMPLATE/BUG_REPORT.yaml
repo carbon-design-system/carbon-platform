@@ -1,5 +1,5 @@
 name: Bug report 🐛
-description: Something not working as expected? This is the place to report your issue.
+description: Something not working as expected? Create a report to help us improve.
 labels: "type: bug 🐛"
 body:
   - type: markdown
@@ -32,12 +32,13 @@ body:
     attributes:
       label: Steps to reproduce
       description: "How do we reproduce the error?"
+      placeholder: Please be as specific as you can.
     validations:
       required: true
   - type: checkboxes
     id: terms
     attributes:
-      label: Code of conduct
+      label: Review
       description: Please confirm the following.
       options:
         - label: I agree to follow this project's [Code of

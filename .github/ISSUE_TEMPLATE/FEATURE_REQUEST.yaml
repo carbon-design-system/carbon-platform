@@ -28,7 +28,7 @@ body:
   - type: textarea
     id: metrics
     attributes:
-      label: Desired user experience and success metrics
+      label: Success metrics
       description:
         "Describe the full user experience for this feature. Also define the
         metrics by which we can measure success/failure for the user."
@@ -50,7 +50,7 @@ body:
   - type: input
     id: resources
     attributes:
-      label: Available extra resources
+      label: Available resources
       description: "What resources do you have to assist this effort?"
   - type: markdown
     attributes:
@@ -59,7 +59,7 @@ body:
   - type: checkboxes
     id: terms
     attributes:
-      label: Code of conduct
+      label: Review
       description: Please confirm the following.
       options:
         - label: I agree to follow this project's [Code of

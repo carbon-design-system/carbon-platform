@@ -1,0 +1,48 @@
+name: Bug report 🐛
+description: Something not working as expected? This is the place to report your issue.
+labels: "type: bug 🐛"
+body:
+  - type: markdown
+    attributes:
+      value: "## Welcome!"
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to fill out this bug report.
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      description: Which browser(s) are you experiencing the issue?
+      multiple: true
+      options:
+        - Chrome
+        - Safari
+        - Firefox
+        - Edge
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "Tell us more about the problem that you're running into."
+      placeholder: What did you see? What did you expect to see?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: "How do we reproduce the error?"
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of conduct
+      description: Please confirm the following.
+      options:
+        - label: I agree to follow this project's [Code of
+            Conduct](https://github.com/carbon-design-system/carbon-platform/blob/main/.github/CODE_OF_CONDUCT.md)
+          required: true
+        - label: I checked the [current
+            issues](https://github.com/carbon-design-system/carbon-platform/issues) for
+            duplicate problems.

@@ -63,5 +63,5 @@ body:
       description: Please confirm the following.
       options:
         - label: I agree to follow this project's [Code of
-            Conduct](https://github.com/carbon-design-system/carbon/blob/f555616971a03fd454c0f4daea184adf41fff05b/.github/CODE_OF_CONDUCT.md)
+            Conduct](https://github.com/carbon-design-system/carbon-platform/blob/main/.github/CODE_OF_CONDUCT.md)
           required: true

@@ -3,3 +3,6 @@ node_modules/
 
 # Typescript output
 dist/
+
+# OS Stuff
+.DS_Store

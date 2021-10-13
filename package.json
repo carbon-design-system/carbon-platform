@@ -42,12 +42,11 @@
         [
           "build",
           "ci",
-          "chore",
+          "dev",
           "docs",
-          "env",
           "feat",
           "fix",
-          "revert",
+          "style",
           "test"
         ]
       ]

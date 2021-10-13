@@ -4,9 +4,6 @@ labels: "type: enhancement 💡"
 body:
   - type: markdown
     attributes:
-      value: "## Welcome!"
-  - type: markdown
-    attributes:
       value:
         Use this template if you want to request a new feature, or a change to
         an existing feature. If you are reporting a bug or problem, please use

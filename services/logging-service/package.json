@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "main": "dist/main/index.js",
   "license": "Apache-2.0",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
@@ -12,9 +13,6 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",

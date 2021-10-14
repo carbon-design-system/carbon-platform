@@ -12,9 +12,6 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "engines": {
     "node": ">=16",
     "npm": ">=8"
@@ -45,10 +42,13 @@
         [
           "build",
           "ci",
-          "dev",
+          "chore",
           "docs",
           "feat",
           "fix",
+          "perf",
+          "refactor",
+          "revert",
           "style",
           "test"
         ]

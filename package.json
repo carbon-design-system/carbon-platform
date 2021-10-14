@@ -59,6 +59,7 @@
     "all:build": "npm --workspaces run build",
     "packages:build": "npm --workspaces --if-present run package:build",
     "services:build": "npm --workspaces --if-present run service:build",
+    "version": "lerna version --conventional-commits --yes",
     "prepare": "husky install"
   },
   "devDependencies": {

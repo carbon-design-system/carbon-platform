@@ -1,0 +1,39 @@
+name: Nightly Version
+
+on:
+  schedule:
+    #       ┌───────────── minute (0 - 59)
+    #       │ ┌───────────── hour (0 - 23)
+    #       │ │ ┌───────────── day of the month (1 - 31)
+    #       │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
+    #       │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+    #       │ │ │ │ │
+    #       │ │ │ │ │
+    #       │ │ │ │ │
+    - cron: 0 4 * * *
+
+  # Enable running this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  nightly-version:
+    name: Nightly Version
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node 🏗️
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install Node Modules 🔧
+        run: npm ci
+
+      - name: Version 🚀
+        run: npm run version

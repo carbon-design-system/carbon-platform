@@ -1,11 +1,10 @@
 {
   "name": "@carbon-platform/logging",
   "description": "Carbon platform logging utilities",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/main/index.js",
   "types": "dist/main/index.d.ts",
   "license": "Apache-2.0",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
@@ -19,7 +18,7 @@
     "build": "tsc",
     "package:build": "npm run build"
   },
-  "dependencies": {
-    "typescript": "^4.4.3"
+  "devDependencies": {
+    "typescript": "^4.4.4"
   }
 }

@@ -57,9 +57,10 @@
   },
   "scripts": {
     "all:build": "npm --workspaces run build",
+    "all:version": "lerna version --conventional-commits --include-merged-tags",
     "packages:build": "npm --workspaces --if-present run package:build",
+    "packages:publish": "lerna publish --conventional-commits --include-merged-tags",
     "services:build": "npm --workspaces --if-present run service:build",
-    "version": "lerna version --conventional-commits --yes",
     "prepare": "husky install"
   },
   "devDependencies": {

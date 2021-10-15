@@ -1,5 +1,5 @@
 name: Epic 🏔
-description: Coordinate an effort of sub-tasks not bound by time to complete.
+description: Coordinate an effort of tasks not bound by time to complete.
 labels: "type: epic 🏔"
 body:
   - type: markdown

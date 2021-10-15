@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@0.1.3...@carbon-platform/logging@0.1.4) (2021-10-15)
+
+
+### Bug Fixes
+
+* bumped version number - testing testing lerna ([2fa9575](https://github.com/carbon-design-system/carbon-platform/commit/2fa95755df7932fa095026c8efadb78c29e8b459))
+
+
+
+
+
 ## [0.1.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@0.1.2...@carbon-platform/logging@0.1.3) (2021-10-15)
 
 

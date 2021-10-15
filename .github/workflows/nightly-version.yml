@@ -39,7 +39,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Modules 🔧
-        run: npm ci
+        run: npm install
 
       - name: Version 🚀
         run: npm run version

@@ -56,11 +56,10 @@
     }
   },
   "scripts": {
-    "all:build": "npm --workspaces run build",
-    "all:version": "lerna version --conventional-commits --include-merged-tags",
-    "packages:build": "npm --workspaces --if-present run package:build",
-    "packages:publish": "lerna publish --conventional-commits --include-merged-tags",
-    "services:build": "npm --workspaces --if-present run service:build",
+    "all:build": "lerna run build",
+    "packages:build": "lerna run --no-private build",
+    "services:build": "lerna run --parallel --scope='@carbon-platform/*-service' build",
+    "nightly": "lerna publish --conventional-commits --include-merged-tags --yes",
     "prepare": "husky install"
   },
   "devDependencies": {

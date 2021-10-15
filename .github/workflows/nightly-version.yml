@@ -26,6 +26,11 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.JOE_GITHUB_TOKEN }}
+      
+      - name: Set up Git User 🤖
+        run: |
+          git config --global user.email "jdharvey@us.ibm.com"
+          git config --global user.name "Joe Harvey"
 
       - name: Setup Node 🏗️
         uses: actions/setup-node@v2

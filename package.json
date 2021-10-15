@@ -42,29 +42,30 @@
         [
           "build",
           "ci",
-          "dev",
+          "chore",
           "docs",
           "feat",
           "fix",
+          "perf",
+          "refactor",
+          "revert",
           "style",
           "test"
         ]
       ]
     }
   },
-  "workspaces": [
-    "packages/*",
-    "services/*"
-  ],
   "scripts": {
     "all:build": "npm --workspaces run build",
     "packages:build": "npm --workspaces --if-present run package:build",
     "services:build": "npm --workspaces --if-present run service:build",
+    "version": "lerna version --conventional-commits --yes",
     "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
-    "husky": "^7.0.0"
+    "husky": "^7.0.0",
+    "lerna": "^4.0.0"
   }
 }

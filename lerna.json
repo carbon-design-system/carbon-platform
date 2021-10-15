@@ -1,0 +1,12 @@
+{
+  "packages": [
+    "packages/*",
+    "services/*"
+  ],
+  "version": "independent",
+  "command": {
+    "version": {
+      "message": "build: new module versions"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/logging-service",
   "description": "Carbon platform logging service",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "main": "dist/main/index.js",
   "license": "Apache-2.0",
   "private": true,
@@ -19,7 +19,10 @@
     "service:build": "npm run build",
     "start": "node dist/main/index.js"
   },
+  "devDependencies": {
+    "typescript": "^4.4.4"
+  },
   "dependencies": {
-    "typescript": "^4.4.3"
+    "@carbon-platform/logging": "^0.1.0"
   }
 }

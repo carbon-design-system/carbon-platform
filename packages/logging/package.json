@@ -13,6 +13,9 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",

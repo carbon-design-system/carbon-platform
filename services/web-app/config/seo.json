@@ -1,0 +1,37 @@
+{
+  "title": "Carbon Design System",
+  "titleTemplate": "%s - Carbon Design System",
+  "description": "Carbon Design System for IBM makers.",
+  "additionalLinkTags": [
+    {
+      "rel": "icon",
+      "href": "/favicon.svg"
+    }
+  ],
+  "additionalMetaTags": [
+    {
+      "name": "image",
+      "content": "https://next.carbondesignsystem.com/carbon.png"
+    }
+  ],
+  "openGraph": {
+    "images": [
+      {
+        "alt": "Carbon Design System",
+        "height": 630,
+        "width": 1200,
+        "url": "https://next.carbondesignsystem.com/carbon.png"
+      }
+    ],
+    "locale": "en_US",
+    "site_name": "Carbon Design System",
+    "title": "Carbon Design System",
+    "type": "website",
+    "url": "https://next.carbondesignsystem.com"
+  },
+  "twitter": {
+    "handle": "_carbondesign",
+    "site": "@site",
+    "cardType": "summary_large_image"
+  }
+}

@@ -5,15 +5,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import MyComponent from "@/components/my-component";
+import { NextSeo } from "next-seo";
+import defaultSeo from "@/config/seo.json";
 
-const HomePage = () => {
+const Page = () => {
+  const seo = {
+    title: defaultSeo.title,
+    titleTemplate: "%s",
+  };
+
   return (
-    <div>
-      Welcome to Next.js!
-      <MyComponent />
-    </div>
+    <>
+      <NextSeo {...seo} />
+      Home
+    </>
   );
 };
 
-export default HomePage;
+export default Page;

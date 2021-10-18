@@ -6,14 +6,20 @@
  */
 
 import MyComponent from "@/components/my-component";
+import { NextSeo } from "next-seo";
 
-const HomePage = () => {
+const Page = () => {
+  const seo = {
+    title: "My page",
+  };
+
   return (
-    <div>
+    <>
+      <NextSeo {...seo} />
       Welcome to my page!
       <MyComponent />
-    </div>
+    </>
   );
 };
 
-export default HomePage;
+export default Page;

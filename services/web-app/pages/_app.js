@@ -7,8 +7,17 @@
 
 import "@/styles/styles.scss";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+import { DefaultSeo } from "next-seo";
+import Layout from "@/layouts/default";
+import defaultSeo from "@/config/seo.json";
+
+function App({ Component, pageProps }) {
+  return (
+    <Layout>
+      <DefaultSeo {...defaultSeo} />
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
 
-export default MyApp;
+export default App;

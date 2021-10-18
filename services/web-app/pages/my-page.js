@@ -3,7 +3,7 @@ import MyComponent from "@/components/my-component";
 const HomePage = () => {
   return (
     <div>
-      Welcome to Next.js!
+      Welcome to my page!
       <MyComponent />
     </div>
   );

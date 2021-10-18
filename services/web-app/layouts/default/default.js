@@ -42,7 +42,7 @@ const NextLink = forwardRef(function NextLink(
   );
 });
 
-const DefaultLayout = ({ children }) => {
+const Default = ({ children }) => {
   const router = useRouter();
 
   const links = [
@@ -74,4 +74,4 @@ const DefaultLayout = ({ children }) => {
   );
 };
 
-export default DefaultLayout;
+export default Default;

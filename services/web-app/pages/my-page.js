@@ -8,7 +8,7 @@
 import MyComponent from "@/components/my-component";
 import { NextSeo } from "next-seo";
 
-const Page = () => {
+const MyPage = () => {
   const seo = {
     title: "My page",
   };
@@ -22,4 +22,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default MyPage;

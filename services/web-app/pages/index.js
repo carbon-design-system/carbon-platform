@@ -8,7 +8,7 @@
 import { NextSeo } from "next-seo";
 import defaultSeo from "@/config/seo.json";
 
-const Page = () => {
+const Index = () => {
   const seo = {
     title: defaultSeo.title,
     titleTemplate: "%s",
@@ -22,4 +22,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Index;

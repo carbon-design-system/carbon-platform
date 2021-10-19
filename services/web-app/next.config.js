@@ -10,10 +10,12 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
     prependData: `
-      @use '~@carbon/react/scss/breakpoint';
-      @use '~@carbon/react/scss/theme';
-      @use '~@carbon/react/scss/motion';
-      @use '~@carbon/react/scss/type';
+      @use '~@carbon/react/scss/breakpoint' as *;
+      @use '~@carbon/react/scss/spacing' as *;
+      @use '~@carbon/react/scss/theme' as *;
+      @use '~@carbon/react/scss/themes';
+      @use '~@carbon/react/scss/type' as *;
+      @use '~@carbon/react/scss/zone';
     `,
   },
   webpack(config) {

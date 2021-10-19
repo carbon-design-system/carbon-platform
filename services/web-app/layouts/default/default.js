@@ -10,6 +10,7 @@ import {
   Header,
   HeaderMenuItem,
   HeaderNavigation,
+  Theme,
 } from "@carbon/react";
 
 import Link from "next/link";
@@ -53,10 +54,10 @@ const Default = ({ children }) => {
   ];
 
   return (
-    <>
+    <Theme theme="g100">
       <Header aria-label="Carbon Design System">
         <CustomHeaderName />
-        <HeaderNavigation>
+        <HeaderNavigation aria-label="Main navigation">
           {links.map((link) => (
             <HeaderMenuItem
               key={link.href}
@@ -69,8 +70,10 @@ const Default = ({ children }) => {
           ))}
         </HeaderNavigation>
       </Header>
-      <Content>{children}</Content>
-    </>
+      <Theme theme="white">
+        <Content>{children}</Content>
+      </Theme>
+    </Theme>
   );
 };
 

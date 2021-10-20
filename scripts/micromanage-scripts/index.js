@@ -13,9 +13,12 @@ function main() {
     .addCommand(buildVersionCommand())
 
   try {
-    program.parse();
+    program.parse()
   } catch (err) {
-    console.error(err);
+    console.error(err)
+    err.stdout && console.log('stdout: ' + err.stdout.toString())
+    err.stderr && console.log('stderr: ' + err.stderr.toString())
+    process.exit(1)
   }
 }
 

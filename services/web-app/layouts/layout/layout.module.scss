@@ -1,0 +1,22 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+.content {
+  flex-grow: 1;
+  background: $background;
+}
+
+.main {
+  margin: 3rem 0 0 16rem;
+  @include breakpoint-down(lg) {
+    margin-left: 0;
+  }
+}
+
+.inner {
+  padding: 2rem 0;
+}

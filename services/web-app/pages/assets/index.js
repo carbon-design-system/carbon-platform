@@ -9,31 +9,23 @@ import { useContext, useEffect } from "react";
 
 import { LayoutContext } from "@/layouts/layout";
 import { NextSeo } from "next-seo";
-import defaultSeo from "@/config/seo.json";
-
-const navData = [
-  {
-    path: "/",
-    title: "About Carbon",
-  },
-];
+import { assetsNavData } from "@/data/nav-data";
 
 const Index = () => {
   const { setNavData } = useContext(LayoutContext);
 
   const seo = {
-    title: defaultSeo.title,
-    titleTemplate: "%s",
+    title: "Assets",
   };
 
   useEffect(() => {
-    setNavData(navData);
+    setNavData(assetsNavData);
   }, [setNavData]);
 
   return (
     <>
       <NextSeo {...seo} />
-      Home
+      Welcome to Assets!
     </>
   );
 };

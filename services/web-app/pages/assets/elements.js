@@ -9,33 +9,25 @@ import { useContext, useEffect } from "react";
 
 import { LayoutContext } from "@/layouts/layout";
 import { NextSeo } from "next-seo";
-import defaultSeo from "@/config/seo.json";
+import { assetsNavData } from "@/data/nav-data";
 
-const navData = [
-  {
-    path: "/",
-    title: "About Carbon",
-  },
-];
-
-const Index = () => {
+const Elements = () => {
   const { setNavData } = useContext(LayoutContext);
 
   const seo = {
-    title: defaultSeo.title,
-    titleTemplate: "%s",
+    title: "Elements",
   };
 
   useEffect(() => {
-    setNavData(navData);
+    setNavData(assetsNavData);
   }, [setNavData]);
 
   return (
     <>
       <NextSeo {...seo} />
-      Home
+      Welcome to the Elements catalog!
     </>
   );
 };
 
-export default Index;
+export default Elements;

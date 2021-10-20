@@ -7,16 +7,19 @@
 
 import "@/styles/styles.scss";
 
+import Layout, { LayoutProvider } from "@/layouts/layout";
+
 import { DefaultSeo } from "next-seo";
-import Layout from "@/layouts/default";
 import defaultSeo from "@/config/seo.json";
 
 function App({ Component, pageProps }) {
   return (
-    <Layout>
-      <DefaultSeo {...defaultSeo} />
-      <Component {...pageProps} />
-    </Layout>
+    <LayoutProvider>
+      <Layout>
+        <DefaultSeo {...defaultSeo} />
+        <Component {...pageProps} />
+      </Layout>
+    </LayoutProvider>
   );
 }
 

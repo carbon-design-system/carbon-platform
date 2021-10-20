@@ -1,4 +1,8 @@
-# Contributing!
+---
+title: Contributing
+---
+
+# Contributing
 
 TODO: add more details
 

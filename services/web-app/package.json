@@ -14,7 +14,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "service:build": "npm run build"
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"

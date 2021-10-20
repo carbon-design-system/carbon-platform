@@ -63,10 +63,10 @@
     }
   },
   "scripts": {
-    "all:build": "lerna run build",
-    "packages:build": "lerna run --no-private build",
-    "services:build": "lerna run --parallel --scope='@carbon-platform/*-service' build",
-    "nightly": "lerna publish --conventional-commits --include-merged-tags --yes",
+    "all:build": "npm --workspaces run build",
+    "packages:build": "npm --workspaces --if-present run package:build",
+    "services:build": "npm --workspaces --if-present run service:build",
+    "nightly": "scripts/micromanage link && scripts/micromanage version && scripts/micromanage publish",
     "prepare": "husky install"
   },
   "devDependencies": {

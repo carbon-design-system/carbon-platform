@@ -1,0 +1,15 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+.foo-bar {
+  margin: $spacing-10 0;
+  background: $background;
+  @include type-style("productive-heading-05");
+  @include breakpoint-down(md) {
+    background: $background-inverse;
+  }
+}

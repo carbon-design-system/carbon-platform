@@ -19,7 +19,8 @@
   "workspaces": {
     "packages": [
       "packages/logging",
-      "services/logging-service"
+      "services/logging-service",
+      "services/web-app"
     ]
   },
   "commitlint": {

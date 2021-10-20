@@ -1,4 +1,5 @@
 const { Command } = require('commander')
+const path = require('path')
 
 const utils = require('./utils')
 
@@ -17,12 +18,23 @@ function handlePublishCommand() {
     // Get package info
     const info = JSON.parse(utils.exec(`npm view ${pkg.name} --json`))
 
-    if (info['dist-tags'].latest !== pkg.version) {
-      console.log(utils.exec(`npm publish --workspace=${pkg.path}`))
-    } else {
-      console.log(`No publish needed for ${pkg.name}`)
+    // Check if a publish is needed
+    if (info['dist-tags'].latest === pkg.version) {
+        console.log(`No publish needed for ${pkg.name}`)
+      return
     }
 
+    // Build
+    utils.exec(`npm run --workspace=${pkg.path} build`)
+
+    // Add top-level license
+    utils.exec(`cp LICENSE ${pkg.path}`)
+
+    // Publish
+    console.log(utils.exec(`npm publish --workspace=${pkg.path}`))
+
+    // Add top-level license
+    utils.exec(`rm ${path.join(pkg.path, 'LICENSE')}`)
   })
 }
 

@@ -16,6 +16,12 @@
     "node": ">=16",
     "npm": ">=8"
   },
+  "workspaces": {
+    "packages": [
+      "packages/logging",
+      "services/logging-service"
+    ]
+  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -65,7 +71,8 @@
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
+    "commander": "^8.2.0",
     "husky": "^7.0.0",
-    "lerna": "^4.0.0"
+    "standard-version": "^9.3.2"
   }
 }

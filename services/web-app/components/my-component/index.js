@@ -5,6 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import MyComponent from "./my-component";
+import { Column, Grid } from '@carbon/react';
+import ComponentCatalog from "./ComponentCatalog";
+import styles from "./my-component.module.scss";
 
-export default MyComponent;
+const ComponentCatalogIndexPage = () => { 
+  return (
+    <Grid>
+      <Column lg={16} md={8} sm={4} className={styles.componentCatalogIndexContainer}>
+        <ComponentCatalog />
+      </Column>
+    </Grid>
+  )
+}
+
+export default ComponentCatalogIndexPage;

@@ -4,12 +4,39 @@
 // This source code is licensed under the Apache-2.0 license found in the
 // LICENSE file in the root directory of this source tree.
 //
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/theme' as *;
 
-.foo-bar {
-  margin: $spacing-10 0;
-  background: $background;
-  @include type-style("productive-heading-05");
-  @include breakpoint-down(md) {
-    background: $background-inverse;
-  }
+
+// .foo-bar {
+//   margin: $spacing-10 0;
+//   background: $background;
+//   @include type-style("productive-heading-05");
+//   @include breakpoint-down(md) {
+//     background: $background-inverse;
+//   }
+// }
+
+//----------------------------------------------------------------------------
+// Component Catalog Index Container
+//----------------------------------------------------------------------------
+.component-catalog-index-container {
+  width: 100%;
+}
+
+//----------------------------------------------------------------------------
+// Component Catalog item
+//----------------------------------------------------------------------------
+.component-catalog-item {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid $layer-accent-01;
+}
+
+.component-catalog-item .component-catalog-item-image,
+.component-catalog-item .component-catalog-item-content {
+  background-color: $background;
+  height: 11.25rem;
 }

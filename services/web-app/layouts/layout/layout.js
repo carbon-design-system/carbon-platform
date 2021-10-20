@@ -29,19 +29,9 @@ import { createContext, useContext, useState } from "react";
 
 import Link from "next/link";
 import NextLink from "@/components/next-link";
+import { globalNavData } from "@/data/nav-data";
 import styles from "./layout.module.scss";
 import { useRouter } from "next/router";
-
-const globalNavData = [
-  {
-    path: "/standards",
-    title: "Standards",
-  },
-  {
-    path: "/assets",
-    title: "Assets",
-  },
-];
 
 export const LayoutContext = createContext();
 
@@ -107,11 +97,12 @@ const Layout = ({ children }) => {
                 >
                   <SideNavItems>
                     <HeaderSideNavItems>
-                      {globalNavData.map((data) => (
+                      {globalNavData.map((data, i) => (
                         <SideNavLink
+                          element={NextLink}
                           key={data.path}
                           href={data.path}
-                          element={NextLink}
+                          key={i}
                         >
                           {data.title}
                         </SideNavLink>
@@ -120,16 +111,30 @@ const Layout = ({ children }) => {
                     {navData.map((data, i) => {
                       if (data.path && data.title) {
                         return (
-                          <SideNavLink href={data.path} key={i}>
+                          <SideNavLink
+                            element={NextLink}
+                            href={data.path}
+                            isActive={router.pathname === data.path}
+                            key={i}
+                          >
                             {data.title}
                           </SideNavLink>
                         );
                       }
                       if (!data.path && data.items) {
                         return (
-                          <SideNavMenu key={i} title={data.title}>
+                          <SideNavMenu
+                            defaultExpanded={true}
+                            key={i}
+                            title={data.title}
+                          >
                             {data.items.map((item, j) => (
-                              <SideNavMenuItem href={item.href} key={j}>
+                              <SideNavMenuItem
+                                element={NextLink}
+                                isActive={router.pathname.startsWith(item.path)}
+                                to={item.path}
+                                key={j}
+                              >
                                 {item.title}
                               </SideNavMenuItem>
                             ))}

@@ -9,25 +9,25 @@ import { useContext, useEffect } from "react";
 
 import { LayoutContext } from "@/layouts/layout";
 import { NextSeo } from "next-seo";
-import { standardsNavData } from "@/data/nav-data";
+import { assetsNavData } from "@/data/nav-data";
 
-const Standards = () => {
+const Elements = () => {
   const { setNavData } = useContext(LayoutContext);
 
   const seo = {
-    title: "Standards",
+    title: "Elements",
   };
 
   useEffect(() => {
-    setNavData(standardsNavData);
-  }, [standardsNavData, setNavData]);
+    setNavData(assetsNavData);
+  }, [assetsNavData, setNavData]);
 
   return (
     <>
       <NextSeo {...seo} />
-      Welcome to Standards!
+      Welcome to the Elements catalog!
     </>
   );
 };
 
-export default Standards;
+export default Elements;

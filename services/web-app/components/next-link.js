@@ -9,11 +9,11 @@ import Link from "next/link";
 import { forwardRef } from "react";
 
 const NextLink = forwardRef(function NextLink(
-  { href, children, className, ...rest },
+  { children, className, href, to, ...rest },
   ref
 ) {
   return (
-    <Link href={href}>
+    <Link href={href || to}>
       <a className={className} {...rest} ref={ref}>
         {children}
       </a>
@@ -22,3 +22,4 @@ const NextLink = forwardRef(function NextLink(
 });
 
 export default NextLink;
+``;

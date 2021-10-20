@@ -1,0 +1,3 @@
+#!/bin/sh
+
+node scripts/micromanage-scripts/index.js $@

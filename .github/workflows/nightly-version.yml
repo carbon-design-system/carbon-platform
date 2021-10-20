@@ -43,3 +43,5 @@ jobs:
 
       - name: Version and Publish 🚀
         run: npm run nightly
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

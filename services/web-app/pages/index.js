@@ -28,7 +28,7 @@ const Index = () => {
 
   useEffect(() => {
     setNavData(navData);
-  }, [navData, setNavData]);
+  }, [setNavData]);
 
   return (
     <>

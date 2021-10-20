@@ -20,7 +20,7 @@ const Libraries = () => {
 
   useEffect(() => {
     setNavData(assetsNavData);
-  }, [assetsNavData, setNavData]);
+  }, [setNavData]);
 
   return (
     <>

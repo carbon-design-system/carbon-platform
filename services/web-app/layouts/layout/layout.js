@@ -100,7 +100,6 @@ const Layout = ({ children }) => {
                       {globalNavData.map((data, i) => (
                         <SideNavLink
                           element={NextLink}
-                          key={data.path}
                           href={data.path}
                           key={i}
                         >

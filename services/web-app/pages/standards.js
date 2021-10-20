@@ -20,7 +20,7 @@ const Standards = () => {
 
   useEffect(() => {
     setNavData(standardsNavData);
-  }, [standardsNavData, setNavData]);
+  }, [setNavData]);
 
   return (
     <>

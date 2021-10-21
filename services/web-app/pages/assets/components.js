@@ -6,6 +6,7 @@
  */
 
 import { useContext, useEffect } from "react";
+import  ComponentCatalogIndexPage from '@/components/my-component/index';
 
 import { LayoutContext } from "@/layouts/layout";
 import { NextSeo } from "next-seo";
@@ -25,7 +26,7 @@ const Components = () => {
   return (
     <>
       <NextSeo {...seo} />
-      Welcome to the Components catalog!
+      <ComponentCatalogIndexPage />
     </>
   );
 };

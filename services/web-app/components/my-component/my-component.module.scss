@@ -35,8 +35,125 @@
   border-bottom: 1px solid $layer-accent-01;
 }
 
+// TODO: update color token?
 .component-catalog-item .component-catalog-item-image,
 .component-catalog-item .component-catalog-item-content {
-  background-color: $background;
+  background-color: white;
   height: 11.25rem;
+}
+
+// Image
+.component-catalog-item-image {
+  display: none;
+
+  @include breakpoint(md) {
+    //672  4:3
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid $layer-accent-01;
+    // TODO: replace with appropriate aspect ratio handling
+    width: 14.875rem;
+  }
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    width: 11.25rem;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 14.875rem;
+  }
+}
+
+// Sponsor
+.component-catalog-item-sponsor {
+  @include type-style('body-short-01');
+  color: $text-primary;
+  padding-bottom: rem(8px);
+}
+
+// Name
+.component-catalog-item-name {
+  @include type-style('heading-01');
+  color: $text-primary;
+}
+
+// Description
+.component-catalog-item-description {
+  @include type-style('body-short-01');
+  padding-right: $spacing-09;
+  color: $text-primary;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+// Content
+.component-catalog-item-content {
+  padding: $spacing-05;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+// Info
+.component-catalog-item-info {
+  @include type-style('body-short-01');
+
+  position: relative;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+}
+
+.component-catalog-item-status {
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+}
+
+.component-catalog-item-downloads {
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+}
+
+.component-catalog-item-license {
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+}
+
+.component-catalog-item-reviewed {
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+}
+
+// Tags
+.component-catalog-item-tags {
+  display: none;
+  background-color: white;
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    display: flex;
+    flex-direction: column;
+    padding: $spacing-05;
+    justify-content: space-around;
+    // justify-content: flex-end;
+    // TODO: replace with appropriate aspect ratio handling
+    width: 11.25rem;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 14.875rem;
+    display: flex;
+    flex-direction: column;
+    padding: $spacing-05;
+    justify-content: space-around;
+    // justify-content: flex-end;
+    // TODO: replace with appropriate aspec
+  }
 }

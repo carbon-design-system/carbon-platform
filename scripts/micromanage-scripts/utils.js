@@ -2,8 +2,16 @@ const { execSync } = require('child_process')
 const path = require('path')
 const fs = require('fs')
 
-function exec(cmd) {
-  return execSync(cmd).toString().trim()
+function exec(cmd, env) {
+  if (!env) {
+    env = {}
+  }
+
+  return execSync(cmd, {
+    env: {
+      ...env
+    }
+  }).toString().trim()
 }
 
 function getFiles(dir, extensions) {

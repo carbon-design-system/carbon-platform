@@ -31,7 +31,11 @@ function handlePublishCommand() {
     utils.exec(`cp LICENSE ${pkg.path}`)
 
     // Publish
-    console.log(utils.exec(`npm publish --workspace=${pkg.path}`))
+    console.log(
+      utils.exec(
+        `npm publish --workspace=${pkg.path}`, {NODE_AUTH_TOKEN: process.env.NODE_AUTH_TOKEN}
+      )
+    )
 
     // Add top-level license
     utils.exec(`rm ${path.join(pkg.path, 'LICENSE')}`)

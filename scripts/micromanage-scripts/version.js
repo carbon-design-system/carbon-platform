@@ -11,6 +11,8 @@ function buildVersionCommand() {
 }
 
 function handleVersionCommand() {
+  console.log('===== micromanage version =====')
+
   // Ensure all tags are up-to-date with the remote
   utils.exec('git fetch --tags')
 

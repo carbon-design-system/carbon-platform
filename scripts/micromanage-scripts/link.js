@@ -13,6 +13,8 @@ function buildLinkCommand() {
 }
 
 function handleLinkCommand(opts) {
+  console.log('===== micromanage link =====')
+
   let isDirty = false
   const packages = utils.getPackages()
 

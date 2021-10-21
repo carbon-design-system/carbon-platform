@@ -12,6 +12,8 @@ function buildPublishCommand() {
 }
 
 function handlePublishCommand() {
+  console.log('===== micromanage publish =====')
+
   const packages = utils.getPackages().filter((pkg) => (!pkg.private))
 
   packages.forEach((pkg) => {
@@ -24,6 +26,8 @@ function handlePublishCommand() {
       return
     }
 
+    console.log(`Publishing ${pkg.name}`)
+
     // Build
     utils.exec(`npm run --workspace=${pkg.path} build`)
 
@@ -31,11 +35,7 @@ function handlePublishCommand() {
     utils.exec(`cp LICENSE ${pkg.path}`)
 
     // Publish
-    console.log(
-      utils.exec(
-        `npm publish --workspace=${pkg.path}`, {NODE_AUTH_TOKEN: process.env.NODE_AUTH_TOKEN}
-      )
-    )
+    console.log(utils.exec(`npm publish --workspace=${pkg.path}`))
 
     // Add top-level license
     utils.exec(`rm ${path.join(pkg.path, 'LICENSE')}`)

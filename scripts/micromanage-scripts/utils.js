@@ -2,14 +2,10 @@ const { execSync } = require('child_process')
 const path = require('path')
 const fs = require('fs')
 
-function exec(cmd, env) {
-  if (!env) {
-    env = {}
-  }
-
+function exec(cmd) {
   return execSync(cmd, {
     env: {
-      ...env
+      ...process.env
     }
   }).toString().trim()
 }

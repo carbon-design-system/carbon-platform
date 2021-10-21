@@ -54,7 +54,10 @@ function handleVersionCommand() {
     return newTag
   })
 
-  // Switch back to the main branch
+  // Ensure lock file remains up-to-date
+  utils.exec(`npm install && git commit --allow-empty -am "chore: update package-lock.json"`)
+
+  // Switch back to the original branch
   utils.exec('git switch -')
 
   // Squash-merge all of the new version commits

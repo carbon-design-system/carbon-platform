@@ -66,7 +66,7 @@
     "all:build": "npm --workspaces run build",
     "packages:build": "npm --workspaces --if-present run package:build",
     "services:build": "npm --workspaces --if-present run service:build",
-    "nightly": "scripts/micromanage link && scripts/micromanage version && scripts/micromanage publish",
+    "nightly": "scripts/nightly",
     "prepare": "husky install"
   },
   "devDependencies": {

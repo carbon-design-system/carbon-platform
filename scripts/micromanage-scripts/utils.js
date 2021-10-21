@@ -1,8 +1,16 @@
-const { execSync } = require("child_process")
+const { execSync } = require('child_process')
 const path = require('path')
+const fs = require('fs')
 
 function exec(cmd) {
-  return execSync(cmd).toString()
+  return execSync(cmd).toString().trim()
+}
+
+function getFiles(dir, extensions) {
+  return extensions.map((extension) => {
+    const files = exec(`find ${dir} -name "*${extension}" -type f`)
+    return files.length === 0 ? [] : files.split('\n')
+  }).reduce((prev, cur) => ([...prev, ...cur]), [])
 }
 
 function getPackages() {
@@ -25,17 +33,12 @@ function getPackages() {
 
 function getTags() {
   const tagsCommandOutput = exec('git tag --sort=taggerdate')
-  const tags = tagsCommandOutput.split('\n')
-
-  if (tags[tags.length-1] === '') {
-    tags.pop() // Remove the blank entry
-  }
-
-  return tags
+  return tagsCommandOutput.split('\n')
 }
 
 module.exports = {
   exec,
+  getFiles,
   getPackages,
   getTags
 }

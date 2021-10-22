@@ -9,6 +9,7 @@ import { useContext, useEffect } from "react";
 
 import { LayoutContext } from "@/layouts/layout";
 import { NextSeo } from "next-seo";
+import { Svg16Carbon } from "@/icons/index.js";
 import defaultSeo from "@/config/seo.json";
 
 const navData = [
@@ -34,6 +35,7 @@ const Index = () => {
     <>
       <NextSeo {...seo} />
       Home
+      <Svg16Carbon style={{ color: "pink" }} />
     </>
   );
 };

@@ -25,12 +25,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          token: ${{ secrets.JOE_GITHUB_TOKEN }}
+          ssh-key: ${{ secrets.NIGHTLY_BUILD_DEPLOY_KEY }}
 
       - name: Set up Git User 🤖
         run: |
-          git config --global user.email "jdharvey@us.ibm.com"
-          git config --global user.name "Joe Harvey"
+          git config --global user.email "carbon@us.ibm.com"
+          git config --global user.name "Carbon Bot"
 
       - name: Setup Node 🏗️
         uses: actions/setup-node@v2

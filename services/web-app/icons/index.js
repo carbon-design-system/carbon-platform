@@ -1,0 +1,5 @@
+export { default as Svg10ArrowNorthwest } from './10ArrowNorthwest'
+export { default as Svg12Stable } from './12Stable'
+export { default as Svg14Download } from './14Download'
+export { default as Svg14License } from './14License'
+export { default as Svg16Carbon } from './16Carbon'

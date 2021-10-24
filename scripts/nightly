@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Fail immediately on errors
+set -e
+
+scripts/micromanage link --ext .ts .js .scss
+
+scripts/micromanage version
+
+scripts/micromanage publish

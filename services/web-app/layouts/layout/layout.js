@@ -24,7 +24,7 @@ import {
   SkipToContent,
   Theme,
 } from "@carbon/react";
-import { Search20, Switcher20, User20 } from "@carbon/icons-react";
+import { Search, Switcher, User } from "@carbon/react/icons";
 import { createContext, useContext, useState } from "react";
 
 import Link from "next/link";
@@ -78,16 +78,16 @@ const Layout = ({ children }) => {
               </HeaderNavigation>
               <HeaderGlobalBar>
                 <HeaderGlobalAction aria-label="Search" onClick={() => {}}>
-                  <Search20 />
+                  <Search size={20} />
                 </HeaderGlobalAction>
                 <HeaderGlobalAction aria-label="Log in" onClick={() => {}}>
-                  <User20 />
+                  <User size={20} />
                 </HeaderGlobalAction>
                 <HeaderGlobalAction
                   aria-label="Switch sites"
                   onClick={() => {}}
                 >
-                  <Switcher20 />
+                  <Switcher size={20} />
                 </HeaderGlobalAction>
               </HeaderGlobalBar>
               <Theme theme="white">

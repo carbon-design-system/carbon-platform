@@ -10,25 +10,28 @@
     "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev",
+    "dev:clean": "npm run clean && next dev",
     "lint": "next lint",
-    "service:build": "npm run build"
+    "service:build": "npm run build",
+    "start": "next start",
+    "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "dependencies": {
-    "@carbon/icons-react": "^10.41.0",
     "@carbon/react": "^0.7.0",
+    "@octokit/core": "^3.5.1",
     "clsx": "^1.1.1",
+    "js-yaml": "^4.1.0",
     "next": "^11.1.2",
     "next-seo": "^4.28.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "slugify": "^1.6.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

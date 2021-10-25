@@ -6,6 +6,8 @@
       "@/config/*": ["config/*"],
       "@/data/*": ["data/*"],
       "@/layouts/*": ["layouts/*"],
+      "@/lib/*": ["lib/*"],
+      "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"]
     }
   },

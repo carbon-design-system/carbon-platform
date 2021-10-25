@@ -16,13 +16,11 @@
     "node": ">=16",
     "npm": ">=8"
   },
-  "workspaces": {
-    "packages": [
-      "packages/logging",
-      "services/logging-service",
-      "services/web-app"
-    ]
-  },
+  "workspaces": [
+    "packages/logging",
+    "services/logging-service",
+    "services/web-app"
+  ],
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"

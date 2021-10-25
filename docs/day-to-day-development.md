@@ -54,6 +54,20 @@ Removing dependencies works the same way with the `npm uninstall` command.
 
 > Note: It is important to only run install commands from the top-level of the repository. This allows a single `package-lock.json` file to be maintained at the root of the repo.
 
+## Updating node modules
+
+To update the node modules across all workspaces, from the top-level in the repo, run:
+```
+$ npm update
+```
+
+To update the node modules only for a specific workspace, from the top-level in the repo, run:
+```
+# npm --workspace <workspace_path> update
+```
+
+> Note: This is currently not working correctly (https://github.com/npm/arborist/issues/345). As a workaround, you can pass each package's name to the update command that you want to update and it will be properly scoped to only the workspace in question.
+
 ## Running npm scripts for packages
 
 There are two ways to run npm scripts for a package.

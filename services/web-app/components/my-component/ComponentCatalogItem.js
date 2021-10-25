@@ -8,24 +8,19 @@
 
 //  import Image from 'next/image'
 import styles from './my-component.module.scss';
-import { Add16, ArrowUpRight16, Carbon16, Download16, Scales16 } from '@carbon/icons-react';
+import { Svg12Stable, Svg14Download, Svg14License, Svg16Carbon, Svg10ArrowNorthwest } from "@/icons/index.js";
+import { Add16, ArrowUpRight16 } from '@carbon/icons-react';
 
   const ComponentCatalogItem = () => {
     return (
       <article className={styles.componentCatalogItem}>
         <div className={styles.componentCatalogItemImage}>
-          {/* <Image
-            src="/images/profile.jpg"
-            height={144}
-            width={144}
-            alt={`hi`}
-          /> */}
           <Add16 aria-label="Add" className="my-custom-class" />
         </div>
         <div className={styles.componentCatalogItemContent}>
           <p className={styles.componentCatalogItemSponsor}>
             Super Sponsor
-            <ArrowUpRight16 aria-label="Add" className="my-custom-class" />
+            <Svg10ArrowNorthwest />
           </p>
           <header className={styles.componentCatalogItemName}>The best component ever</header>
           <p className={styles.componentCatalogItemDescription}>
@@ -33,19 +28,19 @@ import { Add16, ArrowUpRight16, Carbon16, Download16, Scales16 } from '@carbon/i
           </p>
           <footer className={styles.componentCatalogItemInfo}>
             <div className={styles.componentCatalogItemStatus}>
-              <Add16 aria-label="Add" className="my-custom-class" />
+              <Svg12Stable className={styles.componentCatalogItemStatusIcon} />
               Stable
             </div>
             <div className={styles.componentCatalogItemDownloads}>
-              <Download16 aria-label="Add" className="my-custom-class" />
+              <Svg14Download />
               1,234
             </div> 
             <div className={styles.componentCatalogItemLicense}>
-              <Scales16 aria-label="Add" className="my-custom-class" />
+              <Svg14License />
               Apache 2.0
             </div> 
             <div className={styles.componentCatalogItemReviewed}>
-              <Carbon16 aria-label="Add" className="my-custom-class" />
+              <Svg16Carbon />
               Reviewed
             </div> 
           </footer>

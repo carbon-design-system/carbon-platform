@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Dropdown, Toggle } from '@carbon/react';
+import { Button, Dropdown, Toggle } from '@carbon/react';
+import { LeftContentSwitcher } from "@/icons/index.js";
 import styles from './my-component.module.scss';
 
 function ComponentCatalogSort({ selectedItem, initialSortOption, onChange }) {
@@ -16,19 +17,21 @@ function ComponentCatalogSort({ selectedItem, initialSortOption, onChange }) {
       <div>
         <Dropdown
           id="component-index-sort"
-          initialSelectedItem="hola"
+          initialSelectedItem="Most used"
           items={options}
           light
+          className={styles.componentCatalogSortDropdown}
           // onChange={({ selectedItem }) => {
           //   onChange(selectedItem);
           // }}
           type="inline"
           titleText="Sort by:"
-          label='hello'
+          label='Most used'
         />
       </div>
-      <div style={{backroundColor: "red"}}>
+      <div>
         <Dropdown
+            className={styles.componentCatalogSortToggle}
             id="component-index-sort"
             initialSelectedItem="hola"
             items={options}
@@ -41,19 +44,9 @@ function ComponentCatalogSort({ selectedItem, initialSortOption, onChange }) {
             label='hello'
           />
       </div>
-      <div>
-      <Dropdown
-          id="component-index-sort"
-          initialSelectedItem="hola"
-          items={options}
-          light
-          // onChange={({ selectedItem }) => {
-          //   onChange(selectedItem);
-          // }}
-          type="inline"
-          titleText="Sort by:"
-          label='hello'
-        />
+      <div className={styles.componentCatalogSortSwitcher}>
+        <Button size="small" kind="ghost" renderIcon={LeftContentSwitcher} iconDescription="Icon Description" hasIconOnly />
+        <Button size="small" kind="ghost" renderIcon={LeftContentSwitcher} iconDescription="Icon Description" hasIconOnly />
       </div> 
     </div>
   );

@@ -6,7 +6,6 @@
  */
 
 import { Column, Grid, Pagination } from '@carbon/react';
-import ComponentCatalog from "./ComponentCatalog";
 import styles from "./my-component.module.scss";
 import ComponentCatalogSearch from './ComponentCatalogSearch';
 import ComponentCatalogSort from './ComponentCatalogSort';
@@ -28,13 +27,7 @@ const ComponentCatalogIndexPage = () => {
             page={1}
             pageNumberText="Page Number"
             pageSize={10}
-            pageSizes={[
-              10,
-              20,
-              30,
-              40,
-              50
-            ]}
+            pageSizes={[10,20,30, 40, 50]}
             totalItems={103}
           />
         </div>

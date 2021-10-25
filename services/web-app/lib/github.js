@@ -40,7 +40,7 @@ const getAllLibraries = async () => {
       path: item.path,
     };
 
-    console.log("GITHUB CONTENTS:", searchOptions);
+    console.log("GITHUB CONTENTS:", contentsOptions);
     const content = await octokit.request(
       "GET /repos/{owner}/{repo}/contents/{path}",
       contentsOptions

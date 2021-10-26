@@ -4,6 +4,6 @@ set -e
 
 prettier --check .
 
-stylelint '**/*.{css,scss,js,jsx,ts,tsx}'
+# stylelint '**/*.{css,scss,js,jsx,ts,tsx}'
 
 eslint --ext .js,.jsx,.ts,.tsx .

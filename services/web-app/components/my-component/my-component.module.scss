@@ -10,16 +10,6 @@
 @use '@carbon/react/scss/theme' as *;
 @use '@carbon/react' as styles;
 
-
-// .foo-bar {
-//   margin: $spacing-10 0;
-//   background: $background;
-//   @include type-style("productive-heading-05");
-//   @include breakpoint-down(md) {
-//     background: $background-inverse;
-//   }
-// }
-
 //----------------------------------------------------------------------------
 // Component Catalog Index Container
 //----------------------------------------------------------------------------
@@ -194,14 +184,14 @@
   }
 }
 
-.component-catalog-item-tags-sponsor  {
-  background-color:#fff;
-  border: 1px solid #E0E0E0;    
-  height:64px;
-  border-radius:50%;
-  -moz-border-radius:50%;
-  -webkit-border-radius:50%;
-  width:64px;
+.component-catalog-item-tags-sponsor {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  height: 64px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  width: 64px;
   padding-top: 15px;
   padding-left: 15px;
 }
@@ -229,7 +219,7 @@
 }
 
 .component-catalog-search :global(.cds--search-input) {
-  border-bottom: 1px solid #8D8D8D;
+  border-bottom: 1px solid #8d8d8d;
   height: 2.5rem;
   background-color: white;
 }
@@ -280,7 +270,7 @@
   color: $text-secondary;
 }
 
-// TODO: doesn't seem to work? 
+// TODO: doesn't seem to work?
 .component-catalog-sort-dropdown :global(.cds--list-box__label) {
   @include type-style('body-short-02');
   color: $text-secondary;
@@ -315,14 +305,13 @@
   }
 }
 
-// TODO: doesn't seem to work? 
+// TODO: doesn't seem to work?
 // .component-catalog-sort-toggle :global(.cds--list-box__label) {
 //   font: $text-secondary;
 // }
 
 // Switcher
 .component-catalog-sort-switcher {
-
   @include breakpoint(md) {
     //672  4:3
     display: flex;
@@ -343,7 +332,7 @@
   }
 }
 
-// TODO: doesn't seem to work? 
+// TODO: doesn't seem to work?
 // .component-catalog-sort-switcher :global(.cds--list-box__label) {
 //   font: $text-secondary;
 // }
@@ -352,7 +341,7 @@
 // Component Catalog Pagination
 //----------------------------------------------------------------------------
 
-// TODO: doesn't seem to work? 
+// TODO: doesn't seem to work?
 :global(.cds--pagination).component-catalog-pagination-container {
   width: 100%;
   background-color: white;

@@ -16,10 +16,13 @@ Before developing the Carbon Platform project, you must have the following insta
 - NPM version 8. This is typically distributed along with Node v16.
 
 You can validate that you are running the correct versions of these utilities by running:
+
 ```
 $ npm --version
 ```
+
 and
+
 ```
 $ node --version
 ```
@@ -31,21 +34,36 @@ All of the projects are stored in a single monorepo located at https://github.co
 ## Installing project dependencies
 
 It is a good idea each time after cloning or pulling from the upstream repository to install the project dependencies. From the top-level directory of the project, this can be done by running:
+
 ```
 $ npm install
 ```
-This will install the dependencies across *all* projects in the monorepo.
+
+This will install the dependencies across _all_ projects in the monorepo.
+
+## Adding GitHub personal access token for prototype
+
+The web app prototype uses a GitHub personal access token to fetch data from GitHub. To run the prototype:
+
+1. Generate a new token https://github.com/settings/tokens
+1. Select all repo scopes
+1. Copy the `/services/web-app/.env.example` file and rename to `/services/web-app/.env.local`
+1. Add your token to that new `.env.local` file
 
 ## Adding new project dependencies
 
 To install a new node module into a project, from the top-level of the repository, run:
+
 ```
-$ npm --workspace <workspace_path> install [--save-dev] some-node-package-name
+$ npm --workspace <workspace_path> install [--save-dev] some-node-package-name@latest
 ```
+
 - `workspace_path` is the folder containing the package.json you wish to update. For example `packages/logging`.
 - `--save-dev` is optional, depending on whether the dep is a production dep or only used during development/build.
+- Make sure to specify a package version or `@latest` so the dependency doesn't get installed with the `*` wildcard.
 
 Here's a full example of installing the `immer` package into the `@carbon-platform/logging` package:
+
 ```
 $ npm --workspace packages/logging install immer
 ```
@@ -57,11 +75,13 @@ Removing dependencies works the same way with the `npm uninstall` command.
 ## Updating node modules
 
 To update the node modules across all workspaces, from the top-level in the repo, run:
+
 ```
 $ npm update
 ```
 
 To update the node modules only for a specific workspace, from the top-level in the repo, run:
+
 ```
 # npm --workspace <workspace_path> update
 ```
@@ -73,11 +93,11 @@ To update the node modules only for a specific workspace, from the top-level in 
 There are two ways to run npm scripts for a package.
 
 1. Use a workspace command from the top-level in the repo, such as:
-    - ```
-      $ npm --workspace services/web-app run dev
-      ```
+   - ```
+     $ npm --workspace services/web-app run dev
+     ```
 2. Or, `cd` to the workspace itself and run the command:
-    - ```
-      $ cd services/web-app
-      $ npm run dev
-      ```
+   - ```
+     $ cd services/web-app
+     $ npm run dev
+     ```

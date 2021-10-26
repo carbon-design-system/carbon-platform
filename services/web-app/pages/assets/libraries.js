@@ -8,10 +8,14 @@
 import { useContext, useEffect } from "react";
 
 import { LayoutContext } from "@/layouts/layout";
+import Link from "next/link";
 import { NextSeo } from "next-seo";
 import { assetsNavData } from "@/data/nav-data";
+import { getAllLibraries } from "@/lib/github";
+import slugify from "slugify";
+import styles from "@/pages/pages.module.scss";
 
-const Libraries = () => {
+const Libraries = ({ librariesData }) => {
   const { setNavData } = useContext(LayoutContext);
 
   const seo = {
@@ -25,9 +29,40 @@ const Libraries = () => {
   return (
     <>
       <NextSeo {...seo} />
-      Welcome to the Libraries catalog!
+      <ul>
+        {librariesData.map((library, i) => (
+          <li key={i}>
+            <Link
+              href={`/assets/${slugify(library.contents.name, {
+                lower: true,
+              })}`}
+            >
+              <a>{library.contents.name}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <pre className={styles.data}>
+        {JSON.stringify(librariesData, null, 2)}
+      </pre>
     </>
   );
+};
+
+export const getStaticProps = async () => {
+  const librariesData = await getAllLibraries();
+
+  if (!librariesData) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      librariesData,
+    },
+  };
 };
 
 export default Libraries;

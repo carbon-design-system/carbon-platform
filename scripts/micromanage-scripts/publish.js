@@ -1,20 +1,24 @@
+/**
+ * Copyright IBM Corp. 2021, 2021
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 const { Command } = require('commander')
 const path = require('path')
 
 const utils = require('./utils')
 
 function buildPublishCommand() {
-  return (
-    new Command('publish')
-      .description('Publish all non-private packages')
-      .action(handlePublishCommand)
-  )
+  return new Command('publish')
+    .description('Publish all non-private packages')
+    .action(handlePublishCommand)
 }
 
 function handlePublishCommand() {
   console.log('===== micromanage publish =====')
 
-  const packages = utils.getPackages().filter((pkg) => (!pkg.private))
+  const packages = utils.getPackages().filter((pkg) => !pkg.private)
 
   packages.forEach((pkg) => {
     // Get package info
@@ -22,7 +26,7 @@ function handlePublishCommand() {
 
     // Check if a publish is needed
     if (info['dist-tags'].latest === pkg.version) {
-        console.log(`No publish needed for ${pkg.name}`)
+      console.log(`No publish needed for ${pkg.name}`)
       return
     }
 

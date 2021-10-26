@@ -5,21 +5,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Link from "next/link";
-import { forwardRef } from "react";
+import Link from 'next/link'
+import { forwardRef } from 'react'
 
-const NextLink = forwardRef(function NextLink(
-  { children, className, href, to, ...rest },
-  ref
-) {
+const NextLink = forwardRef(function NextLink({ children, className, href, to, ...rest }, ref) {
   return (
     <Link href={href || to}>
       <a className={className} {...rest} ref={ref}>
         {children}
       </a>
     </Link>
-  );
-});
+  )
+})
 
-export default NextLink;
-``;
+export default NextLink

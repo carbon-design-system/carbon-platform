@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import "@/styles/styles.scss";
+import '@/styles/styles.scss'
 
-import Layout, { LayoutProvider } from "@/layouts/layout";
+import Layout, { LayoutProvider } from '@/layouts/layout'
 
-import { DefaultSeo } from "next-seo";
-import defaultSeo from "@/config/seo.json";
+import { DefaultSeo } from 'next-seo'
+import defaultSeo from '@/config/seo.json'
 
 function App({ Component, pageProps }) {
   return (
@@ -20,7 +20,7 @@ function App({ Component, pageProps }) {
         <Component {...pageProps} />
       </Layout>
     </LayoutProvider>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -16,64 +16,34 @@
     "node": ">=16",
     "npm": ">=8"
   },
-  "workspaces": {
-    "packages": [
-      "packages/logging",
-      "services/logging-service",
-      "services/web-app"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ],
-    "rules": {
-      "header-max-length": [
-        2,
-        "always",
-        72
-      ],
-      "body-max-line-length": [
-        2,
-        "always",
-        80
-      ],
-      "scope-case": [
-        0,
-        "always",
-        "lower-case"
-      ],
-      "type-enum": [
-        2,
-        "always",
-        [
-          "build",
-          "ci",
-          "chore",
-          "docs",
-          "feat",
-          "fix",
-          "perf",
-          "refactor",
-          "revert",
-          "style",
-          "test"
-        ]
-      ]
-    }
-  },
+  "workspaces": [
+    "packages/logging",
+    "services/logging-service",
+    "services/web-app"
+  ],
   "scripts": {
     "all:build": "npm --workspaces run build",
     "packages:build": "npm --workspaces --if-present run package:build",
     "services:build": "npm --workspaces --if-present run service:build",
+    "lint": "scripts/lint",
     "nightly": "scripts/nightly",
     "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
-    "commander": "^8.2.0",
-    "husky": "^7.0.0",
-    "standard-version": "^9.3.2"
+    "@typescript-eslint/eslint-plugin": "^5.2.0",
+    "commander": "^8.3.0",
+    "eslint": "^7.32.0",
+    "eslint-config-carbon": "^2.8.0",
+    "eslint-config-next": "^12.0.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-notice": "^0.9.10",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.5",
+    "prettier-config-carbon": "^0.4.0",
+    "standard-version": "^9.3.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-carbon": "^1.7.0"
   }
 }

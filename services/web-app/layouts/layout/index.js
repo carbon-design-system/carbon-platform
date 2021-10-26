@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Layout from "./layout";
+import Layout from './layout'
 
-export * from "./layout";
-export default Layout;
+export * from './layout'
+export default Layout

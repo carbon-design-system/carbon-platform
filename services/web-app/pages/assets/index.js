@@ -5,29 +5,29 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react'
 
-import { LayoutContext } from "@/layouts/layout";
-import { NextSeo } from "next-seo";
-import { assetsNavData } from "@/data/nav-data";
+import { LayoutContext } from '@/layouts/layout'
+import { NextSeo } from 'next-seo'
+import { assetsNavData } from '@/data/nav-data'
 
 const Index = () => {
-  const { setNavData } = useContext(LayoutContext);
+  const { setNavData } = useContext(LayoutContext)
 
   const seo = {
-    title: "Assets",
-  };
+    title: 'Assets'
+  }
 
   useEffect(() => {
-    setNavData(assetsNavData);
-  }, [setNavData]);
+    setNavData(assetsNavData)
+  }, [setNavData])
 
   return (
     <>
       <NextSeo {...seo} />
       Welcome to Assets!
     </>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

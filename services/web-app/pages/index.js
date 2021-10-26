@@ -5,39 +5,39 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react'
 
-import { LayoutContext } from "@/layouts/layout";
-import { NextSeo } from "next-seo";
-import { Svg16Carbon } from "@/icons/index.js";
-import defaultSeo from "@/config/seo.json";
+import { LayoutContext } from '@/layouts/layout'
+import { NextSeo } from 'next-seo'
+import { Svg16Carbon } from '@/icons/index.js'
+import defaultSeo from '@/config/seo.json'
 
 const navData = [
   {
-    path: "/",
-    title: "About Carbon",
-  },
-];
+    path: '/',
+    title: 'About Carbon'
+  }
+]
 
 const Index = () => {
-  const { setNavData } = useContext(LayoutContext);
+  const { setNavData } = useContext(LayoutContext)
 
   const seo = {
     title: defaultSeo.title,
-    titleTemplate: "%s",
-  };
+    titleTemplate: '%s'
+  }
 
   useEffect(() => {
-    setNavData(navData);
-  }, [setNavData]);
+    setNavData(navData)
+  }, [setNavData])
 
   return (
     <>
       <NextSeo {...seo} />
       Home
-      <Svg16Carbon style={{ color: "pink" }} />
+      <Svg16Carbon style={{ color: '#ffc0cb' }} />
     </>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

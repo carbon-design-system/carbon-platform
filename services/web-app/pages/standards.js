@@ -5,29 +5,29 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react'
 
-import { LayoutContext } from "@/layouts/layout";
-import { NextSeo } from "next-seo";
-import { standardsNavData } from "@/data/nav-data";
+import { LayoutContext } from '@/layouts/layout'
+import { NextSeo } from 'next-seo'
+import { standardsNavData } from '@/data/nav-data'
 
 const Standards = () => {
-  const { setNavData } = useContext(LayoutContext);
+  const { setNavData } = useContext(LayoutContext)
 
   const seo = {
-    title: "Standards",
-  };
+    title: 'Standards'
+  }
 
   useEffect(() => {
-    setNavData(standardsNavData);
-  }, [setNavData]);
+    setNavData(standardsNavData)
+  }, [setNavData])
 
   return (
     <>
       <NextSeo {...seo} />
       Welcome to Standards!
     </>
-  );
-};
+  )
+}
 
-export default Standards;
+export default Standards

@@ -5,13 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Column, Grid, Pagination } from '@carbon/react';
-import styles from "./my-component.module.scss";
-import ComponentCatalogSearch from './ComponentCatalogSearch';
-import ComponentCatalogSort from './ComponentCatalogSort';
-import ComponentCatalogItem from './ComponentCatalogItem';
+import { Column, Grid, Pagination } from '@carbon/react'
 
-const ComponentCatalogIndexPage = () => { 
+import ComponentCatalogItem from './ComponentCatalogItem'
+import ComponentCatalogSearch from './ComponentCatalogSearch'
+import ComponentCatalogSort from './ComponentCatalogSort'
+import styles from './my-component.module.scss'
+
+const ComponentCatalogIndexPage = () => {
   return (
     <Grid>
       <Column xl={16} lg={16} md={8} sm={4} className={styles.componentCatalogIndexContainer}>
@@ -27,7 +28,7 @@ const ComponentCatalogIndexPage = () => {
             page={1}
             pageNumberText="Page Number"
             pageSize={10}
-            pageSizes={[10,20,30, 40, 50]}
+            pageSizes={[10, 20, 30, 40, 50]}
             totalItems={103}
           />
         </div>
@@ -36,4 +37,4 @@ const ComponentCatalogIndexPage = () => {
   )
 }
 
-export default ComponentCatalogIndexPage;
+export default ComponentCatalogIndexPage

@@ -1,0 +1,10 @@
+# Node
+node_modules
+package*.json
+
+# Build
+.next
+dist
+
+# Changelogs
+CHANGELOG.md

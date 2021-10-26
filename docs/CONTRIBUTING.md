@@ -4,7 +4,9 @@ title: Contributing
 
 # Contributing
 
-TODO: add more details
+## Day-to-day development tasks
+
+For detailed information about working with the repository from a day-to-day development standpoint, check out the [Day to day development](./day-to-day-development.md) docs.
 
 ## Commit conventions
 
@@ -16,7 +18,7 @@ correspond to when looking at our Git history.
 ### Commit message format
 
 _Parts of this section are duplicated from
-[Angular's commit conventions](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines)_.
+[Angular's commit conventions](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines)._
 
 Each commit message consists of a **header**, a **body** and a **footer**. The
 header has a specific format that includes a type, a scope and a subject:

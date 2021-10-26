@@ -6,10 +6,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-//  import Image from 'next/image'
+ import { Tag } from '@carbon/react';
 import styles from './my-component.module.scss';
-import { Svg12Stable, Svg14Download, Svg14License, Svg16Carbon, Svg10ArrowNorthwest } from "@/icons/index.js";
-import { Add16, ArrowUpRight16 } from '@carbon/icons-react';
+import { Svg12Stable, Svg10ArrowNorthwest, Svg14Download, Svg14License, Svg16Carbon, Svg32TagCarbon } from "@/icons/index.js";
+import { Add16 } from '@carbon/icons-react';
 
   const ComponentCatalogItem = () => {
     return (
@@ -19,35 +19,35 @@ import { Add16, ArrowUpRight16 } from '@carbon/icons-react';
         </div>
         <div className={styles.componentCatalogItemContent}>
           <p className={styles.componentCatalogItemSponsor}>
-            Super Sponsor
-            <Svg10ArrowNorthwest />
+            {`Super Sponsor`}
+            <Svg10ArrowNorthwest className={styles.componentCatalogItemSponsorIcon}/>
           </p>
-          <header className={styles.componentCatalogItemName}>The best component ever</header>
+          <header className={styles.componentCatalogItemName}>{`The best component ever`}</header>
           <p className={styles.componentCatalogItemDescription}>
-            This component is so powerful. It's actually the best component in the world if you didn't know
+            {`This component is so powerful. It's actually the best component in the world if you didn't know`}
           </p>
           <footer className={styles.componentCatalogItemInfo}>
+            <Svg12Stable className={styles.componentCatalogItemStatusIcon} />
             <div className={styles.componentCatalogItemStatus}>
-              <Svg12Stable className={styles.componentCatalogItemStatusIcon} />
-              Stable
+              {`Stable`}
             </div>
+            <Svg14Download className={styles.componentCatalogItemDownloadsIcon} />
             <div className={styles.componentCatalogItemDownloads}>
-              <Svg14Download />
-              1,234
+              {`1,234`}
             </div> 
+            <Svg14License className={styles.componentCatalogItemLicenseIcon} />
             <div className={styles.componentCatalogItemLicense}>
-              <Svg14License />
-              Apache 2.0
+              {`Apache 2.0`}
             </div> 
+            <Svg16Carbon className={styles.componentCatalogItemReviewedIcon} />
             <div className={styles.componentCatalogItemReviewed}>
-              <Svg16Carbon />
-              Reviewed
+              {`Reviewed`}
             </div> 
           </footer>
         </div>
         <div className={styles.componentCatalogItemTags}>
-          <div><Add16 aria-label="Add"/></div>
-          <div><Add16 aria-label="Add"/></div>
+          <Tag aria-hidden="true">{`Design only`}</Tag>
+          <Svg32TagCarbon className={styles.componentCatalogItemTagsSponsor}/>
         </div>
       </article>
     );

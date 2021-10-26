@@ -14,7 +14,7 @@ import ComponentCatalogItem from './ComponentCatalogItem';
 const ComponentCatalogIndexPage = () => { 
   return (
     <Grid>
-      <Column lg={12} md={6} sm={4} className={styles.componentCatalogIndexContainer}>
+      <Column xl={16} lg={16} md={8} sm={4} className={styles.componentCatalogIndexContainer}>
         <ComponentCatalogSearch />
         <ComponentCatalogSort />
         <ComponentCatalogItem />

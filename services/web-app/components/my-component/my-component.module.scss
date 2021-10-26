@@ -43,6 +43,18 @@
   height: 11.25rem;
 }
 
+//----------------------------------------------------------------------------
+// Component Catalog Content
+//----------------------------------------------------------------------------
+
+// Content
+.component-catalog-item-content {
+  padding: $spacing-05;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 // Image
 .component-catalog-item-image {
   display: none;
@@ -54,51 +66,48 @@
     align-items: center;
     border-right: 1px solid $layer-accent-01;
     // TODO: replace with appropriate aspect ratio handling
-    width: 15.833rem;
+    width: 20.833rem;
   }
 
   @include breakpoint(lg) {
     //1056  1:1
-    width: 11.25rem;
+    width: 16rem;
   }
 
   @include breakpoint(xlg) {
     //1312  4:3
-    width: 15.833rem;
+    width: 20.25rem;
   }
 }
 
 // Sponsor
 .component-catalog-item-sponsor {
-  @include type-style('body-short-01');
-  color: $text-primary;
+  @include type-style('label-01');
+  color: #252525;
   padding-bottom: rem(8px);
+}
+
+.component-catalog-item-sponsor-icon {
+  margin-left: 8px;
 }
 
 // Name
 .component-catalog-item-name {
-  @include type-style('heading-01');
-  color: $text-primary;
+  @include type-style('productive-heading-02');
+  color: #252525;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 // Description
 .component-catalog-item-description {
   @include type-style('body-short-01');
-  padding-right: $spacing-09;
   color: $text-primary;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
-}
-
-// Content
-.component-catalog-item-content {
-  padding: $spacing-05;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
 }
 
 // Info
@@ -112,27 +121,52 @@
 }
 
 .component-catalog-item-status {
+  @include type-style('label-01');
+  color: #252525;
   padding-top: $spacing-02;
   padding-right: $spacing-04;
 }
 
 .component-catalog-item-status-icon {
   color: green;
+  margin-top: 4px;
+  margin-right: 4px;
 }
 
 .component-catalog-item-downloads {
+  @include type-style('label-01');
+  color: #252525;
   padding-top: $spacing-02;
   padding-right: $spacing-04;
+}
+
+.component-catalog-item-downloads-icon {
+  margin-top: 4px;
+  margin-right: 4px;
 }
 
 .component-catalog-item-license {
+  @include type-style('label-01');
+  color: #252525;
   padding-top: $spacing-02;
   padding-right: $spacing-04;
 }
 
+.component-catalog-item-license-icon {
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
 .component-catalog-item-reviewed {
+  @include type-style('label-01');
+  color: #252525;
   padding-top: $spacing-02;
   padding-right: $spacing-04;
+}
+
+.component-catalog-item-reviewed-icon {
+  margin-top: 4px;
+  margin-right: 4px;
 }
 
 // Tags
@@ -144,15 +178,15 @@
     //1056  1:1
     display: flex;
     flex-direction: column;
-    padding: $spacing-05;
-    justify-content: space-around;
+    padding: $spacing-05 $spacing-05 $spacing-05 0;
+    justify-content: space-between;
     align-items: flex-end;
-    width: 4rem;
+    width: 7rem;
   }
 
   @include breakpoint(xlg) {
     //1312  4:3
-    width: 4rem;
+    width: 8rem;
     display: flex;
     flex-direction: column;
     padding: $spacing-05;
@@ -160,11 +194,38 @@
   }
 }
 
+.component-catalog-item-tags-sponsor  {
+  background-color:#fff;
+  border: 1px solid #E0E0E0;    
+  height:64px;
+  border-radius:50%;
+  -moz-border-radius:50%;
+  -webkit-border-radius:50%;
+  width:64px;
+  padding-top: 15px;
+  padding-left: 15px;
+}
+
 //----------------------------------------------------------------------------
 // Component Catalog Search
 //----------------------------------------------------------------------------
 .component-catalog-search {
   margin-top: 5rem;
+
+  @include breakpoint(md) {
+    //672  4:3
+    width: 40rem;
+  }
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    width: 47.125rem;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 60.75rem;
+  }
 }
 
 .component-catalog-search :global(.cds--search-input) {
@@ -191,40 +252,42 @@
 // Dropdown
 .component-catalog-sort-dropdown {
   border-right: 1px solid $layer-accent-01;
+  justify-content: left;
+  padding-left: 1rem;
 
   @include breakpoint(md) {
     //672  4:3
     display: flex;
-    justify-content: center;
     align-items: center;
     border-right: 1px solid $layer-accent-01;
     // TODO: replace with appropriate aspect ratio handling
-    width: 15.833rem;
+    width: 20.833rem;
   }
 
   @include breakpoint(lg) {
     //1056  1:1
-    width: 11.25rem;
+    width: 16rem;
   }
 
   @include breakpoint(xlg) {
     //1312  4:3
-    width: 15.833rem;
+    width: 20.25rem;
   }
 }
 
-// TODO: doesn't seem to work? 
-// .component-catalog-sort-dropdown :global(.cds--list-box__label) {
-//   font: $text-secondary;
-// }
+.component-catalog-sort-dropdown-text :global(.cds--dropdown__wrapper--inline .cds--label) {
+  @include type-style('body-short-02');
+  color: $text-secondary;
+}
 
 // TODO: doesn't seem to work? 
-// .component-catalog-sort-dropdown :global(.cds--dropdown__wrapper--inline) {
-//   grid-gap: 0px;
-// }
+.component-catalog-sort-dropdown :global(.cds--list-box__label) {
+  @include type-style('body-short-02');
+  color: $text-secondary;
+}
 
 .component-catalog-sort-dropdown :global(.cds--list-box__field) {
-  padding-left: 0px;
+  padding-left: 8px;
 }
 
 // Toggle
@@ -238,17 +301,17 @@
     align-items: center;
     border-right: 1px solid $layer-accent-01;
     // TODO: replace with appropriate aspect ratio handling
-    width: 15.833rem;
+    width: 20.833rem;
   }
 
   @include breakpoint(lg) {
     //1056  1:1
-    width: 11.25rem;
+    width: 16rem;
   }
 
   @include breakpoint(xlg) {
     //1312  4:3
-    width: 15.833rem;
+    width: 20.25rem;
   }
 }
 
@@ -266,17 +329,17 @@
     justify-content: right;
     align-items: center;
     // TODO: replace with appropriate aspect ratio handling
-    width: 15.833rem;
+    width: 20.833rem;
   }
 
   @include breakpoint(lg) {
     //1056  1:1
-    width: 11.25rem;
+    width: 16rem;
   }
 
   @include breakpoint(xlg) {
     //1312  4:3
-    width: 15.833rem;
+    width: 20.25rem;
   }
 }
 
@@ -290,7 +353,7 @@
 //----------------------------------------------------------------------------
 
 // TODO: doesn't seem to work? 
-.component-catalog-pagination-container :global(.cds--pagination) {
+:global(.cds--pagination).component-catalog-pagination-container {
   width: 100%;
   background-color: white;
 }

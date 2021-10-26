@@ -6,7 +6,7 @@
  */
 
 import { Button, Dropdown, Toggle } from '@carbon/react';
-import { LeftContentSwitcher } from "@/icons/index.js";
+import { SvgLeftContentSwitcher, SvgRightContentSwitcher } from "@/icons/index.js";
 import styles from './my-component.module.scss';
 
 function ComponentCatalogSort({ selectedItem, initialSortOption, onChange }) {
@@ -14,7 +14,7 @@ function ComponentCatalogSort({ selectedItem, initialSortOption, onChange }) {
 
   return (
     <div className={styles.componentCatalogSortContainer}>
-      <div>
+      <div className={styles.componentCatalogSortDropdownText}>
         <Dropdown
           id="component-index-sort"
           initialSelectedItem="Most used"
@@ -45,8 +45,8 @@ function ComponentCatalogSort({ selectedItem, initialSortOption, onChange }) {
           />
       </div>
       <div className={styles.componentCatalogSortSwitcher}>
-        <Button size="small" kind="ghost" renderIcon={LeftContentSwitcher} iconDescription="Icon Description" hasIconOnly />
-        <Button size="small" kind="ghost" renderIcon={LeftContentSwitcher} iconDescription="Icon Description" hasIconOnly />
+        <Button size="md" kind="ghost" renderIcon={SvgLeftContentSwitcher} iconDescription="Icon Description" hasIconOnly />
+        <Button size="md" kind="secondary" renderIcon={SvgRightContentSwitcher} iconDescription="Icon Description" hasIconOnly />
       </div> 
     </div>
   );

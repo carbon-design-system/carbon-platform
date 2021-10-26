@@ -5,48 +5,32 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Octokit } from "@octokit/core";
+import { getResponse } from "@/lib/file-cache";
 import slugify from "slugify";
 import yaml from "js-yaml";
-
-const octokit = new Octokit({
-  auth: process.env.GITHUB_TOKEN,
-});
 
 // TODO only registered repos from /data/libraries.js
 // TODO handle paginated results for large data sets
 // TODO handle versioning, as search endpoint is only default branch
-// TODO implement cache to reduce github requests
 // TODO better manage errors and no results
 export const getAllLibraries = async () => {
-  const searchOptions = {
-    query: "name",
-    repo: "mattrosno/carbon-next",
-    filename: "carbon-library.yml",
-  };
-
-  console.log("GITHUB SEARCH:", searchOptions);
-  const { data } = await octokit.request(
+  const data = await getResponse(
     "GET /search/code?q={query}+repo:{repo}+filename:{filename}",
-    searchOptions
+    {
+      query: "name",
+      repo: "mattrosno/carbon-next",
+      filename: "carbon-library.yml",
+    }
   );
 
   if (!data || !data.items || !data.items.length) return [];
 
   const promises = await data.items.map(async (item) => {
-    const contentsOptions = {
+    return getResponse("GET /repos/{owner}/{repo}/contents/{path}", {
       owner: item.repository.owner.login,
       repo: item.repository.name,
       path: item.path,
-    };
-
-    console.log("GITHUB CONTENTS:", contentsOptions);
-    const content = await octokit.request(
-      "GET /repos/{owner}/{repo}/contents/{path}",
-      contentsOptions
-    );
-
-    return content;
+    });
   });
 
   const contentsData = await Promise.all(promises);
@@ -54,13 +38,13 @@ export const getAllLibraries = async () => {
   return contentsData.map((contents) => {
     return {
       repository: {
-        name: contents.data.name,
-        path: contents.data.path,
-        sha: contents.data.sha,
-        url: contents.data.url,
+        name: contents.name,
+        path: contents.path,
+        sha: contents.sha,
+        url: contents.url,
       },
       contents: yaml.load(
-        Buffer.from(contents.data.content, contents.data.encoding).toString()
+        Buffer.from(contents.content, contents.encoding).toString()
       ),
     };
   });
@@ -69,36 +53,25 @@ export const getAllLibraries = async () => {
 // TODO only registered repos from /data/libraries.js
 // TODO handle paginated results for large data sets
 // TODO handle versioning, as search endpoint is only default branch
-// TODO implement cache to reduce github requests
 // TODO better manage errors and no results
 const getAllAssets = async () => {
-  const searchOptions = {
-    query: "name",
-    repo: "mattrosno/carbon-next",
-    filename: "carbon-asset.yml",
-  };
-
-  console.log("GITHUB SEARCH:", searchOptions);
-  const { data } = await octokit.request(
+  const data = await getResponse(
     "GET /search/code?q={query}+repo:{repo}+filename:{filename}",
-    searchOptions
+    {
+      query: "name",
+      repo: "mattrosno/carbon-next",
+      filename: "carbon-asset.yml",
+    }
   );
 
   if (!data || !data.items || !data.items.length) return [];
 
   const promises = await data.items.map(async (item) => {
-    const contentsOptions = {
+    return getResponse("GET /repos/{owner}/{repo}/contents/{path}", {
       owner: item.repository.owner.login,
       repo: item.repository.name,
       path: item.path,
-    };
-
-    console.log("GITHUB CONTENTS:", contentsOptions);
-    const content = await octokit.request(
-      "GET /repos/{owner}/{repo}/contents/{path}",
-      contentsOptions
-    );
-    return content;
+    });
   });
 
   const contentsData = await Promise.all(promises);
@@ -106,13 +79,13 @@ const getAllAssets = async () => {
   return contentsData.map((contents) => {
     return {
       repository: {
-        name: contents.data.name,
-        path: contents.data.path,
-        sha: contents.data.sha,
-        url: contents.data.url,
+        name: contents.name,
+        path: contents.path,
+        sha: contents.sha,
+        url: contents.url,
       },
       contents: yaml.load(
-        Buffer.from(contents.data.content, contents.data.encoding).toString()
+        Buffer.from(contents.content, contents.encoding).toString()
       ),
     };
   });

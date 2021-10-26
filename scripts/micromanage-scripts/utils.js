@@ -20,7 +20,7 @@ function getFiles(dir, extensions) {
 function getPackages() {
   const packageJson = require(path.join(process.cwd(), 'package.json'))
 
-  const packagePaths = packageJson.workspaces.packages
+  const packagePaths = packageJson.workspaces
 
   return packagePaths.map((packagePath) => {
     const p = require(path.join(process.cwd(), packagePath, 'package.json'))

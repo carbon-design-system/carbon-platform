@@ -8,11 +8,30 @@
 import { useContext, useEffect } from "react";
 
 import { LayoutContext } from "@/layouts/layout";
+import Link from "next/link";
 import { NextSeo } from "next-seo";
 import { assetsNavData } from "@/data/nav-data";
+import { getAllLibrariesAssets } from "@/lib/github";
+import slugify from "slugify";
+import styles from "@/pages/pages.module.scss";
 
-const Patterns = () => {
+const Patterns = ({ librariesData }) => {
   const { setNavData } = useContext(LayoutContext);
+
+  const assetsData = librariesData.filter((library) => {
+    if (!library.assets.length) return false;
+
+    const filteredAssets = library.assets.filter((asset) => {
+      return asset.contents.type === "pattern";
+    });
+
+    if (!filteredAssets.length) return false;
+
+    return {
+      ...library,
+      assets: filteredAssets,
+    };
+  });
 
   const seo = {
     title: "Patterns",
@@ -25,9 +44,42 @@ const Patterns = () => {
   return (
     <>
       <NextSeo {...seo} />
-      Welcome to the Patterns catalog!
+      <ul>
+        {assetsData.map((library, i) => {
+          return library.assets.map((asset, j) => (
+            <li key={`${i}-${j}`}>
+              <Link
+                href={`/assets/${slugify(library.contents.name, {
+                  lower: true,
+                })}/${slugify(asset.contents.name, {
+                  lower: true,
+                })}`}
+              >
+                <a>{asset.contents.name}</a>
+              </Link>
+            </li>
+          ));
+        })}
+      </ul>
+      <pre className={styles.data}>{JSON.stringify(assetsData, null, 2)}</pre>
     </>
   );
+};
+
+export const getStaticProps = async () => {
+  const librariesData = await getAllLibrariesAssets();
+
+  if (!librariesData) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      librariesData,
+    },
+  };
 };
 
 export default Patterns;

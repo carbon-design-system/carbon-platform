@@ -18,7 +18,7 @@ const octokit = new Octokit({
 // TODO handle versioning, as search endpoint is only default branch
 // TODO implement cache to reduce github requests
 // TODO better manage errors and no results
-const getAllLibraries = async () => {
+export const getAllLibraries = async () => {
   const searchOptions = {
     query: "name",
     repo: "mattrosno/carbon-next",
@@ -93,7 +93,7 @@ const getAllAssets = async () => {
       path: item.path,
     };
 
-    console.log("GITHUB CONTENTS:", searchOptions);
+    console.log("GITHUB CONTENTS:", contentsOptions);
     const content = await octokit.request(
       "GET /repos/{owner}/{repo}/contents/{path}",
       contentsOptions
@@ -118,7 +118,7 @@ const getAllAssets = async () => {
   });
 };
 
-const getAllLibrariesAssets = async () => {
+export const getAllLibrariesAssets = async () => {
   const assets = await getAllAssets();
   const libraries = await getAllLibraries();
 

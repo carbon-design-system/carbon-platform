@@ -52,6 +52,7 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
+// TODO update to Incremental Static Regeneration
 export const getStaticPaths = async () => {
   const paths = await getAllAssetPaths();
 

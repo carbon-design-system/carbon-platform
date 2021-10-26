@@ -55,11 +55,12 @@ The web app prototype uses a GitHub personal access token to fetch data from Git
 To install a new node module into a project, from the top-level of the repository, run:
 
 ```
-$ npm --workspace <workspace_path> install [--save-dev] some-node-package-name
+$ npm --workspace <workspace_path> install [--save-dev] some-node-package-name@latest
 ```
 
 - `workspace_path` is the folder containing the package.json you wish to update. For example `packages/logging`.
 - `--save-dev` is optional, depending on whether the dep is a production dep or only used during development/build.
+- Make sure to specify a package version or `@latest` so the dependency doesn't get installed with the `*` wildcard.
 
 Here's a full example of installing the `immer` package into the `@carbon-platform/logging` package:
 

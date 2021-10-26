@@ -10,7 +10,8 @@
     "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
   },
   "scripts": {
-    "build": "next build",
+    "build": "npm run build:fix-v11 && next build",
+    "build:fix-v11": "sh ../../scripts/fix-v11-carbon-prefix.sh",
     "build:svg": "svgr --replace-attr-values \"#000=currentColor\" -d icons svg",
     "dev": "next dev",
     "lint": "next lint",

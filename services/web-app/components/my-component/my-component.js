@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Button } from "@carbon/react";
-import styles from "./my-component.module.scss";
+import { Button } from '@carbon/react'
+import styles from './my-component.module.scss'
 
 const MyComponent = () => {
   return (
@@ -14,7 +14,7 @@ const MyComponent = () => {
       <div>My component</div>
       <Button>My button</Button>
     </div>
-  );
-};
+  )
+}
 
-export default MyComponent;
+export default MyComponent

@@ -5,61 +5,61 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getAllAssetPaths, getAssetData } from "@/lib/github";
-import { useContext, useEffect } from "react";
+import { getAllAssetPaths, getAssetData } from '@/lib/github'
+import { useContext, useEffect } from 'react'
 
-import { LayoutContext } from "@/layouts/layout";
-import { NextSeo } from "next-seo";
-import { assetsNavData } from "@/data/nav-data";
-import styles from "@/pages/pages.module.scss";
+import { LayoutContext } from '@/layouts/layout'
+import { NextSeo } from 'next-seo'
+import { assetsNavData } from '@/data/nav-data'
+import styles from '@/pages/pages.module.scss'
 
 const Asset = ({ assetData }) => {
-  const { setNavData } = useContext(LayoutContext);
+  const { setNavData } = useContext(LayoutContext)
 
-  const { name, description } = assetData;
+  const { name, description } = assetData
 
   const seo = {
     title: name,
-    description,
-  };
+    description
+  }
 
   useEffect(() => {
-    setNavData(assetsNavData);
-  }, [setNavData]);
+    setNavData(assetsNavData)
+  }, [setNavData])
 
   return (
     <>
       <NextSeo {...seo} />
       <pre className={styles.data}>{JSON.stringify(assetData, null, 2)}</pre>
     </>
-  );
-};
+  )
+}
 
 export const getStaticProps = async ({ params }) => {
-  const assetData = await getAssetData(params);
+  const assetData = await getAssetData(params)
 
   if (!assetData) {
     return {
-      notFound: true,
-    };
+      notFound: true
+    }
   }
 
   return {
     props: {
       assetData,
-      params,
-    },
-  };
-};
+      params
+    }
+  }
+}
 
 // TODO update to Incremental Static Regeneration
 export const getStaticPaths = async () => {
-  const paths = await getAllAssetPaths();
+  const paths = await getAllAssetPaths()
 
   return {
     paths,
-    fallback: false,
-  };
-};
+    fallback: false
+  }
+}
 
-export default Asset;
+export default Asset

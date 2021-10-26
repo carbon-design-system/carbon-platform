@@ -5,26 +5,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react'
 
-import { LayoutContext } from "@/layouts/layout";
-import Link from "next/link";
-import { NextSeo } from "next-seo";
-import { assetsNavData } from "@/data/nav-data";
-import { getAllLibraries } from "@/lib/github";
-import slugify from "slugify";
-import styles from "@/pages/pages.module.scss";
+import { LayoutContext } from '@/layouts/layout'
+import Link from 'next/link'
+import { NextSeo } from 'next-seo'
+import { assetsNavData } from '@/data/nav-data'
+import { getAllLibraries } from '@/lib/github'
+import slugify from 'slugify'
+import styles from '@/pages/pages.module.scss'
 
 const Libraries = ({ librariesData }) => {
-  const { setNavData } = useContext(LayoutContext);
+  const { setNavData } = useContext(LayoutContext)
 
   const seo = {
-    title: "Libraries",
-  };
+    title: 'Libraries'
+  }
 
   useEffect(() => {
-    setNavData(assetsNavData);
-  }, [setNavData]);
+    setNavData(assetsNavData)
+  }, [setNavData])
 
   return (
     <>
@@ -34,7 +34,7 @@ const Libraries = ({ librariesData }) => {
           <li key={i}>
             <Link
               href={`/assets/${slugify(library.contents.name, {
-                lower: true,
+                lower: true
               })}`}
             >
               <a>{library.contents.name}</a>
@@ -42,27 +42,25 @@ const Libraries = ({ librariesData }) => {
           </li>
         ))}
       </ul>
-      <pre className={styles.data}>
-        {JSON.stringify(librariesData, null, 2)}
-      </pre>
+      <pre className={styles.data}>{JSON.stringify(librariesData, null, 2)}</pre>
     </>
-  );
-};
+  )
+}
 
 export const getStaticProps = async () => {
-  const librariesData = await getAllLibraries();
+  const librariesData = await getAllLibraries()
 
   if (!librariesData) {
     return {
-      notFound: true,
-    };
+      notFound: true
+    }
   }
 
   return {
     props: {
-      librariesData,
-    },
-  };
-};
+      librariesData
+    }
+  }
+}
 
-export default Libraries;
+export default Libraries

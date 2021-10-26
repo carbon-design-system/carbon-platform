@@ -22,32 +22,28 @@ import {
   SideNavMenu,
   SideNavMenuItem,
   SkipToContent,
-  Theme,
-} from "@carbon/react";
-import { Search, Switcher, User } from "@carbon/react/icons";
-import { createContext, useContext, useState } from "react";
+  Theme
+} from '@carbon/react'
+import { Search, Switcher, User } from '@carbon/react/icons'
+import { createContext, useContext, useState } from 'react'
 
-import Link from "next/link";
-import NextLink from "@/components/next-link";
-import { globalNavData } from "@/data/nav-data";
-import styles from "./layout.module.scss";
-import { useRouter } from "next/router";
+import Link from 'next/link'
+import NextLink from '@/components/next-link'
+import { globalNavData } from '@/data/nav-data'
+import styles from './layout.module.scss'
+import { useRouter } from 'next/router'
 
-export const LayoutContext = createContext();
+export const LayoutContext = createContext()
 
 export const LayoutProvider = ({ children }) => {
-  const [navData, setNavData] = useState([]);
+  const [navData, setNavData] = useState([])
 
-  return (
-    <LayoutContext.Provider value={{ navData, setNavData }}>
-      {children}
-    </LayoutContext.Provider>
-  );
-};
+  return <LayoutContext.Provider value={{ navData, setNavData }}>{children}</LayoutContext.Provider>
+}
 
 const Layout = ({ children }) => {
-  const router = useRouter();
-  const { navData } = useContext(LayoutContext);
+  const router = useRouter()
+  const { navData } = useContext(LayoutContext)
 
   return (
     <HeaderContainer
@@ -83,26 +79,16 @@ const Layout = ({ children }) => {
                 <HeaderGlobalAction aria-label="Log in" onClick={() => {}}>
                   <User size={20} />
                 </HeaderGlobalAction>
-                <HeaderGlobalAction
-                  aria-label="Switch sites"
-                  onClick={() => {}}
-                >
+                <HeaderGlobalAction aria-label="Switch sites" onClick={() => {}}>
                   <Switcher size={20} />
                 </HeaderGlobalAction>
               </HeaderGlobalBar>
               <Theme theme="white">
-                <SideNav
-                  aria-label="Side navigation"
-                  expanded={isSideNavExpanded}
-                >
+                <SideNav aria-label="Side navigation" expanded={isSideNavExpanded}>
                   <SideNavItems>
                     <HeaderSideNavItems>
                       {globalNavData.map((data, i) => (
-                        <SideNavLink
-                          element={NextLink}
-                          href={data.path}
-                          key={i}
-                        >
+                        <SideNavLink element={NextLink} href={data.path} key={i}>
                           {data.title}
                         </SideNavLink>
                       ))}
@@ -118,15 +104,11 @@ const Layout = ({ children }) => {
                           >
                             {data.title}
                           </SideNavLink>
-                        );
+                        )
                       }
                       if (!data.path && data.items) {
                         return (
-                          <SideNavMenu
-                            defaultExpanded={true}
-                            key={i}
-                            title={data.title}
-                          >
+                          <SideNavMenu defaultExpanded={true} key={i} title={data.title}>
                             {data.items.map((item, j) => (
                               <SideNavMenuItem
                                 element={NextLink}
@@ -138,8 +120,9 @@ const Layout = ({ children }) => {
                               </SideNavMenuItem>
                             ))}
                           </SideNavMenu>
-                        );
+                        )
                       }
+                      return null
                     })}
                   </SideNavItems>
                 </SideNav>
@@ -156,7 +139,7 @@ const Layout = ({ children }) => {
         </>
       )}
     />
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

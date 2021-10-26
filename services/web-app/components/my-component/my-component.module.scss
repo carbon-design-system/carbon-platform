@@ -8,7 +8,7 @@
 .foo-bar {
   margin: $spacing-10 0;
   background: $background;
-  @include type-style("productive-heading-05");
+  @include type-style('productive-heading-05');
   @include breakpoint-down(md) {
     background: $background-inverse;
   }

@@ -1,5 +1,9 @@
-import * as React from "react";
-
+/**
+ * Copyright IBM Corp. 2021, 2021
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 function Svg14Download(props) {
   return (
     <svg
@@ -22,7 +26,7 @@ function Svg14Download(props) {
         fillRule="evenodd"
       />
     </svg>
-  );
+  )
 }
 
-export default Svg14Download;
+export default Svg14Download

@@ -5,41 +5,45 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react'
 
-import { LayoutContext } from "@/layouts/layout";
-import Link from "next/link";
-import { NextSeo } from "next-seo";
-import { assetsNavData } from "@/data/nav-data";
-import { getAllLibrariesAssets } from "@/lib/github";
-import slugify from "slugify";
-import styles from "@/pages/pages.module.scss";
+import { LayoutContext } from '@/layouts/layout'
+import Link from 'next/link'
+import { NextSeo } from 'next-seo'
+import { assetsNavData } from '@/data/nav-data'
+import { getAllLibrariesAssets } from '@/lib/github'
+import slugify from 'slugify'
+import styles from '@/pages/pages.module.scss'
 
 const Patterns = ({ librariesData }) => {
-  const { setNavData } = useContext(LayoutContext);
+  const { setNavData } = useContext(LayoutContext)
 
   const assetsData = librariesData.filter((library) => {
-    if (!library.assets.length) return false;
+    if (!library.assets.length) {
+      return false
+    }
 
     const filteredAssets = library.assets.filter((asset) => {
-      return asset.contents.type === "pattern";
-    });
+      return asset.contents.type === 'pattern'
+    })
 
-    if (!filteredAssets.length) return false;
+    if (!filteredAssets.length) {
+      return false
+    }
 
     return {
       ...library,
-      assets: filteredAssets,
-    };
-  });
+      assets: filteredAssets
+    }
+  })
 
   const seo = {
-    title: "Patterns",
-  };
+    title: 'Patterns'
+  }
 
   useEffect(() => {
-    setNavData(assetsNavData);
-  }, [setNavData]);
+    setNavData(assetsNavData)
+  }, [setNavData])
 
   return (
     <>
@@ -50,36 +54,36 @@ const Patterns = ({ librariesData }) => {
             <li key={`${i}-${j}`}>
               <Link
                 href={`/assets/${slugify(library.contents.name, {
-                  lower: true,
+                  lower: true
                 })}/${slugify(asset.contents.name, {
-                  lower: true,
+                  lower: true
                 })}`}
               >
                 <a>{asset.contents.name}</a>
               </Link>
             </li>
-          ));
+          ))
         })}
       </ul>
       <pre className={styles.data}>{JSON.stringify(assetsData, null, 2)}</pre>
     </>
-  );
-};
+  )
+}
 
 export const getStaticProps = async () => {
-  const librariesData = await getAllLibrariesAssets();
+  const librariesData = await getAllLibrariesAssets()
 
   if (!librariesData) {
     return {
-      notFound: true,
-    };
+      notFound: true
+    }
   }
 
   return {
     props: {
-      librariesData,
-    },
-  };
-};
+      librariesData
+    }
+  }
+}
 
-export default Patterns;
+export default Patterns

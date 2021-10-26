@@ -1,13 +1,17 @@
+/**
+ * Copyright IBM Corp. 2021, 2021
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 const { Command } = require('commander')
 
 const utils = require('./utils')
 
 function buildVersionCommand() {
-  return (
-    new Command('version')
-      .description('Update the versions of all packages based on a generated changelog')
-      .action(handleVersionCommand)
-  )
+  return new Command('version')
+    .description('Update the versions of all packages based on a generated changelog')
+    .action(handleVersionCommand)
 }
 
 function handleVersionCommand() {
@@ -19,8 +23,8 @@ function handleVersionCommand() {
   const allTags = utils.getTags()
 
   const packages = utils.getPackages().filter((pkg) => {
-    const tags = allTags.filter((tag) => (tag.startsWith(pkg.name)))
-    const latestTag = tags[tags.length-1]
+    const tags = allTags.filter((tag) => tag.startsWith(pkg.name))
+    const latestTag = tags[tags.length - 1]
     const changed =
       !latestTag ||
       !!utils.exec(`git diff --quiet HEAD ${latestTag} -- ${pkg.path} || echo changed`)
@@ -57,7 +61,7 @@ function handleVersionCommand() {
   })
 
   // Ensure lock file remains up-to-date
-  utils.exec(`npm install && git commit --allow-empty -am "chore: update package-lock.json"`)
+  utils.exec('npm install && git commit --allow-empty -am "chore: update package-lock.json"')
 
   // Switch back to the original branch
   utils.exec('git switch -')
@@ -67,8 +71,8 @@ function handleVersionCommand() {
 
   // Commit the results with an appropriate commit message
   utils.exec(
-    `sed 's/Squashed commit of the following:/chore(release): new service versions/' .git/SQUASH_MSG | \
-    git commit -F -`
+    "sed 's/Squashed commit of the following:/chore(release): new service versions/' " +
+      '.git/SQUASH_MSG | git commit -F -'
   )
 
   // Create tags

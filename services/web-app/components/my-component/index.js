@@ -5,6 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import MyComponent from "./my-component";
+import MyComponent from './my-component'
 
-export default MyComponent;
+export default MyComponent

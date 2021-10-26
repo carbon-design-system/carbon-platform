@@ -1,7 +1,7 @@
 # Carbon Platform
 
-> The platform for Carbon Design System includes packages and services that are
-> used by Carbon's website and the backend that supports it.
+> The platform for Carbon Design System includes packages and services that are used by Carbon's
+> website and the backend that supports it.
 
 <p align="center">
   <a href="https://github.com/carbon-design-system/carbon/blob/master/LICENSE">
@@ -17,7 +17,8 @@
 
 ## Getting started
 
-If you're just getting started, here are some links so you can learn more about what we're working on and what we have planned for the future.
+If you're just getting started, here are some links so you can learn more about what we're working
+on and what we have planned for the future.
 
 <!-- prettier-ignore-start -->
 | Process | Description |

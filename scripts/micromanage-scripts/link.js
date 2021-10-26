@@ -1,15 +1,18 @@
-const path = require('path')
+/**
+ * Copyright IBM Corp. 2021, 2021
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 const { Command } = require('commander')
 
 const utils = require('./utils')
 
 function buildLinkCommand() {
-  return (
-    new Command('link')
-      .description('Find usages of local packages and add them to package.json files')
-      .requiredOption('--ext <extensions...>')
-      .action(handleLinkCommand)
-  )
+  return new Command('link')
+    .description('Find usages of local packages and add them to package.json files')
+    .requiredOption('--ext <extensions...>')
+    .action(handleLinkCommand)
 }
 
 function handleLinkCommand(opts) {

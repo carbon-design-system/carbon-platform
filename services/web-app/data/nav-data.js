@@ -7,46 +7,46 @@
 
 export const globalNavData = [
   {
-    path: "/standards",
-    title: "Standards",
+    path: '/standards',
+    title: 'Standards'
   },
   {
-    path: "/assets",
-    title: "Assets",
-  },
-];
+    path: '/assets',
+    title: 'Assets'
+  }
+]
 
 export const standardsNavData = [
   {
-    path: "/standards",
-    title: "About standards",
-  },
-];
+    path: '/standards',
+    title: 'About standards'
+  }
+]
 
 export const assetsNavData = [
   {
-    path: "/assets",
-    title: "About assets",
+    path: '/assets',
+    title: 'About assets'
   },
   {
-    path: "/assets/libraries",
-    title: "Libraries",
+    path: '/assets/libraries',
+    title: 'Libraries'
   },
   {
-    title: "Assets",
+    title: 'Assets',
     items: [
       {
-        path: "/assets/elements",
-        title: "Elements",
+        path: '/assets/elements',
+        title: 'Elements'
       },
       {
-        path: "/assets/components",
-        title: "Components",
+        path: '/assets/components',
+        title: 'Components'
       },
       {
-        path: "/assets/patterns",
-        title: "Patterns",
-      },
-    ],
-  },
-];
+        path: '/assets/patterns',
+        title: 'Patterns'
+      }
+    ]
+  }
+]

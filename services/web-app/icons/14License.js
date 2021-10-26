@@ -1,5 +1,9 @@
-import * as React from "react";
-
+/**
+ * Copyright IBM Corp. 2021, 2021
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 function Svg14License(props) {
   return (
     <svg width={14} height={14} xmlns="http://www.w3.org/2000/svg" {...props}>
@@ -9,7 +13,7 @@ function Svg14License(props) {
         fillRule="nonzero"
       />
     </svg>
-  );
+  )
 }
 
-export default Svg14License;
+export default Svg14License

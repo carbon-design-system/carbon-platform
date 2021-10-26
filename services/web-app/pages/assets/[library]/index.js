@@ -5,61 +5,61 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getAllLibraryPaths, getLibraryData } from "@/lib/github";
-import { useContext, useEffect } from "react";
+import { getAllLibraryPaths, getLibraryData } from '@/lib/github'
+import { useContext, useEffect } from 'react'
 
-import { LayoutContext } from "@/layouts/layout";
-import { NextSeo } from "next-seo";
-import { assetsNavData } from "@/data/nav-data";
-import styles from "@/pages/pages.module.scss";
+import { LayoutContext } from '@/layouts/layout'
+import { NextSeo } from 'next-seo'
+import { assetsNavData } from '@/data/nav-data'
+import styles from '@/pages/pages.module.scss'
 
 const Library = ({ libraryData }) => {
-  const { setNavData } = useContext(LayoutContext);
+  const { setNavData } = useContext(LayoutContext)
 
-  const { name, description } = libraryData;
+  const { name, description } = libraryData
 
   const seo = {
     title: name,
-    description,
-  };
+    description
+  }
 
   useEffect(() => {
-    setNavData(assetsNavData);
-  }, [setNavData]);
+    setNavData(assetsNavData)
+  }, [setNavData])
 
   return (
     <>
       <NextSeo {...seo} />
       <pre className={styles.data}>{JSON.stringify(libraryData, null, 2)}</pre>
     </>
-  );
-};
+  )
+}
 
 export const getStaticProps = async ({ params }) => {
-  const libraryData = await getLibraryData(params);
+  const libraryData = await getLibraryData(params)
 
   if (!libraryData) {
     return {
-      notFound: true,
-    };
+      notFound: true
+    }
   }
 
   return {
     props: {
       libraryData,
-      params,
-    },
-  };
-};
+      params
+    }
+  }
+}
 
 // TODO update to Incremental Static Regeneration
 export const getStaticPaths = async () => {
-  const paths = await getAllLibraryPaths();
+  const paths = await getAllLibraryPaths()
 
   return {
     paths,
-    fallback: false,
-  };
-};
+    fallback: false
+  }
+}
 
-export default Library;
+export default Library

@@ -1,20 +1,29 @@
+/**
+ * Copyright IBM Corp. 2021, 2021
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 const { execSync } = require('child_process')
 const path = require('path')
-const fs = require('fs')
 
 function exec(cmd) {
   return execSync(cmd, {
     env: {
       ...process.env
     }
-  }).toString().trim()
+  })
+    .toString()
+    .trim()
 }
 
 function getFiles(dir, extensions) {
-  return extensions.map((extension) => {
-    const files = exec(`find ${dir} -name "*${extension}" -type f`)
-    return files.length === 0 ? [] : files.split('\n')
-  }).reduce((prev, cur) => ([...prev, ...cur]), [])
+  return extensions
+    .map((extension) => {
+      const files = exec(`find ${dir} -name "*${extension}" -type f`)
+      return files.length === 0 ? [] : files.split('\n')
+    })
+    .reduce((prev, cur) => [...prev, ...cur], [])
 }
 
 function getPackages() {

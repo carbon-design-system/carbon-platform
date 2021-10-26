@@ -1,11 +1,11 @@
 # npm
 node_modules/
 
-# Lerna
-lerna-debug.log
-
 # Typescript output
 dist/
 
 # OS Stuff
 .DS_Store
+
+# IDE Stuff
+.vscode/

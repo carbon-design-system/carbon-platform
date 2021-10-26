@@ -14,8 +14,8 @@
 
 export const indexedLibraries = [
   {
-    org: "mattrosno",
-    repo: "carbon-next",
-    ref: "main",
-  },
-];
+    org: 'mattrosno',
+    repo: 'carbon-next',
+    ref: 'main'
+  }
+]

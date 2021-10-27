@@ -27,7 +27,9 @@
     "services:build": "npm --workspaces --if-present run service:build",
     "lint": "scripts/lint",
     "nightly": "scripts/nightly",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "format": "prettier --write '**/*.{js,md,scss,ts}'",
+    "format:diff": "prettier --list-different '**/*.{js,md,scss,ts}'"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",

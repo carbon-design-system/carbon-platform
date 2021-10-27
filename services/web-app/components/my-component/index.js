@@ -19,19 +19,17 @@ const ComponentCatalogIndexPage = () => {
         <ComponentCatalogSearch />
         <ComponentCatalogSort />
         <ComponentCatalogItem />
-        <div>
-          <Pagination
-            className={styles.componentCatalogPaginationContainer}
-            backwardText="Previous page"
-            forwardText="Next page"
-            itemsPerPageText="Items per page:"
-            page={1}
-            pageNumberText="Page Number"
-            pageSize={10}
-            pageSizes={[10, 20, 30, 40, 50]}
-            totalItems={103}
-          />
-        </div>
+        <Pagination
+          className={styles.componentCatalogPaginationContainer}
+          backwardText="Previous page"
+          forwardText="Next page"
+          itemsPerPageText="Items per page:"
+          page={1}
+          pageNumberText="Page Number"
+          pageSize={10}
+          pageSizes={[10, 20, 30, 40, 50]}
+          totalItems={103}
+        />
       </Column>
     </Grid>
   )

@@ -13,9 +13,9 @@
 //----------------------------------------------------------------------------
 // Component Catalog Index Container
 //----------------------------------------------------------------------------
-.component-catalog-index-container {
-  width: 100%;
-}
+// .component-catalog-index-container {
+//   // width: 100%;
+// }
 
 //----------------------------------------------------------------------------
 // Component Catalog item
@@ -23,14 +23,6 @@
 .component-catalog-item {
   display: flex;
   flex-wrap: wrap;
-  border-bottom: 1px solid $layer-accent-01;
-}
-
-// TODO: update color token?
-.component-catalog-item .component-catalog-item-image,
-.component-catalog-item .component-catalog-item-content {
-  background-color: white;
-  height: 11.25rem;
 }
 
 //----------------------------------------------------------------------------
@@ -39,10 +31,34 @@
 
 // Content
 .component-catalog-item-content {
-  padding: $spacing-05;
   display: flex;
-  flex-direction: column;
   flex: 1;
+  flex-direction: column;
+  padding: $spacing-05;
+  @include breakpoint(md) {
+    //672  4:3
+    max-width: 40rem;
+  }
+  @include breakpoint(lg) {
+    //1056  1:1
+    max-width: 29.625rem;
+  }
+  @include breakpoint(xlg) {
+    //1312  4:3
+    max-width: 31.188rem;
+  }
+}
+
+@media screen and (min-width: 673px) and (max-width: 1055px) {
+  .component-catalog-item-content {
+    max-width: 23.025rem;
+  }
+}
+
+@media screen and (min-width: 1057px) and (max-width: 1312px) {
+  .component-catalog-item-content {
+    max-width: 22.125rem;
+  }
 }
 
 // Image
@@ -52,11 +68,11 @@
   @include breakpoint(md) {
     //672  4:3
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-right: 1px solid $layer-accent-01;
     // TODO: replace with appropriate aspect ratio handling
-    width: 20.833rem;
+    width: 15rem;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid $layer-accent-01;
   }
 
   @include breakpoint(lg) {
@@ -66,15 +82,23 @@
 
   @include breakpoint(xlg) {
     //1312  4:3
-    width: 20.25rem;
+    width: 20rem;
   }
+}
+
+// TODO: update color token?
+.component-catalog-item .component-catalog-item-image,
+.component-catalog-item .component-catalog-item-content {
+  height: 11.25rem;
+  background-color: #ffffff;
 }
 
 // Sponsor
 .component-catalog-item-sponsor {
   @include type-style('label-01');
-  color: #252525;
+
   padding-bottom: rem(8px);
+  color: #252525;
 }
 
 .component-catalog-item-sponsor-icon {
@@ -84,20 +108,22 @@
 // Name
 .component-catalog-item-name {
   @include type-style('productive-heading-02');
-  color: #252525;
+
   padding-top: 4px;
   padding-bottom: 4px;
+  color: #252525;
 }
 
 // Description
 .component-catalog-item-description {
   @include type-style('body-short-01');
-  color: $text-primary;
+
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
   overflow: hidden;
+  -webkit-box-orient: vertical;
+  color: $text-primary;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
 }
 
 // Info
@@ -105,29 +131,31 @@
   @include type-style('body-short-01');
 
   position: relative;
-  margin-top: auto;
   display: flex;
   align-items: center;
+  margin-top: auto;
 }
 
 .component-catalog-item-status {
   @include type-style('label-01');
-  color: #252525;
+
   padding-top: $spacing-02;
   padding-right: $spacing-04;
+  color: #252525;
 }
 
 .component-catalog-item-status-icon {
-  color: green;
   margin-top: 4px;
   margin-right: 4px;
+  color: #198038;
 }
 
 .component-catalog-item-downloads {
   @include type-style('label-01');
-  color: #252525;
+
   padding-top: $spacing-02;
   padding-right: $spacing-04;
+  color: #252525;
 }
 
 .component-catalog-item-downloads-icon {
@@ -137,9 +165,10 @@
 
 .component-catalog-item-license {
   @include type-style('label-01');
-  color: #252525;
+
   padding-top: $spacing-02;
   padding-right: $spacing-04;
+  color: #252525;
 }
 
 .component-catalog-item-license-icon {
@@ -149,9 +178,10 @@
 
 .component-catalog-item-reviewed {
   @include type-style('label-01');
-  color: #252525;
+
   padding-top: $spacing-02;
   padding-right: $spacing-04;
+  color: #252525;
 }
 
 .component-catalog-item-reviewed-icon {
@@ -162,49 +192,50 @@
 // Tags
 .component-catalog-item-tags {
   display: none;
-  background-color: white;
+  background-color: #ffffff;
 
   @include breakpoint(lg) {
     //1056  1:1
     display: flex;
+    width: 8rem;
     flex-direction: column;
-    padding: $spacing-05 $spacing-05 $spacing-05 0;
-    justify-content: space-between;
     align-items: flex-end;
-    width: 7rem;
+    justify-content: space-between;
+    padding: $spacing-05;
   }
 
   @include breakpoint(xlg) {
+    display: flex;
     //1312  4:3
     width: 8rem;
-    display: flex;
     flex-direction: column;
-    padding: $spacing-05;
     align-items: flex-end;
+    padding: $spacing-05;
   }
 }
 
 .component-catalog-item-tags-sponsor {
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  height: 64px;
-  border-radius: 50%;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
   width: 64px;
+  height: 64px;
   padding-top: 15px;
   padding-left: 15px;
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
 }
 
 //----------------------------------------------------------------------------
 // Component Catalog Search
 //----------------------------------------------------------------------------
 .component-catalog-search {
+  padding-right: 1rem;
   margin-top: 5rem;
 
   @include breakpoint(md) {
     //672  4:3
-    width: 40rem;
+    width: 39rem;
   }
 
   @include breakpoint(lg) {
@@ -214,14 +245,14 @@
 
   @include breakpoint(xlg) {
     //1312  4:3
-    width: 60.75rem;
+    width: 60.25rem;
   }
 }
 
 .component-catalog-search :global(.cds--search-input) {
-  border-bottom: 1px solid #8d8d8d;
   height: 2.5rem;
-  background-color: white;
+  border-bottom: 1px solid #8d8d8d;
+  background-color: #ffffff;
 }
 
 //----------------------------------------------------------------------------
@@ -231,27 +262,41 @@
 // Sort
 .component-catalog-sort-container {
   position: relative;
-  margin-top: auto;
   display: flex;
-  flex-direction: row;
-  background-color: white;
   height: 2.5rem;
+  flex-direction: row;
   border-bottom: 1px solid $layer-accent-01;
+  margin-top: auto;
+  background-color: #ffffff;
+  @include breakpoint(md) {
+    //672  4:3
+    width: 38rem;
+  }
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    width: 46.125rem;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 59.25rem;
+  }
 }
 
 // Dropdown
 .component-catalog-sort-dropdown {
-  border-right: 1px solid $layer-accent-01;
   justify-content: left;
   padding-left: 1rem;
+  border-right: 1px solid $layer-accent-01;
 
   @include breakpoint(md) {
     //672  4:3
     display: flex;
+    // TODO: replace with appropriate aspect ratio handling
+    width: 15rem;
     align-items: center;
     border-right: 1px solid $layer-accent-01;
-    // TODO: replace with appropriate aspect ratio handling
-    width: 20.833rem;
   }
 
   @include breakpoint(lg) {
@@ -261,23 +306,24 @@
 
   @include breakpoint(xlg) {
     //1312  4:3
-    width: 20.25rem;
+    width: 20rem;
   }
 }
 
-.component-catalog-sort-dropdown-text :global(.cds--dropdown__wrapper--inline .cds--label) {
-  @include type-style('body-short-02');
-  color: $text-secondary;
-}
-
-// TODO: doesn't seem to work?
 .component-catalog-sort-dropdown :global(.cds--list-box__label) {
   @include type-style('body-short-02');
+
   color: $text-secondary;
 }
 
 .component-catalog-sort-dropdown :global(.cds--list-box__field) {
   padding-left: 8px;
+}
+
+.component-catalog-sort-dropdown-text :global(.cds--dropdown__wrapper--inline .cds--label) {
+  @include type-style('body-short-02');
+
+  color: $text-secondary;
 }
 
 // Toggle
@@ -287,11 +333,11 @@
   @include breakpoint(md) {
     //672  4:3
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-right: 1px solid $layer-accent-01;
     // TODO: replace with appropriate aspect ratio handling
-    width: 20.833rem;
+    width: 15rem;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid $layer-accent-01;
   }
 
   @include breakpoint(lg) {
@@ -304,38 +350,28 @@
     width: 20.25rem;
   }
 }
-
-// TODO: doesn't seem to work?
-// .component-catalog-sort-toggle :global(.cds--list-box__label) {
-//   font: $text-secondary;
-// }
 
 // Switcher
 .component-catalog-sort-switcher {
   @include breakpoint(md) {
     //672  4:3
     display: flex;
-    justify-content: right;
-    align-items: center;
     // TODO: replace with appropriate aspect ratio handling
-    width: 20.833rem;
+    width: 8rem;
+    align-items: center;
+    justify-content: right;
   }
 
   @include breakpoint(lg) {
     //1056  1:1
-    width: 16rem;
+    width: 14.125rem;
   }
 
   @include breakpoint(xlg) {
     //1312  4:3
-    width: 20.25rem;
+    width: 19rem;
   }
 }
-
-// TODO: doesn't seem to work?
-// .component-catalog-sort-switcher :global(.cds--list-box__label) {
-//   font: $text-secondary;
-// }
 
 //----------------------------------------------------------------------------
 // Component Catalog Pagination
@@ -343,6 +379,20 @@
 
 // TODO: doesn't seem to work?
 :global(.cds--pagination).component-catalog-pagination-container {
-  width: 100%;
-  background-color: white;
+  background-color: #ffffff;
+
+  @include breakpoint(md) {
+    //672  4:3
+    width: 39rem;
+  }
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    width: 46.125rem;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 59.2rem;
+  }
 }

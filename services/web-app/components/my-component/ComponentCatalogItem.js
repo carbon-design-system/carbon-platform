@@ -1,11 +1,9 @@
-/* eslint-disable react/display-name */
 /**
- * Copyright IBM Corp. 2016, 2020
+ * Copyright IBM Corp. 2021, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 import { Tag } from '@carbon/react'
 import styles from './my-component.module.scss'
 import {
@@ -31,7 +29,9 @@ const ComponentCatalogItem = () => {
         </p>
         <header className={styles.componentCatalogItemName}>{'The best component ever'}</header>
         <p className={styles.componentCatalogItemDescription}>
-          {'This component is so powerful. It\'s actually the best component in the world if you didn\'t know'}
+          {
+            "This component is so powerful. It's actually the best component in the world if you didn't know"
+          }
         </p>
         <footer className={styles.componentCatalogItemInfo}>
           <Svg12Stable className={styles.componentCatalogItemStatusIcon} />

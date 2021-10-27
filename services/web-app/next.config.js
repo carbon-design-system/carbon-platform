@@ -24,6 +24,7 @@ module.exports = {
       @use '~@carbon/react/scss/zone';
     `
   },
+  swcMinify: true,
   webpack(config) {
     const rules = config.module.rules
       .find((rule) => typeof rule.oneOf === 'object')
@@ -32,6 +33,7 @@ module.exports = {
     rules.forEach((rule) => {
       rule.use.forEach((moduleLoader) => {
         if (
+          moduleLoader.loader &&
           moduleLoader.loader.includes('css-loader') &&
           typeof moduleLoader.options.modules === 'object'
         ) {

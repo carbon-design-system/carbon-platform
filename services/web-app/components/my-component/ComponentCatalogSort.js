@@ -5,11 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Button, Dropdown, Toggle } from '@carbon/react';
-import { SvgLeftContentSwitcher, SvgRightContentSwitcher } from "@/icons/index.js";
-import styles from './my-component.module.scss';
+import { Button, Dropdown } from '@carbon/react'
+import { SvgLeftContentSwitcher, SvgRightContentSwitcher } from '@/icons/index.js'
 
-function ComponentCatalogSort({ selectedItem, initialSortOption, onChange }) {
+import styles from './my-component.module.scss'
+
+function ComponentCatalogSort() {
   const options = ['hi', 'bye']
 
   return (
@@ -26,30 +27,42 @@ function ComponentCatalogSort({ selectedItem, initialSortOption, onChange }) {
           // }}
           type="inline"
           titleText="Sort by:"
-          label='Most used'
+          label="Most used"
         />
       </div>
       <div>
         <Dropdown
-            className={styles.componentCatalogSortToggle}
-            id="component-index-sort"
-            initialSelectedItem="hola"
-            items={options}
-            light
-            // onChange={({ selectedItem }) => {
-            //   onChange(selectedItem);
-            // }}
-            type="inline"
-            titleText="Sort by:"
-            label='hello'
-          />
+          className={styles.componentCatalogSortToggle}
+          id="component-index-sort"
+          initialSelectedItem="hola"
+          items={options}
+          light
+          // onChange={({ selectedItem }) => {
+          //   onChange(selectedItem);
+          // }}
+          type="inline"
+          titleText="Sort by:"
+          label="hello"
+        />
       </div>
       <div className={styles.componentCatalogSortSwitcher}>
-        <Button size="md" kind="ghost" renderIcon={SvgLeftContentSwitcher} iconDescription="Icon Description" hasIconOnly />
-        <Button size="md" kind="secondary" renderIcon={SvgRightContentSwitcher} iconDescription="Icon Description" hasIconOnly />
-      </div> 
+        <Button
+          size="md"
+          kind="ghost"
+          renderIcon={SvgLeftContentSwitcher}
+          iconDescription="Icon Description"
+          hasIconOnly
+        />
+        <Button
+          size="md"
+          kind="secondary"
+          renderIcon={SvgRightContentSwitcher}
+          iconDescription="Icon Description"
+          hasIconOnly
+        />
+      </div>
     </div>
-  );
+  )
 }
 
-export default ComponentCatalogSort;
+export default ComponentCatalogSort

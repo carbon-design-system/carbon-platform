@@ -5,16 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import ComponentCatalogItem from "./ComponentCatalogItem";
+import ComponentCatalogItem from './ComponentCatalogItem'
 
 // In this component we will map through the Component Catalog Items
 const ComponentCatalog = () => {
-
   return (
     <section aria-label="Component Catalog">
       <ComponentCatalogItem />
     </section>
-  );
-};
+  )
+}
 
-export default ComponentCatalog;
+export default ComponentCatalog

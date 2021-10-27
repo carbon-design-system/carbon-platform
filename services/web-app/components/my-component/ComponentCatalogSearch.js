@@ -1,9 +1,15 @@
-import { Search } from '@carbon/react';
-import styles from './my-component.module.scss';
+/**
+ * Copyright IBM Corp. 2021, 2021
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import { Search } from '@carbon/react'
+import styles from './my-component.module.scss'
 
 function ComponentCatalogSearch({ value, onChange }) {
   function handleOnChange(event) {
-    onChange(event.target.value);
+    onChange(event.target.value)
   }
 
   return (
@@ -17,7 +23,7 @@ function ComponentCatalogSearch({ value, onChange }) {
         size="md"
       />
     </div>
-  );
+  )
 }
 
-export default ComponentCatalogSearch;
+export default ComponentCatalogSearch

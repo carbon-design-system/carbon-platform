@@ -4,6 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import * as React from 'react'
+
 function Svg16Carbon(props) {
   return (
     <svg width={16} height={16} xmlns="http://www.w3.org/2000/svg" {...props}>

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@0.1.14...@carbon-platform/logging@0.1.15) (2021-10-27)
+
+
+### Features
+
+* add linting and formatting, first pass ([bebe0cb](https://github.com/carbon-design-system/carbon-platform/commit/bebe0cba38d179fe7f9697f6ea56e1c42c8def16))
+
 ### [0.1.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@0.1.13...@carbon-platform/logging@0.1.14) (2021-10-21)
 
 

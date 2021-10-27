@@ -41,6 +41,6 @@
   "devDependencies": {
     "@svgr/cli": "^5.5.0",
     "css-loader": "^6.4.0",
-    "sass": "^1.43.3"
+    "sass": "^1.43.4"
   }
 }

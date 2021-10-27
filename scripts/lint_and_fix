@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+prettier --check --write .
+
+stylelint --fix '**/*.{css,scss,js,jsx,ts,tsx}'
+
+eslint --fix --ext .js,.jsx,.ts,.tsx .

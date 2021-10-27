@@ -17,6 +17,7 @@
     "npm": ">=8"
   },
   "workspaces": [
+    "packages/icons",
     "packages/logging",
     "services/logging-service",
     "services/web-app"

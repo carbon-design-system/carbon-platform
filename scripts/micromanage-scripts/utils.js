@@ -17,10 +17,19 @@ function exec(cmd) {
     .trim()
 }
 
-function getFiles(dir, extensions) {
+function getPackageForFile(f) {
+  const packages = getPackages()
+
+  return packages.find((pkg) => f.startsWith(pkg.path))
+}
+
+function getFiles(dir, extensions, exclusions = []) {
+  exclusions = exclusions.map((exclusion) => `-not -path "${exclusion}"`)
+  const exclusionsString = exclusions.join(' ')
+
   return extensions
     .map((extension) => {
-      const files = exec(`find ${dir} -name "*${extension}" -type f`)
+      const files = exec(`find ${dir} -name "*${extension}" -type f ${exclusionsString}`)
       return files.length === 0 ? [] : files.split('\n')
     })
     .reduce((prev, cur) => [...prev, ...cur], [])
@@ -52,6 +61,7 @@ function getTags() {
 module.exports = {
   exec,
   getFiles,
+  getPackageForFile,
   getPackages,
   getTags
 }

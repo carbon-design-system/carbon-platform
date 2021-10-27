@@ -1,0 +1,31 @@
+{
+  "name": "@carbon-platform/icons",
+  "description": "Carbon platform icons",
+  "version": "0.0.1",
+  "main": "dist/main/tsx-generated/index.js",
+  "types": "dist/main/tsx-generated/index.d.ts",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+  },
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run clean && npm run build:svg && tsc",
+    "build:svg": "svgr --out-dir src/main/tsx-generated src/main/svg",
+    "clean": "rimraf dist src/main/tsx-generated",
+    "package:build": "npm run build"
+  },
+  "devDependencies": {
+    "@svgr/cli": "^5.5.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.4.4"
+  }
+}

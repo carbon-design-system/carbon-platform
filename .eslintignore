@@ -5,3 +5,6 @@ package*.json
 # Build
 .next
 dist
+
+# Generated
+*-generated/

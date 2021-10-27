@@ -5,7 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getResponse } from '@/lib/file-cache'
+import { getResponse, writeFile } from '@/lib/file-cache'
+
+import { CACHE_PATH } from '@/config/constants'
 import slugify from 'slugify'
 import yaml from 'js-yaml'
 
@@ -40,7 +42,8 @@ export const getAllLibraries = async () => {
         name: contents.name,
         path: contents.path,
         sha: contents.sha,
-        url: contents.url
+        url: contents.url,
+        baseUrl: contents.url.substring(0, contents.url.lastIndexOf('/'))
       },
       contents: yaml.load(Buffer.from(contents.content, contents.encoding).toString())
     }
@@ -51,7 +54,9 @@ export const getAllLibraries = async () => {
 // TODO handle paginated results for large data sets
 // TODO handle versioning, as search endpoint is only default branch
 // TODO better manage errors and no results
+// TODO use image-extensions to find and cache all images
 const getAllAssets = async () => {
+  // find carbon-asset.yml files in the rpo
   const data = await getResponse('GET /search/code?q={query}+repo:{repo}+filename:{filename}', {
     query: 'name',
     repo: 'mattrosno/carbon-next',
@@ -62,7 +67,8 @@ const getAllAssets = async () => {
     return []
   }
 
-  const promises = await data.items.map(async (item) => {
+  // get content of each carbon-asset.yml file
+  const dataPromises = await data.items.map(async (item) => {
     return getResponse('GET /repos/{owner}/{repo}/contents/{path}', {
       owner: item.repository.owner.login,
       repo: item.repository.name,
@@ -70,19 +76,50 @@ const getAllAssets = async () => {
     })
   })
 
-  const contentsData = await Promise.all(promises)
+  const dataContents = await Promise.all(dataPromises)
 
-  return contentsData.map((contents) => {
+  // transpose yml to json and save origin information
+  const assets = dataContents.map((contents) => {
     return {
       repository: {
         name: contents.name,
         path: contents.path,
         sha: contents.sha,
-        url: contents.url
+        url: contents.url,
+        baseUrl: contents.url.substring(0, contents.url.lastIndexOf('/'))
       },
       contents: yaml.load(Buffer.from(contents.content, contents.encoding).toString())
     }
   })
+
+  // find all thumbnail images and construct request URLs
+  const imgUrls = assets
+    .map((asset) => {
+      return asset.contents.thumbnail
+        ? asset.repository.baseUrl.replace('https://api.github.com', '') + asset.contents.thumbnail
+        : ''
+    })
+    .filter(function (img) {
+      return img
+    })
+
+  // get content of each image
+  const imgPromises = await imgUrls.map(async (path) => {
+    return getResponse(`GET ${path}`)
+  })
+
+  const imgContents = await Promise.all(imgPromises)
+
+  // write images to disk
+  imgContents.forEach((contents) => {
+    const pathName = contents.url
+      .substring(0, contents.url.lastIndexOf('?'))
+      .replace('https://api.github.com', '')
+
+    writeFile(pathName, Buffer.from(contents.content, contents.encoding))
+  })
+
+  return assets
 }
 
 export const getAllLibrariesAssets = async () => {
@@ -90,15 +127,10 @@ export const getAllLibrariesAssets = async () => {
   const libraries = await getAllLibraries()
 
   return libraries.map((library) => {
-    const libraryBasePath = library.repository.url.substring(
-      0,
-      library.repository.url.lastIndexOf('/')
-    )
-
     return {
       ...library,
       assets: assets.filter((asset) => {
-        return asset.repository.url.includes(libraryBasePath)
+        return asset.repository.url.includes(library.repository.baseUrl)
       })
     }
   })
@@ -172,4 +204,10 @@ export const getAssetData = async (params) => {
     library: foundLibrary,
     asset: foundAsset
   }
+}
+
+export const getImgSrc = (repo = {}, path = '') => {
+  if (!repo.baseUrl || !path) return null
+
+  return `/${CACHE_PATH}${repo.baseUrl.replace('https://api.github.com', '')}${path}`
 }

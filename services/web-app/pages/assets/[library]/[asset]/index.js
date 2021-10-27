@@ -8,9 +8,11 @@
 import { getAllAssetPaths, getAssetData } from '@/lib/github'
 import { useContext, useEffect } from 'react'
 
+import Image from 'next/image'
 import { LayoutContext } from '@/layouts/layout'
 import { NextSeo } from 'next-seo'
 import { assetsNavData } from '@/data/nav-data'
+import { getImgSrc } from '@/utils/image'
 import styles from '@/pages/pages.module.scss'
 
 const Asset = ({ assetData }) => {
@@ -30,6 +32,14 @@ const Asset = ({ assetData }) => {
   return (
     <>
       <NextSeo {...seo} />
+      {assetData.asset.contents.thumbnail && (
+        <Image
+          alt="Thumbnail"
+          height="300px"
+          width="400px"
+          src={getImgSrc(assetData.asset.repository, assetData.asset.contents.thumbnail)}
+        />
+      )}
       <pre className={styles.data}>{JSON.stringify(assetData, null, 2)}</pre>
     </>
   )

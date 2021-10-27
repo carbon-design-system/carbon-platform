@@ -5,3 +5,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 export const CACHE_PATH = '.carbon'
+export const IMAGE_CACHE_PATH = './public/.carbon'

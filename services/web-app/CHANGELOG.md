@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.5...@carbon-platform/web-app@0.1.6) (2021-10-28)
+
+
+### Bug Fixes
+
+* v11 css grid in production mode ([8a77045](https://github.com/carbon-design-system/carbon-platform/commit/8a7704583f9f1224626598718dbdb849202e5f6d))
+
 ### [0.1.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.4...@carbon-platform/web-app@0.1.5) (2021-10-27)
 
 

@@ -230,22 +230,24 @@
 // Component Catalog Search
 //----------------------------------------------------------------------------
 .component-catalog-search {
-  padding-right: 1rem;
   margin-top: 5rem;
 
   @include breakpoint(md) {
     //672  4:3
     width: 39rem;
+    padding-right: 1rem;
   }
 
   @include breakpoint(lg) {
     //1056  1:1
     width: 47.125rem;
+    padding-right: 1rem;
   }
 
   @include breakpoint(xlg) {
     //1312  4:3
     width: 60.25rem;
+    padding-right: 1rem;
   }
 }
 
@@ -263,32 +265,40 @@
 .component-catalog-sort-container {
   position: relative;
   display: flex;
-  height: 2.5rem;
-  flex-direction: row;
+  height: 5rem;
+  flex-direction: column;
   border-bottom: 1px solid $layer-accent-01;
   margin-top: auto;
   background-color: #ffffff;
+
   @include breakpoint(md) {
     //672  4:3
     width: 38rem;
+    height: 2.5rem;
+    flex-direction: row;
   }
 
   @include breakpoint(lg) {
     //1056  1:1
     width: 46.125rem;
+    height: 2.5rem;
+    flex-direction: row;
   }
 
   @include breakpoint(xlg) {
     //1312  4:3
     width: 59.25rem;
+    height: 2.5rem;
+    flex-direction: row;
   }
 }
 
 // Dropdown
 .component-catalog-sort-dropdown {
+  width: 100%;
   justify-content: left;
   padding-left: 1rem;
-  border-right: 1px solid $layer-accent-01;
+  border-bottom: 1px solid $layer-accent-01;
 
   @include breakpoint(md) {
     //672  4:3
@@ -297,16 +307,21 @@
     width: 15rem;
     align-items: center;
     border-right: 1px solid $layer-accent-01;
+    border-bottom: none;
   }
 
   @include breakpoint(lg) {
     //1056  1:1
     width: 16rem;
+    border-right: 1px solid $layer-accent-01;
+    border-bottom: none;
   }
 
   @include breakpoint(xlg) {
     //1312  4:3
     width: 20rem;
+    border-right: 1px solid $layer-accent-01;
+    border-bottom: none;
   }
 }
 
@@ -328,7 +343,9 @@
 
 // Toggle
 .component-catalog-sort-toggle {
-  border-right: 1px solid $layer-accent-01;
+  width: 20rem;
+  justify-content: left;
+  padding-left: 1rem;
 
   @include breakpoint(md) {
     //672  4:3
@@ -343,16 +360,20 @@
   @include breakpoint(lg) {
     //1056  1:1
     width: 16rem;
+    border-right: 1px solid $layer-accent-01;
   }
 
   @include breakpoint(xlg) {
     //1312  4:3
     width: 20.25rem;
+    border-right: 1px solid $layer-accent-01;
   }
 }
 
 // Switcher
 .component-catalog-sort-switcher {
+  display: none;
+
   @include breakpoint(md) {
     //672  4:3
     display: flex;
@@ -379,11 +400,12 @@
 
 // TODO: doesn't seem to work?
 :global(.cds--pagination).component-catalog-pagination-container {
+  // display: none;
   background-color: #ffffff;
 
   @include breakpoint(md) {
     //672  4:3
-    width: 39rem;
+    width: 38rem;
   }
 
   @include breakpoint(lg) {
@@ -394,5 +416,11 @@
   @include breakpoint(xlg) {
     //1312  4:3
     width: 59.2rem;
+  }
+}
+
+@media screen and (min-width: 200px) and (max-width: 671px) {
+  :global(.cds--pagination).component-catalog-pagination-container {
+    display: none;
   }
 }

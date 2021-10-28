@@ -28,7 +28,9 @@ const ComponentCatalogItemGrid = () => {
             {'Super Sponsor'}
             {/* <Svg10ArrowNorthwest className={styles.componentCatalogItemGridSponsorIcon} /> */}
           </p>
-          <header className={styles.componentCatalogItemGridName}>{'The best component ever'}</header>
+          <header className={styles.componentCatalogItemGridName}>
+            {'The best component ever'}
+          </header>
           <footer className={styles.componentCatalogItemGridInfo}>
             <Svg14Download className={styles.componentCatalogItemGridDownloadsIcon} />
             <div className={styles.componentCatalogItemGridDownloads}>{'1,234'}</div>
@@ -56,7 +58,9 @@ const ComponentCatalogItemGrid = () => {
             {'Super Sponsor'}
             {/* <Svg10ArrowNorthwest className={styles.componentCatalogItemGridSponsorIcon} /> */}
           </p>
-          <header className={styles.componentCatalogItemGridName}>{'The best component ever'}</header>
+          <header className={styles.componentCatalogItemGridName}>
+            {'The best component ever'}
+          </header>
           <footer className={styles.componentCatalogItemGridInfo}>
             <Svg14Download className={styles.componentCatalogItemGridDownloadsIcon} />
             <div className={styles.componentCatalogItemGridDownloads}>{'1,234'}</div>
@@ -84,7 +88,9 @@ const ComponentCatalogItemGrid = () => {
             {'Super Sponsor'}
             {/* <Svg10ArrowNorthwest className={styles.componentCatalogItemGridSponsorIcon} /> */}
           </p>
-          <header className={styles.componentCatalogItemGridName}>{'The best component ever'}</header>
+          <header className={styles.componentCatalogItemGridName}>
+            {'The best component ever'}
+          </header>
           <footer className={styles.componentCatalogItemGridInfo}>
             <Svg14Download className={styles.componentCatalogItemGridDownloadsIcon} />
             <div className={styles.componentCatalogItemGridDownloads}>{'1,234'}</div>

@@ -4,10 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { CACHE_PATH } from '@/config/constants'
+import { IMAGES_CACHE_PATH } from '@/config/constants'
 
 export const getImgSrc = (repo = {}, path = '') => {
   if (!repo.baseUrl || !path) return null
 
-  return `/${CACHE_PATH}${repo.baseUrl.replace('https://api.github.com', '')}${path}`
+  return `/${IMAGES_CACHE_PATH}${repo.baseUrl.replace('https://api.github.com', '')}${path}`
 }

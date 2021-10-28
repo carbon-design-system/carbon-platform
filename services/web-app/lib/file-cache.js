@@ -4,12 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { CACHE_PATH, IMAGE_CACHE_PATH } from '@/config/constants'
+import { CACHE_PATH, IMAGES_CACHE_PATH } from '@/config/constants'
 
 import { Octokit } from '@octokit/core'
 import cacheManager from 'cache-manager'
+import fs from 'fs-extra'
 import fsStore from 'cache-manager-fs-hash'
-import fse from 'fs-extra'
 
 const diskCache = cacheManager.caching({
   store: fsStore,
@@ -62,12 +62,12 @@ export const deleteResponse = async (key) => {
 
 export const writeFile = async (path, contents) => {
   try {
-    const exists = await fse.pathExists(`${IMAGE_CACHE_PATH}/${path}`)
+    const exists = await fs.pathExists(`./public/${IMAGES_CACHE_PATH}/${path}`)
 
     if (exists) {
       console.log('FILE EXISTS', path)
     } else {
-      await fse.outputFile(`${IMAGE_CACHE_PATH}/${path}`, contents)
+      await fs.outputFile(`./public/${IMAGES_CACHE_PATH}/${path}`, contents)
 
       console.log('FILE WRITE', path)
     }

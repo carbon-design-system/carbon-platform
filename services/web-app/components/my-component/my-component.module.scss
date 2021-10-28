@@ -11,13 +11,6 @@
 @use '@carbon/react' as styles;
 
 //----------------------------------------------------------------------------
-// Component Catalog Index Container
-//----------------------------------------------------------------------------
-// .component-catalog-index-container {
-//   // width: 100%;
-// }
-
-//----------------------------------------------------------------------------
 // Component Catalog item
 //----------------------------------------------------------------------------
 .component-catalog-item {
@@ -55,7 +48,7 @@
   }
 }
 
-@media screen and (min-width: 1057px) and (max-width: 1312px) {
+@media screen and (min-width: 1057px) and (max-width: 1311px) {
   .component-catalog-item-content {
     max-width: 22.125rem;
   }
@@ -392,6 +385,138 @@
     //1312  4:3
     width: 19rem;
   }
+}
+
+//----------------------------------------------------------------------------
+// Component Catalog Item Grid
+//----------------------------------------------------------------------------
+.component-catalog-item-grid-container {
+  display: none;
+
+  @include breakpoint(xlg) {
+    display: flex;
+    width: 63px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.component-catalog-item-grid {
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 19rem;
+    height: 25rem;
+    margin: $spacing-05;
+    background-color: #ffffff;
+  }
+}
+
+// Grid Image
+.component-catalog-item-grid-image {
+  @include breakpoint(xlg) {
+    //1312  4:3
+    display: flex;
+    width: 19rem;
+    height: 12.75rem;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid $layer-accent-01;
+    background-color: #ffffff;
+  }
+}
+
+// Grid Content
+.component-catalog-item-grid-content {
+  @include breakpoint(xlg) {
+    height: 12.25rem;
+    padding: $spacing-05;
+  }
+}
+
+// Grid Sponsor
+.component-catalog-item-grid-sponsor {
+  @include breakpoint(xlg) {
+    @include type-style('label-01');
+
+    color: #252525;
+  }
+}
+
+// Name
+.component-catalog-item-grid-name {
+  @include breakpoint(xlg) {
+    @include type-style('productive-heading-02');
+
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: #252525;
+  }
+}
+
+// Grid Info
+.component-catalog-item-grid-info {
+  @include type-style('body-short-01');
+
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.component-catalog-item-grid-downloads-icon {
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.component-catalog-item-grid-downloads {
+  @include type-style('label-01');
+
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+  color: #252525;
+}
+
+.component-catalog-item-grid-license-icon {
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.component-catalog-item-grid-license {
+  @include type-style('label-01');
+
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+  color: #252525;
+}
+
+.component-catalog-item-grid-reviewed-icon {
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.component-catalog-item-grid-reviewed {
+  @include type-style('label-01');
+
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+  color: #252525;
+}
+
+.component-catalog-item-grid-status {
+  @include type-style('label-01');
+
+  width: 5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 4.75rem;
+}
+
+// Grid Status Icon
+.component-catalog-item-grid-status-icon {
+  margin-top: 6px;
+  margin-right: 4px;
+  color: #198038;
 }
 
 //----------------------------------------------------------------------------

@@ -8,6 +8,7 @@
 import { Column, Grid, Pagination } from '@carbon/react'
 
 import ComponentCatalogItem from './ComponentCatalogItem'
+import ComponentCatalogItemGrid from './ComponentCatalogItemGrid'
 import ComponentCatalogSearch from './ComponentCatalogSearch'
 import ComponentCatalogSort from './ComponentCatalogSort'
 import styles from './my-component.module.scss'
@@ -19,6 +20,7 @@ const ComponentCatalogIndexPage = () => {
         <ComponentCatalogSearch />
         <ComponentCatalogSort />
         <ComponentCatalogItem />
+        <ComponentCatalogItemGrid />
         <Pagination
           className={styles.componentCatalogPaginationContainer}
           backwardText="Previous page"

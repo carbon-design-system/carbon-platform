@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.9](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.8...@carbon-platform/web-app@0.1.9) (2021-10-29)
+
 ### [0.1.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.7...@carbon-platform/web-app@0.1.8) (2021-10-29)
 
 

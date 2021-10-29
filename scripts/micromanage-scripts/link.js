@@ -6,7 +6,7 @@
  */
 const { Command } = require('commander')
 
-const utils = require('./utils')
+const { getPackages, getPackageForFile, exec } = require('./utils')
 
 const fileExtensions = ['ts', 'tsx', 'js', 'jsx', 'scss']
 
@@ -21,11 +21,12 @@ function handleLinkCommand(files) {
   console.log('===== micromanage link =====')
 
   let isDirty = false
-  const packages = utils.getPackages()
+  const packages = getPackages()
   files = files.filter((file) => fileExtensions.includes(file.split('.').pop()))
 
   files.forEach((file) => {
-    const pkg = utils.getPackageForFile(file)
+    // Get the package that contains this file
+    const pkg = getPackageForFile(file)
 
     if (!pkg) {
       return
@@ -37,7 +38,7 @@ function handleLinkCommand(files) {
     packages.forEach((needle) => {
       let searchResult = null
       try {
-        searchResult = utils.exec(`grep "${needle.name}" ${file}`)
+        searchResult = exec(`grep "${needle.name}" ${file}`)
       } catch (e) {
         // Grep exits with 1 when no results were found
         if (e.status !== 1) {
@@ -47,7 +48,7 @@ function handleLinkCommand(files) {
 
       if (searchResult && !(pkg.dependencies && needle.name in pkg.dependencies)) {
         console.warn(`[WARN] Unspecified dependency on ${needle.name} found in package ${file}`)
-        utils.exec(`npm --workspace ${pkg.path} install ${needle.name}`)
+        exec(`npm --workspace ${pkg.path} install ${needle.name}`)
         isDirty = true
       }
     })

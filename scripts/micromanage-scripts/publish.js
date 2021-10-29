@@ -4,10 +4,11 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+const { exec } = require('child_process')
 const { Command } = require('commander')
 const path = require('path')
 
-const utils = require('./utils')
+const { getPackages } = require('./utils')
 
 function buildPublishCommand() {
   return new Command('publish')
@@ -18,11 +19,11 @@ function buildPublishCommand() {
 function handlePublishCommand() {
   console.log('===== micromanage publish =====')
 
-  const packages = utils.getPackages().filter((pkg) => !pkg.private)
+  const packages = getPackages().filter((pkg) => !pkg.private)
 
   packages.forEach((pkg) => {
     // Get package info
-    const info = JSON.parse(utils.exec(`npm view ${pkg.name} --json`))
+    const info = JSON.parse(exec(`npm view ${pkg.name} --json`))
 
     // Check if a publish is needed
     if (info['dist-tags'].latest === pkg.version) {
@@ -33,16 +34,16 @@ function handlePublishCommand() {
     console.log(`Publishing ${pkg.name}`)
 
     // Build
-    utils.exec(`npm run --workspace=${pkg.path} build`)
+    exec(`npm run --workspace=${pkg.path} build`)
 
     // Add top-level license
-    utils.exec(`cp LICENSE ${pkg.path}`)
+    exec(`cp LICENSE ${pkg.path}`)
 
     // Publish
-    console.log(utils.exec(`npm publish --workspace=${pkg.path}`))
+    console.log(exec(`npm publish --workspace=${pkg.path}`))
 
     // Add top-level license
-    utils.exec(`rm ${path.join(pkg.path, 'LICENSE')}`)
+    exec(`rm ${path.join(pkg.path, 'LICENSE')}`)
   })
 }
 

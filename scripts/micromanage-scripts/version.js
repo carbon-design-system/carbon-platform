@@ -30,7 +30,7 @@ function handleVersionCommand() {
   // We have work to do, so change branch to a temp one
   exec('git switch --create micromanage-temp')
 
-  const newVersions = versionPackages()
+  const newVersions = versionPackages(updatedPackages)
 
   // Ensure lock file remains up-to-date
   exec('npm install')

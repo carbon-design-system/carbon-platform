@@ -13,7 +13,7 @@ import {
   Svg14License,
   Svg16Carbon
   // Svg32TagCarbon
-} from '@/icons/index.js'
+} from '@carbon-platform/icons'
 import { Add16 } from '@carbon/icons-react'
 
 const ComponentCatalogItemGrid = () => {

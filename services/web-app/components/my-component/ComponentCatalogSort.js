@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Button, Dropdown } from '@carbon/react'
-import { SvgLeftContentSwitcher, SvgRightContentSwitcher } from '@/icons/index.js'
+import { SvgLeftContentSwitcher, SvgRightContentSwitcher } from '@carbon-platform/icons'
 
 import styles from './my-component.module.scss'
 

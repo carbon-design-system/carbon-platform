@@ -1,0 +1,9 @@
+# Folders
+src/
+
+# File globs
+*.md
+.*
+
+# Individual files
+tsconfig.json

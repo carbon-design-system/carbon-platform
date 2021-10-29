@@ -17,6 +17,7 @@
     "npm": ">=8"
   },
   "workspaces": [
+    "packages/icons",
     "packages/logging",
     "services/logging-service",
     "services/web-app"
@@ -28,9 +29,7 @@
     "lint": "scripts/lint",
     "lint:fix": "scripts/lint_and_fix",
     "nightly": "scripts/nightly",
-    "prepare": "husky install",
-    "format": "prettier --write '**/*.{js,md,scss,ts}'",
-    "format:diff": "prettier --list-different '**/*.{js,md,scss,ts}'"
+    "prepare": "husky install && npm run packages:build"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",

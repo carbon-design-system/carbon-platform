@@ -12,7 +12,6 @@
   "scripts": {
     "build": "npm run clean && npm run build:fix-v11 && next build",
     "build:fix-v11": "sh ./fix-v11-carbon-prefix.sh",
-    "build:svg": "svgr --replace-attr-values \"#000=currentColor\" -d icons svg",
     "clean": "rimraf .carbon public/.carbon .next",
     "dev": "next dev",
     "lint": "next lint",
@@ -24,6 +23,7 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "dependencies": {
+    "@carbon-platform/icons": "^0.0.1",
     "@carbon/react": "^0.7.0",
     "@octokit/core": "^3.5.1",
     "cache-manager": "^3.4.4",
@@ -42,7 +42,6 @@
     "slugify": "^1.6.1"
   },
   "devDependencies": {
-    "@svgr/cli": "^5.5.0",
     "css-loader": "^6.4.0",
     "sass": "^1.43.4"
   }

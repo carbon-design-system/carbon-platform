@@ -6,7 +6,7 @@
  */
 const { Command } = require('commander')
 
-const utils = require('./utils')
+const { exec, getTags, getPackages } = require('./utils')
 
 function buildVersionCommand() {
   return new Command('version')
@@ -18,37 +18,100 @@ function handleVersionCommand() {
   console.log('===== micromanage version =====')
 
   // Ensure all tags are up-to-date with the remote
-  utils.exec('git fetch --tags')
+  exec('git fetch --tags')
 
-  const allTags = utils.getTags()
+  const updatedPackages = getUpdatedPackages()
 
-  const packages = utils.getPackages().filter((pkg) => {
-    const tags = allTags.filter((tag) => tag.startsWith(pkg.name))
-    const latestTag = tags[tags.length - 1]
-    const changed =
-      !latestTag ||
-      !!utils.exec(`git diff --quiet HEAD ${latestTag} -- ${pkg.path} || echo changed`)
-
-    if (changed) {
-      console.log(`${pkg.name} has changed since ${latestTag}`)
-      return true
-    } else {
-      console.log(`${pkg.name} has not changed since ${latestTag}`)
-      return false
-    }
-  })
-
-  if (packages.length === 0) {
+  if (updatedPackages.length === 0) {
     console.log('nothing to do')
     return
   }
 
   // We have work to do, so change branch to a temp one
-  utils.exec('git switch --create micromanage-temp')
+  exec('git switch --create micromanage-temp')
 
-  const newVersions = packages.map((pkg) => {
+  const newVersions = versionPackages()
+
+  // Ensure lock file remains up-to-date
+  exec('npm install')
+
+  exec('git commit --allow-empty -am "chore(release): update package-lock.json and local deps"')
+
+  exec('git switch -')
+
+  exec('git merge --squash --autostash micromanage-temp')
+
+  // Commit the results as a single commit with an appropriate commit message
+  exec(
+    "sed 's/Squashed commit of the following:/chore(release): new service versions/' " +
+      '.git/SQUASH_MSG | git commit -F -'
+  )
+
+  // Create tags
+  newVersions.forEach((version) => {
+    exec(`git tag --delete ${version}`) // Delete the one from above so we can consolidate
+    exec(`git tag -m "${version}" ${version}`)
+    console.log(`tagged HEAD as ${version}`)
+  })
+
+  exec('git push')
+
+  exec('git push --tags origin')
+
+  // Clean up the temp branch
+  exec('git branch -D micromanage-temp')
+}
+
+function getUpdatedPackages() {
+  const allTags = getTags()
+
+  // Find all workspace packages with updates since their latest tag
+  const updatedPackages = getPackages().filter((pkg) => {
+    const tags = allTags.filter((tag) => {
+      const tagPackageName = tag.substring(0, tag.lastIndexOf('@'))
+      return tagPackageName === pkg.name
+    })
+    const latestTag = tags[tags.length - 1]
+    const changed =
+      !latestTag || !!exec(`git diff --quiet HEAD ${latestTag} -- ${pkg.path} || echo changed`)
+
+    if (changed) {
+      console.log(`*** ${pkg.name} has changed since ${latestTag}`)
+      return true
+    } else {
+      console.log(`No changes in ${pkg.name} since ${latestTag}`)
+      return false
+    }
+  })
+
+  // Find dependent packages that now need updates too
+  const expandedUpdatedPackages = []
+  getPackages().forEach((packageToCheck) => {
+    updatedPackages
+      .filter((pkg) => !pkg.private) // Only consider public, updated packages
+      .forEach((updatedPackage) => {
+        if (
+          updatedPackage.name === packageToCheck.name ||
+          (packageToCheck.dependencies && updatedPackage.name in packageToCheck.dependencies) ||
+          (packageToCheck.devDependencies && updatedPackage.name in packageToCheck.devDependencies)
+        ) {
+          if (updatedPackage.name !== packageToCheck.name) {
+            console.log(
+              `*** ${packageToCheck.name} is updating because it depends on ${updatedPackage.name}`
+            )
+          }
+          expandedUpdatedPackages.push(packageToCheck)
+        }
+      })
+  })
+
+  return expandedUpdatedPackages
+}
+
+function versionPackages(updatedPackages) {
+  return updatedPackages.map((pkg) => {
     // Create the new version and changelog
-    const versionOutput = utils.exec(
+    const versionOutput = exec(
       `cd ${pkg.path} && \
       npx standard-version --path . --tag-prefix="${pkg.name}@" --releaseCommitMessageFormat="chore(release): ${pkg.name}@{{currentTag}}"`
     )
@@ -57,39 +120,35 @@ function handleVersionCommand() {
 
     console.log(`new version created: ${newTag}`)
 
+    // Update versions in all dependent packages if the updated package is public
+    if (!pkg.private) {
+      updateDeps(pkg, newVersion)
+    }
+
     return newTag
   })
+}
 
-  // Ensure lock file remains up-to-date
-  utils.exec('npm install && git commit --allow-empty -am "chore: update package-lock.json"')
+function updateDeps(updatedPackage, newVersion) {
+  console.log(`Updating local package dependencies on ${updatedPackage.name}`)
 
-  // Switch back to the original branch
-  utils.exec('git switch -')
+  getPackages().forEach((pkg) => {
+    const dependencyBlocks = []
 
-  // Squash-merge all of the new version commits
-  utils.exec('git merge --squash --autostash micromanage-temp')
+    if (pkg.dependencies && updatedPackage.name in pkg.dependencies) {
+      dependencyBlocks.push('dependencies')
+    }
+    if (pkg.devDependencies && updatedPackage.name in pkg.devDependencies) {
+      dependencyBlocks.push('devDependencies')
+    }
 
-  // Commit the results with an appropriate commit message
-  utils.exec(
-    "sed 's/Squashed commit of the following:/chore(release): new service versions/' " +
-      '.git/SQUASH_MSG | git commit -F -'
-  )
-
-  // Create tags
-  newVersions.forEach((version) => {
-    utils.exec(`git tag --delete ${version}`) // Delete the one from above so we can consolidate
-    utils.exec(`git tag -m "${version}" ${version}`)
-    console.log(`tagged HEAD as ${version}`)
+    dependencyBlocks.forEach((dependencyBlock) => {
+      console.log(`Updating ${pkg.name}'s local ${dependencyBlock} on ${updatedPackage.name}`)
+      exec(
+        `npm --workspace ${pkg.path} pkg set "${dependencyBlock}.${updatedPackage.name}=^${newVersion}"`
+      )
+    })
   })
-
-  // Push the current branch
-  utils.exec('git push')
-
-  // Push the tags
-  utils.exec('git push --tags origin')
-
-  // Clean up the temp branch
-  utils.exec('git branch -D micromanage-temp')
 }
 
 module.exports = {

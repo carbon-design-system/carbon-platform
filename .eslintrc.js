@@ -31,6 +31,13 @@ module.exports = {
         aspects: ['invalidHref', 'preferButton']
       }
     ],
+    'max-len': [
+      'error',
+      {
+        code: 150, // Effectively disable this rule and allow Prettier to handle it
+        comments: 100
+      }
+    ],
     'notice/notice': [
       'error',
       {

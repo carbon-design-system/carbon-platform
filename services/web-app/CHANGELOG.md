@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.6...@carbon-platform/web-app@0.1.7) (2021-10-29)
+
+
+### Features
+
+* add placeholder blur to remote images ([49d7abf](https://github.com/carbon-design-system/carbon-platform/commit/49d7abf0ab9444b549f32a16a6043f0117902215))
+* render thumbnail image from asset ([b623dc6](https://github.com/carbon-design-system/carbon-platform/commit/b623dc6ec4771e08a7dc29d61cb18a742c48d792))
+
 ### [0.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.5...@carbon-platform/web-app@0.1.6) (2021-10-28)
 
 

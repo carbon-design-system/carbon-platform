@@ -47,16 +47,6 @@ $ npm install
 
 This will install the dependencies across _all_ projects in the monorepo.
 
-## Adding GitHub personal access token for prototype
-
-The web app prototype uses a GitHub personal access token to fetch data from GitHub. To run the
-prototype:
-
-1. Generate a new token https://github.com/settings/tokens
-1. Select all repo scopes
-1. Copy the `/services/web-app/.env.example` file and rename to `/services/web-app/.env.local`
-1. Add your token to that new `.env.local` file
-
 ## Adding new project dependencies
 
 To install a new node module into a project, from the top-level of the repository, run:
@@ -80,8 +70,12 @@ $ npm --workspace packages/logging install immer
 
 Removing dependencies works the same way with the `npm uninstall` command.
 
-> Note: It is important to only run install commands from the top-level of the repository. This
-> allows a single `package-lock.json` file to be maintained at the root of the repo.
+> ⚠️⚠️⚠️ Note ⚠️⚠️⚠️
+>
+> It is important to only run install commands from the top-level of the repository. This allows a
+> single `package-lock.json` file to be maintained at the root of the repo. If you see that you've
+> accidentally created another lock file in your git views, don't commit it! Delete it and re-run
+> the install/update/uninstall commands from the top-level of the repo.
 
 ## Updating node modules
 
@@ -114,3 +108,77 @@ There are two ways to run npm scripts for a package.
      $ cd services/web-app
      $ npm run dev
      ```
+
+## Before you push!
+
+There's a few things you should do prior to committing/pushing a change to GitHub for review to help
+things go as smoothly as possible.
+
+### Run a build
+
+You can build in one of a few ways depending on the scope of your work. From the top-level in the
+repo, run one of the following:
+
+All packages and services:
+
+```
+npm run all:build
+```
+
+All packages:
+
+```
+npm run pacakges:build
+```
+
+All services:
+
+```
+npm run services:build
+```
+
+One particular package or service:
+
+```
+npm --workspace services/logging-service run build
+```
+
+### Run linters
+
+From the top-level in the repo, run:
+
+```
+npm run lint
+```
+
+This will run all linters against the entire repo. If there are any issues and you want to auto-fix
+as many of them as possible, run:
+
+```
+npm run lint:fix
+```
+
+### Run unit tests
+
+Depending on the scope of your work, run one of the following from the top-level in the repo:
+
+```
+npm run all:test
+```
+
+This will run all unit tests against all workspaces in the repo. If you're only working on one
+specific package or service, you can instead run the `test` script for that service specifically
+with something like:
+
+```
+npm --workspace services/logging-service run test
+```
+
+### Make sure commits reference GitHub issues
+
+This one might be obvious, but make sure the commits you're pushing actually reference the GitHub
+issues you're closing!
+
+```
+Fixes #123, Closes #456, etc.
+```

@@ -47,6 +47,9 @@ $ npm install
 
 This will install the dependencies across _all_ projects in the monorepo.
 
+This will _also_ build all of the `packages` in the repo, since these are required to run any
+services that depend on them.
+
 ## Adding new project dependencies
 
 To install a new node module into a project, from the top-level of the repository, run:
@@ -91,11 +94,11 @@ To update the node modules only for a specific workspace, from the top-level in 
 # npm --workspace <workspace_path> update
 ```
 
-> Note: This is currently not working correctly (https://github.com/npm/arborist/issues/345). As a
+> Note: This is currently not working correctly (https://github.com/npm/cli/issues/3960). As a
 > workaround, you can pass each package's name to the update command that you want to update and it
 > will be properly scoped to only the workspace in question.
 
-## Running npm scripts for packages
+## Running npm scripts for packages and services
 
 There are two ways to run npm scripts for a package.
 
@@ -109,41 +112,28 @@ There are two ways to run npm scripts for a package.
      $ npm run dev
      ```
 
+# Rebuilding packages
+
+If you make changes to one of the packages, you will need to rebuild it before you'll see its
+changes reflected in any other packages or services that depend on it. This is pretty
+straightforward and can be done with:
+
+```
+npm --workspace packages/some-package run build
+```
+
+Or, to be safe and rebuild all packages:
+
+```
+npm run packages:build
+```
+
 ## Before you push!
 
 There's a few things you should do prior to committing/pushing a change to GitHub for review to help
 things go as smoothly as possible.
 
-### Run a build
-
-You can build in one of a few ways depending on the scope of your work. From the top-level in the
-repo, run one of the following:
-
-All packages and services:
-
-```
-npm run all:build
-```
-
-All packages:
-
-```
-npm run pacakges:build
-```
-
-All services:
-
-```
-npm run services:build
-```
-
-One particular package or service:
-
-```
-npm --workspace services/logging-service run build
-```
-
-### Run linters
+### 1. Run linters
 
 From the top-level in the repo, run:
 
@@ -158,7 +148,36 @@ as many of them as possible, run:
 npm run lint:fix
 ```
 
-### Run unit tests
+### 2. Run a build
+
+You can build in one of a few ways depending on the scope of your work. From the top-level in the
+repo, run one of the following:
+
+All packages and services:
+
+```
+npm run all:build
+```
+
+All packages:
+
+```
+npm run packages:build
+```
+
+All services:
+
+```
+npm run services:build
+```
+
+One particular package or service:
+
+```
+npm --workspace services/logging-service run build
+```
+
+### 3. Run unit tests
 
 Depending on the scope of your work, run one of the following from the top-level in the repo:
 
@@ -174,7 +193,7 @@ with something like:
 npm --workspace services/logging-service run test
 ```
 
-### Make sure commits reference GitHub issues
+### 4. Make sure commits reference GitHub issues
 
 This one might be obvious, but make sure the commits you're pushing actually reference the GitHub
 issues you're closing!

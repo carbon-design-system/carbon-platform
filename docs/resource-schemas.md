@@ -63,3 +63,57 @@ platform: web
 | `type`          | Asset type.                                                                                      | Required | String | –             | `element`, `component`, `pattern`, `function`, `layout`                                        |
 | `framework`     | Asset framework.                                                                                 | Required | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
 | `platform`      | Asset environment.                                                                               | Required | String | `web`         | `android`, `desktop`, `ios`, `web`                                                             |
+
+#### Asset status
+
+Asset status is used by maintainers to set consumption expectations of stability and the likelihood
+of future breaking changes. The `status` key can have the following values:
+
+| Status         | Description                                           |
+| -------------- | ----------------------------------------------------- |
+| `draft`        | Partially complete and not ready for any consumption. |
+| `experimental` | Partially complete, not to be used in production.     |
+| `stable`       | Complete and ready for production use.                |
+| `deprecated`   | Will be sunset at a future date, minimally supported. |
+| `sunset`       | No longer supported.                                  |
+
+#### Asset type
+
+Asset type is used for primary categorization in asset catalogs. The `type` key can have the
+following values:
+
+| Type        | Description                                                                                                                                                                                            |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `element`   | Styles, tokens, and components that are the direct translation of design language elements to digital mediums.                                                                                         |
+| `component` | Building blocks that have been designed and coded to solve a specific user interface problem.                                                                                                          |
+| `pattern`   | Best practice solution for how a user achieves a goal through reusable combinations of components and content with sequences and flows which are too complex to be encapsulated in a single component. |
+| `function`  | Code that performs a single action and has no user interface.                                                                                                                                          |
+| `layout`    | Templates that specify component order and placement to compose a specific view.                                                                                                                       |
+
+#### Asset framework
+
+Asset framework specifies if each asset has a dependency on being used alongside a specific
+technology. The `framework` key can have the following values:
+
+| Status          | Description                                    |
+| --------------- | ---------------------------------------------- |
+| `angular`       | [Angular](https://angular.io)                  |
+| `react`         | [React](https://reactjs.org)                   |
+| `react-native`  | [React Native](https://reactnative.dev)        |
+| `svelte`        | [Svelte](https://svelte.dev)                   |
+| `vanilla`       | JavaScript with no framework.                  |
+| `vue`           | [Vue](https://vuejs.org)                       |
+| `web-component` | Custom HTML tags build with web platform APIs. |
+| `design-only`   | No coded implementation.                       |
+
+#### Asset platform
+
+Asset platform specifies where the containing product or digital experience runs. The `platform` key
+can have the following values:
+
+| Status    | Description                   |
+| --------- | ----------------------------- |
+| `android` | Installable Android app.      |
+| `desktop` | Installable app on computers. |
+| `ios`     | Installable iOS app.          |
+| `web`     | Runs on the web.              |

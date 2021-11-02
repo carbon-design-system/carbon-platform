@@ -8,9 +8,9 @@
 import { getPlaiceholder } from 'plaiceholder'
 
 export const generateBlurImage = async (path) => {
-  const imageData = await getPlaiceholder(path, {
+  const { base64, img } = await getPlaiceholder(path, {
     size: 10
   })
 
-  return imageData
+  return { base64, img }
 }

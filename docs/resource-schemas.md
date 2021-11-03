@@ -4,18 +4,18 @@ title: Resource schemas
 
 # Resource schemas
 
-Carbon Design System resources such as standards and assets follow a schema to document each
+Carbon Design System resources (e.g. standards, libraries, assets) follow a schema to document each
 resource in a standardized way. This structured information is indexed by Carbon's platform to use
-in Carbon's website and other services.
+in the website and other services.
 
 Schemas are applied through metadata files written in YAML. If you're new to YAML and want to learn
 more, see "[Learn YAML in Y minutes](https://learnxinyminutes.com/docs/yaml)."
 
 ## Library schema
 
-Libraries are the means to contribute, install, and use one or many assets. To index your library
-with Carbon, create a `carbon-library.yml` metadata file and place it in the same directory as your
-library's `package.json` file.
+Libraries are the means to contribute, install, and use one or many assets in products and digital
+experiences. To index your library with Carbon, create a `carbon-library.yml` metadata file and
+place it in the same directory as your library's `package.json` file.
 
 **Example**
 
@@ -34,9 +34,9 @@ description: React implementation of Carbon Components.
 
 ## Asset schema
 
-Assets are reusable units of work that are integrated into products and digital experiences. For
-each asset in a library, create a `carbon-asset.yml` metadata file in the same directory as its
-source.
+Assets are reusable units of work that are used in products and digital experiences. Every asset
+belongs to a library. For each asset in a library, create a `carbon-asset.yml` metadata file in the
+same directory as the asset's source.
 
 **Example**
 
@@ -60,14 +60,14 @@ platform: web
 | `description`   | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization. | Required | String | –             | –                                                                                              |
 | `thumbnailPath` | Relative location of the asset's thumbnail image.                                                | Optional | String | –             | –                                                                                              |
 | `status`        | Used to set consumption exptectations.                                                           | Required | String | `draft`       | `draft`, `experimental`, `stable`, `deprecated`, `sunset`                                      |
-| `type`          | Asset type.                                                                                      | Required | String | –             | `element`, `component`, `pattern`, `function`, `layout`                                        |
-| `framework`     | Asset framework.                                                                                 | Required | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
-| `platform`      | Asset environment.                                                                               | Required | String | `web`         | `android`, `desktop`, `ios`, `web`                                                             |
+| `type`          | Asset categorization.                                                                            | Required | String | –             | `element`, `component`, `pattern`, `function`, `layout`                                        |
+| `framework`     | Asset frontend framework.                                                                        | Required | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
+| `platform`      | Asset environment.                                                                               | Required | String | `web`         | `cross-platform`, `web`                                                                        |
 
 #### Asset status
 
 Asset status is used by maintainers to set consumption expectations of stability and the likelihood
-of future breaking changes. The `status` key can have the following values:
+of future changes. The `status` key can have the following values:
 
 | Status         | Description                                           |
 | -------------- | ----------------------------------------------------- |
@@ -108,12 +108,10 @@ technology. The `framework` key can have the following values:
 
 #### Asset platform
 
-Asset platform specifies where the containing product or digital experience runs. The `platform` key
-can have the following values:
+Asset platform specifies supported runtimes and where each asset can be used. The `platform` key can
+have the following values:
 
-| Status    | Description                   |
-| --------- | ----------------------------- |
-| `android` | Installable Android app.      |
-| `desktop` | Installable app on computers. |
-| `ios`     | Installable iOS app.          |
-| `web`     | Runs on the web.              |
+| Status           | Description                                    |
+| ---------------- | ---------------------------------------------- |
+| `cross-platform` | Runs natively on iOS, Android, and/or desktop. |
+| `web`            | Runs on the web.                               |

@@ -1,4 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+set -e
+
 npx --no-install lint-staged
+
+git diff --staged --name-only --diff-filter=d | xargs scripts/micromanage link

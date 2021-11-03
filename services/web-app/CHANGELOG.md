@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.9](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.8...@carbon-platform/web-app@0.1.9) (2021-10-29)
+
+### [0.1.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.7...@carbon-platform/web-app@0.1.8) (2021-10-29)
+
+
+### Features
+
+* **icons:** add new icons package ([#56](https://github.com/carbon-design-system/carbon-platform/issues/56)) ([3d9144c](https://github.com/carbon-design-system/carbon-platform/commit/3d9144c019cff7f4271c6ab0e13cd6939c8f7847))
+
+
+### Bug Fixes
+
+* **web-app:** fix comment-related linter error ([6cba24f](https://github.com/carbon-design-system/carbon-platform/commit/6cba24f6bc5e93e7a71ad0251a032b3d8821739d))
+
+### [0.1.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.6...@carbon-platform/web-app@0.1.7) (2021-10-29)
+
+
+### Features
+
+* add placeholder blur to remote images ([49d7abf](https://github.com/carbon-design-system/carbon-platform/commit/49d7abf0ab9444b549f32a16a6043f0117902215))
+* render thumbnail image from asset ([b623dc6](https://github.com/carbon-design-system/carbon-platform/commit/b623dc6ec4771e08a7dc29d61cb18a742c48d792))
+
 ### [0.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.5...@carbon-platform/web-app@0.1.6) (2021-10-28)
 
 

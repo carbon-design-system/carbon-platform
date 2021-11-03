@@ -19,7 +19,7 @@ import styles from '@/pages/pages.module.scss'
 const Asset = ({ assetData }) => {
   const { setNavData } = useContext(LayoutContext)
 
-  const { name, description, thumbnailData } = assetData.asset.contents
+  const { name, description, thumbnailData: imageData } = assetData.asset.contents
 
   const seo = {
     title: name,
@@ -33,14 +33,14 @@ const Asset = ({ assetData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      {thumbnailData && (
+      {imageData && (
         <Image
           alt={`${name} thumbnail`}
           height="300px"
           width="400px"
-          src={thumbnailData.img.src}
-          placeholder="blur"
-          blurDataURL={thumbnailData.base64}
+          src={imageData.img.src}
+          placeholder={imageData.img.type === 'svg' ? 'empty' : 'blur'}
+          blurDataURL={imageData.base64}
         />
       )}
       <pre className={styles.data}>{JSON.stringify(assetData, null, 2)}</pre>
@@ -59,9 +59,9 @@ export const getStaticProps = async ({ params }) => {
 
   // TODO move this logic to recursive function that finds images in content, and creates image
   // data objects
-  if (assetData.asset && assetData.asset.contents && assetData.asset.contents.thumbnail) {
+  if (assetData.asset && assetData.asset.contents && assetData.asset.contents.thumbnailPath) {
     assetData.asset.contents.thumbnailData = await generateBlurImage(
-      getImgSrc(assetData.asset.repository, assetData.asset.contents.thumbnail)
+      getImgSrc(assetData.asset.repository, assetData.asset.contents.thumbnailPath)
     )
   }
 

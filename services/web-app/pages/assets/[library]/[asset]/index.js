@@ -58,9 +58,9 @@ export const getStaticProps = async ({ params }) => {
   }
 
   // TODO move this logic to recursive function that finds images in content, and creates image data objects
-  if (assetData.asset && assetData.asset.contents && assetData.asset.contents.thumbnail) {
+  if (assetData.asset && assetData.asset.contents && assetData.asset.contents.thumbnailPath) {
     assetData.asset.contents.thumbnailData = await generateBlurImage(
-      getImgSrc(assetData.asset.repository, assetData.asset.contents.thumbnail)
+      getImgSrc(assetData.asset.repository, assetData.asset.contents.thumbnailPath)
     )
   }
 

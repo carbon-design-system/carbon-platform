@@ -95,8 +95,9 @@ const getAllAssets = async () => {
   // find all thumbnail images and construct request URLs
   const imgUrls = assets
     .map((asset) => {
-      return asset.contents.thumbnail
-        ? asset.repository.baseUrl.replace('https://api.github.com', '') + asset.contents.thumbnail
+      return asset.contents.thumbnailPath
+        ? asset.repository.baseUrl.replace('https://api.github.com', '') +
+            asset.contents.thumbnailPath
         : ''
     })
     .filter(function (img) {

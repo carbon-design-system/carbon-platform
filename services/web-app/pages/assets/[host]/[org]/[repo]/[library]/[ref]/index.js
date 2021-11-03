@@ -5,27 +5,33 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getAllLibraryPaths, getLibraryData } from '@/lib/github'
 import { useContext, useEffect } from 'react'
 
 import { LayoutContext } from '@/layouts/layout'
 import { NextSeo } from 'next-seo'
 import { assetsNavData } from '@/data/nav-data'
+import { getLibraryData } from '@/lib/github'
 import styles from '@/pages/pages.module.scss'
+import { useRouter } from 'next/router'
 
 const Library = ({ libraryData }) => {
   const { setNavData } = useContext(LayoutContext)
+  const router = useRouter()
 
-  const { name, description } = libraryData
+  useEffect(() => {
+    setNavData(assetsNavData)
+  }, [setNavData])
+
+  if (router.isFallback) {
+    return <h1>Loading...</h1>
+  }
+
+  const { name, description } = libraryData.contents
 
   const seo = {
     title: name,
     description
   }
-
-  useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
 
   return (
     <>
@@ -48,17 +54,15 @@ export const getStaticProps = async ({ params }) => {
     props: {
       libraryData,
       params
-    }
+    },
+    revalidate: 10
   }
 }
 
-// TODO update to Incremental Static Regeneration
 export const getStaticPaths = async () => {
-  const paths = await getAllLibraryPaths()
-
   return {
-    paths,
-    fallback: false
+    paths: [],
+    fallback: true
   }
 }
 

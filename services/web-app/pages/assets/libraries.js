@@ -12,7 +12,6 @@ import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { assetsNavData } from '@/data/nav-data'
 import { getAllLibraries } from '@/lib/github'
-import slugify from 'slugify'
 import styles from '@/pages/pages.module.scss'
 
 const Libraries = ({ librariesData }) => {
@@ -26,18 +25,18 @@ const Libraries = ({ librariesData }) => {
     setNavData(assetsNavData)
   }, [setNavData])
 
+  const libraries = librariesData.libraries.sort((a, b) =>
+    a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
+  )
+
   return (
     <>
       <NextSeo {...seo} />
       <ul>
-        {librariesData.map((library, i) => (
+        {libraries.map((library, i) => (
           <li key={i}>
-            <Link
-              href={`/assets/${slugify(library.contents.name, {
-                lower: true
-              })}`}
-            >
-              <a>{library.contents.name}</a>
+            <Link href={`/assets/${library.params.slug}`}>
+              <a>{library.content.name}</a>
             </Link>
           </li>
         ))}
@@ -49,12 +48,6 @@ const Libraries = ({ librariesData }) => {
 
 export const getStaticProps = async () => {
   const librariesData = await getAllLibraries()
-
-  if (!librariesData) {
-    return {
-      notFound: true
-    }
-  }
 
   return {
     props: {

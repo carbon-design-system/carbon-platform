@@ -8,9 +8,11 @@
 import { useContext, useEffect } from 'react'
 
 import { LayoutContext } from '@/layouts/layout'
+import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { assetsNavData } from '@/data/nav-data'
 import { getLibraryData } from '@/lib/github'
+import slugify from 'slugify'
 import styles from '@/pages/pages.module.scss'
 import { useRouter } from 'next/router'
 
@@ -33,9 +35,28 @@ const Library = ({ libraryData }) => {
     description
   }
 
+  const assets = libraryData.assets.sort((a, b) =>
+    a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
+  )
+
+  const ref = libraryData.params.ref || 'latest'
+
   return (
     <>
       <NextSeo {...seo} />
+      <ul>
+        {assets.map((asset, i) => (
+          <li key={i}>
+            <Link
+              href={`/assets/${asset.params.slug}/${ref}/${slugify(asset.content.name, {
+                lower: true
+              })}`}
+            >
+              <a>{asset.content.name}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
       <pre className={styles.data}>{JSON.stringify(libraryData, null, 2)}</pre>
     </>
   )

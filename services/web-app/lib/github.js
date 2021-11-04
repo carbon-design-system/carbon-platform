@@ -153,3 +153,27 @@ export const getLibraryAssets = async (params = {}) => {
     }
   })
 }
+
+/**
+ * Iterates over all libraries in the allowlist and fetches library data with no ref so the default
+ * branch is used.
+ */
+export const getAllLibraries = async () => {
+  const promises = []
+
+  for (const [slug, library] of Object.entries(libraryAllowList)) {
+    const params = {
+      ...library,
+      library: slug,
+      ref: 'latest'
+    }
+
+    promises.push(getLibraryData(params))
+  }
+
+  const libraries = await Promise.all(promises)
+
+  return {
+    libraries
+  }
+}

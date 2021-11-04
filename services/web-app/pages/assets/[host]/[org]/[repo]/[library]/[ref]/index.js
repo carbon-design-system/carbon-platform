@@ -16,7 +16,7 @@ import slugify from 'slugify'
 import styles from '@/pages/pages.module.scss'
 import { useRouter } from 'next/router'
 
-const Library = ({ libraryData }) => {
+const Library = ({ libraryData, params }) => {
   const { setNavData } = useContext(LayoutContext)
   const router = useRouter()
 
@@ -39,8 +39,6 @@ const Library = ({ libraryData }) => {
     a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
   )
 
-  const ref = libraryData.params.ref || 'latest'
-
   return (
     <>
       <NextSeo {...seo} />
@@ -48,7 +46,7 @@ const Library = ({ libraryData }) => {
         {assets.map((asset, i) => (
           <li key={i}>
             <Link
-              href={`/assets/${asset.params.slug}/${ref}/${slugify(asset.content.name, {
+              href={`/assets/${asset.params.slug}/${params.ref}/${slugify(asset.content.name, {
                 lower: true
               })}`}
             >

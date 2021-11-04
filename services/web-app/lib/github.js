@@ -5,8 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getResponse } from '@/lib/file-cache'
+import { getResponse, writeFile } from '@/lib/file-cache'
+
 import { libraryAllowList } from '@/data/libraries'
+import { removeLeadingSlash } from '@/utils/string'
 import slugify from 'slugify'
 import yaml from 'js-yaml'
 
@@ -15,7 +17,7 @@ import yaml from 'js-yaml'
  * well as path to the directory that contains the carbon-library.yml. Return an empty object if
  * not found. Does not validate ref, so people can set their own branch / tag / commit.
  */
-const validateLibraryParams = (params = {}) => {
+const validateLibraryParams = async (params = {}) => {
   let returnParams = {}
 
   for (const [slug, library] of Object.entries(libraryAllowList)) {
@@ -30,7 +32,7 @@ const validateLibraryParams = (params = {}) => {
         ...library
       }
 
-      if (params.ref !== 'latest') {
+      if (params.ref && params.ref !== 'latest') {
         returnParams.ref = params.ref
       }
 
@@ -38,6 +40,19 @@ const validateLibraryParams = (params = {}) => {
         returnParams.asset = params.asset
       }
     }
+  }
+
+  // get default branch if a branch isn't specified through params
+
+  if (!returnParams.ref) {
+    try {
+      const repo = await getResponse(returnParams.host, 'GET /repos/{owner}/{repo}', {
+        owner: returnParams.org,
+        repo: returnParams.repo
+      })
+
+      returnParams.ref = repo.default_branch
+    } catch (err) {}
   }
 
   return returnParams
@@ -48,7 +63,7 @@ const validateLibraryParams = (params = {}) => {
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  */
 export const getLibraryData = async (params = {}) => {
-  const libraryParams = validateLibraryParams(params)
+  const libraryParams = await validateLibraryParams(params)
 
   if (!libraryParams || Object.keys(libraryParams).length === 0) return null
 
@@ -58,7 +73,7 @@ export const getLibraryData = async (params = {}) => {
     response = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
       owner: libraryParams.org,
       repo: libraryParams.repo,
-      path: `${libraryParams.path}/carbon-library.yml`,
+      path: removeLeadingSlash(`${libraryParams.path}/carbon-library.yml`),
       ref: libraryParams.ref
     })
   } catch (err) {
@@ -87,26 +102,9 @@ export const getLibraryData = async (params = {}) => {
  * library's subdirectory and then fetch the contents for each asset metadata file.
  */
 export const getLibraryAssets = async (params = {}) => {
-  const libraryParams = validateLibraryParams(params)
+  const libraryParams = await validateLibraryParams(params)
 
   if (!libraryParams || Object.keys(libraryParams).length === 0) return []
-
-  // get default branch if a branch isn't specified through params
-
-  let ref = libraryParams.ref
-
-  if (!ref) {
-    try {
-      const repo = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}', {
-        owner: libraryParams.org,
-        repo: libraryParams.repo
-      })
-
-      ref = repo.default_branch
-    } catch (err) {
-      return []
-    }
-  }
 
   // get all asset metadata files in subdirectories
 
@@ -119,7 +117,7 @@ export const getLibraryAssets = async (params = {}) => {
       {
         owner: libraryParams.org,
         repo: libraryParams.repo,
-        ref: ref
+        ref: libraryParams.ref
       }
     )
   } catch (err) {
@@ -130,20 +128,22 @@ export const getLibraryAssets = async (params = {}) => {
 
   const assetContentPromises = response.tree
     .filter(
-      (file) => file.path.startsWith(libraryParams.path) && file.path.endsWith('carbon-asset.yml')
+      (file) =>
+        removeLeadingSlash(file.path).startsWith(removeLeadingSlash(libraryParams.path)) &&
+        file.path.endsWith('carbon-asset.yml')
     )
     .map((file) => {
       return getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
         owner: libraryParams.org,
         repo: libraryParams.repo,
-        path: file.path,
-        ref: ref
+        path: removeLeadingSlash(file.path),
+        ref: libraryParams.ref
       })
     })
 
   const assetContentData = await Promise.all(assetContentPromises)
 
-  return assetContentData.map((response) => {
+  const assets = assetContentData.map((response) => {
     const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
 
     return {
@@ -152,6 +152,35 @@ export const getLibraryAssets = async (params = {}) => {
       content
     }
   })
+
+  // find all thumbnail images, get content of each image, filter out assets with no thumbnail
+
+  const imgPromises = assets
+    .map((asset) => {
+      if (asset.content.thumbnailPath) {
+        return getResponse(asset.params.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+          owner: asset.params.org,
+          repo: asset.params.repo,
+          path: asset.response.path.replace('/carbon-asset.yml', '') + asset.content.thumbnailPath,
+          ref: asset.params.ref
+        })
+      } else {
+        return null
+      }
+    })
+    .filter((item) => item)
+
+  const imgContents = await Promise.all(imgPromises)
+
+  // write images to disk
+
+  imgContents.forEach((contents) => {
+    const pathName = contents.html_url.replace('https://', '').replace('/blob', '')
+
+    writeFile(pathName, Buffer.from(contents.content, contents.encoding))
+  })
+
+  return assets
 }
 
 /**

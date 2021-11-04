@@ -14,19 +14,19 @@ const libraryAllowList = {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: 'packages/icons'
+    path: '/packages/icons'
   },
   'carbon-react': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: 'packages/react'
+    path: '/packages/react'
   },
   'test-library': {
     host: 'github.com',
     org: 'mattrosno',
     repo: 'carbon-next',
-    path: 'packages/react'
+    path: '/packages/react'
   }
 }
 

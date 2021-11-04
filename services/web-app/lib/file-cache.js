@@ -4,9 +4,11 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { CACHE_PATH } from '@/config/constants'
+import { CACHE_PATH, IMAGES_CACHE_PATH } from '@/config/constants'
+
 import { Octokit } from '@octokit/core'
 import cacheManager from 'cache-manager'
+import fs from 'fs-extra'
 import fsStore from 'cache-manager-fs-hash'
 
 const diskCache = cacheManager.caching({
@@ -81,4 +83,23 @@ export const deleteResponse = async (key) => {
   console.log('DELETE CACHED', key)
 
   await diskCache.del(key)
+}
+
+/**
+ * Writes an image to the Next.js /public directory if that file doesn't exist yet.
+ */
+export const writeFile = async (path, contents) => {
+  try {
+    const exists = await fs.pathExists(`./public/${IMAGES_CACHE_PATH}/${path}`)
+
+    if (exists) {
+      console.log('FILE EXISTS', path)
+    } else {
+      await fs.outputFile(`./public/${IMAGES_CACHE_PATH}/${path}`, contents)
+
+      console.log('FILE WRITE', path)
+    }
+  } catch (err) {
+    console.error(err)
+  }
 }

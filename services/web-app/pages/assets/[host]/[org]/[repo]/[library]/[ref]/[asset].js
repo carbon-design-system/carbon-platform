@@ -30,7 +30,7 @@ const Asset = ({ libraryData }) => {
   }
 
   const [assetData] = libraryData.assets
-  const { name, description, thumbnailData } = assetData.content
+  const { name, description, thumbnailData: imageData } = assetData.content
 
   const seo = {
     title: name,
@@ -40,14 +40,14 @@ const Asset = ({ libraryData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      {thumbnailData && (
+      {imageData && (
         <Image
           alt={`${name} thumbnail`}
           height="300px"
           width="400px"
-          src={thumbnailData.img.src}
-          placeholder="blur"
-          blurDataURL={thumbnailData.base64}
+          src={imageData.img.src}
+          placeholder={imageData.img.type === 'svg' ? 'empty' : 'blur'}
+          blurDataURL={imageData.base64}
         />
       )}
       <pre className={styles.data}>{JSON.stringify(libraryData, null, 2)}</pre>

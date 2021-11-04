@@ -69,6 +69,11 @@ module.exports = {
 
     for (const [slug, library] of Object.entries(libraries.libraryAllowList)) {
       rewrites.push({
+        source: `/assets/${slug}`,
+        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest`
+      })
+
+      rewrites.push({
         source: `/assets/${slug}/:ref`,
         destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref`
       })

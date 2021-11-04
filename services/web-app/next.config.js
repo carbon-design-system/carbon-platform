@@ -74,8 +74,8 @@ module.exports = {
       })
 
       rewrites.push({
-        source: `/assets/${slug}/:ref`,
-        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref`
+        source: `/assets/${slug}/:ref*`,
+        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
       })
     }
 

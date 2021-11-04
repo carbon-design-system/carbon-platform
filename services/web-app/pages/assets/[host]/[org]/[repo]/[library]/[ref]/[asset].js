@@ -14,7 +14,7 @@ import { getLibraryData } from '@/lib/github'
 import styles from '@/pages/pages.module.scss'
 import { useRouter } from 'next/router'
 
-const Library = ({ libraryData }) => {
+const Asset = ({ libraryData }) => {
   const { setNavData } = useContext(LayoutContext)
   const router = useRouter()
 
@@ -26,7 +26,8 @@ const Library = ({ libraryData }) => {
     return <h1>Loading...</h1>
   }
 
-  const { name, description } = libraryData.content
+  const [assetData] = libraryData.assets
+  const { name, description } = assetData.content
 
   const seo = {
     title: name,
@@ -44,7 +45,7 @@ const Library = ({ libraryData }) => {
 export const getStaticProps = async ({ params }) => {
   const libraryData = await getLibraryData(params)
 
-  if (!libraryData) {
+  if (!libraryData || !libraryData.assets || !libraryData.assets.length) {
     return {
       notFound: true
     }
@@ -66,4 +67,4 @@ export const getStaticPaths = async () => {
   }
 }
 
-export default Library
+export default Asset

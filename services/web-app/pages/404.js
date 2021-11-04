@@ -4,6 +4,30 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const fourOhFour = () => <h1>Page not found.</h1>
 
-export default fourOhFour
+import { useContext, useEffect } from 'react'
+
+import { LayoutContext } from '@/layouts/layout'
+import { NextSeo } from 'next-seo'
+import { assetsNavData } from '@/data/nav-data'
+
+const FourOhFour = () => {
+  const { setNavData } = useContext(LayoutContext)
+
+  useEffect(() => {
+    setNavData(assetsNavData)
+  }, [setNavData])
+
+  const seo = {
+    title: 'Page not found'
+  }
+
+  return (
+    <>
+      <NextSeo {...seo} />
+      <h1>Page not found.</h1>
+    </>
+  )
+}
+
+export default FourOhFour

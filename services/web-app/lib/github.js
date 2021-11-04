@@ -7,6 +7,7 @@
 
 import { getResponse } from '@/lib/file-cache'
 import { libraryAllowList } from '@/data/libraries'
+import slugify from 'slugify'
 import yaml from 'js-yaml'
 
 /**
@@ -31,6 +32,10 @@ const validateLibraryParams = (params = {}) => {
 
       if (params.ref !== 'latest') {
         returnParams.ref = params.ref
+      }
+
+      if (params.asset) {
+        returnParams.asset = params.asset
       }
     }
   }
@@ -60,15 +65,19 @@ export const getLibraryData = async (params = {}) => {
     return null
   }
 
-  const contents = yaml.load(Buffer.from(response.content, response.encoding).toString())
+  const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
 
   const assets = await getLibraryAssets(params)
+
+  const filteredAssets = libraryParams.asset
+    ? assets.filter((asset) => slugify(asset.content.name, { lower: true }) === libraryParams.asset)
+    : assets
 
   return {
     params: libraryParams,
     response,
-    contents,
-    assets
+    content,
+    assets: filteredAssets
   }
 }
 

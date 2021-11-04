@@ -24,6 +24,16 @@ function exec(cmd) {
 }
 
 /**
+ * Given a package name, find the corresponding package object.
+ *
+ * @param {string} packageName The name of the package to find.
+ * @returns A package with the corresponding name; or undefined if one was not found.
+ */
+function getPackageByName(packageName) {
+  return getPackages().find((pkg) => pkg.name === packageName)
+}
+
+/**
  * Given a file, find the package under which the file resides.
  *
  * @param {string} f File path.
@@ -93,6 +103,7 @@ function getTags() {
 module.exports = {
   exec,
   getFiles,
+  getPackageByName,
   getPackageForFile,
   getPackages,
   getTags

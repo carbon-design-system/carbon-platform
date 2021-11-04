@@ -1,0 +1,22 @@
+{
+  "deployedServices": {
+    "production": {
+      "services": {
+        "@carbon-platform/logging-service": "0.1.9",
+        "@carbon-platform/web-app": "0.1.9"
+      }
+    },
+    "sandbox": {
+      "services": {
+        "@carbon-platform/logging-service": "0.1.9",
+        "@carbon-platform/web-app": "0.1.9"
+      }
+    }
+  },
+  "cloudFoundryConfig": {
+    "ibmCloudApi": "",
+    "cloudFoundryOrganization": "",
+    "cloudFoundrySpace": "",
+    "cloudFoundryRegion": ""
+  }
+}

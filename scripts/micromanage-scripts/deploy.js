@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 const { Command } = require('commander')
+const fs = require('fs')
 // const path = require('path')
-const { utils } = require('stylelint')
 
-// const { getPackages, exec } = require('./utils')
+const { exec } = require('./utils')
 
 // details on only running the action when a specific file changes:
 // https://github.community/t/is-it-possible-to-run-the-job-only-when-a-specific-file-changes/115484
@@ -42,15 +42,14 @@ function getChangedServices(deployedServices) {
   // come up with the list of things that actually need to be redeployed
 }
 
-function deployService(changedService) {
-  console.log(changedService)
-  const theTag = '???'
+function deployService(changedService, tagToDeploy) {
   //    checkout the git tag that we are deploying (switch branch to the target)
-  utils.exec(`git switch ${theTag}`)
+  exec(`git switch ${tagToDeploy}`)
 
   //    ?? figure out if we need to copy over the package-lock to the service we're trying to deploy
   //       if we let cloudfoundry do the build, then we do need to copy this over.
   // utils.exec('cp') OR node to copy the file
+  fs.copyFileSync('package-lock.json', changedService.path)
 
   /*
   - copy package lock to workspace

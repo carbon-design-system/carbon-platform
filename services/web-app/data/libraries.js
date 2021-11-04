@@ -10,6 +10,12 @@
  * object keys to ensure uniqueness.
  */
 const libraryAllowList = {
+  'carbon-icons': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon',
+    path: 'packages/icons'
+  },
   'carbon-react': {
     host: 'github.ibm.com',
     org: 'matt-rosno',

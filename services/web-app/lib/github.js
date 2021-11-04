@@ -12,7 +12,7 @@ import yaml from 'js-yaml'
 /**
  * Validates the route's parameters and returns an object that also includes the library's slug as
  * well as path to the directory that contains the carbon-library.yml. Return an empty object if
- * not found. Does not validate ref.
+ * not found. Does not validate ref, so people can set their own branch / tag / commit.
  */
 const validateLibraryParams = (params = {}) => {
   let returnParams = {}
@@ -39,7 +39,7 @@ const validateLibraryParams = (params = {}) => {
 }
 
 /**
- * If the params map to a valid library in the allow list, fetch the contents of the library's
+ * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  */
 export const getLibraryData = async (params = {}) => {
@@ -50,7 +50,7 @@ export const getLibraryData = async (params = {}) => {
   let response = {}
 
   try {
-    response = await getResponse(params.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+    response = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
       owner: libraryParams.org,
       repo: libraryParams.repo,
       path: `${libraryParams.path}/carbon-library.yml`,
@@ -60,9 +60,87 @@ export const getLibraryData = async (params = {}) => {
     return null
   }
 
+  const contents = yaml.load(Buffer.from(response.content, response.encoding).toString())
+
+  const assets = await getLibraryAssets(params)
+
   return {
     params: libraryParams,
     response,
-    contents: yaml.load(Buffer.from(response.content, response.encoding).toString())
+    contents,
+    assets
   }
+}
+
+/**
+ * If the params map to a valid library in the allowlist, get the default branch if there isn't a
+ * specified ref, then recursively get all asset metadata files. Find the files that are in the
+ * library's subdirectory and then fetch the contents for each asset metadata file.
+ */
+export const getLibraryAssets = async (params = {}) => {
+  const libraryParams = validateLibraryParams(params)
+
+  if (!libraryParams || Object.keys(libraryParams).length === 0) return []
+
+  // get default branch if a branch isn't specified through params
+
+  let ref = libraryParams.ref
+
+  if (!ref) {
+    try {
+      const repo = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}', {
+        owner: libraryParams.org,
+        repo: libraryParams.repo
+      })
+
+      ref = repo.default_branch
+    } catch (err) {
+      return []
+    }
+  }
+
+  // get all asset metadata files in subdirectories
+
+  let response = {}
+
+  try {
+    response = await getResponse(
+      libraryParams.host,
+      'GET /repos/{owner}/{repo}/git/trees/{ref}?recursive=1',
+      {
+        owner: libraryParams.org,
+        repo: libraryParams.repo,
+        ref: ref
+      }
+    )
+  } catch (err) {
+    return []
+  }
+
+  // request contents for each asset metadata file
+
+  const assetContentPromises = response.tree
+    .filter(
+      (file) => file.path.startsWith(libraryParams.path) && file.path.endsWith('carbon-asset.yml')
+    )
+    .map((file) => {
+      return getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+        owner: libraryParams.org,
+        repo: libraryParams.repo,
+        path: file.path,
+        ref: ref
+      })
+    })
+
+  const assetContentData = await Promise.all(assetContentPromises)
+
+  return assetContentData.map((response) => {
+    const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+
+    return {
+      params: libraryParams,
+      response,
+      content
+    }
+  })
 }

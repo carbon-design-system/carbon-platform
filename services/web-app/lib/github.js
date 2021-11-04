@@ -7,6 +7,8 @@
 
 import { getResponse, writeFile } from '@/lib/file-cache'
 
+import { IMAGES_CACHE_PATH } from '@/config/constants'
+import { getPlaiceholder } from 'plaiceholder'
 import { libraryAllowList } from '@/data/libraries'
 import { removeLeadingSlash } from '@/utils/string'
 import slugify from 'slugify'
@@ -155,7 +157,7 @@ export const getLibraryAssets = async (params = {}) => {
 
   // find all thumbnail images, get content of each image, filter out assets with no thumbnail
 
-  const imgPromises = assets
+  const imgContentsPromises = assets
     .map((asset) => {
       if (asset.content.thumbnailPath) {
         return getResponse(asset.params.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
@@ -170,17 +172,54 @@ export const getLibraryAssets = async (params = {}) => {
     })
     .filter((item) => item)
 
-  const imgContents = await Promise.all(imgPromises)
+  const imgContents = await Promise.all(imgContentsPromises)
 
   // write images to disk
 
-  imgContents.forEach((contents) => {
-    const pathName = contents.html_url.replace('https://', '').replace('/blob', '')
+  const imgWritePromises = imgContents.map((content) => {
+    const path = content.html_url.replace('https://', '').replace('/blob', '')
 
-    writeFile(pathName, Buffer.from(contents.content, contents.encoding))
+    return writeFile(path, Buffer.from(content.content, content.encoding))
   })
 
-  return assets
+  await Promise.all(imgWritePromises)
+
+  // generate placeholder images
+
+  const imgPlaceholderPromises = imgContents.map((content) => {
+    const path = content.html_url.replace('https://', '').replace('/blob', '')
+
+    return getPlaiceholder(`/${IMAGES_CACHE_PATH}/${path}`, {
+      size: 10
+    })
+  })
+
+  const imgPlaceholders = await Promise.all(imgPlaceholderPromises)
+
+  // merge in placeholder images
+
+  return assets.map((asset) => {
+    const assetExtensions = {}
+    const basePath = asset.response.path.replace('/carbon-asset.yml', '')
+
+    const foundImage = imgPlaceholders.find(
+      (image) =>
+        image.img.src.includes(basePath) && image.img.src.includes(asset.content.thumbnailPath)
+    )
+
+    if (foundImage) {
+      const { img, base64 } = foundImage
+      assetExtensions.thumbnailData = { img, base64 }
+    }
+
+    return {
+      ...asset,
+      content: {
+        ...asset.content,
+        ...assetExtensions
+      }
+    }
+  })
 }
 
 /**

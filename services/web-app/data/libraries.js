@@ -21,12 +21,6 @@ const libraryAllowList = {
     org: 'matt-rosno',
     repo: 'carbon',
     path: '/packages/react'
-  },
-  'test-library': {
-    host: 'github.com',
-    org: 'mattrosno',
-    repo: 'carbon-next',
-    path: '/packages/react'
   }
 }
 

@@ -1,0 +1,39 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+@use '@carbon/react' as styles;
+
+//----------------------------------------------------------------------------
+// Catalog Search
+//----------------------------------------------------------------------------
+.search {
+  margin-top: 5rem;
+
+  @include breakpoint(md) {
+    //672  4:3
+    width: 39rem;
+    padding-right: 1rem;
+  }
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    width: 47.125rem;
+    padding-right: 1rem;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 60.25rem;
+    padding-right: 1rem;
+  }
+}
+
+.search :global(.cds--search-input) {
+  height: 2.5rem;
+  border-bottom: 1px solid #8d8d8d;
+  background-color: #ffffff;
+}

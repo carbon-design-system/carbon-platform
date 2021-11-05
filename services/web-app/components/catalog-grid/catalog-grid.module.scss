@@ -1,0 +1,179 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+@use '@carbon/react' as styles;
+
+//----------------------------------------------------------------------------
+// Catalog Grid Container
+//----------------------------------------------------------------------------
+.container {
+  display: none;
+
+  @include breakpoint(xlg) {
+    display: flex;
+    width: 63px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+//----------------------------------------------------------------------------
+// Item, Item Image and Item Content
+//----------------------------------------------------------------------------
+.item {
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 19rem;
+    height: 25rem;
+    margin: $spacing-05;
+    background-color: #ffffff;
+  }
+}
+
+// Item Image
+.item-image {
+  @include breakpoint(xlg) {
+    //1312  4:3
+    display: flex;
+    width: 19rem;
+    height: 12.75rem;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid $layer-accent-01;
+    background-color: #ffffff;
+  }
+}
+
+// Item Content
+.item-content {
+  @include breakpoint(xlg) {
+    height: 12.25rem;
+    padding: $spacing-05;
+  }
+}
+
+// Item Sponsor
+.item-sponsor {
+  @include breakpoint(xlg) {
+    @include type-style('label-01');
+
+    color: #252525;
+  }
+}
+
+// Item Name
+.item-name {
+  @include breakpoint(xlg) {
+    @include type-style('productive-heading-02');
+
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: #252525;
+  }
+}
+
+//----------------------------------------------------------------------------
+// Item Info
+//----------------------------------------------------------------------------
+.item-info {
+  @include type-style('body-short-01');
+
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+// Item Downloads
+.item-downloads-icon {
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.item-downloads {
+  @include type-style('label-01');
+
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+  color: #252525;
+}
+
+// Item License
+.item-license-icon {
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.item-license {
+  @include type-style('label-01');
+
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+  color: #252525;
+}
+
+// Item Reviewed
+.item-reviewed-icon {
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.item-reviewed {
+  @include type-style('label-01');
+
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+  color: #252525;
+}
+
+// Item Status
+.item-status-icon {
+  margin-top: 6px;
+  margin-right: 4px;
+  color: #198038;
+}
+
+.item-status {
+  @include type-style('label-01');
+
+  width: 5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 4.75rem;
+}
+
+//----------------------------------------------------------------------------
+// Component Catalog Pagination
+//----------------------------------------------------------------------------
+
+// TODO: doesn't seem to work?
+:global(.cds--pagination).pagination-container {
+  // display: none;
+  background-color: #ffffff;
+
+  @include breakpoint(md) {
+    //672  4:3
+    width: 38rem;
+  }
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    width: 46.125rem;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 59.2rem;
+  }
+}
+
+@media screen and (min-width: 200px) and (max-width: 671px) {
+  :global(.cds--pagination).pagination-container {
+    display: none;
+  }
+}

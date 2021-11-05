@@ -8,20 +8,20 @@
 import { Button, Dropdown } from '@carbon/react'
 import { SvgLeftContentSwitcher, SvgRightContentSwitcher } from '@/icons/index.js'
 
-import styles from './my-component.module.scss'
+import styles from './catalog-sort.module.scss'
 
-function ComponentCatalogSort() {
+function CatalogSort() {
   const options = ['hi', 'bye']
 
   return (
-    <div className={styles.componentCatalogSortContainer}>
-      <div className={styles.componentCatalogSortDropdownText}>
+    <div className={styles.container}>
+      <div className={styles.dropdownText}>
         <Dropdown
           id="component-index-sort"
           initialSelectedItem="Most used"
           items={options}
           light
-          className={styles.componentCatalogSortDropdown}
+          className={styles.dropdown}
           // onChange={({ selectedItem }) => {
           //   onChange(selectedItem);
           // }}
@@ -32,7 +32,7 @@ function ComponentCatalogSort() {
       </div>
       <div>
         <Dropdown
-          className={styles.componentCatalogSortToggle}
+          className={styles.toggle}
           id="component-index-sort"
           initialSelectedItem="hola"
           items={options}
@@ -45,7 +45,7 @@ function ComponentCatalogSort() {
           label="hello"
         />
       </div>
-      <div className={styles.componentCatalogSortSwitcher}>
+      <div className={styles.switcher}>
         <Button
           size="md"
           kind="ghost"
@@ -65,4 +65,4 @@ function ComponentCatalogSort() {
   )
 }
 
-export default ComponentCatalogSort
+export default CatalogSort

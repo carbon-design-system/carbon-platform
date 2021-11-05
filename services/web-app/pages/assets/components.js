@@ -7,7 +7,7 @@
 
 import { useContext, useEffect } from 'react'
 
-import ComponentCatalogIndexPage from '@/components/my-component/index'
+import CatalogIndexPage from '@/components/catalog-page/index'
 import { LayoutContext } from '@/layouts/layout'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
@@ -49,7 +49,7 @@ const Components = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <ComponentCatalogIndexPage />
+      <CatalogIndexPage />
       <ul>
         {assetsData.map((library, i) => {
           return library.assets.map((asset, j) => (

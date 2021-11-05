@@ -5,15 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Search } from '@carbon/react'
-import styles from './my-component.module.scss'
+import styles from './catalog-search.module.scss'
 
-function ComponentCatalogSearch({ value, onChange }) {
+function CatalogSearch({ value, onChange }) {
   function handleOnChange(event) {
     onChange(event.target.value)
   }
 
   return (
-    <div className={styles.componentCatalogSearch}>
+    <div className={styles.search}>
       <Search
         id="component-index-search"
         labelText="Search component index by name, keyword, or domain"
@@ -26,4 +26,4 @@ function ComponentCatalogSearch({ value, onChange }) {
   )
 }
 
-export default ComponentCatalogSearch
+export default CatalogSearch

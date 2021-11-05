@@ -1,0 +1,252 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+@use '@carbon/react' as styles;
+
+//----------------------------------------------------------------------------
+// Item, Item Image and Item Content
+//----------------------------------------------------------------------------
+.item {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// Item Image
+.item-image {
+  display: none;
+
+  @include breakpoint(md) {
+    //672  4:3
+    display: flex;
+    // TODO: replace with appropriate aspect ratio handling
+    width: 15rem;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid $layer-accent-01;
+  }
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    width: 16rem;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 20rem;
+  }
+}
+
+// Item Content
+.item-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: $spacing-05;
+  @include breakpoint(md) {
+    //672  4:3
+    max-width: 40rem;
+  }
+  @include breakpoint(lg) {
+    //1056  1:1
+    max-width: 29.625rem;
+  }
+  @include breakpoint(xlg) {
+    //1312  4:3
+    max-width: 31.188rem;
+  }
+}
+
+@media screen and (min-width: 673px) and (max-width: 1055px) {
+  .item-content {
+    max-width: 23.025rem;
+  }
+}
+
+@media screen and (min-width: 1057px) and (max-width: 1311px) {
+  .item-content {
+    max-width: 22.125rem;
+  }
+}
+
+// TODO: update color token?
+.item .item-image,
+.item .item-content {
+  height: 11.25rem;
+  background-color: #ffffff;
+}
+
+// Item Sponsor
+.item-sponsor {
+  @include type-style('label-01');
+
+  padding-bottom: rem(8px);
+  color: #252525;
+}
+
+.item-sponsor-icon {
+  margin-left: 8px;
+}
+
+// Item Name
+.item-name {
+  @include type-style('productive-heading-02');
+
+  padding-top: 4px;
+  padding-bottom: 4px;
+  color: #252525;
+}
+
+// Item Description
+.item-description {
+  @include type-style('body-short-01');
+
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  color: $text-primary;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+}
+
+//----------------------------------------------------------------------------
+// Item Info
+//----------------------------------------------------------------------------
+.item-info {
+  @include type-style('body-short-01');
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+
+// Item Status
+.item-status-icon {
+  margin-top: 4px;
+  margin-right: 4px;
+  color: #198038;
+}
+
+.item-status {
+  @include type-style('label-01');
+
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+  color: #252525;
+}
+
+// Item Downloads
+.item-downloads-icon {
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.item-downloads {
+  @include type-style('label-01');
+
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+  color: #252525;
+}
+
+// Item License
+.item-license-icon {
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.item-license {
+  @include type-style('label-01');
+
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+  color: #252525;
+}
+
+// Item Reviewed
+.item-reviewed-icon {
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.item-reviewed {
+  @include type-style('label-01');
+
+  padding-top: $spacing-02;
+  padding-right: $spacing-04;
+  color: #252525;
+}
+
+//----------------------------------------------------------------------------
+// Item Tags
+//----------------------------------------------------------------------------
+.item-tags {
+  display: none;
+  background-color: #ffffff;
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    display: flex;
+    width: 8rem;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: $spacing-05;
+  }
+
+  @include breakpoint(xlg) {
+    display: flex;
+    //1312  4:3
+    width: 8rem;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: $spacing-05;
+  }
+}
+
+// Item Tags Sponsor
+.item-tags-sponsor {
+  width: 64px;
+  height: 64px;
+  padding-top: 15px;
+  padding-left: 15px;
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+//----------------------------------------------------------------------------
+// Component Catalog Pagination
+//----------------------------------------------------------------------------
+
+// TODO: doesn't seem to work?
+:global(.cds--pagination).component-catalog-pagination-container {
+  // display: none;
+  background-color: #ffffff;
+
+  @include breakpoint(md) {
+    //672  4:3
+    width: 38rem;
+  }
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    width: 46.125rem;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 59.2rem;
+  }
+}
+
+@media screen and (min-width: 200px) and (max-width: 671px) {
+  :global(.cds--pagination).component-catalog-pagination-container {
+    display: none;
+  }
+}

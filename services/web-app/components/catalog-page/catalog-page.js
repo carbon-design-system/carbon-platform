@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import ComponentCatalogItem from './ComponentCatalogItem'
+import CatalogList from '../catalog-list/catalog-list'
 
-// In this component we will map through the Component Catalog Items
+// File might not be needed (TBD) In this component we will map through the Component Catalog Items
 const ComponentCatalog = () => {
   return (
     <section aria-label="Component Catalog">
-      <ComponentCatalogItem />
+      <CatalogList />
     </section>
   )
 }

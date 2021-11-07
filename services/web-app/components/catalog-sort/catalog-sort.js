@@ -6,7 +6,7 @@
  */
 
 import { Button, Dropdown } from '@carbon/react'
-import { SvgLeftContentSwitcher, SvgRightContentSwitcher } from '@/icons/index.js'
+import { Svg12LeftContentSwitcher } from '@/icons/index.js'
 
 import styles from './catalog-sort.module.scss'
 
@@ -49,14 +49,14 @@ function CatalogSort() {
         <Button
           size="md"
           kind="ghost"
-          renderIcon={SvgLeftContentSwitcher}
+          renderIcon={Svg12LeftContentSwitcher}
           iconDescription="Icon Description"
           hasIconOnly
         />
         <Button
           size="md"
           kind="secondary"
-          renderIcon={SvgRightContentSwitcher}
+          renderIcon={Svg12LeftContentSwitcher}
           iconDescription="Icon Description"
           hasIconOnly
         />

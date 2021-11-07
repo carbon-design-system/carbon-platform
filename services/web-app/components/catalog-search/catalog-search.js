@@ -13,15 +13,30 @@ function CatalogSearch({ value, onChange }) {
   }
 
   return (
-    <div className={styles.search}>
-      <Search
-        id="component-index-search"
-        labelText="Search component index by name, keyword, or domain"
-        placeHolderText="Component name, keyword, domain"
-        value={value}
-        onChange={handleOnChange}
-        size="md"
-      />
+    <div>
+      <div className={styles.search}>
+        <Search
+          id="component-index-search"
+          labelText="Search component index by name, keyword, or domain"
+          placeHolderText="Component name, keyword, domain"
+          value={value}
+          onChange={handleOnChange}
+          size="md"
+        />
+      </div>
+      <div className={styles.searchPlaceholder}>
+        <Search
+          id="component-index-search"
+          labelText="Search component index by name, keyword, or domain"
+          placeHolderText="Component name, keyword, domain"
+          value={value}
+          onChange={handleOnChange}
+          size="md"
+        />
+      </div>
+      <div className={styles.searchResultsPlaceholder}>
+        123 results
+      </div>
     </div>
   )
 }

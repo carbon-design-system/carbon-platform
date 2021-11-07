@@ -4,28 +4,27 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Tag } from '@carbon/react'
+import { TooltipIcon } from '@carbon/react'
 import styles from './catalog-list.module.scss'
 import {
   Svg12Stable,
-  Svg10ArrowNorthwest,
   Svg14Download,
   Svg14License,
   Svg16Carbon,
-  Svg32TagCarbon
+  Svg24React,
+  Svg24Cloud
 } from '@/icons/index.js'
 import { Add16 } from '@carbon/icons-react'
 
 const CatalogList = () => {
   return (
-    <article className={styles.item}>
+    <div className={styles.item}>
       <div className={styles.itemImage}>
         <Add16 aria-label="Add" className="my-custom-class" />
       </div>
       <div className={styles.itemContent}>
         <p className={styles.itemSponsor}>
           {'Super Sponsor'}
-          <Svg10ArrowNorthwest className={styles.itemSponsorIcon} />
         </p>
         <header className={styles.itemName}>{'The best component ever'}</header>
         <p className={styles.itemDescription}>
@@ -45,10 +44,12 @@ const CatalogList = () => {
         </footer>
       </div>
       <div className={styles.itemTags}>
-        <Tag aria-hidden="true">{'Design only'}</Tag>
-        <Svg32TagCarbon className={styles.itemTagsSponsor} />
+        <TooltipIcon>
+          <Svg24React />
+        </TooltipIcon>
+        <Svg24Cloud className={styles.itemTagsSponsor} />
       </div>
-    </article>
+    </div>
   )
 }
 

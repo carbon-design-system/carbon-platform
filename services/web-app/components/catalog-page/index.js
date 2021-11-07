@@ -11,18 +11,17 @@ import CatalogList from '../catalog-list/catalog-list'
 import CatalogGrid from '../catalog-grid/catalog-grid'
 import CatalogSearch from '../catalog-search/catalog-search'
 import CatalogSort from '../catalog-sort/catalog-sort'
-import styles from './my-component.module.scss'
+import styles from './catalog-page.module.scss'
 
 const CatalogIndexPage = () => {
   return (
     <Grid>
-      <Column xl={16} lg={16} md={8} sm={4} className={styles.componentCatalogIndexContainer}>
+      <Column sm={4} md={8} lg={16} className={styles.container}>
         <CatalogSearch />
         <CatalogSort />
         <CatalogList />
         <CatalogGrid />
         <Pagination
-          className={styles.componentCatalogPaginationContainer}
           backwardText="Previous page"
           forwardText="Next page"
           itemsPerPageText="Items per page:"

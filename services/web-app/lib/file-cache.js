@@ -24,42 +24,70 @@ const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN
 })
 
-const slugifyRequest = (route, options = {}) => {
-  let mergedStr = route
+const octokitIbm = new Octokit({
+  auth: process.env.GITHUB_IBM_TOKEN
+})
+
+/**
+ * Creates a unique key based on the host and request to use in the file cache.
+ */
+const slugifyRequest = (host, route, options = {}) => {
+  let mergedStr = `${host} ${route}`
 
   for (const [key, value] of Object.entries(options)) {
     mergedStr = mergedStr.replace(`{${key}}`, value)
   }
 
+  if (options.ref) {
+    mergedStr = mergedStr += `?ref=${options.ref}`
+  }
+
   return mergedStr
 }
 
-const _getResponse = async (route, options) => {
-  const responseKey = slugifyRequest(route, options)
+/**
+ * Internal function that proxies GitHub requests.
+ */
+const _getResponse = async (host, route, options) => {
+  const responseKey = slugifyRequest(host, route, options)
 
   console.log('CACHE MISS', responseKey)
 
-  const { data } = await octokit.request(route, options)
+  const octokitRef = host === 'github.ibm.com' ? octokitIbm : octokit
+
+  const { data } = await octokitRef.request(route, {
+    ...options,
+    baseUrl: `https://api.${host}`
+  })
 
   return data
 }
 
-export const getResponse = (route, options) => {
-  const responseKey = slugifyRequest(route, options)
+/**
+ * Returns a cached GitHub response and if it's a cache miss, initiate and cache the GitHub request.
+ */
+export const getResponse = (host, route, options) => {
+  const responseKey = slugifyRequest(host, route, options)
 
   console.log('CACHE HIT', responseKey)
 
   return diskCache.wrap(responseKey, () => {
-    return _getResponse(route, options)
+    return _getResponse(host, route, options)
   })
 }
 
+/**
+ * Deletes the cached entry from the file system cache.
+ */
 export const deleteResponse = async (key) => {
   console.log('DELETE CACHED', key)
 
   await diskCache.del(key)
 }
 
+/**
+ * Writes an image to the Next.js /public directory if that file doesn't exist yet.
+ */
 export const writeFile = async (path, contents) => {
   try {
     const exists = await fs.pathExists(`./public/${IMAGES_CACHE_PATH}/${path}`)

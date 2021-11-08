@@ -7,208 +7,241 @@
 
 import { getResponse, writeFile } from '@/lib/file-cache'
 
-import { CACHE_PATH } from '@/config/constants'
+import { IMAGES_CACHE_PATH } from '@/config/constants'
+import { getPlaiceholder } from 'plaiceholder'
+import { libraryAllowList } from '@/data/libraries'
+import { removeLeadingSlash } from '@/utils/string'
 import slugify from 'slugify'
 import yaml from 'js-yaml'
 
-// TODO only registered repos from /data/libraries.js
-// TODO handle paginated results for large data sets
-// TODO handle versioning, as search endpoint is only default branch
-// TODO better manage errors and no results
-export const getAllLibraries = async () => {
-  const data = await getResponse('GET /search/code?q={query}+repo:{repo}+filename:{filename}', {
-    query: 'name',
-    repo: 'mattrosno/carbon-next',
-    filename: 'carbon-library.yml'
-  })
+/**
+ * Validates the route's parameters and returns an object that also includes the library's slug as
+ * well as path to the directory that contains the carbon-library.yml. Return an empty object if
+ * not found. Does not validate ref, so people can set their own branch / tag / commit.
+ */
+const validateLibraryParams = async (params = {}) => {
+  let returnParams = {}
 
-  if (!data || !data.items || !data.items.length) {
-    return []
+  for (const [slug, library] of Object.entries(libraryAllowList)) {
+    if (
+      params.host === library.host &&
+      params.org === library.org &&
+      params.repo === library.repo &&
+      params.library === slug
+    ) {
+      returnParams = {
+        slug,
+        ...library
+      }
+
+      if (params.ref && params.ref !== 'latest') {
+        returnParams.ref = params.ref
+      }
+
+      if (params.asset) {
+        returnParams.asset = params.asset
+      }
+    }
   }
 
-  const promises = await data.items.map(async (item) => {
-    return getResponse('GET /repos/{owner}/{repo}/contents/{path}', {
-      owner: item.repository.owner.login,
-      repo: item.repository.name,
-      path: item.path
-    })
-  })
+  // get default branch if a branch isn't specified through params
 
-  const contentsData = await Promise.all(promises)
+  if (!returnParams.ref) {
+    try {
+      const repo = await getResponse(returnParams.host, 'GET /repos/{owner}/{repo}', {
+        owner: returnParams.org,
+        repo: returnParams.repo
+      })
 
-  return contentsData.map((contents) => {
-    return {
-      repository: {
-        name: contents.name,
-        path: contents.path,
-        sha: contents.sha,
-        url: contents.url,
-        baseUrl: contents.url.substring(0, contents.url.lastIndexOf('/'))
-      },
-      contents: yaml.load(Buffer.from(contents.content, contents.encoding).toString())
-    }
-  })
+      returnParams.ref = repo.default_branch
+    } catch (err) {}
+  }
+
+  return returnParams
 }
 
-// TODO only registered repos from /data/libraries.js
-// TODO handle paginated results for large data sets
-// TODO handle versioning, as search endpoint is only default branch
-// TODO better manage errors and no results
-// TODO use image-extensions to find and cache all images
-const getAllAssets = async () => {
-  // find carbon-asset.yml files in the rpo
-  const data = await getResponse('GET /search/code?q={query}+repo:{repo}+filename:{filename}', {
-    query: 'name',
-    repo: 'mattrosno/carbon-next',
-    filename: 'carbon-asset.yml'
-  })
+/**
+ * If the params map to a valid library in the allowlist, fetch the contents of the library's
+ * metadata file. If the params are not valid, early return so the page redirects to 404.
+ */
+export const getLibraryData = async (params = {}) => {
+  const libraryParams = await validateLibraryParams(params)
 
-  if (!data || !data.items || !data.items.length) {
+  if (!libraryParams || Object.keys(libraryParams).length === 0) return null
+
+  let response = {}
+
+  try {
+    response = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: libraryParams.org,
+      repo: libraryParams.repo,
+      path: removeLeadingSlash(`${libraryParams.path}/carbon-library.yml`),
+      ref: libraryParams.ref
+    })
+  } catch (err) {
+    return null
+  }
+
+  const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+
+  const assets = await getLibraryAssets(params)
+
+  const filteredAssets = libraryParams.asset
+    ? assets.filter((asset) => slugify(asset.content.name, { lower: true }) === libraryParams.asset)
+    : assets
+
+  return {
+    params: libraryParams,
+    response,
+    content,
+    assets: filteredAssets
+  }
+}
+
+/**
+ * If the params map to a valid library in the allowlist, get the default branch if there isn't a
+ * specified ref, then recursively get all asset metadata files. Find the files that are in the
+ * library's subdirectory and then fetch the contents for each asset metadata file.
+ */
+export const getLibraryAssets = async (params = {}) => {
+  const libraryParams = await validateLibraryParams(params)
+
+  if (!libraryParams || Object.keys(libraryParams).length === 0) return []
+
+  // get all asset metadata files in subdirectories
+
+  let response = {}
+
+  try {
+    response = await getResponse(
+      libraryParams.host,
+      'GET /repos/{owner}/{repo}/git/trees/{ref}?recursive=1',
+      {
+        owner: libraryParams.org,
+        repo: libraryParams.repo,
+        ref: libraryParams.ref
+      }
+    )
+  } catch (err) {
     return []
   }
 
-  // get content of each carbon-asset.yml file
-  const dataPromises = await data.items.map(async (item) => {
-    return getResponse('GET /repos/{owner}/{repo}/contents/{path}', {
-      owner: item.repository.owner.login,
-      repo: item.repository.name,
-      path: item.path
+  // request contents for each asset metadata file
+
+  const assetContentPromises = response.tree
+    .filter(
+      (file) =>
+        removeLeadingSlash(file.path).startsWith(removeLeadingSlash(libraryParams.path)) &&
+        file.path.endsWith('carbon-asset.yml')
+    )
+    .map((file) => {
+      return getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+        owner: libraryParams.org,
+        repo: libraryParams.repo,
+        path: removeLeadingSlash(file.path),
+        ref: libraryParams.ref
+      })
     })
-  })
 
-  const dataContents = await Promise.all(dataPromises)
+  const assetContentData = await Promise.all(assetContentPromises)
 
-  // transpose yml to json and save origin information
-  const assets = dataContents.map((contents) => {
+  const assets = assetContentData.map((response) => {
+    const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+
     return {
-      repository: {
-        name: contents.name,
-        path: contents.path,
-        sha: contents.sha,
-        url: contents.url,
-        baseUrl: contents.url.substring(0, contents.url.lastIndexOf('/'))
-      },
-      contents: yaml.load(Buffer.from(contents.content, contents.encoding).toString())
+      params: libraryParams,
+      response,
+      content
     }
   })
 
-  // find all thumbnail images and construct request URLs
-  const imgUrls = assets
+  // find all thumbnail images, get content of each image, filter out assets with no thumbnail
+
+  const imgContentsPromises = assets
     .map((asset) => {
-      return asset.contents.thumbnailPath
-        ? asset.repository.baseUrl.replace('https://api.github.com', '') +
-            asset.contents.thumbnailPath
-        : ''
+      if (asset.content.thumbnailPath) {
+        return getResponse(asset.params.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+          owner: asset.params.org,
+          repo: asset.params.repo,
+          path: asset.response.path.replace('/carbon-asset.yml', '') + asset.content.thumbnailPath,
+          ref: asset.params.ref
+        })
+      } else {
+        return null
+      }
     })
-    .filter(function (img) {
-      return img
-    })
+    .filter((item) => item)
 
-  // get content of each image
-  const imgPromises = await imgUrls.map(async (path) => {
-    return getResponse(`GET ${path}`)
-  })
-
-  const imgContents = await Promise.all(imgPromises)
+  const imgContents = await Promise.all(imgContentsPromises)
 
   // write images to disk
-  imgContents.forEach((contents) => {
-    const pathName = contents.url
-      .substring(0, contents.url.lastIndexOf('?'))
-      .replace('https://api.github.com', '')
 
-    writeFile(pathName, Buffer.from(contents.content, contents.encoding))
+  const imgWritePromises = imgContents.map((content) => {
+    const path = content.html_url.replace('https://', '').replace('/blob', '')
+
+    return writeFile(path, Buffer.from(content.content, content.encoding))
   })
 
-  return assets
-}
+  await Promise.all(imgWritePromises)
 
-export const getAllLibrariesAssets = async () => {
-  const assets = await getAllAssets()
-  const libraries = await getAllLibraries()
+  // generate placeholder images
 
-  return libraries.map((library) => {
-    return {
-      ...library,
-      assets: assets.filter((asset) => {
-        return asset.repository.url.includes(library.repository.baseUrl)
-      })
+  const imgPlaceholderPromises = imgContents.map((content) => {
+    const path = content.html_url.replace('https://', '').replace('/blob', '')
+
+    return getPlaiceholder(`/${IMAGES_CACHE_PATH}/${path}`, {
+      size: 10
+    })
+  })
+
+  const imgPlaceholders = await Promise.all(imgPlaceholderPromises)
+
+  // merge in placeholder images
+
+  return assets.map((asset) => {
+    const assetExtensions = {}
+    const basePath = asset.response.path.replace('/carbon-asset.yml', '')
+
+    const foundImage = imgPlaceholders.find(
+      (image) =>
+        image.img.src.includes(basePath) && image.img.src.includes(asset.content.thumbnailPath)
+    )
+
+    if (foundImage) {
+      const { img, base64 } = foundImage
+      assetExtensions.thumbnailData = { img, base64 }
     }
-  })
-}
 
-export const getAllLibraryPaths = async () => {
-  const libraries = await getAllLibraries()
-
-  return libraries.map((library) => {
     return {
-      params: {
-        library: slugify(library.contents.name, {
-          lower: true
-        })
+      ...asset,
+      content: {
+        ...asset.content,
+        ...assetExtensions
       }
     }
   })
 }
 
-export const getAllAssetPaths = async () => {
-  const libraries = await getAllLibrariesAssets()
+/**
+ * Iterates over all libraries in the allowlist and fetches library data with no ref so the default
+ * branch is used.
+ */
+export const getAllLibraries = async () => {
+  const promises = []
 
-  const paths = []
-
-  libraries.forEach((library) => {
-    library.assets.forEach((asset) => {
-      paths.push({
-        params: {
-          asset: slugify(asset.contents.name, { lower: true }),
-          library: slugify(library.contents.name, { lower: true })
-        }
-      })
-    })
-  })
-
-  return paths
-}
-
-// TODO don't fetch all libraries
-export const getLibraryData = async (params) => {
-  const libraries = await getAllLibraries()
-
-  const library = libraries.find((library) => {
-    return slugify(library.contents.name, { lower: true }) === params.library
-  })
-
-  return library || {}
-}
-
-// TODO don't fetch all libraries and all assets
-export const getAssetData = async (params) => {
-  const libraries = await getAllLibrariesAssets()
-
-  let foundLibrary = {}
-  let foundAsset = {}
-
-  libraries.forEach((library) => {
-    if (slugify(library.contents.name, { lower: true }) === params.library) {
-      library.assets.forEach((asset) => {
-        if (slugify(asset.contents.name, { lower: true }) === params.asset) {
-          foundAsset = asset
-        }
-      })
-
-      delete library.assets
-      foundLibrary = library
+  for (const [slug, library] of Object.entries(libraryAllowList)) {
+    const params = {
+      ...library,
+      library: slug,
+      ref: 'latest'
     }
-  })
+
+    promises.push(getLibraryData(params))
+  }
+
+  const libraries = await Promise.all(promises)
 
   return {
-    library: foundLibrary,
-    asset: foundAsset
+    libraries: libraries.filter((n) => n)
   }
-}
-
-export const getImgSrc = (repo = {}, path = '') => {
-  if (!repo.baseUrl || !path) return null
-
-  return `/${CACHE_PATH}${repo.baseUrl.replace('https://api.github.com', '')}${path}`
 }

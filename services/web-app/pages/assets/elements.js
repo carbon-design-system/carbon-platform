@@ -7,35 +7,15 @@
 
 import { useContext, useEffect } from 'react'
 
+import CatalogIndexPage from '@/components/catalog-index-page'
 import { LayoutContext } from '@/layouts/layout'
-import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { assetsNavData } from '@/data/nav-data'
-import { getAllLibrariesAssets } from '@/lib/github'
-import slugify from 'slugify'
+import { getAllLibraries } from '@/lib/github'
 import styles from '@/pages/pages.module.scss'
 
 const Elements = ({ librariesData }) => {
   const { setNavData } = useContext(LayoutContext)
-
-  const assetsData = librariesData.filter((library) => {
-    if (!library.assets.length) {
-      return false
-    }
-
-    const filteredAssets = library.assets.filter((asset) => {
-      return asset.contents.type === 'element'
-    })
-
-    if (!filteredAssets.length) {
-      return false
-    }
-
-    return {
-      ...library,
-      assets: filteredAssets
-    }
-  })
 
   const seo = {
     title: 'Elements'
@@ -48,36 +28,14 @@ const Elements = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <ul>
-        {assetsData.map((library, i) => {
-          return library.assets.map((asset, j) => (
-            <li key={`${i}-${j}`}>
-              <Link
-                href={`/assets/${slugify(library.contents.name, {
-                  lower: true
-                })}/${slugify(asset.contents.name, {
-                  lower: true
-                })}`}
-              >
-                <a>{asset.contents.name}</a>
-              </Link>
-            </li>
-          ))
-        })}
-      </ul>
-      <pre className={styles.data}>{JSON.stringify(assetsData, null, 2)}</pre>
+      <CatalogIndexPage data={librariesData} type="element" />
+      <pre className={styles.data}>{JSON.stringify(librariesData, null, 2)}</pre>
     </>
   )
 }
 
-export const getStaticProps = async () => {
-  const librariesData = await getAllLibrariesAssets()
-
-  if (!librariesData) {
-    return {
-      notFound: true
-    }
-  }
+export const getServerSideProps = async () => {
+  const librariesData = await getAllLibraries()
 
   return {
     props: {

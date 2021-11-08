@@ -54,15 +54,15 @@ platform: web
 
 ### Asset keys
 
-| Key             | Description                                                                                      | Required | Type   | Default       | Valid values                                                                                   |
-| --------------- | ------------------------------------------------------------------------------------------------ | -------- | ------ | ------------- | ---------------------------------------------------------------------------------------------- |
-| `name`          | Asset display name. Use sentence-case capitalization.                                            | Required | String | –             | –                                                                                              |
-| `description`   | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization. | Required | String | –             | –                                                                                              |
-| `thumbnailPath` | Relative location of the asset's thumbnail image.                                                | Optional | String | –             | –                                                                                              |
-| `status`        | Used to set consumption exptectations.                                                           | Required | String | `draft`       | `draft`, `experimental`, `stable`, `deprecated`, `sunset`                                      |
-| `type`          | Asset categorization.                                                                            | Required | String | –             | `element`, `component`, `pattern`, `function`, `layout`                                        |
-| `framework`     | Asset frontend framework.                                                                        | Required | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
-| `platform`      | Asset environment.                                                                               | Required | String | `web`         | `cross-platform`, `web`                                                                        |
+| Key             | Description                                                                                                                     | Required | Type   | Default       | Valid values                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- | ------ | ------------- | ---------------------------------------------------------------------------------------------- |
+| `name`          | Asset display name. Use sentence-case capitalization. All asset names in a library should be unique to prevent page collisions. | Required | String | –             | –                                                                                              |
+| `description`   | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization.                                | Required | String | –             | –                                                                                              |
+| `thumbnailPath` | Relative location of the asset's thumbnail image.                                                                               | Optional | String | –             | –                                                                                              |
+| `status`        | Used to set consumption exptectations.                                                                                          | Required | String | `draft`       | `draft`, `experimental`, `stable`, `deprecated`, `sunset`                                      |
+| `type`          | Asset categorization.                                                                                                           | Required | String | –             | `element`, `component`, `pattern`, `function`, `layout`                                        |
+| `framework`     | Asset frontend framework.                                                                                                       | Required | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
+| `platform`      | Asset environment.                                                                                                              | Required | String | `web`         | `cross-platform`, `web`                                                                        |
 
 #### Asset status
 

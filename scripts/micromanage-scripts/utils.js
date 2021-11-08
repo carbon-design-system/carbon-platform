@@ -6,7 +6,6 @@
  */
 const { execSync } = require('child_process')
 const path = require('path')
-const os = require('os')
 
 /**
  * Execute a command line command.
@@ -99,27 +98,11 @@ function getTags() {
   return tagsCommandOutput.split('\n')
 }
 
-/**
- * Get a current Operating System.
- *
- * @returns {string} Operating System ("Linux"| "MacOS" | "Windows").
- */
-function getOS() {
-  let opsys = os.type()
-  if (opsys === 'Darwin') {
-    opsys = 'MacOS'
-  } else if (opsys === 'Windows_NT') {
-    opsys = 'Windows'
-  }
-  return opsys
-}
-
 module.exports = {
   exec,
   getFiles,
   getPackageByName,
   getPackageForFile,
   getPackages,
-  getTags,
-  getOS
+  getTags
 }

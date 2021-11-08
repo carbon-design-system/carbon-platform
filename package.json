@@ -28,6 +28,7 @@
     "services:build": "npm --workspaces --if-present run service:build",
     "lint": "scripts/lint",
     "lint:fix": "scripts/lint_and_fix",
+    "deploy": "scripts/micromanage deploy",
     "nightly": "scripts/nightly",
     "prepare": "husky install && npm run packages:build"
   },

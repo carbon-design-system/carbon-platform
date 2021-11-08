@@ -51,8 +51,7 @@ module.exports = {
         named: 'never',
         asyncArrow: 'always'
       }
-    ],
-    'no-use-before-define': 'off'
+    ]
   },
   settings: {
     next: {

@@ -6,21 +6,20 @@
  */
 const { execSync } = require('child_process')
 const path = require('path')
+const os = require('os')
 
 /**
  * Execute a command line command.
  *
  * @param {string} cmd Command to execute.
+ * @param {ExecSyncOptionsWithBufferEncoding} options exec options.
  * @returns {string} Output of the command.
  */
-function exec(cmd) {
-  return execSync(cmd, {
-    env: {
-      ...process.env
-    }
-  })
-    .toString()
-    .trim()
+function exec(cmd, options) {
+  const execOptions = options
+    ? { env: { ...process.env }, ...options }
+    : { env: { ...process.env } }
+  return execSync(cmd, execOptions).toString().trim()
 }
 
 /**
@@ -100,11 +99,27 @@ function getTags() {
   return tagsCommandOutput.split('\n')
 }
 
+/**
+ * Get a current Operating System.
+ *
+ * @returns {string} Operating System ("Linux"| "MacOS" | "Windows").
+ */
+function getOS() {
+  let opsys = os.type()
+  if (opsys === 'Darwin') {
+    opsys = 'MacOS'
+  } else if (opsys === 'Windows_NT') {
+    opsys = 'Windows'
+  }
+  return opsys
+}
+
 module.exports = {
   exec,
   getFiles,
   getPackageByName,
   getPackageForFile,
   getPackages,
-  getTags
+  getTags,
+  getOS
 }

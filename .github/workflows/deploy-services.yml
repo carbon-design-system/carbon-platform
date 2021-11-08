@@ -1,0 +1,38 @@
+name: Deploy Services
+
+on:
+  push:
+    paths:
+      - 'service-config.json'
+
+  # Enable running this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
+
+jobs:
+  build-and-deploy:
+    name: Build And Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      # Download and Install IBM Cloud CLI
+      - name: Install IBM Cloud CLI 🏗️
+        run: |
+          curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+          ibmcloud --version
+          ibmcloud config --check-version=false
+
+      - name: Setup Node 🏗️
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+          registry-url: https://registry.npmjs.org
+
+      - name: Call Deploy Script 🚀
+        run: node scripts/micromanage-scripts deploy

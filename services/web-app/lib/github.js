@@ -242,6 +242,6 @@ export const getAllLibraries = async () => {
   const libraries = await Promise.all(promises)
 
   return {
-    libraries
+    libraries: libraries.filter((n) => n)
   }
 }

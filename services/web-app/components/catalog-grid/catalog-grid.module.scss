@@ -13,33 +13,61 @@
 .container {
   display: none;
 
-  @include breakpoint(xlg) {
+  @include breakpoint(lg) {
     display: flex;
-    width: 63px;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  @include breakpoint(xlg) {
+    display: flex;
+    width: 59.18rem;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (min-width: 1057px) and (max-width: 1311px) {
+  .container {
+    width: 46rem;
   }
 }
 
 //----------------------------------------------------------------------------
-// Item, Item Image and Item Content
+// Item and Item Image
 //----------------------------------------------------------------------------
 .item {
+  @include breakpoint(lg) {
+    //1312  4:3
+    width: 15rem;
+    background-color: #ffffff;
+  }
+
   @include breakpoint(xlg) {
     //1312  4:3
     width: 19rem;
-    height: 25rem;
-    margin: $spacing-05;
+    height: 23.35rem;
     background-color: #ffffff;
   }
 }
 
 // Item Image
 .item-image {
+  @include breakpoint(lg) {
+    //1312  4:3
+    display: flex;
+    height: 10.14rem;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid $layer-accent-01;
+    background-color: #ffffff;
+  }
+
   @include breakpoint(xlg) {
     //1312  4:3
     display: flex;
-    width: 19rem;
     height: 12.75rem;
     align-items: center;
     justify-content: center;
@@ -48,31 +76,67 @@
   }
 }
 
-// Item Content
-.item-content {
+//----------------------------------------------------------------------------
+// Item Sponsor
+//----------------------------------------------------------------------------
+.item-tags-sponsor {
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+
+  @include breakpoint(lg) {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    padding-top: 0.65rem;
+    padding-left: 0.65rem;
+    margin: -1.56rem 0 0 10.94rem;
+  }
+
   @include breakpoint(xlg) {
-    height: 12.25rem;
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    padding-top: 0.65rem;
+    padding-left: 0.65rem;
+    margin: -1.56rem 0 0 15rem;
+  }
+}
+
+//----------------------------------------------------------------------------
+// Item Content
+//----------------------------------------------------------------------------
+.item-content {
+  @include breakpoint(lg) {
+    height: 10.719rem;
+    padding: $spacing-05;
+  }
+
+  @include breakpoint(xlg) {
+    height: 10.68rem;
     padding: $spacing-05;
   }
 }
 
 // Item Sponsor
 .item-sponsor {
-  @include breakpoint(xlg) {
+  @include breakpoint(lg) {
     @include type-style('label-01');
 
-    color: #252525;
+    color: $text-primary;
   }
 }
 
 // Item Name
 .item-name {
-  @include breakpoint(xlg) {
+  @include breakpoint(lg) {
     @include type-style('productive-heading-02');
 
     padding-top: 4px;
     padding-bottom: 4px;
-    color: #252525;
+    color: $text-primary;
   }
 }
 
@@ -86,28 +150,42 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 4px;
-  margin-right: 4px;
+  margin-top: 0.25rem;
+  margin-right: 0.25rem;
 }
 
 // Item Downloads
 .item-downloads-icon {
-  margin-top: 4px;
-  margin-right: 4px;
+  @include breakpoint(lg) {
+    display: none;
+  }
+
+  @include breakpoint(xlg) {
+    display: block;
+    margin-top: 0.25rem;
+    margin-right: 0.25rem;
+  }
 }
 
 .item-downloads {
-  @include type-style('label-01');
+  @include breakpoint(lg) {
+    display: none;
+  }
 
-  padding-top: $spacing-02;
-  padding-right: $spacing-04;
-  color: #252525;
+  @include breakpoint(xlg) {
+    display: block;
+    @include type-style('label-01');
+
+    padding-top: $spacing-02;
+    padding-right: $spacing-04;
+    color: $text-secondary;
+  }
 }
 
 // Item License
 .item-license-icon {
-  margin-top: 4px;
-  margin-right: 4px;
+  margin-top: 0.25rem;
+  margin-right: 0.25rem;
 }
 
 .item-license {
@@ -115,13 +193,13 @@
 
   padding-top: $spacing-02;
   padding-right: $spacing-04;
-  color: #252525;
+  color: $text-secondary;
 }
 
 // Item Reviewed
 .item-reviewed-icon {
-  margin-top: 4px;
-  margin-right: 4px;
+  margin-top: 0.25rem;
+  margin-right: 0.25rem;
 }
 
 .item-reviewed {
@@ -129,13 +207,22 @@
 
   padding-top: $spacing-02;
   padding-right: $spacing-04;
-  color: #252525;
+  color: $text-secondary;
+}
+
+//----------------------------------------------------------------------------
+// Item tags
+//----------------------------------------------------------------------------
+.item-tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 // Item Status
 .item-status-icon {
-  margin-top: 6px;
-  margin-right: 4px;
+  margin-right: 0.25rem;
+  margin-bottom: -1px;
   color: #198038;
 }
 
@@ -143,37 +230,10 @@
   @include type-style('label-01');
 
   width: 5rem;
-  padding-bottom: 0.5rem;
-  margin-top: 4.75rem;
+  margin-top: 3.25rem;
+  color: $text-secondary;
 }
 
-//----------------------------------------------------------------------------
-// Component Catalog Pagination
-//----------------------------------------------------------------------------
-
-// TODO: doesn't seem to work?
-:global(.cds--pagination).pagination-container {
-  // display: none;
-  background-color: #ffffff;
-
-  @include breakpoint(md) {
-    //672  4:3
-    width: 38rem;
-  }
-
-  @include breakpoint(lg) {
-    //1056  1:1
-    width: 46.125rem;
-  }
-
-  @include breakpoint(xlg) {
-    //1312  4:3
-    width: 59.2rem;
-  }
-}
-
-@media screen and (min-width: 200px) and (max-width: 671px) {
-  :global(.cds--pagination).pagination-container {
-    display: none;
-  }
+.item-framework {
+  margin-top: 2.75rem;
 }

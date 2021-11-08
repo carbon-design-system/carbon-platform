@@ -9,82 +9,102 @@ import {
   Svg12Stable,
   Svg14Download,
   Svg14License,
-  Svg16Carbon
+  Svg16Carbon,
+  Svg24React,
+  Svg24Cloud
 } from '@/icons/index.js'
 import { Add16 } from '@carbon/icons-react'
 
 const CatalogGrid = () => {
   return (
     <div className={styles.container}>
-      <article className={styles.item}>
+      <div className={styles.item}>
         <div className={styles.itemImage}>
           <Add16 aria-label="Add" className="my-custom-class" />
         </div>
+        <Svg24Cloud className={styles.itemTagsSponsor} />
         <div className={styles.itemContent}>
           <p className={styles.itemSponsor}>
             {'Super Sponsor'}
           </p>
-          <header className={styles.itemName}>{'The best componenet ever'}</header>
-          <footer className={styles.itemInfo}>
+          <header className={styles.itemName}>{'The best component ever'}</header>
+          <div className={styles.itemInfo}>
             <Svg14Download className={styles.itemDownloadsIcon} />
             <div className={styles.itemDownloads}>{'1,234'}</div>
             <Svg14License className={styles.itemLicenseIcon} />
             <div className={styles.itemLicense}>{'Apache 2.0'}</div>
             <Svg16Carbon className={styles.itemReviewedIcon} />
             <div className={styles.itemReviewed}>{'Reviewed'}</div>
-          </footer>
-          <div className={styles.itemStatus}>
-            <Svg12Stable className={styles.itemStatusIcon} />
-            {'Stable'}
           </div>
+          <footer className={styles.itemTags}>
+            <div className={styles.itemStatus}>
+              <Svg12Stable className={styles.itemStatusIcon} />
+              {'Stable'}
+            </div>
+            <div className={styles.itemFramework}>
+              <Svg24React />
+            </div>
+          </footer>
         </div>
-      </article>
-      <article className={styles.item}>
+      </div>
+      <div className={styles.item}>
         <div className={styles.itemImage}>
           <Add16 aria-label="Add" className="my-custom-class" />
         </div>
+        <Svg24Cloud className={styles.itemTagsSponsor} />
         <div className={styles.itemContent}>
           <p className={styles.itemSponsor}>
             {'Super Sponsor'}
           </p>
-          <header className={styles.itemName}>{'The best cever'}</header>
-          <footer className={styles.itemInfo}>
+          <header className={styles.itemName}>{'The best component ever'}</header>
+          <div className={styles.itemInfo}>
             <Svg14Download className={styles.itemDownloadsIcon} />
             <div className={styles.itemDownloads}>{'1,234'}</div>
             <Svg14License className={styles.itemLicenseIcon} />
             <div className={styles.itemLicense}>{'Apache 2.0'}</div>
             <Svg16Carbon className={styles.itemReviewedIcon} />
             <div className={styles.itemReviewed}>{'Reviewed'}</div>
-          </footer>
-          <div className={styles.itemStatus}>
-            <Svg12Stable className={styles.itemStatusIcon} />
-            {'Stable'}
           </div>
+          <footer className={styles.itemTags}>
+            <div className={styles.itemStatus}>
+              <Svg12Stable className={styles.itemStatusIcon} />
+              {'Stable'}
+            </div>
+            <div className={styles.itemFramework}>
+              <Svg24React />
+            </div>
+          </footer>
         </div>
-      </article>
-      <article className={styles.item}>
+      </div>
+      <div className={styles.item}>
         <div className={styles.itemImage}>
           <Add16 aria-label="Add" className="my-custom-class" />
         </div>
+        <Svg24Cloud className={styles.itemTagsSponsor} />
         <div className={styles.itemContent}>
           <p className={styles.itemSponsor}>
             {'Super Sponsor'}
           </p>
-          <header className={styles.itemName}>{'The best cever'}</header>
-          <footer className={styles.itemInfo}>
+          <header className={styles.itemName}>{'The best component ever'}</header>
+          <div className={styles.itemInfo}>
             <Svg14Download className={styles.itemDownloadsIcon} />
             <div className={styles.itemDownloads}>{'1,234'}</div>
             <Svg14License className={styles.itemLicenseIcon} />
             <div className={styles.itemLicense}>{'Apache 2.0'}</div>
             <Svg16Carbon className={styles.itemReviewedIcon} />
             <div className={styles.itemReviewed}>{'Reviewed'}</div>
-          </footer>
-          <div className={styles.itemStatus}>
-            <Svg12Stable className={styles.itemStatusIcon} />
-            {'Stable'}
           </div>
+          <footer className={styles.itemTags}>
+            <div className={styles.itemStatus}>
+              <Svg12Stable className={styles.itemStatusIcon} />
+              {'Stable'}
+            </div>
+            <div className={styles.itemFramework}>
+              <Svg24React />
+            </div>
+          </footer>
         </div>
-      </article>
+      </div>
     </div>
   )
 }

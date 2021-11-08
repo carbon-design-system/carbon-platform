@@ -11,7 +11,7 @@ import { Svg12LeftContentSwitcher } from '@/icons/index.js'
 import styles from './catalog-sort.module.scss'
 
 function CatalogSort() {
-  const options = ['hi', 'bye']
+  const options = ['Hi', 'Bye']
 
   return (
     <div className={styles.container}>
@@ -34,7 +34,7 @@ function CatalogSort() {
         <Dropdown
           className={styles.toggle}
           id="component-index-sort"
-          initialSelectedItem="hola"
+          initialSelectedItem="Hola"
           items={options}
           light
           // onChange={({ selectedItem }) => {

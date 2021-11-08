@@ -4,7 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { TooltipIcon } from '@carbon/react'
 import styles from './catalog-list.module.scss'
 import {
   Svg12Stable,
@@ -44,9 +43,7 @@ const CatalogList = () => {
         </footer>
       </div>
       <div className={styles.itemTags}>
-        <TooltipIcon>
-          <Svg24React />
-        </TooltipIcon>
+        <Svg24React />
         <Svg24Cloud className={styles.itemTagsSponsor} />
       </div>
     </div>

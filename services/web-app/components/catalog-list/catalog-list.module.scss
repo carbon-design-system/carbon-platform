@@ -16,10 +16,6 @@
   background-color: #ffffff;
 }
 
-.item:hover {
-  background-color: #e5e5e5;
-}
-
 // Item Image
 .item-image {
   display: none;
@@ -51,10 +47,6 @@
   flex: 1;
   flex-direction: column;
   padding: $spacing-05;
-  @include breakpoint(md) {
-    //672  4:3
-    max-width: 40rem;
-  }
   @include breakpoint(lg) {
     //1056  1:1
     max-width: 29.625rem;
@@ -65,15 +57,15 @@
   }
 }
 
-@media screen and (min-width: 673px) and (max-width: 1055px) {
-  .item-content {
-    max-width: 23.025rem;
+@media (min-width: 673px) and (max-width: 1055px) {
+  .item {
+    max-width: 38rem;
   }
 }
 
 @media screen and (min-width: 1057px) and (max-width: 1311px) {
-  .item-content {
-    max-width: 22.125rem;
+  .item {
+    max-width: 46rem;
   }
 }
 
@@ -127,16 +119,19 @@
 }
 
 .item-status {
-  color: $text-primary;
+  color: $text-secondary;
   @include type-style('label-01');
 }
 
 // Item Downloads
 .item-downloads-icon {
-  display: inline-block;
   width: 1rem;
   height: 1rem;
   margin-left: 0.5rem;
+
+  @include breakpoint(sm) {
+    display: none;
+  }
   @include breakpoint(md) {
     display: none;
   }
@@ -149,8 +144,11 @@
 }
 
 .item-downloads {
-  color: $text-primary;
+  color: $text-secondary;
   @include type-style('label-01');
+  @include breakpoint(sm) {
+    display: none;
+  }
   @include breakpoint(md) {
     display: none;
   }
@@ -167,6 +165,9 @@
   width: 1rem;
   height: 1rem;
   margin-left: 0.5rem;
+  @include breakpoint(sm) {
+    display: none;
+  }
   @include breakpoint(md) {
     display: none;
   }
@@ -179,8 +180,11 @@
 }
 
 .item-license {
-  color: $text-primary;
+  color: $text-secondary;
   @include type-style('label-01');
+  @include breakpoint(sm) {
+    display: none;
+  }
   @include breakpoint(md) {
     display: none;
   }
@@ -197,6 +201,9 @@
   width: 1rem;
   height: 1rem;
   margin-left: 0.5rem;
+  @include breakpoint(sm) {
+    display: none;
+  }
   @include breakpoint(md) {
     display: none;
   }
@@ -209,8 +216,11 @@
 }
 
 .item-reviewed {
-  color: $text-primary;
+  color: $text-secondary;
   @include type-style('label-01');
+  @include breakpoint(sm) {
+    display: none;
+  }
   @include breakpoint(md) {
     display: none;
   }
@@ -226,34 +236,29 @@
 // Item Tags
 //----------------------------------------------------------------------------
 .item-tags {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: $spacing-05;
 
-  @include breakpoint(md) {
-    display: flex;
-    width: 4rem;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding: $spacing-05;
+  @include breakpoint(sm) {
+    //320
+    width: 0;
   }
 
+  @include breakpoint(md) {
+    //672
+    width: 4rem;
+  }
   @include breakpoint(lg) {
-    //1056  1:1
-    display: flex;
+    //1056
     width: 8rem;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding: $spacing-05;
   }
 
   @include breakpoint(xlg) {
-    display: flex;
-    //1312  4:3
+    //1312
     width: 8rem;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: $spacing-05;
   }
 }
 
@@ -264,6 +269,13 @@
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
+
+  @include breakpoint(sm) {
+    width: 3rem;
+    height: 3rem;
+    padding-top: 0.65rem;
+    padding-left: 0.65rem;
+  }
 
   @include breakpoint(md) {
     width: 3rem;
@@ -287,33 +299,7 @@
   }
 }
 
-//----------------------------------------------------------------------------
-// Component Catalog Pagination
-//----------------------------------------------------------------------------
-
-// TODO: doesn't seem to work?
-:global(.cds--pagination).component-catalog-pagination-container {
-  // display: none;
-  background-color: #ffffff;
-
-  @include breakpoint(md) {
-    //672  4:3
-    width: 38rem;
-  }
-
-  @include breakpoint(lg) {
-    //1056  1:1
-    width: 46.125rem;
-  }
-
-  @include breakpoint(xlg) {
-    //1312  4:3
-    width: 59.2rem;
-  }
-}
-
-@media screen and (min-width: 200px) and (max-width: 671px) {
-  :global(.cds--pagination).component-catalog-pagination-container {
-    display: none;
-  }
+.item:hover,
+.item-tags-sponsor:hover {
+  background-color: #e5e5e5;
 }

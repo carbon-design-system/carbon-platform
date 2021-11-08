@@ -34,5 +34,8 @@ jobs:
           cache: 'npm'
           registry-url: https://registry.npmjs.org
 
+      - name: Install Commander 🔧
+        run: npm install commander
+
       - name: Call Deploy Script 🚀
         run: node scripts/micromanage-scripts deploy

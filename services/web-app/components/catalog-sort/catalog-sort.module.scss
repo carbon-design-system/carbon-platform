@@ -1,0 +1,142 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+@use '@carbon/react' as styles;
+
+//----------------------------------------------------------------------------
+// Catalog Sort
+//----------------------------------------------------------------------------
+.container {
+  position: relative;
+  display: flex;
+  height: 5rem;
+  flex-direction: column;
+  border-bottom: 1px solid $layer-accent-01;
+  margin-top: auto;
+  background-color: #ffffff;
+
+  @include breakpoint(md) {
+    //672  4:3
+    width: 38rem;
+    height: 2.5rem;
+    flex-direction: row;
+  }
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    width: 46rem;
+    height: 2.5rem;
+    flex-direction: row;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 59.25rem;
+    height: 2.5rem;
+    flex-direction: row;
+  }
+}
+
+// Dropdown
+.dropdown {
+  width: 100%;
+  justify-content: left;
+  padding-left: 1rem;
+  border-bottom: 1px solid $layer-accent-01;
+
+  @include breakpoint(md) {
+    //672  4:3
+    display: flex;
+    // TODO: replace with appropriate aspect ratio handling
+    width: 20rem;
+    align-items: center;
+    border-right: 1px solid $layer-accent-01;
+    border-bottom: none;
+  }
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    width: 16rem;
+    border-right: 1px solid $layer-accent-01;
+    border-bottom: none;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 20rem;
+    border-right: 1px solid $layer-accent-01;
+    border-bottom: none;
+  }
+}
+
+.dropdown :global(.cds--list-box__label) {
+  @include type-style('body-short-02');
+
+  color: $text-secondary;
+}
+
+.dropdown :global(.cds--list-box__field) {
+  padding-left: 8px;
+}
+
+.dropdown-text :global(.cds--dropdown__wrapper--inline .cds--label) {
+  @include type-style('body-short-02');
+
+  color: $text-secondary;
+}
+
+// Toggle
+.toggle {
+  width: 20rem;
+  justify-content: left;
+  padding-left: 1rem;
+
+  @include breakpoint(md) {
+    //672  4:3
+    display: flex;
+    // TODO: replace with appropriate aspect ratio handling
+    width: 18.12rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    width: 16rem;
+    border-right: 1px solid $layer-accent-01;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 20.25rem;
+    border-right: 1px solid $layer-accent-01;
+  }
+}
+
+// Switcher
+.switcher {
+  @include breakpoint(sm) {
+    display: none;
+  }
+  @include breakpoint(md) {
+    display: none;
+  }
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    display: flex;
+    width: 14.125rem;
+    justify-content: right;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    display: flex;
+    width: 19rem;
+    justify-content: right;
+  }
+}

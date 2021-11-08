@@ -91,7 +91,7 @@ $ npm update
 To update the node modules only for a specific workspace, from the top-level in the repo, run:
 
 ```
-# npm --workspace <workspace_path> update
+$ npm --workspace <workspace_path> update
 ```
 
 > Note: This is currently not working correctly (https://github.com/npm/cli/issues/3960). As a
@@ -112,20 +112,20 @@ There are two ways to run npm scripts for a package.
      $ npm run dev
      ```
 
-# Rebuilding packages
+## Rebuilding packages
 
 If you make changes to one of the packages, you will need to rebuild it before you'll see its
 changes reflected in any other packages or services that depend on it. This is pretty
 straightforward and can be done with:
 
 ```
-npm --workspace packages/some-package run build
+$ npm --workspace packages/some-package run build
 ```
 
 Or, to be safe and rebuild all packages:
 
 ```
-npm run packages:build
+$ npm run packages:build
 ```
 
 ## Before you push!

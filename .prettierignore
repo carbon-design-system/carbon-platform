@@ -3,11 +3,15 @@ node_modules
 package*.json
 
 # Build
+.carbon
 .next
 dist
 
 # Changelogs
 CHANGELOG.md
+
+# IDE-specific
+.vscode
 
 # Generated
 *-generated/

@@ -1,0 +1,306 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+@use '@carbon/react' as styles;
+
+//----------------------------------------------------------------------------
+// Item, Item Image and Item Content
+//----------------------------------------------------------------------------
+.item {
+  display: flex;
+  max-width: 59.18rem;
+  height: 11.25rem;
+  background-color: #ffffff;
+}
+
+// Item Image
+.item-image {
+  display: none;
+
+  @include breakpoint(md) {
+    //672  4:3
+    display: flex;
+    // TODO: replace with appropriate aspect ratio handling
+    width: 20rem;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid $layer-accent-01;
+  }
+
+  @include breakpoint(lg) {
+    //1056  1:1
+    width: 16rem;
+  }
+
+  @include breakpoint(xlg) {
+    //1312  4:3
+    width: 20rem;
+  }
+}
+
+// Item Content
+.item-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: $spacing-05;
+  @include breakpoint(lg) {
+    //1056  1:1
+    max-width: 29.625rem;
+  }
+  @include breakpoint(xlg) {
+    //1312  4:3
+    max-width: 31.188rem;
+  }
+}
+
+@media (min-width: 673px) and (max-width: 1055px) {
+  .item {
+    max-width: 38rem;
+  }
+}
+
+@media screen and (min-width: 1057px) and (max-width: 1311px) {
+  .item {
+    max-width: 46rem;
+  }
+}
+
+// Item Sponsor
+.item-sponsor {
+  @include type-style('label-01');
+
+  padding-bottom: rem(8px);
+  color: #252525;
+}
+
+// Item Name
+.item-name {
+  @include type-style('productive-heading-02');
+
+  padding-top: 2px;
+  padding-bottom: 2px;
+  color: #252525;
+}
+
+// Item Description
+.item-description {
+  @include type-style('body-short-01');
+
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  color: $text-primary;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+}
+
+//----------------------------------------------------------------------------
+// Item Info
+//----------------------------------------------------------------------------
+.item-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  gap: 0.25rem;
+}
+
+// Item Status
+.item-status-icon {
+  width: 1rem;
+  height: 1rem;
+  padding-left: 0.25rem;
+  margin-top: 0.3rem;
+  color: #24a148;
+}
+
+.item-status {
+  color: $text-secondary;
+  @include type-style('label-01');
+}
+
+// Item Downloads
+.item-downloads-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
+
+  @include breakpoint(sm) {
+    display: none;
+  }
+  @include breakpoint(md) {
+    display: none;
+  }
+  @include breakpoint(lg) {
+    display: inline-block;
+  }
+  @include breakpoint(xlg) {
+    display: inline-block;
+  }
+}
+
+.item-downloads {
+  color: $text-secondary;
+  @include type-style('label-01');
+  @include breakpoint(sm) {
+    display: none;
+  }
+  @include breakpoint(md) {
+    display: none;
+  }
+  @include breakpoint(lg) {
+    display: inline-block;
+  }
+  @include breakpoint(xlg) {
+    display: inline-block;
+  }
+}
+
+// Item License
+.item-license-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
+  @include breakpoint(sm) {
+    display: none;
+  }
+  @include breakpoint(md) {
+    display: none;
+  }
+  @include breakpoint(lg) {
+    display: inline-block;
+  }
+  @include breakpoint(xlg) {
+    display: inline-block;
+  }
+}
+
+.item-license {
+  color: $text-secondary;
+  @include type-style('label-01');
+  @include breakpoint(sm) {
+    display: none;
+  }
+  @include breakpoint(md) {
+    display: none;
+  }
+  @include breakpoint(lg) {
+    display: inline-block;
+  }
+  @include breakpoint(xlg) {
+    display: inline-block;
+  }
+}
+
+// Item Reviewed
+.item-reviewed-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
+  @include breakpoint(sm) {
+    display: none;
+  }
+  @include breakpoint(md) {
+    display: none;
+  }
+  @include breakpoint(lg) {
+    display: inline-block;
+  }
+  @include breakpoint(xlg) {
+    display: inline-block;
+  }
+}
+
+.item-reviewed {
+  color: $text-secondary;
+  @include type-style('label-01');
+  @include breakpoint(sm) {
+    display: none;
+  }
+  @include breakpoint(md) {
+    display: none;
+  }
+  @include breakpoint(lg) {
+    display: inline-block;
+  }
+  @include breakpoint(xlg) {
+    display: inline-block;
+  }
+}
+
+//----------------------------------------------------------------------------
+// Item Tags
+//----------------------------------------------------------------------------
+.item-tags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: $spacing-05;
+
+  @include breakpoint(sm) {
+    //320
+    width: 0;
+  }
+
+  @include breakpoint(md) {
+    //672
+    width: 4rem;
+  }
+  @include breakpoint(lg) {
+    //1056
+    width: 8rem;
+  }
+
+  @include breakpoint(xlg) {
+    //1312
+    width: 8rem;
+  }
+}
+
+// Item Tags Sponsor
+.item-tags-sponsor {
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+
+  @include breakpoint(sm) {
+    width: 3rem;
+    height: 3rem;
+    padding-top: 0.65rem;
+    padding-left: 0.65rem;
+  }
+
+  @include breakpoint(md) {
+    width: 3rem;
+    height: 3rem;
+    padding-top: 0.65rem;
+    padding-left: 0.65rem;
+  }
+
+  @include breakpoint(lg) {
+    width: 3rem;
+    height: 3rem;
+    padding-top: 0.65rem;
+    padding-left: 0.65rem;
+  }
+
+  @include breakpoint(xlg) {
+    width: 3.5rem;
+    height: 3.5rem;
+    padding-top: 0.938rem;
+    padding-left: 0.938rem;
+  }
+}
+
+.item:hover,
+.item-tags-sponsor:hover {
+  background-color: #e5e5e5;
+}

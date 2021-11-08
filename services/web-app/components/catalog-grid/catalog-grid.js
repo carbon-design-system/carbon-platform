@@ -1,3 +1,13 @@
+import {
+  Svg12Stable,
+  Svg14Download,
+  Svg14License,
+  Svg16Carbon
+  // Svg24Cloud,
+  // Svg24React
+} from '@carbon-platform/icons'
+
+import { Add16 } from '@carbon/icons-react'
 /**
  * Copyright IBM Corp. 2021, 2021
  *
@@ -5,15 +15,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import styles from './catalog-grid.module.scss'
-import {
-  Svg12Stable,
-  Svg14Download,
-  Svg14License,
-  Svg16Carbon,
-  Svg24React,
-  Svg24Cloud
-} from '@/icons/index.js'
-import { Add16 } from '@carbon/icons-react'
 
 const CatalogGrid = () => {
   return (
@@ -22,11 +23,9 @@ const CatalogGrid = () => {
         <div className={styles.itemImage}>
           <Add16 aria-label="Add" className="my-custom-class" />
         </div>
-        <Svg24Cloud className={styles.itemTagsSponsor} />
+        {/* <Svg24Cloud className={styles.itemTagsSponsor} /> */}
         <div className={styles.itemContent}>
-          <p className={styles.itemSponsor}>
-            {'Super Sponsor'}
-          </p>
+          <p className={styles.itemSponsor}>{'Super Sponsor'}</p>
           <header className={styles.itemName}>{'The best component ever'}</header>
           <div className={styles.itemInfo}>
             <Svg14Download className={styles.itemDownloadsIcon} />
@@ -41,9 +40,7 @@ const CatalogGrid = () => {
               <Svg12Stable className={styles.itemStatusIcon} />
               {'Stable'}
             </div>
-            <div className={styles.itemFramework}>
-              <Svg24React />
-            </div>
+            <div className={styles.itemFramework}>{/* <Svg24React /> */}</div>
           </footer>
         </div>
       </div>
@@ -51,11 +48,9 @@ const CatalogGrid = () => {
         <div className={styles.itemImage}>
           <Add16 aria-label="Add" className="my-custom-class" />
         </div>
-        <Svg24Cloud className={styles.itemTagsSponsor} />
+        {/* <Svg24Cloud className={styles.itemTagsSponsor} /> */}
         <div className={styles.itemContent}>
-          <p className={styles.itemSponsor}>
-            {'Super Sponsor'}
-          </p>
+          <p className={styles.itemSponsor}>{'Super Sponsor'}</p>
           <header className={styles.itemName}>{'The best component ever'}</header>
           <div className={styles.itemInfo}>
             <Svg14Download className={styles.itemDownloadsIcon} />
@@ -70,9 +65,7 @@ const CatalogGrid = () => {
               <Svg12Stable className={styles.itemStatusIcon} />
               {'Stable'}
             </div>
-            <div className={styles.itemFramework}>
-              <Svg24React />
-            </div>
+            <div className={styles.itemFramework}>{/* <Svg24React /> */}</div>
           </footer>
         </div>
       </div>
@@ -80,11 +73,9 @@ const CatalogGrid = () => {
         <div className={styles.itemImage}>
           <Add16 aria-label="Add" className="my-custom-class" />
         </div>
-        <Svg24Cloud className={styles.itemTagsSponsor} />
+        {/* <Svg24Cloud className={styles.itemTagsSponsor} /> */}
         <div className={styles.itemContent}>
-          <p className={styles.itemSponsor}>
-            {'Super Sponsor'}
-          </p>
+          <p className={styles.itemSponsor}>{'Super Sponsor'}</p>
           <header className={styles.itemName}>{'The best component ever'}</header>
           <div className={styles.itemInfo}>
             <Svg14Download className={styles.itemDownloadsIcon} />
@@ -99,9 +90,7 @@ const CatalogGrid = () => {
               <Svg12Stable className={styles.itemStatusIcon} />
               {'Stable'}
             </div>
-            <div className={styles.itemFramework}>
-              <Svg24React />
-            </div>
+            <div className={styles.itemFramework}>{/* <Svg24React /> */}</div>
           </footer>
         </div>
       </div>

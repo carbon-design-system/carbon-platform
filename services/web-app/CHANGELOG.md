@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.9](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.8...@carbon-platform/web-app@0.1.9) (2021-10-29)
+
+### [0.1.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.7...@carbon-platform/web-app@0.1.8) (2021-10-29)
+
+
+### Features
+
+* **icons:** add new icons package ([#56](https://github.com/carbon-design-system/carbon-platform/issues/56)) ([3d9144c](https://github.com/carbon-design-system/carbon-platform/commit/3d9144c019cff7f4271c6ab0e13cd6939c8f7847))
+
+
+### Bug Fixes
+
+* **web-app:** fix comment-related linter error ([6cba24f](https://github.com/carbon-design-system/carbon-platform/commit/6cba24f6bc5e93e7a71ad0251a032b3d8821739d))
+
+### [0.1.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.6...@carbon-platform/web-app@0.1.7) (2021-10-29)
+
+
+### Features
+
+* add placeholder blur to remote images ([49d7abf](https://github.com/carbon-design-system/carbon-platform/commit/49d7abf0ab9444b549f32a16a6043f0117902215))
+* render thumbnail image from asset ([b623dc6](https://github.com/carbon-design-system/carbon-platform/commit/b623dc6ec4771e08a7dc29d61cb18a742c48d792))
+
+### [0.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.5...@carbon-platform/web-app@0.1.6) (2021-10-28)
+
+
+### Bug Fixes
+
+* v11 css grid in production mode ([8a77045](https://github.com/carbon-design-system/carbon-platform/commit/8a7704583f9f1224626598718dbdb849202e5f6d))
+
+### [0.1.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.4...@carbon-platform/web-app@0.1.5) (2021-10-27)
+
+
+### Features
+
+* add linting and formatting, first pass ([bebe0cb](https://github.com/carbon-design-system/carbon-platform/commit/bebe0cba38d179fe7f9697f6ea56e1c42c8def16))
+* cache github api responses ([51a726c](https://github.com/carbon-design-system/carbon-platform/commit/51a726c4e25204ca160ab3cd843e8c8c4d47176d))
+* fetch github data and generate library and asset pages ([2c6a5c8](https://github.com/carbon-design-system/carbon-platform/commit/2c6a5c84ede1e1a7c794f4553ab7941e6a44f203))
+* populate catalogs with data ([13e3579](https://github.com/carbon-design-system/carbon-platform/commit/13e3579f72c9279c189b61ff38310d9013456471))
+
+
+### Bug Fixes
+
+* ensure carbon cds prefix is used ([10496f6](https://github.com/carbon-design-system/carbon-platform/commit/10496f6ef000a5da9d1da211ae4369707cb7d011))
+
 ### [0.1.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.3...@carbon-platform/web-app@0.1.4) (2021-10-26)
 
 ### [0.1.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.2...@carbon-platform/web-app@0.1.3) (2021-10-22)

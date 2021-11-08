@@ -4,8 +4,11 @@ node_modules/
 # Typescript output
 dist/
 
-# OS Stuff
+# Generated stuff
+*-generated/
+
+# OS stuff
 .DS_Store
 
-# IDE Stuff
+# IDE stuff
 .vscode/

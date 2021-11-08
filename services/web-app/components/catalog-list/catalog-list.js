@@ -1,3 +1,13 @@
+import {
+  Svg12Stable,
+  Svg14Download,
+  Svg14License,
+  Svg16Carbon
+  // Svg24Cloud,
+  // Svg24React
+} from '@carbon-platform/icons'
+
+import { Add16 } from '@carbon/icons-react'
 /**
  * Copyright IBM Corp. 2021, 2021
  *
@@ -5,15 +15,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import styles from './catalog-list.module.scss'
-import {
-  Svg12Stable,
-  Svg14Download,
-  Svg14License,
-  Svg16Carbon,
-  Svg24React,
-  Svg24Cloud
-} from '@/icons/index.js'
-import { Add16 } from '@carbon/icons-react'
 
 const CatalogList = () => {
   return (
@@ -22,9 +23,7 @@ const CatalogList = () => {
         <Add16 aria-label="Add" className="my-custom-class" />
       </div>
       <div className={styles.itemContent}>
-        <p className={styles.itemSponsor}>
-          {'Super Sponsor'}
-        </p>
+        <p className={styles.itemSponsor}>{'Super Sponsor'}</p>
         <header className={styles.itemName}>{'The best component ever'}</header>
         <p className={styles.itemDescription}>
           {
@@ -43,8 +42,8 @@ const CatalogList = () => {
         </footer>
       </div>
       <div className={styles.itemTags}>
-        <Svg24React />
-        <Svg24Cloud className={styles.itemTagsSponsor} />
+        {/* <Svg24React />
+        <Svg24Cloud className={styles.itemTagsSponsor} /> */}
       </div>
     </div>
   )

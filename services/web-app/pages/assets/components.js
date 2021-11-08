@@ -7,7 +7,7 @@
 
 import { useContext, useEffect } from 'react'
 
-import CatalogIndexPage from '@/components/catalog-page/index'
+import CatalogIndexPage from '@/components/catalog-index-page/catalog-index-page'
 import { LayoutContext } from '@/layouts/layout'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'

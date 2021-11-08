@@ -5,11 +5,11 @@
       "@/components/*": ["components/*"],
       "@/config/*": ["config/*"],
       "@/data/*": ["data/*"],
-      "@/icons/*": ["icons/*"],
       "@/layouts/*": ["layouts/*"],
       "@/lib/*": ["lib/*"],
       "@/pages/*": ["pages/*"],
-      "@/styles/*": ["styles/*"]
+      "@/styles/*": ["styles/*"],
+      "@/utils/*": ["utils/*"]
     }
   },
   "exclude": [".next", "node_modules"]

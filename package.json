@@ -17,6 +17,7 @@
     "npm": ">=8"
   },
   "workspaces": [
+    "packages/icons",
     "packages/logging",
     "services/logging-service",
     "services/web-app"
@@ -26,10 +27,9 @@
     "packages:build": "npm --workspaces --if-present run package:build",
     "services:build": "npm --workspaces --if-present run service:build",
     "lint": "scripts/lint",
+    "lint:fix": "scripts/lint_and_fix",
     "nightly": "scripts/nightly",
-    "prepare": "husky install",
-    "format": "prettier --write '**/*.{js,md,scss,ts}'",
-    "format:diff": "prettier --list-different '**/*.{js,md,scss,ts}'"
+    "prepare": "husky install && npm run packages:build"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
@@ -38,7 +38,7 @@
     "commander": "^8.3.0",
     "eslint": "^7.32.0",
     "eslint-config-carbon": "^2.8.0",
-    "eslint-config-next": "^12.0.0",
+    "eslint-config-next": "^12.0.1",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-notice": "^0.9.10",
     "husky": "^7.0.4",

@@ -7,11 +7,11 @@
 
 import { Column, Grid } from '@carbon/react'
 
-import CatalogList from '../catalog-list/catalog-list'
 import CatalogGrid from '../catalog-grid/catalog-grid'
+import CatalogList from '../catalog-list/catalog-list'
 import CatalogSearch from '../catalog-search/catalog-search'
 import CatalogSort from '../catalog-sort/catalog-sort'
-import styles from './catalog-page.module.scss'
+import styles from './catalog-index-page.module.scss'
 
 const CatalogIndexPage = () => {
   return (

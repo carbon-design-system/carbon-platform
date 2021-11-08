@@ -1,9 +1,9 @@
 {
-  "name": "@carbon-platform/logging",
-  "description": "Carbon platform logging utilities",
-  "version": "0.1.15",
-  "main": "dist/main/index.js",
-  "types": "dist/main/index.d.ts",
+  "name": "@carbon-platform/icons",
+  "description": "Carbon platform icons",
+  "version": "0.0.3",
+  "module": "dist/main/tsx-generated/index.js",
+  "types": "dist/main/tsx-generated/index.d.ts",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -18,10 +18,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
+    "build": "npm run clean && npm run build:svg && tsc",
+    "build:svg": "svgr --out-dir src/main/tsx-generated src/main/svg",
+    "clean": "rimraf dist src/main/tsx-generated",
     "package:build": "npm run build"
   },
   "devDependencies": {
+    "@svgr/cli": "^5.5.0",
+    "rimraf": "^3.0.2",
     "typescript": "^4.4.4"
   }
 }

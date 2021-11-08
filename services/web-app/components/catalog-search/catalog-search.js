@@ -7,7 +7,7 @@
 import { Search } from '@carbon/react'
 import styles from './catalog-search.module.scss'
 
-function CatalogSearch({ value, onChange }) {
+const CatalogSearch = ({ value, onChange }) => {
   function handleOnChange(event) {
     onChange(event.target.value)
   }
@@ -34,9 +34,7 @@ function CatalogSearch({ value, onChange }) {
           size="md"
         />
       </div>
-      <div className={styles.searchResultsPlaceholder}>
-        123 results
-      </div>
+      <div className={styles.searchResultsPlaceholder}>123 results</div>
     </div>
   )
 }

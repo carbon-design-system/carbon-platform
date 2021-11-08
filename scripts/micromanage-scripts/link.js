@@ -6,30 +6,39 @@
  */
 const { Command } = require('commander')
 
-const utils = require('./utils')
+const { getPackages, getPackageForFile, exec } = require('./utils')
+
+const fileExtensions = ['ts', 'tsx', 'js', 'jsx', 'scss']
 
 function buildLinkCommand() {
   return new Command('link')
     .description('Find usages of local packages and add them to package.json files')
-    .requiredOption('--ext <extensions...>')
+    .argument('<file...>')
     .action(handleLinkCommand)
 }
 
-function handleLinkCommand(opts) {
+function handleLinkCommand(files) {
   console.log('===== micromanage link =====')
 
   let isDirty = false
-  const packages = utils.getPackages()
+  const packages = getPackages()
+  files = files.filter((file) => fileExtensions.includes(file.split('.').pop()))
 
-  packages.forEach((pkg) => {
-    console.log(`searching for local deps in package ${pkg.name}`)
+  files.forEach((file) => {
+    // Get the package that contains this file
+    const pkg = getPackageForFile(file)
 
-    const files = utils.getFiles(pkg.path, opts.ext)
+    if (!pkg) {
+      return
+    }
 
+    console.log(`Searching ${file}`)
+
+    // Search the file for each package name
     packages.forEach((needle) => {
       let searchResult = null
       try {
-        searchResult = utils.exec(`grep "${needle.name}" ${files.join(' ')}`)
+        searchResult = exec(`grep "${needle.name}" ${file}`)
       } catch (e) {
         // Grep exits with 1 when no results were found
         if (e.status !== 1) {
@@ -38,8 +47,8 @@ function handleLinkCommand(opts) {
       }
 
       if (searchResult && !(pkg.dependencies && needle.name in pkg.dependencies)) {
-        console.log(`unspecified dependency on ${needle.name} found in package ${pkg.name}`)
-        utils.exec(`npm --workspace ${pkg.path} install ${needle.name}`)
+        console.warn(`[WARN] Unspecified dependency on ${needle.name} found in package ${file}`)
+        exec(`npm --workspace ${pkg.path} install ${needle.name}`)
         isDirty = true
       }
     })

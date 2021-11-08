@@ -8,15 +8,18 @@
 import { getAllAssetPaths, getAssetData } from '@/lib/github'
 import { useContext, useEffect } from 'react'
 
+import Image from 'next/image'
 import { LayoutContext } from '@/layouts/layout'
 import { NextSeo } from 'next-seo'
 import { assetsNavData } from '@/data/nav-data'
+import { generateBlurImage } from '@/lib/image'
+import { getImgSrc } from '@/utils/image'
 import styles from '@/pages/pages.module.scss'
 
 const Asset = ({ assetData }) => {
   const { setNavData } = useContext(LayoutContext)
 
-  const { name, description } = assetData
+  const { name, description, thumbnailData } = assetData.asset.contents
 
   const seo = {
     title: name,
@@ -30,6 +33,16 @@ const Asset = ({ assetData }) => {
   return (
     <>
       <NextSeo {...seo} />
+      {thumbnailData && (
+        <Image
+          alt={`${name} thumbnail`}
+          height="300px"
+          width="400px"
+          src={thumbnailData.img.src}
+          placeholder="blur"
+          blurDataURL={thumbnailData.base64}
+        />
+      )}
       <pre className={styles.data}>{JSON.stringify(assetData, null, 2)}</pre>
     </>
   )
@@ -42,6 +55,14 @@ export const getStaticProps = async ({ params }) => {
     return {
       notFound: true
     }
+  }
+
+  // TODO move this logic to recursive function that finds images in content, and creates image
+  // data objects
+  if (assetData.asset && assetData.asset.contents && assetData.asset.contents.thumbnail) {
+    assetData.asset.contents.thumbnailData = await generateBlurImage(
+      getImgSrc(assetData.asset.repository, assetData.asset.contents.thumbnail)
+    )
   }
 
   return {

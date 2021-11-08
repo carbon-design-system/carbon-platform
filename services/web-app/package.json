@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
@@ -23,7 +23,7 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "dependencies": {
-    "@carbon-platform/icons": "^0.0.3",
+    "@carbon-platform/icons": "^0.0.4",
     "@carbon/react": "^0.8.0",
     "@octokit/core": "^3.5.1",
     "cache-manager": "^3.4.4",

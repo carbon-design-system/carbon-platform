@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/icons",
   "description": "Carbon platform icons",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "module": "dist/main/tsx-generated/index.js",
   "types": "dist/main/tsx-generated/index.d.ts",
   "license": "Apache-2.0",

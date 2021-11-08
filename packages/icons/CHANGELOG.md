@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.3...@carbon-platform/icons@0.0.4) (2021-11-08)
+
+
+### Features
+
+* list and card view breakpoints and svgs ([fb5d133](https://github.com/carbon-design-system/carbon-platform/commit/fb5d1335558a12712374c6a096e1684a649a6a25))
+
+
+### Bug Fixes
+
+* **web-app:** switch to icons package ([c85f734](https://github.com/carbon-design-system/carbon-platform/commit/c85f734dcfd2e0343aa8a83316c88eea885ea986))
+
 ### [0.0.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.2...@carbon-platform/icons@0.0.3) (2021-10-29)
 
 

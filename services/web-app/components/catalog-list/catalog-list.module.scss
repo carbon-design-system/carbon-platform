@@ -9,10 +9,13 @@
 // Item, Item Image and Item Content
 //----------------------------------------------------------------------------
 .item {
-  display: flex;
   max-width: 59.18rem;
-  height: 11.25rem;
   background-color: #ffffff;
+}
+
+.item-inner {
+  display: flex;
+  height: 11.25rem;
 }
 
 // Item Image

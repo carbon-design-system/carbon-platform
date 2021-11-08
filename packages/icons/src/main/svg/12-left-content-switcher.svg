@@ -1,0 +1,13 @@
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="scrolling-behavior-1" transform="translate(-1202.000000, -902.000000)">
+            <rect fill="#F3F3F3" x="0" y="0" width="1312" height="996"></rect>
+            <g id="icon/toggle/grid/16-copy-2" transform="translate(1200.000000, 900.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="icon-color" fill="#171717" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

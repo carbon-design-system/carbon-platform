@@ -34,7 +34,7 @@ const Patterns = ({ librariesData }) => {
   )
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const librariesData = await getAllLibraries()
 
   return {

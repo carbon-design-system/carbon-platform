@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.9...@carbon-platform/web-app@0.1.10) (2021-11-08)
+
+
+### Features
+
+* add asset route ([3131478](https://github.com/carbon-design-system/carbon-platform/commit/3131478bf908715be43deddd2489a128a491b3ab))
+* add component catalog base ([99df456](https://github.com/carbon-design-system/carbon-platform/commit/99df4561197c47895f0de67bec63ebb184858154))
+* add thumbnail image to asset page ([47ad9ff](https://github.com/carbon-design-system/carbon-platform/commit/47ad9ff4000ef24242270376534df4bcaee3fb7b))
+* added grid component view ([1b969f0](https://github.com/carbon-design-system/carbon-platform/commit/1b969f0b7e1bde3973da22ed5f33b0430c3cc626))
+* added more mobile stylees ([82e8714](https://github.com/carbon-design-system/carbon-platform/commit/82e8714790ae644a6a8fde7bd3864583a0a18516))
+* added pagination ([0f6ac3a](https://github.com/carbon-design-system/carbon-platform/commit/0f6ac3ac35bee777e3a71d94e68918692dfa275a))
+* added pagination - need to add content switcher ([462ac3e](https://github.com/carbon-design-system/carbon-platform/commit/462ac3e405baea9e695d4e059c5a83d62d656a3c))
+* added styling need to fix breakpoints ([468303b](https://github.com/carbon-design-system/carbon-platform/commit/468303b94333f072446c678eab831d4a096dadad))
+* **componentcatalog:** added base component ([f10091e](https://github.com/carbon-design-system/carbon-platform/commit/f10091e27e399584ebe6faf595f68380064cc17b))
+* fetch assets per library ([b8b3933](https://github.com/carbon-design-system/carbon-platform/commit/b8b3933d4597ce017a7b32a2328a10eea41ae294))
+* fixed directories and styles ([b47ae8b](https://github.com/carbon-design-system/carbon-platform/commit/b47ae8b2cc5ab4170e29d60f311d32da8930d775))
+* list and card view breakpoints and svgs ([fb5d133](https://github.com/carbon-design-system/carbon-platform/commit/fb5d1335558a12712374c6a096e1684a649a6a25))
+* refactor how we fetch libraries ([b08d0fa](https://github.com/carbon-design-system/carbon-platform/commit/b08d0fa6f621971ff07e9571eae464a0eb8195b2))
+* standardize path format ([2e43aa5](https://github.com/carbon-design-system/carbon-platform/commit/2e43aa518d4c66fdeff12867ed592d3a61b2a3eb))
+* support library shorthand with no ref ([43b4abf](https://github.com/carbon-design-system/carbon-platform/commit/43b4abf35cf61d31a3de1170cb29e60fbd0e625a))
+* update catalog pages to SSR ([5583f44](https://github.com/carbon-design-system/carbon-platform/commit/5583f44550d815117abea9fade26e9b6de1ad4f6))
+* update catalog pages with new data ([3fa2ac4](https://github.com/carbon-design-system/carbon-platform/commit/3fa2ac4a829616e5cffe4e8fd18da8b129d9d9d5))
+* update thumbnail to thumbnailPath ([7e6e0b7](https://github.com/carbon-design-system/carbon-platform/commit/7e6e0b782ab856737b08ede75e12ae6ffb2e64a8))
+* updated grid and list views breakpoints all works ([3bfb7d6](https://github.com/carbon-design-system/carbon-platform/commit/3bfb7d6bcb41ae559031ab85535b202177e28080))
+* updated grid and list views breakpoints all works -pt.2 ([3a6e2f1](https://github.com/carbon-design-system/carbon-platform/commit/3a6e2f1d9170e05b7908a70d69bf16121b61b44f))
+* updated list view styles ([d1ad241](https://github.com/carbon-design-system/carbon-platform/commit/d1ad24114679e2821fd89ebbbb60539bef27d741))
+* wire up components page ([24315f9](https://github.com/carbon-design-system/carbon-platform/commit/24315f96432939382824e079a69d8ac6557c3a6d))
+* xl & l breakpoints ([f2ae9cc](https://github.com/carbon-design-system/carbon-platform/commit/f2ae9cc38cee6e5ef2aa16185be657dea22a5fdb))
+
+
+### Bug Fixes
+
+* handle no libraries found ([076a0d2](https://github.com/carbon-design-system/carbon-platform/commit/076a0d2cf180f717501b82f1c915d5d2c91f60cd))
+* update commented icons whoops ([2d03b43](https://github.com/carbon-design-system/carbon-platform/commit/2d03b43d02d8918e750a5d13dc9d4c74d8ade99e))
+* update copyright header ([a077a7b](https://github.com/carbon-design-system/carbon-platform/commit/a077a7bd22e3b9bd8e3f6397e3faa819d3550c04))
+* **web-app:** remove nested package-lock.json ([e07619b](https://github.com/carbon-design-system/carbon-platform/commit/e07619bbe4cf0dab0f5792298b3ea4f1b276578a))
+* **web-app:** switch to icons package ([c85f734](https://github.com/carbon-design-system/carbon-platform/commit/c85f734dcfd2e0343aa8a83316c88eea885ea986))
+
 ### [0.1.9](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.8...@carbon-platform/web-app@0.1.9) (2021-10-29)
 
 ### [0.1.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.7...@carbon-platform/web-app@0.1.8) (2021-10-29)

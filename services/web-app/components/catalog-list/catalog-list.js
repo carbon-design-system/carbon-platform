@@ -2,9 +2,9 @@ import {
   Svg12Stable,
   Svg14Download,
   Svg14License,
-  Svg16Carbon
-  // Svg24Cloud,
-  // Svg24React
+  Svg16Carbon,
+  Svg24Cloud,
+  Svg24React
 } from '@carbon-platform/icons'
 
 import { Add16 } from '@carbon/icons-react'
@@ -42,8 +42,8 @@ const CatalogList = () => {
         </footer>
       </div>
       <div className={styles.itemTags}>
-        {/* <Svg24React />
-        <Svg24Cloud className={styles.itemTagsSponsor} /> */}
+        <Svg24React />
+        <Svg24Cloud className={styles.itemTagsSponsor} />
       </div>
     </div>
   )

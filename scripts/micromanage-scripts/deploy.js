@@ -70,7 +70,7 @@ function handleDeployCommand() {
   console.log('====== Setting new Labels ======')
   let deployedApps = []
   if (changedServices.some((service) => service.isNew)) {
-    deployedApps = getDeployedApps()
+    deployedApps = getDeployedApps(changedServices.map((service) => service.name))
   }
   changedServices.forEach((service) => {
     exec(
@@ -163,9 +163,7 @@ function getChangedServices(deployedServices) {
 function deployService(changedService, tagToDeploy) {
   console.log('deploying service:', changedService.name, tagToDeploy)
   //    checkout the git tag that we are deploying (switch branch to the target)
-
-  // TODO: checkout to correct branch, this is erroring out
-  // exec(`git switch ${tagToDeploy}`)
+  exec(`git stash; git checkout tags/${changedService.name}@${tagToDeploy}`)
 
   //    ?? figure out if we need to copy over the package-lock to the service we're trying to deploy
   //       if we let cloudfoundry do the build, then we do need to copy this over.

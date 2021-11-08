@@ -5,17 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// TODO need some translation between `carbon-react` library and knowing that
-// lives in `mattrosno/carbon-next/packages/react` so we don't have to fetch
-// contents of all library configs to match the slugified name
-
-// TODO assets too, so `carbon-react/accordion` route can map directly to a
-// single GitHub API request or two.
-
-export const indexedLibraries = [
-  {
-    org: 'mattrosno',
-    repo: 'carbon-next',
-    ref: 'main'
+/**
+ * Libraries are only included in the platform if in this allowlist. Library slugs are specified as
+ * object keys to ensure uniqueness.
+ */
+const libraryAllowList = {
+  'carbon-react': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon',
+    path: '/packages/react'
   }
-]
+}
+
+module.exports = {
+  libraryAllowList
+}

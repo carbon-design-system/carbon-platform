@@ -5,31 +5,49 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getAllLibraryPaths, getLibraryData } from '@/lib/github'
 import { useContext, useEffect } from 'react'
 
+import Image from 'next/image'
 import { LayoutContext } from '@/layouts/layout'
 import { NextSeo } from 'next-seo'
 import { assetsNavData } from '@/data/nav-data'
+import { getLibraryData } from '@/lib/github'
 import styles from '@/pages/pages.module.scss'
+import { useRouter } from 'next/router'
 
-const Library = ({ libraryData }) => {
+const Asset = ({ libraryData }) => {
   const { setNavData } = useContext(LayoutContext)
+  const router = useRouter()
 
-  const { name, description } = libraryData
+  useEffect(() => {
+    setNavData(assetsNavData)
+  }, [setNavData])
+
+  if (router.isFallback) {
+    return <h1>Loading...</h1>
+  }
+
+  const [assetData] = libraryData.assets
+  const { name, description, thumbnailData: imageData } = assetData.content
 
   const seo = {
     title: name,
     description
   }
 
-  useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
-
   return (
     <>
       <NextSeo {...seo} />
+      {imageData && (
+        <Image
+          alt={`${name} thumbnail`}
+          height="300px"
+          width="400px"
+          src={imageData.img.src}
+          placeholder={imageData.img.type === 'svg' ? 'empty' : 'blur'}
+          blurDataURL={imageData.base64}
+        />
+      )}
       <pre className={styles.data}>{JSON.stringify(libraryData, null, 2)}</pre>
     </>
   )
@@ -38,7 +56,7 @@ const Library = ({ libraryData }) => {
 export const getStaticProps = async ({ params }) => {
   const libraryData = await getLibraryData(params)
 
-  if (!libraryData) {
+  if (!libraryData || !libraryData.assets || !libraryData.assets.length) {
     return {
       notFound: true
     }
@@ -48,18 +66,16 @@ export const getStaticProps = async ({ params }) => {
     props: {
       libraryData,
       params
-    }
+    },
+    revalidate: 10
   }
 }
 
-// TODO update to Incremental Static Regeneration
 export const getStaticPaths = async () => {
-  const paths = await getAllLibraryPaths()
-
   return {
-    paths,
-    fallback: false
+    paths: [],
+    fallback: true
   }
 }
 
-export default Library
+export default Asset

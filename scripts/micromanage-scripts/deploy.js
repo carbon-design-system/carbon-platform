@@ -7,7 +7,7 @@
 const { Command } = require('commander')
 const fs = require('fs')
 
-const { exec, getPackages, getOS } = require('./utils')
+const { exec, getPackages } = require('./utils')
 
 // details on only running the action when a specific file changes:
 // https://github.community/t/is-it-possible-to-run-the-job-only-when-a-specific-file-changes/115484
@@ -22,15 +22,7 @@ function handleDeployCommand() {
   console.log('===== micromanage deploy ======')
 
   if (!exec('command -v ibmcloud')) {
-    console.warn('ibmcloud cli not installed... attemtping to install')
-    exec(
-      {
-        Windows:
-          "iex(New-Object Net.WebClient).DownloadString('https://clis.cloud.ibm.com/install/powershell')",
-        Linux: 'curl -fsSL https://clis.cloud.ibm.com/install/linux | sh',
-        MacOS: 'curl -fsSL https://clis.cloud.ibm.com/install/osx | sh'
-      }[getOS()]
-    )
+    throw new Error('ibmcloud cli is not installed')
   }
 
   const serviceConfig = require('../../service-config.json')
@@ -68,15 +60,9 @@ function handleDeployCommand() {
   })
 
   console.log('====== Setting new Labels ======')
-  let deployedApps = []
-  if (changedServices.some((service) => service.isNew)) {
-    deployedApps = getDeployedApps(changedServices.map((service) => service.name))
-  }
   changedServices.forEach((service) => {
     exec(
-      `ibmcloud cf curl "/v3/apps/${
-        service.isNew ? deployedApps.find((app) => app.name === service.name).guid : service.guid
-      }" -X PATH -d '{"metadata": {"labels": {"version": ${service.version}}}}'`
+      `ibmcloud cf curl "/v3/apps/${service.guid}" -X PATH -d '{"metadata": {"labels": {"version": ${service.version}}}}'`
     )
   })
 }
@@ -120,26 +106,12 @@ function getChangedServices(deployedServices) {
     }
 
     if (!deployedService) {
-      console.log('Found New Service', serviceName)
-      changedServices.push({
-        name: serviceName,
-        path: servicePackage.path,
-        version: serviceConfig.deployedVersion,
-        isNew: true,
-        outputFolder: serviceConfig.outputFolder ?? 'dist',
-        memory: serviceConfig.memory ?? '64M',
-        command: serviceConfig.command ?? 'npm start'
-      })
-      return
+      throw new Error(`${serviceName} service has not been deployed before`)
     }
     // determine if service has changed through CF (or if service hasn't been deployed yet):
     // do a cf lookup for each service and compare
     // get current deployed version of service (manifest label) ,
     const deployedVersion = deployedService.labels?.version
-
-    if (!deployedVersion) {
-      throw new Error(`Found deployed app ${serviceName} without specified version`)
-    }
 
     //    compare against tag in current deployed-services.json
     const serviceHasChanged = deployedVersion !== serviceConfig.deployedVersion
@@ -150,7 +122,6 @@ function getChangedServices(deployedServices) {
         guid: deployedService.guid,
         path: servicePackage.path,
         version: serviceConfig.deployedVersion,
-        isNew: false,
         outputFolder: serviceConfig.outputFolder ?? 'dist',
         memory: serviceConfig.memory ?? '64M',
         command: serviceConfig.command ?? 'npm start'
@@ -194,7 +165,7 @@ function deployService(changedService, tagToDeploy) {
 
   /* exec(
 `ibmcloud cf push ${changedService.name} -m ${changedService.memory} -c ${changedService.command}`,
-    { cwd: `${changedService.path}/${changedService.outputFolder}` }
+    { cwd: `${changedService.path}` }
   )
   */
 }

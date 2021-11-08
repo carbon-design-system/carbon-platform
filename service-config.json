@@ -1,15 +1,23 @@
 {
   "deployedServices": {
     "production": {
-      "services": {
-        "@carbon-platform/logging-service": {"outputFolder": "dist", "deployedVersion":"0.1.9", "memory": "64M", "command": "npm start"},
-        "@carbon-platform/web-app": {"outputFolder": ".next", "deployedVersion":"0.1.9", "memory": "64M", "command": "npm start"}
+      "@carbon-platform/logging-service": {
+        "deployedVersion": "0.1.9",
+        "command": "npm start"
+      },
+      "@carbon-platform/web-app": {
+        "deployedVersion": "0.1.9",
+        "command": "npm start"
       }
     },
     "sandbox": {
-      "services": {
-        "@carbon-platform/logging-service": {"outputFolder": "dist", "deployedVersion":"0.1.9", "memory": "64M", "command": "npm start"},
-        "@carbon-platform/web-app": {"outputFolder": ".next", "deployedVersion":"0.1.9", "memory": "64M", "command": "npm start"}
+      "@carbon-platform/logging-service": {
+        "deployedVersion": "0.1.9",
+        "command": "npm start"
+      },
+      "@carbon-platform/web-app": {
+        "deployedVersion": "0.1.9",
+        "command": "npm start"
       }
     }
   },

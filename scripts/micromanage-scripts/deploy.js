@@ -20,16 +20,21 @@ const REQUIRED_CONFIG_PARAMS = [
 function buildDeployCommand() {
   return new Command('deploy')
     .description('Deploy all services to CloudFoundry')
+    .argument('[environment]')
+    .option('--env [env]', 'deployment environment: test | prod. Defaults to test', 'test')
     .action(handleDeployCommand)
 }
 
-function handleDeployCommand() {
+function handleDeployCommand(_, options) {
   console.log('===== micromanage deploy ======')
 
   // Check to see if the ibmcloud cli is available. This will throw an exception if it is not
   exec('ibmcloud --version')
 
-  const serviceConfig = require(path.join(process.cwd(), 'service-config.json'))
+  const serviceConfig = require(path.join(
+    process.cwd(),
+    options.env === 'prod' ? 'service-config.prod.json' : 'service-config.test.json'
+  ))
 
   if (!process.env.IBM_CLOUD_API_KEY) {
     throw new Error('IBM_CLOUD_API_KEY must be exported as an environment variable')
@@ -74,16 +79,22 @@ function tagService(changedService) {
   const postData = {
     metadata: {
       labels: {
-        version: changedService.version
+        version: changedService.newVersion
       }
     }
   }
   console.log(
-    `Setting version label on ${changedService.name} to ${postData.metadata.labels.version}`
+    `Setting version label on ${changedService.package.name} to ${postData.metadata.labels.version}`
   )
-  exec(
-    `ibmcloud cf curl "/v3/apps/${changedService.guid}" -X PATH -d '${JSON.stringify(postData)}'`
+  console.log(
+    exec(
+      `ibmcloud cf curl "/v3/apps/${
+        changedService.guid
+      }" -H 'Content-Type: application/json' -X PATCH -d '${JSON.stringify(postData)}'`
+    )
   )
+
+  console.log('All services deployed')
 }
 
 function getExistingCloudApps(appNames) {
@@ -100,8 +111,7 @@ function getExistingCloudApps(appNames) {
 }
 
 function getChangedServices(serviceConfig) {
-  // TODO: incorporate sandbox as well
-  const prodServices = serviceConfig.deployedServices.production
+  const prodServices = serviceConfig.deployedServices
   const changedServices = []
 
   const existingCloudApps = getExistingCloudApps(Object.keys(prodServices))
@@ -128,7 +138,8 @@ function getChangedServices(serviceConfig) {
       changedServices.push({
         package: servicePackage,
         prevVersion: currentlyDeployedService.labels?.version,
-        newVersion: versionToDeploy
+        newVersion: versionToDeploy,
+        guid: currentlyDeployedService.guid
       })
     }
   })
@@ -141,26 +152,39 @@ function deployService(changedService) {
   )
 
   //    checkout the git tag that we are deploying (switch branch to the target)
+
   exec('git stash push')
-  exec(`git switch tags/${changedService.package.name}@${changedService.newVersion}`)
+  exec(`git checkout tags/${changedService.package.name}@${changedService.newVersion}`)
 
   fs.copyFileSync('package-lock.json', path.join(changedService.package.path, 'package-lock.json'))
+  const packageJson = require(path.join(process.cwd(), 'package.json'))
+  exec(`npm pkg set engines.node="${packageJson.engines.node}"`, {
+    cwd: changedService.package.path
+  })
+  exec(`npm pkg set engines.npm="${packageJson.engines.npm}"`, { cwd: changedService.package.path })
 
   // Note: `cd` doesn't stay with exec, have to provide a cwd instead
 
   // This will install deps in the workspace folder and adjust the package-lock file as-needed
-  exec('npm install', { cwd: changedService.package.path })
+  console.log('installing node packages...')
+  console.log(exec('npm install', { cwd: changedService.package.path }))
 
-  exec('npm --if-present run build', { cwd: changedService.package.path })
+  console.log('building...')
+  console.log(exec('npm --if-present run build', { cwd: changedService.package.path }))
+
+  if (!fs.existsSync(`./${changedService.package.path}/.cfignore`)) {
+    exec('echo "node_modules" > .cfignore', { cwd: changedService.package.path })
+    exec('echo ".env.local" >> .cfignore', { cwd: changedService.package.path })
+  }
 
   //     if everything looks good, deploy it using ibmcloud cli
-  // TODO: figure out push command, buildpack? start command? package-lock.json?
 
-  /* exec(
-`ibmcloud cf push ${changedService.name} -c ${changedService.command}`,
-    { cwd: `${changedService.path}` }
+  console.log('pushing...')
+  console.log(
+    exec(`ibmcloud cf push ${changedService.package.name}`, {
+      cwd: `${changedService.package.path}`
+    })
   )
-  */
 }
 
 module.exports = {

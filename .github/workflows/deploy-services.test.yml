@@ -5,7 +5,7 @@ on:
     branches:
       - 'main'
     paths:
-      - 'service-config.json'
+      - 'service-config.test.json'
 
 jobs:
   build-and-deploy:

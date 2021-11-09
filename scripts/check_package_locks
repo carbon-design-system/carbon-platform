@@ -1,0 +1,11 @@
+#!/bin/sh
+
+git diff --staged --name-only --diff-filter=d | grep "/package-lock.json"
+rc=$?
+
+if [ $rc -eq 0 ]; then
+  echo "Found duplicate package-lock.json file. Remove and install deps from the top-level"
+  exit 1
+else
+  exit 0
+fi

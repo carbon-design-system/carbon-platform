@@ -3,6 +3,11 @@
 
 set -e
 
+# Lint all staged files
 npx --no-install lint-staged
 
+# Ensure proper linkage between local packages
 git diff --staged --name-only --diff-filter=d | xargs scripts/micromanage link
+
+# Check for duplicate package-lock.json files
+scripts/check_package_locks

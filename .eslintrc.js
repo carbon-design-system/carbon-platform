@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright IBM Corp. 2021, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
@@ -21,7 +21,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module'
   },
-  plugins: ['@typescript-eslint', 'notice'],
+  plugins: ['@typescript-eslint', 'notice', 'simple-import-sort'],
   rules: {
     'jsx-a11y/anchor-is-valid': [
       'error',
@@ -44,6 +44,8 @@ module.exports = {
         templateFile: path.join(__dirname, '.copyright.js')
       }
     ],
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
     'space-before-function-paren': [
       'error',
       {

@@ -1,10 +1,9 @@
-/**
+/*
  * Copyright IBM Corp. 2021, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 import {
   Column,
   Grid,
@@ -25,13 +24,14 @@ import {
   Theme
 } from '@carbon/react'
 import { Search, Switcher, User } from '@carbon/react/icons'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { createContext, useContext, useState } from 'react'
 
-import Link from 'next/link'
 import NextLink from '@/components/next-link'
 import { globalNavData } from '@/data/nav-data'
+
 import styles from './layout.module.scss'
-import { useRouter } from 'next/router'
 
 export const LayoutContext = createContext()
 

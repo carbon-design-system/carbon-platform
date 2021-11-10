@@ -1,15 +1,15 @@
-/**
+/*
  * Copyright IBM Corp. 2021, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { CACHE_PATH, IMAGES_CACHE_PATH } from '@/config/constants'
-
 import { Octokit } from '@octokit/core'
 import cacheManager from 'cache-manager'
-import fs from 'fs-extra'
 import fsStore from 'cache-manager-fs-hash'
+import fs from 'fs-extra'
+
+import { CACHE_PATH, IMAGES_CACHE_PATH } from '@/config/constants'
 
 const diskCache = cacheManager.caching({
   store: fsStore,

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright IBM Corp. 2021, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
@@ -84,28 +84,31 @@ function getUpdatedPackages() {
     }
   })
 
-  // Find dependent packages that now need updates too
-  const expandedUpdatedPackages = []
+  // For each workspace package, check if it depends on any of the updated packages
   getPackages().forEach((packageToCheck) => {
+    // Avoid adding duplicates to the updatedPackages list
+    if (updatedPackages.find((updated) => updated.name === packageToCheck.name)) {
+      return
+    }
+
+    // Check packageToCheck against each updated, non-private package
     updatedPackages
-      .filter((pkg) => !pkg.private) // Only consider public, updated packages
+      .filter((pkg) => !pkg.private)
+      .filter((pkg) => pkg.name !== packageToCheck.name)
       .forEach((updatedPackage) => {
         if (
-          updatedPackage.name === packageToCheck.name ||
           (packageToCheck.dependencies && updatedPackage.name in packageToCheck.dependencies) ||
           (packageToCheck.devDependencies && updatedPackage.name in packageToCheck.devDependencies)
         ) {
-          if (updatedPackage.name !== packageToCheck.name) {
-            console.log(
-              `*** ${packageToCheck.name} is updating because it depends on ${updatedPackage.name}`
-            )
-          }
-          expandedUpdatedPackages.push(packageToCheck)
+          console.log(
+            `*** ${packageToCheck.name} is updating because it depends on ${updatedPackage.name}`
+          )
+          updatedPackages.push(packageToCheck)
         }
       })
   })
 
-  return expandedUpdatedPackages
+  return updatedPackages
 }
 
 function versionPackages(updatedPackages) {
@@ -135,6 +138,7 @@ function updateDeps(updatedPackage, newVersion) {
   getPackages().forEach((pkg) => {
     const dependencyBlocks = []
 
+    // Come up with a list of dep blocks that need updating
     if (pkg.dependencies && updatedPackage.name in pkg.dependencies) {
       dependencyBlocks.push('dependencies')
     }
@@ -145,7 +149,7 @@ function updateDeps(updatedPackage, newVersion) {
     dependencyBlocks.forEach((dependencyBlock) => {
       console.log(`Updating ${pkg.name}'s local ${dependencyBlock} on ${updatedPackage.name}`)
       exec(
-        `npm --workspace ${pkg.path} pkg set "${dependencyBlock}.${updatedPackage.name}=^${newVersion}"`
+        `npm --workspace ${pkg.path} pkg set "${dependencyBlock}.${updatedPackage.name}=${newVersion}"`
       )
     })
   })

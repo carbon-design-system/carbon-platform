@@ -14,7 +14,7 @@ const REQUIRED_ENV_VARS = [
   'IBM_CLOUD_API',
   'IBM_CLOUD_API_KEY',
   'CLOUD_FOUNDRY_ORGANIZATION',
-  'CLOUD_FOUNDRY_SPACE',
+  'CLOUD_FOUNDRY_SPACE_PREFIX',
   'CLOUD_FOUNDRY_REGION'
 ]
 
@@ -51,7 +51,7 @@ function handleDeployCommand(options) {
     `ibmcloud login --apikey ${process.env.IBM_CLOUD_API_KEY} -r ${process.env.CLOUD_FOUNDRY_REGION}`
   )
   exec(
-    `ibmcloud target -o ${process.env.CLOUD_FOUNDRY_ORGANIZATION} -s ${process.env.CLOUD_FOUNDRY_SPACE}-${options.target}`
+    `ibmcloud target -o ${process.env.CLOUD_FOUNDRY_ORGANIZATION} -s ${process.env.CLOUD_FOUNDRY_SPACE_PREFIX}-${options.target}`
   )
 
   console.log('Getting changed services')

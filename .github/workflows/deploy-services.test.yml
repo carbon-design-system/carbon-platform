@@ -34,6 +34,10 @@ jobs:
         run: npm install
 
       - name: Call Deploy Script 🚀
-        run: npm run deploy
+        run: npm run deploy --target=prod
         env:
+          IBM_CLOUD_API: https://cloud.ibm.com
           IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
+          CLOUD_FOUNDRY_ORGANIZATION: ${{ secrets.CLOUD_FOUNDRY_ORGANIZATION }}
+          CLOUD_FOUNDRY_SPACE_PREFIX: ${{ secrets.CLOUD_FOUNDRY_SPACE_PREFIX }}
+          CLOUD_FOUNDRY_REGION: ${{ secrets.CLOUD_FOUNDRY_REGION }}

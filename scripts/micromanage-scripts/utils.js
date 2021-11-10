@@ -11,7 +11,7 @@ const path = require('path')
  * Execute a command line command.
  *
  * @param {string} cmd Command to execute.
- * @param {ExecSyncOptionsWithBufferEncoding} options exec options.
+ * @param {object} options Additional options provided to execSync
  * @returns {string} Output of the command.
  */
 function exec(cmd, options) {

@@ -4,15 +4,17 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import http from 'http'
 import { doStuff } from '@carbon-platform/logging'
 
 doStuff()
 
-console.log("it's an interesting change!")
-console.log("it's another interesting change!")
-console.log("it's another another interesting change!")
-console.log('cool')
-console.log('one more fix')
-console.log('two more fix')
+http
+  .createServer(function (request: any, response: any) {
+    console.log('request ', request.url)
 
-console.log('hello')
+    response.writeHead(200)
+    response.end()
+  })
+  .listen(process.env.PORT)
+console.log(`Server running at port ${process.env.PORT}`)

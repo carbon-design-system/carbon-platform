@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 const { Command } = require('commander')
+const dotenv = require('dotenv')
+const path = require('path')
 
 const { buildDeployCommand } = require('./deploy')
 const { buildLinkCommand } = require('./link')
@@ -12,6 +14,8 @@ const { buildPublishCommand } = require('./publish')
 const { buildVersionCommand } = require('./version')
 
 function main() {
+  dotenv.config({ path: path.join(__dirname, '.env') })
+
   const program = new Command()
     .addCommand(buildDeployCommand())
     .addCommand(buildLinkCommand())

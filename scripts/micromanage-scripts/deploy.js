@@ -10,51 +10,49 @@ const path = require('path')
 
 const { exec, getPackageByName } = require('./utils')
 
-const REQUIRED_CONFIG_PARAMS = [
-  'ibmCloudApi',
-  'cloudFoundryOrganization',
-  'cloudFoundrySpace',
-  'cloudFoundryRegion'
+const REQUIRED_ENV_VARS = [
+  'IBM_CLOUD_API',
+  'IBM_CLOUD_API_KEY',
+  'CLOUD_FOUNDRY_ORGANIZATION',
+  'CLOUD_FOUNDRY_SPACE',
+  'CLOUD_FOUNDRY_REGION'
 ]
+
+const DEPLOY_TARGETS = ['test', 'prod']
 
 function buildDeployCommand() {
   return new Command('deploy')
     .description('Deploy all services to CloudFoundry')
-    .argument('[environment]')
-    .option('--env [env]', 'deployment environment: test | prod. Defaults to test', 'test')
+    .requiredOption('--target <target>', `target environment for deploy: [${DEPLOY_TARGETS}]`)
     .action(handleDeployCommand)
 }
 
-function handleDeployCommand(_, options) {
+function handleDeployCommand(options) {
   console.log('===== micromanage deploy ======')
 
   // Check to see if the ibmcloud cli is available. This will throw an exception if it is not
   exec('ibmcloud --version')
 
-  const serviceConfig = require(path.join(
-    process.cwd(),
-    options.env === 'prod' ? 'service-config.prod.json' : 'service-config.test.json'
-  ))
-
-  if (!process.env.IBM_CLOUD_API_KEY) {
-    throw new Error('IBM_CLOUD_API_KEY must be exported as an environment variable')
+  if (!DEPLOY_TARGETS.includes(options.target)) {
+    throw new Error(`Invalid deploy target: ${options.target}`)
   }
 
-  REQUIRED_CONFIG_PARAMS.forEach((param) => {
-    if (!serviceConfig.cloudFoundryConfig?.[param]) {
-      throw new Error(
-        `${param} must be specified in cloudFoundryConfig block in service-config.json file`
-      )
+  REQUIRED_ENV_VARS.forEach((param) => {
+    if (!process.env[param]) {
+      throw new Error(`${param} must be exported as an environment variable or in the .env file`)
     }
   })
 
-  const { cloudFoundryRegion, cloudFoundryOrganization, cloudFoundrySpace, ibmCloudApi } =
-    serviceConfig.cloudFoundryConfig
+  const serviceConfig = require(path.join(process.cwd(), `service-config.${options.target}.json`))
 
   console.log('Logging into IBM Cloud')
-  exec(`ibmcloud api ${ibmCloudApi}`)
-  exec(`ibmcloud login --apikey ${process.env.IBM_CLOUD_API_KEY} -r ${cloudFoundryRegion}`)
-  exec(`ibmcloud target -o ${cloudFoundryOrganization} -s ${cloudFoundrySpace}`)
+  exec(`ibmcloud api ${process.env.IBM_CLOUD_API}`)
+  exec(
+    `ibmcloud login --apikey ${process.env.IBM_CLOUD_API_KEY} -r ${process.env.CLOUD_FOUNDRY_REGION}`
+  )
+  exec(
+    `ibmcloud target -o ${process.env.CLOUD_FOUNDRY_ORGANIZATION} -s ${process.env.CLOUD_FOUNDRY_SPACE}-${options.target}`
+  )
 
   console.log('Getting changed services')
   const changedServices = getChangedServices(serviceConfig)
@@ -68,7 +66,7 @@ function handleDeployCommand(_, options) {
     console.log('No services have changed. Nothing to do')
   }
 
-  // Redeploy all changed services
+  // Re-deploy and re-tag all changed services
   changedServices.forEach((changedService) => {
     deployService(changedService)
     tagService(changedService)
@@ -147,39 +145,36 @@ function getChangedServices(serviceConfig) {
 }
 
 function deployService(changedService) {
+  // Note: `cd` doesn't stay with exec, have to provide a cwd instead
+
   console.log(
     `Deploying service ${changedService.package.name} at version ${changedService.newVersion}`
   )
 
-  //    checkout the git tag that we are deploying (switch branch to the target)
-
-  exec('git stash push')
+  // Checkout the git tag that we are deploying
   exec(`git checkout tags/${changedService.package.name}@${changedService.newVersion}`)
 
   fs.copyFileSync('package-lock.json', path.join(changedService.package.path, 'package-lock.json'))
+
   const packageJson = require(path.join(process.cwd(), 'package.json'))
   exec(`npm pkg set engines.node="${packageJson.engines.node}"`, {
     cwd: changedService.package.path
   })
   exec(`npm pkg set engines.npm="${packageJson.engines.npm}"`, { cwd: changedService.package.path })
 
-  // Note: `cd` doesn't stay with exec, have to provide a cwd instead
-
-  // This will install deps in the workspace folder and adjust the package-lock file as-needed
-  console.log('installing node packages...')
+  // Install deps into the workspace folder and adjust the package-lock file as-needed
+  console.log('Installing node modules')
   console.log(exec('npm install', { cwd: changedService.package.path }))
 
-  console.log('building...')
+  console.log('Building service')
   console.log(exec('npm --if-present run build', { cwd: changedService.package.path }))
 
-  if (!fs.existsSync(`./${changedService.package.path}/.cfignore`)) {
-    exec('echo "node_modules" > .cfignore', { cwd: changedService.package.path })
-    exec('echo ".env.local" >> .cfignore', { cwd: changedService.package.path })
-  }
+  // Merge the top-level .gitignore with the current package's
+  const gitIgnoreContents = fs.readFileSync('.gitignore').toString()
+  const workspaceIgnorePath = path.join(changedService.package.path, '.gitignore')
+  fs.appendFileSync(workspaceIgnorePath, '\n' + gitIgnoreContents)
 
-  //     if everything looks good, deploy it using ibmcloud cli
-
-  console.log('pushing...')
+  console.log('Pushing service')
   console.log(
     exec(`ibmcloud cf push ${changedService.package.name}`, {
       cwd: `${changedService.package.path}`

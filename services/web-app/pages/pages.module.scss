@@ -8,3 +8,11 @@
 .data {
   @include type-style('code-01');
 }
+
+.bullets {
+  list-style-type: initial;
+}
+
+.bullets-item {
+  margin-left: 20px;
+}

@@ -1,19 +1,18 @@
-/**
+/*
  * Copyright IBM Corp. 2021, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import Image from 'next/image'
-import { LayoutContext } from '@/layouts/layout'
-import { NextSeo } from 'next-seo'
 import { assetsNavData } from '@/data/nav-data'
+import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
 import styles from '@/pages/pages.module.scss'
-import { useRouter } from 'next/router'
 
 const Asset = ({ libraryData }) => {
   const { setNavData } = useContext(LayoutContext)

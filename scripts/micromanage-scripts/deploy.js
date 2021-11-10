@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright IBM Corp. 2021, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
@@ -154,17 +154,7 @@ function deployService(changedService) {
   // Checkout the git tag that we are deploying
   exec(`git checkout tags/${changedService.package.name}@${changedService.newVersion}`)
 
-  fs.copyFileSync('package-lock.json', path.join(changedService.package.path, 'package-lock.json'))
-
-  const packageJson = require(path.join(process.cwd(), 'package.json'))
-  exec(`npm pkg set engines.node="${packageJson.engines.node}"`, {
-    cwd: changedService.package.path
-  })
-  exec(`npm pkg set engines.npm="${packageJson.engines.npm}"`, { cwd: changedService.package.path })
-
-  // Install deps into the workspace folder and adjust the package-lock file as-needed
-  console.log('Installing node modules')
-  console.log(exec('npm install', { cwd: changedService.package.path }))
+  reconcileDependencies(changedService)
 
   console.log('Building service')
   console.log(exec('npm --if-present run build', { cwd: changedService.package.path }))
@@ -180,6 +170,41 @@ function deployService(changedService) {
       cwd: `${changedService.package.path}`
     })
   )
+}
+
+function reconcileDependencies(changedService) {
+  const packageJson = require(path.join(process.cwd(), 'package.json'))
+
+  console.log('Using package-lock.json from project root')
+  fs.copyFileSync('package-lock.json', path.join(changedService.package.path, 'package-lock.json'))
+
+  // Use the engine values from the top-level package.json
+  console.log('Setting engine values in package.json')
+  exec(`npm pkg set engines.node="${packageJson.engines.node}"`, {
+    cwd: changedService.package.path
+  })
+  exec(`npm pkg set engines.npm="${packageJson.engines.npm}"`, { cwd: changedService.package.path })
+
+  // This will convert dev deps to normal deps, but for this purpose, it makes no difference
+  console.log('Unlinking local package dependencies')
+  const allDeps = {
+    ...(changedService.package.dependencies || {}),
+    ...(changedService.package.devDependencies || {})
+  }
+  const platformPackages = Object.entries(allDeps)
+    .filter(([pkg]) => pkg.startsWith('@carbon-platform/'))
+    .map(([pkg, version]) => {
+      return `${pkg}@${version}`
+    })
+
+  platformPackages.forEach((pkg) => {
+    console.log(`Unlinking and installing ${pkg}`)
+    exec(`npm install --save-exact ${pkg}`, { cwd: changedService.package.path })
+  })
+
+  // Install deps into the workspace folder and adjust the package-lock file as-needed
+  console.log('Installing node modules')
+  console.log(exec('npm install', { cwd: changedService.package.path }))
 }
 
 module.exports = {

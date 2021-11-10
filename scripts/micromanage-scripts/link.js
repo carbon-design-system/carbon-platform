@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright IBM Corp. 2021, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
@@ -48,7 +48,7 @@ function handleLinkCommand(files) {
 
       if (searchResult && !(pkg.dependencies && needle.name in pkg.dependencies)) {
         console.warn(`[WARN] Unspecified dependency on ${needle.name} found in package ${file}`)
-        exec(`npm --workspace ${pkg.path} install ${needle.name}`)
+        exec(`npm --workspace ${pkg.path} install --save-exact ${needle.name}`)
         isDirty = true
       }
     })

@@ -1,18 +1,17 @@
-/**
+/*
  * Copyright IBM Corp. 2021, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-import { getResponse, writeFile } from '@/lib/file-cache'
+import yaml from 'js-yaml'
+import { getPlaiceholder } from 'plaiceholder'
+import slugify from 'slugify'
 
 import { IMAGES_CACHE_PATH } from '@/config/constants'
-import { getPlaiceholder } from 'plaiceholder'
 import { libraryAllowList } from '@/data/libraries'
+import { getResponse, writeFile } from '@/lib/file-cache'
 import { removeLeadingSlash } from '@/utils/string'
-import slugify from 'slugify'
-import yaml from 'js-yaml'
 
 /**
  * Validates the route's parameters and returns an object that also includes the library's slug as

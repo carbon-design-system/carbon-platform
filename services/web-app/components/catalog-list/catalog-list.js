@@ -1,10 +1,10 @@
-/**
+/*
  * Copyright IBM Corp. 2021, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+import { Add16 } from '@carbon/icons-react'
 import {
   Svg12Stable,
   Svg14Download,
@@ -13,11 +13,11 @@ import {
   Svg24Cloud,
   Svg24React
 } from '@carbon-platform/icons'
-
-import { Add16 } from '@carbon/icons-react'
 import Link from 'next/link'
-import { getStatus } from '@/utils/schema'
 import slugify from 'slugify'
+
+import { getStatus } from '@/utils/schema'
+
 import styles from './catalog-list.module.scss'
 
 const CatalogList = ({ assets = [] }) => {

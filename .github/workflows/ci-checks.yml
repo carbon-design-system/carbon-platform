@@ -25,10 +25,10 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   #
-  # Ensure all files pass linting
+  # Ensure all files pass linting and build cleanly
   #
   lint:
-    name: Prettier, ESLint, Stylelint
+    name: Prettier -> ESLint -> Stylelint -> Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -45,25 +45,6 @@ jobs:
 
       - name: Lint 🔎
         run: npm run lint
-
-  #
-  # Ensure all packages and services build properly
-  #
-  build:
-    name: Build packages and services
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
-
-      - name: Setup Node 🏗️
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'npm'
-
-      - name: Install Node Modules 🔧
-        run: npm install
 
       - name: Build 🔨
         run: npm run all:build

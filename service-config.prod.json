@@ -6,11 +6,5 @@
     "@carbon-platform/web-app": {
       "deployedVersion": "0.1.10"
     }
-  },
-  "cloudFoundryConfig": {
-    "ibmCloudApi": "",
-    "cloudFoundryOrganization": "",
-    "cloudFoundrySpace": "",
-    "cloudFoundryRegion": ""
   }
 }

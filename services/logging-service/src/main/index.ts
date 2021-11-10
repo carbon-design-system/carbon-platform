@@ -4,7 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const http = require('http')
+import { doStuff } from '@carbon-platform/logging'
+import http from 'http'
+
+doStuff()
 
 http
   .createServer(function (request: any, response: any) {

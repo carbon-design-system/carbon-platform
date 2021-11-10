@@ -23,6 +23,6 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
-    "@carbon-platform/logging": "^0.1.4"
+    "@carbon-platform/logging": "0.1.15"
   }
 }

@@ -12,3 +12,6 @@ dist/
 
 # IDE stuff
 .vscode/
+
+# Dotenv stuff
+.env

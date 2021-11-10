@@ -1,4 +1,4 @@
-name: Deploy Services
+name: Deploy Production Services
 
 on:
   push:

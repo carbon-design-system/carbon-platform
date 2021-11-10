@@ -37,6 +37,9 @@ const Libraries = ({ librariesData }) => {
             <Link href={`/assets/${library.params.slug}`}>
               <a>{library.content.name}</a>
             </Link>
+            <ul className={styles.bullets}>
+              <li className={styles.bulletsItem}>{library.content.description}</li>
+            </ul>
           </li>
         ))}
       </ul>

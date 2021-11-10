@@ -163,6 +163,24 @@ function deployService(changedService) {
   })
   exec(`npm pkg set engines.npm="${packageJson.engines.npm}"`, { cwd: changedService.package.path })
 
+  console.log('replacing local packages...')
+  const dependencies = changedService.package.dependencies
+  const devDependencies = changedService.package.devDependencies
+  Object.entries(dependencies ?? {}).forEach(([key, value]) => {
+    if (key.startsWith('@carbon-platform/')) {
+      console.log(exec(`npm uninstall ${key}`, { cwd: changedService.package.path }))
+      console.log(exec(`npm install ${key}@${value}`, { cwd: changedService.package.path }))
+    }
+  })
+  Object.entries(devDependencies ?? {}).forEach(([key, value]) => {
+    if (key.startsWith('@carbon-platform/')) {
+      console.log(exec(`npm uninstall ${key}`, { cwd: changedService.package.path }))
+      console.log(
+        exec(`npm install ${key}@${value} --save-dev`, { cwd: changedService.package.path })
+      )
+    }
+  })
+
   // Note: `cd` doesn't stay with exec, have to provide a cwd instead
 
   // This will install deps in the workspace folder and adjust the package-lock file as-needed

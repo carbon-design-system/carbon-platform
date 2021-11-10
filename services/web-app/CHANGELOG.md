@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.10...@carbon-platform/web-app@0.1.11) (2021-11-10)
+
+
+### Features
+
+* add external docs url to schemas ([9d0588e](https://github.com/carbon-design-system/carbon-platform/commit/9d0588e96d45320b936a0245d3e1a57611509f0f))
+
 ### [0.1.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.9...@carbon-platform/web-app@0.1.10) (2021-11-08)
 
 

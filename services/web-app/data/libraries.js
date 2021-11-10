@@ -94,6 +94,12 @@ const libraryAllowList = {
     repo: 'carbon',
     path: '/packages/motion'
   },
+  'carbon-patterns': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon',
+    path: '/packages/patterns'
+  },
   'carbon-pictograms': {
     host: 'github.ibm.com',
     org: 'matt-rosno',

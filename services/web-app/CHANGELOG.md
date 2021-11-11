@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.11...@carbon-platform/web-app@0.1.12) (2021-11-11)
+
+
+### Bug Fixes
+
+* **web-app:** reorder imports to avoid carbon prefix bug ([b4adbb0](https://github.com/carbon-design-system/carbon-platform/commit/b4adbb0637012621c0691d358f5d85bac6b6f2e0))
+
 ### [0.1.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.10...@carbon-platform/web-app@0.1.11) (2021-11-10)
 
 

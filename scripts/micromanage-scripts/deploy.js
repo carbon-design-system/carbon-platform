@@ -55,7 +55,7 @@ function handleDeployCommand(options) {
   )
 
   console.log('Getting changed services')
-  const changedServices = getChangedServices(serviceConfig)
+  const changedServices = getChangedServices(serviceConfig, options)
   const numChangedServices = Object.keys(changedServices).length
 
   if (numChangedServices > 0) {
@@ -71,6 +71,8 @@ function handleDeployCommand(options) {
     deployService(changedService)
     tagService(changedService)
   })
+
+  console.log('All services deployed')
 }
 
 function tagService(changedService) {
@@ -91,12 +93,31 @@ function tagService(changedService) {
       }" -H 'Content-Type: application/json' -X PATCH -d '${JSON.stringify(postData)}'`
     )
   )
-
-  console.log('All services deployed')
 }
 
-function getExistingCloudApps(appNames) {
-  const deployedAppsResponse = exec(`ibmcloud cf curl "/v3/apps?names=${appNames.join(',')}" -q`)
+function getExistingCloudApps(appNames, options) {
+  const organizations = JSON.parse(
+    exec(`ibmcloud cf curl "/v3/organizations?names=${process.env.CLOUD_FOUNDRY_ORGANIZATION}" -q`)
+  )
+  if (!(organizations?.resources.length > 0)) {
+    throw new Error(`Organization ${process.env.CLOUD_FOUNDRY_ORGANIZATION} could not be found`)
+  }
+  const spaces = JSON.parse(
+    exec(
+      // eslint-disable-next-line max-len
+      `ibmcloud cf curl "/v3/spaces?names=${process.env.CLOUD_FOUNDRY_SPACE_PREFIX}-${options.target}&organization_guids=${organizations.resources[0].guid}" -q`
+    )
+  )
+  if (!(spaces?.resources?.length > 0)) {
+    throw new Error(
+      `Space ${process.env.CLOUD_FOUNDRY_SPACE_PREFIX}-${options.target} could not be found`
+    )
+  }
+  const deployedAppsResponse = exec(
+    `ibmcloud cf curl "/v3/apps?names=${appNames.join(',')}&space_guids=${
+      spaces.resources[0].guid
+    }&organization_guids=${organizations.resources[0].guid}" -q`
+  )
   const deployedApps = []
   if (deployedAppsResponse) {
     deployedApps.push(
@@ -108,11 +129,11 @@ function getExistingCloudApps(appNames) {
   return deployedApps
 }
 
-function getChangedServices(serviceConfig) {
+function getChangedServices(serviceConfig, options) {
   const prodServices = serviceConfig.deployedServices
   const changedServices = []
 
-  const existingCloudApps = getExistingCloudApps(Object.keys(prodServices))
+  const existingCloudApps = getExistingCloudApps(Object.keys(prodServices), options)
 
   Object.entries(prodServices).forEach(([name, config]) => {
     if (!config || !config.deployedVersion) {

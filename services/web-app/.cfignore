@@ -1,7 +1,6 @@
 # Ignore all source files
 /components/
 /config/
-/data/
 /layouts/
 /lib/
 /pages/

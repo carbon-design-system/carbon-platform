@@ -20,10 +20,7 @@ jobs:
 
       # Download and Install IBM Cloud CLI
       - name: Install IBM Cloud CLI 🏗️
-        run: |
-          curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
-          ibmcloud --version
-          ibmcloud config --check-version=false
+        run: curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
 
       - name: Setup Node 🏗️
         uses: actions/setup-node@v2
@@ -36,7 +33,7 @@ jobs:
         run: npm install
 
       - name: Call Deploy Script 🚀
-        run: npm run deploy --target=prod
+        run: npm run deploy -- --target=prod
         env:
           IBM_CLOUD_API: https://cloud.ibm.com
           IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}

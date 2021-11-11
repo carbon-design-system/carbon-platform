@@ -28,6 +28,7 @@
     "services:build": "npm --workspaces --if-present run service:build",
     "lint": "scripts/lint",
     "lint:fix": "scripts/lint_and_fix",
+    "deploy": "scripts/micromanage deploy",
     "nightly": "scripts/nightly",
     "prepare": "husky install && npm run packages:build"
   },
@@ -36,6 +37,7 @@
     "@commitlint/config-conventional": "^14.1.0",
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "commander": "^8.3.0",
+    "dotenv": "^10.0.0",
     "eslint": "^7.32.0",
     "eslint-config-carbon": "^2.8.0",
     "eslint-config-next": "^12.0.2",

@@ -1,0 +1,20 @@
+# npm
+node_modules/
+
+# Dotenv
+.env*
+
+# Source files
+/src/
+
+# Docs
+CHANGELOG.md
+README.md
+
+
+# Typescript config and types
+*.d.ts
+tsconfig.json
+
+# Javascript config
+jsconfig.json

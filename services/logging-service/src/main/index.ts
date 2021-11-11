@@ -5,14 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { doStuff } from '@carbon-platform/logging'
+import http from 'http'
 
 doStuff()
 
-console.log("it's an interesting change!")
-console.log("it's another interesting change!")
-console.log("it's another another interesting change!")
-console.log('cool')
-console.log('one more fix')
-console.log('two more fix')
+http
+  .createServer(function (request: any, response: any) {
+    console.log('request ', request.url)
 
-console.log('hello')
+    response.writeHead(200)
+    response.end()
+  })
+  .listen(process.env.PORT)
+console.log(`Server running at port ${process.env.PORT}`)

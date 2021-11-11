@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging-service@0.1.10...@carbon-platform/logging-service@0.1.11) (2021-11-11)
+
+
+### Features
+
+* **micromanage:** convert deploy to use dotenv ([8edaa17](https://github.com/carbon-design-system/carbon-platform/commit/8edaa174c937ef11aca1614c13d1e0db8f7e82c6))
+
+
+### Bug Fixes
+
+* merge conflicts ([76c90a0](https://github.com/carbon-design-system/carbon-platform/commit/76c90a04864b4950e4eaef8c3cc86389f1f64623))
+
 ### [0.1.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging-service@0.1.9...@carbon-platform/logging-service@0.1.10) (2021-11-11)
 
 ### [0.1.9](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging-service@0.1.8...@carbon-platform/logging-service@0.1.9) (2021-10-27)

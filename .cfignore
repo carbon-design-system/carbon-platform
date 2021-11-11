@@ -1,5 +1,6 @@
 # npm
-node_modules/
+# It's likely faster to take our installed modules and send them over than to have cf rebuild them
+# node_modules/
 
 # Dotenv
 .env*

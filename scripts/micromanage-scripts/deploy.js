@@ -8,7 +8,7 @@ const { Command } = require('commander')
 const fs = require('fs')
 const path = require('path')
 
-const { exec, getPackageByName } = require('./utils')
+const { exec, getPackageByName, buildCurlUrlParams } = require('./utils')
 
 const REQUIRED_ENV_VARS = [
   'IBM_CLOUD_API',
@@ -96,37 +96,39 @@ function tagService(changedService) {
 }
 
 function getExistingCloudApps(appNames, options) {
+  // Get the org
+  const params = {
+    names: process.env.CLOUD_FOUNDRY_ORGANIZATION
+  }
   const organizations = JSON.parse(
-    exec(`ibmcloud cf curl "/v3/organizations?names=${process.env.CLOUD_FOUNDRY_ORGANIZATION}" -q`)
+    exec(`ibmcloud cf curl "/v3/organizations?${buildCurlUrlParams(params)}" -q`)
   )
-  if (!(organizations?.resources.length > 0)) {
+  params.organization_guids = organizations?.resources?.[0].guid
+  if (!params.organization_guids) {
     throw new Error(`Organization ${process.env.CLOUD_FOUNDRY_ORGANIZATION} could not be found`)
   }
-  const spaces = JSON.parse(
-    exec(
-      // eslint-disable-next-line max-len
-      `ibmcloud cf curl "/v3/spaces?names=${process.env.CLOUD_FOUNDRY_SPACE_PREFIX}-${options.target}&organization_guids=${organizations.resources[0].guid}" -q`
-    )
-  )
-  if (!(spaces?.resources?.length > 0)) {
+
+  // Get the space from the org
+  params.names = `${process.env.CLOUD_FOUNDRY_SPACE_PREFIX}-${options.target}`
+  const spaces = JSON.parse(exec(`ibmcloud cf curl "/v3/spaces?${buildCurlUrlParams(params)}" -q`))
+  params.spaces = spaces?.resources?.[0].guid
+  if (!params.spaces) {
     throw new Error(
       `Space ${process.env.CLOUD_FOUNDRY_SPACE_PREFIX}-${options.target} could not be found`
     )
   }
-  const deployedAppsResponse = exec(
-    `ibmcloud cf curl "/v3/apps?names=${appNames.join(',')}&space_guids=${
-      spaces.resources[0].guid
-    }&organization_guids=${organizations.resources[0].guid}" -q`
-  )
-  const deployedApps = []
-  if (deployedAppsResponse) {
-    deployedApps.push(
-      ...JSON.parse(deployedAppsResponse)?.resources.map((r) => {
-        return { name: r.name, labels: r.metadata.labels, guid: r.guid }
-      })
-    )
+
+  // Get the apps from the space in the org
+  params.names = appNames.join(',')
+  const deployedAppsResponse = exec(`ibmcloud cf curl "/v3/apps?${buildCurlUrlParams(params)}" -q`)
+
+  if (!deployedAppsResponse) {
+    throw new Error('Error while retrieving existing app deployments')
   }
-  return deployedApps
+
+  return JSON.parse(deployedAppsResponse)?.resources.map((r) => {
+    return { name: r.name, labels: r.metadata.labels, guid: r.guid }
+  })
 }
 
 function getChangedServices(serviceConfig, options) {

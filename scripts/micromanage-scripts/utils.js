@@ -7,6 +7,14 @@
 const { execSync } = require('child_process')
 const path = require('path')
 
+function buildCurlUrlParams(params) {
+  const encodedParams = Object.entries(params).map(([key, val]) => {
+    return `${key}=${encodeURIComponent(val)}`
+  })
+
+  return encodedParams.join('&')
+}
+
 /**
  * Execute a command line command.
  *
@@ -99,6 +107,7 @@ function getTags() {
 }
 
 module.exports = {
+  buildCurlUrlParams,
   exec,
   getFiles,
   getPackageByName,

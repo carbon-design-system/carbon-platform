@@ -129,6 +129,36 @@ const libraryAllowList = {
     org: 'matt-rosno',
     repo: 'carbon',
     path: '/packages/upgrade'
+  },
+  'ibmdotcom-react': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/react'
+  },
+  'ibmdotcom-web-components': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/web-components'
+  },
+  'ibmdotcom-services': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/services'
+  },
+  'ibmdotcom-styles': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/styles'
+  },
+  'ibmdotcom-utilities': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/utilities'
   }
 }
 

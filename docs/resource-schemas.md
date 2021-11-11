@@ -21,7 +21,7 @@ place it in the same directory as your library's `package.json` file.
 
 ```yml
 name: Carbon React
-description: React implementation of Carbon Components.
+description: React implementation of Carbon Components
 ```
 
 ### Library keys

@@ -159,10 +159,7 @@ function deployService(changedService) {
   console.log('Building service')
   console.log(exec('npm --if-present run build', { cwd: changedService.package.path }))
 
-  // Merge the top-level .gitignore with the current package's
-  const gitIgnoreContents = fs.readFileSync('.gitignore').toString()
-  const workspaceIgnorePath = path.join(changedService.package.path, '.gitignore')
-  fs.appendFileSync(workspaceIgnorePath, '\n' + gitIgnoreContents)
+  createIgnoresFile(changedService)
 
   console.log('Pushing service')
   console.log(
@@ -205,6 +202,13 @@ function reconcileDependencies(changedService) {
   // Install deps into the workspace folder and adjust the package-lock file as-needed
   console.log('Installing node modules')
   console.log(exec('npm install', { cwd: changedService.package.path }))
+}
+
+function createIgnoresFile(changedService) {
+  // Merge the top-level .cfignore with the current package's
+  const cfIgnoreContents = fs.readFileSync('.cfignore').toString()
+  const workspaceIgnorePath = path.join(changedService.package.path, '.cfignore')
+  fs.appendFileSync(workspaceIgnorePath, '\n' + cfIgnoreContents)
 }
 
 module.exports = {

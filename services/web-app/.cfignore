@@ -1,2 +1,9 @@
-node_modules
-.env.local
+# Ignore all source files
+/components/
+/config/
+/data/
+/layouts/
+/lib/
+/pages/
+/styles/
+/utils/

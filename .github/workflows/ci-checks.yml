@@ -27,7 +27,7 @@ jobs:
   #
   # Ensure all files pass linting and build cleanly
   #
-  lint:
+  lint_and_build:
     name: Prettier -> ESLint -> Stylelint -> Build
     runs-on: ubuntu-latest
     steps:

@@ -43,6 +43,8 @@ function handleDeployCommand(options) {
     }
   })
 
+  console.log(`Deploy target is: ${options.target}`)
+
   const serviceConfig = require(path.join(process.cwd(), `service-config.${options.target}.json`))
 
   console.log('Logging into IBM Cloud')
@@ -111,8 +113,8 @@ function getExistingCloudApps(appNames, options) {
   // Get the space from the org
   params.names = `${process.env.CLOUD_FOUNDRY_SPACE_PREFIX}-${options.target}`
   const spaces = JSON.parse(exec(`ibmcloud cf curl "/v3/spaces?${buildCurlUrlParams(params)}" -q`))
-  params.spaces = spaces?.resources?.[0].guid
-  if (!params.spaces) {
+  params.space_guids = spaces?.resources?.[0].guid
+  if (!params.space_guids) {
     throw new Error(
       `Space ${process.env.CLOUD_FOUNDRY_SPACE_PREFIX}-${options.target} could not be found`
     )

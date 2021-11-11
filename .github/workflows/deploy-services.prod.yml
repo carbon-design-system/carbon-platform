@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-deploy:
-    name: Build And Deploy
+    name: Build And Deploy (Prod)
     runs-on: ubuntu-latest
 
     steps:

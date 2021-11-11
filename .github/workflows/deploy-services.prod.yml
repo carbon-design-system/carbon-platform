@@ -20,7 +20,9 @@ jobs:
 
       # Download and Install IBM Cloud CLI
       - name: Install IBM Cloud CLI 🏗️
-        run: curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+        run: |
+          curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+          ibmcloud cf install
 
       - name: Setup Node 🏗️
         uses: actions/setup-node@v2

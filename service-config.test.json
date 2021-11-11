@@ -6,5 +6,6 @@
     "@carbon-platform/web-app": {
       "deployedVersion": "0.1.13"
     }
-  }
+  },
+  "notUsed": "it's a test"
 }

@@ -12,6 +12,8 @@
 //----------------------------------------------------------------------------
 .container {
   display: none;
+  flex-wrap: wrap;
+  border-bottom: 1px solid $layer-accent-01;
 
   @include breakpoint(lg) {
     display: flex;
@@ -38,7 +40,13 @@
 //----------------------------------------------------------------------------
 // Item and Item Image
 //----------------------------------------------------------------------------
+.item a {
+  text-decoration: none;
+}
+
 .item {
+  margin-bottom: 1rem;
+
   @include breakpoint(lg) {
     //1312  4:3
     width: 15rem;
@@ -61,7 +69,7 @@
     height: 10.14rem;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid $layer-accent-01;
+    border-bottom: 1px solid 1px solid #c6c6c6;
     background-color: #ffffff;
   }
 
@@ -196,13 +204,13 @@
   color: $text-secondary;
 }
 
-// Item Reviewed
-.item-reviewed-icon {
+// Item Verified
+.item-verified-icon {
   margin-top: 0.25rem;
   margin-right: 0.25rem;
 }
 
-.item-reviewed {
+.item-verified {
   @include type-style('label-01');
 
   padding-top: $spacing-02;

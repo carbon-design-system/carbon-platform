@@ -4,13 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Button, Dropdown } from '@carbon/react'
+import { Button, Dropdown, Toggle } from '@carbon/react'
 import { Svg12LeftContentSwitcher } from '@carbon-platform/icons'
 
 import styles from './catalog-sort.module.scss'
 
 const CatalogSort = () => {
-  const options = ['Hi', 'Bye']
+  const options = ['A-Z', 'Most used']
 
   return (
     <div className={styles.container}>
@@ -26,22 +26,18 @@ const CatalogSort = () => {
           // }}
           type="inline"
           titleText="Sort by:"
-          label="Most used"
+          label="A-Z"
+          size="lg"
         />
       </div>
       <div>
-        <Dropdown
+        <Toggle
+          aria-label="toggle button"
+          defaultToggled
+          id="toggle-1"
+          labelText="Carbon Reviewed:"
           className={styles.toggle}
-          id="component-index-sort"
-          initialSelectedItem="Hola"
-          items={options}
-          light
-          // onChange={({ selectedItem }) => {
-          //   onChange(selectedItem);
-          // }}
-          type="inline"
-          titleText="Sort by:"
-          label="hello"
+          size="lg"
         />
       </div>
       <div className={styles.switcher}>

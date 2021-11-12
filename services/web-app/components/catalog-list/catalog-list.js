@@ -16,7 +16,7 @@ import {
 import Link from 'next/link'
 import slugify from 'slugify'
 
-import { getStatus } from '@/utils/schema'
+import { getRepo, getStatus } from '@/utils/schema'
 
 import styles from './catalog-list.module.scss'
 
@@ -35,7 +35,7 @@ const CatalogList = ({ assets = [] }) => {
                 <Add16 aria-label="Add" className="my-custom-class" />
               </div>
               <div className={styles.itemContent}>
-                <p className={styles.itemSponsor}>{'Super Sponsor'}</p>
+                <p className={styles.itemSponsor}>{getRepo(asset.params.repo)}</p>
                 <header className={styles.itemName}>{asset.content.name}</header>
                 <p className={styles.itemDescription}>{asset.content.description}</p>
                 <footer className={styles.itemInfo}>
@@ -45,8 +45,8 @@ const CatalogList = ({ assets = [] }) => {
                   <div className={styles.itemDownloads}>{'1,234'}</div>
                   <Svg14License className={styles.itemLicenseIcon} />
                   <div className={styles.itemLicense}>{'Apache 2.0'}</div>
-                  <Svg16Carbon className={styles.itemReviewedIcon} />
-                  <div className={styles.itemReviewed}>{'Reviewed'}</div>
+                  <Svg16Carbon className={styles.itemVerifiedIcon} />
+                  <div className={styles.itemVerified}>{'Verified'}</div>
                 </footer>
               </div>
               <div className={styles.itemTags}>

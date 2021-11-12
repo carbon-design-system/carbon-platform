@@ -9,3 +9,9 @@ export const getStatus = (status) => {
 
   return 'To do'
 }
+
+export const getRepo = (repo) => {
+  if (repo === 'carbon') return 'Carbon'
+
+  return 'To do'
+}

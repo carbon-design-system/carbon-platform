@@ -85,6 +85,8 @@ export const getLibraryData = async (params = {}) => {
 
   const assets = await getLibraryAssets(params)
 
+  const packageJsonContent = await getPackageJsonContent(params, content.packageJsonPath)
+
   const filteredAssets = libraryParams.asset
     ? assets.filter((asset) => slugify(asset.content.name, { lower: true }) === libraryParams.asset)
     : assets
@@ -92,7 +94,10 @@ export const getLibraryData = async (params = {}) => {
   return {
     params: libraryParams,
     response,
-    content,
+    content: {
+      ...packageJsonContent,
+      ...content // spread last to use schema description if set
+    },
     assets: filteredAssets
   }
 }
@@ -102,7 +107,7 @@ export const getLibraryData = async (params = {}) => {
  * specified ref, then recursively get all asset metadata files. Find the files that are in the
  * library's subdirectory and then fetch the contents for each asset metadata file.
  */
-export const getLibraryAssets = async (params = {}) => {
+const getLibraryAssets = async (params = {}) => {
   const libraryParams = await validateLibraryParams(params)
 
   if (!libraryParams || Object.keys(libraryParams).length === 0) return []
@@ -242,5 +247,36 @@ export const getAllLibraries = async () => {
 
   return {
     libraries: libraries.filter((n) => n)
+  }
+}
+
+/**
+ * Requests content of the package.json file and returns some of the properties.
+ */
+const getPackageJsonContent = async (params = {}, packageJsonPath = '/package.json') => {
+  const libraryParams = await validateLibraryParams(params)
+
+  if (!libraryParams || Object.keys(libraryParams).length === 0) return []
+
+  let response = {}
+
+  try {
+    response = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: libraryParams.org,
+      repo: libraryParams.repo,
+      path: removeLeadingSlash(`${libraryParams.path}${packageJsonPath}`),
+      ref: libraryParams.ref
+    })
+  } catch (err) {
+    return null
+  }
+
+  const packageJsonContent = yaml.load(Buffer.from(response.content, response.encoding).toString())
+
+  return {
+    description: packageJsonContent.description,
+    license: packageJsonContent.license,
+    package: packageJsonContent.name,
+    version: packageJsonContent.version
   }
 }

@@ -26,12 +26,12 @@ description: React implementation of Carbon Components
 
 ### Library keys
 
-| Key               | Description                                                                                                                    | Required | Type   | Default         | Valid values |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------- | ------ | --------------- | ------------ |
-| `name`            | Library display name. Use title-case capitalization.                                                                           | Required | String | –               | –            |
-| `description`     | Library description ideally between 50-160 characters in length. Use sentence-case capitalization.                             | Required | String | –               | –            |
-| `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, and code package. | Optional | String | `/package.json` | –            |
-| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                               | Optional | String | –               | –            |
+| Key               | Description                                                                                                                                                    | Required | Type   | Default         | Valid values |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------ | --------------- | ------------ |
+| `name`            | Library display name. Use title-case capitalization.                                                                                                           | Required | String | –               | –            |
+| `description`     | Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the `package.json` description if not set here. | Required | String | –               | –            |
+| `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, and code package.                                 | Optional | String | `/package.json` | –            |
+| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                               | Optional | String | –               | –            |
 
 ## Asset schema
 

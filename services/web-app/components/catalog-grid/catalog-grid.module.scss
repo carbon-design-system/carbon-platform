@@ -120,11 +120,13 @@
   @include breakpoint(lg) {
     height: 10.719rem;
     padding: $spacing-05;
+    border-top: 1px solid $layer-accent-01;
   }
 
   @include breakpoint(xlg) {
     height: 10.68rem;
     padding: $spacing-05;
+    border-top: 0;
   }
 }
 

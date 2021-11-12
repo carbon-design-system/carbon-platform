@@ -73,7 +73,7 @@
   }
 }
 
-.dropdown :global(.cds--dropdown__wrapper--inline) {
+:global(.cds--dropdown__wrapper--inline) {
   grid-gap: 0;
 }
 
@@ -93,19 +93,19 @@
   padding-left: 8px;
 
   @include breakpoint(sm) {
-    margin-right: 6.67rem;
+    margin-right: 8.18rem;
   }
 
   @include breakpoint(md) {
-    margin-right: 6.67rem;
+    margin-right: 8.18rem;
   }
 
   @include breakpoint(lg) {
-    margin-right: 2.65rem;
+    margin-right: 4.17rem;
   }
 
   @include breakpoint(xlg) {
-    margin-right: 6.67rem;
+    margin-right: 8.18rem;
   }
 }
 

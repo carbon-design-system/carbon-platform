@@ -11,7 +11,7 @@
  * specified as object keys to ensure uniqueness.
  *
  * TODO: either specify a path to a mark image here, or create a utility function to receive a team
- * slug and return the image to use in each catalog item. We'll need a placeholder icons for
+ * slug and return the image to use in each catalog item. We'll need a placeholder icon for
  * libraries that don't have a sponsor (e.g. Carbon Vanilla Components.)
  */
 export const teams = {

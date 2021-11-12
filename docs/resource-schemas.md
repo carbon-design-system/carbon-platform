@@ -26,12 +26,13 @@ description: React implementation of Carbon Components
 
 ### Library keys
 
-| Key               | Description                                                                                                                    | Required | Type   | Default         | Valid values |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------- | ------ | --------------- | ------------ |
-| `name`            | Library display name. Use title-case capitalization.                                                                           | Required | String | –               | –            |
-| `description`     | Library description ideally between 50-160 characters in length. Use sentence-case capitalization.                             | Required | String | –               | –            |
-| `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, and code package. | Optional | String | `/package.json` | –            |
-| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                               | Optional | String | –               | –            |
+| Key               | Description                                                                                                                    | Required | Type    | Default         | Valid values |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------- | ------- | --------------- | ------------ |
+| `name`            | Library display name. Use title-case capitalization.                                                                           | Required | String  | –               | –            |
+| `description`     | Library description ideally between 50-160 characters in length. Use sentence-case capitalization.                             | Required | String  | –               | –            |
+| `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, and code package. | Optional | String  | `/package.json` | –            |
+| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                               | Optional | String  | –               | –            |
+| `private`         | If set to `true`, the catalogs will exclude the library.                                                                       | Optional | Boolean | `false`         | –            |
 
 ## Asset schema
 
@@ -55,16 +56,17 @@ platform: web
 
 ### Asset keys
 
-| Key               | Description                                                                                                                     | Required | Type   | Default       | Valid values                                                                                   |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- | ------ | ------------- | ---------------------------------------------------------------------------------------------- |
-| `name`            | Asset display name. Use sentence-case capitalization. All asset names in a library should be unique to prevent page collisions. | Required | String | –             | –                                                                                              |
-| `description`     | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization.                                | Required | String | –             | –                                                                                              |
-| `thumbnailPath`   | Relative location of the asset's thumbnail image.                                                                               | Optional | String | –             | –                                                                                              |
-| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                | Optional | String | –             | –                                                                                              |
-| `status`          | Used to set consumption exptectations.                                                                                          | Required | String | `draft`       | `draft`, `experimental`, `stable`, `deprecated`, `sunset`                                      |
-| `type`            | Asset categorization.                                                                                                           | Required | String | –             | `element`, `component`, `pattern`, `function`, `layout`                                        |
-| `framework`       | Asset frontend framework.                                                                                                       | Required | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
-| `platform`        | Asset environment.                                                                                                              | Required | String | `web`         | `cross-platform`, `web`                                                                        |
+| Key               | Description                                                                                                                     | Required | Type    | Default       | Valid values                                                                                   |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | ------------- | ---------------------------------------------------------------------------------------------- |
+| `name`            | Asset display name. Use sentence-case capitalization. All asset names in a library should be unique to prevent page collisions. | Required | String  | –             | –                                                                                              |
+| `description`     | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization.                                | Required | String  | –             | –                                                                                              |
+| `thumbnailPath`   | Relative location of the asset's thumbnail image.                                                                               | Optional | String  | –             | –                                                                                              |
+| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                | Optional | String  | –             | –                                                                                              |
+| `status`          | Used to set consumption exptectations.                                                                                          | Required | String  | `draft`       | `draft`, `experimental`, `stable`, `deprecated`, `sunset`                                      |
+| `type`            | Asset categorization.                                                                                                           | Required | String  | –             | `element`, `component`, `pattern`, `function`, `layout`                                        |
+| `framework`       | Asset frontend framework.                                                                                                       | Required | String  | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
+| `platform`        | Asset environment.                                                                                                              | Required | String  | `web`         | `cross-platform`, `web`                                                                        |
+| `private`         | If set to `true`, the catalogs will exclude the asset.                                                                          | Optional | Boolean | `false`       | –                                                                                              |
 
 #### Asset status
 

@@ -24,9 +24,11 @@ const Libraries = ({ librariesData }) => {
     setNavData(assetsNavData)
   }, [setNavData])
 
-  const libraries = librariesData.libraries.sort((a, b) =>
-    a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
-  )
+  const libraries = librariesData.libraries
+    .filter((library) => !library.content.private)
+    .sort((a, b) =>
+      a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
+    )
 
   return (
     <>

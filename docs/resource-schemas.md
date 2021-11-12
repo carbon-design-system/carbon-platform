@@ -42,6 +42,7 @@ same directory as the asset's source.
 **Example**
 
 ```yml
+id: accordion
 name: Accordion
 description:
   An accordion is a vertically stacked list of headers that reveal or hide associated sections of
@@ -57,14 +58,51 @@ platform: web
 
 | Key               | Description                                                                                                                     | Required | Type   | Default       | Valid values                                                                                   |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- | ------ | ------------- | ---------------------------------------------------------------------------------------------- |
+| `id`              | Every asset needs an identifier unique to its library. This is used to associate assets across libraries.                       | Required | String | –             | –                                                                                              |
 | `name`            | Asset display name. Use sentence-case capitalization. All asset names in a library should be unique to prevent page collisions. | Required | String | –             | –                                                                                              |
 | `description`     | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization.                                | Required | String | –             | –                                                                                              |
+| `inherits`        | Inherited properties from another asset.                                                                                        | Optional | Hash   | –             | –                                                                                              |
 | `thumbnailPath`   | Relative location of the asset's thumbnail image.                                                                               | Optional | String | –             | –                                                                                              |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                | Optional | String | –             | –                                                                                              |
 | `status`          | Used to set consumption exptectations.                                                                                          | Required | String | `draft`       | `draft`, `experimental`, `stable`, `deprecated`, `sunset`                                      |
 | `type`            | Asset categorization.                                                                                                           | Required | String | –             | `element`, `component`, `pattern`, `function`, `layout`                                        |
 | `framework`       | Asset frontend framework.                                                                                                       | Required | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
 | `platform`        | Asset environment.                                                                                                              | Required | String | `web`         | `cross-platform`, `web`                                                                        |
+
+#### Asset inheritance
+
+Each asset can inherit properties from another asset. For example, if there are multiple
+implementations of a component for different JavaScript frameworks, it's common that there's an
+underlying library and asset that contains shared usage guidance, design specs, and styling.
+Defining the inheritance relationship allows us to have a single source of truth for the shared
+content and resources, and allows each inheriting asset (e.g. implementation per framework) to
+specify its versioned adherance of the underlying asset.
+
+When inheriting another asset, you need to specify the fully qualified asset name (library
+`package`, library `version`, asset `id`) and what properties you'd like to inherit.
+
+For the value of the `inherits` key, you can set the following keys.
+
+| Inherits     | Description                                                                                 |
+| ------------ | ------------------------------------------------------------------------------------------- |
+| `asset`      | Fully qualified asset name with the format `[package name]@[version\|"latest"]/[asset id]`. |
+| `properties` | An array of asset keys to inherit.                                                          |
+
+**Example**
+
+```yml
+id: accordion
+inherits:
+  asset: '@carbon/styles@latest/accordion'
+  properties:
+    - name
+    - description
+    - thumbnailPath
+    - type
+    - platform
+status: stable
+framework: react
+```
 
 #### Asset status
 

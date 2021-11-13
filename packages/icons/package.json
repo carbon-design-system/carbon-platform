@@ -17,11 +17,11 @@
     "access": "public"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clean && npm run build:svg && tsc",
     "build:svg": "svgr --out-dir src/main/tsx-generated src/main/svg",
     "clean": "rimraf dist src/main/tsx-generated",
-    "package:build": "npm run build"
+    "package:build": "npm run build",
+    "test": "echo 'No js/ts code to test in icons package'"
   },
   "devDependencies": {
     "@svgr/cli": "^5.5.0",

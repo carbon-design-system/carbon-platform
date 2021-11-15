@@ -5,12 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 import yaml from 'js-yaml'
+import { isEqual } from 'lodash'
 import { getPlaiceholder } from 'plaiceholder'
-import slugify from 'slugify'
 
 import { IMAGES_CACHE_PATH } from '@/config/constants'
 import { libraryAllowList } from '@/data/libraries'
 import { getResponse, writeFile } from '@/lib/file-cache'
+import { getSlug } from '@/utils/slug'
 import { removeLeadingSlash } from '@/utils/string'
 
 /**
@@ -60,6 +61,30 @@ const validateLibraryParams = async (params = {}) => {
 }
 
 /**
+ * Takes an inheritance reference like `ibmdotcom-styles@latest/back-to-top` and returns parmas from
+ * the library allowlist. Returns false if not found.
+ */
+const getParamsFromInheritedAsset = (inheritanceRef = '') => {
+  const [libraryId] = inheritanceRef.split('@')
+  const libraryRef = inheritanceRef.slice(
+    inheritanceRef.indexOf('@') + 1,
+    inheritanceRef.lastIndexOf('/')
+  )
+  const [assetId] = inheritanceRef.split('/').reverse()
+
+  const params = libraryAllowList[libraryId]
+
+  return (
+    params && {
+      ...params,
+      library: libraryId,
+      ref: libraryRef,
+      asset: assetId
+    }
+  )
+}
+
+/**
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  */
@@ -83,12 +108,12 @@ export const getLibraryData = async (params = {}) => {
 
   const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
 
-  const assets = await getLibraryAssets(params)
+  const assets = await getLibraryAssets(params, true)
 
   const packageJsonContent = await getPackageJsonContent(params, content.packageJsonPath)
 
   const filteredAssets = libraryParams.asset
-    ? assets.filter((asset) => slugify(asset.content.name, { lower: true }) === libraryParams.asset)
+    ? assets.filter((asset) => getSlug(asset.content) === libraryParams.asset)
     : assets
 
   return {
@@ -107,7 +132,7 @@ export const getLibraryData = async (params = {}) => {
  * specified ref, then recursively get all asset metadata files. Find the files that are in the
  * library's subdirectory and then fetch the contents for each asset metadata file.
  */
-const getLibraryAssets = async (params = {}) => {
+const getLibraryAssets = async (params = {}, inheritContent = false) => {
   const libraryParams = await validateLibraryParams(params)
 
   if (!libraryParams || Object.keys(libraryParams).length === 0) return []
@@ -149,8 +174,18 @@ const getLibraryAssets = async (params = {}) => {
 
   const assetContentData = await Promise.all(assetContentPromises)
 
+  const inheritedLibraryAssetsPromises = []
+
   const assets = assetContentData.map((response) => {
     const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+
+    if (inheritContent && content.inherits) {
+      const inheritedParams = getParamsFromInheritedAsset(content.inherits.asset)
+
+      if (inheritedParams) {
+        inheritedLibraryAssetsPromises.push(getLibraryAssets(inheritedParams, false))
+      }
+    }
 
     return {
       params: libraryParams,
@@ -158,6 +193,9 @@ const getLibraryAssets = async (params = {}) => {
       content
     }
   })
+
+  const inheritedAssetsResponses = await Promise.all(inheritedLibraryAssetsPromises)
+  const inheritedAssets = inheritedAssetsResponses.flat()
 
   // find all thumbnail images, get content of each image, filter out assets with no thumbnail
 
@@ -206,6 +244,8 @@ const getLibraryAssets = async (params = {}) => {
     const assetExtensions = {}
     const basePath = asset.response.path.replace('/carbon-asset.yml', '')
 
+    // add image placeholder data
+
     const foundImage = imgPlaceholders.find(
       (image) =>
         image.img.src.includes(basePath) && image.img.src.includes(asset.content.thumbnailPath)
@@ -214,6 +254,29 @@ const getLibraryAssets = async (params = {}) => {
     if (foundImage) {
       const { img, base64 } = foundImage
       assetExtensions.thumbnailData = { img, base64 }
+    }
+
+    // add inherited data
+
+    if (asset.content.inherits) {
+      const inheritedParams = getParamsFromInheritedAsset(asset.content.inherits.asset)
+
+      const inheritedAsset = inheritedAssets.find(
+        (asset) => isEqual(asset.params) === isEqual(inheritedParams)
+      )
+
+      if (inheritedAsset) {
+        // loop over properties, extend
+        if (
+          asset.content.inherits &&
+          asset.content.inherits.properties &&
+          asset.content.inherits.properties.length
+        ) {
+          asset.content.inherits.properties.forEach((property) => {
+            assetExtensions[property] = inheritedAsset.content[property] || ''
+          })
+        }
+      }
     }
 
     return {

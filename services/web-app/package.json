@@ -17,7 +17,7 @@
     "lint": "next lint",
     "service:build": "npm run build",
     "start": "next start",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo 'No tests defined yet!'"
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"

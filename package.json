@@ -24,17 +24,20 @@
   ],
   "scripts": {
     "all:build": "npm --workspaces run build",
+    "all:test": "npm --workspaces run test",
     "packages:build": "npm --workspaces --if-present run package:build",
     "services:build": "npm --workspaces --if-present run service:build",
     "lint": "scripts/lint",
     "lint:fix": "scripts/lint_and_fix",
     "deploy": "scripts/micromanage deploy",
     "nightly": "scripts/nightly",
-    "prepare": "husky install && npm run packages:build"
+    "prepare": "husky install && npm run packages:build",
+    "test": "npm run all:test"
   },
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",
     "@commitlint/config-conventional": "^14.1.0",
+    "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "commander": "^8.3.0",
     "dotenv": "^10.0.0",
@@ -45,10 +48,12 @@
     "eslint-plugin-notice": "^0.9.10",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^7.0.4",
+    "jest": "^27.3.1",
     "lint-staged": "^11.2.5",
     "prettier-config-carbon": "^0.4.0",
     "standard-version": "^9.3.2",
     "stylelint": "^13.13.1",
-    "stylelint-config-carbon": "^1.7.0"
+    "stylelint-config-carbon": "^1.7.0",
+    "ts-jest": "^27.0.7"
   }
 }

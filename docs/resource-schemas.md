@@ -79,22 +79,22 @@ Defining the inheritance relationship allows us to have a single source of truth
 content and resources, and allows each inheriting asset (e.g. implementation per framework) to
 specify its versioned adherance of the underlying asset.
 
-When inheriting another asset, you need to specify the fully qualified asset name (library
-`package`, library `version`, asset `id`) and what properties you'd like to inherit.
+When inheriting another asset, you need to specify the fully qualified asset name (library `id`,
+library `version` or its repo's branch, asset `id`) and what properties you'd like to inherit.
 
 For the value of the `inherits` key, you can set the following keys.
 
-| Inherits     | Description                                                                                 |
-| ------------ | ------------------------------------------------------------------------------------------- |
-| `asset`      | Fully qualified asset name with the format `[package name]@[version\|"latest"]/[asset id]`. |
-| `properties` | An array of asset keys to inherit.                                                          |
+| Inherits     | Description                                                                                |
+| ------------ | ------------------------------------------------------------------------------------------ |
+| `asset`      | Fully qualified asset name with the format `[library id]@[repo ref\|"latest"]/[asset id]`. |
+| `properties` | An array of asset keys to inherit.                                                         |
 
 **Example**
 
 ```yml
 id: accordion
 inherits:
-  asset: '@carbon/styles@latest/accordion'
+  asset: 'carbon-styles@latest/accordion'
   properties:
     - name
     - description

@@ -78,7 +78,7 @@ const getParamsFromInheritedAsset = (inheritanceRef = '') => {
     params && {
       ...params,
       library: libraryId,
-      ref: libraryRef,
+      ref: libraryRef || 'latest',
       asset: assetId
     }
   )

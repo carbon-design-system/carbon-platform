@@ -38,6 +38,7 @@ const Libraries = ({ librariesData }) => {
               <a>{library.content.name}</a>
             </Link>
             <ul className={styles.bullets}>
+              <li className={styles.bulletsItem}>{library.content.id}</li>
               <li className={styles.bulletsItem}>{library.content.description}</li>
             </ul>
           </li>

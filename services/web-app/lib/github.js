@@ -275,6 +275,13 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
           asset.content.inherits.properties.forEach((property) => {
             assetExtensions[property] = inheritedAsset.content[property] || ''
           })
+
+          if (
+            asset.content.inherits.properties.includes('thumbnailPath') &&
+            inheritedAsset.content.thumbnailData
+          ) {
+            assetExtensions.thumbnailData = inheritedAsset.content.thumbnailData
+          }
         }
       }
     }

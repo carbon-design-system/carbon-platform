@@ -26,12 +26,13 @@ description: React implementation of Carbon Components
 
 ### Library keys
 
-| Key               | Description                                                                                                                                                    | Required | Type   | Default         | Valid values |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------ | --------------- | ------------ |
-| `name`            | Library display name. Use title-case capitalization.                                                                                                           | Required | String | –               | –            |
-| `description`     | Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the `package.json` description if not set here. | Required | String | –               | –            |
-| `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, and code package.                                 | Optional | String | `/package.json` | –            |
-| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                               | Optional | String | –               | –            |
+| Key               | Description                                                                                                                                                                                                              | Required | Type   | Default         | Valid values |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ------ | --------------- | ------------ |
+| `id`              | Every library needs an identifier unique to the platform. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive an `id` when registering a new library. | Required | String | –               | –            |
+| `name`            | Library display name. Use title-case capitalization.                                                                                                                                                                     | Required | String | –               | –            |
+| `description`     | Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the `package.json` description if not set here.                                                           | Required | String | –               | –            |
+| `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, and code package.                                                                                           | Optional | String | `/package.json` | –            |
+| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                                                                                         | Optional | String | –               | –            |
 
 ## Asset schema
 

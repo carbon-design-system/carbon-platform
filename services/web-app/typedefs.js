@@ -28,6 +28,11 @@
  */
 
 /**
+ * @typedef {Object} Libraries
+ * @property {Library[]} libraries - Libraries array
+ */
+
+/**
  * @typedef {Object} Asset
  * @property {AssetContent} content - Asset content
  * @property {Params} params - Params used to fetch asset content
@@ -52,6 +57,8 @@
  * @property {string} externalDocsUrl - Absolute URL to externally-hosted documentation
  * @property {"angular" | "react" | "react-native" | "svelte" | "vue" | "web-component" | "design-only"} framework - Asset framework
  * @property {string} id - Unique identifier within the asset's library
+ * @property {Object} inherits - Inherits object
+ * @property {string} inherits.asset - Inheritance reference
  * @property {string} name - Display name
  * @property {"cross-platform" | "web"} platform - Asset environment
  * @property {boolean} private - Exclude asset from catalogs
@@ -69,6 +76,17 @@
  * @property {string} img.src - Path to image relative to the `/public` directory
  * @property {string} img.type - Image file extension
  * @property {number} img.width - Unitless width in pixels
+ */
+
+/**
+ * @typedef {Object} GitHubContentResponse
+ * @property {string} content
+ * @property {string} encoding
+ */
+
+/**
+ * @typedef {Object} GitHubTreeResponse
+ * @property {Object[]} tree
  */
 
 exports.unused = {}

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /*
  * Copyright IBM Corp. 2021, 2021
  *
@@ -10,13 +11,17 @@ import {
   Svg14Download,
   Svg14License,
   Svg16Carbon,
-  Svg24Cloud,
-  Svg24React
+  Svg24Angular,
+  Svg24CarbonTag,
+  Svg24IbmDotcomTag,
+  Svg24React,
+  Svg24Vanilla,
+  Svg24Vue
 } from '@carbon-platform/icons'
 import Link from 'next/link'
 import slugify from 'slugify'
 
-import { getRepo, getStatus } from '@/utils/schema'
+import { getSponsor, getStatus } from '@/utils/schema'
 
 import styles from './catalog-list.module.scss'
 
@@ -35,14 +40,14 @@ const CatalogList = ({ assets = [] }) => {
                 <Add16 aria-label="Add" className="my-custom-class" />
               </div>
               <div className={styles.itemContent}>
-                <p className={styles.itemSponsor}>{getRepo(asset.params.repo)}</p>
+                <p className={styles.itemSponsor}>{getSponsor(asset.params.sponsor)}</p>
                 <header className={styles.itemName}>{asset.content.name}</header>
                 <p className={styles.itemDescription}>{asset.content.description}</p>
                 <footer className={styles.itemInfo}>
                   <Svg12Stable className={styles.itemStatusIcon} />
                   <div className={styles.itemStatus}>{getStatus(asset.content.status)}</div>
                   <Svg14Download className={styles.itemDownloadsIcon} />
-                  <div className={styles.itemDownloads}>{'1,234'}</div>
+                  <div className={styles.itemDownloads}>{asset.response.size}</div>
                   <Svg14License className={styles.itemLicenseIcon} />
                   <div className={styles.itemLicense}>{'Apache 2.0'}</div>
                   <Svg16Carbon className={styles.itemVerifiedIcon} />
@@ -50,8 +55,38 @@ const CatalogList = ({ assets = [] }) => {
                 </footer>
               </div>
               <div className={styles.itemTags}>
-                <Svg24React />
-                <Svg24Cloud className={styles.itemTagsSponsor} />
+                {asset.content.framework === 'angular'
+                  ? (
+                  <Svg24Angular />
+                    )
+                  : asset.content.framework === 'react'
+                    ? (
+                  <Svg24React />
+                      )
+                    : asset.content.framework === 'vanilla'
+                      ? (
+                  <Svg24Vanilla />
+                        )
+                      : asset.content.framework === 'vue'
+                        ? (
+                  <Svg24Vue />
+                          )
+                        : (
+                  <Svg24React />
+                          )}
+                {asset.params.sponsor === 'carbon'
+                  ? (
+                  <div className={styles.itemTagBorder}>
+                    <Svg24CarbonTag className={styles.itemTagsSponsor} />
+                  </div>
+                    )
+                  : asset.params.sponsor === 'ibm-dotcom'
+                    ? (
+                  <div className={styles.itemTagBorder}>
+                    <Svg24IbmDotcomTag className={styles.itemTagsSponsor} />
+                  </div>
+                      )
+                    : null}
               </div>
             </a>
           </Link>

@@ -11,13 +11,17 @@ import {
   Svg14Download,
   Svg14License,
   Svg16Carbon,
-  Svg24Cloud,
-  Svg24React
+  Svg24Angular,
+  Svg24CarbonTag,
+  Svg24IbmDotcomTag,
+  Svg24React,
+  Svg24Vanilla,
+  Svg24Vue
 } from '@carbon-platform/icons'
 import Link from 'next/link'
 import slugify from 'slugify'
 
-import { getRepo, getStatus } from '@/utils/schema'
+import { getSponsor, getStatus } from '@/utils/schema'
 
 import styles from './catalog-grid.module.scss'
 
@@ -33,13 +37,25 @@ const CatalogGridItem = ({ assets = [] }) => {
           <div className={styles.itemImage}>
             <Add16 aria-label="Add" className="my-custom-class" />
           </div>
-          <Svg24Cloud className={styles.itemTagsSponsor} />
+          {asset.params.sponsor === 'carbon'
+            ? (
+            <div className={styles.itemTagBorder}>
+              <Svg24CarbonTag className={styles.itemTagsSponsor} />
+            </div>
+              )
+            : asset.params.sponsor === 'ibm-dotcom'
+              ? (
+            <div className={styles.itemTagBorder}>
+              <Svg24IbmDotcomTag className={styles.itemTagsSponsor} />
+            </div>
+                )
+              : null}
           <div className={styles.itemContent}>
-            <p className={styles.itemSponsor}>{getRepo(asset.params.repo)}</p>
+            <p className={styles.itemSponsor}>{getSponsor(asset.params.sponsor)}</p>
             <header className={styles.itemName}>{asset.content.name}</header>
             <div className={styles.itemInfo}>
               <Svg14Download className={styles.itemDownloadsIcon} />
-              <div className={styles.itemDownloads}>{'1,234'}</div>
+              <div className={styles.itemDownloads}>{asset.response.size}</div>
               <Svg14License className={styles.itemLicenseIcon} />
               <div className={styles.itemLicense}>{'Apache 2.0'}</div>
               <Svg16Carbon className={styles.itemVerifiedIcon} />
@@ -51,7 +67,23 @@ const CatalogGridItem = ({ assets = [] }) => {
                 {getStatus(asset.content.status)}
               </div>
               <div className={styles.itemFramework}>
-                <Svg24React />
+                {asset.content.framework === 'angular'
+                  ? (
+                  <Svg24Angular />
+                    )
+                  : asset.content.framework === 'react'
+                    ? (
+                  <Svg24React />
+                      )
+                    : asset.content.framework === 'vanilla'
+                      ? (
+                  <Svg24Vanilla />
+                        )
+                      : asset.content.framework === 'vue'
+                        ? (
+                  <Svg24Vue />
+                          )
+                        : null}
               </div>
             </footer>
           </div>

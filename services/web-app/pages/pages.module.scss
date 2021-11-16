@@ -6,6 +6,8 @@
 //
 
 .data {
+  white-space: pre-wrap;
+  word-break: break-all;
   @include type-style('code-01');
 }
 

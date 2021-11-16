@@ -93,6 +93,7 @@
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
+  color: #525252;
 
   @include breakpoint(lg) {
     position: absolute;
@@ -218,6 +219,10 @@
   padding-top: $spacing-02;
   padding-right: $spacing-04;
   color: $text-secondary;
+}
+
+a .item-info {
+  color: #525252;
 }
 
 //----------------------------------------------------------------------------

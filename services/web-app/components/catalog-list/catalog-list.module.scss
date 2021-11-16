@@ -152,6 +152,10 @@
   }
 }
 
+a .item-info {
+  color: #525252;
+}
+
 .item-downloads {
   color: $text-secondary;
   @include type-style('label-01');
@@ -272,13 +276,14 @@
 }
 
 // Item Tags Sponsor
-.item-tags-sponsor {
+.item-tag-border {
   border: 1px solid #e0e0e0;
-  background-color: #ffffff;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
+}
 
+.item-tags-sponsor {
   @include breakpoint(sm) {
     width: 3rem;
     height: 3rem;
@@ -303,16 +308,13 @@
   @include breakpoint(xlg) {
     width: 3.5rem;
     height: 3.5rem;
-    padding-top: 0.938rem;
-    padding-left: 0.938rem;
   }
 }
 
-// .item:hover,
-// .item-tags-sponsor:hover {
-//   background-color: #e5e5e5;
-// }
+a .item-tags-sponsor {
+  color: #525252;
+}
 
-.item-tags:hover .item-tags-sponsor {
-  background-color: #e5e5e5;
+.item:hover {
+  background-color: $background-hover;
 }

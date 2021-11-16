@@ -37,13 +37,13 @@ const CatalogIndexPage = ({ data, type = 'component' }) => {
   return (
     <Grid>
       <Column sm={4} md={8} lg={16}>
-        <InlineNotification
-          className={styles.inlineNotification}
-          kind="info"
-          title="Experimental component"
-          subtitle="An accessibility review of this component is in progress"
-          lowContrast
-        />
+        <InlineNotification className={styles.inlineNotification} kind="info" lowContrast>
+          <div>
+            {
+              'Default filters have been pre-selected based on commonly used components. If you clear filters to explore, you may reset them easily.'
+            }
+          </div>
+        </InlineNotification>
         <CatalogSearch assets={assets} />
         <div className={styles.container}>
           <div className={styles.dropdownText}>
@@ -82,6 +82,7 @@ const CatalogIndexPage = ({ data, type = 'component' }) => {
               onClick={() => {
                 setLayout(true)
               }}
+              className={[layout ? styles.switcherStyle : null]}
             />
             <Button
               size="lg"
@@ -92,6 +93,7 @@ const CatalogIndexPage = ({ data, type = 'component' }) => {
               onClick={() => {
                 setLayout(false)
               }}
+              className={[layout ? null : styles.switcherStyle]}
             />
           </div>
         </div>

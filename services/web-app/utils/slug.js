@@ -7,11 +7,13 @@
 import slugify from 'slugify'
 
 /**
- * Generates a slug from a resource metadata object. For now, defaults to using an id if that
- * exists. If not, uses name.
+ * Generates a slug from an asset metadata object. This first attempts to use an `id` if it
+ * exists and if not, it slugifies the asset's `name`.
+ * @param {import('../typedefs').AssetContent} content
+ * @returns {string} A slug
  */
-export const getSlug = (data = {}) => {
-  const slug = data.id || data.name
+export const getSlug = (content = {}) => {
+  const slug = content.id || content.name
 
   return slugify(slug, {
     lower: true

@@ -12,6 +12,7 @@ import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 import styles from '@/pages/pages.module.scss'
+import { contentNameSortComparator } from '@/utils/schema'
 
 const Libraries = ({ librariesData }) => {
   const { setNavData } = useContext(LayoutContext)
@@ -26,9 +27,7 @@ const Libraries = ({ librariesData }) => {
 
   const libraries = librariesData.libraries
     .filter((library) => !library.content.private)
-    .sort((a, b) =>
-      a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
-    )
+    .sort(contentNameSortComparator)
 
   return (
     <>

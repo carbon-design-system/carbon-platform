@@ -6,6 +6,8 @@
  */
 import { Column, Grid } from '@carbon/react'
 
+import { contentNameSortComparator } from '@/utils/schema'
+
 import CatalogList from '../catalog-list'
 import CatalogSearch from '../catalog-search'
 import CatalogSort from '../catalog-sort'
@@ -14,18 +16,14 @@ import styles from './catalog-index-page.module.scss'
 const CatalogIndexPage = ({ data, type = 'component' }) => {
   const libraries = data.libraries
     .filter((library) => library.assets.length)
-    .sort((a, b) =>
-      a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
-    )
+    .sort(contentNameSortComparator)
 
   const assets = libraries
-    .reduce((assets, library) => {
-      return assets.concat(library.assets)
+    .reduce((allAssets, library) => {
+      return allAssets.concat(library.assets)
     }, [])
     .filter((asset) => !asset.content.private && asset.content.type === type)
-    .sort((a, b) =>
-      a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
-    )
+    .sort(contentNameSortComparator)
 
   return (
     <Grid>

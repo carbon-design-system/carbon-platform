@@ -5,15 +5,41 @@
 
 <p align="center">
   <a href="https://github.com/carbon-design-system/carbon/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="Carbon is released under the Apache-2.0 license" />
+    <img
+      src="https://img.shields.io/badge/license-Apache--2.0-blue.svg"
+      alt="Carbon is released under the Apache-2.0 license"
+    />
   </a>
   <a href="https://github.com/carbon-design-system/carbon-platform/blob/master/docs/CONTRIBUTING.md">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome" />
+    <img
+      src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"
+      alt="PRs welcome"
+    />
   </a>
   <a href="https://sonarcloud.io/dashboard?id=carbon-design-system_carbon-platform">
-    <img src="https://sonarcloud.io/api/project_badges/measure?project=carbon-design-system_carbon-platform&metric=alert_status" alt="Quality gate status" />
+    <img
+      src="https://sonarcloud.io/api/project_badges/measure?project=carbon-design-system_carbon-platform&metric=alert_status"
+      alt="Quality gate status"
+    />
+  </a>
+  <a href="https://github.com/carbon-design-system/carbon-platform/actions/workflows/ci-checks.yml">
+    <img
+      src="https://github.com/carbon-design-system/carbon-platform/actions/workflows/ci-checks.yml/badge.svg"
+      alt="Continuous Integration Checks status"
+    />
   </a>
 </p>
+
+## Quality metrics
+
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=carbon-design-system_carbon-platform&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=carbon-design-system_carbon-platform)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=carbon-design-system_carbon-platform&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=carbon-design-system_carbon-platform)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=carbon-design-system_carbon-platform&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=carbon-design-system_carbon-platform)
+
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=carbon-design-system_carbon-platform&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=carbon-design-system_carbon-platform)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=carbon-design-system_carbon-platform&metric=bugs)](https://sonarcloud.io/summary/new_code?id=carbon-design-system_carbon-platform)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=carbon-design-system_carbon-platform&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=carbon-design-system_carbon-platform)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=carbon-design-system_carbon-platform&metric=coverage)](https://sonarcloud.io/summary/new_code?id=carbon-design-system_carbon-platform)
 
 ## Getting started
 

@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.1.13",
+  "version": "0.1.15",
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
@@ -17,13 +17,13 @@
     "lint": "next lint",
     "service:build": "npm run build",
     "start": "next start",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo 'No tests defined yet!'"
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "dependencies": {
-    "@carbon-platform/icons": "0.0.5",
+    "@carbon-platform/icons": "0.0.6",
     "@carbon/react": "^0.8.0",
     "@octokit/core": "^3.5.1",
     "cache-manager": "^3.4.4",

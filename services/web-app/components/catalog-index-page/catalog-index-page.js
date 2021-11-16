@@ -22,7 +22,7 @@ const CatalogIndexPage = ({ data, type = 'component' }) => {
     .reduce((assets, library) => {
       return assets.concat(library.assets)
     }, [])
-    .filter((asset) => asset.content.type === type)
+    .filter((asset) => !asset.content.private && asset.content.type === type)
     .sort((a, b) =>
       a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
     )

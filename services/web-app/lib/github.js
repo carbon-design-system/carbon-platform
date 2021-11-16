@@ -121,7 +121,8 @@ export const getLibraryData = async (params = {}) => {
     response,
     content: {
       ...packageJsonContent,
-      ...content // spread last to use schema description if set
+      ...content, // spread last to use schema description if set
+      private: !!content.private // default to false if not specified
     },
     assets: filteredAssets
   }
@@ -190,7 +191,10 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
     return {
       params: libraryParams,
       response,
-      content
+      content: {
+        ...content,
+        private: !!content.private // default to false if not specified
+      }
     }
   })
 

@@ -10,6 +10,9 @@ dist/
 # OS stuff
 .DS_Store
 
+# Jest
+.test-coverage/
+
 # IDE stuff
 .vscode/
 

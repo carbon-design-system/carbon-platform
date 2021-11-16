@@ -15,3 +15,10 @@ export const getStatus = (status) => {
 
   return 'To do'
 }
+
+export const contentNameSortComparator = (a, b) => {
+  if (a.content.name === b.content.name) {
+    return 0
+  }
+  return a.content.name > b.content.name ? 1 : -1
+}

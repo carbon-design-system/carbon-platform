@@ -1,4 +1,4 @@
-name: Continuous integration checks
+name: Continuous Integration Checks
 on:
   push:
     branches:
@@ -6,24 +6,6 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  #
-  # SonarCloud checks code quality and test coverage
-  #
-  sonarcloud:
-    name: SonarCloud
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 # Disable shallow clones for better relevancy of analysis
-
-      - name: SonarCloud Scan 🔎
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
   #
   # Ensure all files pass linting
   #
@@ -66,4 +48,55 @@ jobs:
         run: npm install
 
       - name: Build 🔨
-        run: npm run all:build
+        run: npm run services:build # Packages are already built after npm install
+
+  #
+  # Ensure all unit tests pass
+  #
+  test:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      - name: Setup Node 🏗️
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Install Node Modules 🔧
+        run: npm install
+
+      - name: Test 🧪
+        run: npm run test
+
+      - name: Upload test coverage reports 🛫
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-coverage
+          path: '**/.test-coverage/lcov.info'
+  #
+  # Check code quality and test coverage
+  #
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Disable shallow clones for better relevancy of analysis
+
+      - name: Download test coverage reports 🛬
+        uses: actions/download-artifact@v2
+        with:
+          name: test-coverage
+
+      - name: SonarCloud Scan 🔎
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

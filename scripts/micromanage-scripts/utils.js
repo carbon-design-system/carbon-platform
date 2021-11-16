@@ -7,20 +7,36 @@
 const { execSync } = require('child_process')
 const path = require('path')
 
+function buildCurlUrlParams(params) {
+  const encodedParams = Object.entries(params).map(([key, val]) => {
+    return `${key}=${encodeURIComponent(val)}`
+  })
+
+  return encodedParams.join('&')
+}
+
 /**
  * Execute a command line command.
  *
  * @param {string} cmd Command to execute.
+ * @param {object} options Additional options provided to execSync
  * @returns {string} Output of the command.
  */
-function exec(cmd) {
-  return execSync(cmd, {
-    env: {
-      ...process.env
-    }
-  })
-    .toString()
-    .trim()
+function exec(cmd, options) {
+  const execOptions = options
+    ? { env: { ...process.env }, ...options }
+    : { env: { ...process.env } }
+  return execSync(cmd, execOptions).toString().trim()
+}
+
+/**
+ * Given a package name, find the corresponding package object.
+ *
+ * @param {string} packageName The name of the package to find.
+ * @returns A package with the corresponding name; or undefined if one was not found.
+ */
+function getPackageByName(packageName) {
+  return getPackages().find((pkg) => pkg.name === packageName)
 }
 
 /**
@@ -91,8 +107,10 @@ function getTags() {
 }
 
 module.exports = {
+  buildCurlUrlParams,
   exec,
   getFiles,
+  getPackageByName,
   getPackageForFile,
   getPackages,
   getTags

@@ -1,0 +1,21 @@
+# npm
+# It's likely faster to take our installed modules and send them over than to have cf rebuild them
+# node_modules/
+
+# Dotenv
+.env*
+
+# Source files
+/src/
+
+# Docs
+CHANGELOG.md
+README.md
+
+
+# Typescript config and types
+*.d.ts
+tsconfig.json
+
+# Javascript config
+jsconfig.json

@@ -1,0 +1,44 @@
+name: Deploy Test Services
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'service-config.test.json'
+
+jobs:
+  build-and-deploy:
+    name: Build And Deploy (Test)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # Download and Install IBM Cloud CLI
+      - name: Install IBM Cloud and CF CLI 🏗️
+        run: |
+          curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+          ibmcloud cf install
+
+      - name: Setup Node 🏗️
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+          registry-url: https://registry.npmjs.org
+
+      - name: Install Node Modules 🔧
+        run: npm install
+
+      - name: Call Deploy Script 🚀
+        run: npm run deploy -- --target=test
+        env:
+          IBM_CLOUD_API: https://cloud.ibm.com
+          IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
+          CLOUD_FOUNDRY_ORGANIZATION: ${{ secrets.CLOUD_FOUNDRY_ORGANIZATION }}
+          CLOUD_FOUNDRY_SPACE_PREFIX: ${{ secrets.CLOUD_FOUNDRY_SPACE_PREFIX }}
+          CLOUD_FOUNDRY_REGION: ${{ secrets.CLOUD_FOUNDRY_REGION }}

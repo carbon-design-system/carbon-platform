@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/logging",
   "description": "Carbon platform logging utilities",
-  "version": "0.1.15",
+  "version": "0.1.17",
   "main": "dist/main/index.js",
   "types": "dist/main/index.d.ts",
   "license": "Apache-2.0",
@@ -17,9 +17,9 @@
     "access": "public"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "package:build": "npm run build"
+    "package:build": "npm run build",
+    "test": "jest --config=../../.jestrc.js"
   },
   "devDependencies": {
     "typescript": "^4.4.4"

@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.14...@carbon-platform/web-app@0.1.15) (2021-11-16)
+
+### [0.1.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.13...@carbon-platform/web-app@0.1.14) (2021-11-13)
+
+
+### Features
+
+* add functions catalog ([a80405e](https://github.com/carbon-design-system/carbon-platform/commit/a80405eca0aa037d59daa912eb834d811cbc3f13))
+
+### [0.1.13](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.12...@carbon-platform/web-app@0.1.13) (2021-11-11)
+
+
+### Features
+
+* **micromanage:** convert deploy to use dotenv ([8edaa17](https://github.com/carbon-design-system/carbon-platform/commit/8edaa174c937ef11aca1614c13d1e0db8f7e82c6))
+
+
+### Bug Fixes
+
+* merge conflicts ([76c90a0](https://github.com/carbon-design-system/carbon-platform/commit/76c90a04864b4950e4eaef8c3cc86389f1f64623))
+* **micromanage:** correct deploy ignores ([8da395c](https://github.com/carbon-design-system/carbon-platform/commit/8da395c14505fd7776bad9d4bb2d3b6aeb3fe3fb))
+* **web-app:** lock in specific version of local dep ([7fc6be3](https://github.com/carbon-design-system/carbon-platform/commit/7fc6be3563d140fa7c245c1e9e19d893406c171b))
+
+### [0.1.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.11...@carbon-platform/web-app@0.1.12) (2021-11-11)
+
+
+### Bug Fixes
+
+* **web-app:** reorder imports to avoid carbon prefix bug ([b4adbb0](https://github.com/carbon-design-system/carbon-platform/commit/b4adbb0637012621c0691d358f5d85bac6b6f2e0))
+
 ### [0.1.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.10...@carbon-platform/web-app@0.1.11) (2021-11-10)
 
 

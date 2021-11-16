@@ -92,7 +92,10 @@ export const getLibraryData = async (params = {}) => {
   return {
     params: libraryParams,
     response,
-    content,
+    content: {
+      ...content,
+      private: !!content.private // default to false if not specified
+    },
     assets: filteredAssets
   }
 }
@@ -150,7 +153,10 @@ export const getLibraryAssets = async (params = {}) => {
     return {
       params: libraryParams,
       response,
-      content
+      content: {
+        ...content,
+        private: !!content.private // default to false if not specified
+      }
     }
   })
 

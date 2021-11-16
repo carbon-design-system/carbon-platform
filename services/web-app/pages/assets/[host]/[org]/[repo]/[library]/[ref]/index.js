@@ -13,7 +13,7 @@ import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
 import styles from '@/pages/pages.module.scss'
-import { contentNameSortComparator } from '@/utils/schema'
+import { assetSortComparator } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 
 const Library = ({ libraryData, params }) => {
@@ -35,7 +35,7 @@ const Library = ({ libraryData, params }) => {
     description
   }
 
-  const assets = libraryData.assets.sort(contentNameSortComparator)
+  const assets = libraryData.assets.sort(assetSortComparator)
 
   return (
     <>

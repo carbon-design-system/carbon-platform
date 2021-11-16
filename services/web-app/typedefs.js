@@ -8,13 +8,30 @@
 /* eslint-disable max-len */
 
 /**
- * @typedef {Object} PlaceholderImage
- * @property {string} base64 - Base 64 encoded placeholder image
- * @property {Object} img
- * @property {number} img.height - Unitless height in pixels
- * @property {string} img.src - Path to image relative to the `/public` directory
- * @property {string} img.type - Image file extension
- * @property {number} img.width - Unitless width in pixels
+ * @typedef {Object} Params
+ * @property {string} asset - Asset slug
+ * @property {"github.com" | "github.ibm.com"} host - GitHub API base URL
+ * @property {string} library - Library slug
+ * @property {string} org - GitHub organization
+ * @property {string} path - Relative path to library in repository
+ * @property {string} ref - Git branch, tag, or commit hash
+ * @property {string} repo - GitHub repository
+ * @property {string} sponsor - Team slug
+ */
+
+/**
+ * @typedef {Object} Library
+ * @property {Asset[]} assets - Library assets
+ * @property {LibraryContent} content - Library content
+ * @property {Params} params - Params used to fetch library content
+ * @property {Object} response - GitHub API response from fetching carbon-library.yml file
+ */
+
+/**
+ * @typedef {Object} Asset
+ * @property {AssetContent} content - Asset content
+ * @property {Params} params - Params used to fetch asset content
+ * @property {Object} response - GitHub API response from fetching carbon-library.yml file
  */
 
 /**
@@ -42,6 +59,16 @@
  * @property {PlaceholderImage} thumbnailData - Thumbnail image source, dimensions, and placeholder
  * @property {string} thumbnailPath - Asset's thumbnail image relative to its GitHub source
  * @property {"element" | "component" | "pattern" | "function" | "layout"} type - Asset categoration
+ */
+
+/**
+ * @typedef {Object} PlaceholderImage
+ * @property {string} base64 - Base 64 encoded placeholder image
+ * @property {Object} img - Img object
+ * @property {number} img.height - Unitless height in pixels
+ * @property {string} img.src - Path to image relative to the `/public` directory
+ * @property {string} img.type - Image file extension
+ * @property {number} img.width - Unitless width in pixels
  */
 
 exports.unused = {}

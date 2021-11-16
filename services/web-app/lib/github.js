@@ -140,10 +140,10 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
 
   // get all asset metadata files in subdirectories
 
-  let response = {}
+  let treeResponse = {}
 
   try {
-    response = await getResponse(
+    treeResponse = await getResponse(
       libraryParams.host,
       'GET /repos/{owner}/{repo}/git/trees/{ref}?recursive=1',
       {
@@ -158,7 +158,7 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
 
   // request contents for each asset metadata file
 
-  const assetContentPromises = response.tree
+  const assetContentPromises = treeResponse.tree
     .filter(
       (file) =>
         removeLeadingSlash(file.path).startsWith(removeLeadingSlash(libraryParams.path)) &&
@@ -266,7 +266,7 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
       const inheritedParams = getParamsFromInheritedAsset(asset.content.inherits.asset)
 
       const inheritedAsset = inheritedAssets.find(
-        (asset) => isEqual(asset.params) === isEqual(inheritedParams)
+        (a) => isEqual(a.params) === isEqual(inheritedParams)
       )
 
       if (inheritedAsset) {

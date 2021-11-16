@@ -16,9 +16,28 @@ export const getStatus = (status) => {
   return 'To do'
 }
 
-export const contentNameSortComparator = (a, b) => {
-  if (a.content.name === b.content.name) {
+/**
+ * Defines the sort order of assets by their name.
+ * @param {import('../typedefs').Asset} assetA
+ * @param {import('../typedefs').Asset} assetB
+ * @returns {number} Sort order
+ */
+export const assetSortComparator = (assetA, assetB) => {
+  if (assetA.content.name === assetB.content.name) {
     return 0
   }
-  return a.content.name > b.content.name ? 1 : -1
+  return assetA.content.name > assetB.content.name ? 1 : -1
+}
+
+/**
+ * Defines the sort order of libraries by their name.
+ * @param {import('../typedefs').Library} libraryA
+ * @param {import('../typedefs').Library} libraryB
+ * @returns {number} Sort order
+ */
+export const librarySortComparator = (libraryA, libraryB) => {
+  if (libraryA.content.name === libraryB.content.name) {
+    return 0
+  }
+  return libraryA.content.name > libraryB.content.name ? 1 : -1
 }

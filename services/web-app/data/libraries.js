@@ -14,151 +14,176 @@ const libraryAllowList = {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/carbon-react'
+    path: '/packages/carbon-react',
+    sponsor: 'carbon'
   },
   'carbon-cli': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/cli'
+    path: '/packages/cli',
+    sponsor: 'carbon'
   },
   'carbon-cli-reporter': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/cli-reporter'
+    path: '/packages/cli-reporter',
+    sponsor: 'carbon'
   },
   'carbon-colors': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/colors'
+    path: '/packages/colors',
+    sponsor: 'carbon'
   },
   'carbon-components': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/components'
+    path: '/packages/components',
+    sponsor: 'carbon'
   },
   'carbon-elements': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/elements'
+    path: '/packages/elements',
+    sponsor: 'carbon'
   },
   'carbon-feature-flags': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/feature-flags'
+    path: '/packages/feature-flags',
+    sponsor: 'carbon'
   },
   'carbon-grid': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/grid'
+    path: '/packages/grid',
+    sponsor: 'carbon'
   },
   'carbon-icons': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/icons'
+    path: '/packages/icons',
+    sponsor: 'carbon'
   },
   'carbon-icons-handlebars': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/icons-handlebars'
+    path: '/packages/icons-handlebars',
+    sponsor: 'carbon'
   },
   'carbon-icons-react': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/icons-react'
+    path: '/packages/icons-react',
+    sponsor: 'carbon'
   },
   'carbon-icons-vue': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/icons-vue'
+    path: '/packages/icons-vue',
+    sponsor: 'carbon'
   },
   'carbon-layout': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/layout'
+    path: '/packages/layout',
+    sponsor: 'carbon'
   },
   'carbon-motion': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/motion'
+    path: '/packages/motion',
+    sponsor: 'carbon'
   },
   'carbon-patterns': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/patterns'
+    path: '/packages/patterns',
+    sponsor: 'carbon'
   },
   'carbon-pictograms': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/pictograms'
+    path: '/packages/pictograms',
+    sponsor: 'carbon'
   },
   'carbon-pictograms-react': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/pictograms-react'
+    path: '/packages/pictograms-react',
+    sponsor: 'carbon'
   },
   'carbon-themes': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/themes'
+    path: '/packages/themes',
+    sponsor: 'carbon'
   },
   'carbon-type': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/type'
+    path: '/packages/type',
+    sponsor: 'carbon'
   },
   'carbon-upgrade': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/upgrade'
+    path: '/packages/upgrade',
+    sponsor: 'carbon'
   },
   'ibmdotcom-react': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-for-ibm-dotcom',
-    path: '/packages/react'
+    path: '/packages/react',
+    sponsor: 'ibm-dotcom'
   },
   'ibmdotcom-web-components': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-for-ibm-dotcom',
-    path: '/packages/web-components'
+    path: '/packages/web-components',
+    sponsor: 'ibm-dotcom'
   },
   'ibmdotcom-services': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-for-ibm-dotcom',
-    path: '/packages/services'
+    path: '/packages/services',
+    sponsor: 'ibm-dotcom'
   },
   'ibmdotcom-styles': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-for-ibm-dotcom',
-    path: '/packages/styles'
+    path: '/packages/styles',
+    sponsor: 'ibm-dotcom'
   },
   'ibmdotcom-utilities': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-for-ibm-dotcom',
-    path: '/packages/utilities'
+    path: '/packages/utilities',
+    sponsor: 'ibm-dotcom'
   }
 }
 

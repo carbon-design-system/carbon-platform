@@ -73,13 +73,13 @@ const Layout = ({ children }) => {
                 ))}
               </HeaderNavigation>
               <HeaderGlobalBar>
-                <HeaderGlobalAction aria-label="Search" onClick={() => {}}>
+                <HeaderGlobalAction aria-label="Search">
                   <Search size={20} />
                 </HeaderGlobalAction>
-                <HeaderGlobalAction aria-label="Log in" onClick={() => {}}>
+                <HeaderGlobalAction aria-label="Log in">
                   <User size={20} />
                 </HeaderGlobalAction>
-                <HeaderGlobalAction aria-label="Switch sites" onClick={() => {}}>
+                <HeaderGlobalAction aria-label="Switch sites">
                   <Switcher size={20} />
                 </HeaderGlobalAction>
               </HeaderGlobalBar>

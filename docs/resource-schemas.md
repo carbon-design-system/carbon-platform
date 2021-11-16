@@ -67,7 +67,7 @@ platform: web
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                | Optional | String | –             | –                                                                                              |
 | `status`          | Used to set consumption exptectations.                                                                                          | Required | String | `draft`       | `draft`, `experimental`, `stable`, `deprecated`, `sunset`                                      |
 | `type`            | Asset categorization.                                                                                                           | Required | String | –             | `element`, `component`, `pattern`, `function`, `layout`                                        |
-| `framework`       | Asset frontend framework.                                                                                                       | Required | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
+| `framework`       | Asset frontend framework.                                                                                                       | Optional | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
 | `platform`        | Asset environment.                                                                                                              | Required | String | `web`         | `cross-platform`, `web`                                                                        |
 
 #### Asset inheritance

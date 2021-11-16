@@ -19,9 +19,12 @@ import { removeLeadingSlash } from '@/utils/string'
  * well as path to the directory that contains the carbon-library.yml. Returns an empty object if
  * not found. Does not validate ref, so people can set their own branch / tag / commit.
  * @param {import('../typedefs').Params} params - Partially-complete parameters
- * @returns {import('../typedefs').Params} Complete parameters
+ * @returns {Promise<import('../typedefs').Params>} Complete parameters
  */
 const validateLibraryParams = async (params = {}) => {
+  /**
+   * @type {import('../typedefs').Params}
+   */
   let returnParams = {}
 
   for (const [slug, library] of Object.entries(libraryAllowList)) {
@@ -48,16 +51,16 @@ const validateLibraryParams = async (params = {}) => {
 
   // get default branch if a branch isn't specified through params
 
-  if (!returnParams.ref) {
-    try {
-      const repo = await getResponse(returnParams.host, 'GET /repos/{owner}/{repo}', {
-        owner: returnParams.org,
-        repo: returnParams.repo
-      })
+  try {
+    const repo = await getResponse(returnParams.host, 'GET /repos/{owner}/{repo}', {
+      owner: returnParams.org,
+      repo: returnParams.repo
+    })
 
+    if (repo && !returnParams.ref) {
       returnParams.ref = repo.default_branch
-    } catch (err) {}
-  }
+    }
+  } catch (err) {}
 
   return returnParams
 }
@@ -146,7 +149,7 @@ export const getLibraryData = async (params = {}) => {
  * library's subdirectory and then fetch the contents for each asset metadata file.
  * @param {import('../typedefs').Params} params
  * @param {boolean} inheritContent
- * @returns {import('../typedefs').Asset[]}
+ * @returns {Promise<import('../typedefs').Asset[]>}
  */
 const getLibraryAssets = async (params = {}, inheritContent = false) => {
   const libraryParams = await validateLibraryParams(params)
@@ -287,7 +290,7 @@ const getAssetExtensions = (originalAsset, inheritedAssets, imgPlaceholders) => 
 /**
  * Iterates over an array of assets and returns an array of assets that are to be inherited.
  * @param {import('../typedefs').Asset[]} assets - Assets
- * @returns {import('../typedefs').Asset[]} Array of assets that will be inherited
+ * @returns {Promise<import('../typedefs').Asset[]>} Array of assets that will be inherited
  */
 const getInheritedAssets = async (assets) => {
   const inheritedLibraryAssetsPromises = []
@@ -385,7 +388,7 @@ export const getAllLibraries = async () => {
  * Requests content of the package.json file and returns some of the properties.
  * @param {import('../typedefs').Params} params
  * @param {string} packageJsonPath
- * @returns {import('../typedefs').LibraryContent}
+ * @returns {Promise<import('../typedefs').LibraryContent>}
  */
 const getPackageJsonContent = async (params = {}, packageJsonPath = '/package.json') => {
   const libraryParams = await validateLibraryParams(params)

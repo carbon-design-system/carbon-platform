@@ -4,16 +4,23 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Button, Column, Dropdown, Grid, InlineNotification, Toggle } from '@carbon/react'
-import { Svg32GridLayout, Svg32ListLayout } from '@carbon-platform/icons'
+import { Column, Grid, InlineNotification } from '@carbon/react'
 import { useState } from 'react'
 
-import CatalogGrid from '../catalog-grid'
-import CatalogList from '../catalog-list'
 import CatalogSearch from '../catalog-search'
+import CatalogSort from '../catalog-sort/catalog-sort'
 import styles from '../catalog-sort/catalog-sort.module.scss'
 
-const CatalogIndexPage = ({ data, type = 'component' }) => {
+function CatalogIndexPage({ data, type = 'component', onChange }) {
+  const sortOptions = ['A to Z', 'Most Used']
+  const initialSortOption = 'A to Z'
+  const sortBy = {
+    'A to Z': sortByName,
+    'Most Used': sortByMostUsed
+  }
+  const [activeSortOption, setActiveSortOption] = useState(initialSortOption)
+  const [selected, setSelected] = useState([])
+
   const libraries = data.libraries
     .filter((library) => library.assets.length)
     .sort((a, b) =>
@@ -28,11 +35,16 @@ const CatalogIndexPage = ({ data, type = 'component' }) => {
     .sort((a, b) =>
       a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
     )
+  console.log(assets, 'assets here')
 
-  const options = ['A-Z', 'Most used']
+  function sortByName(a, b) {
+    return a.name.localeCompare(b.name)
+  }
 
-  const [layout, setLayout] = useState(false)
-  console.log('hi', assets)
+  function sortByMostUsed() {
+    const sorted = assets.sort((a, b) => (a.response.size > b.response.size) ? 1 : ((b.response.size > a.response.size) ? -1 : 0))
+    return sorted && console.log(sorted, 'sorted')
+  }
 
   return (
     <Grid>
@@ -45,59 +57,12 @@ const CatalogIndexPage = ({ data, type = 'component' }) => {
           </div>
         </InlineNotification>
         <CatalogSearch assets={assets} />
-        <div className={styles.container}>
-          <div className={styles.dropdownText}>
-            <Dropdown
-              id="component-index-sort"
-              initialSelectedItem="Most used"
-              items={options}
-              light
-              className={styles.dropdown}
-              // onChange={({ selectedItem }) => {
-              //   onChange(selectedItem);
-              // }}
-              type="inline"
-              titleText="Sort by:"
-              label="A-Z"
-              size="lg"
-            />
-          </div>
-          <div>
-            <Toggle
-              aria-label="toggle button"
-              defaultToggled
-              id="toggle-1"
-              labelText="Carbon Reviewed:"
-              className={styles.toggle}
-              size="lg"
-            />
-          </div>
-          <div className={styles.switcher}>
-            <Button
-              size="lg"
-              kind="ghost"
-              renderIcon={Svg32GridLayout}
-              iconDescription="Grid view"
-              hasIconOnly
-              onClick={() => {
-                setLayout(true)
-              }}
-              className={[layout ? styles.switcherStyle : null]}
-            />
-            <Button
-              size="lg"
-              kind="ghost"
-              renderIcon={Svg32ListLayout}
-              iconDescription="List view"
-              hasIconOnly
-              onClick={() => {
-                setLayout(false)
-              }}
-              className={[layout ? null : styles.switcherStyle]}
-            />
-          </div>
-        </div>
-        {layout ? <CatalogGrid assets={assets} /> : <CatalogList assets={assets} />}
+        <CatalogSort
+          initialSortOption={initialSortOption}
+          onChange={sortByMostUsed}
+          options={sortOptions}
+          assets={assets}
+        />
       </Column>
     </Grid>
   )

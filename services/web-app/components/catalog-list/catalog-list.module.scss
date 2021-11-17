@@ -27,6 +27,7 @@
 // Item Image
 .item-image {
   display: none;
+  padding: 1rem;
 
   @include breakpoint(md) {
     //672  4:3

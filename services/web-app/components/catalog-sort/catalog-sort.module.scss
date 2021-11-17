@@ -205,10 +205,11 @@
   }
 }
 
-.switcher-style {
-  background-color: rgb(3, 3, 3);
+.selected {
+  background-color: #000000;
 }
 
-.switcher-style .svg {
+// TODO: target fill color? 
+.selected > svg > path:first-child {
   fill: #ffffff;
 }

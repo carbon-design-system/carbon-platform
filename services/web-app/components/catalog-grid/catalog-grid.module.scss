@@ -63,6 +63,8 @@
 
 // Item Image
 .item-image {
+  padding: 1rem;
+
   @include breakpoint(lg) {
     //1312  4:3
     display: flex;

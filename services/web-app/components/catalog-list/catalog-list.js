@@ -5,8 +5,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Add16 } from '@carbon/icons-react'
 import {
+  ImagePlaceholder,
   Svg12Stable,
   Svg14Download,
   Svg14License,
@@ -37,7 +37,7 @@ const CatalogList = ({ assets = [] }) => {
           >
             <a className={styles.itemInner}>
               <div className={styles.itemImage}>
-                <Add16 aria-label="Add" className="my-custom-class" />
+                <ImagePlaceholder aria-label="Add" />
               </div>
               <div className={styles.itemContent}>
                 <p className={styles.itemSponsor}>{getSponsor(asset.params.sponsor)}</p>

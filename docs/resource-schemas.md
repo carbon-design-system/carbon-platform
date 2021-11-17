@@ -26,13 +26,14 @@ description: React implementation of Carbon Components
 
 ### Library keys
 
-| Key               | Description                                                                                                                    | Required | Type    | Default         | Valid values |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------- | ------- | --------------- | ------------ |
-| `name`            | Library display name. Use title-case capitalization.                                                                           | Required | String  | –               | –            |
-| `description`     | Library description ideally between 50-160 characters in length. Use sentence-case capitalization.                             | Required | String  | –               | –            |
-| `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, and code package. | Optional | String  | `/package.json` | –            |
-| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                               | Optional | String  | –               | –            |
-| `private`         | If set to `true`, the catalogs will exclude the library.                                                                       | Optional | Boolean | `false`         | –            |
+| Key               | Description                                                                                                                                                                                                              | Required | Type    | Default         | Valid values |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ------- | --------------- | ------------ |
+| `id`              | Every library needs an identifier unique to the platform. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive an `id` when registering a new library. | Required | String  | –               | –            |
+| `name`            | Library display name. Use title-case capitalization.                                                                                                                                                                     | Required | String  | –               | –            |
+| `description`     | Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the `package.json` description if not set here.                                                           | Required | String  | –               | –            |
+| `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, and code package.                                                                                           | Optional | String  | `/package.json` | –            |
+| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                                                                                         | Optional | String  | –               | –            |
+| `private`         | If set to `true`, the catalogs will exclude the library.                                                                                                                                                                 | Optional | Boolean | `false`         | –            |
 
 ## Asset schema
 
@@ -43,6 +44,7 @@ same directory as the asset's source.
 **Example**
 
 ```yml
+id: accordion
 name: Accordion
 description:
   An accordion is a vertically stacked list of headers that reveal or hide associated sections of
@@ -56,17 +58,53 @@ platform: web
 
 ### Asset keys
 
-| Key               | Description                                                                                                                     | Required | Type    | Default       | Valid values                                                                                   |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | ------------- | ---------------------------------------------------------------------------------------------- |
-| `name`            | Asset display name. Use sentence-case capitalization. All asset names in a library should be unique to prevent page collisions. | Required | String  | –             | –                                                                                              |
-| `description`     | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization.                                | Required | String  | –             | –                                                                                              |
-| `thumbnailPath`   | Relative location of the asset's thumbnail image.                                                                               | Optional | String  | –             | –                                                                                              |
-| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                | Optional | String  | –             | –                                                                                              |
-| `status`          | Used to set consumption exptectations.                                                                                          | Required | String  | `draft`       | `draft`, `experimental`, `stable`, `deprecated`, `sunset`                                      |
-| `type`            | Asset categorization.                                                                                                           | Required | String  | –             | `element`, `component`, `pattern`, `function`, `layout`                                        |
-| `framework`       | Asset frontend framework.                                                                                                       | Required | String  | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
-| `platform`        | Asset environment.                                                                                                              | Required | String  | `web`         | `cross-platform`, `web`                                                                        |
-| `private`         | If set to `true`, the catalogs will exclude the asset.                                                                          | Optional | Boolean | `false`       | –                                                                                              |
+| Key               | Description                                                                                                                     | Required | Type    | Default                                                                                        | Valid values                                              |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| `id`              | Every asset needs an identifier unique to its library. This is used to associate assets across libraries.                       | Required | String  | –                                                                                              | –                                                         |
+| `name`            | Asset display name. Use sentence-case capitalization. All asset names in a library should be unique to prevent page collisions. | Required | String  | –                                                                                              | –                                                         |
+| `description`     | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization.                                | Required | String  | –                                                                                              | –                                                         |
+| `thumbnailPath`   | Relative location of the asset's thumbnail image.                                                                               | Optional | String  | –                                                                                              | –                                                         |
+| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                | Optional | String  | –                                                                                              | –                                                         |
+| `status`          | Used to set consumption exptectations.                                                                                          | Required | String  | `draft`                                                                                        | `draft`, `experimental`, `stable`, `deprecated`, `sunset` |
+| `type`            | Asset categorization.                                                                                                           | Required | String  | –                                                                                              | `element`, `component`, `pattern`, `function`, `layout`   |
+| `framework`       | Asset frontend framework.                                                                                                       | Optional | String  | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
+| `platform`        | Asset environment.                                                                                                              | Required | String  | `web`                                                                                          | `cross-platform`, `web`                                   |
+| `private`         | If set to `true`, the catalogs will exclude the asset.                                                                          | Optional | Boolean | `false`                                                                                        | –                                                         |
+
+#### Asset inheritance
+
+Each asset can inherit properties from another asset. For example, if there are multiple
+implementations of a component for different JavaScript frameworks, it's common that there's an
+underlying library and asset that contains shared usage guidance, design specs, and styling.
+Defining the inheritance relationship allows us to have a single source of truth for the shared
+content and resources, and allows each inheriting asset (e.g. implementation per framework) to
+specify its versioned adherance of the underlying asset.
+
+When inheriting another asset, you need to specify the fully qualified asset name (library `id`,
+library `version` or its repo's branch, asset `id`) and what properties you'd like to inherit.
+
+For the value of the `inherits` key, you can set the following keys.
+
+| Inherits     | Description                                                                                |
+| ------------ | ------------------------------------------------------------------------------------------ |
+| `asset`      | Fully qualified asset name with the format `[library id]@[repo ref\|"latest"]/[asset id]`. |
+| `properties` | An array of asset keys to inherit.                                                         |
+
+**Example**
+
+```yml
+id: accordion
+inherits:
+  asset: 'carbon-styles@latest/accordion'
+  properties:
+    - name
+    - description
+    - thumbnailPath
+    - type
+    - platform
+status: stable
+framework: react
+```
 
 #### Asset status
 

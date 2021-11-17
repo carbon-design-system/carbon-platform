@@ -28,6 +28,12 @@
   }
 }
 
+@media (min-width: 320px) and (max-width: 671px) {
+  .container {
+    max-width: 20rem;
+  }
+}
+
 //----------------------------------------------------------------------------
 // Catalog Search
 //----------------------------------------------------------------------------
@@ -35,7 +41,7 @@
   width: 16.9rem;
   border-right: 1px solid #d8d8d8;
 
-  @include breakpoint(320px) {
+  @include breakpoint(sm) {
     margin-bottom: 32px;
   }
 
@@ -63,6 +69,7 @@
   border-bottom: 1px solid #8d8d8d;
   background-color: #ffffff;
 }
+
 //----------------------------------------------------------------------------
 // Catalog Multiselect
 //----------------------------------------------------------------------------
@@ -130,6 +137,11 @@
   border-bottom: 1px solid #c6c6c6;
   margin-bottom: 1rem;
   @include type-style('productive-heading-01');
+
+  @include breakpoint(sm) {
+    //672  4:3
+    width: 20rem;
+  }
 
   @include breakpoint(md) {
     //672  4:3

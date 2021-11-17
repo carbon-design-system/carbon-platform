@@ -66,6 +66,12 @@
   }
 }
 
+@media (min-width: 320px) and (max-width: 671px) {
+  .item {
+    max-width: 20rem;
+  }
+}
+
 @media (min-width: 673px) and (max-width: 1055px) {
   .item {
     max-width: 38rem;

@@ -23,6 +23,11 @@
   margin-top: auto;
   background-color: #ffffff;
 
+  @include breakpoint(sm) {
+    //672  4:3
+    width: 20rem;
+  }
+
   @include breakpoint(md) {
     //672  4:3
     width: 38rem;
@@ -86,6 +91,7 @@
 .dropdown :global(.cds--label) {
   @include type-style('body-short-01');
 
+  width: 6rem;
   color: $text-primary;
 }
 
@@ -93,7 +99,7 @@
   padding-left: 8px;
 
   @include breakpoint(sm) {
-    margin-right: 8.18rem;
+    margin-right: 7.18rem;
   }
 
   @include breakpoint(md) {

@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+// TODO: fix nested ternary
 /*
  * Copyright IBM Corp. 2021, 2021
  *

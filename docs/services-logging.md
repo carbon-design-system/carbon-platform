@@ -1,5 +1,6 @@
 # Services - Logging
 
-The logging service provides common logging interfaces for all packages and services.
+The logging service provides a common logging mechanism for all packages and services.
 
-TODO
+It listens for messages from the messaging service of type `LOG` and transmits these to the IBM
+Cloud LogDNA instance.

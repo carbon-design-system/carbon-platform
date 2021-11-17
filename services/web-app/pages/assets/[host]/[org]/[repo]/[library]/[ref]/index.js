@@ -43,7 +43,7 @@ const Library = ({ libraryData, params }) => {
       <ul>
         {assets.map((asset, i) => (
           <li key={i}>
-            <Link href={`/assets/${asset.params.slug}/${params.ref}/${getSlug(asset.content)}`}>
+            <Link href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}>
               <a>{asset.content.name}</a>
             </Link>
           </li>

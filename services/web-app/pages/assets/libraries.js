@@ -35,7 +35,7 @@ const Libraries = ({ librariesData }) => {
       <ul>
         {libraries.map((library, i) => (
           <li key={i}>
-            <Link href={`/assets/${library.params.slug}`}>
+            <Link href={`/assets/${library.params.library}`}>
               <a>{library.content.name}</a>
             </Link>
             <ul className={styles.bullets}>

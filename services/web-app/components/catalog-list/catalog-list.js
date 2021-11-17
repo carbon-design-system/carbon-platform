@@ -25,7 +25,7 @@ const CatalogList = ({ assets = [] }) => {
     <ul>
       {assets.map((asset, i) => (
         <li className={styles.item} key={i}>
-          <Link href={`/assets/${asset.params.slug}/latest/${getSlug(asset.content)}`}>
+          <Link href={`/assets/${asset.params.library}/latest/${getSlug(asset.content)}`}>
             <a className={styles.itemInner}>
               <div className={styles.itemImage}>
                 <Add16 aria-label="Add" className="my-custom-class" />

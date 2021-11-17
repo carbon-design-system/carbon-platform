@@ -35,7 +35,7 @@ const validateLibraryParams = async (params = {}) => {
       params.library === slug
     ) {
       returnParams = {
-        slug,
+        library: slug,
         ...library
       }
 
@@ -72,6 +72,11 @@ const validateLibraryParams = async (params = {}) => {
  * @returns {import('../typedefs').Params} Resource parameters
  */
 const getParamsFromInheritedAsset = (inheritanceRef = '') => {
+  /**
+   * @type {import('../typedefs').Params}
+   */
+  let returnParams = {}
+
   const [libraryId] = inheritanceRef.split('@')
   const libraryRef = inheritanceRef.slice(
     inheritanceRef.indexOf('@') + 1,
@@ -79,16 +84,17 @@ const getParamsFromInheritedAsset = (inheritanceRef = '') => {
   )
   const [assetId] = inheritanceRef.split('/').reverse()
 
-  const params = libraryAllowList[libraryId]
+  returnParams = libraryAllowList[libraryId] || {}
 
-  return params
-    ? {
-        ...params,
-        library: libraryId,
-        ref: libraryRef || 'latest',
-        asset: assetId
-      }
-    : {}
+  if (libraryRef !== 'latest') {
+    returnParams.ref = libraryRef
+  }
+
+  return {
+    ...returnParams,
+    library: libraryId,
+    asset: assetId
+  }
 }
 
 /**
@@ -196,21 +202,27 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
 
   const assetContentData = await Promise.all(assetContentPromises)
 
-  const assets = assetContentData.map((response) => {
-    /**
-     * @type {import('../typedefs').AssetContent}
-     */
-    const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+  const assets = assetContentData
+    .map((response) => {
+      /**
+       * @type {import('../typedefs').AssetContent}
+       */
+      const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
 
-    return {
-      params: libraryParams,
-      response,
-      content: {
-        ...content,
-        private: !!content.private // default to false if not specified
+      return {
+        params: libraryParams,
+        response,
+        content: {
+          ...content,
+          private: !!content.private // default to false if not specified
+        }
       }
-    }
-  })
+    })
+    .filter((asset) => {
+      // if fetching a specific asset, only return that
+
+      return libraryParams.asset ? getSlug(asset.content) === libraryParams.asset : true
+    })
 
   const inheritedAssets = inheritContent ? await getInheritedAssets(assets) : []
 
@@ -259,27 +271,36 @@ const getAssetExtensions = (originalAsset, inheritedAssets, imgPlaceholders) => 
   if (originalAsset.content.inherits) {
     const inheritedParams = getParamsFromInheritedAsset(originalAsset.content.inherits.asset)
 
-    const inheritedAsset = inheritedAssets.find(
-      (asset) => isEqual(asset.params) === isEqual(inheritedParams)
-    )
+    const inheritedAsset = inheritedAssets.find((asset) => {
+      const params = asset.params
 
-    if (inheritedAsset) {
+      // if the inherited ref only specifies "latest", remove the ref from the original asset so
+      // we're not trying to match "latest" with the default branch "main" or "master"
+
+      if (!inheritedParams.ref) {
+        delete params.ref
+      }
+
+      return isEqual(params, inheritedParams)
+    })
+
+    if (
+      inheritedAsset &&
+      originalAsset.content.inherits &&
+      originalAsset.content.inherits.properties &&
+      originalAsset.content.inherits.properties.length
+    ) {
       // loop over properties, extend
-      if (
-        originalAsset.content.inherits &&
-        originalAsset.content.inherits.properties &&
-        originalAsset.content.inherits.properties.length
-      ) {
-        originalAsset.content.inherits.properties.forEach((property) => {
-          assetExtensions[property] = inheritedAsset.content[property] || ''
-        })
 
-        if (
-          originalAsset.content.inherits.properties.includes('thumbnailPath') &&
-          inheritedAsset.content.thumbnailData
-        ) {
-          assetExtensions.thumbnailData = inheritedAsset.content.thumbnailData
-        }
+      originalAsset.content.inherits.properties.forEach((property) => {
+        assetExtensions[property] = inheritedAsset.content[property] || ''
+      })
+
+      if (
+        originalAsset.content.inherits.properties.includes('thumbnailPath') &&
+        inheritedAsset.content.thumbnailData
+      ) {
+        assetExtensions.thumbnailData = inheritedAsset.content.thumbnailData
       }
     }
   }

@@ -19,7 +19,7 @@
   "scripts": {
     "build": "tsc",
     "package:build": "npm run build",
-    "test": "jest --config=../../.jestrc.js"
+    "test": "jest --config=../../.jestrc.workspace.js"
   },
   "devDependencies": {
     "typescript": "^4.4.4"

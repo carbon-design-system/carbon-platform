@@ -10,7 +10,6 @@ function doStuff() {
   console.log('it is yet another change!')
   console.log('it is yet another & another change!')
   console.log('it is yet another & another change haha!')
-  console.log('small change!')
 }
 
 export { doStuff }

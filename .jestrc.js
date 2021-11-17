@@ -29,7 +29,7 @@ module.exports = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: '.test-coverage',
+  coverageDirectory: `${__dirname}/.test-coverage`,
 
   // An array of regexp pattern strings used to skip coverage collection
   coveragePathIgnorePatterns: ['/node_modules/', '/dist/'],
@@ -68,7 +68,13 @@ module.exports = {
   // globalTeardown: undefined,
 
   // A set of global variables that need to be available in all test environments
-  // globals: {},
+  globals: {
+    'ts-jest': {
+      tsconfig: {
+        esModuleInterop: true
+      }
+    }
+  },
 
   // The maximum amount of workers used to run your tests. Can be specified as % or a number.
   // E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number.
@@ -126,12 +132,10 @@ module.exports = {
   // restoreMocks: false,
 
   // The root directory that Jest should scan for tests and modules within
-  rootDir: process.cwd(),
+  // rootDir: process.cwd(),
 
   // A list of paths to directories that Jest should use to search for files in
-  // roots: [
-  //   "<rootDir>"
-  // ],
+  roots: require('./package.json').workspaces,
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",

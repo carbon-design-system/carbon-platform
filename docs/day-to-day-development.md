@@ -179,18 +179,20 @@ npm --workspace services/logging-service run build
 
 ### 3. Run unit tests
 
-Depending on the scope of your work, run one of the following from the top-level in the repo:
+Depending on the scope of your work, run one of the following from the top-level in the repo.
 
 ```
-npm run all:test
+npm run test
 ```
 
-This will run all unit tests against all workspaces in the repo. If you're only working on one
-specific package or service, you can instead run the `test` script for that service specifically
-with something like:
+If run from the top-level, `npm run test` will run all unit tests across the entire repo. If run
+from a package or service directory, it will only run the tests for that particular workspace.
+
+If you want to run tests for some, but not all workspaces in the repo, you can use something like
+the following:
 
 ```
-npm --workspace services/logging-service run test
+npm --workspace services/logging-service --workspace packages/logging run test
 ```
 
 ### 4. Make sure commits reference GitHub issues

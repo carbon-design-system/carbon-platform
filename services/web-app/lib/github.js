@@ -226,7 +226,8 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
 
   const inheritedAssets = inheritContent ? await getInheritedAssets(assets) : []
 
-  const imgPlaceholders = await getImagePlaceholders(assets)
+  // TODO this is commented out to prevent production build errors
+  const imgPlaceholders = [] // await getImagePlaceholders(assets)
 
   return assets.map((asset) => {
     const assetExtensions = getAssetExtensions(asset, inheritedAssets, imgPlaceholders)
@@ -337,6 +338,7 @@ const getInheritedAssets = async (assets) => {
  * @param {import('../typedefs').Asset[]} assets - Assets
  * @returns {Promise<import('../typedefs').PlaceholderImage[]>} Array of placeholder objects
  */
+// eslint-disable-next-line no-unused-vars
 const getImagePlaceholders = async (assets) => {
   // find all thumbnail images, get content of each image, filter out assets with no thumbnail
 

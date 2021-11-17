@@ -12,6 +12,7 @@ import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 import styles from '@/pages/pages.module.scss'
+import { librarySortComparator } from '@/utils/schema'
 
 const Libraries = ({ librariesData }) => {
   const { setNavData } = useContext(LayoutContext)
@@ -24,9 +25,9 @@ const Libraries = ({ librariesData }) => {
     setNavData(assetsNavData)
   }, [setNavData])
 
-  const libraries = librariesData.libraries.sort((a, b) =>
-    a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
-  )
+  const libraries = librariesData.libraries
+    .filter((library) => !library.content.private)
+    .sort(librarySortComparator)
 
   return (
     <>
@@ -34,10 +35,11 @@ const Libraries = ({ librariesData }) => {
       <ul>
         {libraries.map((library, i) => (
           <li key={i}>
-            <Link href={`/assets/${library.params.slug}`}>
+            <Link href={`/assets/${library.params.library}`}>
               <a>{library.content.name}</a>
             </Link>
             <ul className={styles.bullets}>
+              <li className={styles.bulletsItem}>{library.content.id}</li>
               <li className={styles.bulletsItem}>{library.content.description}</li>
             </ul>
           </li>

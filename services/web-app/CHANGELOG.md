@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.16](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.15...@carbon-platform/web-app@0.1.16) (2021-11-17)
+
+
+### Features
+
+* add private property to resource schemas ([01cbe95](https://github.com/carbon-design-system/carbon-platform/commit/01cbe95ea0752480f3e1247dcf883992b911c56c))
+* add sponsor team to each library ([2e28043](https://github.com/carbon-design-system/carbon-platform/commit/2e28043314a1c846234e2aff60c4533f7c812722))
+
+
+### Bug Fixes
+
+* sonarcloud errors ([f27244f](https://github.com/carbon-design-system/carbon-platform/commit/f27244f970dfd376a17aa693f47a5796abe8a4a1))
+
 ### [0.1.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.14...@carbon-platform/web-app@0.1.15) (2021-11-16)
 
 ### [0.1.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.13...@carbon-platform/web-app@0.1.14) (2021-11-13)

@@ -17,7 +17,7 @@
     "build": "tsc",
     "service:build": "npm run build",
     "start": "node dist/main/index.js",
-    "test": "jest --config=../../.jestrc.js"
+    "test": "jest --config=../../.jestrc.workspace.js"
   },
   "devDependencies": {
     "typescript": "^4.4.4"

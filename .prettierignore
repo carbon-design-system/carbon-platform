@@ -1,17 +1,18 @@
 # Node
-node_modules
+node_modules/
 package*.json
 
 # Build
-.carbon
-.next
-dist
+.carbon/
+.next/
+dist/
 
 # Changelogs
 CHANGELOG.md
 
 # IDE-specific
-.vscode
+.vscode/
 
 # Generated
 *-generated/
+.test-coverage/

@@ -8,12 +8,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
-import slugify from 'slugify'
 
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
 import styles from '@/pages/pages.module.scss'
+import { assetSortComparator } from '@/utils/schema'
+import { getSlug } from '@/utils/slug'
 
 const Library = ({ libraryData, params }) => {
   const { setNavData } = useContext(LayoutContext)
@@ -34,9 +35,7 @@ const Library = ({ libraryData, params }) => {
     description
   }
 
-  const assets = libraryData.assets.sort((a, b) =>
-    a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
-  )
+  const assets = libraryData.assets.sort(assetSortComparator)
 
   return (
     <>
@@ -44,11 +43,7 @@ const Library = ({ libraryData, params }) => {
       <ul>
         {assets.map((asset, i) => (
           <li key={i}>
-            <Link
-              href={`/assets/${asset.params.slug}/${params.ref}/${slugify(asset.content.name, {
-                lower: true
-              })}`}
-            >
+            <Link href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}>
               <a>{asset.content.name}</a>
             </Link>
           </li>

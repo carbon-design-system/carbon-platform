@@ -5,46 +5,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, InlineNotification } from '@carbon/react'
-import { useState } from 'react'
+
+import { assetSortComparator, librarySortComparator } from '@/utils/schema'
 
 import CatalogSearch from '../catalog-search'
 import CatalogSort from '../catalog-sort/catalog-sort'
 import styles from '../catalog-sort/catalog-sort.module.scss'
 
-function CatalogIndexPage({ data, type = 'component', onChange }) {
+function CatalogIndexPage({ data, type = 'component' }) {
   const sortOptions = ['A to Z', 'Most Used']
   const initialSortOption = 'A to Z'
-  const sortBy = {
-    'A to Z': sortByName,
-    'Most Used': sortByMostUsed
-  }
-  const [activeSortOption, setActiveSortOption] = useState(initialSortOption)
-  const [selected, setSelected] = useState([])
 
   const libraries = data.libraries
     .filter((library) => library.assets.length)
-    .sort((a, b) =>
-      a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
-    )
+    .sort(librarySortComparator)
 
   const assets = libraries
-    .reduce((assets, library) => {
-      return assets.concat(library.assets)
+    .reduce((allAssets, library) => {
+      return allAssets.concat(library.assets)
     }, [])
-    .filter((asset) => asset.content.type === type)
-    .sort((a, b) =>
-      a.content.name > b.content.name ? 1 : b.content.name > a.content.name ? -1 : 0
-    )
-  console.log(assets, 'assets here')
-
-  function sortByName(a, b) {
-    return a.name.localeCompare(b.name)
-  }
-
-  function sortByMostUsed() {
-    const sorted = assets.sort((a, b) => (a.response.size > b.response.size) ? 1 : ((b.response.size > a.response.size) ? -1 : 0))
-    return sorted && console.log(sorted, 'sorted')
-  }
+    .filter((asset) => !asset.content.private && asset.content.type === type)
+    .sort(assetSortComparator)
 
   return (
     <Grid>
@@ -59,7 +40,7 @@ function CatalogIndexPage({ data, type = 'component', onChange }) {
         <CatalogSearch assets={assets} />
         <CatalogSort
           initialSortOption={initialSortOption}
-          onChange={sortByMostUsed}
+          // onChange={sortByMostUsed}
           options={sortOptions}
           assets={assets}
         />

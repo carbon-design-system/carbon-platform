@@ -39,8 +39,8 @@ It's up to you on if you'd prefer to see these globally or only for the Carbon P
 
 ```jsonc
 {
-  // Turns on "fix on save" for eslint
-  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
+  // Turns on "fix on save" for eslint and stylelint
+  "editor.codeActionsOnSave": ["source.fixAll.eslint", "source.fixAll.stylelint"],
   // Sets prettier as the default formatter (for all file types, but this can be configured to your liking)
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   // Allow prettier to apply formatting on file saves

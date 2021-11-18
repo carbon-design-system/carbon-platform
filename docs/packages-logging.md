@@ -1,4 +1,4 @@
-# Packages - Logging
+# Packages - logging
 
 ## Purpose
 

@@ -1,4 +1,4 @@
-# Services - Logging
+# Services - logging-service
 
 The logging service provides a common logging mechanism for all packages and services.
 

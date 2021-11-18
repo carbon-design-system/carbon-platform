@@ -6,11 +6,11 @@
  */
 import { Column, Grid, InlineNotification } from '@carbon/react'
 
+import CatalogSearch from '@/components/catalog-search'
+import CatalogSort from '@/components/catalog-sort'
 import { assetSortComparator, librarySortComparator } from '@/utils/schema'
 
-import CatalogSearch from '../catalog-search'
-import CatalogSort from '../catalog-sort/catalog-sort'
-import styles from '../catalog-sort/catalog-sort.module.scss'
+import styles from './catalog-index-page.module.scss'
 
 function CatalogIndexPage({ data, type = 'component' }) {
   const sortOptions = ['A to Z', 'Most Used']

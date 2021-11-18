@@ -6,15 +6,19 @@
  */
 type Mode = 'DEV' | 'TEST' | 'PRODUCTION'
 
+const DEV: Mode = 'DEV'
+const TEST: Mode = 'TEST'
+const PRODUCTION: Mode = 'PRODUCTION'
+
 function getRunMode(): Mode {
   const mode = process.env.CARBON_RUN_MODE
 
-  if (mode === 'TEST' || mode === 'PRODUCTION') {
+  if (mode === TEST || mode === PRODUCTION) {
     return mode
   } else {
-    return 'DEV'
+    return DEV
   }
 }
 
 export type { Mode }
-export { getRunMode }
+export { DEV, getRunMode, PRODUCTION, TEST }

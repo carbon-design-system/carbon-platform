@@ -4,17 +4,17 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { getRunMode } from '@carbon-platform/run-mode'
+import { DEV, getRunMode, PRODUCTION } from '@carbon-platform/run-mode'
 
 async function debug(message: string) {
   // Debug logging is disabled in production mode
-  if (getRunMode() === 'PRODUCTION') {
+  if (getRunMode() === PRODUCTION) {
     return
   }
 
   console.debug(message)
 
-  if (getRunMode() === 'DEV') {
+  if (getRunMode() === DEV) {
     return
   }
 
@@ -25,7 +25,7 @@ async function debug(message: string) {
 async function info(message: string) {
   console.info(message)
 
-  if (getRunMode() === 'DEV') {
+  if (getRunMode() === DEV) {
     return
   }
 
@@ -36,7 +36,7 @@ async function info(message: string) {
 async function warn(message: string) {
   console.warn(message)
 
-  if (getRunMode() === 'DEV') {
+  if (getRunMode() === DEV) {
     return
   }
 
@@ -46,7 +46,8 @@ async function warn(message: string) {
 
 async function error(message: string, exception?: object) {
   console.error(message, exception)
-  if (getRunMode() === 'DEV') {
+
+  if (getRunMode() === DEV) {
     return
   }
 

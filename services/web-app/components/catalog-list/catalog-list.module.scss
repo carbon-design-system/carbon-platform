@@ -282,42 +282,6 @@ a .item-info {
   }
 }
 
-// Item Tags Sponsor
-.item-tag-border {
-  border: 1px solid #e0e0e0;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-}
-
-.item-tags-sponsor {
-  @include breakpoint(sm) {
-    width: 3rem;
-    height: 3rem;
-    padding-top: 0.65rem;
-    padding-left: 0.65rem;
-  }
-
-  @include breakpoint(md) {
-    width: 3rem;
-    height: 3rem;
-    padding-top: 0.65rem;
-    padding-left: 0.65rem;
-  }
-
-  @include breakpoint(lg) {
-    width: 3rem;
-    height: 3rem;
-    padding-top: 0.65rem;
-    padding-left: 0.65rem;
-  }
-
-  @include breakpoint(xlg) {
-    width: 3.5rem;
-    height: 3.5rem;
-  }
-}
-
 a .item-tags-sponsor {
   color: #525252;
 }

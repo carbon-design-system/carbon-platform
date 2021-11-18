@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/link-passhref */
 /*
  * Copyright IBM Corp. 2021, 2021
  *
@@ -10,17 +9,13 @@ import {
   Svg12Stable,
   Svg14Download,
   Svg14License,
-  Svg16Carbon,
-  Svg24Angular,
-  Svg24CarbonTag,
-  Svg24IbmDotcomTag,
-  Svg24React,
-  Svg24Vanilla,
-  Svg24Vue
+  Svg16Carbon
 } from '@carbon-platform/icons'
 import Link from 'next/link'
 import slugify from 'slugify'
 
+import FrameworkIcon from '@/components/framework-icon'
+import SponsorTag from '@/components/sponsor-tag'
 import { getSponsor, getStatus } from '@/utils/schema'
 
 import styles from './catalog-grid.module.scss'
@@ -37,19 +32,7 @@ const CatalogGridItem = ({ assets = [] }) => {
           <div className={styles.itemImage}>
             <ImagePlaceholder aria-label="Add" />
           </div>
-          {asset.params.sponsor === 'carbon'
-            ? (
-            <div className={styles.itemTagBorder}>
-              <Svg24CarbonTag className={styles.itemTagsSponsor} />
-            </div>
-              )
-            : asset.params.sponsor === 'ibm-dotcom'
-              ? (
-            <div className={styles.itemTagBorder}>
-              <Svg24IbmDotcomTag className={styles.itemTagsSponsor} />
-            </div>
-                )
-              : null}
+          <SponsorTag className={styles.sponsorTag} sponsor={asset.params.sponsor} />
           <div className={styles.itemContent}>
             <p className={styles.itemSponsor}>{getSponsor(asset.params.sponsor)}</p>
             <header className={styles.itemName}>{asset.content.name}</header>
@@ -67,23 +50,7 @@ const CatalogGridItem = ({ assets = [] }) => {
                 {getStatus(asset.content.status)}
               </div>
               <div className={styles.itemFramework}>
-                {asset.content.framework === 'angular'
-                  ? (
-                  <Svg24Angular />
-                    )
-                  : asset.content.framework === 'react'
-                    ? (
-                  <Svg24React />
-                      )
-                    : asset.content.framework === 'vanilla'
-                      ? (
-                  <Svg24Vanilla />
-                        )
-                      : asset.content.framework === 'vue'
-                        ? (
-                  <Svg24Vue />
-                          )
-                        : null}
+                <FrameworkIcon framework={asset.content.framework} />
               </div>
             </footer>
           </div>

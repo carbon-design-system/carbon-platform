@@ -5,8 +5,6 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-@use '@carbon/react' as styles;
-
 //----------------------------------------------------------------------------
 // Catalog Grid Container
 //----------------------------------------------------------------------------
@@ -83,36 +81,6 @@
     justify-content: center;
     border-bottom: 1px solid $layer-accent-01;
     background-color: #ffffff;
-  }
-}
-
-//----------------------------------------------------------------------------
-// Item Sponsor
-//----------------------------------------------------------------------------
-.item-tags-sponsor {
-  border: 1px solid #e0e0e0;
-  background-color: #ffffff;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  color: #525252;
-
-  @include breakpoint(lg) {
-    position: absolute;
-    width: 3rem;
-    height: 3rem;
-    padding-top: 0.65rem;
-    padding-left: 0.65rem;
-    margin: -1.56rem 0 0 10.94rem;
-  }
-
-  @include breakpoint(xlg) {
-    position: absolute;
-    width: 3rem;
-    height: 3rem;
-    padding-top: 0.65rem;
-    padding-left: 0.65rem;
-    margin: -1.56rem 0 0 15rem;
   }
 }
 
@@ -253,4 +221,14 @@ a .item-info {
 
 .item-framework {
   margin-top: 2.75rem;
+}
+
+.sponsor-tag {
+  @include breakpoint(lg) {
+    position: absolute;
+  }
+
+  @include breakpoint(xlg) {
+    position: absolute;
+  }
 }

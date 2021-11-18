@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.17](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.16...@carbon-platform/web-app@0.1.17) (2021-11-18)
+
+
+### Features
+
+* cross link inherited assets ([2c0e26b](https://github.com/carbon-design-system/carbon-platform/commit/2c0e26be882c7d42d35d07debca09bd3dc8f5cba))
+* fetch library package.json content ([42aacf3](https://github.com/carbon-design-system/carbon-platform/commit/42aacf31e0bced043d9e4041e59f72367396d41d))
+* include thumbnail image data in inherited data ([dc995a9](https://github.com/carbon-design-system/carbon-platform/commit/dc995a93cfe7566c5a4b6484c18cb38637377132))
+* inherit asset content ([9270035](https://github.com/carbon-design-system/carbon-platform/commit/9270035ec28f07f1fc2663ad6f1f70b5a7592eb4))
+
+
+### Bug Fixes
+
+* dont generate placeholder images for now ([3beeba1](https://github.com/carbon-design-system/carbon-platform/commit/3beeba16fa79a540f2745f98f7bd17a4434b40df))
+* inherited asset matching ([7ede5d4](https://github.com/carbon-design-system/carbon-platform/commit/7ede5d4fbca374c90ce2206558f3abf4c00c6002))
+
 ### [0.1.16](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.15...@carbon-platform/web-app@0.1.16) (2021-11-17)
 
 

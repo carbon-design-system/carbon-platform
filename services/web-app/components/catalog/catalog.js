@@ -18,7 +18,7 @@ import styles from './catalog.module.scss'
 
 function Catalog({ data, type = 'component' }) {
   const [sort] = useState('A–Z')
-  const [view] = useState('list')
+  const [view, setView] = useState('list')
 
   const libraries = data.libraries
     .filter((library) => library.assets.length)
@@ -39,10 +39,6 @@ function Catalog({ data, type = 'component' }) {
     console.log('Sort:', option)
   }
 
-  const handleView = (foo) => {
-    console.log('View:', foo)
-  }
-
   return (
     <>
       <InlineNotification className={styles.notification} kind="info" lowContrast>
@@ -51,7 +47,7 @@ function Catalog({ data, type = 'component' }) {
       </InlineNotification>
       <CatalogSearch onSearch={handleSearch} />
       <CatalogResults assets={assets} />
-      <CatalogSort onSort={handleSort} onView={handleView} sort={sort} view={view} />
+      <CatalogSort onSort={handleSort} onView={setView} sort={sort} view={view} />
       {view === 'list' ? <CatalogList assets={assets} /> : <CatalogGrid assets={assets} />}
     </>
   )

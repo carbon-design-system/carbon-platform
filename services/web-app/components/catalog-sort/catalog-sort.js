@@ -6,7 +6,7 @@
  */
 import { breakpoints } from '@carbon/layout'
 import { Button, Column, Dropdown, Grid, Layer, Theme } from '@carbon/react'
-import { Svg32GridLayout, Svg32ListLayout } from '@carbon-platform/icons'
+import { Grid as GridIcon, List as ListIcon } from '@carbon/react/icons'
 import useMedia from 'use-media'
 
 import styles from './catalog-sort.module.scss'
@@ -42,22 +42,22 @@ const CatalogSort = ({ onSort, onView, sort, view }) => {
                 className={view === 'grid' ? styles.selected : null}
                 size="lg"
                 kind="ghost"
-                renderIcon={Svg32GridLayout}
+                renderIcon={GridIcon}
                 iconDescription="Grid view"
                 hasIconOnly
                 onClick={() => {
-                  onView('list')
+                  onView('grid')
                 }}
               />
               <Button
                 className={view === 'list' ? styles.selected : null}
                 size="lg"
                 kind="ghost"
-                renderIcon={Svg32ListLayout}
+                renderIcon={ListIcon}
                 iconDescription="List view"
                 hasIconOnly
                 onClick={() => {
-                  onView('grid')
+                  onView('list')
                 }}
               />
             </div>

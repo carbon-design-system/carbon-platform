@@ -24,6 +24,7 @@
 }
 
 .column-switcher {
+  text-align: right;
   @include breakpoint-down(lg) {
     display: none;
   }
@@ -53,4 +54,11 @@
 .dropdown :global(.cds--list-box__field),
 .dropdown :global(.cds--list-box__menu) {
   max-width: none;
+}
+
+// override background
+.selected:not(:hover),
+.selected:not(:focus) {
+  background: var(--cds-layer-selected-inverse);
+  --cds-icon-primary: var(--cds-icon-inverse);
 }

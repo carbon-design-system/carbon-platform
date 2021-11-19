@@ -5,6 +5,10 @@
 // LICENSE file in the root directory of this source tree.
 //
 
+.content {
+  margin: $spacing-07 0;
+}
+
 .data {
   white-space: pre-wrap;
   word-break: break-all;
@@ -16,5 +20,5 @@
 }
 
 .bullets-item {
-  margin-left: 20px;
+  margin-left: $spacing-07;
 }

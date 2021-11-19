@@ -30,7 +30,7 @@ const Libraries = ({ librariesData }) => {
     .sort(librarySortComparator)
 
   return (
-    <>
+    <div className={styles.content}>
       <NextSeo {...seo} />
       <ul>
         {libraries.map((library, i) => (
@@ -46,7 +46,7 @@ const Libraries = ({ librariesData }) => {
         ))}
       </ul>
       <pre className={styles.data}>{JSON.stringify(librariesData, null, 2)}</pre>
-    </>
+    </div>
   )
 }
 

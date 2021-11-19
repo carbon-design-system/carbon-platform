@@ -5,210 +5,52 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-//----------------------------------------------------------------------------
-// Catalog Sort
-//----------------------------------------------------------------------------
-.container {
+.grid {
+  background: $background;
+}
+
+.column {
+  background: $background;
+}
+
+.column:not(:last-child) {
+  @include breakpoint(lg) {
+    margin-right: -$spacing-05;
+  }
+}
+
+.column:not(:first-child) {
+  border-left: 1px solid $layer-accent;
+}
+
+.column-switcher {
+  @include breakpoint-down(lg) {
+    display: none;
+  }
+}
+
+// override carbon display, grid-gap
+.dropdown {
   position: relative;
   display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid $layer-accent-01;
-  margin-top: auto;
-  background-color: #ffffff;
-
-  @include breakpoint(sm) {
-    //672  4:3
-    width: 20rem;
-  }
-
-  @include breakpoint(md) {
-    //672  4:3
-    width: 38rem;
-    flex-direction: row;
-  }
-
-  @include breakpoint(lg) {
-    //1056  1:1
-    width: 46rem;
-    flex-direction: row;
-  }
-
-  @include breakpoint(xlg) {
-    //1312  4:3
-    width: 59.2rem;
-    flex-direction: row;
-  }
-}
-
-// Dropdown
-.dropdown {
-  justify-content: left;
-  padding-left: 1rem;
-  border-bottom: 1px solid $layer-accent-01;
-
-  @include breakpoint(md) {
-    //672  4:3
-    display: flex;
-    // TODO: replace with appropriate aspect ratio handling
-    width: 20rem;
-    align-items: center;
-    border-right: 1px solid $layer-accent-01;
-    border-bottom: none;
-  }
-
-  @include breakpoint(lg) {
-    //1056  1:1
-    width: 16rem;
-    border-right: 1px solid $layer-accent-01;
-    border-bottom: none;
-  }
-
-  @include breakpoint(xlg) {
-    //1312  4:3
-    width: 20rem;
-    border-right: 1px solid $layer-accent-01;
-    border-bottom: none;
-  }
-}
-
-:global(.cds--dropdown__wrapper--inline) {
+  width: 100%;
+  padding-left: $spacing-05;
   grid-gap: 0;
 }
 
-.dropdown :global(.cds--list-box__label) {
-  @include type-style('body-short-01');
-
-  color: $text-primary;
-}
-
+// overide carbon color
 .dropdown :global(.cds--label) {
-  @include type-style('body-short-01');
-
-  width: 6rem;
   color: $text-primary;
 }
 
-.dropdown :global(.cds--list-box__field) {
-  padding-left: 8px;
-
-  @include breakpoint(sm) {
-    margin-right: 7.18rem;
-  }
-
-  @include breakpoint(md) {
-    margin-right: 8.18rem;
-  }
-
-  @include breakpoint(lg) {
-    margin-right: 4.17rem;
-  }
-
-  @include breakpoint(xlg) {
-    margin-right: 8.18rem;
-  }
+// overide carbon position, flex-grow
+.dropdown :global(.cds--dropdown) {
+  position: static;
+  flex-grow: 1;
 }
 
-// Toggle
-.toggle {
-  display: flex;
-  width: 20rem;
-  height: 3rem;
-  justify-content: left;
-  padding-left: 1rem;
-
-  @include breakpoint(md) {
-    //672  4:3
-    display: flex;
-    width: 18.12rem;
-    height: 3rem;
-  }
-
-  @include breakpoint(lg) {
-    //1056  1:1
-    width: 16rem;
-    height: 3rem;
-    border-right: 1px solid $layer-accent-01;
-  }
-
-  @include breakpoint(xlg) {
-    //1312  4:3
-    width: 20.25rem;
-    height: 3rem;
-    border-right: 1px solid $layer-accent-01;
-  }
-}
-
-.toggle :global(.cds--toggle__text) {
-  margin-bottom: 0;
-  @include type-style('body-short-01');
-
-  color: $text-primary;
-}
-
-.toggle :global(.cds--toggle__label) {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  column-gap: 0.5rem;
-}
-
-.toggle :global(.cds--toggle__label-text) {
-  margin-bottom: 0;
-  @include type-style('body-short-01');
-
-  color: $text-primary;
-}
-
-.toggle :global(.cds--toggle__appearance) {
-  display: flex;
-  flex-direction: row-reverse;
-  @include type-style('body-short-01');
-
-  color: $text-primary;
-  column-gap: 6.5rem;
-
-  @include breakpoint(md) {
-    column-gap: 4rem;
-  }
-
-  @include breakpoint(lg) {
-    column-gap: 2.25rem;
-  }
-
-  @include breakpoint(xlg) {
-    column-gap: 6.5rem;
-  }
-}
-
-// Switcher
-.switcher {
-  @include breakpoint(sm) {
-    display: none;
-  }
-  @include breakpoint(md) {
-    display: none;
-  }
-
-  @include breakpoint(lg) {
-    //1056  1:1
-    display: flex;
-    width: 14.125rem;
-    justify-content: right;
-  }
-
-  @include breakpoint(xlg) {
-    //1312  4:3
-    display: flex;
-    width: 19rem;
-    justify-content: right;
-  }
-}
-
-.selected {
-  background-color: #000000;
-}
-
-// TODO: target fill color?
-.selected > svg > path:first-child {
-  fill: #ffffff;
+// overide carbon max-width
+.dropdown :global(.cds--list-box__field),
+.dropdown :global(.cds--list-box__menu) {
+  max-width: none;
 }

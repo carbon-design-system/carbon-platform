@@ -9,6 +9,7 @@ import { useContext, useEffect } from 'react'
 
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
+import styles from '@/pages/pages.module.scss'
 
 const Index = () => {
   const { setNavData } = useContext(LayoutContext)
@@ -22,10 +23,10 @@ const Index = () => {
   }, [setNavData])
 
   return (
-    <>
+    <div className={styles.content}>
       <NextSeo {...seo} />
       Welcome to Assets!
-    </>
+    </div>
   )
 }
 

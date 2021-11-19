@@ -6,9 +6,9 @@
  */
 /* eslint-disable simple-import-sort/imports */
 /*
- * TODO: fix import sorting once Carbon prefix bug is resolved.
- * Layout must be imported before carbon-components-react
- * Details: https://github.com/carbon-design-system/carbon/discussions/9723
+ * TODO: fix import sorting once Carbon prefix bug is resolved. Layout must be imported before
+ * using `carbon-components-react`.
+ * @see https://github.com/carbon-design-system/carbon/discussions/9723
  */
 import '@/styles/styles.scss'
 

@@ -83,55 +83,57 @@ const Layout = ({ children }) => {
                   <Switcher size={20} />
                 </HeaderGlobalAction>
               </HeaderGlobalBar>
-              <Theme theme="white">
-                <SideNav aria-label="Side navigation" expanded={isSideNavExpanded}>
-                  <SideNavItems>
-                    <HeaderSideNavItems>
-                      {globalNavData.map((data, i) => (
-                        <SideNavLink element={NextLink} href={data.path} key={i}>
-                          {data.title}
-                        </SideNavLink>
-                      ))}
-                    </HeaderSideNavItems>
-                    {navData.map((data, i) => {
-                      if (data.path && data.title) {
-                        return (
-                          <SideNavLink
-                            element={NextLink}
-                            href={data.path}
-                            isActive={router.pathname === data.path}
-                            key={i}
-                          >
-                            {data.title}
-                          </SideNavLink>
-                        )
-                      }
-                      if (!data.path && data.items) {
-                        return (
-                          <SideNavMenu defaultExpanded={true} key={i} title={data.title}>
-                            {data.items.map((item, j) => (
-                              <SideNavMenuItem
-                                element={NextLink}
-                                isActive={router.pathname.startsWith(item.path)}
-                                to={item.path}
-                                key={j}
-                              >
-                                {item.title}
-                              </SideNavMenuItem>
-                            ))}
-                          </SideNavMenu>
-                        )
-                      }
-                      return null
-                    })}
-                  </SideNavItems>
-                </SideNav>
-              </Theme>
             </Header>
           </Theme>
-          <Theme className={styles.content} theme="g10">
+          <Theme className={styles.body} theme="g10">
             <Grid as="main" className={styles.main} id="main-content">
-              <Column className={styles.inner} sm={4} md={8} lg={16}>
+              <Column sm={4} md={8} lg={4}>
+                <Theme theme="white">
+                  <SideNav aria-label="Side navigation" expanded={isSideNavExpanded}>
+                    <SideNavItems>
+                      <HeaderSideNavItems>
+                        {globalNavData.map((data, i) => (
+                          <SideNavLink element={NextLink} href={data.path} key={i}>
+                            {data.title}
+                          </SideNavLink>
+                        ))}
+                      </HeaderSideNavItems>
+                      {navData.map((data, i) => {
+                        if (data.path && data.title) {
+                          return (
+                            <SideNavLink
+                              element={NextLink}
+                              href={data.path}
+                              isActive={router.pathname === data.path}
+                              key={i}
+                            >
+                              {data.title}
+                            </SideNavLink>
+                          )
+                        }
+                        if (!data.path && data.items) {
+                          return (
+                            <SideNavMenu defaultExpanded={true} key={i} title={data.title}>
+                              {data.items.map((item, j) => (
+                                <SideNavMenuItem
+                                  element={NextLink}
+                                  isActive={router.pathname.startsWith(item.path)}
+                                  to={item.path}
+                                  key={j}
+                                >
+                                  {item.title}
+                                </SideNavMenuItem>
+                              ))}
+                            </SideNavMenu>
+                          )
+                        }
+                        return null
+                      })}
+                    </SideNavItems>
+                  </SideNav>
+                </Theme>
+              </Column>
+              <Column sm={4} md={8} lg={12} max={{ span: 11, offset: 5 }}>
                 {children}
               </Column>
             </Grid>

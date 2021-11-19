@@ -10,6 +10,8 @@ import { useContext, useEffect } from 'react'
 import { standardsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
+import styles from './pages.module.scss'
+
 const Standards = () => {
   const { setNavData } = useContext(LayoutContext)
 
@@ -22,10 +24,10 @@ const Standards = () => {
   }, [setNavData])
 
   return (
-    <>
+    <div className={styles.content}>
       <NextSeo {...seo} />
       Welcome to Standards!
-    </>
+    </div>
   )
 }
 

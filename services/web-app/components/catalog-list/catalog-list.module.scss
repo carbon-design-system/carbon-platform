@@ -9,7 +9,6 @@
 // Item, Item Image and Item Content
 //----------------------------------------------------------------------------
 .item {
-  max-width: 59.18rem;
   border-bottom: 1px solid $layer-accent-01;
   background-color: #ffffff;
 }
@@ -20,7 +19,6 @@
 
 .item-inner {
   display: flex;
-  height: 11.25rem;
   border-bottom-style: none;
 }
 
@@ -30,23 +28,10 @@
   padding: 1rem;
 
   @include breakpoint(md) {
-    //672  4:3
     display: flex;
-    // TODO: replace with appropriate aspect ratio handling
-    width: 20rem;
     align-items: center;
     justify-content: center;
     border-right: 1px solid #c6c6c6;
-  }
-
-  @include breakpoint(lg) {
-    //1056  1:1
-    width: 16rem;
-  }
-
-  @include breakpoint(xlg) {
-    //1312  4:3
-    width: 20rem;
   }
 }
 
@@ -56,32 +41,6 @@
   flex: 1;
   flex-direction: column;
   padding: $spacing-05;
-  @include breakpoint(lg) {
-    //1056  1:1
-    max-width: 29.625rem;
-  }
-  @include breakpoint(xlg) {
-    //1312  4:3
-    max-width: 31.188rem;
-  }
-}
-
-@media (min-width: 320px) and (max-width: 671px) {
-  .item {
-    max-width: 20rem;
-  }
-}
-
-@media (min-width: 673px) and (max-width: 1055px) {
-  .item {
-    max-width: 38rem;
-  }
-}
-
-@media screen and (min-width: 1057px) and (max-width: 1311px) {
-  .item {
-    max-width: 46rem;
-  }
 }
 
 // Item Sponsor
@@ -148,13 +107,7 @@
   @include breakpoint(sm) {
     display: none;
   }
-  @include breakpoint(md) {
-    display: none;
-  }
   @include breakpoint(lg) {
-    display: inline-block;
-  }
-  @include breakpoint(xlg) {
     display: inline-block;
   }
 }

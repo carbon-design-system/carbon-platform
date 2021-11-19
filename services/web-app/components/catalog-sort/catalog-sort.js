@@ -36,7 +36,7 @@ const CatalogSort = ({ onSort, onView, sort, view }) => {
               size="lg"
             />
           </Column>
-          <Column className={`${styles.column} ${styles.columnSwitcher}`} lg={8} max={7}>
+          <Column className={`${styles.column} ${styles.columnSwitcher}`} lg={8}>
             <div className={styles.switcher}>
               <Button
                 className={view === 'grid' ? styles.selected : null}

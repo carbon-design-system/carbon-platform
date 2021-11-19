@@ -133,7 +133,7 @@ const Layout = ({ children }) => {
                   </SideNav>
                 </Theme>
               </Column>
-              <Column sm={4} md={8} lg={12} max={{ span: 11, offset: 5 }}>
+              <Column sm={4} md={8} lg={12}>
                 {children}
               </Column>
             </Grid>

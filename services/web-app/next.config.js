@@ -20,6 +20,7 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `
+      @use '~@carbon/motion/scss/motion' as *;
       @use '~@carbon/react/scss/breakpoint' as *;
       @use '~@carbon/react/scss/spacing' as *;
       @use '~@carbon/react/scss/theme' as *;

@@ -1,0 +1,52 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+.column:not(:first-child) {
+  @include breakpoint(md) {
+    border-left: 1px solid $layer-accent;
+  }
+}
+
+.column-image {
+  @include breakpoint-down(md) {
+    display: none;
+  }
+  @include breakpoint(md) {
+    margin-right: calc(#{-$spacing-05} + 1px);
+  }
+}
+
+.anchor {
+  display: block;
+  background: $background;
+  transition: background $fast-02 carbon--motion(standard, productive);
+}
+
+.anchor:hover {
+  background: $layer-hover;
+}
+
+.anchor:active {
+  outline: 2px solid $focus;
+  outline-offset: -2px;
+}
+
+.anchor--grid {
+  margin-top: $spacing-05;
+}
+
+.anchor:not(.anchor--grid) {
+  @include breakpoint(md) {
+    padding-left: $spacing-05;
+    border-top: 1px solid $layer-accent;
+    margin-left: -$spacing-05;
+  }
+}
+
+.anchor--grid .content {
+  border-top: 1px solid $layer-accent;
+}

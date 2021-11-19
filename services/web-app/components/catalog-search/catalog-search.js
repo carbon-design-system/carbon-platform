@@ -30,9 +30,8 @@ const CatalogSearch = ({ onSearch }) => {
     <Theme theme="white">
       <Layer>
         <Grid condensed={isMobile} narrow={!isMobile}>
-          <Column className={styles.search} sm={2} md={4} lg={8} max={7}>
+          <Column className={styles.columnSearch} sm={2} md={4} lg={8}>
             <Search
-              className={styles.search}
               id="catalog-search"
               labelText="Search component index by name, keyword, or domain"
               placeHolderText="Component name, keyword, domain"
@@ -41,7 +40,7 @@ const CatalogSearch = ({ onSearch }) => {
               size="lg"
             />
           </Column>
-          <Column className={styles.multiselect} sm={2} md={4} lg={4}>
+          <Column className={styles.columnFilter} sm={2} md={4} lg={4}>
             <MultiSelect
               id="catalog-filter"
               label="Filters"

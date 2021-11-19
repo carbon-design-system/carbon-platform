@@ -7,15 +7,17 @@
 import { breakpoints } from '@carbon/layout'
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
+import Image from 'next/image'
 import Link from 'next/link'
 import useMedia from 'use-media'
 
 import { getSlug } from '@/utils/slug'
 
+import thumbnail from '../../public/thumbnail.svg'
 import styles from './catalog-item.module.scss'
 
 const ItemImage = () => {
-  return <div>Image</div>
+  return <Image alt="Thumbnail" src={thumbnail} layout="fill" objectFit="cover" />
 }
 
 const ItemContent = () => {

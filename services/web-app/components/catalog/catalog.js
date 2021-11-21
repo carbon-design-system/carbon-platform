@@ -7,7 +7,7 @@
 import { InlineNotification } from '@carbon/react'
 import { useState } from 'react'
 
-import CatalogItems from '@/components/catalog-items'
+import CatalogList from '@/components/catalog-list'
 import CatalogResults from '@/components/catalog-results'
 import CatalogSearch from '@/components/catalog-search'
 import CatalogSort from '@/components/catalog-sort'
@@ -47,7 +47,7 @@ function Catalog({ data, type = 'component' }) {
       <CatalogSearch onSearch={handleSearch} />
       <CatalogResults assets={assets} />
       <CatalogSort onSort={handleSort} onView={setView} sort={sort} view={view} />
-      <CatalogItems assets={assets} isGrid={view === 'grid'} />
+      <CatalogList assets={assets} isGrid={view === 'grid'} />
     </>
   )
 }

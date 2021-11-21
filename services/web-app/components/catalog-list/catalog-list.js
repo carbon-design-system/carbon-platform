@@ -10,7 +10,7 @@ import useMedia from 'use-media'
 
 import CatalogItem from '@/components/catalog-item'
 
-const CatalogItems = ({ assets, isGrid = false }) => {
+const CatalogList = ({ assets, isGrid = false }) => {
   const isLg = useMedia({ minWidth: breakpoints.lg.width })
 
   return (
@@ -26,4 +26,4 @@ const CatalogItems = ({ assets, isGrid = false }) => {
   )
 }
 
-export default CatalogItems
+export default CatalogList

@@ -9,19 +9,41 @@ import { AspectRatio, Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 import useMedia from 'use-media'
 
 import { getSlug } from '@/utils/slug'
 
-import thumbnail from '../../public/thumbnail.svg'
 import styles from './catalog-item.module.scss'
 
-const ItemImage = () => {
-  return <Image alt="Thumbnail" src={thumbnail} layout="fill" objectFit="cover" />
+const ItemImage = ({ asset }) => {
+  const [showPlaceholder, setShowPlaceholder] = useState(true)
+
+  return (
+    <>
+      {showPlaceholder && (
+        <Image
+          alt={`${asset.content.name} placeholder`}
+          src="/assets/thumbnails/coming-soon.svg"
+          layout="fill"
+          objectFit="cover"
+        />
+      )}
+      <Image
+        alt={`${asset.content.name} thumbnail`}
+        src={`/assets/thumbnails/${getSlug(asset.content)}.svg`}
+        layout="fill"
+        objectFit="cover"
+        onLoadingComplete={() => {
+          setShowPlaceholder(false)
+        }}
+      />
+    </>
+  )
 }
 
-const ItemContent = () => {
-  return <div className={styles.content}>Content</div>
+const ItemContent = ({ asset }) => {
+  return <div className={styles.content}>{asset.content.name}</div>
 }
 
 const CatalogItem = ({ asset, isGrid = false }) => {
@@ -42,10 +64,10 @@ const CatalogItem = ({ asset, isGrid = false }) => {
       <Link href={`/assets/${asset.params.library}/latest/${getSlug(asset.content)}`}>
         <a className={cnAnchor}>
           <AspectRatio ratio="3x2">
-            <ItemImage />
+            <ItemImage asset={asset} />
           </AspectRatio>
           <AspectRatio ratio="16x9">
-            <ItemContent />
+            <ItemContent asset={asset} />
           </AspectRatio>
         </a>
       </Link>
@@ -59,11 +81,11 @@ const CatalogItem = ({ asset, isGrid = false }) => {
           <Grid condensed={isMobile} narrow={!isMobile}>
             <Column className={clsx(styles.column, styles.columnImage)} md={4}>
               <AspectRatio ratio={imageAspectRatio()}>
-                <ItemImage />
+                <ItemImage asset={asset} />
               </AspectRatio>
             </Column>
             <Column className={clsx(styles.column, styles.columnContent)} sm={4} md={4} lg={8}>
-              <ItemContent />
+              <ItemContent asset={asset} />
             </Column>
           </Grid>
         </a>

@@ -10,6 +10,7 @@
 }
 
 .data {
+  margin: $spacing-07 0;
   white-space: pre-wrap;
   word-break: break-all;
   @include type-style('code-01');

@@ -6,12 +6,14 @@
  */
 import { breakpoints } from '@carbon/layout'
 import { AspectRatio, Column, Grid } from '@carbon/react'
+import { ArrowUpRight } from '@carbon/react/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import useMedia from 'use-media'
 
+import { teams } from '@/data/teams'
 import { getSlug } from '@/utils/slug'
 
 import styles from './catalog-item.module.scss'
@@ -43,7 +45,22 @@ const ItemImage = ({ asset }) => {
 }
 
 const ItemContent = ({ asset }) => {
-  return <div className={styles.content}>{asset.content.name}</div>
+  const { name, description, externalDocsUrl } = asset.content
+  const { sponsor } = asset.params
+
+  const { name: sponsorName, icon: SponsorIcon } = teams[sponsor]
+
+  return (
+    <div className={styles.content}>
+      {sponsorName && <p className={styles.sponsor}>{sponsorName}</p>}
+      {name && <p className={styles.name}>{name}</p>}
+      {description && <p className={styles.description}>{description}</p>}
+      <div className={styles.icon}>
+        {SponsorIcon && <SponsorIcon className={styles.iconSponsor} size={24} />}
+        {externalDocsUrl && <ArrowUpRight className={styles.iconExternal} size={24} />}
+      </div>
+    </div>
+  )
 }
 
 const CatalogItem = ({ asset, isGrid = false }) => {
@@ -57,12 +74,27 @@ const CatalogItem = ({ asset, isGrid = false }) => {
     return '4x3'
   }
 
-  const cnAnchor = clsx(styles.anchor, isGrid && styles.anchorGrid)
+  const anchorStyles = clsx(styles.anchor, {
+    [styles.anchorGrid]: isGrid,
+    [styles.anchorExternal]: asset.content.externalDocsUrl,
+    [styles.anchorSponsor]: asset.params.sponsor
+  })
+
+  const anchorHref =
+    asset.content.externalDocsUrl ||
+    `/assets/${asset.params.library}/latest/${getSlug(asset.content)}`
+
+  const anchorProps = asset.content.externalDocsUrl
+    ? {
+        rel: 'noreferrer',
+        target: '_blank'
+      }
+    : {}
 
   const renderGrid = () => (
     <Column as="li" md={4}>
-      <Link href={`/assets/${asset.params.library}/latest/${getSlug(asset.content)}`}>
-        <a className={cnAnchor}>
+      <Link href={anchorHref}>
+        <a className={anchorStyles} {...anchorProps}>
           <AspectRatio ratio="3x2">
             <ItemImage asset={asset} />
           </AspectRatio>
@@ -76,8 +108,8 @@ const CatalogItem = ({ asset, isGrid = false }) => {
 
   const renderList = () => (
     <Column as="li" sm={4} md={8} lg={12}>
-      <Link href={`/assets/${asset.params.library}/latest/${getSlug(asset.content)}`}>
-        <a className={cnAnchor}>
+      <Link href={anchorHref}>
+        <a className={anchorStyles} {...anchorProps}>
           <Grid condensed={isMobile} narrow={!isMobile}>
             <Column className={clsx(styles.column, styles.columnImage)} md={4}>
               <AspectRatio ratio={imageAspectRatio()}>
@@ -85,7 +117,12 @@ const CatalogItem = ({ asset, isGrid = false }) => {
               </AspectRatio>
             </Column>
             <Column className={clsx(styles.column, styles.columnContent)} sm={4} md={4} lg={8}>
-              <ItemContent asset={asset} />
+              {isMobile && (
+                <AspectRatio ratio="3x2">
+                  <ItemContent asset={asset} />
+                </AspectRatio>
+              )}
+              {!isMobile && <ItemContent asset={asset} />}
             </Column>
           </Grid>
         </a>

@@ -41,12 +41,3 @@ export const getStatus = (status) => {
 
   return 'To do'
 }
-
-export const getSponsor = (sponsor) => {
-  if (sponsor === 'carbon') {
-    return 'Carbon'
-  } else if (sponsor === 'ibm-dotcom') {
-    return 'Carbon for IBM.com'
-  }
-  return sponsor
-}

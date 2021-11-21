@@ -27,6 +27,7 @@ module.exports = {
       @use '~@carbon/react/scss/themes';
       @use '~@carbon/react/scss/type' as *;
       @use '~@carbon/react/scss/zone';
+      @use './styles/mixins' as *;
     `
   },
   swcMinify: true,

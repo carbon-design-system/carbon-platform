@@ -34,7 +34,7 @@ const CatalogSearch = ({ onSearch }) => {
             <Search
               id="catalog-search"
               labelText="Search component index by name, keyword, or domain"
-              placeHolderText="Component name, keyword, domain"
+              placeholder="Component name, keyword, domain"
               value={query}
               onChange={handleOnChange}
               size="lg"

@@ -5,6 +5,12 @@
 // LICENSE file in the root directory of this source tree.
 //
 
+@use 'sass:math';
+
+.column {
+  position: relative;
+}
+
 .column:not(:first-child) {
   @include breakpoint(md) {
     border-left: 1px solid $layer-accent;
@@ -23,11 +29,8 @@
 .anchor {
   display: block;
   background: $background;
+  text-decoration: none;
   transition: background $fast-02 carbon--motion(standard, productive);
-}
-
-.anchor:hover {
-  background: $layer-hover;
 }
 
 .anchor:active {
@@ -40,13 +43,115 @@
 }
 
 .anchor:not(.anchor--grid) {
+  border-top: 1px solid $layer-accent;
   @include breakpoint(md) {
     padding-left: $spacing-05;
-    border-top: 1px solid $layer-accent;
     margin-left: -$spacing-05;
   }
 }
 
+.content {
+  padding: $spacing-04;
+}
+
 .anchor--grid .content {
   border-top: 1px solid $layer-accent;
+}
+
+.sponsor {
+  color: $text-primary;
+  @include line-clamp(1);
+  @include type-style('label-01');
+}
+
+.name {
+  color: $text-primary;
+  @include line-clamp(2);
+  @include type-style('productive-heading-02');
+}
+
+.anchor--grid .name {
+  @include breakpoint-down(xlg) {
+    @include line-clamp(1);
+  }
+}
+
+.description {
+  margin-top: $spacing-02;
+  color: $text-primary;
+  @include line-clamp(3);
+  @include type-style('body-short-01');
+}
+
+.anchor--grid .description {
+  display: none;
+}
+
+.icon {
+  position: absolute;
+  right: $spacing-04;
+  bottom: $spacing-04;
+  display: none;
+  width: $spacing-09;
+  height: $spacing-09;
+  border: 1px solid $border-subtle;
+  background: $background;
+  border-radius: 100%;
+  color: $icon-primary;
+  transition: background $fast-02 carbon--motion(standard, productive);
+  @include breakpoint(xlg) {
+    width: $spacing-09 + $spacing-03;
+    height: $spacing-09 + $spacing-03;
+  }
+}
+
+.anchor--grid .icon {
+  top: math.div(-$spacing-09, 2);
+  bottom: auto;
+  @include breakpoint(xlg) {
+    top: math.div(-$spacing-09 - $spacing-03, 2);
+  }
+}
+
+.icon-external,
+.icon-sponsor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity $fast-02 carbon--motion(standard, productive);
+}
+
+.icon-sponsor {
+  opacity: 1;
+}
+
+.icon-external {
+  opacity: 0;
+}
+
+.anchor--sponsor .icon,
+.anchor--external:hover .icon,
+.anchor--external:focus .icon {
+  display: block;
+}
+
+.anchor--external:hover .icon-external,
+.anchor--external:focus .icon-external {
+  opacity: 1;
+}
+
+.anchor--external:hover .icon-sponsor,
+.anchor--external:focus .icon-sponsor {
+  opacity: 0;
+}
+
+.anchor:hover .icon,
+.anchor:focus .icon {
+  background: $layer-hover;
+}
+
+.anchor:hover,
+.anchor:focus {
+  background: $layer-hover;
 }

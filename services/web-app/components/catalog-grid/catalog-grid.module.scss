@@ -222,13 +222,3 @@ a .item-info {
 .item-framework {
   margin-top: 2.75rem;
 }
-
-.sponsor-tag {
-  @include breakpoint(lg) {
-    position: absolute;
-  }
-
-  @include breakpoint(xlg) {
-    position: absolute;
-  }
-}

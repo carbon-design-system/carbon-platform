@@ -15,7 +15,6 @@ import Link from 'next/link'
 import slugify from 'slugify'
 
 import FrameworkIcon from '@/components/framework-icon'
-import SponsorTag from '@/components/sponsor-tag'
 import { getSponsor, getStatus } from '@/utils/schema'
 
 import styles from './catalog-grid.module.scss'
@@ -32,7 +31,6 @@ const CatalogGridItem = ({ assets = [] }) => {
           <div className={styles.itemImage}>
             <ImagePlaceholder aria-label="Add" />
           </div>
-          <SponsorTag className={styles.sponsorTag} sponsor={asset.params.sponsor} />
           <div className={styles.itemContent}>
             <p className={styles.itemSponsor}>{getSponsor(asset.params.sponsor)}</p>
             <header className={styles.itemName}>{asset.content.name}</header>

@@ -52,10 +52,12 @@
 
 .content {
   padding: $spacing-04;
+  margin-right: $spacing-06;
 }
 
 .anchor--grid .content {
   border-top: 1px solid $layer-accent;
+  margin-right: 0;
 }
 
 .sponsor {
@@ -154,4 +156,15 @@
 .anchor:hover,
 .anchor:focus {
   background: $layer-hover;
+}
+
+.framework {
+  position: absolute;
+  top: $spacing-04;
+  right: $spacing-04;
+}
+
+.anchor--grid .framework {
+  top: auto;
+  bottom: $spacing-04;
 }

@@ -4,23 +4,38 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Svg24Angular, Svg24React, Svg24Vanilla, Svg24Vue } from '@carbon-platform/icons'
+import {
+  Svg16Angular,
+  Svg16Javascript,
+  Svg16React,
+  Svg16Svelte,
+  Svg16Vue,
+  Svg16WebComponent
+} from '@carbon-platform/icons'
+import clsx from 'clsx'
 
-// TODO we need all frameworks as defined in the schema, and a fallback for when no framework is
-// specified
+import styles from './framework-icon.module.scss'
+
 const frameworkMap = {
-  angular: Svg24Angular,
-  react: Svg24React,
-  vanilla: Svg24Vanilla,
-  vue: Svg24Vue
+  angular: Svg16Angular,
+  react: Svg16React,
+  'react-native': Svg16React,
+  svelte: Svg16Svelte,
+  vanilla: Svg16Javascript,
+  vue: Svg16Vue,
+  'web-component': Svg16WebComponent
 }
 
-const FrameworkIcon = ({ framework }) => {
+const FrameworkIcon = ({ className, framework }) => {
   const Icon = frameworkMap[framework]
 
   if (!Icon) return null
 
-  return <Icon />
+  return (
+    <div className={clsx(styles.container, className)}>
+      <Icon className={styles.icon} />
+    </div>
+  )
 }
 
 export default FrameworkIcon

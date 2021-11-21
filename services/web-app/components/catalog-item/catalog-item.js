@@ -13,6 +13,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import useMedia from 'use-media'
 
+import FrameworkIcon from '@/components/framework-icon'
 import { teams } from '@/data/teams'
 import { getSlug } from '@/utils/slug'
 
@@ -59,6 +60,7 @@ const ItemContent = ({ asset }) => {
         {SponsorIcon && <SponsorIcon className={styles.iconSponsor} size={24} />}
         {externalDocsUrl && <ArrowUpRight className={styles.iconExternal} size={24} />}
       </div>
+      <FrameworkIcon className={styles.framework} framework={asset.content.framework} />
     </div>
   )
 }

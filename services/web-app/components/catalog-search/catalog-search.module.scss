@@ -5,13 +5,17 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-.column-search {
+.column:not(:last-child) {
   @include breakpoint(md) {
-    margin-right: calc(#{-$spacing-05} + 1px);
+    margin-right: -$spacing-05;
   }
 }
 
+.column:not(:first-child) {
+  border-left: 1px solid $layer-accent;
+}
+
 // override carbon display
-.column-filter :global(.cds--label) {
+.container :global(.cds--label) {
   display: none;
 }

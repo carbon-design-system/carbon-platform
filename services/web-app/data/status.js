@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Caution, CircleFill, CircleStroke, Critical } from '@carbon/react/icons'
+import { CircleFill, CircleStroke, Critical, LowSeverity } from '@carbon/react/icons'
 
 export const status = {
   draft: {
@@ -13,7 +13,7 @@ export const status = {
     name: 'Draft'
   },
   experimental: {
-    icon: Caution,
+    icon: LowSeverity,
     name: 'Experimental'
   },
   stable: {

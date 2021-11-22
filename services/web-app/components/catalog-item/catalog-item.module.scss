@@ -168,3 +168,29 @@
   top: auto;
   bottom: $spacing-04;
 }
+
+.meta {
+  margin-top: $spacing-02;
+  color: $text-secondary;
+  @include type-style('label-01');
+}
+
+.meta--absolute {
+  position: absolute;
+  bottom: $spacing-04;
+  left: $spacing-04;
+}
+
+.meta-item {
+  display: inline;
+}
+
+.meta-item:not(:first-child) {
+  margin-left: $spacing-03;
+}
+
+.meta-icon {
+  position: relative;
+  top: 3px;
+  margin-right: $spacing-02;
+}

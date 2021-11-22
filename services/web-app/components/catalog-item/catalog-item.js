@@ -6,7 +6,7 @@
  */
 import { breakpoints } from '@carbon/layout'
 import { AspectRatio, Column, Grid } from '@carbon/react'
-import { ArrowUpRight } from '@carbon/react/icons'
+import { ArrowUpRight, Scales } from '@carbon/react/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -14,12 +14,14 @@ import { useState } from 'react'
 import useMedia from 'use-media'
 
 import FrameworkIcon from '@/components/framework-icon'
+import StatusIcon from '@/components/status-icon'
+import { status } from '@/data/status'
 import { teams } from '@/data/teams'
 import { getSlug } from '@/utils/slug'
 
 import styles from './catalog-item.module.scss'
 
-const ItemImage = ({ asset }) => {
+const CatalogItemImage = ({ asset }) => {
   const [showPlaceholder, setShowPlaceholder] = useState(true)
 
   return (
@@ -45,11 +47,15 @@ const ItemImage = ({ asset }) => {
   )
 }
 
-const ItemContent = ({ asset }) => {
+const CatalogItemContent = ({ asset, isGrid = false }) => {
+  const isMd = useMedia({ maxWidth: breakpoints.lg.width })
+
   const { name, description, externalDocsUrl } = asset.content
   const { sponsor } = asset.params
 
   const { name: sponsorName, icon: SponsorIcon } = teams[sponsor]
+
+  const isSeparatedMeta = isMd || isGrid
 
   return (
     <div className={styles.content}>
@@ -60,8 +66,59 @@ const ItemContent = ({ asset }) => {
         {SponsorIcon && <SponsorIcon className={styles.iconSponsor} size={24} />}
         {externalDocsUrl && <ArrowUpRight className={styles.iconExternal} size={24} />}
       </div>
+      {isSeparatedMeta && (
+        <>
+          <CatalogItemMeta asset={asset} className={styles.metaInline} properties={['license']} />
+          <CatalogItemMeta asset={asset} className={styles.metaAbsolute} properties={['status']} />
+        </>
+      )}
+      {!isSeparatedMeta && (
+        <CatalogItemMeta
+          asset={asset}
+          className={styles.metaAbsolute}
+          properties={['status', 'license']}
+        />
+      )}
       <FrameworkIcon className={styles.framework} framework={asset.content.framework} />
     </div>
+  )
+}
+
+const CatalogItemMeta = ({ asset, className, properties }) => {
+  const renderStatus = () => {
+    const { name } = status[asset.content.status]
+
+    if (!name) return null
+
+    return (
+      <>
+        <StatusIcon className={styles.metaIcon} status={asset.content.status} />
+        <span>{name}</span>
+      </>
+    )
+  }
+
+  const renderLicense = () => {
+    const defaultLicense = asset.params.host === 'github.ibm.com' ? 'IBM internal' : 'No license'
+    const { license = defaultLicense } = asset.library.content
+
+    return (
+      <>
+        <Scales className={styles.metaIcon} size={16} />
+        <span>{license}</span>
+      </>
+    )
+  }
+
+  return (
+    <ul className={clsx(styles.meta, className)}>
+      {properties.map((prop, i) => (
+        <li className={styles.metaItem} key={i}>
+          {prop === 'status' && renderStatus()}
+          {prop === 'license' && renderLicense()}
+        </li>
+      ))}
+    </ul>
   )
 }
 
@@ -98,10 +155,10 @@ const CatalogItem = ({ asset, isGrid = false }) => {
       <Link href={anchorHref}>
         <a className={anchorStyles} {...anchorProps}>
           <AspectRatio ratio="3x2">
-            <ItemImage asset={asset} />
+            <CatalogItemImage asset={asset} />
           </AspectRatio>
           <AspectRatio ratio="16x9">
-            <ItemContent asset={asset} />
+            <CatalogItemContent asset={asset} isGrid={isGrid} />
           </AspectRatio>
         </a>
       </Link>
@@ -115,16 +172,16 @@ const CatalogItem = ({ asset, isGrid = false }) => {
           <Grid condensed={isMobile} narrow={!isMobile}>
             <Column className={clsx(styles.column, styles.columnImage)} md={4}>
               <AspectRatio ratio={imageAspectRatio()}>
-                <ItemImage asset={asset} />
+                <CatalogItemImage asset={asset} />
               </AspectRatio>
             </Column>
             <Column className={clsx(styles.column, styles.columnContent)} sm={4} md={4} lg={8}>
               {isMobile && (
                 <AspectRatio ratio="3x2">
-                  <ItemContent asset={asset} />
+                  <CatalogItemContent asset={asset} isGrid={isGrid} />
                 </AspectRatio>
               )}
-              {!isMobile && <ItemContent asset={asset} />}
+              {!isMobile && <CatalogItemContent asset={asset} isGrid={isGrid} />}
             </Column>
           </Grid>
         </a>

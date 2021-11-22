@@ -25,7 +25,15 @@ function Catalog({ data, type = 'component' }) {
 
   const assets = libraries
     .reduce((allAssets, library) => {
-      return allAssets.concat(library.assets)
+      return allAssets.concat(
+        library.assets.map((asset) => ({
+          ...asset,
+          library: {
+            params: library.params,
+            content: library.content
+          }
+        }))
+      )
     }, [])
     .filter((asset) => !asset.content.private && asset.content.type === type)
     .sort(assetSortComparator)

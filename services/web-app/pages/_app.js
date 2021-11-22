@@ -18,16 +18,19 @@ import { unstable_FeatureFlags as FeatureFlags } from 'carbon-components-react'
 import { DefaultSeo } from 'next-seo'
 
 import defaultSeo from '@/config/seo.json'
+import { AuthProvider } from 'contexts/auth'
 
 function App({ Component, pageProps }) {
   return (
     <FeatureFlags flags={{ 'enable-css-grid': true }}>
-      <LayoutProvider>
-        <Layout>
-          <DefaultSeo {...defaultSeo} />
-          <Component {...pageProps} />
-        </Layout>
-      </LayoutProvider>
+      <AuthProvider>
+        <LayoutProvider>
+          <Layout>
+            <DefaultSeo {...defaultSeo} />
+            <Component {...pageProps} />
+          </Layout>
+        </LayoutProvider>
+      </AuthProvider>
     </FeatureFlags>
   )
 }

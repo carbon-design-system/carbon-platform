@@ -16,3 +16,6 @@ dist/
 
 # Dotenv stuff
 .env
+
+
+.history/

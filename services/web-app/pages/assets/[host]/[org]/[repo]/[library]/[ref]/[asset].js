@@ -53,7 +53,7 @@ const Asset = ({ libraryData }) => {
   }
 
   return (
-    <>
+    <div className={styles.content}>
       <NextSeo {...seo} />
       {inheritsData && <InheritsLink data={inheritsData} />}
       {imageData && (
@@ -67,7 +67,7 @@ const Asset = ({ libraryData }) => {
         />
       )}
       <pre className={styles.data}>{JSON.stringify(libraryData, null, 2)}</pre>
-    </>
+    </div>
   )
 }
 

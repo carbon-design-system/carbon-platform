@@ -4,52 +4,55 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { MultiSelect, Search } from '@carbon/react'
+import { breakpoints } from '@carbon/layout'
+import { Column, Grid, Layer, MultiSelect, Search, Theme } from '@carbon/react'
+import { useState } from 'react'
+import useMedia from 'use-media'
 
 import styles from './catalog-search.module.scss'
 
-const CatalogSearch = ({ assets = [], value, onChange }) => {
-  function handleOnChange(event) {
-    onChange(event.target.value)
+const CatalogSearch = ({ onSearch }) => {
+  const [query, setQuery] = useState('')
+  const isMobile = useMedia({ maxWidth: breakpoints.md.width })
+
+  const handleOnChange = (event) => {
+    setQuery(event.target.value)
+    onSearch(event.target.value)
   }
 
-  const items = ['one', 'two', 'three']
+  const items = [
+    { id: 'one', text: 'One' },
+    { id: 'two', text: 'Two' },
+    { id: 'three', text: 'Three' }
+  ]
 
   return (
-    <div>
-      <div className={styles.container}>
-        <div className={styles.search}>
-          <Search
-            id="component-index-search"
-            labelText="Search component index by name, keyword, or domain"
-            placeHolderText="Component name, keyword, domain"
-            value={value}
-            onChange={handleOnChange}
-            size="md"
-          />
-        </div>
-        <div className={styles.multiselect}>
-          <MultiSelect
-            label="Filters"
-            // {...multiSelectProps}
-            items={items}
-            itemToString={(item) => (item ? item.text : '')}
-            initialSelectedItems={[items[0], items[1]]}
-          />
-        </div>
-      </div>
-      <div className={styles.searchPlaceholder}>
-        <Search
-          id="component-index-search"
-          labelText="Search component index by name, keyword, or domain"
-          placeHolderText="Component name, keyword, domain"
-          value={value}
-          onChange={handleOnChange}
-          size="md"
-        />
-      </div>
-      <div className={styles.resultsPlaceholder}>{assets.length} results</div>
-    </div>
+    <Theme className={styles.container} theme="white">
+      <Layer>
+        <Grid condensed={isMobile} narrow={!isMobile}>
+          <Column className={styles.column} sm={2} md={4} lg={8}>
+            <Search
+              id="catalog-search"
+              labelText="Search component index by name, keyword, or domain"
+              placeholder="Component name, keyword, domain"
+              value={query}
+              onChange={handleOnChange}
+              size="lg"
+            />
+          </Column>
+          <Column className={styles.column} sm={2} md={4} lg={4}>
+            <MultiSelect
+              id="catalog-filter"
+              label="Filters"
+              items={items}
+              itemToString={(item) => (item ? item.text : '')}
+              initialSelectedItems={[items[0], items[1]]}
+              size="lg"
+            />
+          </Column>
+        </Grid>
+      </Layer>
+    </Theme>
   )
 }
 

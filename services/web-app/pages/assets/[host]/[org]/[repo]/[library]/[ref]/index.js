@@ -38,7 +38,7 @@ const Library = ({ libraryData, params }) => {
   const assets = libraryData.assets.sort(assetSortComparator)
 
   return (
-    <>
+    <div className={styles.content}>
       <NextSeo {...seo} />
       <ul>
         {assets.map((asset, i) => (
@@ -50,7 +50,7 @@ const Library = ({ libraryData, params }) => {
         ))}
       </ul>
       <pre className={styles.data}>{JSON.stringify(libraryData, null, 2)}</pre>
-    </>
+    </div>
   )
 }
 

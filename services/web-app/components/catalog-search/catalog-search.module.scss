@@ -5,156 +5,17 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-//----------------------------------------------------------------------------
-// Container
-//----------------------------------------------------------------------------
-.container {
-  display: flex;
-  flex-direction: row;
-
+.column:not(:last-child) {
   @include breakpoint(md) {
-    //672  4:3
-    width: 38rem;
-  }
-
-  @include breakpoint(lg) {
-    //1056  1:1
-    width: 46rem;
-  }
-
-  @include breakpoint(xlg) {
-    //1312  4:3
-    width: 59.18rem;
+    margin-right: -$spacing-05;
   }
 }
 
-@media (min-width: 320px) and (max-width: 671px) {
-  .container {
-    max-width: 20rem;
-  }
+.column:not(:first-child) {
+  border-left: 1px solid $layer-accent;
 }
 
-//----------------------------------------------------------------------------
-// Catalog Search
-//----------------------------------------------------------------------------
-.search {
-  width: 16.9rem;
-  border-right: 1px solid #d8d8d8;
-
-  @include breakpoint(sm) {
-    margin-bottom: 32px;
-  }
-
-  @include breakpoint(md) {
-    //672  4:3
-    width: 20rem;
-    margin-bottom: 0;
-  }
-
-  @include breakpoint(lg) {
-    //1056  1:1
-    width: 32rem;
-    margin-bottom: 0;
-  }
-
-  @include breakpoint(xlg) {
-    //1312  4:3
-    width: 40.25rem;
-    margin-bottom: 0;
-  }
-}
-
-.search :global(.cds--search-input) {
-  height: 3rem;
-  border-bottom: 1px solid #8d8d8d;
-  background-color: #ffffff;
-}
-
-//----------------------------------------------------------------------------
-// Catalog Multiselect
-//----------------------------------------------------------------------------
-.multiselect {
-  margin-top: -0.5rem;
-  @include breakpoint(md) {
-    width: 20rem;
-  }
-  @include breakpoint(lg) {
-    width: 14.938rem;
-  }
-  @include breakpoint(xlg) {
-    width: 19rem;
-  }
-}
-
-.multiselect :global(.cds--list-box__field) {
-  top: -0.5rem;
-  height: 48px;
-  border-bottom: 1px solid #8d8d8d;
-  background-color: #ffffff;
-}
-
-//----------------------------------------------------------------------------
-// Catalog Search Placeholder
-//----------------------------------------------------------------------------
-.search-placeholder {
-  margin-bottom: 32px;
-
-  @include breakpoint(320px) {
-    display: none;
-  }
-
-  @include breakpoint(md) {
-    //672  4:3
-    display: block;
-    width: 38rem;
-  }
-
-  @include breakpoint(lg) {
-    //1056  1:1
-    display: block;
-    width: 46rem;
-  }
-
-  @include breakpoint(xlg) {
-    //1312  4:3
-    display: block;
-    width: 59.18rem;
-  }
-}
-
-.search-placeholder :global(.cds--search-input) {
-  height: 3rem;
-  background-color: #ffffff;
-}
-
-//----------------------------------------------------------------------------
-// Results
-//----------------------------------------------------------------------------
-
-.results-placeholder {
-  padding-bottom: 1rem;
-  padding-left: 1rem;
-  border-bottom: 1px solid #c6c6c6;
-  margin-bottom: 1rem;
-  @include type-style('productive-heading-01');
-
-  @include breakpoint(sm) {
-    //672  4:3
-    width: 20rem;
-  }
-
-  @include breakpoint(md) {
-    //672  4:3
-    width: 38rem;
-  }
-
-  @include breakpoint(lg) {
-    //1056  1:1
-    width: 46rem;
-  }
-
-  @include breakpoint(xlg) {
-    //1312  4:3
-    width: 59.18rem;
-  }
+// override carbon display
+.container :global(.cds--label) {
+  display: none;
 }

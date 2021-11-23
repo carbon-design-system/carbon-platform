@@ -30,6 +30,10 @@ const octokitIbm = new Octokit({
 
 /**
  * Creates a unique key based on the host and request to use in the file cache.
+ * @param {string} host - GitHub API base URL
+ * @param {string} route - GitHub API request route
+ * @param {Object} options - Options merged into the request route
+ * @returns {string} Unique key to use in the file cache
  */
 const slugifyRequest = (host, route, options = {}) => {
   let mergedStr = `${host} ${route}`
@@ -39,7 +43,7 @@ const slugifyRequest = (host, route, options = {}) => {
   }
 
   if (options.ref) {
-    mergedStr = mergedStr += `?ref=${options.ref}`
+    mergedStr += `?ref=${options.ref}`
   }
 
   return mergedStr
@@ -47,6 +51,10 @@ const slugifyRequest = (host, route, options = {}) => {
 
 /**
  * Internal function that proxies GitHub requests.
+ * @param {string} host - GitHub API base URL
+ * @param {string} route - GitHub API request route
+ * @param {Object} options - Options merged into the request route
+ * @returns {Object} GitHub API response data
  */
 const _getResponse = async (host, route, options) => {
   const responseKey = slugifyRequest(host, route, options)
@@ -64,7 +72,12 @@ const _getResponse = async (host, route, options) => {
 }
 
 /**
- * Returns a cached GitHub response and if it's a cache miss, initiate and cache the GitHub request.
+ * Returns a cached GitHub response and if it's a cache miss, initiates and caches the GitHub
+ * request.
+ * @param {string} host - GitHub API base URL
+ * @param {string} route - GitHub API request route
+ * @param {Object} options - Options merged into the request route
+ * @returns {Promise<Object>} GitHub API response data
  */
 export const getResponse = (host, route, options) => {
   const responseKey = slugifyRequest(host, route, options)
@@ -78,6 +91,7 @@ export const getResponse = (host, route, options) => {
 
 /**
  * Deletes the cached entry from the file system cache.
+ * @param {string} key - Cache key
  */
 export const deleteResponse = async (key) => {
   console.log('DELETE CACHED', key)
@@ -87,6 +101,8 @@ export const deleteResponse = async (key) => {
 
 /**
  * Writes an image to the Next.js /public directory if that file doesn't exist yet.
+ * @param {string} path - Path to a file on GitHub with the protocol removed
+ * @param {Buffer} contents - Buffer created with the file's content and extension
  */
 export const writeFile = async (path, contents) => {
   try {

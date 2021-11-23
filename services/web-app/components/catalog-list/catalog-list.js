@@ -14,9 +14,9 @@ import {
   Svg24React
 } from '@carbon-platform/icons'
 import Link from 'next/link'
-import slugify from 'slugify'
 
 import { getStatus } from '@/utils/schema'
+import { getSlug } from '@/utils/slug'
 
 import styles from './catalog-list.module.scss'
 
@@ -25,11 +25,7 @@ const CatalogList = ({ assets = [] }) => {
     <ul>
       {assets.map((asset, i) => (
         <li className={styles.item} key={i}>
-          <Link
-            href={`/assets/${asset.params.slug}/latest/${slugify(asset.content.name, {
-              lower: true
-            })}`}
-          >
+          <Link href={`/assets/${asset.params.library}/latest/${getSlug(asset.content)}`}>
             <a className={styles.itemInner}>
               <div className={styles.itemImage}>
                 <Add16 aria-label="Add" className="my-custom-class" />

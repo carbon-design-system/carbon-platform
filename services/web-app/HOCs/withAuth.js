@@ -17,7 +17,7 @@ export default function withAuth(Component, shouldAuthenticate = () => true) {
 
     useEffect(() => {
       setAuthRequired(shouldAuthenticate(router.pathname, router.query))
-    }, [])
+    }, [router.pathname, router.query])
 
     useEffect(() => {
       if (!loading && !isAuthenticated && authRequired) {

@@ -9,7 +9,8 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 export default function withAuth(Component, shouldAuthenticate = () => true) {
-  const WithAuth = (props) => {
+  // eslint-disable-next-line react/display-name
+  return (props) => {
     const { isAuthenticated, loading } = useAuth()
     const [authRequired, setAuthRequired] = useState()
     const router = useRouter()
@@ -30,6 +31,4 @@ export default function withAuth(Component, shouldAuthenticate = () => true) {
       return null
     }
   }
-
-  return WithAuth
 }

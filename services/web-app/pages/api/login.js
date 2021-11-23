@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import passport from '../../lib/passport'
-import requireAuth from '../../middleware/auth'
+import requireAuth from '../../middleware/requireAuth'
 
-const handler = requireAuth(false).get((req, res, next) => {
+const login = requireAuth(false).get((req, res, next) => {
   // hold onto next route, if specified, or delete any stale one from the session
   if (req.query.next) {
     req.session.next = req.query.next
@@ -18,4 +18,4 @@ const handler = requireAuth(false).get((req, res, next) => {
   next()
 }, passport.authenticate('prepiam.ice.ibmcloud.com'))
 
-export default handler
+export default login

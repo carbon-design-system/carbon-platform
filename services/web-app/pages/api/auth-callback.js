@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import passport from '../../lib/passport'
-import requireAuth from '../../middleware/auth'
+import requireAuth from '../../middleware/requireAuth'
 
-const handler = requireAuth(false).get(
+const authCallback = requireAuth(false).get(
   passport.authenticate('prepiam.ice.ibmcloud.com'),
   (req, res) => {
     if (!req.user) {
@@ -27,4 +27,4 @@ const handler = requireAuth(false).get(
   }
 )
 
-export default handler
+export default authCallback

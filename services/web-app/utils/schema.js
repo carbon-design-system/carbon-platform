@@ -6,17 +6,6 @@
  */
 
 /**
- * Gets a display string from a schema value
- * @param {string} status - The asset schema value
- * @returns {string} The display string
- */
-export const getStatus = (status) => {
-  if (status === 'stable') return 'Stable'
-
-  return 'To do'
-}
-
-/**
  * Defines the sort order of assets by their name.
  * @param {import('../typedefs').Asset} assetA
  * @param {import('../typedefs').Asset} assetB
@@ -40,4 +29,15 @@ export const librarySortComparator = (libraryA, libraryB) => {
     return 0
   }
   return libraryA.content.name > libraryB.content.name ? 1 : -1
+}
+
+/**
+ * Gets a display string from a schema value
+ * @param {string} status - The asset schema value
+ * @returns {string} The display string
+ */
+export const getStatus = (status) => {
+  if (status === 'stable') return 'Stable'
+
+  return 'To do'
 }

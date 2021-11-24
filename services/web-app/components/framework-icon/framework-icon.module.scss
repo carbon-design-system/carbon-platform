@@ -1,0 +1,22 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+.container {
+  display: flex;
+  width: $spacing-06;
+  height: $spacing-06;
+  align-items: center;
+  justify-content: center;
+  background: $layer-accent;
+  border-radius: 100%;
+  color: $icon-primary;
+}
+
+.icon {
+  width: $spacing-05;
+  height: $spacing-05;
+}

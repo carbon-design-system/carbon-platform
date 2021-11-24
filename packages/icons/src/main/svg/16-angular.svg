@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>16-angular</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="16-angular" fill="#000000" fill-rule="nonzero">
+            <polygon id="Path" points="6.48464286 8 9.515 8 7.99964286 4.80857143"></polygon>
+            <path d="M8,0 L0,2.85714286 L1.64714286,12.5714286 L8,16 L14.3482143,12.5714286 L16,2.85714286 L8,0 Z M11.1428571,11.4285714 L10.1932143,9.42857143 L5.80642857,9.42857143 L4.85714286,11.4285714 L3.42857143,11.4285714 L8,1.42857143 L12.5714286,11.4285714 L11.1428571,11.4285714 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

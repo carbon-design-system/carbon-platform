@@ -7,7 +7,7 @@
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import CatalogIndexPage from '@/components/catalog-index-page'
+import Catalog from '@/components/catalog'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
@@ -27,7 +27,7 @@ const Elements = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <CatalogIndexPage data={librariesData} type="element" />
+      <Catalog data={librariesData} type="element" />
       <pre className={styles.data}>{JSON.stringify(librariesData, null, 2)}</pre>
     </>
   )

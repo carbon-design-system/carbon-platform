@@ -57,29 +57,35 @@ const CatalogItemContent = ({ asset, isGrid = false }) => {
   const isSeparatedMeta = !isLg || isGrid
 
   return (
-    <div className={styles.content}>
-      {sponsorName && <p className={styles.sponsor}>{sponsorName}</p>}
-      {name && <p className={styles.name}>{name}</p>}
-      {description && <p className={styles.description}>{description}</p>}
-      <div className={styles.icon}>
-        {SponsorIcon && <SponsorIcon className={styles.iconSponsor} size={24} />}
-        {externalDocsUrl && <ArrowUpRight className={styles.iconExternal} size={24} />}
-      </div>
-      {isSeparatedMeta && (
-        <>
-          <CatalogItemMeta asset={asset} className={styles.metaInline} properties={['license']} />
-          <CatalogItemMeta asset={asset} className={styles.metaAbsolute} properties={['status']} />
-        </>
-      )}
-      {!isSeparatedMeta && (
-        <CatalogItemMeta
-          asset={asset}
-          className={styles.metaAbsolute}
-          properties={['status', 'license']}
-        />
-      )}
-      <FrameworkIcon className={styles.framework} framework={asset.content.framework} />
-    </div>
+    <Grid className={styles.content}>
+      <Column sm={4} md={4} lg={7} xlg={6}>
+        {sponsorName && <p className={styles.sponsor}>{sponsorName}</p>}
+        {name && <p className={styles.name}>{name}</p>}
+        {description && <p className={styles.description}>{description}</p>}
+        <div className={styles.icon}>
+          {SponsorIcon && <SponsorIcon className={styles.iconSponsor} size={24} />}
+          {externalDocsUrl && <ArrowUpRight className={styles.iconExternal} size={24} />}
+        </div>
+        {isSeparatedMeta && (
+          <>
+            <CatalogItemMeta asset={asset} className={styles.metaInline} properties={['license']} />
+            <CatalogItemMeta
+              asset={asset}
+              className={styles.metaAbsolute}
+              properties={['status']}
+            />
+          </>
+        )}
+        {!isSeparatedMeta && (
+          <CatalogItemMeta
+            asset={asset}
+            className={styles.metaAbsolute}
+            properties={['status', 'license']}
+          />
+        )}
+        <FrameworkIcon className={styles.framework} framework={asset.content.framework} />
+      </Column>
+    </Grid>
   )
 }
 

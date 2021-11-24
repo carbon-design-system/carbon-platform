@@ -13,6 +13,7 @@
 import '@/styles/styles.scss'
 
 import Layout, { LayoutProvider } from '@/layouts/layout'
+import MediaQueryProvider from '@/contexts/media-query'
 
 import { unstable_FeatureFlags as FeatureFlags } from 'carbon-components-react'
 import { DefaultSeo } from 'next-seo'
@@ -21,14 +22,16 @@ import defaultSeo from '@/config/seo.json'
 
 function App({ Component, pageProps }) {
   return (
-    <FeatureFlags flags={{ 'enable-css-grid': true }}>
-      <LayoutProvider>
-        <Layout>
-          <DefaultSeo {...defaultSeo} />
-          <Component {...pageProps} />
-        </Layout>
-      </LayoutProvider>
-    </FeatureFlags>
+    <MediaQueryProvider>
+      <FeatureFlags flags={{ 'enable-css-grid': true }}>
+        <LayoutProvider>
+          <Layout>
+            <DefaultSeo {...defaultSeo} />
+            <Component {...pageProps} />
+          </Layout>
+        </LayoutProvider>
+      </FeatureFlags>
+    </MediaQueryProvider>
   )
 }
 

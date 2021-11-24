@@ -4,16 +4,16 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { breakpoints } from '@carbon/layout'
 import { Column, Grid, Layer, MultiSelect, Search, Theme } from '@carbon/react'
 import { useState } from 'react'
-import useMedia from 'use-media'
+
+import { useMediaQueryContext } from '@/contexts/media-query'
 
 import styles from './catalog-search.module.scss'
 
 const CatalogSearch = ({ onSearch }) => {
   const [query, setQuery] = useState('')
-  const isMd = useMedia({ minWidth: breakpoints.md.width })
+  const { isMd } = useMediaQueryContext()
 
   const handleOnChange = (event) => {
     setQuery(event.target.value)

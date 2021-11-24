@@ -4,15 +4,15 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { breakpoints } from '@carbon/layout'
 import { Button, Column, Dropdown, Grid, Layer, Theme } from '@carbon/react'
 import { Grid as GridIcon, List as ListIcon } from '@carbon/react/icons'
-import useMedia from 'use-media'
+
+import { useMediaQueryContext } from '@/contexts/media-query'
 
 import styles from './catalog-sort.module.scss'
 
 const CatalogSort = ({ onSort, onView, sort, view }) => {
-  const isMd = useMedia({ minWidth: breakpoints.md.width })
+  const { isMd } = useMediaQueryContext()
 
   const sortOptions = ['A–Z', 'Newest', 'Most used', 'Status']
 

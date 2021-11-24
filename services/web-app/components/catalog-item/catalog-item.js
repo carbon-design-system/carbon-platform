@@ -4,17 +4,16 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { breakpoints } from '@carbon/layout'
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import { ArrowUpRight, Scales } from '@carbon/react/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import useMedia from 'use-media'
 
 import FrameworkIcon from '@/components/framework-icon'
 import StatusIcon from '@/components/status-icon'
+import { useMediaQueryContext } from '@/contexts/media-query'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
 import { getSlug } from '@/utils/slug'
@@ -48,7 +47,7 @@ const CatalogItemImage = ({ asset }) => {
 }
 
 const CatalogItemContent = ({ asset, isGrid = false }) => {
-  const isLg = useMedia({ minWidth: breakpoints.lg.width })
+  const { isLg } = useMediaQueryContext()
 
   const { name, description, externalDocsUrl } = asset.content
   const { sponsor } = asset.params
@@ -123,9 +122,7 @@ const CatalogItemMeta = ({ asset, className, properties }) => {
 }
 
 const CatalogItem = ({ asset, isGrid = false }) => {
-  const isMd = useMedia({ minWidth: breakpoints.md.width })
-  const isLg = useMedia({ minWidth: breakpoints.lg.width })
-  const isXlg = useMedia({ minWidth: breakpoints.xlg.width })
+  const { isMd, isLg, isXlg } = useMediaQueryContext()
 
   const imageAspectRatio = () => {
     if (isXlg) return '16x9'

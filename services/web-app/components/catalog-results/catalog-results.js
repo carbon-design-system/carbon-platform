@@ -4,14 +4,14 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { breakpoints } from '@carbon/layout'
 import { Column, Grid } from '@carbon/react'
-import useMedia from 'use-media'
+
+import { useMediaQueryContext } from '@/contexts/media-query'
 
 import styles from './catalog-results.module.scss'
 
 const CatalogResults = ({ assets = [] }) => {
-  const isMd = useMedia({ minWidth: breakpoints.md.width })
+  const { isMd } = useMediaQueryContext()
 
   return (
     <Grid className={styles.container} condensed={!isMd} narrow={isMd}>

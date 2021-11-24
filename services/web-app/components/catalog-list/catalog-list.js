@@ -4,14 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { breakpoints } from '@carbon/layout'
 import { Grid, Layer, Theme } from '@carbon/react'
-import useMedia from 'use-media'
 
 import CatalogItem from '@/components/catalog-item'
+import { useMediaQueryContext } from '@/contexts/media-query'
 
 const CatalogList = ({ assets, isGrid = false }) => {
-  const isLg = useMedia({ minWidth: breakpoints.lg.width })
+  const { isLg } = useMediaQueryContext()
 
   return (
     <Theme theme="white">

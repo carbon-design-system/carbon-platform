@@ -12,14 +12,14 @@ import useMedia from 'use-media'
 import styles from './catalog-sort.module.scss'
 
 const CatalogSort = ({ onSort, onView, sort, view }) => {
-  const isMobile = useMedia({ maxWidth: breakpoints.md.width })
+  const isMd = useMedia({ minWidth: breakpoints.md.width })
 
   const sortOptions = ['A–Z', 'Newest', 'Most used', 'Status']
 
   return (
     <Theme className={styles.container} theme="white">
       <Layer>
-        <Grid className={styles.grid} condensed={isMobile} narrow={!isMobile}>
+        <Grid className={styles.grid} condensed={!isMd} narrow={isMd}>
           <Column className={styles.column} sm={4} md={8} lg={4}>
             <Dropdown
               id="catalog-sort"

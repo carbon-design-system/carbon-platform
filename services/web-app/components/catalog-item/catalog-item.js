@@ -48,14 +48,14 @@ const CatalogItemImage = ({ asset }) => {
 }
 
 const CatalogItemContent = ({ asset, isGrid = false }) => {
-  const isMd = useMedia({ maxWidth: breakpoints.lg.width })
+  const isLg = useMedia({ minWidth: breakpoints.lg.width })
 
   const { name, description, externalDocsUrl } = asset.content
   const { sponsor } = asset.params
 
   const { name: sponsorName, icon: SponsorIcon } = teams[sponsor]
 
-  const isSeparatedMeta = isMd || isGrid
+  const isSeparatedMeta = !isLg || isGrid
 
   return (
     <div className={styles.content}>
@@ -123,7 +123,7 @@ const CatalogItemMeta = ({ asset, className, properties }) => {
 }
 
 const CatalogItem = ({ asset, isGrid = false }) => {
-  const isMobile = useMedia({ maxWidth: breakpoints.md.width })
+  const isMd = useMedia({ minWidth: breakpoints.md.width })
   const isLg = useMedia({ minWidth: breakpoints.lg.width })
   const isXlg = useMedia({ minWidth: breakpoints.xlg.width })
 
@@ -169,19 +169,19 @@ const CatalogItem = ({ asset, isGrid = false }) => {
     <Column as="li" sm={4} md={8} lg={12}>
       <Link href={anchorHref}>
         <a className={anchorStyles} {...anchorProps}>
-          <Grid condensed={isMobile} narrow={!isMobile}>
+          <Grid condensed={!isMd} narrow={isMd}>
             <Column className={clsx(styles.column, styles.columnImage)} md={4}>
               <AspectRatio ratio={imageAspectRatio()}>
                 <CatalogItemImage asset={asset} />
               </AspectRatio>
             </Column>
             <Column className={clsx(styles.column, styles.columnContent)} sm={4} md={4} lg={8}>
-              {isMobile && (
+              {!isMd && (
                 <AspectRatio ratio="3x2">
                   <CatalogItemContent asset={asset} isGrid={isGrid} />
                 </AspectRatio>
               )}
-              {!isMobile && <CatalogItemContent asset={asset} isGrid={isGrid} />}
+              {isMd && <CatalogItemContent asset={asset} isGrid={isGrid} />}
             </Column>
           </Grid>
         </a>

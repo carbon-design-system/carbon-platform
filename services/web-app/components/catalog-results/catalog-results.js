@@ -11,10 +11,10 @@ import useMedia from 'use-media'
 import styles from './catalog-results.module.scss'
 
 const CatalogResults = ({ assets = [] }) => {
-  const isMobile = useMedia({ maxWidth: breakpoints.md.width })
+  const isMd = useMedia({ minWidth: breakpoints.md.width })
 
   return (
-    <Grid className={styles.container} condensed={isMobile} narrow={!isMobile}>
+    <Grid className={styles.container} condensed={!isMd} narrow={isMd}>
       <Column sm={4} md={8} lg={12}>
         <div className={styles.results}>{assets.length} results</div>
       </Column>

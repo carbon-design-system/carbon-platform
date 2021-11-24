@@ -13,7 +13,7 @@ import styles from './catalog-search.module.scss'
 
 const CatalogSearch = ({ onSearch }) => {
   const [query, setQuery] = useState('')
-  const isMobile = useMedia({ maxWidth: breakpoints.md.width })
+  const isMd = useMedia({ minWidth: breakpoints.md.width })
 
   const handleOnChange = (event) => {
     setQuery(event.target.value)
@@ -29,7 +29,7 @@ const CatalogSearch = ({ onSearch }) => {
   return (
     <Theme className={styles.container} theme="white">
       <Layer>
-        <Grid condensed={isMobile} narrow={!isMobile}>
+        <Grid condensed={!isMd} narrow={isMd}>
           <Column className={styles.column} sm={2} md={4} lg={8}>
             <Search
               id="catalog-search"

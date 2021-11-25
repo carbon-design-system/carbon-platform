@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.6...@carbon-platform/icons@0.0.7) (2021-11-25)
+
+
+### Features
+
+* add framework icons and remove old components ([2745078](https://github.com/carbon-design-system/carbon-platform/commit/274507836515b928b3736c7994e7e4cee39488f8))
+* add sponsor and external URLs ([0f6193f](https://github.com/carbon-design-system/carbon-platform/commit/0f6193f890c1699486e9dcb8ba8ef75d8d1221bf))
+* added grid view components ([09f0254](https://github.com/carbon-design-system/carbon-platform/commit/09f025426002fd516cf17505bc775cb73449868e))
+* added svg icon and tags ([b23d300](https://github.com/carbon-design-system/carbon-platform/commit/b23d30060a4ab48b7da46d59c114c3b8a1e6082e))
+* added svg icon and tags ([dd20092](https://github.com/carbon-design-system/carbon-platform/commit/dd20092d03670df95cd418330dce485366652ee5))
+
 ### [0.0.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.5...@carbon-platform/icons@0.0.6) (2021-11-16)
 
 ### [0.0.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.4...@carbon-platform/icons@0.0.5) (2021-11-11)

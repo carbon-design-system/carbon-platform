@@ -19,3 +19,12 @@
 .container :global(.cds--label) {
   display: none;
 }
+
+// override carbon styles
+.text-input {
+  display: flex;
+  height: $spacing-09;
+  align-items: center;
+  border-bottom: none;
+  background-color: $background;
+}

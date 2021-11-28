@@ -42,6 +42,10 @@ function Catalog({ data, type = 'component' }) {
     console.log('Search:', query)
   }
 
+  const handleSelect = (select) => {
+    console.log('Selected here:', select)
+  }
+
   const handleSort = (option) => {
     console.log('Sort:', option)
   }
@@ -52,7 +56,7 @@ function Catalog({ data, type = 'component' }) {
         Default filters have been pre-selected based on commonly used components. If you clear
         filters to explore, you may reset them easily.
       </InlineNotification>
-      <CatalogSearch onSearch={handleSearch} />
+      <CatalogSearch onSearch={handleSearch} onSelect={handleSelect} />
       <CatalogResults assets={assets} />
       <CatalogSort onSort={handleSort} onView={setView} sort={sort} view={view} />
       <CatalogList assets={assets} isGrid={view === 'grid'} />

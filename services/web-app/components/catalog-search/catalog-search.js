@@ -4,14 +4,14 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Grid, Layer, MultiSelect, Search, Theme } from '@carbon/react'
+import { Column, Grid, Layer, MultiSelect, Search, Tag, Theme } from '@carbon/react'
 import { useState } from 'react'
 
 import { useMediaQueryContext } from '@/contexts/media-query'
 
 import styles from './catalog-search.module.scss'
 
-const CatalogSearch = ({ onSearch }) => {
+const CatalogSearch = ({ onSearch, onSelect }) => {
   const [query, setQuery] = useState('')
   const { isMd } = useMediaQueryContext()
 
@@ -20,11 +20,26 @@ const CatalogSearch = ({ onSearch }) => {
     onSearch(event.target.value)
   }
 
+  const handleSelect = (event) => {
+    const result = event.selectedItems.map(({ text }) => text)
+    setSelect(result)
+    onSelect(result)
+  }
+
   const items = [
-    { id: 'one', text: 'One' },
-    { id: 'two', text: 'Two' },
-    { id: 'three', text: 'Three' }
+    { id: 'one', text: 'Carbon Core' },
+    { id: 'two', text: 'Security' },
+    { id: 'three', text: 'Stable' }
   ]
+
+  const [select, setSelect] = useState('')
+
+  const handleRemoveItem = (event) => {
+    const updateResult = [...select]
+    updateResult.splice(updateResult.indexOf(event), 1)
+    setSelect(updateResult)
+    onSelect(updateResult)
+  }
 
   return (
     <Theme className={styles.container} theme="white">
@@ -46,9 +61,30 @@ const CatalogSearch = ({ onSearch }) => {
               label="Filters"
               items={items}
               itemToString={(item) => (item ? item.text : '')}
-              initialSelectedItems={[items[0], items[1]]}
               size="lg"
+              onChange={handleSelect}
+              value={select}
             />
+          </Column>
+        </Grid>
+        <Grid condensed={!isMd} narrow={isMd}>
+          <Column className={styles.column} sm={4} md={8} lg={12}>
+            <div className={styles.textInput}>
+              {select.length
+                ? select.map((item, i) => (
+                    <Tag
+                      key={i}
+                      className="some-class"
+                      filter
+                      onClick={() => {
+                        handleRemoveItem(item)
+                      }}
+                    >
+                      {item}
+                    </Tag>
+                ))
+                : null}
+            </div>
           </Column>
         </Grid>
       </Layer>

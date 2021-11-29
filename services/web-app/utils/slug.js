@@ -13,7 +13,7 @@ import slugify from 'slugify'
  * @returns {string} A slug
  */
 export const getSlug = (content = {}) => {
-  const slug = content.id || content.name
+  const slug = content.id || content.name || ''
 
   return slugify(slug, {
     lower: true

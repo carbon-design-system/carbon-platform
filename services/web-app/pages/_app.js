@@ -6,13 +6,14 @@
  */
 /* eslint-disable simple-import-sort/imports */
 /*
- * TODO: fix import sorting once Carbon prefix bug is resolved.
- * Layout must be imported before carbon-components-react
- * Details: https://github.com/carbon-design-system/carbon/discussions/9723
+ * TODO: fix import sorting once Carbon prefix bug is resolved. Layout must be imported before
+ * using `carbon-components-react`.
+ * @see https://github.com/carbon-design-system/carbon/discussions/9723
  */
 import '@/styles/styles.scss'
 
 import Layout, { LayoutProvider } from '@/layouts/layout'
+import MediaQueryProvider from '@/contexts/media-query'
 
 import { unstable_FeatureFlags as FeatureFlags } from 'carbon-components-react'
 import { DefaultSeo } from 'next-seo'
@@ -22,16 +23,18 @@ import { AuthProvider } from 'contexts/auth'
 
 function App({ Component, pageProps }) {
   return (
-    <FeatureFlags flags={{ 'enable-css-grid': true }}>
-      <AuthProvider>
-        <LayoutProvider>
-          <Layout>
-            <DefaultSeo {...defaultSeo} />
-            <Component {...pageProps} />
-          </Layout>
-        </LayoutProvider>
-      </AuthProvider>
-    </FeatureFlags>
+    <MediaQueryProvider>
+      <FeatureFlags flags={{ 'enable-css-grid': true }}>
+        <AuthProvider>
+          <LayoutProvider>
+            <Layout>
+              <DefaultSeo {...defaultSeo} />
+              <Component {...pageProps} />
+            </Layout>
+          </LayoutProvider>
+        </AuthProvider>
+      </FeatureFlags>
+    </MediaQueryProvider>
   )
 }
 

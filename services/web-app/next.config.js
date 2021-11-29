@@ -20,12 +20,14 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `
+      @use '~@carbon/motion/scss/motion' as *;
       @use '~@carbon/react/scss/breakpoint' as *;
       @use '~@carbon/react/scss/spacing' as *;
       @use '~@carbon/react/scss/theme' as *;
       @use '~@carbon/react/scss/themes';
       @use '~@carbon/react/scss/type' as *;
       @use '~@carbon/react/scss/zone';
+      @use './styles/mixins' as *;
     `
   },
   swcMinify: true,

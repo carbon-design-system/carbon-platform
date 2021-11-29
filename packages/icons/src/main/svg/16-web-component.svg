@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>16-web-component</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="16-web-component" transform="translate(0.000000, 1.000000)">
+            <polygon id="Path" points="5.46333333 11.4423077 5.46333333 11.4423077 2.92466667 7"></polygon>
+            <polygon id="Path" points="5.46333333 11.4423077 10.537 11.4423077 13.0753333 7 10.537 2.55769231 5.46333333 2.55769231 2.92466667 7"></polygon>
+            <polygon id="Path" points="2.92466667 7 5.46333333 2.55769231 5.46333333 2.55769231"></polygon>
+            <polygon id="Path" fill="#000000" fill-rule="nonzero" points="16 7 12 0 7.458 0 5.99666667 2.55769231 10.537 2.55769231 13.0753333 7 10.537 11.4423077 5.99666667 11.4423077 7.458 14 12 14"></polygon>
+            <polygon id="Path" fill="#000000" fill-rule="nonzero" points="5.46333333 11.4423077 2.92466667 7 5.46333333 2.55769231 5.46333333 2.55769231 6.92466667 0 4 0 0 7 4 14 6.92466667 14 5.46333333 11.4423077"></polygon>
+        </g>
+    </g>
+</svg>

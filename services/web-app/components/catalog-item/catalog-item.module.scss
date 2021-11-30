@@ -9,12 +9,18 @@
 
 .column {
   position: relative;
+  transition: border-color $fast-02 carbon--motion(standard, productive);
 }
 
 .column:not(:first-child) {
   @include breakpoint(md) {
     border-left: 1px solid $layer-accent;
   }
+}
+
+.anchor:hover .column,
+.anchor:focus .column {
+  border-color: $border-subtle-selected;
 }
 
 .column-image {
@@ -60,6 +66,12 @@
 .anchor--grid .content {
   border-top: 1px solid $layer-accent;
   margin-right: 0;
+  transition: border-color $fast-02 carbon--motion(standard, productive);
+}
+
+.anchor--grid:hover .content,
+.anchor--grid:focus .content {
+  border-color: $border-subtle-selected;
 }
 
 .sponsor {
@@ -102,7 +114,7 @@
   background: $background;
   border-radius: 100%;
   color: $icon-primary;
-  transition: background $fast-02 carbon--motion(standard, productive);
+  transition: all $fast-02 carbon--motion(standard, productive);
   @include breakpoint(xlg) {
     width: $spacing-09 + $spacing-03;
     height: $spacing-09 + $spacing-03;
@@ -152,6 +164,7 @@
 
 .anchor:hover .icon,
 .anchor:focus .icon {
+  border-color: $border-subtle-selected;
   background: $layer-hover;
 }
 
@@ -164,11 +177,17 @@
   position: absolute;
   top: $spacing-04;
   right: $spacing-04;
+  transition: background $fast-02 carbon--motion(standard, productive);
 }
 
 .anchor--grid .framework {
   top: auto;
   bottom: $spacing-04;
+}
+
+.anchor:hover .framework,
+.anchor:focus .framework {
+  background: $border-subtle-selected;
 }
 
 .meta {

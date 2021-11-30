@@ -11,7 +11,7 @@ import { status as statusMap } from '@/data/status'
 import styles from './status-icon.module.scss'
 
 const StatusIcon = ({ className, status }) => {
-  const { icon: Icon } = statusMap[status]
+  const { icon: Icon, name } = statusMap[status]
 
   if (!Icon) return null
 
@@ -22,7 +22,11 @@ const StatusIcon = ({ className, status }) => {
     [styles.iconDeprecated]: status === 'deprecated'
   })
 
-  return <Icon className={stylesIcon} size={16} />
+  return (
+    <span className={stylesIcon} title={name}>
+      <Icon size={16} />
+    </span>
+  )
 }
 
 export default StatusIcon

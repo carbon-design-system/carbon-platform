@@ -9,20 +9,20 @@ $status-experimental: #8a3ffc;
 
 .icon {
   color: $icon-primary;
-}
 
-.icon--draft {
-  color: $text-helper;
-}
+  &--draft {
+    color: $text-helper;
+  }
 
-.icon--experimental {
-  color: $status-experimental;
-}
+  &--experimental {
+    color: $status-experimental;
+  }
 
-.icon--stable {
-  color: $support-success;
-}
+  &--stable {
+    color: $support-success;
+  }
 
-.icon--deprecated {
-  color: $support-error;
+  &--deprecated {
+    color: $support-error;
+  }
 }

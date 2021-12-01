@@ -33,7 +33,7 @@ export const useMatchMedia = (query) => {
     return () => {
       matchMediaResult?.removeEventListener('change', updateMatch)
     }
-  })
+  }, [query])
 
   return matches
 }

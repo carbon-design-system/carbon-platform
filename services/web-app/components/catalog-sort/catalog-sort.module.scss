@@ -11,54 +11,56 @@
 
 .column {
   background: $background;
-}
 
-.column:not(:last-child) {
-  @include breakpoint(lg) {
-    margin-right: -$spacing-05;
+  &:not(:last-child) {
+    @include breakpoint(lg) {
+      margin-right: -$spacing-05;
+    }
+  }
+
+  &:not(:first-child) {
+    border-left: 1px solid $layer-accent;
+  }
+
+  &--switcher {
+    text-align: right;
+    @include breakpoint-down(lg) {
+      display: none;
+    }
   }
 }
 
-.column:not(:first-child) {
-  border-left: 1px solid $layer-accent;
-}
-
-.column-switcher {
-  text-align: right;
-  @include breakpoint-down(lg) {
-    display: none;
-  }
-}
-
-// override carbon display, grid-gap
 .dropdown {
+  // override carbon display, grid-gap
   position: relative;
   display: flex;
   width: 100%;
   padding-left: $spacing-05;
   grid-gap: 0;
+
+  // overide carbon color
+  :global(.cds--label) {
+    color: $text-primary;
+  }
+
+  // overide carbon position, flex-grow
+  :global(.cds--dropdown) {
+    position: static;
+    flex-grow: 1;
+  }
+
+  // overide carbon max-width
+  :global(.cds--list-box__field),
+  :global(.cds--list-box__menu) {
+    max-width: none;
+  }
 }
 
-// overide carbon color
-.dropdown :global(.cds--label) {
-  color: $text-primary;
-}
-
-// overide carbon position, flex-grow
-.dropdown :global(.cds--dropdown) {
-  position: static;
-  flex-grow: 1;
-}
-
-// overide carbon max-width
-.dropdown :global(.cds--list-box__field),
-.dropdown :global(.cds--list-box__menu) {
-  max-width: none;
-}
-
-// override background
-.selected:not(:hover),
-.selected:not(:focus) {
-  background: var(--cds-layer-selected-inverse);
-  --cds-icon-primary: var(--cds-icon-inverse);
+.selected {
+  // override background
+  &:not(:hover),
+  &:not(:focus) {
+    background: var(--cds-layer-selected-inverse);
+    --cds-icon-primary: var(--cds-icon-inverse);
+  }
 }

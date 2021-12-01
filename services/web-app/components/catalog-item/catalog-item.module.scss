@@ -9,20 +9,26 @@
 
 .column {
   position: relative;
-}
+  transition: border-color $fast-02 carbon--motion(standard, productive);
 
-.column:not(:first-child) {
-  @include breakpoint(md) {
-    border-left: 1px solid $layer-accent;
-  }
-}
+  &:not(:first-child) {
+    @include breakpoint(md) {
+      border-left: 1px solid $layer-accent;
+    }
 
-.column-image {
-  @include breakpoint-down(md) {
-    display: none;
+    .anchor:hover &,
+    .anchor:focus & {
+      border-color: $border-subtle-selected;
+    }
   }
-  @include breakpoint(md) {
-    margin-right: calc(#{-$spacing-05} + 1px);
+
+  &--image {
+    @include breakpoint-down(md) {
+      display: none;
+    }
+    @include breakpoint(md) {
+      margin-right: calc(#{-$spacing-05} + 1px);
+    }
   }
 }
 
@@ -31,22 +37,27 @@
   background: $background;
   text-decoration: none;
   transition: background $fast-02 carbon--motion(standard, productive);
-}
 
-.anchor:active {
-  outline: 2px solid $focus;
-  outline-offset: -2px;
-}
+  &:hover,
+  &:focus {
+    background: $layer-hover;
+  }
 
-.anchor--grid {
-  margin-top: $spacing-05;
-}
+  &:active {
+    outline: 2px solid $focus;
+    outline-offset: -2px;
+  }
 
-.anchor:not(.anchor--grid) {
-  border-top: 1px solid $layer-accent;
-  @include breakpoint(md) {
-    padding-left: $spacing-05;
-    margin-left: -$spacing-05;
+  &--grid {
+    margin-top: $spacing-05;
+  }
+
+  &:not(.anchor--grid) {
+    border-top: 1px solid $layer-accent;
+    @include breakpoint(md) {
+      padding-left: $spacing-05;
+      margin-left: -$spacing-05;
+    }
   }
 }
 
@@ -55,11 +66,17 @@
   @include breakpoint(lg) {
     padding-right: 0;
   }
-}
 
-.anchor--grid .content {
-  border-top: 1px solid $layer-accent;
-  margin-right: 0;
+  .anchor--grid & {
+    border-top: 1px solid $layer-accent;
+    margin-right: 0;
+    transition: border-color $fast-02 carbon--motion(standard, productive);
+  }
+
+  .anchor--grid:hover &,
+  .anchor--grid:focus & {
+    border-color: $border-subtle-selected;
+  }
 }
 
 .sponsor {
@@ -72,11 +89,11 @@
   color: $text-primary;
   @include line-clamp(2);
   @include type-style('productive-heading-02');
-}
 
-.anchor--grid .name {
-  @include breakpoint-down(xlg) {
-    @include line-clamp(1);
+  .anchor--grid & {
+    @include breakpoint-down(xlg) {
+      @include line-clamp(1);
+    }
   }
 }
 
@@ -85,10 +102,10 @@
   color: $text-primary;
   @include line-clamp(3);
   @include type-style('body-short-01');
-}
 
-.anchor--grid .description {
-  display: none;
+  .anchor--grid & {
+    display: none;
+  }
 }
 
 .icon {
@@ -102,18 +119,30 @@
   background: $background;
   border-radius: 100%;
   color: $icon-primary;
-  transition: background $fast-02 carbon--motion(standard, productive);
+  transition: all $fast-02 carbon--motion(standard, productive);
   @include breakpoint(xlg) {
     width: $spacing-09 + $spacing-03;
     height: $spacing-09 + $spacing-03;
   }
-}
 
-.anchor--grid .icon {
-  top: math.div(-$spacing-09, 2);
-  bottom: auto;
-  @include breakpoint(xlg) {
-    top: math.div(-$spacing-09 - $spacing-03, 2);
+  .anchor--grid & {
+    top: math.div(-$spacing-09, 2);
+    bottom: auto;
+    @include breakpoint(xlg) {
+      top: math.div(-$spacing-09 - $spacing-03, 2);
+    }
+  }
+
+  .anchor--sponsor &,
+  .anchor--external:hover &,
+  .anchor--external:focus & {
+    display: block;
+  }
+
+  .anchor:hover &,
+  .anchor:focus & {
+    border-color: $border-subtle-selected;
+    background: $layer-hover;
   }
 }
 
@@ -128,67 +157,57 @@
 
 .icon-sponsor {
   opacity: 1;
+
+  .anchor--external:hover &,
+  .anchor--external:focus & {
+    opacity: 0;
+  }
 }
 
 .icon-external {
   opacity: 0;
-}
 
-.anchor--sponsor .icon,
-.anchor--external:hover .icon,
-.anchor--external:focus .icon {
-  display: block;
-}
-
-.anchor--external:hover .icon-external,
-.anchor--external:focus .icon-external {
-  opacity: 1;
-}
-
-.anchor--external:hover .icon-sponsor,
-.anchor--external:focus .icon-sponsor {
-  opacity: 0;
-}
-
-.anchor:hover .icon,
-.anchor:focus .icon {
-  background: $layer-hover;
-}
-
-.anchor:hover,
-.anchor:focus {
-  background: $layer-hover;
+  .anchor--external:hover &,
+  .anchor--external:focus & {
+    opacity: 1;
+  }
 }
 
 .framework {
   position: absolute;
   top: $spacing-04;
   right: $spacing-04;
-}
+  transition: background $fast-02 carbon--motion(standard, productive);
 
-.anchor--grid .framework {
-  top: auto;
-  bottom: $spacing-04;
+  .anchor--grid & {
+    top: auto;
+    bottom: $spacing-04;
+  }
+
+  .anchor:hover &,
+  .anchor:focus & {
+    background: $border-subtle-selected;
+  }
 }
 
 .meta {
   margin-top: $spacing-02;
   color: $text-secondary;
   @include type-style('label-01');
-}
 
-.meta--absolute {
-  position: absolute;
-  bottom: $spacing-04;
-  left: $spacing-04;
+  &--absolute {
+    position: absolute;
+    bottom: $spacing-04;
+    left: $spacing-04;
+  }
 }
 
 .meta-item {
   display: inline;
-}
 
-.meta-item:not(:first-child) {
-  margin-left: $spacing-03;
+  &:not(:first-child) {
+    margin-left: $spacing-03;
+  }
 }
 
 .meta-icon {

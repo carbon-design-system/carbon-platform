@@ -3,8 +3,6 @@
 # Fail immediately on errors
 set -e
 
-git ls-tree -r HEAD --name-only | xargs scripts/micromanage link
-
 scripts/micromanage version
 
 scripts/micromanage publish

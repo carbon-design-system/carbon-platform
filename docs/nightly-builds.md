@@ -4,10 +4,6 @@ There is a GitHub Action/Workflow in place (nightly-version.yml) that automatica
 re-versions, and re-publishes all packages and services that have changed since the previous night.
 Below are the details of what happens.
 
-1. As a prerequisite step, `micromanage link` is run against all `.ts`, `.js`, and `.scss` files for
-   each package (both public and private). This will abort if any unspecified local dependencies are
-   found.
-
 1. Run `micromanage version`. This will look at each package in isolation and determine if there are
    any changes to them. For any that have changed, the package's changelog is updated, its
    package.json is updated with a new version number, and a new version tag is created and pushed to

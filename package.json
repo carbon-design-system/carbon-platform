@@ -13,8 +13,8 @@
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "engines": {
-    "node": ">=16",
-    "npm": ">=8"
+    "node": "16",
+    "npm": "8"
   },
   "workspaces": [
     "packages/run-mode",

@@ -99,10 +99,6 @@ existing application deployed on IBM cloud in order to enable automatic deployme
 
 4. From the root of the project run `npm run deploy -- --target=test`
 
-## Link Packages
-
-TODO
-
 ## Publish Packages
 
 TODO

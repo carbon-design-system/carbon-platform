@@ -97,7 +97,7 @@ existing application deployed on IBM cloud in order to enable automatic deployme
 3. Alter the [service-config.test.json](../service-config.test.json) or
    [service-config.prod.json](../service-config.prod.json) file appropriately.
 
-4. From the root of the project run `npm run deploy -- --target=test`
+4. From the root of the project run `scripts/micromanage deploy --target=test`
 
 ## Publish Packages
 

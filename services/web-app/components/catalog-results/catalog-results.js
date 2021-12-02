@@ -6,12 +6,12 @@
  */
 import { Column, Grid } from '@carbon/react'
 
-import { useMediaQueryContext } from '@/contexts/media-query'
+import { mediaQueries, useMatchMedia } from '@/utils/media-query'
 
 import styles from './catalog-results.module.scss'
 
 const CatalogResults = ({ assets = [] }) => {
-  const { isMd } = useMediaQueryContext()
+  const isMd = useMatchMedia(mediaQueries.md)
 
   return (
     <Grid className={styles.container} condensed={!isMd} narrow={isMd}>

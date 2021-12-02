@@ -7,12 +7,12 @@
 import { Button, Column, Dropdown, Grid, Layer, Theme } from '@carbon/react'
 import { Grid as GridIcon, List as ListIcon } from '@carbon/react/icons'
 
-import { useMediaQueryContext } from '@/contexts/media-query'
+import { mediaQueries, useMatchMedia } from '@/utils/media-query'
 
 import styles from './catalog-sort.module.scss'
 
 const CatalogSort = ({ onSort, onView, sort, view }) => {
-  const { isMd } = useMediaQueryContext()
+  const isMd = useMatchMedia(mediaQueries.md)
 
   const sortItems = [
     {

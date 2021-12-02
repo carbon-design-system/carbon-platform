@@ -14,7 +14,7 @@ import CatalogResults from '@/components/catalog-results'
 import CatalogSearch from '@/components/catalog-search'
 import CatalogSort from '@/components/catalog-sort'
 import { assetSortComparator, librarySortComparator } from '@/utils/schema'
-import { isBrowser } from '@/utils/window'
+import { getLocalStorageItem, setLocalStorageItem } from '@/utils/window'
 
 import styles from './catalog.module.scss'
 
@@ -23,13 +23,27 @@ const DEFAULT_VIEW = 'list'
 
 function Catalog({ data, type = 'component' }) {
   const router = useRouter()
+  const [, ...queryString] = router.asPath.split('?')
 
-  const sortValue = router.asPath.match(/[&?]sort=(.*)(&|$)/)
-  const sortQuery = router.query.sort || (sortValue && sortValue[1])
-  const sortSaved = isBrowser && localStorage.getItem(`${router.pathname}:sort`)
+  /**
+   * Next.js `router.query` is undefined on initial load, so parse the query string coming from
+   * `router.asPath` as a fallback.
+   * @type {import('../typedefs').CatalogQuery}
+   */
+  const query = qs.parse(queryString.join('?'))
 
-  const [sort, setSort] = useState(sortQuery || sortSaved || DEFAULT_SORT)
-  const [view, setView] = useState(DEFAULT_VIEW)
+  const [sort, setSort] = useState(
+    router.query.sort ||
+      query.sort ||
+      getLocalStorageItem(`${router.pathname}:sort`) ||
+      DEFAULT_SORT
+  )
+  const [view, setView] = useState(
+    router.query.view ||
+      query.view ||
+      getLocalStorageItem(`${router.pathname}:view`) ||
+      DEFAULT_VIEW
+  )
 
   const [libraries] = useState(
     data.libraries.filter((library) => library.assets.length).sort(librarySortComparator)
@@ -53,8 +67,8 @@ function Catalog({ data, type = 'component' }) {
 
   const [renderAssets, setRenderAssets] = useState(assets)
 
-  const handleSearch = (query) => {
-    console.log('Search:', query)
+  const handleSearch = (q) => {
+    console.log('Search:', q)
   }
 
   /**
@@ -62,19 +76,17 @@ function Catalog({ data, type = 'component' }) {
    * changed without re-rendering the component. Update the rendered assets.
    */
   useEffect(() => {
-    const query = qs.stringify({ sort }, true)
-    const url = `${router.pathname}${query}`
+    const url = `${router.pathname}${qs.stringify({ sort, view }, true)}`
 
     if (url !== router.asPath) {
-      if (isBrowser) {
-        localStorage.setItem(`${router.pathname}:sort`, sort)
-      }
+      setLocalStorageItem(`${router.pathname}:sort`, sort)
+      setLocalStorageItem(`${router.pathname}:view`, view)
 
       router.replace(url, undefined, { shallow: true, scroll: false })
     }
 
     setRenderAssets(assets.sort(assetSortComparator(sort)))
-  }, [assets, router, sort])
+  }, [assets, router, sort, view])
 
   return (
     <>
@@ -84,7 +96,7 @@ function Catalog({ data, type = 'component' }) {
       </InlineNotification>
       <CatalogSearch onSearch={handleSearch} />
       <CatalogResults assets={renderAssets} />
-      <CatalogSort onSort={(s) => setSort(s)} onView={setView} sort={sort} view={view} />
+      <CatalogSort onSort={setSort} onView={setView} sort={sort} view={view} />
       <CatalogList assets={renderAssets} isGrid={view === 'grid'} />
     </>
   )

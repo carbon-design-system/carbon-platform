@@ -20,11 +20,97 @@
   display: none;
 }
 
-// override carbon styles
-.text-input {
+.multiselect-input {
+  width: 100%;
+  height: $spacing-09;
+  border: none;
+  border-left: 1px solid $border-subtle;
+  background: $background;
+  box-shadow: inset 0 -1px 0 $border-strong;
+  cursor: pointer;
+}
+
+.multiselect-input:focus {
+  border: 2px solid;
+  box-shadow: none;
+  color: $background-brand;
+}
+
+.multiselect-input:hover {
+  background-color: $border-subtle;
+}
+
+.multiselect-input :global(.cds--tag) {
+  background-color: $icon-primary;
+  color: $background;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 $spacing-04 0 $spacing-04;
+  color: $text-primary;
+  @include type-style('body-short-01');
+}
+
+.input-text {
+  color: $text-primary;
+  @include type-style('body-short-01');
+}
+
+.chevron {
+  margin-left: auto;
+}
+
+.dropdown-container {
+  display: flex;
+  flex-flow: row wrap;
+  padding: $spacing-06 0 $spacing-06 0;
+  background: $background;
+}
+
+.filter-tag-container {
+  width: 100%;
+  padding: $spacing-05;
+  border-left: 1px solid $border-subtle;
+
+  @include breakpoint(md) {
+    width: 50%;
+  }
+
+  @include breakpoint(lg) {
+    width: 33.33%;
+  }
+}
+
+.fitler-title {
+  padding-bottom: $spacing-05;
+  color: $text-secondary;
+  @include type-style('body-short-01');
+}
+
+// override carbon tag styles
+.filter-tag {
+  border: none;
+  margin-left: 0;
+}
+
+// override carbon tag styles
+.tag :global(.cds--tag__label) {
+  padding-bottom: 2px;
+}
+
+// override carbon tag style
+.tag-overflow-label {
+  padding-bottom: 2px;
+}
+
+.tag-input {
   display: flex;
   height: $spacing-09;
   align-items: center;
+  padding: 0 $spacing-04 0 $spacing-04;
   border-bottom: none;
   background-color: $background;
 }

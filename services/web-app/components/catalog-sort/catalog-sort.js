@@ -14,7 +14,16 @@ import styles from './catalog-sort.module.scss'
 const CatalogSort = ({ onSort, onView, sort, view }) => {
   const { isMd } = useMediaQueryContext()
 
-  const sortOptions = ['A–Z', 'Newest', 'Most used', 'Status']
+  const sortItems = [
+    {
+      id: 'a-z',
+      text: 'A–Z'
+    },
+    {
+      id: 'status',
+      text: 'Status'
+    }
+  ]
 
   return (
     <Theme className={styles.container} theme="white">
@@ -23,16 +32,16 @@ const CatalogSort = ({ onSort, onView, sort, view }) => {
           <Column className={styles.column} sm={4} md={8} lg={4}>
             <Dropdown
               id="catalog-sort"
-              light
               className={styles.dropdown}
-              initialSelectedItem={sort}
-              items={sortOptions}
+              initialSelectedItem={sortItems.find((item) => item.id === sort)}
+              items={sortItems}
+              itemToString={(item) => (item ? item.text : '')}
               onChange={({ selectedItem }) => {
-                onSort(selectedItem)
+                onSort(selectedItem.id)
               }}
               type="inline"
               titleText="Sort by:"
-              label="A-Z"
+              label="A–Z"
               size="lg"
             />
           </Column>

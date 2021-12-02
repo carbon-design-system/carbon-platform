@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.19](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.18...@carbon-platform/web-app@0.1.19) (2021-12-02)
+
+
+### Features
+
+* update hover colors and title attributes ([91739c6](https://github.com/carbon-design-system/carbon-platform/commit/91739c6f2aecd9e0e2adb1dffd233ab795e7f2c8))
+
 ### [0.1.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.17...@carbon-platform/web-app@0.1.18) (2021-11-25)
 
 

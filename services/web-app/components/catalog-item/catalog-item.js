@@ -62,7 +62,7 @@ const CatalogItemContent = ({ asset, isGrid = false }) => {
         {sponsorName && <p className={styles.sponsor}>{sponsorName}</p>}
         {name && <p className={styles.name}>{name}</p>}
         {description && <p className={styles.description}>{description}</p>}
-        <div className={styles.icon}>
+        <div className={styles.icon} title={sponsorName && `Sponsored by ${sponsorName}`}>
           {SponsorIcon && <SponsorIcon className={styles.iconSponsor} size={24} />}
           {externalDocsUrl && <ArrowUpRight className={styles.iconExternal} size={24} />}
         </div>

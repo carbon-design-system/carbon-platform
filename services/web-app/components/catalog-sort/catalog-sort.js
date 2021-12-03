@@ -7,7 +7,7 @@
 import { Button, Column, Dropdown, Grid, Layer, Theme } from '@carbon/react'
 import { Grid as GridIcon, List as ListIcon } from '@carbon/react/icons'
 
-import { mediaQueries, useMatchMedia } from '@/utils/media-query'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-sort.module.scss'
 

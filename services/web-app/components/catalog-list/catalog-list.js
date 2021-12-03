@@ -7,7 +7,7 @@
 import { Grid, Layer, Theme } from '@carbon/react'
 
 import CatalogItem from '@/components/catalog-item'
-import { mediaQueries, useMatchMedia } from '@/utils/media-query'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 const CatalogList = ({ assets, isGrid = false }) => {
   const isLg = useMatchMedia(mediaQueries.lg)

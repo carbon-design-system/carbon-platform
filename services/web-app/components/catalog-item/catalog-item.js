@@ -15,8 +15,8 @@ import FrameworkIcon from '@/components/framework-icon'
 import StatusIcon from '@/components/status-icon'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
-import { mediaQueries, useMatchMedia } from '@/utils/media-query'
 import { getSlug } from '@/utils/slug'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-item.module.scss'
 

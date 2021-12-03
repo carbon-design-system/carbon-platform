@@ -79,23 +79,7 @@ export const useQueryState = (
         query.set(key, serialize(newValue))
       }
 
-      const [asPath] = router.asPath.split(/\?|#/, 1)
-      const search = query.toString()
-      const hash = window.location.hash
-
-      router.replace(
-        {
-          pathname: router.pathname,
-          hash,
-          search
-        },
-        {
-          pathname: asPath,
-          hash,
-          search
-        },
-        { shallow: true, scroll: false }
-      )
+      router.replace(`?${query.toString()}`, undefined, { shallow: true, scroll: false })
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [getValue, key, serialize]

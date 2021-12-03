@@ -17,7 +17,10 @@ import { useQueryState } from '@/utils/use-query-state'
 import styles from './catalog.module.scss'
 
 function Catalog({ data, type = 'component' }) {
-  const [search, setSearch] = useState('')
+  const [query, setQuery] = useQueryState('q', {
+    defaultValue: ''
+  })
+  const [search, setSearch] = useState(query)
 
   const [sort, setSort] = useQueryState('sort', {
     defaultValue: 'a-z',
@@ -52,8 +55,22 @@ function Catalog({ data, type = 'component' }) {
   const [renderAssets, setRenderAssets] = useState(assets)
 
   useEffect(() => {
-    setRenderAssets(assets.sort(assetSortComparator(sort)))
-  }, [assets, sort])
+    setRenderAssets(
+      assets.sort(assetSortComparator(sort)).filter((asset) => {
+        return search
+          ? asset.content.name.includes(search) || asset.content.description.includes(search)
+          : true
+      })
+    )
+  }, [assets, sort, search])
+
+  const handleSearch = (newValue, saveQuery) => {
+    if (saveQuery) {
+      setQuery(newValue)
+    }
+
+    setSearch(newValue)
+  }
 
   return (
     <>
@@ -61,7 +78,7 @@ function Catalog({ data, type = 'component' }) {
         Default filters have been pre-selected based on commonly used components. If you clear
         filters to explore, you may reset them easily.
       </InlineNotification>
-      <CatalogSearch search={search} onSearch={setSearch} />
+      <CatalogSearch search={search} onSearch={handleSearch} />
       <CatalogResults assets={renderAssets} />
       <CatalogSort onSort={setSort} onView={setView} sort={sort} view={view} />
       <CatalogList assets={renderAssets} isGrid={view === 'grid'} />

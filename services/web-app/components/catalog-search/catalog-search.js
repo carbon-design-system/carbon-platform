@@ -13,12 +13,16 @@ import styles from './catalog-search.module.scss'
 const CatalogSearch = ({ search = '', onSearch }) => {
   const isMd = useMatchMedia(mediaQueries.md)
 
+  const handleOnBlur = (event) => {
+    onSearch(event.target.value, true)
+  }
+
   const handleOnChange = (event) => {
-    onSearch(event.target.value)
+    onSearch(event.target.value, false)
   }
 
   const handleOnClear = () => {
-    onSearch('')
+    onSearch('', true)
   }
 
   const items = [
@@ -37,6 +41,7 @@ const CatalogSearch = ({ search = '', onSearch }) => {
               labelText="Search component index by name, keyword, or domain"
               placeholder="Component name, keyword, domain"
               value={search}
+              onBlur={handleOnBlur}
               onChange={handleOnChange}
               onClear={handleOnClear}
               size="lg"

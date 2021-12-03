@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.20](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.19...@carbon-platform/web-app@0.1.20) (2021-12-03)
+
+
+### Features
+
+* update node modules and remove webapp dep on use-media ([231147f](https://github.com/carbon-design-system/carbon-platform/commit/231147f157c459301e2e13a7cd8412a687d79292))
+
+
+### Bug Fixes
+
+* **web-app:** add deps to useMatchMedia effect hook ([ae15907](https://github.com/carbon-design-system/carbon-platform/commit/ae159079a2fb254a543c413b8951d4651607fbe8))
+
 ### [0.1.19](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.18...@carbon-platform/web-app@0.1.19) (2021-12-02)
 
 

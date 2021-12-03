@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.7...@carbon-platform/icons@0.0.8) (2021-12-03)
+
+
+### Features
+
+* update node modules and remove webapp dep on use-media ([231147f](https://github.com/carbon-design-system/carbon-platform/commit/231147f157c459301e2e13a7cd8412a687d79292))
+
 ### [0.0.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.6...@carbon-platform/icons@0.0.7) (2021-11-25)
 
 

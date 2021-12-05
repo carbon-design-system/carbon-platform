@@ -1,0 +1,100 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+.container {
+  width: 100%;
+  height: $spacing-09;
+  border: none;
+  border-left: 1px solid $border-subtle;
+  background: $background;
+  box-shadow: inset 0 -1px 0 $border-strong;
+  cursor: pointer;
+
+  &:focus {
+    border: 2px solid;
+    box-shadow: none;
+    color: $background-brand;
+  }
+
+  &:hover {
+    background-color: $border-subtle;
+  }
+}
+
+.container :global(.cds--tag) {
+  background-color: $icon-primary;
+  color: $background;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 $spacing-04 0 $spacing-04;
+  color: $text-primary;
+  @include type-style('body-short-01');
+}
+
+.input-text {
+  color: $text-primary;
+  @include type-style('body-short-01');
+}
+
+.chevron {
+  margin-left: auto;
+}
+
+.dropdown-container {
+  display: flex;
+  flex-flow: row wrap;
+  padding: $spacing-06 0 $spacing-06 0;
+  background: $background;
+}
+
+.dropdown {
+  width: 100%;
+  padding: $spacing-05;
+  border-left: 1px solid $border-subtle;
+
+  @include breakpoint(md) {
+    width: 50%;
+  }
+
+  @include breakpoint(lg) {
+    width: percentage(1 / 3);
+  }
+}
+
+.fitler-title {
+  padding-bottom: $spacing-05;
+  color: $text-secondary;
+  @include type-style('body-short-01');
+}
+
+// override carbon tag styles
+.tag {
+  border: none;
+  margin-left: 0;
+
+  :global(.cds--tag__label) {
+    padding-bottom: 2px;
+  }
+}
+
+// override carbon tag style
+.tag-overflow-label {
+  padding-bottom: 2px;
+}
+
+.tag-input {
+  display: flex;
+  height: $spacing-09;
+  align-items: center;
+  padding: 0 $spacing-04 0 $spacing-04;
+  border-bottom: none;
+  background-color: $background;
+}

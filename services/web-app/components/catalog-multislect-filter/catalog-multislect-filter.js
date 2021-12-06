@@ -8,7 +8,8 @@ import { Column, Tag } from '@carbon/react'
 import { ChevronDown, ChevronUp, OverflowMenuHorizontal } from '@carbon/react/icons'
 import { useRef, useState } from 'react'
 
-import useOutsideClick from '../utils/useOutsideClick'
+import { useOutsideClick } from '@/utils/use-outside-click'
+
 import styles from './catalog-multiselect-filter.module.scss'
 
 const CatalogMultiselectFilter = ({ onSelect }) => {

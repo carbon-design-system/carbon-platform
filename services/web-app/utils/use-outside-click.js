@@ -6,7 +6,7 @@
  */
 import { useEffect } from 'react'
 
-const useOutsideClick = (ref, callback) => {
+export const useOutsideClick = (ref, callback) => {
   const handleClick = (e) => {
     if (ref.current && !ref.current.contains(e.target)) {
       callback()
@@ -21,5 +21,3 @@ const useOutsideClick = (ref, callback) => {
     }
   })
 }
-
-export default useOutsideClick

@@ -8,11 +8,12 @@ import { InlineNotification } from '@carbon/react'
 import { useEffect, useState } from 'react'
 
 import CatalogList from '@/components/catalog-list'
+import CatalogPagination from '@/components/catalog-pagination'
 import CatalogResults from '@/components/catalog-results'
 import CatalogSearch from '@/components/catalog-search'
 import CatalogSort from '@/components/catalog-sort'
 import { assetSortComparator, librarySortComparator } from '@/utils/schema'
-import { useQueryState } from '@/utils/use-query-state'
+import { queryTypes, useQueryState } from '@/utils/use-query-state'
 
 import styles from './catalog.module.scss'
 
@@ -30,6 +31,15 @@ function Catalog({ data, type = 'component' }) {
   const [view, setView] = useQueryState('view', {
     defaultValue: 'list',
     useStorage: true
+  })
+
+  const [page, setPage] = useQueryState('page', {
+    ...queryTypes.integer,
+    defaultValue: 1
+  })
+  const [pageSize, setPageSize] = useQueryState('items', {
+    ...queryTypes.integer,
+    defaultValue: 12
   })
 
   const [libraries] = useState(
@@ -58,7 +68,8 @@ function Catalog({ data, type = 'component' }) {
     setRenderAssets(
       assets.sort(assetSortComparator(sort)).filter((asset) => {
         return search
-          ? asset.content.name.includes(search) || asset.content.description.includes(search)
+          ? asset.content.name.toLowerCase().includes(search.toLowerCase()) ||
+              asset.content.description.toLowerCase().includes(search.toLowerCase())
           : true
       })
     )
@@ -81,7 +92,14 @@ function Catalog({ data, type = 'component' }) {
       <CatalogSearch search={search} onSearch={handleSearch} />
       <CatalogResults assets={renderAssets} />
       <CatalogSort onSort={setSort} onView={setView} sort={sort} view={view} />
-      <CatalogList assets={renderAssets} isGrid={view === 'grid'} />
+      <CatalogList assets={renderAssets} isGrid={view === 'grid'} page={page} pageSize={pageSize} />
+      <CatalogPagination
+        assets={renderAssets}
+        page={page}
+        pageSize={pageSize}
+        setPage={setPage}
+        setPageSize={setPageSize}
+      />
     </>
   )
 }

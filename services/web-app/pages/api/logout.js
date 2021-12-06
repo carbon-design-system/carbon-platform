@@ -4,9 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import requireAuth from '../../middleware/requireAuth'
+import requireSession from '../../middleware/requireSession'
 
-const logout = requireAuth(false).get((req, res) => {
+const logout = requireSession().get((req, res) => {
   req.logout()
   let nextRoute = '/'
 

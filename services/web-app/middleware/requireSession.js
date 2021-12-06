@@ -4,16 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import connectSqlite3 from 'connect-sqlite3'
+import { passport, SESSION_SECRET, store } from '@carbon-platform/auth'
 import cookieParser from 'cookie-parser'
 import expressSession from 'express-session'
 import nextConnect from 'next-connect'
 
-import passport from '../lib/passport'
-
-const SQLiteStore = connectSqlite3(expressSession)
-
-export default function requireAuth(needsUser = true) {
+export default function requireSession(needsUser = false) {
   return nextConnect({
     onError: (err, req, res) => {
       console.error(err.stack)
@@ -23,8 +19,8 @@ export default function requireAuth(needsUser = true) {
     .use(cookieParser())
     .use(
       expressSession({
-        store: new SQLiteStore({ dir: 'data', db: 'sessiondb.sqlite' }),
-        secret: process.env.SQL_SESSION_SECRET,
+        store,
+        secret: SESSION_SECRET,
         cookie: {
           path: '/',
           secure: process.env.NODE_ENV === 'production'

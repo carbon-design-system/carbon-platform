@@ -16,3 +16,5 @@ CHANGELOG.md
 # Generated
 *-generated/
 .test-coverage/
+
+.history/

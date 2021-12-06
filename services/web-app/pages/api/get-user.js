@@ -4,9 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import requireAuth from '../../middleware/requireAuth'
+// import { getUserBySessionKey, updateUserBySessionKey } from '@carbon-platform/auth'
+import requireSession from 'middleware/requireSession'
 
-const getUser = requireAuth().get((req, res) => {
+const getUser = requireSession(true).get((req, res) => {
   res.status(200).json(req.session.passport.user)
 })
 

@@ -87,9 +87,9 @@
   height: 24px;
   align-items: center;
   padding-left: $spacing-03;
-  border-radius: 12px;
   margin: $spacing-02 $spacing-02 $spacing-02 0;
   background-color: $border-subtle;
+  border-radius: 12px;
   color: var(--cds-tag-color-gray, #393939);
   @include type-style('label-01');
 }

@@ -104,7 +104,6 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
       {select.slice(0, 6).map((item, i) => (
         <Tag
           key={i}
-          className={styles.tag}
           filter
           onClick={() => {
             handleRemoveItem(item)
@@ -114,19 +113,16 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
         </Tag>
       ))}
       {select.length > 6 && (
-        <>
-          <div className={styles.tagOverflowLabel}>
-            <span title={select.length - 6 + ' more'}>{select.length - 6 + ' more'}</span>
-          </div>
-          <button
-            type="button"
+        <div title={select.length - 6 + ' more'} className={styles.overflowTag}>
+          <div className={styles.overflowTagText}>{select.length - 6 + ' more'}</div>
+          <OverflowMenuHorizontal
+            className={styles.overflowSvg}
             onClick={() => {
               setTriggerOverflow(!triggerOverflow)
             }}
-          >
-            <OverflowMenuHorizontal size={16} />
-          </button>
-        </>
+            size={16}
+          />
+        </div>
       )}
     </>
       )
@@ -169,7 +165,7 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
           <div className={styles.dropdownContainer}>{filterTag}</div>
             )
           : (
-          <div className={styles.tagInput}>{selectedTag}</div>
+          <div className={styles.selectedTagContainer}>{selectedTag}</div>
             )}
         {triggerOverflow ? <div className={styles.placeholderOverflow}>{'hi'}</div> : null}
       </Column>

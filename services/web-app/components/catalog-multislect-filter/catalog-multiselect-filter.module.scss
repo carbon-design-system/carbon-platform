@@ -77,20 +77,40 @@
 
 // override carbon tag styles
 .tag {
+  padding-bottom: 2px;
   border: none;
   margin-left: 0;
+}
 
-  :global(.cds--tag__label) {
-    padding-bottom: 2px;
+.overflow-tag {
+  display: inline-flex;
+  height: 24px;
+  align-items: center;
+  padding-left: $spacing-03;
+  border-radius: 12px;
+  margin: $spacing-02 $spacing-02 $spacing-02 0;
+  background-color: $border-subtle;
+  color: var(--cds-tag-color-gray, #393939);
+  @include type-style('label-01');
+}
+
+.overflow-tag-text {
+  padding-right: $spacing-01;
+}
+
+.overflow-svg {
+  width: 24px;
+  height: 24px;
+  padding: $spacing-02;
+  border-radius: 14px;
+
+  &:hover {
+    background-color: var(--cds-tag-hover-gray, #c6c6c6);
+    cursor: pointer;
   }
 }
 
-// override carbon tag style
-.tag-overflow-label {
-  padding-bottom: 2px;
-}
-
-.tag-input {
+.selected-tag-container {
   display: flex;
   height: $spacing-09;
   align-items: center;

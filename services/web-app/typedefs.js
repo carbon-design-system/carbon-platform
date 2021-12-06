@@ -89,10 +89,4 @@
  * @property {Object[]} tree
  */
 
-/**
- * @typedef {Object} CatalogQuery
- * @property {string} sort
- * @property {string} view
- */
-
 exports.unused = {}

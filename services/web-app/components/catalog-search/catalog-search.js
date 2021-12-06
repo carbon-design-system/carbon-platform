@@ -7,14 +7,14 @@
 import { Column, Grid, Layer, Search, Theme } from '@carbon/react'
 import { useState } from 'react'
 
-import { useMediaQueryContext } from '@/contexts/media-query'
+import { mediaQueries, useMatchMedia } from '@/utils/media-query'
 
 import CatalogMultiselectFilter from '../catalog-multislect-filter/catalog-multislect-filter'
 import styles from './catalog-search.module.scss'
 
 const CatalogSearch = ({ onSelect, onSearch }) => {
   const [query, setQuery] = useState('')
-  const { isMd } = useMediaQueryContext()
+  const isMd = useMatchMedia(mediaQueries.md)
 
   const handleOnChange = (event) => {
     setQuery(event.target.value)

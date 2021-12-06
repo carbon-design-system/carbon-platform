@@ -13,9 +13,9 @@ import { useState } from 'react'
 
 import FrameworkIcon from '@/components/framework-icon'
 import StatusIcon from '@/components/status-icon'
-import { useMediaQueryContext } from '@/contexts/media-query'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
+import { mediaQueries, useMatchMedia } from '@/utils/media-query'
 import { getSlug } from '@/utils/slug'
 
 import styles from './catalog-item.module.scss'
@@ -47,7 +47,7 @@ const CatalogItemImage = ({ asset }) => {
 }
 
 const CatalogItemContent = ({ asset, isGrid = false }) => {
-  const { isLg } = useMediaQueryContext()
+  const isLg = useMatchMedia(mediaQueries.lg)
 
   const { name, description, externalDocsUrl } = asset.content
   const { sponsor } = asset.params
@@ -62,7 +62,7 @@ const CatalogItemContent = ({ asset, isGrid = false }) => {
         {sponsorName && <p className={styles.sponsor}>{sponsorName}</p>}
         {name && <p className={styles.name}>{name}</p>}
         {description && <p className={styles.description}>{description}</p>}
-        <div className={styles.icon}>
+        <div className={styles.icon} title={sponsorName && `Sponsored by ${sponsorName}`}>
           {SponsorIcon && <SponsorIcon className={styles.iconSponsor} size={24} />}
           {externalDocsUrl && <ArrowUpRight className={styles.iconExternal} size={24} />}
         </div>
@@ -128,7 +128,9 @@ const CatalogItemMeta = ({ asset, className, properties }) => {
 }
 
 const CatalogItem = ({ asset, isGrid = false }) => {
-  const { isMd, isLg, isXlg } = useMediaQueryContext()
+  const isMd = useMatchMedia(mediaQueries.md)
+  const isLg = useMatchMedia(mediaQueries.lg)
+  const isXlg = useMatchMedia(mediaQueries.xlg)
 
   const imageAspectRatio = () => {
     if (isXlg) return '16x9'

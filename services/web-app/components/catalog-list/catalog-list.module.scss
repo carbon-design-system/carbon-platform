@@ -10,3 +10,28 @@
   margin-bottom: $spacing-05;
   row-gap: $spacing-05;
 }
+
+.copy {
+  margin-top: $spacing-09;
+  margin-bottom: $spacing-09;
+  @include breakpoint-down(md) {
+    padding-right: $spacing-05;
+    padding-left: $spacing-05;
+  }
+
+  &--grid {
+    padding-right: $spacing-05;
+    padding-left: $spacing-05;
+    margin-top: ($spacing-09 - $spacing-05);
+    margin-bottom: ($spacing-09 - $spacing-05);
+  }
+}
+
+.heading {
+  @include type-style('productive-heading-04');
+}
+
+.paragraph {
+  margin-top: $spacing-05;
+  @include type-style('body-short-01');
+}

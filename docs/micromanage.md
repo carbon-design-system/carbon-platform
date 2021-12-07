@@ -99,6 +99,12 @@ existing application deployed on IBM cloud in order to enable automatic deployme
 
 4. From the root of the project run `scripts/micromanage deploy --target=test`
 
+```bash
+ibmcloud ce application create --name logging-test-cli --image us.icr.io/carbon-platform-test/logging:0.1.0 -c "npm run start" --rs jdharvey-ce-cli-registry-secret
+```
+
+SIGTERM when the service is idle??
+
 ## Publish Packages
 
 TODO

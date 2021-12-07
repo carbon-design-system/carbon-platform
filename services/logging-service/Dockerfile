@@ -1,4 +1,4 @@
-FROM carbon-platform-base:latest
+FROM us.icr.io/carbon-platform-test/base:latest
 
 WORKDIR /service-root/logging
 
@@ -17,3 +17,5 @@ RUN npm install --production
 
 # Cleanup
 RUN rm -rf src tsconfig.json
+
+CMD ["npm", "run", "start"]

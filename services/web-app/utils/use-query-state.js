@@ -81,6 +81,7 @@ export const useQueryState = (
 
       router.replace(`?${query.toString()}`, undefined, { shallow: true, scroll: false })
     },
+    // The Next.js router updates `router.replace`, which should not trigger re-renders
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [getValue, key, serialize]
   )

@@ -1,3 +1,3 @@
 # logging
 
-Docs located [here](../../docs/packages-logging.md)
+Docs located [here](../../docs/services-logging.md)

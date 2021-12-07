@@ -9,16 +9,20 @@ import http from 'http'
 
 const port = process.env.PORT || 3000
 
-function run() {
-  http
-    .createServer(function (request: any, response: any) {
-      info(`request ${request.url}`)
+function requestHandler(request: http.IncomingMessage, response: http.ServerResponse) {
+  info(`request ${request.url}`)
 
-      response.writeHead(200)
-      response.end()
-    })
-    .listen(port)
+  response.writeHead(200)
+  response.end()
+}
+
+function run() {
+  http.createServer(requestHandler).listen(port)
   info(`Server running at port ${port}`)
 }
 
-export { run }
+const __test__ = {
+  requestHandler
+}
+
+export { __test__, run }

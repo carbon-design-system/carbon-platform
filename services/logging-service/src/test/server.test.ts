@@ -6,7 +6,9 @@
  */
 import http from 'http'
 
-import { run } from '../main/server'
+import { __test__, run } from '../main/server'
+
+const { requestHandler } = __test__
 
 jest.mock('http')
 const mockedHttp = http as jest.Mocked<typeof http>
@@ -19,4 +21,19 @@ test('it creates a server and listens on it', () => {
 
   expect(run()).toBeUndefined()
   expect(mockedHttpServer.listen).toHaveBeenCalledWith(process.env.PORT || 3000)
+
+  mockedHttp.createServer.mockRestore()
+})
+
+test('it responds to incoming requests with HTTP 200', () => {
+  const request = {}
+  const response = {
+    writeHead: jest.fn(),
+    end: jest.fn()
+  }
+
+  requestHandler(request as any, response as any)
+
+  expect(response.writeHead).toHaveBeenCalledWith(200)
+  expect(response.end).toHaveBeenCalled()
 })

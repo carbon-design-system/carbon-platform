@@ -55,6 +55,20 @@ module.exports = {
       }
     ]
   },
+  overrides: [
+    {
+      files: ['!**/src/test/*.test.ts'],
+      rules: {
+        'no-restricted-syntax': [
+          'error',
+          {
+            selector: 'ImportSpecifier[imported.name="__test__"]',
+            message: 'Test exports are not allowed to be used outside of test files.'
+          }
+        ]
+      }
+    }
+  ],
   settings: {
     next: {
       rootDir: ['services/web-app']

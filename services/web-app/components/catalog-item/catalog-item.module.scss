@@ -1,0 +1,217 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+@use 'sass:math';
+
+.column {
+  position: relative;
+  transition: border-color $fast-02 carbon--motion(standard, productive);
+
+  &:not(:first-child) {
+    @include breakpoint(md) {
+      border-left: 1px solid $layer-accent;
+    }
+
+    .anchor:hover &,
+    .anchor:focus & {
+      border-color: $border-subtle-selected;
+    }
+  }
+
+  &--image {
+    @include breakpoint-down(md) {
+      display: none;
+    }
+    @include breakpoint(md) {
+      margin-right: calc(#{-$spacing-05} + 1px);
+    }
+  }
+}
+
+.anchor {
+  display: block;
+  background: $background;
+  text-decoration: none;
+  transition: background $fast-02 carbon--motion(standard, productive);
+
+  &:hover,
+  &:focus {
+    background: $layer-hover;
+  }
+
+  &:active {
+    outline: 2px solid $focus;
+    outline-offset: -2px;
+  }
+
+  &--grid {
+    margin-top: $spacing-05;
+  }
+
+  &:not(.anchor--grid) {
+    border-top: 1px solid $layer-accent;
+    @include breakpoint(md) {
+      padding-left: $spacing-05;
+      margin-left: -$spacing-05;
+    }
+  }
+}
+
+.content {
+  padding: $spacing-05;
+  @include breakpoint(lg) {
+    padding-right: 0;
+  }
+
+  .anchor--grid & {
+    border-top: 1px solid $layer-accent;
+    margin-right: 0;
+    transition: border-color $fast-02 carbon--motion(standard, productive);
+  }
+
+  .anchor--grid:hover &,
+  .anchor--grid:focus & {
+    border-color: $border-subtle-selected;
+  }
+}
+
+.sponsor {
+  color: $text-primary;
+  @include line-clamp(1);
+  @include type-style('label-01');
+}
+
+.name {
+  color: $text-primary;
+  @include line-clamp(2);
+  @include type-style('productive-heading-02');
+
+  .anchor--grid & {
+    @include breakpoint-down(xlg) {
+      @include line-clamp(1);
+    }
+  }
+}
+
+.description {
+  margin-top: $spacing-02;
+  color: $text-primary;
+  @include line-clamp(3);
+  @include type-style('body-short-01');
+
+  .anchor--grid & {
+    display: none;
+  }
+}
+
+.icon {
+  position: absolute;
+  right: $spacing-04;
+  bottom: $spacing-04;
+  display: none;
+  width: $spacing-09;
+  height: $spacing-09;
+  border: 1px solid $border-subtle;
+  background: $background;
+  border-radius: 100%;
+  color: $icon-primary;
+  transition: all $fast-02 carbon--motion(standard, productive);
+  @include breakpoint(xlg) {
+    width: $spacing-09 + $spacing-03;
+    height: $spacing-09 + $spacing-03;
+  }
+
+  .anchor--grid & {
+    top: math.div(-$spacing-09, 2);
+    bottom: auto;
+    @include breakpoint(xlg) {
+      top: math.div(-$spacing-09 - $spacing-03, 2);
+    }
+  }
+
+  .anchor--sponsor &,
+  .anchor--external:hover &,
+  .anchor--external:focus & {
+    display: block;
+  }
+
+  .anchor:hover &,
+  .anchor:focus & {
+    border-color: $border-subtle-selected;
+    background: $layer-hover;
+  }
+}
+
+.icon-external,
+.icon-sponsor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity $fast-02 carbon--motion(standard, productive);
+}
+
+.icon-sponsor {
+  opacity: 1;
+
+  .anchor--external:hover &,
+  .anchor--external:focus & {
+    opacity: 0;
+  }
+}
+
+.icon-external {
+  opacity: 0;
+
+  .anchor--external:hover &,
+  .anchor--external:focus & {
+    opacity: 1;
+  }
+}
+
+.framework {
+  position: absolute;
+  top: $spacing-04;
+  right: $spacing-04;
+  transition: background $fast-02 carbon--motion(standard, productive);
+
+  .anchor--grid & {
+    top: auto;
+    bottom: $spacing-04;
+  }
+
+  .anchor:hover &,
+  .anchor:focus & {
+    background: $border-subtle-selected;
+  }
+}
+
+.meta {
+  margin-top: $spacing-02;
+  color: $text-secondary;
+  @include type-style('label-01');
+
+  &--absolute {
+    position: absolute;
+    bottom: $spacing-04;
+    left: $spacing-04;
+  }
+}
+
+.meta-item {
+  display: inline;
+
+  &:not(:first-child) {
+    margin-left: $spacing-03;
+  }
+}
+
+.meta-icon {
+  position: relative;
+  top: 3px;
+  margin-right: $spacing-02;
+}

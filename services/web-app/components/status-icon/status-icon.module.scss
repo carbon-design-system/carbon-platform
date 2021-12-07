@@ -1,0 +1,28 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+$status-experimental: #8a3ffc;
+
+.icon {
+  color: $icon-primary;
+
+  &--draft {
+    color: $text-helper;
+  }
+
+  &--experimental {
+    color: $status-experimental;
+  }
+
+  &--stable {
+    color: $support-success;
+  }
+
+  &--deprecated {
+    color: $support-error;
+  }
+}

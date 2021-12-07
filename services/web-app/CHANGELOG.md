@@ -2,6 +2,67 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.20](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.19...@carbon-platform/web-app@0.1.20) (2021-12-03)
+
+
+### Features
+
+* update node modules and remove webapp dep on use-media ([231147f](https://github.com/carbon-design-system/carbon-platform/commit/231147f157c459301e2e13a7cd8412a687d79292))
+
+
+### Bug Fixes
+
+* **web-app:** add deps to useMatchMedia effect hook ([ae15907](https://github.com/carbon-design-system/carbon-platform/commit/ae159079a2fb254a543c413b8951d4651607fbe8))
+
+### [0.1.19](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.18...@carbon-platform/web-app@0.1.19) (2021-12-02)
+
+
+### Features
+
+* update hover colors and title attributes ([91739c6](https://github.com/carbon-design-system/carbon-platform/commit/91739c6f2aecd9e0e2adb1dffd233ab795e7f2c8))
+
+### [0.1.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.17...@carbon-platform/web-app@0.1.18) (2021-11-25)
+
+
+### Features
+
+* add catalog item layout ([a99c118](https://github.com/carbon-design-system/carbon-platform/commit/a99c118187ede582ca6c99bf67c9c60fe0d46626))
+* add framework icons and remove old components ([2745078](https://github.com/carbon-design-system/carbon-platform/commit/274507836515b928b3736c7994e7e4cee39488f8))
+* add media query context to reduce number of listeners ([26ce1f3](https://github.com/carbon-design-system/carbon-platform/commit/26ce1f3349315f7764a82f25e57701000e92b3be))
+* add placeholder images ([fedd8e6](https://github.com/carbon-design-system/carbon-platform/commit/fedd8e6a93e3c2537f5f4d178160598e18ff4275))
+* add placeholder thumbnail image ([53feafd](https://github.com/carbon-design-system/carbon-platform/commit/53feafdd3d193218becd9fd7fbba50aa9136e038))
+* add sponsor and external URLs ([0f6193f](https://github.com/carbon-design-system/carbon-platform/commit/0f6193f890c1699486e9dcb8ba8ef75d8d1221bf))
+* add status and license to catalog item ([bb0b7b5](https://github.com/carbon-design-system/carbon-platform/commit/bb0b7b526a383e31c70db9a150d3f5bab0ab83bd))
+* added grid view components ([d3fb999](https://github.com/carbon-design-system/carbon-platform/commit/d3fb99943a8ee68f1d803d570028cba234a18809))
+* added grid view components ([09f0254](https://github.com/carbon-design-system/carbon-platform/commit/09f025426002fd516cf17505bc775cb73449868e))
+* added styling need to get hover states ([15e0ba8](https://github.com/carbon-design-system/carbon-platform/commit/15e0ba86bf3d533bcb0ec2e42c933d680c0b0b87))
+* added svg icon and tags ([b23d300](https://github.com/carbon-design-system/carbon-platform/commit/b23d30060a4ab48b7da46d59c114c3b8a1e6082e))
+* added svg icon and tags ([dd20092](https://github.com/carbon-design-system/carbon-platform/commit/dd20092d03670df95cd418330dce485366652ee5))
+
+
+### Bug Fixes
+
+* add subgrid to catalog item content ([513ca5e](https://github.com/carbon-design-system/carbon-platform/commit/513ca5e8342182d203b3de61191aa9f30b73146e))
+* fixed dropdown styles ([8769f93](https://github.com/carbon-design-system/carbon-platform/commit/8769f93f6cd6beb57ab10c7739e9c96e0caadc02))
+* off by one breakpoint bugs ([059321c](https://github.com/carbon-design-system/carbon-platform/commit/059321ca3ae08012dc4d38eac14c9aa24fde9433))
+* style updates ([1ada41e](https://github.com/carbon-design-system/carbon-platform/commit/1ada41e55acb93b2f3e3017605684c3d1307ba1b))
+
+### [0.1.17](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.16...@carbon-platform/web-app@0.1.17) (2021-11-18)
+
+
+### Features
+
+* cross link inherited assets ([2c0e26b](https://github.com/carbon-design-system/carbon-platform/commit/2c0e26be882c7d42d35d07debca09bd3dc8f5cba))
+* fetch library package.json content ([42aacf3](https://github.com/carbon-design-system/carbon-platform/commit/42aacf31e0bced043d9e4041e59f72367396d41d))
+* include thumbnail image data in inherited data ([dc995a9](https://github.com/carbon-design-system/carbon-platform/commit/dc995a93cfe7566c5a4b6484c18cb38637377132))
+* inherit asset content ([9270035](https://github.com/carbon-design-system/carbon-platform/commit/9270035ec28f07f1fc2663ad6f1f70b5a7592eb4))
+
+
+### Bug Fixes
+
+* dont generate placeholder images for now ([3beeba1](https://github.com/carbon-design-system/carbon-platform/commit/3beeba16fa79a540f2745f98f7bd17a4434b40df))
+* inherited asset matching ([7ede5d4](https://github.com/carbon-design-system/carbon-platform/commit/7ede5d4fbca374c90ce2206558f3abf4c00c6002))
+
 ### [0.1.16](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.15...@carbon-platform/web-app@0.1.16) (2021-11-17)
 
 

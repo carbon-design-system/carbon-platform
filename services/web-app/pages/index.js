@@ -10,6 +10,8 @@ import { useContext, useEffect } from 'react'
 import defaultSeo from '@/config/seo.json'
 import { LayoutContext } from '@/layouts/layout'
 
+import styles from './pages.module.scss'
+
 const navData = [
   {
     path: '/',
@@ -30,10 +32,10 @@ const Index = () => {
   }, [setNavData])
 
   return (
-    <>
+    <div className={styles.content}>
       <NextSeo {...seo} />
       Home
-    </>
+    </div>
   )
 }
 

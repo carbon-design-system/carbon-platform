@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
@@ -13,6 +14,23 @@ import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
 import styles from '@/pages/pages.module.scss'
+
+const InheritsLink = ({ data }) => {
+  if (!data || !data.asset) return null
+
+  const [libraryId] = data.asset.split('@')
+  const libraryRef = data.asset.slice(data.asset.indexOf('@') + 1, data.asset.lastIndexOf('/'))
+  const [assetId] = data.asset.split('/').reverse()
+
+  return (
+    <div>
+      Inherits{' '}
+      <Link href={`/assets/${libraryId}/${libraryRef || 'latest'}/${assetId}`}>
+        <a>{data.asset}</a>
+      </Link>
+    </div>
+  )
+}
 
 const Asset = ({ libraryData }) => {
   const { setNavData } = useContext(LayoutContext)
@@ -27,7 +45,7 @@ const Asset = ({ libraryData }) => {
   }
 
   const [assetData] = libraryData.assets
-  const { name, description, thumbnailData: imageData } = assetData.content
+  const { name, description, inherits: inheritsData, thumbnailData: imageData } = assetData.content
 
   const seo = {
     title: name,
@@ -35,8 +53,9 @@ const Asset = ({ libraryData }) => {
   }
 
   return (
-    <>
+    <div className={styles.content}>
       <NextSeo {...seo} />
+      {inheritsData && <InheritsLink data={inheritsData} />}
       {imageData && (
         <Image
           alt={`${name} thumbnail`}
@@ -48,7 +67,7 @@ const Asset = ({ libraryData }) => {
         />
       )}
       <pre className={styles.data}>{JSON.stringify(libraryData, null, 2)}</pre>
-    </>
+    </div>
   )
 }
 

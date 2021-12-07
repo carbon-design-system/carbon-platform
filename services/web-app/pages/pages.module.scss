@@ -5,7 +5,14 @@
 // LICENSE file in the root directory of this source tree.
 //
 
+.content {
+  margin: $spacing-07 0;
+}
+
 .data {
+  margin: $spacing-07 0;
+  white-space: pre-wrap;
+  word-break: break-all;
   @include type-style('code-01');
 }
 
@@ -14,5 +21,5 @@
 }
 
 .bullets-item {
-  margin-left: 20px;
+  margin-left: $spacing-07;
 }

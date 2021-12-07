@@ -5,20 +5,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { Bee, Carbon } from '@carbon/react/icons'
+
 /**
  * Teams are defined here for now, but in the future we will probably want these stored in our data-
  * base. Team keys are used in the libraries allowlist to specify sponsorship. Team slugs are
  * specified as object keys to ensure uniqueness.
- *
- * TODO: either specify a path to a mark image here, or create a utility function to receive a team
- * slug and return the image to use in each catalog item. We'll need a placeholder icon for
- * libraries that don't have a sponsor (e.g. Carbon Vanilla Components.)
  */
 export const teams = {
   carbon: {
+    icon: Carbon,
     name: 'Carbon'
   },
   'ibm-dotcom': {
+    icon: Bee,
     name: 'IBM.com'
   }
 }

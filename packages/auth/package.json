@@ -34,7 +34,6 @@
         "connect-sqlite3": "^0.9.13",
         "cookie-parser": "^1.4.6",
         "express-session": "^1.17.2",
-        "mkdirp": "^1.0.4",
         "mongodb": "^4.2.1",
         "openid-client": "^5.0.2",
         "passport": "^0.5.0"

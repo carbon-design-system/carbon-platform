@@ -17,4 +17,4 @@ CHANGELOG.md
 *-generated/
 .test-coverage/
 
-./history
+.history/

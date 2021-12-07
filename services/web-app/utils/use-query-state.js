@@ -41,7 +41,7 @@ export const useQueryState = (
     defaultValue = '',
     parse = queryTypes.string.parse,
     serialize = queryTypes.string.serialize,
-    useStorage = false
+    saveToStorage = false
   }
 ) => {
   const router = useRouter()
@@ -55,10 +55,10 @@ export const useQueryState = (
 
     const query = new URLSearchParams(window.location.search)
     const queryValue = query.get(key)
-    const storageValue = useStorage ? localStorage.getItem(`${router.pathname}:${key}`) : null
+    const storageValue = saveToStorage ? localStorage.getItem(`${router.pathname}:${key}`) : null
 
     return queryValue !== null ? parse(queryValue) : storageValue
-  }, [key, parse, router.pathname, useStorage])
+  }, [key, parse, router.pathname, saveToStorage])
 
   // Update the "state" when the router.query key changes
   const value = useMemo(getValue, [getValue, router.query[key]])
@@ -87,10 +87,10 @@ export const useQueryState = (
 
   // Save the value to local storage as it changes
   useEffect(() => {
-    if (useStorage && value) {
+    if (saveToStorage && value) {
       localStorage.setItem(`${router.pathname}:${key}`, value)
     }
-  }, [key, router.pathname, useStorage, value])
+  }, [key, router.pathname, saveToStorage, value])
 
   return [value ?? defaultValue ?? null, update]
 }

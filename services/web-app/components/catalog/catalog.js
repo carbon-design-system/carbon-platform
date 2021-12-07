@@ -25,12 +25,12 @@ function Catalog({ data, type = 'component' }) {
 
   const [sort, setSort] = useQueryState('sort', {
     defaultValue: 'a-z',
-    useStorage: true
+    saveToStorage: true
   })
 
   const [view, setView] = useQueryState('view', {
     defaultValue: 'list',
-    useStorage: true
+    saveToStorage: true
   })
 
   const [page, setPage] = useQueryState('page', {

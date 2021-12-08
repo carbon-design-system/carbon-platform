@@ -15,7 +15,7 @@ export const mediaQueries = {
   max: `(min-width: ${breakpoints.max.width})`
 }
 
-function getMatchMedia(query) {
+const getMatchMedia = (query) => {
   return typeof window !== 'undefined' ? window.matchMedia(query) : null
 }
 

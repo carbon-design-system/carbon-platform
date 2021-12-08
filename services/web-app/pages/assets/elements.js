@@ -11,7 +11,6 @@ import Catalog from '@/components/catalog'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
-import styles from '@/pages/pages.module.scss'
 
 const Elements = ({ librariesData }) => {
   const { setNavData } = useContext(LayoutContext)
@@ -28,7 +27,6 @@ const Elements = ({ librariesData }) => {
     <>
       <NextSeo {...seo} />
       <Catalog data={librariesData} type="element" />
-      <pre className={styles.data}>{JSON.stringify(librariesData, null, 2)}</pre>
     </>
   )
 }

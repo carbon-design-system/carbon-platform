@@ -58,7 +58,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['!**/src/test/*.test.ts'],
+      files: ['!**/src/test/**/*.test.ts'],
       rules: {
         'no-restricted-syntax': [
           'error',

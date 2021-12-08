@@ -6,8 +6,8 @@
  */
 import { DEV, getRunMode, PRODUCTION, TEST } from '../main/index'
 
-describe('return values', () => {
-  test('it returns dev when the envvar is not set', () => {
+describe('getRunMode', () => {
+  it('returns dev when the envvar is not set', () => {
     const old = process.env.CARBON_RUN_MODE
     process.env.CARBON_RUN_MODE = undefined
 
@@ -16,7 +16,7 @@ describe('return values', () => {
     process.env.CARBON_RUN_MODE = old
   })
 
-  test('it returns dev when the envvar is set to DEV', () => {
+  it('returns dev when the envvar is set to DEV', () => {
     const old = process.env.CARBON_RUN_MODE
     process.env.CARBON_RUN_MODE = 'DEV'
 
@@ -25,7 +25,7 @@ describe('return values', () => {
     process.env.CARBON_RUN_MODE = old
   })
 
-  test('it returns production when the envvar is set to PRODUCTION', () => {
+  it('returns production when the envvar is set to PRODUCTION', () => {
     const old = process.env.CARBON_RUN_MODE
     process.env.CARBON_RUN_MODE = 'PRODUCTION'
 
@@ -34,7 +34,7 @@ describe('return values', () => {
     process.env.CARBON_RUN_MODE = old
   })
 
-  test('it returns test when the envvar is set to TEST', () => {
+  it('returns test when the envvar is set to TEST', () => {
     const old = process.env.CARBON_RUN_MODE
     process.env.CARBON_RUN_MODE = 'TEST'
 

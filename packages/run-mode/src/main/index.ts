@@ -4,13 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-type Mode = 'DEV' | 'TEST' | 'PRODUCTION'
+type RunMode = 'DEV' | 'TEST' | 'PRODUCTION'
 
-const DEV: Mode = 'DEV'
-const TEST: Mode = 'TEST'
-const PRODUCTION: Mode = 'PRODUCTION'
+const DEV: RunMode = 'DEV'
+const TEST: RunMode = 'TEST'
+const PRODUCTION: RunMode = 'PRODUCTION'
 
-function getRunMode(): Mode {
+function getRunMode(): RunMode {
   const mode = process.env.CARBON_RUN_MODE
 
   if (mode === TEST || mode === PRODUCTION) {
@@ -20,5 +20,5 @@ function getRunMode(): Mode {
   }
 }
 
-export type { Mode }
+export type { RunMode }
 export { DEV, getRunMode, PRODUCTION, TEST }

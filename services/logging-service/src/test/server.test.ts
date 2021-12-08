@@ -13,7 +13,7 @@ const { requestHandler } = __test__
 jest.mock('http')
 const mockedHttp = http as jest.Mocked<typeof http>
 
-test('it creates a server and listens on it', () => {
+test('run creates a server and listens on it', () => {
   const mockedHttpServer = {
     listen: jest.fn()
   } as any
@@ -25,7 +25,7 @@ test('it creates a server and listens on it', () => {
   mockedHttp.createServer.mockRestore()
 })
 
-test('it responds to incoming requests with HTTP 200', () => {
+test('server responds to incoming requests with HTTP 200', () => {
   const request = {}
   const response = {
     writeHead: jest.fn(),

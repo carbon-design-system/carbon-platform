@@ -12,7 +12,7 @@ module.exports = {
     es2021: true,
     node: true
   },
-  extends: ['standard', 'carbon', 'next'],
+  extends: ['standard', 'carbon', 'next', 'plugin:jest/recommended', 'plugin:jest/style'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -21,8 +21,9 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module'
   },
-  plugins: ['@typescript-eslint', 'notice', 'simple-import-sort'],
+  plugins: ['@typescript-eslint', 'jest', 'notice', 'simple-import-sort'],
   rules: {
+    'jest/consistent-test-it': ['error', { fn: 'test', withinDescribe: 'it' }],
     'jsx-a11y/anchor-is-valid': [
       'error',
       {

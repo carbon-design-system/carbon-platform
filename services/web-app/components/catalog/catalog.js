@@ -42,8 +42,8 @@ function Catalog({ data, type = 'component' }) {
     console.log('Search:', query)
   }
 
-  const handleSelect = (select) => {
-    console.log('Selected here:', select)
+  const handleSelect = (activeSelected) => {
+    console.log('Selected here:', activeSelected)
   }
 
   const handleSort = (option) => {

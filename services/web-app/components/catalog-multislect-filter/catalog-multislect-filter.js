@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/jsx-no-comment-textnodes */
 /*
  * Copyright IBM Corp. 2021, 2021
  *
@@ -5,40 +8,53 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Tag } from '@carbon/react'
-import { ChevronDown, ChevronUp, OverflowMenuHorizontal } from '@carbon/react/icons'
+import { ChevronDown, ChevronUp, Filter, OverflowMenuHorizontal } from '@carbon/react/icons'
+import clsx from 'clsx'
 import { useRef, useState } from 'react'
 
+import { mediaQueries, useMatchMedia } from '@/utils/media-query'
 import { useOutsideClick } from '@/utils/use-outside-click'
 
 import styles from './catalog-multiselect-filter.module.scss'
 
 const CatalogMultiselectFilter = ({ onSelect }) => {
-  const [select, setSelect] = useState([])
-  const [triggerOverflow, setTriggerOverflow] = useState(false)
+  const [activeSelected, setActiveSelected] = useState([])
   const [triggerMultiselect, setTriggerMultiselect] = useState(false)
+  const [triggerOverflow, setTriggerOverflow] = useState(false)
+  const isSm = useMatchMedia(mediaQueries.sm)
+  const isMd = useMatchMedia(mediaQueries.md)
+  const isLg = useMatchMedia(mediaQueries.lg)
+
   const ref = useRef()
 
   useOutsideClick(ref, () => {
     if (triggerMultiselect) setTriggerMultiselect(false)
   })
 
-  const handleSelect = (event) => {
-    if (event.target.title) {
-      setSelect([...select, event.target.title])
-      onSelect([...select, event.target.title])
+  const handleSelect = (selectedFilter) => {
+    if (activeSelected.includes(selectedFilter.label)) {
+      setActiveSelected((filters) => [
+        ...filters.filter((filter) => filter !== selectedFilter.label)
+      ])
+    } else {
+      setActiveSelected((filters) => [...filters, selectedFilter.label])
+    }
+
+    if (selectedFilter) {
+      onSelect([...activeSelected, selectedFilter.label])
     }
   }
 
   const handleRemoveItem = (event) => {
-    const updateResult = [...select]
+    const updateResult = [...activeSelected]
     updateResult.splice(updateResult.indexOf(event), 1)
-    setSelect(updateResult)
+    setActiveSelected(updateResult)
     onSelect(updateResult)
   }
 
   const handleRemoveAll = () => {
     const updateResult = []
-    setSelect(updateResult)
+    setActiveSelected(updateResult)
     onSelect(updateResult)
   }
 
@@ -46,88 +62,174 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
     {
       title: 'Sponsor',
       options: [
-        'Carbon Core',
-        'AI Apps',
-        'Cloud',
-        'IBM.com',
-        'Security',
-        'Systems',
-        'Watson Health'
+        { label: 'Carbon Core' },
+        { label: 'AI Apps' },
+        { label: 'Cloud' },
+        { label: 'Ibm.com' },
+        { label: 'Security' },
+        { label: 'Systems' },
+        { label: 'Watson Health' }
       ]
     },
     {
       title: 'Status',
-      options: ['Draft', 'Deprecated', 'Experimental', 'Stable', 'Sunsetting']
+      options: [
+        { label: 'Draft' },
+        { label: 'Deprecated' },
+        { label: 'Experimental' },
+        { label: 'Stable' },
+        { label: 'Sunsetting' }
+      ]
     },
     {
       title: 'Framework',
-      options: ['Angular', 'React', 'React Native', 'Svelte', 'Vue', 'Vanilla']
+      options: [
+        { label: 'Angular' },
+        { label: 'React' },
+        { label: 'React Native' },
+        { label: 'Svelte' },
+        { label: 'Vanilla' },
+        { label: 'Vue' }
+      ]
     },
     {
       title: 'Design Kits',
-      options: ['Adobe Illustrator', 'Axure', 'Adobe XD', 'Figma', 'Sketch', 'Framers']
+      options: [
+        { label: 'Adobe Illustrator' },
+        { label: 'Adobe XD' },
+        { label: 'Axure' },
+        { label: 'Figma' },
+        { label: 'Famers' },
+        { label: 'Sketch' }
+      ]
     },
     {
       title: 'Platform',
-      options: ['Android', 'Desktop', 'Web', 'iOS']
+      options: [{ label: 'Android' }, { label: 'Desktop' }, { label: 'Web' }, { label: 'iOS' }]
     },
     {
       title: 'Subtype',
       options: [
-        'Alerts',
-        'Basic Inputs',
-        'Content',
-        'Navigation',
-        'Pickers',
-        'Progress & Validation'
+        { label: 'Alerts' },
+        { label: 'Basic Inputs' },
+        { label: 'Content' },
+        { label: 'Navigation' },
+        { label: 'Pickers' },
+        { label: 'Progress & Validation' },
+        { label: 'Surfaces' }
       ]
     }
   ]
 
   const filterTag = filterTags.length
     ? filterTags.map(({ title, options, key }) => (
-        <div ref={ref} className={styles.dropdown} key={key}>
+        <div className={styles.dropdown} key={key} ref={ref}>
           <div className={styles.fitlerTitle}>{title}</div>
-          <div>
-            {options.map((selectedFilter, i) => (
-              <Tag className={styles.tag} key={i} onClick={handleSelect}>
-                {selectedFilter}
-              </Tag>
-            ))}
-          </div>
+          {options.map((selectedFilter, i) => (
+            <div
+              key={key}
+              id={i}
+              onClick={() => {
+                handleSelect(selectedFilter)
+              }}
+              className={clsx(
+                styles.filterTag,
+                activeSelected.includes(selectedFilter.label) ? styles.tagSelected : styles.tag
+              )}
+            >
+              {selectedFilter.label}
+            </div>
+          ))}
         </div>
     ))
     : null
 
-  const selectedTag = select.length
-    ? (
-    <>
-      {select.slice(0, 6).map((item, i) => (
-        <Tag
-          key={i}
-          filter
-          onClick={() => {
-            handleRemoveItem(item)
-          }}
-        >
-          {item}
-        </Tag>
-      ))}
-      {select.length > 6 && (
-        <div title={select.length - 6 + ' more'} className={styles.overflowTag}>
-          <div className={styles.overflowTagText}>{select.length - 6 + ' more'}</div>
-          <OverflowMenuHorizontal
-            className={styles.overflowSvg}
+  const selectedTag =
+    activeSelected.length && isLg
+      ? (
+      <>
+        {activeSelected.slice(0, 9).map((item, i) => (
+          <Tag
+            key={i}
+            filter
             onClick={() => {
-              setTriggerOverflow(!triggerOverflow)
+              handleRemoveItem(item)
             }}
-            size={16}
-          />
-        </div>
-      )}
-    </>
-      )
-    : null
+          >
+            {item}
+          </Tag>
+        ))}
+        {activeSelected.length > 9 && (
+          <div title={activeSelected.length - 9 + ' more'} className={styles.overflowTag}>
+            <div className={styles.overflowTagText}>{activeSelected.length - 9 + ' more'}</div>
+            <OverflowMenuHorizontal
+              className={styles.overflowSvg}
+              onClick={() => {
+                setTriggerOverflow(!triggerOverflow)
+              }}
+              size={16}
+            />
+          </div>
+        )}
+      </>
+        )
+      : isMd
+        ? (
+      <>
+        {activeSelected.slice(0, 5).map((item, i) => (
+          <Tag
+            key={i}
+            filter
+            onClick={() => {
+              handleRemoveItem(item)
+            }}
+          >
+            {item}
+          </Tag>
+        ))}
+        {activeSelected.length > 5 && (
+          <div title={activeSelected.length - 5 + ' more'} className={styles.overflowTag}>
+            <div className={styles.overflowTagText}>{activeSelected.length - 5 + ' more'}</div>
+            <OverflowMenuHorizontal
+              className={styles.overflowSvg}
+              onClick={() => {
+                setTriggerOverflow(!triggerOverflow)
+              }}
+              size={16}
+            />
+          </div>
+        )}
+      </>
+          )
+        : isSm
+          ? (
+      <>
+        {activeSelected.slice(0, 2).map((item, i) => (
+          <Tag
+            key={i}
+            filter
+            onClick={() => {
+              handleRemoveItem(item)
+            }}
+          >
+            {item}
+          </Tag>
+        ))}
+        {activeSelected.length > 2 && (
+          <div title={activeSelected.length - 2 + ' more'} className={styles.overflowTag}>
+            <div className={styles.overflowTagText}>{activeSelected.length - 2 + ' more'}</div>
+            <OverflowMenuHorizontal
+              className={styles.overflowSvg}
+              onClick={() => {
+                setTriggerOverflow(!triggerOverflow)
+              }}
+              size={16}
+            />
+          </div>
+        )}
+      </>
+            )
+          : null
 
   return (
     <>
@@ -139,34 +241,46 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
           }}
           className={styles.container}
         >
-          <div className={styles.input}>
-            <Tag
-              className={styles.inputText}
-              filter
-              onClick={() => {
-                handleRemoveAll()
-              }}
-            >
-              {select.length}
-            </Tag>
-            {'Filters'}
-            {triggerMultiselect
+          {isMd || isLg
+            ? (
+            <div className={styles.multiselect} ref={ref}>
+              <Tag
+                className={styles.filterCount}
+                filter
+                onClick={() => {
+                  handleRemoveAll()
+                }}
+              >
+                {activeSelected.length}
+              </Tag>
+              {'Filters'}
+              {triggerMultiselect
+                ? (
+                <ChevronDown className={styles.chevron} size={16} />
+                  )
+                : (
+                <ChevronUp className={styles.chevron} size={16} />
+                  )}
+            </div>
+              )
+            : isSm
               ? (
-              <ChevronDown className={styles.chevron} size={16} />
+            <Filter size={16} ref={ref} />
                 )
-              : (
-              <ChevronUp className={styles.chevron} size={16} />
-                )}
-          </div>
+              : null}
         </button>
       </Column>
       <Column className={styles.column} sm={4} md={8} lg={12}>
         {triggerMultiselect
           ? (
-          <div className={styles.dropdownContainer}>{filterTag}</div>
+          <div ref={ref} className={styles.dropdownContainer}>
+            {filterTag}
+          </div>
             )
           : (
-          <div className={styles.selectedTagContainer}>{selectedTag}</div>
+          <Column className={styles.column} sm={0} md={8} lg={12}>
+            <div className={styles.selectedTagContainer}>{selectedTag}</div>{' '}
+          </Column>
             )}
         {triggerOverflow ? <div className={styles.placeholderOverflow}>{'hi'}</div> : null}
       </Column>

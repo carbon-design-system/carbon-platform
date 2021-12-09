@@ -7,9 +7,9 @@
 import { Column, Grid, Layer, Search, Theme } from '@carbon/react'
 import { useState } from 'react'
 
+import CatalogMultiselectFilter from '@/components/catalog-multislect-filter'
 import { mediaQueries, useMatchMedia } from '@/utils/media-query'
 
-import CatalogMultiselectFilter from '../catalog-multislect-filter/catalog-multislect-filter'
 import styles from './catalog-search.module.scss'
 
 const CatalogSearch = ({ onSelect, onSearch }) => {

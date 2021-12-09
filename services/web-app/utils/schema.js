@@ -6,16 +6,17 @@
  */
 
 /**
- * Defines the sort order of assets by their name.
- * @param {import('../typedefs').Asset} assetA
- * @param {import('../typedefs').Asset} assetB
+ * Defines the sort order of assets by a key
+ * @param {string} key
  * @returns {number} Sort order
  */
-export const assetSortComparator = (assetA, assetB) => {
-  if (assetA.content.name === assetB.content.name) {
+export const assetSortComparator = (key) => (assetA, assetB) => {
+  const sort = key === 'status' ? 'status' : 'name'
+
+  if (assetA.content[sort] === assetB.content[sort]) {
     return 0
   }
-  return assetA.content.name > assetB.content.name ? 1 : -1
+  return assetA.content[sort] > assetB.content[sort] ? 1 : -1
 }
 
 /**

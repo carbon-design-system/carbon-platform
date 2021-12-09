@@ -5,6 +5,31 @@
 // LICENSE file in the root directory of this source tree.
 //
 
+.container {
+  position: sticky;
+  z-index: 1;
+  top: $spacing-09 + $spacing-05;
+  @include breakpoint-down(md) {
+    top: $spacing-09;
+  }
+
+  // gray background above search when scrolled
+  &::before {
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    left: -$spacing-05;
+    height: $spacing-05;
+    background: $layer-01;
+    content: '';
+  }
+
+  // override carbon display
+  :global(.cds--label) {
+    display: none;
+  }
+}
+
 .column {
   &:not(:last-child) {
     @include breakpoint(md) {
@@ -14,12 +39,5 @@
 
   &:not(:first-child) {
     border-left: 1px solid $layer-accent;
-  }
-}
-
-.container {
-  // override carbon display
-  :global(.cds--label) {
-    display: none;
   }
 }

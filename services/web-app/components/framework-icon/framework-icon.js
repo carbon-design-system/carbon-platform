@@ -12,7 +12,11 @@ import { framework as frameworkMap } from '@/data/framework'
 import styles from './framework-icon.module.scss'
 
 const FrameworkIcon = ({ className, framework }) => {
-  const { icon: Icon, name } = frameworkMap[framework]
+  const item = frameworkMap[framework]
+
+  if (!item) return null
+
+  const { icon: Icon, name } = item
 
   if (!Icon) return null
 

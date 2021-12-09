@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.21](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.20...@carbon-platform/web-app@0.1.21) (2021-12-09)
+
+
+### Features
+
+* add catalog sort ([2ef6094](https://github.com/carbon-design-system/carbon-platform/commit/2ef609429cf216dd6decda5e7251a7dbda8f9679))
+* add empty state to catalog ([91281c2](https://github.com/carbon-design-system/carbon-platform/commit/91281c2318a11d0d4aa37892f89b500334eba132))
+* add new hook for query state ([3ed0199](https://github.com/carbon-design-system/carbon-platform/commit/3ed0199d0a872f5518163ba7a5d7b0469bb630be))
+* add pagination ([d3674e3](https://github.com/carbon-design-system/carbon-platform/commit/d3674e326cc7be8a9b01d7af6c22a7d986e275f8))
+* add sticky behavior to search and sort ([5a0cb42](https://github.com/carbon-design-system/carbon-platform/commit/5a0cb4245161c1c539171f9b0d1cabbd3937886c))
+* search catalog based on query ([170aa49](https://github.com/carbon-design-system/carbon-platform/commit/170aa4927e92c1cc16b9ecacdd0a41b6798706d6))
+
+
+### Bug Fixes
+
+* update naming per joes recommendation ([bfdc383](https://github.com/carbon-design-system/carbon-platform/commit/bfdc383081a84f3ba71baa2737fe81b8ff551610))
+
 ### [0.1.20](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.19...@carbon-platform/web-app@0.1.20) (2021-12-03)
 
 

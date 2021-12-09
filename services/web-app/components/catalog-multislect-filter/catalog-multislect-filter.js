@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Tag } from '@carbon/react'
+import { Column, OverflowMenu, OverflowMenuItem, Tag } from '@carbon/react'
 import { ChevronDown, ChevronUp, Filter, OverflowMenuHorizontal } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { useRef, useState } from 'react'
@@ -160,13 +160,16 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
         {activeSelected.length > 9 && (
           <div title={activeSelected.length - 9 + ' more'} className={styles.overflowTag}>
             <div className={styles.overflowTagText}>{activeSelected.length - 9 + ' more'}</div>
-            <OverflowMenuHorizontal
-              className={styles.overflowSvg}
+            <OverflowMenu
+              renderIcon={OverflowMenuHorizontal}
               onClick={() => {
                 setTriggerOverflow(!triggerOverflow)
               }}
-              size={16}
-            />
+              className={styles.overflowSvg}
+            >
+              <OverflowMenuItem itemText="Filter A" />
+              <OverflowMenuItem itemText="Filter B" />
+            </OverflowMenu>
           </div>
         )}
       </>
@@ -188,13 +191,16 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
         {activeSelected.length > 4 && (
           <div title={activeSelected.length - 4 + ' more'} className={styles.overflowTag}>
             <div className={styles.overflowTagText}>{activeSelected.length - 4 + ' more'}</div>
-            <OverflowMenuHorizontal
-              className={styles.overflowSvg}
+            <OverflowMenu
+              renderIcon={OverflowMenuHorizontal}
               onClick={() => {
                 setTriggerOverflow(!triggerOverflow)
               }}
-              size={16}
-            />
+              className={styles.overflowSvg}
+            >
+              <OverflowMenuItem itemText="Filter A" />
+              <OverflowMenuItem itemText="Filter B" />
+            </OverflowMenu>
           </div>
         )}
       </>
@@ -216,13 +222,16 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
         {activeSelected.length > 2 && (
           <div title={activeSelected.length - 2 + ' more'} className={styles.overflowTag}>
             <div className={styles.overflowTagText}>{activeSelected.length - 2 + ' more'}</div>
-            <OverflowMenuHorizontal
-              className={styles.overflowSvg}
+            <OverflowMenu
+              renderIcon={OverflowMenuHorizontal}
               onClick={() => {
                 setTriggerOverflow(!triggerOverflow)
               }}
-              size={16}
-            />
+              className={styles.overflowSvg}
+            >
+              <OverflowMenuItem itemText="Filter A" />
+              <OverflowMenuItem itemText="Filter B" />
+            </OverflowMenu>
           </div>
         )}
       </>

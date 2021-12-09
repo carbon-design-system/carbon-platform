@@ -38,17 +38,6 @@
   @include type-style('body-short-01');
 }
 
-.filter-count {
-  color: $text-primary;
-  @include type-style('body-short-01');
-
-  :global(.cds--tag__close-icon) {
-    &:hover {
-      background-color: #393939;
-    }
-  }
-}
-
 .chevron {
   margin-left: auto;
 }
@@ -123,6 +112,7 @@
 
 // override carbon tag styles
 .tag {
+  padding-top: 3px;
   border: none;
   margin-left: 0;
 
@@ -134,6 +124,7 @@
 }
 
 .tag-selected {
+  padding-top: 3px;
   border: none;
   margin-left: 0;
   background-color: var(--cds-tag-color-gray, #393939);
@@ -151,10 +142,25 @@
   border-radius: 12px;
   color: var(--cds-tag-color-gray, #393939);
   @include type-style('label-01');
-}
 
-.overflow-tag-text {
-  padding-right: $spacing-01;
+  :global(.cds--overflow-menu) {
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    background-color: transparent;
+    border-radius: 14px;
+    color: var(--cds-tag-color-gray, #393939);
+    @include type-style('label-01');
+
+    &:hover {
+      background-color: var(--cds-tag-hover-gray, #c6c6c6);
+    }
+
+    &:active {
+      border: 1px solid $focus;
+    }
+  }
 }
 
 .overflow-svg {

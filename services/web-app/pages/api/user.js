@@ -7,8 +7,8 @@
 // import { getUserBySessionKey, updateUserBySessionKey } from '@carbon-platform/auth'
 import requireSession from 'middleware/requireSession'
 
-const getUser = requireSession(true).get((req, res) => {
+const user = requireSession(true).get((req, res) => {
   res.status(200).json(req.session.passport.user)
 })
 
-export default getUser
+export default user

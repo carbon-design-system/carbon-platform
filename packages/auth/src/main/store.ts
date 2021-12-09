@@ -36,12 +36,16 @@ if (process.env.NODE_ENV === 'production') {
       `${'LOCAL_DB_DIRECTORY'} must be exported as an environment variable or in the .env file`
     )
   }
-  const connectSqlite3 = require('connect-sqlite3')
-  const SQLiteStore = connectSqlite3(expressSession)
-  store = new SQLiteStore({
-    dir: process.env.LOCAL_DB_DIRECTORY,
-    db: 'sessiondb.sqlite'
+  const Sequelize = require('sequelize')
+  const SequelizeStore = require('connect-session-sequelize')(expressSession.Store)
+  const sequelize = new Sequelize('database', 'username', 'password', {
+    dialect: 'sqlite',
+    storage: `${process.env.LOCAL_DB_DIRECTORY}/sessiondb.sqlite`
   })
+  store = new SequelizeStore({
+    db: sequelize
+  })
+  ;(store as any).sync()
 }
 
 const getUserSessionByKey = (sessionKey: string) => {

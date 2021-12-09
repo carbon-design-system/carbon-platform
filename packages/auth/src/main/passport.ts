@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { config } from 'dotenv'
-import { Issuer, Strategy as OpenIdStrategy } from 'openid-client'
+import { BaseClient, Issuer, Strategy as OpenIdStrategy } from 'openid-client'
 import passport from 'passport'
 
 import devConfig from './config/dev.config'
@@ -34,21 +34,26 @@ passport.deserializeUser(function (user: User, done) {
   done(null, user)
 })
 
-const ibmIdIssuer = await Issuer.discover(passportConfig.discovery_url)
+let client: BaseClient
 
-const client = new ibmIdIssuer.Client({
-  client_id: process.env.IBM_VERIFY_CLIENT_ID as string,
-  client_secret: process.env.IBM_VERIFY_CLIENT_SECRET,
-  redirect_uris: [passportConfig.redirect_uri],
-  response_types: ['code']
-})
+const getPassportInstance = async () => {
+  if (!client) {
+    const ibmIdIssuer = await Issuer.discover(passportConfig.discovery_url)
+    client = new ibmIdIssuer.Client({
+      client_id: process.env.IBM_VERIFY_CLIENT_ID as string,
+      client_secret: process.env.IBM_VERIFY_CLIENT_SECRET,
+      redirect_uris: [passportConfig.redirect_uri],
+      response_types: ['code']
+    })
+    passport.use(
+      new OpenIdStrategy({ client }, (_: any, user: any, done: any) => {
+        // TODO: validate the user or potentially create a new user account
+        // if it's not an ibm.com addr, potentially redirect to a 'not yet supported' route
+        done(null, { name: user.name })
+      })
+    )
+  }
+  return passport
+}
 
-passport.use(
-  new OpenIdStrategy({ client }, (_: any, user: any, done: any) => {
-    // TODO: validate the user or potentially create a new user account
-    // if it's not an ibm.com addr, potentially redirect to a 'not yet supported' route
-    done(null, { name: user.name })
-  })
-)
-
-export default passport
+export default getPassportInstance

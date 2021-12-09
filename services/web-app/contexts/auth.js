@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     async function loadUser() {
-      const userResponse = await fetch('/api/get-user')
+      const userResponse = await fetch('/api/user')
       if (userResponse.ok) {
         setUser(await userResponse.json())
       }

@@ -4,12 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { passport } from '@carbon-platform/auth'
+import { getPassportInstance } from '@carbon-platform/auth'
 
 import requireSession from '../../middleware/requireSession'
 
 const authCallback = requireSession().get(
-  passport.authenticate('prepiam.ice.ibmcloud.com'),
+  (await getPassportInstance()).authenticate('prepiam.ice.ibmcloud.com'),
   (req, res) => {
     if (!req.user) {
       res.redirect(`/login?${req.session.next || ''}`)

@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/jsx-no-comment-textnodes */
 /*
  * Copyright IBM Corp. 2021, 2021
  *
@@ -126,7 +123,8 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
         <div className={styles.dropdown} key={key} ref={ref}>
           <div className={styles.fitlerTitle}>{title}</div>
           {options.map((selectedFilter, i) => (
-            <div
+            <button
+              type="button"
               key={key}
               id={i}
               onClick={() => {
@@ -138,7 +136,7 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
               )}
             >
               {selectedFilter.label}
-            </div>
+            </button>
           ))}
         </div>
     ))
@@ -176,7 +174,7 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
       : isMd
         ? (
       <>
-        {activeSelected.slice(0, 5).map((item, i) => (
+        {activeSelected.slice(0, 4).map((item, i) => (
           <Tag
             key={i}
             filter
@@ -187,9 +185,9 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
             {item}
           </Tag>
         ))}
-        {activeSelected.length > 5 && (
-          <div title={activeSelected.length - 5 + ' more'} className={styles.overflowTag}>
-            <div className={styles.overflowTagText}>{activeSelected.length - 5 + ' more'}</div>
+        {activeSelected.length > 4 && (
+          <div title={activeSelected.length - 4 + ' more'} className={styles.overflowTag}>
+            <div className={styles.overflowTagText}>{activeSelected.length - 4 + ' more'}</div>
             <OverflowMenuHorizontal
               className={styles.overflowSvg}
               onClick={() => {

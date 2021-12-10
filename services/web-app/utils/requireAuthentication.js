@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { getUserBySessionCookie } from '@carbon-platform/auth'
+import { store } from '@carbon-platform/auth'
 
 const redirectToLogin = (context) => {
   return {
@@ -22,7 +22,8 @@ export function requireAuthentication(gssp, shouldAuthenticate = () => true) {
     }
     const sessionCookie = context.req.cookies?.['connect.sid']
     if (sessionCookie) {
-      return await getUserBySessionCookie(sessionCookie)
+      return await store
+        .getUserBySessionCookie(sessionCookie)
         .then(async (user) => {
           if (user) {
             const ssp = await gssp?.(context)

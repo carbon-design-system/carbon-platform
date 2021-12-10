@@ -13,15 +13,6 @@ import prodConfig from './config/prod.config'
 
 config()
 
-const REQUIRED_ENV_VARS = ['IBM_VERIFY_CLIENT_ID', 'IBM_VERIFY_CLIENT_SECRET']
-REQUIRED_ENV_VARS.forEach((param) => {
-  if (!process.env[param]) {
-    throw new Error(`${param} must be exported as an environment variable or in the .env file`)
-  }
-})
-
-// TODO: replace env variable check with run-mode package
-const passportConfig = process.env.NODE_ENV === 'production' ? prodConfig : devConfig
 interface User {
   name: string
 }
@@ -38,10 +29,20 @@ let client: BaseClient
 
 const getPassportInstance = async () => {
   if (!client) {
+    const REQUIRED_ENV_VARS = ['CARBON_IBM_VERIFY_CLIENT_ID', 'CARBON_IBM_VERIFY_CLIENT_SECRET']
+    REQUIRED_ENV_VARS.forEach((param) => {
+      if (!process.env[param]) {
+        throw new Error(`${param} must be exported as an environment variable or in the .env file`)
+      }
+    })
+
+    // TODO: replace env variable check with run-mode package
+    const passportConfig = process.env.CARBON_NODE_ENV === 'production' ? prodConfig : devConfig
+
     const ibmIdIssuer = await Issuer.discover(passportConfig.discovery_url)
     client = new ibmIdIssuer.Client({
-      client_id: process.env.IBM_VERIFY_CLIENT_ID as string,
-      client_secret: process.env.IBM_VERIFY_CLIENT_SECRET,
+      client_id: process.env.CARBON_IBM_VERIFY_CLIENT_ID as string,
+      client_secret: process.env.CARBON_IBM_VERIFY_CLIENT_SECRET,
       redirect_uris: [passportConfig.redirect_uri],
       response_types: ['code']
     })

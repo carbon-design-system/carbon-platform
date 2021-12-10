@@ -6,5 +6,12 @@
  */
 import { getPassportInstance } from '../main/index'
 test('it can be invoked without crashing', async () => {
+  const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
+  const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
+  process.env.CARBON_IBM_VERIFY_CLIENT_ID = 'MOCKCLIENT123'
+  process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = 'MOCKSECRET123'
+  console.log('process', process.env)
   expect(await getPassportInstance()).not.toBeUndefined()
+  process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
+  process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
 })

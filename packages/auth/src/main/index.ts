@@ -6,12 +6,6 @@
  */
 import { SESSION_SECRET } from './config/constants'
 import getPassportInstance from './passport'
-import store, { getUserBySessionCookie, updateUserBySessionCookie } from './store'
+import store from './store'
 
-export {
-  getPassportInstance,
-  getUserBySessionCookie,
-  SESSION_SECRET,
-  store,
-  updateUserBySessionCookie
-}
+export { getPassportInstance, SESSION_SECRET, store }

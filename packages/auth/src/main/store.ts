@@ -12,47 +12,57 @@ import expressSession, { Store } from 'express-session'
 import { SESSION_SECRET } from './config/constants'
 config()
 
-// TODO: replace env variable check with run-mode package
 let store: Store
-if (process.env.NODE_ENV === 'production') {
-  const REQUIRED_ENV_VARS = ['MONGO_DB_URL', 'MONGO_DB_NAME']
-  REQUIRED_ENV_VARS.forEach((param) => {
-    if (!process.env[param]) {
-      throw new Error(`${param} must be exported as an environment variable or in the .env file`)
-    }
-  })
+const init = () => {
+  // TODO: replace env variable check with run-mode package
+  if (process.env.CARBON_NODE_ENV === 'production') {
+    const REQUIRED_ENV_VARS = ['CARBON_MONGO_DB_URL', 'CARBON_MONGO_DB_NAME']
+    REQUIRED_ENV_VARS.forEach((param) => {
+      if (!process.env[param]) {
+        throw new Error(`${param} must be exported as an environment variable or in the .env file`)
+      }
+    })
 
-  const MongoStore = require('connect-mongo')
-  // this will likely be replaced by database package (?)
-  const { MongoClient } = require('mongodb')
-  const mongoClientPromise = new MongoClient(process.env.MONGO_DB_URL).connect()
-  store = MongoStore.create({
-    clientPromise: mongoClientPromise,
-    dbName: process.env.MONGO_DB_NAME
-  })
-} else {
-  if (!process.env.LOCAL_DB_DIRECTORY) {
-    throw new Error(
-      `${'LOCAL_DB_DIRECTORY'} must be exported as an environment variable or in the .env file`
-    )
+    const MongoStore = require('connect-mongo')
+    // this will likely be replaced by database package (?)
+    const { MongoClient } = require('mongodb')
+    const mongoClientPromise = new MongoClient(process.env.CARBON_MONGO_DB_URL).connect()
+    store = MongoStore.create({
+      clientPromise: mongoClientPromise,
+      dbName: process.env.CARBON_MONGO_DB_NAME
+    })
+  } else {
+    if (!process.env.CARBON_LOCAL_DB_DIRECTORY) {
+      throw new Error(
+        `${'CARBON_LOCAL_DB_DIRECTORY'} must be exported as an environment variable or in the .env file`
+      )
+    }
+    const Sequelize = require('sequelize')
+    const SequelizeStore = require('connect-session-sequelize')(expressSession.Store)
+    const sqlite3 = require('sqlite3')
+    const sequelize = new Sequelize('database', 'username', 'password', {
+      dialect: 'sqlite',
+      dialectModule: sqlite3,
+      storage: `${process.env.CARBON_LOCAL_DB_DIRECTORY}/sessiondb.sqlite`
+    })
+    store = new SequelizeStore({
+      db: sequelize
+    })
+    ;(store as any).sync()
   }
-  const Sequelize = require('sequelize')
-  const SequelizeStore = require('connect-session-sequelize')(expressSession.Store)
-  const sqlite3 = require('sqlite3')
-  const sequelize = new Sequelize('database', 'username', 'password', {
-    dialect: 'sqlite',
-    dialectModule: sqlite3,
-    storage: `${process.env.LOCAL_DB_DIRECTORY}/sessiondb.sqlite`
-  })
-  store = new SequelizeStore({
-    db: sequelize
-  })
-  ;(store as any).sync()
+  return store
+}
+
+const getStore = () => {
+  if (!store) {
+    return init()
+  }
+  return store
 }
 
 const getUserSessionByKey = (sessionKey: string) => {
   const userSessionPromise = new Promise((resolve) => {
-    store.get(sessionKey, (_: any, session: any) => {
+    getStore().get(sessionKey, (_: any, session: any) => {
       resolve(session)
     })
   })
@@ -61,7 +71,7 @@ const getUserSessionByKey = (sessionKey: string) => {
 
 const getUserBySessionKey = (sessionKey: string) => {
   const userPromise = new Promise((resolve) => {
-    store.get(sessionKey, (_: any, session: any) => {
+    getStore().get(sessionKey, (_: any, session: any) => {
       resolve(session?.passport?.user)
     })
   })
@@ -80,7 +90,7 @@ const updateUserBySessionKey = (sessionKey: string, userInfo: Object) => {
               user: { ...userSession.passport.user, ...userInfo }
             }
           }
-          store.set(sessionKey, newSessionVal, (err: any) => {
+          getStore().set(sessionKey, newSessionVal, (err: any) => {
             resolve(!err)
           })
           resolve(true)
@@ -109,5 +119,6 @@ const updateUserBySessionCookie = (sessionCookie: string, userInfo: any) => {
   return sessionId ? updateUserBySessionKey(sessionId, userInfo) : Promise.resolve(false)
 }
 
-export default store
-export { getUserBySessionCookie, updateUserBySessionCookie }
+const carbonStore = { getUserBySessionCookie, getStore, updateUserBySessionCookie }
+
+export default carbonStore

@@ -20,12 +20,12 @@ export default function requireSession(needsUser = false) {
     .use(cookieParser())
     .use(
       expressSession({
-        store,
+        store: store.getStore(),
         secret: SESSION_SECRET,
         cookie: {
           path: '/',
           // TODO: use run-mode package
-          secure: process.env.NODE_ENV === 'production'
+          secure: process.env.CARBON_NODE_ENV === 'production'
           // maxAge: 60 * 60 * 2 // 2 hours
         }
       })

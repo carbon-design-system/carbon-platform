@@ -16,7 +16,7 @@ const fs = require('fs') // this is a test
 
 const PORT = 443
 
-const dev = process.env.NODE_ENV !== 'production'
+const dev = process.env.CARBON_NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 const httpsOptions = {

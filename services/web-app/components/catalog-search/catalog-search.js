@@ -5,19 +5,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, Layer, MultiSelect, Search, Theme } from '@carbon/react'
-import { useState } from 'react'
 
-import { mediaQueries, useMatchMedia } from '@/utils/media-query'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-search.module.scss'
 
-const CatalogSearch = ({ onSearch }) => {
-  const [query, setQuery] = useState('')
+const CatalogSearch = ({ search = '', onSearch }) => {
   const isMd = useMatchMedia(mediaQueries.md)
 
+  const handleOnBlur = (event) => {
+    onSearch(event.target.value, true)
+  }
+
   const handleOnChange = (event) => {
-    setQuery(event.target.value)
-    onSearch(event.target.value)
+    onSearch(event.target.value, false)
+  }
+
+  const handleOnClear = () => {
+    onSearch('', true)
   }
 
   const items = [
@@ -35,8 +40,10 @@ const CatalogSearch = ({ onSearch }) => {
               id="catalog-search"
               labelText="Search component index by name, keyword, or domain"
               placeholder="Component name, keyword, domain"
-              value={query}
+              value={search}
+              onBlur={handleOnBlur}
               onChange={handleOnChange}
+              onClear={handleOnClear}
               size="lg"
             />
           </Column>

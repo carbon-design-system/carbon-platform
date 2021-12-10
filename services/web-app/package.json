@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
@@ -38,8 +38,8 @@
     "fs-extra": "^10.0.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
-    "next": "^12.0.4",
     "next-connect": "^0.11.0",
+    "next": "^12.0.5",
     "next-seo": "^4.28.1",
     "openid-client": "^5.0.2",
     "passport": "^0.5.0",

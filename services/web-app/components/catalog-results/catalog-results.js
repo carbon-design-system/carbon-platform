@@ -6,7 +6,7 @@
  */
 import { Column, Grid } from '@carbon/react'
 
-import { mediaQueries, useMatchMedia } from '@/utils/media-query'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-results.module.scss'
 

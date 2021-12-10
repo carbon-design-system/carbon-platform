@@ -1,4 +1,4 @@
-# Services - Web App
+# Services - web-app
 
 The Web App service is a Next.js application that serves as the origin server for the
 carbon-platform project.

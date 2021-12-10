@@ -5,6 +5,30 @@
 // LICENSE file in the root directory of this source tree.
 //
 
+.container {
+  @include breakpoint(md) {
+    position: sticky;
+    z-index: 1;
+    top: $spacing-09 + $spacing-05 + $spacing-09;
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: -$spacing-05;
+    content: '';
+    transition: box-shadow $fast-02 carbon--motion(standard, productive);
+  }
+
+  &--sticky::before {
+    @include breakpoint(md) {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
 .grid {
   background: $background;
 }

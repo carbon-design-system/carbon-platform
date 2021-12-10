@@ -24,6 +24,7 @@ export default function requireSession(needsUser = false) {
         secret: SESSION_SECRET,
         cookie: {
           path: '/',
+          // TODO: use run-mode package
           secure: process.env.NODE_ENV === 'production'
           // maxAge: 60 * 60 * 2 // 2 hours
         }

@@ -38,8 +38,10 @@ if (process.env.NODE_ENV === 'production') {
   }
   const Sequelize = require('sequelize')
   const SequelizeStore = require('connect-session-sequelize')(expressSession.Store)
+  const sqlite3 = require('sqlite3')
   const sequelize = new Sequelize('database', 'username', 'password', {
     dialect: 'sqlite',
+    dialectModule: sqlite3,
     storage: `${process.env.LOCAL_DB_DIRECTORY}/sessiondb.sqlite`
   })
   store = new SequelizeStore({
@@ -81,6 +83,7 @@ const updateUserBySessionKey = (sessionKey: string, userInfo: Object) => {
           store.set(sessionKey, newSessionVal, (err: any) => {
             resolve(!err)
           })
+          resolve(true)
         } else {
           resolve(false)
         }

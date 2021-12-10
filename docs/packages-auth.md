@@ -45,15 +45,18 @@ For development purposes set `NODE_ENV=development` in .env.local file, for prod
 
 ### Getting and Updating User Sessions
 
-The auth package exports two functions that allow to interact with the users' session data:
+The auth package exports an object `store` that contains two functions that allow interaction with
+the users' session data:
 
 - `getUserBySessionCookie` : receives the user's session cookie value as a parameter and returns a
   promise that resolves to the user's session stored value:
 
   ```
+  import { store } from '@carbon-platform/auth'
+  ...
     const sessionCookie = req.cookies?.['connect.sid']
      if (sessionCookie) {
-      const user = await getUserBySessionCookie(sessionCookie)
+      const user = await store.getUserBySessionCookie(sessionCookie)
     }
   ```
 
@@ -72,9 +75,10 @@ The auth package exports two functions that allow to interact with the users' se
   session value was succesfully updated
 
   ```
+  import { store } from '@carbon-platform/auth'
   const sessionCookie = req.cookies?.['connect.sid']
   if(sessionCookie){
-    const success = await updateUserBySessionCookie(sessionCookie, { testUserProp: 'test' })
+    const success = await store.updateUserBySessionCookie(sessionCookie, { testUserProp: 'test' })
   }
   ```
 
@@ -93,14 +97,15 @@ The auth package exports two functions that allow to interact with the users' se
 ### Setting up User Sessions
 
 If the service needs to handle user sessions, please use the exported variable `SESSION_SECRET` as
-the session secret. Example with express-session
+the session secret and the `getStore` function available through the exported `store` object as the
+store. Example with express-session:
 
 ```
-import { SESSION_SECRET } from '@carbon-platform/auth'
+import { SESSION_SECRET, store } from '@carbon-platform/auth'
 import expressSession from 'express-session'
 ...
     expressSession({
-        store,
+        store: store.getStore(),
         secret: SESSION_SECRET,
         cookie: {
           path: '/',

@@ -17,18 +17,18 @@ interface User {
   name: string
 }
 
-passport.serializeUser(function (user, done) {
-  done(null, user)
-})
-
-passport.deserializeUser(function (user: User, done) {
-  done(null, user)
-})
-
 let client: BaseClient
 
 const getPassportInstance = async () => {
   if (!client) {
+    passport.serializeUser(function (user, done) {
+      done(null, user)
+    })
+
+    passport.deserializeUser(function (user: User, done) {
+      done(null, user)
+    })
+
     const REQUIRED_ENV_VARS = ['CARBON_IBM_VERIFY_CLIENT_ID', 'CARBON_IBM_VERIFY_CLIENT_SECRET']
     REQUIRED_ENV_VARS.forEach((param) => {
       if (!process.env[param]) {

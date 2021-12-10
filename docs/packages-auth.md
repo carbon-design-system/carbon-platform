@@ -5,7 +5,7 @@ necessary services to consume.
 
 ## Set up
 
-### installation
+### Installation
 
 From the monorepo, install the auth package into a service by running the following command from the
 root project directory:
@@ -32,9 +32,6 @@ For development purposes set `NODE_ENV=development` in .env.local file, for prod
 ### Database Config Variables
 
 #### Local Development
-
-**_Prerequisite:_** `.env.local` file (see
-[Setting up local environment variables](#setting-up-local-environment-variables))
 
 - LOCAL_DB_DIRECTORY=[*absolute* path to directory in which local sqlite database should be stored
   for dev purposes (this stores the users' session)]
@@ -95,7 +92,7 @@ The auth package exports two functions that allow to interact with the users' se
 
 ### Setting up User Sessions
 
-If the service needs to handle user sessions, please use the exported variable "SESSION_SECRET" as
+If the service needs to handle user sessions, please use the exported variable `SESSION_SECRET` as
 the session secret. Example with express-session
 
 ```
@@ -115,7 +112,7 @@ import expressSession from 'express-session'
 ### Passport Authentication
 
 If the service needs to authenticate users against IBMId, the exported function
-"getPassportInstance" returns a promise that resolves pre-configured passport instance. This
+`getPassportInstance` returns a promise that resolves pre-configured passport instance. This
 instance can be used just like the passport package and doesn't need to be further setup:
 
 ```
@@ -124,5 +121,5 @@ instance can be used just like the passport package and doesn't need to be furth
     passport.authenticate('prepiam.ice.ibmcloud.com')
 ```
 
-Note: keep in mind you will have to await for the instance to be resolved before being able to use
+_Note:_ keep in mind you will have to await for the instance to be resolved before being able to use
 it

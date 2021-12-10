@@ -83,8 +83,8 @@ this, run the following command from the [web-app's directory](../services/web-a
 
 ### Protecting Static Pages
 
-In order to require authentication before an user can access a static page, use the `withAuth` HOC
-to export the pages' component:
+In order to require authentication before a user can access a static page, use the `withAuth` HOC to
+export the pages' component:
 
 ```
 import withAuth from 'HOCs/withAuth'
@@ -94,7 +94,7 @@ export default withAuth(PageComponent)
 
 ### Protecting Server-Side Rendered Pages
 
-In order to require authentication before an user can access a server-side rendered page, use the
+In order to require authentication before a user can access a server-side rendered page, use the
 `requireAuthentication` utlity function to export the pages' _getServerSideProps_ function:
 
 ```
@@ -149,7 +149,7 @@ export const getServerSideProps = requireAuthentication(
 
 For server-side rendered pages that export their _getserversideprops_ function through the
 requireAuthentication HOF (see
-[Protecting Server-Side Rendered Pages](#protecting-server-side-rendered-pages)), an 'user' variable
+[Protecting Server-Side Rendered Pages](#protecting-server-side-rendered-pages)), a 'user' variable
 will automatically be injected into the components' props:
 
 ```
@@ -170,9 +170,9 @@ export const getServerSideProps = requireAuthentication(
 export default ProtectedPageWithSSR
 ```
 
-Note: be aware that if your component uses the `shouldAuthenticate()` param function to authenticate
-dynamically, a user variable will not be injected when authentication is not necessary (i.e., when
-the function returns false) and will thus be undefined
+_Note:_ be aware that if your component uses the `shouldAuthenticate()` param function to
+authenticate dynamically, a user variable will not be injected when authentication is not necessary
+(i.e., when the function returns false) and will thus be undefined
 
 ### UseAuth() Hook
 
@@ -191,8 +191,8 @@ From a React Component, you can access the user's information via the `user` pro
  const { isAuthenticated, isLoading, user, login, logout } = useAuth()
 ```
 
-Note: Keep in mind in some instances the user might still be loading (being retrieved) or might not
-exist yet (user hasn't authenticated) when your component is trying to access it. Leverage the
+_Note:_ Keep in mind in some instances the user might still be loading (being retrieved) or might
+not exist yet (user hasn't authenticated) when your component is trying to access it. Leverage the
 `isLoading` and `isAuthenticated` properties for correct assertions
 
 ### API Call

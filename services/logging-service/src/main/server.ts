@@ -4,23 +4,26 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { doStuff } from '@carbon-platform/logging'
+import { Logging } from '@carbon-platform/logging'
 import http from 'http'
 
 const port = process.env.PORT || 3000
+const logging = new Logging('logging-service')
 
-function run() {
-  doStuff()
+function requestHandler(request: http.IncomingMessage, response: http.ServerResponse) {
+  logging.info(`request ${request.url}`)
 
-  http
-    .createServer(function (request: any, response: any) {
-      console.log('request ', request.url)
-
-      response.writeHead(200)
-      response.end()
-    })
-    .listen(port)
-  console.log(`Server running at port ${port}`)
+  response.writeHead(200)
+  response.end()
 }
 
-export { run }
+function run() {
+  http.createServer(requestHandler).listen(port)
+  logging.info(`Server running at port ${port}`)
+}
+
+const __test__ = {
+  requestHandler
+}
+
+export { __test__, run }

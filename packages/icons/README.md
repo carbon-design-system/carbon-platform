@@ -1,3 +1,3 @@
-# Icons
+# icons
 
-This package bundles all project-specific svg icons in a node module.
+Docs located [here](../../docs/packages-icons.md)

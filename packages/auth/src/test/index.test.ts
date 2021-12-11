@@ -23,7 +23,7 @@ test('passport instance can be retrieved without crashing', async () => {
   process.env.CARBON_IBM_VERIFY_CLIENT_ID = 'MOCK_CLIENT'
   process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = 'MOCK_SECRET'
   const passportInstance = await getPassportInstance()
-  expect(passportInstance).not.toBeUndefined()
+  expect(passportInstance).toBeDefined()
   process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
   process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
 })
@@ -54,7 +54,7 @@ test('attempt to get store on dev mode without env variables throws error', () =
 test('store instance can be retrieved without crashing', () => {
   const oldLocalDbDirectory = process.env.CARBON_LOCAL_DB_DIRECTORY
   process.env.CARBON_LOCAL_DB_DIRECTORY = 'MOCK_DIRECTORY'
-  expect(store.getStore()).not.toBeUndefined()
+  expect(store.getStore()).toBeDefined()
   process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
 })
 
@@ -67,7 +67,7 @@ test('retrieve user session by cookie retrieves correct object', async () => {
   const mockedUserSession = { passport: { user: { name: 'test123' } } }
   await new Promise((resolve) => {
     storeInstance.set(mockedSessionId, mockedUserSession as any, async () => {
-      expect(await store.getUserBySessionCookie(signedSessionCookie)).toEqual({
+      await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toEqual({
         name: 'test123'
       })
       process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
@@ -83,7 +83,7 @@ test('retrieve user session by cookie is undefined when session is not set', asy
   process.env.CARBON_LOCAL_DB_DIRECTORY = 'MOCK_DIRECTORY'
   const mockedSessionId = 'SESSION_ID2'
   const signedSessionCookie = `s:${signature.sign(mockedSessionId, SESSION_SECRET)}`
-  expect(await store.getUserBySessionCookie(signedSessionCookie)).toBe(undefined)
+  await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toBeUndefined()
   process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
 })
 
@@ -125,6 +125,6 @@ test('updating user session returns false when there is no session', async () =>
     newProperty: '1234'
   })
   expect(updateResult).toBeFalsy()
-  expect(await store.getUserBySessionCookie(signedSessionCookie)).toBe(undefined)
+  await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toBeUndefined()
   process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
 })

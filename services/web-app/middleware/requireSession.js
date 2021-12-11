@@ -10,6 +10,7 @@ import expressSession from 'express-session'
 import nextConnect from 'next-connect'
 
 const passport = await getPassportInstance()
+const storeInstance = await store.getStore()
 export default function requireSession(needsUser = false) {
   return nextConnect({
     onError: (err, req, res) => {
@@ -20,7 +21,7 @@ export default function requireSession(needsUser = false) {
     .use(cookieParser())
     .use(
       expressSession({
-        store: store.getStore(),
+        store: storeInstance,
         secret: SESSION_SECRET,
         cookie: {
           path: '/',

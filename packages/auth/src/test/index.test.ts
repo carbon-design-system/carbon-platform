@@ -28,33 +28,33 @@ test('passport instance can be retrieved without crashing', async () => {
   process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
 })
 
-test('attempt to get store on production mode without env variables throws error', () => {
+test('attempt to get store on production mode without env variables throws error', async () => {
   const oldMongoDbUrl = process.env.CARBON_MONGO_DB_URL
   const oldMongoDbName = process.env.CARBON_MONGO_DB_NAME
   const oldNodeENv = process.env.CARBON_NODE_ENV
   process.env.CARBON_MONGO_DB_URL = ''
   process.env.CARBON_MONGO_DB_NAME = ''
   process.env.CARBON_NODE_ENV = 'production'
-  expect(() => store.getStore()).toThrow()
+  await expect(() => store.getStore()).rejects.toThrow()
   process.env.CARBON_NODE_ENV = oldNodeENv
   process.env.CARBON_MONGO_DB_URL = oldMongoDbUrl
   process.env.CARBON_MONGO_DB_NAME = oldMongoDbName
 })
 
-test('attempt to get store on dev mode without env variables throws error', () => {
+test('attempt to get store on dev mode without env variables throws error', async () => {
   const oldNodeENv = process.env.CARBON_NODE_ENV
   const oldLocalDbDirectory = process.env.CARBON_LOCAL_DB_DIRECTORY
   process.env.CARBON_LOCAL_DB_DIRECTORY = ''
   process.env.CARBON_NODE_ENV = 'development'
-  expect(() => store.getStore()).toThrow()
+  await expect(() => store.getStore()).rejects.toThrow()
   process.env.CARBON_NODE_ENV = oldNodeENv
   process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
 })
 
-test('store instance can be retrieved without crashing', () => {
+test('store instance can be retrieved without crashing', async () => {
   const oldLocalDbDirectory = process.env.CARBON_LOCAL_DB_DIRECTORY
   process.env.CARBON_LOCAL_DB_DIRECTORY = 'MOCK_DIRECTORY'
-  expect(store.getStore()).toBeDefined()
+  await expect(store.getStore()).resolves.toBeDefined()
   process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
 })
 
@@ -63,20 +63,17 @@ test('retrieve user session by cookie retrieves correct object', async () => {
   process.env.CARBON_LOCAL_DB_DIRECTORY = 'MOCK_DIRECTORY'
   const mockedSessionId = 'SESSION_ID1'
   const signedSessionCookie = `s:${signature.sign(mockedSessionId, SESSION_SECRET)}`
-  const storeInstance = store.getStore()
+  const storeInstance = await store.getStore()
   const mockedUserSession = { passport: { user: { name: 'test123' } } }
   await new Promise((resolve) => {
     storeInstance.set(mockedSessionId, mockedUserSession as any, async () => {
-      // give db time to sync
-      setTimeout(async () => {
-        await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toEqual({
-          name: 'test123'
-        })
-        process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
-        storeInstance.destroy(mockedSessionId, () => {
-          resolve(null)
-        })
-      }, 100)
+      await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toEqual({
+        name: 'test123'
+      })
+      process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
+      storeInstance.destroy(mockedSessionId, () => {
+        resolve(null)
+      })
     })
   })
 })
@@ -95,7 +92,7 @@ test('updating user session saves data succesfully', async () => {
   process.env.CARBON_LOCAL_DB_DIRECTORY = 'MOCK_DIRECTORY'
   const mockedSessionId = 'SESSION_ID3'
   const signedSessionCookie = `s:${signature.sign(mockedSessionId, SESSION_SECRET)}`
-  const storeInstance = store.getStore()
+  const storeInstance = await store.getStore()
   const mockedUserSession = { passport: { user: { name: 'test123' } } }
   await new Promise((resolve) => {
     storeInstance.set(mockedSessionId, mockedUserSession as any, async () => {
@@ -103,18 +100,15 @@ test('updating user session saves data succesfully', async () => {
         newProperty: '1234'
       })
       expect(updateResult).toBeTruthy()
-      // give db time to sync
-      setTimeout(async () => {
-        const retrievedUser = await store.getUserBySessionCookie(signedSessionCookie)
-        expect(retrievedUser).toEqual({
-          name: 'test123',
-          newProperty: '1234'
-        })
-        process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
-        storeInstance.destroy(mockedSessionId, () => {
-          resolve(null)
-        })
-      }, 100)
+      const retrievedUser = await store.getUserBySessionCookie(signedSessionCookie)
+      expect(retrievedUser).toEqual({
+        name: 'test123',
+        newProperty: '1234'
+      })
+      process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
+      storeInstance.destroy(mockedSessionId, () => {
+        resolve(null)
+      })
     })
   })
 })

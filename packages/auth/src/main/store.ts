@@ -13,7 +13,7 @@ import { SESSION_SECRET } from './config/constants'
 config()
 
 let store: Store
-const init = () => {
+const init = async () => {
   // TODO: replace env variable check with run-mode package
   if (process.env.CARBON_NODE_ENV === 'production') {
     const REQUIRED_ENV_VARS = ['CARBON_MONGO_DB_URL', 'CARBON_MONGO_DB_NAME']
@@ -48,37 +48,39 @@ const init = () => {
     store = new SequelizeStore({
       db: sequelize
     })
-    ;(store as any).sync()
+    await (store as any).sync()
   }
-  return store
+  return Promise.resolve(store)
 }
 
 const getStore = () => {
   if (!store) {
     return init()
   }
-  return store
+  return Promise.resolve(store)
 }
 
-const getUserSessionByKey = (sessionKey: string) => {
-  const userSessionPromise = new Promise((resolve) => {
-    getStore().get(sessionKey, (_: any, session: any) => {
-      resolve(session)
+const getUserSessionByKey = async (sessionKey: string) => {
+  return getStore().then((store) => {
+    return new Promise((resolve) => {
+      store.get(sessionKey, (_: any, session: any) => {
+        resolve(session)
+      })
     })
   })
-  return userSessionPromise
 }
 
 const getUserBySessionKey = (sessionKey: string) => {
-  const userPromise = new Promise((resolve) => {
-    getStore().get(sessionKey, (_: any, session: any) => {
-      resolve(session?.passport?.user)
+  return getStore().then((store) => {
+    return new Promise((resolve) => {
+      store.get(sessionKey, (_: any, session: any) => {
+        resolve(session?.passport?.user)
+      })
     })
   })
-  return userPromise
 }
 
-const updateUserBySessionKey = (sessionKey: string, userInfo: Object) => {
+const updateUserBySessionKey = async (sessionKey: string, userInfo: Object) => {
   const updatePromise = new Promise((resolve) => {
     getUserSessionByKey(sessionKey)
       .then((userSession: any) => {
@@ -90,10 +92,11 @@ const updateUserBySessionKey = (sessionKey: string, userInfo: Object) => {
               user: { ...userSession.passport.user, ...userInfo }
             }
           }
-          getStore().set(sessionKey, newSessionVal, (err: any) => {
-            resolve(!err)
+          getStore().then((store) => {
+            store.set(sessionKey, newSessionVal, (err: any) => {
+              resolve(!err)
+            })
           })
-          resolve(true)
         } else {
           resolve(false)
         }

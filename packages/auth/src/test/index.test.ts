@@ -67,13 +67,16 @@ test('retrieve user session by cookie retrieves correct object', async () => {
   const mockedUserSession = { passport: { user: { name: 'test123' } } }
   await new Promise((resolve) => {
     storeInstance.set(mockedSessionId, mockedUserSession as any, async () => {
-      await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toEqual({
-        name: 'test123'
-      })
-      process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
-      storeInstance.destroy(mockedSessionId, () => {
-        resolve(null)
-      })
+      // give db time to sync
+      setTimeout(async () => {
+        await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toEqual({
+          name: 'test123'
+        })
+        process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
+        storeInstance.destroy(mockedSessionId, () => {
+          resolve(null)
+        })
+      }, 100)
     })
   })
 })

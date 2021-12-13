@@ -45,12 +45,18 @@ const Layout = ({ children }) => {
   const router = useRouter()
   const { navData } = useContext(LayoutContext)
 
+  /**
+   * @todo the HeaderGlobalAction component has icons that aren't centered using the latest
+   * `@carbon/react@0.11.0`. This has been reported:
+   * {@link https://github.com/carbon-design-system/carbon/discussions/10247}.
+   */
+
   return (
     <HeaderContainer
       render={({ isSideNavExpanded, onClickSideNavExpand }) => (
         <>
           <Theme theme="g100">
-            <Header aria-label="IBM Platform Name">
+            <Header aria-label="Carbon Design System">
               <SkipToContent />
               <HeaderMenuButton
                 aria-label="Open menu"

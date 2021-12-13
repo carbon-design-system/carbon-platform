@@ -17,10 +17,15 @@ root project directory:
 Set the following variables in your environment file inside the project where the auth package is
 being used.
 
-### Node Environment (SOON TO BE DEPRECATED)
+### Run Mode
 
-For development purposes set `NODE_ENV=development` in .env.local file, for production set to
-`NODE_ENV=production`
+Set `CARBON_RUN_MODE` variable in .env.local file:
+
+- for production set to `CARBON_RUN_MODE=PRODUCTION`
+- for development set to `CARBON_RUN_MODE=DEV`
+- for test set to `CARBON_RUN_MODE=TEST`
+
+See: [Run Mode Package](./packages-run-mode.md)
 
 ### IBMid Authentication Variables
 
@@ -101,15 +106,18 @@ the session secret and the `getStore` function available through the exported `s
 store. Example with express-session:
 
 ```
+import {getRunMode, PRODUCTION} from '@carbon-platform/run-mode'
 import { SESSION_SECRET, store } from '@carbon-platform/auth'
 import expressSession from 'express-session'
 ...
+const storeInstance = await store.getStore()
+...
     expressSession({
-        store: store.getStore(),
+        store: storeInstance,
         secret: SESSION_SECRET,
         cookie: {
           path: '/',
-          secure: process.env.NODE_ENV === 'production'
+          secure: getRunMode() === PRODUCTION
         }
       })
 ```

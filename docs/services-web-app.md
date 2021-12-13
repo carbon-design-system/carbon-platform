@@ -10,10 +10,15 @@ correct setup:
 
 1. Copy the `/services/web-app/.env.example` file and rename to `/services/web-app/.env.local`
 
-### Node Environment (SOON TO BE DEPRECATED)
+### Run Environment
 
-For development purposes set `NODE_ENV=development` in .env.local file, for production set to
-`NODE_ENV=production`
+Set `CARBON_RUN_MODE` variable in .env.local file:
+
+- for production set to `CARBON_RUN_MODE=PRODUCTION`
+- for development set to `CARBON_RUN_MODE=DEV`
+- for test set to `CARBON_RUN_MODE=TEST`
+
+See: [Run Mode Package](./packages-run-mode.md)
 
 ### Adding GitHub personal access token for prototype
 

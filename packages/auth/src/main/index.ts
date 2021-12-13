@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { SESSION_SECRET } from './config/constants'
-import getPassportInstance from './passport'
+import getPassportInstance from './getPassportInstance'
 import store from './store'
 
 export { getPassportInstance, SESSION_SECRET, store }

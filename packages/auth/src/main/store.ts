@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { getRunMode, PRODUCTION } from '@carbon-platform/run-mode'
 import cookieParser from 'cookie-parser'
 import { config } from 'dotenv'
 import expressSession, { Store } from 'express-session'
@@ -12,10 +13,9 @@ import expressSession, { Store } from 'express-session'
 import { SESSION_SECRET } from './config/constants'
 config()
 
-let store: Store
+let currStore: Store
 const init = async () => {
-  // TODO: replace env variable check with run-mode package
-  if (process.env.CARBON_NODE_ENV === 'production') {
+  if (getRunMode() === PRODUCTION) {
     const REQUIRED_ENV_VARS = ['CARBON_MONGO_DB_URL', 'CARBON_MONGO_DB_NAME']
     REQUIRED_ENV_VARS.forEach((param) => {
       if (!process.env[param]) {
@@ -27,7 +27,7 @@ const init = async () => {
     // this will likely be replaced by database package (?)
     const { MongoClient } = require('mongodb')
     const mongoClientPromise = new MongoClient(process.env.CARBON_MONGO_DB_URL).connect()
-    store = MongoStore.create({
+    currStore = MongoStore.create({
       clientPromise: mongoClientPromise,
       dbName: process.env.CARBON_MONGO_DB_NAME
     })
@@ -45,25 +45,25 @@ const init = async () => {
       dialectModule: sqlite3,
       storage: `${process.env.CARBON_LOCAL_DB_DIRECTORY}/sessiondb.sqlite`
     })
-    store = new SequelizeStore({
+    currStore = new SequelizeStore({
       db: sequelize
     })
-    await (store as any).sync()
+    await (currStore as any).sync()
   }
-  return Promise.resolve(store)
+  return Promise.resolve(currStore)
 }
 
 const getStore = () => {
-  if (!store) {
+  if (!currStore) {
     return init()
   }
-  return Promise.resolve(store)
+  return Promise.resolve(currStore)
 }
 
 const getUserSessionByKey = async (sessionKey: string) => {
-  return getStore().then((store) => {
+  return getStore().then((retrievedStore) => {
     return new Promise((resolve) => {
-      store.get(sessionKey, (_: any, session: any) => {
+      retrievedStore.get(sessionKey, (_: any, session: any) => {
         resolve(session)
       })
     })
@@ -71,9 +71,9 @@ const getUserSessionByKey = async (sessionKey: string) => {
 }
 
 const getUserBySessionKey = (sessionKey: string) => {
-  return getStore().then((store) => {
+  return getStore().then((retrievedStore) => {
     return new Promise((resolve) => {
-      store.get(sessionKey, (_: any, session: any) => {
+      retrievedStore.get(sessionKey, (_: any, session: any) => {
         resolve(session?.passport?.user)
       })
     })
@@ -81,7 +81,7 @@ const getUserBySessionKey = (sessionKey: string) => {
 }
 
 const updateUserBySessionKey = async (sessionKey: string, userInfo: Object) => {
-  const updatePromise = new Promise((resolve) => {
+  return new Promise((resolve) => {
     getUserSessionByKey(sessionKey)
       .then((userSession: any) => {
         if (userSession?.passport?.user) {
@@ -92,8 +92,8 @@ const updateUserBySessionKey = async (sessionKey: string, userInfo: Object) => {
               user: { ...userSession.passport.user, ...userInfo }
             }
           }
-          getStore().then((store) => {
-            store.set(sessionKey, newSessionVal, (err: any) => {
+          getStore().then((retrievedStore) => {
+            retrievedStore.set(sessionKey, newSessionVal, (err: any) => {
               resolve(!err)
             })
           })
@@ -105,7 +105,6 @@ const updateUserBySessionKey = async (sessionKey: string, userInfo: Object) => {
         resolve(false)
       })
   })
-  return updatePromise
 }
 
 const unsignSessionCookie = (sessionCookie: string) => {
@@ -122,6 +121,6 @@ const updateUserBySessionCookie = (sessionCookie: string, userInfo: any) => {
   return sessionId ? updateUserBySessionKey(sessionId, userInfo) : Promise.resolve(false)
 }
 
-const carbonStore = { getUserBySessionCookie, getStore, updateUserBySessionCookie }
+const store = { getUserBySessionCookie, getStore, updateUserBySessionCookie }
 
-export default carbonStore
+export default store

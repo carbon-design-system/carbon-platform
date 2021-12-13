@@ -31,23 +31,23 @@ test('passport instance can be retrieved without crashing', async () => {
 test('attempt to get store on production mode without env variables throws error', async () => {
   const oldMongoDbUrl = process.env.CARBON_MONGO_DB_URL
   const oldMongoDbName = process.env.CARBON_MONGO_DB_NAME
-  const oldNodeENv = process.env.CARBON_NODE_ENV
+  const oldRunMode = process.env.CARBON_RUN_MODE
   process.env.CARBON_MONGO_DB_URL = ''
   process.env.CARBON_MONGO_DB_NAME = ''
-  process.env.CARBON_NODE_ENV = 'production'
+  process.env.CARBON_RUN_MODE = 'production'
   await expect(() => store.getStore()).rejects.toThrow()
-  process.env.CARBON_NODE_ENV = oldNodeENv
+  process.env.CARBON_RUN_MODE = oldRunMode
   process.env.CARBON_MONGO_DB_URL = oldMongoDbUrl
   process.env.CARBON_MONGO_DB_NAME = oldMongoDbName
 })
 
 test('attempt to get store on dev mode without env variables throws error', async () => {
-  const oldNodeENv = process.env.CARBON_NODE_ENV
+  const oldRunMode = process.env.CARBON_RUN_MODE
   const oldLocalDbDirectory = process.env.CARBON_LOCAL_DB_DIRECTORY
   process.env.CARBON_LOCAL_DB_DIRECTORY = ''
-  process.env.CARBON_NODE_ENV = 'development'
+  process.env.CARBON_RUN_MODE = 'development'
   await expect(() => store.getStore()).rejects.toThrow()
-  process.env.CARBON_NODE_ENV = oldNodeENv
+  process.env.CARBON_RUN_MODE = oldRunMode
   process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
 })
 

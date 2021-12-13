@@ -18,11 +18,11 @@ const redirectToLogin = (context) => {
 export function requireAuthentication(gssp, shouldAuthenticate = () => true) {
   return async (context) => {
     if (!shouldAuthenticate(context.resolvedUrl, context.query)) {
-      return await gssp?.(context)
+      return gssp?.(context)
     }
     const sessionCookie = context.req.cookies?.['connect.sid']
     if (sessionCookie) {
-      return await store
+      return store
         .getUserBySessionCookie(sessionCookie)
         .then(async (user) => {
           if (user) {

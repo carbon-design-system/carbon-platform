@@ -5,10 +5,14 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-.grid {
-  margin-top: $spacing-05;
-  margin-bottom: $spacing-05;
-  row-gap: $spacing-05;
+.container {
+  background: $background;
+
+  &--grid {
+    margin-top: $spacing-05;
+    margin-bottom: $spacing-05;
+    row-gap: $spacing-05;
+  }
 }
 
 .copy {

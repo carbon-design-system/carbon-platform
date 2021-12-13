@@ -4,6 +4,7 @@ WORKDIR /service-root/logging
 
 COPY package-lock.json .
 COPY services/logging-service/package.json .
+# TODO: copy base tsconfig from which this inherits
 COPY services/logging-service/tsconfig.json .
 COPY services/logging-service/src src
 

@@ -1,6 +1,6 @@
 FROM node:16-alpine AS builder
 
-WORKDIR /service-root
+WORKDIR /build
 
 RUN mkdir ./packed_node_modules
 RUN mkdir ./local_node_modules
@@ -25,12 +25,12 @@ WORKDIR /service-root
 RUN npm init -y
 
 # Install all packed workspace packages
-COPY --from=builder /service-root/packed_node_modules ./packed_node_modules
+COPY --from=builder /build/packed_node_modules ./packed_node_modules
 RUN for file in packed_node_modules/*.tgz ; do \
   npm install ./"$file" ; \
 done
 
-# Install the node types package
+# Install the node types package needed for typescript builds
 RUN npm install @types/node
 
 # Cleanup

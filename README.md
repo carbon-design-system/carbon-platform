@@ -28,6 +28,12 @@
       alt="Continuous Integration Checks status"
     />
   </a>
+  <a href="https://github.com/carbon-design-system/carbon-platform/actions/workflows/nightly-version.yml">
+    <img
+      src="https://github.com/carbon-design-system/carbon-platform/actions/workflows/nightly-version.yml/badge.svg"
+      alt="Nightly Version job status"
+    />
+  </a>
 </p>
 
 ## Quality metrics

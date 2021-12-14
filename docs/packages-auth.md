@@ -19,32 +19,30 @@ being used.
 
 ### Run Mode
 
-Set `CARBON_RUN_MODE` variable in .env.local file:
+This package uses run-mode to determine what database to connect to (local or production) depending
+on the current environment.
 
-- for production set to `CARBON_RUN_MODE=PRODUCTION`
-- for development set to `CARBON_RUN_MODE=DEV`
-- for test set to `CARBON_RUN_MODE=TEST`
-
-See: [Run Mode Package](./packages-run-mode.md)
+Make sure required environment variables are configured in the service you're using this package.
+(See [run-mode package](./packages-run-mode.md) for details on how to set up the run-mode package)
 
 ### IBMid Authentication Variables
 
-- IBM_VERIFY_CLIENT_ID=[client id tied to App registration on SSO provisioner (get this from dev
-  team)]
-- IBM_VERIFY_CLIENT_SECRET=[client secret tied to App registration on SSO provisioner (get this from
+- CARBON_IBM_VERIFY_CLIENT_ID=[client id tied to App registration on SSO provisioner (get this from
   dev team)]
+- CARBON_IBM_VERIFY_CLIENT_SECRET=[client secret tied to App registration on SSO provisioner (get
+  this from dev team)]
 
 ### Database Config Variables
 
 #### Local Development
 
-- LOCAL_DB_DIRECTORY=[*absolute* path to directory in which local sqlite database should be stored
-  for dev purposes (this stores the users' session)]
+- CARBON_LOCAL_DB_DIRECTORY=[*absolute* path to directory in which local sqlite database should be
+  stored for dev purposes (this stores the users' session)]
 
-#### Production
+#### Production/Test
 
-- MONGO_DB_URL=[url to remote mongo db instance including basic authentication]
-- MONGO_DB_NAME=[name of database in remote mongo db instance]
+- CARBON_MONGO_DB_URL=[url to remote mongo db instance including basic authentication]
+- CARBON_MONGO_DB_NAME=[name of database in remote mongo db instance]
 
 ## Usage
 

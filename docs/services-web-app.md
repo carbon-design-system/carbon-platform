@@ -10,16 +10,6 @@ correct setup:
 
 1. Copy the `/services/web-app/.env.example` file and rename to `/services/web-app/.env.local`
 
-### Run Environment
-
-Set `CARBON_RUN_MODE` variable in .env.local file:
-
-- for production set to `CARBON_RUN_MODE=PRODUCTION`
-- for development set to `CARBON_RUN_MODE=DEV`
-- for test set to `CARBON_RUN_MODE=TEST`
-
-See: [Run Mode Package](./packages-run-mode.md)
-
 ### Adding GitHub personal access token for prototype
 
 **_Prerequisite:_** `.env.local` file for local development (see
@@ -33,32 +23,21 @@ access to private repos and increases API quotas. To set up a personal access to
 1. Copy the `/services/web-app/.env.example` file and rename to `/services/web-app/.env.local`
 1. Add your token to that new `.env.local` file
 
-### IBMid Authentication Variables
+## Dependencies Set up
 
-**_Prerequisite:_** `.env.local` file for local development (see
-[Setting up local environment variables](#setting-up-local-environment-variables))
+### Run Mode
 
-Set the following variable values in `.env.local` for correct IBMid authentication flow:
+The app uses run-mode to make decisions that are environment-dependant (cookies, next-server...).
+This package configuration is also needed for proper functionality of the Auth Package.
 
-- IBM_VERIFY_CLIENT_ID=[client id tied to App registration on SSO provisioner (get this from dev
-  team)]
-- IBM_VERIFY_CLIENT_SECRET=[client secret tied to App registration on SSO provisioner (get this from
-  dev team)]
+Make sure required environment variables are configured for proper functionality of this package.
+(See [run-mode package](./packages-run-mode.md) for details on how to set up the run-mode package)
 
-### Database Config Variables
+### Auth
 
-#### Local Development
-
-**_Prerequisite:_** `.env.local` file (see
-[Setting up local environment variables](#setting-up-local-environment-variables))
-
-- LOCAL_DB_DIRECTORY=[*absolute* path to directory in which local sqlite database should be stored
-  for dev purposes (this stores the users' session)]
-
-#### Production
-
-- MONGO_DB_URL=[url to remote mongo db instance including basic authentication]
-- MONGO_DB_NAME=[name of database in remote mongo db instance]
+This service depends on the auth package; Make sure required environment variables are configured
+for proper functionality of this package. (See [auth package](./packages-authe.md) for details on
+how to set up the auth package)
 
 ## Adding Local Certificates
 
@@ -142,8 +121,9 @@ export const getServerSideProps = requireAuthentication(
     }
   },
   (url, query) => {
-    // User will be required to authenticate unless a query param 'override' is passed in the url with a value of 'true'
-    return !(query.override === 'true')
+  // User will be required to authenticate if the requested host is equal to 'github.ibm.com'
+    return query.host === 'github.ibm.com'
+})
   }
 )
 ```

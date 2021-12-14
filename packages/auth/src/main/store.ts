@@ -32,18 +32,13 @@ const init = async () => {
       dbName: process.env.CARBON_MONGO_DB_NAME
     })
   } else {
-    if (!process.env.CARBON_LOCAL_DB_DIRECTORY) {
-      throw new Error(
-        `${'CARBON_LOCAL_DB_DIRECTORY'} must be exported as an environment variable or in the .env file`
-      )
-    }
     const Sequelize = require('sequelize')
     const SequelizeStore = require('connect-session-sequelize')(expressSession.Store)
     const sqlite3 = require('sqlite3')
     const sequelize = new Sequelize('database', 'username', 'password', {
       dialect: 'sqlite',
       dialectModule: sqlite3,
-      storage: `${process.env.CARBON_LOCAL_DB_DIRECTORY}/sessiondb.sqlite`
+      storage: 'data/sessiondb.sqlite'
     })
     currStore = new SequelizeStore({
       db: sequelize

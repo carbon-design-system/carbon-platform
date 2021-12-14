@@ -21,7 +21,7 @@ export default function withAuth(Component, shouldAuthenticate = () => true) {
 
     useEffect(() => {
       if (!loading && !isAuthenticated && authRequired) {
-        router.replace(`/login?next=${router.asPath}`)
+        router.replace('/404', router.route, { shallow: true })
       }
     }, [loading, router, isAuthenticated, authRequired])
 

@@ -6,8 +6,9 @@
 //
 
 .container {
+  // position above CatalogSort
   position: sticky;
-  z-index: 1;
+  z-index: 2;
   top: $spacing-09 + $spacing-05;
   @include breakpoint-down(md) {
     top: $spacing-09;
@@ -20,13 +21,19 @@
     bottom: 100%;
     left: -$spacing-05;
     height: $spacing-05;
-    background: $layer-01;
+    background: $background;
     content: '';
   }
 
   // override carbon display
   :global(.cds--label) {
     display: none;
+  }
+
+  // TODO temporarily fix search bar height until its fixed upstream after `@carbon/react@0.11.0`,
+  // tracked here: https://github.com/carbon-design-system/carbon/discussions/10247
+  :global(.cds--search--lg .cds--search-input) {
+    height: $spacing-09;
   }
 }
 

@@ -20,9 +20,9 @@ function handleVersionCommand() {
   // Ensure all tags are up-to-date with the remote
   exec('git fetch --tags')
 
-  const updatedPackages = getUpdatedPackages()
+  const updatedPackagesAndServices = getUpdatedPackagesAndServices()
 
-  if (updatedPackages.length === 0) {
+  if (updatedPackagesAndServices.length === 0) {
     console.log('nothing to do')
     return
   }
@@ -30,7 +30,7 @@ function handleVersionCommand() {
   // We have work to do, so change branch to a temp one
   exec('git switch --create micromanage-temp')
 
-  const newVersions = versionPackages(updatedPackages)
+  const newVersions = versionPackagesAndServices(updatedPackagesAndServices)
 
   // Ensure lock file remains up-to-date
   exec('npm install')
@@ -62,11 +62,11 @@ function handleVersionCommand() {
   exec('git branch -D micromanage-temp')
 }
 
-function getUpdatedPackages() {
+function getUpdatedPackagesAndServices() {
   const allTags = getTags()
 
-  // Find all workspace packages with updates since their latest tag
-  return getPackages().filter((pkg) => {
+  // Find all workspace packages/services with updates since their latest tag
+  const updatedPackagesAndServices = getPackages().filter((pkg) => {
     const tags = allTags.filter((tag) => {
       const tagPackageName = tag.substring(0, tag.lastIndexOf('@'))
       return tagPackageName === pkg.name
@@ -83,9 +83,27 @@ function getUpdatedPackages() {
       return false
     }
   })
+
+  // If the list of updates contains any "packages", mark all "services" as needing an update too
+  const isAnyPackageUpdated = updatedPackagesAndServices.find((pkg) => {
+    return pkg.path.startsWith('packages/')
+  })
+
+  if (isAnyPackageUpdated) {
+    getPackages()
+      // Filter out packages/services already included in the list
+      .filter((pkg) => !updatedPackagesAndServices.find((updated) => updated.name === pkg.name))
+      // Filter out packages that are not "services"
+      .filter((pkg) => pkg.path.startsWith('services/'))
+      .forEach((updatedService) => {
+        updatedPackagesAndServices.push(updatedService)
+      })
+  }
+
+  return updatedPackagesAndServices
 }
 
-function versionPackages(updatedPackages) {
+function versionPackagesAndServices(updatedPackages) {
   return updatedPackages.map((pkg) => {
     // Create the new version and changelog
     const versionOutput = exec(

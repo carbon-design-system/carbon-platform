@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { Column, Grid, Layer, Search, Theme } from '@carbon/react'
 
 import CatalogMultiselectFilter from '@/components/catalog-multislect-filter'

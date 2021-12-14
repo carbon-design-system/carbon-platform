@@ -1,7 +1,7 @@
 {
-  "name": "@carbon-platform/logging",
-  "description": "Carbon platform logging utilities",
-  "version": "0.1.19",
+  "name": "@carbon-platform/run-mode",
+  "description": "Utility to determine the environment in which code is running",
+  "version": "1.0.0",
   "main": "dist/main/index.js",
   "types": "dist/main/index.d.ts",
   "license": "Apache-2.0",
@@ -20,11 +20,6 @@
     "build": "tsc",
     "package:build": "npm run build",
     "test": "jest --config=../../.jestrc.workspace.js"
-  },
-  "dependencies": {
-    "@carbon-platform/run-mode": "1.0.0",
-    "logform": "^2.3.0",
-    "winston": "^3.3.3"
   },
   "devDependencies": {
     "typescript": "^4.4.4"

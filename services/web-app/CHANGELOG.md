@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.24](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.23...@carbon-platform/web-app@0.1.24) (2021-12-14)
+
+
+### Features
+
+* upgrade carbon react to 0.11.0 ([74215b6](https://github.com/carbon-design-system/carbon-platform/commit/74215b6b2bb9a512928d048a22c6719db85ccd53))
+
+### [0.1.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.22...@carbon-platform/web-app@0.1.23) (2021-12-13)
+
+### [0.1.22](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.21...@carbon-platform/web-app@0.1.22) (2021-12-10)
+
 ### [0.1.21](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.20...@carbon-platform/web-app@0.1.21) (2021-12-09)
 
 

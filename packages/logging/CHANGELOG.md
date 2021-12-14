@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.19](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@0.1.18...@carbon-platform/logging@0.1.19) (2021-12-13)
+
+
+### Features
+
+* **run-mode:** add run-mode package ([8661037](https://github.com/carbon-design-system/carbon-platform/commit/86610370d6637a40ed76b72f1c54749568f62093))
+
 ### [0.1.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@0.1.17...@carbon-platform/logging@0.1.18) (2021-11-18)
 
 ### [0.1.17](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@0.1.16...@carbon-platform/logging@0.1.17) (2021-11-16)

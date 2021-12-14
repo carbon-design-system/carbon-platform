@@ -2,12 +2,12 @@
   "name": "carbon-platform-monorepo",
   "version": "0.0.0",
   "description": "Carbon platform monorepo",
+  "license": "Apache-2.0",
   "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
   },
-  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
@@ -17,9 +17,8 @@
     "npm": "8"
   },
   "workspaces": [
-    "packages/run-mode",
+    "packages/api",
     "packages/icons",
-    "packages/logging",
     "services/logging-service",
     "services/web-app"
   ],

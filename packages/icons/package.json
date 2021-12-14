@@ -5,6 +5,7 @@
   "module": "dist/main/tsx-generated/index.js",
   "types": "dist/main/tsx-generated/index.d.ts",
   "license": "Apache-2.0",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/carbon-design-system/carbon-platform.git"

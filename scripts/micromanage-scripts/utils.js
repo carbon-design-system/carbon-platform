@@ -22,10 +22,13 @@ function buildCurlUrlParams(params) {
  * @param {object} options Additional options provided to execSync
  * @returns {string} Output of the command.
  */
-function exec(cmd, options) {
-  const execOptions = options
-    ? { env: { ...process.env }, ...options }
-    : { env: { ...process.env } }
+function exec(cmd, options = {}) {
+  const execOptions = {
+    env: {
+      ...process.env
+    },
+    ...options
+  }
   return execSync(cmd, execOptions).toString().trim()
 }
 

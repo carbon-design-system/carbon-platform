@@ -4,9 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { getRunMode } from '@carbon-platform/run-mode'
 import { Logger } from 'winston'
 
+import { getRunMode } from '../run-mode'
 import { getWinstonLogger } from './winston-utils'
 
 class Logging {

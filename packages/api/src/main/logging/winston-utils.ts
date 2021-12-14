@@ -4,9 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { DEV, RunMode } from '@carbon-platform/run-mode'
 import { format } from 'logform'
 import { createLogger, Logger, transports } from 'winston'
+
+import { DEV, RunMode } from '../run-mode'
 
 const consoleFormat = format.combine(
   format.colorize(),

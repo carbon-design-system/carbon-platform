@@ -43,7 +43,7 @@ function handleVersionCommand() {
 
   // Commit the results as a single commit with an appropriate commit message
   exec(
-    "sed 's/Squashed commit of the following:/chore(release): new service versions/' " +
+    "sed 's/Squashed commit of the following:/chore(release): new package and service versions/' " +
       '.git/SQUASH_MSG | git commit -F -'
   )
 
@@ -66,7 +66,7 @@ function getUpdatedPackages() {
   const allTags = getTags()
 
   // Find all workspace packages with updates since their latest tag
-  const updatedPackages = getPackages().filter((pkg) => {
+  return getPackages().filter((pkg) => {
     const tags = allTags.filter((tag) => {
       const tagPackageName = tag.substring(0, tag.lastIndexOf('@'))
       return tagPackageName === pkg.name
@@ -83,32 +83,6 @@ function getUpdatedPackages() {
       return false
     }
   })
-
-  // For each workspace package, check if it depends on any of the updated packages
-  getPackages().forEach((packageToCheck) => {
-    // Avoid adding duplicates to the updatedPackages list
-    if (updatedPackages.find((updated) => updated.name === packageToCheck.name)) {
-      return
-    }
-
-    // Check packageToCheck against each updated, non-private package
-    updatedPackages
-      .filter((pkg) => !pkg.private)
-      .filter((pkg) => pkg.name !== packageToCheck.name)
-      .forEach((updatedPackage) => {
-        if (
-          (packageToCheck.dependencies && updatedPackage.name in packageToCheck.dependencies) ||
-          (packageToCheck.devDependencies && updatedPackage.name in packageToCheck.devDependencies)
-        ) {
-          console.log(
-            `*** ${packageToCheck.name} is updating because it depends on ${updatedPackage.name}`
-          )
-          updatedPackages.push(packageToCheck)
-        }
-      })
-  })
-
-  return updatedPackages
 }
 
 function versionPackages(updatedPackages) {
@@ -123,35 +97,7 @@ function versionPackages(updatedPackages) {
 
     console.log(`new version created: ${newTag}`)
 
-    // Update versions in all dependent packages if the updated package is public
-    if (!pkg.private) {
-      updateDeps(pkg, newVersion)
-    }
-
     return newTag
-  })
-}
-
-function updateDeps(updatedPackage, newVersion) {
-  console.log(`Updating local package dependencies on ${updatedPackage.name}`)
-
-  getPackages().forEach((pkg) => {
-    const dependencyBlocks = []
-
-    // Come up with a list of dep blocks that need updating
-    if (pkg.dependencies && updatedPackage.name in pkg.dependencies) {
-      dependencyBlocks.push('dependencies')
-    }
-    if (pkg.devDependencies && updatedPackage.name in pkg.devDependencies) {
-      dependencyBlocks.push('devDependencies')
-    }
-
-    dependencyBlocks.forEach((dependencyBlock) => {
-      console.log(`Updating ${pkg.name}'s local ${dependencyBlock} on ${updatedPackage.name}`)
-      exec(
-        `npm --workspace ${pkg.path} pkg set "${dependencyBlock}.${updatedPackage.name}=${newVersion}"`
-      )
-    })
   })
 }
 

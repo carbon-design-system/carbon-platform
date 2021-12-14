@@ -68,7 +68,7 @@ $ npm --workspace <workspace_path> install [--save-dev] some-node-package-name@l
 Here's a full example of installing the `immer` package into the `@carbon-platform/logging` package:
 
 ```
-$ npm --workspace packages/logging install immer
+$ npm --workspace services/logging install immer
 ```
 
 Removing dependencies works the same way with the `npm uninstall` command.

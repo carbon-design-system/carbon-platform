@@ -30,11 +30,11 @@
 }
 
 .grid {
-  background: $background;
+  background: $layer-01;
 }
 
 .column {
-  background: $background;
+  background: $layer-01;
 
   &:not(:last-child) {
     @include breakpoint(lg) {
@@ -77,6 +77,18 @@
   :global(.cds--list-box__field),
   :global(.cds--list-box__menu) {
     max-width: none;
+  }
+}
+
+.button {
+  // override carbon because `lg` isn't supported
+  width: $spacing-09;
+  height: $spacing-09;
+
+  // override icon alignment because the IconButton only supports `sm` size currently
+  &:global(.cds--btn--sm) {
+    padding-right: 14px;
+    padding-left: 14px;
   }
 }
 

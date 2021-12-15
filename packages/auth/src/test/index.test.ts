@@ -4,6 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { DEV, PRODUCTION } from '@carbon-platform/run-mode'
+
 import { getPassportInstance, SESSION_SECRET, store } from '../main/index'
 const signature = require('cookie-signature')
 
@@ -34,28 +36,18 @@ test('attempt to get store on production mode without env variables throws error
   const oldRunMode = process.env.CARBON_RUN_MODE
   process.env.CARBON_MONGO_DB_URL = ''
   process.env.CARBON_MONGO_DB_NAME = ''
-  process.env.CARBON_RUN_MODE = 'production'
+  process.env.CARBON_RUN_MODE = PRODUCTION
   await expect(() => store.getStore()).rejects.toThrow()
   process.env.CARBON_RUN_MODE = oldRunMode
   process.env.CARBON_MONGO_DB_URL = oldMongoDbUrl
   process.env.CARBON_MONGO_DB_NAME = oldMongoDbName
 })
 
-test('attempt to get store on dev mode without env variables throws error', async () => {
+test('store instance can be retrieved without crashing in DEV mode', async () => {
   const oldRunMode = process.env.CARBON_RUN_MODE
-  const oldLocalDbDirectory = process.env.CARBON_LOCAL_DB_DIRECTORY
-  process.env.CARBON_LOCAL_DB_DIRECTORY = ''
-  process.env.CARBON_RUN_MODE = 'development'
-  await expect(() => store.getStore()).rejects.toThrow()
-  process.env.CARBON_RUN_MODE = oldRunMode
-  process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
-})
-
-test('store instance can be retrieved without crashing', async () => {
-  const oldLocalDbDirectory = process.env.CARBON_LOCAL_DB_DIRECTORY
-  process.env.CARBON_LOCAL_DB_DIRECTORY = 'MOCK_DIRECTORY'
+  process.env.CARBON_RUN_MODE = DEV
   await expect(store.getStore()).resolves.toBeDefined()
-  process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
+  process.env.CARBON_RUN_MODE = oldRunMode
 })
 
 test('retrieve user session by cookie retrieves correct object', async () => {

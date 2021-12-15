@@ -186,19 +186,30 @@
 :global(.cds--menu--open) {
   display: flex;
   flex-direction: column;
-  padding: $spacing-04;
+  padding: $spacing-02 $spacing-05 $spacing-02 $spacing-05;
   background: $background;
 }
 
 .overflow-tag {
   display: flex;
-  flex-direction: row;
-  padding-bottom: $spacing-04;
-  justify-content: space-between;
-  border-radius: 0;
-  background: $background;
-  border-bottom: 1px solid $border-subtle;
   width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: $spacing-04 0 $spacing-04 0;
+  border-top: 1px solid $border-subtle;
+  background: $background;
+  border-radius: 0;
+
+  color: var(--cds-tag-color-gray, #393939);
+  @include type-style('label-01');
+}
+
+.overflow-tag:first-child {
+  border-top: none;
+}
+
+.close-icon {
+  cursor: pointer;
 }
 
 .selected-tags-container {

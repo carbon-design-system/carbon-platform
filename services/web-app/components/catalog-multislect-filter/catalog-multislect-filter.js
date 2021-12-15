@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /*
  * Copyright IBM Corp. 2021, 2021
  *
@@ -5,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, OverflowMenu, Popover, PopoverContent, Tag } from '@carbon/react'
-import { ChevronDown, ChevronUp, Filter, OverflowMenuHorizontal } from '@carbon/react/icons'
+import { ChevronDown, ChevronUp, Close, Filter, OverflowMenuHorizontal } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 
@@ -20,14 +21,13 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
   const [triggerOverflow, setTriggerOverflow] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [height, setHeight] = useState(0)
-  const isSm = useMatchMedia(mediaQueries.sm)
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
 
   useEffect(() => {
     window.addEventListener('scroll', listenToScroll)
     return () => window.removeEventListener('scroll', listenToScroll)
-  }, [])
+  })
 
   const listenToScroll = () => {
     const heightToHideFrom = 100
@@ -172,16 +172,15 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
     : null
 
   const overflowTags = activeSelected.slice(numVisible).map((item, i) => (
-      <Tag
+      <div
         className={styles.overflowTag}
         key={i}
-        filter
-        onClick={() => {
-          handleRemoveItem(item)
-        }}
       >
         {item}
-      </Tag>
+      <Close className={styles.closeIcon} size={16} onClick={() => {
+        handleRemoveItem(item)
+      }}/>
+      </div>
   ))
 
   const selectedTags = activeSelected.length
@@ -248,11 +247,8 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
                   )}
             </div>
               )
-            : isSm
-              ? (
-            <Filter size={16} ref={ref} />
-                )
-              : null}
+            : <Filter size={16} ref={ref} />
+          }
         </Popover>
       </Column>
       {triggerMultiselect

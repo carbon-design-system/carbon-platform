@@ -7,6 +7,7 @@
 import { InlineNotification } from '@carbon/react'
 import { useEffect, useState } from 'react'
 
+import CatalogFilters from '@/components/catalog-filters'
 import CatalogList from '@/components/catalog-list'
 import CatalogPagination from '@/components/catalog-pagination'
 import CatalogResults from '@/components/catalog-results'
@@ -17,6 +18,9 @@ import { queryTypes, useQueryState } from '@/utils/use-query-state'
 
 import styles from './catalog.module.scss'
 
+/**
+ * @todo filter query state
+ */
 function Catalog({ data, type = 'component' }) {
   const [query, setQuery] = useQueryState('q', {
     defaultValue: ''
@@ -96,6 +100,7 @@ function Catalog({ data, type = 'component' }) {
         filters to explore, you may reset them easily.
       </InlineNotification>
       <CatalogSearch search={search} onSearch={handleSearch} onSelect={handleSelect} />
+      <CatalogFilters />
       <CatalogResults assets={renderAssets} />
       <CatalogSort onSort={setSort} onView={setView} sort={sort} view={view} />
       <CatalogList assets={renderAssets} isGrid={view === 'grid'} page={page} pageSize={pageSize} />

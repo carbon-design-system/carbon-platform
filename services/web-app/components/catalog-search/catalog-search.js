@@ -6,6 +6,7 @@
  */
 
 import { Column, Grid, Search } from '@carbon/react'
+import clsx from 'clsx'
 
 import CatalogMultiselectFilter from '@/components/catalog-multislect-filter'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
@@ -29,7 +30,7 @@ const CatalogSearch = ({ search = '', onSearch, onSelect }) => {
 
   return (
     <Grid className={styles.container} condensed={!isMd} narrow={isMd}>
-      <Column className={styles.column} sm={3} md={4} lg={8}>
+      <Column className={clsx(styles.column, styles.columnSearch)} sm={4} md={4} lg={8}>
         <Search
           id="catalog-search"
           labelText="Search component index by name, keyword, or domain"
@@ -40,8 +41,13 @@ const CatalogSearch = ({ search = '', onSearch, onSelect }) => {
           onClear={handleOnClear}
           size="lg"
         />
+        {!isMd && <CatalogMultiselectFilter className={styles.filter} onSelect={onSelect} />}
       </Column>
-      <CatalogMultiselectFilter onSelect={onSelect} />
+      {isMd && (
+        <Column className={styles.column} md={4} lg={4}>
+          <CatalogMultiselectFilter onSelect={onSelect} />
+        </Column>
+      )}
     </Grid>
   )
 }

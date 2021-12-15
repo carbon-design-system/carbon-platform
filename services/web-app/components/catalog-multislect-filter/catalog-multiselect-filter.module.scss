@@ -6,221 +6,98 @@
 //
 
 .container {
-  @include breakpoint-down(md) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  width: 100%;
+  background: $background;
 
+  // override carbon, for some reason the label is sitting high, might be v11 bug
+  :global(.cds--tag__label) {
+    line-height: $spacing-05;
+  }
+}
+
+.trigger {
+  position: relative;
   width: 100%;
   height: $spacing-09;
-  border: none;
-  border-left: 1px solid $border-subtle;
-  background: $background;
-  box-shadow: inset 0 -1px 0 $border-strong;
+  padding: 0 $spacing-04;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid $border-strong;
+  border-left: 0;
+  background-color: $field;
   color: $text-primary;
   cursor: pointer;
+  transition: background-color $fast-01 carbon--motion(standard, productive),
+    outline $fast-01 carbon--motion(standard, productive);
   @include type-style('body-short-01');
+  @include breakpoint(md) {
+    padding: 0 $spacing-05;
+  }
 
+  &:focus,
   &:active {
     outline: 2px solid $focus;
     outline-offset: -2px;
   }
 
   &:hover {
-    background-color: $border-subtle;
+    background-color: $layer-hover;
   }
 }
 
-.tag-count {
-  background-color: $icon-primary;
-  color: $background;
-}
-
-.tag-count :global(.cds--tag__close-icon) {
-  &:hover {
-    background-color: var(--cds-tag-color-gray, #393939);
-  }
-}
-
-.multiselect {
+.trigger-inner {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: $spacing-03 $spacing-04 0 $spacing-04;
-  color: $text-primary;
-  @include type-style('body-short-01');
-}
-
-.chevron {
-  margin-left: auto;
-}
-
-.dropdown-container {
-  display: flex;
-  flex-flow: row wrap;
-  padding: 0 0 $spacing-06 0;
-  background: $background;
-}
-
-//overide carbon popover styles
-.dropdown-container:global(.cds--popover-content) {
   width: 100%;
-  max-width: none;
-  margin-top: $spacing-09;
-}
-
-.dropdown {
-  padding: $spacing-05;
-  border-left: 1px solid $border-subtle;
-
+  align-items: center;
+  justify-content: center;
   @include breakpoint(md) {
-    width: 50%;
-    &:nth-child(1) {
-      border-left: none;
-    }
-
-    &:nth-child(3) {
-      border-left: none;
-    }
-
-    &:nth-child(5) {
-      border-left: none;
-    }
-  }
-
-  @include breakpoint(lg) {
-    width: percentage(1 / 3);
-    &:nth-child(1) {
-      border-left: none;
-    }
-
-    &:nth-child(3) {
-      border-left: 1px solid $border-subtle;
-    }
-
-    &:nth-child(4) {
-      border-left: none;
-    }
-
-    &:nth-child(5) {
-      border-left: 1px solid $border-subtle;
-    }
+    justify-content: space-between;
   }
 }
 
-.fitler-title {
-  padding-bottom: $spacing-05;
-  color: $text-secondary;
-  @include type-style('body-short-01');
+.trigger-text {
+  flex-grow: 1;
+  text-align: left;
 }
 
-.filter-tag {
-  display: inline-flex;
-  height: 24px;
-  align-items: center;
-  padding-right: $spacing-03;
-  padding-left: $spacing-03;
-  margin: $spacing-02;
-  background-color: $border-subtle;
-  border-radius: 12px;
-  color: $icon-primary;
-  @include type-style('label-01');
-
-  cursor: pointer;
-}
-
-// override carbon tag styles
 .tag {
-  padding-top: 3px;
-  border: none;
-  margin-left: 0;
+  margin-right: $spacing-03;
+}
 
-  &:hover {
-    background-color: var(--cds-tag-hover-gray, #c6c6c6);
-    color: var(--cds-tag-color-gray, #393939);
-    cursor: pointer;
+.icon {
+  fill: $icon-primary;
+  transition: transform $fast-01 carbon--motion(standard, productive);
+
+  &--rotate {
+    transform: rotate(180deg);
   }
 }
 
-.tag-selected {
-  padding-top: 3px;
-  border: none;
-  margin-left: 0;
-  background-color: var(--cds-tag-color-gray, #393939);
-  color: $background;
+.count {
+  position: absolute;
+  top: $spacing-01;
+  right: $spacing-01;
+  display: inline-block;
+  min-width: $spacing-05 + $spacing-02;
+  padding-right: $spacing-02;
+  padding-left: $spacing-02;
+  border: $spacing-01 solid $text-inverse;
+  background: $border-inverse;
+  border-radius: $spacing-09;
+  color: $text-inverse;
   @include type-style('label-01');
+
+  // override type scale
+  line-height: $spacing-05;
 }
 
-.overflow-tag-container {
-  display: inline-flex;
-  height: 24px;
-  align-items: center;
-  padding-left: $spacing-03;
-  margin: $spacing-02 $spacing-02 $spacing-02 0;
-  background-color: $border-subtle;
-  border-radius: 12px;
-  color: var(--cds-tag-color-gray, #393939);
-  @include type-style('label-01');
-
-  :global(.cds--overflow-menu) {
-    display: inline-flex;
-    width: 24px;
-    height: 24px;
-    align-items: center;
-    background-color: transparent;
-    border-radius: 14px;
-    color: var(--cds-tag-color-gray, #393939);
-    @include type-style('label-01');
-
-    &:hover {
-      background-color: var(--cds-tag-hover-gray, #c6c6c6);
-    }
-
-    &:active {
-      border: 1px solid $focus;
-    }
+.content {
+  width: 100vw;
+  max-width: none;
+  @include breakpoint(md) {
+    width: calc(200% + #{calc($spacing-05 + 2px)});
   }
-}
-
-:global(.cds--menu--open) {
-  display: flex;
-  flex-direction: column;
-  padding: $spacing-02 $spacing-05 $spacing-02 $spacing-05;
-  background: $background;
-}
-
-.overflow-tag {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: $spacing-04 0 $spacing-04 0;
-  border-top: 1px solid $border-subtle;
-  background: $background;
-  border-radius: 0;
-
-  color: var(--cds-tag-color-gray, #393939);
-  @include type-style('label-01');
-}
-
-.overflow-tag:first-child {
-  border-top: none;
-}
-
-.close-icon {
-  cursor: pointer;
-}
-
-.selected-tags-container {
-  display: flex;
-  height: $spacing-09;
-  align-items: center;
-  padding: 0 $spacing-04 0 $spacing-04;
-  border-bottom: none;
-  background-color: $background;
-}
-
-.hidden {
-  display: none;
+  @include breakpoint(lg) {
+    width: calc(300% + #{calc(($spacing-05 * 2) + 3px)});
+  }
 }

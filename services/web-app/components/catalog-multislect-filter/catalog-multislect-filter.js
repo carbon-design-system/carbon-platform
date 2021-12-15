@@ -4,12 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, OverflowMenu, OverflowMenuItem, Tag } from '@carbon/react'
+import { Column, OverflowMenu, Popover, PopoverContent, Tag } from '@carbon/react'
 import { ChevronDown, ChevronUp, Filter, OverflowMenuHorizontal } from '@carbon/react/icons'
 import clsx from 'clsx'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-import { mediaQueries, useMatchMedia } from '@/utils/media-query'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import { useOutsideClick } from '@/utils/use-outside-click'
 
 import styles from './catalog-multiselect-filter.module.scss'
@@ -18,9 +18,38 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
   const [activeSelected, setActiveSelected] = useState([])
   const [triggerMultiselect, setTriggerMultiselect] = useState(false)
   const [triggerOverflow, setTriggerOverflow] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [height, setHeight] = useState(0)
   const isSm = useMatchMedia(mediaQueries.sm)
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
+
+  useEffect(() => {
+    window.addEventListener('scroll', listenToScroll)
+    return () => window.removeEventListener('scroll', listenToScroll)
+  }, [])
+
+  const listenToScroll = () => {
+    const heightToHideFrom = 100
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop
+    setHeight(winScroll)
+
+    if (winScroll > heightToHideFrom) {
+      isVisible && setIsVisible(false)
+    } else {
+      setIsVisible(true)
+    }
+  }
+
+  let numVisible
+
+  if (isLg) {
+    numVisible = 9
+  } else if (isMd) {
+    numVisible = 4
+  } else {
+    numVisible = 2
+  }
 
   const ref = useRef()
 
@@ -142,117 +171,66 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
     ))
     : null
 
-  const selectedTag =
-    activeSelected.length && isLg
-      ? (
-      <>
-        {activeSelected.slice(0, 9).map((item, i) => (
-          <Tag
-            key={i}
-            filter
+  const overflowTags = activeSelected.slice(numVisible).map((item, i) => (
+      <Tag
+        className={styles.overflowTag}
+        key={i}
+        filter
+        onClick={() => {
+          handleRemoveItem(item)
+        }}
+      >
+        {item}
+      </Tag>
+  ))
+
+  const selectedTags = activeSelected.length
+    ? (
+    <>
+      {activeSelected.slice(0, numVisible).map((item, i) => (
+        <Tag
+          key={i}
+          filter
+          onClick={() => {
+            handleRemoveItem(item)
+          }}
+        >
+          {item}
+        </Tag>
+      ))}
+      {activeSelected.length > numVisible && (
+        <div title={activeSelected.length - numVisible + ' more'} className={styles.overflowTagContainer}>
+          {activeSelected.length - numVisible + ' more'}
+          <OverflowMenu
+            flipped
+            renderIcon={OverflowMenuHorizontal}
             onClick={() => {
-              handleRemoveItem(item)
+              setTriggerOverflow(!triggerOverflow)
             }}
+            className={clsx(styles.overflowSvg, !isVisible ? styles.hidden : null)}
           >
-            {item}
-          </Tag>
-        ))}
-        {activeSelected.length > 9 && (
-          <div title={activeSelected.length - 9 + ' more'} className={styles.overflowTag}>
-            <div className={styles.overflowTagText}>{activeSelected.length - 9 + ' more'}</div>
-            <OverflowMenu
-              renderIcon={OverflowMenuHorizontal}
-              onClick={() => {
-                setTriggerOverflow(!triggerOverflow)
-              }}
-              className={styles.overflowSvg}
-            >
-              <OverflowMenuItem itemText="Filter A" />
-              <OverflowMenuItem itemText="Filter B" />
-            </OverflowMenu>
-          </div>
-        )}
-      </>
-        )
-      : isMd
-        ? (
-      <>
-        {activeSelected.slice(0, 4).map((item, i) => (
-          <Tag
-            key={i}
-            filter
-            onClick={() => {
-              handleRemoveItem(item)
-            }}
-          >
-            {item}
-          </Tag>
-        ))}
-        {activeSelected.length > 4 && (
-          <div title={activeSelected.length - 4 + ' more'} className={styles.overflowTag}>
-            <div className={styles.overflowTagText}>{activeSelected.length - 4 + ' more'}</div>
-            <OverflowMenu
-              renderIcon={OverflowMenuHorizontal}
-              onClick={() => {
-                setTriggerOverflow(!triggerOverflow)
-              }}
-              className={styles.overflowSvg}
-            >
-              <OverflowMenuItem itemText="Filter A" />
-              <OverflowMenuItem itemText="Filter B" />
-            </OverflowMenu>
-          </div>
-        )}
-      </>
-          )
-        : isSm
-          ? (
-      <>
-        {activeSelected.slice(0, 2).map((item, i) => (
-          <Tag
-            key={i}
-            filter
-            onClick={() => {
-              handleRemoveItem(item)
-            }}
-          >
-            {item}
-          </Tag>
-        ))}
-        {activeSelected.length > 2 && (
-          <div title={activeSelected.length - 2 + ' more'} className={styles.overflowTag}>
-            <div className={styles.overflowTagText}>{activeSelected.length - 2 + ' more'}</div>
-            <OverflowMenu
-              renderIcon={OverflowMenuHorizontal}
-              onClick={() => {
-                setTriggerOverflow(!triggerOverflow)
-              }}
-              className={styles.overflowSvg}
-            >
-              <OverflowMenuItem itemText="Filter A" />
-              <OverflowMenuItem itemText="Filter B" />
-            </OverflowMenu>
-          </div>
-        )}
-      </>
-            )
-          : null
+            {overflowTags}
+          </OverflowMenu>
+        </div>
+      )}
+    </>
+      )
+    : null
 
   return (
     <>
       <Column sm={1} md={4} lg={4}>
-        <button
-          type="button"
+        <Popover
+          className={styles.container}
           onClick={() => {
             setTriggerMultiselect(!triggerMultiselect)
           }}
-          className={styles.container}
         >
           {isMd || isLg
             ? (
             <div className={styles.multiselect} ref={ref}>
               <Tag
-                className={styles.filterCount}
+                className={styles.tagCount}
                 filter
                 onClick={() => {
                   handleRemoveAll()
@@ -275,22 +253,23 @@ const CatalogMultiselectFilter = ({ onSelect }) => {
             <Filter size={16} ref={ref} />
                 )
               : null}
-        </button>
+        </Popover>
       </Column>
-      <Column className={styles.column} sm={4} md={8} lg={12}>
-        {triggerMultiselect
-          ? (
-          <div ref={ref} className={styles.dropdownContainer}>
+      {triggerMultiselect
+        ? (
+        <Column sm={4} md={8} lg={12}>
+          <PopoverContent ref={ref} className={styles.dropdownContainer}>
             {filterTag}
-          </div>
-            )
-          : (
-          <Column className={styles.column} sm={0} md={8} lg={12}>
-            <div className={styles.selectedTagContainer}>{selectedTag}</div>{' '}
-          </Column>
-            )}
-        {triggerOverflow ? <div className={styles.placeholderOverflow}>{'hi'}</div> : null}
-      </Column>
+          </PopoverContent>
+        </Column>
+          )
+        : (
+        <Column sm={0} md={8} lg={12}>
+          <div className={clsx(styles.selectedTagsContainer, !isVisible ? styles.hidden : null)}>
+            {selectedTags}
+          </div>{' '}
+        </Column>
+          )}
     </>
   )
 }

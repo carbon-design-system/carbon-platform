@@ -43,7 +43,7 @@ const CatalogSearch = ({ search = '', onSearch, onSelect }) => {
               size="lg"
             />
           </Column>
-          <CatalogMultiselectFilter onSelect={onSelect} />
+            <CatalogMultiselectFilter onSelect={onSelect} />
         </Grid>
       </Layer>
     </Theme>

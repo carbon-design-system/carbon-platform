@@ -1,21 +1,26 @@
-FROM us.icr.io/carbon-platform-test/base:latest
+FROM us.icr.io/carbon-platform-test/base:latest AS builder
 
 # TODO: add args needed during build (e.g. github api key)
 
-WORKDIR /service-root/web-app
+WORKDIR /ibm
 
-COPY package-lock.json .
-COPY services/web-app .
+COPY . services/web-app
 
-RUN npm install
+RUN npm -w services/web-app install --ignore-scripts
+# Next is installed again since the swc native deps are not properly installed above
+# RUN npm -w services/web-app install next
+RUN npm -w services/web-app run build
 
-RUN npm run build
+###
 
-# Install only prod deps
-RUN rm -rf ./node_modules
-RUN npm install --production
+FROM us.icr.io/carbon-platform-test/base:latest
 
-# Cleanup
-# none currently
+WORKDIR /ibm
 
-CMD ["npm", "run", "start"]
+COPY package.json services/web-app/package.json
+RUN npm -w services/web-app install --production --ignore-scripts
+
+# This is done at the end so the install above can happen in parallel
+COPY --from=builder /ibm/services/web-app/.next services/web-app/.next
+
+CMD ["npm", "--workspace=services/web-app", "run", "start"]

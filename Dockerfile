@@ -1,38 +1,30 @@
 FROM node:16-alpine AS builder
 
-WORKDIR /build
-
-RUN mkdir ./packed_node_modules
-RUN mkdir ./local_node_modules
+WORKDIR /ibm
 
 COPY . .
 
-# This will implicitly build all packages
-RUN npm install
-
-# Pack all workspace packages
-RUN for file in packages/* ; do \
-  npm --workspace="$file" pack --pack-destination=./packed_node_modules ; \
-done
+# TODO: test if same behavior without ignore scripts
+RUN npm install --ignore-scripts
+RUN npm run packages:build
 
 ###
 
 FROM node:16-alpine
 
-WORKDIR /service-root
+WORKDIR /ibm
 
-# Init a node project so modules can be installed
-RUN npm init -y
+COPY package.json .
+COPY package-lock.json .
+# TODO: include base tsconfig file
 
-# Install all packed workspace packages
-COPY --from=builder /build/packed_node_modules ./packed_node_modules
-RUN for file in packed_node_modules/*.tgz ; do \
-  npm install ./"$file" ; \
+# This is done at the end so that the install steps above can run in parallel
+COPY --from=builder /ibm/packages packages
+
+RUN npm install --production --ignore-scripts
+RUN npm install --production @types/node
+
+# Cleanup source files
+RUN for file in packages/* ; do \
+  rm -rf "$file/src" ; \
 done
-
-# Install the node types package needed for typescript builds
-RUN npm install @types/node
-
-# Cleanup
-RUN rm -rf ./packed_node_modules
-RUN rm -rf package.json package-lock.json

@@ -1,3 +1,19 @@
+# Files
+/.*.js
+**/.*ignore
+**/.env*
+**/*.md
 Dockerfile
-node_modules
-.env*
+sonar-project.properties
+
+# Dirs
+**/dist/
+**/node_modules/
+**/src/test/
+.github/
+.husky/
+.test-coverage/
+.vscode/
+docs/
+scripts/
+services/

@@ -1,22 +1,22 @@
+FROM us.icr.io/carbon-platform-test/base:latest AS builder
+
+WORKDIR /ibm
+
+COPY . services/logging
+
+RUN npm -w services/logging install --ignore-scripts
+RUN npm -w services/logging run build
+
+###
+
 FROM us.icr.io/carbon-platform-test/base:latest
 
-WORKDIR /service-root/logging
+WORKDIR /ibm
 
-COPY package-lock.json .
-COPY services/logging/package.json .
-# TODO: copy base tsconfig from which this inherits
-COPY services/logging/tsconfig.json .
-COPY services/logging/src src
+COPY package.json services/logging/package.json
+RUN npm -w services/logging install --production --ignore-scripts
 
-RUN npm install
+# This is done at the end so the install above can happen in parallel
+COPY --from=builder /ibm/services/logging/dist services/logging/dist
 
-RUN npm run build
-
-# Install only prod deps
-RUN rm -rf ./node_modules
-RUN npm install --production
-
-# Cleanup
-RUN rm -rf src tsconfig.json
-
-CMD ["npm", "run", "start"]
+CMD ["npm", "--workspace=services/logging", "run", "start"]

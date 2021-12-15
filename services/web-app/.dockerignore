@@ -1,5 +1,6 @@
 Dockerfile
-node_modules
+.dockerignore
+node_modules/
 .env*
-.carbon
-.next
+.carbon/
+.next/

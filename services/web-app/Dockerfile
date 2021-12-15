@@ -1,4 +1,4 @@
-FROM us.icr.io/carbon-platform-test/base:latest AS builder
+FROM local/carbon-platform/base:latest AS builder
 
 # TODO: add args needed during build (e.g. github api key)
 
@@ -13,7 +13,7 @@ RUN npm -w services/web-app run build
 
 ###
 
-FROM us.icr.io/carbon-platform-test/base:latest
+FROM local/carbon-platform/base:latest
 
 WORKDIR /ibm
 

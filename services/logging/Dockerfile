@@ -1,4 +1,4 @@
-FROM us.icr.io/carbon-platform-test/base:latest AS builder
+FROM local/carbon-platform/base:latest AS builder
 
 WORKDIR /ibm
 
@@ -9,7 +9,7 @@ RUN npm -w services/logging run build
 
 ###
 
-FROM us.icr.io/carbon-platform-test/base:latest
+FROM local/carbon-platform/base:latest
 
 WORKDIR /ibm
 

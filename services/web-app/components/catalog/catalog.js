@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { InlineNotification } from '@carbon/react'
+import { remove } from 'lodash'
 import { useEffect, useState } from 'react'
 
 import CatalogFilters from '@/components/catalog-filters'
@@ -18,9 +19,6 @@ import { queryTypes, useQueryState } from '@/utils/use-query-state'
 
 import styles from './catalog.module.scss'
 
-/**
- * @todo filter query state
- */
 function Catalog({ data, type = 'component' }) {
   const [query, setQuery] = useQueryState('q', {
     defaultValue: ''
@@ -46,6 +44,11 @@ function Catalog({ data, type = 'component' }) {
   const [pageSize, setPageSize] = useQueryState('items', {
     ...queryTypes.integer,
     defaultValue: 12
+  })
+
+  const [filter, setFilter] = useQueryState('filter', {
+    ...queryTypes.object,
+    defaultValue: { sponsor: ['carbon'], status: ['stable'], framework: ['react'] }
   })
 
   const [libraries] = useState(
@@ -81,8 +84,28 @@ function Catalog({ data, type = 'component' }) {
     )
   }, [assets, sort, search])
 
-  const handleSelect = (activeSelected) => {
-    console.log('Selected here:', activeSelected)
+  const handleFilter = (item, key, action = 'add') => {
+    const updatedFilter = Object.assign({}, filter)
+
+    if (action === 'add') {
+      if (!updatedFilter[item]) {
+        updatedFilter[item] = [key]
+      } else {
+        updatedFilter[item].push(key)
+      }
+    }
+
+    if (action === 'remove') {
+      if (updatedFilter[item]) {
+        updatedFilter[item] = remove(updatedFilter[item], key)
+
+        if (!updatedFilter[item].length) {
+          delete updatedFilter[item]
+        }
+      }
+    }
+
+    setFilter(updatedFilter)
   }
 
   const handleSearch = (newValue, saveQuery) => {
@@ -99,8 +122,8 @@ function Catalog({ data, type = 'component' }) {
         Default filters have been pre-selected based on commonly used components. If you clear
         filters to explore, you may reset them easily.
       </InlineNotification>
-      <CatalogSearch search={search} onSearch={handleSearch} onSelect={handleSelect} />
-      <CatalogFilters />
+      <CatalogSearch search={search} onSearch={handleSearch} onFilter={handleFilter} />
+      <CatalogFilters filter={filter} onFilter={handleFilter} />
       <CatalogResults assets={renderAssets} />
       <CatalogSort onSort={setSort} onView={setView} sort={sort} view={view} />
       <CatalogList assets={renderAssets} isGrid={view === 'grid'} page={page} pageSize={pageSize} />

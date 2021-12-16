@@ -6,27 +6,33 @@
  */
 
 import { Column, Grid, Tag } from '@carbon/react'
+import { isEmpty } from 'lodash'
+
+import { filters } from '@/data/filters'
 
 import styles from './catalog-filters.module.scss'
 
 /**
- * @todo (1) events, (2) show overflow, (3) overflow popup
+ * @todo (1) show overflow, (2) overflow popup
  */
-const CatalogFilters = () => {
-  const handleRemoveItem = (item) => {
-    console.log(item)
+const CatalogFilters = ({ filter, onFilter }) => {
+  if (isEmpty(filter)) return null
+
+  const handleRemoveItem = (item, key) => {
+    onFilter(item, key, 'remove')
   }
 
   return (
     <Grid className={styles.container} narrow>
       <Column sm={4} md={8} lg={12}>
         <div className={styles.section}>
-          <Tag filter onClick={() => handleRemoveItem('todo')}>
-            To do
-          </Tag>
-          <Tag filter onClick={() => handleRemoveItem('todo')}>
-            To do
-          </Tag>
+          {Object.keys(filter).map((item) =>
+            filter[item].map((key, i) => (
+              <Tag key={i} filter onClick={() => handleRemoveItem(item, key)}>
+                {filters[item].values[key].name}
+              </Tag>
+            ))
+          )}
         </div>
       </Column>
     </Grid>

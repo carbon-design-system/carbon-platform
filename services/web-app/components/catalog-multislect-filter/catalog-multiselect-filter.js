@@ -18,9 +18,9 @@ import styles from './catalog-multiselect-filter.module.scss'
 
 /**
  * @todo (1) close popover on escape key, (2) events, (3) small breakpoint, clicking the icon
- * doesn't open
+ * doesn't open, (4) move focus to popover on open
  */
-const CatalogMultiselectFilter = ({ className: customClassName, onSelect }) => {
+const CatalogMultiselectFilter = ({ className: customClassName, onFilter }) => {
   const [open, setOpen] = useState(false)
   const [count] = useState(2)
   const isLg = useMatchMedia(mediaQueries.lg)

@@ -38,7 +38,7 @@ const CatalogMultiselectFilter = ({ filter, className: customClassName, onFilter
   if (isLg) columns = 3
 
   const count = Object.keys(filter).reduce((sum, item) => {
-    return (sum += filter[item].length)
+    return sum + filter[item].length
   }, 0)
 
   return (

@@ -8,11 +8,6 @@
 .container {
   width: 100%;
   background: $background;
-
-  // override carbon, for some reason the label is sitting high, might be v11 bug
-  :global(.cds--tag__label) {
-    line-height: $spacing-05;
-  }
 }
 
 .trigger {
@@ -147,5 +142,19 @@
 
   &:first-child {
     border-top: 0;
+  }
+}
+
+.heading {
+  margin-bottom: $spacing-05;
+  color: $text-secondary;
+  @include type-style('body-short-01');
+}
+
+.list {
+  margin: -$spacing-02;
+
+  &-item {
+    display: inline-block;
   }
 }

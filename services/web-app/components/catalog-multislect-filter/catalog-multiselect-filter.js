@@ -10,6 +10,7 @@ import { ChevronDown, Close, Filter } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { useRef, useState } from 'react'
 
+import { filters } from '@/data/filters'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import useOutsideClick from '@/utils/use-outside-click'
 
@@ -84,12 +85,24 @@ const CatalogMultiselectFilter = ({ className: customClassName, onSelect }) => {
       </button>
       <PopoverContent className={styles.content} ref={contentRef}>
         <Grid className={styles.grid} columns={columns}>
-          <Column className={styles.column}>To do</Column>
-          <Column className={styles.column}>To do</Column>
-          <Column className={styles.column}>To do</Column>
-          <Column className={styles.column}>To do</Column>
-          <Column className={styles.column}>To do</Column>
-          <Column className={styles.column}>To do</Column>
+          {Object.keys(filters).map((key, i) => (
+            <Column className={styles.column} key={i}>
+              <h3 className={styles.heading}>{filters[key].name}</h3>
+              <ul className={styles.list}>
+                {Object.keys(filters[key].values).map((itemKey, j) => (
+                  <li className={styles.listItem} key={j}>
+                    <Tag
+                      onClick={() => {
+                        console.log('todo')
+                      }}
+                    >
+                      {filters[key].values[itemKey].name}
+                    </Tag>
+                  </li>
+                ))}
+              </ul>
+            </Column>
+          ))}
         </Grid>
       </PopoverContent>
     </Popover>

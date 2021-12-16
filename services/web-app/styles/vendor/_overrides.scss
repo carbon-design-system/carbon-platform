@@ -8,3 +8,10 @@
 .cds--content {
   margin-top: 3rem;
 }
+
+// v11 bug where interactive tags don't remove border on the button
+// also, the text sits high in v11 so setting a line height fixes that
+.cds--tag {
+  border: 0;
+  line-height: 1rem;
+}

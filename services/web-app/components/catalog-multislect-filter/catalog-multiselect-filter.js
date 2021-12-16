@@ -17,8 +17,7 @@ import useOutsideClick from '@/utils/use-outside-click'
 import styles from './catalog-multiselect-filter.module.scss'
 
 /**
- * @todo (1) close popover on escape key, (2) events, (3) small breakpoint, clicking the icon
- * doesn't open, (4) move focus to popover on open
+ * @todo (1) close popover on escape key, (2) events, (3) move focus to popover on open
  */
 const CatalogMultiselectFilter = ({ className: customClassName, onFilter }) => {
   const [open, setOpen] = useState(false)

@@ -26,8 +26,8 @@ export default function requireSession(needsUser = false) {
         secret: SESSION_SECRET,
         cookie: {
           path: '/',
-          secure: getRunMode() === PRODUCTION
-          // maxAge: 60 * 60 * 2 // 2 hours
+          secure: getRunMode() === PRODUCTION,
+          maxAge: 60 * 60 * 2 * 1000 // 2 hours
         }
       })
     )
@@ -38,7 +38,7 @@ export default function requireSession(needsUser = false) {
         res.status(404)
         res.end('not found')
       } else {
-        next()
+        next?.()
       }
     })
 }

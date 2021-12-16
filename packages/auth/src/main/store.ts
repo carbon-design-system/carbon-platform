@@ -56,22 +56,32 @@ const getStore = () => {
 }
 
 const getUserSessionByKey = async (sessionKey: string) => {
-  return getStore().then((retrievedStore) => {
-    return new Promise((resolve) => {
-      retrievedStore.get(sessionKey, (_: any, session: any) => {
+  const retrievedStore = await getStore()
+  return new Promise((resolve) => {
+    retrievedStore.get(sessionKey, (_: any, session: any) => {
+      if (session?.cookie?.expires) {
+        const sessionExpireDate = new Date(session.cookie.expires)
+        if (sessionExpireDate.getTime() <= Date.now()) {
+          // session is expired
+          retrievedStore.destroy(sessionKey, (err) => {
+            if (err) {
+              console.warn(`could not destroy expired session: ${err}`)
+            }
+            resolve(null)
+          })
+        } else {
+          resolve(session)
+        }
+      } else {
         resolve(session)
-      })
+      }
     })
   })
 }
 
 const getUserBySessionKey = (sessionKey: string) => {
-  return getStore().then((retrievedStore) => {
-    return new Promise((resolve) => {
-      retrievedStore.get(sessionKey, (_: any, session: any) => {
-        resolve(session?.passport?.user)
-      })
-    })
+  return getUserSessionByKey(sessionKey).then((session: any) => {
+    return session?.passport?.user
   })
 }
 

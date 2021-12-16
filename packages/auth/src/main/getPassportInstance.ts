@@ -49,8 +49,9 @@ const getPassportInstance = async () => {
     passport.use(
       new OpenIdStrategy({ client }, (_: any, user: any, done: any) => {
         // TODO: validate the user or potentially create a new user account
+        // this has more info, right now just saving name & email
         // if it's not an ibm.com addr, potentially redirect to a 'not yet supported' route
-        done(null, { name: user.name })
+        done(null, { name: user.name, email: user.email })
       })
     )
   }

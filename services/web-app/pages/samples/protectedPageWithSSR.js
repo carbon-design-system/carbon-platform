@@ -5,17 +5,28 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { requireAuthentication } from '@/utils/requireAuthentication'
+import RequireAuth from '@/components/requireAuth'
+import validUserAuthorizationChecker from '@/utils/auth-checkers/validUserAuthozitazionChecker'
+import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
+
+import FourOhFour from '../404'
 
 const ProtectedPageWithSSR = (props) => {
-  return <div>User: {JSON.stringify(props?.user)}</div>
+  return (
+    <RequireAuth fallback={FourOhFour} isAuthorized={props.isAuthorized}>
+      <div>User: {JSON.stringify(props?.user ?? {})}</div>
+    </RequireAuth>
+  )
 }
 
-export const getServerSideProps = requireAuthentication(() => {
-  // Your normal `getServerSideProps` code here
-  return {
-    props: {}
+export const getServerSideProps = getPropsWithAuth(
+  validUserAuthorizationChecker,
+  async (/* context */) => {
+    // Your normal `getServerSideProps` code here
+    return {
+      props: {}
+    }
   }
-})
+)
 
 export default ProtectedPageWithSSR

@@ -85,13 +85,11 @@ function Catalog({ data, type = 'component' }) {
   }, [assets, sort, search])
 
   const handleFilter = (item, key, action = 'add') => {
-    const updatedFilter = Object.assign({}, filter)
+    let updatedFilter = Object.assign({}, filter)
 
     if (action === 'add') {
       updatedFilter[item] = union(updatedFilter[item] || [], [key])
-    }
-
-    if (action === 'remove') {
+    } else if (action === 'remove') {
       if (updatedFilter[item]) {
         remove(updatedFilter[item], (k) => k === key)
 
@@ -99,6 +97,8 @@ function Catalog({ data, type = 'component' }) {
           delete updatedFilter[item]
         }
       }
+    } else if (action === 'all') {
+      updatedFilter = {}
     }
 
     setFilter(updatedFilter)

@@ -67,6 +67,7 @@ const CatalogMultiselectFilter = ({ filter, className: customClassName, onFilter
                   onClick={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
+                    onFilter(null, null, 'all')
                   }}
                   type="high-contrast"
                 >
@@ -96,7 +97,11 @@ const CatalogMultiselectFilter = ({ filter, className: customClassName, onFilter
                   <li className={styles.listItem} key={j}>
                     <Tag
                       onClick={() => {
-                        onFilter(item, key, 'add')
+                        onFilter(
+                          item,
+                          key,
+                          filter[item] && filter[item].includes(key) ? 'remove' : 'add'
+                        )
                       }}
                       type={filter[item] && filter[item].includes(key) && 'high-contrast'}
                     >

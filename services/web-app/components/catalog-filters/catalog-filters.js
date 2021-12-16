@@ -18,17 +18,13 @@ import styles from './catalog-filters.module.scss'
 const CatalogFilters = ({ filter, onFilter }) => {
   if (isEmpty(filter)) return null
 
-  const handleRemoveItem = (item, key) => {
-    onFilter(item, key, 'remove')
-  }
-
   return (
     <Grid className={styles.container} narrow>
       <Column sm={4} md={8} lg={12}>
         <div className={styles.section}>
           {Object.keys(filter).map((item) =>
             filter[item].map((key, i) => (
-              <Tag key={i} filter onClick={() => handleRemoveItem(item, key)}>
+              <Tag key={i} filter onClick={() => onFilter(item, key, 'remove')}>
                 {filters[item].values[key].name}
               </Tag>
             ))

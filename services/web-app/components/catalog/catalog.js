@@ -97,7 +97,7 @@ function Catalog({ data, type = 'component' }) {
 
     if (action === 'remove') {
       if (updatedFilter[item]) {
-        updatedFilter[item] = remove(updatedFilter[item], key)
+        remove(updatedFilter[item], (k) => k === key)
 
         if (!updatedFilter[item].length) {
           delete updatedFilter[item]

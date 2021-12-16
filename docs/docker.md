@@ -4,10 +4,12 @@ TODO: add more stuff
 
 ## Docker run command for base image
 
-docker build --tag us.icr.io/carbon-platform-test/base:0.1.0 .
+```
+docker build --tag local/carbon-platform/base:latest .
+```
 
 ## Docker run command for individual service
 
-```bash
-docker build --tag us.icr.io/carbon-platform-test/logging:0.1.0 -f services/logging-service/Dockerfile .
+```
+docker build --tag us.icr.io/carbon-platform-test/logging:0.1.0 services/logging
 ```

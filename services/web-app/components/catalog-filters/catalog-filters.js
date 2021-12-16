@@ -10,9 +10,7 @@ import { Column, Grid, Tag } from '@carbon/react'
 import styles from './catalog-filters.module.scss'
 
 /**
- * @todo events
- * @todo show overflow
- * @todo overflow popup
+ * @todo (1) events, (2) show overflow, (3) overflow popup
  */
 const CatalogFilters = () => {
   const handleRemoveItem = (item) => {

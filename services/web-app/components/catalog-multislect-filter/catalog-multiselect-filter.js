@@ -16,12 +16,13 @@ import useOutsideClick from '@/utils/use-outside-click'
 import styles from './catalog-multiselect-filter.module.scss'
 
 /**
- * @todo close popover on escape key
- * @todo events
+ * @todo (1) close popover on escape key, (2) events, (3) small breakpoint, clicking the icon
+ * doesn't open
  */
 const CatalogMultiselectFilter = ({ className: customClassName, onSelect }) => {
   const [open, setOpen] = useState(false)
   const [count] = useState(2)
+  const isLg = useMatchMedia(mediaQueries.lg)
   const isMd = useMatchMedia(mediaQueries.md)
   const triggerRef = useRef()
   const contentRef = useRef()
@@ -31,6 +32,10 @@ const CatalogMultiselectFilter = ({ className: customClassName, onSelect }) => {
       setOpen(false)
     }
   })
+
+  let columns = 1
+  if (isMd) columns = 2
+  if (isLg) columns = 3
 
   return (
     <Popover
@@ -78,7 +83,14 @@ const CatalogMultiselectFilter = ({ className: customClassName, onSelect }) => {
         </span>
       </button>
       <PopoverContent className={styles.content} ref={contentRef}>
-        To do
+        <Grid className={styles.grid} columns={columns}>
+          <Column className={styles.column}>To do</Column>
+          <Column className={styles.column}>To do</Column>
+          <Column className={styles.column}>To do</Column>
+          <Column className={styles.column}>To do</Column>
+          <Column className={styles.column}>To do</Column>
+          <Column className={styles.column}>To do</Column>
+        </Grid>
       </PopoverContent>
     </Popover>
   )

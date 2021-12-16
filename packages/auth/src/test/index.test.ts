@@ -51,8 +51,6 @@ test('store instance can be retrieved without crashing in DEV mode', async () =>
 })
 
 test('retrieve user session by cookie retrieves correct object', async () => {
-  const oldLocalDbDirectory = process.env.CARBON_LOCAL_DB_DIRECTORY
-  process.env.CARBON_LOCAL_DB_DIRECTORY = 'MOCK_DIRECTORY'
   const mockedSessionId = 'SESSION_ID1'
   const signedSessionCookie = `s:${signature.sign(mockedSessionId, SESSION_SECRET)}`
   const storeInstance = await store.getStore()
@@ -62,7 +60,6 @@ test('retrieve user session by cookie retrieves correct object', async () => {
       await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toEqual({
         name: 'test123'
       })
-      process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
       storeInstance.destroy(mockedSessionId, () => {
         resolve(null)
       })
@@ -70,19 +67,30 @@ test('retrieve user session by cookie retrieves correct object', async () => {
   })
 })
 
-test('retrieve user session by cookie is undefined when session is not set', async () => {
-  const oldLocalDbDirectory = process.env.CARBON_LOCAL_DB_DIRECTORY
-  process.env.CARBON_LOCAL_DB_DIRECTORY = 'MOCK_DIRECTORY'
+test('retrieve user session by cookie is undefined when session has expired', async () => {
   const mockedSessionId = 'SESSION_ID2'
   const signedSessionCookie = `s:${signature.sign(mockedSessionId, SESSION_SECRET)}`
+  const storeInstance = await store.getStore()
+  const mockedUserSession = {
+    passport: { user: { name: 'test123' } },
+    cookie: { expires: new Date().toISOString() }
+  }
+  await new Promise((resolve) => {
+    storeInstance.set(mockedSessionId, mockedUserSession as any, async () => {
+      await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toBeUndefined()
+      resolve(null)
+    })
+  })
+})
+
+test('retrieve user session by cookie is undefined when session is not set', async () => {
+  const mockedSessionId = 'SESSION_ID3'
+  const signedSessionCookie = `s:${signature.sign(mockedSessionId, SESSION_SECRET)}`
   await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toBeUndefined()
-  process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
 })
 
 test('updating user session saves data succesfully', async () => {
-  const oldLocalDbDirectory = process.env.CARBON_LOCAL_DB_DIRECTORY
-  process.env.CARBON_LOCAL_DB_DIRECTORY = 'MOCK_DIRECTORY'
-  const mockedSessionId = 'SESSION_ID3'
+  const mockedSessionId = 'SESSION_ID4'
   const signedSessionCookie = `s:${signature.sign(mockedSessionId, SESSION_SECRET)}`
   const storeInstance = await store.getStore()
   const mockedUserSession = { passport: { user: { name: 'test123' } } }
@@ -97,7 +105,6 @@ test('updating user session saves data succesfully', async () => {
         name: 'test123',
         newProperty: '1234'
       })
-      process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
       storeInstance.destroy(mockedSessionId, () => {
         resolve(null)
       })
@@ -106,14 +113,11 @@ test('updating user session saves data succesfully', async () => {
 })
 
 test('updating user session returns false when there is no session', async () => {
-  const oldLocalDbDirectory = process.env.CARBON_LOCAL_DB_DIRECTORY
-  process.env.CARBON_LOCAL_DB_DIRECTORY = 'MOCK_DIRECTORY'
-  const mockedSessionId = 'SESSION_ID4'
+  const mockedSessionId = 'SESSION_ID5'
   const signedSessionCookie = `s:${signature.sign(mockedSessionId, SESSION_SECRET)}`
   const updateResult = await store.updateUserBySessionCookie(signedSessionCookie, {
     newProperty: '1234'
   })
   expect(updateResult).toBeFalsy()
   await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toBeUndefined()
-  process.env.CARBON_LOCAL_DB_DIRECTORY = oldLocalDbDirectory
 })

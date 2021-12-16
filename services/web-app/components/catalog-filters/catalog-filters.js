@@ -12,9 +12,6 @@ import { filters } from '@/data/filters'
 
 import styles from './catalog-filters.module.scss'
 
-/**
- * @todo (1) show overflow, (2) overflow popup
- */
 const CatalogFilters = ({ filter, onFilter }) => {
   if (isEmpty(filter)) return null
 

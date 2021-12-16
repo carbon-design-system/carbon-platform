@@ -19,9 +19,8 @@ import styles from './catalog-multiselect-filter.module.scss'
 /**
  * @todo (1) close popover on escape key, (2) events, (3) move focus to popover on open
  */
-const CatalogMultiselectFilter = ({ className: customClassName, onFilter }) => {
+const CatalogMultiselectFilter = ({ filter, className: customClassName, onFilter }) => {
   const [open, setOpen] = useState(false)
-  const [count] = useState(2)
   const isLg = useMatchMedia(mediaQueries.lg)
   const isMd = useMatchMedia(mediaQueries.md)
   const triggerRef = useRef()
@@ -36,6 +35,10 @@ const CatalogMultiselectFilter = ({ className: customClassName, onFilter }) => {
   let columns = 1
   if (isMd) columns = 2
   if (isLg) columns = 3
+
+  const count = Object.keys(filter).reduce((sum, item) => {
+    return (sum += filter[item].length)
+  }, 0)
 
   return (
     <Popover
@@ -84,18 +87,19 @@ const CatalogMultiselectFilter = ({ className: customClassName, onFilter }) => {
       </button>
       <PopoverContent className={styles.content} ref={contentRef}>
         <Grid className={styles.grid} columns={columns}>
-          {Object.keys(filters).map((key, i) => (
+          {Object.keys(filters).map((item, i) => (
             <Column className={styles.column} key={i}>
-              <h3 className={styles.heading}>{filters[key].name}</h3>
+              <h3 className={styles.heading}>{filters[item].name}</h3>
               <ul className={styles.list}>
-                {Object.keys(filters[key].values).map((itemKey, j) => (
+                {Object.keys(filters[item].values).map((key, j) => (
                   <li className={styles.listItem} key={j}>
                     <Tag
                       onClick={() => {
-                        console.log('todo')
+                        onFilter(item, key, 'add')
                       }}
+                      type={filter[item] && filter[item].includes(key) && 'high-contrast'}
                     >
-                      {filters[key].values[itemKey].name}
+                      {filters[item].values[key].name}
                     </Tag>
                   </li>
                 ))}

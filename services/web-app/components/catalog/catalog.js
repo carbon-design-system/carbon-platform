@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { InlineNotification } from '@carbon/react'
-import { remove } from 'lodash'
+import { remove, union } from 'lodash'
 import { useEffect, useState } from 'react'
 
 import CatalogFilters from '@/components/catalog-filters'
@@ -48,7 +48,7 @@ function Catalog({ data, type = 'component' }) {
 
   const [filter, setFilter] = useQueryState('filter', {
     ...queryTypes.object,
-    defaultValue: { sponsor: ['carbon'], status: ['stable'], framework: ['react'] }
+    defaultValue: { sponsor: ['carbon'], status: ['stable', 'draft'], framework: ['react'] }
   })
 
   const [libraries] = useState(
@@ -88,11 +88,7 @@ function Catalog({ data, type = 'component' }) {
     const updatedFilter = Object.assign({}, filter)
 
     if (action === 'add') {
-      if (!updatedFilter[item]) {
-        updatedFilter[item] = [key]
-      } else {
-        updatedFilter[item].push(key)
-      }
+      updatedFilter[item] = union(updatedFilter[item] || [], [key])
     }
 
     if (action === 'remove') {
@@ -122,7 +118,12 @@ function Catalog({ data, type = 'component' }) {
         Default filters have been pre-selected based on commonly used components. If you clear
         filters to explore, you may reset them easily.
       </InlineNotification>
-      <CatalogSearch search={search} onSearch={handleSearch} onFilter={handleFilter} />
+      <CatalogSearch
+        filter={filter}
+        search={search}
+        onSearch={handleSearch}
+        onFilter={handleFilter}
+      />
       <CatalogFilters filter={filter} onFilter={handleFilter} />
       <CatalogResults assets={renderAssets} />
       <CatalogSort onSort={setSort} onView={setView} sort={sort} view={view} />

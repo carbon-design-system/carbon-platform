@@ -6,7 +6,7 @@
  */
 
 import RequireAuth from '@/components/requireAuth'
-import validUserAuthorizationChecker from '@/utils/auth-checkers/validUserAuthozitazionChecker'
+import validUserAuthorizationChecker from '@/utils/auth-checkers/validUserAuthorizationChecker'
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
 
 import FourOhFour from '../404'

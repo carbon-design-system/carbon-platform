@@ -1,3 +1,7 @@
+#
+# This .dockerignore file is used for base image builds
+#
+
 # Files
 /.*.js
 **/.*ignore

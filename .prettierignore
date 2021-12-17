@@ -14,5 +14,5 @@ CHANGELOG.md
 .vscode/
 
 # Generated
-*-generated/
+generated/
 .test-coverage/

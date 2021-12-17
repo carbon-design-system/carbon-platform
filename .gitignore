@@ -5,7 +5,7 @@ node_modules/
 dist/
 
 # Generated stuff
-*-generated/
+generated/
 .test-coverage/
 
 # OS stuff

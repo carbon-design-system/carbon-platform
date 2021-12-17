@@ -33,11 +33,17 @@ This package configuration is also needed for proper functionality of the Auth P
 Make sure required environment variables are configured for proper functionality of this package.
 (See [run-mode package](./packages-run-mode.md) for details on how to set up the run-mode package)
 
+_Note_: this package requires different values depending on environemnt, make sure to update these
+when running on dev/test/production mode
+
 ### Auth
 
 This service depends on the auth package; Make sure required environment variables are configured
 for proper functionality of this package. (See [auth package](./packages-authe.md) for details on
 how to set up the auth package)
+
+_Note_: this package requires different environment vairables and values depending on environemnt,
+make sure to update these when running on dev/test/production mode
 
 ## Adding Local Certificates
 
@@ -65,99 +71,173 @@ this, run the following command from the [web-app's directory](../services/web-a
 
 ## Protecting a Route
 
-### Protecting Static Pages
-
-In order to require authentication before a user can access a static page, use the `withAuth` HOC to
-export the pages' component:
-
-```
-import withAuth from 'HOCs/withAuth'
-...
-export default withAuth(PageComponent)
-```
-
 ### Protecting Server-Side Rendered Pages
 
-In order to require authentication before a user can access a server-side rendered page, use the
-`requireAuthentication` utlity function to export the pages' _getServerSideProps_ function:
+In order to require authentication before a user can access a server-side rendered page use the
+`getPropsWithAuth` utlity function to wrap the pages' _getServerSideProps_ function and wrap the
+pages' content inside the `RequireAuth` component.
+
+#### getPropsWithAuth
+
+`getPropsWithAuth` expects an `authorizationChecker` function that receives the server side context
+as a param and must return a boolean value indicating whether the user is authorised to view the
+content or not:
 
 ```
-import { requireAuthentication } from '@/utils/requireAuthentication'
+import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
+import { retrieveUser } from '@/utils/retrieveUser'
 ...
-export const getServerSideProps = requireAuthentication((context) => {
+// Your custom authorization logic here, this one considers the user as authorised if it's email address ends in "ibm.com"
+const validUserAuthorizationChecker = async (context) => {
+  const user = await retrieveUser(context)
+  if (user) {
+    return user.email?.endsWith('ibm.com')
+  }
+  return false
+}
+...
+export const getServerSideProps = getPropsWithAuth(authorizationChecker, async (/* context */) => {
   // Your normal `getServerSideProps` code here
   return {
-    props: {}
-  }
-})
-```
-
-### Protect Route Dynamically
-
-If a Page handles both public and private data and a user needs to be authenticated depending on
-dynamic parameters on the page, you may make use of the `shouldAuthenticate` optional function that
-can be passed to the both the `withAuth` HOC and the `requireAuthentication` utility function. Both
-will call the supplied callback function with the requested route and queryParams object as params:
-
-```
-import withAuth from 'HOCs/withAuth'
-...
-export default withAuth(DynamicPageComponent, (route, query) => {
-  // User will be required to authenticate if the requested host is equal to 'github.ibm.com'
-  return query.host === 'github.ibm.com'
-})
-```
-
-#### OR
-
-```
-import { requireAuthentication } from '@/utils/requireAuthentication'
-...
-export const getServerSideProps = requireAuthentication(
-  (context) => {
-    // Your normal `getServerSideProps` code here
-    return {
-      props: {}
+    props: {
+      // Your custom props here
     }
-  },
-  (url, query) => {
-  // User will be required to authenticate if the requested host is equal to 'github.ibm.com'
-    return query.host === 'github.ibm.com'
-})
   }
-)
+})
 ```
+
+Some authorizationChecker functions that serve common purposes are exported from
+(utils/auth-checkers)[..services/web-app/utils/auth-checkers]:
+
+```
+import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
+import validUserAuthorizationChecker from '@/utils/auth-checkers/validUserAuthorizationChecker'
+...
+export const getServerSideProps = getPropsWithAuth(validUserAuthorizationChecker, async (/* context */) => {
+  // Your normal `getServerSideProps` code here
+  return {
+    props: {
+      // Your custom props here
+    }
+  }
+})
+```
+
+_Note_: if your authorizationChecker function calls `retrieveUser()`, the obtained user (if any)
+will be injected into the pages's props; you can access it on `props.user`
+
+#### RequireAuth
+
+RequireAuth is a parent component that receives a `fallback` component which will be rendered
+instead of the supplied content in the case that the `isAuthorized` prop is set to false
+
+```
+import RequireAuth from '@/components/requireAuth'
+import FourOhFour from '@/pages/404'
+...
+const ProtectedPage = (props) => {
+  return (
+    // will return 404 page if isAuthorized is set to false
+    <RequireAuth fallback={FourOhFour} isAuthorized={props.isAuthorized}>
+      <div>User: {JSON.stringify(props?.user ?? {})}</div>
+    </RequireAuth>
+  )
+}
+```
+
+For a working example of a protected server side rendered pages, (run the app
+securely)[#running-app-securely] and visit:
+
+- (https://localhost/samples/protectedPageWithSSR)[https://localhost/samples/protectedPageWithSSR]
+- (https://localhost/samples/protectedPageWithSSRDynamicAuth)[https://localhost/samples/protectedPageWithSSRDynamicAuth]
+- (https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.com)[https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.com]
+- (https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com)[https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com]
+- (https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com&repo=internal-stuff)[https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com&repo=internal-stuff]
+- (https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com&repo=private-stuff)[https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com&repo=private-stuff]
+
+### Protecting Static Pages
+
+There is no reusable strategy to guarantee authentication before accessing Statically Generated
+Pages; Each page is responisble for handling authentication and authorisation at a component-level
+(e.g., fetching user , waiting for user to load and then displaying content). See "Authenticating
+Statically Generated Pages" section in
+[NextJs Authentication Docs](https://nextjs.org/docs/authentication) You may make use of the
+`useAuth()` hook and `RequireAuth` component in your implementations:
+
+```
+  import { useAuth } from 'contexts/auth'
+  import { useEffect } from 'react'
+
+  import RequireAuth from '@/components/requireAuth'
+
+  import FourOhFour from '../404'
+
+  const ProtectedStaticPage = () => {
+    const { isAuthenticated, loading, user } = useAuth()
+
+    useEffect(() => {
+      if (!loading && isAuthenticated) {
+        // fetch protected data here
+      }
+    }, [loading, isAuthenticated])
+
+    return loading ? null : (
+      // show page if user is authenticated and email ends with ibm.com, else show 404 page
+      <RequireAuth
+        fallback={FourOhFour}
+        isAuthorized={isAuthenticated && user?.email?.endsWith('ibm.com')}
+      >
+        <>
+          // Your Page Content Here
+        </>
+      </RequireAuth>
+    )
+  }
+
+  // do NOT fetch protected data here
+  export async function getStaticProps(/* context */) {
+    return {
+      props: {} // will be passed to the page component as props
+    }
+  }
+
+  export default ProtectedStaticPage
+```
+
+Note: DO NOT SERVE/FETCH PROTECTED INFO THROUGH `getStaticProps`, as these will be served
+automatically when the route is accessed regardless of authentication.
+
+For a working example of a protected static page, (run the app securely)[#running-app-securely] and
+visit (https://localhost/samples/protectedStaticPage)[https://localhost/samples/protectedStaticPage]
 
 ## Retrieving User's Data
 
-### Server Side Rendered Pages that use Authentication
+### Server Side Rendered Pages
 
-For server-side rendered pages that export their _getserversideprops_ function through the
-requireAuthentication HOF (see
-[Protecting Server-Side Rendered Pages](#protecting-server-side-rendered-pages)), a 'user' variable
-will automatically be injected into the components' props:
+#### retrieveUser
+
+The `retrieveUser` function will return the current user instance or null if user is not logged in;
+note this function is asynchronous. This function can only be called server-side (i.e., in the
+context of getServerSideProps):
 
 ```
-import { requireAuthentication } from '@/utils/requireAuthentication'
-
-const ProtectedPageWithSSR = (props) => {
-  return <div>User: {JSON.stringify(props?.user)}</div>
-}
-
-export const getServerSideProps = requireAuthentication(
-  (context) => {
-    return {
-      props: {}
+import { retrieveUser } from '@/utils/retrieveUser'
+...
+export const getServerSideProps = async (/* context */) => {
+  const user = await retrieveUser(context)
+  // Your normal `getServerSideProps` code here
+  return {
+    props: {
+      user
+      // Your custom props here
     }
   }
-)
-
-export default ProtectedPageWithSSR
+}
 ```
 
-_Note:_ be aware that if your component uses the `shouldAuthenticate()` param function to
-authenticate dynamically, a user variable will not be injected when authentication is not necessary
-(i.e., when the function returns false) and will thus be undefined
+_Note_: if you are wrapping your `getServerSideProps` with `getPropsWithAuth` and your
+`authorizationChecker` function calls `retrieveUser()`, the obtained user (if any) will be injected
+into the pages's props; you can access it on `props.user`
 
 ### UseAuth() Hook
 
@@ -197,6 +277,7 @@ expect the user response to look like this:
 ```
 {
   "name":"Jane Doe",
+  "email": "jane.doe@emaildomain.com"
   // Other User Properties
   ...
   }

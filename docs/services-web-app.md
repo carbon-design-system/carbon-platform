@@ -80,14 +80,14 @@ pages' content inside the `RequireAuth` component.
 #### getPropsWithAuth
 
 `getPropsWithAuth` expects an `authorizationChecker` function that receives the server side context
-as a param and must return a boolean value indicating whether the user is authorised to view the
+as a param and must return a boolean value indicating whether the user is authorized to view the
 content or not:
 
 ```
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
 import { retrieveUser } from '@/utils/retrieveUser'
 ...
-// Your custom authorization logic here, this one considers the user as authorised if it's email address ends in "ibm.com"
+// Your custom authorization logic here, this one considers the user as authorized if it's email address ends in "ibm.com"
 const validUserAuthorizationChecker = async (context) => {
   const user = await retrieveUser(context)
   if (user) {
@@ -158,7 +158,7 @@ securely)[#running-app-securely] and visit:
 ### Protecting Static Pages
 
 There is no reusable strategy to guarantee authentication before accessing Statically Generated
-Pages; Each page is responisble for handling authentication and authorisation at a component-level
+Pages; Each page is responisble for handling authentication and authorization at a component-level
 (e.g., fetching user , waiting for user to load and then displaying content). See "Authenticating
 Statically Generated Pages" section in
 [NextJs Authentication Docs](https://nextjs.org/docs/authentication) You may make use of the

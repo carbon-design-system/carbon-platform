@@ -39,8 +39,8 @@ when running on dev/test/production mode
 ### Auth
 
 This service depends on the auth package; Make sure required environment variables are configured
-for proper functionality of this package. (See [auth package](./packages-authe.md) for details on
-how to set up the auth package)
+for proper functionality of this package. (See [auth package](./packages-auth.md) for details on how
+to set up the auth package)
 
 _Note_: this package requires different environment vairables and values depending on environemnt,
 make sure to update these when running on dev/test/production mode
@@ -106,8 +106,8 @@ export const getServerSideProps = getPropsWithAuth(authorizationChecker, async (
 })
 ```
 
-Some authorizationChecker functions that serve common purposes are exported from
-(utils/auth-checkers)[..services/web-app/utils/auth-checkers]:
+Some `authorizationChecker` functions that serve common purposes are exported from
+[utils/auth-checkers](..services/web-app/utils/auth-checkers):
 
 ```
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
@@ -123,12 +123,12 @@ export const getServerSideProps = getPropsWithAuth(validUserAuthorizationChecker
 })
 ```
 
-_Note_: if your authorizationChecker function calls `retrieveUser()`, the obtained user (if any)
+_Note_: if your `authorizationChecker` function calls `retrieveUser()`, the obtained user (if any)
 will be injected into the pages's props; you can access it on `props.user`
 
 #### RequireAuth
 
-RequireAuth is a parent component that receives a `fallback` component which will be rendered
+`RequireAuth` is a parent component that receives a `fallback` component which will be rendered
 instead of the supplied content in the case that the `isAuthorized` prop is set to false
 
 ```
@@ -148,12 +148,12 @@ const ProtectedPage = (props) => {
 For a working example of a protected server side rendered pages, (run the app
 securely)[#running-app-securely] and visit:
 
-- (https://localhost/samples/protectedPageWithSSR)[https://localhost/samples/protectedPageWithSSR]
-- (https://localhost/samples/protectedPageWithSSRDynamicAuth)[https://localhost/samples/protectedPageWithSSRDynamicAuth]
-- (https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.com)[https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.com]
-- (https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com)[https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com]
-- (https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com&repo=internal-stuff)[https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com&repo=internal-stuff]
-- (https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com&repo=private-stuff)[https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com&repo=private-stuff]
+- [https://localhost/samples/protectedPageWithSSR](https://localhost/samples/protectedPageWithSSR)
+- [https://localhost/samples/protectedPageWithSSRDynamicAuth](https://localhost/samples/protectedPageWithSSRDynamicAuth)
+- [https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.com](https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.com)
+- [https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com](https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com)
+- [https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com&repo=internal-stuff](https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com&repo=internal-stuff)
+- [https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com&repo=private-stuff](https://localhost/samples/protectedPageWithSSRDynamicAuth?host=github.ibm.com&repo=private-stuff)
 
 ### Protecting Static Pages
 
@@ -208,7 +208,7 @@ Note: DO NOT SERVE/FETCH PROTECTED INFO THROUGH `getStaticProps`, as these will 
 automatically when the route is accessed regardless of authentication.
 
 For a working example of a protected static page, (run the app securely)[#running-app-securely] and
-visit (https://localhost/samples/protectedStaticPage)[https://localhost/samples/protectedStaticPage]
+visit [https://localhost/samples/protectedStaticPage](https://localhost/samples/protectedStaticPage)
 
 ## Retrieving User's Data
 
@@ -245,7 +245,7 @@ From a React Component, you can access the user's information via the `user` pro
 `useAuth` hook. This hook also exposes other info such as:
 
 - user: object containing user's data
-- isLoading: boolean indicating whether user is still being retrieved or not
+- loading: boolean indicating whether user is still being retrieved or not
 - isAuthenticated: booleand indicating whether the user has correctly authenticated or not
 - login: function to login user
 - logout: function to logout user

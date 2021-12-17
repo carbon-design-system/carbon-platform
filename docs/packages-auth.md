@@ -129,7 +129,8 @@ const storeInstance = await store.getStore()
       })
 ```
 
-Please _note_ you will have to await for the store to be resolved as the function returns a promise.
+_Note:_ keep in mind you will have to await for the store instance to be resolved before being able
+to use it
 
 ### Passport Authentication
 
@@ -143,5 +144,5 @@ instance can be used just like the passport package and doesn't need to be furth
     passport.authenticate('prepiam.ice.ibmcloud.com')
 ```
 
-_Note:_ keep in mind you will have to await for the instance to be resolved before being able to use
-it
+_Note:_ keep in mind you will have to await for the passport instance to be resolved before being
+able to use it

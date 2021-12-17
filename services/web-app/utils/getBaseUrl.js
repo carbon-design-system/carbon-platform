@@ -5,7 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { DEV, getRunMode, PRODUCTION, TEST } from '@carbon-platform/run-mode'
-
+/**
+ * Obtains and returns the current base url based on the running environment.
+ * @returns {string} current base url
+ */
 export function getBaseUrl() {
   switch (getRunMode()) {
     case DEV:

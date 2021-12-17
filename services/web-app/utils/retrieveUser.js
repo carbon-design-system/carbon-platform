@@ -20,6 +20,11 @@ function getRequestOptions(req) {
   return reqOptions
 }
 
+/**
+ * Retrieves the current user value from the session
+ * @param {GetServerSidePropsContext} context - getServerSideProps context object
+ * @returns {User | null} user value
+ */
 export async function retrieveUser(context) {
   if (context.req.user) {
     return context.req.user

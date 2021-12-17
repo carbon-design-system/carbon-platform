@@ -129,10 +129,12 @@ const storeInstance = await store.getStore()
       })
 ```
 
+Please _note_ you will have to await for the store to be resolved as the function returns a promise.
+
 ### Passport Authentication
 
 If the service needs to authenticate users against IBMId, the exported function
-`getPassportInstance` returns a promise that resolves pre-configured passport instance. This
+`getPassportInstance` returns a promise that resolves to a pre-configured passport instance. This
 instance can be used just like the passport package and doesn't need to be further setup:
 
 ```

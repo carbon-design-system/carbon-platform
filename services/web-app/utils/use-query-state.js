@@ -32,6 +32,10 @@ export const queryTypes = {
   isoDateTime: {
     parse: (v) => new Date(v),
     serialize: (v) => v.toISOString()
+  },
+  object: {
+    parse: (v) => JSON.parse(v),
+    serialize: (v) => JSON.stringify(v)
   }
 }
 

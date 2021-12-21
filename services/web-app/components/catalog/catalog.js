@@ -5,8 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { InlineNotification } from '@carbon/react'
+import { remove, union } from 'lodash'
 import { useEffect, useState } from 'react'
 
+import CatalogFilters from '@/components/catalog-filters'
 import CatalogList from '@/components/catalog-list'
 import CatalogPagination from '@/components/catalog-pagination'
 import CatalogResults from '@/components/catalog-results'
@@ -21,6 +23,7 @@ function Catalog({ data, type = 'component' }) {
   const [query, setQuery] = useQueryState('q', {
     defaultValue: ''
   })
+
   const [search, setSearch] = useState(query)
 
   const [sort, setSort] = useQueryState('sort', {
@@ -37,9 +40,15 @@ function Catalog({ data, type = 'component' }) {
     ...queryTypes.integer,
     defaultValue: 1
   })
+
   const [pageSize, setPageSize] = useQueryState('items', {
     ...queryTypes.integer,
     defaultValue: 12
+  })
+
+  const [filter, setFilter] = useQueryState('filter', {
+    ...queryTypes.object,
+    defaultValue: { sponsor: ['carbon'], status: ['stable', 'draft'], framework: ['react'] }
   })
 
   const [libraries] = useState(
@@ -75,6 +84,26 @@ function Catalog({ data, type = 'component' }) {
     )
   }, [assets, sort, search])
 
+  const handleFilter = (item, key, action = 'add') => {
+    let updatedFilter = Object.assign({}, filter)
+
+    if (action === 'add') {
+      updatedFilter[item] = union(updatedFilter[item] || [], [key])
+    } else if (action === 'remove') {
+      if (updatedFilter[item]) {
+        remove(updatedFilter[item], (k) => k === key)
+
+        if (!updatedFilter[item].length) {
+          delete updatedFilter[item]
+        }
+      }
+    } else if (action === 'all') {
+      updatedFilter = {}
+    }
+
+    setFilter(updatedFilter)
+  }
+
   const handleSearch = (newValue, saveQuery) => {
     if (saveQuery) {
       setQuery(newValue)
@@ -89,7 +118,13 @@ function Catalog({ data, type = 'component' }) {
         Default filters have been pre-selected based on commonly used components. If you clear
         filters to explore, you may reset them easily.
       </InlineNotification>
-      <CatalogSearch search={search} onSearch={handleSearch} />
+      <CatalogSearch
+        filter={filter}
+        search={search}
+        onSearch={handleSearch}
+        onFilter={handleFilter}
+      />
+      <CatalogFilters filter={filter} onFilter={handleFilter} />
       <CatalogResults assets={renderAssets} />
       <CatalogSort onSort={setSort} onView={setView} sort={sort} view={view} />
       <CatalogList assets={renderAssets} isGrid={view === 'grid'} page={page} pageSize={pageSize} />

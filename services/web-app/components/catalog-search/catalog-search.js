@@ -4,13 +4,16 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Grid, MultiSelect, Search } from '@carbon/react'
 
+import { Column, Grid, Search } from '@carbon/react'
+import clsx from 'clsx'
+
+import CatalogMultiselectFilter from '@/components/catalog-multislect-filter'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-search.module.scss'
 
-const CatalogSearch = ({ search = '', onSearch }) => {
+const CatalogSearch = ({ filter, search = '', onSearch, onFilter }) => {
   const isMd = useMatchMedia(mediaQueries.md)
 
   const handleOnBlur = (event) => {
@@ -25,15 +28,9 @@ const CatalogSearch = ({ search = '', onSearch }) => {
     onSearch('', true)
   }
 
-  const items = [
-    { id: 'one', text: 'One' },
-    { id: 'two', text: 'Two' },
-    { id: 'three', text: 'Three' }
-  ]
-
   return (
     <Grid className={styles.container} condensed={!isMd} narrow={isMd}>
-      <Column className={styles.column} sm={2} md={4} lg={8}>
+      <Column className={clsx(styles.column, styles.columnSearch)} sm={4} md={4} lg={8}>
         <Search
           id="catalog-search"
           labelText="Search component index by name, keyword, or domain"
@@ -44,17 +41,15 @@ const CatalogSearch = ({ search = '', onSearch }) => {
           onClear={handleOnClear}
           size="lg"
         />
+        {!isMd && (
+          <CatalogMultiselectFilter className={styles.filter} filter={filter} onFilter={onFilter} />
+        )}
       </Column>
-      <Column className={styles.column} sm={2} md={4} lg={4}>
-        <MultiSelect
-          id="catalog-filter"
-          label="Filters"
-          items={items}
-          itemToString={(item) => (item ? item.text : '')}
-          initialSelectedItems={[items[0], items[1]]}
-          size="lg"
-        />
-      </Column>
+      {isMd && (
+        <Column className={styles.column} md={4} lg={4}>
+          <CatalogMultiselectFilter filter={filter} onFilter={onFilter} />
+        </Column>
+      )}
     </Grid>
   )
 }

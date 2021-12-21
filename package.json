@@ -56,5 +56,8 @@
     "stylelint": "^13.13.1",
     "stylelint-config-carbon": "^1.7.0",
     "ts-jest": "^27.0.7"
+  },
+  "dependencies": {
+    "@carbon/pictograms-react": "^11.20.0"
   }
 }

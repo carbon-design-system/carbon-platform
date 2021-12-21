@@ -26,7 +26,11 @@ const Components = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <Catalog data={librariesData} type="component" />
+      <Catalog
+        data={librariesData}
+        filter={{ sponsor: ['carbon'], status: ['stable'], framework: ['react'] }}
+        type="component"
+      />
     </>
   )
 }

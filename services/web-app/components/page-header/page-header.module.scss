@@ -44,20 +44,8 @@ $background-header: #d0e2ff;
 }
 
 .title {
-  padding-bottom: $spacing-07;
+  margin-bottom: $spacing-07;
   color: $text-primary;
   @include type-style('display-01');
-}
-
-.pictogram {
-  position: relative;
-  display: flex;
-  height: 100%;
-  align-items: flex-end;
-  padding-bottom: $spacing-08;
-  margin-left: auto;
-
-  @include breakpoint-down(md) {
-    display: none;
-  }
+  @include line-clamp(2);
 }

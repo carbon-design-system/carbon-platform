@@ -8,6 +8,7 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
 import Catalog from '@/components/catalog'
+import PageHeader from '@/components/page-header/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
@@ -26,6 +27,7 @@ const Patterns = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
+      <PageHeader title={seo.title} pictogram={'textInput'} />
       <Catalog data={librariesData} type="pattern" />
     </>
   )

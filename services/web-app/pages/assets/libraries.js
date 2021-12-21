@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import PageHeader from '@/components/page-header/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
@@ -32,6 +33,7 @@ const Libraries = ({ librariesData }) => {
   return (
     <div className={styles.content}>
       <NextSeo {...seo} />
+      <PageHeader title={seo.title} pictogram={'textInput'} />
       <ul>
         {libraries.map((library, i) => (
           <li key={i}>

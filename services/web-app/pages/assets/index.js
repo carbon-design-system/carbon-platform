@@ -7,6 +7,7 @@
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import PageHeader from '@/components/page-header/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import styles from '@/pages/pages.module.scss'
@@ -25,6 +26,7 @@ const Index = () => {
   return (
     <div className={styles.content}>
       <NextSeo {...seo} />
+      <PageHeader title={seo.title} pictogram={'textInput'} />
       Welcome to Assets!
     </div>
   )

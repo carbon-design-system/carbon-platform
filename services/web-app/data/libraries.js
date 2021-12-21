@@ -190,7 +190,7 @@ const libraryAllowList = {
     org: 'francine-lucca',
     repo: 'ibmcloud-pal',
     path: '/patterns',
-    sponsor: 'ibm-cloud' // TODO: is this correct?
+    sponsor: 'ibm-cloud'
   }
 }
 

@@ -1,0 +1,22 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+.container {
+  @include breakpoint-down(md) {
+    display: none;
+  }
+
+  // override carbon margin
+  :global(.cds--tag) {
+    margin: $spacing-02;
+  }
+}
+
+.section {
+  padding: $spacing-03 $spacing-04;
+  background: $layer-01;
+}

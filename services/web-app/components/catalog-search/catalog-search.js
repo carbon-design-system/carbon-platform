@@ -5,14 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Column, Grid, Layer, Search, Theme } from '@carbon/react'
+import { Column, Grid, Search } from '@carbon/react'
+import clsx from 'clsx'
 
 import CatalogMultiselectFilter from '@/components/catalog-multislect-filter'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-search.module.scss'
 
-const CatalogSearch = ({ search = '', onSearch, onSelect }) => {
+const CatalogSearch = ({ filter, search = '', onSearch, onFilter }) => {
   const isMd = useMatchMedia(mediaQueries.md)
 
   const handleOnBlur = (event) => {
@@ -28,25 +29,28 @@ const CatalogSearch = ({ search = '', onSearch, onSelect }) => {
   }
 
   return (
-    <Theme className={styles.container} theme="white">
-      <Layer>
-        <Grid condensed={!isMd} narrow={isMd}>
-          <Column className={styles.column} sm={3} md={4} lg={8}>
-            <Search
-              id="catalog-search"
-              labelText="Search component index by name, keyword, or domain"
-              placeholder="Component name, keyword, domain"
-              value={search}
-              onBlur={handleOnBlur}
-              onChange={handleOnChange}
-              onClear={handleOnClear}
-              size="lg"
-            />
-          </Column>
-            <CatalogMultiselectFilter onSelect={onSelect} />
-        </Grid>
-      </Layer>
-    </Theme>
+    <Grid className={styles.container} condensed={!isMd} narrow={isMd}>
+      <Column className={clsx(styles.column, styles.columnSearch)} sm={4} md={4} lg={8}>
+        <Search
+          id="catalog-search"
+          labelText="Search component index by name, keyword, or domain"
+          placeholder="Component name, keyword, domain"
+          value={search}
+          onBlur={handleOnBlur}
+          onChange={handleOnChange}
+          onClear={handleOnClear}
+          size="lg"
+        />
+        {!isMd && (
+          <CatalogMultiselectFilter className={styles.filter} filter={filter} onFilter={onFilter} />
+        )}
+      </Column>
+      {isMd && (
+        <Column className={styles.column} md={4} lg={4}>
+          <CatalogMultiselectFilter filter={filter} onFilter={onFilter} />
+        </Column>
+      )}
+    </Grid>
   )
 }
 

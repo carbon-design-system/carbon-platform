@@ -19,7 +19,19 @@ import { queryTypes, useQueryState } from '@/utils/use-query-state'
 
 import styles from './catalog.module.scss'
 
-function Catalog({ data, type = 'component' }) {
+const assetIsInFilter = (asset, filter) => {
+  for (const [key, value] of Object.entries(filter)) {
+    if (key === 'sponsor') {
+      if (!value.includes(asset.params[key])) return false
+    } else {
+      if (!value.includes(asset.content[key])) return false
+    }
+  }
+
+  return true
+}
+
+function Catalog({ data, type = 'component', filter: defaultFilter = { status: ['stable'] } }) {
   const [query, setQuery] = useQueryState('q', {
     defaultValue: ''
   })
@@ -48,41 +60,60 @@ function Catalog({ data, type = 'component' }) {
 
   const [filter, setFilter] = useQueryState('filter', {
     ...queryTypes.object,
-    defaultValue: { sponsor: ['carbon'], status: ['stable', 'draft'], framework: ['react'] }
+    defaultValue: defaultFilter
   })
 
   const [libraries] = useState(
     data.libraries.filter((library) => library.assets.length).sort(librarySortComparator)
   )
 
-  const [assets] = useState(
-    libraries
-      .reduce((allAssets, library) => {
-        return allAssets.concat(
-          library.assets.map((asset) => ({
-            ...asset,
-            library: {
-              params: library.params,
-              content: library.content
-            }
-          }))
-        )
-      }, [])
-      .filter((asset) => !asset.content.private && asset.content.type === type)
+  const [initialAssets] = useState(
+    libraries.reduce((allAssets, library) => {
+      return allAssets.concat(
+        library.assets.map((asset) => ({
+          ...asset,
+          library: {
+            params: library.params,
+            content: library.content
+          }
+        }))
+      )
+    }, [])
   )
 
-  const [renderAssets, setRenderAssets] = useState(assets)
+  const [filteredAssets, setFilteredAssets] = useState(initialAssets)
+  const [assets, setAssets] = useState(filteredAssets)
 
   useEffect(() => {
-    setRenderAssets(
-      assets.sort(assetSortComparator(sort)).filter((asset) => {
-        return search
-          ? asset.content.name.toLowerCase().includes(search.toLowerCase()) ||
-              asset.content.description.toLowerCase().includes(search.toLowerCase())
-          : true
+    setFilteredAssets(
+      initialAssets.filter((asset) => {
+        // don't show private assets or assets of the wrong type
+        if (asset.content.private || asset.content.type !== type) return false
+
+        // don't show if the asset doesn't have one of the valid values
+        return assetIsInFilter(asset, filter)
       })
     )
-  }, [assets, sort, search])
+    // avoid deep object equality comparison in the effect by using JSON.stringify
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialAssets, JSON.stringify(filter), type])
+
+  useEffect(() => {
+    setAssets(
+      filteredAssets.sort(assetSortComparator(sort)).filter((asset) => {
+        const { description = '', name = '' } = asset.content
+
+        if (search) {
+          return (
+            name.toLowerCase().includes(search.toLowerCase()) ||
+            description.toLowerCase().includes(search.toLowerCase())
+          )
+        }
+
+        return true
+      })
+    )
+  }, [filteredAssets, sort, search])
 
   const handleFilter = (item, key, action = 'add') => {
     let updatedFilter = Object.assign({}, filter)
@@ -125,11 +156,11 @@ function Catalog({ data, type = 'component' }) {
         onFilter={handleFilter}
       />
       <CatalogFilters filter={filter} onFilter={handleFilter} />
-      <CatalogResults assets={renderAssets} />
+      <CatalogResults assets={assets} />
       <CatalogSort onSort={setSort} onView={setView} sort={sort} view={view} />
-      <CatalogList assets={renderAssets} isGrid={view === 'grid'} page={page} pageSize={pageSize} />
+      <CatalogList assets={assets} isGrid={view === 'grid'} page={page} pageSize={pageSize} />
       <CatalogPagination
-        assets={renderAssets}
+        assets={assets}
         page={page}
         pageSize={pageSize}
         setPage={setPage}

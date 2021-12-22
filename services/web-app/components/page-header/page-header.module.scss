@@ -9,10 +9,7 @@ $page-header-height: $spacing-13 + $spacing-12 + $spacing-05;
 $background-header: #d0e2ff;
 
 .container {
-  display: flex;
-  width: 100%;
   height: $page-header-height;
-  flex-direction: row;
   background: $background-header;
   @include breakpoint-down(md) {
     padding: 0 $spacing-05;
@@ -29,18 +26,18 @@ $background-header: #d0e2ff;
   }
 }
 
-.breadcrumb {
-  position: relative;
-  display: flex;
-  height: 100%;
-  align-items: flex-start;
-}
-
-.section {
+.column {
   position: relative;
   display: flex;
   height: 100%;
   align-items: flex-end;
+
+  &-last {
+    justify-content: flex-end;
+    @include breakpoint-down(md) {
+      display: none;
+    }
+  }
 }
 
 .title {
@@ -56,14 +53,5 @@ $background-header: #d0e2ff;
 }
 
 .pictogram {
-  position: relative;
-  display: flex;
-  height: 100%;
-  align-items: flex-end;
-  padding-bottom: $spacing-08;
-  margin-left: auto;
-
-  @include breakpoint-down(md) {
-    display: none;
-  }
+  margin-bottom: $spacing-08;
 }

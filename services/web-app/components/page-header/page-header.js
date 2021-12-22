@@ -5,19 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
+import clsx from 'clsx'
 
 import styles from './page-header.module.scss'
 
 const PageHeader = ({ title, pictogram: Pictogram }) => {
-  console.log(Pictogram, 'hi')
   return (
     <Grid className={styles.container}>
-      <Column className={styles.section} sm={4} md={5} lg={8}>
-        <div className={styles.title}>{title}</div>
+      <Column className={styles.column} sm={4} md={6} lg={10}>
+        <h1 className={styles.title}>{title}</h1>
       </Column>
       {Pictogram && (
-        <Column className={styles.pictogram} sm={0} md={5} lg={8}>
-          <Pictogram />
+        <Column className={clsx(styles.column, styles.columnLast)} sm={0} md={2} lg={2}>
+          <Pictogram className={styles.pictogram} />
         </Column>
       )}
     </Grid>

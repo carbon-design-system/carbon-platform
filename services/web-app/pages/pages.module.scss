@@ -5,6 +5,10 @@
 // LICENSE file in the root directory of this source tree.
 //
 
+.content {
+  margin: $spacing-07 0;
+}
+
 .data {
   margin: $spacing-07 0;
   white-space: pre-wrap;

@@ -38,7 +38,7 @@ const Library = ({ libraryData, params }) => {
   const assets = libraryData.assets.sort(assetSortComparator)
 
   return (
-    <div>
+    <div className={styles.content}>
       <NextSeo {...seo} />
       <ul>
         {assets.map((asset, i) => (

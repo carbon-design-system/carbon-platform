@@ -5,7 +5,7 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-$page-header-height: 272px;
+$page-header-height: $spacing-13 + $spacing-12 + $spacing-05;
 $background-header: #d0e2ff;
 
 .container {
@@ -48,4 +48,22 @@ $background-header: #d0e2ff;
   color: $text-primary;
   @include type-style('display-01');
   @include line-clamp(2);
+  @include breakpoint-down(md) {
+    @include type-style('quotation-02');
+
+    font-family: font-family('sans');
+  }
+}
+
+.pictogram {
+  position: relative;
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+  padding-bottom: $spacing-08;
+  margin-left: auto;
+
+  @include breakpoint-down(md) {
+    display: none;
+  }
 }

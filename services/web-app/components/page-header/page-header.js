@@ -6,17 +6,20 @@
  */
 import { Column, Grid } from '@carbon/react'
 
-import PageHeaderPictogram from '@/components/page-header-pictogram/page-header-pictogram'
-
 import styles from './page-header.module.scss'
 
-const PageHeader = ({ title, pictogram }) => {
+const PageHeader = ({ title, pictogram: Pictogram }) => {
+  console.log(Pictogram, 'hi')
   return (
     <Grid className={styles.container}>
       <Column className={styles.section} sm={4} md={5} lg={8}>
         <div className={styles.title}>{title}</div>
       </Column>
-      <PageHeaderPictogram pictogram={pictogram} />
+      {Pictogram && (
+        <Column className={styles.pictogram} sm={0} md={5} lg={8}>
+          <Pictogram />
+        </Column>
+      )}
     </Grid>
   )
 }

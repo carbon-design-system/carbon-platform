@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.26](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.25...@carbon-platform/web-app@0.1.26) (2021-12-23)
+
+
+### Features
+
+* added pictograms and header container -no breadcrumb ([d0aa5f4](https://github.com/carbon-design-system/carbon-platform/commit/d0aa5f45056ceb9488aa35e34595997441e4712e))
+* moved page header into seperate component ([a1c6473](https://github.com/carbon-design-system/carbon-platform/commit/a1c6473beed7708cefd403818e49f0563bac62f5))
+* page header - clean up ([2d76f5b](https://github.com/carbon-design-system/carbon-platform/commit/2d76f5b45670e9a191fc8f4442c4c17081210674))
+* page header - clean up pt.2 ([b122e95](https://github.com/carbon-design-system/carbon-platform/commit/b122e95c408c73d9b5c9b9fafd23816b1bbe8661))
+
 ### [0.1.25](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.24...@carbon-platform/web-app@0.1.25) (2021-12-22)
 
 

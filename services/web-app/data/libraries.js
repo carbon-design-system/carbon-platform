@@ -184,6 +184,13 @@ const libraryAllowList = {
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/utilities',
     sponsor: 'ibm-dotcom'
+  },
+  'cloud-pal': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'ibmcloud-pal',
+    path: '/patterns',
+    sponsor: 'ibm-cloud'
   }
 }
 

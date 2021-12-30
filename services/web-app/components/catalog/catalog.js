@@ -4,7 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { InlineNotification } from '@carbon/react'
 import { remove, union } from 'lodash'
 import { useEffect, useState } from 'react'
 
@@ -145,11 +144,8 @@ function Catalog({ data, type = 'component', filter: defaultFilter = { status: [
 
   return (
     <>
-      <InlineNotification className={styles.notification} kind="info" lowContrast>
-        Default filters have been pre-selected based on commonly used components. If you clear
-        filters to explore, you may reset them easily.
-      </InlineNotification>
       <CatalogSearch
+        className={styles.search}
         filter={filter}
         search={search}
         onSearch={handleSearch}

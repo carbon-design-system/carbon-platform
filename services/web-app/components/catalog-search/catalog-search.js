@@ -13,7 +13,7 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-search.module.scss'
 
-const CatalogSearch = ({ filter, search = '', onSearch, onFilter }) => {
+const CatalogSearch = ({ className, filter, search = '', onSearch, onFilter }) => {
   const isMd = useMatchMedia(mediaQueries.md)
 
   const handleOnBlur = (event) => {
@@ -29,7 +29,7 @@ const CatalogSearch = ({ filter, search = '', onSearch, onFilter }) => {
   }
 
   return (
-    <Grid className={styles.container} condensed={!isMd} narrow={isMd}>
+    <Grid className={clsx(styles.container, className)} condensed={!isMd} narrow={isMd}>
       <Column className={clsx(styles.column, styles.columnSearch)} sm={4} md={4} lg={8}>
         <Search
           id="catalog-search"

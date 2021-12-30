@@ -211,3 +211,14 @@
   top: 3px;
   margin-right: $spacing-02;
 }
+
+.image {
+  position: absolute;
+  width: 0;
+  min-width: 100%;
+  max-width: 100%;
+  height: 0;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}

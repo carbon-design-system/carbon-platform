@@ -22,6 +22,7 @@ WORKDIR /ibm
 
 COPY package.json .
 COPY package-lock.json .
+COPY LICENSE .
 # TODO: include base tsconfig file
 
 # This is done at the end so that the install steps above can run in parallel

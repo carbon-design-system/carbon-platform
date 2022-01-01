@@ -13,10 +13,10 @@ jobs:
     name: Prettier, ESLint, Stylelint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout 🛎
         uses: actions/checkout@v2
 
-      - name: Setup Node 🏗️
+      - name: Setup Node 🏗
         uses: actions/setup-node@v2
         with:
           node-version: '16'
@@ -35,10 +35,10 @@ jobs:
     name: Build packages and services
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout 🛎
         uses: actions/checkout@v2
 
-      - name: Setup Node 🏗️
+      - name: Setup Node 🏗
         uses: actions/setup-node@v2
         with:
           node-version: '16'
@@ -57,10 +57,10 @@ jobs:
     name: Unit tests
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout 🛎
         uses: actions/checkout@v2
 
-      - name: Setup Node 🏗️
+      - name: Setup Node 🏗
         uses: actions/setup-node@v2
         with:
           node-version: '16'
@@ -85,7 +85,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout 🛎
         uses: actions/checkout@v2
         with:
           fetch-depth: 0 # Disable shallow clones for better relevancy of analysis

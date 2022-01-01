@@ -13,3 +13,7 @@ docker build --tag local/carbon-platform/base:latest .
 ```
 docker build --tag us.icr.io/carbon-platform-test/logging:0.1.0 services/logging
 ```
+
+## Container registry docs
+
+https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started

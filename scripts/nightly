@@ -9,6 +9,9 @@
 # Fail immediately on errors
 set -e
 
-scripts/micromanage version
+scripts/micromanage version > micromanage-updated.json
 
-scripts/micromanage publish
+scripts/micromanage docker-push < micromanage-updated.json
+
+# Cleanup
+rm micromanage-updated.json

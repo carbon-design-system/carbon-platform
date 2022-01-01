@@ -109,6 +109,17 @@ function getTags() {
   return tagsCommandOutput.split('\n')
 }
 
+/**
+ * Output information contained in an error object, if present.
+ *
+ * @param {Object} err Error object from which to obtain and output data.
+ */
+function logErrorInfo(err) {
+  console.error(err)
+  err.stdout && console.log('stdout: ' + err.stdout.toString())
+  err.stderr && console.log('stderr: ' + err.stderr.toString())
+}
+
 module.exports = {
   buildCurlUrlParams,
   exec,
@@ -116,5 +127,6 @@ module.exports = {
   getPackageByName,
   getPackageForFile,
   getPackages,
-  getTags
+  getTags,
+  logErrorInfo
 }

@@ -15,7 +15,8 @@ function buildVersionCommand() {
 }
 
 function handleVersionCommand() {
-  console.log('===== micromanage version =====')
+  // Note: stderr is used so stdout can be used by subsequent scripts
+  console.error('===== micromanage version =====')
 
   // Ensure all tags are up-to-date with the remote
   exec('git fetch --tags')
@@ -23,7 +24,8 @@ function handleVersionCommand() {
   const updatedPackagesAndServices = getUpdatedPackagesAndServices()
 
   if (updatedPackagesAndServices.length === 0) {
-    console.log('nothing to do')
+    console.error('Nothing to do')
+    console.log('[]')
     return
   }
 
@@ -51,7 +53,7 @@ function handleVersionCommand() {
   newVersions.forEach((version) => {
     exec(`git tag --delete ${version}`) // Delete the one from above so we can consolidate
     exec(`git tag -m "${version}" ${version}`)
-    console.log(`tagged HEAD as ${version}`)
+    console.error(`tagged HEAD as ${version}`)
   })
 
   exec('git push')
@@ -60,6 +62,10 @@ function handleVersionCommand() {
 
   // Clean up the temp branch
   exec('git branch -D micromanage-temp')
+
+  // Output all updated packages to stdout
+  const updatedPackageAndServiceNames = updatedPackagesAndServices.map((pkg) => pkg.name)
+  console.log(JSON.stringify(updatedPackageAndServiceNames))
 }
 
 function getUpdatedPackagesAndServices() {
@@ -76,10 +82,10 @@ function getUpdatedPackagesAndServices() {
       !latestTag || !!exec(`git diff --quiet HEAD ${latestTag} -- ${pkg.path} || echo changed`)
 
     if (changed) {
-      console.log(`*** ${pkg.name} has changed since ${latestTag}`)
+      console.error(`*** ${pkg.name} has changed since ${latestTag}`)
       return true
     } else {
-      console.log(`No changes in ${pkg.name} since ${latestTag}`)
+      console.error(`No changes in ${pkg.name} since ${latestTag}`)
       return false
     }
   })
@@ -113,7 +119,7 @@ function versionPackagesAndServices(updatedPackages) {
     const newVersion = versionOutput.split('\n')[0].split(' ').pop()
     const newTag = `${pkg.name}@${newVersion}`
 
-    console.log(`new version created: ${newTag}`)
+    console.error(`new version created: ${newTag}`)
 
     return newTag
   })

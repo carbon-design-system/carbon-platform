@@ -9,23 +9,24 @@ const dotenv = require('dotenv')
 const path = require('path')
 
 const { buildDeployCommand } = require('./deploy')
+const { buildDockerPushCommand } = require('./docker-push')
 const { buildPublishCommand } = require('./publish')
 const { buildVersionCommand } = require('./version')
+const { logErrorInfo } = require('./utils')
 
 function main() {
   dotenv.config({ path: path.join(__dirname, '.env') })
 
   const program = new Command()
     .addCommand(buildDeployCommand())
+    .addCommand(buildDockerPushCommand())
     .addCommand(buildPublishCommand())
     .addCommand(buildVersionCommand())
 
   try {
     program.parse()
   } catch (err) {
-    console.error(err)
-    err.stdout && console.log('stdout: ' + err.stdout.toString())
-    err.stderr && console.log('stderr: ' + err.stderr.toString())
+    logErrorInfo(err)
     process.exit(1)
   }
 }

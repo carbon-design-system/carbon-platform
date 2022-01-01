@@ -13,18 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout 🛎
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
       # Download and Install IBM Cloud CLI
-      - name: Install IBM Cloud and CF CLI 🏗️
+      - name: Install IBM Cloud and CF CLI 🏗
         run: |
           curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
           ibmcloud cf install
 
-      - name: Setup Node 🏗️
+      - name: Setup Node 🏗
         uses: actions/setup-node@v2
         with:
           node-version: '16'

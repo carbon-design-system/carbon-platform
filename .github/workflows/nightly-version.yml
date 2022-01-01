@@ -47,5 +47,3 @@ jobs:
 
       - name: Version, Build, Push 🚀
         run: scripts/micromanage nightly
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

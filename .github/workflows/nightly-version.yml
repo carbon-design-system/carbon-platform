@@ -1,5 +1,4 @@
 name: Nightly Version
-
 on:
   schedule:
     #       ┌───────────── minute (0 - 59)
@@ -43,7 +42,7 @@ jobs:
         run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io
 
       - name: Install Node Modules 🔧
-        run: npm install
+        run: CI=true npm install
 
       - name: Version, Build, Push 🚀
-        run: scripts/micromanage nightly
+        run: scripts/nightly

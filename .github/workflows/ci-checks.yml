@@ -5,6 +5,7 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   #
   # Ensure all files pass linting
@@ -45,10 +46,10 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Modules 🔧
-        run: npm install
+        run: CI=true npm install
 
       - name: Build 🔨
-        run: npm run services:build # Packages are already built after npm install
+        run: npm run all:build
 
   #
   # Ensure all unit tests pass

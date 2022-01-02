@@ -10,8 +10,7 @@ WORKDIR /ibm
 
 COPY . .
 
-# TODO: test if same behavior without ignore scripts
-RUN npm install --ignore-scripts
+RUN CI=true npm install
 RUN npm run packages:build
 
 ###
@@ -28,7 +27,7 @@ COPY LICENSE .
 # This is done at the end so that the install steps above can run in parallel
 COPY --from=builder /ibm/packages packages
 
-RUN npm install --production --ignore-scripts
+RUN CI=true npm install --production
 RUN npm install --production @types/node
 
 # Cleanup source files

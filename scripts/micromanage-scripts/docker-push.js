@@ -22,6 +22,7 @@ function handleDockerPushCommand() {
   console.log('===== micromanage docker-push =====')
 
   const updatedPackagesAndServices = readUpdatesFromStdin()
+  const failures = []
 
   buildBaseImage()
 
@@ -42,9 +43,17 @@ function handleDockerPushCommand() {
       buildService(imageName, pkg.path)
       pushService(imageName)
     } catch (err) {
+      failures.push(name)
       logErrorInfo(err)
     }
   })
+
+  // Mark the whole operation as a failure by throwing an exception
+  if (failures.length > 0) {
+    console.error('The following services failed to build/push:')
+    console.error(failures)
+    throw new Error(`${failures.length} service(s) failed to build/push`)
+  }
 }
 
 function readUpdatesFromStdin() {

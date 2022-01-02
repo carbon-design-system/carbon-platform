@@ -4,14 +4,15 @@ title: Micromanage
 
 # Micromanage
 
-Micromanage is a custom made tool to solve the issue of having a monorepo where some packages need
-to be published to an npm registry and others need to be deployed to a cloud provider.
+Micromanage is a monorepo microservice orchestration utility. It uses npm workspaces as the
+foundation for individual packages and services which contribute to a base Docker image and
+cloud-deployed microservices, respectively.
 
 # Scripts
 
 The various scripts can be found in: [scripts/micromanage-scripts](../scripts/micromanage-scripts)
 
-## Deploy
+## `deploy`
 
 Use this script to deploy to _test_ and _prod_ environments
 
@@ -108,10 +109,10 @@ ibmcloud ce application create --name logging-test-cli --image us.icr.io/carbon-
 SIGTERM when autoscale policy stops all running instances. Need to handle gracefully if a service
 cares.
 
-## Publish Packages
+## `docker-push`
 
 TODO
 
-## Version Packages
+## `version`
 
 TODO

@@ -10,7 +10,6 @@ const path = require('path')
 
 const { buildDeployCommand } = require('./deploy')
 const { buildDockerPushCommand } = require('./docker-push')
-const { buildPublishCommand } = require('./publish')
 const { buildVersionCommand } = require('./version')
 const { logErrorInfo } = require('./utils')
 
@@ -20,7 +19,6 @@ function main() {
   const program = new Command()
     .addCommand(buildDeployCommand())
     .addCommand(buildDockerPushCommand())
-    .addCommand(buildPublishCommand())
     .addCommand(buildVersionCommand())
 
   try {

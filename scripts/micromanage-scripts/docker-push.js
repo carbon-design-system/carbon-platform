@@ -24,6 +24,11 @@ function handleDockerPushCommand() {
   const updatedPackagesAndServices = readUpdatesFromStdin()
   const failures = []
 
+  if (updatedPackagesAndServices.length === 0) {
+    console.log('Nothing to do')
+    return
+  }
+
   buildBaseImage()
 
   // Build and push all updated services

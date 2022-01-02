@@ -20,6 +20,6 @@
     "test": "jest --config=../../.jestrc.workspace.js"
   },
   "devDependencies": {
-    "typescript": "^4.4.4"
+    "typescript": "^4.5.4"
   }
 }

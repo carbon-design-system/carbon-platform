@@ -1,0 +1,11 @@
+name: CI - Logging Service
+on:
+  push:
+    tags:
+      - '@carbon-platform/logging@*.*.*'
+
+jobs:
+  build-service-image:
+    uses: carbon-design-system/carbon-platform/.github/workflows/ci/build-service-image.yml@main
+    with:
+      image_name: ${{ github.ref_name }}

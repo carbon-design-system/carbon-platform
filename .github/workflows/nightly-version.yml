@@ -44,5 +44,5 @@ jobs:
       - name: Install Node Modules 🔧
         run: CI=true npm install
 
-      - name: Version, Build, Push 🚀
-        run: scripts/nightly
+      - name: Version 📆
+        run: scripts/micromanage version

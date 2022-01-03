@@ -1,0 +1,13 @@
+name: CI - Web App Service
+on:
+  push:
+    tags:
+      - '@carbon-platform/web-app@*.*.*'
+
+jobs:
+  build-service-image:
+    uses: carbon-design-system/carbon-platform/.github/workflows/ci/build-service-image.yml@main
+    with:
+      image_name: ${{ github.ref_name }}
+    env:
+      CARBON_GITHUB_TOKEN: 'TODO'

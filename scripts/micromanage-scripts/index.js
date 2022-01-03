@@ -9,7 +9,7 @@ const dotenv = require('dotenv')
 const path = require('path')
 
 const { buildDeployCommand } = require('./deploy')
-const { buildDockerPushCommand } = require('./docker-push')
+const { buildDockerCommand } = require('./docker')
 const { buildVersionCommand } = require('./version')
 const { logErrorInfo } = require('./utils')
 
@@ -18,7 +18,7 @@ function main() {
 
   const program = new Command()
     .addCommand(buildDeployCommand())
-    .addCommand(buildDockerPushCommand())
+    .addCommand(buildDockerCommand())
     .addCommand(buildVersionCommand())
 
   try {

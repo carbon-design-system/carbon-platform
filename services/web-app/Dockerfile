@@ -1,10 +1,13 @@
 FROM local/carbon-platform/base:latest AS builder
 
 # TODO: add args needed during build (e.g. github api key)
+ARG CARBON_GITHUB_TOKEN
 
 WORKDIR /ibm
 
 COPY . services/web-app
+
+RUN export GITHUB_TOKEN=${CARBON_GITHUB_TOKEN}
 
 RUN CI=true npm -w services/web-app install
 RUN npm -w services/web-app run build

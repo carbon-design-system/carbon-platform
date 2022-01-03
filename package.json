@@ -28,7 +28,7 @@
     "services:build": "npm --workspaces --if-present run service:build",
     "lint": "scripts/lint",
     "lint:fix": "scripts/lint_and_fix",
-    "prepare": "if [[ ! -v CI ]]; then scripts/prepare; fi",
+    "prepare": "if [ \"$CI\" != 'true' ]; then scripts/prepare; fi",
     "test": "jest --config=./.jestrc.js"
   },
   "devDependencies": {

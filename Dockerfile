@@ -10,7 +10,11 @@ WORKDIR /ibm
 
 COPY . .
 
-RUN CI=true npm install
+# Install node modules for each "package"
+RUN for file in packages/* ; do \
+  CI=true npm --workspace "$file" install ; \
+done
+
 RUN npm run packages:build
 
 ###
@@ -28,7 +32,6 @@ COPY LICENSE .
 COPY --from=builder /ibm/packages packages
 
 RUN CI=true npm install --production
-RUN npm install --production @types/node
 
 # Cleanup source files
 RUN for file in packages/* ; do \

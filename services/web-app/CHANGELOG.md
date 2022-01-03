@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.28](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.27...@carbon-platform/web-app@0.1.28) (2022-01-03)
+
+
+### Features
+
+* **api:** create api package ([c600bea](https://github.com/carbon-design-system/carbon-platform/commit/c600bea03431c537cec70a5353d650f099e990fb))
+* **web-app:** add dockerfile ([3b477a9](https://github.com/carbon-design-system/carbon-platform/commit/3b477a9805e844d49f07e16c471951b1a15473ba))
+
 ### [0.1.27](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.26...@carbon-platform/web-app@0.1.27) (2021-12-31)
 
 

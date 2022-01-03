@@ -38,9 +38,6 @@ jobs:
           cache: 'npm'
           registry-url: https://registry.npmjs.org
 
-      - name: Setup Docker 🐳
-        run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io
-
       - name: Install Node Modules 🔧
         run: CI=true npm install
 

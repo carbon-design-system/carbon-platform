@@ -68,7 +68,10 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Modules 🔧
-        run: npm install
+        run: CI=true npm install
+
+      - name: Build packages 🔨
+        run: npm run all:build
 
       - name: Test 🧪
         run: npm run test
@@ -96,7 +99,7 @@ jobs:
         with:
           name: test-coverage
 
-      - name: SonarCloud Scan 🔎
+      - name: SonarCloud scan 🔎
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any

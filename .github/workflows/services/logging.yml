@@ -1,4 +1,4 @@
-name: CI - Logging Service
+name: services/logging Image Build
 on:
   push:
     tags:
@@ -6,6 +6,6 @@ on:
 
 jobs:
   build-service-image:
-    uses: carbon-design-system/carbon-platform/.github/workflows/ci/build-service-image.yml@main
+    uses: carbon-design-system/carbon-platform/.github/workflows/services/build-service-image.yml@main
     with:
       image_name: ${{ github.ref_name }}

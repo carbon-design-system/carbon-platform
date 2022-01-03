@@ -86,7 +86,11 @@ To update the node modules across all workspaces, from the top-level in the repo
 
 ```
 $ npm update
+$ npx --workspaces --include-workspace-root ncu --upgrade --target=minor
+$ npm install
 ```
+
+> Note: `major` or `patch` can be used, depending on the objective.
 
 To update the node modules only for a specific workspace, from the top-level in the repo, run:
 

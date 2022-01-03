@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.2 (2022-01-03)
+
+
+### Features
+
+* **api:** create api package ([c600bea](https://github.com/carbon-design-system/carbon-platform/commit/c600bea03431c537cec70a5353d650f099e990fb))
+
 ### 0.1.1 (2022-01-03)
 
 

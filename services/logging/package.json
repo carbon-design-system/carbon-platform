@@ -15,6 +15,7 @@
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "scripts": {
     "build": "tsc",
+    "clean": "rimraf dist",
     "service:build": "npm run build",
     "start": "node dist/main/index.js",
     "test": "jest --config=../../.jestrc.workspace.js"

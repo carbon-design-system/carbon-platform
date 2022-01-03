@@ -71,7 +71,7 @@ jobs:
         run: CI=true npm install
 
       - name: Build packages 🔨
-        run: npm run all:build
+        run: npm run packages:build
 
       - name: Test 🧪
         run: npm run test

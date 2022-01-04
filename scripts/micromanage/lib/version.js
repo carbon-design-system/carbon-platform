@@ -11,10 +11,11 @@ const { exec, getTags, getPackages } = require('./utils')
 function buildVersionCommand() {
   return new Command('version')
     .description('Update the versions of all packages based on a generated changelog')
+    .option('--dry-run', 'Do not make any changes. Only output prospective updates')
     .action(handleVersionCommand)
 }
 
-function handleVersionCommand() {
+function handleVersionCommand(opts) {
   // Note: stderr is used so stdout can be used by subsequent scripts
   console.error('===== micromanage version =====')
 
@@ -26,6 +27,10 @@ function handleVersionCommand() {
   if (updatedPackagesAndServices.length === 0) {
     console.error('Nothing to do')
     console.log('[]')
+    return
+  }
+
+  if (opts.dryRun) {
     return
   }
 

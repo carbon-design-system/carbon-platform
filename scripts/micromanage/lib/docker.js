@@ -6,7 +6,7 @@
  */
 const { Command } = require('commander')
 
-const { exec, getPackageByName } = require('./utils')
+const { getPackageByName, execWithOutput } = require('./utils')
 
 const REMOTE_REGISTRY = 'us.icr.io/carbon-platform'
 const LOCAL_REGISTRY = 'local/carbon-platform'
@@ -22,7 +22,7 @@ function buildDockerCommand() {
     .action(handleDockerCommand)
 }
 
-function handleDockerCommand(serviceName, opts) {
+async function handleDockerCommand(serviceName, opts) {
   console.log('===== micromanage docker =====')
 
   const service = getPackageByName(serviceName)
@@ -32,7 +32,7 @@ function handleDockerCommand(serviceName, opts) {
   }
 
   if (!opts.omitBase) {
-    buildBaseImage()
+    await buildBaseImage()
   }
 
   // Ensure only services are built/pushed
@@ -47,37 +47,37 @@ function handleDockerCommand(serviceName, opts) {
   console.log(`Determined image name to be ${imageName}`)
 
   if (opts.build) {
-    buildService(imageName, service.path)
+    await buildService(imageName, service.path)
   }
 
   if (opts.push) {
-    pushService(imageName)
+    await pushService(imageName)
   }
 }
 
-function buildBaseImage() {
+async function buildBaseImage() {
   console.log('Building base image')
 
-  // Build the base image
-  console.log(exec(`docker build --pull --tag ${LOCAL_REGISTRY}/base:latest .`))
+  await execWithOutput(`docker build --pull --tag ${LOCAL_REGISTRY}/base:latest .`)
 }
 
-function buildService(imageName, contextDir) {
+async function buildService(imageName, contextDir) {
   console.log(`Building image: ${imageName}`)
 
   const buildArgs = getEnvvarNames().map((envvarName) => `--build-arg ${envvarName}`)
   const buildArgsStr = buildArgs.join(' ')
 
-  console.log(exec(`docker build --tag ${imageName} ${buildArgsStr} ${contextDir}`))
+  await execWithOutput(`docker build --tag ${imageName} ${buildArgsStr} ${contextDir}`)
 }
 
 function getEnvvarNames() {
   return Object.keys(process.env).filter((varname) => varname.startsWith(ENVVAR_PREFIX))
 }
 
-function pushService(imageName) {
+async function pushService(imageName) {
   console.log(`Pushing image: ${imageName}`)
-  console.log(exec(`docker push ${imageName}`))
+
+  await execWithOutput(`docker push ${imageName}`)
 }
 
 module.exports = {

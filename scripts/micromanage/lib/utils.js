@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const { execSync } = require('child_process')
+const { exec: execAsync, execSync } = require('child_process')
 const path = require('path')
 
 function buildCurlUrlParams(params) {
@@ -30,6 +30,35 @@ function exec(cmd, options = {}) {
     ...options
   }
   return execSync(cmd, execOptions).toString().trim()
+}
+
+/**
+ * Execute a command line command asynchronously, piping its output to the calling process.
+ *
+ * @param {string} cmd Command to execute.
+ * @param {object} options Additional options provided to execSync
+ * @returns {Promise} Promise of the command completing.
+ */
+function execWithOutput(cmd, options = {}) {
+  const execOptions = {
+    env: {
+      ...process.env
+    },
+    ...options
+  }
+
+  return new Promise((resolve, reject) => {
+    // Build the base image
+    const childProcess = execAsync(cmd, execOptions, (err) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve()
+      }
+    })
+    childProcess.stdout.pipe(process.stdout)
+    childProcess.stderr.pipe(process.stderr)
+  })
 }
 
 /**
@@ -130,6 +159,7 @@ function logErrorInfo(err) {
 module.exports = {
   buildCurlUrlParams,
   exec,
+  execWithOutput,
   getFiles,
   getPackageByName,
   getPackageForFile,

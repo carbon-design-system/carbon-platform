@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/api",
   "description": "Carbon platform application programming interfaces to services",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "Apache-2.0",
   "private": true,
   "repository": {

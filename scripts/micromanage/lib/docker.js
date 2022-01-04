@@ -6,7 +6,7 @@
  */
 const { Command } = require('commander')
 
-const { getPackageByName, execWithOutput } = require('./utils')
+const { getWorkspaceByName, execWithOutput } = require('./utils')
 
 const REMOTE_REGISTRY = 'us.icr.io/carbon-platform'
 const LOCAL_REGISTRY = 'local/carbon-platform'
@@ -25,7 +25,7 @@ function buildDockerCommand() {
 async function handleDockerCommand(serviceName, opts) {
   console.log('===== micromanage docker =====')
 
-  const service = getPackageByName(serviceName)
+  const service = getWorkspaceByName(serviceName)
 
   if (!service) {
     throw new Error('Unknown service: ' + serviceName)

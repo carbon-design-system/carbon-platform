@@ -62,29 +62,29 @@ function execWithOutput(cmd, options = {}) {
 }
 
 /**
- * Given a package name, find the corresponding package object.
+ * Given a workspace name, find the corresponding package.json object.
  *
- * @param {string} packageName The name of the package to find.
- * @returns A package with the corresponding name; or undefined if one was not found.
+ * @param {string} workspaceName The name of the workspace to find.
+ * @returns A workspace with the corresponding name; or undefined if one was not found.
  */
-function getPackageByName(packageName) {
-  return getPackages().find((pkg) => pkg.name === packageName)
+function getWorkspaceByName(workspaceName) {
+  return getWorkspaces().find((ws) => ws.name === workspaceName)
 }
 
 /**
- * Given a file, find the package under which the file resides.
+ * Given a file, find the workspace under which the file resides.
  *
  * @param {string} f File path.
- * @returns {object} Package object of the package containing the file.
+ * @returns {object} Workspace object of the workspace containing the file.
  */
-function getPackageForFile(f) {
-  const packages = getPackages()
+function getWorkspaceForFile(f) {
+  const workspaces = getWorkspaces()
 
-  return packages.find((pkg) => f.startsWith(pkg.path))
+  return workspaces.find((ws) => f.startsWith(ws.path))
 }
 
 /**
- * Get all of the files in a particular directory, given some filters using the `find` utility.
+ * Get all of the files in a particular directory, given some filters using the `find` os utility.
  *
  * @param {string} dir Directory in which to look.
  * @param {Array} extensions File extensions to include.
@@ -114,21 +114,21 @@ function getPackageJson() {
 }
 
 /**
- * Get an object for each package/workspace, as defined in the top-level package.json file.
+ * Get an object for each workspace, as defined in the top-level package.json file.
  *
- * @returns {Array} Array of package info objects.
+ * @returns {Array} Array of workspace info objects.
  */
-function getPackages() {
-  const packagePaths = getPackageJson().workspaces
+function getWorkspaces() {
+  const workspacePaths = getPackageJson().workspaces
 
-  return packagePaths.map((packagePath) => {
-    const p = require(path.join(process.cwd(), packagePath, 'package.json'))
+  return workspacePaths.map((workspacePath) => {
+    const p = require(path.join(process.cwd(), workspacePath, 'package.json'))
 
     return {
       name: p.name,
       dependencies: p.dependencies,
       devDependencies: p.devDependencies,
-      path: packagePath,
+      path: workspacePath,
       private: !!p.private,
       version: p.version
     }
@@ -161,10 +161,10 @@ module.exports = {
   exec,
   execWithOutput,
   getFiles,
-  getPackageByName,
-  getPackageForFile,
+  getWorkspaceByName,
+  getWorkspaceForFile,
   getPackageJson,
-  getPackages,
+  getWorkspaces,
   getTags,
   logErrorInfo
 }

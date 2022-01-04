@@ -4,8 +4,26 @@ on:
     tags:
       - '@carbon-platform/logging@*.*.*'
 
+  # Enable running this workflow manually from the Actions tab
+  workflow_dispatch:
+
 jobs:
   build-service-image:
-    uses: carbon-design-system/carbon-platform/.github/workflows/build-service-image.yml@main
-    with:
-      image_name: ${{ github.ref_name }}
+    name: Build Service Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      - name: Setup Node 🏗
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Setup Docker 🐳
+        run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io
+
+      - name: Build, Push 🚀
+        run: scripts/micromanage docker --build --push ${{ github.ref_name }}

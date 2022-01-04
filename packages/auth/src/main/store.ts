@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getRunMode, PRODUCTION } from '@carbon-platform/run-mode'
+import { getRunMode, PRODUCTION } from '@carbon-platform/api/run-mode'
 import cookieParser from 'cookie-parser'
 import { config } from 'dotenv'
 import expressSession, { Store } from 'express-session'

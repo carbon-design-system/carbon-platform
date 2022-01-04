@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { DEV, PRODUCTION } from '@carbon-platform/run-mode'
+import { DEV, PRODUCTION } from '@carbon-platform/api/run-mode'
 
 import { getPassportInstance, SESSION_SECRET, store } from '../main/index'
 const signature = require('cookie-signature')

@@ -29,7 +29,7 @@
         "typescript": "^4.4.4"
     },
     "dependencies": {
-        "@carbon-platform/run-mode": "1.0.0",
+        "@carbon-platform/api": "0.1.3",
         "connect-mongo": "^4.6.0",
         "connect-session-sequelize": "^7.1.2",
         "cookie-parser": "^1.4.6",

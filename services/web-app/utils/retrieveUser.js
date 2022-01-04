@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { DEV, getRunMode } from '@carbon-platform/run-mode'
+import { DEV, getRunMode } from '@carbon-platform/api/run-mode'
 
 import { getBaseUrl } from './getBaseUrl'
 

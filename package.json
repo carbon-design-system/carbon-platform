@@ -17,8 +17,8 @@
     "npm": "8"
   },
   "workspaces": [
-    "packages/auth",
     "packages/api",
+    "packages/auth",
     "packages/icons",
     "services/logging",
     "services/web-app"

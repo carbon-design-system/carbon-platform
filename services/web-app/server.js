@@ -13,7 +13,7 @@ const { createServer } = require('https')
 const { parse } = require('url')
 const next = require('next')
 const fs = require('fs') // this is a test
-const { PRODUCTION, getRunMode } = require('@carbon-platform/run-mode')
+const { PRODUCTION, getRunMode } = require('@carbon-platform/api/run-mode')
 
 const PORT = 443
 

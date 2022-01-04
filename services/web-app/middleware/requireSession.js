@@ -4,8 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { getRunMode, PRODUCTION } from '@carbon-platform/api/run-mode'
 import { getPassportInstance, SESSION_SECRET, store } from '@carbon-platform/auth'
-import { getRunMode, PRODUCTION } from '@carbon-platform/run-mode'
 import cookieParser from 'cookie-parser'
 import expressSession from 'express-session'
 import nextConnect from 'next-connect'

@@ -26,4 +26,4 @@ jobs:
         run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io
 
       - name: Build, Push 🚀
-        run: scripts/micromanage docker --build --push ${{ github.ref_name }}
+        run: scripts/micromanage docker --build --push @carbon-platform/logging

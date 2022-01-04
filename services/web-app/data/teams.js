@@ -24,5 +24,9 @@ export const teams = {
   'ibm-cloud': {
     icon: IbmCloud,
     name: 'IBM Cloud'
+  },
+  sterling: {
+    icon: Bee,
+    name: 'IBM Sterling'
   }
 }

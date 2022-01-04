@@ -24,6 +24,13 @@ const libraryAllowList = {
     path: '/packages/carbon-react',
     sponsor: 'carbon'
   },
+  'carbon-angular': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-components-angular',
+    path: '/',
+    sponsor: 'sterling'
+  },
   'carbon-cli': {
     host: 'github.ibm.com',
     org: 'matt-rosno',

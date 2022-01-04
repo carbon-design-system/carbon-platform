@@ -39,8 +39,8 @@ when running on dev/test/production mode
 ### Auth
 
 This service depends on the auth package; Make sure required environment variables are configured
-for proper functionality of this package. (See [auth package](./packages-auth.md) for details on how
-to set up the auth package)
+for proper functionality of this package. (See [auth package](./packages-api.md#auth) for details on
+how to set up the auth package)
 
 _Note_: this package requires different environment vairables and values depending on environemnt,
 make sure to update these when running on dev/test/production mode

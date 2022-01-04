@@ -5,14 +5,6 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-.notification {
-  // override carbon max-width and width
-  max-width: none;
-  margin: $spacing-07 0;
-
-  @include breakpoint-down(md) {
-    width: calc(100% - #{$spacing-07});
-    margin-right: $spacing-05;
-    margin-left: $spacing-05;
-  }
+.search {
+  margin-top: $spacing-07;
 }

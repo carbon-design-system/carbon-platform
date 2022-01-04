@@ -1,24 +1,23 @@
 # Nightly builds
 
 There is a GitHub Action/Workflow in place (nightly-version.yml) that automatically re-builds,
-re-versions, and re-publishes all packages and services that have changed since the previous night.
-Below are the details of what happens.
+re-versions, and pushes tags for all packages and services that have changed since the previous
+night. Below are the details of what happens.
 
-1. As a prerequisite step, `micromanage link` is run against all `.ts`, `.js`, and `.scss` files for
-   each package (both public and private). This will abort if any unspecified local dependencies are
-   found.
+1. Run `micromanage version`. This will look at each npm workspace in isolation and determine if
+   there are any changes to it. For any that have changed, the workspace's changelog is updated, its
+   `package.json` is updated with a new version number, and a new version tag is created and pushed
+   to GitHub.
 
-1. Run `micromanage version`. This will look at each package in isolation and determine if there are
-   any changes to them. For any that have changed, the package's changelog is updated, its
-   package.json is updated with a new version number, and a new version tag is created and pushed to
-   GitHub.
+   - This includes both public and private workspaces.
+   - If any "package" is updated, all "services" are forced to update too. This is because a
+     "package" update triggers the build of a new base Docker image, which in turn should trigger
+     the rebuild of all "services" that depend on the base image (i.e. all of them).
 
-   - This includes both public and private packages.
-   - Note: that this does not move forward the minimum dependency requirements specified in each
-     project's `package.json` file.
-
-1. Run `micromanage publish`. For any non-private packages, they will be built (via the `build`
-   script from their `package.json` file) and re-deployed to the configured npmjs registry.
+1. Pushed version tags result in the running of one or more `build-service-image` workflows. These
+   build a base image, followed by a service's image. Services are built via the `build` script from
+   their `package.json` file. Upon successful build, each service is then pushed to the IBM
+   Container Registry.
 
 ## Manually triggering a nightly build
 

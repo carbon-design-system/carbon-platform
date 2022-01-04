@@ -23,10 +23,10 @@ const Index = () => {
   }, [setNavData])
 
   return (
-    <div className={styles.content}>
+    <>
       <NextSeo {...seo} />
-      Welcome to Assets!
-    </div>
+      <div className={styles.content}>Welcome to Assets!</div>
+    </>
   )
 }
 

@@ -10,6 +10,13 @@
  * object keys to ensure uniqueness.
  */
 const libraryAllowList = {
+  'carbon-styles': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon',
+    path: '/packages/styles',
+    sponsor: 'carbon'
+  },
   'carbon-react': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
@@ -42,8 +49,7 @@ const libraryAllowList = {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/components',
-    sponsor: 'carbon'
+    path: '/packages/components'
   },
   'carbon-elements': {
     host: 'github.ibm.com',
@@ -184,6 +190,13 @@ const libraryAllowList = {
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/utilities',
     sponsor: 'ibm-dotcom'
+  },
+  'cloud-pal': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'ibmcloud-pal',
+    path: '/patterns',
+    sponsor: 'ibm-cloud'
   }
 }
 

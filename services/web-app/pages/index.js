@@ -32,10 +32,10 @@ const Index = () => {
   }, [setNavData])
 
   return (
-    <div className={styles.content}>
+    <>
       <NextSeo {...seo} />
-      Home
-    </div>
+      <div className={styles.content}>Home</div>
+    </>
   )
 }
 

@@ -24,10 +24,10 @@ const Standards = () => {
   }, [setNavData])
 
   return (
-    <div className={styles.content}>
+    <>
       <NextSeo {...seo} />
-      Welcome to Standards!
-    </div>
+      <div className={styles.content}>Welcome to Standards!</div>
+    </>
   )
 }
 

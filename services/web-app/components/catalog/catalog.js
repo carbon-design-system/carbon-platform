@@ -104,8 +104,8 @@ function Catalog({ data, type = 'component', filter: defaultFilter = { status: [
 
         if (search) {
           return (
-            name.toLowerCase().includes(search.toLowerCase()) ||
-            description.toLowerCase().includes(search.toLowerCase())
+            (name && name.toLowerCase().includes(search.toLowerCase())) ||
+            (description && description.toLowerCase().includes(search.toLowerCase()))
           )
         }
 

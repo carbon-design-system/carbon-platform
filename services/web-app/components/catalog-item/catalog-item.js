@@ -42,7 +42,8 @@ const CatalogItemContent = ({ asset, isGrid = false }) => {
   const { name, description, externalDocsUrl } = asset.content
   const { sponsor } = asset.params
 
-  const { name: sponsorName, icon: SponsorIcon } = teams[sponsor]
+  const sponsorName = teams[sponsor] && teams[sponsor].name
+  const SponsorIcon = teams[sponsor] && teams[sponsor].icon
 
   const isSeparatedMeta = !isLg || isGrid
 

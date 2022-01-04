@@ -10,6 +10,13 @@
  * object keys to ensure uniqueness.
  */
 const libraryAllowList = {
+  'carbon-styles': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon',
+    path: '/packages/styles',
+    sponsor: 'carbon'
+  },
   'carbon-react': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
@@ -42,8 +49,7 @@ const libraryAllowList = {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/components',
-    sponsor: 'carbon'
+    path: '/packages/components'
   },
   'carbon-elements': {
     host: 'github.ibm.com',

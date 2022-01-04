@@ -10,6 +10,8 @@ import { useContext, useEffect } from 'react'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
+import styles from './pages.module.scss'
+
 const FourOhFour = () => {
   const { setNavData } = useContext(LayoutContext)
 
@@ -24,7 +26,7 @@ const FourOhFour = () => {
   return (
     <>
       <NextSeo {...seo} />
-      <h1>Page not found.</h1>
+      <div className={styles.content}>Page not found</div>
     </>
   )
 }

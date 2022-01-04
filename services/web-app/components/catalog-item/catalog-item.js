@@ -7,7 +7,6 @@
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import { ArrowUpRight, Scales } from '@carbon/react/icons'
 import clsx from 'clsx'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
@@ -21,28 +20,19 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import styles from './catalog-item.module.scss'
 
 const CatalogItemImage = ({ asset }) => {
-  const [showPlaceholder, setShowPlaceholder] = useState(true)
+  const [src, setSrc] = useState(`/assets/thumbnails/${getSlug(asset.content)}.svg`)
 
   return (
-    <>
-      {showPlaceholder && (
-        <Image
-          alt={`${asset.content.name} placeholder`}
-          src="/assets/thumbnails/coming-soon.svg"
-          layout="fill"
-          objectFit="cover"
-        />
-      )}
-      <Image
-        alt={`${asset.content.name} thumbnail`}
-        src={`/assets/thumbnails/${getSlug(asset.content)}.svg`}
-        layout="fill"
-        objectFit="cover"
-        onLoadingComplete={() => {
-          setShowPlaceholder(false)
-        }}
-      />
-    </>
+    // The Next.js Image component isn't firing the onError callback for some reason, so for now,
+    // use the unoptimized img element since we're just using SVGs for now. We'll eventually want
+    // to use the Image component for placeholders.
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      alt={`${asset.content.name} thumbnail`}
+      src={src}
+      className={styles.image}
+      onError={() => setSrc('/assets/thumbnails/coming-soon.svg')}
+    />
   )
 }
 
@@ -52,7 +42,8 @@ const CatalogItemContent = ({ asset, isGrid = false }) => {
   const { name, description, externalDocsUrl } = asset.content
   const { sponsor } = asset.params
 
-  const { name: sponsorName, icon: SponsorIcon } = teams[sponsor]
+  const sponsorName = teams[sponsor] && teams[sponsor].name
+  const SponsorIcon = teams[sponsor] && teams[sponsor].icon
 
   const isSeparatedMeta = !isLg || isGrid
 

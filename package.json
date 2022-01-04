@@ -2,59 +2,58 @@
   "name": "carbon-platform-monorepo",
   "version": "0.0.0",
   "description": "Carbon platform monorepo",
+  "license": "Apache-2.0",
   "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
   },
-  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "engines": {
-    "node": ">=16",
-    "npm": ">=8"
+    "node": "16",
+    "npm": "8"
   },
   "workspaces": [
-    "packages/run-mode",
+    "packages/api",
     "packages/icons",
-    "packages/logging",
-    "services/logging-service",
+    "services/logging",
     "services/web-app"
   ],
   "scripts": {
     "all:build": "npm --workspaces run build",
-    "packages:build": "npm --workspaces --if-present run package:build",
-    "services:build": "npm --workspaces --if-present run service:build",
+    "all:clean": "npm --workspaces run clean",
     "lint": "scripts/lint",
     "lint:fix": "scripts/lint_and_fix",
-    "deploy": "scripts/micromanage deploy",
-    "nightly": "scripts/nightly",
-    "prepare": "husky install && npm run packages:build",
+    "micromanage:bootstrap": "node scripts/micromanage/scripts/bootstrap.js",
+    "packages:build": "npm --workspaces --if-present run package:build",
+    "prepare": "if [ \"$CI\" != 'true' ]; then scripts/prepare; fi",
+    "services:build": "npm --workspaces --if-present run service:build",
     "test": "jest --config=./.jestrc.js"
   },
   "devDependencies": {
-    "@commitlint/cli": "^15.0.0",
-    "@commitlint/config-conventional": "^15.0.0",
-    "@types/jest": "^27.0.3",
-    "@typescript-eslint/eslint-plugin": "^5.2.0",
-    "commander": "^8.3.0",
-    "dotenv": "^10.0.0",
+    "@commitlint/cli": "^16.0.1",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@types/jest": "^27.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
     "eslint": "^7.32.0",
-    "eslint-config-carbon": "^2.8.0",
-    "eslint-config-next": "^12.0.4",
+    "eslint-config-carbon": "^2.9.0",
+    "eslint-config-next": "^12.0.7",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-jest": "^25.3.0",
+    "eslint-plugin-jest": "^25.3.4",
     "eslint-plugin-notice": "^0.9.10",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^7.0.4",
-    "jest": "^27.3.1",
-    "lint-staged": "^12.1.2",
-    "prettier-config-carbon": "^0.4.0",
+    "jest": "^27.4.5",
+    "lint-staged": "^12.1.5",
+    "npm-check-updates": "^12.1.0",
+    "prettier-config-carbon": "^0.6.0",
+    "rimraf": "^3.0.2",
     "standard-version": "^9.3.2",
     "stylelint": "^13.13.1",
     "stylelint-config-carbon": "^1.7.0",
-    "ts-jest": "^27.0.7"
+    "ts-jest": "^27.1.2"
   }
 }

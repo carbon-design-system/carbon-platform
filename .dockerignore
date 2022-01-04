@@ -1,0 +1,23 @@
+#
+# This .dockerignore file is used for base image builds
+#
+
+# Files
+/.*.js
+**/.*ignore
+**/.env*
+**/*.md
+Dockerfile
+sonar-project.properties
+
+# Dirs
+**/dist/
+**/node_modules/
+**/src/test/
+.github/
+.husky/
+.test-coverage/
+.vscode/
+docs/
+scripts/
+services/

@@ -7,11 +7,13 @@
 
 .container {
   // position above CatalogSort
+  // override grid gutter on sm
   position: sticky;
   z-index: 2;
   top: $spacing-09 + $spacing-05;
   @include breakpoint-down(md) {
     top: $spacing-09;
+    --cds-grid-gutter: 0;
   }
 
   // gray background above search when scrolled
@@ -32,7 +34,8 @@
 
   // TODO temporarily fix search bar height until its fixed upstream after `@carbon/react@0.11.0`,
   // tracked here: https://github.com/carbon-design-system/carbon/discussions/10247
-  :global(.cds--search--lg .cds--search-input) {
+  :global(.cds--search--lg .cds--search-input),
+  :global(.cds--search--lg .cds--search-close) {
     height: $spacing-09;
   }
 }
@@ -45,6 +48,20 @@
   }
 
   &:not(:first-child) {
+    border-left: 1px solid $layer-accent;
+  }
+}
+
+.column-search {
+  @include breakpoint-down(md) {
+    display: flex;
+  }
+}
+
+.filter {
+  @include breakpoint-down(md) {
+    flex-basis: $spacing-09;
+    flex-shrink: 0;
     border-left: 1px solid $layer-accent;
   }
 }

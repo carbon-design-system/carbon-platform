@@ -1,6 +1,12 @@
 #!/bin/sh
+#
+# Copyright IBM Corp. 2021, 2021
+#
+# This source code is licensed under the Apache-2.0 license found in the
+# LICENSE file in the root directory of this source tree.
+#
 
-git diff --staged --name-only --diff-filter=d | grep "/package-lock.json"
+git diff --staged --name-only --diff-filter=d | egrep "(packages|services)/.*/package-lock.json"
 rc=$?
 
 if [ $rc -eq 0 ]; then

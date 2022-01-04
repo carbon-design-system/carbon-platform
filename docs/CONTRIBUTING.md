@@ -71,12 +71,14 @@ rest of the commit message is then used for this.
 Here are the valid types that can be used in a commit message header:
 
 - `build` - Changes that affect the build system or external dependencies (e.g. npm, tsconfig, etc.)
+- `chore` - Repetitive maintenance-type tasks
 - `ci` - Changes to CI configuration files and scripts (e.g. GH Workflows, SonarCloud, etc.)
-- `dev` - Changes that affect the developer workflow/experience (e.g. Git hooks, git ignores,
-  linters, formatters, etc.)
 - `docs` - Documentation changes
 - `feat` - A new feature (corresponds to a minor version)
 - `fix` - A fix for an issue (corresponds to a patch version)
+- `perf` - A code change that improves performance
+- `refactor` - A large-scale rework of existing code that does not change the externals
+- `revert` - A revert of a previous commit to cancel out its changes
 - `style` - Changes that do not affect the meaning of the code (white-space, formatting, missing
   semi-colons, etc.)
 - `test` - Changes/additions to tests

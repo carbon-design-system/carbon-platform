@@ -1,9 +1,9 @@
 {
   "name": "@carbon-platform/icons",
   "description": "Carbon platform icons",
-  "version": "0.0.9",
-  "module": "dist/main/tsx-generated/index.js",
-  "types": "dist/main/tsx-generated/index.d.ts",
+  "version": "0.0.10",
+  "module": "dist/main/generated/index.js",
+  "types": "dist/main/generated/index.d.ts",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -18,14 +18,16 @@
   },
   "scripts": {
     "build": "npm run clean && npm run build:svg && tsc",
-    "build:svg": "svgr --out-dir src/main/tsx-generated src/main/svg",
-    "clean": "rimraf dist src/main/tsx-generated",
+    "build:svg": "svgr --out-dir src/main/generated src/main/svg",
+    "clean": "rimraf dist src/main/generated",
     "package:build": "npm run build",
     "test": "echo 'No js/ts code to test in icons package'"
   },
   "devDependencies": {
-    "@svgr/cli": "^6.1.0",
+    "@svgr/cli": "^6.1.2",
+    "@types/react": "^17.0.38",
+    "react": "^17.0.2",
     "rimraf": "^3.0.2",
-    "typescript": "^4.4.4"
+    "typescript": "^4.5.4"
   }
 }

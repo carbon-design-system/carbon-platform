@@ -2,6 +2,78 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.30](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.29...@carbon-platform/web-app@0.1.30) (2022-01-04)
+
+### [0.1.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.27...@carbon-platform/web-app@0.1.29) (2022-01-03)
+
+
+### Features
+
+* **api:** create api package ([c600bea](https://github.com/carbon-design-system/carbon-platform/commit/c600bea03431c537cec70a5353d650f099e990fb))
+* **web-app:** add dockerfile ([3b477a9](https://github.com/carbon-design-system/carbon-platform/commit/3b477a9805e844d49f07e16c471951b1a15473ba))
+
+### [0.1.28](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.27...@carbon-platform/web-app@0.1.28) (2022-01-03)
+
+
+### Features
+
+* **api:** create api package ([c600bea](https://github.com/carbon-design-system/carbon-platform/commit/c600bea03431c537cec70a5353d650f099e990fb))
+* **web-app:** add dockerfile ([3b477a9](https://github.com/carbon-design-system/carbon-platform/commit/3b477a9805e844d49f07e16c471951b1a15473ba))
+
+### [0.1.27](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.26...@carbon-platform/web-app@0.1.27) (2021-12-31)
+
+
+### Features
+
+* update page header pictos ([a1fe188](https://github.com/carbon-design-system/carbon-platform/commit/a1fe188a6f8a2483a1e6854d2673691d6fac72a9))
+
+
+### Bug Fixes
+
+* broken thumbnail images ([edf9f06](https://github.com/carbon-design-system/carbon-platform/commit/edf9f06338644e6e8bc1e0a85284aff1e57d5d91))
+
+### [0.1.26](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.25...@carbon-platform/web-app@0.1.26) (2021-12-23)
+
+
+### Features
+
+* added pictograms and header container -no breadcrumb ([d0aa5f4](https://github.com/carbon-design-system/carbon-platform/commit/d0aa5f45056ceb9488aa35e34595997441e4712e))
+* moved page header into seperate component ([a1c6473](https://github.com/carbon-design-system/carbon-platform/commit/a1c6473beed7708cefd403818e49f0563bac62f5))
+* page header - clean up ([2d76f5b](https://github.com/carbon-design-system/carbon-platform/commit/2d76f5b45670e9a191fc8f4442c4c17081210674))
+* page header - clean up pt.2 ([b122e95](https://github.com/carbon-design-system/carbon-platform/commit/b122e95c408c73d9b5c9b9fafd23816b1bbe8661))
+
+### [0.1.25](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.24...@carbon-platform/web-app@0.1.25) (2021-12-22)
+
+
+### Features
+
+* add filter from dropdown ([7088ec9](https://github.com/carbon-design-system/carbon-platform/commit/7088ec921e66152beb46673018fc05f087d67081))
+* add filters options to dropdown ([f3dc19c](https://github.com/carbon-design-system/carbon-platform/commit/f3dc19c0ead5adec08e3b86b3c8fe884e76ff515))
+* add grid to filter popover content ([7004887](https://github.com/carbon-design-system/carbon-platform/commit/700488768c778487e9f832c269b24c83bf21c839))
+* added overflow menu to filter ([a90bab6](https://github.com/carbon-design-system/carbon-platform/commit/a90bab684441e7e7305238d514adac9ad827f6d5))
+* apply filter to lists ([fcbfaf0](https://github.com/carbon-design-system/carbon-platform/commit/fcbfaf03b2cb5179daa5dbe6c68b301f796c9afe))
+* **catalog-search:** need to fix state ([26976a9](https://github.com/carbon-design-system/carbon-platform/commit/26976a99a194833204e96bae680ecd3b4e56aff0))
+* cleaned up logic for tags and added some overflow styling ([49109d5](https://github.com/carbon-design-system/carbon-platform/commit/49109d55e6f5537d55fbb8fe9631f8c74935c584))
+* cleaned up some code ([4228e6e](https://github.com/carbon-design-system/carbon-platform/commit/4228e6e726118c7f3f76ba0256612b09c9804fbb))
+* filters base - need more functionality and styling ([d5fe54b](https://github.com/carbon-design-system/carbon-platform/commit/d5fe54ba221bfe0dbe1f71b8ab6adffaaae5b0c9))
+* move outside click to utils ([26f4227](https://github.com/carbon-design-system/carbon-platform/commit/26f4227b3ad0c5bea9644e2ff0be085c54c3c380))
+* need to clean up tagging logic ([8ede941](https://github.com/carbon-design-system/carbon-platform/commit/8ede941bbecd97058afa0b2b0e8a09c266816a24))
+* need to fix functions and mobile view ([ad51f0a](https://github.com/carbon-design-system/carbon-platform/commit/ad51f0a2d294cfc5218700eca15dd7558585e97e))
+* new filter layout ([8593b36](https://github.com/carbon-design-system/carbon-platform/commit/8593b3610146b0f00c8989ebb1eb27fec28554ac))
+* refactor multislect into own component ([ec6a630](https://github.com/carbon-design-system/carbon-platform/commit/ec6a630678a741e4d505c70ccd2bfcd1b78fcb11))
+* remove filter ([73ec8a0](https://github.com/carbon-design-system/carbon-platform/commit/73ec8a019ef1fd9194ba008bc01b0a3db9b0a4dd))
+* unselect filter tag and clear all ([441923e](https://github.com/carbon-design-system/carbon-platform/commit/441923ecdd7576d297f8ef532f54440697d59052))
+* update overflow tag styles ([1ef2d86](https://github.com/carbon-design-system/carbon-platform/commit/1ef2d865f00d573557f629f44db4fd51ea1509ef))
+* update overflow tag styles -v2 ([d1280e4](https://github.com/carbon-design-system/carbon-platform/commit/d1280e4686797d1f1f96edaa910ba4bf607f4a54))
+
+
+### Bug Fixes
+
+* close filter on mobile ([b03d713](https://github.com/carbon-design-system/carbon-platform/commit/b03d713b9efed9c659b22f81db292e59929e6024))
+* merge errors ([ec00f25](https://github.com/carbon-design-system/carbon-platform/commit/ec00f25722e1819f2d1d26e90d86065d467f2767))
+* merge main v2 ([ce6ec64](https://github.com/carbon-design-system/carbon-platform/commit/ce6ec64dc99d866082d25177d3ac07e5d2ad23aa))
+* properly use lodash remove ([fd9f6d2](https://github.com/carbon-design-system/carbon-platform/commit/fd9f6d230bffe3e84d6c9b8bc25e83593c45b2ab))
+
 ### [0.1.24](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.23...@carbon-platform/web-app@0.1.24) (2021-12-14)
 
 

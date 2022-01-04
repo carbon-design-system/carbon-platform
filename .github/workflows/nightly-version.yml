@@ -1,5 +1,4 @@
 name: Nightly Version
-
 on:
   schedule:
     #       ┌───────────── minute (0 - 59)
@@ -21,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout 🛎
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -32,17 +31,14 @@ jobs:
           git config --global user.email "carbon@us.ibm.com"
           git config --global user.name "Carbon Bot"
 
-      - name: Setup Node 🏗️
+      - name: Setup Node 🏗
         uses: actions/setup-node@v2
         with:
           node-version: '16'
           cache: 'npm'
-          registry-url: https://registry.npmjs.org
 
       - name: Install Node Modules 🔧
-        run: npm install
+        run: CI=true npm install
 
-      - name: Version and Publish 🚀
-        run: npm run nightly
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      - name: Version 📆
+        run: node scripts/micromanage version

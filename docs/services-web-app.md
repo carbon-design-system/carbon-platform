@@ -31,7 +31,8 @@ The app uses run-mode to make decisions that are environment-dependant (cookies,
 This package configuration is also needed for proper functionality of the Auth Package.
 
 Make sure required environment variables are configured for proper functionality of this package.
-(See [run-mode package](./packages-run-mode.md) for details on how to set up the run-mode package)
+(See [run-mode package](./packages-api.md#run-mode) for details on how to set up the run-mode
+package)
 
 _Note_: this package requires different values depending on environemnt, make sure to update these
 when running on dev/test/production mode

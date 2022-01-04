@@ -25,11 +25,12 @@
   "scripts": {
     "all:build": "npm --workspaces run build",
     "all:clean": "npm --workspaces run clean",
-    "packages:build": "npm --workspaces --if-present run package:build",
-    "services:build": "npm --workspaces --if-present run service:build",
     "lint": "scripts/lint",
     "lint:fix": "scripts/lint_and_fix",
+    "micromanage:bootstrap": "node scripts/micromanage/scripts/bootstrap.js",
+    "packages:build": "npm --workspaces --if-present run package:build",
     "prepare": "if [ \"$CI\" != 'true' ]; then scripts/prepare; fi",
+    "services:build": "npm --workspaces --if-present run service:build",
     "test": "jest --config=./.jestrc.js"
   },
   "devDependencies": {
@@ -54,9 +55,5 @@
     "stylelint": "^13.13.1",
     "stylelint-config-carbon": "^1.7.0",
     "ts-jest": "^27.1.2"
-  },
-  "dependencies": {
-    "commander": "^8.3.0",
-    "dotenv": "^10.0.0"
   }
 }

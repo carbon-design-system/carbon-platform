@@ -76,14 +76,21 @@ function getFiles(dir, extensions, exclusions = []) {
 }
 
 /**
+ * Returns the top-level package.json file for the repository.
+ *
+ * @returns {Object} The package.json file as a JSON object.
+ */
+function getPackageJson() {
+  return require(path.join(process.cwd(), 'package.json'))
+}
+
+/**
  * Get an object for each package/workspace, as defined in the top-level package.json file.
  *
  * @returns {Array} Array of package info objects.
  */
 function getPackages() {
-  const packageJson = require(path.join(process.cwd(), 'package.json'))
-
-  const packagePaths = packageJson.workspaces
+  const packagePaths = getPackageJson().workspaces
 
   return packagePaths.map((packagePath) => {
     const p = require(path.join(process.cwd(), packagePath, 'package.json'))
@@ -126,6 +133,7 @@ module.exports = {
   getFiles,
   getPackageByName,
   getPackageForFile,
+  getPackageJson,
   getPackages,
   getTags,
   logErrorInfo

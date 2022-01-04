@@ -15,6 +15,7 @@ module.exports = {
         'icons',
         'logging',
         'messaging',
+        'micromanage',
         'search',
         'web-app'
       ]

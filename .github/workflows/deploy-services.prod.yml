@@ -36,7 +36,7 @@ jobs:
         run: npm install
 
       - name: Call Deploy Script 🚀
-        run: scripts/micromanage deploy --target=prod
+        run: node scripts/micromanage deploy --target=prod
         env:
           IBM_CLOUD_API: https://cloud.ibm.com
           IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}

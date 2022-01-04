@@ -22,11 +22,11 @@ jobs:
           node-version: '16'
           cache: 'npm'
 
-      - name: Install Node Modules 🔧
-        run: CI=true npm install --production
+      - name: Bootstrap Micromanage 🥾
+        run: npm run micromanage:bootstrap
 
       - name: Setup Docker 🐳
         run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io
 
       - name: Build, Push 🚀
-        run: scripts/micromanage docker --build --push @carbon-platform/logging
+        run: node scripts/micromanage docker --build --push @carbon-platform/logging

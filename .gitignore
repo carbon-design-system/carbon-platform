@@ -7,7 +7,6 @@ dist/
 # Generated stuff
 generated/
 .test-coverage/
-micromanage-updated.json
 
 # OS stuff
 .DS_Store

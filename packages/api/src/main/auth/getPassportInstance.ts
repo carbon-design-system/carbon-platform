@@ -5,11 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getRunMode, PRODUCTION } from '@carbon-platform/api/run-mode'
 import { config } from 'dotenv'
 import { BaseClient, Issuer, Strategy as OpenIdStrategy } from 'openid-client'
 import passport from 'passport'
 
+import { getRunMode, PRODUCTION } from '../run-mode'
 import devConfig from './config/config.dev'
 import prodConfig from './config/config.prod'
 
@@ -43,7 +43,7 @@ const getPassportInstance = async () => {
     const ibmIdIssuer = await Issuer.discover(passportConfig.discovery_url)
     client = new ibmIdIssuer.Client({
       client_id: process.env.CARBON_IBM_VERIFY_CLIENT_ID as string,
-      client_secret: process.env.CARBON_IBM_VERIFY_CLIENT_SECRET,
+      client_secret: process.env.CARBON_IBM_VERIFY_CLIENT_SECRET ?? '',
       redirect_uris: [passportConfig.redirect_uri],
       response_types: ['code']
     })

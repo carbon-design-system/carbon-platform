@@ -18,7 +18,6 @@
   },
   "workspaces": [
     "packages/api",
-    "packages/auth",
     "packages/icons",
     "services/logging",
     "services/web-app"

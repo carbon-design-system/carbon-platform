@@ -8,6 +8,7 @@ import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
 
 import CatalogItem from '@/components/catalog-item'
+import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-list.module.scss'
@@ -28,7 +29,7 @@ const CatalogList = ({ assets, isGrid = false, page = 1, pageSize = 10 }) => {
       narrow={isNarrow}
     >
       {renderAssets.map((asset, i) => (
-        <CatalogItem asset={asset} key={i} isGrid={isGrid && isLg} />
+        <CatalogItem asset={asset} key={`${i}-${getSlug(asset.content)}`} isGrid={isGrid && isLg} />
       ))}
       {(!renderAssets || renderAssets.length === 0) && (
         <Column className={clsx(styles.copy, isNarrow && styles.copyGrid)} sm={4} md={8} lg={12}>

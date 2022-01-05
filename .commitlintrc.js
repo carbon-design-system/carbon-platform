@@ -3,7 +3,6 @@ module.exports = {
   rules: {
     'header-max-length': [2, 'always', 72],
     'body-max-line-length': [2, 'always', 100],
-    'scope-case': [0, 'always', 'lower-case'],
     'scope-enum': [
       2,
       'always',
@@ -21,10 +20,24 @@ module.exports = {
         'web-app'
       ]
     ],
+    'type-case': [0, 'never'],
     'type-enum': [
       2,
       'always',
-      ['build', 'ci', 'chore', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test']
+      [
+        'build',
+        'ci',
+        'chore',
+        'docs',
+        'feat',
+        'fix',
+        'perf',
+        'refactor',
+        'revert',
+        'style',
+        'test',
+        'WIP'
+      ]
     ]
   }
 }

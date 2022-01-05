@@ -50,7 +50,7 @@ const CatalogItemContent = ({ asset, isGrid = false }) => {
   return (
     <Grid className={styles.content}>
       <Column sm={4} md={4} lg={7} xlg={6}>
-        {sponsorName && <p className={styles.sponsor}>{sponsorName}</p>}
+        <p className={styles.sponsor}>{sponsorName || 'Community maintained'}</p>
         {name && <p className={styles.name}>{name}</p>}
         {description && <p className={styles.description}>{description}</p>}
         <div className={styles.icon} title={sponsorName && `Sponsored by ${sponsorName}`}>

@@ -37,6 +37,12 @@ const libraryAllowList = {
     repo: 'carbon-components-vue',
     path: '/packages/core'
   },
+  'carbon-svelte': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-components-svelte',
+    path: '/'
+  },
   'carbon-cli': {
     host: 'github.ibm.com',
     org: 'matt-rosno',

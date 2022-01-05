@@ -31,6 +31,12 @@ const libraryAllowList = {
     path: '/',
     sponsor: 'sterling'
   },
+  'carbon-vue': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-components-vue',
+    path: '/packages/core'
+  },
   'carbon-cli': {
     host: 'github.ibm.com',
     org: 'matt-rosno',

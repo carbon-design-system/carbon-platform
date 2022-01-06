@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Bee, Carbon, IbmCloud } from '@carbon/react/icons'
+import { Bee, Carbon, IbmCloud, Watson } from '@carbon/react/icons'
 
 /**
  * Teams are defined here for now, but in the future we will probably want these stored in our data-
@@ -24,5 +24,9 @@ export const teams = {
   'ibm-cloud': {
     icon: IbmCloud,
     name: 'IBM Cloud'
+  },
+  watson: {
+    icon: Watson,
+    name: 'Watson'
   }
 }

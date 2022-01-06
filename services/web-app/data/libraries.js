@@ -10,6 +10,41 @@
  * object keys to ensure uniqueness.
  */
 const libraryAllowList = {
+  'carbon-charts': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-charts',
+    path: '/packages/core',
+    sponsor: 'carbon'
+  },
+  'carbon-charts-angular': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-charts',
+    path: '/packages/angular',
+    sponsor: 'carbon'
+  },
+  'carbon-charts-react': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-charts',
+    path: '/packages/react',
+    sponsor: 'carbon'
+  },
+  'carbon-charts-svelte': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-charts',
+    path: '/packages/svelte',
+    sponsor: 'carbon'
+  },
+  'carbon-charts-vue': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-charts',
+    path: '/packages/vue',
+    sponsor: 'carbon'
+  },
   'carbon-styles': {
     host: 'github.ibm.com',
     org: 'matt-rosno',

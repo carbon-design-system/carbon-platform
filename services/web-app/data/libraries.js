@@ -223,6 +223,20 @@ const libraryAllowList = {
     repo: 'ibmcloud-pal',
     path: '/patterns',
     sponsor: 'ibm-cloud'
+  },
+  'watson-moments-react': {
+    host: 'github.ibm.com',
+    org: 'andrea-cardona',
+    repo: 'carbon-watson-moments',
+    path: '/packages/react',
+    sponsor: 'watson'
+  },
+  'watson-moments-styles': {
+    host: 'github.ibm.com',
+    org: 'andrea-cardona',
+    repo: 'carbon-watson-moments',
+    path: '/packages/styles',
+    sponsor: 'watson'
   }
 }
 

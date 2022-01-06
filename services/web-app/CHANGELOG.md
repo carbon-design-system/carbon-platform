@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.32](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.31...@carbon-platform/web-app@0.1.32) (2022-01-06)
+
+
+### Bug Fixes
+
+* use explicit key on catalogItem, prevent react unstable comp state ([4ebaea0](https://github.com/carbon-design-system/carbon-platform/commit/4ebaea08a953edcc6abf6af2ce59cef054999fcd))
+
 ### [0.1.31](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.30...@carbon-platform/web-app@0.1.31) (2022-01-05)
 
 

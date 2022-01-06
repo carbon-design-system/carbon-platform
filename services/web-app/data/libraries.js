@@ -24,6 +24,32 @@ const libraryAllowList = {
     path: '/packages/carbon-react',
     sponsor: 'carbon'
   },
+  'carbon-angular': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-components-angular',
+    path: '/',
+    sponsor: 'sterling'
+  },
+  'carbon-vue': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-components-vue',
+    path: '/packages/core'
+  },
+  'carbon-svelte': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-components-svelte',
+    path: '/'
+  },
+  'carbon-web-components': {
+    host: 'github.ibm.com',
+    org: 'matt-rosno',
+    repo: 'carbon-web-components',
+    path: '/',
+    sponsor: 'ibm-dotcom'
+  },
   'carbon-cli': {
     host: 'github.ibm.com',
     org: 'matt-rosno',

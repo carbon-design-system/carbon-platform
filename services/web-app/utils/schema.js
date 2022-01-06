@@ -31,14 +31,3 @@ export const librarySortComparator = (libraryA, libraryB) => {
   }
   return libraryA.content.name > libraryB.content.name ? 1 : -1
 }
-
-/**
- * Gets a display string from a schema value
- * @param {string} status - The asset schema value
- * @returns {string} The display string
- */
-export const getStatus = (status) => {
-  if (status === 'stable') return 'Stable'
-
-  return 'To do'
-}

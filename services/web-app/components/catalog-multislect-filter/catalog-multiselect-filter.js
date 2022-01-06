@@ -103,7 +103,7 @@ const CatalogMultiselectFilter = ({ filter, className: customClassName, onFilter
                           filter[item] && filter[item].includes(key) ? 'remove' : 'add'
                         )
                       }}
-                      type={filter[item] && filter[item].includes(key) && 'high-contrast'}
+                      type={filter[item] && filter[item].includes(key) ? 'high-contrast' : 'gray'}
                     >
                       {filters[item].values[key].name}
                     </Tag>

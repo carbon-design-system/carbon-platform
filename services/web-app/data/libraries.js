@@ -217,6 +217,13 @@ const libraryAllowList = {
     path: '/packages/upgrade',
     sponsor: 'carbon'
   },
+  'cloud-pal': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'ibmcloud-pal',
+    path: '/patterns',
+    sponsor: 'ibm-cloud'
+  },
   'ibmdotcom-react': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
@@ -252,12 +259,12 @@ const libraryAllowList = {
     path: '/packages/utilities',
     sponsor: 'ibm-dotcom'
   },
-  'cloud-pal': {
+  'ibm-security': {
     host: 'github.ibm.com',
-    org: 'francine-lucca',
-    repo: 'ibmcloud-pal',
-    path: '/patterns',
-    sponsor: 'ibm-cloud'
+    org: 'jdharvey',
+    repo: 'ibm-security',
+    path: '/',
+    sponsor: 'ibm-security'
   },
   'watson-moments-react': {
     host: 'github.ibm.com',

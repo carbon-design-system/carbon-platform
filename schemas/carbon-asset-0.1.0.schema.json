@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://carbondesignsystem.com/schemas/carbon-asset-0.1.0.schema.json",
+  "title": "Carbon Asset",
+  "description": "A Carbon Asset",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Every asset needs an identifier unique to its library. This is used to associate assets across libraries."
+    },
+    "description": {
+      "type": "string",
+      "description": "Asset description ideally between 50-160 characters in length. Use sentence-case capitalization."
+    },
+    "externalDocsUrl": {
+      "type": "string",
+      "description": "Absolute URL to externally-hosted documentation."
+    },
+    "framework": {
+      "type": "string",
+      "enum": [
+        "angular",
+        "react",
+        "react-native",
+        "svelte",
+        "vanilla",
+        "vue",
+        "web-component",
+        "design-only"
+      ],
+      "description": "Asset frontend framework."
+    },
+    "name": {
+      "type": "string",
+      "description": "Asset display name. Use sentence-case capitalization. All asset names in a library should be unique to prevent page collisions."
+    },
+    "platform": {
+      "type": "string",
+      "default": "web",
+      "enum": ["cross-platform", "web"],
+      "description": "Asset environment."
+    },
+    "private": {
+      "type": "boolean",
+      "default": false,
+      "description": "If set to true, the catalogs will exclude the asset."
+    },
+    "status": {
+      "type": "string",
+      "default": "draft",
+      "enum": ["deprecated", "draft", "experimental", "stable"],
+      "description": "Used to set consumption expectations."
+    },
+    "thumbnailPath": {
+      "type": "string",
+      "description": "Relative location of the asset's thumbnail image."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["component", "element", "function", "layout", "pattern"],
+      "description": "Asset categorization."
+    }
+  },
+  "required": ["id", "description", "name", "platform", "status", "type"]
+}

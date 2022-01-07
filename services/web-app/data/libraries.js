@@ -279,6 +279,13 @@ const libraryAllowList = {
     repo: 'carbon-watson-moments',
     path: '/packages/styles',
     sponsor: 'watson'
+  },
+  'gatsby-theme-carbon': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'gatsby-theme-carbon',
+    path: '/packages/gatsby-theme-carbon',
+    sponsor: 'carbon'
   }
 }
 

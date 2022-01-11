@@ -23,6 +23,11 @@ access to private repos and increases API quotas. To set up a personal access to
 1. Copy the `/services/web-app/.env.example` file and rename to `/services/web-app/.env.local`
 1. Add your token to that new `.env.local` file
 
+## Running on Production
+
+When running application on production, additional environment variables configurations are necessary:
+- CARBON_BASE_URL: base url of deployed application
+
 ## Dependencies Set up
 
 ### Run Mode
@@ -50,14 +55,12 @@ make sure to update these when running on dev/test/production mode
 
 The application must run on https for IBMid authentication to work properly. For such purposes,
 local certificates must be generated to run on development environment. You may use
-[mkcert](https://github.com/FiloSottile/mkcert#installation) tool for this, run the following
-command from the [web app's directory](../services/web-app):
+[mkcert](https://github.com/FiloSottile/mkcert#installation) tool for this.
+With the tool downloaded, run the [create-local-certificates script](../scripts/setup/create-local-certificates) from the project root:
 
 ```bash
-mkcert \
-  -cert-file=./certificates/localhost.crt \
-  -key-file=./certificates/localhost.key \
-  localhost "*.localhost"
+chmod +x ./scripts/setup/create-local-certificates 
+./scripts/setup/create-local-certificates 
 ```
 
 ## Running App Securely

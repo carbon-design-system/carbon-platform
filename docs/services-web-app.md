@@ -137,7 +137,7 @@ will be injected into the pages's props; you can access it on `props.user`
 instead of the supplied content in the case that the `isAuthorized` prop is set to false
 
 ```
-import RequireAuth from '@/components/requireAuth'
+import RequireAuth from '@/components/auth/require-auth'
 import FourOhFour from '@/pages/404'
 ...
 const ProtectedPage = (props) => {
@@ -173,7 +173,7 @@ Statically Generated Pages" section in
   import { useAuth } from 'contexts/auth'
   import { useEffect } from 'react'
 
-  import RequireAuth from '@/components/requireAuth'
+  import RequireAuth from '@/components/auth/require-auth'
 
   import FourOhFour from '../404'
 

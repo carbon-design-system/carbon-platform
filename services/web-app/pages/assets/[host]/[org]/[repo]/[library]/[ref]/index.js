@@ -25,7 +25,11 @@ const Library = ({ libraryData, params }) => {
   }, [setNavData])
 
   if (router.isFallback) {
-    return <h1>Loading...</h1>
+    return (
+      <div className={styles.content}>
+        <h1>Loading...</h1>
+      </div>
+    )
   }
 
   const { name, description } = libraryData.content

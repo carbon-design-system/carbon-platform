@@ -35,7 +35,7 @@ The **header** is mandatory and the **scope** of the header is optional. There a
 rules that we also enforce, namely that:
 
 - The header must always be fewer than **72** characters
-- Any line in the commit body must be fewer than **80** characters
+- Any line in the commit body must be fewer than **100** characters
 
 Most of these rules are to help with integration of `git` with common tools.
 
@@ -55,7 +55,7 @@ The subject contains a succinct description of the change:
 Just as in the subject, use the imperative, present tense: "change" not "changed" nor "changes". The
 body should include the motivation for the change and contrast this with previous behavior.
 
-### Footer
+### Footer/Breaking Changes
 
 The footer should contain any information about Breaking Changes.
 
@@ -64,11 +64,11 @@ rest of the commit message is then used for this.
 
 ### Examples:
 
-`feat(logging-service): debug logging interface`
+`feat(logging): debug logging interface`
 
 ### Type
 
-Here are the valid types that can be used in a commit message header:
+Here are the valid types that can be used in a commit message subject:
 
 - `build` - Changes that affect the build system or external dependencies (e.g. npm, tsconfig, etc.)
 - `chore` - Repetitive maintenance-type tasks
@@ -82,3 +82,20 @@ Here are the valid types that can be used in a commit message header:
 - `style` - Changes that do not affect the meaning of the code (white-space, formatting, missing
   semi-colons, etc.)
 - `test` - Changes/additions to tests
+- `WIP` - A work-in-progress commit, mostly for local use. Not intended for commits in a main
+  development branch
+
+### Scope
+
+Here are the valid scopes that can be used in a commit message subject if you opt to include one:
+
+- api
+- database
+- object-storage
+- icons
+- logging
+- messaging
+- micromanage
+- release
+- search
+- web-app

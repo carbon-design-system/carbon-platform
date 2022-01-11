@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.34](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.33...@carbon-platform/web-app@0.1.34) (2022-01-08)
+
+
+### Features
+
+* **web-app:** default text when no description provided ([f0c63c4](https://github.com/carbon-design-system/carbon-platform/commit/f0c63c4a6b54f6298e59afca841f1c900cd51728))
+
+### [0.1.33](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.32...@carbon-platform/web-app@0.1.33) (2022-01-07)
+
+
+### Features
+
+* add "community maintained" ([3a4dda9](https://github.com/carbon-design-system/carbon-platform/commit/3a4dda98b25d92ac88e2db37164b1efc8456c976))
+
+### [0.1.32](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.31...@carbon-platform/web-app@0.1.32) (2022-01-06)
+
+
+### Bug Fixes
+
+* use explicit key on catalogItem, prevent react unstable comp state ([4ebaea0](https://github.com/carbon-design-system/carbon-platform/commit/4ebaea08a953edcc6abf6af2ce59cef054999fcd))
+
+### [0.1.31](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.30...@carbon-platform/web-app@0.1.31) (2022-01-05)
+
+
+### Bug Fixes
+
+* **web-app:** obtain icons from npmjs temporarily ([8565b27](https://github.com/carbon-design-system/carbon-platform/commit/8565b27d3813cef355fcd9f5c7944bcce4a70ddb))
+
 ### [0.1.30](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.29...@carbon-platform/web-app@0.1.30) (2022-01-04)
 
 ### [0.1.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.27...@carbon-platform/web-app@0.1.29) (2022-01-03)

@@ -5,9 +5,10 @@ carbon-platform project.
 
 ## Running on Production
 
-When running application on production, additional environment variables configurations are necessary:
-- CARBON_BASE_URL: base url of deployed application
+When running application on production, additional environment variables configurations are
+necessary:
 
+- CARBON_BASE_URL: base url of deployed application
 
 ## Setting up local environment variables
 
@@ -56,12 +57,13 @@ make sure to update these when running on dev/test/production mode
 
 The application must run on https for IBMid authentication to work properly. For such purposes,
 local certificates must be generated to run on development environment. You may use
-[mkcert](https://github.com/FiloSottile/mkcert#installation) tool for this.
-With the tool downloaded, run the [create-local-certificates script](../scripts/setup/create-local-certificates) from the project root:
+[mkcert](https://github.com/FiloSottile/mkcert#installation) tool for this. With the tool
+downloaded, run the [create-local-certificates script](../scripts/setup/create-local-certificates)
+from the project root:
 
 ```bash
-chmod +x ./scripts/setup/create-local-certificates 
-./scripts/setup/create-local-certificates 
+chmod +x ./scripts/setup/create-local-certificates
+./scripts/setup/create-local-certificates
 ```
 
 ## Running App Securely

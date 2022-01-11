@@ -5,23 +5,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { config } from 'dotenv'
 import { BaseClient, Issuer, Strategy as OpenIdStrategy } from 'openid-client'
 import passport from 'passport'
 
 import { getRunMode, PRODUCTION } from '../run-mode'
-import devConfig from './config/config.dev'
-import prodConfig from './config/config.prod'
-
-config()
-
-interface User {
-  name: string
-}
+import { config as devConfig } from './config/config.dev'
+import { config as prodConfig } from './config/config.prod'
+import { PASSPORT_REQUIRED_ENV_VARS } from './config/constants'
+import { User } from './models/user.model'
 
 let client: BaseClient
 
-const getPassportInstance = async () => {
+/**
+ * returns a promise that resolves to a pre-configured passport instance. This
+ * instance can be used just like the passport package and doesn't need to be further setup
+ *
+ * @returns {Promise<passport.PassportStatic>} Promise that resolves to instance of passport object.
+ */
+export const getPassportInstance = async (): Promise<passport.PassportStatic> => {
   if (!client) {
     passport.serializeUser(function (user, done) {
       done(null, user)
@@ -31,8 +32,7 @@ const getPassportInstance = async () => {
       done(null, user)
     })
 
-    const REQUIRED_ENV_VARS = ['CARBON_IBM_VERIFY_CLIENT_ID', 'CARBON_IBM_VERIFY_CLIENT_SECRET']
-    REQUIRED_ENV_VARS.forEach((param) => {
+    PASSPORT_REQUIRED_ENV_VARS.forEach((param) => {
       if (!process.env[param]) {
         throw new Error(`${param} must be exported as an environment variable or in the .env file`)
       }
@@ -58,5 +58,3 @@ const getPassportInstance = async () => {
   }
   return passport
 }
-
-export default getPassportInstance

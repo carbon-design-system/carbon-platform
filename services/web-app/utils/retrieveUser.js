@@ -9,6 +9,12 @@ import { DEV, getRunMode } from '@carbon-platform/api/run-mode'
 
 import { getBaseUrl } from './getBaseUrl'
 
+/**
+ * Creates request options for retrieveUser api call including headers and agent if necessary
+ *
+ * @param {import('next').GetServerSidePropsContext.req} req getServerSideProps request object
+ * @returns {RequestInit} request options
+ */
 function getRequestOptions(req) {
   const reqOptions = {
     headers: { cookie: req.headers.cookie }
@@ -22,7 +28,7 @@ function getRequestOptions(req) {
 
 /**
  * Retrieves the current user value from the session
- * @param {GetServerSidePropsContext} context - getServerSideProps context object
+ * @param {import('next').GetServerSidePropsContext} context - getServerSideProps context object
  * @returns {User | null} user value
  */
 export async function retrieveUser(context) {

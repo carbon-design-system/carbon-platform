@@ -12,6 +12,13 @@ import nextConnect from 'next-connect'
 
 const passport = await getPassportInstance()
 const storeInstance = await store.getStore()
+
+/**
+ * Bootstraps session into request, returns 404 if user is required for resource
+ *
+ * @param {boolean?} needsUser Enforces user in request, defaults to false
+ * @returns {import('next-connect').NextConnect} NextConnect middleware with session configuration
+ */
 export default function requireSession(needsUser = false) {
   return nextConnect({
     onError: (err, req, res) => {

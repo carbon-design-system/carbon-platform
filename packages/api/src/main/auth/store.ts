@@ -6,18 +6,21 @@
  */
 
 import cookieParser from 'cookie-parser'
-import { config } from 'dotenv'
 import expressSession, { Store } from 'express-session'
 
 import { getRunMode, PRODUCTION } from '../run-mode'
-import { SESSION_SECRET } from './config/constants'
-config()
+import { PROD_SESSION_REQUIRED_ENV_VARS, SESSION_SECRET } from './config/constants'
+import { User } from './models/user.model'
 
 let currStore: Store
-const init = async () => {
+/**
+ * Initializes a store object and assigns it to currStore
+ *
+ * @returns {Promise<expressSession.Store>} Promise that resolves to an express store instance.
+ */
+const init = async (): Promise<expressSession.Store> => {
   if (getRunMode() === PRODUCTION) {
-    const REQUIRED_ENV_VARS = ['CARBON_MONGO_DB_URL', 'CARBON_MONGO_DB_NAME']
-    REQUIRED_ENV_VARS.forEach((param) => {
+    PROD_SESSION_REQUIRED_ENV_VARS.forEach((param) => {
       if (!process.env[param]) {
         throw new Error(`${param} must be exported as an environment variable or in the .env file`)
       }
@@ -48,14 +51,28 @@ const init = async () => {
   return Promise.resolve(currStore)
 }
 
-const getStore = () => {
+/**
+ * Gets and Returns current store instance
+ *
+ * @returns {Promise<expressSession.Store>} Promise that resolves to current express store instance.
+ */
+const getStore = (): Promise<expressSession.Store> => {
   if (!currStore) {
     return init()
   }
   return Promise.resolve(currStore)
 }
 
-const getUserSessionByKey = async (sessionKey: string) => {
+/**
+ * Retrieves a user session object for a given sessionKey
+ *
+ * @param {string} sessionKey Session Key
+ * @returns {Promise<expressSession.SessionData | null>} Promise that resolves to the session object
+ *  (or null if not found)
+ */
+const getUserSessionByKey = async (
+  sessionKey: string
+): Promise<expressSession.SessionData | null> => {
   const retrievedStore = await getStore()
   return new Promise((resolve) => {
     retrievedStore.get(sessionKey, (_: any, session: any) => {
@@ -79,13 +96,27 @@ const getUserSessionByKey = async (sessionKey: string) => {
   })
 }
 
-const getUserBySessionKey = (sessionKey: string) => {
+/**
+ * Retrieves user information for a given session key
+ *
+ * @param {string} sessionKey Session Key
+ * @returns {Promise<User | undefined>} Promise that resolves to User object
+ * (or undefined if not found)
+ */
+const getUserBySessionKey = (sessionKey: string): Promise<User | undefined> => {
   return getUserSessionByKey(sessionKey).then((session: any) => {
-    return session?.passport?.user
+    return session?.passport?.user as User
   })
 }
 
-const updateUserBySessionKey = async (sessionKey: string, userInfo: Object) => {
+/**
+ * Updates the user object for a given session key
+ *
+ * @param {string} sessionKey Session Key
+ * @param {Object} userInfo Additional/Updated user info
+ * @returns {Promise<boolean>} Promise that resolves to boolean indicating success status
+ */
+const updateUserBySessionKey = async (sessionKey: string, userInfo: Object): Promise<boolean> => {
   return new Promise((resolve) => {
     getUserSessionByKey(sessionKey)
       .then((userSession: any) => {
@@ -112,20 +143,37 @@ const updateUserBySessionKey = async (sessionKey: string, userInfo: Object) => {
   })
 }
 
-const unsignSessionCookie = (sessionCookie: string) => {
+/**
+ * Strips cookie of signature to obtain raw sessionKey
+ *
+ * @param {string} sessionCookie Session Cookie
+ * @returns {string | false} unsigned cookie string or false if unsuccessful
+ */
+const unsignSessionCookie = (sessionCookie: string): string | false => {
   return cookieParser.signedCookie(sessionCookie, SESSION_SECRET)
 }
 
-const getUserBySessionCookie = (sessionCookie: string) => {
+/**
+ * Retrieves user information for a given session cookie
+ *
+ * @param {string} sessionCookie Session Cookie
+ * @returns {Promise<User | undefined>} Promise that resolves to User object
+ * (or undefined if unsuccessful)
+ */
+const getUserBySessionCookie = (sessionCookie: string): Promise<User | undefined> => {
   const sessionId = unsignSessionCookie(sessionCookie)
-  return sessionId ? getUserBySessionKey(sessionId) : Promise.resolve(null)
+  return sessionId ? getUserBySessionKey(sessionId) : Promise.resolve(undefined)
 }
 
-const updateUserBySessionCookie = (sessionCookie: string, userInfo: any) => {
+/**
+ * Updates the user object for a given session Cookie
+ *
+ * @param {string} sessionCookie Session Cookie
+ * @returns {Promise<boolean>} Promise that resolves to boolean indicating success status
+ */
+const updateUserBySessionCookie = (sessionCookie: string, userInfo: any): Promise<boolean> => {
   const sessionId = unsignSessionCookie(sessionCookie)
   return sessionId ? updateUserBySessionKey(sessionId, userInfo) : Promise.resolve(false)
 }
 
-const store = { getUserBySessionCookie, getStore, updateUserBySessionCookie }
-
-export default store
+export { getStore, getUserBySessionCookie, updateUserBySessionCookie }

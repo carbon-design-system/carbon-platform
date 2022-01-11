@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import RequireAuth from '@/components/requireAuth'
+import RequireAuth from '@/components/auth/require-auth'
 import validUserAuthorizationChecker from '@/utils/auth-checkers/validUserAuthorizationChecker'
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
 

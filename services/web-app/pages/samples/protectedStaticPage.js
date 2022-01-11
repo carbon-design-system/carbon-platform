@@ -7,7 +7,7 @@
 import { useAuth } from 'contexts/auth'
 import { useEffect } from 'react'
 
-import RequireAuth from '@/components/requireAuth'
+import RequireAuth from '@/components/auth/require-auth'
 
 import FourOhFour from '../404'
 

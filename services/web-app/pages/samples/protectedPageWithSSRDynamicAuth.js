@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import RequireAuth from '@/components/requireAuth'
+import RequireAuth from '@/components/auth/require-auth'
 import FourOhFour from '@/pages/404'
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
 import { retrieveUser } from '@/utils/retrieveUser'

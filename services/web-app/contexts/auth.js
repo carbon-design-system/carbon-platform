@@ -8,7 +8,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 
 const AuthContext = createContext({})
 
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -28,8 +28,12 @@ export const AuthProvider = ({ children }) => {
   }
 
   const logout = async () => {
-    await fetch('/api/logout')
-    setUser(null)
+    const res = await fetch('/api/logout')
+    if (res.ok) {
+      setUser(null)
+      return true
+    }
+    return false
   }
 
   return (
@@ -39,4 +43,6 @@ export const AuthProvider = ({ children }) => {
   )
 }
 
-export const useAuth = () => useContext(AuthContext)
+const useAuth = () => useContext(AuthContext)
+
+export { AuthProvider, useAuth }

@@ -35,9 +35,16 @@ const init = async (): Promise<expressSession.Store> => {
       dbName: process.env.CARBON_MONGO_DB_NAME
     })
   } else {
+    const fs = require('fs')
     const Sequelize = require('sequelize')
     const SequelizeStore = require('connect-session-sequelize')(expressSession.Store)
     const sqlite3 = require('sqlite3')
+
+    const dir = 'data'
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir)
+    }
+
     const sequelize = new Sequelize('database', 'username', 'password', {
       dialect: 'sqlite',
       dialectModule: sqlite3,

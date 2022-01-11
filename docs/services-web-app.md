@@ -3,6 +3,12 @@
 The Web App service is a Next.js application that serves as the origin server for the
 carbon-platform project.
 
+## Running on Production
+
+When running application on production, additional environment variables configurations are necessary:
+- CARBON_BASE_URL: base url of deployed application
+
+
 ## Setting up local environment variables
 
 To run the app locally certain environment variales are necessary. follow the steps below for
@@ -22,11 +28,6 @@ access to private repos and increases API quotas. To set up a personal access to
 1. Select all repo scopes
 1. Copy the `/services/web-app/.env.example` file and rename to `/services/web-app/.env.local`
 1. Add your token to that new `.env.local` file
-
-## Running on Production
-
-When running application on production, additional environment variables configurations are necessary:
-- CARBON_BASE_URL: base url of deployed application
 
 ## Dependencies Set up
 

@@ -70,12 +70,6 @@ on the current environment.
 Make sure required environment variables are configured in the service you're using this package.
 (See [run-mode package](#run-mode) for details on how to set up the run-mode package)
 
-##### Database Folder
-
-Make sure a folder named `data` exists in the top-level of the service where the auth package is
-being used; the database will be stored in this folder. If this folder does not exist, you will run
-into a "Directory does not exist" error.
-
 ### Usage
 
 #### Getting and Updating User Sessions

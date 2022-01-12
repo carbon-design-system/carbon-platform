@@ -8,10 +8,11 @@
 import { BaseClient, Issuer, Strategy as OpenIdStrategy } from 'openid-client'
 import passport from 'passport'
 
+import { enforceEnvVars } from '../enforce-env-vars'
 import { getRunMode, PRODUCTION } from '../run-mode'
 import { config as devConfig } from './config/config.dev'
 import { config as prodConfig } from './config/config.prod'
-import { PASSPORT_REQUIRED_ENV_VARS } from './config/constants'
+import { IBM_AUTHENTICATION_STRATEGY, PASSPORT_REQUIRED_ENV_VARS } from './config/constants'
 import { User } from './models/user.model'
 
 let client: BaseClient
@@ -22,7 +23,7 @@ let client: BaseClient
  *
  * @returns {Promise<passport.PassportStatic>} Promise that resolves to instance of passport object.
  */
-export const getPassportInstance = async (): Promise<passport.PassportStatic> => {
+const getPassportInstance = async (): Promise<passport.PassportStatic> => {
   if (!client) {
     passport.serializeUser(function (user, done) {
       done(null, user)
@@ -32,11 +33,7 @@ export const getPassportInstance = async (): Promise<passport.PassportStatic> =>
       done(null, user)
     })
 
-    PASSPORT_REQUIRED_ENV_VARS.forEach((param) => {
-      if (!process.env[param]) {
-        throw new Error(`${param} must be exported as an environment variable or in the .env file`)
-      }
-    })
+    enforceEnvVars({ ALL: PASSPORT_REQUIRED_ENV_VARS })
 
     const passportConfig = getRunMode() === PRODUCTION ? prodConfig : devConfig
 
@@ -58,3 +55,14 @@ export const getPassportInstance = async (): Promise<passport.PassportStatic> =>
   }
   return passport
 }
+
+/**
+ * uses IBM Authentication Strategy to authenticate user using passport
+ *
+ * @returns {Promise<any>} Promise that resolves to passport authenticate middleware function
+ */
+const authenticateWithPassport = async () => {
+  return (await getPassportInstance()).authenticate(IBM_AUTHENTICATION_STRATEGY)
+}
+
+export { authenticateWithPassport, getPassportInstance }

@@ -4,8 +4,20 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { getPassportInstance, SESSION_SECRET, store } from '../../main/auth'
+import passport from 'passport'
+
+import {
+  authenticateWithPassport,
+  getPassportInstance,
+  SESSION_SECRET,
+  store
+} from '../../main/auth'
+import { IBM_AUTHENTICATION_STRATEGY } from '../../main/auth/config/constants'
 import { DEV, PRODUCTION } from '../../main/run-mode'
+
+jest.mock('passport')
+const mockedPassport = passport as jest.Mocked<typeof passport>
+
 const signature = require('cookie-signature')
 
 describe('getPassportInstance', () => {
@@ -25,6 +37,20 @@ describe('getPassportInstance', () => {
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = 'MOCK_SECRET'
     const passportInstance = await getPassportInstance()
     expect(passportInstance).toBeDefined()
+    process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
+    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
+  })
+})
+
+describe('authenticateWithPassport', () => {
+  it('gets called with expected params', async () => {
+    const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
+    const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
+    process.env.CARBON_IBM_VERIFY_CLIENT_ID = 'MOCK_CLIENT'
+    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = 'MOCK_SECRET'
+    mockedPassport.authenticate.mockReturnValue(null)
+    await authenticateWithPassport()
+    await expect(mockedPassport.authenticate).toHaveBeenCalledWith(IBM_AUTHENTICATION_STRATEGY)
     process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
   })

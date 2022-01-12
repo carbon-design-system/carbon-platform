@@ -12,7 +12,7 @@ const { createServer } = require('https')
 // eslint-disable-next-line node/no-deprecated-api
 const { parse } = require('url')
 const next = require('next')
-const fs = require('fs') // this is a test
+const fs = require('fs')
 const { PRODUCTION, getRunMode } = require('@carbon-platform/api/run-mode')
 
 const PORT = 443

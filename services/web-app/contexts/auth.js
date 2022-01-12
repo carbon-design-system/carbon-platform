@@ -43,6 +43,16 @@ const AuthProvider = ({ children }) => {
   )
 }
 
+/**
+ * Hook function used to tap into user object and it's functions, it serves:
+ * - user: object containing user's data as per user models located in @/models/user.model.ts
+ * - loading: boolean indicating whether user is still being retrieved or not
+ * - isAuthenticated: booleand indicating whether the user has correctly authenticated or not
+ * - login: function to login user
+ * - logout: function to logout user
+ *
+ * @returns { { user, loading, isAuthenticated, login, logout} } value of the AuthProvider context
+ */
 const useAuth = () => useContext(AuthContext)
 
 export { AuthProvider, useAuth }

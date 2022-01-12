@@ -8,6 +8,7 @@
 import cookieParser from 'cookie-parser'
 import expressSession, { Store } from 'express-session'
 
+import { enforceEnvVars } from '../enforce-env-vars'
 import { getRunMode, PRODUCTION } from '../run-mode'
 import { PROD_SESSION_REQUIRED_ENV_VARS, SESSION_SECRET } from './config/constants'
 import { User } from './models/user.model'
@@ -20,11 +21,7 @@ let currStore: Store
  */
 const init = async (): Promise<expressSession.Store> => {
   if (getRunMode() === PRODUCTION) {
-    PROD_SESSION_REQUIRED_ENV_VARS.forEach((param) => {
-      if (!process.env[param]) {
-        throw new Error(`${param} must be exported as an environment variable or in the .env file`)
-      }
-    })
+    enforceEnvVars({ PRODUCTION: PROD_SESSION_REQUIRED_ENV_VARS })
 
     const MongoStore = require('connect-mongo')
     // this will likely be replaced by database package (?)
@@ -35,6 +32,8 @@ const init = async (): Promise<expressSession.Store> => {
       dbName: process.env.CARBON_MONGO_DB_NAME
     })
   } else {
+    // connect-session-sequelize doesn't have type definitions work-around
+    type ISequelizeStore = Store & { sync: () => Promise<void> }
     const fs = require('fs')
     const Sequelize = require('sequelize')
     const SequelizeStore = require('connect-session-sequelize')(expressSession.Store)
@@ -53,9 +52,9 @@ const init = async (): Promise<expressSession.Store> => {
     currStore = new SequelizeStore({
       db: sequelize
     })
-    await (currStore as any).sync()
+    await (currStore as ISequelizeStore).sync()
   }
-  return Promise.resolve(currStore)
+  return currStore
 }
 
 /**
@@ -63,11 +62,11 @@ const init = async (): Promise<expressSession.Store> => {
  *
  * @returns {Promise<expressSession.Store>} Promise that resolves to current express store instance.
  */
-const getStore = (): Promise<expressSession.Store> => {
+const getStore = async (): Promise<expressSession.Store> => {
   if (!currStore) {
     return init()
   }
-  return Promise.resolve(currStore)
+  return currStore
 }
 
 /**
@@ -167,9 +166,9 @@ const unsignSessionCookie = (sessionCookie: string): string | false => {
  * @returns {Promise<User | undefined>} Promise that resolves to User object
  * (or undefined if unsuccessful)
  */
-const getUserBySessionCookie = (sessionCookie: string): Promise<User | undefined> => {
+const getUserBySessionCookie = async (sessionCookie: string): Promise<User | undefined> => {
   const sessionId = unsignSessionCookie(sessionCookie)
-  return sessionId ? getUserBySessionKey(sessionId) : Promise.resolve(undefined)
+  return sessionId ? getUserBySessionKey(sessionId) : undefined
 }
 
 /**
@@ -178,9 +177,12 @@ const getUserBySessionCookie = (sessionCookie: string): Promise<User | undefined
  * @param {string} sessionCookie Session Cookie
  * @returns {Promise<boolean>} Promise that resolves to boolean indicating success status
  */
-const updateUserBySessionCookie = (sessionCookie: string, userInfo: any): Promise<boolean> => {
+const updateUserBySessionCookie = async (
+  sessionCookie: string,
+  userInfo: any
+): Promise<boolean> => {
   const sessionId = unsignSessionCookie(sessionCookie)
-  return sessionId ? updateUserBySessionKey(sessionId, userInfo) : Promise.resolve(false)
+  return sessionId ? updateUserBySessionKey(sessionId, userInfo) : false
 }
 
 export { getStore, getUserBySessionCookie, updateUserBySessionCookie }

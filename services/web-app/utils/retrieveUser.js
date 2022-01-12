@@ -7,8 +7,6 @@
 
 import { DEV, getRunMode } from '@carbon-platform/api/run-mode'
 
-import { getBaseUrl } from './getBaseUrl'
-
 /**
  * Creates request options for retrieveUser api call including headers and agent if necessary
  *
@@ -32,15 +30,19 @@ function getRequestOptions(req) {
  * @returns {User | null} user value
  */
 export async function retrieveUser(context) {
-  if (context.req.user) {
-    return context.req.user
+  const { req } = context
+  if (req.user) {
+    return req.user
   }
   const sessionCookie = context.req.cookies?.['connect.sid']
   if (sessionCookie) {
-    const userResponse = await fetch(`${getBaseUrl()}/api/user`, getRequestOptions(context.req))
+    const userResponse = await fetch(
+      `https://localhost:${req.socket.localPort}/api/user`,
+      getRequestOptions(req)
+    )
     if (userResponse.ok) {
       const user = await userResponse.json()
-      context.req.user = user
+      req.user = user
       return user
     }
   }

@@ -11,20 +11,19 @@
   },
   "scripts": {
     "build": "npm run clean && npm run build:fix-v11 && next build",
-    "build:fix-v11": "sh ./fix-v11-carbon-prefix.sh",
+    "build:fix-v11": "sh ./scripts/fix-v11-carbon-prefix.sh",
     "clean": "rimraf .carbon public/.carbon .next",
     "dev": "next dev",
     "lint": "next lint",
     "service:build": "npm run build",
     "start": "next start",
-    "test": "echo 'No tests defined yet!'",
-    "start-secure": "node server.js"
+    "start-secure": "sh ./scripts/create-local-certificates.sh && node server.js",
+    "test": "echo 'No tests defined yet!'"
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "dependencies": {
-    "@carbon-platform/api": "0.1.3",
     "@carbon-platform/icons": "^0.0.10",
     "@carbon/pictograms-react": "^11.20.0",
     "@carbon/react": "^0.11.0",

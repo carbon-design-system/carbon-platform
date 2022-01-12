@@ -6,7 +6,7 @@
  */
 
 import RequireAuth from '@/components/auth/require-auth'
-import validUserAuthorizationChecker from '@/utils/auth-checkers/validUserAuthorizationChecker'
+import isValidIbmUser from '@/utils/auth-checkers/isValidIbmUser'
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
 
 import FourOhFour from '../404'
@@ -19,14 +19,11 @@ const ProtectedPageWithSSR = (props) => {
   )
 }
 
-export const getServerSideProps = getPropsWithAuth(
-  validUserAuthorizationChecker,
-  async (/* context */) => {
-    // Your normal `getServerSideProps` code here
-    return {
-      props: {}
-    }
+export const getServerSideProps = getPropsWithAuth(isValidIbmUser, async (/* context */) => {
+  // Your normal `getServerSideProps` code here
+  return {
+    props: {}
   }
-)
+})
 
 export default ProtectedPageWithSSR

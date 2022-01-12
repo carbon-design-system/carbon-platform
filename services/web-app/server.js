@@ -17,8 +17,8 @@ const { PRODUCTION, getRunMode } = require('@carbon-platform/api/run-mode')
 
 const PORT = process.env.PORT || 443
 
-const dev = getRunMode !== PRODUCTION
-const app = next({ dev })
+const isDevMode = getRunMode() === DEV
+const app = next({ dev: isDevMode })
 const handle = app.getRequestHandler()
 const httpsOptions = {
   key: fs.readFileSync('./certificates/localhost.key'),

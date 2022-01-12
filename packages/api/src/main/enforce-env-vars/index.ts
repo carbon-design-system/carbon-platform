@@ -24,21 +24,17 @@ interface RequiredEnvVars {
  */
 export const enforceEnvVars = (requiredVars: RequiredEnvVars, throwError = true): boolean => {
   let isValid = true
-  requiredVars[getRunMode()]?.forEach((param) => {
-    if (!process.env[param]) {
-      if (throwError) {
-        throw new Error(`${param} must be exported as an environment variable or in the .env file`)
+  ;['ALL', getRunMode()].forEach((key) => {
+    requiredVars[key as keyof RequiredEnvVars]?.forEach((param) => {
+      if (!process.env[param]) {
+        if (throwError) {
+          throw new Error(
+            `${param} must be exported as an environment variable or in the .env file`
+          )
+        }
+        isValid = false
       }
-      isValid = false
-    }
-  })
-  requiredVars.ALL?.forEach((param) => {
-    if (!process.env[param]) {
-      if (throwError) {
-        throw new Error(`${param} must be exported as an environment variable or in the .env file`)
-      }
-      isValid = false
-    }
+    })
   })
   return isValid
 }

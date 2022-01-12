@@ -4,12 +4,14 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { TextInput } from '@carbon/pictograms-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import PageHeader from '@/components/page-header/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
@@ -51,14 +53,28 @@ const Asset = ({ libraryData }) => {
   const [assetData] = libraryData.assets
   const { name, description, inherits: inheritsData, thumbnailData: imageData } = assetData.content
 
+  const id = libraryData.content.id
+
+  const libraryId = id
+    .replace(/\b(([a-zÁ-ú]){3,})/g, (w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .replace(/-/g, ' ')
+
   const seo = {
     title: name,
-    description
+    description,
+    id: id,
+    libraryId: libraryId
   }
 
   return (
     <div className={styles.content}>
       <NextSeo {...seo} />
+      <PageHeader
+        title={seo.title}
+        pictogram={TextInput}
+        contentId={seo.id}
+        libraryId={seo.libraryId}
+      />
       {inheritsData && <InheritsLink data={inheritsData} />}
       {imageData && (
         <Image

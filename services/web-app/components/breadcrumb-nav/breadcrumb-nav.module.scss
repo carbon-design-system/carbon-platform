@@ -1,0 +1,51 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+$breadcrumb-container-width: $spacing-13 + $spacing-10;
+
+.container {
+  display: flex;
+  max-width: $breadcrumb-container-width;
+  flex-direction: column;
+  margin: $spacing-06;
+
+  :global(.cds--breadcrumb) {
+    display: inline;
+  }
+
+  :hover {
+    cursor: pointer;
+  }
+
+  @include breakpoint-down(lg) {
+    margin-left: $spacing-07;
+  }
+
+  @include breakpoint-down(md) {
+    margin-left: $spacing-05;
+  }
+}
+
+.content-id {
+  @include type-style('body-long-01');
+
+  color: $text-primary;
+}
+
+.asset {
+  @include type-style('body-long-01');
+  @include line-clamp(2);
+
+  padding-left: $spacing-04;
+
+  color: $text-primary;
+  text-indent: -$spacing-04;
+
+  &::before {
+    content: '↳';
+  }
+}

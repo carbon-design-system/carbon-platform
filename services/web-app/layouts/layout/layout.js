@@ -26,7 +26,7 @@ import {
 import { Search, Switcher, User } from '@carbon/react/icons'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 import NextLink from '@/components/next-link'
 import { globalNavData } from '@/data/nav-data'
@@ -43,7 +43,12 @@ export const LayoutProvider = ({ children }) => {
 
 const Layout = ({ children }) => {
   const router = useRouter()
+  const [showSideNav, setShowSideNav] = useState(true)
   const { navData } = useContext(LayoutContext)
+
+  useEffect(() => {
+    setShowSideNav(router.pathname !== '/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]')
+  }, [router.pathname])
 
   /**
    * @todo the HeaderGlobalAction component has icons that aren't centered using the latest
@@ -95,48 +100,50 @@ const Layout = ({ children }) => {
             <Grid as="main" className={styles.main} id="main-content">
               <Column sm={4} md={8} lg={4}>
                 <Theme theme="white">
-                  <SideNav aria-label="Side navigation" expanded={isSideNavExpanded}>
-                    <SideNavItems>
-                      <HeaderSideNavItems>
-                        {globalNavData.map((data, i) => (
-                          <SideNavLink element={NextLink} href={data.path} key={i}>
-                            {data.title}
-                          </SideNavLink>
-                        ))}
-                      </HeaderSideNavItems>
-                      {navData.map((data, i) => {
-                        if (data.path && data.title) {
-                          return (
-                            <SideNavLink
-                              element={NextLink}
-                              href={data.path}
-                              isActive={router.pathname === data.path}
-                              key={i}
-                            >
+                  {showSideNav && (
+                    <SideNav aria-label="Side navigation" expanded={isSideNavExpanded}>
+                      <SideNavItems>
+                        <HeaderSideNavItems>
+                          {globalNavData.map((data, i) => (
+                            <SideNavLink element={NextLink} href={data.path} key={i}>
                               {data.title}
                             </SideNavLink>
-                          )
-                        }
-                        if (!data.path && data.items) {
-                          return (
-                            <SideNavMenu defaultExpanded={true} key={i} title={data.title}>
-                              {data.items.map((item, j) => (
-                                <SideNavMenuItem
-                                  element={NextLink}
-                                  isActive={router.pathname.startsWith(item.path)}
-                                  to={item.path}
-                                  key={j}
-                                >
-                                  {item.title}
-                                </SideNavMenuItem>
-                              ))}
-                            </SideNavMenu>
-                          )
-                        }
-                        return null
-                      })}
-                    </SideNavItems>
-                  </SideNav>
+                          ))}
+                        </HeaderSideNavItems>
+                        {navData.map((data, i) => {
+                          if (data.path && data.title) {
+                            return (
+                              <SideNavLink
+                                element={NextLink}
+                                href={data.path}
+                                isActive={router.pathname === data.path}
+                                key={i}
+                              >
+                                {data.title}
+                              </SideNavLink>
+                            )
+                          }
+                          if (!data.path && data.items) {
+                            return (
+                              <SideNavMenu defaultExpanded={true} key={i} title={data.title}>
+                                {data.items.map((item, j) => (
+                                  <SideNavMenuItem
+                                    element={NextLink}
+                                    isActive={router.pathname.startsWith(item.path)}
+                                    to={item.path}
+                                    key={j}
+                                  >
+                                    {item.title}
+                                  </SideNavMenuItem>
+                                ))}
+                              </SideNavMenu>
+                            )
+                          }
+                          return null
+                        })}
+                      </SideNavItems>
+                    </SideNav>
+                  )}
                 </Theme>
               </Column>
               <Column sm={4} md={8} lg={12}>

@@ -188,7 +188,7 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
   const assetContentPromises = treeResponse.tree
     .filter(
       (file) =>
-        removeLeadingSlash(file.path).startsWith(removeLeadingSlash(libraryParams.path)) &&
+        removeLeadingSlash(file.path).startsWith(removeLeadingSlash(libraryParams.path) + '/') &&
         file.path.endsWith('carbon-asset.yml')
     )
     .map((file) => {

@@ -15,7 +15,7 @@ const next = require('next')
 const fs = require('fs') // this is a test
 const { PRODUCTION, getRunMode } = require('@carbon-platform/api/run-mode')
 
-const PORT = 443
+const PORT = process.env.PORT || 443
 
 const dev = getRunMode !== PRODUCTION
 const app = next({ dev })

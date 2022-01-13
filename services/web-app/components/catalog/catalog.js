@@ -30,7 +30,7 @@ const assetIsInFilter = (asset, filter) => {
   return true
 }
 
-function Catalog({ data, type = 'component', filter: defaultFilter = { status: ['stable'] } }) {
+function Catalog({ data, type = 'component', filter: defaultFilter = {} }) {
   const [query, setQuery] = useQueryState('q', {
     defaultValue: ''
   })

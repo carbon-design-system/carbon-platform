@@ -29,11 +29,7 @@ const Components = ({ librariesData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader title={seo.title} pictogram={TextInput} />
-      <Catalog
-        data={librariesData}
-        filter={{ sponsor: ['carbon'], status: ['stable'], framework: ['react'] }}
-        type="component"
-      />
+      <Catalog data={librariesData} type="component" />
     </>
   )
 }

@@ -9,6 +9,37 @@ instead has a set of top-level `js` and corresponding `d.ts` files to allow impo
 ```ts
 import { Logging } from '@carbon-platform/api/logging'
 import { getRunMode } from '@carbon-platform/api/run-mode'
+import { enforceEnvVars } from '@carbon-platform/api/enforce-env-vars'
+```
+
+## enforce-env-vars
+
+Exports the enforceEnvVars utility function that manages validating environment variables accross
+different run modes.
+
+### Usage
+
+Call the enforveEnvVars function and provide run-mode specific env vars or use the ALL key for
+always-required variables NOTE: none of these keys is mandatory
+
+```ts
+import { enforceEnvVars } from '@carbon-platform/api/enforce-env-vars'
+
+const isValid = enforceEnvVars({
+  ALL: ['REQUIRED_ALL_THE_TIME'],
+  PRODUCTION: ['REQUIRED_ONLY_ON_PRODUCTION'],
+  DEV: ['REQUIRED_ONLY_ON_DEV'],
+  TEST: ['REQUIRED_ONLY_ON_TEST']
+})
+```
+
+You can optionally pass in a second parameter to avoid throwing an error when required env vars are
+missing:
+
+```ts
+import { enforceEnvVars } from '@carbon-platform/api/enforce-env-vars'
+
+const isValid = enforceEnvVars({...}, false)
 ```
 
 ## logging

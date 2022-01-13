@@ -58,18 +58,10 @@ make sure to update these when running on dev/test/production mode
 The application must run on https for IBMid authentication to work properly. For such purposes,
 local certificates must be generated to run on development environment. You may use
 [mkcert](https://github.com/FiloSottile/mkcert#installation) tool for this. With the tool
-downloaded, run the [create-local-certificates script](../scripts/setup/create-local-certificates)
-from the project root:
-
-```bash
-chmod +x ./scripts/setup/create-local-certificates
-./scripts/setup/create-local-certificates
-```
+downloaded, the certificates will be automatically generated next time you
+[run the app securely](#running-app-securely)
 
 ## Running App Securely
-
-**_Prerequisite:_** local certificates have been configured (see
-[Adding Local Certificates](#adding-local-certificates))
 
 To run the app on https, it must be served from [server.js](../services/web-app/server.js). To do
 this, run the following command from the [web-app's directory](../services/web-app):
@@ -95,7 +87,7 @@ import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
 import { retrieveUser } from '@/utils/retrieveUser'
 ...
 // Your custom authorization logic here, this one considers the user as authorized if it's email address ends in "ibm.com"
-const validUserAuthorizationChecker = async (context) => {
+const isValidIbmUser = async (context) => {
   const user = await retrieveUser(context)
   if (user) {
     return user.email?.endsWith('ibm.com')
@@ -103,7 +95,7 @@ const validUserAuthorizationChecker = async (context) => {
   return false
 }
 ...
-export const getServerSideProps = getPropsWithAuth(authorizationChecker, async (/* context */) => {
+export const getServerSideProps = getPropsWithAuth(isValidIbmUser, async (/* context */) => {
   // Your normal `getServerSideProps` code here
   return {
     props: {
@@ -118,9 +110,9 @@ Some `authorizationChecker` functions that serve common purposes are exported fr
 
 ```
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
-import validUserAuthorizationChecker from '@/utils/auth-checkers/validUserAuthorizationChecker'
+import isValidIbmUser from '@/utils/auth-checkers/isValidIbmUser'
 ...
-export const getServerSideProps = getPropsWithAuth(validUserAuthorizationChecker, async (/* context */) => {
+export const getServerSideProps = getPropsWithAuth(isValidIbmUser, async (/* context */) => {
   // Your normal `getServerSideProps` code here
   return {
     props: {
@@ -152,8 +144,8 @@ const ProtectedPage = (props) => {
 }
 ```
 
-For a working example of a protected server side rendered pages, (run the app
-securely)[#running-app-securely] and visit:
+For a working example of a protected server side rendered pages,
+[run the app securely](#running-app-securely) and visit:
 
 - [https://localhost/samples/protectedPageWithSSR](https://localhost/samples/protectedPageWithSSR)
 - [https://localhost/samples/protectedPageWithSSRDynamicAuth](https://localhost/samples/protectedPageWithSSRDynamicAuth)

@@ -80,7 +80,7 @@ the users' session data:
 - `getUserBySessionCookie` : receives the user's session cookie value as a parameter and returns a
   promise that resolves to the user's session stored value:
 
-  ```
+  ```ts
   import { store } from '@carbon-platform/api/auth'
   ...
     const sessionCookie = req.cookies?.['connect.sid']
@@ -91,7 +91,7 @@ the users' session data:
 
   expect the user response to look like this:
 
-  ```
+  ```ts
   {
   "name":"Jane Doe",
   "email": "jane.doe@emaildomain.com"
@@ -104,10 +104,10 @@ the users' session data:
   desired update values and returns a promise that resolves to true or false indicating whether the
   session value was succesfully updated
 
-  ```
+  ```js
   import { store } from '@carbon-platform/api/auth'
   const sessionCookie = req.cookies?.['connect.sid']
-  if(sessionCookie){
+  if (sessionCookie) {
     const success = await store.updateUserBySessionCookie(sessionCookie, { testUserProp: 'test' })
   }
   ```
@@ -115,7 +115,7 @@ the users' session data:
   The value of the (boolean) success variable will indicate whether the update request was
   succesful, expect the new user session value to look like this:
 
-  ```
+  ```ts
   {
   "name":"Jane Doe",
   "email": "jane.doe@emaildomain.com"
@@ -131,7 +131,7 @@ If the service needs to handle user sessions, please use the exported variable `
 the session secret and the `getStore` function available through the exported `store` object as the
 store. Example with express-session:
 
-```
+```ts
 import {getRunMode, PRODUCTION} from '@carbon-platform/api/run-mode'
 import { SESSION_SECRET, store } from '@carbon-platform/api/auth'
 import expressSession from 'express-session'
@@ -158,11 +158,22 @@ If the service needs to authenticate users against IBMId, the exported function
 `getPassportInstance` returns a promise that resolves to a pre-configured passport instance. This
 instance can be used just like the passport package and doesn't need to be further setup:
 
-```
-    import { getPassportInstance } from '@carbon-platform/api/auth'
-    const passport = await getPassportInstance()
-    passport.authenticate('prepiam.ice.ibmcloud.com')
+```ts
+import { getPassportInstance } from '@carbon-platform/api/auth'
+const passport = await getPassportInstance()
+app.use(passport.session())
 ```
 
 _Note:_ keep in mind you will have to await for the passport instance to be resolved before being
 able to use it
+
+To invoke the passport authentication you can make use of the exported `authenticateWithPassport`
+handler:
+
+```ts
+import { authenticateWithPassport } from '@carbon-platform/api/auth'
+
+const login = authenticateWithPassport()
+
+export default login
+```

@@ -9,8 +9,6 @@
 // https://medium.com/responsetap-engineering/nextjs-https-for-a-local-dev-server-98bb441eabd7
 //
 const { createServer } = require('https')
-// eslint-disable-next-line node/no-deprecated-api
-const { parse } = require('url')
 const next = require('next')
 const fs = require('fs')
 const { DEV, getRunMode } = require('@carbon-platform/api/run-mode')
@@ -26,8 +24,8 @@ const httpsOptions = {
 }
 app.prepare().then(() => {
   createServer(httpsOptions, (req, res) => {
-    const parsedUrl = parse(req.url, true)
-    handle(req, res, parsedUrl)
+    const reqUrl = new URL(req.url, `https://localhost:${PORT}`).toString()
+    handle(req, res, reqUrl)
   }).listen(PORT, (err) => {
     if (err) throw err
     console.log(`> Server started on https://localhost:${PORT}`)

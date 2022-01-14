@@ -4,21 +4,26 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-type RunMode = 'DEV' | 'TEST' | 'PRODUCTION'
+type RunMode = 'DEV' | 'PROD'
 
 const DEV: RunMode = 'DEV'
-const TEST: RunMode = 'TEST'
-const PRODUCTION: RunMode = 'PRODUCTION'
+const PROD: RunMode = 'PROD'
 
 function getRunMode(): RunMode {
   const mode = process.env.CARBON_RUN_MODE
 
-  if (mode === TEST || mode === PRODUCTION) {
-    return mode
-  } else {
-    return DEV
+  switch (mode) {
+    // Normal cases
+    case DEV:
+    case PROD:
+      return mode
+    // Not specified. Default to DEV
+    case undefined:
+      return DEV
+    default:
+      throw new Error(`Unknown run mode: ${mode}`)
   }
 }
 
 export type { RunMode }
-export { DEV, getRunMode, PRODUCTION, TEST }
+export { DEV, getRunMode, PROD }

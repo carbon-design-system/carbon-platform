@@ -40,9 +40,9 @@ identifies an area of code.
 Logs a debugging message. This includes things like important function entry/exit, the size of a
 list obtained from a remote source, the results after filtering an input set, etc.
 
-> NOTE: Debug messaging is enabled in local and test environments, but not in the production
-> environment. It is safe an acceptable to leave debug statements in code, where appropriate, unlike
-> `console.log` statements, which would typically be removed from production code.
+> NOTE: Debug messaging is enabled in the DEV run mode, but not in the PROD run mode. It is safe and
+> acceptable to leave debug statements in code, where appropriate, unlike `console.log` statements,
+> which would typically be removed from production code.
 
 **Examples**
 

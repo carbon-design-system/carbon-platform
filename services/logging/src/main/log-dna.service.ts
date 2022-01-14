@@ -1,0 +1,44 @@
+/*
+ * Copyright IBM Corp. 2021, 2021
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import { LogLoggedMessage } from '@carbon-platform/api/logging'
+import { getRunMode, PROD } from '@carbon-platform/api/run-mode'
+import LogDna, { Logger } from '@logdna/logger'
+import { Injectable } from '@nestjs/common'
+
+import { CARBON_LOGDNA_ENDPOINT, CARBON_LOGDNA_KEY } from './constants'
+
+@Injectable()
+class LogDnaService {
+  private readonly logDna: Logger | null
+
+  constructor() {
+    // In DEV mode, the service is a no-op
+    if (getRunMode() === PROD) {
+      this.logDna = LogDna.createLogger(CARBON_LOGDNA_KEY, {
+        url: CARBON_LOGDNA_ENDPOINT,
+        env: getRunMode()
+      })
+    } else {
+      this.logDna = null
+    }
+  }
+
+  public log(logEntry: LogLoggedMessage) {
+    this.logDna?.log(logEntry.message, {
+      app: 'service:' + logEntry.service,
+      env: logEntry.environment,
+      indexMeta: true,
+      level: logEntry.level,
+      meta: {
+        component: logEntry.component
+      },
+      timestamp: logEntry.timestamp
+    })
+  }
+}
+
+export { LogDnaService }

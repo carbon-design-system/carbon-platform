@@ -16,13 +16,16 @@ const CONNECT_RETRY_INTERVAL = 5000
 
 // TODO: docs
 
-interface CallbackRegistry {
-  [key: string]: (value: any) => void
-}
+type ReplyCallbacks = Map<string, (value: any) => void>
 
 class MessagingClient {
-  private static instance: MessagingClient | null
+  private static instance?: MessagingClient
 
+  /**
+   * Obtain a singleton instance of a MessagingClient used to send messages.
+   *
+   * @returns The singleton.
+   */
   public static getInstance(): MessagingClient {
     if (!MessagingClient.instance) {
       MessagingClient.instance = new MessagingClient()
@@ -31,20 +34,17 @@ class MessagingClient {
     return MessagingClient.instance
   }
 
-  private connection: amqp.Connection | null
-  private channel: amqp.ConfirmChannel | null
-  private replyQueue: amqp.Replies.AssertQueue | null
-  private promiseResolutionRegistry: CallbackRegistry
+  private connection?: amqp.Connection
+  private channel?: amqp.ConfirmChannel
+  private replyQueue?: amqp.Replies.AssertQueue
+  private replyCallbacks: ReplyCallbacks
 
   private constructor() {
-    this.connection = null
-    this.channel = null
-    this.replyQueue = null
-    this.promiseResolutionRegistry = {}
+    this.replyCallbacks = new Map()
   }
 
-  public async connect(retry = true) {
-    while (!this.connection) {
+  public async connect(retry = true): Promise<amqp.ConfirmChannel> {
+    while (!this.connection || !this.channel) {
       try {
         this.connection = await amqp.connect(MESSAGE_QUEUE_URL)
 
@@ -73,36 +73,39 @@ class MessagingClient {
         }
       }
     }
+
+    return this.channel
   }
 
   private replyReceived(reply: amqp.ConsumeMessage | null) {
-    const correlationId = reply?.properties.correlationId as keyof CallbackRegistry
-    if (!(correlationId in this.promiseResolutionRegistry)) {
+    const correlationId = reply?.properties.correlationId as string
+    const resolve = this.replyCallbacks.get(correlationId)
+
+    if (!resolve) {
       return
     }
 
-    const resolve = this.promiseResolutionRegistry[correlationId]!
     resolve(reply?.content.toString())
-    delete this.promiseResolutionRegistry[correlationId]
+    this.replyCallbacks.delete(correlationId)
   }
 
   public async disconnect() {
     if (this.channel) {
       await this.channel.close()
-      this.channel = null
+      delete this.channel
     }
 
     if (this.connection) {
       await this.connection.close()
-      this.connection = null
+      delete this.connection
     }
 
-    this.promiseResolutionRegistry = {}
+    this.replyCallbacks.clear()
   }
 
   public async emit(eventType: EventMessage, message: any): Promise<void> {
     // Connect and ensure channel is established
-    await this.connect()
+    const channel = await this.connect()
 
     // Entire method invocation is deferred and returned as a promise
     return new Promise((resolve) => {
@@ -113,7 +116,7 @@ class MessagingClient {
 
       // Send to queue returns true if it is safe to continue sending messages; or false if pending
       // "confirms" should first be awaited
-      const sendResult = this.channel!.publish(
+      const sendResult = channel.publish(
         eventType,
         DEFAULT_ROUTING_KEY,
         Buffer.from(JSON.stringify(dataToSend))
@@ -124,14 +127,14 @@ class MessagingClient {
       if (sendResult) {
         resolve()
       } else {
-        this.channel!.waitForConfirms().then(resolve)
+        channel.waitForConfirms().then(resolve)
       }
     })
   }
 
   public async query<T>(queryType: QueryMessage, message: any): Promise<T> {
     // Connect and ensure channel and reply queue are established
-    await this.connect()
+    const channel = await this.connect()
 
     const correlationId = uuidv4()
     const dataToSend = {
@@ -143,12 +146,12 @@ class MessagingClient {
     // Create a new promise and store its resolve callback in the registry. Resolve is called later
     // on when a correlated response is received from the reply queue
     const replyPromise = new Promise<T>((resolve) => {
-      this.promiseResolutionRegistry[correlationId] = resolve
+      this.replyCallbacks.set(correlationId, resolve)
     })
 
     // Publish returns true if it is safe to continue sending messages; or false if pending
     // "confirms" should first be awaited
-    const publishResult = this.channel!.publish(
+    const publishResult = channel.publish(
       queryType,
       DEFAULT_ROUTING_KEY,
       Buffer.from(JSON.stringify(dataToSend)),
@@ -159,7 +162,7 @@ class MessagingClient {
     )
 
     if (!publishResult) {
-      await this.channel!.waitForConfirms()
+      await channel.waitForConfirms()
     }
 
     return replyPromise

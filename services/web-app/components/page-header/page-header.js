@@ -7,14 +7,14 @@
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
 
-import BreadcrumbNav from '@/components/breadcrumb-nav'
+import Breadcrumb from '@/components/breadcrumb'
 
 import styles from './page-header.module.scss'
 
 const PageHeader = ({ libraryId, contentId, title, pictogram: Pictogram }) => {
   return (
     <Grid className={styles.container}>
-      <BreadcrumbNav
+      <Breadcrumb
         className={styles.breadcrumb}
         libraryId={libraryId}
         contentId={contentId}

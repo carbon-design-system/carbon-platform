@@ -16,6 +16,7 @@ import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
 import styles from '@/pages/pages.module.scss'
+import { getSlug } from '@/utils/slug'
 
 const InheritsLink = ({ data }) => {
   if (!data || !data.asset) return null
@@ -53,7 +54,7 @@ const Asset = ({ libraryData }) => {
   const [assetData] = libraryData.assets
   const { name, description, inherits: inheritsData, thumbnailData: imageData } = assetData.content
 
-  const id = libraryData.content.id
+  const id = getSlug(libraryData.content)
 
   const libraryId = id
     .replace(/\b(([a-zÁ-ú]){3,})/g, (w) => w.charAt(0).toUpperCase() + w.slice(1))
@@ -61,32 +62,27 @@ const Asset = ({ libraryData }) => {
 
   const seo = {
     title: name,
-    description,
-    id: id,
-    libraryId: libraryId
+    description
   }
 
   return (
-    <div className={styles.content}>
-      <NextSeo {...seo} />
-      <PageHeader
-        title={seo.title}
-        pictogram={TextInput}
-        contentId={seo.id}
-        libraryId={seo.libraryId}
-      />
-      {inheritsData && <InheritsLink data={inheritsData} />}
-      {imageData && (
-        <Image
-          alt={`${name} thumbnail`}
-          height="300px"
-          width="400px"
-          src={imageData.img.src}
-          placeholder={imageData.img.type === 'svg' ? 'empty' : 'blur'}
-          blurDataURL={imageData.base64}
-        />
-      )}
-      <pre className={styles.data}>{JSON.stringify(libraryData, null, 2)}</pre>
+    <div>
+      <PageHeader title={seo.title} pictogram={TextInput} contentId={id} libraryId={libraryId} />
+      <div className={styles.content}>
+        <NextSeo {...seo} />
+        {inheritsData && <InheritsLink data={inheritsData} />}
+        {imageData && (
+          <Image
+            alt={`${name} thumbnail`}
+            height="300px"
+            width="400px"
+            src={imageData.img.src}
+            placeholder={imageData.img.type === 'svg' ? 'empty' : 'blur'}
+            blurDataURL={imageData.base64}
+          />
+        )}
+        <pre className={styles.data}>{JSON.stringify(libraryData, null, 2)}</pre>
+      </div>
     </div>
   )
 }

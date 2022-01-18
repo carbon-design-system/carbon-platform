@@ -13,7 +13,7 @@ import { CARBON_LOGDNA_ENDPOINT, CARBON_LOGDNA_KEY } from './constants'
 
 @Injectable()
 class LogDnaService {
-  private readonly logDna: Logger | null
+  private readonly logDna: Logger
 
   constructor() {
     // In DEV mode, the service is a no-op
@@ -22,8 +22,6 @@ class LogDnaService {
         url: CARBON_LOGDNA_ENDPOINT,
         env: getRunMode()
       })
-    } else {
-      this.logDna = null
     }
   }
 

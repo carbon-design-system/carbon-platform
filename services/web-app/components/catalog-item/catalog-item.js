@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { AspectRatio, Column, Grid } from '@carbon/react'
-import { ArrowUpRight, Scales } from '@carbon/react/icons'
+import { ArrowUpRight, Events, Scales } from '@carbon/react/icons'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -42,18 +42,23 @@ const CatalogItemContent = ({ asset, isGrid = false }) => {
   const { name, description, externalDocsUrl } = asset.content
   const { sponsor } = asset.params
 
-  const sponsorName = teams[sponsor] && teams[sponsor].name
-  const SponsorIcon = teams[sponsor] && teams[sponsor].icon
+  const sponsorName = teams[sponsor] ? teams[sponsor].name : 'Community'
+
+  const sponsorTitle = teams[sponsor]
+    ? `Sponsored by ${teams[sponsor].name}`
+    : 'Community maintained'
+
+  const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
 
   const isSeparatedMeta = !isLg || isGrid
 
   return (
     <Grid className={styles.content}>
       <Column sm={4} md={4} lg={7} xlg={6}>
-        {sponsorName && <p className={styles.sponsor}>{sponsorName}</p>}
+        <p className={styles.sponsor}>{sponsorName}</p>
         {name && <p className={styles.name}>{name}</p>}
-        <p className={styles.description}>{description || 'No description provided ☹️'}</p>
-        <div className={styles.icon} title={sponsorName && `Sponsored by ${sponsorName}`}>
+        {description && <p className={styles.description}>{description}</p>}
+        <div className={styles.icon} title={sponsorTitle}>
           {SponsorIcon && <SponsorIcon className={styles.iconSponsor} size={24} />}
           {externalDocsUrl && <ArrowUpRight className={styles.iconExternal} size={24} />}
         </div>
@@ -131,8 +136,7 @@ const CatalogItem = ({ asset, isGrid = false }) => {
 
   const anchorStyles = clsx(styles.anchor, {
     [styles.anchorGrid]: isGrid,
-    [styles.anchorExternal]: asset.content.externalDocsUrl,
-    [styles.anchorSponsor]: asset.params.sponsor
+    [styles.anchorExternal]: asset.content.externalDocsUrl
   })
 
   const anchorHref =

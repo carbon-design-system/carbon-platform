@@ -66,7 +66,7 @@ const Asset = ({ libraryData }) => {
   }
 
   return (
-    <div>
+    <>
       <PageHeader title={seo.title} pictogram={TextInput} contentId={id} libraryId={libraryId} />
       <div className={styles.content}>
         <NextSeo {...seo} />
@@ -83,7 +83,7 @@ const Asset = ({ libraryData }) => {
         )}
         <pre className={styles.data}>{JSON.stringify(libraryData, null, 2)}</pre>
       </div>
-    </div>
+    </>
   )
 }
 

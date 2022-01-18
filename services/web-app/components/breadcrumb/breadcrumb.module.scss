@@ -11,7 +11,7 @@ $breadcrumb-container-width: $spacing-13 + $spacing-10;
   display: flex;
   max-width: $breadcrumb-container-width;
   flex-direction: column;
-  margin: $spacing-06;
+  margin: $spacing-06 0 0 $spacing-07;
 
   :global(.cds--breadcrumb) {
     display: inline;
@@ -19,10 +19,6 @@ $breadcrumb-container-width: $spacing-13 + $spacing-10;
 
   :hover {
     cursor: pointer;
-  }
-
-  @include breakpoint-down(lg) {
-    margin-left: $spacing-07;
   }
 
   @include breakpoint-down(md) {

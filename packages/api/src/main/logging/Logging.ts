@@ -25,7 +25,7 @@ class Logging {
   private readonly environment: string
   private readonly isDebugLoggingEnabled: boolean
   private readonly isRemoteLoggingEnabled: boolean
-  private readonly messagingClient: MessagingClient | null
+  private readonly messagingClient: MessagingClient
   private readonly service: string
 
   constructor(serviceName: string, component: string) {
@@ -35,7 +35,6 @@ class Logging {
     this.environment = 'PRODUCTION'
     this.isDebugLoggingEnabled = getRunMode() === DEV || DEBUG
     this.isRemoteLoggingEnabled = getRunMode() === PROD
-    this.messagingClient = null
     this.service = serviceName
 
     if (this.isRemoteLoggingEnabled) {

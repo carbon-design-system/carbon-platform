@@ -47,7 +47,7 @@ const Layout = ({ children }) => {
   const { navData } = useContext(LayoutContext)
 
   useEffect(() => {
-    setShowSideNav(router.pathname !== '/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]')
+    setShowSideNav(!router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
   }, [router.pathname])
 
   /**

@@ -34,7 +34,7 @@ $breadcrumb-container-width: $spacing-10 * 4;
     &::before {
       position: absolute;
       left: 0;
-      content: '↳ ';
+      content: '↳';
     }
     .text {
       padding-left: $spacing-05;

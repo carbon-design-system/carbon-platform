@@ -57,6 +57,10 @@ const Asset = ({ libraryData }) => {
 
   const breadcrumbItems = [
     {
+      name: 'Libraries',
+      path: '/assets/libraries'
+    },
+    {
       name: libraryData.content.name,
       path: `/assets/${getSlug(libraryData.content)}`
     },

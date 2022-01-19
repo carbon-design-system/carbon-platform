@@ -33,7 +33,7 @@ const getPassportInstance = async (): Promise<passport.PassportStatic> => {
       done(null, user)
     })
 
-    enforceEnvVars({ ALL: PASSPORT_REQUIRED_ENV_VARS })
+    enforceEnvVars(PASSPORT_REQUIRED_ENV_VARS)
 
     const passportConfig = getRunMode() === PRODUCTION ? prodConfig : devConfig
 
@@ -59,7 +59,7 @@ const getPassportInstance = async (): Promise<passport.PassportStatic> => {
 /**
  * uses IBM Authentication Strategy to authenticate user using passport
  *
- * @returns {Promise<any>} Promise that resolves to passport authenticate middleware function
+ * @returns {any} Passport authenticate middleware function
  */
 const authenticateWithPassport = async () => {
   return (await getPassportInstance()).authenticate(IBM_AUTHENTICATION_STRATEGY)

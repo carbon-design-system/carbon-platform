@@ -8,15 +8,18 @@ import { authenticateWithPassport } from '@carbon-platform/api/auth'
 
 import requireSession from '../../middleware/requireSession'
 
-const login = requireSession().get(async (req, res, next) => {
-  // hold onto next route, if specified, or delete any stale one from the session
-  if (req.query.next) {
-    req.session.next = req.query.next
-  } else if (req.session.next) {
-    delete req.session.next
-  }
+const login = requireSession().get(
+  async (req, res, next) => {
+    // hold onto next route, if specified, or delete any stale one from the session
+    if (req.query.next) {
+      req.session.next = req.query.next
+    } else if (req.session.next) {
+      delete req.session.next
+    }
 
-  next()
-}, await authenticateWithPassport())
+    next()
+  },
+  async (...args) => (await authenticateWithPassport())(...args)
+)
 
 export default login

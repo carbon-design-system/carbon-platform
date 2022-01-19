@@ -6,6 +6,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+set -e
+
 CERTIFICATE_FILE_PATH=./certificates/localhost.crt
 CERTIFICATE_KEY_FILE_PATH=./certificates/localhost.key
 

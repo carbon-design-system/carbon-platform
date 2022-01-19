@@ -10,9 +10,6 @@ import cookieParser from 'cookie-parser'
 import expressSession from 'express-session'
 import nextConnect from 'next-connect'
 
-const passport = await getPassportInstance()
-const storeInstance = await store.getStore()
-
 /**
  * Bootstraps session into request, returns 404 if user is required for resource
  *
@@ -27,7 +24,8 @@ export default function requireSession(needsUser = false) {
     }
   })
     .use(cookieParser())
-    .use(
+    .use(async (...args) => {
+      const storeInstance = await store.getStore()
       expressSession({
         store: storeInstance,
         secret: SESSION_SECRET,
@@ -35,11 +33,13 @@ export default function requireSession(needsUser = false) {
           path: '/',
           secure: getRunMode() === PRODUCTION,
           maxAge: 60 * 60 * 2 * 1000 // 2 hours
-        }
-      })
-    )
-    .use(passport.initialize())
-    .use(passport.session())
+        },
+        saveUninitialized: false,
+        resave: false
+      })(...args)
+    })
+    .use(async (...args) => (await getPassportInstance()).initialize()(...args))
+    .use(async (...args) => (await getPassportInstance()).session()(...args))
     .use((req, res, next) => {
       if (needsUser && !req.user) {
         res.status(404)

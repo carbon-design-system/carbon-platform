@@ -5,36 +5,30 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getRunMode } from '../run-mode'
+import { getRunMode, PRODUCTION } from '../run-mode'
 
-interface RequiredEnvVars {
-  ALL?: string[]
-  DEV?: string[]
-  PRODUCTION?: string[]
-  TEST?: string[]
-}
 /**
  * Validates all necessary environment variables and throws error if necessary
  *
- * @param {RequiredEnvVars} requiredVars Object specifying required env vars by run mode
+ * @param {string[]} requiredVars array of required env vars
  * @param {boolean} throwError whether an error should be thrown if
  * nvironment variables havent been properly configured
  * @returns {boolean} indicates if current environment variables are valid according
  * to supplied requiredVars object
  */
-export const enforceEnvVars = (requiredVars: RequiredEnvVars, throwError = true): boolean => {
+// TODO: allow fallback values
+export const enforceEnvVars = (requiredVars: string[], throwError = true): boolean => {
   let isValid = true
-  ;['ALL', getRunMode()].forEach((key) => {
-    requiredVars[key as keyof RequiredEnvVars]?.forEach((param) => {
-      if (!process.env[param]) {
+  // TODO: make this run-mode compliant when new version is merged in
+  if (getRunMode() === PRODUCTION) {
+    requiredVars.forEach((envVar) => {
+      if (!process.env[envVar]) {
         if (throwError) {
-          throw new Error(
-            `${param} must be exported as an environment variable or in the .env file`
-          )
+          throw new Error(`${envVar} must be exported as an environment variable`)
         }
         isValid = false
       }
     })
-  })
+  }
   return isValid
 }

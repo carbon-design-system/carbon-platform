@@ -8,21 +8,24 @@ import { authenticateWithPassport } from '@carbon-platform/api/auth'
 
 import requireSession from '../../middleware/requireSession'
 
-const authCallback = requireSession().get(await authenticateWithPassport(), (req, res) => {
-  if (!req.user) {
-    res.redirect(`/login?${req.session.next || ''}`)
+const authCallback = requireSession().get(
+  async (...args) => (await authenticateWithPassport())(...args),
+  (req, res) => {
+    if (!req.user) {
+      res.redirect(`/login?${req.session.next || ''}`)
+      res.end('')
+      return
+    }
+
+    let nextRoute = '/'
+    if (req.session.next) {
+      nextRoute = req.session.next
+      delete req.session.next
+    }
+
+    res.redirect(nextRoute)
     res.end('')
-    return
   }
-
-  let nextRoute = '/'
-  if (req.session.next) {
-    nextRoute = req.session.next
-    delete req.session.next
-  }
-
-  res.redirect(nextRoute)
-  res.end('')
-})
+)
 
 export default authCallback

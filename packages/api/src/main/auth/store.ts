@@ -6,79 +6,88 @@
  */
 
 import cookieParser from 'cookie-parser'
-import expressSession, { Store } from 'express-session'
+import { SessionData, Store } from 'express-session'
 
 import { enforceEnvVars } from '../enforce-env-vars'
 import { getRunMode, PRODUCTION } from '../run-mode'
 import { PROD_SESSION_REQUIRED_ENV_VARS, SESSION_SECRET } from './config/constants'
 import { User } from './models/user.model'
 
-let currStore: Store
-/**
- * Initializes a store object and assigns it to currStore
- *
- * @returns {Promise<expressSession.Store>} Promise that resolves to an express store instance.
- */
-const init = async (): Promise<expressSession.Store> => {
-  if (getRunMode() === PRODUCTION) {
-    enforceEnvVars({ PRODUCTION: PROD_SESSION_REQUIRED_ENV_VARS })
+// connect-session-sequelize doesn't have type definitions work-around
+type ISequelizeStore = Store & {
+  // TODO: remove this once eslint updates from messaging branch are pulled in
+  // eslint-disable-next-line no-unused-vars
+  new (options: { db: any }): ISequelizeStore
+  sync: () => Promise<void>
+}
 
-    const MongoStore = require('connect-mongo')
-    // this will likely be replaced by database package (?)
-    const { MongoClient } = require('mongodb')
-    const mongoClientPromise = new MongoClient(process.env.CARBON_MONGO_DB_URL).connect()
-    currStore = MongoStore.create({
-      clientPromise: mongoClientPromise,
-      dbName: process.env.CARBON_MONGO_DB_NAME
-    })
-  } else {
-    // connect-session-sequelize doesn't have type definitions work-around
-    type ISequelizeStore = Store & { sync: () => Promise<void> }
-    const fs = require('fs')
-    const Sequelize = require('sequelize')
-    const SequelizeStore = require('connect-session-sequelize')(expressSession.Store)
-    const sqlite3 = require('sqlite3')
+let storeInstance: Store
 
-    const dir = 'data'
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir)
-    }
+async function createMongoStore(): Promise<Store> {
+  const { MongoClient } = await import('mongodb')
+  const MongoStore = (await import('connect-mongo')).default
 
-    const sequelize = new Sequelize('database', 'username', 'password', {
-      dialect: 'sqlite',
-      dialectModule: sqlite3,
-      storage: 'data/sessiondb.sqlite'
-    })
-    currStore = new SequelizeStore({
+  const mongoClientPromise = new MongoClient(process.env.CARBON_MONGO_DB_URL!).connect()
+
+  return MongoStore.create({
+    clientPromise: mongoClientPromise,
+    dbName: process.env.CARBON_MONGO_DB_NAME!
+  })
+}
+
+async function createSequelizeStore(): Promise<Store> {
+  const fs = require('fs')
+  const Sequelize = require('sequelize')
+  const SequelizeStore = require('connect-session-sequelize')(Store) as ISequelizeStore
+  const sqlite3 = require('sqlite3')
+
+  const dir = 'data'
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir)
+  }
+
+  const sequelize = new Sequelize('database', 'username', 'password', {
+    dialect: 'sqlite',
+    dialectModule: sqlite3,
+    storage: 'data/sessiondb.sqlite'
+  })
+
+  return new Promise((resolve) => {
+    const store = new SequelizeStore({
       db: sequelize
     })
-    await (currStore as ISequelizeStore).sync()
-  }
-  return currStore
+
+    store.sync().then(() => resolve(store))
+  })
 }
 
 /**
- * Gets and Returns current store instance
+ * Initializes a store object (if needed), caches it, and returns it.
  *
- * @returns {Promise<expressSession.Store>} Promise that resolves to current express store instance.
+ * @returns {Promise<Store>} Promise that resolves to a store instance.
  */
-const getStore = async (): Promise<expressSession.Store> => {
-  if (!currStore) {
-    return init()
+const getStore = async (): Promise<Store> => {
+  if (!storeInstance) {
+    if (getRunMode() === PRODUCTION) {
+      enforceEnvVars(PROD_SESSION_REQUIRED_ENV_VARS)
+
+      storeInstance = await createMongoStore()
+    } else {
+      storeInstance = await createSequelizeStore()
+    }
   }
-  return currStore
+
+  return storeInstance
 }
 
 /**
  * Retrieves a user session object for a given sessionKey
  *
  * @param {string} sessionKey Session Key
- * @returns {Promise<expressSession.SessionData | null>} Promise that resolves to the session object
+ * @returns {Promise<SessionData | null>} Promise that resolves to the session object
  *  (or null if not found)
  */
-const getUserSessionByKey = async (
-  sessionKey: string
-): Promise<expressSession.SessionData | null> => {
+const getUserSessionByKey = async (sessionKey: string): Promise<SessionData | null> => {
   const retrievedStore = await getStore()
   return new Promise((resolve) => {
     retrievedStore.get(sessionKey, (_: any, session: any) => {
@@ -122,7 +131,7 @@ const getUserBySessionKey = (sessionKey: string): Promise<User | undefined> => {
  * @param {Object} userInfo Additional/Updated user info
  * @returns {Promise<boolean>} Promise that resolves to boolean indicating success status
  */
-const updateUserBySessionKey = async (sessionKey: string, userInfo: Object): Promise<boolean> => {
+const updateUserBySessionKey = (sessionKey: string, userInfo: Object): Promise<boolean> => {
   return new Promise((resolve) => {
     getUserSessionByKey(sessionKey)
       .then((userSession: any) => {
@@ -168,7 +177,7 @@ const unsignSessionCookie = (sessionCookie: string): string | false => {
  */
 const getUserBySessionCookie = async (sessionCookie: string): Promise<User | undefined> => {
   const sessionId = unsignSessionCookie(sessionCookie)
-  return sessionId ? getUserBySessionKey(sessionId) : undefined
+  return sessionId ? await getUserBySessionKey(sessionId) : undefined
 }
 
 /**
@@ -182,7 +191,7 @@ const updateUserBySessionCookie = async (
   userInfo: any
 ): Promise<boolean> => {
   const sessionId = unsignSessionCookie(sessionCookie)
-  return sessionId ? updateUserBySessionKey(sessionId, userInfo) : false
+  return sessionId ? await updateUserBySessionKey(sessionId, userInfo) : false
 }
 
 export { getStore, getUserBySessionCookie, updateUserBySessionCookie }

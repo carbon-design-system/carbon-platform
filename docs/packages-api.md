@@ -19,7 +19,7 @@ different run modes.
 
 ### Usage
 
-Call the enforveEnvVars function and provide run-mode specific env vars or use the ALL key for
+Call the enforceEnvVars function and provide run-mode specific env vars or use the ALL key for
 always-required variables NOTE: none of these keys is mandatory
 
 ```ts

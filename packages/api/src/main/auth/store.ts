@@ -177,7 +177,11 @@ const unsignSessionCookie = (sessionCookie: string): string | false => {
  */
 const getUserBySessionCookie = async (sessionCookie: string): Promise<User | undefined> => {
   const sessionId = unsignSessionCookie(sessionCookie)
-  return sessionId ? await getUserBySessionKey(sessionId) : undefined
+  let user
+  if (sessionId) {
+    user = await getUserBySessionKey(sessionId)
+  }
+  return user
 }
 
 /**
@@ -191,7 +195,11 @@ const updateUserBySessionCookie = async (
   userInfo: any
 ): Promise<boolean> => {
   const sessionId = unsignSessionCookie(sessionCookie)
-  return sessionId ? await updateUserBySessionKey(sessionId, userInfo) : false
+  let success = false
+  if (sessionId) {
+    success = await updateUserBySessionKey(sessionId, userInfo)
+  }
+  return success
 }
 
 export { getStore, getUserBySessionCookie, updateUserBySessionCookie }

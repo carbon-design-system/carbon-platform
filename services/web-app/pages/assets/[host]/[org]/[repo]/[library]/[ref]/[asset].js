@@ -11,7 +11,8 @@ import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import PageHeader from '@/components/page-header/page-header'
+import PageBreadcrumb from '@/components/page-breadcrumb'
+import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
@@ -54,11 +55,15 @@ const Asset = ({ libraryData }) => {
   const [assetData] = libraryData.assets
   const { name, description, inherits: inheritsData, thumbnailData: imageData } = assetData.content
 
-  const id = getSlug(libraryData.content)
-
-  const libraryId = id
-    .replace(/\b(([a-zÁ-ú]){3,})/g, (w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .replace(/-/g, ' ')
+  const breadcrumbItems = [
+    {
+      name: libraryData.content.name,
+      path: `/assets/${getSlug(libraryData.content)}`
+    },
+    {
+      name
+    }
+  ]
 
   const seo = {
     title: name,
@@ -67,7 +72,8 @@ const Asset = ({ libraryData }) => {
 
   return (
     <>
-      <PageHeader title={seo.title} pictogram={TextInput} contentId={id} libraryId={libraryId} />
+      <PageHeader title={seo.title} pictogram={TextInput} />
+      <PageBreadcrumb items={breadcrumbItems} />
       <div className={styles.content}>
         <NextSeo {...seo} />
         {inheritsData && <InheritsLink data={inheritsData} />}

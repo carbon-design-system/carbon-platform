@@ -1,0 +1,55 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+// 256px to match width of side nav
+$breadcrumb-container-width: $spacing-10 * 4;
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: $breadcrumb-container-width;
+  padding: $spacing-06 0 0 $spacing-07;
+
+  @include breakpoint-down(md) {
+    max-width: none;
+    padding-left: $spacing-05;
+  }
+}
+
+.text {
+  color: $text-primary;
+  @include type-style('body-long-01');
+  @include line-clamp(2);
+}
+
+.item {
+  position: relative;
+
+  &:not(:first-child) {
+    &::before {
+      position: absolute;
+      left: 0;
+      content: '↳ ';
+    }
+    .text {
+      padding-left: $spacing-05;
+    }
+  }
+  &:nth-child(3) {
+    margin-left: $spacing-05;
+  }
+  &:nth-child(4) {
+    margin-left: $spacing-05 * 2;
+  }
+  &:nth-child(5) {
+    margin-left: $spacing-05 * 3;
+  }
+  &:nth-child(6) {
+    margin-left: $spacing-05 * 4;
+  }
+}

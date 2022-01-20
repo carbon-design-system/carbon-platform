@@ -30,7 +30,7 @@ const assetIsInFilter = (asset, filter) => {
   return true
 }
 
-function Catalog({ data, type = 'component', filter: defaultFilter = {} }) {
+function Catalog({ data, type, filter: defaultFilter = {} }) {
   const [query, setQuery] = useQueryState('q', {
     defaultValue: ''
   })
@@ -87,7 +87,7 @@ function Catalog({ data, type = 'component', filter: defaultFilter = {} }) {
     setFilteredAssets(
       initialAssets.filter((asset) => {
         // don't show private assets or assets of the wrong type
-        if (asset.content.private || asset.content.type !== type) return false
+        if (asset.content.private || (type && asset.content.type !== type)) return false
 
         // don't show if the asset doesn't have one of the valid values
         return assetIsInFilter(asset, filter)

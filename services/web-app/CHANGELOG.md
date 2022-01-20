@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.35](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.34...@carbon-platform/web-app@0.1.35) (2022-01-20)
+
+
+### Features
+
+* add breadcrumb to library detail page ([699abe3](https://github.com/carbon-design-system/carbon-platform/commit/699abe3eaccafd704d144cc5728b95c011aa3548))
+* added breadcrubm component and styles ([970bf2d](https://github.com/carbon-design-system/carbon-platform/commit/970bf2deecf529be608419d41bd4e41bba3b4fae))
+* added custom breadcrumb ([a545a76](https://github.com/carbon-design-system/carbon-platform/commit/a545a761f4380493b49a2a0390504a6a074d04e3))
+* refactor breadcrumb styling ([89b4e63](https://github.com/carbon-design-system/carbon-platform/commit/89b4e6310998854fd508d91ec5fd342fd272961b))
+
+
+### Bug Fixes
+
+* clean up styling ([dff2123](https://github.com/carbon-design-system/carbon-platform/commit/dff2123833e6e6bd9bcce4f49a63671695ed5c19))
+* ending / when comparing filepath to avoid picking up similar libs ([a4ea708](https://github.com/carbon-design-system/carbon-platform/commit/a4ea708588e5726659a23473f12c0f9b181be619))
+
 ### [0.1.34](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.33...@carbon-platform/web-app@0.1.34) (2022-01-08)
 
 

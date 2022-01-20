@@ -9,7 +9,7 @@
  * Libraries are only included in the platform if in this allowlist. Library slugs are specified as
  * object keys to ensure uniqueness.
  */
-const libraryAllowList = {
+const libraries = {
   'carbon-charts': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
@@ -288,6 +288,24 @@ const libraryAllowList = {
     sponsor: 'carbon'
   }
 }
+
+/**
+ * Libraries that will actually be in GitHub Enterprise repositories.
+ */
+const githubIbmLibraries = ['cloud-pal', 'watson-moments-react', 'watson-moments-styles']
+
+/**
+ * Include all libraries if `GITHUB_IBM_ACCESS` is true. If false, filter out libriaries in the
+ * above array.
+ */
+const libraryAllowList = Object.keys(libraries)
+  .filter((key) =>
+    process.env.GITHUB_IBM_ACCESS === 'true' ? true : !githubIbmLibraries.includes(key)
+  )
+  .reduce((obj, key) => {
+    obj[key] = libraries[key]
+    return obj
+  }, {})
 
 module.exports = {
   libraryAllowList

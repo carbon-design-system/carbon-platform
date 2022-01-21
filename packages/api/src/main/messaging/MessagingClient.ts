@@ -14,10 +14,15 @@ const RANDOM_QUEUE_NAME = ''
 const DEFAULT_ROUTING_KEY = ''
 const CONNECT_RETRY_INTERVAL = 5000
 
-// TODO: docs
-
 type ReplyCallbacks = Map<string, (value: any) => void>
 
+/**
+ * MessagingClient is the main way in which services interact with the message broker. It is
+ * accessed as a singleton instance via `MessagingClient.getInstance()`. The two main methods
+ * provided are `emit` and `query`. Emit is used to broadcast a message to all other services
+ * without expectation of a response. Query is used to send a message with the expectation of
+ * receiveing a correlated reply from another service.
+ */
 class MessagingClient {
   private static instance?: MessagingClient
 
@@ -43,6 +48,15 @@ class MessagingClient {
     this.replyCallbacks = new Map()
   }
 
+  /**
+   * Establishes a connection, channel, and reply queue with the message broker. Most users of this
+   * class will not need to call this, as it is implicitly called before all other methods. It is
+   * public for testing purposes.
+   *
+   * @param retry Whether or not to indefinitely wait for a connection to be established before
+   * allowing this method to return.
+   * @returns The channel that was established after connecting to the message broker.
+   */
   public async connect(retry = true): Promise<amqp.ConfirmChannel> {
     while (!this.connection || !this.channel) {
       try {
@@ -77,6 +91,12 @@ class MessagingClient {
     return this.channel
   }
 
+  /**
+   * Internal callback used when consuming messages received on the reply queue (i.e. responses to
+   * `query` calls).
+   *
+   * @param reply The message received from the broker.
+   */
   private replyReceived(reply: amqp.ConsumeMessage | null) {
     const correlationId = reply?.properties.correlationId as string
     const resolve = this.replyCallbacks.get(correlationId)
@@ -89,6 +109,9 @@ class MessagingClient {
     this.replyCallbacks.delete(correlationId)
   }
 
+  /**
+   * Severs the connection to the message broker and cleans up any related resources.
+   */
   public async disconnect() {
     if (this.channel) {
       await this.channel.close()
@@ -103,6 +126,15 @@ class MessagingClient {
     this.replyCallbacks.clear()
   }
 
+  /**
+   * Asynchronously broadcasts a message to all services that are listening for the specified
+   * message type. Use this method to broadcast that "something happened" and when no response is
+   * expected in return.
+   *
+   * @param eventType The type of message being broadcast.
+   * @param message The body of the message.
+   * @returns A promise that resolves when the message has been confirmed by the message broker.
+   */
   public async emit(eventType: EventMessage, message: any): Promise<void> {
     // Connect and ensure channel is established
     const channel = await this.connect()
@@ -132,6 +164,18 @@ class MessagingClient {
     })
   }
 
+  /**
+   * Asynchronously sends a message to the service that has identified itself as being capable of
+   * handling the specified type of query. Use this method for point-to-point communication between
+   * services when it is expected that the remote service should respond to the specified query.
+   *
+   * This method is generic and accepts a type indicating the type of the returned message.
+   *
+   * @param queryType The type of message being broadcast.
+   * @param message The body of the message.
+   * @returns A promise that resolves to an object of the specified type. The object represents a
+   * de-serialized version of the correlated reply received from the remote service.
+   */
   public async query<T>(queryType: QueryMessage, message: any): Promise<T> {
     // Connect and ensure channel and reply queue are established
     const channel = await this.connect()

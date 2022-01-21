@@ -10,8 +10,7 @@
     "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
   },
   "scripts": {
-    "build": "npm run clean && npm run build:fix-v11 && next build",
-    "build:fix-v11": "sh ./fix-v11-carbon-prefix.sh",
+    "build": "npm run clean && next build",
     "clean": "rimraf .carbon public/.carbon .next",
     "dev": "next dev",
     "lint": "next lint",

@@ -7,6 +7,14 @@
 
 import { PlatformController } from '../common/platform.controller'
 
+/**
+ * A method decorator that calls the provided validator function against the input arguments to the
+ * decorated method. If validation passes, the decorated function is called like normal. If it
+ * fails, then a warning is logged and the decorated function is not called.
+ *
+ * @param validator The function that will perform validation against the input arguments.
+ * @returns A method decorator that performs validation.
+ */
 function Validate(validator: Function): MethodDecorator {
   return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) => {
     const original = descriptor.value

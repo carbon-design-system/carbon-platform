@@ -11,6 +11,10 @@ import { Injectable } from '@nestjs/common'
 
 import { CARBON_LOGDNA_ENDPOINT, CARBON_LOGDNA_KEY } from './constants'
 
+/**
+ * An injectable service that talks directly to the LogDNA ingestion endpoint and can transmit log
+ * data to it.
+ */
 @Injectable()
 class LogDnaService {
   private readonly logDna: Logger
@@ -25,6 +29,13 @@ class LogDnaService {
     }
   }
 
+  /**
+   * Logs the provided log entry on the LogDNA server.
+   *
+   * **NOTE:** In DEV run-mode, this is effectively a no-op.
+   *
+   * @param logEntry The log to send to LogDNA.
+   */
   public log(logEntry: LogLoggedMessage) {
     this.logDna?.log(logEntry.message, {
       app: 'service:' + logEntry.service,

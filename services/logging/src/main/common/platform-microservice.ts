@@ -20,10 +20,21 @@ import amqp from 'amqplib'
 
 const CONNECT_RETRY_INTERVAL = 5000
 
+/**
+ * An abstract class that wraps much of the boilerplate code needed to create, bind, and start a
+ * Carbon Platform microservice.
+ */
 abstract class PlatformMicroservice {
   private readonly queueName: Queue
   private readonly queueOptions: any
 
+  /**
+   * Constructs a new microservice that consumes messages from the specified queue.
+   *
+   * @param queueName The name of the queue from which to consume messages.
+   * @param queueOptions An optional set of options for the queue, such as explicit message
+   * acknowledgement or queue durability.
+   */
   constructor(queueName: Queue, queueOptions?: any) {
     this.queueName = queueName
     this.queueOptions = {
@@ -32,6 +43,11 @@ abstract class PlatformMicroservice {
     }
   }
 
+  /**
+   * Connects to the RabbitMQ server.
+   *
+   * @returns A connection to the RabbitMQ server.
+   */
   private async connect(): Promise<amqp.Connection> {
     while (true) {
       try {
@@ -47,6 +63,11 @@ abstract class PlatformMicroservice {
     }
   }
 
+  /**
+   * Starts the application listening for incoming messages.
+   *
+   * **NOTE:** This method does not return.
+   */
   public async start(): Promise<any> {
     const app = await NestFactory.createMicroservice<MicroserviceOptions>(this.constructor, {
       transport: Transport.RMQ,
@@ -60,6 +81,16 @@ abstract class PlatformMicroservice {
     return app.listen()
   }
 
+  /**
+   * Binds a service to one or more message types, allowing it to listen for and receive messages of
+   * those types.
+   *
+   * This is accomplished by connecting to RabbitMQ, asserting a queue for the one specified in the
+   * constructor, asserting an exchange for each message type, binding the queue to the newly
+   * asserted exchanges, and then disconnecting from RabbitMQ.
+   *
+   * @param messageTypes The types of messages to which to bind.
+   */
   public async bind(...messageTypes: Array<EventMessage | QueryMessage>) {
     const connection = await this.connect()
     const channel = await connection.createChannel()

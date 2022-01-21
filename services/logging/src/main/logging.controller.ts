@@ -12,28 +12,7 @@ import { EventPattern, Payload } from '@nestjs/microservices'
 import { PlatformController } from './common/platform.controller'
 import { Validate } from './decorators/Validate'
 import { LogDnaService } from './log-dna.service'
-
-// TODO: move to separate file
-function logMessageValidator(data: LogLoggedMessage) {
-  if (!data.component) {
-    throw new Error('component not specified')
-  }
-  if (!data.environment) {
-    throw new Error('environment not specified')
-  }
-  if (!data.level) {
-    throw new Error('level not specified')
-  }
-  if (!data.message) {
-    throw new Error('message not specified')
-  }
-  if (!data.service) {
-    throw new Error('service not specified')
-  }
-  if (!data.timestamp) {
-    throw new Error('timestamp not specified')
-  }
-}
+import { logMessageValidator } from './log-message-validator'
 
 @Controller()
 class LoggingController extends PlatformController {
@@ -44,6 +23,11 @@ class LoggingController extends PlatformController {
     this.logDnaService = logDnaService
   }
 
+  /**
+   * Handles incoming log messages and writes them to the LogDNA endpoint.
+   *
+   * @param data The log message to log.
+   */
   @EventPattern(EventMessage.LogLogged)
   @Validate(logMessageValidator)
   public async logLogged(@Payload() data: LogLoggedMessage) {

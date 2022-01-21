@@ -6,6 +6,10 @@
  */
 import { Logger } from '@nestjs/common'
 
+/**
+ * A base class for other Carbon Platform NestJS controllers that automatically instantiates a
+ * NestJS logger with an appropriate name that can be used by child classes.
+ */
 class PlatformController {
   public readonly nestLogger: Logger
 

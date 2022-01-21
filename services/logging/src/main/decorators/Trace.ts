@@ -8,6 +8,13 @@ import { PlatformController } from '../common/platform.controller'
 
 // TODO: incorporate messaging into this and make it more general purpose
 
+/**
+ * Returns a decorated version of a method that automatically uses the instance's NestJS logger
+ * object to log an informational message containing the name of the called function, along with its
+ * arguments.
+ *
+ * @returns A decorated method.
+ */
 function Trace(): MethodDecorator {
   return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) => {
     const original = descriptor.value

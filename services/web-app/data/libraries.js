@@ -313,7 +313,7 @@ const ossLibraries = [
  */
 const libraryAllowList = Object.keys(libraries)
   .filter((key) =>
-    process.env.FILE_SYSTEM_CACHE === '.carbon-oss' ? ossLibraries.includes(key) : true
+    process.env.FILE_SYSTEM_CACHE !== '.carbon' ? ossLibraries.includes(key) : true
   )
   .reduce((obj, key) => {
     obj[key] = libraries[key]

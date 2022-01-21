@@ -142,6 +142,10 @@ describe('error paths', () => {
   })
 
   it('quietly ignores replies for unknown correlation IDs', async () => {
+    // Since no messages are emitted or queried, the replyCallbacks map in the messaging client will
+    // be empty. That means that any value passed to the replyCallback as the correlation id will
+    // always result in the "id not found" error path being taken.
+
     const client = MessagingClient.getInstance()
     await client.connect()
 

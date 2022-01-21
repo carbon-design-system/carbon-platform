@@ -17,10 +17,11 @@ function getRunMode(): RunMode {
     case DEV:
     case PROD:
       return mode
-    // Not specified. Default to DEV
     case undefined:
+      // Not specified. Default to DEV
       return DEV
     default:
+      // Weird values result in an error
       throw new Error(`Unknown run mode: ${mode}`)
   }
 }

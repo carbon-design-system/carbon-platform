@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build": "npm run clean && npm run build:fix-v11 && next build",
+    "build:all": "cd ../../ && npm run all:build",
     "build:fix-v11": "sh ./fix-v11-carbon-prefix.sh",
     "clean": "rimraf .carbon public/.carbon .next",
     "dev": "next dev",

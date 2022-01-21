@@ -9,7 +9,7 @@
  * Libraries are only included in the platform if in this allowlist. Library slugs are specified as
  * object keys to ensure uniqueness.
  */
-const libraryAllowList = {
+const libraries = {
   'carbon-charts': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
@@ -288,6 +288,37 @@ const libraryAllowList = {
     sponsor: 'carbon'
   }
 }
+
+/**
+ * Libraries to persist to the `.carbon-oss` file system cache so we can use this local data when
+ * deploying to Vercel.
+ */
+const ossLibraries = [
+  'carbon-charts',
+  'carbon-charts-angular',
+  'carbon-charts-react',
+  'carbon-charts-svelte',
+  'carbon-charts-vue',
+  'carbon-styles',
+  'carbon-components',
+  'carbon-angular',
+  'carbon-react',
+  'carbon-svelte',
+  'carbon-vue',
+  'carbon-web-components'
+]
+
+/**
+ * Only use the `ossLibraries` data set if specified in the environment variable.
+ */
+const libraryAllowList = Object.keys(libraries)
+  .filter((key) =>
+    process.env.FILE_SYSTEM_CACHE === '.carbon-oss' ? ossLibraries.includes(key) : true
+  )
+  .reduce((obj, key) => {
+    obj[key] = libraries[key]
+    return obj
+  }, {})
 
 module.exports = {
   libraryAllowList

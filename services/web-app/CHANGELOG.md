@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.36](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.35...@carbon-platform/web-app@0.1.36) (2022-01-22)
+
+
+### Features
+
+* use run mode instead of env var ([8c643b0](https://github.com/carbon-design-system/carbon-platform/commit/8c643b05ea5798bcd2386d5dda921f49cfec7dea))
+
+
+### Bug Fixes
+
+* file cache logic with no env vars set ([863fbb7](https://github.com/carbon-design-system/carbon-platform/commit/863fbb7bfb5e6f985490d73f984158f2c56927de))
+* prod to production ([0a87797](https://github.com/carbon-design-system/carbon-platform/commit/0a877978bdbb3186b1e56f3aedf41a7f2e7b6eeb))
+
 ### [0.1.35](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.34...@carbon-platform/web-app@0.1.35) (2022-01-20)
 
 

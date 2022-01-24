@@ -31,4 +31,4 @@ Exporting the `CARBON_RUN_MODE` environment variable as either of these values w
 
 If the environment variable is not set, the mode will default to `DEV`.
 
-Settings this envvar to any other value will result in an error being thrown.
+Setting this envvar to any other value will result in an error being thrown.

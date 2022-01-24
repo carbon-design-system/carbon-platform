@@ -291,7 +291,7 @@ const libraries = {
 }
 
 /**
- * Libraries to persist to the `.carbon-oss` file system cache so we can use this local data when
+ * Libraries to persist to the `public/data` file system cache so we can use this local data when
  * deploying to Vercel.
  */
 const ossLibraries = [

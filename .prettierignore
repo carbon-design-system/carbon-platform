@@ -16,4 +16,4 @@ CHANGELOG.md
 # Generated
 generated/
 .test-coverage/
-services/web-app/.carbon-oss/
+services/web-app/public/data/

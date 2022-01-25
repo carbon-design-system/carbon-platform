@@ -100,11 +100,11 @@ const Asset = ({ libraryData }) => {
 export const getStaticProps = async ({ params }) => {
   const libraryData = await getLibraryData(params)
 
-  if (!libraryData || !libraryData.assets || !libraryData.assets.length) {
-    return {
-      notFound: true
-    }
-  }
+  // if (!libraryData || !libraryData.assets || !libraryData.assets.length) {
+  //   return {
+  //     notFound: true
+  //   }
+  // }
 
   return {
     props: {

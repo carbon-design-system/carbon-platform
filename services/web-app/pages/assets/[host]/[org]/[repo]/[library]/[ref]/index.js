@@ -80,11 +80,11 @@ const Library = ({ libraryData, params }) => {
 export const getStaticProps = async ({ params }) => {
   const libraryData = await getLibraryData(params)
 
-  if (!libraryData) {
-    return {
-      notFound: true
-    }
-  }
+  // if (!libraryData) {
+  //   return {
+  //     notFound: true
+  //   }
+  // }
 
   return {
     props: {

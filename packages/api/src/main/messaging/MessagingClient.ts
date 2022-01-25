@@ -62,76 +62,52 @@ class MessagingClient {
   }
 
   /**
-   * Establishes a connection, channel, and reply queue with the message broker. Most users of this
-   * class will not need to call this, as it is implicitly called before all other methods. It is
-   * public for testing purposes.
+   * Internal method to ensure that a connection to the message broker is established in a reliable
+   * way. This is intended to only be called one-per-instance by `connect` so that duplicate
+   * connections and race conditions are not created.
    *
    * @param retry Whether or not to indefinitely wait for a connection to be established before
    * allowing this method to return.
-   * @returns The MessagingConnection object that was established after connecting to the message
-   * broker.
+   * @returns A promise of a messaging connection.
    */
-  public connect(retry = true): Promise<MessagingConnection> {
-    // Guard - Connection has already been established
-    if (this.messagingConnection) {
-      return Promise.resolve(this.messagingConnection)
-    }
+  private async assertConnection(retry: boolean): Promise<MessagingConnection> {
+    while (!this.messagingConnection) {
+      let connection: amqp.Connection | undefined
+      let channel: amqp.ConfirmChannel | undefined
 
-    // Guard - Connection attempt is pending
-    if (this.messagingConnectionPromise) {
-      return this.messagingConnectionPromise
-    }
+      try {
+        connection = await amqp.connect(MESSAGE_QUEUE_URL)
+        channel = await connection.createConfirmChannel()
 
-    // No existing connection. Set up a promise of a new one
-    // eslint note: Having an asynchronous Promise executor function is atypical, but it is used
-    // here as a way to wrap the asynchronous amqp connection logic while also ensuring that at most
-    // one connection is ever created to the message broker.
-    // eslint-disable-next-line no-async-promise-executor
-    this.messagingConnectionPromise = new Promise<MessagingConnection>(async (resolve, reject) => {
-      while (!this.messagingConnection) {
-        let connection: amqp.Connection | undefined
-        let channel: amqp.ConfirmChannel | undefined
+        this.replyQueue = await channel.assertQueue(RANDOM_QUEUE_NAME, { exclusive: true })
 
-        try {
-          connection = await amqp.connect(MESSAGE_QUEUE_URL)
-          channel = await connection.createConfirmChannel()
+        // Listen for responses on the reply queue
+        await channel.consume(
+          this.replyQueue.queue,
+          this.replyReceived.bind(this),
+          // No explicit acks needed, since this is the service's personal reply queue
+          { noAck: true }
+        )
 
-          this.replyQueue = await channel.assertQueue(RANDOM_QUEUE_NAME, { exclusive: true })
+        this.messagingConnection = new MessagingConnection(connection, channel)
+      } catch (e) {
+        console.error('Could not connect to messaging service', e)
 
-          // Listen for responses on the reply queue
-          await channel.consume(
-            this.replyQueue.queue,
-            this.replyReceived.bind(this),
-            // No explicit acks needed, since this is the service's personal reply queue
-            { noAck: true }
-          )
+        channel && channel.close()
+        connection && connection.close()
 
-          this.messagingConnection = new MessagingConnection(connection, channel)
-          resolve(this.messagingConnection)
-        } catch (e) {
-          console.error('Could not connect to messaging service', e)
-
-          channel && channel.close()
-          connection && connection.close()
-
-          if (retry) {
-            // Retry again after a few seconds
-            // eslint note: The executor resolve function would typically be called "resolve", but
-            // since we are in the scope of another promise with its own resolve function, a
-            // different name is used here for clarity.
-            // eslint-disable-next-line promise/param-names
-            await new Promise((retryResolve) => {
-              setTimeout(retryResolve, CONNECT_RETRY_INTERVAL)
-            })
-          } else {
-            reject(e)
-            break
-          }
+        if (retry) {
+          // Retry again after a few seconds
+          await new Promise((resolve) => {
+            setTimeout(resolve, CONNECT_RETRY_INTERVAL)
+          })
+        } else {
+          throw e
         }
       }
-    })
+    }
 
-    return this.messagingConnectionPromise
+    return this.messagingConnection
   }
 
   /**
@@ -150,6 +126,33 @@ class MessagingClient {
 
     resolve(reply?.content.toString())
     this.replyCallbacks.delete(correlationId)
+  }
+
+  /**
+   * Establishes a connection, channel, and reply queue with the message broker. Most users of this
+   * class will not need to call this, as it is implicitly called before all other methods. It is
+   * public for testing purposes.
+   *
+   * @param retry Whether or not to indefinitely wait for a connection to be established before
+   * allowing this method to return.
+   * @returns A promise of a MessagingConnection object that is created after connecting to the
+   * message broker.
+   */
+  public connect(retry = true): Promise<MessagingConnection> {
+    // Guard - Connection has already been established
+    if (this.messagingConnection) {
+      return Promise.resolve(this.messagingConnection)
+    }
+
+    // Guard - Connection attempt is pending
+    if (this.messagingConnectionPromise) {
+      return this.messagingConnectionPromise
+    }
+
+    // No existing connection. Set up a promise of a new one
+    this.messagingConnectionPromise = this.assertConnection(retry)
+
+    return this.messagingConnectionPromise
   }
 
   /**

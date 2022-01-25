@@ -6,11 +6,9 @@
  */
 import yaml from 'js-yaml'
 import { isEmpty, isEqual } from 'lodash'
-import { getPlaiceholder } from 'plaiceholder'
 
-import { IMAGES_CACHE_PATH } from '@/config/constants'
 import { libraryAllowList } from '@/data/libraries'
-import { getResponse, writeFile } from '@/lib/file-cache'
+import { getResponse } from '@/lib/file-cache'
 import { getSlug } from '@/utils/slug'
 import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
 
@@ -227,8 +225,7 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
 
   const inheritedAssets = inheritContent ? await getInheritedAssets(assets) : []
 
-  // TODO this is commented out to prevent production build errors
-  const imgPlaceholders = [] // await getImagePlaceholders(assets)
+  const imgPlaceholders = []
 
   return assets.map((asset) => {
     const assetExtensions = getAssetExtensions(asset, inheritedAssets, imgPlaceholders)
@@ -331,56 +328,6 @@ const getInheritedAssets = async (assets) => {
   const inheritedAssetsResponses = await Promise.all(inheritedLibraryAssetsPromises)
 
   return inheritedAssetsResponses.flat()
-}
-
-/**
- * Finds thumbnail images, gets content of each image, writes each image to disk, generates
- * placeholder images, returns placeholder images
- * @param {import('../typedefs').Asset[]} assets - Assets
- * @returns {Promise<import('../typedefs').PlaceholderImage[]>} Array of placeholder objects
- */
-// eslint-disable-next-line no-unused-vars
-const getImagePlaceholders = async (assets) => {
-  // find all thumbnail images, get content of each image, filter out assets with no thumbnail
-
-  const imgContentsPromises = assets
-    .map((asset) => {
-      if (asset.content.thumbnailPath) {
-        return getResponse(asset.params.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
-          owner: asset.params.org,
-          repo: asset.params.repo,
-          path: asset.response.path.replace('/carbon-asset.yml', '') + asset.content.thumbnailPath,
-          ref: asset.params.ref
-        })
-      } else {
-        return null
-      }
-    })
-    .filter((item) => item)
-
-  const imgContents = await Promise.all(imgContentsPromises)
-
-  // write images to disk
-
-  const imgWritePromises = imgContents.map((content) => {
-    const path = content.html_url.replace('https://', '').replace('/blob', '')
-
-    return writeFile(path, Buffer.from(content.content, content.encoding))
-  })
-
-  await Promise.all(imgWritePromises)
-
-  // generate placeholder images
-
-  const imgPlaceholderPromises = imgContents.map((content) => {
-    const path = content.html_url.replace('https://', '').replace('/blob', '')
-
-    return getPlaiceholder(`/${IMAGES_CACHE_PATH}/${path}`, {
-      size: 10
-    })
-  })
-
-  return Promise.all(imgPlaceholderPromises)
 }
 
 /**

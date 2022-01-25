@@ -58,7 +58,6 @@ const slugifyRequest = (host, route, options = {}) => {
  */
 const _getResponse = async (host, route, options) => {
   const responseKey = slugifyRequest(host, route, options)
-
   console.log('CACHE MISS', responseKey)
 
   const octokitRef = host === 'github.ibm.com' ? octokitIbm : octokit

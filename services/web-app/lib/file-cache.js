@@ -57,8 +57,8 @@ const slugifyRequest = (host, route, options = {}) => {
  * @returns {Object} GitHub API response data
  */
 const _getResponse = async (host, route, options) => {
-  // const responseKey = slugifyRequest(host, route, options)
-  // console.log('CACHE MISS', responseKey)
+  const responseKey = slugifyRequest(host, route, options)
+  console.log('CACHE MISS', responseKey)
 
   const octokitRef = host === 'github.ibm.com' ? octokitIbm : octokit
 
@@ -81,7 +81,7 @@ const _getResponse = async (host, route, options) => {
 export const getResponse = (host, route, options) => {
   const responseKey = slugifyRequest(host, route, options)
 
-  // console.log('CACHE HIT', responseKey)
+  console.log('CACHE HIT', responseKey)
 
   return diskCache.wrap(responseKey, () => {
     return _getResponse(host, route, options)

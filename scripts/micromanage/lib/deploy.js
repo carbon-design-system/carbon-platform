@@ -6,10 +6,9 @@
  */
 const { Command } = require('commander')
 const path = require('path')
-const { exec } = require('./utils')
+const { exec, spawn } = require('./utils')
 
 const REQUIRED_ENV_VARS = [
-  'IBM_CLOUD_API_KEY',
   'CONTAINER_REGISTRY_SERVER',
   'CONTAINER_REGISTRY_NAMESPACE',
   'CODE_ENGINE_PROJECT'
@@ -24,8 +23,8 @@ function buildDeployCommand() {
     .action(handleDeployCommand)
 }
 
-function handleDeployCommand(options) {
-  console.log('===== micromanage deploy ======')
+async function handleDeployCommand(options) {
+  console.log('===== micromanage deploy =====')
 
   if (!DEPLOY_TARGETS.includes(options.target)) {
     throw new Error(`Invalid deploy target: ${options.target}`)
@@ -41,7 +40,8 @@ function handleDeployCommand(options) {
 
   // assuming both ibmcloud and codeengine(ce) plugins are installed
   console.log('Logging into IBM Cloud')
-  exec(`ibmcloud login --apikey ${process.env.IBM_CLOUD_API_KEY} -g 'Carbon Platform'`)
+
+  exec("ibmcloud target -g 'Carbon Platform'")
   exec(`ibmcloud ce project select -n ${process.env.CODE_ENGINE_PROJECT}`)
 
   console.log('Getting changed services')
@@ -57,9 +57,9 @@ function handleDeployCommand(options) {
     console.log('No services have changed. Nothing to do')
   }
 
-  changedServices.forEach((changedService) => {
-    deployService(changedService)
-  })
+  for (const service of changedServices) {
+    await deployService(service)
+  }
 
   console.log('All services deployed')
 }
@@ -123,7 +123,7 @@ function getChangedServices(serviceConfig) {
   return changedServices
 }
 
-function deployService(changedService) {
+async function deployService(changedService) {
   // assuming image tag exists in container registry
 
   console.log(`Deploying service ${changedService.name} at version ${changedService.newVersion}`)
@@ -131,9 +131,7 @@ function deployService(changedService) {
 
   const deployImage = `${CONTAINER_REGISTRY_SERVER}/${CONTAINER_REGISTRY_NAMESPACE}/${changedService.name}:${changedService.newVersion}`
 
-  console.log(
-    exec(`ibmcloud ce application update -n ${changedService.name} --image ${deployImage}`)
-  )
+  await spawn(`ibmcloud ce application update -n ${changedService.name} --image ${deployImage}`)
 }
 
 module.exports = {

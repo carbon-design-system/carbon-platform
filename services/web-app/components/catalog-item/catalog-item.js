@@ -79,7 +79,11 @@ const CatalogItemContent = ({ asset, isGrid = false }) => {
             properties={['status', 'license']}
           />
         )}
-        <FrameworkIcon className={styles.framework} framework={asset.content.framework} />
+        <FrameworkIcon
+          className={styles.framework}
+          framework={asset.content.framework}
+          frameworkCount={asset.content.frameworkCount}
+        />
       </Column>
     </Grid>
   )

@@ -7,16 +7,22 @@
 
 .container {
   display: flex;
-  width: $spacing-06;
+  min-width: $spacing-06;
   height: $spacing-06;
   align-items: center;
   justify-content: center;
+  padding: $spacing-02;
   background: $layer-accent;
-  border-radius: 100%;
+  border-radius: $spacing-06;
   color: $icon-primary;
 }
 
 .icon {
   width: $spacing-05;
   height: $spacing-05;
+}
+
+.text {
+  margin-left: $spacing-02;
+  @include type-style('label-01');
 }

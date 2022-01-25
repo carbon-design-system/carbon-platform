@@ -11,7 +11,7 @@ import { framework as frameworkMap } from '@/data/framework'
 
 import styles from './framework-icon.module.scss'
 
-const FrameworkIcon = ({ className, framework }) => {
+const FrameworkIcon = ({ className, framework, frameworkCount = 0 }) => {
   const item = frameworkMap[framework]
 
   if (!item) return null
@@ -20,9 +20,13 @@ const FrameworkIcon = ({ className, framework }) => {
 
   if (!Icon) return null
 
+  const otherCount = frameworkCount - 1
+  const title = otherCount > 0 ? `${name} and ${otherCount} others` : name
+
   return (
-    <div className={clsx(styles.container, className)} title={name}>
+    <div className={clsx(styles.container, className)} title={title}>
       <Icon className={styles.icon} />
+      {otherCount > 0 && <span className={styles.text}>+{otherCount}</span>}
     </div>
   )
 }

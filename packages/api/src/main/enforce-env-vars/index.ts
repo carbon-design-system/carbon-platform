@@ -18,7 +18,6 @@ import { getRunMode, PRODUCTION } from '../run-mode'
  */
 export const enforceEnvVars = (requiredVars: string[], throwError = true): boolean => {
   let isValid = true
-  // TODO: make this run-mode compliant when new version is merged in
   if (getRunMode() === PRODUCTION) {
     requiredVars.forEach((envVar) => {
       if (!process.env[envVar]) {

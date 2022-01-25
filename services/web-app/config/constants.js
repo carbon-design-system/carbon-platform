@@ -6,5 +6,5 @@
  */
 import { getRunMode, PRODUCTION } from '@carbon-platform/api/run-mode'
 
-export const CACHE_PATH = getRunMode() === PRODUCTION ? '.carbon' : '.carbon-oss'
+export const CACHE_PATH = getRunMode() === PRODUCTION ? '.carbon' : 'public/data'
 export const IMAGES_CACHE_PATH = '.carbon'

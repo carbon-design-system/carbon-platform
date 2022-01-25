@@ -10,9 +10,13 @@ const { Command } = require('commander')
 const { buildDockerCommand } = require('./docker')
 const { buildVersionCommand } = require('./version')
 const { logErrorInfo } = require('./utils')
+const { buildDeployCommand } = require('./deploy')
 
 function main() {
-  const program = new Command().addCommand(buildDockerCommand()).addCommand(buildVersionCommand())
+  const program = new Command()
+    .addCommand(buildDeployCommand())
+    .addCommand(buildDockerCommand())
+    .addCommand(buildVersionCommand())
 
   try {
     program.parse()

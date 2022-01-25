@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.37](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.36...@carbon-platform/web-app@0.1.37) (2022-01-25)
+
+
+### Bug Fixes
+
+* move prototyping data to public folder with no dot file name ([95c4101](https://github.com/carbon-design-system/carbon-platform/commit/95c4101e2415bf2e59684b3b3205340cb9a2dc2e))
+* **web-app:** comment out caching debug statements ([0f876ca](https://github.com/carbon-design-system/carbon-platform/commit/0f876cadb6c888734cc6f618a38c3009e2adff05))
+* **web-app:** remove prefix modification script ([1d0cad0](https://github.com/carbon-design-system/carbon-platform/commit/1d0cad059c4cf379a9b69a39c1bfbfd9aaec0fe1))
+* **web-app:** remove unused var in file cache ([10de2c1](https://github.com/carbon-design-system/carbon-platform/commit/10de2c1d3064affc94ba44d8428c0606820f923c))
+
 ### [0.1.36](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.35...@carbon-platform/web-app@0.1.36) (2022-01-22)
 
 

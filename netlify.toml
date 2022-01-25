@@ -1,2 +1,5 @@
 [[plugins]]
-package = "@netlify/plugin-nextjs"
+  package = "@netlify/plugin-nextjs"
+
+[functions]
+  external_node_modules = ["sharp"]

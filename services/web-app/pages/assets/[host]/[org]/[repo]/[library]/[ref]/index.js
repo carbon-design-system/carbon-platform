@@ -91,7 +91,7 @@ export const getStaticProps = async ({ params }) => {
       libraryData,
       params
     },
-    revalidate: 10
+    revalidate: 60
   }
 }
 

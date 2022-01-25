@@ -12,6 +12,7 @@
   "scripts": {
     "build": "npm run clean && next build",
     "clean": "rimraf .carbon public/.carbon .next",
+    "clean:data": "rimraf public/data",
     "dev": "next dev",
     "lint": "next lint",
     "service:build": "npm run build",

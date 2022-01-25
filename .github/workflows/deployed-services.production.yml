@@ -18,8 +18,6 @@ jobs:
         with:
           ref: 'deployed-services/production'
 
-      # TODO: Require 2 reviews for production deploys
-
       # Download and Install IBM Cloud CLI
       - name: Install IBM Cloud CLI 🏗
         run: |

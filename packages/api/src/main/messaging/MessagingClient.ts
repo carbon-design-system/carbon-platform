@@ -71,10 +71,10 @@ class MessagingClient {
    * @returns The MessagingConnection object that was established after connecting to the message
    * broker.
    */
-  public async connect(retry = true): Promise<MessagingConnection> {
+  public connect(retry = true): Promise<MessagingConnection> {
     // Guard - Connection has already been established
     if (this.messagingConnection) {
-      return this.messagingConnection
+      return Promise.resolve(this.messagingConnection)
     }
 
     // Guard - Connection attempt is pending

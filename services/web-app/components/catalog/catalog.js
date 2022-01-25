@@ -4,7 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { remove, union } from 'lodash'
+import { get, remove, union } from 'lodash'
+import minimatch from 'minimatch'
 import { useEffect, useState } from 'react'
 
 import CatalogFilters from '@/components/catalog-filters'
@@ -30,7 +31,7 @@ const assetIsInFilter = (asset, filter) => {
   return true
 }
 
-function Catalog({ data, type, filter: defaultFilter = {} }) {
+function Catalog({ data, type, filter: defaultFilter = {}, glob = {} }) {
   const [query, setQuery] = useQueryState('q', {
     defaultValue: ''
   })
@@ -54,7 +55,7 @@ function Catalog({ data, type, filter: defaultFilter = {} }) {
 
   const [pageSize, setPageSize] = useQueryState('items', {
     ...queryTypes.integer,
-    defaultValue: 12
+    defaultValue: 60
   })
 
   const [filter, setFilter] = useQueryState('filter', {
@@ -88,6 +89,11 @@ function Catalog({ data, type, filter: defaultFilter = {} }) {
       initialAssets.filter((asset) => {
         // don't show private assets or assets of the wrong type
         if (asset.content.private || (type && asset.content.type !== type)) return false
+
+        // don't show libraries or assets match a glob
+        if (glob.data && glob.pattern) {
+          return minimatch(get(asset, glob.data), glob.pattern)
+        }
 
         // don't show if the asset doesn't have one of the valid values
         return assetIsInFilter(asset, filter)

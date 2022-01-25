@@ -38,7 +38,7 @@ const CatalogPagination = ({
           }}
           page={currentPage}
           pageSize={currentPageSize}
-          pageSizes={[12, 24, 48, 96]}
+          pageSizes={[30, 60, 120, 240]}
           totalItems={assets.length}
         />
       </Column>

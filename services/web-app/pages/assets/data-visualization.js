@@ -29,7 +29,7 @@ const DataVisualization = ({ librariesData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader title={seo.title} pictogram={ChartBar} />
-      <Catalog data={librariesData} libraryIds="carbon-charts*" />
+      <Catalog data={librariesData} glob={{ data: 'params.library', pattern: 'carbon-charts*' }} />
     </>
   )
 }

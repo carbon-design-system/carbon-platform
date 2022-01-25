@@ -13,10 +13,13 @@
 export const assetSortComparator = (key) => (assetA, assetB) => {
   const sort = key === 'status' ? 'status' : 'name'
 
-  if (assetA.content[sort] === assetB.content[sort]) {
+  const valueA = assetA.content[sort] || ''
+  const valueB = assetB.content[sort] || ''
+
+  if (valueA === valueB) {
     return 0
   }
-  return assetA.content[sort] > assetB.content[sort] ? 1 : -1
+  return valueA > valueB ? 1 : -1
 }
 
 /**
@@ -26,8 +29,11 @@ export const assetSortComparator = (key) => (assetA, assetB) => {
  * @returns {number} Sort order
  */
 export const librarySortComparator = (libraryA, libraryB) => {
-  if (libraryA.content.name === libraryB.content.name) {
+  const valueA = libraryA.content.name || ''
+  const valueB = libraryB.content.name || ''
+
+  if (valueA === valueB) {
     return 0
   }
-  return libraryA.content.name > libraryB.content.name ? 1 : -1
+  return valueA > valueB ? 1 : -1
 }

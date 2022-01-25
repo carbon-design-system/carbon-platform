@@ -80,6 +80,11 @@ const Library = ({ libraryData, params }) => {
 export const getStaticProps = async ({ params }) => {
   const libraryData = await getLibraryData(params)
 
+  console.log('params')
+  console.log(params)
+  console.log('libraryData')
+  console.log(libraryData)
+
   if (!libraryData) {
     return {
       notFound: true

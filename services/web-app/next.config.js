@@ -7,6 +7,7 @@
 'use strict'
 
 const path = require('path')
+const libraries = require('./data/libraries')
 
 module.exports = {
   i18n: {
@@ -55,5 +56,31 @@ module.exports = {
     })
 
     return config
+  },
+  async redirects() {
+    return [
+      {
+        source: '/assets/:host/:org/:repo/:library',
+        destination: '/assets/:host/:org/:repo/:library/latest',
+        permanent: false
+      }
+    ]
+  },
+  async rewrites() {
+    const rewrites = []
+
+    for (const [slug, library] of Object.entries(libraries.libraryAllowList)) {
+      rewrites.push({
+        source: `/assets/${slug}`,
+        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest`
+      })
+
+      rewrites.push({
+        source: `/assets/${slug}/:ref*`,
+        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
+      })
+    }
+
+    return rewrites
   }
 }

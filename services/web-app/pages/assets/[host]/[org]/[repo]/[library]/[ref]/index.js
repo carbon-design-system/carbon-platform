@@ -78,6 +78,8 @@ const Library = ({ libraryData, params }) => {
 }
 
 export const getStaticProps = async ({ params }) => {
+  console.log('get static props')
+
   const libraryData = await getLibraryData(params)
 
   console.log('params')
@@ -102,8 +104,18 @@ export const getStaticProps = async ({ params }) => {
 
 export const getStaticPaths = async () => {
   return {
-    paths: [],
-    fallback: 'blocking'
+    paths: [
+      {
+        params: {
+          host: 'github.ibm.com',
+          org: 'matt-rosno',
+          repo: 'carbon-components-angular',
+          library: 'carbon-angular',
+          ref: 'master'
+        }
+      }
+    ],
+    fallback: true
   }
 }
 

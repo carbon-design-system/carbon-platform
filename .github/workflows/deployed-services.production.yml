@@ -1,0 +1,46 @@
+name: Deploy Production Services
+
+on:
+  push:
+    branches:
+      - 'deployed-services/production'
+    paths:
+      - 'service-config.production.json'
+
+jobs:
+  build-and-deploy:
+    name: Build And Deploy (Production)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+        with:
+          ref: 'deployed-services/production'
+
+      # TODO: Require 2 reviews for production deploys
+
+      # Download and Install IBM Cloud CLI
+      - name: Install IBM Cloud CLI 🏗
+        run: |
+          curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+          ibmcloud plugin install code-engine
+
+      - name: Login to IBM Cloud ⛅
+        run: ibmclopud login --apikey ${{ secrets.CODE_ENGINE_API_KEY }}
+
+      - name: Setup Node 🏗
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Install Node Modules 🔧
+        run: npm install @carbon-platform/micromanage
+
+      - name: Call Deploy Script 🚀
+        run: npx micromanage deploy --target=production
+        env:
+          CONTAINER_REGISTRY_SERVER: us.icr.io
+          CONTAINER_REGISTRY_NAMESPACE: carbon-platform
+          CODE_ENGINE_PROJECT: carbon-platform

@@ -3,7 +3,7 @@ name: Deploy Test Services
 on:
   push:
     branches:
-      - 'main'
+      - 'deployed-services/test'
     paths:
       - 'service-config.test.json'
 
@@ -16,13 +16,16 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          ref: 'deployed-services/test'
 
       # Download and Install IBM Cloud CLI
-      - name: Install IBM Cloud and CF CLI 🏗
+      - name: Install IBM Cloud CLI 🏗
         run: |
           curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
-          ibmcloud cf install
+          ibmcloud plugin install code-engine
+
+      - name: Login to IBM Cloud ⛅
+        run: ibmclopud login --apikey ${{ secrets.CODE_ENGINE_API_KEY }}
 
       - name: Setup Node 🏗
         uses: actions/setup-node@v2
@@ -31,13 +34,11 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Modules 🔧
-        run: npm install
+        run: npm install @carbon-platform/micromanage
 
       - name: Call Deploy Script 🚀
-        run: node scripts/micromanage deploy --target=test
+        run: npx micromanage deploy --target=test
         env:
-          IBM_CLOUD_API: https://cloud.ibm.com
-          IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
-          CLOUD_FOUNDRY_ORGANIZATION: ${{ secrets.CLOUD_FOUNDRY_ORGANIZATION }}
-          CLOUD_FOUNDRY_SPACE_PREFIX: ${{ secrets.CLOUD_FOUNDRY_SPACE_PREFIX }}
-          CLOUD_FOUNDRY_REGION: ${{ secrets.CLOUD_FOUNDRY_REGION }}
+          CONTAINER_REGISTRY_SERVER: us.icr.io
+          CONTAINER_REGISTRY_NAMESPACE: carbon-platform-test
+          CODE_ENGINE_PROJECT: carbon-platform-test

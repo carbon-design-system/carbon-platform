@@ -14,7 +14,7 @@ const REQUIRED_ENV_VARS = [
   'CODE_ENGINE_PROJECT'
 ]
 
-const DEPLOY_TARGETS = ['test', 'prod']
+const DEPLOY_TARGETS = ['test', 'production']
 
 function buildDeployCommand() {
   return new Command('deploy')

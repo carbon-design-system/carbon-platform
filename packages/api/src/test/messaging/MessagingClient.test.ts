@@ -130,6 +130,28 @@ test('waits for confirms before resolving query', async () => {
   expect(mockedChannel.waitForConfirms).toHaveBeenCalled()
 })
 
+describe('connect', () => {
+  it('calls connect at most one time without explicit awaits', async () => {
+    const client = MessagingClient.getInstance()
+
+    client.connect(false)
+    client.connect(false)
+    await client.connect(false)
+
+    expect(mockedAmqp.connect).toHaveBeenCalledTimes(1)
+  })
+
+  it('calls connect at most one time when the connection is already established', async () => {
+    const client = MessagingClient.getInstance()
+
+    const first = await client.connect(false)
+    const second = await client.connect(false)
+
+    expect(mockedAmqp.connect).toHaveBeenCalledTimes(1)
+    expect(first).toStrictEqual(second)
+  })
+})
+
 describe('error paths', () => {
   it('throws with no connection', async () => {
     mockedAmqp.connect.mockImplementation(() => {

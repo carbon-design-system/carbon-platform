@@ -17,6 +17,19 @@ const CONNECT_RETRY_INTERVAL = 5000
 type ReplyCallbacks = Map<string, (value: any) => void>
 
 /**
+ * Wrapper class around message broker connection properties.
+ */
+class MessagingConnection {
+  public readonly connection: amqp.Connection
+  public readonly channel: amqp.ConfirmChannel
+
+  constructor(connection: amqp.Connection, channel: amqp.ConfirmChannel) {
+    this.connection = connection
+    this.channel = channel
+  }
+}
+
+/**
  * MessagingClient is the main way in which services interact with the message broker. It is
  * accessed as a singleton instance via `MessagingClient.getInstance()`. The two main methods
  * provided are `emit` and `query`. Emit is used to broadcast a message to all other services
@@ -39,8 +52,8 @@ class MessagingClient {
     return MessagingClient.instance
   }
 
-  private connection?: amqp.Connection
-  private channel?: amqp.ConfirmChannel
+  private messagingConnection?: MessagingConnection
+  private messagingConnectionPromise?: Promise<MessagingConnection>
   private replyQueue?: amqp.Replies.AssertQueue
   private replyCallbacks: ReplyCallbacks
 
@@ -55,40 +68,70 @@ class MessagingClient {
    *
    * @param retry Whether or not to indefinitely wait for a connection to be established before
    * allowing this method to return.
-   * @returns The channel that was established after connecting to the message broker.
+   * @returns The MessagingConnection object that was established after connecting to the message
+   * broker.
    */
-  public async connect(retry = true): Promise<amqp.ConfirmChannel> {
-    while (!this.connection || !this.channel) {
-      try {
-        this.connection = await amqp.connect(MESSAGE_QUEUE_URL)
-
-        this.channel = await this.connection.createConfirmChannel()
-        this.replyQueue = await this.channel.assertQueue(RANDOM_QUEUE_NAME, { exclusive: true })
-
-        // Listen for responses on the reply queue
-        await this.channel.consume(
-          this.replyQueue.queue,
-          this.replyReceived.bind(this),
-          // No explicit acks needed, since this is the service's personal reply queue
-          { noAck: true }
-        )
-      } catch (e) {
-        console.error('Could not connect to messaging service', e)
-
-        this.disconnect()
-
-        if (retry) {
-          // Retry again after a few seconds
-          await new Promise((resolve) => {
-            setTimeout(resolve, CONNECT_RETRY_INTERVAL)
-          })
-        } else {
-          throw e
-        }
-      }
+  public async connect(retry = true): Promise<MessagingConnection> {
+    // Guard - Connection has already been established
+    if (this.messagingConnection) {
+      return this.messagingConnection
     }
 
-    return this.channel
+    // Guard - Connection attempt is pending
+    if (this.messagingConnectionPromise) {
+      return this.messagingConnectionPromise
+    }
+
+    // No existing connection. Set up a promise of a new one
+    // eslint note: Having an asynchronous Promise executor function is atypical, but it is used
+    // here as a way to wrap the asynchronous amqp connection logic while also ensuring that at most
+    // one connection is ever created to the message broker.
+    // eslint-disable-next-line no-async-promise-executor
+    this.messagingConnectionPromise = new Promise<MessagingConnection>(async (resolve, reject) => {
+      while (!this.messagingConnection) {
+        let connection: amqp.Connection | undefined
+        let channel: amqp.ConfirmChannel | undefined
+
+        try {
+          connection = await amqp.connect(MESSAGE_QUEUE_URL)
+          channel = await connection.createConfirmChannel()
+
+          this.replyQueue = await channel.assertQueue(RANDOM_QUEUE_NAME, { exclusive: true })
+
+          // Listen for responses on the reply queue
+          await channel.consume(
+            this.replyQueue.queue,
+            this.replyReceived.bind(this),
+            // No explicit acks needed, since this is the service's personal reply queue
+            { noAck: true }
+          )
+
+          this.messagingConnection = new MessagingConnection(connection, channel)
+          resolve(this.messagingConnection)
+        } catch (e) {
+          console.error('Could not connect to messaging service', e)
+
+          channel && channel.close()
+          connection && connection.close()
+
+          if (retry) {
+            // Retry again after a few seconds
+            // eslint note: The executor resolve function would typically be called "resolve", but
+            // since we are in the scope of another promise with its own resolve function, a
+            // different name is used here for clarity.
+            // eslint-disable-next-line promise/param-names
+            await new Promise((retryResolve) => {
+              setTimeout(retryResolve, CONNECT_RETRY_INTERVAL)
+            })
+          } else {
+            reject(e)
+            break
+          }
+        }
+      }
+    })
+
+    return this.messagingConnectionPromise
   }
 
   /**
@@ -113,14 +156,11 @@ class MessagingClient {
    * Severs the connection to the message broker and cleans up any related resources.
    */
   public async disconnect() {
-    if (this.channel) {
-      await this.channel.close()
-      delete this.channel
-    }
+    if (this.messagingConnection) {
+      await this.messagingConnection.channel.close()
+      await this.messagingConnection.connection.close()
 
-    if (this.connection) {
-      await this.connection.close()
-      delete this.connection
+      delete this.messagingConnection
     }
 
     this.replyCallbacks.clear()
@@ -136,8 +176,7 @@ class MessagingClient {
    * @returns A promise that resolves when the message has been confirmed by the message broker.
    */
   public async emit(eventType: EventMessage, message: any): Promise<void> {
-    // Connect and ensure channel is established
-    const channel = await this.connect()
+    const messagingConnection = await this.connect()
 
     // Entire method invocation is deferred and returned as a promise
     return new Promise((resolve) => {
@@ -148,7 +187,7 @@ class MessagingClient {
 
       // Send to queue returns true if it is safe to continue sending messages; or false if pending
       // "confirms" should first be awaited
-      const sendResult = channel.publish(
+      const sendResult = messagingConnection.channel.publish(
         eventType,
         DEFAULT_ROUTING_KEY,
         Buffer.from(JSON.stringify(dataToSend))
@@ -159,7 +198,7 @@ class MessagingClient {
       if (sendResult) {
         resolve()
       } else {
-        channel.waitForConfirms().then(resolve)
+        messagingConnection.channel.waitForConfirms().then(resolve)
       }
     })
   }
@@ -178,7 +217,7 @@ class MessagingClient {
    */
   public async query<T>(queryType: QueryMessage, message: any): Promise<T> {
     // Connect and ensure channel and reply queue are established
-    const channel = await this.connect()
+    const messagingConnection = await this.connect()
 
     const correlationId = uuidv4()
     const dataToSend = {
@@ -195,7 +234,7 @@ class MessagingClient {
 
     // Publish returns true if it is safe to continue sending messages; or false if pending
     // "confirms" should first be awaited
-    const publishResult = channel.publish(
+    const publishResult = messagingConnection.channel.publish(
       queryType,
       DEFAULT_ROUTING_KEY,
       Buffer.from(JSON.stringify(dataToSend)),
@@ -206,7 +245,7 @@ class MessagingClient {
     )
 
     if (!publishResult) {
-      await channel.waitForConfirms()
+      await messagingConnection.channel.waitForConfirms()
     }
 
     return replyPromise

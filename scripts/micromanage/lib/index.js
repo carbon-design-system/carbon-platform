@@ -14,9 +14,9 @@ const { buildDeployCommand } = require('./deploy')
 
 function main() {
   const program = new Command()
+    .addCommand(buildDeployCommand())
     .addCommand(buildDockerCommand())
     .addCommand(buildVersionCommand())
-    .addCommand(buildDeployCommand())
 
   try {
     program.parse()

@@ -16,7 +16,6 @@ import { getRunMode, PRODUCTION } from '../run-mode'
  * @returns {boolean} indicates if current environment variables are valid according
  * to supplied requiredVars object
  */
-// TODO: allow fallback values
 export const enforceEnvVars = (requiredVars: string[], throwError = true): boolean => {
   let isValid = true
   // TODO: make this run-mode compliant when new version is merged in

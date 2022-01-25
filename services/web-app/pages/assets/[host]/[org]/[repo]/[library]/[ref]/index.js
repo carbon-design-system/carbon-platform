@@ -78,14 +78,7 @@ const Library = ({ libraryData, params }) => {
 }
 
 export const getStaticProps = async ({ params }) => {
-  console.log('get static props')
-
   const libraryData = await getLibraryData(params)
-
-  console.log('params')
-  console.log(params)
-  console.log('libraryData')
-  console.log(libraryData)
 
   if (!libraryData) {
     return {
@@ -104,13 +97,15 @@ export const getStaticProps = async ({ params }) => {
 
 export const getStaticPaths = async () => {
   return {
+    // For now, SSG one path to get ISR to get recognized in Netlify. For some reason, Netlify
+    // throws 404 errors if the `paths` is an empty array so all pages are ISR.
     paths: [
       {
         params: {
           host: 'github.ibm.com',
           org: 'matt-rosno',
-          repo: 'carbon-components-angular',
-          library: 'carbon-angular',
+          repo: 'carbon-charts',
+          library: 'carbon-charts',
           ref: 'master'
         }
       }

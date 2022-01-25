@@ -117,7 +117,20 @@ export const getStaticProps = async ({ params }) => {
 
 export const getStaticPaths = async () => {
   return {
-    paths: [],
+    // For now, SSG one path to get ISR to get recognized in Netlify. For some reason, Netlify
+    // throws 404 errors if the `paths` is an empty array so all pages are ISR.
+    paths: [
+      {
+        params: {
+          host: 'github.ibm.com',
+          org: 'matt-rosno',
+          repo: 'carbon-charts',
+          library: 'carbon-charts',
+          ref: 'master',
+          asset: 'area-simple'
+        }
+      }
+    ],
     fallback: true
   }
 }

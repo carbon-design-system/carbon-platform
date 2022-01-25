@@ -77,7 +77,7 @@ describe('getEnvVar', () => {
     process.env.FAKE_ENV_VAR = oldFakeEnvVar
   })
 
-  it('returns the fallback when the env var is not set and on DEV mode', () => {
+  it('returns the fallback when the env var is not set and fallback is supplied on DEV mode', () => {
     const oldRunMode = process.env.CARBON_RUN_MODE
     const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
@@ -86,6 +86,19 @@ describe('getEnvVar', () => {
 
     const fallbackValue = 'this has a value'
     expect(getEnvVar('FAKE_ENV_VAR', fallbackValue)).toEqual(fallbackValue)
+
+    process.env.FAKE_ENV_VAR = oldFakeEnvVar
+    process.env.CARBON_RUN_MODE = oldRunMode
+  })
+
+  it('throws error when env var and fallback value are not set', () => {
+    const oldRunMode = process.env.CARBON_RUN_MODE
+    const oldFakeEnvVar = process.env.FAKE_ENV_VAR
+
+    process.env.FAKE_ENV_VAR = ''
+    process.env.CARBON_RUN_MODE = DEV
+
+    expect(() => getEnvVar('FAKE_ENV_VAR')).toThrow()
 
     process.env.FAKE_ENV_VAR = oldFakeEnvVar
     process.env.CARBON_RUN_MODE = oldRunMode

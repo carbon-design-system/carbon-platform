@@ -39,12 +39,20 @@ const enforceEnvVars = (requiredVars: string[], throwError = true): boolean => {
  * @param {string?} fallbackValue optional value to return if env var is not set on DEV mode
  * @returns {string} value of env variable or supplied fallback value
  */
-const getEnvVar = (varName: string, fallbackValue?: string): string => {
+const getEnvVar = (varName: string, fallbackValue = ''): string => {
   const value = process.env[varName]
-  if (!value && (!fallbackValue || getRunMode() === PRODUCTION)) {
+
+  if (!value && getRunMode() === PRODUCTION) {
     throw new Error(`${varName} is not exported as an environment variable`)
   }
-  return value || (fallbackValue as string)
+
+  if (!value && !fallbackValue) {
+    throw new Error(
+      `${varName} is not exported as an environment variable and no fallback was provided`
+    )
+  }
+
+  return value || fallbackValue
 }
 
 export { enforceEnvVars, getEnvVar }

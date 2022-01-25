@@ -13,3 +13,12 @@
 export const removeLeadingSlash = (str) => {
   return str.replace(/^\/+/, '')
 }
+
+/**
+ * Add a trailinsh slash to a string
+ * @param {string} str
+ * @returns {string} A string with a trailing slash
+ */
+export const addTrailingSlash = (str) => {
+  return str.endsWith('/') ? str : `${str}/`
+}

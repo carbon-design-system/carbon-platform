@@ -9,7 +9,13 @@ instead has a set of top-level `js` and corresponding `d.ts` files to allow impo
 ```ts
 import { Logging } from '@carbon-platform/api/logging'
 import { getRunMode } from '@carbon-platform/api/run-mode'
+import { enforceEnvVars, getEnvVar } from '@carbon-platform/api/enforce-env-vars'
 ```
+
+## enforce-env-vars
+
+Exports utility functions that manage retrieving and validating environment variables accross
+different run modes.
 
 ## logging
 

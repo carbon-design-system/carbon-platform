@@ -23,11 +23,28 @@ function buildCurlUrlParams(params) {
  * @returns {string} Output of the command.
  */
 function exec(cmd, options = {}) {
+  guardShell(cmd)
+
   const execOptions = {
     env: process.env,
     ...options
   }
   return childProcess.execSync(cmd, execOptions).toString().trim()
+}
+
+/**
+ * Throws an exception if the command string contains any special shell characters that could lead
+ * to command injection.
+ *
+ * @param {string} commandString The string to check.
+ */
+function guardShell(commandString) {
+  if (commandString.match(/[\\$;`]/)) {
+    throw new Error(
+      'Shell guard prevented a command from running because it contained special characters: ' +
+        commandString
+    )
+  }
 }
 
 /**
@@ -38,6 +55,8 @@ function exec(cmd, options = {}) {
  * @returns {Promise} Promise of the command completing.
  */
 async function spawn(cmd, options = {}) {
+  guardShell(cmd)
+
   const spawnOptions = {
     env: process.env,
     stdio: 'inherit',

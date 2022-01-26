@@ -8,17 +8,20 @@ const { Command } = require('commander')
 const path = require('path')
 const { exec, spawn } = require('./utils')
 
+const DEPLOY_TARGETS = ['test', 'production']
+
 const REQUIRED_ENV_VARS = [
-  'CONTAINER_REGISTRY_SERVER',
+  'CONTAINER_REGISTRY',
   'CONTAINER_REGISTRY_NAMESPACE',
   'CODE_ENGINE_PROJECT'
 ]
 
-const DEPLOY_TARGETS = ['test', 'production']
+const RESOURCE_GROUP = 'Carbon Platform'
 
 function buildDeployCommand() {
   return new Command('deploy')
     .description('Deploy all services to CodeEngine')
+    .option('--dry-run', 'Do not make any changes. Only output prospective updates')
     .requiredOption('--target <target>', `target environment for deploy: [${DEPLOY_TARGETS}]`)
     .action(handleDeployCommand)
 }
@@ -38,10 +41,12 @@ async function handleDeployCommand(options) {
 
   const serviceConfig = require(path.join(process.cwd(), `service-config.${options.target}.json`))
 
-  // assuming both ibmcloud and codeengine(ce) plugins are installed
-  console.log('Logging into IBM Cloud')
+  // assuming both ibmcloud and codeengine(ce) plugins are installed and ibmcloud is logged in
+  console.log('Setting IBM Cloud resource group')
 
-  exec("ibmcloud target -g 'Carbon Platform'")
+  exec(`ibmcloud target -g "${RESOURCE_GROUP}"`)
+
+  console.log('Selecting Code Engine project')
   exec(`ibmcloud ce project select -n ${process.env.CODE_ENGINE_PROJECT}`)
 
   console.log('Getting changed services')
@@ -55,6 +60,10 @@ async function handleDeployCommand(options) {
     console.log(changedServices)
   } else {
     console.log('No services have changed. Nothing to do')
+  }
+
+  if (options.dryRun) {
+    return
   }
 
   for (const service of changedServices) {
@@ -127,9 +136,9 @@ async function deployService(changedService) {
   // assuming image tag exists in container registry
 
   console.log(`Deploying service ${changedService.name} at version ${changedService.newVersion}`)
-  const { CONTAINER_REGISTRY_SERVER, CONTAINER_REGISTRY_NAMESPACE } = process.env
+  const { CONTAINER_REGISTRY, CONTAINER_REGISTRY_NAMESPACE } = process.env
 
-  const deployImage = `${CONTAINER_REGISTRY_SERVER}/${CONTAINER_REGISTRY_NAMESPACE}/${changedService.name}:${changedService.newVersion}`
+  const deployImage = `${CONTAINER_REGISTRY}/${CONTAINER_REGISTRY_NAMESPACE}/${changedService.name}:${changedService.newVersion}`
 
   await spawn(`ibmcloud ce application update -n ${changedService.name} --image ${deployImage}`)
 }

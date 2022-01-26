@@ -79,12 +79,13 @@ content or not:
 ```js
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
 import { retrieveUser } from '@/utils/retrieveUser'
+import { isValidIbmEmail } from '@/utils/string'
 // ...
-// Your custom authorization logic here, this one considers the user as authorized if it's email address ends in "ibm.com"
+// Your custom authorization logic here, this one considers the user as authorized if it's email is a valid ibm email
 const isValidIbmUser = async (context) => {
   const user = await retrieveUser(context)
   if (user) {
-    return user.email?.endsWith('ibm.com')
+    return isValidIbmEmail(user.email ?? '')
   }
   return false
 }
@@ -162,6 +163,7 @@ import { useAuth } from '@/contexts/auth'
 import { useEffect } from 'react'
 
 import RequireAuth from '@/components/auth/require-auth'
+import { isValidIbmEmail } from '@/utils/string'
 
 import FourOhFour from '../404'
 
@@ -175,10 +177,10 @@ const ProtectedStaticPage = () => {
   }, [loading, isAuthenticated])
 
   return loading ? null : (
-    // show page if user is authenticated and email ends with ibm.com, else show 404 page
+    // show page if user is authenticated and email is valid ibm email, else show 404 page
     <RequireAuth
       fallback={FourOhFour}
-      isAuthorized={isAuthenticated && user?.email?.endsWith('ibm.com')}
+      isAuthorized={isAuthenticated && isValidIbmEmail(user?.email ?? '')}
     >
       <>// Your Page Content Here</>
     </RequireAuth>

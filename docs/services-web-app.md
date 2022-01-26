@@ -207,7 +207,7 @@ visit [https://localhost/samples/protectedStaticPage](https://localhost/samples/
 
 ### Server Side Rendered Pages
 
-#### retrieveUser
+#### `retrieveUser`
 
 The `retrieveUser` function will return the current user instance or null if user is not logged in;
 note this function is asynchronous. This function can only be called server-side (i.e., in the

@@ -41,17 +41,11 @@ Make sure required environment variables are configured for proper functionality
 (See [run-mode package](./packages-api.md#run-mode) for details on how to set up the run-mode
 package)
 
-_Note_: this package requires different values depending on environemnt, make sure to update these
-when running on dev/test/production mode
-
 ### Auth
 
 This service depends on the auth package; Make sure required environment variables are configured
 for proper functionality of this package. (See [auth package](./packages-api.md#auth) for details on
 how to set up the auth package)
-
-_Note_: this package requires different environment vairables and values depending on environemnt,
-make sure to update these when running on dev/test/production mode
 
 ## Adding Local Certificates
 
@@ -73,7 +67,7 @@ this, run the following command from the [web-app's directory](../services/web-a
 ### Protecting Server-Side Rendered Pages
 
 In order to require authentication before a user can access a server-side rendered page use the
-`getPropsWithAuth` utlity function to wrap the pages' _getServerSideProps_ function and wrap the
+`getPropsWithAuth` utlity function to wrap the pages' `getServerSideProps` function and wrap the
 pages' content inside the `RequireAuth` component.
 
 #### getPropsWithAuth
@@ -82,10 +76,10 @@ pages' content inside the `RequireAuth` component.
 as a param and must return a boolean value indicating whether the user is authorized to view the
 content or not:
 
-```
+```js
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
 import { retrieveUser } from '@/utils/retrieveUser'
-...
+// ...
 // Your custom authorization logic here, this one considers the user as authorized if it's email address ends in "ibm.com"
 const isValidIbmUser = async (context) => {
   const user = await retrieveUser(context)
@@ -94,7 +88,7 @@ const isValidIbmUser = async (context) => {
   }
   return false
 }
-...
+// ...
 export const getServerSideProps = getPropsWithAuth(isValidIbmUser, async (/* context */) => {
   // Your normal `getServerSideProps` code here
   return {
@@ -106,7 +100,7 @@ export const getServerSideProps = getPropsWithAuth(isValidIbmUser, async (/* con
 ```
 
 Some `authorizationChecker` functions that serve common purposes are exported from
-[utils/auth-checkers](..services/web-app/utils/auth-checkers):
+`services/web-app/utils/auth-checkers`:
 
 ```
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
@@ -163,7 +157,7 @@ Statically Generated Pages" section in
 [NextJs Authentication Docs](https://nextjs.org/docs/authentication) You may make use of the
 `useAuth()` hook and `RequireAuth` component in your implementations:
 
-```
+```js
   import { useAuth } from 'contexts/auth'
   import { useEffect } from 'react'
 
@@ -213,15 +207,15 @@ visit [https://localhost/samples/protectedStaticPage](https://localhost/samples/
 
 ### Server Side Rendered Pages
 
-#### retrieveUser
+#### `retrieveUser`
 
 The `retrieveUser` function will return the current user instance or null if user is not logged in;
 note this function is asynchronous. This function can only be called server-side (i.e., in the
 context of getServerSideProps):
 
-```
+```js
 import { retrieveUser } from '@/utils/retrieveUser'
-...
+// ...
 export const getServerSideProps = async (/* context */) => {
   const user = await retrieveUser(context)
   // Your normal `getServerSideProps` code here
@@ -238,16 +232,16 @@ _Note_: if you are wrapping your `getServerSideProps` with `getPropsWithAuth` an
 `authorizationChecker` function calls `retrieveUser()`, the obtained user (if any) will be injected
 into the pages's props; you can access it on `props.user`
 
-### UseAuth() Hook
+### `useAuth`
 
-From a React Component, you can access the user's information via the `user` property in the
+From a React Component, you can access the user's information via the `user` property returned by
 `useAuth` hook. This hook also exposes other info such as:
 
-- user: object containing user's data
-- loading: boolean indicating whether user is still being retrieved or not
-- isAuthenticated: booleand indicating whether the user has correctly authenticated or not
-- login: function to login user
-- logout: function to logout user
+- `user`: object containing user's data
+- `loading`: boolean indicating whether user is still being retrieved or not
+- `isAuthenticated`: booleand indicating whether the user has correctly authenticated or not
+- `login`: function to login user
+- `logout`: function to logout user
 
 ```
  import { useAuth } from 'contexts/auth'
@@ -273,11 +267,9 @@ If necessary, you can make a fetch request to '/api/user' which will return the 
 
 expect the user response to look like this:
 
-```
+```jsonc
 {
   "name":"Jane Doe",
   "email": "jane.doe@emaildomain.com"
-  // Other User Properties
-  ...
-  }
-```
+  // ...Other User Properties
+}

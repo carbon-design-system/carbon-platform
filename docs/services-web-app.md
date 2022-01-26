@@ -100,7 +100,7 @@ export const getServerSideProps = getPropsWithAuth(isValidIbmUser, async (/* con
 ```
 
 Some `authorizationChecker` functions that serve common purposes are exported from
-[utils/auth-checkers](..services/web-app/utils/auth-checkers):
+`services/web-app/utils/auth-checkers`:
 
 ```
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'

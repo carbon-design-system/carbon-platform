@@ -67,7 +67,7 @@ this, run the following command from the [web-app's directory](../services/web-a
 ### Protecting Server-Side Rendered Pages
 
 In order to require authentication before a user can access a server-side rendered page use the
-`getPropsWithAuth` utlity function to wrap the pages' _getServerSideProps_ function and wrap the
+`getPropsWithAuth` utlity function to wrap the pages' `getServerSideProps` function and wrap the
 pages' content inside the `RequireAuth` component.
 
 #### getPropsWithAuth

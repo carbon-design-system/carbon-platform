@@ -102,10 +102,10 @@ export const getServerSideProps = getPropsWithAuth(isValidIbmUser, async (/* con
 Some `authorizationChecker` functions that serve common purposes are exported from
 `services/web-app/utils/auth-checkers`:
 
-```
+```js
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
 import isValidIbmUser from '@/utils/auth-checkers/isValidIbmUser'
-...
+// ...
 export const getServerSideProps = getPropsWithAuth(isValidIbmUser, async (/* context */) => {
   // Your normal `getServerSideProps` code here
   return {
@@ -124,10 +124,10 @@ will be injected into the pages's props; you can access it on `props.user`
 `RequireAuth` is a parent component that receives a `fallback` component which will be rendered
 instead of the supplied content in the case that the `isAuthorized` prop is set to false
 
-```
+```js
 import RequireAuth from '@/components/auth/require-auth'
 import FourOhFour from '@/pages/404'
-...
+// ...
 const ProtectedPage = (props) => {
   return (
     // will return 404 page if isAuthorized is set to false
@@ -158,43 +158,42 @@ Statically Generated Pages" section in
 `useAuth()` hook and `RequireAuth` component in your implementations:
 
 ```js
-  import { useAuth } from 'contexts/auth'
-  import { useEffect } from 'react'
+import { useAuth } from '@/contexts/auth'
+import { useEffect } from 'react'
 
-  import RequireAuth from '@/components/auth/require-auth'
+import RequireAuth from '@/components/auth/require-auth'
 
-  import FourOhFour from '../404'
+import FourOhFour from '../404'
 
-  const ProtectedStaticPage = () => {
-    const { isAuthenticated, loading, user } = useAuth()
+const ProtectedStaticPage = () => {
+  const { isAuthenticated, loading, user } = useAuth()
 
-    useEffect(() => {
-      if (!loading && isAuthenticated) {
-        // fetch protected data here
-      }
-    }, [loading, isAuthenticated])
-
-    return loading ? null : (
-      // show page if user is authenticated and email ends with ibm.com, else show 404 page
-      <RequireAuth
-        fallback={FourOhFour}
-        isAuthorized={isAuthenticated && user?.email?.endsWith('ibm.com')}
-      >
-        <>
-          // Your Page Content Here
-        </>
-      </RequireAuth>
-    )
-  }
-
-  // do NOT fetch protected data here
-  export async function getStaticProps(/* context */) {
-    return {
-      props: {} // will be passed to the page component as props
+  useEffect(() => {
+    if (!loading && isAuthenticated) {
+      // fetch protected data here
     }
-  }
+  }, [loading, isAuthenticated])
 
-  export default ProtectedStaticPage
+  return loading ? null : (
+    // show page if user is authenticated and email ends with ibm.com, else show 404 page
+    <RequireAuth
+      fallback={FourOhFour}
+      isAuthorized={isAuthenticated && user?.email?.endsWith('ibm.com')}
+    >
+      <>// Your Page Content Here</>
+    </RequireAuth>
+  )
+}
+
+// do NOT fetch protected data here
+// at the time of build there's no logged in user available, so the server can;t perform any assertion regarding permissions when generating the pages; they're performed automatically by the server at the server's discretion.
+export async function getStaticProps(/* context */) {
+  return {
+    props: {} // will be passed to the page component as props
+  }
+}
+
+export default ProtectedStaticPage
 ```
 
 Note: DO NOT SERVE/FETCH PROTECTED INFO THROUGH `getStaticProps`, as these will be served
@@ -243,10 +242,10 @@ From a React Component, you can access the user's information via the `user` pro
 - `login`: function to login user
 - `logout`: function to logout user
 
-```
- import { useAuth } from 'contexts/auth'
- ...
- const { isAuthenticated, isLoading, user, login, logout } = useAuth()
+```js
+import { useAuth } from '@/contexts/auth'
+// ...
+const { isAuthenticated, isLoading, user, login, logout } = useAuth()
 ```
 
 _Note:_ Keep in mind in some instances the user might still be loading (being retrieved) or might
@@ -258,18 +257,19 @@ not exist yet (user hasn't authenticated) when your component is trying to acces
 If necessary, you can make a fetch request to '/api/user' which will return the user details or a
 404 status code if no user has been found:
 
-```
- const userResponse = await fetch('/api/user')
-      if (userResponse.ok) {
-        const user = await userResponse.json()
-      }
+```js
+const userResponse = await fetch('/api/user')
+if (userResponse.ok) {
+  const user = await userResponse.json()
+}
 ```
 
 expect the user response to look like this:
 
 ```jsonc
 {
-  "name":"Jane Doe",
+  "name": "Jane Doe",
   "email": "jane.doe@emaildomain.com"
   // ...Other User Properties
 }
+```

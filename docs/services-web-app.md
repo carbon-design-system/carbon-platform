@@ -267,11 +267,9 @@ If necessary, you can make a fetch request to '/api/user' which will return the 
 
 expect the user response to look like this:
 
-```
+```jsonc
 {
   "name":"Jane Doe",
   "email": "jane.doe@emaildomain.com"
-  // Other User Properties
-  ...
-  }
-```
+  // ...Other User Properties
+}

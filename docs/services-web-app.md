@@ -79,7 +79,7 @@ content or not:
 ```js
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
 import { retrieveUser } from '@/utils/retrieveUser'
-...
+// ...
 // Your custom authorization logic here, this one considers the user as authorized if it's email address ends in "ibm.com"
 const isValidIbmUser = async (context) => {
   const user = await retrieveUser(context)

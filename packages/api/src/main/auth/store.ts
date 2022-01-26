@@ -8,7 +8,7 @@
 import cookieParser from 'cookie-parser'
 import { SessionData, Store } from 'express-session'
 
-import { enforceEnvVars } from '../enforce-env-vars'
+import { enforceEnvVars, getEnvVar } from '../enforce-env-vars'
 import { getRunMode, PRODUCTION } from '../run-mode'
 import { PROD_SESSION_REQUIRED_ENV_VARS, SESSION_SECRET } from './config/constants'
 import { User } from './models/user.model'
@@ -27,11 +27,11 @@ async function createMongoStore(): Promise<Store> {
   const { MongoClient } = await import('mongodb')
   const MongoStore = (await import('connect-mongo')).default
 
-  const mongoClientPromise = new MongoClient(process.env.CARBON_MONGO_DB_URL!).connect()
+  const mongoClientPromise = new MongoClient(getEnvVar('CARBON_MONGO_DB_URL')).connect()
 
   return MongoStore.create({
     clientPromise: mongoClientPromise,
-    dbName: process.env.CARBON_MONGO_DB_NAME!
+    dbName: getEnvVar('CARBON_MONGO_DB_NAME')
   })
 }
 

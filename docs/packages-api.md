@@ -9,6 +9,7 @@ instead has a set of top-level `js` and corresponding `d.ts` files to allow impo
 ```ts
 import { Logging } from '@carbon-platform/api/logging'
 import { getRunMode } from '@carbon-platform/api/run-mode'
+<<<<<<< HEAD
 import { enforceEnvVars } from '@carbon-platform/api/enforce-env-vars'
 ```
 
@@ -40,7 +41,15 @@ missing:
 import { enforceEnvVars } from '@carbon-platform/api/enforce-env-vars'
 
 const isValid = enforceEnvVars({...}, false)
+=======
+import { enforceEnvVars, getEnvVar } from '@carbon-platform/api/enforce-env-vars'
+>>>>>>> 12cc4433f09fd47ecc63bec970efaaa4fb62a0fb
 ```
+
+## enforce-env-vars
+
+Exports utility functions that manage retrieving and validating environment variables accross
+different run modes.
 
 ## logging
 

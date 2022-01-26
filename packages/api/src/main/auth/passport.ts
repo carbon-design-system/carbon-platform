@@ -8,7 +8,7 @@
 import { BaseClient, Issuer, Strategy as OpenIdStrategy } from 'openid-client'
 import passport from 'passport'
 
-import { enforceEnvVars } from '../enforce-env-vars'
+import { enforceEnvVars, getEnvVar } from '../enforce-env-vars'
 import { getRunMode, PRODUCTION } from '../run-mode'
 import { config as devConfig } from './config/config.dev'
 import { config as prodConfig } from './config/config.prod'
@@ -39,8 +39,8 @@ const getPassportInstance = async (): Promise<passport.PassportStatic> => {
 
     const ibmIdIssuer = await Issuer.discover(passportConfig.discovery_url)
     client = new ibmIdIssuer.Client({
-      client_id: process.env.CARBON_IBM_VERIFY_CLIENT_ID as string,
-      client_secret: process.env.CARBON_IBM_VERIFY_CLIENT_SECRET ?? '',
+      client_id: getEnvVar('CARBON_IBM_VERIFY_CLIENT_ID'),
+      client_secret: getEnvVar('CARBON_IBM_VERIFY_CLIENT_SECRET'),
       redirect_uris: [passportConfig.redirect_uri],
       response_types: ['code']
     })

@@ -213,7 +213,7 @@ The `retrieveUser` function will return the current user instance or null if use
 note this function is asynchronous. This function can only be called server-side (i.e., in the
 context of getServerSideProps):
 
-```
+```js
 import { retrieveUser } from '@/utils/retrieveUser'
 ...
 export const getServerSideProps = async (/* context */) => {

@@ -234,7 +234,7 @@ into the pages's props; you can access it on `props.user`
 
 ### `useAuth`
 
-From a React Component, you can access the user's information via the `user` property in the
+From a React Component, you can access the user's information via the `user` property returned by
 `useAuth` hook. This hook also exposes other info such as:
 
 - user: object containing user's data

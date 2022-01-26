@@ -24,7 +24,7 @@ jobs:
           curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
           ibmcloud plugin install code-engine
       - name: Login to IBM Cloud ⛅
-        run: ibmcloud login --apikey ${{ secrets.CODE_ENGINE_API_KEY }}
+        run: ibmcloud login --apikey ${{ secrets.CODE_ENGINE_API_KEY }} -r 'us-south'
 
       - name: Setup Node 🏗
         uses: actions/setup-node@v2

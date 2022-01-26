@@ -1,0 +1,43 @@
+name: Deploy Test Services
+
+on:
+  push:
+    branches:
+      - 'deployed-services/test'
+    paths:
+      - 'service-config.test.json'
+
+jobs:
+  build-and-deploy:
+    name: Build And Deploy (Test)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+        with:
+          ref: 'deployed-services/test'
+
+      # Download and Install IBM Cloud CLI
+      - name: Install IBM Cloud CLI 🏗
+        run: |
+          curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+          ibmcloud plugin install code-engine
+      - name: Login to IBM Cloud ⛅
+        run: ibmclopud login --apikey ${{ secrets.CODE_ENGINE_API_KEY }}
+
+      - name: Setup Node 🏗
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Install Node Modules 🔧
+        run: npm install @carbon-platform/micromanage-cli
+
+      - name: Call Deploy Script 🚀
+        run: npx micromanage deploy --target=test
+        env:
+          CONTAINER_REGISTRY_SERVER: us.icr.io
+          CONTAINER_REGISTRY_NAMESPACE: carbon-platform-test
+          CODE_ENGINE_PROJECT: carbon-platform-test

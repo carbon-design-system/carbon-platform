@@ -76,7 +76,7 @@ pages' content inside the `RequireAuth` component.
 as a param and must return a boolean value indicating whether the user is authorized to view the
 content or not:
 
-```
+```js
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
 import { retrieveUser } from '@/utils/retrieveUser'
 ...

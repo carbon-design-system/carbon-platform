@@ -30,7 +30,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-          cache: 'npm'
 
       - name: Install Node Modules 🔧
         run: npm install @carbon-platform/micromanage-cli

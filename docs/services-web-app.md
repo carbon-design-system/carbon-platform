@@ -237,11 +237,11 @@ into the pages's props; you can access it on `props.user`
 From a React Component, you can access the user's information via the `user` property returned by
 `useAuth` hook. This hook also exposes other info such as:
 
-- user: object containing user's data
-- loading: boolean indicating whether user is still being retrieved or not
-- isAuthenticated: booleand indicating whether the user has correctly authenticated or not
-- login: function to login user
-- logout: function to logout user
+- `user`: object containing user's data
+- `loading`: boolean indicating whether user is still being retrieved or not
+- `isAuthenticated`: booleand indicating whether the user has correctly authenticated or not
+- `login`: function to login user
+- `logout`: function to logout user
 
 ```
  import { useAuth } from 'contexts/auth'

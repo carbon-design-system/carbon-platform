@@ -8,8 +8,8 @@ on:
       - 'service-config.test.json'
 
 jobs:
-  build-and-deploy:
-    name: Build And Deploy (Test)
+  deploy:
+    name: Deploy (Test)
     runs-on: ubuntu-latest
 
     steps:

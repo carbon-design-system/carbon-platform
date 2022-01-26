@@ -232,7 +232,7 @@ _Note_: if you are wrapping your `getServerSideProps` with `getPropsWithAuth` an
 `authorizationChecker` function calls `retrieveUser()`, the obtained user (if any) will be injected
 into the pages's props; you can access it on `props.user`
 
-### UseAuth() Hook
+### `useAuth`
 
 From a React Component, you can access the user's information via the `user` property in the
 `useAuth` hook. This hook also exposes other info such as:

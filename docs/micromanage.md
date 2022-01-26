@@ -12,6 +12,12 @@ The various scripts can be found in: [scripts/micromanage](../scripts/micromanag
 
 TODO
 
+NOTES FOR EVENTUAL DOC CONVERSION TO CODE ENGINE:
+
+```bash
+ibmcloud ce application create --name logging-test-cli --image us.icr.io/carbon-platform-test/logging:0.1.0 -c "npm run start" --rs jdharvey-ce-cli-registry-secret
+```
+
 ## `docker`
 
 TODO

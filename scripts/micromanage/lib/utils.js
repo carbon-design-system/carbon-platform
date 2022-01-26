@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const { exec: execAsync, execSync } = require('child_process')
+const childProcess = require('child_process')
 const path = require('path')
 
 function buildCurlUrlParams(params) {
@@ -16,48 +16,45 @@ function buildCurlUrlParams(params) {
 }
 
 /**
- * Execute a command line command.
+ * Execute a command line command, buffers the output, and returns it.
  *
  * @param {string} cmd Command to execute.
- * @param {object} options Additional options provided to execSync
+ * @param {object} options Additional options provided to execSync.
  * @returns {string} Output of the command.
  */
 function exec(cmd, options = {}) {
   const execOptions = {
-    env: {
-      ...process.env
-    },
+    env: process.env,
     ...options
   }
-  return execSync(cmd, execOptions).toString().trim()
+  return childProcess.execSync(cmd, execOptions).toString().trim()
 }
 
 /**
- * Execute a command line command asynchronously, piping its output to the calling process.
+ * Spawns a child process with streaming output.
  *
  * @param {string} cmd Command to execute.
- * @param {object} options Additional options provided to execSync
+ * @param {object} options Additional options provided to spawn.
  * @returns {Promise} Promise of the command completing.
  */
-function execWithOutput(cmd, options = {}) {
-  const execOptions = {
-    env: {
-      ...process.env
-    },
+async function spawn(cmd, options = {}) {
+  const spawnOptions = {
+    env: process.env,
+    stdio: 'inherit',
+    shell: true,
     ...options
   }
 
   return new Promise((resolve, reject) => {
-    // Build the base image
-    const childProcess = execAsync(cmd, execOptions, (err) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve()
-      }
+    const spawnedProcess = childProcess.spawn(cmd, spawnOptions)
+
+    spawnedProcess.on('close', (code) => {
+      resolve(code)
     })
-    childProcess.stdout.pipe(process.stdout)
-    childProcess.stderr.pipe(process.stderr)
+
+    spawnedProcess.on('error', (err) => {
+      reject(err)
+    })
   })
 }
 
@@ -159,12 +156,12 @@ function logErrorInfo(err) {
 module.exports = {
   buildCurlUrlParams,
   exec,
-  execWithOutput,
   getFiles,
   getWorkspaceByName,
   getWorkspaceForFile,
   getPackageJson,
   getWorkspaces,
   getTags,
-  logErrorInfo
+  logErrorInfo,
+  spawn
 }

@@ -47,9 +47,6 @@ This service depends on the auth package; Make sure required environment variabl
 for proper functionality of this package. (See [auth package](./packages-api.md#auth) for details on
 how to set up the auth package)
 
-_Note_: this package requires different environment vairables and values depending on environemnt,
-make sure to update these when running on dev/test/production mode
-
 ## Adding Local Certificates
 
 The application must run on https for IBMid authentication to work properly. For such purposes,

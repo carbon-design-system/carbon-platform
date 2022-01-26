@@ -88,7 +88,7 @@ const isValidIbmUser = async (context) => {
   }
   return false
 }
-...
+// ...
 export const getServerSideProps = getPropsWithAuth(isValidIbmUser, async (/* context */) => {
   // Your normal `getServerSideProps` code here
   return {

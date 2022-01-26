@@ -8,6 +8,7 @@ import { useAuth } from 'contexts/auth'
 import { useEffect } from 'react'
 
 import RequireAuth from '@/components/auth/require-auth'
+import { isValidIbmEmail } from '@/utils/string'
 
 import FourOhFour from '../404'
 
@@ -25,7 +26,7 @@ const ProtectedStaticPage = () => {
     // show page if user is authenticated and email ends with ibm.com, else show 404 page
     <RequireAuth
       fallback={FourOhFour}
-      isAuthorized={isAuthenticated && user?.email?.endsWith('ibm.com')}
+      isAuthorized={isAuthenticated && isValidIbmEmail(user?.email ?? '')}
     >
       <>
         Welcome to the Protected Page!

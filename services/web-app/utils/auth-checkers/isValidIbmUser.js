@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { retrieveUser } from '../retrieveUser'
+import { isValidIbmEmail } from '../string'
 
 /**
  * Determines if user is authorized based on IBM email
@@ -14,7 +15,7 @@ import { retrieveUser } from '../retrieveUser'
 const isValidIbmUser = async (context) => {
   const user = await retrieveUser(context)
   if (user) {
-    return !!user.email?.endsWith('ibm.com')
+    return isValidIbmEmail(user.email ?? '')
   }
   return false
 }

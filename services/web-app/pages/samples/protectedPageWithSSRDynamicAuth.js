@@ -9,6 +9,7 @@ import RequireAuth from '@/components/auth/require-auth'
 import FourOhFour from '@/pages/404'
 import { getPropsWithAuth } from '@/utils/getPropsWithAuth'
 import { retrieveUser } from '@/utils/retrieveUser'
+import { isValidIbmEmail } from '@/utils/string'
 
 const ProtectedPageWithSSR = (props) => {
   return (
@@ -27,7 +28,7 @@ const ProtectedPageWithSSR = (props) => {
 - authorization function might need a user, but it also might not
 */
 
-// github.com does not need a user    DONE!
+// github.com does not need a user
 // github.ibm.com/internal-stuff needs an ibm user
 // github.ibm.com/private-stuff needs a specific ibm user
 
@@ -45,10 +46,10 @@ const authorizationChecker = async (context) => {
       return false
     }
     if (query.repo === 'internal-stuff') {
-      return user.email.endsWith('ibm.com')
+      return isValidIbmEmail(user.email ?? '')
     }
     if (query.repo === 'private-stuff') {
-      return user.email.endsWith('ibm.com') && user.name === 'The User We Need This To Have'
+      return isValidIbmEmail(user.email ?? '') && user.name === 'The User We Need This To Have'
     }
   }
 

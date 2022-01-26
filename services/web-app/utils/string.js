@@ -22,3 +22,12 @@ export const removeLeadingSlash = (str) => {
 export const addTrailingSlash = (str) => {
   return str.endsWith('/') ? str : `${str}/`
 }
+
+/**
+ * checks if a given string is a valid IBM email
+ * @param {string} str
+ * @returns {boolean} true if string is a valid ibm email
+ */
+export const isValidIbmEmail = (str) => {
+  return /^\w+([-+.']\w+)*@((\w+([-+.']\w+)*)+\.)*ibm\.com$/.test(str.trim())
+}

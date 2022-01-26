@@ -25,9 +25,10 @@ export const addTrailingSlash = (str) => {
 
 /**
  * checks if a given string is a valid IBM email
- * @param {string} str
+ * @param {string} str email to evaluate, assumes it is a valid email
  * @returns {boolean} true if string is a valid ibm email
  */
 export const isValidIbmEmail = (str) => {
-  return /^\w+([-+.']\w+)*@((\w+([-+.']\w+)*)+\.)*ibm\.com$/.test(str.trim())
+  const acceptableEmailSuffixes = ['.ibm.com', '@ibm.com']
+  return acceptableEmailSuffixes.some((suffix) => str.endsWith(suffix))
 }

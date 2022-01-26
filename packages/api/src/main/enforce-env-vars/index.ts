@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getRunMode, PRODUCTION } from '../run-mode'
+import { getRunMode, PROD } from '../run-mode'
 
 /**
  * Validates all necessary environment variables and throws error if necessary
@@ -18,8 +18,7 @@ import { getRunMode, PRODUCTION } from '../run-mode'
  */
 const enforceEnvVars = (requiredVars: string[], throwError = true): boolean => {
   let isValid = true
-  // TODO: make this run-mode compliant when new version is merged in
-  if (getRunMode() === PRODUCTION) {
+  if (getRunMode() === PROD) {
     requiredVars.forEach((envVar) => {
       try {
         getEnvVar(envVar)
@@ -42,7 +41,7 @@ const enforceEnvVars = (requiredVars: string[], throwError = true): boolean => {
 const getEnvVar = (varName: string, fallbackValue = ''): string => {
   const value = process.env[varName]
 
-  if (!value && getRunMode() === PRODUCTION) {
+  if (!value && getRunMode() === PROD) {
     throw new Error(`${varName} is not exported as an environment variable`)
   }
 

@@ -37,6 +37,6 @@ jobs:
       - name: Call Deploy Script 🚀
         run: npx micromanage deploy --target=test
         env:
-          CONTAINER_REGISTRY_SERVER: us.icr.io
+          CONTAINER_REGISTRY: us.icr.io
           CONTAINER_REGISTRY_NAMESPACE: carbon-platform-test
           CODE_ENGINE_PROJECT: carbon-platform-test

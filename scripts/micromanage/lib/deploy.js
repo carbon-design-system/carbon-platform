@@ -41,10 +41,12 @@ async function handleDeployCommand(options) {
 
   const serviceConfig = require(path.join(process.cwd(), `service-config.${options.target}.json`))
 
-  // assuming both ibmcloud and codeengine(ce) plugins are installed
-  console.log('Selecting IBM Cloud resource group and code engine project')
+  // assuming both ibmcloud and codeengine(ce) plugins are installed and ibmcloud is logged in
+  console.log('Setting IBM Cloud resource group')
 
   exec(`ibmcloud target -g "${RESOURCE_GROUP}"`)
+
+  console.log('Selecting Code Engine project')
   exec(`ibmcloud ce project select -n ${process.env.CODE_ENGINE_PROJECT}`)
 
   console.log('Getting changed services')

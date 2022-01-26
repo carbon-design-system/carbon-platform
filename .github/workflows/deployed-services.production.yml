@@ -34,7 +34,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Modules 🔧
-        run: npm install @carbon-platform/micromanage
+        run: npm install @carbon-platform/micromanage-cli
 
       - name: Call Deploy Script 🚀
         run: npx micromanage deploy --target=production

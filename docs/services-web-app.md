@@ -157,7 +157,7 @@ Statically Generated Pages" section in
 [NextJs Authentication Docs](https://nextjs.org/docs/authentication) You may make use of the
 `useAuth()` hook and `RequireAuth` component in your implementations:
 
-```
+```js
   import { useAuth } from 'contexts/auth'
   import { useEffect } from 'react'
 

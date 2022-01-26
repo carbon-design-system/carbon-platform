@@ -41,9 +41,6 @@ Make sure required environment variables are configured for proper functionality
 (See [run-mode package](./packages-api.md#run-mode) for details on how to set up the run-mode
 package)
 
-_Note_: this package requires different values depending on environemnt, make sure to update these
-when running on dev/test/production mode
-
 ### Auth
 
 This service depends on the auth package; Make sure required environment variables are configured

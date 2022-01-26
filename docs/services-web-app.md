@@ -215,7 +215,7 @@ context of getServerSideProps):
 
 ```js
 import { retrieveUser } from '@/utils/retrieveUser'
-...
+// ...
 export const getServerSideProps = async (/* context */) => {
   const user = await retrieveUser(context)
   // Your normal `getServerSideProps` code here

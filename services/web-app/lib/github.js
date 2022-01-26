@@ -12,7 +12,7 @@ import { IMAGES_CACHE_PATH } from '@/config/constants'
 import { libraryAllowList } from '@/data/libraries'
 import { getResponse, writeFile } from '@/lib/file-cache'
 import { getSlug } from '@/utils/slug'
-import { removeLeadingSlash } from '@/utils/string'
+import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
 
 /**
  * Validates the route's parameters and returns an object that also includes the library's slug as
@@ -188,8 +188,9 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
   const assetContentPromises = treeResponse.tree
     .filter(
       (file) =>
-        removeLeadingSlash(file.path).startsWith(removeLeadingSlash(libraryParams.path)) &&
-        file.path.endsWith('carbon-asset.yml')
+        removeLeadingSlash(file.path).startsWith(
+          removeLeadingSlash(addTrailingSlash(libraryParams.path))
+        ) && file.path.endsWith('carbon-asset.yml')
     )
     .map((file) => {
       return getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {

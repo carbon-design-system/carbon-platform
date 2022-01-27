@@ -16,6 +16,7 @@
     "lint": "next lint",
     "service:build": "npm run build",
     "start": "next start",
+    "start-secure": "sh ./scripts/create-local-certificates.sh && node server.js",
     "test": "echo 'No tests defined yet!'"
   },
   "bugs": {
@@ -29,10 +30,13 @@
     "cache-manager": "^3.6.0",
     "cache-manager-fs-hash": "^1.0.0",
     "clsx": "^1.1.1",
+    "cookie-parser": "^1.4.6",
+    "express-session": "^1.17.2",
     "fs-extra": "^10.0.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
     "next": "^12.0.7",
+    "next-connect": "^0.11.0",
     "next-seo": "^4.28.1",
     "plaiceholder": "^2.2.0",
     "prop-types": "^15.8.0",

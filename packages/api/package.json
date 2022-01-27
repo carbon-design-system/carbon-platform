@@ -20,10 +20,14 @@
     "test": "jest --config=../../.jestrc.workspace.js"
   },
   "dependencies": {
+    "uuid": "^8.3.2",
+    "amqplib": "^0.8.0",
     "chalk": "^4.1.2"
   },
   "devDependencies": {
     "@types/node": "^17.0.8",
+    "@types/amqplib": "^0.8.2",
+    "@types/uuid": "^8.3.4",
     "typescript": "^4.5.4"
   }
 }

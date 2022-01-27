@@ -20,7 +20,6 @@ module.exports = {
         'web-app'
       ]
     ],
-    'type-case': [0, 'never'],
     'type-enum': [
       2,
       'always',
@@ -36,7 +35,7 @@ module.exports = {
         'revert',
         'style',
         'test',
-        'WIP'
+        'wip'
       ]
     ]
   }

@@ -71,7 +71,9 @@ module.exports = {
   globals: {
     'ts-jest': {
       tsconfig: {
-        esModuleInterop: true
+        esModuleInterop: true,
+        experimentalDecorators: true,
+        emitDecoratorMetadata: true
       }
     }
   },

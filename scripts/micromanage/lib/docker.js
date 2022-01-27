@@ -6,7 +6,7 @@
  */
 const { Command } = require('commander')
 
-const { getWorkspaceByName, execWithOutput } = require('./utils')
+const { getWorkspaceByName, spawn } = require('./utils')
 
 const REMOTE_REGISTRY = 'us.icr.io/carbon-platform'
 const LOCAL_REGISTRY = 'local/carbon-platform'
@@ -58,7 +58,7 @@ async function handleDockerCommand(serviceName, opts) {
 async function buildBaseImage() {
   console.log('Building base image')
 
-  await execWithOutput(`docker build --pull --tag ${LOCAL_REGISTRY}/base:latest .`)
+  await spawn(`docker build --pull --tag ${LOCAL_REGISTRY}/base:latest .`)
 }
 
 async function buildService(imageName, contextDir) {
@@ -67,7 +67,7 @@ async function buildService(imageName, contextDir) {
   const buildArgs = getEnvvarNames().map((envvarName) => `--build-arg ${envvarName}`)
   const buildArgsStr = buildArgs.join(' ')
 
-  await execWithOutput(`docker build --tag ${imageName} ${buildArgsStr} ${contextDir}`)
+  await spawn(`docker build --tag ${imageName} ${buildArgsStr} ${contextDir}`)
 }
 
 function getEnvvarNames() {
@@ -77,7 +77,7 @@ function getEnvvarNames() {
 async function pushService(imageName) {
   console.log(`Pushing image: ${imageName}`)
 
-  await execWithOutput(`docker push ${imageName}`)
+  await spawn(`docker push ${imageName}`)
 }
 
 module.exports = {

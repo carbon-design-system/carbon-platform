@@ -43,7 +43,10 @@ const Dashboard = () => {
         className={clsx(styles.columnTwo, styles.column)}
         ratio={isMd ? aspectRatioTop() : aspectRatioBottom()}
       >
-        {'TWO'}
+        <div className={clsx(styles.columnTwoContainer)}>
+          <div>{'TWO'}</div>
+          <div>{'THREE'}</div>
+        </div>
       </AspectRatio>
       <AspectRatio className={clsx(styles.bottomRow, styles.column)} ratio={aspectRatioBottom()}>
         {'FOUR'}

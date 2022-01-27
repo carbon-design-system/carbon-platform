@@ -32,6 +32,11 @@
   }
 }
 
+.column-two-container {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
 .bottom-row {
   @include breakpoint-down(md) {
     display: none;

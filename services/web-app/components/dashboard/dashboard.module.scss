@@ -1,0 +1,39 @@
+//
+// Copyright IBM Corp. 2021, 2021
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+.container {
+  display: grid;
+  margin-right: -$spacing-05;
+  margin-left: -$spacing-05;
+  grid-template-columns: auto;
+
+  @include breakpoint(md) {
+    grid-template-columns: auto auto;
+  }
+
+  @include breakpoint(lg) {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+.column {
+  padding-left: $spacing-05;
+  background-color: $field;
+}
+
+.column-two {
+  @include breakpoint(lg) {
+    grid-column: 2 / 4;
+    grid-row: 1;
+  }
+}
+
+.bottom-row {
+  @include breakpoint-down(md) {
+    display: none;
+  }
+}

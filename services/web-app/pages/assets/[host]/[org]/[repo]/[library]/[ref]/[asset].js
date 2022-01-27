@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import Dashboard from '@/components/dashboard'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
@@ -79,6 +80,7 @@ const Asset = ({ libraryData }) => {
       <PageHeader title={seo.title} pictogram={TextInput} />
       <PageBreadcrumb items={breadcrumbItems} />
       <div className={styles.content}>
+        <Dashboard />
         <NextSeo {...seo} />
         {inheritsData && <InheritsLink data={inheritsData} />}
         {imageData && (

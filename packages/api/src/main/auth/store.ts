@@ -15,8 +15,6 @@ import { User } from './models/user.model'
 
 // connect-session-sequelize doesn't have type definitions work-around
 type ISequelizeStore = Store & {
-  // TODO: remove this once eslint updates from messaging branch are pulled in
-  // eslint-disable-next-line no-unused-vars
   new (options: { db: any }): ISequelizeStore
   sync: () => Promise<void>
 }

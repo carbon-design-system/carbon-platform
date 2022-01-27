@@ -30,7 +30,7 @@ class Logging {
   private readonly environment: string
   private readonly isDebugLoggingEnabled: boolean
   private readonly isRemoteLoggingEnabled: boolean
-  private readonly messagingClient: MessagingClient
+  private readonly messagingClient?: MessagingClient
   private readonly service: string
 
   /**

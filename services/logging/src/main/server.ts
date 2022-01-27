@@ -11,7 +11,7 @@ import http from 'http'
 console.log(getRunMode())
 
 const port = process.env.PORT || 3000
-const logger = new Logging('logging-service')
+const logger = new Logging('logging-service', 'test-server')
 
 function requestHandler(request: http.IncomingMessage, response: http.ServerResponse) {
   logger.info(`request ${request.url}`)

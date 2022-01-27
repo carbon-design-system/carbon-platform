@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2021, 2021
+ * Copyright IBM Corp. 2022, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -12,8 +12,9 @@ const { createServer } = require('https')
 const next = require('next')
 const fs = require('fs')
 const { DEV, getRunMode } = require('@carbon-platform/api/run-mode')
+const { getEnvVar } = require('@carbon-platform/api/enforce-env-vars')
 
-const PORT = process.env.PORT || 443
+const PORT = getEnvVar('PORT', '443')
 
 const isDevMode = getRunMode() === DEV
 const app = next({ dev: isDevMode })

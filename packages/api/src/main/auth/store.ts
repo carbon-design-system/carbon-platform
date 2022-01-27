@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2021, 2021
+ * Copyright IBM Corp. 2022, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9,7 +9,7 @@ import cookieParser from 'cookie-parser'
 import { SessionData, Store } from 'express-session'
 
 import { enforceEnvVars, getEnvVar } from '../enforce-env-vars'
-import { getRunMode, PRODUCTION } from '../run-mode'
+import { getRunMode, PROD } from '../run-mode'
 import { PROD_SESSION_REQUIRED_ENV_VARS, SESSION_SECRET } from './config/constants'
 import { User } from './models/user.model'
 
@@ -68,7 +68,7 @@ async function createSequelizeStore(): Promise<Store> {
  */
 const getStore = async (): Promise<Store> => {
   if (!storeInstance) {
-    if (getRunMode() === PRODUCTION) {
+    if (getRunMode() === PROD) {
       enforceEnvVars(PROD_SESSION_REQUIRED_ENV_VARS)
 
       storeInstance = await createMongoStore()

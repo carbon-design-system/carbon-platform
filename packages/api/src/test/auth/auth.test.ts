@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2021, 2021
+ * Copyright IBM Corp. 2022, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -13,7 +13,7 @@ import {
   store
 } from '../../main/auth'
 import { IBM_AUTHENTICATION_STRATEGY } from '../../main/auth/config/constants'
-import { DEV, PRODUCTION } from '../../main/run-mode'
+import { DEV, PROD } from '../../main/run-mode'
 
 jest.mock('passport')
 const mockedPassport = passport as jest.Mocked<typeof passport>
@@ -63,7 +63,7 @@ describe('getStore', () => {
     const oldRunMode = process.env.CARBON_RUN_MODE
     process.env.CARBON_MONGO_DB_URL = ''
     process.env.CARBON_MONGO_DB_NAME = ''
-    process.env.CARBON_RUN_MODE = PRODUCTION
+    process.env.CARBON_RUN_MODE = PROD
     await expect(() => store.getStore()).rejects.toThrow()
     process.env.CARBON_RUN_MODE = oldRunMode
     process.env.CARBON_MONGO_DB_URL = oldMongoDbUrl

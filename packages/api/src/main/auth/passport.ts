@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2021, 2021
+ * Copyright IBM Corp. 2022, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9,7 +9,7 @@ import { BaseClient, Issuer, Strategy as OpenIdStrategy } from 'openid-client'
 import passport from 'passport'
 
 import { enforceEnvVars, getEnvVar } from '../enforce-env-vars'
-import { getRunMode, PRODUCTION } from '../run-mode'
+import { getRunMode, PROD } from '../run-mode'
 import { config as devConfig } from './config/config.dev'
 import { config as prodConfig } from './config/config.prod'
 import { IBM_AUTHENTICATION_STRATEGY, PASSPORT_REQUIRED_ENV_VARS } from './config/constants'
@@ -35,7 +35,7 @@ const getPassportInstance = async (): Promise<passport.PassportStatic> => {
 
     enforceEnvVars(PASSPORT_REQUIRED_ENV_VARS)
 
-    const passportConfig = getRunMode() === PRODUCTION ? prodConfig : devConfig
+    const passportConfig = getRunMode() === PROD ? prodConfig : devConfig
 
     const ibmIdIssuer = await Issuer.discover(passportConfig.discovery_url)
     client = new ibmIdIssuer.Client({

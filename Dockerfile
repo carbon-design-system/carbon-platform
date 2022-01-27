@@ -1,5 +1,5 @@
 #
-# Copyright IBM Corp. 2021, 2021
+# Copyright IBM Corp. 2021, 2022
 #
 # This source code is licensed under the Apache-2.0 license found in the
 # LICENSE file in the root directory of this source tree.
@@ -26,7 +26,7 @@ WORKDIR /ibm
 COPY package.json .
 COPY package-lock.json .
 COPY LICENSE .
-# TODO: include base tsconfig file
+COPY tsconfig.base.json .
 
 # This is done at the end so that the install steps above can run in parallel
 COPY --from=builder /ibm/packages packages

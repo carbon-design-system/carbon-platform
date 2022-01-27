@@ -1,18 +1,18 @@
 /*
- * Copyright IBM Corp. 2021, 2021
+ * Copyright IBM Corp. 2021, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
 import { enforceEnvVars, getEnvVar } from '../../main/enforce-env-vars'
-import { DEV, PRODUCTION } from '../../main/run-mode'
+import { DEV, PROD } from '../../main/run-mode'
 
 describe('enforceEnvVars', () => {
   it('throws error when required var is not set', () => {
     const oldRunMode = process.env.CARBON_RUN_MODE
     const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
-    process.env.CARBON_RUN_MODE = PRODUCTION
+    process.env.CARBON_RUN_MODE = PROD
     process.env.FAKE_ENV_VAR = ''
 
     expect(() => enforceEnvVars(['FAKE_ENV_VAR'])).toThrow()
@@ -25,7 +25,7 @@ describe('enforceEnvVars', () => {
       const oldRunMode = process.env.CARBON_RUN_MODE
       const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
-      process.env.CARBON_RUN_MODE = PRODUCTION
+      process.env.CARBON_RUN_MODE = PROD
       process.env.FAKE_ENV_VAR = 'SOME VALUE'
 
       expect(enforceEnvVars(['FAKE_ENV_VAR'])).toBeTruthy()
@@ -53,7 +53,7 @@ describe('enforceEnvVars', () => {
       const oldRunMode = process.env.CARBON_RUN_MODE
       const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
-      process.env.CARBON_RUN_MODE = PRODUCTION
+      process.env.CARBON_RUN_MODE = PROD
       process.env.FAKE_ENV_VAR = ''
 
       expect(enforceEnvVars(['FAKE_ENV_VAR'], false)).toBeFalsy()
@@ -109,7 +109,7 @@ describe('getEnvVar', () => {
     const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
     process.env.FAKE_ENV_VAR = ''
-    process.env.CARBON_RUN_MODE = PRODUCTION
+    process.env.CARBON_RUN_MODE = PROD
 
     expect(() => getEnvVar('FAKE_ENV_VAR')).toThrow()
 
@@ -122,7 +122,7 @@ describe('getEnvVar', () => {
     const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
     process.env.FAKE_ENV_VAR = ''
-    process.env.CARBON_RUN_MODE = PRODUCTION
+    process.env.CARBON_RUN_MODE = PROD
 
     const fallbackValue = 'this has a value'
     expect(() => getEnvVar('FAKE_ENV_VAR', fallbackValue)).toThrow()

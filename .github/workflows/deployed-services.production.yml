@@ -18,10 +18,10 @@ jobs:
         with:
           ref: 'deployed-services/production'
 
-      # Download and Install IBM Cloud CLI
       - name: Setup IBM Cloud CLI ⛅
         run: |
           curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+          ibmcloud config --check-version false
           ibmcloud plugin install code-engine
           ibmcloud login --apikey ${{ secrets.CODE_ENGINE_API_KEY }}
 

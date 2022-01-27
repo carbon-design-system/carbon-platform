@@ -1,15 +1,16 @@
 /*
- * Copyright IBM Corp. 2021, 2021
+ * Copyright IBM Corp. 2021, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+const { DEV, getRunMode } = require('@carbon-platform/api/run-mode')
 
 /**
  * Libraries are only included in the platform if in this allowlist. Library slugs are specified as
  * object keys to ensure uniqueness.
  */
-const libraryAllowList = {
+const libraries = {
   'carbon-charts': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
@@ -288,6 +289,35 @@ const libraryAllowList = {
     sponsor: 'carbon'
   }
 }
+
+/**
+ * Libraries to persist to the `public/data` file system cache so we can use this local data when
+ * deploying to Vercel.
+ */
+const ossLibraries = [
+  'carbon-charts',
+  'carbon-charts-angular',
+  'carbon-charts-react',
+  'carbon-charts-svelte',
+  'carbon-charts-vue',
+  'carbon-styles',
+  'carbon-components',
+  'carbon-angular',
+  'carbon-react',
+  'carbon-svelte',
+  'carbon-vue',
+  'carbon-web-components'
+]
+
+/**
+ * Only use the `ossLibraries` data set if specified in the environment variable.
+ */
+const libraryAllowList = Object.keys(libraries)
+  .filter((key) => (getRunMode() === DEV ? ossLibraries.includes(key) : true))
+  .reduce((obj, key) => {
+    obj[key] = libraries[key]
+    return obj
+  }, {})
 
 module.exports = {
   libraryAllowList

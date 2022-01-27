@@ -1,15 +1,15 @@
 /*
- * Copyright IBM Corp. 2021, 2021
+ * Copyright IBM Corp. 2021, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { DEV, getRunMode, PRODUCTION, TEST } from '../../main/run-mode'
+import { DEV, getRunMode, PROD } from '../../main/run-mode'
 
 describe('getRunMode', () => {
   it('returns dev when the envvar is not set', () => {
     const old = process.env.CARBON_RUN_MODE
-    process.env.CARBON_RUN_MODE = undefined
+    delete process.env.CARBON_RUN_MODE
 
     expect(getRunMode()).toBe(DEV)
 
@@ -25,20 +25,20 @@ describe('getRunMode', () => {
     process.env.CARBON_RUN_MODE = old
   })
 
-  it('returns production when the envvar is set to PRODUCTION', () => {
+  it('returns production when the envvar is set to PROD', () => {
     const old = process.env.CARBON_RUN_MODE
-    process.env.CARBON_RUN_MODE = 'PRODUCTION'
+    process.env.CARBON_RUN_MODE = 'PROD'
 
-    expect(getRunMode()).toBe(PRODUCTION)
+    expect(getRunMode()).toBe(PROD)
 
     process.env.CARBON_RUN_MODE = old
   })
 
-  it('returns test when the envvar is set to TEST', () => {
+  it('throws when the envvar is set to an unknown value', () => {
     const old = process.env.CARBON_RUN_MODE
-    process.env.CARBON_RUN_MODE = 'TEST'
+    process.env.CARBON_RUN_MODE = 'bad'
 
-    expect(getRunMode()).toBe(TEST)
+    expect(getRunMode).toThrow()
 
     process.env.CARBON_RUN_MODE = old
   })

@@ -9,7 +9,13 @@ instead has a set of top-level `js` and corresponding `d.ts` files to allow impo
 ```ts
 import { Logging } from '@carbon-platform/api/logging'
 import { getRunMode } from '@carbon-platform/api/run-mode'
+import { enforceEnvVars, getEnvVar } from '@carbon-platform/api/enforce-env-vars'
 ```
+
+## enforce-env-vars
+
+Exports utility functions that manage retrieving and validating environment variables accross
+different run modes.
 
 ## logging
 
@@ -18,14 +24,17 @@ messages to be logged.
 
 ## run-mode
 
-A package that exports a function called `getRunMode()`, which returns one of two constants,
+A module that exports a function called `getRunMode()`, which returns one of two constants,
 depending on the value of the `CARBON_RUN_MODE` environment variable.
 
 The possible values are:
 
 - `DEV`
-- `PRODUCTION`
+- `PROD`
 
 Exporting the `CARBON_RUN_MODE` environment variable as either of these values will cause
-`getRunMode` to recognize it as the current run mode. Any other value will result in the mode being
-set to `DEV`.
+`getRunMode` to recognize it as the current run mode.
+
+If the environment variable is not set, the mode will default to `DEV`.
+
+Setting this envvar to any other value will result in an error being thrown.

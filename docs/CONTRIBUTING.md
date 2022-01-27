@@ -82,7 +82,7 @@ Here are the valid types that can be used in a commit message subject:
 - `style` - Changes that do not affect the meaning of the code (white-space, formatting, missing
   semi-colons, etc.)
 - `test` - Changes/additions to tests
-- `WIP` - A work-in-progress commit, mostly for local use. Not intended for commits in a main
+- `wip` - A work-in-progress commit, mostly for local use. Not intended for commits in a main
   development branch
 
 ### Scope

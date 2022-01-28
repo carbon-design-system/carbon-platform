@@ -24,8 +24,8 @@
   },
   "dependencies": {
     "@carbon-platform/icons": "^0.0.10",
-    "@carbon/pictograms-react": "^11.20.0",
-    "@carbon/react": "^0.11.0",
+    "@carbon/pictograms-react": "^11.21.0",
+    "@carbon/react": "^0.12.0",
     "@octokit/core": "^3.5.1",
     "cache-manager": "^3.6.0",
     "cache-manager-fs-hash": "^1.0.0",
@@ -35,11 +35,11 @@
     "fs-extra": "^10.0.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
-    "next": "^12.0.7",
+    "next": "^12.0.9",
     "next-connect": "^0.11.0",
-    "next-seo": "^4.28.1",
+    "next-seo": "^4.29.0",
     "plaiceholder": "^2.2.0",
-    "prop-types": "^15.8.0",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
@@ -48,6 +48,6 @@
   },
   "devDependencies": {
     "css-loader": "^6.5.1",
-    "sass": "^1.45.2"
+    "sass": "^1.49.0"
   }
 }

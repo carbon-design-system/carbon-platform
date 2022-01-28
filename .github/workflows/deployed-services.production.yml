@@ -23,13 +23,12 @@ jobs:
           curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
           ibmcloud config --check-version false
           ibmcloud plugin install code-engine
-          ibmcloud login --apikey ${{ secrets.CODE_ENGINE_API_KEY }}
+          ibmcloud login --apikey ${{ secrets.CODE_ENGINE_API_KEY }} -r 'us-south'
 
       - name: Setup Node 🏗
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-          cache: 'npm'
 
       - name: Install Node Modules 🔧
         run: npm install @carbon-platform/micromanage-cli
@@ -37,6 +36,6 @@ jobs:
       - name: Call Deploy Script 🚀
         run: npx micromanage deploy --target=production
         env:
-          CONTAINER_REGISTRY_SERVER: us.icr.io
+          CONTAINER_REGISTRY: us.icr.io
           CONTAINER_REGISTRY_NAMESPACE: carbon-platform
           CODE_ENGINE_PROJECT: carbon-platform

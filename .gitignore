@@ -7,7 +7,7 @@ dist/
 # Generated stuff
 generated/
 .test-coverage/
-sessiondb.sqlite
+.dev/
 
 # OS stuff
 .DS_Store

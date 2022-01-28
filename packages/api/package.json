@@ -23,12 +23,15 @@
     "amqp-connection-manager": "^4.0.1",
     "amqplib": "^0.8.0",
     "connect-mongo": "^4.6.0",
+    "connect-session-sequelize": "^7.1.2",
     "cookie-parser": "^1.4.6",
     "cookie-signature": "^1.1.0",
     "express-session": "^1.17.2",
     "mongodb": "^4.3.1",
     "openid-client": "^5.1.2",
     "passport": "^0.5.2",
+    "sequelize": "^6.14.1",
+    "sqlite3": "npm:@vscode/sqlite3@^5.0.7",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -39,10 +42,6 @@
     "@types/passport": "^1.0.7",
     "@types/sequelize": "^4.28.11",
     "@types/uuid": "^8.3.4",
-    "connect-session-sequelize": "^7.1.2",
-    "pg-hstore": "^2.3.4",
-    "sequelize": "^6.14.1",
-    "sqlite3": "npm:@vscode/sqlite3@^5.0.7",
     "typescript": "^4.5.5"
   }
 }

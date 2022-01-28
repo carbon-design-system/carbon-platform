@@ -8,19 +8,22 @@ following are recommended for a VS Code-based setup.
 The most important extension to get is a good color theme. Feeling cool while you develop increases
 productivity. Here's some that the Carbon Platform team uses:
 
-- **Sapphire Theme** (tyriar.theme-sapphire)
-- **Night Owl** (sdras.night-owl)
+- **GitHub Dark Dimmed** (github.github-vscode-theme)
 - **Moonlight II** (atomiks.moonlight)
+- **Night Owl** (sdras.night-owl)
+- **Sapphire Theme** (tyriar.theme-sapphire)
 
 The Carbon Design System also has a set of product icons you can use in VS Code.
 
 - **Carbon Product Icons** (antfu.icons-carbon)
 
 The rest of these extensions will make life way easier, since they'll help with linting, formatting,
-and code smells. They help out with SonarCloud's "clean as you code" philosophy.
+testing and code smells. They help out with SonarCloud's "clean as you code" philosophy.
 
 - **ESLint** (dbaeumer.vscode-eslint)
   - Shows linting errors as you type. Allows auto-fixing on save.
+- **Jest Test Explorer** (kavod-io.vscode-jest-test-adapter)
+  - Run your Jest tests in the Sidebar of VS Code.
 - **MDX** (silvenon.mdx)
   - Provides syntax highlighting and bracket matching for MDX files.
 - **Prettier** - Code formatter (esbenp.prettier-vscode)
@@ -31,6 +34,8 @@ and code smells. They help out with SonarCloud's "clean as you code" philosophy.
   - Provides style linting, fixing, formatting as you type.
 - **Live Share** (ms-vsliveshare.vsliveshare)
   - Allows devs to start on-demand live coding sessions with each other.
+- **YAML** (redhat.vscode-yaml)
+  - YAML Language Support for viewing/editing asset schemas.
 
 ## Settings config setup
 

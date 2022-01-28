@@ -87,7 +87,11 @@ const Layout = ({ children }) => {
                 <HeaderGlobalAction aria-label="Search">
                   <Search size={20} />
                 </HeaderGlobalAction>
-                <HeaderGlobalAction aria-label="Log in">
+                <HeaderGlobalAction
+                  aria-label="Log in"
+                  href={`/api/login?next=${router.asPath}`}
+                  className={styles.logInAnchor}
+                >
                   <User size={20} />
                 </HeaderGlobalAction>
                 <HeaderGlobalAction aria-label="Switch sites">

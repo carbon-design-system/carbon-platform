@@ -22,3 +22,13 @@ export const removeLeadingSlash = (str) => {
 export const addTrailingSlash = (str) => {
   return str.endsWith('/') ? str : `${str}/`
 }
+
+/**
+ * checks if a given string is a valid IBM email
+ * @param {string} str email to evaluate, assumes it is a valid email
+ * @returns {boolean} true if string is a valid ibm email
+ */
+export const isValidIbmEmail = (str) => {
+  const acceptableEmailSuffixes = ['.ibm.com', '@ibm.com']
+  return acceptableEmailSuffixes.some((suffix) => str.endsWith(suffix))
+}

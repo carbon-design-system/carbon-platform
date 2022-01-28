@@ -36,3 +36,8 @@ yarn-error.log*
 # carbon
 /.carbon/
 **/.carbon/
+
+# certificates
+
+/certificates/localhost.crt
+/certificates/localhost.key

@@ -7,6 +7,7 @@ dist/
 # Generated stuff
 generated/
 .test-coverage/
+sessiondb.sqlite
 
 # OS stuff
 .DS_Store
@@ -16,3 +17,6 @@ generated/
 
 # Dotenv stuff
 .env
+
+
+.history/

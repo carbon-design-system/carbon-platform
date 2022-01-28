@@ -10,13 +10,67 @@ The various scripts can be found in: [scripts/micromanage](../scripts/micromanag
 
 ## `deploy`
 
-TODO
+Use this script to deploy to _test_ and _production_ environments
 
-NOTES FOR EVENTUAL DOC CONVERSION TO CODE ENGINE:
+The first deployment of a service is required to be done manually. This should be done through the
+IBM Cloud Code Engine UI so that appropriate variables/secrets/routes can be created.
 
-```bash
-ibmcloud ce application create --name logging-test-cli --image us.icr.io/carbon-platform-test/logging:0.1.0 -c "npm run start" --rs jdharvey-ce-cli-registry-secret
-```
+Once done, the deploy script can be used to deploy new versions of the various services.
+
+### Re-deploying services automatically
+
+Succesfully merged changes to the service-config files to `deployed-services/test` and
+`deployes-services/production` branches will trigger service deployments via the "Deploy Services
+(Test)" or "Deploy Services (Production)" Github Action, no further user action is required.
+
+Please note there must be an existing application deployed on IBM Cloud Code Engine in order to
+enable automatic deployments on a service.
+
+### To trigger a Service Deployment
+
+1. Update desired service(s) entries in the service-config file of the desired environment
+   deployment branch (`deployed-services/test` OR `deployed-services/production`), specifying the
+   new version to be deployed in the `deployedVersion` field.
+
+   - Note: The intended changes need to have been previously versioned (see
+     [Nightly Builds](./nightly-builds.md) docs)
+
+2. Create a PR with the updates
+
+3. After reviews and checks, commit and Merge change into desired branch
+
+4. A Github Deploy Action will be triggered. Output can be seen on "Actions" tab of Github
+   Repository
+
+5. Upon succesful completion of the Github Action the _changed_ service(s) deployment(s) should be
+   available at it's corresponding route(s)
+
+### Re-Deploying Manually
+
+The deploy script can be run manually from a local clone of the repo. Please note there must be an
+existing application deployed on IBM cloud in order to enable automatic deployments on a service.
+
+1. Checkout to the desired deploy environment branch
+
+   - for Test: `deployed-services/test`
+   - for Production: `deployed-services/production`
+
+2. Make sure you're logged in to IBM Cloud (`ibmcloud login --sso -r 'us-south'` OR
+   `ibmcloud login --apikey [APIKEY] -r 'us-south'`)
+
+3. Fill the IBM Cloud config tokens located in that file with desired IBM Cloud targets
+
+   - Note: for `CLOUD_FOUNDRY_SPACE_PREFIX`, `test` and `prod` spaces must be registered in IBM
+     Cloud, e.g., If `CLOUD_FOUNDRY_SPACE_PREFIX` is "carbon", "carbon-test" and "carbon-prod" must
+     be registered in IBM Cloud.
+
+4. From the root of the project run
+   `CONTAINER_REGISTRY=[TARGET_CONTAINER_REGISTRY_URL] CONTAINER_REGISTRY_NAMESPACE=[TARGET_CONTAINER_REGISTRY_NAMESPACE] CODE_ENGINE_PROJECT=[TARGET_CODE_ENGINE_PROJECT] scripts/micromanage deploy --target=[test | production]`
+
+5. Upon succesful completion of the script the _changed_ service(s) deployment(s) should be
+   available at it's corresponding route(s)
+
+6. Make sure to push your service config file changes so the upstream is properly updated!
 
 ## `docker`
 

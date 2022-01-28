@@ -68,7 +68,11 @@ async function spawn(cmd, options = {}) {
     const spawnedProcess = childProcess.spawn(cmd, spawnOptions)
 
     spawnedProcess.on('close', (code) => {
-      resolve(code)
+      if (code === 0) {
+        resolve(code)
+      } else {
+        reject(code)
+      }
     })
 
     spawnedProcess.on('error', (err) => {

@@ -81,6 +81,8 @@ const Asset = ({ libraryData }) => {
       <PageBreadcrumb items={breadcrumbItems} />
       <div className={styles.content}>
         <Dashboard />
+      </div>
+      <div className={styles.content}>
         <NextSeo {...seo} />
         {inheritsData && <InheritsLink data={inheritsData} />}
         {imageData && (

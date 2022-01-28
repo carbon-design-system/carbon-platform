@@ -15,7 +15,7 @@ const CatalogResults = ({ assets = [] }) => {
 
   return (
     <Grid className={styles.container} condensed={!isMd} narrow={isMd}>
-      <Column sm={4} md={8} lg={12} className={styles.results}>
+      <Column sm={4} md={8} lg={12} className={styles.column}>
         {assets.length} results
       </Column>
     </Grid>

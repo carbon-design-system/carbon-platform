@@ -6,39 +6,26 @@
 //
 
 .container {
-  display: grid;
-  margin-right: -$spacing-05;
-  margin-left: -$spacing-05;
-  grid-template-columns: auto;
-
-  @include breakpoint(md) {
-    grid-template-columns: auto auto;
-  }
-
-  @include breakpoint(lg) {
-    grid-template-columns: auto auto auto;
+  @include breakpoint-down(md) {
+    grid-gap: 0;
   }
 }
 
 .column {
-  padding-left: $spacing-05;
-  background-color: $field;
-}
-
-.column-two {
-  @include breakpoint(lg) {
-    grid-column: 2 / 4;
-    grid-row: 1;
+  @include breakpoint(md) {
+    margin-right: -$spacing-05;
   }
 }
 
-.column-two-container {
-  display: grid;
-  grid-template-columns: auto auto;
+.subgrid {
+  @include breakpoint-down(md) {
+    margin-right: -$spacing-05;
+    margin-left: -$spacing-05;
+  }
 }
 
-.bottom-row {
+.subcolumn {
   @include breakpoint-down(md) {
-    display: none;
+    padding-left: $spacing-05;
   }
 }

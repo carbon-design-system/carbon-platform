@@ -55,14 +55,11 @@ existing application deployed on IBM cloud in order to enable automatic deployme
    - for Test: `deployed-services/test`
    - for Production: `deployed-services/production`
 
-2. Make sure you're logged in to IBM Cloud (`ibmcloud login --sso -r 'us-south'` OR
+2. Alter the service-config file with the correct service versions you need deployed (keep intact
+   the services you don't want to change, these will be disregarded by the script)
+
+3. Make sure you're logged in to IBM Cloud (`ibmcloud login --sso -r 'us-south'` OR
    `ibmcloud login --apikey [APIKEY] -r 'us-south'`)
-
-3. Fill the IBM Cloud config tokens located in that file with desired IBM Cloud targets
-
-   - Note: for `CLOUD_FOUNDRY_SPACE_PREFIX`, `test` and `prod` spaces must be registered in IBM
-     Cloud, e.g., If `CLOUD_FOUNDRY_SPACE_PREFIX` is "carbon", "carbon-test" and "carbon-prod" must
-     be registered in IBM Cloud.
 
 4. From the root of the project run
    `CONTAINER_REGISTRY=[TARGET_CONTAINER_REGISTRY_URL] CONTAINER_REGISTRY_NAMESPACE=[TARGET_CONTAINER_REGISTRY_NAMESPACE] CODE_ENGINE_PROJECT=[TARGET_CODE_ENGINE_PROJECT] scripts/micromanage deploy --target=[test | production]`

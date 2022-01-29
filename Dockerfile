@@ -27,6 +27,10 @@ FROM node:16-alpine
 
 WORKDIR /ibm
 
+# Dependencies required for node-gyp to run on Alpine Linux
+RUN apk add --no-cache python3 make g++
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
 COPY package.json .
 COPY package-lock.json .
 COPY LICENSE .

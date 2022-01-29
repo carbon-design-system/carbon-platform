@@ -28,15 +28,16 @@ A module that exports two things:
 
 1. An enum called `RunMode` containing the values `Dev` and `Prod`.
 2. A function called `getRunMode()`, which returns one of two enum values, depending on the value of
-   the `NODE_ENV` environment variable.
+   the `CARBON_RUN_MODE` environment variable.
 
-`NODE_ENV` can be set to the following values:
+`CARBON_RUN_MODE` can be set to the following values:
 
-- `development`
-  - Causes `getRunMode()` to return `Dev`
-- `production`
-  - Causes `getRunMode()` to return `Prod`
+- `DEV`
+  - Causes `getRunMode()` to return `RunMode.Dev`
+- `PROD`
+  - Causes `getRunMode()` to return `RunMode.Prod`
 
-If the `NODE_ENV` environment variable is not set, the mode will default to the "Dev" run mode.
+If the `CARBON_RUN_MODE` environment variable is not set, the mode will default to the "DEV" run
+mode.
 
 Setting this envvar to any other value will result in an error being thrown.

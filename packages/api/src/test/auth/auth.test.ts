@@ -61,21 +61,21 @@ describe('getStore', () => {
   it('on production mode without env variables throws error', async () => {
     const oldMongoDbUrl = process.env.CARBON_MONGO_DB_URL
     const oldMongoDbName = process.env.CARBON_MONGO_DB_NAME
-    const oldRunMode = process.env.NODE_ENV
+    const oldRunMode = process.env.CARBON_RUN_MODE
     process.env.CARBON_MONGO_DB_URL = ''
     process.env.CARBON_MONGO_DB_NAME = ''
-    process.env.NODE_ENV = RunMode.Prod
+    process.env.CARBON_RUN_MODE = RunMode.Prod
     await expect(() => store.getStore()).rejects.toThrow()
-    process.env.NODE_ENV = oldRunMode
+    process.env.CARBON_RUN_MODE = oldRunMode
     process.env.CARBON_MONGO_DB_URL = oldMongoDbUrl
     process.env.CARBON_MONGO_DB_NAME = oldMongoDbName
   })
 
   it('can be retrieved without crashing in Dev mode', async () => {
-    const oldRunMode = process.env.NODE_ENV
-    process.env.NODE_ENV = RunMode.Dev
+    const oldRunMode = process.env.CARBON_RUN_MODE
+    process.env.CARBON_RUN_MODE = RunMode.Dev
     await expect(store.getStore()).resolves.toBeDefined()
-    process.env.NODE_ENV = oldRunMode
+    process.env.CARBON_RUN_MODE = oldRunMode
   })
 })
 

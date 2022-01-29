@@ -8,38 +8,38 @@ import { getRunMode, RunMode } from '../../main/run-mode'
 
 describe('getRunMode', () => {
   it('returns dev when the envvar is not set', () => {
-    const old = process.env.NODE_ENV
-    delete process.env.NODE_ENV
+    const old = process.env.CARBON_RUN_MODE
+    delete process.env.CARBON_RUN_MODE
 
     expect(getRunMode()).toBe(RunMode.Dev)
 
-    process.env.NODE_ENV = old
+    process.env.CARBON_RUN_MODE = old
   })
 
   it('returns dev when the envvar is set to RunMode.Dev', () => {
-    const old = process.env.NODE_ENV
-    process.env.NODE_ENV = 'development'
+    const old = process.env.CARBON_RUN_MODE
+    process.env.CARBON_RUN_MODE = 'DEV'
 
     expect(getRunMode()).toBe(RunMode.Dev)
 
-    process.env.NODE_ENV = old
+    process.env.CARBON_RUN_MODE = old
   })
 
   it('returns production when the envvar is set to RunMode.Prod', () => {
-    const old = process.env.NODE_ENV
-    process.env.NODE_ENV = 'production'
+    const old = process.env.CARBON_RUN_MODE
+    process.env.CARBON_RUN_MODE = 'PROD'
 
     expect(getRunMode()).toBe(RunMode.Prod)
 
-    process.env.NODE_ENV = old
+    process.env.CARBON_RUN_MODE = old
   })
 
   it('throws when the envvar is set to an unknown value', () => {
-    const old = process.env.NODE_ENV
-    process.env.NODE_ENV = 'bad'
+    const old = process.env.CARBON_RUN_MODE
+    process.env.CARBON_RUN_MODE = 'bad'
 
     expect(getRunMode).toThrow()
 
-    process.env.NODE_ENV = old
+    process.env.CARBON_RUN_MODE = old
   })
 })

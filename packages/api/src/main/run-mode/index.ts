@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 enum RunMode {
-  Dev = 'development',
-  Prod = 'production'
+  Dev = 'DEV',
+  Prod = 'PROD'
 }
 
 function getRunMode(): RunMode {
-  const mode = process.env.NODE_ENV
+  const mode = process.env.CARBON_RUN_MODE
 
   switch (mode) {
     // Normal cases

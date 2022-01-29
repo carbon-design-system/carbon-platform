@@ -9,56 +9,56 @@ import { RunMode } from '../../main/run-mode'
 
 describe('enforceEnvVars', () => {
   it('throws error when required var is not set', () => {
-    const oldRunMode = process.env.NODE_ENV
+    const oldRunMode = process.env.CARBON_RUN_MODE
     const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
-    process.env.NODE_ENV = RunMode.Prod
+    process.env.CARBON_RUN_MODE = RunMode.Prod
     process.env.FAKE_ENV_VAR = ''
 
     expect(() => enforceEnvVars(['FAKE_ENV_VAR'])).toThrow()
     process.env.FAKE_ENV_VAR = oldFakeEnvVar
-    process.env.NODE_ENV = oldRunMode
+    process.env.CARBON_RUN_MODE = oldRunMode
   })
 
   describe('returns true', () => {
     it('when expected env vars are set', () => {
-      const oldRunMode = process.env.NODE_ENV
+      const oldRunMode = process.env.CARBON_RUN_MODE
       const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
-      process.env.NODE_ENV = RunMode.Prod
+      process.env.CARBON_RUN_MODE = RunMode.Prod
       process.env.FAKE_ENV_VAR = 'SOME VALUE'
 
       expect(enforceEnvVars(['FAKE_ENV_VAR'])).toBeTruthy()
 
       process.env.FAKE_ENV_VAR = oldFakeEnvVar
-      process.env.NODE_ENV = oldRunMode
+      process.env.CARBON_RUN_MODE = oldRunMode
     })
 
     it('when required env vars have not been set and on Dev mode', () => {
-      const oldRunMode = process.env.NODE_ENV
+      const oldRunMode = process.env.CARBON_RUN_MODE
       const oldFakeProdEnvVar = process.env.FAKE_PROD_ENV_VAR
 
-      process.env.NODE_ENV = RunMode.Dev
+      process.env.CARBON_RUN_MODE = RunMode.Dev
       process.env.FAKE_PROD_ENV_VAR = ''
 
       expect(enforceEnvVars(['FAKE_PROD_ENV_VAR'])).toBeTruthy()
 
-      process.env.NODE_ENV = oldRunMode
+      process.env.CARBON_RUN_MODE = oldRunMode
       process.env.FAKE_PROD_ENV_VAR = oldFakeProdEnvVar
     })
   })
 
   describe('returns false', () => {
     it('when called with throwError = false and invalid env vars', () => {
-      const oldRunMode = process.env.NODE_ENV
+      const oldRunMode = process.env.CARBON_RUN_MODE
       const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
-      process.env.NODE_ENV = RunMode.Prod
+      process.env.CARBON_RUN_MODE = RunMode.Prod
       process.env.FAKE_ENV_VAR = ''
 
       expect(enforceEnvVars(['FAKE_ENV_VAR'], false)).toBeFalsy()
 
-      process.env.NODE_ENV = oldRunMode
+      process.env.CARBON_RUN_MODE = oldRunMode
       process.env.FAKE_ENV_VAR = oldFakeEnvVar
     })
   })
@@ -78,56 +78,56 @@ describe('getEnvVar', () => {
   })
 
   it('returns the fallback when the envvar is not set and fallback is supplied on Dev mode', () => {
-    const oldRunMode = process.env.NODE_ENV
+    const oldRunMode = process.env.CARBON_RUN_MODE
     const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
     process.env.FAKE_ENV_VAR = ''
-    process.env.NODE_ENV = RunMode.Dev
+    process.env.CARBON_RUN_MODE = RunMode.Dev
 
     const fallbackValue = 'this has a value'
     expect(getEnvVar('FAKE_ENV_VAR', fallbackValue)).toEqual(fallbackValue)
 
     process.env.FAKE_ENV_VAR = oldFakeEnvVar
-    process.env.NODE_ENV = oldRunMode
+    process.env.CARBON_RUN_MODE = oldRunMode
   })
 
   it('throws error when env var and fallback value are not set', () => {
-    const oldRunMode = process.env.NODE_ENV
+    const oldRunMode = process.env.CARBON_RUN_MODE
     const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
     process.env.FAKE_ENV_VAR = ''
-    process.env.NODE_ENV = RunMode.Dev
+    process.env.CARBON_RUN_MODE = RunMode.Dev
 
     expect(() => getEnvVar('FAKE_ENV_VAR')).toThrow()
 
     process.env.FAKE_ENV_VAR = oldFakeEnvVar
-    process.env.NODE_ENV = oldRunMode
+    process.env.CARBON_RUN_MODE = oldRunMode
   })
 
   it('throws error when the env var is not set and on Prod mode', () => {
-    const oldRunMode = process.env.NODE_ENV
+    const oldRunMode = process.env.CARBON_RUN_MODE
     const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
     process.env.FAKE_ENV_VAR = ''
-    process.env.NODE_ENV = RunMode.Prod
+    process.env.CARBON_RUN_MODE = RunMode.Prod
 
     expect(() => getEnvVar('FAKE_ENV_VAR')).toThrow()
 
     process.env.FAKE_ENV_VAR = oldFakeEnvVar
-    process.env.NODE_ENV = oldRunMode
+    process.env.CARBON_RUN_MODE = oldRunMode
   })
 
   it('throws error when the envvar is not set and on Prod mode even if fallback is given', () => {
-    const oldRunMode = process.env.NODE_ENV
+    const oldRunMode = process.env.CARBON_RUN_MODE
     const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
     process.env.FAKE_ENV_VAR = ''
-    process.env.NODE_ENV = RunMode.Prod
+    process.env.CARBON_RUN_MODE = RunMode.Prod
 
     const fallbackValue = 'this has a value'
     expect(() => getEnvVar('FAKE_ENV_VAR', fallbackValue)).toThrow()
 
     process.env.FAKE_ENV_VAR = oldFakeEnvVar
-    process.env.NODE_ENV = oldRunMode
+    process.env.CARBON_RUN_MODE = oldRunMode
   })
 })

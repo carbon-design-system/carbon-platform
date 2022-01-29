@@ -7,7 +7,7 @@
 import { Options } from 'amqplib'
 import chalk from 'chalk'
 
-import { getRunMode, PROD } from '../run-mode'
+import { getRunMode, RunMode } from '../run-mode'
 
 const DEBUG = process.env.CARBON_DEBUG === 'true'
 const LOCAL_MESSAGE_QUEUE_URL = 'amqp://localhost:5672'
@@ -43,8 +43,8 @@ const DEFAULT_EXCHANGE_OPTIONS: Options.AssertExchange = {
 const DEFAULT_EXCHANGE_TYPE = 'fanout'
 
 // Message queue URL checking
-if (getRunMode() === PROD && !process.env.CARBON_MESSAGE_QUEUE_URL) {
-  throw new Error('CARBON_MESSAGE_QUEUE_URL must be set in PROD run mode')
+if (getRunMode() === RunMode.Prod && !process.env.CARBON_MESSAGE_QUEUE_URL) {
+  throw new Error('CARBON_MESSAGE_QUEUE_URL must be set in RunMode.Prod run mode')
 }
 if (MESSAGE_QUEUE_URL === LOCAL_MESSAGE_QUEUE_URL) {
   console.warn(`${chalk.bgYellowBright.black('WARN')} Using localhost message queue url`)

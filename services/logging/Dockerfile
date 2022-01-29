@@ -13,9 +13,12 @@ FROM local/carbon-platform/base:latest
 
 WORKDIR /ibm
 
+# Omit devDependencies, run service in production mode
+ENV NODE_ENV production
+
 COPY package.json services/logging/package.json
 
-RUN CI=true npm -w services/logging install --production
+RUN CI=true npm -w services/logging install
 
 # This is done at the end so the install above can happen in parallel
 COPY --from=builder /ibm/services/logging/dist services/logging/dist

@@ -27,7 +27,8 @@ FROM node:16-alpine
 
 WORKDIR /ibm
 
-# Dependencies required for node-gyp to run on Alpine Linux
+# Dependencies required for node-gyp to run on Alpine Linux, provided to all other images that use
+# this one as a base image
 RUN apk add --no-cache python3 make g++
 RUN ln -s /usr/bin/python3 /usr/bin/python
 

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { DEV, getRunMode } from '@carbon-platform/api/run-mode'
+import { getRunMode, RunMode } from '@carbon-platform/api/run-mode'
 
 /**
  * Creates request options for retrieveUser api call including headers and agent if necessary
@@ -17,7 +17,7 @@ function getRequestOptions(req) {
   const reqOptions = {
     headers: { cookie: req.headers.cookie }
   }
-  if (getRunMode() === DEV) {
+  if (getRunMode() === RunMode.Dev) {
     const Agent = require('https').Agent
     reqOptions.agent = new Agent({ rejectUnauthorized: false })
   }

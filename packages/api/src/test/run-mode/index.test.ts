@@ -4,42 +4,42 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { DEV, getRunMode, PROD } from '../../main/run-mode'
+import { getRunMode, RunMode } from '../../main/run-mode'
 
 describe('getRunMode', () => {
   it('returns dev when the envvar is not set', () => {
-    const old = process.env.CARBON_RUN_MODE
-    delete process.env.CARBON_RUN_MODE
+    const old = process.env.NODE_ENV
+    delete process.env.NODE_ENV
 
-    expect(getRunMode()).toBe(DEV)
+    expect(getRunMode()).toBe(RunMode.Dev)
 
-    process.env.CARBON_RUN_MODE = old
+    process.env.NODE_ENV = old
   })
 
-  it('returns dev when the envvar is set to DEV', () => {
-    const old = process.env.CARBON_RUN_MODE
-    process.env.CARBON_RUN_MODE = 'DEV'
+  it('returns dev when the envvar is set to RunMode.Dev', () => {
+    const old = process.env.NODE_ENV
+    process.env.NODE_ENV = 'development'
 
-    expect(getRunMode()).toBe(DEV)
+    expect(getRunMode()).toBe(RunMode.Dev)
 
-    process.env.CARBON_RUN_MODE = old
+    process.env.NODE_ENV = old
   })
 
-  it('returns production when the envvar is set to PROD', () => {
-    const old = process.env.CARBON_RUN_MODE
-    process.env.CARBON_RUN_MODE = 'PROD'
+  it('returns production when the envvar is set to RunMode.Prod', () => {
+    const old = process.env.NODE_ENV
+    process.env.NODE_ENV = 'production'
 
-    expect(getRunMode()).toBe(PROD)
+    expect(getRunMode()).toBe(RunMode.Prod)
 
-    process.env.CARBON_RUN_MODE = old
+    process.env.NODE_ENV = old
   })
 
   it('throws when the envvar is set to an unknown value', () => {
-    const old = process.env.CARBON_RUN_MODE
-    process.env.CARBON_RUN_MODE = 'bad'
+    const old = process.env.NODE_ENV
+    process.env.NODE_ENV = 'bad'
 
     expect(getRunMode).toThrow()
 
-    process.env.CARBON_RUN_MODE = old
+    process.env.NODE_ENV = old
   })
 })

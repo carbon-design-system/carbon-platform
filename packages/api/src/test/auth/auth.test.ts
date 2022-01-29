@@ -14,7 +14,7 @@ import {
   store
 } from '../../main/auth'
 import { IBM_AUTHENTICATION_STRATEGY } from '../../main/auth/config/constants'
-import { DEV, PROD } from '../../main/run-mode'
+import { RunMode } from '../../main/run-mode'
 
 jest.mock('passport')
 const mockedPassport = passport as jest.Mocked<typeof passport>
@@ -61,21 +61,21 @@ describe('getStore', () => {
   it('on production mode without env variables throws error', async () => {
     const oldMongoDbUrl = process.env.CARBON_MONGO_DB_URL
     const oldMongoDbName = process.env.CARBON_MONGO_DB_NAME
-    const oldRunMode = process.env.CARBON_RUN_MODE
+    const oldRunMode = process.env.NODE_ENV
     process.env.CARBON_MONGO_DB_URL = ''
     process.env.CARBON_MONGO_DB_NAME = ''
-    process.env.CARBON_RUN_MODE = PROD
+    process.env.NODE_ENV = RunMode.Prod
     await expect(() => store.getStore()).rejects.toThrow()
-    process.env.CARBON_RUN_MODE = oldRunMode
+    process.env.NODE_ENV = oldRunMode
     process.env.CARBON_MONGO_DB_URL = oldMongoDbUrl
     process.env.CARBON_MONGO_DB_NAME = oldMongoDbName
   })
 
-  it('can be retrieved without crashing in DEV mode', async () => {
-    const oldRunMode = process.env.CARBON_RUN_MODE
-    process.env.CARBON_RUN_MODE = DEV
+  it('can be retrieved without crashing in Dev mode', async () => {
+    const oldRunMode = process.env.NODE_ENV
+    process.env.NODE_ENV = RunMode.Dev
     await expect(store.getStore()).resolves.toBeDefined()
-    process.env.CARBON_RUN_MODE = oldRunMode
+    process.env.NODE_ENV = oldRunMode
   })
 })
 

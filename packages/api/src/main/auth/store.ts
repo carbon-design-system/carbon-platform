@@ -9,7 +9,7 @@ import cookieParser from 'cookie-parser'
 import { SessionData, Store } from 'express-session'
 
 import { enforceEnvVars, getEnvVar } from '../enforce-env-vars'
-import { getRunMode, PROD } from '../run-mode'
+import { getRunMode, RunMode } from '../run-mode'
 import { PROD_SESSION_REQUIRED_ENV_VARS, SESSION_SECRET } from './config/constants'
 import { User } from './models/user.model'
 
@@ -62,7 +62,7 @@ async function createSequelizeStore(): Promise<Store> {
  */
 const getStore = async (): Promise<Store> => {
   if (!storeInstance) {
-    if (getRunMode() === PROD) {
+    if (getRunMode() === RunMode.Prod) {
       enforceEnvVars(PROD_SESSION_REQUIRED_ENV_VARS)
 
       storeInstance = await createMongoStore()

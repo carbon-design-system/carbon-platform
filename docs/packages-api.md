@@ -24,17 +24,19 @@ messages to be logged.
 
 ## run-mode
 
-A module that exports a function called `getRunMode()`, which returns one of two constants,
-depending on the value of the `CARBON_RUN_MODE` environment variable.
+A module that exports two things:
 
-The possible values are:
+1. An enum called `RunMode` containing the values `Dev` and `Prod`.
+2. A function called `getRunMode()`, which returns one of two enum values, depending on the value of
+   the `NODE_ENV` environment variable.
 
-- `DEV`
-- `PROD`
+`NODE_ENV` can be set to the following values:
 
-Exporting the `CARBON_RUN_MODE` environment variable as either of these values will cause
-`getRunMode` to recognize it as the current run mode.
+- `development`
+  - Causes `getRunMode()` to return `Dev`
+- `production`
+  - Causes `getRunMode()` to return `Prod`
 
-If the environment variable is not set, the mode will default to `DEV`.
+If the `NODE_ENV` environment variable is not set, the mode will default to the "Dev" run mode.
 
 Setting this envvar to any other value will result in an error being thrown.

@@ -62,7 +62,7 @@ existing application deployed on IBM cloud in order to enable automatic deployme
    `ibmcloud login --apikey [APIKEY] -r 'us-south'`)
 
 4. From the root of the project run
-   `CONTAINER_REGISTRY=[TARGET_CONTAINER_REGISTRY_URL] CONTAINER_REGISTRY_NAMESPACE=[TARGET_CONTAINER_REGISTRY_NAMESPACE] CODE_ENGINE_PROJECT=[TARGET_CODE_ENGINE_PROJECT] scripts/micromanage deploy --target=[test | production]`
+   `CONTAINER_REGISTRY=[TARGET_CONTAINER_REGISTRY_URL] CONTAINER_REGISTRY_NAMESPACE=[TARGET_CONTAINER_REGISTRY_NAMESPACE] CODE_ENGINE_PROJECT=[TARGET_CODE_ENGINE_PROJECT] node scripts/micromanage deploy --target=[test | production]`
 
 5. Upon succesful completion of the script the _changed_ service(s) deployment(s) should be
    available at it's corresponding route(s)

@@ -157,5 +157,5 @@ describe('session', () => {
 })
 
 afterAll(() => {
-  fs.rm('.dev', { recursive: true }, undefined)
+  fs.rmSync('.dev', { recursive: true })
 })

@@ -23,7 +23,7 @@ beforeEach(() => {
 describe('message emission', () => {
   describe('DEV mode', () => {
     beforeEach(() => {
-      mockedRunMode.getRunMode.mockReturnValue(runMode.DEV)
+      mockedRunMode.getRunMode.mockReturnValue(runMode.RunMode.Dev)
     })
 
     it('does not emit any messages', async () => {
@@ -39,7 +39,7 @@ describe('message emission', () => {
 
   describe('PROD mode', () => {
     beforeEach(() => {
-      mockedRunMode.getRunMode.mockReturnValue(runMode.PROD)
+      mockedRunMode.getRunMode.mockReturnValue(runMode.RunMode.Prod)
     })
 
     it('emits one message per method call', async () => {
@@ -67,7 +67,7 @@ describe('console output', () => {
   let consoleDebug: any, consoleInfo: any, consoleWarn: any, consoleError: any
 
   beforeEach(() => {
-    mockedRunMode.getRunMode.mockReturnValue(runMode.DEV)
+    mockedRunMode.getRunMode.mockReturnValue(runMode.RunMode.Dev)
 
     consoleDebug = console.debug
     consoleInfo = console.info

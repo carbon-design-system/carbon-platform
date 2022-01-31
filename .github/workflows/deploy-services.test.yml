@@ -37,5 +37,5 @@ jobs:
         run: npx micromanage deploy --target=test
         env:
           CONTAINER_REGISTRY: us.icr.io
-          CONTAINER_REGISTRY_NAMESPACE: carbon-platform-test
+          CONTAINER_REGISTRY_NAMESPACE: carbon-platform
           CODE_ENGINE_PROJECT: carbon-platform-test

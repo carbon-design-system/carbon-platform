@@ -34,28 +34,27 @@
     "test": "jest --config=./.jestrc.js"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.0.1",
+    "@commitlint/cli": "^16.1.0",
     "@commitlint/config-conventional": "^16.0.0",
     "@netlify/plugin-nextjs": "^4.2.1",
     "@types/jest": "^27.4.0",
-    "@typescript-eslint/eslint-plugin": "^5.9.0",
-    "commander": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
     "eslint": "^7.32.0",
     "eslint-config-carbon": "^2.9.0",
-    "eslint-config-next": "^12.0.7",
+    "eslint-config-next": "^12.0.9",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-jest": "^25.3.4",
+    "eslint-plugin-jest": "^25.7.0",
     "eslint-plugin-notice": "^0.9.10",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^7.0.4",
     "jest": "^27.4.7",
-    "lint-staged": "^12.1.7",
-    "npm-check-updates": "^12.1.0",
+    "lint-staged": "^12.3.2",
+    "npm-check-updates": "^12.2.1",
     "prettier-config-carbon": "^0.6.0",
     "rimraf": "^3.0.2",
     "standard-version": "^9.3.2",
     "stylelint": "^13.13.1",
     "stylelint-config-carbon": "^1.7.0",
-    "ts-jest": "^27.1.2"
+    "ts-jest": "^27.1.3"
   }
 }

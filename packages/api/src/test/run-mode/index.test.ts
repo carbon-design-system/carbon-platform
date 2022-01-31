@@ -4,32 +4,32 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { DEV, getRunMode, PROD } from '../../main/run-mode'
+import { getRunMode, RunMode } from '../../main/run-mode'
 
 describe('getRunMode', () => {
   it('returns dev when the envvar is not set', () => {
     const old = process.env.CARBON_RUN_MODE
     delete process.env.CARBON_RUN_MODE
 
-    expect(getRunMode()).toBe(DEV)
+    expect(getRunMode()).toBe(RunMode.Dev)
 
     process.env.CARBON_RUN_MODE = old
   })
 
-  it('returns dev when the envvar is set to DEV', () => {
+  it('returns dev when the envvar is set to RunMode.Dev', () => {
     const old = process.env.CARBON_RUN_MODE
     process.env.CARBON_RUN_MODE = 'DEV'
 
-    expect(getRunMode()).toBe(DEV)
+    expect(getRunMode()).toBe(RunMode.Dev)
 
     process.env.CARBON_RUN_MODE = old
   })
 
-  it('returns production when the envvar is set to PROD', () => {
+  it('returns production when the envvar is set to RunMode.Prod', () => {
     const old = process.env.CARBON_RUN_MODE
     process.env.CARBON_RUN_MODE = 'PROD'
 
-    expect(getRunMode()).toBe(PROD)
+    expect(getRunMode()).toBe(RunMode.Prod)
 
     process.env.CARBON_RUN_MODE = old
   })

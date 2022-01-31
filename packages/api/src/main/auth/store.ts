@@ -9,15 +9,9 @@ import cookieParser from 'cookie-parser'
 import { SessionData, Store } from 'express-session'
 
 import { enforceEnvVars, getEnvVar } from '../enforce-env-vars'
-import { getRunMode, PROD } from '../run-mode'
+import { getRunMode, RunMode } from '../run-mode'
 import { PROD_SESSION_REQUIRED_ENV_VARS, SESSION_SECRET } from './config/constants'
 import { User } from './models/user.model'
-
-// connect-session-sequelize doesn't have type definitions work-around
-type ISequelizeStore = Store & {
-  new (options: { db: any }): ISequelizeStore
-  sync: () => Promise<void>
-}
 
 let storeInstance: Store
 
@@ -34,12 +28,13 @@ async function createMongoStore(): Promise<Store> {
 }
 
 async function createSequelizeStore(): Promise<Store> {
-  const fs = require('fs')
-  const Sequelize = require('sequelize')
-  const SequelizeStore = require('connect-session-sequelize')(Store) as ISequelizeStore
-  const sqlite3 = require('sqlite3')
+  const path = await import('path')
+  const fs = await import('fs')
+  const { Sequelize } = await import('sequelize')
+  const SequelizeStore = (await import('connect-session-sequelize')).default(Store)
+  const sqlite3 = await import('sqlite3')
 
-  const dir = 'data'
+  const dir = path.join(process.cwd(), '.dev')
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir)
   }
@@ -47,16 +42,17 @@ async function createSequelizeStore(): Promise<Store> {
   const sequelize = new Sequelize('database', 'username', 'password', {
     dialect: 'sqlite',
     dialectModule: sqlite3,
-    storage: 'data/sessiondb.sqlite'
+    storage: path.join(dir, 'sessiondb.sqlite')
   })
 
-  return new Promise((resolve) => {
-    const store = new SequelizeStore({
-      db: sequelize
-    })
-
-    store.sync().then(() => resolve(store))
+  const store = new SequelizeStore({
+    db: sequelize
   })
+  // The type definition doesn't recognize the fact that the underlying module impl being used here
+  // is actually returning a promise that must be awaited
+  await (store.sync as () => Promise<void>)()
+
+  return store
 }
 
 /**
@@ -66,7 +62,7 @@ async function createSequelizeStore(): Promise<Store> {
  */
 const getStore = async (): Promise<Store> => {
   if (!storeInstance) {
-    if (getRunMode() === PROD) {
+    if (getRunMode() === RunMode.Prod) {
       enforceEnvVars(PROD_SESSION_REQUIRED_ENV_VARS)
 
       storeInstance = await createMongoStore()

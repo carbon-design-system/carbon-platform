@@ -71,6 +71,19 @@ module.exports = {
       }
     },
     {
+      files: ['**/packages/**'],
+      rules: {
+        'no-restricted-syntax': [
+          'error',
+          {
+            selector: 'ImportDeclaration[source.value=/@carbon-platform.*/]',
+            message:
+              'Carbon Platform API package imports from inside of the API package must be relative.'
+          }
+        ]
+      }
+    },
+    {
       files: ['*.ts'],
       rules: {
         'no-unused-vars': 'off',

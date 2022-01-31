@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import fs from 'fs'
 import passport from 'passport'
 
 import {
@@ -13,7 +14,7 @@ import {
   store
 } from '../../main/auth'
 import { IBM_AUTHENTICATION_STRATEGY } from '../../main/auth/config/constants'
-import { DEV, PROD } from '../../main/run-mode'
+import { RunMode } from '../../main/run-mode'
 
 jest.mock('passport')
 const mockedPassport = passport as jest.Mocked<typeof passport>
@@ -63,16 +64,16 @@ describe('getStore', () => {
     const oldRunMode = process.env.CARBON_RUN_MODE
     process.env.CARBON_MONGO_DB_URL = ''
     process.env.CARBON_MONGO_DB_NAME = ''
-    process.env.CARBON_RUN_MODE = PROD
+    process.env.CARBON_RUN_MODE = RunMode.Prod
     await expect(() => store.getStore()).rejects.toThrow()
     process.env.CARBON_RUN_MODE = oldRunMode
     process.env.CARBON_MONGO_DB_URL = oldMongoDbUrl
     process.env.CARBON_MONGO_DB_NAME = oldMongoDbName
   })
 
-  it('can be retrieved without crashing in DEV mode', async () => {
+  it('can be retrieved without crashing in Dev mode', async () => {
     const oldRunMode = process.env.CARBON_RUN_MODE
-    process.env.CARBON_RUN_MODE = DEV
+    process.env.CARBON_RUN_MODE = RunMode.Dev
     await expect(store.getStore()).resolves.toBeDefined()
     process.env.CARBON_RUN_MODE = oldRunMode
   })
@@ -153,4 +154,8 @@ describe('session', () => {
     expect(updateResult).toBeFalsy()
     await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toBeUndefined()
   })
+})
+
+afterAll(() => {
+  fs.rmSync('.dev', { recursive: true })
 })

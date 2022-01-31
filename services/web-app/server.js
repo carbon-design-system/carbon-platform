@@ -11,12 +11,12 @@
 const { createServer } = require('https')
 const next = require('next')
 const fs = require('fs')
-const { DEV, getRunMode } = require('@carbon-platform/api/run-mode')
+const { RunMode, getRunMode } = require('@carbon-platform/api/run-mode')
 const { getEnvVar } = require('@carbon-platform/api/enforce-env-vars')
 
 const PORT = getEnvVar('PORT', '443')
 
-const isDevMode = getRunMode() === DEV
+const isDevMode = getRunMode() === RunMode.Dev
 const app = next({ dev: isDevMode })
 const handle = app.getRequestHandler()
 const httpsOptions = {

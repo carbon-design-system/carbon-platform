@@ -8,7 +8,7 @@ import chalk from 'chalk'
 
 import { EventMessage, MessagingClient } from '../messaging'
 import { DEBUG } from '../messaging/constants' // TODO: fix this
-import { DEV, getRunMode, PROD } from '../run-mode'
+import { getRunMode, RunMode } from '../run-mode'
 import { LogLevel, LogLoggedMessage } from './interfaces'
 
 const logColors = {
@@ -46,8 +46,8 @@ class Logging {
     // TODO: this should be based on an envvar indicating whether the service is running in a test
     // environment or a prod environment
     this.environment = 'PRODUCTION'
-    this.isDebugLoggingEnabled = getRunMode() === DEV || DEBUG
-    this.isRemoteLoggingEnabled = getRunMode() === PROD
+    this.isDebugLoggingEnabled = getRunMode() === RunMode.Dev || DEBUG
+    this.isRemoteLoggingEnabled = getRunMode() === RunMode.Prod
     this.service = serviceName
 
     if (this.isRemoteLoggingEnabled) {

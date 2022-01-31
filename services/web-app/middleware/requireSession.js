@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { getPassportInstance, SESSION_SECRET, store } from '@carbon-platform/api/auth'
-import { getRunMode, PROD } from '@carbon-platform/api/run-mode'
+import { getRunMode, RunMode } from '@carbon-platform/api/run-mode'
 import cookieParser from 'cookie-parser'
 import expressSession from 'express-session'
 import nextConnect from 'next-connect'
@@ -31,7 +31,7 @@ export default function requireSession(needsUser = false) {
         secret: SESSION_SECRET,
         cookie: {
           path: '/',
-          secure: getRunMode() === PROD,
+          secure: getRunMode() === RunMode.Prod,
           maxAge: 60 * 60 * 2 * 1000 // 2 hours
         },
         saveUninitialized: false,

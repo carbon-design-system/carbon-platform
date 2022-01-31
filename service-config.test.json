@@ -1,7 +1,7 @@
 {
   "deployedServices": {
-    "@carbon-platform/hello-test-app": {
-      "deployedVersion": "1.5.8"
+    "@carbon-platform/web-app": {
+      "deployedVersion": "0.1.42"
     }
   }
 }

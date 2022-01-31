@@ -43,7 +43,7 @@ $background-header: #d0e2ff;
 .title {
   margin-bottom: $spacing-07;
   color: $text-primary;
-  @include type-style('display-01');
+  @include type-style('display-01', true);
   @include line-clamp(2);
   @include breakpoint-down(md) {
     @include type-style('quotation-02');

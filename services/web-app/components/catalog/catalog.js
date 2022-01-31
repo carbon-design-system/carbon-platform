@@ -4,8 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { remove, union } from 'lodash'
-import { useEffect, useState } from 'react'
+import { get, remove, union } from 'lodash'
+import minimatch from 'minimatch'
+import { useEffect, useRef, useState } from 'react'
 
 import CatalogFilters from '@/components/catalog-filters'
 import CatalogList from '@/components/catalog-list'
@@ -17,6 +18,8 @@ import { assetSortComparator, librarySortComparator } from '@/utils/schema'
 import { queryTypes, useQueryState } from '@/utils/use-query-state'
 
 import styles from './catalog.module.scss'
+
+const FRAMEWORK = 'react'
 
 const assetIsInFilter = (asset, filter) => {
   for (const [key, value] of Object.entries(filter)) {
@@ -30,7 +33,7 @@ const assetIsInFilter = (asset, filter) => {
   return true
 }
 
-function Catalog({ data, type = 'component', filter: defaultFilter = { status: ['stable'] } }) {
+function Catalog({ data, type, filter: defaultFilter = {}, glob = {} }) {
   const [query, setQuery] = useQueryState('q', {
     defaultValue: ''
   })
@@ -54,13 +57,15 @@ function Catalog({ data, type = 'component', filter: defaultFilter = { status: [
 
   const [pageSize, setPageSize] = useQueryState('items', {
     ...queryTypes.integer,
-    defaultValue: 12
+    defaultValue: 60
   })
 
   const [filter, setFilter] = useQueryState('filter', {
     ...queryTypes.object,
     defaultValue: defaultFilter
   })
+
+  const framework = useRef(FRAMEWORK)
 
   const [libraries] = useState(
     data.libraries.filter((library) => library.assets.length).sort(librarySortComparator)
@@ -84,18 +89,79 @@ function Catalog({ data, type = 'component', filter: defaultFilter = { status: [
   const [assets, setAssets] = useState(filteredAssets)
 
   useEffect(() => {
-    setFilteredAssets(
-      initialAssets.filter((asset) => {
-        // don't show private assets or assets of the wrong type
-        if (asset.content.private || asset.content.type !== type) return false
+    const prefilteredAssets = initialAssets.filter((asset) => {
+      // don't show private assets or assets of the wrong type
+      if (asset.content.private || (type && asset.content.type !== type)) return false
 
-        // don't show if the asset doesn't have one of the valid values
-        return assetIsInFilter(asset, filter)
+      // don't show libraries or assets match a glob
+      if (glob.data && glob.pattern) {
+        return minimatch(get(asset, glob.data), glob.pattern)
+      }
+
+      // don't show if the asset doesn't have one of the valid values
+      return assetIsInFilter(asset, filter)
+    })
+
+    // set framework collapse key
+    framework.current = get(filter, 'framework[0]', FRAMEWORK)
+
+    // find all inherited libraries
+    const inheritanceIds = prefilteredAssets
+      .reduce((arr, asset) => {
+        const inherits = get(asset, 'content.inherits.asset')
+
+        arr = inherits ? [...arr, inherits] : arr
+        return arr
+      }, [])
+      .filter((v, i, a) => a.indexOf(v) === i)
+
+    // save inheritance totals for framework collapsing
+    const inheritanceTotals = {}
+
+    // filter out and save other frameworks
+    const dedupedFrameworkAssets = prefilteredAssets.filter((asset) => {
+      let inherits = get(asset, 'content.inherits.asset')
+      const inheritanceRef = `${asset.params.library}@latest/${asset.content.id}`
+
+      if (inheritanceIds.includes(inheritanceRef)) {
+        inherits = inheritanceRef
+      }
+
+      if (inherits) {
+        if (get(asset, 'content.framework') !== framework.current) {
+          inheritanceTotals[inherits] = inheritanceTotals[inherits]
+            ? inheritanceTotals[inherits] + 1
+            : 1
+
+          return false
+        }
+      }
+      return true
+    })
+
+    // save framework counts
+    setFilteredAssets(
+      dedupedFrameworkAssets.map((asset) => {
+        let inherits = get(asset, 'content.inherits.asset')
+        const inheritanceRef = `${asset.params.library}@latest/${asset.content.id}`
+
+        if (inheritanceIds.includes(inheritanceRef)) {
+          inherits = inheritanceRef
+        }
+
+        return {
+          ...asset,
+          content: {
+            ...asset.content,
+            frameworkCount: inheritanceTotals[inherits]
+          }
+        }
       })
     )
+
     // avoid deep object equality comparison in the effect by using JSON.stringify
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialAssets, JSON.stringify(filter), type])
+  }, [framework, initialAssets, JSON.stringify(filter), type])
 
   useEffect(() => {
     setAssets(

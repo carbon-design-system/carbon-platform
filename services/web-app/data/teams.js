@@ -28,9 +28,9 @@ export const teams = {
     icon: IbmSecurity,
     name: 'IBM Security'
   },
-  sterling: {
-    icon: Bee,
-    name: 'IBM Sterling'
+  'ai-apps': {
+    icon: Watson,
+    name: 'IBM AI Apps'
   },
   watson: {
     icon: Watson,

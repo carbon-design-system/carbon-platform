@@ -32,6 +32,10 @@ WORKDIR /ibm
 RUN apk add --no-cache python3 make g++
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
+# Build and run services in PROD mode by default. This var is propagated to all dependent builds,
+# but can be overridden
+ENV CARBON_RUN_MODE PROD
+
 COPY package.json .
 COPY package-lock.json .
 COPY LICENSE .

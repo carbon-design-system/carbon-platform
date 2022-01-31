@@ -13,9 +13,6 @@ FROM local/carbon-platform/base:latest
 
 WORKDIR /ibm
 
-# Run service in PROD mode by default
-ENV CARBON_RUN_MODE PROD
-
 COPY package.json services/web-app/package.json
 
 RUN CI=true npm -w services/web-app install --production

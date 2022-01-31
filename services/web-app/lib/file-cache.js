@@ -1,9 +1,10 @@
 /*
- * Copyright IBM Corp. 2021, 2021
+ * Copyright IBM Corp. 2021, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { getRunMode, RunMode } from '@carbon-platform/api/run-mode'
 import { Octokit } from '@octokit/core'
 import cacheManager from 'cache-manager'
 import fsStore from 'cache-manager-fs-hash'
@@ -11,11 +12,16 @@ import fs from 'fs-extra'
 
 import { CACHE_PATH, IMAGES_CACHE_PATH } from '@/config/constants'
 
+/**
+ * If using prototyping data committed to the repo, use a crazy long ttl like a year so the cache
+ * doesn't unintentionally invalidate while doing development. If using the full file cache in
+ * production, use a one hour ttl.
+ */
 const diskCache = cacheManager.caching({
   store: fsStore,
   options: {
     path: CACHE_PATH,
-    ttl: 60 * 60 * 24 /* seconds */,
+    ttl: getRunMode() === RunMode.Prod ? 60 * 60 : 60 * 60 * 24 * 365 /* seconds */,
     zip: false
   }
 })

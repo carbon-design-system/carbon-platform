@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2021, 2021
+ * Copyright IBM Corp. 2021, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -23,11 +23,28 @@ function buildCurlUrlParams(params) {
  * @returns {string} Output of the command.
  */
 function exec(cmd, options = {}) {
+  guardShell(cmd)
+
   const execOptions = {
     env: process.env,
     ...options
   }
   return childProcess.execSync(cmd, execOptions).toString().trim()
+}
+
+/**
+ * Throws an exception if the command string contains any special shell characters that could lead
+ * to command injection.
+ *
+ * @param {string} commandString The string to check.
+ */
+function guardShell(commandString) {
+  if (commandString.match(/[\\$;`]/)) {
+    throw new Error(
+      'Shell guard prevented a command from running because it contained special characters: ' +
+        commandString
+    )
+  }
 }
 
 /**
@@ -38,6 +55,8 @@ function exec(cmd, options = {}) {
  * @returns {Promise} Promise of the command completing.
  */
 async function spawn(cmd, options = {}) {
+  guardShell(cmd)
+
   const spawnOptions = {
     env: process.env,
     stdio: 'inherit',
@@ -49,7 +68,11 @@ async function spawn(cmd, options = {}) {
     const spawnedProcess = childProcess.spawn(cmd, spawnOptions)
 
     spawnedProcess.on('close', (code) => {
-      resolve(code)
+      if (code === 0) {
+        resolve(code)
+      } else {
+        reject(code)
+      }
     })
 
     spawnedProcess.on('error', (err) => {

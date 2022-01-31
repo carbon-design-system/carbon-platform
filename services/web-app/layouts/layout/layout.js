@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2021, 2021
+ * Copyright IBM Corp. 2021, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -87,7 +87,11 @@ const Layout = ({ children }) => {
                 <HeaderGlobalAction aria-label="Search">
                   <Search size={20} />
                 </HeaderGlobalAction>
-                <HeaderGlobalAction aria-label="Log in">
+                <HeaderGlobalAction
+                  aria-label="Log in"
+                  href={`/api/login?next=${router.asPath}`}
+                  className={styles.logInAnchor}
+                >
                   <User size={20} />
                 </HeaderGlobalAction>
                 <HeaderGlobalAction aria-label="Switch sites">

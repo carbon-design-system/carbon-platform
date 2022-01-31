@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2021, 2021
+ * Copyright IBM Corp. 2021, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -21,4 +21,14 @@ export const removeLeadingSlash = (str) => {
  */
 export const addTrailingSlash = (str) => {
   return str.endsWith('/') ? str : `${str}/`
+}
+
+/**
+ * checks if a given string is a valid IBM email
+ * @param {string} str email to evaluate, assumes it is a valid email
+ * @returns {boolean} true if string is a valid ibm email
+ */
+export const isValidIbmEmail = (str) => {
+  const acceptableEmailSuffixes = ['.ibm.com', '@ibm.com']
+  return acceptableEmailSuffixes.some((suffix) => str.endsWith(suffix))
 }

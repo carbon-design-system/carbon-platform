@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2021, 2021
+ * Copyright IBM Corp. 2021, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -68,6 +68,26 @@ module.exports = {
             message: 'Test exports are not allowed to be used outside of test files.'
           }
         ]
+      }
+    },
+    {
+      files: ['**/packages/**'],
+      rules: {
+        'no-restricted-syntax': [
+          'error',
+          {
+            selector: 'ImportDeclaration[source.value=/@carbon-platform.*/]',
+            message:
+              'Carbon Platform API package imports from inside of the API package must be relative.'
+          }
+        ]
+      }
+    },
+    {
+      files: ['*.ts'],
+      rules: {
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': ['error']
       }
     }
   ],

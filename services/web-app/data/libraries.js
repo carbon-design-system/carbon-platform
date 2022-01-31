@@ -1,10 +1,10 @@
 /*
- * Copyright IBM Corp. 2021, 2021
+ * Copyright IBM Corp. 2021, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const { DEV, getRunMode } = require('@carbon-platform/api/run-mode')
+const { RunMode, getRunMode } = require('@carbon-platform/api/run-mode')
 
 /**
  * Libraries are only included in the platform if in this allowlist. Library slugs are specified as
@@ -313,7 +313,7 @@ const ossLibraries = [
  * Only use the `ossLibraries` data set if specified in the environment variable.
  */
 const libraryAllowList = Object.keys(libraries)
-  .filter((key) => (getRunMode() === DEV ? ossLibraries.includes(key) : true))
+  .filter((key) => (getRunMode() === RunMode.Dev ? ossLibraries.includes(key) : true))
   .reduce((obj, key) => {
     obj[key] = libraries[key]
     return obj

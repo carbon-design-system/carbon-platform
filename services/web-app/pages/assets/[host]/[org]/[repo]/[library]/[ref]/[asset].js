@@ -4,13 +4,17 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { TextInput } from '@carbon/pictograms-react'
+import { Column, Grid } from '@carbon/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import { Dashboard, DashboardItem } from '@/components/dashboard'
+import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
@@ -78,6 +82,59 @@ const Asset = ({ libraryData }) => {
     <>
       <PageHeader title={seo.title} pictogram={TextInput} />
       <PageBreadcrumb items={breadcrumbItems} />
+      <Dashboard className={styles.content}>
+        <Column className={dashboardStyles.column}>
+          <DashboardItem
+            aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
+            border={['sm']}
+          >
+            Maintainer
+          </DashboardItem>
+        </Column>
+        <Column className={dashboardStyles.column} lg={2}>
+          <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
+            <Grid columns={2} className={dashboardStyles.subgrid}>
+              <Column className={dashboardStyles.subcolumn}>Library</Column>
+              <Column className={dashboardStyles.subcolumn}>Version</Column>
+              <Column className={dashboardStyles.subcolumn}>License</Column>
+              <Column className={dashboardStyles.subcolumn}>Framework</Column>
+              <Column className={dashboardStyles.subcolumn}>Last modified</Column>
+              <Column className={dashboardStyles.subcolumn}>Design kit</Column>
+            </Grid>
+          </DashboardItem>
+        </Column>
+        <Column className={dashboardStyles.column} sm={0} md={1}>
+          <DashboardItem
+            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+            border={['sm', 'md', 'lg', 'xlg']}
+          >
+            Downloads
+          </DashboardItem>
+        </Column>
+        <Column className={dashboardStyles.column} sm={0} md={1}>
+          <DashboardItem
+            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+            border={['sm', 'md', 'lg', 'xlg']}
+          >
+            Open issues
+          </DashboardItem>
+        </Column>
+        <Column className={dashboardStyles.column} sm={0} md={1}>
+          <DashboardItem
+            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+            border={['sm', 'md', 'lg', 'xlg']}
+          >
+            Pull requests
+          </DashboardItem>
+        </Column>
+        <Column className={dashboardStyles.column} sm={0} md={1} lg={0}>
+          <DashboardItem
+            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+            border={['sm', 'md', 'lg', 'xlg']}
+            spacer
+          />
+        </Column>
+      </Dashboard>
       <div className={styles.content}>
         <NextSeo {...seo} />
         {inheritsData && <InheritsLink data={inheritsData} />}

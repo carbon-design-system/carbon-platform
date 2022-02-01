@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getRunMode, PROD } from '../run-mode'
+import { getRunMode, RunMode } from '../run-mode'
 
 /**
  * Validates all necessary environment variables and throws error if necessary
@@ -18,7 +18,7 @@ import { getRunMode, PROD } from '../run-mode'
  */
 const enforceEnvVars = (requiredVars: string[], throwError = true): boolean => {
   let isValid = true
-  if (getRunMode() === PROD) {
+  if (getRunMode() === RunMode.Prod) {
     requiredVars.forEach((envVar) => {
       try {
         getEnvVar(envVar)
@@ -32,16 +32,16 @@ const enforceEnvVars = (requiredVars: string[], throwError = true): boolean => {
 }
 
 /**
- * Retrieves environment variable value and defaults to fallback if provided (only on DEV mode)
+ * Retrieves environment variable value and defaults to fallback if provided (only on Dev mode)
  *
  * @param {string} varName name of env variable
- * @param {string?} fallbackValue optional value to return if env var is not set on DEV mode
+ * @param {string?} fallbackValue optional value to return if env var is not set on Dev mode
  * @returns {string} value of env variable or supplied fallback value
  */
 const getEnvVar = (varName: string, fallbackValue = ''): string => {
   const value = process.env[varName]
 
-  if (!value && getRunMode() === PROD) {
+  if (!value && getRunMode() === RunMode.Prod) {
     throw new Error(`${varName} is not exported as an environment variable`)
   }
 

@@ -24,17 +24,20 @@ messages to be logged.
 
 ## run-mode
 
-A module that exports a function called `getRunMode()`, which returns one of two constants,
-depending on the value of the `CARBON_RUN_MODE` environment variable.
+A module that exports two things:
 
-The possible values are:
+1. An enum called `RunMode` containing the values `Dev` and `Prod`.
+2. A function called `getRunMode()`, which returns one of two enum values, depending on the value of
+   the `CARBON_RUN_MODE` environment variable.
+
+`CARBON_RUN_MODE` can be set to the following values:
 
 - `DEV`
+  - Causes `getRunMode()` to return `RunMode.Dev`
 - `PROD`
+  - Causes `getRunMode()` to return `RunMode.Prod`
 
-Exporting the `CARBON_RUN_MODE` environment variable as either of these values will cause
-`getRunMode` to recognize it as the current run mode.
-
-If the environment variable is not set, the mode will default to `DEV`.
+If the `CARBON_RUN_MODE` environment variable is not set, the mode will default to the "DEV" run
+mode.
 
 Setting this envvar to any other value will result in an error being thrown.

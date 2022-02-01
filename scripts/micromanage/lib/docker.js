@@ -66,8 +66,10 @@ async function buildService(imageName, contextDir) {
 
   const buildArgs = getEnvvarNames().map((envvarName) => `--build-arg ${envvarName}`)
   const buildArgsStr = buildArgs.join(' ')
+  const buildCmd = `docker build --progress=plain --no-cache --tag ${imageName} ${buildArgsStr} ${contextDir}`
 
-  await spawn(`docker build --tag ${imageName} ${buildArgsStr} ${contextDir}`)
+  console.log('Service build command: ', buildCmd)
+  await spawn(buildCmd)
 }
 
 function getEnvvarNames() {

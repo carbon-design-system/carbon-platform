@@ -67,49 +67,13 @@ thumbnailPath: /docs/accordion-thumbnail.png
 | `name` | Asset display name. Use sentence-case capitalization. | Required | String | – | – |
 | `description` | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization. | Required | String | – | – |
 | `type` | Asset primary categorization. See [asset type](#asset-type). | Required | String | – | `element`, `component`, `pattern`, `function`, `layout` |
-| `status` | Used to set consumption exptectations. See [asset status](#asset-status). | Required | String \| Object | `draft` | `draft`, `experimental`, `stable`, `deprecated` |
-| `framework` | Asset frontend framework. | Optional | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
-| `platform` | Asset environment. | Optional | String | `web` | `cross-platform`, `web` |
+| `status` | Asset consumption exptectations. See [asset status](#asset-status). | Required | String \| Object | `draft` | `draft`, `experimental`, `stable`, `deprecated` |
+| `framework` | Asset primary technology dependency. See [asset framework](#asset-framework). | Optional | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
+| `platform` | Runtime where the asset can be used. See [asset platform](#asset-platform). | Optional | String | `web` | `cross-platform`, `web` |
 | `thumbnailPath` | Relative location of the asset's thumbnail image. | Optional | String | – | – |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation. | Optional | String | – | – |
 | `private` | If set to `true`, the global catalogs will exclude the asset. | Optional | Boolean | `false` | – |
 | `inherits` | See [asset inheritance](#asset-inheritance). | Optional | Object | – | – |
-
-#### Asset inheritance
-
-Each asset can inherit properties from another asset. For example, if there are multiple
-implementations of a component for different JavaScript frameworks, it's common that there's an
-underlying library and asset that contains shared usage guidance, design specs, and styling.
-Defining the inheritance relationship allows us to have a single source of truth for the shared
-content and resources, and allows each inheriting asset (e.g. implementation per framework) to
-specify its versioned adherance of the underlying asset.
-
-When inheriting another asset, you need to specify the fully qualified asset name (library `id`,
-library `version` or its repo's branch, asset `id`) and what properties you'd like to inherit.
-
-For the value of the `inherits` key, you can set the following keys.
-
-<!-- prettier-ignore -->
-| Inherits | Description |
-| --- | --- |
-| `asset` | Fully qualified asset name with the format `[library id]@[repo ref\|"latest"]/[asset id]`. |
-| `properties` | An array of asset keys to inherit. |
-
-**Example**
-
-```yml
-id: accordion
-inherits:
-  asset: 'carbon-styles@latest/accordion'
-  properties:
-    - name
-    - description
-    - thumbnailPath
-    - type
-    - platform
-status: stable
-framework: react
-```
 
 #### Asset type
 
@@ -178,3 +142,39 @@ have the following values:
 | --- | --- |
 | `cross-platform` | Runs natively on iOS, Android, and/or desktop. |
 | `web` | Runs on the web. |
+
+#### Asset inheritance
+
+Each asset can inherit properties from another asset. For example, if there are multiple
+implementations of a component for different JavaScript frameworks, it's common that there's an
+underlying library and asset that contains shared usage guidance, design specs, and styling.
+Defining the inheritance relationship allows us to have a single source of truth for the shared
+content and resources, and allows each inheriting asset (e.g. implementation per framework) to
+specify its versioned adherance of the underlying asset.
+
+When inheriting another asset, you need to specify the fully qualified asset name (library `id`,
+library `version` or its repo's branch, asset `id`) and what properties you'd like to inherit.
+
+For the value of the `inherits` key, you can set the following keys.
+
+<!-- prettier-ignore -->
+| Inherits | Description |
+| --- | --- |
+| `asset` | Fully qualified asset name with the format `[library id]@[repo ref\|"latest"]/[asset id]`. |
+| `properties` | An array of asset keys to inherit. |
+
+**Example**
+
+```yml
+id: accordion
+inherits:
+  asset: 'carbon-styles@latest/accordion'
+  properties:
+    - name
+    - description
+    - thumbnailPath
+    - type
+    - platform
+status: stable
+framework: react
+```

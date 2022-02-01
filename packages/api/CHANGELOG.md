@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.4...@carbon-platform/api@0.2.5) (2022-02-01)
+
+
+### Features
+
+* **api:** implement logging api ([117ac52](https://github.com/carbon-design-system/carbon-platform/commit/117ac52a456e0b67bbd4aeaa7f95b8eff8c4abaf))
+
+
+### Bug Fixes
+
+* **logging:** add missing optional indicator ([705ac7c](https://github.com/carbon-design-system/carbon-platform/commit/705ac7ca6c1f44b1cab45c01c742604f7f508e7f))
+
 ### [0.2.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.3...@carbon-platform/api@0.2.4) (2022-01-31)
 
 ### [0.2.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.2...@carbon-platform/api@0.2.3) (2022-01-29)

@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "amqplib": "^0.8.0",
-    "chalk": "^4.1.2",
+    "chalk": "^5.0.0",
     "connect-mongo": "^4.6.0",
     "connect-session-sequelize": "^7.1.2",
     "cookie-parser": "^1.4.6",

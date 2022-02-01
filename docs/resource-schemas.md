@@ -53,6 +53,9 @@ description:
   content.
 status: stable
 type: component
+tags:
+  - content-element
+  - data-display
 framework: react
 platform: web
 thumbnailPath: /docs/accordion-thumbnail.png
@@ -68,7 +71,7 @@ thumbnailPath: /docs/accordion-thumbnail.png
 | `description` | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization. | Required | String | – | – |
 | `status` | Asset consumption exptectations. See [asset status](#asset-status). | Required | String \| Object | `draft` | `draft`, `experimental`, `stable`, `deprecated` |
 | `type` | Asset primary categorization. See [asset type](#asset-type). | Required | String | – | `component`, `element`, `function`, `pattern`, `template` |
-| `tag` | Asset secondary categorization. See [asset tag](#asset-tag). | Optional | Array | – | `content-block`, `content-element`, `contextual-navigation`, `data-display`, `data-visualization`, `form`, `input-control`, `media`, `shell`, `structural-navigation`, `system-feedback`, `comparison`, `connection`, `correlation`, `geospatial-overlay`, `part-to-whole`, `trend`, `hook`, `utility` |
+| `tags` | Asset secondary categorizations. See [asset tags](#asset-tags). | Optional | Array | – | `content-block`, `content-element`, `contextual-navigation`, `data-display`, `data-visualization`, `form`, `input-control`, `media`, `shell`, `structural-navigation`, `system-feedback`, `comparison`, `connection`, `correlation`, `geospatial-overlay`, `part-to-whole`, `trend`, `hook`, `utility` |
 | `framework` | Asset primary technology dependency. See [asset framework](#asset-framework). | Optional | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
 | `platform` | Runtime where the asset can be used. See [asset platform](#asset-platform). | Optional | String | `web` | `cross-platform`, `web` |
 | `thumbnailPath` | Relative location of the asset's thumbnail image. | Optional | String | – | – |
@@ -116,7 +119,7 @@ following values:
 | `pattern` | Best practice solution for how a user achieves a goal through reusable combinations of components and content with sequences and flows which are too complex to be encapsulated in a single component. |
 | `template` | Layout example that specifies component order and placement to compose a specific view. |
 
-#### Asset tag
+#### Asset tags
 
 Tags organize assets into secondary categories in asset catalogs. An asset can have multiple tags,
 and certain tags are only applicable to specific asset types.

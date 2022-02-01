@@ -12,7 +12,7 @@ import { getRunMode, RunMode } from '../run-mode'
  *
  * @param {string[]} requiredVars array of required env vars
  * @param {boolean} throwError whether an error should be thrown if
- * nvironment variables havent been properly configured
+ * environment variables havent been properly configured
  * @returns {boolean} indicates if current environment variables are valid according
  * to supplied requiredVars object
  */

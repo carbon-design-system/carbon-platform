@@ -8,12 +8,16 @@ import fs from 'fs'
 import passport from 'passport'
 
 import {
+  __test__,
   authenticateWithPassport,
   getPassportInstance,
   SESSION_SECRET,
   store
 } from '../../main/auth'
-import { IBM_AUTHENTICATION_STRATEGY } from '../../main/auth/config/constants'
+import {
+  CUSTOM_LOCAL_STRATEGY,
+  IBM_AUTHENTICATION_STRATEGY
+} from '../../main/auth/config/constants'
 import { RunMode } from '../../main/run-mode'
 
 jest.mock('passport')
@@ -22,38 +26,78 @@ const mockedPassport = passport as jest.Mocked<typeof passport>
 const signature = require('cookie-signature')
 
 describe('getPassportInstance', () => {
-  it('throws error when env variables have not been configured', async () => {
+  it('throws error when env variables have not been configured on PROD mode', async () => {
     const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
     const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
+    const oldRunMode = process.env.CARBON_RUN_MODE
     process.env.CARBON_IBM_VERIFY_CLIENT_ID = ''
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = ''
+    process.env.CARBON_RUN_MODE = RunMode.Prod
     await expect(getPassportInstance()).rejects.toThrow()
     process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
+    process.env.CARBON_RUN_MODE = oldRunMode
   })
-  it('can be retrieved without crashing', async () => {
+  it('can be retrieved without crashing using OpenId strategy', async () => {
     const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
     const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
+    const oldRunMode = process.env.CARBON_RUN_MODE
     process.env.CARBON_IBM_VERIFY_CLIENT_ID = 'MOCK_CLIENT'
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = 'MOCK_SECRET'
+    process.env.CARBON_RUN_MODE = RunMode.Dev
     const passportInstance = await getPassportInstance()
     expect(passportInstance).toBeDefined()
     process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
+    process.env.CARBON_RUN_MODE = oldRunMode
+    __test__.destroyInstance()
+  })
+  it('can be retrieved without crashing using custom local strategy', async () => {
+    const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
+    const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
+    const oldRunMode = process.env.CARBON_RUN_MODE
+    process.env.CARBON_IBM_VERIFY_CLIENT_ID = ''
+    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = ''
+    process.env.CARBON_RUN_MODE = RunMode.Dev
+    const passportInstance = await getPassportInstance()
+    expect(passportInstance).toBeDefined()
+    process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
+    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
+    process.env.CARBON_RUN_MODE = oldRunMode
+    __test__.destroyInstance()
   })
 })
 
 describe('authenticateWithPassport', () => {
-  it('gets called with expected params', async () => {
+  it('gets called with IBM auth strategy when using OpenID strategy', async () => {
     const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
     const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
+    const oldRunMode = process.env.CARBON_RUN_MODE
     process.env.CARBON_IBM_VERIFY_CLIENT_ID = 'MOCK_CLIENT'
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = 'MOCK_SECRET'
+    process.env.CARBON_RUN_MODE = RunMode.Dev
     mockedPassport.authenticate.mockReturnValue(null)
     await authenticateWithPassport()
     await expect(mockedPassport.authenticate).toHaveBeenCalledWith(IBM_AUTHENTICATION_STRATEGY)
     process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
+    process.env.CARBON_RUN_MODE = oldRunMode
+    __test__.destroyInstance()
+  })
+  it('gets called with custom auth strategy when not using OpenID strategy', async () => {
+    const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
+    const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
+    const oldRunMode = process.env.CARBON_RUN_MODE
+    process.env.CARBON_IBM_VERIFY_CLIENT_ID = ''
+    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = ''
+    process.env.CARBON_RUN_MODE = RunMode.Dev
+    mockedPassport.authenticate.mockReturnValue(null)
+    await authenticateWithPassport()
+    await expect(mockedPassport.authenticate).toHaveBeenCalledWith(CUSTOM_LOCAL_STRATEGY)
+    process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
+    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
+    process.env.CARBON_RUN_MODE = oldRunMode
+    __test__.destroyInstance()
   })
 })
 

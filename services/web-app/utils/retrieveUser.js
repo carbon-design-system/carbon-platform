@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { shouldUseOpenIdStrategy } from '@carbon-platform/api/auth'
 import { getRunMode, RunMode } from '@carbon-platform/api/run-mode'
 
 /**
@@ -17,7 +18,8 @@ function getRequestOptions(req) {
   const reqOptions = {
     headers: { cookie: req.headers.cookie }
   }
-  if (getRunMode() === RunMode.Dev) {
+  // TODO: check for RUNNING_SECURELY env var
+  if (getRunMode() === RunMode.Dev && shouldUseOpenIdStrategy()) {
     const Agent = require('https').Agent
     reqOptions.agent = new Agent({ rejectUnauthorized: false })
   }
@@ -36,8 +38,10 @@ export async function retrieveUser(context) {
   }
   const sessionCookie = context.req.cookies?.['connect.sid']
   if (sessionCookie) {
+    // TODO: check for RUNNING_SECURELY env var
+    const protocol = shouldUseOpenIdStrategy() ? 'https' : 'http'
     const userResponse = await fetch(
-      `https://localhost:${req.socket.localPort}/api/user`,
+      `${protocol}://localhost:${req.socket.localPort}/api/user`,
       getRequestOptions(req)
     )
     if (userResponse.ok) {

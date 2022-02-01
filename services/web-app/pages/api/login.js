@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { authenticateWithPassport } from '@carbon-platform/api/auth'
+import { authenticateWithPassport, shouldUseOpenIdStrategy } from '@carbon-platform/api/auth'
 
 import requireSession from '../../middleware/requireSession'
 
@@ -15,6 +15,11 @@ const login = requireSession().get(
       req.session.next = req.query.next
     } else if (req.session.next) {
       delete req.session.next
+    }
+
+    if (!shouldUseOpenIdStrategy()) {
+      res.redirect('/api/auth-callback')
+      res.end('')
     }
 
     next()

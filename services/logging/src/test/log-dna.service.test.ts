@@ -20,7 +20,7 @@ test('service creates a LogDna logger in PROD mode', () => {
     log: jest.fn()
   }
 
-  mockedRunMode.getRunMode.mockReturnValue(runMode.PROD)
+  mockedRunMode.getRunMode.mockReturnValue(runMode.RunMode.Prod)
   mockedLogDna.createLogger.mockReturnValue(mockedLogger as any)
 
   const logDnaService = new LogDnaService()

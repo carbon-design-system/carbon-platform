@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { LogLoggedMessage } from '@carbon-platform/api/logging'
-import { getRunMode, PROD } from '@carbon-platform/api/run-mode'
+import { getRunMode, RunMode } from '@carbon-platform/api/run-mode'
 import LogDna, { Logger } from '@logdna/logger'
 import { Injectable } from '@nestjs/common'
 
@@ -17,11 +17,11 @@ import { CARBON_LOGDNA_ENDPOINT, CARBON_LOGDNA_KEY } from './constants'
  */
 @Injectable()
 class LogDnaService {
-  private readonly logDna: Logger
+  private readonly logDna?: Logger
 
   constructor() {
     // In DEV mode, the service is a no-op
-    if (getRunMode() === PROD) {
+    if (getRunMode() === RunMode.Prod) {
       this.logDna = LogDna.createLogger(CARBON_LOGDNA_KEY, {
         url: CARBON_LOGDNA_ENDPOINT,
         env: getRunMode()

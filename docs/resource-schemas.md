@@ -146,12 +146,13 @@ These additional tags can be used alongside the `data-vizualization` tag.
 <!-- prettier-ignore -->
 | Tag | Name | Description |
 | --- | --- | --- |
-| `comparison` | Comparison | TBD... |
-| `connection` | Connection | TBD... |
-| `correlation` | Correlation | TBD... |
-| `geospatial-overlay` | Geospatial overlay | TBD... |
-| `part-to-whole` | Part-to-whole | TBD... |
-| `trend` | Trend | TBD... |
+| `comparison` | Comparison | Comparison or comparative data visualizations are a type of visualization in which a comparison is made between two or more objects, phenomena or groups of data; these visualizations can offer qualitative and/or quantitative information. |
+| `connection` | Connection | Connection visualizations show the magnitude and direction of relationships between two or more categorical variables. They’re used in link analysis for identifying relationships between nodes that are not easy to see from the raw data. |
+| `correlation` | Correlation | A correlation visualization is a type of graph or mathematical scheme that uses Cartesian coordinates for display values—typically of two variables for a data set. |
+| `geographic-overlay` | Geographic overlay | Geographic overlays are visualizations that show differences in data values across a geographical map. These visualizations focus on the relationship between data and its physical location to create insight. |
+| `geospatial-distortion` | Geospatial distortion | In a geospatial distortion, the mapping variable takes the place of the land area or distance in the map, causing the map to become distorted in proportion to the substitute variable. The distortion can be geographic or geometric. |
+| `part-to-whole` | Part-to-whole | Part-to-whole data visualizations show part (or parts) of a variable to it's total. These visualizations are often used to show how something is divided up. |
+| `trend` | Trend | Trend data visualizations (aka run charts) are used to show trends in data over time. In these visualizations all processes vary, so measurements involving a single point can be misleading. |
 
 ##### Function tags
 

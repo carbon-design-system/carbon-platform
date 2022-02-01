@@ -30,7 +30,7 @@
     "mongodb": "^4.3.1",
     "openid-client": "^5.1.2",
     "passport": "^0.5.2",
-    "sequelize": "^6.14.1",
+    "sequelize": "^6.15.0",
     "sqlite3": "npm:@vscode/sqlite3@^5.0.7",
     "uuid": "^8.3.2"
   },

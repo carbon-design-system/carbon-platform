@@ -25,7 +25,7 @@
   "dependencies": {
     "@carbon-platform/icons": "^0.0.10",
     "@carbon/pictograms-react": "^11.21.0",
-    "@carbon/react": "^0.12.0",
+    "@carbon/react": "^0.13.0",
     "@octokit/core": "^3.5.1",
     "cache-manager": "^3.6.0",
     "cache-manager-fs-hash": "^1.0.0",
@@ -35,7 +35,7 @@
     "fs-extra": "^10.0.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
-    "next": "^12.0.9",
+    "next": "^12.0.10",
     "next-connect": "^0.11.0",
     "next-seo": "^4.29.0",
     "plaiceholder": "^2.2.0",
@@ -47,7 +47,7 @@
     "slugify": "^1.6.5"
   },
   "devDependencies": {
-    "css-loader": "^6.5.1",
-    "sass": "^1.49.0"
+    "css-loader": "^6.6.0",
+    "sass": "^1.49.4"
   }
 }

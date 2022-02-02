@@ -271,7 +271,7 @@ describe('session', () => {
     await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toBeUndefined()
   })
 
-  it('user update saves data succesfully', async () => {
+  it('user update saves data successfully', async () => {
     const mockedSessionId = 'SESSION_ID4'
     const signedSessionCookie = `s:${signature.sign(mockedSessionId, SESSION_SECRET)}`
     const storeInstance = await store.getStore()

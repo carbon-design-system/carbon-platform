@@ -21,7 +21,7 @@ import {
   IBM_AUTHENTICATION_STRATEGY,
   PASSPORT_OPEN_ID_REQUIRED_ENV_VARS
 } from './config/constants'
-import { User } from './models/user.model'
+import { User } from './interfaces'
 
 let passportStrategy: passport.Strategy | undefined
 

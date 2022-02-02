@@ -12,4 +12,5 @@ export {
   DEFAULT_QUEUE_OPTIONS,
   MESSAGE_QUEUE_URL
 } from './constants'
+export { UnvalidatedMessage } from './interfaces'
 export { MessagingClient } from './MessagingClient'

@@ -13,7 +13,7 @@ import { getRunMode, RunMode } from '../run-mode'
 import { config as devConfig } from './config/config.dev'
 import { config as prodConfig } from './config/config.prod'
 import { IBM_AUTHENTICATION_STRATEGY, PASSPORT_REQUIRED_ENV_VARS } from './config/constants'
-import { User } from './models/user.model'
+import { User } from './interfaces'
 
 let client: BaseClient
 

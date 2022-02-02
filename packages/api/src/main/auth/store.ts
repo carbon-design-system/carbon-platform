@@ -12,7 +12,7 @@ import path from 'path'
 import { enforceEnvVars, getEnvVar } from '../enforce-env-vars'
 import { getRunMode, RunMode } from '../run-mode'
 import { PROD_SESSION_REQUIRED_ENV_VARS, SESSION_SECRET } from './config/constants'
-import { User } from './models/user.model'
+import { User } from './interfaces'
 
 let storeInstance: expressSession.Store
 

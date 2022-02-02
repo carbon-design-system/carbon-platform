@@ -5,13 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { LogLoggedMessage } from '@carbon-platform/api/logging'
+import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
 
 /**
  * Validates an incoming log message to ensure all required fields have been specified.
  *
  * @param data Incoming log message data.
+ * @returns true if the mesage is a valid LogLoggedMessage. Throws an Error otherwise.
  */
-function logMessageValidator(data: LogLoggedMessage) {
+function logMessageValidator(data: UnvalidatedMessage): data is LogLoggedMessage {
   if (!data.component) {
     throw new Error('component not specified')
   }
@@ -30,6 +32,8 @@ function logMessageValidator(data: LogLoggedMessage) {
   if (!data.timestamp) {
     throw new Error('timestamp not specified')
   }
+
+  return true
 }
 
 export { logMessageValidator }

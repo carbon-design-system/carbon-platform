@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { LogLoggedMessage } from '@carbon-platform/api/logging'
+import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
 
 import { LogDnaService } from '../main/log-dna.service'
 import { LoggingController } from '../main/logging.controller'
@@ -48,37 +49,37 @@ describe('message validation', () => {
   })
 
   it('logs a warning when no component specified', async () => {
-    delete (data as any).component
+    delete (data as UnvalidatedMessage).component
     loggingController.logLogged(data)
     expect(loggingController.nestLogger.warn).toHaveBeenCalled()
   })
 
   it('logs a warning when no environment specified', async () => {
-    delete (data as any).environment
+    delete (data as UnvalidatedMessage).environment
     loggingController.logLogged(data)
     expect(loggingController.nestLogger.warn).toHaveBeenCalled()
   })
 
   it('logs a warning when no level specified', async () => {
-    delete (data as any).level
+    delete (data as UnvalidatedMessage).level
     loggingController.logLogged(data)
     expect(loggingController.nestLogger.warn).toHaveBeenCalled()
   })
 
   it('logs a warning when no message specified', async () => {
-    delete (data as any).message
+    delete (data as UnvalidatedMessage).message
     loggingController.logLogged(data)
     expect(loggingController.nestLogger.warn).toHaveBeenCalled()
   })
 
   it('logs a warning when no service specified', async () => {
-    delete (data as any).service
+    delete (data as UnvalidatedMessage).service
     loggingController.logLogged(data)
     expect(loggingController.nestLogger.warn).toHaveBeenCalled()
   })
 
   it('logs a warning when no timestamp specified', async () => {
-    delete (data as any).timestamp
+    delete (data as UnvalidatedMessage).timestamp
     loggingController.logLogged(data)
     expect(loggingController.nestLogger.warn).toHaveBeenCalled()
   })

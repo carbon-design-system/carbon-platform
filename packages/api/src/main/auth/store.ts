@@ -6,16 +6,17 @@
  */
 
 import cookieParser from 'cookie-parser'
-import { SessionData, Store } from 'express-session'
+import expressSession from 'express-session'
+import path from 'path'
 
 import { enforceEnvVars, getEnvVar } from '../enforce-env-vars'
 import { getRunMode, RunMode } from '../run-mode'
 import { PROD_SESSION_REQUIRED_ENV_VARS, SESSION_SECRET } from './config/constants'
 import { User } from './models/user.model'
 
-let storeInstance: Store
+let storeInstance: expressSession.Store
 
-async function createMongoStore(): Promise<Store> {
+async function createMongoStore(): Promise<expressSession.Store> {
   const { MongoClient } = await import('mongodb')
   const MongoStore = (await import('connect-mongo')).default
 
@@ -27,32 +28,13 @@ async function createMongoStore(): Promise<Store> {
   })
 }
 
-async function createSequelizeStore(): Promise<Store> {
-  const path = await import('path')
-  const fs = await import('fs')
-  const { Sequelize } = await import('sequelize')
-  const SequelizeStore = (await import('connect-session-sequelize')).default(Store)
-  const sqlite3 = await import('sqlite3')
+async function createFileStore(): Promise<expressSession.Store> {
+  const FileStore = (await import('session-file-store')).default(expressSession)
 
-  const dir = path.join(process.cwd(), '.dev')
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir)
-  }
-
-  const sequelize = new Sequelize('database', 'username', 'password', {
-    dialect: 'sqlite',
-    dialectModule: sqlite3,
-    storage: path.join(dir, 'sessiondb.sqlite')
+  return new FileStore({
+    path: path.join(process.cwd(), '.dev', 'session-store'),
+    retries: 0
   })
-
-  const store = new SequelizeStore({
-    db: sequelize
-  })
-  // The type definition doesn't recognize the fact that the underlying module impl being used here
-  // is actually returning a promise that must be awaited
-  await (store.sync as () => Promise<void>)()
-
-  return store
 }
 
 /**
@@ -60,14 +42,14 @@ async function createSequelizeStore(): Promise<Store> {
  *
  * @returns {Promise<Store>} Promise that resolves to a store instance.
  */
-const getStore = async (): Promise<Store> => {
+const getStore = async (): Promise<expressSession.Store> => {
   if (!storeInstance) {
     if (getRunMode() === RunMode.Prod) {
       enforceEnvVars(PROD_SESSION_REQUIRED_ENV_VARS)
 
       storeInstance = await createMongoStore()
     } else {
-      storeInstance = await createSequelizeStore()
+      storeInstance = await createFileStore()
     }
   }
 
@@ -81,7 +63,9 @@ const getStore = async (): Promise<Store> => {
  * @returns {Promise<SessionData | null>} Promise that resolves to the session object
  *  (or null if not found)
  */
-const getUserSessionByKey = async (sessionKey: string): Promise<SessionData | null> => {
+const getUserSessionByKey = async (
+  sessionKey: string
+): Promise<expressSession.SessionData | null> => {
   const retrievedStore = await getStore()
   return new Promise((resolve) => {
     retrievedStore.get(sessionKey, (_: any, session: any) => {

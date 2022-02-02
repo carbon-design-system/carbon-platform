@@ -37,7 +37,6 @@ export async function retrieveUser(context) {
   }
   const sessionCookie = context.req.cookies?.['connect.sid']
   if (sessionCookie) {
-    // TODO: check for RUNNING_SECURELY env var
     const protocol =
       getRunMode() === RunMode.Prod || getEnvVar('RUNNING_SECURELY', '0') === '1' ? 'https' : 'http'
     const userResponse = await fetch(

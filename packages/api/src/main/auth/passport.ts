@@ -65,9 +65,11 @@ async function createCustomStrategy(): Promise<passport.Strategy> {
     }
     fs.readFile(dir, (err, data) => {
       if (data) {
-        done(err, JSON.parse(data as any))
+        const user = JSON.parse(data.toString())
+        done(err, user)
+      } else {
+        done(err, null)
       }
-      done(err, null)
     })
   })
 }
@@ -81,11 +83,15 @@ async function createCustomStrategy(): Promise<passport.Strategy> {
 function shouldUseOpenIdStrategy(): boolean {
   let validOpenIdVariables = true
   try {
-    PASSPORT_OPEN_ID_REQUIRED_ENV_VARS.forEach((varName) => getEnvVar(varName))
+    [...PASSPORT_OPEN_ID_REQUIRED_ENV_VARS, 'RUNNING_SECURELY'].forEach((varName) =>
+      getEnvVar(varName)
+    )
   } catch (e) {
     validOpenIdVariables = false
   }
-  return getRunMode() === RunMode.Prod || validOpenIdVariables
+  return (
+    getRunMode() === RunMode.Prod || (validOpenIdVariables && getEnvVar('RUNNING_SECURELY') === '1')
+  )
 }
 
 /**

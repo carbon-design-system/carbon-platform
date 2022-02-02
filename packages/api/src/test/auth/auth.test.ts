@@ -6,6 +6,7 @@
  */
 import fs from 'fs'
 import passport from 'passport'
+import path from 'path'
 
 import {
   __test__,
@@ -19,9 +20,6 @@ import {
   IBM_AUTHENTICATION_STRATEGY
 } from '../../main/auth/config/constants'
 import { RunMode } from '../../main/run-mode'
-
-jest.mock('passport')
-const mockedPassport = passport as jest.Mocked<typeof passport>
 
 const signature = require('cookie-signature')
 
@@ -75,13 +73,15 @@ describe('authenticateWithPassport', () => {
     const oldRunMode = process.env.CARBON_RUN_MODE
     process.env.CARBON_IBM_VERIFY_CLIENT_ID = 'MOCK_CLIENT'
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = 'MOCK_SECRET'
-    process.env.CARBON_RUN_MODE = RunMode.Dev
-    mockedPassport.authenticate.mockReturnValue(null)
+    process.env.CARBON_RUN_MODE = RunMode.Prod
+    const passportAuthenticateFn = passport.authenticate
+    passport.authenticate = jest.fn().mockReturnValue(null)
     await authenticateWithPassport()
-    await expect(mockedPassport.authenticate).toHaveBeenCalledWith(IBM_AUTHENTICATION_STRATEGY)
+    await expect(passport.authenticate).toHaveBeenCalledWith(IBM_AUTHENTICATION_STRATEGY)
     process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
     process.env.CARBON_RUN_MODE = oldRunMode
+    passport.authenticate = passportAuthenticateFn
     __test__.destroyInstance()
   })
   it('gets called with custom auth strategy when not using OpenID strategy', async () => {
@@ -91,13 +91,118 @@ describe('authenticateWithPassport', () => {
     process.env.CARBON_IBM_VERIFY_CLIENT_ID = ''
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = ''
     process.env.CARBON_RUN_MODE = RunMode.Dev
-    mockedPassport.authenticate.mockReturnValue(null)
+    const passportAuthenticateFn = passport.authenticate
+    passport.authenticate = jest.fn().mockReturnValue(null)
     await authenticateWithPassport()
-    await expect(mockedPassport.authenticate).toHaveBeenCalledWith(CUSTOM_LOCAL_STRATEGY)
+    await expect(passport.authenticate).toHaveBeenCalledWith(CUSTOM_LOCAL_STRATEGY)
+    process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
+    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
+    process.env.CARBON_RUN_MODE = oldRunMode
+    passport.authenticate = passportAuthenticateFn
+    __test__.destroyInstance()
+  })
+  it('Populates user correctly on req object', async () => {
+    const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
+    const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
+    const oldRunMode = process.env.CARBON_RUN_MODE
+    process.env.CARBON_IBM_VERIFY_CLIENT_ID = ''
+    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = ''
+    process.env.CARBON_RUN_MODE = RunMode.Dev
+    const mockedUser = {
+      name: 'Jane Doe',
+      email: 'email@example.com'
+    }
+
+    const mockedUserPath = path.join(process.cwd(), 'mocked-user.json')
+    let oldUser
+    await new Promise((resolve, reject) => {
+      if (fs.existsSync(mockedUserPath)) {
+        fs.readFile(mockedUserPath, (err, data) => {
+          if (data) {
+            oldUser = JSON.parse(data as any)
+            resolve(null)
+          }
+          reject(err)
+        })
+      } else {
+        resolve(null)
+      }
+    })
+
+    await new Promise((resolve, reject) => {
+      fs.writeFile(mockedUserPath, JSON.stringify(mockedUser), (err) => {
+        if (err) reject(err)
+        resolve(null)
+      })
+    })
+
+    const req = {}
+    const authHandler = await authenticateWithPassport()
+    await new Promise((resolve) => {
+      authHandler(req, {}, () => {
+        resolve(null)
+      })
+    })
+    await expect((req as any).user).toEqual(mockedUser)
     process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
     process.env.CARBON_RUN_MODE = oldRunMode
     __test__.destroyInstance()
+    if (fs.existsSync(mockedUserPath)) {
+      fs.rmSync(mockedUserPath)
+    }
+    if (oldUser) {
+      fs.writeFile(mockedUserPath, JSON.stringify(oldUser), () => {})
+    }
+  })
+
+  it('Throws error when using custom strategy and mocked-user is not found', async () => {
+    const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
+    const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
+    const oldRunMode = process.env.CARBON_RUN_MODE
+    process.env.CARBON_IBM_VERIFY_CLIENT_ID = ''
+    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = ''
+    process.env.CARBON_RUN_MODE = RunMode.Dev
+
+    const mockedUserPath = path.join(process.cwd(), 'mocked-user.json')
+    let oldUser
+    await new Promise((resolve, reject) => {
+      if (fs.existsSync(mockedUserPath)) {
+        fs.readFile(mockedUserPath, (err, data) => {
+          if (data) {
+            oldUser = JSON.parse(data as any)
+            resolve(null)
+          }
+          reject(err)
+        })
+      } else {
+        resolve(null)
+      }
+    })
+
+    if (fs.existsSync(mockedUserPath)) {
+      fs.rmSync(mockedUserPath)
+    }
+
+    const authHandler = await authenticateWithPassport()
+
+    let nextRequest
+
+    await new Promise((resolve) => {
+      authHandler({}, {}, (req) => {
+        nextRequest = req
+        resolve(null)
+      })
+    })
+
+    await expect(nextRequest instanceof Error).toBeTruthy()
+    process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
+    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
+    process.env.CARBON_RUN_MODE = oldRunMode
+    __test__.destroyInstance()
+    if (oldUser) {
+      fs.writeFile(mockedUserPath, JSON.stringify(oldUser), () => {})
+    }
   })
 })
 

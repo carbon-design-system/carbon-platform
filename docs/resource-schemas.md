@@ -23,7 +23,7 @@ place it in the same directory as your library's `package.json` file.
 id: carbon-react
 name: Carbon React
 description: React implementation of Carbon Components
-design-kits:
+designKits:
   - type: sketch
     name: Carbon Components
     action: download
@@ -50,7 +50,7 @@ resources:
 | `description` | Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the `package.json` description if not set here. | Optional | String | Value from `package.json` | – |
 | `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, code package, and other information. | Optional | String | `/package.json` | – |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation. | Optional | String | – | – |
-| `design-kits` | Links to design kits. See [design kits](#design-kits). | Optional | Array | – | – |
+| `designKits` | Links to design kits. See [design kits](#design-kits). | Optional | Array | – | – |
 | `resources` | Links to external resources. See [resources](#resources). | Optional | Array | – | – |
 | `private` | If set to `true`, the global catalogs will exclude the library. | Optional | Boolean | `false` | – |
 
@@ -98,7 +98,7 @@ resources:
 | `platform` | Runtime where the asset can be used. See [asset platform](#asset-platform). | Optional | String | `web` | `cross-platform`, `web` |
 | `thumbnailPath` | Relative location of the asset's thumbnail image. | Optional | String | – | – |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation. | Optional | String | – | – |
-| `design-kits` | Links to design kits. See [design kits](#design-kits). | Optional | Array | – | – |
+| `designKits` | Links to design kits. See [design kits](#design-kits). | Optional | Array | – | – |
 | `resources` | Links to external resources. See [resources](#resources). | Optional | Array | – | – |
 | `private` | If set to `true`, the global catalogs will exclude the asset. | Optional | Boolean | `false` | – |
 | `inherits` | See [asset inheritance](#asset-inheritance). | Optional | Object | – | – |
@@ -111,8 +111,8 @@ of future changes. The `status` key can have the following values:
 <!-- prettier-ignore -->
 | Status | Description |
 | --- | --- |
-| `draft` | Partially complete and not ready for any consumption. |
-| `experimental` | Partially complete, not to be used in production. |
+| `draft` | Partially complete and not ready for consumption. |
+| `experimental` | Partially complete, not production ready. |
 | `stable` | Complete and ready for production use. |
 | `deprecated` | Will be sunset at a future date, minimally supported. |
 
@@ -265,7 +265,7 @@ Libraries and assets can specify design kits and when there are multiple, which 
 **Example**
 
 ```yml
-design-kits:
+designKits:
   - type: sketch
     name: Carbon Components
     action: download
@@ -277,7 +277,7 @@ design-kits:
     url: https://www.figma.com/file/Vzz8k68Pqk5HfaTdQOQrGu/White-Theme---Carbon-Design-System?node-id=456%3A14680
 ```
 
-For the value of the `design-kits` array, you can set the following keys.
+For the value of the `designKits` array, you can set the following keys.
 
 <!-- prettier-ignore -->
 | Design kit | Description | Required | Type | Default | Valid values |

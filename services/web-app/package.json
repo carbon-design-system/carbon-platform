@@ -37,17 +37,17 @@
     "lodash": "^4.17.21",
     "next": "^12.0.10",
     "next-connect": "^0.11.0",
-    "next-seo": "^4.29.0",
+    "next-seo": "^5.1.0",
     "plaiceholder": "^2.2.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
-    "sharp": "^0.29.3",
+    "sharp": "^0.30.0",
     "slugify": "^1.6.5"
   },
   "devDependencies": {
-    "css-loader": "^6.5.1",
-    "sass": "^1.49.4"
+    "css-loader": "^6.6.0",
+    "sass": "^1.49.7"
   }
 }

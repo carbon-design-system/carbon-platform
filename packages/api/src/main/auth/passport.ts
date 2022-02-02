@@ -83,9 +83,8 @@ async function createCustomStrategy(): Promise<passport.Strategy> {
 function shouldUseOpenIdStrategy(): boolean {
   let validOpenIdVariables = true
   try {
-    [...PASSPORT_OPEN_ID_REQUIRED_ENV_VARS, 'RUNNING_SECURELY'].forEach((varName) =>
-      getEnvVar(varName)
-    )
+    const openIdDevModeVars = [...PASSPORT_OPEN_ID_REQUIRED_ENV_VARS, 'RUNNING_SECURELY']
+    openIdDevModeVars.forEach((varName) => getEnvVar(varName))
   } catch (e) {
     validOpenIdVariables = false
   }

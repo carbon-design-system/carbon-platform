@@ -50,6 +50,10 @@ export const assetsNavData = [
       {
         path: '/assets/patterns',
         title: 'Patterns'
+      },
+      {
+        path: '/assets/templates',
+        title: 'Templates'
       }
     ]
   },

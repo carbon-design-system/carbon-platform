@@ -1,10 +1,10 @@
 /*
- * Copyright IBM Corp. 2021, 2022
+ * Copyright IBM Corp. 2022, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { TextLayout } from '@carbon/pictograms-react'
+import { Dashboard } from '@carbon/pictograms-react'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
@@ -14,11 +14,11 @@ import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 
-const Patterns = ({ librariesData }) => {
+const Templates = ({ librariesData }) => {
   const { setNavData } = useContext(LayoutContext)
 
   const seo = {
-    title: 'Patterns'
+    title: 'Templates'
   }
 
   useEffect(() => {
@@ -28,8 +28,8 @@ const Patterns = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} pictogram={TextLayout} />
-      <Catalog data={librariesData} type="pattern" />
+      <PageHeader title={seo.title} pictogram={Dashboard} />
+      <Catalog data={librariesData} type="template" />
     </>
   )
 }
@@ -44,4 +44,4 @@ export const getStaticProps = async () => {
   }
 }
 
-export default Patterns
+export default Templates

@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 
 const RequireAuth = ({ children, fallback: Fallback, isAuthorized }) => {
   if (isAuthorized) {
-    return { children }
+    return children
   } else {
     return <Fallback />
   }

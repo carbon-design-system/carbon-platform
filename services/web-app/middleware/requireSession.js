@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { getPassportInstance, SESSION_SECRET, store } from '@carbon-platform/api/auth'
-import { getRunMode, RunMode } from '@carbon-platform/api/run-mode'
+import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 import cookieParser from 'cookie-parser'
 import expressSession from 'express-session'
 import nextConnect from 'next-connect'

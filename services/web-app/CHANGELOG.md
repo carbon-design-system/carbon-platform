@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.46](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.45...@carbon-platform/web-app@0.1.46) (2022-02-04)
+
+
+### Features
+
+* **web-app:** new prototyping asset thumbnails ([34bc1c6](https://github.com/carbon-design-system/carbon-platform/commit/34bc1c615c18949413b2ba42441e33d8fbfd5d0c))
+
+
+### Bug Fixes
+
+* svg touchup ([153cd2a](https://github.com/carbon-design-system/carbon-platform/commit/153cd2a8d0edc70fd4cb69ae9aaea83d8891200e))
+
 ### [0.1.45](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.44...@carbon-platform/web-app@0.1.45) (2022-02-03)
 
 ### [0.1.44](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.43...@carbon-platform/web-app@0.1.44) (2022-02-01)

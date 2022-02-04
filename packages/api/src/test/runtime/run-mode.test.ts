@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { getRunMode, RunMode } from '../../main/run-mode'
+import { getRunMode, RunMode } from '../../main/runtime'
 
 describe('getRunMode', () => {
   it('returns dev when the envvar is not set', () => {

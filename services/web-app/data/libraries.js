@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const { RunMode, getRunMode } = require('@carbon-platform/api/run-mode')
+const { RunMode, getRunMode } = require('@carbon-platform/api/runtime')
 
 /**
  * Libraries are only included in the platform if in this allowlist. Library slugs are specified as

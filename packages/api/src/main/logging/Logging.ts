@@ -7,8 +7,7 @@
 import chalk from 'chalk'
 
 import { EventMessage, MessagingClient } from '../messaging'
-import { DEBUG } from '../messaging/constants' // TODO: fix this
-import { getRunMode, RunMode } from '../run-mode'
+import { getEnvironment, getRunMode, isDebugEnabled, RunMode } from '../runtime'
 import { LogLevel, LogLoggedMessage } from './interfaces'
 
 const logColors = {
@@ -43,10 +42,8 @@ class Logging {
    */
   constructor(serviceName: string, component: string) {
     this.component = component
-    // TODO: this should be based on an envvar indicating whether the service is running in a test
-    // environment or a prod environment
-    this.environment = 'PRODUCTION'
-    this.isDebugLoggingEnabled = getRunMode() === RunMode.Dev || DEBUG
+    this.environment = getEnvironment()
+    this.isDebugLoggingEnabled = getRunMode() === RunMode.Dev || isDebugEnabled()
     this.isRemoteLoggingEnabled = getRunMode() === RunMode.Prod
     this.service = serviceName
 
@@ -63,9 +60,9 @@ class Logging {
    * is safe and acceptable to leave debug statements in code, where appropriate, unlike
    * `console.log` statements, which would typically be removed from production code.
    *
-   * **NOTE:** Debug logging can be turned on for a service running in PROD mode if `DEBUG=true` is
-   * exported as an environment variables. This isn't typically needed, but can be useful for
-   * advanced debugging of production-running applications.
+   * **NOTE:** Debug logging can be turned on for a service running in PROD mode if
+   * `CARBON_DEBUG=true` is exported as an environment variables. This isn't typically needed, but
+   * can be useful for advanced debugging of production-running applications.
    *
    * @param message The message to log.
    */

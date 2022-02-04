@@ -7,11 +7,21 @@
 import { Options } from 'amqplib'
 import chalk from 'chalk'
 
-import { getRunMode, RunMode } from '../run-mode'
+import { loadEnvVars } from '../runtime'
 
-const DEBUG = process.env.CARBON_DEBUG === 'true'
+/**
+ * Fallback URL to use when no message queue URL is provided.
+ */
 const LOCAL_MESSAGE_QUEUE_URL = 'amqp://localhost:5672'
-const MESSAGE_QUEUE_URL = process.env.CARBON_MESSAGE_QUEUE_URL || LOCAL_MESSAGE_QUEUE_URL
+
+const {
+  /**
+   * Message queue to which to connect.
+   */
+  CARBON_MESSAGE_QUEUE_URL
+} = loadEnvVars({
+  CARBON_MESSAGE_QUEUE_URL: LOCAL_MESSAGE_QUEUE_URL
+})
 
 /**
  * Default pattern used when binding a queue to an exchange. Blank indicates that there are no
@@ -43,18 +53,14 @@ const DEFAULT_EXCHANGE_OPTIONS: Options.AssertExchange = {
 const DEFAULT_EXCHANGE_TYPE = 'fanout'
 
 // Message queue URL checking
-if (getRunMode() === RunMode.Prod && !process.env.CARBON_MESSAGE_QUEUE_URL) {
-  throw new Error('CARBON_MESSAGE_QUEUE_URL must be set in RunMode.Prod run mode')
-}
-if (MESSAGE_QUEUE_URL === LOCAL_MESSAGE_QUEUE_URL) {
+if (CARBON_MESSAGE_QUEUE_URL === LOCAL_MESSAGE_QUEUE_URL) {
   console.warn(`${chalk.bgYellowBright.black('WARN')} Using localhost message queue url`)
 }
 
 export {
-  DEBUG,
+  CARBON_MESSAGE_QUEUE_URL,
   DEFAULT_BIND_PATTERN,
   DEFAULT_EXCHANGE_OPTIONS,
   DEFAULT_EXCHANGE_TYPE,
-  DEFAULT_QUEUE_OPTIONS,
-  MESSAGE_QUEUE_URL
+  DEFAULT_QUEUE_OPTIONS
 }

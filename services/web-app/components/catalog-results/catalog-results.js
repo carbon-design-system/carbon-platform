@@ -6,6 +6,7 @@
  */
 import { Column, Grid } from '@carbon/react'
 import PropTypes from 'prop-types'
+import { assetPropTypes } from 'types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
@@ -24,7 +25,7 @@ const CatalogResults = ({ assets = [] }) => {
 }
 
 CatalogResults.propTypes = {
-  assets: PropTypes.array
+  assets: PropTypes.arrayOf(assetPropTypes)
 }
 
 export default CatalogResults

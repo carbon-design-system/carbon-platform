@@ -12,17 +12,31 @@ import { getRunMode } from '@carbon-platform/api/runtime'
 import { loadEnvVars } from '@carbon-platform/api/env-vars'
 ```
 
-## debug
+## logging
+
+APIs used by services to interact with the logging service allowing error, warning, info, and debug
+messages to be logged.
+
+## messaging
+
+APIs used by services to notify each other of requests for data or events that happen across the
+platform. See [messaging](./messaging.md) for more details.
+
+## runtime
+
+A set of modules relating to runtime configuration of services on the platform.
+
+### debug
 
 Exports a utility function that indicates whether or not the current node process is running in
 debug mode.
 
-## env-vars
+### env-vars
 
 Exports a utility function that manages retrieving and validating environment variables across
 different run modes.
 
-## environment
+### environment
 
 A module that indicates the type of runtime environment in which the service/process is running.
 This corresponds to the cloud environment and in typically only used for logging purposes. The
@@ -43,12 +57,7 @@ If the `CARBON_ENVIRONMENT` environment variable is not set, the mode will defau
 
 Setting this env var to any other value will result in an error being thrown.
 
-## logging
-
-APIs used by services to interact with the logging service allowing error, warning, info, and debug
-messages to be logged.
-
-## run-mode
+### run-mode
 
 A module that provides a runtime switch between development hooks and production code to make local
 development easier. The module that exports two things:

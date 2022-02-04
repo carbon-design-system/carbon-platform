@@ -13,7 +13,7 @@ import {
   SESSION_SECRET,
   store
 } from '../../main/auth'
-import { CARBON_IBM_ISV_ENDPOINT } from '../../main/auth/config/constants'
+import { PASSPORT_STRATEGY_NAME } from '../../main/auth/config/constants'
 import { RunMode } from '../../main/runtime'
 
 jest.mock('passport')
@@ -42,7 +42,7 @@ describe('authenticateWithPassport', () => {
     process.env.CARBON_IBM_ISV_CLIENT_SECRET = 'MOCK_SECRET'
     mockedPassport.authenticate.mockReturnValue(null)
     await authenticateWithPassport()
-    expect(mockedPassport.authenticate).toHaveBeenCalledWith(CARBON_IBM_ISV_ENDPOINT)
+    expect(mockedPassport.authenticate).toHaveBeenCalledWith(PASSPORT_STRATEGY_NAME)
     process.env.CARBON_IBM_ISV_CLIENT_ID = oldClientId
     process.env.CARBON_IBM_ISV_CLIENT_SECRET = oldClientSecret
   })

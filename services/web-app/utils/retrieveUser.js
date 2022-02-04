@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getEnvVar } from '@carbon-platform/api/enforce-env-vars'
 import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 
 /**
@@ -18,7 +17,7 @@ function getRequestOptions(req) {
   const reqOptions = {
     headers: { cookie: req.headers.cookie }
   }
-  if (getRunMode() === RunMode.Dev && getEnvVar('RUNNING_SECURELY', '0') === '1') {
+  if (getRunMode() === RunMode.Dev && process.env.RUNNING_SECURELY === '1') {
     const Agent = require('https').Agent
     reqOptions.agent = new Agent({ rejectUnauthorized: false })
   }
@@ -38,7 +37,7 @@ export async function retrieveUser(context) {
   const sessionCookie = context.req.cookies?.['connect.sid']
   if (sessionCookie) {
     const protocol =
-      getRunMode() === RunMode.Prod || getEnvVar('RUNNING_SECURELY', '0') === '1' ? 'https' : 'http'
+      getRunMode() === RunMode.Prod || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
     const userResponse = await fetch(
       `${protocol}://localhost:${req.socket.localPort}/api/user`,
       getRequestOptions(req)

@@ -13,9 +13,9 @@ being used.
 Set these variables to override local authentication and use IBMID authentication instead (these are
 optional in development mode but required on PRODUCTION)
 
-- `CARBON_IBM_VERIFY_CLIENT_ID=[client id]`
+- `CARBON_IBM_ISV_CLIENT_ID=[client id]`
   - Client ID tied to App registration on SSO provisioner (get this from dev team)
-- `CARBON_IBM_VERIFY_CLIENT_SECRET=[secret]`
+- `CARBON_IBM_ISV_CLIENT_SECRET=[secret]`
   - Client secret tied to App registration on SSO provisioner (get this from dev team)
 - `PASSPORT_STRATEGY_NAME=[name]`
   - Strategy name that passport should use when authenticating (get this from dev team)
@@ -106,8 +106,8 @@ If the service needs to handle user sessions, use the exported variable `SESSION
 session secret and the `getStore` function available through the exported `store` object as the
 store. Example with express-session:
 
-```ts
-import { getRunMode, PRODUCTION } from '@carbon-platform/api/run-mode'
+````ts
+import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 import { SESSION_SECRET, store } from '@carbon-platform/api/auth'
 import expressSession from 'express-session'
 // ...
@@ -118,11 +118,10 @@ expressSession({
   secret: SESSION_SECRET,
   cookie: {
     path: '/',
-    secure: getRunMode() === PRODUCTION,
+    secure: getRunMode() === RunMode.Prod,
     maxAge: 60 * 60 * 2 * 1000 // 2 hours
   }
 })
-```
 
 _Note:_ keep in mind you will have to await for the store instance to be resolved before being able
 to use it
@@ -137,7 +136,7 @@ instance can be used just like the passport package and doesn't need to be furth
 import { getPassportInstance } from '@carbon-platform/api/auth'
 const passport = await getPassportInstance()
 app.use(passport.session())
-```
+````
 
 _Note:_ keep in mind you will have to await for the passport instance to be resolved before being
 able to use it

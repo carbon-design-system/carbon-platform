@@ -7,16 +7,16 @@
 import requireSession from '../../middleware/requireSession'
 
 const logout = requireSession().get((req, res) => {
-  req.logout()
   let nextRoute = '/'
 
   if (req.session.next) {
     nextRoute = req.session.next
     delete req.session.next
   }
-
-  res.redirect(nextRoute)
-  res.end('')
+  req.session.destroy(function () {
+    res.redirect(nextRoute)
+    res.end('')
+  })
 })
 
 export default logout

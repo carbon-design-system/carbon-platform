@@ -7,7 +7,9 @@
 import { Download_02 as Download } from '@carbon/pictograms-react'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
+import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
+import { libraryPropTypes } from 'types'
 
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
@@ -51,6 +53,12 @@ const Libraries = ({ librariesData }) => {
       <pre className={styles.data}>{JSON.stringify(librariesData, null, 2)}</pre>
     </>
   )
+}
+
+Libraries.propTypes = {
+  librariesData: PropTypes.shape({
+    libraries: PropTypes.arrayOf(libraryPropTypes)
+  })
 }
 
 export const getStaticProps = async () => {

@@ -6,7 +6,9 @@
  */
 import { Construct } from '@carbon/pictograms-react'
 import { NextSeo } from 'next-seo'
+import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
+import { libraryPropTypes } from 'types'
 
 import Catalog from '@/components/catalog'
 import PageHeader from '@/components/page-header'
@@ -32,6 +34,12 @@ const Elements = ({ librariesData }) => {
       <Catalog data={librariesData} type="element" />
     </>
   )
+}
+
+Elements.propTypes = {
+  librariesData: PropTypes.shape({
+    libraries: PropTypes.arrayOf(libraryPropTypes)
+  })
 }
 
 export const getStaticProps = async () => {

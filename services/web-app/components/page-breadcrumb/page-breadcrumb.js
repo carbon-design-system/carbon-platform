@@ -6,6 +6,7 @@
  */
 import clsx from 'clsx'
 import Link from 'next/link'
+import PropTypes from 'prop-types'
 
 import styles from './page-breadcrumb.module.scss'
 
@@ -25,6 +26,16 @@ const PageBreadcrumb = ({ className, items = [] }) => {
         ))}
       </ol>
     </nav>
+  )
+}
+
+PageBreadcrumb.propTypes = {
+  className: PropTypes.string,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      path: PropTypes.string
+    })
   )
 }
 

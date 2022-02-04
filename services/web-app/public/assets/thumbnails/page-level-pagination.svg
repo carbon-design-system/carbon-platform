@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>page-level-pagination</title>
+    <g id="page-level-pagination" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="border-copy-15" fill="#F3F3F3" x="60" y="40" width="200" height="109"></rect>
+        <rect id="Rectangle" fill="#FFFFFF" x="61" y="43" width="198" height="26"></rect>
+        <rect id="border-copy-15" stroke="#C6C6C6" x="60.5" y="38.5" width="199" height="109"></rect>
+        <rect id="nav-copy-15" fill="#171717" x="60" y="29" width="200" height="13"></rect>
+        <rect id="Rectangle-Copy-47" fill="#C6C6C6" x="103" y="34.5" width="22" height="3"></rect>
+        <rect id="Rectangle-Copy-48" fill="#C6C6C6" x="76" y="34.5" width="22" height="3"></rect>
+        <rect id="Rectangle-Copy-49" fill="#C6C6C6" x="130" y="34.5" width="22" height="3"></rect>
+        <rect id="Rectangle-Copy-52" fill="#C6C6C6" x="65" y="33" width="5" height="5"></rect>
+        <rect id="Rectangle-Copy-50" fill="#C6C6C6" x="239" y="33" width="5" height="5"></rect>
+        <rect id="Rectangle-Copy-51" fill="#C6C6C6" x="249" y="33" width="5" height="5"></rect>
+        <rect id="Rectangle-Copy-218" fill="#8D8D8D" x="67" y="57" width="48" height="4"></rect>
+        <rect id="Rectangle-Copy-219" fill="#78A9FF" x="67" y="49" width="17" height="3"></rect>
+        <rect id="Rectangle-Copy-228" fill="#78A9FF" x="94" y="49" width="17" height="3"></rect>
+        <rect id="Rectangle-Copy-229" fill="#C3C3C3" x="159" y="57" width="17" height="3"></rect>
+        <text id="/-copy-5" font-family="IBMPlexSans-Medium, IBM Plex Sans" font-size="5" font-weight="400" line-spacing="18" letter-spacing="0.0571428559" fill="#0F62FE">
+            <tspan x="88" y="45">/</tspan>
+        </text>
+        <rect id="Rectangle" fill="#0F62FE" x="214" y="51" width="38" height="12"></rect>
+        <g id="Actions-/-Navigation-/-caret--left-/-16" transform="translate(182.000000, 52.000000)" fill="#000000">
+            <polygon id="Fill" points="6.875 8.25 3.4375 5.5 6.875 2.75"></polygon>
+        </g>
+        <g id="Group" transform="translate(196.000000, 52.000000)" fill="#000000">
+            <g id="Actions-/-Navigation-/-caret--left-/-16-Copy" transform="translate(5.500000, 5.500000) scale(-1, 1) translate(-5.500000, -5.500000) ">
+                <polygon id="Fill" points="6.875 8.25 3.4375 5.5 6.875 2.75"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

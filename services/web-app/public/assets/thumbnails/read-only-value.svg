@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>read-only-value</title>
+    <g id="read-only-value" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="IBMPlexSans, IBM Plex Sans" font-weight="normal">
+        <g id="Group" transform="translate(106.000000, 72.000000)">
+            <text id="Label" font-size="12" line-spacing="16" letter-spacing="0.137142854" fill="#525252">
+                <tspan x="0" y="12">Label</tspan>
+            </text>
+            <text id="Read-only-value" font-size="14" line-spacing="18" letter-spacing="0.159999996" fill="#161616">
+                <tspan x="0" y="32">Read-only value </tspan>
+            </text>
+        </g>
+    </g>
+</svg>

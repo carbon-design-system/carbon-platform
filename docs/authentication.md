@@ -106,7 +106,7 @@ If the service needs to handle user sessions, use the exported variable `SESSION
 session secret and the `getStore` function available through the exported `store` object as the
 store. Example with express-session:
 
-````ts
+```ts
 import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 import { SESSION_SECRET, store } from '@carbon-platform/api/auth'
 import expressSession from 'express-session'
@@ -122,6 +122,7 @@ expressSession({
     maxAge: 60 * 60 * 2 * 1000 // 2 hours
   }
 })
+```
 
 _Note:_ keep in mind you will have to await for the store instance to be resolved before being able
 to use it
@@ -136,7 +137,7 @@ instance can be used just like the passport package and doesn't need to be furth
 import { getPassportInstance } from '@carbon-platform/api/auth'
 const passport = await getPassportInstance()
 app.use(passport.session())
-````
+```
 
 _Note:_ keep in mind you will have to await for the passport instance to be resolved before being
 able to use it

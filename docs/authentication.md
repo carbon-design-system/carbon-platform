@@ -10,10 +10,15 @@ being used.
 
 ### IBMid Authentication Variables
 
+Set these variables to override local authentication and use IBMID authentication instead (these are
+optional in development mode but required on PRODUCTION)
+
 - `CARBON_IBM_VERIFY_CLIENT_ID=[client id]`
-  - Client ID tied to App registration on SSO provisioner (get this from dev team)]
+  - Client ID tied to App registration on SSO provisioner (get this from dev team)
 - `CARBON_IBM_VERIFY_CLIENT_SECRET=[secret]`
-  - Client secret tied to App registration on SSO provisioner (get this from dev team)]
+  - Client secret tied to App registration on SSO provisioner (get this from dev team)
+- `PASSPORT_STRATEGY_NAME=[name]`
+  - Strategy name that passport should use when authenticating (get this from dev team)
 
 ### Database Config Variables
 

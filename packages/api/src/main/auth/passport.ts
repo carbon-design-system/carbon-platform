@@ -14,7 +14,7 @@ import { config as prodConfig } from './config/config.prod'
 import {
   CARBON_IBM_ISV_CLIENT_ID,
   CARBON_IBM_ISV_CLIENT_SECRET,
-  CARBON_IBM_ISV_ENDPOINT
+  PASSPORT_STRATEGY_NAME
 } from './config/constants'
 import { User } from './interfaces'
 
@@ -61,7 +61,7 @@ const getPassportInstance = async (): Promise<passport.PassportStatic> => {
  * @returns Passport authenticate middleware function
  */
 const authenticateWithPassport = async () => {
-  return (await getPassportInstance()).authenticate(CARBON_IBM_ISV_ENDPOINT)
+  return (await getPassportInstance()).authenticate(PASSPORT_STRATEGY_NAME)
 }
 
 export { authenticateWithPassport, getPassportInstance }

@@ -30,5 +30,3 @@ jobs:
 
       - name: Build, Push 🚀
         run: node scripts/micromanage docker --build --push @carbon-platform/web-app
-        env:
-          CARBON_GITHUB_TOKEN: 'TODO'

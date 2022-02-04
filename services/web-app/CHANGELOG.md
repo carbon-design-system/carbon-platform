@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.46](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.45...@carbon-platform/web-app@0.1.46) (2022-02-04)
+
+
+### Features
+
+* **web-app:** new prototyping asset thumbnails ([34bc1c6](https://github.com/carbon-design-system/carbon-platform/commit/34bc1c615c18949413b2ba42441e33d8fbfd5d0c))
+
+
+### Bug Fixes
+
+* svg touchup ([153cd2a](https://github.com/carbon-design-system/carbon-platform/commit/153cd2a8d0edc70fd4cb69ae9aaea83d8891200e))
+
+### [0.1.45](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.44...@carbon-platform/web-app@0.1.45) (2022-02-03)
+
+### [0.1.44](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.43...@carbon-platform/web-app@0.1.44) (2022-02-01)
+
+### [0.1.43](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.42...@carbon-platform/web-app@0.1.43) (2022-01-31)
+
+### [0.1.42](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.41...@carbon-platform/web-app@0.1.42) (2022-01-29)
+
+
+### Bug Fixes
+
+* prevent prototyping data from invalidating ([8118be8](https://github.com/carbon-design-system/carbon-platform/commit/8118be8bbe23457395209ee3b8c35cc151ba24f9))
+
+### [0.1.41](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.40...@carbon-platform/web-app@0.1.41) (2022-01-28)
+
+### [0.1.40](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.39...@carbon-platform/web-app@0.1.40) (2022-01-28)
+
+
+### Features
+
+* **auth:** add authentication api and integration functions ([b8709ce](https://github.com/carbon-design-system/carbon-platform/commit/b8709cedfb84a7aec6d966e58cf30ea710f9d23f))
+* **auth:** add functions descriptions ([f6d98f7](https://github.com/carbon-design-system/carbon-platform/commit/f6d98f7cd61518dcaf031db2ee7e81bc8bdc9a69))
+* **auth:** add sample protected static page ([b95e983](https://github.com/carbon-design-system/carbon-platform/commit/b95e9839dfa2271ccfa24ca26bc91bd4241a592b))
+
+
+### Bug Fixes
+
+* **auth:** add shouldAuthenticate to requireAuthentication, minor fixes ([5e82117](https://github.com/carbon-design-system/carbon-platform/commit/5e821170bded56fddf3c6b3774566b01baad7271))
+* context import ([28531bb](https://github.com/carbon-design-system/carbon-platform/commit/28531bb44a4bfc89bfde99481841e43be44d4bb2))
+* merge with main ([6445fe5](https://github.com/carbon-design-system/carbon-platform/commit/6445fe5339e9fdf6eb75492073d31d64bc6cbafe))
+* replaced deprected parse api with WHATWG URL api ([b015219](https://github.com/carbon-design-system/carbon-platform/commit/b01521975935ab2fe385587f0aa8e6a4e0ee186f))
+* **test-auth:** remove mkdirp package ([7d39536](https://github.com/carbon-design-system/carbon-platform/commit/7d39536c3a85f6036d8b27e4c6d465cfb43011c8))
+* **web-app:** address 210, stronger email validation ([f89271b](https://github.com/carbon-design-system/carbon-platform/commit/f89271b97dbad6085201d96f8af4f799fedaca2d))
+* **web-app:** rewrite comment ([7b90d6c](https://github.com/carbon-design-system/carbon-platform/commit/7b90d6cf0e5228a47e30bb0415d12849703ae184))
+
 ### [0.1.39](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.38...@carbon-platform/web-app@0.1.39) (2022-01-27)
 
 ### [0.1.38](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.37...@carbon-platform/web-app@0.1.38) (2022-01-26)

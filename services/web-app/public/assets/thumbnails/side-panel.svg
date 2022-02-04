@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>side-panel</title>
+    <defs>
+        <polygon id="path-1" points="2.1875 0 4.375 2.1875 4.0656875 2.4968125 2.1875 0.618625 0.3093125 2.4968125 0 2.1875"></polygon>
+        <polygon id="path-3" points="2.1875 0 4.375 2.1875 4.0656875 2.4968125 2.1875 0.618625 0.3093125 2.4968125 0 2.1875"></polygon>
+    </defs>
+    <g id="side-panel" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="border-copy-14" fill="#FFFFFF" x="60" y="41" width="200" height="109"></rect>
+        <rect id="Rectangle-Copy-229" fill="#F4F4F4" x="60" y="42" width="199" height="108"></rect>
+        <rect id="border-copy-13" stroke="#C6C6C6" x="60.5" y="41.5" width="199" height="109"></rect>
+        <rect id="nav-copy-15" fill="#171717" x="60" y="29" width="200" height="13"></rect>
+        <rect id="Rectangle-Copy-47" fill="#C6C6C6" x="103" y="34.5" width="22" height="3"></rect>
+        <rect id="Rectangle-Copy-48" fill="#C6C6C6" x="76" y="34.5" width="22" height="3"></rect>
+        <rect id="Rectangle-Copy-49" fill="#C6C6C6" x="130" y="34.5" width="22" height="3"></rect>
+        <rect id="Rectangle-Copy-52" fill="#C6C6C6" x="65" y="33" width="5" height="5"></rect>
+        <rect id="Rectangle-Copy-50" fill="#C6C6C6" x="239" y="33" width="5" height="5"></rect>
+        <rect id="Rectangle-Copy-51" fill="#C6C6C6" x="249" y="33" width="5" height="5"></rect>
+        <rect id="Rectangle-Copy-150" fill="#FFFFFF" x="200" y="42" width="58" height="107"></rect>
+        <rect id="Rectangle-3-Copy-48" fill="#A8A8A8" x="205" y="50" width="29" height="3"></rect>
+        <rect id="Rectangle-3-Copy-51" fill="#A8A8A8" x="205" y="76" width="15" height="2"></rect>
+        <rect id="Rectangle-3-Copy-53" fill="#A8A8A8" x="205" y="106" width="15" height="2"></rect>
+        <rect id="Rectangle-3-Copy-54" fill="#A8A8A8" x="205" y="118" width="15" height="2"></rect>
+        <rect id="Rectangle-3-Copy-49" fill="#E0E0E0" x="230" y="70" width="29" height="12"></rect>
+        <rect id="Rectangle-3-Copy-52" fill="#A8A8A8" x="236" y="76" width="15" height="2"></rect>
+        <rect id="Rectangle-3-Copy-50" fill="#0F62FE" x="200" y="70" width="29" height="2"></rect>
+        <rect id="Rectangle" fill="#A8A8A8" x="205" y="101" width="48" height="1"></rect>
+        <rect id="Rectangle-Copy" fill="#A8A8A8" x="205" y="112" width="48" height="1"></rect>
+        <g id="Group" transform="translate(247.500000, 104.000000)">
+            <g id="Group" transform="translate(3.500000, 3.500000) scale(1, -1) translate(-3.500000, -3.500000) ">
+                <g id="chevron--up" transform="translate(1.312500, 2.187500)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Mask" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+                    <g id="Group" mask="url(#mask-2)">
+                        <g transform="translate(-1.312500, -2.187500)" id="icon-color">
+                            <rect id="Rectangle" fill="#171717" x="0" y="0" width="17.5" height="17.5"></rect>
+                        </g>
+                    </g>
+                </g>
+                <polygon id="transparent-rectangle" transform="translate(3.500000, 3.500000) rotate(-90.000000) translate(-3.500000, -3.500000) " points="8.8817842e-16 4.2862638e-16 7 4.2862638e-16 7 7 8.8817842e-16 7"></polygon>
+            </g>
+        </g>
+        <g id="Group" transform="translate(247.500000, 116.000000)">
+            <g id="Group" transform="translate(3.500000, 3.500000) scale(1, -1) translate(-3.500000, -3.500000) ">
+                <g id="chevron--up" transform="translate(1.312500, 2.187500)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <use id="Mask" fill="#000000" fill-rule="nonzero" xlink:href="#path-3"></use>
+                    <g id="Group" mask="url(#mask-4)">
+                        <g transform="translate(-1.312500, -2.187500)" id="icon-color">
+                            <rect id="Rectangle" fill="#171717" x="0" y="0" width="17.5" height="17.5"></rect>
+                        </g>
+                    </g>
+                </g>
+                <polygon id="transparent-rectangle" transform="translate(3.500000, 3.500000) rotate(-90.000000) translate(-3.500000, -3.500000) " points="8.8817842e-16 4.2862638e-16 7 4.2862638e-16 7 7 8.8817842e-16 7"></polygon>
+            </g>
+        </g>
+        <rect id="Rectangle-3-Copy-54" fill="#A8A8A8" x="205" y="94" width="36" height="2"></rect>
+    </g>
+</svg>

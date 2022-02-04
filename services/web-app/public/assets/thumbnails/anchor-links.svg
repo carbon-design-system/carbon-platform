@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>anchor-links</title>
+    <g id="anchor-links" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FFFFFF" x="0" y="0" width="320" height="180"></rect>
+        <rect id="Rectangle-Copy-11" fill="#A8A8A8" x="72.7697842" y="57.6296296" width="73.863309" height="5"></rect>
+        <rect id="Rectangle-Copy-89" fill="#A8A8A8" x="187.136691" y="57.6296296" width="73.863309" height="5"></rect>
+        <rect id="Rectangle-Copy-12" fill="#A8A8A8" x="72.7697842" y="76.9312169" width="58.294964" height="5"></rect>
+        <rect id="Rectangle-Copy-90" fill="#A8A8A8" x="187.136691" y="76.9312169" width="58.294964" height="5"></rect>
+        <rect id="Rectangle-Copy-13" fill="#A8A8A8" x="72.7697842" y="115.534392" width="58.294964" height="5"></rect>
+        <rect id="Rectangle-Copy-91" fill="#A8A8A8" x="187.136691" y="115.534392" width="58.294964" height="5"></rect>
+        <text id="↳-copy-4" font-family="IBMPlexSans, IBM Plex Sans" font-size="13" font-weight="normal" line-spacing="17.6" fill="#6F6F6F">
+            <tspan x="56" y="65.047619">↳</tspan>
+        </text>
+        <text id="↳-copy-8" font-family="IBMPlexSans, IBM Plex Sans" font-size="13" font-weight="normal" line-spacing="17.6" fill="#6F6F6F">
+            <tspan x="170.6" y="65">↳</tspan>
+        </text>
+        <text id="↳-copy-5" font-family="IBMPlexSans, IBM Plex Sans" font-size="13" font-weight="normal" line-spacing="17.6" fill="#6F6F6F">
+            <tspan x="56" y="84.2">↳</tspan>
+        </text>
+        <text id="↳-copy-9" font-family="IBMPlexSans, IBM Plex Sans" font-size="13" font-weight="normal" line-spacing="17.6" fill="#6F6F6F">
+            <tspan x="170.6" y="84.2">↳</tspan>
+        </text>
+        <text id="↳-copy-6" font-family="IBMPlexSans, IBM Plex Sans" font-size="13" font-weight="normal" line-spacing="17.6" fill="#6F6F6F">
+            <tspan x="56" y="122.6">↳</tspan>
+        </text>
+        <text id="↳-copy-10" font-family="IBMPlexSans, IBM Plex Sans" font-size="13" font-weight="normal" line-spacing="17.6" fill="#6F6F6F">
+            <tspan x="170.6" y="122.6">↳</tspan>
+        </text>
+        <rect id="Rectangle-Copy-14" fill="#A8A8A8" x="72.8" y="95.7671958" width="74" height="5"></rect>
+        <rect id="Rectangle-Copy-92" fill="#A8A8A8" x="187.4" y="95.7671958" width="74" height="5"></rect>
+        <text id="↳-copy-7" font-family="IBMPlexSans, IBM Plex Sans" font-size="13" font-weight="normal" line-spacing="17.6" fill="#6F6F6F">
+            <tspan x="56" y="103.149206">↳</tspan>
+        </text>
+        <text id="↳-copy-11" font-family="IBMPlexSans, IBM Plex Sans" font-size="13" font-weight="normal" line-spacing="17.6" fill="#6F6F6F">
+            <tspan x="170.6" y="103.149206">↳</tspan>
+        </text>
+    </g>
+</svg>

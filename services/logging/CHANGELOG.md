@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.25](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@0.1.24...@carbon-platform/logging@0.1.25) (2022-02-03)
+
+
+### Features
+
+* **logging:** distinguish between validated and unvalidated messages ([93379d5](https://github.com/carbon-design-system/carbon-platform/commit/93379d5de72027c5b12a42619f8cbb0ccde19c8c))
+* **logging:** implement logging service ([78e9241](https://github.com/carbon-design-system/carbon-platform/commit/78e9241c28f60199cd3845d9c297023d1347450e))
+
+
+### Bug Fixes
+
+* **logging:** change run mode uses to use new enum ([28cc6cb](https://github.com/carbon-design-system/carbon-platform/commit/28cc6cbcd2e473ec6186be896ce44b2a4c0d79da))
+
+### [0.1.24](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@0.1.23...@carbon-platform/logging@0.1.24) (2022-02-01)
+
+
+### Bug Fixes
+
+* **logging:** add missing optional indicator ([705ac7c](https://github.com/carbon-design-system/carbon-platform/commit/705ac7ca6c1f44b1cab45c01c742604f7f508e7f))
+
 ### [0.1.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@0.1.22...@carbon-platform/logging@0.1.23) (2022-01-31)
 
 ### [0.1.22](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@0.1.21...@carbon-platform/logging@0.1.22) (2022-01-29)

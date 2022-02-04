@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.5...@carbon-platform/api@0.2.6) (2022-02-03)
+
+
+### Features
+
+* **api:** switch dev auth from sequelize to session file store ([d1c2042](https://github.com/carbon-design-system/carbon-platform/commit/d1c2042558e23cd86a08cd141e8d38fac583c622))
+* **logging:** distinguish between validated and unvalidated messages ([93379d5](https://github.com/carbon-design-system/carbon-platform/commit/93379d5de72027c5b12a42619f8cbb0ccde19c8c))
+
+### [0.2.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.4...@carbon-platform/api@0.2.5) (2022-02-01)
+
+
+### Features
+
+* **api:** implement logging api ([117ac52](https://github.com/carbon-design-system/carbon-platform/commit/117ac52a456e0b67bbd4aeaa7f95b8eff8c4abaf))
+
+
+### Bug Fixes
+
+* **logging:** add missing optional indicator ([705ac7c](https://github.com/carbon-design-system/carbon-platform/commit/705ac7ca6c1f44b1cab45c01c742604f7f508e7f))
+
 ### [0.2.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.3...@carbon-platform/api@0.2.4) (2022-01-31)
 
 ### [0.2.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.2...@carbon-platform/api@0.2.3) (2022-01-29)

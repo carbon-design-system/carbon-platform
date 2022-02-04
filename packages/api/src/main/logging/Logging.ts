@@ -135,7 +135,7 @@ class Logging {
       message,
       environment: this.environment,
       service: this.service,
-      timestamp: new Date().getTime()
+      timestamp: new Date(Date.now()).getTime()
     }
   }
 

@@ -4,8 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Logging } from '../../main/logging'
-import { MessagingClient } from '../../main/messaging'
+import { Logging, LogLoggedMessage } from '../../main/logging'
+import { EventMessage, MessagingClient } from '../../main/messaging'
 import * as runMode from '../../main/run-mode'
 
 jest.mock('../../main/run-mode')
@@ -38,8 +38,13 @@ describe('message emission', () => {
   })
 
   describe('PROD mode', () => {
+    let dateNow: any
+
     beforeEach(() => {
       mockedRunMode.getRunMode.mockReturnValue(runMode.RunMode.Prod)
+
+      dateNow = Date.now
+      Date.now = jest.fn().mockReturnValue(1234)
     })
 
     it('emits one message per method call', async () => {
@@ -59,6 +64,25 @@ describe('message emission', () => {
       const logging = new Logging('test-service', 'test-component')
       await logging.debug('test')
       expect(mockedEmit).toHaveBeenCalledTimes(0)
+    })
+
+    it('calls emit with a well-formed message', async () => {
+      const message: LogLoggedMessage = {
+        component: 'test-component',
+        environment: 'PRODUCTION',
+        level: 'info',
+        message: 'test',
+        service: 'test-service',
+        timestamp: Date.now()
+      }
+
+      const logging = new Logging(message.service, message.component)
+      await logging.info(message.message)
+      expect(mockedEmit).toHaveBeenCalledWith(EventMessage.LogLogged, message)
+    })
+
+    afterEach(() => {
+      Date.now = dateNow
     })
   })
 })

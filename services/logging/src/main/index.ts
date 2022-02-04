@@ -4,6 +4,16 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { run } from './server'
+import { EventMessage, Queue } from '@carbon-platform/api/messaging'
 
-run()
+import { LoggingModule } from './logging.module'
+
+async function start() {
+  const service = new LoggingModule(Queue.Logging)
+
+  await service.bind(EventMessage.LogLogged)
+
+  await service.start()
+}
+
+start()

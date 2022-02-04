@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>date-time-range-selector</title>
+    <defs>
+        <path d="M13,2 L11,2 L11,1 L10,1 L10,2 L6,2 L6,1 L5,1 L5,2 L3,2 C2.44771525,2 2,2.44771525 2,3 L2,13 C2,13.5522847 2.44771525,14 3,14 L13,14 C13.5522847,14 14,13.5522847 14,13 L14,3 C14,2.44771525 13.5522847,2 13,2 Z M13,13 L3,13 L3,6 L13,6 L13,13 Z M13,5 L3,5 L3,3 L5,3 L5,4 L6,4 L6,3 L10,3 L10,4 L11,4 L11,3 L13,3 L13,5 Z" id="path-1"></path>
+    </defs>
+    <g id="date-time-range-selector" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-11-Copy" fill="#F3F3F3" x="56" y="74" width="208" height="32"></rect>
+        <line x1="56" y1="105.5" x2="264" y2="105.5" id="Path-3-Copy-8" stroke="#8C8C8C"></line>
+        <rect id="Rectangle-Copy-14" fill="#A8A8A8" x="69.3888889" y="87" width="96" height="7"></rect>
+        <g id="Group" transform="translate(233.000000, 82.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="icon-color" fill="#000000" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

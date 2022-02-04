@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
 
 /**
  * Hook function used to tap into user object and it's functions, it serves:
- * - user: object containing user's data as per user models located in @/models/user.model.ts
+ * - user: object containing user's data as per user models located in @carbon-platform/api/auth
  * - loading: boolean indicating whether user is still being retrieved or not
  * - isAuthenticated: booleand indicating whether the user has correctly authenticated or not
  * - login: function to login user

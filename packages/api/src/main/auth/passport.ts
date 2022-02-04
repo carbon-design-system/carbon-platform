@@ -10,16 +10,13 @@ import { BaseClient, Issuer, Strategy as OpenIdStrategy } from 'openid-client'
 import passport from 'passport'
 import path from 'path'
 
-import { enforceEnvVars, getEnvVar } from '../enforce-env-vars'
-import { getRunMode, RunMode } from '../run-mode'
+import { getRunMode, RunMode } from '../runtime'
 import { config as devConfig } from './config/config.dev'
 import { config as prodConfig } from './config/config.prod'
 import {
-  CARBON_IBM_VERIFY_CLIENT_ID_ENV_VAR,
-  CARBON_IBM_VERIFY_CLIENT_SECRET_ENV_VAR,
-  CUSTOM_LOCAL_STRATEGY,
-  IBM_AUTHENTICATION_STRATEGY,
-  PASSPORT_OPEN_ID_REQUIRED_ENV_VARS
+  CARBON_IBM_ISV_CLIENT_ID,
+  CARBON_IBM_ISV_CLIENT_SECRET,
+  CARBON_IBM_ISV_ENDPOINT
 } from './config/constants'
 import { User } from './interfaces'
 
@@ -32,14 +29,12 @@ let passportStrategy: passport.Strategy | undefined
  * OpenID passport strategy
  */
 async function createOpenIDStrategy(): Promise<OpenIdStrategy<unknown, BaseClient>> {
-  enforceEnvVars(PASSPORT_OPEN_ID_REQUIRED_ENV_VARS)
-
   const passportConfig = getRunMode() === RunMode.Prod ? prodConfig : devConfig
 
   const ibmIdIssuer = await Issuer.discover(passportConfig.discovery_url)
   const client = new ibmIdIssuer.Client({
-    client_id: getEnvVar(CARBON_IBM_VERIFY_CLIENT_ID_ENV_VAR),
-    client_secret: getEnvVar(CARBON_IBM_VERIFY_CLIENT_SECRET_ENV_VAR),
+    client_id: CARBON_IBM_ISV_CLIENT_ID,
+    client_secret: CARBON_IBM_ISV_CLIENT_SECRET,
     redirect_uris: [passportConfig.redirect_uri],
     response_types: ['code']
   })
@@ -58,7 +53,7 @@ async function createOpenIDStrategy(): Promise<OpenIdStrategy<unknown, BaseClien
  */
 async function createCustomStrategy(): Promise<passport.Strategy> {
   const { Strategy: CustomStrategy } = await import('passport-custom')
-  return new CustomStrategy(function (req, done) {
+  return new CustomStrategy(function (_, done) {
     const dir = path.join(process.cwd(), 'mocked-user.json')
     if (!fs.existsSync(dir)) {
       throw new Error('mocked-user.json file could not be found')
@@ -81,16 +76,13 @@ async function createCustomStrategy(): Promise<passport.Strategy> {
  * @returns {boolean} true if should use OpenId strategy
  */
 function shouldUseOpenIdStrategy(): boolean {
-  let validOpenIdVariables = true
-  try {
-    const openIdDevModeVars = [...PASSPORT_OPEN_ID_REQUIRED_ENV_VARS, 'RUNNING_SECURELY']
-    openIdDevModeVars.forEach((varName) => getEnvVar(varName))
-  } catch (e) {
-    validOpenIdVariables = false
-  }
-  return (
-    getRunMode() === RunMode.Prod || (validOpenIdVariables && getEnvVar('RUNNING_SECURELY') === '1')
-  )
+  const isRunningSecurely = process.env.RUNNING_SECURELY === '1'
+  const hasValidOpenIdValues =
+    !!CARBON_IBM_ISV_ENDPOINT &&
+    CARBON_IBM_ISV_ENDPOINT !== 'custom' &&
+    !!CARBON_IBM_ISV_CLIENT_ID &&
+    !!CARBON_IBM_ISV_CLIENT_SECRET
+  return getRunMode() === RunMode.Prod || (hasValidOpenIdValues && isRunningSecurely)
 }
 
 /**
@@ -120,15 +112,12 @@ const getPassportInstance = async (): Promise<passport.PassportStatic> => {
 }
 
 /**
- * uses IBM Authentication Strategy to authenticate user using passport
+ * Uses Passport to authenticate the user against IBM Security Verify.
  *
- * @returns {any} Passport authenticate middleware function
+ * @returns Passport authenticate middleware function
  */
 const authenticateWithPassport = async () => {
-  const strategyName = shouldUseOpenIdStrategy()
-    ? IBM_AUTHENTICATION_STRATEGY
-    : CUSTOM_LOCAL_STRATEGY
-  return (await getPassportInstance()).authenticate(strategyName)
+  return (await getPassportInstance()).authenticate(CARBON_IBM_ISV_ENDPOINT)
 }
 
 // for testing purposes only, this is not exported through the entry file

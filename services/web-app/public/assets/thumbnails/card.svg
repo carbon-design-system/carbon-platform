@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="320px" height="320px" viewBox="0 0 320 320" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>card</title>
-    <defs>
-        <polygon id="path-1" points="9 3 8.295 3.705 12.085 7.5 1.5 7.5 1.5 8.5 12.085 8.5 8.295 12.295 9 13 14 8"></polygon>
-    </defs>
     <g id="card" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Group" transform="translate(57.000000, 109.000000)">
-            <rect id="Rectangle-Copy-3" fill="#F3F3F3" x="0" y="0" width="206" height="103"></rect>
-            <rect id="Rectangle-Copy-4" fill="#C6C6C6" x="13" y="13" width="44" height="8"></rect>
-            <rect id="Rectangle-Copy-5" fill="#A8A8A8" x="13" y="27" width="125" height="8"></rect>
-            <g transform="translate(12.040752, 78.783699)" id="icons/arrows/ibm-forward-link-copy-2">
-                <mask id="mask-2" fill="white">
-                    <use xlink:href="#path-1"></use>
-                </mask>
-                <use id="icon-color" fill="#0F62FE" xlink:href="#path-1"></use>
-            </g>
+        <rect id="Rectangle-Copy-230" fill="#F4F4F4" x="86" y="32" width="148" height="117"></rect>
+        <rect id="Rectangle-Copy-21" fill="#FFFFFF" x="95" y="64" width="131" height="76"></rect>
+        <rect id="Rectangle-Copy-192" fill="#8D8D8D" x="95" y="43.7817259" width="49" height="4"></rect>
+        <rect id="Rectangle-Copy-193" fill="#C6C6C6" x="95" y="51.7817259" width="68" height="4"></rect>
+        <g id="Actions-/-Navigation-/-overflow-menu--vertical-/-16" transform="translate(214.000000, 42.000000)" fill="#000000">
+            <path d="M6,3 C6.41421356,3 6.75,2.66421356 6.75,2.25 C6.75,1.83578644 6.41421356,1.5 6,1.5 C5.58578644,1.5 5.25,1.83578644 5.25,2.25 C5.25,2.66421356 5.58578644,3 6,3 Z M6,6.75 C6.41421356,6.75 6.75,6.41421356 6.75,6 C6.75,5.58578644 6.41421356,5.25 6,5.25 C5.58578644,5.25 5.25,5.58578644 5.25,6 C5.25,6.41421356 5.58578644,6.75 6,6.75 Z M6,10.5 C6.41421356,10.5 6.75,10.1642136 6.75,9.75 C6.75,9.33578644 6.41421356,9 6,9 C5.58578644,9 5.25,9.33578644 5.25,9.75 C5.25,10.1642136 5.58578644,10.5 6,10.5 Z" id="Fill"></path>
         </g>
     </g>
 </svg>

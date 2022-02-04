@@ -49,7 +49,7 @@ list obtained from a remote source, the results after filtering an input set, et
 > and acceptable to leave debug statements in code, where appropriate, unlike `console.log`
 > statements, which would typically be removed from production code.
 
-> NOTE: Debug logging can be turned on for a service running in PROD mode if `DEBUG=true` is
+> NOTE: Debug logging can be turned on for a service running in PROD mode if `CARBON_DEBUG=true` is
 > exported as an environment variables. This isn't typically needed, but can be useful for advanced
 > debugging of production-running applications.
 

@@ -6,7 +6,7 @@
  */
 
 import { getEnvVar } from '@carbon-platform/api/enforce-env-vars'
-import { getRunMode, RunMode } from '@carbon-platform/api/run-mode'
+import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 
 /**
  * Creates request options for retrieveUser api call including headers and agent if necessary

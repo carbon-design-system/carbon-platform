@@ -9,9 +9,8 @@ import cookieParser from 'cookie-parser'
 import expressSession from 'express-session'
 import path from 'path'
 
-import { enforceEnvVars, getEnvVar } from '../enforce-env-vars'
-import { getRunMode, RunMode } from '../run-mode'
-import { PROD_SESSION_REQUIRED_ENV_VARS, SESSION_SECRET } from './config/constants'
+import { getRunMode, RunMode } from '../runtime'
+import { CARBON_MONGO_DB_NAME, CARBON_MONGO_DB_URL, SESSION_SECRET } from './config/constants'
 import { User } from './interfaces'
 
 let storeInstance: expressSession.Store
@@ -20,11 +19,11 @@ async function createMongoStore(): Promise<expressSession.Store> {
   const { MongoClient } = await import('mongodb')
   const MongoStore = (await import('connect-mongo')).default
 
-  const mongoClientPromise = new MongoClient(getEnvVar('CARBON_MONGO_DB_URL')).connect()
+  const mongoClientPromise = new MongoClient(CARBON_MONGO_DB_URL).connect()
 
   return MongoStore.create({
     clientPromise: mongoClientPromise,
-    dbName: getEnvVar('CARBON_MONGO_DB_NAME')
+    dbName: CARBON_MONGO_DB_NAME
   })
 }
 
@@ -45,8 +44,6 @@ async function createFileStore(): Promise<expressSession.Store> {
 const getStore = async (): Promise<expressSession.Store> => {
   if (!storeInstance) {
     if (getRunMode() === RunMode.Prod) {
-      enforceEnvVars(PROD_SESSION_REQUIRED_ENV_VARS)
-
       storeInstance = await createMongoStore()
     } else {
       storeInstance = await createFileStore()

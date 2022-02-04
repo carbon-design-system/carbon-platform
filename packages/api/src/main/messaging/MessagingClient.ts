@@ -8,7 +8,7 @@ import amqp from 'amqplib'
 import { v4 as uuidv4 } from 'uuid'
 
 import { EventMessage, QueryMessage } from './config'
-import { MESSAGE_QUEUE_URL } from './constants'
+import { CARBON_MESSAGE_QUEUE_URL } from './constants'
 
 const RANDOM_QUEUE_NAME = ''
 const DEFAULT_ROUTING_KEY = ''
@@ -76,7 +76,7 @@ class MessagingClient {
       let channel: amqp.ConfirmChannel | undefined
 
       try {
-        connection = await amqp.connect(MESSAGE_QUEUE_URL)
+        connection = await amqp.connect(CARBON_MESSAGE_QUEUE_URL)
         channel = await connection.createConfirmChannel()
 
         this.replyQueue = await channel.assertQueue(RANDOM_QUEUE_NAME, { exclusive: true })

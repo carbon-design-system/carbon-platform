@@ -9,17 +9,14 @@ import passport from 'passport'
 import path from 'path'
 
 import {
-  __test__,
   authenticateWithPassport,
   getPassportInstance,
   SESSION_SECRET,
   store
 } from '../../main/auth'
-import {
-  CUSTOM_LOCAL_STRATEGY,
-  IBM_AUTHENTICATION_STRATEGY
-} from '../../main/auth/config/constants'
-import { RunMode } from '../../main/run-mode'
+import { CARBON_IBM_ISV_ENDPOINT } from '../../main/auth/config/constants'
+import { __test__ } from '../../main/auth/passport'
+import { RunMode } from '../../main/runtime'
 
 const signature = require('cookie-signature')
 
@@ -77,7 +74,7 @@ describe('authenticateWithPassport', () => {
     const passportAuthenticateFn = passport.authenticate
     passport.authenticate = jest.fn().mockReturnValue(null)
     await authenticateWithPassport()
-    await expect(passport.authenticate).toHaveBeenCalledWith(IBM_AUTHENTICATION_STRATEGY)
+    await expect(passport.authenticate).toHaveBeenCalledWith(CARBON_IBM_ISV_ENDPOINT)
     process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
     process.env.CARBON_RUN_MODE = oldRunMode
@@ -94,7 +91,7 @@ describe('authenticateWithPassport', () => {
     const passportAuthenticateFn = passport.authenticate
     passport.authenticate = jest.fn().mockReturnValue(null)
     await authenticateWithPassport()
-    await expect(passport.authenticate).toHaveBeenCalledWith(CUSTOM_LOCAL_STRATEGY)
+    await expect(passport.authenticate).toHaveBeenCalledWith(CARBON_IBM_ISV_ENDPOINT)
     process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
     process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
     process.env.CARBON_RUN_MODE = oldRunMode

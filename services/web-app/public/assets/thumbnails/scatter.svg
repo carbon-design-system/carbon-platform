@@ -1,44 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="240px" height="240px" viewBox="0 0 240 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
-    <title>Data</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Data-vis-pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.3">
-        <g id="Dataviz-overview-1-Copy-2" transform="translate(48,64)" fill="#0062FF" stroke="#0062FF" stroke-width="1.5">
-            <g id="Data">
-                <g id="data1-copy" transform="translate(0.496599, 0.000000)">
-                    <ellipse id="Oval-Copy-24" cx="4.10753898" cy="87.5028153" rx="2.52434716" ry="2.51858108"></ellipse>
-                    <ellipse id="Oval-Copy-25" cx="36.7261124" cy="100.951979" rx="2.52434716" ry="2.51858108"></ellipse>
-                    <ellipse id="Oval-Copy-26" cx="64.3809898" cy="81.8400097" rx="2.52434716" ry="2.51858108"></ellipse>
-                    <ellipse id="Oval-Copy-27" cx="85.6539725" cy="81.8400097" rx="2.52434716" ry="2.51858108"></ellipse>
-                    <ellipse id="Oval-Copy-28" cx="91.3267678" cy="76.177204" rx="2.52434716" ry="2.51858108"></ellipse>
-                    <ellipse id="Oval-Copy-29" cx="96.9995632" cy="57.0652349" rx="2.52434716" ry="2.51858108"></ellipse>
-                    <ellipse id="Oval-Copy-30" cx="112.59975" cy="30.166908" rx="2.52434716" ry="2.51858108"></ellipse>
-                    <ellipse id="Oval-Copy-31" cx="125.36354" cy="16.0098938" rx="2.52434716" ry="2.51858108"></ellipse>
-                    <ellipse id="Oval-Copy-32" cx="131.036335" cy="13.178491" rx="2.52434716" ry="2.51858108"></ellipse>
-                    <ellipse id="Oval-Copy-33" cx="141.672827" cy="3.26858108" rx="2.52434716" ry="2.51858108"></ellipse>
-                </g>
-                <g id="data2-copy" style="mix-blend-mode: multiply;" transform="translate(8.442177, 65.551020)">
-                    <ellipse id="Oval-Copy-37" cx="3.97859298" cy="46.8673812" rx="2.53306878" ry="2.48759669"></ellipse>
-                    <ellipse id="Oval-Copy-38" cx="31.8085938" cy="59.237799" rx="2.53306878" ry="2.48759669"></ellipse>
-                    <ellipse id="Oval-Copy-39" cx="42.5124403" cy="48.2747936" rx="2.53306878" ry="2.48759669"></ellipse>
-                    <ellipse id="Oval-Copy-40" cx="74.6239797" cy="39.126613" rx="2.53306878" ry="2.48759669"></ellipse>
-                    <ellipse id="Oval-Copy-41" cx="101.740391" cy="34.2006696" rx="2.53306878" ry="2.48759669"></ellipse>
-                    <ellipse id="Oval-Copy-44" cx="126.002443" cy="3.94130289" rx="2.53306878" ry="2.48759669"></ellipse>
-                    <ellipse id="Oval-Copy-43" cx="131.711161" cy="39.126613" rx="2.53306878" ry="2.48759669"></ellipse>
-                    <ellipse id="Oval-Copy-42" cx="112.444237" cy="29.2747262" rx="2.53306878" ry="2.48759669"></ellipse>
-                </g>
-                <g id="data3-copy" style="mix-blend-mode: multiply;" transform="translate(41.217687, 36.748299)">
-                    <ellipse id="Oval-Copy-48" cx="3.77838687" cy="76.4507182" rx="2.50892857" ry="2.50634591"></ellipse>
-                    <ellipse id="Oval-Copy-49" cx="24.9088938" cy="57.4483331" rx="2.50892857" ry="2.50634591"></ellipse>
-                    <ellipse id="Oval-Copy-50" cx="68.578608" cy="50.4104127" rx="2.50892857" ry="2.50634591"></ellipse>
-                    <ellipse id="Oval-Copy-51" cx="68.578608" cy="20.1473549" rx="2.50892857" ry="2.50634591"></ellipse>
-                    <ellipse id="Oval-Copy-52" cx="83.3699628" cy="8.88668224" rx="2.50892857" ry="2.50634591"></ellipse>
-                    <ellipse id="Oval-Copy-53" cx="89.0047647" cy="3.25634591" rx="2.50892857" ry="2.50634591"></ellipse>
-                    <ellipse id="Oval-Copy-54" cx="93.230866" cy="25.7776912" rx="2.50892857" ry="2.50634591"></ellipse>
-                    <ellipse id="Oval-Copy-55" cx="100.978719" cy="15.9246027" rx="2.50892857" ry="2.50634591"></ellipse>
-                </g>
-            </g>
-        </g>
+<svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>scatter</title>
+    <g id="scatter" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.3">
+        <circle id="Oval-Copy-24" stroke="#A56EFF" stroke-width="1.5" fill="#A56EFF" cx="76" cy="114.234234" r="3.25"></circle>
+        <circle id="Oval-Copy-25" stroke="#009D9A" stroke-width="1.5" fill="#009D9A" cx="108.618573" cy="135.683398" r="3.25"></circle>
+        <circle id="Oval-Copy-26" stroke="#A56EFF" stroke-width="1.5" fill="#A56EFF" cx="136.273451" cy="116.571429" r="3.25"></circle>
+        <circle id="Oval-Copy-27" stroke="#002D9C" stroke-width="1.5" fill="#002D9C" cx="157.546433" cy="108.571429" r="3.25"></circle>
+        <circle id="Oval-Copy-28" stroke="#009D9A" stroke-width="1.5" fill="#009D9A" cx="143.546433" cy="61.5714286" r="3.25"></circle>
+        <circle id="Oval-Copy-29" stroke="#009D9A" stroke-width="1.5" fill="#009D9A" cx="168.892024" cy="83.7966538" r="3.25"></circle>
+        <circle id="Oval-Copy-30" stroke="#A56EFF" stroke-width="1.5" fill="#A56EFF" cx="184.492211" cy="56.8983269" r="3.25"></circle>
+        <circle id="Oval-Copy-31" stroke="#002D9C" stroke-width="1.5" fill="#002D9C" cx="205.256001" cy="54.7413127" r="3.25"></circle>
+        <circle id="Oval-Copy-32" stroke="#A56EFF" stroke-width="1.5" fill="#A56EFF" cx="208.928796" cy="51.9099099" r="3.25"></circle>
+        <circle id="Oval-Copy-33" stroke="#A56EFF" stroke-width="1.5" fill="#A56EFF" cx="245" cy="28" r="3.25"></circle>
+        <circle id="Oval-Copy-37" stroke="#002D9C" stroke-width="1.5" fill="#002D9C" cx="83.8079106" cy="147.180805" r="3.25"></circle>
+        <circle id="Oval-Copy-38" stroke="#002D9C" stroke-width="1.5" fill="#002D9C" cx="111" cy="152" r="3.25"></circle>
+        <circle id="Oval-Copy-40" stroke="#002D9C" stroke-width="1.5" fill="#002D9C" cx="154.453297" cy="131.440037" r="3.25"></circle>
+        <circle id="Oval-Copy-41" stroke="#A56EFF" stroke-width="1.5" fill="#A56EFF" cx="181.569708" cy="110.514093" r="3.25"></circle>
+        <circle id="Oval-Copy-44" stroke="#002D9C" stroke-width="1.5" fill="#002D9C" cx="230.83176" cy="111.254727" r="3.25"></circle>
+        <circle id="Oval-Copy-45" stroke="#A56EFF" stroke-width="1.5" fill="#A56EFF" cx="215.83176" cy="93.2547266" r="3.25"></circle>
+        <circle id="Oval-Copy-43" stroke="#009D9A" stroke-width="1.5" fill="#009D9A" cx="219.540479" cy="123.440037" r="3.25"></circle>
+        <circle id="Oval-Copy-42" stroke="#002D9C" stroke-width="1.5" fill="#002D9C" cx="192.273555" cy="105.58815" r="3.25"></circle>
+        <circle id="Oval-Copy-48" stroke="#A56EFF" stroke-width="1.5" fill="#A56EFF" cx="116.407355" cy="147.942672" r="3.25"></circle>
+        <circle id="Oval-Copy-50" stroke="#002D9C" stroke-width="1.5" fill="#002D9C" cx="181.207576" cy="97.9023661" r="3.25"></circle>
+        <circle id="Oval-Copy-51" stroke="#002D9C" stroke-width="1.5" fill="#002D9C" cx="181.207576" cy="83.6393083" r="3.25"></circle>
+        <circle id="Oval-Copy-52" stroke="#009D9A" stroke-width="1.5" fill="#009D9A" cx="195.998931" cy="72.3786356" r="3.25"></circle>
+        <circle id="Oval-Copy-53" stroke="#009D9A" stroke-width="1.5" fill="#009D9A" cx="209.633733" cy="66.7482993" r="3.25"></circle>
+        <circle id="Oval-Copy-54" stroke="#A56EFF" stroke-width="1.5" fill="#A56EFF" cx="236.859834" cy="67.2696446" r="3.25"></circle>
+        <circle id="Oval-Copy-55" stroke="#002D9C" stroke-width="1.5" fill="#002D9C" cx="237.607687" cy="79.4165561" r="3.25"></circle>
     </g>
 </svg>

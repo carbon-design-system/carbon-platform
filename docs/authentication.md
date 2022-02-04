@@ -10,9 +10,9 @@ being used.
 
 ### IBMid Authentication Variables
 
-- `CARBON_IBM_VERIFY_CLIENT_ID=[client id]`
+- `CARBON_IBM_ISV_CLIENT_ID=[client id]`
   - Client ID tied to App registration on SSO provisioner (get this from dev team)]
-- `CARBON_IBM_VERIFY_CLIENT_SECRET=[secret]`
+- `CARBON_IBM_ISV_CLIENT_SECRET=[secret]`
   - Client secret tied to App registration on SSO provisioner (get this from dev team)]
 
 ### Database Config Variables
@@ -102,7 +102,7 @@ session secret and the `getStore` function available through the exported `store
 store. Example with express-session:
 
 ```ts
-import { getRunMode, PRODUCTION } from '@carbon-platform/api/run-mode'
+import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 import { SESSION_SECRET, store } from '@carbon-platform/api/auth'
 import expressSession from 'express-session'
 // ...
@@ -113,11 +113,10 @@ expressSession({
   secret: SESSION_SECRET,
   cookie: {
     path: '/',
-    secure: getRunMode() === PRODUCTION,
+    secure: getRunMode() === RunMode.Prod,
     maxAge: 60 * 60 * 2 * 1000 // 2 hours
   }
 })
-```
 
 _Note:_ keep in mind you will have to await for the store instance to be resolved before being able
 to use it

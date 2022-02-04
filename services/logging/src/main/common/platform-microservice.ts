@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {
+  CARBON_MESSAGE_QUEUE_URL,
   DEFAULT_BIND_PATTERN,
   DEFAULT_EXCHANGE_OPTIONS,
   DEFAULT_EXCHANGE_TYPE,
   DEFAULT_QUEUE_OPTIONS,
   EventMessage,
-  MESSAGE_QUEUE_URL,
   QueryMessage,
   Queue
 } from '@carbon-platform/api/messaging'
@@ -51,7 +51,7 @@ abstract class PlatformMicroservice {
   private async connect(): Promise<amqp.Connection> {
     while (true) {
       try {
-        return await amqp.connect(MESSAGE_QUEUE_URL)
+        return await amqp.connect(CARBON_MESSAGE_QUEUE_URL)
       } catch (e) {
         console.error('Could not connect to messaging service', e)
 
@@ -72,7 +72,7 @@ abstract class PlatformMicroservice {
     const app = await NestFactory.createMicroservice<MicroserviceOptions>(this.constructor, {
       transport: Transport.RMQ,
       options: {
-        urls: [MESSAGE_QUEUE_URL],
+        urls: [CARBON_MESSAGE_QUEUE_URL],
         queue: this.queueName,
         queueOptions: this.queueOptions
       }

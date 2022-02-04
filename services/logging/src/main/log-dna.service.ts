@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { LogLoggedMessage } from '@carbon-platform/api/logging'
-import { getRunMode, RunMode } from '@carbon-platform/api/run-mode'
+import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 import LogDna, { Logger } from '@logdna/logger'
 import { Injectable } from '@nestjs/common'
 

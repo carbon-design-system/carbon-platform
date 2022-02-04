@@ -16,7 +16,7 @@ const RequireAuth = ({ children, fallback: Fallback, isAuthorized }) => {
 
 RequireAuth.propTypes = {
   children: PropTypes.node,
-  fallback: PropTypes.element,
+  fallback: PropTypes.func,
   isAuthorized: PropTypes.bool
 }
 

@@ -5,7 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { remove, union } from 'lodash'
+import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
+import { libraryPropTypes } from 'types'
 
 import CatalogFilters from '@/components/catalog-filters'
 import CatalogList from '@/components/catalog-list'
@@ -30,7 +32,7 @@ const assetIsInFilter = (asset, filter) => {
   return true
 }
 
-function Catalog({ data, type = 'component', filter: defaultFilter = { status: ['stable'] } }) {
+function Catalog({ data, filter: defaultFilter = { status: ['stable'] }, type = 'component' }) {
   const [query, setQuery] = useQueryState('q', {
     defaultValue: ''
   })
@@ -164,6 +166,14 @@ function Catalog({ data, type = 'component', filter: defaultFilter = { status: [
       />
     </>
   )
+}
+
+Catalog.propTypes = {
+  data: PropTypes.shape({
+    libraries: PropTypes.arrayOf(libraryPropTypes)
+  }),
+  filter: PropTypes.object,
+  type: PropTypes.string
 }
 
 export default Catalog

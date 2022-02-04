@@ -26,7 +26,7 @@ const PageHeader = ({ pictogram: Pictogram, title }) => {
 }
 
 PageHeader.propTypes = {
-  pictogram: PropTypes.element,
+  pictogram: PropTypes.object,
   title: PropTypes.string.isRequired
 }
 

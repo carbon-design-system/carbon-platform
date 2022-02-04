@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
+import { libraryPropTypes, paramsPropTypes } from 'types'
 
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
@@ -75,6 +76,11 @@ const Library = ({ libraryData, params }) => {
       </div>
     </>
   )
+}
+
+Library.propTypes = {
+  libraryData: libraryPropTypes,
+  params: paramsPropTypes
 }
 
 export const getStaticProps = async ({ params }) => {

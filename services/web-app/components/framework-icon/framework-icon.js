@@ -6,6 +6,7 @@
  */
 
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 
 import { framework as frameworkMap } from '@/data/framework'
 
@@ -25,6 +26,11 @@ const FrameworkIcon = ({ className, framework }) => {
       <Icon className={styles.icon} />
     </div>
   )
+}
+
+FrameworkIcon.propTypes = {
+  className: PropTypes.string,
+  status: PropTypes.oneOf(Object.keys(frameworkMap)).isRequired
 }
 
 export default FrameworkIcon

@@ -7,6 +7,7 @@
 import { Column, Dropdown, Grid, IconButton } from '@carbon/react'
 import { Grid as GridIcon, List as ListIcon } from '@carbon/react/icons'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import useEventListener from '@/utils/use-event-listener'
@@ -92,6 +93,13 @@ const CatalogSort = ({ onSort, onView, sort, view }) => {
       </Grid>
     </div>
   )
+}
+
+CatalogSort.propTypes = {
+  onSort: PropTypes.func,
+  onView: PropTypes.func,
+  sort: PropTypes.oneOf(['a-z', 'status']),
+  view: PropTypes.oneOf(['grid', 'list'])
 }
 
 export default CatalogSort

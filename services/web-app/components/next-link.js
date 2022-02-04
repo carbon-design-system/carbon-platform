@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import Link from 'next/link'
+import PropTypes from 'prop-types'
 import { forwardRef } from 'react'
 
 const NextLink = forwardRef(function NextLink({ children, className, href, to, ...rest }, ref) {
@@ -16,5 +17,18 @@ const NextLink = forwardRef(function NextLink({ children, className, href, to, .
     </Link>
   )
 })
+
+const requiredPropsCheck = (props, _propName, componentName) => {
+  if (!props.href && !props.to) {
+    return new Error(`One of 'href' or 'to' is required by '${componentName}' component.`)
+  }
+}
+
+NextLink.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  href: requiredPropsCheck,
+  to: requiredPropsCheck
+}
 
 export default NextLink

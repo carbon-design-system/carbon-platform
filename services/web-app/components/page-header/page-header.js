@@ -6,10 +6,11 @@
  */
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 
 import styles from './page-header.module.scss'
 
-const PageHeader = ({ title, pictogram: Pictogram }) => {
+const PageHeader = ({ pictogram: Pictogram, title }) => {
   return (
     <Grid className={styles.container}>
       <Column className={styles.column} sm={4} md={6} lg={10}>
@@ -22,6 +23,11 @@ const PageHeader = ({ title, pictogram: Pictogram }) => {
       )}
     </Grid>
   )
+}
+
+PageHeader.propTypes = {
+  pictogram: PropTypes.element,
+  title: PropTypes.string.isRequired
 }
 
 export default PageHeader

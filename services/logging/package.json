@@ -30,8 +30,7 @@
     "amqp-connection-manager": "^4.1.0",
     "amqplib": "^0.8.0",
     "rimraf": "^3.0.2",
-    "typescript": "^4.5.5",
-    "winston": "^3.5.1"
+    "typescript": "^4.5.5"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.2.0",

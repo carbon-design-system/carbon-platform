@@ -9,8 +9,7 @@ import { NextResponse } from 'next/server'
 
 import { isValidIbmEmail } from '@/utils/string'
 
-import { getEnvVar } from '../../../packages/api/enforce-env-vars'
-import { getRunMode, RunMode } from '../../../packages/api/run-mode'
+import { getRunMode, RunMode } from '../../../packages/api/runtime'
 
 /**
  * Creates request options for retrieveUser api call including headers and agent if necessary
@@ -32,7 +31,7 @@ export async function middleware(req) {
     return NextResponse.next()
   }
   const protocol =
-    getRunMode === RunMode.Prod || getEnvVar('RUNNING_SECURELY', '0') === '1' ? 'https' : 'http'
+    getRunMode === RunMode.Prod || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
   const userResponse = await fetch(
     `${protocol}://localhost:${req.nextUrl.port}/api/user`,
     getRequestOptions(req)

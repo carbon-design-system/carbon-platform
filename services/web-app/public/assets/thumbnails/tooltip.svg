@@ -27,7 +27,7 @@
                 <rect id="Rectangle-Copy" fill="#BEBEBE" x="14" y="52" width="87" height="5"></rect>
                 <rect id="Rectangle-Copy-3" fill="#BEBEBE" x="14" y="72" width="87" height="5"></rect>
             </g>
-            <rect id="Rectangle-Copy-2" fill="#FFFFFF" x="11" y="92" width="24" height="24"></rect>
+            <rect id="Rectangle-Copy-2" x="11" y="92" width="24" height="24"></rect>
         </g>
     </g>
 </svg>

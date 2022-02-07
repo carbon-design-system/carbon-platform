@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>empty_states</title>
+    <title>empty-states</title>
     <defs>
         <linearGradient x1="37.5022153%" y1="35.2290271%" x2="55.9590468%" y2="57.6519413%" id="linearGradient-1">
             <stop stop-color="#000000" stop-opacity="0.04" offset="0%"></stop>
@@ -43,7 +43,7 @@
             <stop stop-color="#EEEEEE" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g id="empty_states" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="empty-states" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Group" transform="translate(103.000000, 30.000000)">
             <g id="Default-empty" transform="translate(0.000000, 16.000000)" fill-rule="nonzero">
                 <g id="Layer0_10_FILL" transform="translate(51.000000, 33.000000)" fill="#A8A8A8">
@@ -92,7 +92,7 @@
                     <path d="M39.8724865,23 L40,23 L0.186365864,0.0584745772 C0.186365864,0.0584745772 0.186365864,0.0584745772 0.186365864,0 L0,0.0584745772 L39.8724865,23 Z" id="Path"></path>
                 </g>
             </g>
-            <rect id="Rectangle" fill="#FFFFFF" x="30" y="0" width="39" height="14"></rect>
+            <rect id="Rectangle" x="30" y="0" width="39" height="14"></rect>
         </g>
     </g>
 </svg>

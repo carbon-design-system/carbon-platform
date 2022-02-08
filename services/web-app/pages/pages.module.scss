@@ -23,3 +23,44 @@
 .bullets-item {
   margin-left: $spacing-07;
 }
+
+.meta {
+  color: $text-secondary;
+  @include type-style('label-01');
+
+  &--absolute {
+    position: absolute;
+    bottom: $spacing-04;
+    left: $spacing-04;
+    color: $text-primary;
+  }
+}
+
+.meta-item {
+  display: inline;
+
+  &:not(:first-child) {
+    margin-left: $spacing-03;
+  }
+}
+
+.meta-icon {
+  position: relative;
+  top: 3px;
+  margin-right: $spacing-02;
+}
+
+.meta-info {
+  padding-bottom: $spacing-07;
+}
+
+.meta-status {
+  color: $text-primary;
+  @include type-style('body-short-02');
+}
+
+.meta-link {
+  color: $border-interactive;
+  text-decoration: none;
+  @include type-style('body-short-01');
+}

@@ -20,6 +20,7 @@ import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import StatusIcon from '@/components/status-icon'
+import { framework as frameworkMap } from '@/data/framework'
 import { assetsNavData } from '@/data/nav-data'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
@@ -64,9 +65,8 @@ const Asset = ({ libraryData }) => {
   const [assetData] = libraryData.assets
   const { name, description, inherits: inheritsData, thumbnailData: imageData } = assetData.content
   const assetFramework = assetData.content.framework
-  const framework = assetFramework.charAt(0).toUpperCase() + assetFramework.slice(1)
+  const framework = frameworkMap[assetFramework].name
 
-  console.log(libraryData, 'beep')
   const breadcrumbItems = [
     {
       name: 'Libraries',
@@ -80,6 +80,8 @@ const Asset = ({ libraryData }) => {
       name
     }
   ]
+
+  const assetPath = breadcrumbItems[1].path
 
   const seo = {
     title: name,
@@ -97,27 +99,16 @@ const Asset = ({ libraryData }) => {
 
       return (
         <>
-          <StatusIcon className={dashboardStyles.metaIcon} status={assetData.content.status} />
-          <span className={dashboardStyles.metaStatus}>{assetStatus}</span>
+          <StatusIcon className={styles.metaIcon} status={assetData.content.status} />
+          <span className={styles.metaStatus}>{assetStatus}</span>
         </>
       )
     }
 
-    const renderLicense = () => {
-      const defaultLicense =
-        assetData.params.host === 'github.ibm.com' ? 'IBM internal' : 'No license'
-      const { license = defaultLicense } = libraryData.content
-
-      return <span className={dashboardStyles.subtitle}>{license}</span>
-    }
-
     return (
-      <ul className={dashboardStyles.meta}>
+      <ul className={styles.meta}>
         {properties.map((prop, i) => (
-          <li key={i}>
-            {prop === 'status' && renderStatus()}
-            {prop === 'license' && renderLicense()}
-          </li>
+          <li key={i}>{prop === 'status' && renderStatus()}</li>
         ))}
       </ul>
     )
@@ -133,101 +124,104 @@ const Asset = ({ libraryData }) => {
             aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
             border={['sm']}
           >
-            <Column className={dashboardStyles.title}>Maintainer</Column>
-            <Column className={dashboardStyles.maintainer}>{libraryData.content.name}</Column>
-            <Column className={dashboardStyles.title}>
-              <AssetItemMeta className={dashboardStyles.meta} properties={['status']} />
-            </Column>
-            <Column>
-              {SponsorIcon && <SponsorIcon className={dashboardStyles.metaAbsolute} size={64} />}
-            </Column>
+            <p className={dashboardStyles.title}>Maintainer</p>
+            <h3 className={dashboardStyles.titleLarge}>{libraryData.content.name}</h3>
+            <AssetItemMeta
+              className={clsx(dashboardStyles.title, styles.meta)}
+              properties={['status']}
+            />
+            {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={64} />}
           </DashboardItem>
         </Column>
         <Column className={dashboardStyles.column} lg={2}>
           <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
             <Grid columns={2} className={dashboardStyles.subgrid}>
-              <Column className={clsx(dashboardStyles.library, dashboardStyles.subcolumn)}>
-                <Column className={dashboardStyles.title}>Library</Column>
-                <Column>
-                  <Link
-                    href={`/assets/${libraryData.libraryId}/${libraryData.libraryRef || 'latest'}/${
-                      libraryData.assetId
-                    }`}
-                  >
-                    <a className={dashboardStyles.libraryTitle}>{libraryData.content.name}</a>
-                  </Link>
-                </Column>
+              <Column className={clsx(styles.metaInfo, dashboardStyles.subcolumn)}>
+                <p className={dashboardStyles.title}>Library</p>
+                <Link href={`${assetPath}`}>
+                  <a className={styles.metaLink}>{libraryData.content.name}</a>
+                </Link>
               </Column>
-              <Column className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>
-                Version
-                <Column className={dashboardStyles.subtitle}>{libraryData.content.version}</Column>
+              <Column>
+                <p className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>Version</p>
+                <h3 className={clsx(dashboardStyles.subtitle, dashboardStyles.subcolumn)}>
+                  {libraryData.content.version}
+                </h3>
               </Column>
-              <Column className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>
-                License
-                <Column>
-                  <AssetItemMeta className={dashboardStyles.subtitle} properties={['license']} />
-                </Column>
+              <Column>
+                <p className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>License</p>
+                <h3 className={dashboardStyles.subtitle}>{libraryData.content.license}</h3>
               </Column>
-              <Column className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>
-                Framework
-                <Column className={dashboardStyles.subtitle}>{framework}</Column>
+              <Column>
+                <p className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>Framework</p>
+                <h3 className={dashboardStyles.subtitle}>{framework}</h3>
               </Column>
-              <Column className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>
-                Page last modified
-                <Column className={dashboardStyles.subtitle}>June 30, 2022</Column>
+              <Column>
+                <p className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>
+                  Page last modified
+                </p>
+                <h3 className={dashboardStyles.subtitle}>June 30, 2022</h3>
               </Column>
-              <Column className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>
-                Primary design kit
-                <Column className={dashboardStyles.subtitle}>Sketch</Column>
+              <Column>
+                <p className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>
+                  Primary design kit
+                </p>
+                <h3 className={dashboardStyles.subtitle}>Sketch</h3>
               </Column>
             </Grid>
             <Column className={dashboardStyles.designKit}>
-              <div className={dashboardStyles.designKitText}>
-                <div className={dashboardStyles.designKitTitle}>Get the kits</div>
-                <ArrowRight className={dashboardStyles.designKitIcon} size={16} />
-              </div>
+              <Link href={`${assetPath}`} className={dashboardStyles.designKitText}>
+                <a>
+                  <div className={dashboardStyles.designKitTitle}>Get the kits</div>
+                  <ArrowRight className={dashboardStyles.designKitIcon} size={16} />
+                </a>
+              </Link>
             </Column>
           </DashboardItem>
         </Column>
         <Column className={dashboardStyles.column} sm={0} md={1}>
-          <DashboardItem
-            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-            border={['sm', 'md', 'lg', 'xlg']}
-          >
-            <Column className={dashboardStyles.title}>Weekly dowbnloads</Column>
-            <Column className={dashboardStyles.maintainer}>
-              {'+' + libraryData.response.size}
-            </Column>
-            <Column>
-              {SponsorIcon && <SponsorIcon className={dashboardStyles.metaAbsolute} size={32} />}
-            </Column>
-          </DashboardItem>
+          <Link href={`${assetPath}`}>
+            <a className={styles.metaLink}>
+              <DashboardItem
+                aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+              >
+                <p className={dashboardStyles.title}>Weekly downloads</p>
+                <h3 className={dashboardStyles.titleLarge}>{'+' + libraryData.response.size}</h3>
+                {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={32} />}
+              </DashboardItem>
+            </a>
+          </Link>
         </Column>
         <Column className={dashboardStyles.column} sm={0} md={1}>
-          <DashboardItem
-            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-            border={['sm', 'md', 'lg', 'xlg']}
-          >
-            <Column className={dashboardStyles.title}>Pull requests</Column>
-            <Column className={dashboardStyles.maintainer}>{libraryData.response.size}</Column>
-            <Column>
-              {SponsorIcon && <SponsorIcon className={dashboardStyles.metaAbsolute} size={32} />}
-            </Column>
-          </DashboardItem>
+          <Link href={`${assetPath}`}>
+            <a className={styles.metaLink}>
+              <DashboardItem
+                aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+              >
+                <p className={dashboardStyles.title}>Pull requests</p>
+                <h3 className={dashboardStyles.titleLarge}>{libraryData.response.size}</h3>
+                {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={32} />}
+              </DashboardItem>
+            </a>
+          </Link>
         </Column>
         <Column className={dashboardStyles.column} sm={0} md={1}>
-          <DashboardItem
-            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-            border={['sm', 'md', 'lg', 'xlg']}
-          >
-            <Column className={dashboardStyles.title}>Open issues</Column>
-            <Column className={dashboardStyles.maintainer}>{libraryData.response.size}</Column>
-            <Column>
-              {SponsorIcon && <SponsorIcon className={dashboardStyles.metaAbsolute} size={32} />}
-            </Column>
-          </DashboardItem>
+          <Link href={`${assetPath}`}>
+            <a className={styles.metaLink}>
+              <DashboardItem
+                aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+              >
+                <p className={dashboardStyles.title}>Open issues</p>
+                <h3 className={dashboardStyles.titleLarge}>{libraryData.response.size}</h3>
+                {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={32} />}
+              </DashboardItem>
+            </a>
+          </Link>
           <Column>
-            {SponsorIcon && <SponsorIcon className={dashboardStyles.metaAbsolute} size={32} />}
+            {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={32} />}
           </Column>
         </Column>
         <Column className={dashboardStyles.column} sm={0} md={1} lg={0}>

@@ -23,6 +23,11 @@ place it in the same directory as your library's `package.json` file.
 id: carbon-react
 name: Carbon React
 description: React implementation of Carbon Components
+demos:
+  - type: storybook
+    name: Storybook
+    action: link
+    url: https://react.carbondesignsystem.com
 designKits:
   - type: sketch
     name: Carbon Components
@@ -33,11 +38,6 @@ designKits:
     name: Carbon Components
     action: link
     url: https://www.figma.com/file/Vzz8k68Pqk5HfaTdQOQrGu/White-Theme---Carbon-Design-System?node-id=456%3A14680
-resources:
-  - type: storybook
-    name: Storybook
-    action: link
-    url: https://react.carbondesignsystem.com
 ```
 
 ### Library keys
@@ -50,8 +50,8 @@ resources:
 | `description` | Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the `package.json` description if not set here. | Optional | String | Value from `package.json` | – |
 | `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, code package, and other information. | Optional | String | `/package.json` | – |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation. | Optional | String | – | – |
+| `demos` | Links to demo sites. See [demos](#demos). | Optional | Array | – | – |
 | `designKits` | Links to design kits. See [design kits](#design-kits). | Optional | Array | – | – |
-| `resources` | Links to external resources. See [resources](#resources). | Optional | Array | – | – |
 | `private` | If set to `true`, the global catalogs will exclude the library. | Optional | Boolean | `false` | – |
 
 ## Asset schema
@@ -76,7 +76,7 @@ tags:
 framework: react
 platform: web
 thumbnailPath: /docs/accordion-thumbnail.png
-resources:
+demos:
   - type: storybook
     name: Storybook
     action: link
@@ -98,8 +98,8 @@ resources:
 | `platform` | Runtime where the asset can be used. See [asset platform](#asset-platform). | Optional | String | `web` | `cross-platform`, `web` |
 | `thumbnailPath` | Relative location of the asset's thumbnail image. | Optional | String | – | – |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation. | Optional | String | – | – |
+| `demos` | Links to demo sites. See [demos](#demos). | Optional | Array | – | – |
 | `designKits` | Links to design kits. See [design kits](#design-kits). | Optional | Array | – | – |
-| `resources` | Links to external resources. See [resources](#resources). | Optional | Array | – | – |
 | `private` | If set to `true`, the global catalogs will exclude the asset. | Optional | Boolean | `false` | – |
 | `inherits` | See [asset inheritance](#asset-inheritance). | Optional | Object | – | – |
 
@@ -185,8 +185,9 @@ These additional tags can be used when the asset is of type `function`.
 <!-- prettier-ignore -->
 | Tag | Name | Description | Required framework |
 | --- | --- | --- | --- |
-| `hook` | Hook | Use state and other React features without writing a class. | `react` |
-| `utility` | Utility | Standalone function that does not have any side effects and whose output is directly dependent on it’s input. | – |
+| `hook` | Hook | Uses state and other React features without writing a class. | `react` |
+| `service` | Service | Invokes a service or orchestration of services and returns a response. | – |
+| `utility` | Utility | Returns output that's directly dependent on its input without side effects. | – |
 
 #### Asset framework
 
@@ -258,6 +259,30 @@ framework: react
 
 The following properties are used in multiple schemas.
 
+#### Demos
+
+Libraries and assets can specify links to demo sites.
+
+**Example**
+
+```yml
+demos:
+  - type: storybook
+    name: Storybook
+    action: link
+    url: https://react.carbondesignsystem.com
+```
+
+For the value of the `demos` array, you can set the following keys.
+
+<!-- prettier-ignore -->
+| Demos | Description | Required | Type | Default | Valid values |
+| --- | --- | --- | --- | --- | --- |
+| `type` | Determines the display icon. | Required | String | – | `codesandbox`, `github`, `storybook` |
+| `name` | Display name. | Required | String | – | – |
+| `action` | Determines the action icon. | Optional | String | `link` | `download`, `link` |
+| `url` | Link to the resource. | Required | String | – | – |
+
 #### Design kits
 
 Libraries and assets can specify design kits and when there are multiple, which one is `primary`.
@@ -287,27 +312,3 @@ For the value of the `designKits` array, you can set the following keys.
 | `action` | Determines the action icon. | Optional | String | `link` | `download`, `link` |
 | `url` | Link to the design kit. | Required | String | – | – |
 | `primary` | If set to `true`, the design kit is the most complete and gets updated first. | Optional | Boolean | `false` | – |
-
-#### Resources
-
-Libraries and assets can specify links to external resources
-
-**Example**
-
-```yml
-resources:
-  - type: storybook
-    name: Storybook
-    action: link
-    url: https://react.carbondesignsystem.com
-```
-
-For the value of the `resources` array, you can set the following keys.
-
-<!-- prettier-ignore -->
-| Resources | Description | Required | Type | Default | Valid values |
-| --- | --- | --- | --- | --- | --- |
-| `type` | Determines the display icon. | Required | String | – | `codesandbox`, `github`, `storybook` |
-| `name` | Display name. | Required | String | – | – |
-| `action` | Determines the action icon. | Optional | String | `link` | `download`, `link` |
-| `url` | Link to the resource. | Required | String | – | – |

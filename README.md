@@ -60,7 +60,7 @@ on and what we have planned for the future.
 | [Epics](https://github.com/carbon-design-system/carbon-platform/issues?q=label%3A%22type%3A+epic+%F0%9F%8F%94%22+) | Epics are documented as GitHub Issues with the `type: epic 🏔` label and contain Issues related by subject. As epics are not related by time, epics can span multiple sprints. |
 | [Issues](https://github.com/carbon-design-system/carbon-platform/issues) | GitHub Issues are the team's smallest unit of work and are typically labeled by `type:` (e.g. bug or enhancement), `role:` (which skillsets are required to complete) and if the Issue is a bug, its `impact:` (how many users are affected) and `severity:` (what functionality is affected.) |
 | [Issues by Release](https://github.com/orgs/carbon-design-system/projects/36/views/1) | The GitHub Project view grouped by Milestone. |
-| [Roadmap](https://airtable.com/appXFXcqQymjVOzVG/tblnDuHBTbqJ8GP1Y/viwwf3ovEtlk304Zl?blocks=hide) | A visual overview of the releases and their epics. The roadmap will get migrated from the IBM internal Airtable to a public GitHub Project when a timeline view is available in the GitHub Projects beta. |
+| [Roadmap](https://airtable.com/shrshl3XOeeT4Uxq0) | A visual overview of the releases and their epics. The roadmap will get migrated from Airtable to a public GitHub Project when a timeline view is available in the GitHub Projects beta. |
 <!-- prettier-ignore-end -->
 
 ## Developer docs

@@ -7,13 +7,14 @@
 
 import { Column, Grid, Search } from '@carbon/react'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 
 import CatalogMultiselectFilter from '@/components/catalog-multislect-filter'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-search.module.scss'
 
-const CatalogSearch = ({ className, filter, search = '', onSearch, onFilter }) => {
+const CatalogSearch = ({ className, filter, onFilter, onSearch, search = '' }) => {
   const isMd = useMatchMedia(mediaQueries.md)
 
   const handleOnBlur = (event) => {
@@ -52,6 +53,14 @@ const CatalogSearch = ({ className, filter, search = '', onSearch, onFilter }) =
       )}
     </Grid>
   )
+}
+
+CatalogSearch.propTypes = {
+  className: PropTypes.string,
+  filter: PropTypes.object,
+  onFilter: PropTypes.func,
+  onSearch: PropTypes.func,
+  search: PropTypes.string
 }
 
 export default CatalogSearch

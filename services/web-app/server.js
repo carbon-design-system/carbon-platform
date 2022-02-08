@@ -11,10 +11,9 @@
 const { createServer } = require('https')
 const next = require('next')
 const fs = require('fs')
-const { RunMode, getRunMode } = require('@carbon-platform/api/run-mode')
-const { getEnvVar } = require('@carbon-platform/api/enforce-env-vars')
+const { RunMode, getRunMode, loadEnvVars } = require('@carbon-platform/api/runtime')
 
-const PORT = getEnvVar('PORT', '443')
+const { PORT } = loadEnvVars({ PORT: '443' })
 
 const isDevMode = getRunMode() === RunMode.Dev
 const app = next({ dev: isDevMode })

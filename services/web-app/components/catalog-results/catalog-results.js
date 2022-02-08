@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
+import PropTypes from 'prop-types'
+import { assetPropTypes } from 'types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
@@ -20,6 +22,10 @@ const CatalogResults = ({ assets = [] }) => {
       </Column>
     </Grid>
   )
+}
+
+CatalogResults.propTypes = {
+  assets: PropTypes.arrayOf(assetPropTypes)
 }
 
 export default CatalogResults

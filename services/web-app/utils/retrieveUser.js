@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getRunMode, RunMode } from '@carbon-platform/api/run-mode'
+import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 
 /**
  * Creates request options for retrieveUser api call including headers and agent if necessary

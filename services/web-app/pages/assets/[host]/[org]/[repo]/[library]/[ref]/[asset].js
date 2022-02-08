@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
+import { libraryPropTypes } from 'types'
 
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
@@ -95,6 +96,10 @@ const Asset = ({ libraryData }) => {
       </div>
     </>
   )
+}
+
+Asset.propTypes = {
+  libraryData: libraryPropTypes
 }
 
 export const getStaticProps = async ({ params }) => {

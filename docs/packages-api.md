@@ -8,9 +8,16 @@ instead has a set of top-level `js` and corresponding `d.ts` files to allow impo
 
 ```ts
 import { Logging } from '@carbon-platform/api/logging'
-import { getRunMode } from '@carbon-platform/api/runtime'
-import { loadEnvVars } from '@carbon-platform/api/env-vars'
+import { getRunMode, loadEnvVars } from '@carbon-platform/api/runtime'
+import { getPassportInstance, store } from '@carbon-platform/api/auth'
 ```
+
+## auth
+
+The auth package provides common authentication assets and centralized user session management for
+necessary services to consume.
+
+See [Authentication](./authentication.md)
 
 ## logging
 

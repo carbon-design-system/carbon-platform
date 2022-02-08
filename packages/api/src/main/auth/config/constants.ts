@@ -17,14 +17,14 @@ const {
   CARBON_IBM_ISV_CLIENT_ID,
   // Client secret tied to App registration on SSO provisioner (get this from dev team)
   CARBON_IBM_ISV_CLIENT_SECRET,
-  // ISV auth endpoint
-  CARBON_IBM_ISV_ENDPOINT,
+  // Strategy name that passport should use when authenticating (get this from dev team)
+  PASSPORT_STRATEGY_NAME,
   // URL of session storage DB
   CARBON_MONGO_DB_URL,
   // DB name for session storage
   CARBON_MONGO_DB_NAME
 } = loadEnvVars({
-  CARBON_IBM_ISV_ENDPOINT: 'prepiam.ice.ibmcloud.com',
+  PASSPORT_STRATEGY_NAME: 'prepiam.ice.ibmcloud.com',
   CARBON_IBM_ISV_CLIENT_ID: 'none',
   CARBON_IBM_ISV_CLIENT_SECRET: 'none',
   CARBON_MONGO_DB_URL: '',
@@ -34,8 +34,8 @@ const {
 export {
   CARBON_IBM_ISV_CLIENT_ID,
   CARBON_IBM_ISV_CLIENT_SECRET,
-  CARBON_IBM_ISV_ENDPOINT,
   CARBON_MONGO_DB_NAME,
   CARBON_MONGO_DB_URL,
+  PASSPORT_STRATEGY_NAME,
   SESSION_SECRET
 }

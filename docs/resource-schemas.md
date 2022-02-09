@@ -23,21 +23,11 @@ place it in the same directory as your library's `package.json` file.
 id: carbon-react
 name: Carbon React
 description: React implementation of Carbon Components
-demos:
+demoLinks:
   - type: storybook
     name: Storybook
     action: link
     url: https://react.carbondesignsystem.com
-designKits:
-  - type: sketch
-    name: Carbon Components
-    action: download
-    url: sketch://add-library/cloud/557b75ff-67d3-41ab-ada5-fa25447218c1
-    primary: true
-  - type: figma
-    name: Carbon Components
-    action: link
-    url: https://www.figma.com/file/Vzz8k68Pqk5HfaTdQOQrGu/White-Theme---Carbon-Design-System?node-id=456%3A14680
 ```
 
 ### Library keys
@@ -50,8 +40,7 @@ designKits:
 | `description` | Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the `package.json` description if not set here. | Optional | String | Value from `package.json` | – |
 | `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, code package, and other information. | Optional | String | `/package.json` | – |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation. | Optional | String | – | – |
-| `demos` | Links to demo sites. See [demos](#demos). | Optional | Array | – | – |
-| `designKits` | Links to design kits. See [design kits](#design-kits). | Optional | Array | – | – |
+| `demoLinks` | Links to demo sites. See [demo links](#demo-links). | Optional | Array | – | – |
 | `private` | If set to `true`, the global catalogs will exclude the library. | Optional | Boolean | `false` | – |
 
 ## Asset schema
@@ -76,7 +65,7 @@ tags:
 framework: react
 platform: web
 thumbnailPath: /docs/accordion-thumbnail.png
-demos:
+demoLinks:
   - type: storybook
     name: Storybook
     action: link
@@ -93,15 +82,14 @@ demos:
 | `description` | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization. | Required | String | – | – |
 | `status` | Asset consumption exptectations. See [asset status](#asset-status). | Required | String \| Object | `draft` | `draft`, `experimental`, `stable`, `deprecated` |
 | `type` | Asset primary categorization. See [asset type](#asset-type). | Required | String | – | `component`, `element`, `function`, `pattern`, `template` |
-| `tags` | Asset secondary categorizations. See [asset tags](#asset-tags). | Optional | Array | – | `content-block`, `content-element`, `contextual-navigation`, `data-display`, `data-visualization`, `form`, `input-control`, `media`, `shell`, `structural-navigation`, `system-feedback`, `comparison`, `connection`, `correlation`, `geographic-overlay`, `geospatial-distortion`, `part-to-whole`, `trend`, `hook`, `utility` |
+| `tags` | Asset secondary categorizations. See [asset tags](#asset-tags). | Optional | Array | – | `content-block`, `content-element`, `contextual-navigation`, `data-display`, `data-visualization`, `form`, `input-control`, `media`, `shell`, `structural-navigation`, `system-feedback`, `comparison`, `connection`, `correlation`, `geographic-overlay`, `geospatial-distortion`, `part-to-whole`, `trend`, `hook`, `service`, `utility` |
 | `framework` | Asset primary technology dependency. See [asset framework](#asset-framework). | Optional | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
 | `platform` | Runtime where the asset can be used. See [asset platform](#asset-platform). | Optional | String | `web` | `cross-platform`, `web` |
 | `thumbnailPath` | Relative location of the asset's thumbnail image. | Optional | String | – | – |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation. | Optional | String | – | – |
-| `demos` | Links to demo sites. See [demos](#demos). | Optional | Array | – | – |
-| `designKits` | Links to design kits. See [design kits](#design-kits). | Optional | Array | – | – |
-| `private` | If set to `true`, the global catalogs will exclude the asset. | Optional | Boolean | `false` | – |
+| `demoLinks` | Links to demo sites. See [demo links](#demos-links). | Optional | Array | – | – |
 | `inherits` | See [asset inheritance](#asset-inheritance). | Optional | Object | – | – |
+| `private` | If set to `true`, the global catalogs will exclude the asset. | Optional | Boolean | `false` | – |
 
 #### Asset status
 
@@ -118,8 +106,8 @@ of future changes. The `status` key can have the following values:
 
 Additionally, status can be specified as an object to include a `key` and a `note` that explains the
 key. This is often used to communicate the remaining effort to get something from draft or
-experimental to stable, estimated stability dates, and alternative assets to use going forward when
-the asset has been deprecated.
+experimental to stable, estimated stability dates, and alternative assets to use when the asset has
+been deprecated.
 
 **Example**
 
@@ -139,9 +127,9 @@ following values:
 | --- | --- |
 | `component` | Building blocks that have been designed and coded to solve a specific user interface problem. |
 | `element` | Styles, tokens, icons, and pictograms that are the direct translation of design language elements to digital mediums. |
-| `function` | Code that performs a single action and has no user interface. |
+| `function` | Code that performs a single action or actions and has no user interface. |
 | `pattern` | Best practice solution for how a user achieves a goal through reusable combinations of components and content with sequences and flows which are too complex to be encapsulated in a single component. |
-| `template` | Layout example that specifies component order and placement to compose a specific view. |
+| `template` | Layout example that specifies patterns and component order and placement to compose a specific view. |
 
 #### Asset tags
 
@@ -160,7 +148,7 @@ and certain tags are only applicable to specific asset types.
 | `input-control` | Input control | Enables users to interact with an interface. |
 | `media` | Media | Displays images and videos. |
 | `shell` | Shell | Defines the visual structure for a user interface. |
-| `structural-navigation` | Structural navigation | Creates a consistent navigation experience across multiple pages and reveals site architecture. Includes primary/secondary/tertiary navigation. |
+| `structural-navigation` | Structural navigation | Creates a consistent navigation experience across multiple pages and reveals site architecture. Includes primary, secondary, and tertiary navigation. |
 | `system-feedback` | System feedback | Provides feedback generated by a system to inform users of status, progress, or timely information. |
 
 #### Data visualization tags
@@ -234,7 +222,7 @@ For the value of the `inherits` key, you can set the following keys.
 <!-- prettier-ignore -->
 | Inherits | Description | Required | Type | Default |
 | --- | --- | --- | --- | --- |
-| `asset` | Fully qualified asset name with the format `[library id]@[repo ref\|"latest"]/[asset id]`. | Required | String | – |
+| `asset` | Fully qualified asset name with the format `[library id]/[asset id]` or `[library id]@[repo ref]/[asset id]`. | Required | String | – |
 | `primary` | Set to `true` if this asset inheriting another asset is the canonical implementation. This is used to collapse similar assets in the catalogs when a `framework` filter has not been applied. | Optional | Boolean | `false` |
 | `properties` | Asset keys to inherit. | Required | Array | – |
 
@@ -243,7 +231,7 @@ For the value of the `inherits` key, you can set the following keys.
 ```yml
 id: accordion
 inherits:
-  asset: 'carbon-styles@latest/accordion'
+  asset: 'carbon-styles@v11.0.3/accordion'
   primary: true
   properties:
     - name
@@ -259,56 +247,26 @@ framework: react
 
 The following properties are used in multiple schemas.
 
-#### Demos
+#### Demo links
 
 Libraries and assets can specify links to demo sites.
 
 **Example**
 
 ```yml
-demos:
+demoLinks:
   - type: storybook
     name: Storybook
     action: link
     url: https://react.carbondesignsystem.com
 ```
 
-For the value of the `demos` array, you can set the following keys.
+For the value of the `demoLinks` array, you can set the following keys.
 
 <!-- prettier-ignore -->
-| Demos | Description | Required | Type | Default | Valid values |
+| Demo link | Description | Required | Type | Default | Valid values |
 | --- | --- | --- | --- | --- | --- |
 | `type` | Determines the display icon. | Required | String | – | `codesandbox`, `github`, `storybook` |
 | `name` | Display name. | Required | String | – | – |
 | `action` | Determines the action icon. | Optional | String | `link` | `download`, `link` |
 | `url` | Link to the resource. | Required | String | – | – |
-
-#### Design kits
-
-Libraries and assets can specify design kits and when there are multiple, which one is `primary`.
-
-**Example**
-
-```yml
-designKits:
-  - type: sketch
-    name: Carbon Components
-    action: download
-    url: sketch://add-library/cloud/557b75ff-67d3-41ab-ada5-fa25447218c1
-    primary: true
-  - type: figma
-    name: Carbon Components
-    action: link
-    url: https://www.figma.com/file/Vzz8k68Pqk5HfaTdQOQrGu/White-Theme---Carbon-Design-System?node-id=456%3A14680
-```
-
-For the value of the `designKits` array, you can set the following keys.
-
-<!-- prettier-ignore -->
-| Design kit | Description | Required | Type | Default | Valid values |
-| --- | --- | --- | --- | --- | --- |
-| `type` | Determines the display icon. | Required | String | – | `adobe-xd`, `axure`, `figma`, `sketch` |
-| `name` | Display name. | Required | String | – | – |
-| `action` | Determines the action icon. | Optional | String | `link` | `download`, `link` |
-| `url` | Link to the design kit. | Required | String | – | – |
-| `primary` | If set to `true`, the design kit is the most complete and gets updated first. | Optional | Boolean | `false` | – |

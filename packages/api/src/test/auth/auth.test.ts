@@ -13,8 +13,8 @@ import {
   SESSION_SECRET,
   store
 } from '../../main/auth'
-import { IBM_AUTHENTICATION_STRATEGY } from '../../main/auth/config/constants'
-import { RunMode } from '../../main/run-mode'
+import { PASSPORT_STRATEGY_NAME } from '../../main/auth/config/constants'
+import { RunMode } from '../../main/runtime'
 
 jest.mock('passport')
 const mockedPassport = passport as jest.Mocked<typeof passport>
@@ -22,38 +22,29 @@ const mockedPassport = passport as jest.Mocked<typeof passport>
 const signature = require('cookie-signature')
 
 describe('getPassportInstance', () => {
-  it('throws error when env variables have not been configured', async () => {
-    const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
-    const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
-    process.env.CARBON_IBM_VERIFY_CLIENT_ID = ''
-    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = ''
-    await expect(getPassportInstance()).rejects.toThrow()
-    process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
-    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
-  })
   it('can be retrieved without crashing', async () => {
-    const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
-    const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
-    process.env.CARBON_IBM_VERIFY_CLIENT_ID = 'MOCK_CLIENT'
-    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = 'MOCK_SECRET'
+    const oldClientId = process.env.CARBON_IBM_ISV_CLIENT_ID
+    const oldClientSecret = process.env.CARBON_IBM_ISV_CLIENT_SECRET
+    process.env.CARBON_IBM_ISV_CLIENT_ID = 'MOCK_CLIENT'
+    process.env.CARBON_IBM_ISV_CLIENT_SECRET = 'MOCK_SECRET'
     const passportInstance = await getPassportInstance()
     expect(passportInstance).toBeDefined()
-    process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
-    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
+    process.env.CARBON_IBM_ISV_CLIENT_ID = oldClientId
+    process.env.CARBON_IBM_ISV_CLIENT_SECRET = oldClientSecret
   })
 })
 
 describe('authenticateWithPassport', () => {
   it('gets called with expected params', async () => {
-    const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
-    const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
-    process.env.CARBON_IBM_VERIFY_CLIENT_ID = 'MOCK_CLIENT'
-    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = 'MOCK_SECRET'
+    const oldClientId = process.env.CARBON_IBM_ISV_CLIENT_ID
+    const oldClientSecret = process.env.CARBON_IBM_ISV_CLIENT_SECRET
+    process.env.CARBON_IBM_ISV_CLIENT_ID = 'MOCK_CLIENT'
+    process.env.CARBON_IBM_ISV_CLIENT_SECRET = 'MOCK_SECRET'
     mockedPassport.authenticate.mockReturnValue(null)
     await authenticateWithPassport()
-    await expect(mockedPassport.authenticate).toHaveBeenCalledWith(IBM_AUTHENTICATION_STRATEGY)
-    process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
-    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
+    expect(mockedPassport.authenticate).toHaveBeenCalledWith(PASSPORT_STRATEGY_NAME)
+    process.env.CARBON_IBM_ISV_CLIENT_ID = oldClientId
+    process.env.CARBON_IBM_ISV_CLIENT_SECRET = oldClientSecret
   })
 })
 

@@ -6,6 +6,8 @@
  */
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
+import { assetPropTypes } from 'types'
 
 import CatalogItem from '@/components/catalog-item'
 import { getSlug } from '@/utils/slug'
@@ -43,6 +45,13 @@ const CatalogList = ({ assets, isGrid = false, page = 1, pageSize = 10 }) => {
       )}
     </Grid>
   )
+}
+
+CatalogList.propTypes = {
+  assets: PropTypes.arrayOf(assetPropTypes),
+  isGrid: PropTypes.bool,
+  page: PropTypes.number,
+  pageSize: PropTypes.number
 }
 
 export default CatalogList

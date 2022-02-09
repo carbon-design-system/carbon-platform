@@ -7,6 +7,7 @@
 
 import { Column, Grid, Tag } from '@carbon/react'
 import { isEmpty } from 'lodash'
+import PropTypes from 'prop-types'
 
 import { filters } from '@/data/filters'
 
@@ -30,6 +31,11 @@ const CatalogFilters = ({ filter, onFilter }) => {
       </Column>
     </Grid>
   )
+}
+
+CatalogFilters.propTypes = {
+  filter: PropTypes.object,
+  onFilter: PropTypes.func
 }
 
 export default CatalogFilters

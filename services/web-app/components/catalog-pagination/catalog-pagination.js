@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, Pagination } from '@carbon/react'
+import PropTypes from 'prop-types'
+import { assetPropTypes } from 'types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
@@ -44,6 +46,14 @@ const CatalogPagination = ({
       </Column>
     </Grid>
   )
+}
+
+CatalogPagination.propTypes = {
+  assets: PropTypes.arrayOf(assetPropTypes),
+  page: PropTypes.number,
+  pageSize: PropTypes.number,
+  setPage: PropTypes.func,
+  setPageSize: PropTypes.func
 }
 
 export default CatalogPagination

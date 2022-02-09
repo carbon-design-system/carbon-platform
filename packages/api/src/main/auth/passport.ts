@@ -16,7 +16,7 @@ import { config as prodConfig } from './config/config.prod'
 import {
   CARBON_IBM_ISV_CLIENT_ID,
   CARBON_IBM_ISV_CLIENT_SECRET,
-  CARBON_IBM_ISV_ENDPOINT
+  PASSPORT_STRATEGY_NAME
 } from './config/constants'
 import { User } from './interfaces'
 
@@ -78,8 +78,8 @@ async function createCustomStrategy(): Promise<passport.Strategy> {
 function shouldUseOpenIdStrategy(): boolean {
   const isRunningSecurely = process.env.RUNNING_SECURELY === '1'
   const hasValidOpenIdValues =
-    !!CARBON_IBM_ISV_ENDPOINT &&
-    CARBON_IBM_ISV_ENDPOINT !== 'custom' &&
+    !!PASSPORT_STRATEGY_NAME &&
+    PASSPORT_STRATEGY_NAME !== 'custom' &&
     !!CARBON_IBM_ISV_CLIENT_ID &&
     !!CARBON_IBM_ISV_CLIENT_SECRET
   return getRunMode() === RunMode.Prod || (hasValidOpenIdValues && isRunningSecurely)
@@ -117,7 +117,7 @@ const getPassportInstance = async (): Promise<passport.PassportStatic> => {
  * @returns Passport authenticate middleware function
  */
 const authenticateWithPassport = async () => {
-  return (await getPassportInstance()).authenticate(CARBON_IBM_ISV_ENDPOINT)
+  return (await getPassportInstance()).authenticate(PASSPORT_STRATEGY_NAME)
 }
 
 // for testing purposes only, this is not exported through the entry file

@@ -8,6 +8,7 @@
 import { Column, Grid, Popover, PopoverContent, Tag } from '@carbon/react'
 import { ChevronDown, Close, Filter } from '@carbon/react/icons'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 import { useRef, useState } from 'react'
 
 import { filters } from '@/data/filters'
@@ -116,6 +117,12 @@ const CatalogMultiselectFilter = ({ filter, className: customClassName, onFilter
       </PopoverContent>
     </Popover>
   )
+}
+
+CatalogMultiselectFilter.propTypes = {
+  className: PropTypes.string,
+  filter: PropTypes.object,
+  onFilter: PropTypes.func
 }
 
 export default CatalogMultiselectFilter

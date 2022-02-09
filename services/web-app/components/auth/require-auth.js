@@ -4,12 +4,20 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const RequireAuth = (props) => {
-  if (props.isAuthorized) {
-    return { ...props.children }
+import PropTypes from 'prop-types'
+
+const RequireAuth = ({ children, fallback: Fallback, isAuthorized }) => {
+  if (isAuthorized) {
+    return children
   } else {
-    return <props.fallback />
+    return <Fallback />
   }
+}
+
+RequireAuth.propTypes = {
+  children: PropTypes.node,
+  fallback: PropTypes.func,
+  isAuthorized: PropTypes.bool
 }
 
 export default RequireAuth

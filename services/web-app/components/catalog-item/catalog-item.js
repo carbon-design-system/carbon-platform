@@ -8,7 +8,9 @@ import { AspectRatio, Column, Grid } from '@carbon/react'
 import { ArrowUpRight, Scales } from '@carbon/react/icons'
 import clsx from 'clsx'
 import Link from 'next/link'
+import PropTypes from 'prop-types'
 import { useState } from 'react'
+import { assetPropTypes } from 'types'
 
 import FrameworkIcon from '@/components/framework-icon'
 import StatusIcon from '@/components/status-icon'
@@ -34,6 +36,10 @@ const CatalogItemImage = ({ asset }) => {
       onError={() => setSrc('/assets/thumbnails/coming-soon.svg')}
     />
   )
+}
+
+CatalogItemImage.propTypes = {
+  asset: assetPropTypes
 }
 
 const CatalogItemContent = ({ asset, isGrid = false }) => {
@@ -80,6 +86,11 @@ const CatalogItemContent = ({ asset, isGrid = false }) => {
   )
 }
 
+CatalogItemContent.propTypes = {
+  asset: assetPropTypes,
+  isGrid: PropTypes.bool
+}
+
 const CatalogItemMeta = ({ asset, className, properties }) => {
   const renderStatus = () => {
     const { name } = status[asset.content.status]
@@ -116,6 +127,12 @@ const CatalogItemMeta = ({ asset, className, properties }) => {
       ))}
     </ul>
   )
+}
+
+CatalogItemMeta.propTypes = {
+  asset: assetPropTypes,
+  className: PropTypes.string,
+  properties: PropTypes.array
 }
 
 const CatalogItem = ({ asset, isGrid = false }) => {
@@ -186,6 +203,11 @@ const CatalogItem = ({ asset, isGrid = false }) => {
   )
 
   return isGrid ? renderGrid() : renderList()
+}
+
+CatalogItem.propTypes = {
+  asset: assetPropTypes,
+  isGrid: PropTypes.bool
 }
 
 export default CatalogItem

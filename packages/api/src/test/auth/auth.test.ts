@@ -14,9 +14,12 @@ import {
   SESSION_SECRET,
   store
 } from '../../main/auth'
-import { CARBON_IBM_ISV_ENDPOINT } from '../../main/auth/config/constants'
+import { PASSPORT_STRATEGY_NAME } from '../../main/auth/config/constants'
 import { __test__ } from '../../main/auth/passport'
 import { getRunMode, RunMode } from '../../main/runtime'
+
+jest.mock('passport')
+const mockedPassport = passport as jest.Mocked<typeof passport>
 
 const signature = require('cookie-signature')
 
@@ -40,7 +43,7 @@ describe('authenticateWithPassport', () => {
     const passportAuthenticateFn = passport.authenticate
     passport.authenticate = jest.fn().mockReturnValue(null)
     await authenticateWithPassport()
-    await expect(passport.authenticate).toHaveBeenCalledWith(CARBON_IBM_ISV_ENDPOINT)
+    await expect(passport.authenticate).toHaveBeenCalledWith(PASSPORT_STRATEGY_NAME)
     passport.authenticate = passportAuthenticateFn
     __test__.destroyInstance()
   })
@@ -127,6 +130,7 @@ describe('authenticateWithPassport', () => {
     if (oldUser) {
       fs.writeFile(mockedUserPath, JSON.stringify(oldUser), () => {})
     }
+    expect(mockedPassport.authenticate).toHaveBeenCalledWith(PASSPORT_STRATEGY_NAME)
   })
 })
 

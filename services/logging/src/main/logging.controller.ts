@@ -6,6 +6,7 @@
  */
 import { LogLoggedMessage } from '@carbon-platform/api/logging'
 import { EventMessage } from '@carbon-platform/api/messaging'
+import { getEnvironment } from '@carbon-platform/api/runtime'
 import { Controller } from '@nestjs/common'
 import { EventPattern, Payload } from '@nestjs/microservices'
 
@@ -21,6 +22,15 @@ class LoggingController extends PlatformController {
   constructor(logDnaService: LogDnaService) {
     super()
     this.logDnaService = logDnaService
+
+    this.logDnaService.log({
+      service: 'logging',
+      component: 'logging.controller',
+      environment: getEnvironment(),
+      level: 'info',
+      timestamp: Date.now(),
+      message: 'Logging controller successfully instantiated'
+    })
   }
 
   /**

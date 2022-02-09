@@ -7,7 +7,7 @@
 import chalk from 'chalk'
 
 import { EventMessage, MessagingClient } from '../messaging'
-import { getEnvironment, getRunMode, isDebugEnabled, RunMode } from '../runtime'
+import { Environment, getEnvironment, getRunMode, isDebugEnabled, RunMode } from '../runtime'
 import { LogLevel, LogLoggedMessage } from './interfaces'
 
 const logColors = {
@@ -26,7 +26,7 @@ type Loggable = string | number | boolean | Array<any> | Object | Error
  */
 class Logging {
   private readonly component: string
-  private readonly environment: string
+  private readonly environment: Environment
   private readonly isDebugLoggingEnabled: boolean
   private readonly isRemoteLoggingEnabled: boolean
   private readonly messagingClient?: MessagingClient

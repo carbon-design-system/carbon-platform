@@ -16,11 +16,26 @@ const LOCAL_MESSAGE_QUEUE_URL = 'amqp://localhost:5672'
 
 const {
   /**
+   * The self-signed cert presented by the message queue.
+   */
+  CARBON_MESSAGE_QUEUE_CERTIFICATE,
+  /**
    * Message queue to which to connect.
    */
-  CARBON_MESSAGE_QUEUE_URL
+  CARBON_MESSAGE_QUEUE_URL,
+  /**
+   * Username to use during message queue authentication.
+   */
+  CARBON_MESSAGE_QUEUE_USERNAME,
+  /**
+   * Password to use during message queue authentication.
+   */
+  CARBON_MESSAGE_QUEUE_PASSWORD
 } = loadEnvVars({
-  CARBON_MESSAGE_QUEUE_URL: LOCAL_MESSAGE_QUEUE_URL
+  CARBON_MESSAGE_QUEUE_CERTIFICATE: '',
+  CARBON_MESSAGE_QUEUE_URL: LOCAL_MESSAGE_QUEUE_URL,
+  CARBON_MESSAGE_QUEUE_USERNAME: 'username',
+  CARBON_MESSAGE_QUEUE_PASSWORD: 'password'
 })
 
 /**
@@ -28,16 +43,6 @@ const {
  * specific patterns being used to filter messages (i.e. **all** messages will pass through).
  */
 const DEFAULT_BIND_PATTERN = ''
-
-/**
- * Default queue options. By default a queue will not be persisted to storage and will not require
- * explicit acknowledgement that a received message has been processed and should be removed from
- * the queue.
- */
-const DEFAULT_QUEUE_OPTIONS = {
-  durable: false,
-  noAck: true
-}
 
 /**
  * Default exchange options. By default, exchanges will not be persisted to storage.
@@ -52,15 +57,43 @@ const DEFAULT_EXCHANGE_OPTIONS: Options.AssertExchange = {
  */
 const DEFAULT_EXCHANGE_TYPE = 'fanout'
 
+/**
+ * Default queue options. By default a queue will not be persisted to storage and will not require
+ * explicit acknowledgement that a received message has been processed and should be removed from
+ * the queue.
+ */
+const DEFAULT_QUEUE_OPTIONS = {
+  durable: false,
+  noAck: true
+}
+
+/**
+ * Defalt socket options. This incorporates a certificate representing the message queue if one was
+ * provided as an environment variable.
+ */
+const DEFAULT_SOCKET_OPTIONS = {
+  ca: CARBON_MESSAGE_QUEUE_CERTIFICATE ? [CARBON_MESSAGE_QUEUE_CERTIFICATE] : []
+}
+
 // Message queue URL checking
 if (CARBON_MESSAGE_QUEUE_URL === LOCAL_MESSAGE_QUEUE_URL) {
   console.warn(`${chalk.bgYellowBright.black('WARN')} Using localhost message queue url`)
 }
 
+// Add auth to message queue URL, if present
+const messageQueueUrlWithAuth = CARBON_MESSAGE_QUEUE_URL.replace(
+  '$USERNAME:$PASSWORD',
+  `${CARBON_MESSAGE_QUEUE_USERNAME}:${CARBON_MESSAGE_QUEUE_PASSWORD}`
+)
+
 export {
-  CARBON_MESSAGE_QUEUE_URL,
+  CARBON_MESSAGE_QUEUE_CERTIFICATE,
+  CARBON_MESSAGE_QUEUE_PASSWORD,
+  messageQueueUrlWithAuth as CARBON_MESSAGE_QUEUE_URL,
+  CARBON_MESSAGE_QUEUE_USERNAME,
   DEFAULT_BIND_PATTERN,
   DEFAULT_EXCHANGE_OPTIONS,
   DEFAULT_EXCHANGE_TYPE,
-  DEFAULT_QUEUE_OPTIONS
+  DEFAULT_QUEUE_OPTIONS,
+  DEFAULT_SOCKET_OPTIONS
 }

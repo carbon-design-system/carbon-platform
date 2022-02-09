@@ -6,6 +6,7 @@
  */
 import { Logging, LogLoggedMessage } from '../../main/logging'
 import { EventMessage, MessagingClient } from '../../main/messaging'
+import { Environment } from '../../main/runtime'
 import * as runMode from '../../main/runtime/run-mode'
 
 jest.mock('../../main/runtime/run-mode')
@@ -69,7 +70,7 @@ describe('message emission', () => {
     it('calls emit with a well-formed message', async () => {
       const message: LogLoggedMessage = {
         component: 'test-component',
-        environment: 'TEST',
+        environment: Environment.Test,
         level: 'info',
         message: 'test',
         service: 'test-service',

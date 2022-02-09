@@ -25,8 +25,8 @@ const mockedNestFactory = NestFactory as jest.Mocked<typeof NestFactory>
 
 class PlatformMicroserviceImpl extends PlatformMicroservice {}
 
-let mockedChannel = null
-let mockedConnection = null
+let mockedChannel: any = null
+let mockedConnection: any = null
 const mockedListen = jest.fn()
 
 beforeEach(() => {

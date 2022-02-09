@@ -6,11 +6,15 @@
  */
 export { EventMessage, QueryMessage, Queue } from './config'
 export {
+  CARBON_MESSAGE_QUEUE_CERTIFICATE,
+  CARBON_MESSAGE_QUEUE_PASSWORD,
   CARBON_MESSAGE_QUEUE_URL,
+  CARBON_MESSAGE_QUEUE_USERNAME,
   DEFAULT_BIND_PATTERN,
   DEFAULT_EXCHANGE_OPTIONS,
   DEFAULT_EXCHANGE_TYPE,
-  DEFAULT_QUEUE_OPTIONS
+  DEFAULT_QUEUE_OPTIONS,
+  DEFAULT_SOCKET_OPTIONS
 } from './constants'
 export { UnvalidatedMessage } from './interfaces'
 export { MessagingClient } from './MessagingClient'

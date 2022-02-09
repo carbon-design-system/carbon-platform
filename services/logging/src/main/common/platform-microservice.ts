@@ -10,6 +10,7 @@ import {
   DEFAULT_EXCHANGE_OPTIONS,
   DEFAULT_EXCHANGE_TYPE,
   DEFAULT_QUEUE_OPTIONS,
+  DEFAULT_SOCKET_OPTIONS,
   EventMessage,
   QueryMessage,
   Queue
@@ -51,7 +52,7 @@ abstract class PlatformMicroservice {
   private async connect(): Promise<amqp.Connection> {
     while (true) {
       try {
-        return await amqp.connect(CARBON_MESSAGE_QUEUE_URL)
+        return await amqp.connect(CARBON_MESSAGE_QUEUE_URL, DEFAULT_SOCKET_OPTIONS)
       } catch (e) {
         console.error('Could not connect to messaging service', e)
 
@@ -72,9 +73,10 @@ abstract class PlatformMicroservice {
     const app = await NestFactory.createMicroservice<MicroserviceOptions>(this.constructor, {
       transport: Transport.RMQ,
       options: {
-        urls: [CARBON_MESSAGE_QUEUE_URL],
+        socketOptions: DEFAULT_SOCKET_OPTIONS,
         queue: this.queueName,
-        queueOptions: this.queueOptions
+        queueOptions: this.queueOptions,
+        urls: [CARBON_MESSAGE_QUEUE_URL]
       }
     })
 

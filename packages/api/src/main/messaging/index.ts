@@ -12,5 +12,5 @@ export {
   DEFAULT_EXCHANGE_TYPE,
   DEFAULT_QUEUE_OPTIONS
 } from './constants'
-export { UnvalidatedMessage } from './interfaces'
+export { GraphQlMessage, UnvalidatedMessage } from './interfaces'
 export { MessagingClient } from './MessagingClient'

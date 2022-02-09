@@ -6,7 +6,6 @@
  */
 import { Module } from '@nestjs/common'
 
-import { PlatformMicroservice } from './common/platform-microservice'
 import { LogDnaService } from './log-dna.service'
 import { LoggingController } from './logging.controller'
 
@@ -14,6 +13,6 @@ import { LoggingController } from './logging.controller'
   controllers: [LoggingController],
   providers: [LogDnaService]
 })
-class LoggingModule extends PlatformMicroservice {}
+class LoggingModule {}
 
 export { LoggingModule }

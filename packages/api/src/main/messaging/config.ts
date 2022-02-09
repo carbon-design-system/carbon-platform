@@ -11,7 +11,8 @@
 enum Queue {
   Github = 'q_github_v1',
   Logging = 'q_logging_v1',
-  Search = 'q_search_v1'
+  Search = 'q_search_v1',
+  GraphQL = 'q_graphql_v1'
 }
 
 /**
@@ -32,7 +33,8 @@ enum EventMessage {
  * the value of the corresponding QueryMessage enum value.
  */
 enum QueryMessage {
-  Example = 'example'
+  Example = 'example',
+  GraphqlQuery = 'graphql_query'
 }
 
 export { EventMessage, QueryMessage, Queue }

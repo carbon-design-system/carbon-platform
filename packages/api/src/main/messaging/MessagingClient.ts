@@ -8,7 +8,12 @@ import amqp from 'amqplib'
 import { v4 as uuidv4 } from 'uuid'
 
 import { EventMessage, QueryMessage } from './config'
-import { CARBON_MESSAGE_QUEUE_URL } from './constants'
+import {
+  CARBON_MESSAGE_QUEUE_URL,
+  DEFAULT_BIND_PATTERN,
+  DEFAULT_EXCHANGE_OPTIONS,
+  DEFAULT_EXCHANGE_TYPE
+} from './constants'
 
 const RANDOM_QUEUE_NAME = ''
 const DEFAULT_ROUTING_KEY = ''
@@ -252,6 +257,37 @@ class MessagingClient {
     }
 
     return replyPromise
+  }
+
+  /**
+   * Binds a service to one or more message types, allowing it to listen for and receive messages of
+   * those types.
+   *
+   * This is accomplished by connecting to RabbitMQ, asserting a queue for the one specified in the
+   * constructor, asserting an exchange for each message type, binding the queue to the newly
+   * asserted exchanges, and then closing channel.
+   *
+   * @param queueName
+   * @param queueOptions
+   * @param messageTypes The types of messages to which to bind.
+   */
+  public async bind(
+    queueName: string,
+    queueOptions: object,
+    ...messageTypes: Array<EventMessage | QueryMessage>
+  ) {
+    const messagingConnection = await this.connect()
+    const channel = await messagingConnection.connection.createChannel()
+
+    await channel.assertQueue(queueName, queueOptions)
+
+    for (const messageType of messageTypes) {
+      const exchange = messageType as string
+      await channel.assertExchange(exchange, DEFAULT_EXCHANGE_TYPE, DEFAULT_EXCHANGE_OPTIONS)
+      await channel.bindQueue(queueName, exchange, DEFAULT_BIND_PATTERN)
+    }
+
+    await channel.close()
   }
 }
 

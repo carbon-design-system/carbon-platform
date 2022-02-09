@@ -8,4 +8,9 @@ interface UnvalidatedMessage {
   [key: string]: any
 }
 
-export { UnvalidatedMessage }
+interface GraphQlMessage {
+  query: string
+  queryName: string
+}
+
+export { GraphQlMessage, UnvalidatedMessage }

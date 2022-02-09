@@ -18,18 +18,16 @@ const {
   // Client secret tied to App registration on SSO provisioner (get this from dev team)
   CARBON_IBM_ISV_CLIENT_SECRET,
   // Strategy name that passport should use when authenticating (get this from dev team)
-  PASSPORT_STRATEGY_NAME,
-  // URL of session storage DB
-  CARBON_MONGO_DB_URL,
-  // DB name for session storage
-  CARBON_MONGO_DB_NAME
+  PASSPORT_STRATEGY_NAME
 } = loadEnvVars({
   PASSPORT_STRATEGY_NAME: 'prepiam.ice.ibmcloud.com',
   CARBON_IBM_ISV_CLIENT_ID: 'none',
-  CARBON_IBM_ISV_CLIENT_SECRET: 'none',
-  CARBON_MONGO_DB_URL: '',
-  CARBON_MONGO_DB_NAME: ''
+  CARBON_IBM_ISV_CLIENT_SECRET: 'none'
 })
+
+// TODO: incorporate these consts into loadEnvVars when mongo db is set up
+const CARBON_MONGO_DB_URL = ''
+const CARBON_MONGO_DB_NAME = ''
 
 export {
   CARBON_IBM_ISV_CLIENT_ID,

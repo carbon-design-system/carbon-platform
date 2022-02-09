@@ -18,9 +18,6 @@ import { PASSPORT_STRATEGY_NAME } from '../../main/auth/config/constants'
 import { __test__ } from '../../main/auth/passport'
 import { getRunMode, RunMode } from '../../main/runtime'
 
-jest.mock('passport')
-const mockedPassport = passport as jest.Mocked<typeof passport>
-
 const signature = require('cookie-signature')
 
 describe('getPassportInstance', () => {
@@ -130,7 +127,6 @@ describe('authenticateWithPassport', () => {
     if (oldUser) {
       fs.writeFile(mockedUserPath, JSON.stringify(oldUser), () => {})
     }
-    expect(mockedPassport.authenticate).toHaveBeenCalledWith(PASSPORT_STRATEGY_NAME)
   })
 })
 

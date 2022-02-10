@@ -21,13 +21,15 @@
     background: $background;
   }
 
-  &:hover,
-  &:focus {
-    background: $background-selected-hover;
-  }
-
   &:active {
     outline: 2px solid $border-interactive;
     outline-offset: -2px;
+  }
+}
+
+.clickable {
+  &:hover,
+  &:focus {
+    background: $background-selected-hover;
   }
 }

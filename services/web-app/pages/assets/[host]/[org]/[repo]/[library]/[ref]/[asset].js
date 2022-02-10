@@ -186,6 +186,7 @@ const Asset = ({ libraryData }) => {
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
+                clickable
               >
                 <p className={dashboardStyles.title}>Pull requests</p>
                 <h3 className={dashboardStyles.titleLarge}>{libraryData.response.size}</h3>
@@ -201,6 +202,7 @@ const Asset = ({ libraryData }) => {
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
+                clickable
               >
                 <p className={dashboardStyles.title}>Pull requests</p>
                 <h3 className={dashboardStyles.titleLarge}>{libraryData.response.size}</h3>
@@ -216,6 +218,7 @@ const Asset = ({ libraryData }) => {
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
+                clickable
               >
                 <p className={dashboardStyles.title}>Open issues</p>
                 <h3 className={dashboardStyles.titleLarge}>{libraryData.response.size}</h3>

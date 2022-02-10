@@ -13,7 +13,13 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './dashboard-item.module.scss'
 
-export const DashboardItem = ({ aspectRatio = {}, border = [], children, spacer: showSpacer }) => {
+export const DashboardItem = ({
+  aspectRatio = {},
+  border = [],
+  children,
+  spacer: showSpacer,
+  clickable
+}) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
   const isXlg = useMatchMedia(mediaQueries.xlg)
@@ -39,7 +45,8 @@ export const DashboardItem = ({ aspectRatio = {}, border = [], children, spacer:
       className={clsx(
         styles.container,
         showBorder && styles.containerBorder,
-        showSpacer && styles.containerSpacer
+        showSpacer && styles.containerSpacer,
+        clickable && styles.clickable
       )}
       {...props}
     >

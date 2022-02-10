@@ -232,7 +232,6 @@ For the value of the `inherits` key, you can set the following keys.
 id: accordion
 inherits:
   asset: 'carbon-styles@v11.0.3/accordion'
-  primary: true
   properties:
     - name
     - description

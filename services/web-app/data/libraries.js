@@ -7,6 +7,33 @@
 const { RunMode, getRunMode } = require('@carbon-platform/api/runtime')
 
 /**
+ * Library groups are defined when a group of libraries all inherit the same base library, and when
+ * one of them is the reference, canonical, library that is the most complete and is updated first.
+ * This is used to collapse frameworks in the asset catalogs when a framework filter has not been
+ * applied.
+ */
+
+const carbonChartsGroup = {
+  base: 'carbon-charts',
+  canonical: 'carbon-charts'
+}
+
+const carbonComponentsGroup = {
+  base: 'carbon-styles',
+  canonical: 'carbon-react'
+}
+
+const ibmdotcomGroup = {
+  base: 'ibmdotcom-styles',
+  canonical: 'ibmdotcom-web-components'
+}
+
+const watsonMomentsGroup = {
+  base: 'watson-moments-styles',
+  canonical: 'watson-moments-react'
+}
+
+/**
  * Libraries are only included in the platform if in this allowlist. Library slugs are specified as
  * object keys to ensure uniqueness.
  */
@@ -16,75 +43,86 @@ const libraries = {
     org: 'matt-rosno',
     repo: 'carbon-charts',
     path: '/packages/core',
-    sponsor: 'carbon'
+    sponsor: 'carbon',
+    group: carbonChartsGroup
   },
   'carbon-charts-angular': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-charts',
     path: '/packages/angular',
-    sponsor: 'carbon'
+    sponsor: 'carbon',
+    group: carbonChartsGroup
   },
   'carbon-charts-react': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-charts',
     path: '/packages/react',
-    sponsor: 'carbon'
+    sponsor: 'carbon',
+    group: carbonChartsGroup
   },
   'carbon-charts-svelte': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-charts',
     path: '/packages/svelte',
-    sponsor: 'carbon'
+    sponsor: 'carbon',
+    group: carbonChartsGroup
   },
   'carbon-charts-vue': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-charts',
     path: '/packages/vue',
-    sponsor: 'carbon'
+    sponsor: 'carbon',
+    group: carbonChartsGroup
   },
   'carbon-styles': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
     path: '/packages/styles',
-    sponsor: 'carbon'
+    sponsor: 'carbon',
+    group: carbonComponentsGroup
   },
   'carbon-react': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
     path: '/packages/carbon-react',
-    sponsor: 'carbon'
+    sponsor: 'carbon',
+    group: carbonComponentsGroup
   },
   'carbon-angular': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-components-angular',
     path: '/',
-    sponsor: 'ai-apps'
+    sponsor: 'ai-apps',
+    group: carbonComponentsGroup
   },
   'carbon-vue': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-components-vue',
-    path: '/packages/core'
+    path: '/packages/core',
+    group: carbonComponentsGroup
   },
   'carbon-svelte': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-components-svelte',
-    path: '/'
+    path: '/',
+    group: carbonComponentsGroup
   },
   'carbon-web-components': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-web-components',
     path: '/',
-    sponsor: 'ibm-dotcom'
+    sponsor: 'ibm-dotcom',
+    group: carbonComponentsGroup
   },
   'carbon-cli': {
     host: 'github.ibm.com',
@@ -111,7 +149,8 @@ const libraries = {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon',
-    path: '/packages/components'
+    path: '/packages/components',
+    group: carbonComponentsGroup
   },
   'carbon-elements': {
     host: 'github.ibm.com',
@@ -230,14 +269,16 @@ const libraries = {
     org: 'matt-rosno',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/react',
-    sponsor: 'ibm-dotcom'
+    sponsor: 'ibm-dotcom',
+    group: ibmdotcomGroup
   },
   'ibmdotcom-web-components': {
     host: 'github.ibm.com',
     org: 'matt-rosno',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/web-components',
-    sponsor: 'ibm-dotcom'
+    sponsor: 'ibm-dotcom',
+    group: ibmdotcomGroup
   },
   'ibmdotcom-services': {
     host: 'github.ibm.com',
@@ -251,7 +292,8 @@ const libraries = {
     org: 'matt-rosno',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/styles',
-    sponsor: 'ibm-dotcom'
+    sponsor: 'ibm-dotcom',
+    group: ibmdotcomGroup
   },
   'ibmdotcom-utilities': {
     host: 'github.ibm.com',
@@ -272,14 +314,16 @@ const libraries = {
     org: 'andrea-cardona',
     repo: 'carbon-watson-moments',
     path: '/packages/react',
-    sponsor: 'watson'
+    sponsor: 'watson',
+    group: watsonMomentsGroup
   },
   'watson-moments-styles': {
     host: 'github.ibm.com',
     org: 'andrea-cardona',
     repo: 'carbon-watson-moments',
     path: '/packages/styles',
-    sponsor: 'watson'
+    sponsor: 'watson',
+    group: watsonMomentsGroup
   },
   'gatsby-theme-carbon': {
     host: 'github.ibm.com',

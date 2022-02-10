@@ -7,6 +7,7 @@
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import { ArrowUpRight, Events, Scales } from '@carbon/react/icons'
 import clsx from 'clsx'
+import { get } from 'lodash'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
@@ -16,6 +17,7 @@ import FrameworkIcon from '@/components/framework-icon'
 import StatusIcon from '@/components/status-icon'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
+import { collapseAssetGroups, getBaseIdentifier } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
@@ -42,7 +44,7 @@ CatalogItemImage.propTypes = {
   asset: assetPropTypes
 }
 
-const CatalogItemContent = ({ asset, isGrid = false }) => {
+const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
 
   const { name, description, externalDocsUrl } = asset.content
@@ -55,6 +57,12 @@ const CatalogItemContent = ({ asset, isGrid = false }) => {
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
 
   const isSeparatedMeta = !isLg || isGrid
+
+  const otherFrameworkCount = () => {
+    const baseIdentifier = getBaseIdentifier(asset)
+
+    return collapseAssetGroups(asset, filter) ? get(assetCounts, baseIdentifier, 0) - 1 : 0
+  }
 
   return (
     <Grid className={styles.content}>
@@ -88,7 +96,7 @@ const CatalogItemContent = ({ asset, isGrid = false }) => {
         <FrameworkIcon
           className={styles.framework}
           framework={asset.content.framework}
-          frameworkCount={asset.content.frameworkCount}
+          otherCount={otherFrameworkCount()}
         />
       </Column>
     </Grid>
@@ -144,7 +152,7 @@ CatalogItemMeta.propTypes = {
   properties: PropTypes.array
 }
 
-const CatalogItem = ({ asset, isGrid = false }) => {
+const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
   const isXlg = useMatchMedia(mediaQueries.xlg)
@@ -179,7 +187,12 @@ const CatalogItem = ({ asset, isGrid = false }) => {
             <CatalogItemImage asset={asset} />
           </AspectRatio>
           <AspectRatio ratio="16x9">
-            <CatalogItemContent asset={asset} isGrid={isGrid} />
+            <CatalogItemContent
+              asset={asset}
+              assetCounts={assetCounts}
+              filter={filter}
+              isGrid={isGrid}
+            />
           </AspectRatio>
         </a>
       </Link>
@@ -199,10 +212,22 @@ const CatalogItem = ({ asset, isGrid = false }) => {
             <Column className={clsx(styles.column, styles.columnContent)} sm={4} md={4} lg={8}>
               {!isMd && (
                 <AspectRatio ratio="3x2">
-                  <CatalogItemContent asset={asset} isGrid={isGrid} />
+                  <CatalogItemContent
+                    asset={asset}
+                    assetCounts={assetCounts}
+                    filter={filter}
+                    isGrid={isGrid}
+                  />
                 </AspectRatio>
               )}
-              {isMd && <CatalogItemContent asset={asset} isGrid={isGrid} />}
+              {isMd && (
+                <CatalogItemContent
+                  asset={asset}
+                  assetCounts={assetCounts}
+                  filter={filter}
+                  isGrid={isGrid}
+                />
+              )}
             </Column>
           </Grid>
         </a>
@@ -215,6 +240,8 @@ const CatalogItem = ({ asset, isGrid = false }) => {
 
 CatalogItem.propTypes = {
   asset: assetPropTypes,
+  assetCounts: PropTypes.object,
+  filter: PropTypes.object,
   isGrid: PropTypes.bool
 }
 

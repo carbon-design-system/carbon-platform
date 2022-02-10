@@ -6,6 +6,8 @@
 //
 
 .container {
+  position: relative;
+
   @include breakpoint-down(md) {
     grid-gap: 0;
   }
@@ -28,62 +30,57 @@
   @include breakpoint-down(md) {
     padding-left: $spacing-05;
   }
+
+  &--links {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .title {
-  padding-bottom: $spacing-02;
+  padding-bottom: $spacing-01;
   color: $text-secondary;
   @include type-style('body-short-01');
 
   &--large {
-    padding-bottom: $spacing-06;
     color: $text-primary;
     @include type-style('expressive-heading-04');
   }
 }
 
 .subtitle {
-  padding-bottom: $spacing-07;
+  padding-bottom: $spacing-06;
   color: $text-primary;
   @include type-style('body-short-02');
 }
 
-.design-kit {
+.link-container {
   position: absolute;
+  right: 0;
   bottom: 0;
+  display: flex;
   width: 100%;
   height: $spacing-09;
-  margin: auto;
-  margin-right: -$spacing-05;
-  margin-left: -$spacing-05;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-04;
+  margin-bottom: 1px;
   background-color: $border-interactive;
   color: $background;
   text-decoration: none;
-  @include type-style('body-short-02');
+
+  &:hover,
+  &:focus {
+    background: $link-primary-hover;
+  }
+
+  &:active {
+    outline: 1px solid $background;
+    outline-offset: -3px;
+  }
 
   @include breakpoint(lg) {
-    background: linear-gradient(90deg, $layer-01 50%, $border-interactive 50%);
+    width: calc(50% + 1px);
   }
-}
-
-.design-kit-text {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  padding-top: $spacing-04;
-  float: right;
-
-  @include breakpoint(lg) {
-    width: 50%;
-  }
-}
-
-.design-kit-title {
-  margin-left: $spacing-05;
-}
-
-.design-kit-icon {
-  position: absolute;
-  right: 0;
-  margin: $spacing-02 $spacing-05 0 0;
 }

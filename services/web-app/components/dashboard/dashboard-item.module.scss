@@ -20,4 +20,15 @@
   &--spacer {
     background: $background;
   }
+
+  &:hover,
+  &:focus {
+    background: $background-selected-hover;
+  }
+
+  &:active {
+    border-right: 4px solid $border-interactive;
+    outline: 2px solid $border-interactive;
+    outline-offset: -2px;
+  }
 }

@@ -34,6 +34,13 @@
     left: $spacing-04;
     color: $text-primary;
   }
+
+  &--right-absolute {
+    position: absolute;
+    right: $spacing-04;
+    bottom: $spacing-04;
+    color: $text-primary;
+  }
 }
 
 .meta-item {
@@ -51,7 +58,7 @@
 }
 
 .meta-info {
-  padding-bottom: $spacing-07;
+  padding-bottom: $spacing-06;
 }
 
 .meta-status {
@@ -63,4 +70,11 @@
   color: $border-interactive;
   text-decoration: none;
   @include type-style('body-short-01');
+
+  &--large {
+    color: $link-primary;
+    @include type-style('expressive-heading-04');
+
+    text-decoration: none;
+  }
 }

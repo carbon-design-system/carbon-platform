@@ -10,7 +10,6 @@ interface UnvalidatedMessage {
 
 interface GraphQlMessage {
   query: string
-  queryName: string
 }
 
 export { GraphQlMessage, UnvalidatedMessage }

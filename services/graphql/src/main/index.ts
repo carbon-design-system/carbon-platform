@@ -15,7 +15,6 @@ import { NestFactory } from '@nestjs/core'
 import { MicroserviceOptions, Transport } from '@nestjs/microservices'
 
 import { AppModule } from './app.module'
-import { EventModule } from './modules/event/event.module'
 
 async function bootstrap() {
   const client = MessagingClient.getInstance()
@@ -25,7 +24,7 @@ async function bootstrap() {
   }
   await client.bind(Queue.GraphQL, queueOptions, QueryMessage.GraphqlQuery)
 
-  const microservice = await NestFactory.createMicroservice<MicroserviceOptions>(EventModule, {
+  const microservice = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
     transport: Transport.RMQ,
     options: {
       urls: [CARBON_MESSAGE_QUEUE_URL],
@@ -38,6 +37,8 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule)
   await app.listen(3000)
+
+  // ---- TESTING -----
   console.log(`Application is running on: ${await app.getUrl()}`)
 
   setTimeout(() => {

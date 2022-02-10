@@ -7,14 +7,19 @@
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 
+import { EventController } from './modules/event/event.controller'
 import { UserModule } from './modules/user/user.module'
+import { UserResolver } from './modules/user/user.resolver'
+import { UserService } from './modules/user/user.service'
 
 @Module({
+  controllers: [EventController],
   imports: [
     UserModule,
     GraphQLModule.forRoot({
       autoSchemaFile: true
     })
-  ]
+  ],
+  providers: [UserResolver, UserService]
 })
 export class AppModule {}

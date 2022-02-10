@@ -17,7 +17,8 @@ module.exports = {
         'micromanage',
         'release',
         'search',
-        'web-app'
+        'web-app',
+        'graphql'
       ]
     ],
     'type-enum': [

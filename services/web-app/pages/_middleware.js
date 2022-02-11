@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import cookie from 'cookie'
 import { NextResponse } from 'next/server'
 
 import { isValidIbmEmail } from '@/utils/string'
@@ -18,14 +19,19 @@ import { getRunMode, RunMode } from '../../../packages/api/runtime'
  * @returns {RequestInit} request options
  */
 function getRequestOptions(req) {
-  let cookies = ''
-  Object.entries(req.cookies).forEach(([key, val]) => {
-    cookies += `${key}=${val}; `
-  })
+  const sessionCookie = req.cookies['connect.sid']
+  const cookies = sessionCookie ? cookie.serialize('connect.sid', sessionCookie) : ''
   return {
     headers: { cookie: cookies }
   }
 }
+
+function exitWith404(req) {
+  const url = req.nextUrl.clone()
+  url.pathname = '/404'
+  return NextResponse.rewrite(url)
+}
+
 export async function middleware(req) {
   if (req.nextUrl.pathname === '/404' || req.nextUrl.pathname.startsWith('/api/')) {
     return NextResponse.next()
@@ -36,14 +42,23 @@ export async function middleware(req) {
     `${protocol}://localhost:${req.nextUrl.port}/api/user`,
     getRequestOptions(req)
   )
-  let user
-  if (userResponse.ok) {
-    user = await userResponse.json()
+
+  // Guard - non-200 user api response
+  if (!userResponse.ok) {
+    return exitWith404(req)
   }
-  if (!isValidIbmEmail(user?.email ?? '')) {
-    const url = req.nextUrl.clone()
-    url.pathname = '/404'
-    return NextResponse.rewrite(url)
+
+  const user = await userResponse.json()
+
+  // Guard - no valid user
+  if (!user?.email) {
+    return exitWith404(req)
   }
+
+  // Guard - not a valid IBMer
+  if (!isValidIbmEmail(user.email)) {
+    return exitWith404(req)
+  }
+
   return NextResponse.next()
 }

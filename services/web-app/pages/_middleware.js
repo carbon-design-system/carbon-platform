@@ -10,7 +10,7 @@ import { NextResponse } from 'next/server'
 
 import { isValidIbmEmail } from '@/utils/string'
 
-import { getRunMode, RunMode } from '../../../packages/api/runtime'
+import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 
 /**
  * Creates request options for retrieveUser api call including headers and agent if necessary

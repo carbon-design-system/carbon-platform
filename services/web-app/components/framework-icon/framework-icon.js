@@ -19,13 +19,13 @@ const FrameworkIcon = ({ className, framework, otherCount = 0 }) => {
 
   const { icon: Icon, name } = item
 
-  if (!Icon) return null
+  if (!Icon && !name) return null
 
   const title = otherCount > 0 ? `${name} and ${otherCount} others` : name
 
   return (
     <div className={clsx(styles.container, className)} title={title}>
-      <Icon className={styles.icon} />
+      {Icon ? <Icon className={styles.icon} /> : <span className={styles.text}>{name}</span>}
       {otherCount > 0 && <span className={styles.text}>+{otherCount}</span>}
     </div>
   )

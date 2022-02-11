@@ -23,6 +23,6 @@
 }
 
 .text {
-  margin-left: $spacing-02;
+  margin: 0 $spacing-02;
   @include type-style('label-01');
 }

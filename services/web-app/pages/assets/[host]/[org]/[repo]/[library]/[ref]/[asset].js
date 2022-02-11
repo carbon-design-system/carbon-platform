@@ -128,9 +128,11 @@ const Asset = ({ libraryData }) => {
           >
             <p className={dashboardStyles.title}>Library</p>
             <h3 className={dashboardStyles.titleLarge}>{libraryData.content.name}</h3>
-            <p className={clsx(styles.metaLinkLarge, dashboardStyles.subcolumn)}>
-              {'v.' + libraryData.content.version}
-            </p>
+            <Link href={`${assetPath}`}>
+              <a className={clsx(styles.metaLinkLarge, dashboardStyles.subcolumn)}>
+                {'v.' + libraryData.content.version}
+              </a>
+            </Link>
             {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={32} />}
           </DashboardItem>
         </Column>

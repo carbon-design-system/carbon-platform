@@ -4,22 +4,19 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 
-import { EventController } from './modules/event/event.controller'
-import { UserModule } from './modules/user/user.module'
-import { UserResolver } from './modules/user/user.resolver'
-import { UserService } from './modules/user/user.service'
+import { UsersModule } from './users/users.module'
 
 @Module({
-  controllers: [EventController],
   imports: [
-    UserModule,
-    GraphQLModule.forRoot({
+    UsersModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
       autoSchemaFile: true
     })
-  ],
-  providers: [UserResolver, UserService]
+  ]
 })
 export class AppModule {}

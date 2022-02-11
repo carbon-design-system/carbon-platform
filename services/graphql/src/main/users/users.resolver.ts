@@ -8,12 +8,10 @@
  */
 import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql'
 
-import { NewUserInput } from './dto/new-user.input'
-import { UpdateUserInput } from './dto/update-user.input'
 import { User } from './models/user.model'
-import { UserService } from './user.service'
+import { UserService } from './users.service'
 
-@Resolver((of) => User)
+@Resolver(User)
 export class UserResolver {
   private readonly userService: UserService
 
@@ -21,26 +19,26 @@ export class UserResolver {
     this.userService = userService
   }
 
-  @Query((returns) => User)
+  @Query(() => User)
   user(@Args({ name: 'id', type: () => ID }) id: number): User {
     return this.userService.findUserById(id)
   }
 
-  @Query((returns) => [User])
+  @Query(() => [User])
   users(): User[] {
     return this.userService.findAll()
   }
 
-  @Mutation((returns) => User)
-  async addUser(@Args('newUserData') newUserData: NewUserInput) {
-    return this.userService.createUser(newUserData)
-  }
+  // @Mutation((returns) => User)
+  // async addUser(@Args('newUserData') newUserData: NewUserInput) {
+  //   return this.userService.createUser(newUserData)
+  // }
 
-  @Mutation((returns) => User)
-  async updateUser(
-    @Args({ name: 'id', type: () => ID }) id: number,
-    @Args('partialUserData') partialUserData: UpdateUserInput
-  ) {
-    return this.userService.updateUser(id, partialUserData)
-  }
+  // @Mutation((returns) => User)
+  // async updateUser(
+  //   @Args({ name: 'id', type: () => ID }) id: number,
+  //   @Args('partialUserData') partialUserData: UpdateUserInput
+  // ) {
+  //   return this.userService.updateUser(id, partialUserData)
+  // }
 }

@@ -6,8 +6,6 @@
  */
 import { Injectable } from '@nestjs/common'
 
-import { NewUserInput } from './dto/new-user.input'
-import { UpdateUserInput } from './dto/update-user.input'
 import { User } from './models/user.model'
 
 @Injectable()
@@ -32,29 +30,29 @@ export class UserService {
     return this.users
   }
 
-  createUser(userInput: NewUserInput): User {
-    const user: User = {
-      ...userInput,
-      id:
-        Math.max(
-          ...this.users.map(function (o) {
-            return o.id
-          })
-        ) + 1
-    }
-    this.users.push(user)
-    return user
-  }
+  // createUser(userInput: NewUserInput): User {
+  //   const user: User = {
+  //     ...userInput,
+  //     id:
+  //       Math.max(
+  //         ...this.users.map(function (o) {
+  //           return o.id
+  //         })
+  //       ) + 1
+  //   }
+  //   this.users.push(user)
+  //   return user
+  // }
 
-  updateUser(id: number, userInput: UpdateUserInput): User {
-    let user = this.findUserById(id)
-    if (!user) {
-      throw new Error('user with given id could not be found')
-    }
-    user = {
-      ...user,
-      ...userInput
-    }
-    return user
-  }
+  // updateUser(id: number, userInput: UpdateUserInput): User {
+  //   let user = this.findUserById(id)
+  //   if (!user) {
+  //     throw new Error('user with given id could not be found')
+  //   }
+  //   user = {
+  //     ...user,
+  //     ...userInput
+  //   }
+  //   return user
+  // }
 }

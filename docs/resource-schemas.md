@@ -35,7 +35,7 @@ demoLinks:
 <!-- prettier-ignore -->
 | Key| Description | Required | Type | Default | Valid values |
 | --- | --- | --- | --- | --- | --- |
-| `id` | Every library needs an identifier unique to the platform. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive an `id` when registering a new library. | Required | String | – | – |
+| `id` | Every library needs an identifier unique to the platform. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive an `id` when registering a new library. See [identifiers](#identifiers) for more info. | Required | String | – | – |
 | `name` | Library display name. Use title-case capitalization. | Required | String | – | – |
 | `description` | Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the `package.json` description if not set here. | Optional | String | Value from `package.json` | – |
 | `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, code package, and other information. | Optional | String | `/package.json` | – |
@@ -77,7 +77,7 @@ demoLinks:
 <!-- prettier-ignore -->
 | Key | Description | Required | Type | Default | Valid values |
 | --- | --- | --- | --- | --- | --- |
-| `id` | Every asset needs an identifier unique to its library. This is used to associate assets across libraries. | Required | String | – | – |
+| `id` | Every asset needs an identifier unique to its library. This is used to associate assets across libraries. See [identifiers](#identifiers) for more info. | Required | String | – | – |
 | `name` | Asset display name. Use sentence-case capitalization. | Required | String | – | – |
 | `description` | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization. | Required | String | – | – |
 | `status` | Asset consumption exptectations. See [asset status](#asset-status). | Required | String \| Object | `draft` | `draft`, `experimental`, `stable`, `deprecated` |
@@ -269,3 +269,12 @@ For the value of the `demoLinks` array, you can set the following keys.
 | `name` | Display name. | Required | String | – | – |
 | `action` | Determines the action icon. | Optional | String | `link` | `download`, `link` |
 | `url` | Link to the resource. | Required | String | – | – |
+
+#### Identifiers
+
+Libraries and assets have `id`s to uniquely identify each resource and establish relationships
+between resources. More guidance around format and absolute identifiers coming here soon!
+
+- Asset `id`s for framework-specific libraries should match across libraries so we can optimize how
+  we surface those assets in the catalogs. E.g. all of the libraries that implement Carbon's text
+  input component should consistently use the `text-input` component `id`.

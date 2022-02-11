@@ -195,3 +195,20 @@ the response should be returned.
 > instead sent to a transient "reply queue" unique to each running instance of an application. More
 > details about reply queues can be found
 > [here](https://www.rabbitmq.com/tutorials/tutorial-six-javascript.html).
+
+## Testing Locally
+
+To test messaging locally, two things are needed:
+
+1. A running microservice that uses messaging
+2. A running RabbitMQ Docker container
+
+### Running RabbitMQ Locally
+
+To run RabbitMQ locally via Docker, use the following command:
+
+```
+docker run --rm --hostname rabbitmq -p 5672:5672 rabbitmq:3.8
+```
+
+This will allow it to become accessible at: `amqp://localhost:5672`

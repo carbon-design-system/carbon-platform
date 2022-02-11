@@ -6,16 +6,13 @@
  */
 import { LogLoggedMessage } from '@carbon-platform/api/logging'
 import { EventMessage } from '@carbon-platform/api/messaging'
+import { Nest, PlatformController, Validate } from '@carbon-platform/api/microservice'
 import { getEnvironment } from '@carbon-platform/api/runtime'
-import { Controller } from '@nestjs/common'
-import { EventPattern, Payload } from '@nestjs/microservices'
 
-import { PlatformController } from './common/platform.controller'
-import { Validate } from './decorators/Validate'
 import { LogDnaService } from './log-dna.service'
 import { logMessageValidator } from './log-message-validator'
 
-@Controller()
+@Nest.Controller()
 class LoggingController extends PlatformController {
   private readonly logDnaService: LogDnaService
 
@@ -38,9 +35,9 @@ class LoggingController extends PlatformController {
    *
    * @param data The log message to log.
    */
-  @EventPattern(EventMessage.LogLogged)
+  @Nest.EventPattern(EventMessage.LogLogged)
   @Validate(logMessageValidator)
-  public async logLogged(@Payload() data: LogLoggedMessage) {
+  public async logLogged(@Nest.Payload() data: LogLoggedMessage) {
     this.nestLogger.log(`-> logLogged(${JSON.stringify(data)})`)
 
     this.logDnaService.log(data)

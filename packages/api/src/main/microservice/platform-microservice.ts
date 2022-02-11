@@ -4,6 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { NestFactory } from '@nestjs/core'
+import { MicroserviceOptions, Transport } from '@nestjs/microservices'
+import amqp from 'amqplib'
+
 import {
   CARBON_MESSAGE_QUEUE_URL,
   DEFAULT_BIND_PATTERN,
@@ -14,12 +18,9 @@ import {
   EventMessage,
   QueryMessage,
   Queue
-} from '@carbon-platform/api/messaging'
-import { NestFactory } from '@nestjs/core'
-import { MicroserviceOptions, Transport } from '@nestjs/microservices'
-import amqp from 'amqplib'
-
-const CONNECT_RETRY_INTERVAL = 5000
+} from '../messaging'
+import { CONNECT_RETRY_INTERVAL, PORT } from './constants'
+import { LivenessModule } from './liveness-endpoint/liveness.module'
 
 /**
  * An abstract class that wraps much of the boilerplate code needed to create, bind, and start a
@@ -70,17 +71,22 @@ abstract class PlatformMicroservice {
    * **NOTE:** This method does not return.
    */
   public async start(): Promise<any> {
-    const app = await NestFactory.createMicroservice<MicroserviceOptions>(this.constructor, {
-      transport: Transport.RMQ,
-      options: {
-        socketOptions: DEFAULT_SOCKET_OPTIONS,
-        queue: this.queueName,
-        queueOptions: this.queueOptions,
-        urls: [CARBON_MESSAGE_QUEUE_URL]
+    const microservice = await NestFactory.createMicroservice<MicroserviceOptions>(
+      this.constructor,
+      {
+        transport: Transport.RMQ,
+        options: {
+          socketOptions: DEFAULT_SOCKET_OPTIONS,
+          queue: this.queueName,
+          queueOptions: this.queueOptions,
+          urls: [CARBON_MESSAGE_QUEUE_URL]
+        }
       }
-    })
+    )
 
-    return app.listen()
+    const livenessEndpoint = await NestFactory.create(LivenessModule)
+
+    return Promise.all([microservice.listen(), livenessEndpoint.listen(PORT)])
   }
 
   /**

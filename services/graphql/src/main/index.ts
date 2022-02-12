@@ -6,43 +6,31 @@
  */
 import { NestFactory } from '@nestjs/core'
 import { GraphQLSchemaHost } from '@nestjs/graphql'
-import { graphql } from 'graphql'
+import { gql } from 'apollo-server-express'
+import { execute } from 'graphql'
 
 import { AppModule } from './app.module'
 
-async function bootstrap() {
-  // const client = MessagingClient.getInstance()
-
-  // await client.bind(Queue.GraphQL, DEFAULT_QUEUE_OPTIONS, QueryMessage.GraphqlQuery)
-
-  // const microservice = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
-  //   transport: Transport.RMQ,
-  //   options: {
-  //     urls: [CARBON_MESSAGE_QUEUE_URL],
-  //     queue: Queue.GraphQL,
-  //     queueOptions: DEFAULT_QUEUE_OPTIONS
-  //   }
-  // })
-
-  // microservice.listen()
-
+async function start() {
   const app = await NestFactory.create(AppModule)
-  app.listen(3000, async () => {
-    const { schema } = app.get(GraphQLSchemaHost)
-    console.log(schema)
-    const result = await graphql(
-      schema,
-      `
-        {
-          users {
-            id
-          }
-        }
-      `
-    )
-    console.log(JSON.stringify(result))
-  })
+  await app.init() // Forces schema host initialization
 
+  const { schema } = app.get(GraphQLSchemaHost)
+
+  const query = gql`
+    query MyQuery {
+      user(id: 1) {
+        name
+      }
+    }
+  `
+
+  console.log(JSON.stringify(query))
+
+  const result = await execute({ schema: schema, document: query })
+  console.log(JSON.stringify(result))
+
+  await app.listen(3000)
   // ---- TESTING -----
   // console.log(`Application is running on: ${await app.getUrl()}`)
 
@@ -62,4 +50,4 @@ async function bootstrap() {
   // }, 1000)
 }
 
-bootstrap()
+start()

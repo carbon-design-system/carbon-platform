@@ -8,10 +8,10 @@ import { Field, InputType } from '@nestjs/graphql'
 
 @InputType()
 export class NewUserInput {
-  @Field()
+  @Field(() => String)
   name: string
 
-  @Field()
+  @Field(() => String)
   email: string
 
   constructor(email: string, name: string) {

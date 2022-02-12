@@ -8,11 +8,20 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 
-import { UsersModule } from './users/users.module'
+import { MyCoolQueryResolver } from './my-cool-query/my-cool-query.resolver'
+import { UsersResolver } from './users/users.resolver'
+import { UserService } from './users/users.service'
 
 @Module({
+  providers: [
+    // Services
+    UserService,
+
+    // Resolvers
+    MyCoolQueryResolver,
+    UsersResolver
+  ],
   imports: [
-    UsersModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true

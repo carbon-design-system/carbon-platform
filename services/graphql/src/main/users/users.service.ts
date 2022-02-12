@@ -4,20 +4,15 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { User } from '@carbon-platform/api/models'
 import { Injectable } from '@nestjs/common'
-
-import { User } from './models/user.model'
 
 @Injectable()
 export class UserService {
   private users: User[] = [
     { id: 1, name: 'Jane Doe 1', email: 'jane.doe1@example.com' },
     { id: 2, name: 'Jane Doe 2', email: 'jane.doe2@example.com' },
-    {
-      id: 3,
-      name: 'Jane Doe 3',
-      email: 'jane.doe3@example.com'
-    },
+    { id: 3, name: 'Jane Doe 3', email: 'jane.doe3@example.com' },
     { id: 4, name: 'Jane Doe 4', email: 'jane.doe4@example.com' }
   ]
 

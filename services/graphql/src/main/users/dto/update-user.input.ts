@@ -10,9 +10,9 @@ import { Field, InputType } from '@nestjs/graphql'
 
 @InputType()
 export class UpdateUserInput {
-  @Field((type) => String)
+  @Field(() => String)
   name?: string
 
-  @Field((type) => String)
+  @Field(() => String)
   email?: string
 }

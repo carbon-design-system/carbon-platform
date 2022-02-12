@@ -11,10 +11,10 @@ export class User {
   @Field(() => ID)
   id: number
 
-  @Field()
+  @Field(() => String)
   name: string
 
-  @Field()
+  @Field(() => String)
   email: string
 
   constructor(id: number, name: string, email: string) {

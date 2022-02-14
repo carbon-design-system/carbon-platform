@@ -131,10 +131,12 @@ following values:
 | `pattern` | Best practice solution for how a user achieves a goal through reusable combinations of components and content with sequences and flows which are too complex to be encapsulated in a single component. |
 | `template` | Layout example that specifies patterns and component order and placement to compose a specific view. |
 
-#### Asset tags
+#### Component tags
 
 Tags organize assets into secondary categories in asset catalogs. An asset can have multiple tags,
 and certain tags are only applicable to specific asset types.
+
+These tags can be used when the asset is of type `component`.
 
 <!-- prettier-ignore -->
 | Tag | Name | Description |

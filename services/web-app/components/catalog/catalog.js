@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { get, remove, set, union } from 'lodash'
+import { get, isArray, remove, set, union } from 'lodash'
 import minimatch from 'minimatch'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
@@ -27,23 +27,32 @@ import { queryTypes, useQueryState } from '@/utils/use-query-state'
 
 import styles from './catalog.module.scss'
 
-const assetIsInFilter = (asset, filter) => {
-  if (collapseAssetGroups(asset, filter)) {
-    return get(asset, 'library.content.id') === getCanonicalLibraryId(asset)
-  }
+const valuesIntersect = (arr1, arr2) => {
+  console.log(arr1, arr2)
+  if (!isArray(arr1) || !isArray(arr2)) return false
 
+  return arr1.filter((v) => arr2.includes(v)).length
+}
+
+const assetIsInFilter = (asset, filter) => {
   for (const [key, value] of Object.entries(filter)) {
     if (key === 'sponsor') {
       if (!value.includes(asset.params[key])) return false
+    } else if (key === 'tags' && !valuesIntersect(value, asset.content[key])) {
+      return false
     } else {
       if (!value.includes(asset.content[key])) return false
     }
   }
 
+  if (collapseAssetGroups(asset, filter)) {
+    return get(asset, 'library.content.id') === getCanonicalLibraryId(asset)
+  }
+
   return true
 }
 
-function Catalog({ data, type, filter: defaultFilter = {}, glob = {} }) {
+function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {} }) {
   const [query, setQuery] = useQueryState('q', {
     defaultValue: ''
   })
@@ -178,11 +187,16 @@ function Catalog({ data, type, filter: defaultFilter = {}, glob = {} }) {
       <CatalogSearch
         className={styles.search}
         filter={filter}
+        initialFilter={{ collection, type }}
         search={search}
         onSearch={handleSearch}
         onFilter={handleFilter}
       />
-      <CatalogFilters filter={filter} onFilter={handleFilter} />
+      <CatalogFilters
+        filter={filter}
+        initialFilter={{ collection, type }}
+        onFilter={handleFilter}
+      />
       <CatalogResults assets={filteredAssets} />
       <CatalogSort onSort={setSort} onView={setView} sort={sort} view={view} />
       <CatalogList
@@ -205,10 +219,12 @@ function Catalog({ data, type, filter: defaultFilter = {}, glob = {} }) {
 }
 
 Catalog.propTypes = {
+  collection: PropTypes.string,
   data: PropTypes.shape({
     libraries: PropTypes.arrayOf(libraryPropTypes)
   }),
   filter: PropTypes.object,
+  glob: PropTypes.object,
   type: PropTypes.string
 }
 

@@ -11,7 +11,7 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { useRef, useState } from 'react'
 
-import { filters } from '@/data/filters'
+import { getFilters } from '@/data/filters'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import useOutsideClick from '@/utils/use-outside-click'
 
@@ -21,7 +21,12 @@ import styles from './catalog-multiselect-filter.module.scss'
  * @todo (1) close popover on escape key, (2) move focus to popover on open, (3) update state on
  * close so the modal doesn't close each time you select a new item.
  */
-const CatalogMultiselectFilter = ({ filter, className: customClassName, onFilter }) => {
+const CatalogMultiselectFilter = ({
+  filter,
+  initialFilter,
+  className: customClassName,
+  onFilter
+}) => {
   const [open, setOpen] = useState(false)
   const isLg = useMatchMedia(mediaQueries.lg)
   const isMd = useMatchMedia(mediaQueries.md)
@@ -90,11 +95,11 @@ const CatalogMultiselectFilter = ({ filter, className: customClassName, onFilter
       </button>
       <PopoverContent className={styles.content} ref={contentRef}>
         <Grid className={styles.grid} columns={columns}>
-          {Object.keys(filters).map((item, i) => (
+          {Object.keys(getFilters(initialFilter)).map((item, i) => (
             <Column className={styles.column} key={i}>
-              <h3 className={styles.heading}>{filters[item].name}</h3>
+              <h3 className={styles.heading}>{getFilters(initialFilter)[item].name}</h3>
               <ul className={styles.list}>
-                {Object.keys(filters[item].values).map((key, j) => (
+                {Object.keys(getFilters(initialFilter)[item].values).map((key, j) => (
                   <li className={styles.listItem} key={j}>
                     <Tag
                       onClick={() => {
@@ -106,7 +111,7 @@ const CatalogMultiselectFilter = ({ filter, className: customClassName, onFilter
                       }}
                       type={filter[item] && filter[item].includes(key) ? 'high-contrast' : 'gray'}
                     >
-                      {filters[item].values[key].name}
+                      {getFilters(initialFilter)[item].values[key].name}
                     </Tag>
                   </li>
                 ))}
@@ -122,6 +127,7 @@ const CatalogMultiselectFilter = ({ filter, className: customClassName, onFilter
 CatalogMultiselectFilter.propTypes = {
   className: PropTypes.string,
   filter: PropTypes.object,
+  initialFilter: PropTypes.object,
   onFilter: PropTypes.func
 }
 

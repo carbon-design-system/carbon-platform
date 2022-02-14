@@ -2,7 +2,7 @@
 <svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>area-stacked</title>
     <defs>
-        <polygon id="path-1" points="74 27 248 27 248 139 74 139"></polygon>
+        <polygon id="path-1" points="74 39 248 39 248 139 74 139"></polygon>
     </defs>
     <g id="area-stacked" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <mask id="mask-2" fill="white">

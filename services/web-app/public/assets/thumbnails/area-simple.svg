@@ -2,7 +2,7 @@
 <svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>area-simple</title>
     <defs>
-        <rect id="path-1" x="72" y="16" width="180" height="123"></rect>
+        <rect id="path-1" x="72" y="37" width="180" height="102"></rect>
     </defs>
     <g id="area-simple" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <mask id="mask-2" fill="white">

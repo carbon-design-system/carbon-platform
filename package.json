@@ -19,9 +19,9 @@
   "workspaces": [
     "packages/api",
     "packages/icons",
+    "services/graphql",
     "services/logging",
-    "services/web-app",
-    "services/graphql"
+    "services/web-app"
   ],
   "scripts": {
     "all:build": "npm --workspaces run build",

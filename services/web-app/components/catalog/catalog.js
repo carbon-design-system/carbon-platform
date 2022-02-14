@@ -28,7 +28,6 @@ import { queryTypes, useQueryState } from '@/utils/use-query-state'
 import styles from './catalog.module.scss'
 
 const valuesIntersect = (arr1, arr2) => {
-  console.log(arr1, arr2)
   if (!isArray(arr1) || !isArray(arr2)) return false
 
   return arr1.filter((v) => arr2.includes(v)).length

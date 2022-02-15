@@ -13,10 +13,10 @@
     "build": "npm run clean && next build",
     "clean": "rimraf .carbon public/.carbon .next",
     "dev": "next dev",
+    "dev:secure": "sh ./scripts/create-local-certificates.sh && RUNNING_SECURELY=1 NODE_TLS_REJECT_UNAUTHORIZED=0 node server.js",
     "lint": "next lint",
     "service:build": "npm run build",
     "start": "next start",
-    "start:secure": "sh ./scripts/create-local-certificates.sh && RUNNING_SECURELY=1 NODE_TLS_REJECT_UNAUTHORIZED=0 node server.js",
     "test": "echo 'No tests defined yet!'"
   },
   "bugs": {

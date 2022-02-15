@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.14...@carbon-platform/icons@0.0.15) (2022-02-15)
+
+
+### Features
+
+* add new icons for dotcom and products ([bf233b6](https://github.com/carbon-design-system/carbon-platform/commit/bf233b69da309f7b8470caf598cbebc35ce02b51))
+
 ### [0.0.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.13...@carbon-platform/icons@0.0.14) (2022-02-03)
 
 ### [0.0.13](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.12...@carbon-platform/icons@0.0.13) (2022-01-28)

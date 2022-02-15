@@ -6,7 +6,6 @@
         <path d="M7,5 L6,5 L6,11 L7,11 L7,5 L7,5 L7,5 Z M10,5 L9,5 L9,11 L10,11 L10,5 L10,5 L10,5 Z M8,2 C11.3137085,2 14,4.6862915 14,8 C14,11.3137085 11.3137085,14 8,14 C4.6862915,14 2,11.3137085 2,8 C2,4.6862915 4.6862915,2 8,2 L8,2 Z M8,1 C4.13400675,1 1,4.13400675 1,8 C1,11.8659932 4.13400675,15 8,15 C11.8659932,15 15,11.8659932 15,8 C15,6.14348457 14.2625021,4.36300718 12.9497475,3.05025253 C11.6369928,1.73749788 9.85651543,1 8,1 Z" id="path-3"></path>
     </defs>
     <g id="gif-player" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect fill="#FFFFFF" x="0" y="0" width="320" height="180"></rect>
         <rect id="Rectangle-Copy-49" fill="#C6C6C6" x="102" y="32" width="116" height="116"></rect>
         <g id="icon/formatting/image/16-copy" transform="translate(148.000000, 78.000000)">
             <mask id="mask-2" fill="white">

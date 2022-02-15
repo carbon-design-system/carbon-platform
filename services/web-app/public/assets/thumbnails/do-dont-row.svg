@@ -8,7 +8,6 @@
         <polygon id="path-7" points="6.125 9.40625 3.9375 7.21875 4.633125 6.5625 6.125 8.028125 9.366875 4.8125 10.0625 5.50375"></polygon>
     </defs>
     <g id="do-dont-row" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect fill="#FFFFFF" x="0" y="0" width="320" height="180"></rect>
         <rect id="Rectangle-Copy-3" fill="#F4F4F4" x="70" y="48" width="83" height="83"></rect>
         <rect id="Rectangle-Copy-4" fill="#24A148" x="70" y="48" width="83" height="3"></rect>
         <rect id="Rectangle-Copy-5" fill="#F4F4F4" x="167" y="48" width="83" height="83"></rect>
@@ -23,7 +22,7 @@
             </mask>
             <use id="icon-color" fill="#FFFFFF" xlink:href="#path-3"></use>
         </g>
-        <g id="icon/status/checkmark-filled/16-copy" transform="translate(77.000000, 59.000000)">
+        <g id="icon/status/checkmark-filled/16" transform="translate(77.000000, 59.000000)">
             <mask id="mask-6" fill="white">
                 <use xlink:href="#path-5"></use>
             </mask>

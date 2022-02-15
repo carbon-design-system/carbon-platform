@@ -8,3 +8,9 @@ import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 
 export const CACHE_PATH = getRunMode() === RunMode.Prod ? '.carbon' : 'public/data'
 export const IMAGES_CACHE_PATH = '.carbon'
+
+export const ALLOWED_REFERERS = [
+  { protocol: 'https:', domain: '.carbondesignsystem.com' },
+  { protocol: 'http:', domain: 'localhost' },
+  { protocol: 'https:', domain: 'localhost' }
+]

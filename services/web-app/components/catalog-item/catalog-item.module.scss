@@ -75,7 +75,7 @@
   }
 }
 
-.sponsor {
+.library {
   color: $text-primary;
   @include line-clamp(1);
   @include type-style('label-01');
@@ -108,11 +108,11 @@
   position: absolute;
   right: $spacing-04;
   bottom: $spacing-04;
-  display: none;
+  display: block;
   width: $spacing-09;
   height: $spacing-09;
   border: 1px solid $border-subtle;
-  background: $background;
+  background: $layer-01;
   border-radius: 100%;
   color: $icon-primary;
   transition: all $fast-02 carbon--motion(standard, productive);
@@ -127,12 +127,6 @@
     @include breakpoint(xlg) {
       top: math.div(-$spacing-09 - $spacing-03, 2);
     }
-  }
-
-  .anchor--sponsor &,
-  .anchor--external:hover &,
-  .anchor--external:focus & {
-    display: block;
   }
 
   .anchor:hover &,

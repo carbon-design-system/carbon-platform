@@ -11,13 +11,13 @@ import passport from 'passport'
 import path from 'path'
 
 import { getRunMode, RunMode } from '../runtime'
-import { config as devConfig } from './config/config.dev'
-import { config as prodConfig } from './config/config.prod'
 import {
   CARBON_IBM_ISV_CLIENT_ID,
   CARBON_IBM_ISV_CLIENT_SECRET,
+  OIDC_DISCOVERY_URL,
+  OIDC_REDIRECT_URI,
   PASSPORT_STRATEGY_NAME
-} from './config/constants'
+} from './constants'
 import { User } from './interfaces'
 
 let passportStrategy: passport.Strategy | undefined
@@ -29,13 +29,11 @@ let passportStrategy: passport.Strategy | undefined
  * OpenID passport strategy
  */
 async function createOpenIDStrategy(): Promise<OpenIdStrategy<unknown, BaseClient>> {
-  const passportConfig = getRunMode() === RunMode.Prod ? prodConfig : devConfig
-
-  const ibmIdIssuer = await Issuer.discover(passportConfig.discovery_url)
+  const ibmIdIssuer = await Issuer.discover(OIDC_DISCOVERY_URL)
   const client = new ibmIdIssuer.Client({
     client_id: CARBON_IBM_ISV_CLIENT_ID,
     client_secret: CARBON_IBM_ISV_CLIENT_SECRET,
-    redirect_uris: [passportConfig.redirect_uri],
+    redirect_uris: [OIDC_REDIRECT_URI],
     response_types: ['code']
   })
   return new OpenIdStrategy({ client }, (_: any, user: any, done: any) => {

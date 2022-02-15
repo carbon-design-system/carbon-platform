@@ -6,20 +6,29 @@
  */
 import { authenticateWithPassport, shouldUseOpenIdStrategy } from '@carbon-platform/api/auth'
 
+import { ALLOWED_REFERERS } from '@/config/constants'
+
 import requireSession from '../../middleware/requireSession'
 
 const login = requireSession().get(
   async (req, res, next) => {
-    // hold onto next route, if specified, or delete any stale one from the session
-    if (req.query.next) {
-      req.session.next = req.query.next
-    } else if (req.session.next) {
+    if (req.session.next) {
       delete req.session.next
     }
 
     if (!shouldUseOpenIdStrategy()) {
       res.redirect('/api/auth-callback')
       res.end('')
+    }
+
+    const refererUrl = new URL(req.headers.referer)
+    const host = refererUrl.host.split(':')[0]
+    if (
+      ALLOWED_REFERERS.some(
+        (domain) => refererUrl.protocol === domain.protocol && host.endsWith(`${domain.domain}`)
+      )
+    ) {
+      req.session.next = refererUrl
     }
 
     next()

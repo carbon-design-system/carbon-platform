@@ -12,7 +12,7 @@
     </defs>
     <g id="overflow-menu" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Group" transform="translate(94.000000, 32.000000)">
-            <rect id="Rectangle-Copy-4" fill="#FFFFFF" x="0" y="99" width="17" height="17"></rect>
+            <rect id="Rectangle-Copy-4" x="0" y="99" width="17" height="17"></rect>
             <g id="Rectangle-2-Copy-17">
                 <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
                 <use fill="#F3F3F3" fill-rule="evenodd" xlink:href="#path-1"></use>

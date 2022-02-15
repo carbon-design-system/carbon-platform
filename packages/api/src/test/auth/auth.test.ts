@@ -14,7 +14,7 @@ import {
   SESSION_SECRET,
   store
 } from '../../main/auth'
-import { PASSPORT_STRATEGY_NAME } from '../../main/auth/config/constants'
+import { PASSPORT_STRATEGY_NAME } from '../../main/auth/constants'
 import { __test__ } from '../../main/auth/passport'
 import { getRunMode, RunMode } from '../../main/runtime'
 

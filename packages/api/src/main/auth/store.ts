@@ -10,7 +10,7 @@ import expressSession from 'express-session'
 import path from 'path'
 
 import { getRunMode, RunMode } from '../runtime'
-import { CARBON_MONGO_DB_NAME, CARBON_MONGO_DB_URL, SESSION_SECRET } from './config/constants'
+import { CARBON_MONGO_DB_NAME, CARBON_MONGO_DB_URL, SESSION_SECRET } from './constants'
 import { User } from './interfaces'
 
 let storeInstance: expressSession.Store

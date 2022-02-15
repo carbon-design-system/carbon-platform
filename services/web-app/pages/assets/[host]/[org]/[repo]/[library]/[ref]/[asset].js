@@ -129,7 +129,7 @@ const Asset = ({ libraryData }) => {
             <Link href={assetPath}>
               <a className={styles.metaLinkLarge}>{'v.' + libraryData.content.version}</a>
             </Link>
-            {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={32} />}
+            {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={64} />}
           </DashboardItem>
         </Column>
         <Column className={dashboardStyles.column} lg={2}>

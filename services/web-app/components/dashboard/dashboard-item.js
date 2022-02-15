@@ -8,6 +8,7 @@
 import { AspectRatio } from '@carbon/react'
 import clsx from 'clsx'
 import { isEmpty } from 'lodash'
+import PropTypes from 'prop-types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
@@ -17,8 +18,8 @@ export const DashboardItem = ({
   aspectRatio = {},
   border = [],
   children,
-  spacer: showSpacer,
-  clickable
+  clickable,
+  spacer: showSpacer
 }) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
@@ -53,4 +54,12 @@ export const DashboardItem = ({
       {children}
     </Element>
   )
+}
+
+DashboardItem.propTypes = {
+  aspectRatio: PropTypes.object,
+  border: PropTypes.array,
+  children: PropTypes.node,
+  clickable: PropTypes.bool,
+  spacer: PropTypes.any
 }

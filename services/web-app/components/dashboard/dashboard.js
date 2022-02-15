@@ -6,6 +6,7 @@
  */
 import { Grid } from '@carbon/react'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
@@ -29,4 +30,9 @@ export const Dashboard = ({ children, className }) => {
       {children}
     </Grid>
   )
+}
+
+Dashboard.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string
 }

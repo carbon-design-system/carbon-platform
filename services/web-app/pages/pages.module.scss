@@ -68,9 +68,7 @@
 }
 
 .meta-link {
-  color: $border-interactive;
   text-decoration: none;
-  @include type-style('body-short-02');
 
   &--large {
     padding-left: 0;
@@ -86,9 +84,15 @@
     }
   }
 
-  &:hover,
-  &:focus {
-    color: $link-primary-hover;
-    text-decoration: underline;
+  &--dashboard {
+    color: $border-interactive;
+    text-decoration: none;
+    @include type-style('body-short-02');
+
+    &:hover,
+    &:focus {
+      color: $link-primary-hover;
+      text-decoration: underline;
+    }
   }
 }

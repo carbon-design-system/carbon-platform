@@ -138,7 +138,7 @@ const Asset = ({ libraryData }) => {
               <Column className={clsx(styles.metaInfo, dashboardStyles.subcolumn)}>
                 <p className={dashboardStyles.title}>Sponsor</p>
                 <Link href={assetPath}>
-                  <a className={styles.metaLink}>{libraryData.content.name}</a>
+                  <a className={styles.metaLinkDashboard}>{libraryData.content.name}</a>
                 </Link>
               </Column>
               <Column className={dashboardStyles.subcolumn}>
@@ -163,10 +163,10 @@ const Asset = ({ libraryData }) => {
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
                 <p className={clsx(dashboardStyles.title)}>Demo links</p>
                 <Link href={assetPath}>
-                  <a className={styles.metaLink}>{libraryData.content.name}</a>
+                  <a className={styles.metaLinkDashboard}>{libraryData.content.name}</a>
                 </Link>
                 <Link href={assetPath}>
-                  <a className={styles.metaLink}>{libraryData.content.name}</a>
+                  <a className={styles.metaLinkDashboard}>{libraryData.content.name}</a>
                 </Link>
               </Column>
               <Column className={dashboardStyles.subcolumn}>

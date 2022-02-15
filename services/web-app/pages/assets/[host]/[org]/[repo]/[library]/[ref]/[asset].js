@@ -83,6 +83,10 @@ const Asset = ({ libraryData }) => {
 
   const assetPath = breadcrumbItems[1].path
 
+  const testPath = /^https?:\/\//i
+
+  const absoluteUrl = testPath.test(assetPath)
+
   const seo = {
     title: name,
     description
@@ -167,7 +171,7 @@ const Asset = ({ libraryData }) => {
                 <p className={dashboardStyles.title}>Pull requests</p>
                 <h3 className={dashboardStyles.titleLarge}>{libraryData.response.size}</h3>
                 {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={32} />}
-                <Launch className={styles.metaRightAbsolute} size={20} />
+                {absoluteUrl ? <Launch className={styles.metaRightAbsolute} size={20} /> : null}
               </DashboardItem>
             </a>
           </Link>
@@ -183,7 +187,7 @@ const Asset = ({ libraryData }) => {
                 <p className={dashboardStyles.title}>Pull requests</p>
                 <h3 className={dashboardStyles.titleLarge}>{libraryData.response.size}</h3>
                 {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={32} />}
-                <Launch className={styles.metaRightAbsolute} size={20} />
+                {absoluteUrl ? <Launch className={styles.metaRightAbsolute} size={20} /> : null}
               </DashboardItem>
             </a>
           </Link>
@@ -199,7 +203,7 @@ const Asset = ({ libraryData }) => {
                 <p className={dashboardStyles.title}>Open issues</p>
                 <h3 className={dashboardStyles.titleLarge}>{libraryData.response.size}</h3>
                 {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={32} />}
-                <Launch className={styles.metaRightAbsolute} size={20} />
+                {absoluteUrl ? <Launch className={styles.metaRightAbsolute} size={20} /> : null}
               </DashboardItem>
             </a>
           </Link>

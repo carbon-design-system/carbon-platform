@@ -24,9 +24,9 @@ const {
   // DB name for session storage
   CARBON_MONGO_DB_NAME
 } = loadEnvVars({
-  PASSPORT_STRATEGY_NAME: 'prepiam.ice.ibmcloud.com',
-  CARBON_IBM_ISV_CLIENT_ID: 'none',
-  CARBON_IBM_ISV_CLIENT_SECRET: 'none',
+  PASSPORT_STRATEGY_NAME: 'custom',
+  CARBON_IBM_ISV_CLIENT_ID: '',
+  CARBON_IBM_ISV_CLIENT_SECRET: '',
   CARBON_MONGO_DB_URL: '',
   CARBON_MONGO_DB_NAME: ''
 })

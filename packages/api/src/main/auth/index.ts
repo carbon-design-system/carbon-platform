@@ -5,5 +5,5 @@
  * LICENSE file in the root directory of this source tree.
  */
 export { SESSION_SECRET } from './constants'
-export { authenticateWithPassport, getPassportInstance } from './passport'
+export { authenticateWithPassport, getPassportInstance, shouldUseOpenIdStrategy } from './passport'
 export * as store from './store'

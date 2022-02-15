@@ -11,13 +11,15 @@
   },
   "scripts": {
     "build": "npm run clean && next build",
-    "clean": "rimraf .carbon public/.carbon .next",
+    "clean": "rimraf .carbon public/.carbon .next .dev",
     "clean:data": "rimraf public/data",
     "dev": "next dev",
+    "dev:clean": "npm run clean && next dev",
+    "dev:secure": "sh ./scripts/create-local-certificates.sh && RUNNING_SECURELY=1 node server.js",
+    "dev:secure:clean": "npm run clean && npm run dev:secure",
     "lint": "next lint",
     "service:build": "npm run build",
     "start": "next start",
-    "start-secure": "sh ./scripts/create-local-certificates.sh && node server.js",
     "test": "echo 'No tests defined yet!'"
   },
   "bugs": {

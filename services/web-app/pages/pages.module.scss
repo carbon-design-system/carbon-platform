@@ -55,10 +55,7 @@
   position: relative;
   top: 3px;
   margin-right: $spacing-02;
-
-  @include breakpoint-down(md) {
-    padding-left: $spacing-05;
-  }
+  margin-left: -0.5px;
 }
 
 .meta-info {

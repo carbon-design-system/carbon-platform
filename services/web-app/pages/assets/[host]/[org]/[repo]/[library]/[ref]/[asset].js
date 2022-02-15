@@ -9,6 +9,7 @@ import { TextInput } from '@carbon/pictograms-react'
 import { Column, Grid } from '@carbon/react'
 import { ArrowRight, Launch } from '@carbon/react/icons'
 import clsx from 'clsx'
+import { get } from 'lodash'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -20,10 +21,11 @@ import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import StatusIcon from '@/components/status-icon'
-import { framework as frameworkMap } from '@/data/framework'
+import { framework } from '@/data/framework'
 import { assetsNavData } from '@/data/nav-data'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
+import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
 import styles from '@/pages/pages.module.scss'
@@ -63,11 +65,7 @@ const Asset = ({ libraryData }) => {
   }
 
   const [assetData] = libraryData.assets
-  const type = assetData.content.type
-  const assetType = type.charAt(0).toUpperCase() + type.slice(1)
   const { name, description, inherits: inheritsData, thumbnailData: imageData } = assetData.content
-  const assetFramework = assetData.content.framework
-  const framework = frameworkMap[assetFramework].name
 
   const breadcrumbItems = [
     {
@@ -128,10 +126,8 @@ const Asset = ({ libraryData }) => {
           >
             <p className={dashboardStyles.title}>Library</p>
             <h3 className={dashboardStyles.titleLarge}>{libraryData.content.name}</h3>
-            <Link href={`${assetPath}`}>
-              <a className={clsx(styles.metaLinkLarge, dashboardStyles.subcolumn)}>
-                {'v.' + libraryData.content.version}
-              </a>
+            <Link href={assetPath}>
+              <a className={styles.metaLinkLarge}>{'v.' + libraryData.content.version}</a>
             </Link>
             {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={32} />}
           </DashboardItem>
@@ -141,40 +137,44 @@ const Asset = ({ libraryData }) => {
             <Grid columns={2} className={dashboardStyles.subgrid}>
               <Column className={clsx(styles.metaInfo, dashboardStyles.subcolumn)}>
                 <p className={dashboardStyles.title}>Sponsor</p>
-                <Link href={`${assetPath}`}>
+                <Link href={assetPath}>
                   <a className={styles.metaLink}>{libraryData.content.name}</a>
                 </Link>
               </Column>
-              <Column>
-                <p className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>Type</p>
-                <h3 className={dashboardStyles.subtitle}>{assetType}</h3>
+              <Column className={dashboardStyles.subcolumn}>
+                <p className={dashboardStyles.title}>Type</p>
+                <h3 className={dashboardStyles.subtitle}>
+                  {get(type, `[${assetData.content.type}].name`, '–')}
+                </h3>
               </Column>
-              <Column>
-                <p className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>Framework</p>
-                <h3 className={dashboardStyles.subtitle}>{framework}</h3>
+              <Column className={dashboardStyles.subcolumn}>
+                <p className={dashboardStyles.title}>Framework</p>
+                <h3 className={dashboardStyles.subtitle}>
+                  {get(framework, `[${assetData.content.framework}].name`, '–')}
+                </h3>
               </Column>
-              <Column>
-                <p className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>Status</p>
+              <Column className={dashboardStyles.subcolumn}>
+                <p className={dashboardStyles.title}>Status</p>
                 <AssetItemMeta
                   className={clsx(dashboardStyles.title, styles.meta)}
                   properties={['status']}
                 />
               </Column>
-              <Column className={dashboardStyles.subcolumnLinks}>
+              <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
                 <p className={clsx(dashboardStyles.title)}>Demo links</p>
-                <Link href={`${assetPath}`}>
+                <Link href={assetPath}>
                   <a className={styles.metaLink}>{libraryData.content.name}</a>
                 </Link>
-                <Link href={`${assetPath}`}>
+                <Link href={assetPath}>
                   <a className={styles.metaLink}>{libraryData.content.name}</a>
                 </Link>
               </Column>
-              <Column>
-                <p className={clsx(dashboardStyles.title, dashboardStyles.subcolumn)}>Type</p>
+              <Column className={dashboardStyles.subcolumn}>
+                <p className={dashboardStyles.title}>Type</p>
                 <h3 className={dashboardStyles.subtitle}>{'some content'}</h3>
               </Column>
             </Grid>
-            <Link href={`${assetPath}`}>
+            <Link href={assetPath}>
               <a className={dashboardStyles.linkContainer}>
                 <div className={dashboardStyles.linkText}>Get the kits</div>
                 <ArrowRight size={16} />
@@ -183,7 +183,7 @@ const Asset = ({ libraryData }) => {
           </DashboardItem>
         </Column>
         <Column className={dashboardStyles.column} sm={0} md={1}>
-          <Link href={`${assetPath}`}>
+          <Link href={assetPath}>
             <a className={styles.metaLink}>
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
@@ -199,7 +199,7 @@ const Asset = ({ libraryData }) => {
           </Link>
         </Column>
         <Column className={dashboardStyles.column} sm={0} md={1}>
-          <Link href={`${assetPath}`}>
+          <Link href={assetPath}>
             <a className={styles.metaLink}>
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
@@ -215,7 +215,7 @@ const Asset = ({ libraryData }) => {
           </Link>
         </Column>
         <Column className={dashboardStyles.column} sm={0} md={1}>
-          <Link href={`${assetPath}`}>
+          <Link href={assetPath}>
             <a className={styles.metaLink}>
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}

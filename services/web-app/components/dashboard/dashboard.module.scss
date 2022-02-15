@@ -34,9 +34,6 @@
   &--links {
     display: flex;
     flex-direction: column;
-    @include breakpoint-down(md) {
-      padding-left: $spacing-05;
-    }
   }
 }
 
@@ -55,10 +52,6 @@
   padding-bottom: $spacing-06;
   color: $text-primary;
   @include type-style('body-short-02');
-
-  @include breakpoint-down(md) {
-    padding-left: $spacing-05;
-  }
 }
 
 .link-container {

@@ -170,7 +170,7 @@ const Asset = ({ libraryData }) => {
                 </Link>
               </Column>
               <Column className={dashboardStyles.subcolumn}>
-                <p className={dashboardStyles.title}>Type</p>
+                <p className={dashboardStyles.title}>Tag</p>
                 <h3 className={dashboardStyles.subtitle}>{'some content'}</h3>
               </Column>
             </Grid>

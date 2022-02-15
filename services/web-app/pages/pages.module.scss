@@ -78,5 +78,17 @@
     @include type-style('expressive-heading-04');
 
     text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: $link-primary-hover;
+      text-decoration: underline;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: $link-primary-hover;
+    text-decoration: underline;
   }
 }

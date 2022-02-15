@@ -4,10 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Download_02 as Download } from '@carbon/pictograms-react'
+import { FileBackup } from '@carbon/pictograms-react'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
+import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
+import { libraryPropTypes } from 'types'
 
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
@@ -34,7 +36,7 @@ const Libraries = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} pictogram={Download} />
+      <PageHeader title={seo.title} pictogram={FileBackup} />
       <ul className={styles.content}>
         {libraries.map((library, i) => (
           <li key={i}>
@@ -51,6 +53,12 @@ const Libraries = ({ librariesData }) => {
       <pre className={styles.data}>{JSON.stringify(librariesData, null, 2)}</pre>
     </>
   )
+}
+
+Libraries.propTypes = {
+  librariesData: PropTypes.shape({
+    libraries: PropTypes.arrayOf(libraryPropTypes)
+  })
 }
 
 export const getStaticProps = async () => {

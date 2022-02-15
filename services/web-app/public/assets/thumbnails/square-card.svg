@@ -9,7 +9,6 @@
         <polygon id="path-9" points="5.625 1.875 5.184375 2.315625 7.553125 4.6875 0.9375 4.6875 0.9375 5.3125 7.553125 5.3125 5.184375 7.684375 5.625 8.125 8.75 5"></polygon>
     </defs>
     <g id="square-card" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect fill="#FFFFFF" x="0" y="0" width="320" height="180"></rect>
         <rect id="Rectangle-Copy-51" fill="#E0E0E0" x="76" y="34" width="110" height="110"></rect>
         <rect id="Rectangle-Copy-52" fill="#E0E0E0" x="153" y="33" width="69" height="56"></rect>
         <rect id="Rectangle-Copy-238" fill="#F4F4F4" x="75" y="33" width="56" height="56"></rect>

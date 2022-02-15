@@ -19,6 +19,9 @@ export const framework = {
     icon: Svg16Angular,
     name: 'Angular'
   },
+  'design-only': {
+    name: 'Design only'
+  },
   react: {
     icon: Svg16React,
     name: 'React'

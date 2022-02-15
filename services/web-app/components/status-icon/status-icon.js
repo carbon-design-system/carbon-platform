@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 
 import { status as statusMap } from '@/data/status'
 
@@ -27,6 +28,11 @@ const StatusIcon = ({ className, status }) => {
       <Icon size={16} />
     </span>
   )
+}
+
+StatusIcon.propTypes = {
+  className: PropTypes.string,
+  status: PropTypes.oneOf(Object.keys(statusMap)).isRequired
 }
 
 export default StatusIcon

@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
+
 /**
  * Creates request options for retrieveUser api call including headers and agent if necessary
  *
@@ -29,8 +31,10 @@ export async function retrieveUser(context) {
   }
   const sessionCookie = context.req.cookies?.['connect.sid']
   if (sessionCookie) {
+    const protocol =
+      getRunMode() === RunMode.Prod || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
     const userResponse = await fetch(
-      `https://localhost:${req.socket.localPort}/api/user`,
+      `${protocol}://localhost:${req.socket.localPort}/api/user`,
       getRequestOptions(req)
     )
     if (userResponse.ok) {

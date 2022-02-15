@@ -91,29 +91,6 @@ const Asset = ({ libraryData }) => {
   const { sponsor } = assetData.params
   const SponsorIcon = teams[sponsor] && teams[sponsor].icon
 
-  const AssetItemMeta = ({ properties }) => {
-    const renderStatus = () => {
-      const { name: assetStatus } = status[assetData.content.status]
-
-      if (!assetStatus) return null
-
-      return (
-        <>
-          <StatusIcon className={styles.metaIcon} status={assetData.content.status} />
-          <span className={styles.metaStatus}>{assetStatus}</span>
-        </>
-      )
-    }
-
-    return (
-      <ul className={styles.meta}>
-        {properties.map((prop, i) => (
-          <li key={i}>{prop === 'status' && renderStatus()}</li>
-        ))}
-      </ul>
-    )
-  }
-
   return (
     <>
       <PageHeader title={seo.title} pictogram={TextInput} />
@@ -155,16 +132,13 @@ const Asset = ({ libraryData }) => {
               </Column>
               <Column className={dashboardStyles.subcolumn}>
                 <p className={dashboardStyles.title}>Status</p>
-                <AssetItemMeta
-                  className={clsx(dashboardStyles.title, styles.meta)}
-                  properties={['status']}
-                />
+                <h3 className={styles.metaStatus}>
+                  <StatusIcon className={styles.metaIcon} status={assetData.content.status} />
+                  {get(status, `[${assetData.content.status}].name`, '–')}
+                </h3>
               </Column>
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
                 <p className={clsx(dashboardStyles.title)}>Demo links</p>
-                <Link href={assetPath}>
-                  <a className={styles.metaLinkDashboard}>{libraryData.content.name}</a>
-                </Link>
                 <Link href={assetPath}>
                   <a className={styles.metaLinkDashboard}>{libraryData.content.name}</a>
                 </Link>

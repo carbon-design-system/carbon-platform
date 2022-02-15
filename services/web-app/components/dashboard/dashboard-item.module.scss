@@ -23,6 +23,8 @@
 }
 
 .clickable {
+  transition: background $fast-02 carbon--motion(standard, productive);
+
   &:active {
     outline: 2px solid $border-interactive;
     outline-offset: -2px;
@@ -30,6 +32,6 @@
 
   &:hover,
   &:focus {
-    background: $background-selected-hover;
+    background: $layer-hover;
   }
 }

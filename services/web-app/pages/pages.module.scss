@@ -30,9 +30,13 @@
 
   &--absolute {
     position: absolute;
+    right: $spacing-04;
     bottom: $spacing-04;
-    left: $spacing-04;
     color: $text-primary;
+
+    @include breakpoint(md) {
+      left: $spacing-04;
+    }
   }
 
   &--right-absolute {

@@ -23,8 +23,10 @@ const authCallback = requireSession().get(
       delete req.session.next
     }
 
-    res.redirect(nextRoute)
-    res.end('')
+    req.session.save(function () {
+      res.redirect(nextRoute)
+      res.end('')
+    })
   }
 )
 

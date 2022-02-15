@@ -14,14 +14,9 @@ import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
  * @returns {RequestInit} request options
  */
 function getRequestOptions(req) {
-  const reqOptions = {
+  return {
     headers: { cookie: req.headers.cookie }
   }
-  if (getRunMode() === RunMode.Dev && process.env.RUNNING_SECURELY === '1') {
-    const Agent = require('https').Agent
-    reqOptions.agent = new Agent({ rejectUnauthorized: false })
-  }
-  return reqOptions
 }
 
 /**

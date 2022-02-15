@@ -15,7 +15,7 @@
     "clean:data": "rimraf public/data",
     "dev": "next dev",
     "dev:secure": "sh ./scripts/create-local-certificates.sh && RUNNING_SECURELY=1 node server.js",
-    "dev:secure:clean": "npm run clean && npm run start-secure",
+    "dev:secure:clean": "npm run clean && npm run dev:secure:clean",
     "dev:clean": "npm run clean && next dev",
     "lint": "next lint",
     "service:build": "npm run build",

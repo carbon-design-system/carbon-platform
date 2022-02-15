@@ -16,6 +16,6 @@
   margin: $spacing-09 0 0;
   // have carbon overlay use higher z-index than we're using on our custom components
   :global(.cds--side-nav__overlay.cds--side-nav__overlay-active) {
-    z-index: 10;
+    z-index: layout.z('overlay');
   }
 }

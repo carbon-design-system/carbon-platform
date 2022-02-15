@@ -13,7 +13,7 @@ import {
   SESSION_SECRET,
   store
 } from '../../main/auth'
-import { PASSPORT_STRATEGY_NAME } from '../../main/auth/config/constants'
+import { PASSPORT_STRATEGY_NAME } from '../../main/auth/constants'
 import { RunMode } from '../../main/runtime'
 
 jest.mock('passport')

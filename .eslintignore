@@ -16,6 +16,7 @@ CHANGELOG.md
 # Generated
 generated/
 .test-coverage/
+.dev/
 
 .history/
 services/web-app/public/data/

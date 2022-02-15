@@ -6,25 +6,35 @@
  */
 
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 
 import { framework as frameworkMap } from '@/data/framework'
 
 import styles from './framework-icon.module.scss'
 
-const FrameworkIcon = ({ className, framework }) => {
+const FrameworkIcon = ({ className, framework, otherCount = 0 }) => {
   const item = frameworkMap[framework]
 
   if (!item) return null
 
   const { icon: Icon, name } = item
 
-  if (!Icon) return null
+  if (!Icon && !name) return null
+
+  const title = otherCount > 0 ? `${name} and ${otherCount} others` : name
 
   return (
-    <div className={clsx(styles.container, className)} title={name}>
-      <Icon className={styles.icon} />
+    <div className={clsx(styles.container, className)} title={title}>
+      {Icon ? <Icon className={styles.icon} /> : <span className={styles.text}>{name}</span>}
+      {otherCount > 0 && <span className={styles.text}>+{otherCount}</span>}
     </div>
   )
+}
+
+FrameworkIcon.propTypes = {
+  className: PropTypes.string,
+  otherCount: PropTypes.number,
+  status: PropTypes.oneOf(Object.keys(frameworkMap))
 }
 
 export default FrameworkIcon

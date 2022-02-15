@@ -6,6 +6,7 @@
  */
 import fs from 'fs'
 import passport from 'passport'
+import path from 'path'
 
 import {
   authenticateWithPassport,
@@ -13,69 +14,132 @@ import {
   SESSION_SECRET,
   store
 } from '../../main/auth'
-import { IBM_AUTHENTICATION_STRATEGY } from '../../main/auth/config/constants'
-import { RunMode } from '../../main/run-mode'
-
-jest.mock('passport')
-const mockedPassport = passport as jest.Mocked<typeof passport>
+import { PASSPORT_STRATEGY_NAME } from '../../main/auth/constants'
+import { __test__ } from '../../main/auth/passport'
+import { getRunMode, RunMode } from '../../main/runtime'
 
 const signature = require('cookie-signature')
 
 describe('getPassportInstance', () => {
-  it('throws error when env variables have not been configured', async () => {
-    const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
-    const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
-    process.env.CARBON_IBM_VERIFY_CLIENT_ID = ''
-    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = ''
-    await expect(getPassportInstance()).rejects.toThrow()
-    process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
-    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
+  it('crashes on PROD when no env vars have been set', async () => {
+    const oldCarbonRunMode = getRunMode()
+    process.env.CARBON_RUN_MODE = RunMode.Prod
+    await expect(async () => getPassportInstance()).rejects.toThrow()
+    process.env.CARBON_RUN_MODE = oldCarbonRunMode
+    __test__.destroyInstance()
   })
-  it('can be retrieved without crashing', async () => {
-    const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
-    const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
-    process.env.CARBON_IBM_VERIFY_CLIENT_ID = 'MOCK_CLIENT'
-    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = 'MOCK_SECRET'
+  it('can be retrieved without crashing on DEV', async () => {
     const passportInstance = await getPassportInstance()
     expect(passportInstance).toBeDefined()
-    process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
-    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
+    __test__.destroyInstance()
   })
 })
 
 describe('authenticateWithPassport', () => {
   it('gets called with expected params', async () => {
-    const oldClientId = process.env.CARBON_IBM_VERIFY_CLIENT_ID
-    const oldClientSecret = process.env.CARBON_IBM_VERIFY_CLIENT_SECRET
-    process.env.CARBON_IBM_VERIFY_CLIENT_ID = 'MOCK_CLIENT'
-    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = 'MOCK_SECRET'
-    mockedPassport.authenticate.mockReturnValue(null)
+    const passportAuthenticateFn = passport.authenticate
+    passport.authenticate = jest.fn().mockReturnValue(null)
     await authenticateWithPassport()
-    await expect(mockedPassport.authenticate).toHaveBeenCalledWith(IBM_AUTHENTICATION_STRATEGY)
-    process.env.CARBON_IBM_VERIFY_CLIENT_ID = oldClientId
-    process.env.CARBON_IBM_VERIFY_CLIENT_SECRET = oldClientSecret
+    await expect(passport.authenticate).toHaveBeenCalledWith(PASSPORT_STRATEGY_NAME)
+    passport.authenticate = passportAuthenticateFn
+    __test__.destroyInstance()
+  })
+  it('Populates user correctly on req object', async () => {
+    const mockedUser = {
+      name: 'Jane Doe',
+      email: 'email@example.com'
+    }
+
+    const mockedUserPath = path.join(process.cwd(), 'mocked-user.json')
+    let oldUser
+    await new Promise((resolve, reject) => {
+      if (fs.existsSync(mockedUserPath)) {
+        fs.readFile(mockedUserPath, (err, data) => {
+          if (data) {
+            oldUser = JSON.parse(data as any)
+            resolve(null)
+          }
+          reject(err)
+        })
+      } else {
+        resolve(null)
+      }
+    })
+
+    await new Promise((resolve, reject) => {
+      fs.writeFile(mockedUserPath, JSON.stringify(mockedUser), (err) => {
+        if (err) reject(err)
+        resolve(null)
+      })
+    })
+
+    const req = {}
+    const authHandler = await authenticateWithPassport()
+    await new Promise((resolve) => {
+      authHandler(req, {}, () => {
+        resolve(null)
+      })
+    })
+    await expect((req as any).user).toEqual(mockedUser)
+    __test__.destroyInstance()
+    if (fs.existsSync(mockedUserPath)) {
+      fs.rmSync(mockedUserPath)
+    }
+    if (oldUser) {
+      fs.writeFile(mockedUserPath, JSON.stringify(oldUser), () => {})
+    }
+  })
+
+  it('Throws error when using custom strategy and mocked-user is not found', async () => {
+    const mockedUserPath = path.join(process.cwd(), 'mocked-user.json')
+    let oldUser
+    await new Promise((resolve, reject) => {
+      if (fs.existsSync(mockedUserPath)) {
+        fs.readFile(mockedUserPath, (err, data) => {
+          if (data) {
+            oldUser = JSON.parse(data as any)
+            resolve(null)
+          }
+          reject(err)
+        })
+      } else {
+        resolve(null)
+      }
+    })
+
+    if (fs.existsSync(mockedUserPath)) {
+      fs.rmSync(mockedUserPath)
+    }
+
+    const authHandler = await authenticateWithPassport()
+
+    let nextRequest
+
+    await new Promise((resolve) => {
+      authHandler({}, {}, (req) => {
+        nextRequest = req
+        resolve(null)
+      })
+    })
+
+    await expect(nextRequest instanceof Error).toBeTruthy()
+    __test__.destroyInstance()
+    if (oldUser) {
+      fs.writeFile(mockedUserPath, JSON.stringify(oldUser), () => {})
+    }
   })
 })
 
 describe('getStore', () => {
   it('on production mode without env variables throws error', async () => {
-    const oldMongoDbUrl = process.env.CARBON_MONGO_DB_URL
-    const oldMongoDbName = process.env.CARBON_MONGO_DB_NAME
-    const oldRunMode = process.env.CARBON_RUN_MODE
-    process.env.CARBON_MONGO_DB_URL = ''
-    process.env.CARBON_MONGO_DB_NAME = ''
+    const oldCarbonRunMode = getRunMode()
     process.env.CARBON_RUN_MODE = RunMode.Prod
     await expect(() => store.getStore()).rejects.toThrow()
-    process.env.CARBON_RUN_MODE = oldRunMode
-    process.env.CARBON_MONGO_DB_URL = oldMongoDbUrl
-    process.env.CARBON_MONGO_DB_NAME = oldMongoDbName
+    process.env.CARBON_RUN_MODE = oldCarbonRunMode
   })
 
   it('can be retrieved without crashing in Dev mode', async () => {
-    const oldRunMode = process.env.CARBON_RUN_MODE
-    process.env.CARBON_RUN_MODE = RunMode.Dev
     await expect(store.getStore()).resolves.toBeDefined()
-    process.env.CARBON_RUN_MODE = oldRunMode
   })
 })
 
@@ -122,7 +186,7 @@ describe('session', () => {
     await expect(store.getUserBySessionCookie(signedSessionCookie)).resolves.toBeUndefined()
   })
 
-  it('user update saves data succesfully', async () => {
+  it('user update saves data successfully', async () => {
     const mockedSessionId = 'SESSION_ID4'
     const signedSessionCookie = `s:${signature.sign(mockedSessionId, SESSION_SECRET)}`
     const storeInstance = await store.getStore()

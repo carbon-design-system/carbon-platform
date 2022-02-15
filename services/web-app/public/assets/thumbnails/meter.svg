@@ -1,55 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="321px" height="320px" viewBox="0 0 321 320" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>radar copy 3</title>
+<svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>meter</title>
     <defs>
-        <circle id="path-1" cx="8.01444" cy="8.01444" r="7.012635"></circle>
-        <polygon id="path-3" points="7.012635 10.7694038 4.5081225 8.26489125 5.30455748 7.5135375 7.012635 9.19156088 10.7243225 5.5099275 11.5207575 6.30135345"></polygon>
-        <circle id="path-5" cx="8.01444" cy="8.01444" r="7.012635"></circle>
-        <path d="M8.01444,11.019855 C8.42940122,11.019855 8.76579375,11.3562475 8.76579375,11.7712088 C8.76579375,12.18617 8.42940122,12.5225625 8.01444,12.5225625 C7.59947878,12.5225625 7.26308625,12.18617 7.26308625,11.7712088 C7.26308625,11.3562475 7.59947878,11.019855 8.01444,11.019855 Z M8.58045983,4.00722 L8.58045983,9.5171475 L7.4534292,9.5171475 L7.4534292,4.00722 L8.58045983,4.00722 Z" id="path-7"></path>
-        <circle id="path-9" cx="8.01444" cy="8.01444" r="7.012635"></circle>
-        <polygon id="path-11" points="7.44963086 3.61547865 8.57666148 3.61547865 8.57666148 12.4063175 7.44963086 12.4063175"></polygon>
+        <circle id="path-1" cx="7" cy="7" r="6.125"></circle>
+        <polygon id="path-3" points="6.50668244 3.15784391 7.49105744 3.15784391 7.49105744 10.8359689 6.50668244 10.8359689"></polygon>
+        <circle id="path-5" cx="7" cy="7" r="6.125"></circle>
+        <polygon id="path-7" points="6.125 9.40625 3.9375 7.21875 4.633125 6.5625 6.125 8.028125 9.366875 4.8125 10.0625 5.50375"></polygon>
+        <circle id="path-9" cx="7" cy="7" r="6.125"></circle>
+        <path d="M7,9.625 C7.36243687,9.625 7.65625,9.91881313 7.65625,10.28125 C7.65625,10.6436869 7.36243687,10.9375 7,10.9375 C6.63756313,10.9375 6.34375,10.6436869 6.34375,10.28125 C6.34375,9.91881313 6.63756313,9.625 7,9.625 Z M7.494375,3.5 L7.494375,8.3125 L6.51,8.3125 L6.51,3.5 L7.494375,3.5 Z" id="path-11"></path>
     </defs>
-    <g id="radar-copy-3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Group-96-Copy" transform="translate(61.000000, 117.000000)">
-            <rect id="Rectangle" fill="#D0E2FF" x="60.55234" y="23.56678" width="136.24548" height="8.01444"></rect>
-            <g id="icon/status/checkmark-filled/16" transform="translate(180.768940, 0.859200)">
-                <mask id="mask-2" fill="white">
-                    <use xlink:href="#path-1"></use>
-                </mask>
-                <use id="icon-color" fill="#0F62FE" fill-rule="evenodd" xlink:href="#path-1"></use>
-                <mask id="mask-4" fill="white">
-                    <use xlink:href="#path-3"></use>
-                </mask>
-                <use id="icon-color" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
-            </g>
-            <g id="icon/status/warning-filled/16" transform="translate(180.768940, 54.288800)">
-                <mask id="mask-6" fill="white">
-                    <use xlink:href="#path-5"></use>
-                </mask>
-                <use id="icon-color" fill="#0F62FE" fill-rule="evenodd" xlink:href="#path-5"></use>
-                <mask id="mask-8" fill="white">
-                    <use xlink:href="#path-7"></use>
-                </mask>
-                <use id="icon-color" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-7"></use>
-            </g>
-            <g id="icon/status/error-filled/16" transform="translate(180.768940, 106.382660)">
-                <mask id="mask-10" fill="white">
-                    <use xlink:href="#path-9"></use>
-                </mask>
-                <use id="icon-color" fill="#0062FF" fill-rule="evenodd" xlink:href="#path-9"></use>
-                <mask id="mask-12" fill="white">
-                    <use xlink:href="#path-11"></use>
-                </mask>
-                <use id="icon-color" fill="#FFFFFF" fill-rule="evenodd" transform="translate(8.013146, 8.010898) rotate(-45.000000) translate(-8.013146, -8.010898) " xlink:href="#path-11"></use>
-            </g>
-            <rect id="Rectangle-Copy-99" fill="#0062FF" x="0.44404" y="23.56678" width="62.77978" height="8.01444"></rect>
-            <rect id="Rectangle-Copy-97" fill="#D0E2FF" x="93.94584" y="75.66064" width="102.85198" height="8.01444"></rect>
-            <rect id="Rectangle-Copy-100" fill="#0062FF" x="0.44404" y="75.66064" width="118.88086" height="8.01444"></rect>
-            <rect id="Rectangle-Copy-98" fill="#D0E2FF" x="93.94584" y="127.7545" width="102.85198" height="8.01444"></rect>
-            <rect id="Rectangle-Copy-101" fill="#0062FF" x="0.44404" y="127.7545" width="180.3249" height="8.01444"></rect>
-            <line x1="180.10107" y1="135.368218" x2="180.10107" y2="127.7545" id="Path-21-Copy" stroke="#001141" stroke-width="1.33574"></line>
-            <line x1="154.72201" y1="83.274358" x2="154.72201" y2="75.66064" id="Path-21-Copy-2" stroke="#001141" stroke-width="1.33574"></line>
-            <line x1="154.72201" y1="30.91335" x2="154.72201" y2="23.299632" id="Path-21-Copy-3" stroke="#001141" stroke-width="1.33574"></line>
+    <g id="meter" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-9-Copy-2" fill="#E0E0E0" transform="translate(161.000000, 53.000000) rotate(90.000000) translate(-161.000000, -53.000000) " x="158" y="-35" width="6" height="176"></rect>
+        <rect id="Rectangle-9-Copy-3" fill="#E0E0E0" transform="translate(160.000000, 91.000000) rotate(90.000000) translate(-160.000000, -91.000000) " x="157" y="3" width="6" height="176"></rect>
+        <rect id="Rectangle-9-Copy-4" fill="#E0E0E0" transform="translate(160.000000, 129.000000) rotate(90.000000) translate(-160.000000, -129.000000) " x="157" y="41" width="6" height="176"></rect>
+        <rect id="Rectangle-9-Copy-2" stroke="#8E6A00" stroke-width="0.5" fill="#F1C21B" transform="translate(109.000000, 90.597222) rotate(90.000000) translate(-109.000000, -90.597222) " x="106.25" y="54.25" width="5.5" height="72.6944444"></rect>
+        <g id="icon/status/error-filled/16" transform="translate(234.000000, 107.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="icon-color" fill="#DA1E28" xlink:href="#path-1"></use>
+            <mask id="mask-4" fill="white">
+                <use xlink:href="#path-3"></use>
+            </mask>
+            <use id="icon-color" fill="#FFFFFF" transform="translate(6.998870, 6.996906) rotate(-45.000000) translate(-6.998870, -6.996906) " xlink:href="#path-3"></use>
+        </g>
+        <g id="icon/status/checkmark-filled/16" transform="translate(235.000000, 31.000000)">
+            <mask id="mask-6" fill="white">
+                <use xlink:href="#path-5"></use>
+            </mask>
+            <use id="icon-color" fill="#24A148" xlink:href="#path-5"></use>
+            <mask id="mask-8" fill="white">
+                <use xlink:href="#path-7"></use>
+            </mask>
+            <use id="icon-color" fill="#FFFFFF" xlink:href="#path-7"></use>
+        </g>
+        <rect id="Rectangle-9-Copy-5" fill="#DA1E28" transform="translate(140.000000, 129.097222) rotate(90.000000) translate(-140.000000, -129.097222) " x="137" y="61" width="6" height="136.194444"></rect>
+        <rect id="Rectangle-9-Copy-6" transform="translate(141.000000, 136.097222) rotate(90.000000) translate(-141.000000, -136.097222) " x="137" y="68" width="8" height="136.194444"></rect>
+        <rect id="Rectangle-9-Copy-3" fill="#24A148" transform="translate(93.000000, 53.250000) rotate(90.000000) translate(-93.000000, -53.250000) " x="90" y="32" width="6" height="42.5"></rect>
+        <line x1="197.5" y1="94" x2="197.5" y2="88" id="Path-21-Copy-2-Copy" stroke="#001141" stroke-width="1.33574"></line>
+        <line x1="230.5" y1="132" x2="230.5" y2="126" id="Path-21-Copy-2-Copy-2" stroke="#001141" stroke-width="1.33574"></line>
+        <line x1="197.5" y1="56" x2="197.5" y2="50" id="Path-21-Copy-3-Copy" stroke="#001141" stroke-width="1.33574"></line>
+        <g id="icon/status/warning-filled/16" transform="translate(235.000000, 69.000000)">
+            <mask id="mask-10" fill="white">
+                <use xlink:href="#path-9"></use>
+            </mask>
+            <use id="icon-color" fill="#FDD13A" xlink:href="#path-9"></use>
+            <mask id="mask-12" fill="white">
+                <use xlink:href="#path-11"></use>
+            </mask>
+            <use id="icon-color" fill="#000000" xlink:href="#path-11"></use>
         </g>
     </g>
 </svg>

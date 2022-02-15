@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>do-dont-example</title>
+    <defs>
+        <circle id="path-1" cx="5" cy="5" r="4.375"></circle>
+        <polygon id="path-3" points="4.375 6.71875 2.8125 5.15625 3.309375 4.6875 4.375 5.734375 6.690625 3.4375 7.1875 3.93125"></polygon>
+        <circle id="path-5" cx="5" cy="5" r="4.375"></circle>
+        <polygon id="path-7" points="4.375 6.71875 2.8125 5.15625 3.309375 4.6875 4.375 5.734375 6.690625 3.4375 7.1875 3.93125"></polygon>
+        <circle id="path-9" cx="5" cy="5" r="4.375"></circle>
+        <polygon id="path-11" points="4.375 6.71875 2.8125 5.15625 3.309375 4.6875 4.375 5.734375 6.690625 3.4375 7.1875 3.93125"></polygon>
+        <circle id="path-13" cx="5" cy="5" r="4.375"></circle>
+        <polygon id="path-15" points="6.690625 7.1875 5 5.496875 3.309375 7.1875 2.8125 6.690625 4.503125 5 2.8125 3.309375 3.309375 2.8125 5 4.503125 6.690625 2.8125 7.1875 3.309375 5.496875 5 7.1875 6.690625"></polygon>
+        <circle id="path-17" cx="5" cy="5" r="4.375"></circle>
+        <polygon id="path-19" points="6.690625 7.1875 5 5.496875 3.309375 7.1875 2.8125 6.690625 4.503125 5 2.8125 3.309375 3.309375 2.8125 5 4.503125 6.690625 2.8125 7.1875 3.309375 5.496875 5 7.1875 6.690625"></polygon>
+        <circle id="path-21" cx="5" cy="5" r="4.375"></circle>
+        <polygon id="path-23" points="6.690625 7.1875 5 5.496875 3.309375 7.1875 2.8125 6.690625 4.503125 5 2.8125 3.309375 3.309375 2.8125 5 4.503125 6.690625 2.8125 7.1875 3.309375 5.496875 5 7.1875 6.690625"></polygon>
+    </defs>
+    <g id="do-dont-example" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2" transform="translate(58.000000, 24.000000)">
+            <g id="Group">
+                <rect id="Rectangle-Copy-7" fill="#F4F4F4" x="0" y="0" width="62.4797048" height="62.8484848"></rect>
+                <rect id="Rectangle-Copy-8" fill="#24A148" x="0" y="0" width="62.4797048" height="2"></rect>
+                <rect id="Rectangle-Copy-9" fill="#F4F4F4" x="70.7601476" y="0" width="62.103321" height="41.6465863"></rect>
+                <rect id="Rectangle-Copy-11" fill="#F4F4F4" x="140.767528" y="0" width="63.2324723" height="31.8028478"></rect>
+                <rect id="Rectangle-Copy-10" fill="#198038" x="70.7601476" y="0" width="62.4797048" height="2"></rect>
+                <rect id="Rectangle-Copy-12" fill="#198038" x="140.767528" y="0" width="62.4797048" height="2"></rect>
+                <g transform="translate(4.903846, 8.000000)" id="icon/status/checkmark-filled/16-copy-2">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="icon-color" fill="#24A148" xlink:href="#path-1"></use>
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <use id="icon-color" fill="#FFFFFF" xlink:href="#path-3"></use>
+                </g>
+                <g transform="translate(76.500000, 8.000000)" id="icon/status/checkmark-filled/16-copy-2">
+                    <mask id="mask-6" fill="white">
+                        <use xlink:href="#path-5"></use>
+                    </mask>
+                    <use id="icon-color" fill="#24A148" xlink:href="#path-5"></use>
+                    <mask id="mask-8" fill="white">
+                        <use xlink:href="#path-7"></use>
+                    </mask>
+                    <use id="icon-color" fill="#FFFFFF" xlink:href="#path-7"></use>
+                </g>
+                <g transform="translate(146.134615, 8.000000)" id="icon/status/checkmark-filled/16-copy-2">
+                    <mask id="mask-10" fill="white">
+                        <use xlink:href="#path-9"></use>
+                    </mask>
+                    <use id="icon-color" fill="#24A148" xlink:href="#path-9"></use>
+                    <mask id="mask-12" fill="white">
+                        <use xlink:href="#path-11"></use>
+                    </mask>
+                    <use id="icon-color" fill="#FFFFFF" xlink:href="#path-11"></use>
+                </g>
+            </g>
+            <g id="Group-Copy" transform="translate(0.000000, 69.634615)">
+                <rect id="Rectangle-Copy-7" fill="#F4F4F4" x="0" y="0" width="62.4797048" height="62.8484848"></rect>
+                <rect id="Rectangle-Copy-8" fill="#DA1E28" x="0" y="0" width="62.4797048" height="2"></rect>
+                <rect id="Rectangle-Copy-9" fill="#F4F4F4" x="70.7601476" y="0" width="62.103321" height="41.6465863"></rect>
+                <rect id="Rectangle-Copy-11" fill="#F4F4F4" x="140.767528" y="0" width="63.2324723" height="31.8028478"></rect>
+                <rect id="Rectangle-Copy-10" fill="#DA1E28" x="70.7601476" y="0" width="62.4797048" height="2"></rect>
+                <rect id="Rectangle-Copy-12" fill="#DA1E28" x="140.767528" y="0" width="62.4797048" height="2"></rect>
+                <g id="icon/status/misuse/16-copy-2" transform="translate(75.519231, 7.365385)">
+                    <mask id="mask-14" fill="white">
+                        <use xlink:href="#path-13"></use>
+                    </mask>
+                    <use id="icon-color" fill="#DA1E28" xlink:href="#path-13"></use>
+                    <mask id="mask-16" fill="white">
+                        <use xlink:href="#path-15"></use>
+                    </mask>
+                    <use id="icon-color" fill="#FFFFFF" xlink:href="#path-15"></use>
+                </g>
+                <g id="icon/status/misuse/16-copy-2" transform="translate(5.884615, 7.365385)">
+                    <mask id="mask-18" fill="white">
+                        <use xlink:href="#path-17"></use>
+                    </mask>
+                    <use id="icon-color" fill="#DA1E28" xlink:href="#path-17"></use>
+                    <mask id="mask-20" fill="white">
+                        <use xlink:href="#path-19"></use>
+                    </mask>
+                    <use id="icon-color" fill="#FFFFFF" xlink:href="#path-19"></use>
+                </g>
+                <g id="icon/status/misuse/16-copy-2" transform="translate(146.134615, 7.365385)">
+                    <mask id="mask-22" fill="white">
+                        <use xlink:href="#path-21"></use>
+                    </mask>
+                    <use id="icon-color" fill="#DA1E28" xlink:href="#path-21"></use>
+                    <mask id="mask-24" fill="white">
+                        <use xlink:href="#path-23"></use>
+                    </mask>
+                    <use id="icon-color" fill="#FFFFFF" xlink:href="#path-23"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

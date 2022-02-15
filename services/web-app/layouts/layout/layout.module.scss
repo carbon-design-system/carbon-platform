@@ -14,8 +14,8 @@
   // position for PageBreadcrumb
   position: relative;
   margin: $spacing-09 0 0;
-}
-
-.log-in-anchor svg {
-  margin-top: $spacing-03;
+  // have carbon overlay use higher z-index than we're using on our custom components
+  :global(.cds--side-nav__overlay.cds--side-nav__overlay-active) {
+    z-index: layout.z('overlay');
+  }
 }

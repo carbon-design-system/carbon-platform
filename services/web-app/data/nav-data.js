@@ -33,23 +33,36 @@ export const assetsNavData = [
     title: 'Libraries'
   },
   {
-    title: 'Assets',
+    title: 'Catalogs',
     items: [
+      {
+        path: '/assets/components',
+        title: 'Components'
+      },
       {
         path: '/assets/elements',
         title: 'Elements'
       },
       {
-        path: '/assets/components',
-        title: 'Components'
+        path: '/assets/functions',
+        title: 'Functions'
       },
       {
         path: '/assets/patterns',
         title: 'Patterns'
       },
       {
-        path: '/assets/functions',
-        title: 'Functions'
+        path: '/assets/templates',
+        title: 'Templates'
+      }
+    ]
+  },
+  {
+    title: 'Collections',
+    items: [
+      {
+        path: '/assets/data-visualization',
+        title: 'Data visualization'
       }
     ]
   }

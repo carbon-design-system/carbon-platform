@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.49](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.48...@carbon-platform/web-app@0.1.49) (2022-02-15)
+
+
+### Features
+
+* add design only to framework icon component ([8aa47b6](https://github.com/carbon-design-system/carbon-platform/commit/8aa47b6e624d41124816f70ac66bd1fe79084ad1))
+* add new icons for dotcom and products ([bf233b6](https://github.com/carbon-design-system/carbon-platform/commit/bf233b69da309f7b8470caf598cbebc35ce02b51))
+* add placeholder templates page ([d2a9000](https://github.com/carbon-design-system/carbon-platform/commit/d2a9000b3394e0b6329f38fb26463a4075144862))
+* add tags to filter ([f02ef14](https://github.com/carbon-design-system/carbon-platform/commit/f02ef14481af694b189f2cef9a80845636e3f7c8))
+* better framework collapsing logic ([872703f](https://github.com/carbon-design-system/carbon-platform/commit/872703f0ac50d97052657eb68ace580ef164afc1))
+* new thumbnails ([3fd6b72](https://github.com/carbon-design-system/carbon-platform/commit/3fd6b72a643b3ed00f606e4aa8a28b6bc446780d))
+
+
+### Bug Fixes
+
+* page header height when no page tabs ([5c4f707](https://github.com/carbon-design-system/carbon-platform/commit/5c4f707a4e58b2638498382a5c0c66095cff3f71))
+* **web-app:** override carbon overlay z-index ([e815a98](https://github.com/carbon-design-system/carbon-platform/commit/e815a983344cb4dbb161dbca6ff66c3886921666))
+* **web-app:** use referer instead of query.next on login ([03c2622](https://github.com/carbon-design-system/carbon-platform/commit/03c2622047572fbbaa46c9ebbe738f9722607390))
+
+### [0.1.48](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.47...@carbon-platform/web-app@0.1.48) (2022-02-09)
+
+### [0.1.47](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.46...@carbon-platform/web-app@0.1.47) (2022-02-05)
+
+### [0.1.46](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.45...@carbon-platform/web-app@0.1.46) (2022-02-04)
+
+
+### Features
+
+* **web-app:** new prototyping asset thumbnails ([34bc1c6](https://github.com/carbon-design-system/carbon-platform/commit/34bc1c615c18949413b2ba42441e33d8fbfd5d0c))
+
+
+### Bug Fixes
+
+* svg touchup ([153cd2a](https://github.com/carbon-design-system/carbon-platform/commit/153cd2a8d0edc70fd4cb69ae9aaea83d8891200e))
+
+### [0.1.45](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.44...@carbon-platform/web-app@0.1.45) (2022-02-03)
+
 ### [0.1.44](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.43...@carbon-platform/web-app@0.1.44) (2022-02-01)
 
 ### [0.1.43](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.42...@carbon-platform/web-app@0.1.43) (2022-01-31)

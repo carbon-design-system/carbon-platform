@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>code-blocks</title>
+    <defs>
+        <linearGradient x1="2.74828823%" y1="50%" x2="100%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#262626" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#262626" offset="100%"></stop>
+        </linearGradient>
+        <path d="M8.125,8.75 L1.875,8.75 C1.52982203,8.75 1.25,8.47017797 1.25,8.125 L1.25,1.875 C1.25,1.52982203 1.52982203,1.25 1.875,1.25 L4.6875,1.25 L4.6875,1.875 L1.875,1.875 L1.875,8.125 L8.125,8.125 L8.125,5.3125 L8.75,5.3125 L8.75,8.125 C8.75,8.47017797 8.47017797,8.75 8.125,8.75 Z M6.5625,0.625 L6.5625,1.25 L8.309375,1.25 L5.625,3.934375 L6.065625,4.375 L8.75,1.690625 L8.75,3.4375 L9.375,3.4375 L9.375,0.625 L6.5625,0.625 L6.5625,0.625 Z" id="path-2"></path>
+    </defs>
+    <g id="code-blocks" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(82.000000, 49.000000)">
+            <g id="Group-25" transform="translate(98.830058, 25.976744)" fill="#FFFFFF" fill-rule="nonzero">
+                <polygon id="Shape" points="4.95953757 4.04651163 4.95953757 0 4.05780347 0 4.05780347 4.04651163 0 4.04651163 0 4.94573643 4.05780347 4.94573643 4.05780347 8.99224806 4.95953757 8.99224806 4.95953757 4.94573643 9.01734104 4.94573643 9.01734104 4.04651163"></polygon>
+            </g>
+            <rect id="Rectangle" fill="#262626" x="0" y="0" width="156" height="23.379845"></rect>
+            <rect id="Rectangle-Copy-2" fill="#525252" x="0" y="21" width="156" height="1"></rect>
+            <rect id="Rectangle-Copy" fill="#262626" x="0" y="23" width="156" height="60"></rect>
+            <rect id="Rectangle-3-Copy-20" fill="#C6C6C6" x="8.11560694" y="45.9922481" width="38.583815" height="4"></rect>
+            <rect id="Rectangle-3-Copy-76" fill="#C6C6C6" x="19.1156069" y="54.9922481" width="59.583815" height="4"></rect>
+            <rect id="Rectangle-3-Copy-77" fill="#C6C6C6" x="19.1156069" y="63.9922481" width="31.583815" height="4"></rect>
+            <rect id="Rectangle-3-Copy-78" fill="#C6C6C6" x="48.1156069" y="63.9922481" width="19.583815" height="4"></rect>
+            <rect id="Rectangle-3-Copy-79" fill="#C6C6C6" x="73.1156069" y="63.9922481" width="6.583815" height="4"></rect>
+            <rect id="Rectangle-3-Copy-80" fill="#C6C6C6" x="75.1156069" y="54.9922481" width="22" height="4"></rect>
+            <rect id="Rectangle-3-Copy-21" fill="#C6C6C6" x="52.1156069" y="45.9922481" width="13.583815" height="4"></rect>
+            <rect id="Rectangle-3-Copy-81" fill="#C6C6C6" x="95.1156069" y="54.9922481" width="20.583815" height="4"></rect>
+            <rect id="Rectangle-3-Copy-82" fill="#C6C6C6" x="121.115607" y="54.9922481" width="27.583815" height="4"></rect>
+            <rect id="Rectangle-3-Copy-6" fill="#C6C6C6" x="8.11560694" y="8.99224806" width="60.583815" height="4"></rect>
+            <rect id="Rectangle-3-Copy-7" fill="#78A9FF" x="8.11560694" y="31.9922481" width="78.583815" height="4"></rect>
+        </g>
+        <rect id="Rectangle-2-Copy-23" fill="url(#linearGradient-1)" x="193" y="72" width="41" height="58" rx="2"></rect>
+        <g id="icon/action/launch/16-copy" transform="translate(219.000000, 55.000000)">
+            <mask id="mask-3" fill="white">
+                <use xlink:href="#path-2"></use>
+            </mask>
+            <use id="icon-color" fill="#FFFFFF" xlink:href="#path-2"></use>
+        </g>
+        <rect id="Rectangle-2-Copy-16" fill="#262626" x="232" y="73" width="6" height="59"></rect>
+    </g>
+</svg>

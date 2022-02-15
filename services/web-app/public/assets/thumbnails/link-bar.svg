@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>link-bar</title>
+    <g id="link-bar" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="IBMPlexSans, IBM Plex Sans" font-size="12" font-weight="normal" letter-spacing="0.137142854" line-spacing="16">
+        <g id="Group-36" transform="translate(72.000000, 85.000000)">
+            <text id="View-1" fill="#0F62FE">
+                <tspan x="0" y="12">View 1</tspan>
+            </text>
+            <text id="View-2" fill="#525252">
+                <tspan x="66" y="12">View 2</tspan>
+            </text>
+            <text id="View-3" fill="#525252">
+                <tspan x="132" y="12">View 3</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

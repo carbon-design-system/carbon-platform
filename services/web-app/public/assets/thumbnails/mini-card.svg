@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>mini-card</title>
+    <defs>
+        <path d="M8.125,8.75 L1.875,8.75 C1.52982203,8.75 1.25,8.47017797 1.25,8.125 L1.25,1.875 C1.25,1.52982203 1.52982203,1.25 1.875,1.25 L4.6875,1.25 L4.6875,1.875 L1.875,1.875 L1.875,8.125 L8.125,8.125 L8.125,5.3125 L8.75,5.3125 L8.75,8.125 C8.75,8.47017797 8.47017797,8.75 8.125,8.75 Z M6.5625,0.625 L6.5625,1.25 L8.309375,1.25 L5.625,3.934375 L6.065625,4.375 L8.75,1.690625 L8.75,3.4375 L9.375,3.4375 L9.375,0.625 L6.5625,0.625 L6.5625,0.625 Z" id="path-1"></path>
+        <path d="M8.125,8.75 L1.875,8.75 C1.52982203,8.75 1.25,8.47017797 1.25,8.125 L1.25,1.875 C1.25,1.52982203 1.52982203,1.25 1.875,1.25 L4.6875,1.25 L4.6875,1.875 L1.875,1.875 L1.875,8.125 L8.125,8.125 L8.125,5.3125 L8.75,5.3125 L8.75,8.125 C8.75,8.47017797 8.47017797,8.75 8.125,8.75 Z M6.5625,0.625 L6.5625,1.25 L8.309375,1.25 L5.625,3.934375 L6.065625,4.375 L8.75,1.690625 L8.75,3.4375 L9.375,3.4375 L9.375,0.625 L6.5625,0.625 L6.5625,0.625 Z" id="path-3"></path>
+        <path d="M8.125,8.75 L1.875,8.75 C1.52982203,8.75 1.25,8.47017797 1.25,8.125 L1.25,1.875 C1.25,1.52982203 1.52982203,1.25 1.875,1.25 L4.6875,1.25 L4.6875,1.875 L1.875,1.875 L1.875,8.125 L8.125,8.125 L8.125,5.3125 L8.75,5.3125 L8.75,8.125 C8.75,8.47017797 8.47017797,8.75 8.125,8.75 Z M6.5625,0.625 L6.5625,1.25 L8.309375,1.25 L5.625,3.934375 L6.065625,4.375 L8.75,1.690625 L8.75,3.4375 L9.375,3.4375 L9.375,0.625 L6.5625,0.625 L6.5625,0.625 Z" id="path-5"></path>
+        <path d="M8.125,8.75 L1.875,8.75 C1.52982203,8.75 1.25,8.47017797 1.25,8.125 L1.25,1.875 C1.25,1.52982203 1.52982203,1.25 1.875,1.25 L4.6875,1.25 L4.6875,1.875 L1.875,1.875 L1.875,8.125 L8.125,8.125 L8.125,5.3125 L8.75,5.3125 L8.75,8.125 C8.75,8.47017797 8.47017797,8.75 8.125,8.75 Z M6.5625,0.625 L6.5625,1.25 L8.309375,1.25 L5.625,3.934375 L6.065625,4.375 L8.75,1.690625 L8.75,3.4375 L9.375,3.4375 L9.375,0.625 L6.5625,0.625 L6.5625,0.625 Z" id="path-7"></path>
+    </defs>
+    <g id="mini-card" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-Copy-55" fill="#E0E0E0" x="58" y="68" width="203" height="44"></rect>
+        <rect id="Rectangle-Copy-51" fill="#F4F4F4" x="56" y="67" width="103" height="22"></rect>
+        <rect id="Rectangle-Copy-53" fill="#F4F4F4" x="56" y="90" width="103" height="22"></rect>
+        <rect id="Rectangle-Copy-52" fill="#F4F4F4" x="160" y="67" width="103" height="22"></rect>
+        <g id="icon/action/launch/16-copy" transform="translate(244.000000, 74.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="icon-color" fill="#000000" xlink:href="#path-1"></use>
+        </g>
+        <rect id="Rectangle-Copy-54" fill="#F4F4F4" x="160" y="90" width="103" height="22"></rect>
+        <g id="icon/action/launch/16-copy" transform="translate(244.000000, 97.000000)">
+            <mask id="mask-4" fill="white">
+                <use xlink:href="#path-3"></use>
+            </mask>
+            <use id="icon-color" fill="#000000" xlink:href="#path-3"></use>
+        </g>
+        <g id="icon/action/launch/16-copy" transform="translate(139.000000, 74.000000)">
+            <mask id="mask-6" fill="white">
+                <use xlink:href="#path-5"></use>
+            </mask>
+            <use id="icon-color" fill="#000000" xlink:href="#path-5"></use>
+        </g>
+        <g id="icon/action/launch/16-copy" transform="translate(139.000000, 97.000000)">
+            <mask id="mask-8" fill="white">
+                <use xlink:href="#path-7"></use>
+            </mask>
+            <use id="icon-color" fill="#000000" xlink:href="#path-7"></use>
+        </g>
+        <rect id="Rectangle-3-Copy-25" fill="#A8A8A8" x="65.1156069" y="76.9922481" width="41.583815" height="4"></rect>
+        <rect id="Rectangle-3-Copy-27" fill="#A8A8A8" x="65.1156069" y="98.9922481" width="41.583815" height="4"></rect>
+        <rect id="Rectangle-3-Copy-26" fill="#A8A8A8" x="166.115607" y="76.9922481" width="41.583815" height="4"></rect>
+        <rect id="Rectangle-3-Copy-28" fill="#A8A8A8" x="166.115607" y="98.9922481" width="41.583815" height="4"></rect>
+    </g>
+</svg>

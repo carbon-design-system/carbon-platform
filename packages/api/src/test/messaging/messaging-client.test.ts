@@ -8,7 +8,7 @@ import amqp from 'amqplib'
 import { v4 as uuidv4 } from 'uuid'
 
 import { EventMessage, MessagingClient, QueryMessage } from '../../main/messaging'
-import { __test__ } from '../../main/messaging/MessagingClient'
+import { __test__ } from '../../main/messaging/messaging-client'
 
 jest.mock('amqplib')
 const mockedAmqp = amqp as jest.Mocked<typeof amqp>

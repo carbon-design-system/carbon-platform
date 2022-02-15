@@ -27,7 +27,8 @@ class PlatformMicroserviceImpl extends PlatformMicroservice {}
 
 let mockedChannel: any = null
 let mockedConnection: any = null
-const mockedListen = jest.fn()
+const mockedLivenessListen = jest.fn()
+const mockedMicroserviceListen = jest.fn()
 
 beforeEach(() => {
   mockedChannel = {
@@ -42,8 +43,11 @@ beforeEach(() => {
   }
   mockedAmqplib.connect.mockReturnValue(mockedConnection)
 
+  mockedNestFactory.create.mockResolvedValue({
+    listen: mockedLivenessListen
+  } as any)
   mockedNestFactory.createMicroservice.mockResolvedValue({
-    listen: mockedListen
+    listen: mockedMicroserviceListen
   } as any)
 })
 
@@ -75,5 +79,6 @@ test('start', async () => {
 
   await microservice.start()
 
-  expect(mockedListen).toHaveBeenCalled()
+  expect(mockedLivenessListen).toHaveBeenCalled()
+  expect(mockedMicroserviceListen).toHaveBeenCalled()
 })

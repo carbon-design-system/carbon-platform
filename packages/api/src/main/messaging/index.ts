@@ -17,4 +17,4 @@ export {
   DEFAULT_SOCKET_OPTIONS
 } from './constants'
 export { UnvalidatedMessage } from './interfaces'
-export { MessagingClient } from './MessagingClient'
+export { MessagingClient } from './messaging-client'

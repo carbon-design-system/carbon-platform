@@ -35,6 +35,7 @@ export async function middleware(req) {
   if (req.nextUrl.pathname === '/404' || req.nextUrl.pathname.startsWith('/api/')) {
     return NextResponse.next()
   }
+
   const protocol =
     getRunMode === RunMode.Prod || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
   const userResponse = await fetch(

@@ -21,14 +21,23 @@ const login = requireSession().get(
       res.end('')
     }
 
-    const refererUrl = new URL(req.headers.referer)
-    const host = refererUrl.host.split(':')[0]
-    if (
-      ALLOWED_REFERERS.some(
-        (domain) => refererUrl.protocol === domain.protocol && host.endsWith(`${domain.domain}`)
-      )
-    ) {
-      req.session.next = refererUrl
+    let refererUrl
+    try {
+      refererUrl = new URL(req.headers.referer)
+    } catch (_) {
+      refererUrl = undefined
+    }
+
+    if (refererUrl) {
+      const { hostname, protocol } = refererUrl
+      if (
+        ALLOWED_REFERERS.some(
+          (allowedReferer) =>
+            protocol === allowedReferer.protocol && hostname.endsWith(`${allowedReferer.domain}`)
+        )
+      ) {
+        req.session.next = refererUrl
+      }
     }
 
     next()

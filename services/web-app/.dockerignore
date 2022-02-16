@@ -1,7 +1,8 @@
 Dockerfile
 .dockerignore
-node_modules/
-.env*
 .carbon/
+.env*
 .next/
-pages/samples/*
+node_modules/
+pages/samples/
+public/data/

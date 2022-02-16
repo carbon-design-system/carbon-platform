@@ -16,6 +16,7 @@ import CatalogPagination from '@/components/catalog-pagination'
 import CatalogResults from '@/components/catalog-results'
 import CatalogSearch from '@/components/catalog-search'
 import CatalogSort from '@/components/catalog-sort'
+import { getCleanFilter } from '@/data/filters'
 import {
   assetSortComparator,
   collapseAssetGroups,
@@ -79,7 +80,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   })
 
   const [filter, setFilter] = useQueryState('filter', {
-    ...queryTypes.object,
+    ...queryTypes.prettyObject,
     defaultValue: defaultFilter
   })
 
@@ -134,7 +135,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     setFilteredAssets(
       assets
         .sort(assetSortComparator(sort))
-        .filter((asset) => assetIsInFilter(asset, filter))
+        .filter((asset) => assetIsInFilter(asset, getCleanFilter(filter)))
         .filter((asset) => {
           const { description = '', name = '' } = asset.content
 
@@ -185,14 +186,14 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     <>
       <CatalogSearch
         className={styles.search}
-        filter={filter}
+        filter={getCleanFilter(filter)}
         initialFilter={{ collection, type }}
         search={search}
         onSearch={handleSearch}
         onFilter={handleFilter}
       />
       <CatalogFilters
-        filter={filter}
+        filter={getCleanFilter(filter)}
         initialFilter={{ collection, type }}
         onFilter={handleFilter}
       />
@@ -202,7 +203,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
         assetCounts={assetCounts}
         assets={filteredAssets}
         isGrid={view === 'grid'}
-        filter={filter}
+        filter={getCleanFilter(filter)}
         page={page}
         pageSize={pageSize}
       />

@@ -5,37 +5,99 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { set } from 'lodash'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useMemo } from 'react'
 
+import { IsJsonString } from './string'
+
+const commonSerializer = (valueSerializer) => {
+  return (key, value, query) => {
+    query.set(key, valueSerializer(value))
+  }
+}
+
+const commonParser = (valueParser) => {
+  return (key, query, storageValue) => {
+    const queryValue = query.get(key)
+
+    return queryValue !== null ? valueParser(queryValue) : storageValue
+  }
+}
+
+const parsePrettyObject = (name, query, storageValue) => {
+  const obj = {}
+  const keys = Array.from(query.keys()).filter((key) => key.startsWith(`${name}[`))
+  if (!keys.length) {
+    return storageValue
+  }
+  keys.forEach((key) => {
+    const val = query.getAll(key)
+    set(obj, key, val)
+  })
+  return obj[name]
+}
+
+const serializePrettyObject = (name, object, query) => {
+  const ExistingKeys = Array.from(query.keys()).filter((key) => key.startsWith(`${name}[`))
+  ExistingKeys.forEach((key) => query.delete(key))
+
+  const getPairs = (obj, keys = []) =>
+    Object.entries(obj).reduce((pairs, [key, value]) => {
+      if (value.constructor.name === 'Array') {
+        pairs.push([[...keys, key], value])
+      } else if (typeof value === 'object') {
+        pairs.push(...getPairs(value, [...keys, key]))
+      } else {
+        pairs.push([[...keys, key], value])
+      }
+      return pairs
+    }, [])
+
+  getPairs(object).forEach(([keys, value]) => {
+    const key = `${name}${keys.map((nextKey) => '[' + nextKey + ']').join('')}`
+    if (value.constructor.name === 'Array') {
+      value.forEach((val) => {
+        query.append(key, val)
+      })
+      return
+    }
+    query.set(key, value)
+  })
+}
+
 export const queryTypes = {
   string: {
-    parse: (v) => v,
-    serialize: (v) => `${v}`
+    parse: commonParser((v) => v),
+    serialize: commonSerializer((v) => `${v}`)
   },
   integer: {
-    parse: (v) => parseInt(v),
-    serialize: (v) => Math.round(v).toFixed()
+    parse: commonParser((v) => parseInt(v)),
+    serialize: commonSerializer((v) => Math.round(v).toFixed())
   },
   float: {
-    parse: (v) => parseFloat(v),
-    serialize: (v) => v.toString()
+    parse: commonParser((v) => parseFloat(v)),
+    serialize: commonSerializer((v) => v.toString())
   },
   boolean: {
-    parse: (v) => v === 'true',
-    serialize: (v) => (v ? 'true' : 'false')
+    parse: commonParser((v) => v === 'true'),
+    serialize: commonSerializer((v) => (v ? 'true' : 'false'))
   },
   timestamp: {
-    parse: (v) => new Date(parseInt(v)),
-    serialize: (v) => v.valueOf().toString()
+    parse: commonParser((v) => new Date(parseInt(v))),
+    serialize: commonSerializer((v) => v.valueOf().toString())
   },
   isoDateTime: {
-    parse: (v) => new Date(v),
-    serialize: (v) => v.toISOString()
+    parse: commonParser((v) => new Date(v)),
+    serialize: commonSerializer((v) => v.toISOString())
   },
   object: {
-    parse: (v) => JSON.parse(v),
-    serialize: (v) => JSON.stringify(v)
+    parse: commonParser((v) => (IsJsonString(v) ? JSON.parse(v) : {})),
+    serialize: commonSerializer((v) => JSON.stringify(v))
+  },
+  prettyObject: {
+    parse: parsePrettyObject,
+    serialize: serializePrettyObject
   }
 }
 
@@ -58,10 +120,8 @@ export const useQueryState = (
     }
 
     const query = new URLSearchParams(window.location.search)
-    const queryValue = query.get(key)
     const storageValue = saveToStorage ? localStorage.getItem(`${router.pathname}:${key}`) : null
-
-    return queryValue !== null ? parse(queryValue) : storageValue
+    return parse(key, query, storageValue)
   }, [key, parse, router.pathname, saveToStorage])
 
   // Update the "state" when the router.query key changes
@@ -80,7 +140,7 @@ export const useQueryState = (
       if (newValue === null || newValue === undefined) {
         query.delete(key)
       } else {
-        query.set(key, serialize(newValue))
+        serialize(key, newValue, query)
       }
 
       router.replace(`?${query.toString()}`, undefined, { shallow: true, scroll: false })

@@ -32,3 +32,17 @@ export const isValidIbmEmail = (str) => {
   const acceptableEmailSuffixes = ['.ibm.com', '@ibm.com']
   return acceptableEmailSuffixes.some((suffix) => str.endsWith(suffix))
 }
+
+/**
+ * checks if a given string can be parsed to JSON
+ * @param {string} str string to evaluate
+ * @returns {boolean} true if string is a valid JSON
+ */
+export const IsJsonString = (str) => {
+  try {
+    JSON.parse(str)
+  } catch (e) {
+    return false
+  }
+  return true
+}

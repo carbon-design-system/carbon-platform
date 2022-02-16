@@ -54,3 +54,13 @@ export const getFilters = (initialFilter = {}) => {
 
   return { ...firstFilters, ...tagFilters, ...lastFilters }
 }
+
+export const getCleanFilter = ({ ...filter } = {}) => {
+  const validKeys = Object.keys(getFilters(filter))
+  Object.keys(filter).forEach((key) => {
+    if (!validKeys.includes(key)) {
+      delete filter[key]
+    }
+  })
+  return filter
+}

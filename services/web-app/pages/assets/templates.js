@@ -34,7 +34,7 @@ const Templates = ({ librariesData }) => {
   )
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const librariesData = await getAllLibraries()
 
   return {

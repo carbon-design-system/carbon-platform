@@ -102,7 +102,7 @@ Asset.propTypes = {
   libraryData: libraryPropTypes
 }
 
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
   const libraryData = await getLibraryData(params)
 
   if (!libraryData || !libraryData.assets || !libraryData.assets.length) {
@@ -115,15 +115,7 @@ export const getStaticProps = async ({ params }) => {
     props: {
       libraryData,
       params
-    },
-    revalidate: 10
-  }
-}
-
-export const getStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: true
+    }
   }
 }
 

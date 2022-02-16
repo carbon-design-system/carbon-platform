@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.50](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.49...@carbon-platform/web-app@0.1.50) (2022-02-16)
+
+
+### Bug Fixes
+
+* **web-app:** linter issues, remove unncessary style ([62e8b93](https://github.com/carbon-design-system/carbon-platform/commit/62e8b937fc305220b83b428b80e3779a8183669c))
+* **web-app:** login middleware race condition fix ([cf7e236](https://github.com/carbon-design-system/carbon-platform/commit/cf7e236fcca942bf11f55762def3c4f0419323fa))
+* **web-app:** styling issue ([f2973c4](https://github.com/carbon-design-system/carbon-platform/commit/f2973c473c45aafdd21de1f09692cbf9ba11b94b))
+
 ### [0.1.49](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.48...@carbon-platform/web-app@0.1.49) (2022-02-15)
 
 

@@ -31,7 +31,6 @@ export default function requireSession(needsUser = false) {
           httpOnly: true,
           maxAge: 60 * 60 * 2 * 1000, // 2 hours
           path: '/',
-          sameSite: true,
           secure: getRunMode() === RunMode.Prod
         },
         proxy: true,

@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { get, isArray, remove, set, union } from 'lodash'
+import { get, isArray, isEqual, remove, set, union } from 'lodash'
 import minimatch from 'minimatch'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
@@ -154,6 +154,13 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [assets, JSON.stringify(filter), sort, search])
 
+  useEffect(() => {
+    const validatedFilter = getCleanFilter(filter)
+    if (!isEqual(validatedFilter, filter)) {
+      setFilter(validatedFilter)
+    }
+  }, [filter, setFilter])
+
   const handleFilter = (item, key, action = 'add') => {
     let updatedFilter = Object.assign({}, filter)
 
@@ -182,18 +189,20 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     setSearch(newValue)
   }
 
+  const cleanFilter = getCleanFilter(filter)
+
   return (
     <>
       <CatalogSearch
         className={styles.search}
-        filter={getCleanFilter(filter)}
+        filter={cleanFilter}
         initialFilter={{ collection, type }}
         search={search}
         onSearch={handleSearch}
         onFilter={handleFilter}
       />
       <CatalogFilters
-        filter={getCleanFilter(filter)}
+        filter={cleanFilter}
         initialFilter={{ collection, type }}
         onFilter={handleFilter}
       />
@@ -203,7 +212,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
         assetCounts={assetCounts}
         assets={filteredAssets}
         isGrid={view === 'grid'}
-        filter={getCleanFilter(filter)}
+        filter={cleanFilter}
         page={page}
         pageSize={pageSize}
       />

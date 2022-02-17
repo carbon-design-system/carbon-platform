@@ -9,7 +9,7 @@ import { set } from 'lodash'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useMemo } from 'react'
 
-import { IsJsonString } from './string'
+import { isJsonString } from './string'
 
 const commonSerializer = (valueSerializer) => {
   return (key, value, query) => {
@@ -92,7 +92,7 @@ export const queryTypes = {
     serialize: commonSerializer((v) => v.toISOString())
   },
   object: {
-    parse: commonParser((v) => (IsJsonString(v) ? JSON.parse(v) : {})),
+    parse: commonParser((v) => (isJsonString(v) ? JSON.parse(v) : {})),
     serialize: commonSerializer((v) => JSON.stringify(v))
   },
   prettyObject: {

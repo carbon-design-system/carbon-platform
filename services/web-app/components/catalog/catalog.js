@@ -81,7 +81,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
 
   const [filter, setFilter] = useQueryState('filter', {
     ...queryTypes.prettyObject,
-    defaultValue: defaultFilter
+    defaultValue: getCleanFilter(defaultFilter)
   })
 
   const [libraries] = useState(

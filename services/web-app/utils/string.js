@@ -34,11 +34,11 @@ export const isValidIbmEmail = (str) => {
 }
 
 /**
- * checks if a given string can be parsed to JSON
+ * Checks if a given string can be parsed to JSON
  * @param {string} str string to evaluate
  * @returns {boolean} true if string is a valid JSON
  */
-export const IsJsonString = (str) => {
+export const isJsonString = (str) => {
   try {
     JSON.parse(str)
   } catch (e) {

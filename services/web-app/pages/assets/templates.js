@@ -4,13 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { TextLayout } from '@carbon/pictograms-react'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
 import Catalog from '@/components/catalog'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
+import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 
@@ -28,7 +28,7 @@ const Templates = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} pictogram={TextLayout} />
+      <PageHeader title={seo.title} pictogram={type.template.icon} />
       <Catalog data={librariesData} type="template" />
     </>
   )

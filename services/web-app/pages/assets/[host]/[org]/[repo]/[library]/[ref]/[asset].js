@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { TextInput } from '@carbon/pictograms-react'
 import { Button, Column, Grid } from '@carbon/react'
 import { ArrowRight, Carbon, Events, Launch } from '@carbon/react/icons'
 import clsx from 'clsx'
@@ -102,7 +101,7 @@ const Asset = ({ libraryData }) => {
 
   return (
     <>
-      <PageHeader title={seo.title} pictogram={TextInput} />
+      <PageHeader title={seo.title} pictogram={get(type, `[${assetData.content.type}].icon`)} />
       <PageBreadcrumb items={breadcrumbItems} />
       <Dashboard className={styles.dashboard}>
         <Column className={dashboardStyles.column}>

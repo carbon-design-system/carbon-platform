@@ -74,12 +74,13 @@ const Library = ({ libraryData, params }) => {
       <Dashboard className={styles.dashboard}>
         <Column className={dashboardStyles.column}>
           <DashboardItem
-            as="dl"
             aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
             border={['sm']}
           >
-            <dt className={dashboardStyles.label}>Version</dt>
-            <dd className={dashboardStyles.labelLarge}>{`v${libraryData.content.version}`}</dd>
+            <dl>
+              <dt className={dashboardStyles.label}>Version</dt>
+              <dd className={dashboardStyles.labelLarge}>{`v${libraryData.content.version}`}</dd>
+            </dl>
             {SponsorIcon && (
               <SponsorIcon
                 className={clsx(dashboardStyles.positionBottomLeft, styles.sponsorIcon)}

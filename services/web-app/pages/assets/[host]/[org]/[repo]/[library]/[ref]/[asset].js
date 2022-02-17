@@ -106,12 +106,13 @@ const Asset = ({ libraryData }) => {
       <Dashboard className={styles.dashboard}>
         <Column className={dashboardStyles.column}>
           <DashboardItem
-            as="dl"
             aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
             border={['sm']}
           >
-            <dt className={dashboardStyles.label}>Library</dt>
-            <dd className={dashboardStyles.labelLarge}>{libraryData.content.name}</dd>
+            <dl>
+              <dt className={dashboardStyles.label}>Library</dt>
+              <dd className={dashboardStyles.labelLarge}>{libraryData.content.name}</dd>
+            </dl>
             <Link href={libraryPath}>
               <a className={clsx(dashboardStyles.metaLink, dashboardStyles.metaLinkLarge)}>
                 {`v${libraryData.content.version}`}
@@ -177,8 +178,10 @@ const Asset = ({ libraryData }) => {
             aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
             border={['sm', 'md', 'lg', 'xlg']}
           >
-            <p className={dashboardStyles.label}>Coming soon...</p>
-            <h3 className={dashboardStyles.labelLarge}>–</h3>
+            <dl>
+              <dt className={dashboardStyles.label}>Coming soon...</dt>
+              <dd className={dashboardStyles.labelLarge}>–</dd>
+            </dl>
           </DashboardItem>
         </Column>
         <Column className={dashboardStyles.column} sm={0} md={1}>
@@ -187,8 +190,10 @@ const Asset = ({ libraryData }) => {
             border={['sm', 'md', 'lg', 'xlg']}
             href={libraryPath}
           >
-            <p className={dashboardStyles.label}>Coming soon...</p>
-            <h3 className={dashboardStyles.labelLarge}>–</h3>
+            <dl>
+              <dt className={dashboardStyles.label}>Coming soon...</dt>
+              <dd className={dashboardStyles.labelLarge}>–</dd>
+            </dl>
             <Carbon className={dashboardStyles.positionBottomLeft} size={32} />
             {pathIsAbsolute(libraryPath) && (
               <Launch className={dashboardStyles.positionBottomRight} size={20} />
@@ -201,8 +206,10 @@ const Asset = ({ libraryData }) => {
             border={['sm', 'md', 'lg', 'xlg']}
             href="https://carbondesignsystem.com"
           >
-            <p className={dashboardStyles.label}>Coming soon...</p>
-            <h3 className={dashboardStyles.labelLarge}>–</h3>
+            <dl>
+              <dt className={dashboardStyles.label}>Coming soon...</dt>
+              <dd className={dashboardStyles.labelLarge}>–</dd>
+            </dl>
             <Carbon className={dashboardStyles.positionBottomLeft} size={32} />
             {pathIsAbsolute('https://carbondesignsystem.com') && (
               <Launch className={dashboardStyles.positionBottomRight} size={20} />

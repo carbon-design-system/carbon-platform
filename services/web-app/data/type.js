@@ -12,6 +12,9 @@ export const type = {
   element: {
     name: 'Element'
   },
+  function: {
+    name: 'Function'
+  },
   pattern: {
     name: 'Pattern'
   },

@@ -22,7 +22,7 @@ export const Dashboard = ({ children, className }) => {
 
   return (
     <Grid
-      className={clsx(styles.container, className)}
+      className={clsx(styles.grid, className)}
       columns={columns}
       condensed={!isMd}
       narrow={isMd}

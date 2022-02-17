@@ -5,7 +5,11 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-.container {
+/*
+ * Layout
+ */
+
+.grid {
   position: relative;
 
   @include breakpoint-down(md) {
@@ -37,7 +41,29 @@
   }
 }
 
-.title {
+/*
+ * Position
+ */
+
+.position-bottom-left {
+  position: absolute;
+  bottom: $spacing-04;
+  left: $spacing-04;
+  color: $text-primary;
+}
+
+.position-bottom-right {
+  position: absolute;
+  right: $spacing-04;
+  bottom: $spacing-04;
+  color: $text-primary;
+}
+
+/*
+ * Content
+ */
+
+.label {
   padding-bottom: $spacing-01;
   color: $text-secondary;
   @include type-style('body-short-01');
@@ -48,39 +74,24 @@
   }
 }
 
-.subtitle {
+.meta {
   padding-bottom: $spacing-06;
   color: $text-primary;
   @include type-style('body-short-02');
 }
 
-.link-container {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  width: 100%;
-  height: $spacing-09;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: $spacing-04;
-  margin-bottom: 1px;
-  background-color: $border-interactive;
-  color: $background;
+.meta-link {
+  color: $link-primary;
   text-decoration: none;
+  @include type-style('body-short-02');
 
   &:hover,
   &:focus {
-    background: $link-primary-hover;
+    color: $link-primary-hover;
+    text-decoration: underline;
   }
 
-  &:active {
-    outline: 1px solid $background;
-    outline-offset: -3px;
-  }
-
-  @include breakpoint(lg) {
-    width: calc(50%);
+  &--large {
+    @include type-style('expressive-heading-04');
   }
 }

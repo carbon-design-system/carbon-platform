@@ -6,8 +6,8 @@
  */
 
 import { TextInput } from '@carbon/pictograms-react'
-import { Column, Grid } from '@carbon/react'
-import { ArrowRight, Launch } from '@carbon/react/icons'
+import { Button, Column, Grid } from '@carbon/react'
+import { ArrowRight, Carbon, Events, Launch } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
 import Image from 'next/image'
@@ -29,8 +29,10 @@ import { teams } from '@/data/teams'
 import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
-import styles from '@/pages/pages.module.scss'
+import pageStyles from '@/pages/pages.module.scss'
 import { getSlug } from '@/utils/slug'
+
+import styles from './[asset].module.scss'
 
 const InheritsLink = ({ data }) => {
   if (!data || !data.asset) return null
@@ -59,7 +61,7 @@ const Asset = ({ libraryData }) => {
 
   if (router.isFallback) {
     return (
-      <div className={styles.content}>
+      <div className={pageStyles.content}>
         <h1>Loading...</h1>
       </div>
     )
@@ -82,11 +84,7 @@ const Asset = ({ libraryData }) => {
     }
   ]
 
-  const assetPath = breadcrumbItems[1].path
-
-  const testPath = /^https?:\/\//i
-
-  const absoluteUrl = testPath.test(assetPath)
+  const libraryPath = `/assets/${getSlug(libraryData.content)}`
 
   const seo = {
     title: name,
@@ -94,120 +92,123 @@ const Asset = ({ libraryData }) => {
   }
 
   const { sponsor } = assetData.params
-  const SponsorIcon = teams[sponsor] && teams[sponsor].icon
+  const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
+
+  const pathIsAbsolute = (path) => {
+    const testPath = /^https?:\/\//i
+
+    return testPath.test(path)
+  }
 
   return (
     <>
       <PageHeader title={seo.title} pictogram={TextInput} />
       <PageBreadcrumb items={breadcrumbItems} />
-      <Dashboard className={styles.content}>
+      <Dashboard className={styles.dashboard}>
         <Column className={dashboardStyles.column}>
           <DashboardItem
+            as="dl"
             aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
             border={['sm']}
           >
-            <p className={dashboardStyles.title}>Library</p>
-            <h3 className={dashboardStyles.titleLarge}>{libraryData.content.name}</h3>
-            <Link href={assetPath}>
-              <a className={styles.metaLinkLarge}>{'v.' + libraryData.content.version}</a>
+            <dt className={dashboardStyles.label}>Library</dt>
+            <dd className={dashboardStyles.labelLarge}>{libraryData.content.name}</dd>
+            <Link href={libraryPath}>
+              <a className={clsx(dashboardStyles.metaLink, dashboardStyles.metaLinkLarge)}>
+                {`v${libraryData.content.version}`}
+              </a>
             </Link>
-            {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={64} />}
+            {SponsorIcon && (
+              <SponsorIcon
+                className={clsx(dashboardStyles.positionBottomLeft, styles.sponsorIcon)}
+                size={64}
+              />
+            )}
           </DashboardItem>
         </Column>
         <Column className={dashboardStyles.column} lg={2}>
           <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
-            <Grid columns={2} className={dashboardStyles.subgrid}>
-              <Column className={clsx(styles.metaInfo, dashboardStyles.subcolumn)}>
-                <p className={dashboardStyles.title}>Sponsor</p>
-                <Link href={assetPath}>
-                  <a className={styles.metaLinkDashboard}>{libraryData.content.name}</a>
-                </Link>
+            <Grid as="dl" columns={2} className={dashboardStyles.subgrid}>
+              <Column className={dashboardStyles.subcolumn}>
+                <dt className={dashboardStyles.label}>Sponsor</dt>
+                <dd className={dashboardStyles.meta}>
+                  {get(teams, `[${assetData.params.sponsor}].name`, 'Community maintained')}
+                </dd>
               </Column>
               <Column className={dashboardStyles.subcolumn}>
-                <p className={dashboardStyles.title}>Type</p>
-                <h3 className={dashboardStyles.subtitle}>
+                <dt className={dashboardStyles.label}>Type</dt>
+                <dd className={dashboardStyles.meta}>
                   {get(type, `[${assetData.content.type}].name`, '–')}
-                </h3>
+                </dd>
               </Column>
               <Column className={dashboardStyles.subcolumn}>
-                <p className={dashboardStyles.title}>Framework</p>
-                <h3 className={dashboardStyles.subtitle}>
+                <dt className={dashboardStyles.label}>Framework</dt>
+                <dd className={dashboardStyles.meta}>
                   {get(framework, `[${assetData.content.framework}].name`, '–')}
-                </h3>
+                </dd>
               </Column>
               <Column className={dashboardStyles.subcolumn}>
-                <p className={dashboardStyles.title}>Status</p>
-                <h3 className={styles.metaStatus}>
-                  <StatusIcon className={styles.metaIcon} status={assetData.content.status} />
+                <dt className={dashboardStyles.label}>Status</dt>
+                <dd className={dashboardStyles.meta}>
+                  <StatusIcon className={styles.statusIcon} status={assetData.content.status} />
                   {get(status, `[${assetData.content.status}].name`, '–')}
-                </h3>
+                </dd>
               </Column>
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
-                <p className={clsx(dashboardStyles.title)}>Demo links</p>
-                <Link href={assetPath}>
-                  <a className={styles.metaLinkDashboard}>{libraryData.content.name}</a>
-                </Link>
+                <dt className={clsx(dashboardStyles.label)}>Demos</dt>
+                <dd className={dashboardStyles.meta}>
+                  <Link href={libraryPath}>
+                    <a className={dashboardStyles.metaLink}>Coming soon...</a>
+                  </Link>
+                </dd>
               </Column>
               <Column className={dashboardStyles.subcolumn}>
-                <p className={dashboardStyles.title}>Tag</p>
-                <h3 className={dashboardStyles.subtitle}>{'some content'}</h3>
+                <dt className={dashboardStyles.label}>Tags</dt>
+                <dd className={dashboardStyles.meta}>Coming soon...</dd>
               </Column>
-            </Grid>
-            <Link href={assetPath}>
-              <a className={dashboardStyles.linkContainer}>
-                <div className={dashboardStyles.linkText}>Get the kits</div>
+              <Button className={styles.kitsButton}>
+                Coming soon...
                 <ArrowRight size={16} />
-              </a>
-            </Link>
+              </Button>
+            </Grid>
           </DashboardItem>
         </Column>
         <Column className={dashboardStyles.column} sm={0} md={1}>
-          <Link href={assetPath}>
-            <a className={styles.metaLink}>
-              <DashboardItem
-                aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-                border={['sm', 'md', 'lg', 'xlg']}
-                clickable
-              >
-                <p className={dashboardStyles.title}>Pull requests</p>
-                <h3 className={dashboardStyles.titleLarge}>{libraryData.response.size}</h3>
-                {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={32} />}
-                {absoluteUrl ? <Launch className={styles.metaRightAbsolute} size={20} /> : null}
-              </DashboardItem>
-            </a>
-          </Link>
+          <DashboardItem
+            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+            border={['sm', 'md', 'lg', 'xlg']}
+          >
+            <p className={dashboardStyles.label}>Coming soon...</p>
+            <h3 className={dashboardStyles.labelLarge}>–</h3>
+          </DashboardItem>
         </Column>
         <Column className={dashboardStyles.column} sm={0} md={1}>
-          <Link href={assetPath}>
-            <a className={styles.metaLink}>
-              <DashboardItem
-                aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-                border={['sm', 'md', 'lg', 'xlg']}
-                clickable
-              >
-                <p className={dashboardStyles.title}>Pull requests</p>
-                <h3 className={dashboardStyles.titleLarge}>{libraryData.response.size}</h3>
-                {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={32} />}
-                {absoluteUrl ? <Launch className={styles.metaRightAbsolute} size={20} /> : null}
-              </DashboardItem>
-            </a>
-          </Link>
+          <DashboardItem
+            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+            border={['sm', 'md', 'lg', 'xlg']}
+            href={libraryPath}
+          >
+            <p className={dashboardStyles.label}>Coming soon...</p>
+            <h3 className={dashboardStyles.labelLarge}>–</h3>
+            <Carbon className={dashboardStyles.positionBottomLeft} size={32} />
+            {pathIsAbsolute(libraryPath) && (
+              <Launch className={dashboardStyles.positionBottomRight} size={20} />
+            )}
+          </DashboardItem>
         </Column>
         <Column className={dashboardStyles.column} sm={0} md={1}>
-          <Link href={assetPath}>
-            <a className={styles.metaLink}>
-              <DashboardItem
-                aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-                border={['sm', 'md', 'lg', 'xlg']}
-                clickable
-              >
-                <p className={dashboardStyles.title}>Open issues</p>
-                <h3 className={dashboardStyles.titleLarge}>{libraryData.response.size}</h3>
-                {SponsorIcon && <SponsorIcon className={styles.metaAbsolute} size={32} />}
-                {absoluteUrl ? <Launch className={styles.metaRightAbsolute} size={20} /> : null}
-              </DashboardItem>
-            </a>
-          </Link>
+          <DashboardItem
+            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+            border={['sm', 'md', 'lg', 'xlg']}
+            href="https://carbondesignsystem.com"
+          >
+            <p className={dashboardStyles.label}>Coming soon...</p>
+            <h3 className={dashboardStyles.labelLarge}>–</h3>
+            <Carbon className={dashboardStyles.positionBottomLeft} size={32} />
+            {pathIsAbsolute('https://carbondesignsystem.com') && (
+              <Launch className={dashboardStyles.positionBottomRight} size={20} />
+            )}
+          </DashboardItem>
         </Column>
         <Column className={dashboardStyles.column} sm={0} md={1} lg={0}>
           <DashboardItem
@@ -217,7 +218,7 @@ const Asset = ({ libraryData }) => {
           />
         </Column>
       </Dashboard>
-      <div className={styles.content}>
+      <div className={pageStyles.content}>
         <NextSeo {...seo} />
         {inheritsData && <InheritsLink data={inheritsData} />}
         {imageData && (
@@ -230,7 +231,7 @@ const Asset = ({ libraryData }) => {
             blurDataURL={imageData.base64}
           />
         )}
-        <pre className={styles.data}>{JSON.stringify(libraryData, null, 2)}</pre>
+        <pre className={pageStyles.data}>{JSON.stringify(libraryData, null, 2)}</pre>
       </div>
     </>
   )

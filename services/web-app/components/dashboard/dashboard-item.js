@@ -8,6 +8,7 @@
 import { AspectRatio } from '@carbon/react'
 import clsx from 'clsx'
 import { isEmpty } from 'lodash'
+import Link from 'next/link'
 import PropTypes from 'prop-types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
@@ -15,10 +16,11 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import styles from './dashboard-item.module.scss'
 
 export const DashboardItem = ({
+  as: element = 'span',
   aspectRatio = {},
   border = [],
   children,
-  clickable,
+  href,
   spacer: showSpacer
 }) => {
   const isMd = useMatchMedia(mediaQueries.md)
@@ -34,32 +36,46 @@ export const DashboardItem = ({
   if (isLg) showBorder = border.includes('lg')
   if (isXlg) showBorder = border.includes('xlg')
 
-  const Element = isEmpty(aspectRatio) || ratio === 'none' ? 'div' : AspectRatio
+  const Element = isEmpty(aspectRatio) || ratio === 'none' ? element : AspectRatio
   const props = {}
 
   if (ratio) {
     props.ratio = ratio
+
+    if (element !== 'div') {
+      props.as = element
+    }
   }
 
-  return (
+  const renderElement = () => (
     <Element
       className={clsx(
-        styles.container,
-        showBorder && styles.containerBorder,
-        showSpacer && styles.containerSpacer,
-        clickable && styles.clickable
+        styles.element,
+        showBorder && styles.elementBorder,
+        showSpacer && styles.elementSpacer
       )}
       {...props}
     >
       {children}
     </Element>
   )
+
+  if (href) {
+    return (
+      <Link href={href}>
+        <a className={styles.anchor}>{renderElement()}</a>
+      </Link>
+    )
+  }
+
+  return renderElement()
 }
 
 DashboardItem.propTypes = {
+  as: PropTypes.string,
   aspectRatio: PropTypes.object,
   border: PropTypes.array,
   children: PropTypes.node,
-  clickable: PropTypes.bool,
+  href: PropTypes.string,
   spacer: PropTypes.any
 }

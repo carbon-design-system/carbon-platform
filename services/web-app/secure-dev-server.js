@@ -15,8 +15,10 @@ const { RunMode, getRunMode, loadEnvVars } = require('@carbon-platform/api/runti
 
 const { PORT } = loadEnvVars({ PORT: '443' })
 
+const hostname = 'localhost'
+
 const isDevMode = getRunMode() === RunMode.Dev
-const app = next({ dev: isDevMode })
+const app = next({ dev: isDevMode, hostname, port: PORT })
 const handle = app.getRequestHandler()
 const httpsOptions = {
   key: fs.readFileSync('./certificates/localhost.key'),

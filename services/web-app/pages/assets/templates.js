@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Dashboard } from '@carbon/pictograms-react'
+import { TextLayout } from '@carbon/pictograms-react'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
@@ -28,7 +28,7 @@ const Templates = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} pictogram={Dashboard} />
+      <PageHeader title={seo.title} pictogram={TextLayout} />
       <Catalog data={librariesData} type="template" />
     </>
   )

@@ -1,0 +1,29 @@
+//
+// Copyright IBM Corp. 2022, 2022
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+.dashboard {
+  margin: $spacing-07 0;
+}
+
+.sponsor-icon {
+  @include breakpoint-down(md) {
+    right: $spacing-04;
+    left: auto;
+  }
+}
+
+.versions-button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: none;
+  padding-right: $spacing-05;
+  @include breakpoint(lg) {
+    width: 50%;
+  }
+}

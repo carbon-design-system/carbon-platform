@@ -84,3 +84,15 @@ export const collapseAssetGroups = (asset, filter) => {
 
   return !filter.framework && canonicalLibrary
 }
+
+/**
+ * Gets the license from an asset
+ * @param {import('../typedefs').Asset} asset
+ * @returns {string} License
+ */
+export const getLicense = (asset) => {
+  const defaultLicense = asset.params.host === 'github.ibm.com' ? 'IBM internal' : 'No license'
+  const { license = defaultLicense } = asset.library ? asset.library.content : asset.content
+
+  return license
+}

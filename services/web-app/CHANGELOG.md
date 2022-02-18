@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.51](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.50...@carbon-platform/web-app@0.1.51) (2022-02-18)
+
+
+### Bug Fixes
+
+* **web-app:** add hostname and port to dev server ([9eb929d](https://github.com/carbon-design-system/carbon-platform/commit/9eb929d4f89566cc24ce02293eeee193f44e0fce))
+
 ### [0.1.50](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.49...@carbon-platform/web-app@0.1.50) (2022-02-16)
 
 

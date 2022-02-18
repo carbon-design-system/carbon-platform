@@ -19,3 +19,10 @@
     z-index: layout.z('overlay');
   }
 }
+
+.side-nav-heading {
+  padding-bottom: $spacing-03;
+  border-bottom: 1px solid $layer-accent;
+  margin: $spacing-08 $spacing-05 $spacing-03;
+  @include type-style('label-01');
+}

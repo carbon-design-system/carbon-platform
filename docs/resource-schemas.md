@@ -81,7 +81,7 @@ demoLinks:
 | `name` | Asset display name. Use sentence-case capitalization. | Required | String | – | – |
 | `description` | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization. | Required | String | – | – |
 | `status` | Asset consumption exptectations. See [asset status](#asset-status). | Required | String \| Object | `draft` | `draft`, `experimental`, `stable`, `deprecated` |
-| `type` | Asset primary categorization. See [asset type](#asset-type). | Required | String | – | `component`, `element`, `function`, `pattern`, `template` |
+| `type` | Asset primary categorization. See [asset type](#asset-type). | Required | String | – | `component`, `function`, `pattern`, `template` |
 | `tags` | Asset secondary categorizations. See [asset tags](#asset-tags). | Optional | Array | – | `content-block`, `content-element`, `contextual-navigation`, `data-display`, `data-visualization`, `form`, `input-control`, `media`, `shell`, `structural-navigation`, `system-feedback`, `comparison`, `connection`, `correlation`, `geographic-overlay`, `geospatial-distortion`, `part-to-whole`, `trend`, `hook`, `service`, `utility` |
 | `framework` | Asset primary technology dependency. See [asset framework](#asset-framework). | Optional | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
 | `platform` | Runtime where the asset can be used. See [asset platform](#asset-platform). | Optional | String | `web` | `cross-platform`, `web` |
@@ -122,11 +122,13 @@ status:
 Asset type is used for primary categorization in asset catalogs. The `type` key can have the
 following values:
 
+<!-- remove element asset type for first release -->
+<!-- | `element` | Styles, tokens, icons, and pictograms that are the direct translation of design language elements to digital mediums. | -->
+
 <!-- prettier-ignore -->
 | Type | Description |
 | --- | --- |
 | `component` | Building blocks that have been designed and coded to solve a specific user interface problem. |
-| `element` | Styles, tokens, icons, and pictograms that are the direct translation of design language elements to digital mediums. |
 | `function` | Code that performs a single action or actions and has no user interface. |
 | `pattern` | Best practice solution for how a user achieves a goal through reusable combinations of components and content with sequences and flows which are too complex to be encapsulated in a single component. |
 | `template` | Layout example that specifies patterns and component order and placement to compose a specific view. |

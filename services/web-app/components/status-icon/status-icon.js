@@ -12,6 +12,8 @@ import { status as statusMap } from '@/data/status'
 import styles from './status-icon.module.scss'
 
 const StatusIcon = ({ className, status }) => {
+  if (!status || !statusMap[status]) return null
+
   const { icon: Icon, name } = statusMap[status]
 
   if (!Icon) return null

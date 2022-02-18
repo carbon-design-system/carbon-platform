@@ -17,7 +17,7 @@ import FrameworkIcon from '@/components/framework-icon'
 import StatusIcon from '@/components/status-icon'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
-import { collapseAssetGroups, getBaseIdentifier } from '@/utils/schema'
+import { collapseAssetGroups, getBaseIdentifier, getLicense } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
@@ -123,13 +123,10 @@ const CatalogItemMeta = ({ asset, className, properties }) => {
   }
 
   const renderLicense = () => {
-    const defaultLicense = asset.params.host === 'github.ibm.com' ? 'IBM internal' : 'No license'
-    const { license = defaultLicense } = asset.library.content
-
     return (
       <>
         <Scales className={styles.metaIcon} size={16} />
-        <span>{license}</span>
+        <span>{getLicense(asset)}</span>
       </>
     )
   }

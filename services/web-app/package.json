@@ -19,15 +19,15 @@
     "dev:secure:clean": "npm run clean && npm run dev:secure",
     "lint": "next lint",
     "service:build": "npm run build",
-    "start": "next start",
+    "start": "node server.js",
     "test": "echo 'No tests defined yet!'"
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "dependencies": {
-    "@carbon/pictograms-react": "^11.21.0",
-    "@carbon/react": "^0.13.0",
+    "@carbon/pictograms-react": "^11.22.0",
+    "@carbon/react": "^0.14.0",
     "@octokit/core": "^3.5.1",
     "cache-manager": "^3.6.0",
     "cache-manager-fs-hash": "^1.0.0",
@@ -37,20 +37,20 @@
     "fs-extra": "^10.0.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
-    "minimatch": "^3.0.4",
-    "next": "^12.0.10",
-    "next-connect": "^0.11.0",
+    "minimatch": "^3.1.2",
+    "next": "^12.1.0",
+    "next-connect": "^0.12.1",
     "next-seo": "^5.1.0",
-    "plaiceholder": "^2.2.0",
+    "plaiceholder": "^2.3.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
-    "sharp": "^0.30.0",
+    "sharp": "^0.30.1",
     "slugify": "^1.6.5"
   },
   "devDependencies": {
     "css-loader": "^6.6.0",
-    "sass": "^1.49.7"
+    "sass": "^1.49.8"
   }
 }

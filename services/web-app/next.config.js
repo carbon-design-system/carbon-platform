@@ -10,6 +10,11 @@ const path = require('path')
 const libraries = require('./data/libraries')
 
 module.exports = {
+  experimental: {
+    outputStandalone: true,
+    // this includes files from the monorepo base two directories up
+    outputFileTracingRoot: path.join(__dirname, '..', '..')
+  },
   i18n: {
     locales: ['en-US'],
     defaultLocale: 'en-US'

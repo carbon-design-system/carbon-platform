@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.52](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.51...@carbon-platform/web-app@0.1.52) (2022-02-19)
+
+
+### Features
+
+* add dashboard and dashboard item components ([392e904](https://github.com/carbon-design-system/carbon-platform/commit/392e9043c38a960424c9dec083601edc0a8ce910))
+* add dashboard to library detail page ([9a0de29](https://github.com/carbon-design-system/carbon-platform/commit/9a0de293ce6073663ff6d15621c019bdbcd70cd5))
+* added link ([7f1f414](https://github.com/carbon-design-system/carbon-platform/commit/7f1f4140586c68e46c2d3347c8d8549343c32ea2))
+* dashboard style ([6b5a4c3](https://github.com/carbon-design-system/carbon-platform/commit/6b5a4c316b0c61c222075aef1778f9e2b5e4eceb))
+* fixed icon spacing ([0ce4035](https://github.com/carbon-design-system/carbon-platform/commit/0ce4035797050b66466828d66f017f25bd20f0fb))
+* hide unused nav links ([640b063](https://github.com/carbon-design-system/carbon-platform/commit/640b0637145fdab8aea7c711603754992f787f93))
+* latest style updates ([f48d2e3](https://github.com/carbon-design-system/carbon-platform/commit/f48d2e33c7a7c6d775ed2b0730483b22e45eb939))
+* need to clean up hover and border ([7cdad7f](https://github.com/carbon-design-system/carbon-platform/commit/7cdad7f4696cb0519c5f4b2a0573522b4fa8ff49))
+* need to clean up link button and state styles ([0a0081f](https://github.com/carbon-design-system/carbon-platform/commit/0a0081f57f2d687ae373b6ea10ad97643e6f4f9d))
+* need to fix hover top tiles ([ae5765e](https://github.com/carbon-design-system/carbon-platform/commit/ae5765ed13d3037dbb39438e3e280810da234795))
+* test for absolute path - temporary links ([a18c000](https://github.com/carbon-design-system/carbon-platform/commit/a18c000467a4cfdfdb33378fe02996a42e2e1839))
+* type specific page header pictogram ([92899b5](https://github.com/carbon-design-system/carbon-platform/commit/92899b5b788396719255db1a4674402415dc4546))
+* updated font size, icon size and proptypes ([7b94225](https://github.com/carbon-design-system/carbon-platform/commit/7b94225773b9ef976a496271cfe189633e7dc1c7))
+* updated link styles ([a6a5fc5](https://github.com/carbon-design-system/carbon-platform/commit/a6a5fc5e30deae617bfc6bcab1cd1bcd2e7a3d6d))
+* updated link styles v2 ([da82ee8](https://github.com/carbon-design-system/carbon-platform/commit/da82ee88299b1ec81c94f922189e15c7adb19432))
+* updated styles and cleaned up classNames ([4bbaaa3](https://github.com/carbon-design-system/carbon-platform/commit/4bbaaa35ed6c9c6b4c6ee484a57d3d38afe2a5b5))
+* updated styles and placeholder icons ([38d5937](https://github.com/carbon-design-system/carbon-platform/commit/38d5937a859535f5c96b0f542df66ea80de67814))
+
+
+### Bug Fixes
+
+* dashboard item semantics ([8b23f8f](https://github.com/carbon-design-system/carbon-platform/commit/8b23f8f34696c1d710cbe224193bbd83a745f68e))
+* **web-app:** remove cookie samesite attribute ([7c04293](https://github.com/carbon-design-system/carbon-platform/commit/7c042937ef85b929b052c28f4bb4ffc283470c73))
+
 ### [0.1.51](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.50...@carbon-platform/web-app@0.1.51) (2022-02-18)
 
 

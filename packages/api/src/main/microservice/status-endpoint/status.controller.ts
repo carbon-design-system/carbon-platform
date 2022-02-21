@@ -7,12 +7,18 @@
 import { Controller, Get, HttpCode } from '@nestjs/common'
 
 @Controller()
-class LivenessController {
+class StatusController {
   @Get('liveness')
   @HttpCode(204)
   public liveness() {
     return null
   }
+
+  @Get('readiness')
+  @HttpCode(204)
+  public readiness() {
+    return null
+  }
 }
 
-export { LivenessController }
+export { StatusController }

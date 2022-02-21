@@ -6,11 +6,11 @@
  */
 import { Module } from '@nestjs/common'
 
-import { LivenessController } from './liveness.controller'
+import { StatusController } from './status.controller'
 
 @Module({
-  controllers: [LivenessController]
+  controllers: [StatusController]
 })
-class LivenessModule {}
+class StatusModule {}
 
-export { LivenessModule }
+export { StatusModule }

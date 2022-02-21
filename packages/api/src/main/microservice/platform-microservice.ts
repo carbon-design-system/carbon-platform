@@ -20,7 +20,7 @@ import {
   Queue
 } from '../messaging'
 import { CONNECT_RETRY_INTERVAL, PORT } from './constants'
-import { LivenessModule } from './liveness-endpoint/liveness.module'
+import { StatusModule } from './status-endpoint/status.module'
 
 /**
  * An abstract class that wraps much of the boilerplate code needed to create, bind, and start a
@@ -84,9 +84,9 @@ abstract class PlatformMicroservice {
       }
     )
 
-    const livenessEndpoint = await NestFactory.create(LivenessModule)
+    const statusEndpoint = await NestFactory.create(StatusModule)
 
-    return Promise.all([microservice.listen(), livenessEndpoint.listen(PORT)])
+    return Promise.all([microservice.listen(), statusEndpoint.listen(PORT)])
   }
 
   /**

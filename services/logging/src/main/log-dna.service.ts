@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { LogLoggedMessage } from '@carbon-platform/api/logging'
+import { Nest } from '@carbon-platform/api/microservice'
 import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 import LogDna, { Logger } from '@logdna/logger'
-import { Injectable } from '@nestjs/common'
 
 import { CARBON_LOGDNA_ENDPOINT, CARBON_LOGDNA_KEY } from './constants'
 
@@ -15,7 +15,7 @@ import { CARBON_LOGDNA_ENDPOINT, CARBON_LOGDNA_KEY } from './constants'
  * An injectable service that talks directly to the LogDNA ingestion endpoint and can transmit log
  * data to it.
  */
-@Injectable()
+@Nest.Injectable()
 class LogDnaService {
   private readonly logDna?: Logger
 

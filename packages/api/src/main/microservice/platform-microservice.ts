@@ -4,21 +4,23 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { NestFactory } from '@nestjs/core'
+import { MicroserviceOptions, Transport } from '@nestjs/microservices'
+import amqp from 'amqplib'
+
 import {
   CARBON_MESSAGE_QUEUE_URL,
   DEFAULT_BIND_PATTERN,
   DEFAULT_EXCHANGE_OPTIONS,
   DEFAULT_EXCHANGE_TYPE,
   DEFAULT_QUEUE_OPTIONS,
+  DEFAULT_SOCKET_OPTIONS,
   EventMessage,
   QueryMessage,
   Queue
-} from '@carbon-platform/api/messaging'
-import { NestFactory } from '@nestjs/core'
-import { MicroserviceOptions, Transport } from '@nestjs/microservices'
-import amqp from 'amqplib'
-
-const CONNECT_RETRY_INTERVAL = 5000
+} from '../messaging'
+import { CONNECT_RETRY_INTERVAL, PORT } from './constants'
+import { StatusModule } from './status-endpoint/status.module'
 
 /**
  * An abstract class that wraps much of the boilerplate code needed to create, bind, and start a
@@ -51,7 +53,7 @@ abstract class PlatformMicroservice {
   private async connect(): Promise<amqp.Connection> {
     while (true) {
       try {
-        return await amqp.connect(CARBON_MESSAGE_QUEUE_URL)
+        return await amqp.connect(CARBON_MESSAGE_QUEUE_URL, DEFAULT_SOCKET_OPTIONS)
       } catch (e) {
         console.error('Could not connect to messaging service', e)
 
@@ -69,16 +71,22 @@ abstract class PlatformMicroservice {
    * **NOTE:** This method does not return.
    */
   public async start(): Promise<any> {
-    const app = await NestFactory.createMicroservice<MicroserviceOptions>(this.constructor, {
-      transport: Transport.RMQ,
-      options: {
-        urls: [CARBON_MESSAGE_QUEUE_URL],
-        queue: this.queueName,
-        queueOptions: this.queueOptions
+    const microservice = await NestFactory.createMicroservice<MicroserviceOptions>(
+      this.constructor,
+      {
+        transport: Transport.RMQ,
+        options: {
+          socketOptions: DEFAULT_SOCKET_OPTIONS,
+          queue: this.queueName,
+          queueOptions: this.queueOptions,
+          urls: [CARBON_MESSAGE_QUEUE_URL]
+        }
       }
-    })
+    )
 
-    return app.listen()
+    const statusEndpoint = await NestFactory.create(StatusModule)
+
+    return Promise.all([microservice.listen(), statusEndpoint.listen(PORT)])
   }
 
   /**

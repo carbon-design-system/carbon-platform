@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { PlatformController } from '../common/platform.controller'
+import { PlatformController } from '../'
 
 /**
  * A method decorator that calls the provided validator function against the input arguments to the

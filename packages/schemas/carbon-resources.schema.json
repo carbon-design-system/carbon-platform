@@ -169,7 +169,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [ "description", "name", "status", "type"]
+          "required": ["description", "name", "status", "type"]
         }
       }
     },

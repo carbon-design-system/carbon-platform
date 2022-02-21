@@ -15,7 +15,14 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-list.module.scss'
 
-const CatalogList = ({ assets, isGrid = false, page = 1, pageSize = 10 }) => {
+const CatalogList = ({
+  assetCounts,
+  assets,
+  filter = {},
+  isGrid = false,
+  page = 1,
+  pageSize = 10
+}) => {
   const isLg = useMatchMedia(mediaQueries.lg)
   const isNarrow = isGrid && isLg
 
@@ -31,7 +38,13 @@ const CatalogList = ({ assets, isGrid = false, page = 1, pageSize = 10 }) => {
       narrow={isNarrow}
     >
       {renderAssets.map((asset, i) => (
-        <CatalogItem asset={asset} key={`${i}-${getSlug(asset.content)}`} isGrid={isGrid && isLg} />
+        <CatalogItem
+          assetCounts={assetCounts}
+          asset={asset}
+          filter={filter}
+          key={`${i}-${getSlug(asset.content)}`}
+          isGrid={isGrid && isLg}
+        />
       ))}
       {(!renderAssets || renderAssets.length === 0) && (
         <Column className={clsx(styles.copy, isNarrow && styles.copyGrid)} sm={4} md={8} lg={12}>
@@ -48,7 +61,9 @@ const CatalogList = ({ assets, isGrid = false, page = 1, pageSize = 10 }) => {
 }
 
 CatalogList.propTypes = {
+  assetCounts: PropTypes.object,
   assets: PropTypes.arrayOf(assetPropTypes),
+  filter: PropTypes.object,
   isGrid: PropTypes.bool,
   page: PropTypes.number,
   pageSize: PropTypes.number

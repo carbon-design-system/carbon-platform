@@ -10,7 +10,7 @@ import expressSession from 'express-session'
 import path from 'path'
 
 import { getRunMode, RunMode } from '../runtime'
-import { CARBON_MONGO_DB_NAME, CARBON_MONGO_DB_URL, SESSION_SECRET } from './config/constants'
+import { CARBON_MONGO_DB_NAME, CARBON_MONGO_DB_URL, SESSION_SECRET } from './constants'
 import { User } from './interfaces'
 
 let storeInstance: expressSession.Store
@@ -43,7 +43,8 @@ async function createFileStore(): Promise<expressSession.Store> {
  */
 const getStore = async (): Promise<expressSession.Store> => {
   if (!storeInstance) {
-    if (getRunMode() === RunMode.Prod) {
+    // TODO: remove use of CARBON_USE_LOCAL_DB when mongo db is set up
+    if (getRunMode() === RunMode.Prod && process.env.CARBON_USE_LOCAL_DB !== '1') {
       storeInstance = await createMongoStore()
     } else {
       storeInstance = await createFileStore()

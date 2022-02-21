@@ -37,7 +37,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Build and run services in PROD mode by default. This var is propagated to all dependent builds,
 # but can be overridden
-ENV CARBON_RUN_MODE PROD
+ENV CARBON_RUN_MODE=PROD
 
 COPY package.json .
 COPY package-lock.json .

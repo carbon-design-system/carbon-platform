@@ -9,11 +9,11 @@ import { Column, Grid, Tag } from '@carbon/react'
 import { isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
 
-import { filters } from '@/data/filters'
+import { getFilters } from '@/data/filters'
 
 import styles from './catalog-filters.module.scss'
 
-const CatalogFilters = ({ filter, onFilter }) => {
+const CatalogFilters = ({ filter, initialFilter, onFilter }) => {
   if (isEmpty(filter)) return null
 
   return (
@@ -23,7 +23,7 @@ const CatalogFilters = ({ filter, onFilter }) => {
           {Object.keys(filter).map((item) =>
             filter[item].map((key, i) => (
               <Tag key={i} filter onClick={() => onFilter(item, key, 'remove')}>
-                {filters[item].values[key].name}
+                {getFilters(initialFilter)[item].values[key].name}
               </Tag>
             ))
           )}
@@ -35,6 +35,7 @@ const CatalogFilters = ({ filter, onFilter }) => {
 
 CatalogFilters.propTypes = {
   filter: PropTypes.object,
+  initialFilter: PropTypes.object,
   onFilter: PropTypes.func
 }
 

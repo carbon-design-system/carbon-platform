@@ -14,14 +14,9 @@ import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
  * @returns {RequestInit} request options
  */
 function getRequestOptions(req) {
-  const reqOptions = {
+  return {
     headers: { cookie: req.headers.cookie }
   }
-  if (getRunMode() === RunMode.Dev) {
-    const Agent = require('https').Agent
-    reqOptions.agent = new Agent({ rejectUnauthorized: false })
-  }
-  return reqOptions
 }
 
 /**
@@ -36,8 +31,10 @@ export async function retrieveUser(context) {
   }
   const sessionCookie = context.req.cookies?.['connect.sid']
   if (sessionCookie) {
+    const protocol =
+      getRunMode() === RunMode.Prod || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
     const userResponse = await fetch(
-      `https://localhost:${req.socket.localPort}/api/user`,
+      `${protocol}://localhost:${req.socket.localPort}/api/user`,
       getRequestOptions(req)
     )
     if (userResponse.ok) {

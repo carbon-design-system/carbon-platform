@@ -7,7 +7,7 @@ title: Day to day development
 Here are some of the normal tasks a developer would expect to run on a day-to-day basis while
 working on the Carbon Platform.
 
-> Note: The monorepo is using npm 7/8 "workspaces", which simplify the dependency management across
+> Note: The monorepo is using npm 8 "workspaces", which simplify the dependency management across
 > projects through the use of many top-level commands which target specific workspaces.
 
 ## Prerequisites
@@ -90,7 +90,7 @@ $ npx --workspaces --include-workspace-root ncu --upgrade --target=minor
 $ npm install
 ```
 
-> Note: `major` or `patch` can be used, depending on the objective.
+> Note: `major` or `patch` can also be used, depending on the objective.
 
 To update the node modules only for a specific workspace, from the top-level in the repo, run:
 

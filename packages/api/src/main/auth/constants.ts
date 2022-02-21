@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { loadEnvVars } from '../../runtime'
+import { Environment, getEnvironment, getRunMode, loadEnvVars, RunMode } from '../runtime'
 
 // we can dismiss generating and storing "strong" session secrets since
 // we're only storing session IDs in the cookie which we're matching
@@ -17,25 +17,41 @@ const {
   CARBON_IBM_ISV_CLIENT_ID,
   // Client secret tied to App registration on SSO provisioner (get this from dev team)
   CARBON_IBM_ISV_CLIENT_SECRET,
-  // ISV auth endpoint
-  CARBON_IBM_ISV_ENDPOINT,
+  // Strategy name that passport should use when authenticating (get this from dev team)
+  PASSPORT_STRATEGY_NAME,
   // URL of session storage DB
   CARBON_MONGO_DB_URL,
   // DB name for session storage
   CARBON_MONGO_DB_NAME
 } = loadEnvVars({
-  CARBON_IBM_ISV_ENDPOINT: 'prepiam.ice.ibmcloud.com',
-  CARBON_IBM_ISV_CLIENT_ID: 'none',
-  CARBON_IBM_ISV_CLIENT_SECRET: 'none',
+  PASSPORT_STRATEGY_NAME: 'custom',
+  CARBON_IBM_ISV_CLIENT_ID: '',
+  CARBON_IBM_ISV_CLIENT_SECRET: '',
   CARBON_MONGO_DB_URL: '',
   CARBON_MONGO_DB_NAME: ''
 })
 
+const OIDC_DISCOVERY_URL =
+  getRunMode() === RunMode.Prod && getEnvironment() === Environment.Production
+    ? 'TODO_ADD_PROD_VALUE_HERE'
+    : 'https://prepiam.ice.ibmcloud.com/v1.0/endpoint/default/.well-known/openid-configuration'
+
+const OIDC_REDIRECT_URI = (() => {
+  if (getRunMode() === RunMode.Dev) {
+    return 'https://localhost/api/auth-callback'
+  } else if (getEnvironment() === Environment.Test) {
+    return 'https://web-app.j73b4w218e4.us-south.codeengine.appdomain.cloud/api/auth-callback'
+  }
+  return 'https://next.carbondesignsystem.com/api/auth-callback'
+})()
+
 export {
   CARBON_IBM_ISV_CLIENT_ID,
   CARBON_IBM_ISV_CLIENT_SECRET,
-  CARBON_IBM_ISV_ENDPOINT,
   CARBON_MONGO_DB_NAME,
   CARBON_MONGO_DB_URL,
+  OIDC_DISCOVERY_URL,
+  OIDC_REDIRECT_URI,
+  PASSPORT_STRATEGY_NAME,
   SESSION_SECRET
 }

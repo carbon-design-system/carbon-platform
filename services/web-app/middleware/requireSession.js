@@ -27,15 +27,17 @@ export default function requireSession(needsUser = false) {
     .use(async (...args) => {
       const storeInstance = await store.getStore()
       expressSession({
-        store: storeInstance,
-        secret: SESSION_SECRET,
         cookie: {
+          httpOnly: true,
+          maxAge: 60 * 60 * 2 * 1000, // 2 hours
           path: '/',
-          secure: getRunMode() === RunMode.Prod,
-          maxAge: 60 * 60 * 2 * 1000 // 2 hours
+          secure: getRunMode() === RunMode.Prod
         },
+        proxy: true,
+        resave: false,
         saveUninitialized: false,
-        resave: false
+        secret: SESSION_SECRET,
+        store: storeInstance
       })(...args)
     })
     .use(async (...args) => (await getPassportInstance()).initialize()(...args))

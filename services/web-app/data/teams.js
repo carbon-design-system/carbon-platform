@@ -4,7 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Bee, Carbon, IbmCloud, IbmSecurity, Watson } from '@carbon/react/icons'
+import { Carbon, IbmCloud, IbmSecurity, Watson } from '@carbon/react/icons'
+import { Svg32CarbonForIbmDotcom, Svg32CarbonForIbmProducts } from '@carbon-platform/icons'
 
 /**
  * Teams are defined here for now, but in the future we will probably want these stored in our data-
@@ -17,7 +18,7 @@ export const teams = {
     name: 'Carbon'
   },
   'ibm-dotcom': {
-    icon: Bee,
+    icon: Svg32CarbonForIbmDotcom,
     name: 'IBM.com'
   },
   'ibm-cloud': {
@@ -28,12 +29,16 @@ export const teams = {
     icon: IbmSecurity,
     name: 'IBM Security'
   },
-  sterling: {
-    icon: Bee,
-    name: 'IBM Sterling'
+  'ai-apps': {
+    icon: Watson,
+    name: 'IBM AI Apps'
   },
   watson: {
     icon: Watson,
     name: 'IBM Watson'
+  },
+  'ibm-products': {
+    icon: Svg32CarbonForIbmProducts,
+    name: 'IBM Products'
   }
 }

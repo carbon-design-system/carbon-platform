@@ -47,6 +47,7 @@ export default function requireSession(needsUser = false) {
         res.status(404)
         res.end('not found')
       } else {
+        req.session.save()
         next?.()
       }
     })

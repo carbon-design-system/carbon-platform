@@ -17,6 +17,7 @@ module.exports = {
         'micromanage',
         'release',
         'search',
+        'schemas',
         'web-app'
       ]
     ],

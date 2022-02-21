@@ -1,5 +1,5 @@
 {
-  "name": "@carbon-platform/resource-schemas",
+  "name": "@carbon-platform/schemas",
   "version": "0.1.1",
   "description": "Schema files for indexing assets and libraries",
   "license": "Apache-2.0",

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.53](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.52...@carbon-platform/web-app@0.1.53) (2022-02-22)
+
+
+### Bug Fixes
+
+* **web-app:** avoid session expiry while actively in use ([df85c0e](https://github.com/carbon-design-system/carbon-platform/commit/df85c0ecf859c0496648e78d8c713e32b45d5db1))
+
 ### [0.1.52](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.51...@carbon-platform/web-app@0.1.52) (2022-02-19)
 
 

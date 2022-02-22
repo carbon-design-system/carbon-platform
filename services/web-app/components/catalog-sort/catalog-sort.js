@@ -11,12 +11,10 @@ import PropTypes from 'prop-types'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import useEventListener from '@/utils/use-event-listener'
-import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-sort.module.scss'
 
 const CatalogSort = ({ onSort, onView, sort, view }) => {
-  const isMd = useMatchMedia(mediaQueries.md)
   const containerRef = useRef(null)
   const [isSticky, setIsSticky] = useState(false)
 
@@ -47,7 +45,7 @@ const CatalogSort = ({ onSort, onView, sort, view }) => {
 
   return (
     <div className={clsx(styles.container, isSticky && styles.containerSticky)} ref={containerRef}>
-      <Grid className={styles.grid} condensed={!isMd} narrow={isMd}>
+      <Grid className={styles.grid} condensed>
         <Column className={styles.column} sm={4} md={8} lg={4}>
           <Dropdown
             id="catalog-sort"

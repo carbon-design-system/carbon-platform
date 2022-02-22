@@ -30,7 +30,7 @@ const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, s
   }
 
   return (
-    <Grid className={clsx(styles.container, className)} condensed={!isMd} narrow={isMd}>
+    <Grid className={clsx(styles.container, className)} condensed>
       <Column className={clsx(styles.column, styles.columnSearch)} sm={4} md={4} lg={8}>
         <Search
           id="catalog-search"

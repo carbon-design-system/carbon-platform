@@ -7,13 +7,17 @@
 
 .container {
   // position above CatalogSort
-  // override grid gutter on sm
+  // override carbon grid gutter
   position: sticky;
   z-index: 2;
   top: $spacing-09 + $spacing-05;
+  --cds-grid-gutter: 0;
   @include breakpoint-down(md) {
     top: $spacing-09;
-    --cds-grid-gutter: 0;
+  }
+  @include breakpoint(md) {
+    margin-right: -$spacing-05;
+    margin-left: -$spacing-05;
   }
 
   // gray background above search when scrolled
@@ -41,12 +45,6 @@
 }
 
 .column {
-  &:not(:last-child) {
-    @include breakpoint(md) {
-      margin-right: -$spacing-05;
-    }
-  }
-
   &:not(:first-child) {
     border-left: 1px solid $layer-accent;
   }

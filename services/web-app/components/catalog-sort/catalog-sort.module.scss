@@ -10,37 +10,23 @@
     position: sticky;
     z-index: 1;
     top: $spacing-09 + $spacing-05 + $spacing-09;
-  }
+    margin-right: -$spacing-05;
+    margin-left: -$spacing-05;
 
-  &::before {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: -$spacing-05;
-    content: '';
-    transition: box-shadow $fast-02 carbon--motion(standard, productive);
-  }
-
-  &--sticky::before {
-    @include breakpoint(md) {
+    &--sticky {
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
   }
 }
 
 .grid {
+  // override carbon grid gutter
   background: $layer-01;
+  --cds-grid-gutter: 0;
 }
 
 .column {
   background: $layer-01;
-
-  &:not(:last-child) {
-    @include breakpoint(lg) {
-      margin-right: -$spacing-05;
-    }
-  }
 
   &:not(:first-child) {
     border-left: 1px solid $layer-accent;

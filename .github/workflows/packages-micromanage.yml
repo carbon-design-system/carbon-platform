@@ -1,4 +1,4 @@
-name: packages/micromanage Publish
+name: Publish Micromanage
 on:
   push:
     tags:
@@ -27,3 +27,5 @@ jobs:
 
       - name: Publish 🚀
         run: node packages/micromanage publish @carbon-platform/micromanage-cli
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

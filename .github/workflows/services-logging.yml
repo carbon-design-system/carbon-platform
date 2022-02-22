@@ -1,4 +1,4 @@
-name: services/logging Image Build
+name: Publish Logging
 on:
   push:
     tags:

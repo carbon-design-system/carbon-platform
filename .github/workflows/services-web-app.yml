@@ -1,4 +1,4 @@
-name: services/web-app Image Build
+name: Publish Web App
 on:
   push:
     tags:

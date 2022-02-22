@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /*
  * Copyright IBM Corp. 2021, 2022
  *
@@ -7,9 +8,12 @@
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import PageHeaderLarge from '@/components/page-header-large/page-header-large'
 import { assetsNavData } from '@/data/nav-data'
+import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
-import styles from '@/pages/pages.module.scss'
+
+import AssetLandingPage from './asset-landing-page/asset-landing-page'
 
 const Index = () => {
   const { setNavData } = useContext(LayoutContext)
@@ -18,6 +22,11 @@ const Index = () => {
     title: 'Assets'
   }
 
+  const title = 'Building the future of our design system together'
+
+  const description =
+    'IBM teams collectively maintain thousands of reusable assets, such as components and patterns, that enable us to deliver better experiences, faster. But for designers and developers, it can be challenging to find the right assets that comply with platform requirements, are convenient to implement, and are consistent with design patterns across the company.'
+
   useEffect(() => {
     setNavData(assetsNavData)
   }, [setNavData])
@@ -25,7 +34,8 @@ const Index = () => {
   return (
     <>
       <NextSeo {...seo} />
-      <div className={styles.content}>Welcome to Assets!</div>
+      <PageHeaderLarge title={title} description={description} pictogram={type.element.icon} />
+      <AssetLandingPage />
     </>
   )
 }

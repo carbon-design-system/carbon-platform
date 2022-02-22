@@ -1,0 +1,56 @@
+//
+// Copyright IBM Corp. 2021, 2022
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+$page-header-height-mobile: $spacing-13 * 4.4;
+$page-header-height: $spacing-13 * 3.475;
+$background-header: $border-inverse;
+$container-padding-top-mobile: $spacing-09 - $spacing-03;
+$container-padding-top: $spacing-09 + $spacing-03;
+
+.container {
+  height: $page-header-height-mobile;
+  padding-top: $container-padding-top-mobile;
+  background: $background-header;
+
+  @include breakpoint(md) {
+    height: $page-header-height;
+    padding-top: $container-padding-top;
+  }
+
+  &::before {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    width: 100vw;
+    height: $page-header-height;
+    background: $background-header;
+    content: '';
+  }
+}
+
+.column {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+
+  &-last {
+    align-self: flex-end;
+  }
+}
+
+.title {
+  color: $text-inverse;
+  @include type-style('display-01', true);
+}
+
+.description {
+  padding-top: $spacing-06;
+  padding-bottom: $spacing-06;
+  color: $text-inverse;
+  @include type-style('body-long-02', true);
+}

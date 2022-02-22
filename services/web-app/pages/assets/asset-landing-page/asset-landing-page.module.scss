@@ -1,0 +1,136 @@
+//
+// Copyright IBM Corp. 2022, 2022
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+.page-description {
+  @include type-style('expressive-heading-04');
+
+  padding: $spacing-10 $spacing-05 $spacing-10 0;
+  @include breakpoint(md) {
+    padding: $spacing-10 $spacing-06 $spacing-10 0;
+  }
+  @include breakpoint(lg) {
+    padding-right: $spacing-05;
+  }
+  @include breakpoint(xlg) {
+    padding-right: $spacing-06;
+  }
+}
+
+.release-container {
+  padding: $spacing-08 $spacing-05 0 0;
+  background: $layer-01;
+
+  &::before {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: $layer-01;
+    content: '';
+  }
+
+  @include breakpoint(md) {
+    padding-right: 0;
+  }
+  @include breakpoint(lg) {
+    padding-right: $spacing-05;
+  }
+  @include breakpoint(xlg) {
+    padding-right: $spacing-06;
+  }
+}
+
+.highlights-container {
+  position: relative;
+  height: $spacing-13 * 1.3;
+  border-top: 1px solid $border-strong-01;
+  margin-right: -$spacing-05;
+  margin-left: -$spacing-05;
+
+  @include breakpoint(lg) {
+    height: $spacing-13 * 1.15;
+  }
+}
+
+.header {
+  position: relative;
+  padding: $spacing-07 $spacing-10 0 $spacing-05;
+  color: $text-primary;
+  @include type-style('expressive-heading-04');
+
+  &--release {
+    padding: $spacing-02 $spacing-10 0 0;
+    @include type-style('expressive-heading-03');
+  }
+
+  &--content {
+    padding: 0 0 $spacing-06 0;
+  }
+}
+
+.title {
+  position: relative;
+  padding-top: $spacing-07;
+
+  margin-left: -$spacing-04;
+  color: $text-primary;
+  @include type-style('expressive-heading-02');
+
+  @include breakpoint(lg) {
+    padding-left: $spacing-04;
+    margin-left: 0;
+  }
+
+  @include breakpoint(xlg) {
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
+
+.description {
+  position: relative;
+  padding: 0 $spacing-09 $spacing-08 0;
+  margin-left: -$spacing-04;
+
+  @include breakpoint(md) {
+    padding: 0 $spacing-04 $spacing-08 0;
+  }
+
+  @include breakpoint(lg) {
+    padding: 0 $spacing-04 $spacing-08 $spacing-04;
+    margin-left: 0;
+  }
+
+  @include breakpoint(xlg) {
+    padding: 0 0 $spacing-08 0;
+    margin-left: 0;
+  }
+
+  color: $text-primary;
+  @include type-style('body-long-02');
+
+  &--release {
+    @include type-style('expressive-heading-04');
+
+    @include breakpoint-down(md) {
+      padding-right: 0;
+    }
+  }
+}
+
+.content-container {
+  position: relative;
+  padding: $spacing-11 0 0 0;
+  background-color: $background;
+}
+
+.text {
+  @include type-style('body-long-02');
+
+  padding-bottom: $spacing-06;
+}

@@ -59,7 +59,7 @@ $ npm --workspace <workspace_path> install [--save-dev] some-node-package-name@l
 ```
 
 - `workspace_path` is the folder containing the package.json you wish to update. For example
-  `packages/logging`.
+  `services/logging`.
 - `--save-dev` is optional, depending on whether the dep is a production dep or only used during
   development/build.
 - Make sure to specify a package version or `@latest` so the dependency doesn't get installed with
@@ -178,7 +178,7 @@ npm run services:build
 One particular package or service:
 
 ```
-npm --workspace services/logging-service run build
+npm --workspace services/logging run build
 ```
 
 ### 3. Run unit tests
@@ -196,7 +196,7 @@ If you want to run tests for some, but not all workspaces in the repo, you can u
 the following:
 
 ```
-npm --workspace services/logging-service --workspace packages/logging run test
+npm --workspace services/logging --workspace packages/api run test
 ```
 
 ### 4. Make sure commits reference GitHub issues

@@ -25,6 +25,7 @@ jobs:
         with:
           fetch-depth: 0
           ssh-key: ${{ secrets.NIGHTLY_BUILD_DEPLOY_KEY }}
+          token: ${{ secrets.NIGHTLY_BUILD_BOT_TOKEN }}
 
       - name: Set up Git User 🤖
         run: |

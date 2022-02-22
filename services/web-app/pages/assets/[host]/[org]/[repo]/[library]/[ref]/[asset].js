@@ -33,23 +33,6 @@ import { getSlug } from '@/utils/slug'
 
 import styles from './[asset].module.scss'
 
-const InheritsLink = ({ data }) => {
-  if (!data || !data.asset) return null
-
-  const [libraryId] = data.asset.split('@')
-  const libraryRef = data.asset.slice(data.asset.indexOf('@') + 1, data.asset.lastIndexOf('/'))
-  const [assetId] = data.asset.split('/').reverse()
-
-  return (
-    <div>
-      Inherits{' '}
-      <Link href={`/assets/${libraryId}/${libraryRef || 'latest'}/${assetId}`}>
-        <a>{data.asset}</a>
-      </Link>
-    </div>
-  )
-}
-
 const Asset = ({ libraryData }) => {
   const { setNavData } = useContext(LayoutContext)
   const router = useRouter()
@@ -67,7 +50,7 @@ const Asset = ({ libraryData }) => {
   }
 
   const [assetData] = libraryData.assets
-  const { name, description, inherits: inheritsData, thumbnailData: imageData } = assetData.content
+  const { name, description, thumbnailData: imageData } = assetData.content
 
   const breadcrumbItems = [
     {
@@ -226,7 +209,6 @@ const Asset = ({ libraryData }) => {
       </Dashboard>
       <div className={pageStyles.content}>
         <NextSeo {...seo} />
-        {inheritsData && <InheritsLink data={inheritsData} />}
         {imageData && (
           <Image
             alt={`${name} thumbnail`}

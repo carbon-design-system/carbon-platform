@@ -40,7 +40,6 @@ export const assetContentPropTypes = PropTypes.shape({
     'design-only'
   ]),
   id: PropTypes.string.isRequired,
-  inherits: PropTypes.object,
   name: PropTypes.string.isRequired,
   platform: PropTypes.oneOf(['cross-platform', 'web']),
   private: PropTypes.bool,

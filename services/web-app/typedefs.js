@@ -44,6 +44,7 @@
  * @property {string} description - One-two sentence description
  * @property {string} externalDocsUrl - Absolute URL to externally-hosted documentation
  * @property {string} id - Unique identifier within the platform
+ * @property {string} inherits - Library id and optional version delineated by `@`
  * @property {"" | "Apache-2.0" | "MIT"} license - Open-source license
  * @property {string} name - Display name
  * @property {string} package - Code package name
@@ -57,8 +58,6 @@
  * @property {string} externalDocsUrl - Absolute URL to externally-hosted documentation
  * @property {"angular" | "react" | "react-native" | "svelte" | "vue" | "web-component" | "design-only"} framework - Asset framework
  * @property {string} id - Unique identifier within the asset's library
- * @property {Object} inherits - Inherits object
- * @property {string} inherits.asset - Inheritance reference
  * @property {string} name - Display name
  * @property {"cross-platform" | "web"} platform - Asset environment
  * @property {boolean} private - Exclude asset from catalogs

@@ -230,6 +230,7 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
           params: libraryParams,
           response,
           content: {
+            id: assetKey,
             ...asset,
             private: !!asset.private // default to false if not specified
           }

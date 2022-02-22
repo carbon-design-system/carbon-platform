@@ -20,6 +20,7 @@
     "packages/api",
     "packages/icons",
     "packages/micromanage",
+    "packages/schemas",
     "services/logging",
     "services/web-app"
   ],

@@ -37,8 +37,7 @@ async function handleDockerCommand(serviceName, opts) {
 
   // Ensure only services are built/pushed
   if (!service.path.startsWith('services/')) {
-    console.log(`Skipping non-service: ${serviceName}`)
-    return
+    throw new Error(`${serviceName} is not a service`)
   }
 
   const suffix = service.name.split('/').pop()

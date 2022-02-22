@@ -24,7 +24,7 @@
  * @property {Asset[]} assets - Library assets
  * @property {LibraryContent} content - Library content
  * @property {Params} params - Params used to fetch library content
- * @property {Object} response - GitHub API response from fetching carbon-library.yml file
+ * @property {Object} response - GitHub API response from fetching carbon.yml file
  */
 
 /**
@@ -36,7 +36,7 @@
  * @typedef {Object} Asset
  * @property {AssetContent} content - Asset content
  * @property {Params} params - Params used to fetch asset content
- * @property {Object} response - GitHub API response from fetching carbon-library.yml file
+ * @property {Object} response - GitHub API response from fetching carbon.yml file
  */
 
 /**

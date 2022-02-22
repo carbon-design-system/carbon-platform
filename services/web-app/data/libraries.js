@@ -354,14 +354,75 @@ const ossLibraries = [
 ]
 
 /**
+ * Libraries indexed using carbon.yml files (new schema pattern)
+ */
+const newSchemaLibraries = {
+  'ibmdotcom-react': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/react',
+    sponsor: 'ibm-dotcom',
+    group: ibmdotcomGroup
+  },
+  'ibmdotcom-web-components': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/web-components',
+    sponsor: 'ibm-dotcom',
+    group: ibmdotcomGroup
+  },
+  'ibmdotcom-services': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/services',
+    sponsor: 'ibm-dotcom'
+  },
+  'ibmdotcom-styles': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/styles',
+    sponsor: 'ibm-dotcom',
+    group: ibmdotcomGroup
+  },
+  'ibmdotcom-utilities': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/utilities',
+    sponsor: 'ibm-dotcom'
+  },
+  'test-lib-1': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'test-library',
+    path: '/lib1/src',
+    sponsor: 'ibm-dotcom'
+  },
+  'test-lib-2': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'test-library',
+    path: '/lib2/src',
+    sponsor: 'ibm-dotcom'
+  }
+}
+
+/**
  * Only use the `ossLibraries` data set if specified in the environment variable.
  */
-const libraryAllowList = Object.keys(libraries)
-  .filter((key) => (getRunMode() === RunMode.Dev ? ossLibraries.includes(key) : true))
-  .reduce((obj, key) => {
-    obj[key] = libraries[key]
-    return obj
-  }, {})
+const libraryAllowList =
+  process.env.USE_NEW_SCHEMA === '1'
+    ? newSchemaLibraries
+    : Object.keys(libraries)
+      .filter((key) => (getRunMode() === RunMode.Dev ? ossLibraries.includes(key) : true))
+      .reduce((obj, key) => {
+        obj[key] = libraries[key]
+        return obj
+      }, {})
 
 module.exports = {
   libraryAllowList

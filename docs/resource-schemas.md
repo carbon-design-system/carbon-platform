@@ -14,8 +14,8 @@ more, see "[Learn YAML in Y minutes](https://learnxinyminutes.com/docs/yaml)."
 ## Library schema
 
 Libraries are the means to contribute, install, and use one or many assets in products and digital
-experiences. To index your library with Carbon, create a `carbon-library.yml` metadata file and
-place it in the same directory as your library's `package.json` file.
+experiences. To index your library with Carbon, create a `carbon.yml` metadata file and place it in
+the same directory as your library's `package.json` file.
 
 **Example**
 
@@ -46,8 +46,8 @@ demoLinks:
 ## Asset schema
 
 Assets are reusable units of work that are used in products and digital experiences. Every asset
-belongs to a library. For each asset in a library, create a `carbon-asset.yml` metadata file in the
-same directory as the asset's source.
+belongs to a library. For each asset in a library, create a `carbon.yml` metadata file in the same
+directory as the asset's source.
 
 **Example**
 

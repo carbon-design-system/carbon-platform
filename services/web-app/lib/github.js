@@ -124,11 +124,11 @@ export const getLibraryData = async (params = {}) => {
     return null
   }
 
+  const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+
   /**
    * @type {import('../typedefs').LibraryContent}
    */
-  const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
-
   const { library } = content
 
   if (!library) {
@@ -212,11 +212,10 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
   let assets = []
 
   assetContentData.forEach((response) => {
-    /**
-     * @type {import('../typedefs').AssetContent}
-     */
     const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
-
+    /**
+     * @type {import('../typedefs').AssetContent[]}
+     */
     const { assets: libAssets } = content
 
     if (!libAssets || isEmpty(libAssets)) {

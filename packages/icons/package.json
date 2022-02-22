@@ -5,6 +5,7 @@
   "module": "dist/main/generated/index.js",
   "types": "dist/main/generated/index.d.ts",
   "license": "Apache-2.0",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
@@ -13,9 +14,6 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "build": "npm run clean && npm run build:svg && tsc",
     "build:svg": "svgr --out-dir src/main/generated src/main/svg",

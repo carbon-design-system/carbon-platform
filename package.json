@@ -19,6 +19,7 @@
   "workspaces": [
     "packages/api",
     "packages/icons",
+    "packages/micromanage",
     "services/logging",
     "services/web-app"
   ],
@@ -27,7 +28,7 @@
     "all:clean": "npm --workspaces run clean",
     "lint": "scripts/lint",
     "lint:fix": "scripts/lint_and_fix",
-    "micromanage:bootstrap": "node scripts/micromanage/scripts/bootstrap.js",
+    "micromanage:bootstrap": "node packages/micromanage/scripts/bootstrap.js",
     "packages:build": "npm --workspaces --if-present run package:build",
     "prepare": "if [ \"$CI\" != 'true' ]; then scripts/prepare; fi",
     "services:build": "npm --workspaces --if-present run service:build",

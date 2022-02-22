@@ -41,4 +41,4 @@ jobs:
         run: CI=true npm install
 
       - name: Version 📆
-        run: node scripts/micromanage version
+        run: node packages/micromanage version

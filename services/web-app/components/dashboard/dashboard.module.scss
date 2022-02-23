@@ -11,23 +11,17 @@
 
 .grid {
   position: relative;
+  grid-gap: 0;
 
-  @include breakpoint-down(md) {
-    grid-gap: 0;
-  }
-}
-
-.column {
   @include breakpoint(md) {
     margin-right: -$spacing-05;
+    margin-left: -$spacing-05;
   }
 }
 
 .subgrid {
-  @include breakpoint-down(md) {
-    margin-right: -$spacing-05;
-    margin-left: -$spacing-05;
-  }
+  margin-right: -$spacing-05;
+  margin-left: -$spacing-05;
 }
 
 .subcolumn {

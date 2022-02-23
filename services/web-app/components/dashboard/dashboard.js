@@ -21,12 +21,7 @@ export const Dashboard = ({ children, className }) => {
   if (isLg) columns = 3
 
   return (
-    <Grid
-      className={clsx(styles.grid, className)}
-      columns={columns}
-      condensed={!isMd}
-      narrow={isMd}
-    >
+    <Grid className={clsx(styles.grid, className)} columns={columns} condensed>
       {children}
     </Grid>
   )

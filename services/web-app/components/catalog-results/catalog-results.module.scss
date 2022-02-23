@@ -6,8 +6,11 @@
 //
 
 .container {
-  margin-top: $spacing-07;
-  margin-bottom: $spacing-05;
+  margin: $spacing-07 0 $spacing-05;
+  @include breakpoint(md) {
+    margin-right: -$spacing-05;
+    margin-left: -$spacing-05;
+  }
 }
 
 .results {

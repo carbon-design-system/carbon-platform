@@ -72,7 +72,7 @@ const Library = ({ libraryData, params }) => {
       <PageHeader title={seo.title} pictogram={FileBackup} />
       <PageBreadcrumb items={breadcrumbItems} />
       <Dashboard className={styles.dashboard}>
-        <Column className={dashboardStyles.column}>
+        <Column className={dashboardStyles.column} lg={1}>
           <DashboardItem
             aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
             border={['sm']}

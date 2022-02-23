@@ -5,10 +5,13 @@
 // LICENSE file in the root directory of this source tree.
 //
 
+$highlights-container-medium: $spacing-13 * 1.3;
+$highlights-container-large: $spacing-13 * 1.15;
+
 .page-description {
   @include type-style('expressive-heading-04');
 
-  padding: $spacing-10 $spacing-05 $spacing-10 0;
+  padding: $spacing-10 $spacing-05;
   @include breakpoint(md) {
     padding: $spacing-10 $spacing-06 $spacing-10 0;
   }
@@ -21,39 +24,38 @@
 }
 
 .release-container {
-  padding: $spacing-08 $spacing-05 0 0;
-  background: $layer-01;
-
-  &::before {
-    position: absolute;
-    z-index: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: $layer-01;
-    content: '';
-  }
+  padding: $spacing-08 $spacing-05 0 $spacing-05;
+  // background: $layer-01;
 
   @include breakpoint(md) {
     padding-right: 0;
+    padding-left: 0;
   }
   @include breakpoint(lg) {
     padding-right: $spacing-05;
   }
   @include breakpoint(xlg) {
-    padding-right: $spacing-06;
+    padding-right: $spacing-07;
   }
 }
 
 .highlights-container {
   position: relative;
-  height: $spacing-13 * 1.3;
   border-top: 1px solid $border-strong-01;
-  margin-right: -$spacing-05;
-  margin-left: -$spacing-05;
+
+  @include breakpoint-down(md) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include breakpoint(md) {
+    height: $highlights-container-medium;
+    margin-right: -$spacing-05;
+    margin-left: -$spacing-05;
+  }
 
   @include breakpoint(lg) {
-    height: $spacing-13 * 1.15;
+    height: $highlights-container-large;
   }
 }
 
@@ -64,22 +66,26 @@
   @include type-style('expressive-heading-04');
 
   &--release {
-    padding: $spacing-02 $spacing-10 0 0;
+    padding: $spacing-02 $spacing-10 $spacing-06 0;
     @include type-style('expressive-heading-03');
   }
 
   &--content {
-    padding: 0 0 $spacing-06 0;
+    padding: $spacing-11 0 $spacing-06 0;
   }
 }
 
 .title {
   position: relative;
   padding-top: $spacing-07;
+  padding-left: $spacing-05;
 
-  margin-left: -$spacing-04;
   color: $text-primary;
   @include type-style('expressive-heading-02');
+
+  @include breakpoint(md) {
+    margin-left: -$spacing-05;
+  }
 
   @include breakpoint(lg) {
     padding-left: $spacing-04;
@@ -88,14 +94,12 @@
 
   @include breakpoint(xlg) {
     padding-left: 0;
-    margin-left: 0;
   }
 }
 
 .description {
   position: relative;
-  padding: 0 $spacing-09 $spacing-08 0;
-  margin-left: -$spacing-04;
+  padding: 0 $spacing-05 $spacing-08 $spacing-05;
 
   @include breakpoint(md) {
     padding: 0 $spacing-04 $spacing-08 0;
@@ -103,12 +107,10 @@
 
   @include breakpoint(lg) {
     padding: 0 $spacing-04 $spacing-08 $spacing-04;
-    margin-left: 0;
   }
 
   @include breakpoint(xlg) {
     padding: 0 0 $spacing-08 0;
-    margin-left: 0;
   }
 
   color: $text-primary;
@@ -119,18 +121,35 @@
 
     @include breakpoint-down(md) {
       padding-right: 0;
+      padding-left: 0;
     }
   }
 }
 
 .content-container {
   position: relative;
-  padding: $spacing-11 0 0 0;
+  padding: 0 $spacing-05 $spacing-08 $spacing-05;
   background-color: $background;
+
+  @include breakpoint(md) {
+    padding: 0 0 $spacing-08 0;
+  }
 }
 
 .text {
   @include type-style('body-long-02');
 
   padding-bottom: $spacing-06;
+}
+
+.link {
+  color: $link-primary;
+  text-decoration: none;
+  @include type-style('body-long-02');
+
+  &:hover,
+  &:focus {
+    color: $link-primary-hover;
+    text-decoration: underline;
+  }
 }

@@ -5,7 +5,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Grid } from '@carbon/react'
+import { Column, Grid, Link } from '@carbon/react'
+import { ArrowRight } from '@carbon/react/icons'
 import clsx from 'clsx'
 
 import styles from './asset-landing-page.module.scss'
@@ -75,8 +76,24 @@ const AssetLandingPage = () => {
           </p>
           <p className={clsx(styles.text, styles.text)}>
             {
-              'Ensure your components, patterns, and functions are indexed in our unified asset discovery experience by March 30th.'
+              'To make this happen, we ask that you follow the instructions below to document your library’s metadata in the stuctured format we have provided.'
             }
+          </p>
+          <Link href="https://www.google.com" renderIcon={ArrowRight}>
+            <a className={styles.link}>{'Get started'}</a>
+          </Link>
+          <h1 className={clsx(styles.header, styles.headerContent)}>{'Platform roadmap'}</h1>
+          <p className={clsx(styles.text, styles.text)}>
+            {'Progress on the following releases are documented in '}
+            <Link href="https://www.google.com">
+              <a className={styles.link}>{'Github'}</a>
+            </Link>
+            {
+              ', along with milestones, estimated dates, and descriptions of high level outcomes. For a visual overview of the following releases and their epics, view our roadmap in '
+            }
+            <Link href="https://www.google.com">
+              <a className={styles.link}>{'Airtable.'}</a>
+            </Link>
           </p>
         </Column>
       </Grid>

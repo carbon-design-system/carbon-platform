@@ -14,11 +14,13 @@ $container-padding-top: $spacing-09 + $spacing-03;
 .container {
   height: $page-header-height-mobile;
   padding-top: $container-padding-top-mobile;
+  padding-left: $spacing-05;
   background: $background-header;
 
   @include breakpoint(md) {
     height: $page-header-height;
     padding-top: $container-padding-top;
+    padding-left: 0;
   }
 
   &::before {
@@ -46,11 +48,18 @@ $container-padding-top: $spacing-09 + $spacing-03;
 .title {
   color: $text-inverse;
   @include type-style('display-01', true);
+  @include breakpoint-down(md) {
+    margin-bottom: -$spacing-10;
+  }
 }
 
 .description {
   padding-top: $spacing-06;
-  padding-bottom: $spacing-06;
+  padding-bottom: 0;
   color: $text-inverse;
   @include type-style('body-long-02', true);
+
+  @include breakpoint(md) {
+    padding-bottom: $spacing-06;
+  }
 }

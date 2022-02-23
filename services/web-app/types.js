@@ -24,7 +24,7 @@ export const libraryContentPropTypes = PropTypes.shape({
   license: PropTypes.oneOf(['', 'Apache-2.0', 'MIT']),
   name: PropTypes.string.isRequired,
   package: PropTypes.string,
-  private: PropTypes.bool,
+  noIndex: PropTypes.bool,
   version: PropTypes.string
 })
 
@@ -42,7 +42,7 @@ export const assetContentPropTypes = PropTypes.shape({
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   platform: PropTypes.oneOf(['cross-platform', 'web']),
-  private: PropTypes.bool,
+  noIndex: PropTypes.bool,
   status: PropTypes.oneOf(['draft', 'experimental', 'stable', 'deprecated']),
   thumbnailPath: PropTypes.string,
   type: PropTypes.oneOf(['element', 'component', 'pattern', 'function', 'layout'])

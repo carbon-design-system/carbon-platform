@@ -97,7 +97,7 @@ library:
 | `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, code package, and other information. | Optional | String | `/package.json` | – |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation. | Optional | String | – | – |
 | `demoLinks` | Links to demo sites. See [demo links](#demo-links). | Optional | Array | – | – |
-| `private` | If set to `true`, the global catalogs will exclude the library. | Optional | Boolean | `false` | – |
+| `noIndex` | If set to `true`, the global catalogs will exclude the library. | Optional | Boolean | `false` | – |
 
 #### Library inheritance
 
@@ -170,11 +170,11 @@ assets:
 | `type` | Asset primary categorization. See [asset type](#asset-type). | Required | String | Yes |  – | `component`, `function`, `pattern`, `template` |
 | `tags` | Asset secondary categorizations. See [asset tags](#asset-tags). | Optional | Array | Yes |  – | `content-block`, `content-element`, `contextual-navigation`, `data-display`, `data-visualization`, `form`, `input-control`, `media`, `shell`, `structural-navigation`, `system-feedback`, `comparison`, `connection`, `correlation`, `geographic-overlay`, `geospatial-distortion`, `part-to-whole`, `trend`, `hook`, `service`, `utility` |
 | `framework` | Asset primary technology dependency. See [asset framework](#asset-framework). | Optional | String | No |  `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
-| `platform` | Runtime where the asset can be used. See [asset platform](#asset-platform). | Optional | String | No |  `web` | `cross-platform`, `web` |
+| `platform` | Runtime where the asset can be used. See [asset platform](#asset-platform). | Optional | String | Yes |  `web` | `cross-platform`, `web` |
 | `thumbnailPath` | Relative location of the asset's thumbnail image. | Optional | String | Yes |  – | – |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation. | Optional | String | No |  – | – |
 | `demoLinks` | Links to demo sites. See [demo links](#demos-links). | Optional | Array | No |  – | – |
-| `private` | If set to `true`, the global catalogs will exclude the asset. | Optional | Boolean | No |  `false` | – |
+| `noIndex` | If set to `true`, the global catalogs will exclude the asset. | Optional | Boolean | No |  `false` | – |
 
 #### Asset status
 

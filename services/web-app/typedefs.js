@@ -48,7 +48,7 @@
  * @property {"" | "Apache-2.0" | "MIT"} license - Open-source license
  * @property {string} name - Display name
  * @property {string} package - Code package name
- * @property {boolean} private - Exclude library from catalogs
+ * @property {boolean} noIndex - Exclude library from catalogs
  * @property {string} version - Package version
  */
 
@@ -60,7 +60,7 @@
  * @property {string} id - Unique identifier within the asset's library
  * @property {string} name - Display name
  * @property {"cross-platform" | "web"} platform - Asset environment
- * @property {boolean} private - Exclude asset from catalogs
+ * @property {boolean} noIndex - Exclude asset from catalogs
  * @property {"draft" | "experimental" | "stable" | "deprecated"} status - Consumption expectation
  * @property {PlaceholderImage} thumbnailData - Thumbnail image source, dimensions, and placeholder
  * @property {string} thumbnailPath - Asset's thumbnail image relative to its GitHub source

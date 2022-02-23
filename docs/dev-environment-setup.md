@@ -12,6 +12,7 @@ productivity. Here's some that the Carbon Platform team uses:
 - **Moonlight II** (atomiks.moonlight)
 - **Night Owl** (sdras.night-owl)
 - **Sapphire Theme** (tyriar.theme-sapphire)
+- **Yonce** (minamarkham.yonce-theme)
 
 The Carbon Design System also has a set of product icons you can use in VS Code.
 

@@ -42,7 +42,9 @@ assets:
   card:
     name: Card
     type: component
-    status: stable
+    status:
+      key: draft
+      note: more info on this component's status
     framework: react
     platform: web
     description:

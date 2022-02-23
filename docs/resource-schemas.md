@@ -296,8 +296,6 @@ have the following values:
 | `cross-platform` | Runs natively on iOS, Android, and/or desktop. |
 | `web` | Runs on the web. |
 
-# <<<<<<< HEAD
-
 #### Asset inheritance
 
 Each asset can inherit properties from another asset. For example, if there are multiple
@@ -338,8 +336,6 @@ assets:
     status: stable
     framework: react
 ```
-
-> > > > > > > main
 
 ## Shared schemas
 

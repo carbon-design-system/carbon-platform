@@ -200,7 +200,7 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
     <Column as="li" sm={4} md={8} lg={12}>
       <Link href={anchorHref}>
         <a className={anchorStyles} {...anchorProps}>
-          <Grid condensed={!isMd} narrow={isMd}>
+          <Grid condensed>
             <Column className={clsx(styles.column, styles.columnImage)} md={4}>
               <AspectRatio ratio={imageAspectRatio()}>
                 <CatalogItemImage asset={asset} />

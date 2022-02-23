@@ -24,7 +24,7 @@ const CatalogList = ({
   pageSize = 10
 }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
-  const isNarrow = isGrid && isLg
+  const isLgGrid = isGrid && isLg
 
   const start = (page - 1) * pageSize
   const end = start + pageSize
@@ -32,11 +32,7 @@ const CatalogList = ({
   const renderAssets = assets.slice(start, end)
 
   return (
-    <Grid
-      as="ul"
-      className={clsx(styles.container, isNarrow && styles.containerGrid)}
-      narrow={isNarrow}
-    >
+    <Grid as="ul" className={clsx(styles.container, isLgGrid && styles.containerGrid)}>
       {renderAssets.map((asset, i) => (
         <CatalogItem
           assetCounts={assetCounts}
@@ -47,7 +43,7 @@ const CatalogList = ({
         />
       ))}
       {(!renderAssets || renderAssets.length === 0) && (
-        <Column className={clsx(styles.copy, isNarrow && styles.copyGrid)} sm={4} md={8} lg={12}>
+        <Column className={clsx(styles.copy, isLgGrid && styles.copyGrid)} sm={4} md={8} lg={12}>
           <h2 className={styles.heading}>No results found</h2>
           <p className={styles.paragraph}>
             {

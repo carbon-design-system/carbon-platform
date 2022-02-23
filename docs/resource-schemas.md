@@ -58,8 +58,8 @@ A resource file can contain a library, an object of assets or both.
 <!-- prettier-ignore -->
 | Key| Description | Required | Type | Default | Valid values |
 | --- | --- | --- | --- | --- | --- |
-| `library` | Object containing library details. See [Library Schema](#library-schema) for more info. | Optional | Object | – | – |
-| `assets` | Object containing 1+ assets organized by Id. See [Asset Schema](#asset-schema) for more info. | Optional | Object | – | – |
+| `library` | Object containing library details. See [library schema](#library-schema) for more info. | Optional | Object | – | – |
+| `assets` | Object containing one or more assets organized by `id`. See [asset schema](#asset-schema) for more info. | Optional | Object | – | – |
 
 ## Library schema
 
@@ -112,11 +112,13 @@ There are two requirements for an asset to inherit another asset.
 1. The inheriting asset needs its library to specify the `inherits` key with the value being the
    base library's `id` and optionally its version delineated by `@`. E.g. `inherits: carbon-styles`
    or `inherits: carbon-styles@0.1.23`.
-1. The asset `id`s need to match between the library and the library that it's inheriting.
+1. The asset `id`s need to match between the library and the library that it's inheriting. This is
+   used to both inherit schema keys, and also collapse similar assets in the catalogs if no
+   framework filter has been set.
 
 After doing so, some asset keys will be inherited by default. See the [asset keys](#asset-keys)
-table. If don't want to inherit something that is inherited by default, you can specifiy the asset
-key to override the inherited default.
+table. If you don't want to inherit something that is inherited by default, you can specifiy the
+asset key to override the inherited default.
 
 ## Asset schema
 
@@ -124,10 +126,10 @@ Assets are reusable units of work that are used in products and digital experien
 belongs to a library.
 
 - For each asset in a library, create a `carbon.yml` metadata file in the same directory as the
-  asset's source and place the asset details inside of the `assets` object with the asset id as the
-  key.
+  asset's source and place the asset details inside of the `assets` object with the asset `id` as
+  the key.
 - For directories that contain multiple assets, just add each asset as a singular entry to the
-  `assets` object with the asset id as the key.
+  `assets` object with the asset `id` as the key.
 
 **Example**
 
@@ -296,47 +298,6 @@ have the following values:
 | `cross-platform` | Runs natively on iOS, Android, and/or desktop. |
 | `web` | Runs on the web. |
 
-#### Asset inheritance
-
-Each asset can inherit properties from another asset. For example, if there are multiple
-implementations of a component for different JavaScript frameworks, it's common that there's an
-underlying library and asset that contains shared usage guidance, design specs, and styling.
-Defining the inheritance relationship allows us to have a single source of truth for the shared
-content and resources, and allows each inheriting asset (e.g. implementation per framework) to
-specify its versioned adherance of the underlying asset.
-
-When inheriting another asset, you need to specify the fully qualified asset name (library `id`,
-library `version` or its repo's branch, asset `id`) and what properties you'd like to inherit.
-
-For the value of the `inherits` key, you can set the following keys.
-
-<!-- prettier-ignore -->
-| Inherits | Description | Required | Type | Default |
-| --- | --- | --- | --- | --- |
-| `asset` | Fully qualified asset name with the format `[library id]/[asset id]` or `[library id]@[repo ref]/[asset id]`. | Required | String | – |
-| `primary` | Set to `true` if this asset inheriting another asset is the canonical implementation. This is used to collapse similar assets in the catalogs when a `framework` filter has not been applied. | Optional | Boolean | `false` |
-| `properties` | Asset keys to inherit. | Required | Array | – |
-
-**Example**
-
-carbon.yml
-
-```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas/carbon-resources.schema.json
-assets:
-  accordion:
-    inherits:
-      asset: 'carbon-styles@v11.0.3/accordion'
-      properties:
-        - name
-        - description
-        - thumbnailPath
-        - type
-        - platform
-    status: stable
-    framework: react
-```
-
 ## Shared schemas
 
 The following properties are used in multiple schemas.
@@ -373,7 +334,3 @@ For the value of the `demoLinks` array, you can set the following keys.
 
 Libraries and assets have `id`s to uniquely identify each resource and establish relationships
 between resources. More guidance around format and absolute identifiers coming here soon!
-
-- Asset `id`s for framework-specific libraries should match across libraries so we can optimize how
-  we surface those assets in the catalogs. E.g. all of the libraries that implement Carbon's text
-  input component should consistently use the `text-input` component `id`.

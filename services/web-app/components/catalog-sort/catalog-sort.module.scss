@@ -17,6 +17,11 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
   }
+
+  // override carbon width to align icon
+  :global(.cds--list-box__menu-icon) {
+    width: auto;
+  }
 }
 
 .grid {

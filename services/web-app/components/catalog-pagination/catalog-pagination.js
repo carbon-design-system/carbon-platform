@@ -8,8 +8,6 @@ import { Column, Grid, Pagination } from '@carbon/react'
 import PropTypes from 'prop-types'
 import { assetPropTypes } from 'types'
 
-import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
-
 import styles from './catalog-pagination.module.scss'
 
 const CatalogPagination = ({
@@ -19,16 +17,8 @@ const CatalogPagination = ({
   setPage,
   setPageSize
 }) => {
-  const isMd = useMatchMedia(mediaQueries.md)
-
-  /**
-   * @todo the Pagination component is missing icons for next page and previous page using the
-   * latest `@carbon/react@0.11.0`. This has been reported:
-   * {@link https://github.com/carbon-design-system/carbon/discussions/10247}.
-   */
-
   return (
-    <Grid className={styles.container} condensed={!isMd} narrow={isMd}>
+    <Grid className={styles.container} condensed>
       <Column className={styles.column} sm={4} md={8} lg={12}>
         <Pagination
           onChange={({ page, pageSize }) => {
@@ -42,6 +32,7 @@ const CatalogPagination = ({
           pageSize={currentPageSize}
           pageSizes={[30, 60, 120, 240]}
           totalItems={assets.length}
+          size="lg"
         />
       </Column>
     </Grid>

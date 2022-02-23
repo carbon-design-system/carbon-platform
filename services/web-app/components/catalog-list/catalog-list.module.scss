@@ -7,11 +7,19 @@
 
 .container {
   background: $background;
+  @include breakpoint(md) {
+    margin-right: -$spacing-05;
+    margin-left: -$spacing-05;
+  }
 
   &--grid {
     margin-top: $spacing-05;
     margin-bottom: $spacing-05;
     row-gap: $spacing-05;
+    --cds-grid-gutter: 1rem;
+    @include breakpoint(md) {
+      margin-right: 0;
+    }
   }
 }
 

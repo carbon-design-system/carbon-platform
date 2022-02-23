@@ -26,9 +26,6 @@
     @include breakpoint-down(md) {
       display: none;
     }
-    @include breakpoint(md) {
-      margin-right: calc(#{-$spacing-05} + 1px);
-    }
   }
 }
 
@@ -50,10 +47,6 @@
 
   &:not(.anchor--grid) {
     border-top: 1px solid $layer-accent;
-    @include breakpoint(md) {
-      padding-left: $spacing-05;
-      margin-left: -$spacing-05;
-    }
   }
 }
 

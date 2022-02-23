@@ -14,7 +14,7 @@ import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
 
 /**
  * Validates the route's parameters and returns an object that also includes the library's slug as
- * well as path to the directory that contains the carbon-library.yml. Returns an empty object if
+ * well as path to the directory that contains the carbon.yml. Returns an empty object if
  * not found. Does not validate ref, so people can set their own branch / tag / commit.
  * @param {import('../typedefs').Params} params - Partially-complete parameters
  * @returns {Promise<import('../typedefs').Params>} Complete parameters
@@ -115,21 +115,27 @@ export const getLibraryData = async (params = {}) => {
     response = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
       owner: libraryParams.org,
       repo: libraryParams.repo,
-      path: removeLeadingSlash(`${libraryParams.path}/carbon-library.yml`),
+      path: removeLeadingSlash(`${libraryParams.path}/carbon.yml`),
       ref: libraryParams.ref
     })
   } catch (err) {
     return null
   }
 
+  const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+
   /**
    * @type {import('../typedefs').LibraryContent}
    */
-  const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+  const { library } = content
+
+  if (!library) {
+    return null
+  }
 
   const assets = await getLibraryAssets(params, true)
 
-  const packageJsonContent = await getPackageJsonContent(params, content.packageJsonPath)
+  const packageJsonContent = await getPackageJsonContent(params, library.packageJsonPath)
 
   const filteredAssets = libraryParams.asset
     ? assets.filter((asset) => getSlug(asset.content) === libraryParams.asset)
@@ -140,8 +146,8 @@ export const getLibraryData = async (params = {}) => {
     response,
     content: {
       ...packageJsonContent,
-      ...content, // spread last to use schema description if set
-      private: !!content.private // default to false if not specified
+      ...library, // spread last to use schema description if set
+      private: !!library.private // default to false if not specified
     },
     assets: filteredAssets
   }
@@ -188,7 +194,7 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
       (file) =>
         removeLeadingSlash(file.path).startsWith(
           removeLeadingSlash(addTrailingSlash(libraryParams.path))
-        ) && file.path.endsWith('carbon-asset.yml')
+        ) && file.path.endsWith('carbon.yml')
     )
     .map((file) => {
       return getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
@@ -201,27 +207,40 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
 
   const assetContentData = await Promise.all(assetContentPromises)
 
-  const assets = assetContentData
-    .map((response) => {
-      /**
-       * @type {import('../typedefs').AssetContent}
-       */
-      const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+  let assets = []
 
-      return {
-        params: libraryParams,
-        response,
-        content: {
-          ...content,
-          private: !!content.private // default to false if not specified
+  assetContentData.forEach((response) => {
+    const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+    /**
+     * @type {import('../typedefs').AssetContent[]}
+     */
+    const { assets: libAssets } = content
+
+    if (!libAssets || isEmpty(libAssets)) {
+      return []
+    }
+
+    assets.push(
+      ...Object.keys(libAssets).map((assetKey) => {
+        const asset = libAssets[assetKey]
+        return {
+          params: libraryParams,
+          response,
+          content: {
+            id: assetKey,
+            ...asset,
+            private: !!asset.private // default to false if not specified
+          }
         }
-      }
-    })
-    .filter((asset) => {
-      // if fetching a specific asset, only return that
+      })
+    )
+  })
 
-      return libraryParams.asset ? getSlug(asset.content) === libraryParams.asset : true
-    })
+  assets = assets.filter((asset) => {
+    // if fetching a specific asset, only return that
+
+    return libraryParams.asset ? getSlug(asset.content) === libraryParams.asset : true
+  })
 
   const inheritedAssets = inheritContent ? await getInheritedAssets(assets) : []
 

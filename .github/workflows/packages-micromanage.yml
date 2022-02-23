@@ -1,4 +1,4 @@
-name: packages/micromanage Publish
+name: Publish Micromanage
 on:
   push:
     tags:
@@ -21,9 +21,12 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Bootstrap Micromanage 🥾
         run: npm run micromanage:bootstrap
 
       - name: Publish 🚀
         run: node packages/micromanage publish @carbon-platform/micromanage-cli
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

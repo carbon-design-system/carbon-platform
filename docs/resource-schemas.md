@@ -11,24 +11,78 @@ in the website and other services.
 Schemas are applied through metadata files written in YAML. If you're new to YAML and want to learn
 more, see "[Learn YAML in Y minutes](https://learnxinyminutes.com/docs/yaml)."
 
+**Example**
+
+carbon.yml
+
+```yml
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas/carbon-resources.schema.json
+library:
+  id: carbon-react
+  name: Carbon React
+  description: React implementation of Carbon Components
+  demoLinks:
+    - type: storybook
+      name: Storybook
+      action: link
+      url: https://react.carbondesignsystem.com
+assets:
+  accordion:
+    name: Accordion
+    description:
+      An accordion is a vertically stacked list of headers that reveal or hide associated sections
+      of content.
+    status: stable
+    type: component
+    tags:
+      - content-element
+      - data-display
+    framework: react
+    platform: web
+  card:
+    name: Card
+    type: component
+    status: stable
+    framework: react
+    platform: web
+    description:
+      Cards are considered “workhorse” components because of their versatility. They provide
+      effective calls to action, and the various designs available work with a wide range of
+      content.
+```
+
+## Resource schema keys
+
+A resource file can contain a library, an object of assets or both.
+
+<!-- prettier-ignore -->
+| Key| Description | Required | Type | Default | Valid values |
+| --- | --- | --- | --- | --- | --- |
+| `library` | Object containing library details. See [Library Schema](#library-schema) for more info. | Optional | Object | – | – |
+| `assets` | Object containing 1+ assets organized by Id. See [Asset Schema](#asset-schema) for more info. | Optional | Object | – | – |
+
 ## Library schema
 
 Libraries are the means to contribute, install, and use one or many assets in products and digital
-experiences. To index your library with Carbon, create a `carbon-library.yml` metadata file and
-place it in the same directory as your library's `package.json` file.
+experiences. To index your library with Carbon, create a `carbon.yml` metadata file and place it in
+the same directory as your library's `package.json` file.
 
 **Example**
 
+carbon.yml
+
 ```yml
-id: carbon-react
-name: Carbon React
-description: React implementation of Carbon Components
-inherits: carbon-styles@0.1.23
-demoLinks:
-  - type: storybook
-    name: Storybook
-    action: link
-    url: https://react.carbondesignsystem.com
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas/carbon-resources.schema.json
+library:
+  id: carbon-react
+  name: Carbon React
+  description: React implementation of Carbon Components
+  inherits: carbon-styles@0.1.23
+  demoLinks:
+    - type: storybook
+      name: Storybook
+      action: link
+      url: https://react.carbondesignsystem.com
 ```
 
 ### Library keys
@@ -67,30 +121,39 @@ key to override the inherited default.
 ## Asset schema
 
 Assets are reusable units of work that are used in products and digital experiences. Every asset
-belongs to a library. For each asset in a library, create a `carbon-asset.yml` metadata file in the
-same directory as the asset's source.
+belongs to a library.
+
+- For each asset in a library, create a `carbon.yml` metadata file in the same directory as the
+  asset's source and place the asset details inside of the `assets` object with the asset id as the
+  key.
+- For directories that contain multiple assets, just add each asset as a singular entry to the
+  `assets` object with the asset id as the key.
 
 **Example**
 
+carbon.yml
+
 ```yml
-id: accordion
-name: Accordion
-description:
-  An accordion is a vertically stacked list of headers that reveal or hide associated sections of
-  content.
-status: stable
-type: component
-tags:
-  - content-element
-  - data-display
-framework: react
-platform: web
-thumbnailPath: /docs/accordion-thumbnail.png
-demoLinks:
-  - type: storybook
-    name: Storybook
-    action: link
-    url: https://react.carbondesignsystem.com/?path=/story/components-accordion--accordion
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas/carbon-resources.schema.json
+assets:
+  accordion:
+    name: Accordion
+    description:
+      An accordion is a vertically stacked list of headers that reveal or hide associated sections
+      of content.
+    status: stable
+    type: component
+    tags:
+      - content-element
+      - data-display
+    framework: react
+    platform: web
+    thumbnailPath: /docs/accordion-thumbnail.png
+    demoLinks:
+      - type: storybook
+        name: Storybook
+        action: link
+        url: https://react.carbondesignsystem.com/?path=/story/components-accordion--accordion
 ```
 
 ### Asset keys
@@ -131,7 +194,11 @@ been deprecated.
 
 **Example**
 
+carbon.yml
+
 ```yml
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas/carbon-resources.schema.json
+---
 status:
   key: experimental
   note: Additional usage guidance is coming soon.
@@ -229,6 +296,51 @@ have the following values:
 | `cross-platform` | Runs natively on iOS, Android, and/or desktop. |
 | `web` | Runs on the web. |
 
+# <<<<<<< HEAD
+
+#### Asset inheritance
+
+Each asset can inherit properties from another asset. For example, if there are multiple
+implementations of a component for different JavaScript frameworks, it's common that there's an
+underlying library and asset that contains shared usage guidance, design specs, and styling.
+Defining the inheritance relationship allows us to have a single source of truth for the shared
+content and resources, and allows each inheriting asset (e.g. implementation per framework) to
+specify its versioned adherance of the underlying asset.
+
+When inheriting another asset, you need to specify the fully qualified asset name (library `id`,
+library `version` or its repo's branch, asset `id`) and what properties you'd like to inherit.
+
+For the value of the `inherits` key, you can set the following keys.
+
+<!-- prettier-ignore -->
+| Inherits | Description | Required | Type | Default |
+| --- | --- | --- | --- | --- |
+| `asset` | Fully qualified asset name with the format `[library id]/[asset id]` or `[library id]@[repo ref]/[asset id]`. | Required | String | – |
+| `primary` | Set to `true` if this asset inheriting another asset is the canonical implementation. This is used to collapse similar assets in the catalogs when a `framework` filter has not been applied. | Optional | Boolean | `false` |
+| `properties` | Asset keys to inherit. | Required | Array | – |
+
+**Example**
+
+carbon.yml
+
+```yml
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas/carbon-resources.schema.json
+assets:
+  accordion:
+    inherits:
+      asset: 'carbon-styles@v11.0.3/accordion'
+      properties:
+        - name
+        - description
+        - thumbnailPath
+        - type
+        - platform
+    status: stable
+    framework: react
+```
+
+> > > > > > > main
+
 ## Shared schemas
 
 The following properties are used in multiple schemas.
@@ -239,7 +351,11 @@ Libraries and assets can specify links to demo sites.
 
 **Example**
 
+carbon.yml
+
 ```yml
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas/carbon-resources.schema.json
+---
 demoLinks:
   - type: storybook
     name: Storybook

@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '@/contexts/auth'
 import { isValidIbmEmail } from '@/utils/string'
 
-import styles from './PageNotFound.module.scss'
+import styles from './page-not-found.module.scss'
 
 export const PageNotFound = () => {
   const [isAuthorized, setisAuthorized] = useState(false)
@@ -26,14 +26,14 @@ export const PageNotFound = () => {
 
   return (
     <Grid className={styles.grid}>
-      <Column className={styles.column} sm={4} md={6} lg={6} xlg={6} max={6}>
+      <Column className={styles.column} sm={4} md={8} lg={6}>
         <h1 className={styles.title}>Page not found.</h1>
         {!isAuthorized && (
           <>
-            <h1 className={styles.title}>Log in to view all pages.</h1>
-            <Grid columns={3}>
-              <Column sm={3} md={2} lg={2} xlg={2} max={2}>
-                <Button className={styles.loginButton} as="a" href="/api/login">
+            <h2 className={styles.title}>Log in to view all pages.</h2>
+            <Grid>
+              <Column sm={4} md={4} lg={4}>
+                <Button className={styles.button} as="a" href="/api/login">
                   Log in
                   <ArrowRight size={16} />
                 </Button>

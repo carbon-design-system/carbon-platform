@@ -12,13 +12,15 @@
 .grid {
   margin-top: $spacing-10;
   @include breakpoint-down(md) {
-    padding-right: calc($spacing-05 + var(--cds-grid-gutter) / 2);
-    padding-left: calc($spacing-05 + var(--cds-grid-gutter) / 2);
+    padding-right: $spacing-05;
+    padding-left: $spacing-05;
   }
 }
 
-.loginButton {
+// override carbon max-width and padding-right
+.button {
   width: 100%;
   max-width: none;
+  padding-right: $spacing-05;
   margin-top: $spacing-07;
 }

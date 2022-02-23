@@ -16,11 +16,6 @@ const login = requireSession().get(
       delete req.session.next
     }
 
-    if (!shouldUseOpenIdStrategy()) {
-      res.redirect('/api/auth-callback')
-      res.end('')
-    }
-
     let refererUrl
     try {
       refererUrl = new URL(req.headers.referer)
@@ -38,6 +33,11 @@ const login = requireSession().get(
       ) {
         req.session.next = refererUrl
       }
+    }
+
+    if (!shouldUseOpenIdStrategy()) {
+      res.redirect('/api/auth-callback')
+      res.end('')
     }
 
     next()

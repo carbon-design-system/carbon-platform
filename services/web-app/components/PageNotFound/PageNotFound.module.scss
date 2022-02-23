@@ -1,0 +1,24 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.title {
+  @include type-style('display-01', true);
+}
+
+.grid {
+  margin-top: $spacing-10;
+  @include breakpoint-down(md) {
+    padding-right: calc($spacing-05 + var(--cds-grid-gutter) / 2);
+    padding-left: calc($spacing-05 + var(--cds-grid-gutter) / 2);
+  }
+}
+
+.loginButton {
+  width: 100%;
+  max-width: none;
+  margin-top: $spacing-07;
+}

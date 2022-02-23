@@ -29,19 +29,17 @@ export const PageNotFound = () => {
       <Column className={styles.column} sm={4} md={6} lg={6} xlg={6} max={6}>
         <h1 className={styles.title}>Page not found.</h1>
         {!isAuthorized && (
-          <Grid>
-            <Column sm={4} md={8} lg={12} xlg={12} max={12}>
-              <h1 className={styles.title}>Log in to view all pages.</h1>
-              <Grid columns={3}>
-                <Column sm={3} md={2} lg={2} xlg={2} max={2}>
-                  <Button className={styles.loginButton} as="a" href="/api/login">
-                    Log in
-                    <ArrowRight size={16} />
-                  </Button>
-                </Column>
-              </Grid>
-            </Column>
-          </Grid>
+          <>
+            <h1 className={styles.title}>Log in to view all pages.</h1>
+            <Grid columns={3}>
+              <Column sm={3} md={2} lg={2} xlg={2} max={2}>
+                <Button className={styles.loginButton} as="a" href="/api/login">
+                  Log in
+                  <ArrowRight size={16} />
+                </Button>
+              </Column>
+            </Grid>
+          </>
         )}
       </Column>
     </Grid>

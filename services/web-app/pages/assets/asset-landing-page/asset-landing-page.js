@@ -5,7 +5,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Grid, Link } from '@carbon/react'
+import { AspectRatio, Column, Grid, Link } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
 import clsx from 'clsx'
 
@@ -36,8 +36,86 @@ const AssetLandingPage = () => {
     }
   ]
 
+  const pageVersionReleases = [
+    {
+      version: 'v0.1',
+      targetRelease: 'Target release:',
+      date: 'February 27',
+      title: 'Standardize assets and libraries',
+      subtitle: '',
+      description:
+        'This private beta is the start to standardizing Carbon so we can bring everything together as one system. This release is focused on helping PAL maintainers classify libraries and assets through the application of a common schema. This release also prototypes asset discovery improvements as Carbon gets indexed through the application of the schema.',
+      bulletPoints: [],
+      image: '',
+      imageTitle: 'v0.1 User experience:',
+      imageDescription: 'Catalog assets link out to existing PAL sites'
+    },
+    {
+      version: 'v0.2',
+      targetRelease: 'Target release:',
+      date: 'March 27',
+      subtitle: '',
+      title: 'For contributors and maintainers:',
+      description:
+        'A common schema will help PAL maintainers more easily manage their assets, keep content fresh in a live index, and add version control to their libraries.',
+      image: '',
+      imageTitle: 'v0.2 User experience:',
+      imageDescription: 'Lorem Ipsum'
+    },
+    {
+      version: 'v1.0',
+      targetRelease: 'Target release:',
+      date: 'May 9',
+      title: 'General Availability',
+      subtitle: '',
+      description:
+        "The platform's first major release will help system users discover and learn about all the assets and libraries in the system with confidence in their completeness, who maintains them, and how to use them. System users can access documentation for all indexed assets and libraries without leaving the platform.",
+      bulletPoints: [
+        'New login capabilities to view IBM internal content',
+        'Global asset catalog no longer uses external links to legacy docs sites'
+      ],
+      image: '',
+      imageTitle: 'v1.0 User experience',
+      imageDescription: 'Lorem Ipsum'
+    },
+    {
+      version: 'v1.1',
+      targetRelease: 'Target release:',
+      date: 'June',
+      title: 'Explore with confidence',
+      subtitle: 'This release will fully take the following Hill:',
+      description:
+        "An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can discover and learn about resources [standards and components/patterns] in the system with confidence in their completeness, who maintains them and where they're used.",
+      bulletPoints: [
+        'New standards added to the site',
+        'New code package and component usage analytics'
+      ],
+      image: '',
+      imageTitle: 'v1.1 User experience:',
+      imageDescription: 'Lorem Ipsum'
+    },
+    {
+      version: 'v2.0',
+      targetRelease: 'Target Release:',
+      date: 'Q3',
+      title: 'System of systems',
+      subtitle: "The platform's second major release will take the following Hills:",
+      description:
+        'Contribute with ease An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can create, document, share new resources [standards and components/patterns] to the system without Design Program Office (DPO) involvement or coding a documentation website. Team experience An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can consume any applicable and versioned resources [standards and components/patterns] for their team, in a single, curated experience. This evolves the platform into a system of systems, with:',
+      bulletPoints: [
+        'Pattern and Asset Library (PAL) sites migrated as local systems',
+        "PAL sites sunset with redirects to Carbon's website",
+        'Resource cross-linking among standards, libraries, assets',
+        'Visual content authoring experience with less reliance on markdown'
+      ],
+      image: '',
+      imageTitle: 'v2.0 User experience:',
+      imageDescription: 'Lorem Ipsum'
+    }
+  ]
+
   return (
-    <>
+    <div className={styles.content}>
       <Grid>
         <Column sm={4} md={8} lg={8} xlg={7}>
           <p className={styles.pageDescription}>{pageDescription}</p>
@@ -97,7 +175,54 @@ const AssetLandingPage = () => {
           </p>
         </Column>
       </Grid>
-    </>
+      {pageVersionReleases.map((versionRelease, i) => (
+        <Grid
+          className={clsx(styles.highlightsContainer, styles.highlightsContainerVersion)}
+          key={i}
+        >
+          <Column md={8} lg={4} xlg={4} key={i}>
+            <div className={clsx(styles.header, styles.headerVersion)}>
+              {versionRelease.version}
+            </div>
+            <div className={clsx(styles.header, styles.headerTargetRelease)}>
+              {versionRelease.targetRelease}
+            </div>
+            <div className={clsx(styles.header, styles.headerDate)}>{versionRelease.date}</div>
+          </Column>
+          <Column md={8} lg={8} xlg={7}>
+            <div className={clsx(styles.title, styles.titleVersion)}>{versionRelease.title}</div>
+            <div className={styles.subtitle}>
+              {versionRelease.subtitle ? versionRelease.subtitle : null}
+            </div>
+            <div
+              className={clsx(
+                versionRelease.subtitle
+                  ? styles.versionDescription
+                  : styles.versionDescriptionPaddingNone
+              )}
+            >
+              {versionRelease.description}
+            </div>
+            <ul className={styles.bulletpoints}>
+              {versionRelease.bulletPoints
+                ? versionRelease.bulletPoints.map((bulletPoint, e) => {
+                  return <li key={e}>{'– ' + bulletPoint}</li>
+                })
+                : null}
+            </ul>
+            <div className={styles.versionImage}>
+              <div>
+                <AspectRatio ratio="16x9"></AspectRatio>
+              </div>
+              <div className={styles.imageTextContainer}>
+                <div className={styles.imageTitle}>{versionRelease.imageTitle}</div>
+                <div className={styles.imageDescription}>{versionRelease.imageDescription}</div>
+              </div>
+            </div>
+          </Column>
+        </Grid>
+      ))}
+    </div>
   )
 }
 

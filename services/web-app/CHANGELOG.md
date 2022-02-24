@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.56](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.55...@carbon-platform/web-app@0.1.56) (2022-02-24)
+
+
+### Bug Fixes
+
+* narrow grid in catalog search sort results and filter ([e81a149](https://github.com/carbon-design-system/carbon-platform/commit/e81a149d047a4c76c0fb0a041d9aa0092726aa78))
+* **web-app:** dashboard grid narrow mode ([7139385](https://github.com/carbon-design-system/carbon-platform/commit/7139385f871e48a40058d3aa15496384f76c2e8e))
+* **web-app:** redirect to previous page on local login ([b2852a4](https://github.com/carbon-design-system/carbon-platform/commit/b2852a4135b8e7e08885ae9ac58cd0d356520fae))
+* **web-app:** replace narrow grid with overrides ([512c9c3](https://github.com/carbon-design-system/carbon-platform/commit/512c9c3c5b0369753dfac7e83b204504add6ca0d))
+
 ### [0.1.55](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.54...@carbon-platform/web-app@0.1.55) (2022-02-23)
 
 ### [0.1.54](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.53...@carbon-platform/web-app@0.1.54) (2022-02-22)

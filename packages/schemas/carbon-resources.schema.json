@@ -24,10 +24,30 @@
               "description": "Asset description ideally between 50-160 characters in length. Use sentence-case capitalization."
             },
             "status": {
-              "type": "string",
-              "default": "draft",
-              "enum": ["deprecated", "draft", "experimental", "stable"],
-              "description": "Used to set consumption expectations."
+              "oneOf": [
+                {
+                  "type": "string",
+                  "default": "draft",
+                  "enum": ["deprecated", "draft", "experimental", "stable"]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string",
+                      "default": "draft",
+                      "enum": ["deprecated", "draft", "experimental", "stable"]
+                    },
+                    "note": {
+                      "type": "string",
+                      "description": "Explains the key. This is often used to communicate the remaining effort to get something from draft or experimental to stable, estimated stability dates, and alternative assets to use when the asset has been deprecated."
+                    }
+                  },
+                  "required": ["key", "note"],
+                  "additionalProperties": false
+                }
+              ],
+              "description": "Used to set consumption expectations and the likelihood of future changes."
             },
             "type": {
               "type": "string",
@@ -130,7 +150,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["description", "name", "status", "type"]
+          "required": ["status"]
         }
       }
     },

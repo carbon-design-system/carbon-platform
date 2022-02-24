@@ -6,7 +6,8 @@
  */
 
 import { Button, Column, Grid } from '@carbon/react'
-import { ArrowRight, Carbon, Events, Launch } from '@carbon/react/icons'
+import { ArrowRight, Events, Launch } from '@carbon/react/icons'
+import { Svg32Github } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
 import Link from 'next/link'
@@ -177,7 +178,7 @@ const Asset = ({ libraryData }) => {
               <dt className={dashboardStyles.label}>Coming soon...</dt>
               <dd className={dashboardStyles.labelLarge}>–</dd>
             </dl>
-            <Carbon className={dashboardStyles.positionBottomLeft} size={32} />
+            <Svg32Github className={dashboardStyles.positionBottomLeft} />
             {pathIsAbsolute(libraryPath) && (
               <Launch className={dashboardStyles.positionBottomRight} size={20} />
             )}
@@ -193,7 +194,7 @@ const Asset = ({ libraryData }) => {
               <dt className={dashboardStyles.label}>Coming soon...</dt>
               <dd className={dashboardStyles.labelLarge}>–</dd>
             </dl>
-            <Carbon className={dashboardStyles.positionBottomLeft} size={32} />
+            <Svg32Github className={dashboardStyles.positionBottomLeft} />
             {pathIsAbsolute('https://carbondesignsystem.com') && (
               <Launch className={dashboardStyles.positionBottomRight} size={20} />
             )}

@@ -7,7 +7,7 @@
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import { PageNotFound } from '@/components/page-not-found/page-not-found'
+import PageNotFound from '@/components/page-not-found'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 

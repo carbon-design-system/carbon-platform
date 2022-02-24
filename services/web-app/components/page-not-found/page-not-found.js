@@ -32,7 +32,7 @@ export const PageNotFound = () => {
           <>
             <h2 className={styles.title}>Log in to view all pages.</h2>
             <Grid>
-              <Column sm={4} md={4} lg={4}>
+              <Column sm={4}>
                 <Button className={styles.button} as="a" href="/api/login">
                   Log in
                   <ArrowRight size={16} />
@@ -45,3 +45,5 @@ export const PageNotFound = () => {
     </Grid>
   )
 }
+
+export default PageNotFound

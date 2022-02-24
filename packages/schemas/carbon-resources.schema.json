@@ -92,49 +92,10 @@
               "type": "string",
               "description": "Absolute URL to externally-hosted documentation."
             },
-            "private": {
+            "noIndex": {
               "type": "boolean",
               "default": false,
               "description": "If set to true, the catalogs will exclude the asset."
-            },
-            "inherits": {
-              "type": "object",
-              "properties": {
-                "asset": {
-                  "type": "string",
-                  "description": "Fully qualified asset name with the format [library id]/[asset id] or [library id]@[repo ref]/[asset id]."
-                },
-                "properties": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "id",
-                      "description",
-                      "externalDocsUrl",
-                      "framework",
-                      "name",
-                      "platform",
-                      "private",
-                      "status",
-                      "thumbnailPath",
-                      "type",
-                      "tags",
-                      "demoLinks"
-                    ]
-                  },
-                  "description": "Asset keys to inherit.",
-                  "minItems": 1
-                },
-                "primary": {
-                  "type": "boolean",
-                  "description": "Set to true if this asset inheriting another asset is the canonical implementation. This is used to collapse similar assets in the catalogs when a framework filter has not been applied.",
-                  "default": false
-                }
-              },
-              "additionalProperties": false,
-              "description": "Each asset can inherit properties from another asset.",
-              "required": ["asset", "properties"]
             },
             "demoLinks": {
               "description": "Libraries and assets can specify links to demo sites.",
@@ -190,6 +151,10 @@
           "type": "string",
           "description": "Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the package.json description if not set here."
         },
+        "inherits": {
+          "type": "string",
+          "description": "Inherit properties from another library on a per-asset basis by specifying a library id optionally followed by @ and a version number."
+        },
         "packageJsonPath": {
           "type": "string",
           "default": "/package.json",
@@ -199,7 +164,7 @@
           "type": "string",
           "description": "Absolute URL to externally-hosted documentation."
         },
-        "private": {
+        "noIndex": {
           "type": "boolean",
           "default": false,
           "description": "If set to true, the global catalogs will exclude the library."

@@ -126,7 +126,7 @@ const Library = ({ libraryData, params }) => {
               <Link
                 href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}
               >
-                <a>{asset.content.name}</a>
+                <a>{asset.content.name || 'Asset'}</a>
               </Link>
             </li>
           ))}

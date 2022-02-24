@@ -46,10 +46,15 @@ $container-padding-top: $spacing-09 + $spacing-03;
 }
 
 .title {
+  margin-bottom: -$spacing-10;
   color: $text-inverse;
   @include type-style('display-01', true);
-  @include breakpoint-down(md) {
-    margin-bottom: -$spacing-10;
+  @include breakpoint(md) {
+    margin-bottom: -$spacing-13;
+  }
+
+  @include breakpoint(lg) {
+    margin-bottom: -$spacing-11;
   }
 }
 

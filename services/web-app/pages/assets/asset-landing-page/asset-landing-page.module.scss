@@ -99,13 +99,13 @@ $container-margin: $spacing-09 + $spacing-03;
 
 .title {
   position: relative;
-  padding-top: $spacing-07;
-  padding-left: $spacing-05;
+  padding: $spacing-06 0 0 $spacing-05;
 
   color: $text-primary;
   @include type-style('expressive-heading-02');
 
   @include breakpoint(md) {
+    padding-top: $spacing-07;
     margin-left: -$spacing-05;
   }
 

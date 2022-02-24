@@ -13,14 +13,14 @@ import styles from './page-header-large.module.scss'
 const PageHeaderLarge = ({ pictogram: Pictogram, title, description }) => {
   return (
     <Grid className={styles.container}>
-      <Column className={styles.column} sm={4} md={5} lg={8} xlg={7}>
+      <Column className={styles.column} sm={4} md={6} lg={8} xlg={7}>
         <h1 className={styles.title}>{title}</h1>
       </Column>
-      <Column className={styles.column} sm={4} md={5} lg={8} xlg={8}>
+      <Column className={styles.column} sm={4} md={6} lg={8} xlg={8}>
         <p className={styles.description}>{description}</p>
       </Column>
       {Pictogram && (
-        <Column className={clsx(styles.column, styles.columnLast)} sm={0} md={3} lg={2} xlg={3}>
+        <Column className={clsx(styles.column, styles.columnLast)} sm={0} md={2} lg={2} xlg={3}>
           <Pictogram className={styles.pictogram} />
         </Column>
       )}

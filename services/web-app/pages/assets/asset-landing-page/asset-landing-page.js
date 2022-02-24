@@ -42,10 +42,8 @@ const AssetLandingPage = () => {
       targetRelease: 'Target release:',
       date: 'February 27',
       title: 'Standardize assets and libraries',
-      subtitle: '',
       description:
         'This private beta is the start to standardizing Carbon so we can bring everything together as one system. This release is focused on helping PAL maintainers classify libraries and assets through the application of a common schema. This release also prototypes asset discovery improvements as Carbon gets indexed through the application of the schema.',
-      bulletPoints: [],
       image: '',
       imageTitle: 'v0.1 User experience:',
       imageDescription: 'Catalog assets link out to existing PAL sites'
@@ -54,7 +52,6 @@ const AssetLandingPage = () => {
       version: 'v0.2',
       targetRelease: 'Target release:',
       date: 'March 27',
-      subtitle: '',
       title: 'For contributors and maintainers:',
       description:
         'A common schema will help PAL maintainers more easily manage their assets, keep content fresh in a live index, and add version control to their libraries.',
@@ -67,7 +64,6 @@ const AssetLandingPage = () => {
       targetRelease: 'Target release:',
       date: 'May 9',
       title: 'General Availability',
-      subtitle: '',
       description:
         "The platform's first major release will help system users discover and learn about all the assets and libraries in the system with confidence in their completeness, who maintains them, and how to use them. System users can access documentation for all indexed assets and libraries without leaving the platform.",
       bulletPoints: [
@@ -100,8 +96,20 @@ const AssetLandingPage = () => {
       date: 'Q3',
       title: 'System of systems',
       subtitle: "The platform's second major release will take the following Hills:",
-      description:
-        'Contribute with ease An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can create, document, share new resources [standards and components/patterns] to the system without Design Program Office (DPO) involvement or coding a documentation website. Team experience An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can consume any applicable and versioned resources [standards and components/patterns] for their team, in a single, curated experience. This evolves the platform into a system of systems, with:',
+      description: '',
+      descriptionBlock: [
+        {
+          title: 'Contribute with ease',
+          description:
+            'An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can create, document, share new resources [standards and components/patterns] to the system without Design Program Office (DPO) involvement or coding a documentation website.'
+        },
+        {
+          title: 'Team experience',
+          description:
+            'An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can consume any applicable and versioned resources [standards and components/patterns] for their team, in a single, curated experience.'
+        }
+      ],
+      bulletPointsHeader: 'This evolves the platform into a system of systems, with:',
       bulletPoints: [
         'Pattern and Asset Library (PAL) sites migrated as local systems',
         "PAL sites sunset with redirects to Carbon's website",
@@ -203,6 +211,20 @@ const AssetLandingPage = () => {
             >
               {versionRelease.description}
             </div>
+
+            {versionRelease.descriptionBlock
+              ? versionRelease.descriptionBlock.map((descriptionBlock, o) => (
+                  <div className={styles.descriptionBlockText} key={o}>
+                    <div>{descriptionBlock.title}</div>
+                    <div>{descriptionBlock.description}</div>
+                  </div>
+              ))
+              : null}
+            {versionRelease.bulletPointsHeader
+              ? (
+              <div className={styles.bulletpointsHeader}>{versionRelease.bulletPointsHeader}</div>
+                )
+              : null}
             <ul className={styles.bulletpoints}>
               {versionRelease.bulletPoints
                 ? versionRelease.bulletPoints.map((bulletPoint, e) => {

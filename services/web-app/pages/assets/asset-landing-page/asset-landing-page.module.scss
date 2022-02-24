@@ -5,7 +5,6 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-// $content-padding-mobile: $spacing-13 + $spacing-07 + $spacing-02;
 $content-padding: $spacing-12 + $spacing-07 + $spacing-03;
 $highlights-container-medium: $spacing-13 * 1.3;
 $highlights-container-large: $spacing-13 * 1.15;
@@ -32,7 +31,6 @@ $container-margin: $spacing-09 + $spacing-03;
 
 .release-container {
   padding: $spacing-08 $spacing-05 0 $spacing-05;
-  // background: $layer-01;
 
   @include breakpoint(md) {
     padding-right: 0;
@@ -219,6 +217,32 @@ $container-margin: $spacing-09 + $spacing-03;
 
   @include breakpoint(xlg) {
     padding: $spacing-07 0 0 0;
+  }
+}
+
+.description-block-text {
+  padding: 0 $spacing-05 $spacing-06 $spacing-05;
+  @include type-style('body-long-02');
+
+  @include breakpoint(lg) {
+    padding-left: $spacing-04;
+  }
+
+  @include breakpoint(xlg) {
+    padding-left: 0;
+  }
+}
+
+.bulletpoints-header {
+  padding: 0 $spacing-05 0 $spacing-05;
+  @include type-style('body-long-02');
+
+  @include breakpoint(lg) {
+    padding-left: $spacing-04;
+  }
+
+  @include breakpoint(xlg) {
+    padding: 0;
   }
 }
 

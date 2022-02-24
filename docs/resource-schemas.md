@@ -60,8 +60,8 @@ A resource file can contain a library, an object of assets or both.
 <!-- prettier-ignore -->
 | Key| Description | Required | Type | Default | Valid values |
 | --- | --- | --- | --- | --- | --- |
-| `library` | Object containing library details. See [Library Schema](#library-schema) for more info. | Optional | Object | – | – |
-| `assets` | Object containing 1+ assets organized by Id. See [Asset Schema](#asset-schema) for more info. | Optional | Object | – | – |
+| `library` | Object containing library details. See [library schema](#library-schema) for more info. | Optional | Object | – | – |
+| `assets` | Object containing one or more assets organized by `id`. See [asset schema](#asset-schema) for more info. | Optional | Object | – | – |
 
 ## Library schema
 
@@ -79,6 +79,7 @@ library:
   id: carbon-react
   name: Carbon React
   description: React implementation of Carbon Components
+  inherits: carbon-styles@0.1.23
   demoLinks:
     - type: storybook
       name: Storybook
@@ -94,10 +95,32 @@ library:
 | `id` | Every library needs an identifier unique to the platform. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive an `id` when registering a new library. See [identifiers](#identifiers) for more info. | Required | String | – | – |
 | `name` | Library display name. Use title-case capitalization. | Required | String | – | – |
 | `description` | Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the `package.json` description if not set here. | Optional | String | Value from `package.json` | – |
+| `inherits` | Inherit properties from another library on a per-asset basis. See [library inheritance](#library-inheritance). | Optional | String | – | – |
 | `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, code package, and other information. | Optional | String | `/package.json` | – |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation. | Optional | String | – | – |
 | `demoLinks` | Links to demo sites. See [demo links](#demo-links). | Optional | Array | – | – |
-| `private` | If set to `true`, the global catalogs will exclude the library. | Optional | Boolean | `false` | – |
+| `noIndex` | If set to `true`, the global catalogs will exclude the library. | Optional | Boolean | `false` | – |
+
+#### Library inheritance
+
+Each asset can inherit properties from another asset. For example, if there are multiple
+implementations of a component for different JavaScript frameworks, it's common that there's an
+underlying library and asset that contains shared usage guidance, design specs, and styling.
+Defining the inheritance relationship allows us to have a single source of truth for the shared
+content and resources.
+
+There are two requirements for an asset to inherit another asset.
+
+1. The inheriting asset needs its library to specify the `inherits` key with the value being the
+   base library's `id` and optionally its version delineated by `@`. E.g. `inherits: carbon-styles`
+   or `inherits: carbon-styles@0.1.23`.
+1. The asset `id`s need to match between the library and the library that it's inheriting. This is
+   used to both inherit schema keys, and also collapse similar assets in the catalogs if no
+   framework filter has been set.
+
+After doing so, some asset keys will be inherited by default. See the [asset keys](#asset-keys)
+table. If you don't want to inherit something that is inherited by default, you can specifiy the
+asset key to override the inherited default.
 
 ## Asset schema
 
@@ -105,10 +128,10 @@ Assets are reusable units of work that are used in products and digital experien
 belongs to a library.
 
 - For each asset in a library, create a `carbon.yml` metadata file in the same directory as the
-  asset's source and place the asset details inside of the `assets` object with the asset id as the
-  key.
+  asset's source and place the asset details inside of the `assets` object with the asset `id` as
+  the key.
 - For directories that contain multiple assets, just add each asset as a singular entry to the
-  `assets` object with the asset id as the key.
+  `assets` object with the asset `id` as the key.
 
 **Example**
 
@@ -140,21 +163,20 @@ assets:
 ### Asset keys
 
 <!-- prettier-ignore -->
-| Key | Description | Required | Type | Default | Valid values |
-| --- | --- | --- | --- | --- | --- |
-| `id` | Every asset needs an identifier unique to its library. This is used to associate assets across libraries. See [identifiers](#identifiers) for more info. | Required | String | – | – |
-| `name` | Asset display name. Use sentence-case capitalization. | Required | String | – | – |
-| `description` | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization. | Required | String | – | – |
-| `status` | Asset consumption exptectations. See [asset status](#asset-status). | Required | String \| Object | `draft` | `draft`, `experimental`, `stable`, `deprecated` |
-| `type` | Asset primary categorization. See [asset type](#asset-type). | Required | String | – | `component`, `function`, `pattern`, `template` |
-| `tags` | Asset secondary categorizations. See [asset tags](#asset-tags). | Optional | Array | – | `content-block`, `content-element`, `contextual-navigation`, `data-display`, `data-visualization`, `form`, `input-control`, `media`, `shell`, `structural-navigation`, `system-feedback`, `comparison`, `connection`, `correlation`, `geographic-overlay`, `geospatial-distortion`, `part-to-whole`, `trend`, `hook`, `service`, `utility` |
-| `framework` | Asset primary technology dependency. See [asset framework](#asset-framework). | Optional | String | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
-| `platform` | Runtime where the asset can be used. See [asset platform](#asset-platform). | Optional | String | `web` | `cross-platform`, `web` |
-| `thumbnailPath` | Relative location of the asset's thumbnail image. | Optional | String | – | – |
-| `externalDocsUrl` | Absolute URL to externally-hosted documentation. | Optional | String | – | – |
-| `demoLinks` | Links to demo sites. See [demo links](#demos-links). | Optional | Array | – | – |
-| `inherits` | See [asset inheritance](#asset-inheritance). | Optional | Object | – | – |
-| `private` | If set to `true`, the global catalogs will exclude the asset. | Optional | Boolean | `false` | – |
+| Key | Description | Required | Type | Inheritable | Default | Valid values |
+| --- | --- | --- | --- | --- | --- | --- |
+| `id` | Every asset needs an identifier unique to its library. This is used to associate assets across libraries. See [identifiers](#identifiers) for more info. | Required | String | No |  – | – |
+| `name` | Asset display name. Use sentence-case capitalization. | Required | String | Yes |  – | – |
+| `description` | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization. | Required | String | Yes |  – | – |
+| `status` | Asset consumption exptectations. See [asset status](#asset-status). | Required | String \| Object | No |  `draft` | `draft`, `experimental`, `stable`, `deprecated` |
+| `type` | Asset primary categorization. See [asset type](#asset-type). | Required | String | Yes |  – | `component`, `function`, `pattern`, `template` |
+| `tags` | Asset secondary categorizations. See [asset tags](#asset-tags). | Optional | Array | Yes |  – | `content-block`, `content-element`, `contextual-navigation`, `data-display`, `data-visualization`, `form`, `input-control`, `media`, `shell`, `structural-navigation`, `system-feedback`, `comparison`, `connection`, `correlation`, `geographic-overlay`, `geospatial-distortion`, `part-to-whole`, `trend`, `hook`, `service`, `utility` |
+| `framework` | Asset primary technology dependency. See [asset framework](#asset-framework). | Optional | String | No |  `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only` |
+| `platform` | Runtime where the asset can be used. See [asset platform](#asset-platform). | Optional | String | Yes |  `web` | `cross-platform`, `web` |
+| `thumbnailPath` | Relative location of the asset's thumbnail image. | Optional | String | Yes |  – | – |
+| `externalDocsUrl` | Absolute URL to externally-hosted documentation. | Optional | String | No |  – | – |
+| `demoLinks` | Links to demo sites. See [demo links](#demos-links). | Optional | Array | No |  – | – |
+| `noIndex` | If set to `true`, the global catalogs will exclude the asset. | Optional | Boolean | No |  `false` | – |
 
 #### Asset status
 
@@ -278,47 +300,6 @@ have the following values:
 | `cross-platform` | Runs natively on iOS, Android, and/or desktop. |
 | `web` | Runs on the web. |
 
-#### Asset inheritance
-
-Each asset can inherit properties from another asset. For example, if there are multiple
-implementations of a component for different JavaScript frameworks, it's common that there's an
-underlying library and asset that contains shared usage guidance, design specs, and styling.
-Defining the inheritance relationship allows us to have a single source of truth for the shared
-content and resources, and allows each inheriting asset (e.g. implementation per framework) to
-specify its versioned adherance of the underlying asset.
-
-When inheriting another asset, you need to specify the fully qualified asset name (library `id`,
-library `version` or its repo's branch, asset `id`) and what properties you'd like to inherit.
-
-For the value of the `inherits` key, you can set the following keys.
-
-<!-- prettier-ignore -->
-| Inherits | Description | Required | Type | Default |
-| --- | --- | --- | --- | --- |
-| `asset` | Fully qualified asset name with the format `[library id]/[asset id]` or `[library id]@[repo ref]/[asset id]`. | Required | String | – |
-| `primary` | Set to `true` if this asset inheriting another asset is the canonical implementation. This is used to collapse similar assets in the catalogs when a `framework` filter has not been applied. | Optional | Boolean | `false` |
-| `properties` | Asset keys to inherit. | Required | Array | – |
-
-**Example**
-
-carbon.yml
-
-```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas/carbon-resources.schema.json
-assets:
-  accordion:
-    inherits:
-      asset: 'carbon-styles@v11.0.3/accordion'
-      properties:
-        - name
-        - description
-        - thumbnailPath
-        - type
-        - platform
-    status: stable
-    framework: react
-```
-
 ## Shared schemas
 
 The following properties are used in multiple schemas.
@@ -355,7 +336,3 @@ For the value of the `demoLinks` array, you can set the following keys.
 
 Libraries and assets have `id`s to uniquely identify each resource and establish relationships
 between resources. More guidance around format and absolute identifiers coming here soon!
-
-- Asset `id`s for framework-specific libraries should match across libraries so we can optimize how
-  we surface those assets in the catalogs. E.g. all of the libraries that implement Carbon's text
-  input component should consistently use the `text-input` component `id`.

@@ -30,7 +30,7 @@ const Libraries = ({ librariesData }) => {
   }, [setNavData])
 
   const libraries = librariesData.libraries
-    .filter((library) => !library.content.private)
+    .filter((library) => !library.content.noIndex)
     .sort(librarySortComparator)
 
   return (

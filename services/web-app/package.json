@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.1.55",
+  "version": "0.1.56",
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
@@ -41,12 +41,10 @@
     "next": "^12.1.0",
     "next-connect": "^0.12.1",
     "next-seo": "^5.1.0",
-    "plaiceholder": "^2.3.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
-    "sharp": "^0.30.1",
     "slugify": "^1.6.5"
   },
   "devDependencies": {

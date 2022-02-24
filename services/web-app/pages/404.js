@@ -7,10 +7,9 @@
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import PageNotFound from '@/components/page-not-found'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
-
-import styles from './pages.module.scss'
 
 const FourOhFour = () => {
   const { setNavData } = useContext(LayoutContext)
@@ -26,7 +25,7 @@ const FourOhFour = () => {
   return (
     <>
       <NextSeo {...seo} />
-      <div className={styles.content}>Page not found</div>
+      <PageNotFound />
     </>
   )
 }

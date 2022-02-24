@@ -20,6 +20,7 @@ export const paramsPropTypes = PropTypes.shape({
 export const libraryContentPropTypes = PropTypes.shape({
   description: PropTypes.string,
   externalDocsUrl: PropTypes.string,
+  inherits: PropTypes.string,
   id: PropTypes.string.isRequired,
   license: PropTypes.oneOf(['', 'Apache-2.0', 'MIT']),
   name: PropTypes.string.isRequired,

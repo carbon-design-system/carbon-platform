@@ -151,7 +151,7 @@
           "type": "string",
           "description": "Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the package.json description if not set here."
         },
-        "inherits ": {
+        "inherits": {
           "type": "string",
           "description": "Inherit properties from another library on a per-asset basis by specifying a library id optionally followed by @ and a version number."
         },

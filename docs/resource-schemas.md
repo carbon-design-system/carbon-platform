@@ -44,7 +44,7 @@ assets:
     type: component
     status:
       key: draft
-      note: more info on this component's status
+      note: Additional usage guidance is coming soon.
     framework: react
     platform: web
     description:

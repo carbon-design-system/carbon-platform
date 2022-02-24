@@ -9,7 +9,6 @@ import { Button, Column, Grid } from '@carbon/react'
 import { ArrowRight, Carbon, Events, Launch } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
@@ -50,7 +49,7 @@ const Asset = ({ libraryData }) => {
   }
 
   const [assetData] = libraryData.assets
-  const { name, description, thumbnailData: imageData } = assetData.content
+  const { name, description } = assetData.content
 
   const breadcrumbItems = [
     {
@@ -84,6 +83,7 @@ const Asset = ({ libraryData }) => {
 
   return (
     <>
+      <NextSeo {...seo} />
       <PageHeader title={seo.title} pictogram={get(type, `[${assetData.content.type}].icon`)} />
       <PageBreadcrumb items={breadcrumbItems} />
       <Dashboard className={styles.dashboard}>
@@ -207,20 +207,6 @@ const Asset = ({ libraryData }) => {
           />
         </Column>
       </Dashboard>
-      <div className={pageStyles.content}>
-        <NextSeo {...seo} />
-        {imageData && (
-          <Image
-            alt={`${name} thumbnail`}
-            height="300px"
-            width="400px"
-            src={imageData.img.src}
-            placeholder={imageData.img.type === 'svg' ? 'empty' : 'blur'}
-            blurDataURL={imageData.base64}
-          />
-        )}
-        <pre className={pageStyles.data}>{JSON.stringify(libraryData, null, 2)}</pre>
-      </div>
     </>
   )
 }

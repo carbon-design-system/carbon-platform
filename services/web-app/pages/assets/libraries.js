@@ -15,7 +15,6 @@ import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
-import styles from '@/pages/pages.module.scss'
 import { librarySortComparator } from '@/utils/schema'
 
 const Libraries = ({ librariesData }) => {
@@ -37,20 +36,19 @@ const Libraries = ({ librariesData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader title={seo.title} pictogram={FileBackup} />
-      <ul className={styles.content}>
+      <ul>
         {libraries.map((library, i) => (
           <li key={i}>
             <Link href={`/assets/${library.params.library}`}>
               <a>{library.content.name}</a>
             </Link>
-            <ul className={styles.bullets}>
-              <li className={styles.bulletsItem}>{library.content.id}</li>
-              <li className={styles.bulletsItem}>{library.content.description}</li>
+            <ul>
+              <li>{library.content.id}</li>
+              <li>{library.content.description}</li>
             </ul>
           </li>
         ))}
       </ul>
-      <pre className={styles.data}>{JSON.stringify(librariesData, null, 2)}</pre>
     </>
   )
 }

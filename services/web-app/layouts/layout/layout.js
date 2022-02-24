@@ -9,8 +9,6 @@ import {
   Grid,
   Header,
   HeaderContainer,
-  HeaderGlobalAction,
-  HeaderGlobalBar,
   HeaderMenuButton,
   HeaderMenuItem,
   HeaderNavigation,
@@ -21,7 +19,6 @@ import {
   SkipToContent,
   Theme
 } from '@carbon/react'
-import { User } from '@carbon/react/icons'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
@@ -81,11 +78,6 @@ const Layout = ({ children }) => {
                   </HeaderMenuItem>
                 ))}
               </HeaderNavigation>
-              <HeaderGlobalBar>
-                <HeaderGlobalAction aria-label="Log in" href="/api/login">
-                  <User size={20} />
-                </HeaderGlobalAction>
-              </HeaderGlobalBar>
             </Header>
           </Theme>
           <Theme className={styles.body} theme="g10">

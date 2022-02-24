@@ -1,0 +1,88 @@
+//
+// Copyright IBM Corp. 2021, 2022
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+$page-footer-height: $spacing-13 + $spacing-12 + $spacing-09 + $spacing-04;
+$grid-padding-bottom: $spacing-12 + $spacing-09;
+
+.container {
+  height: auto;
+  padding-right: $spacing-05;
+  padding-left: $spacing-05;
+  background: $border-inverse;
+
+  @include breakpoint(md) {
+    height: $page-footer-height;
+    padding-left: 0;
+  }
+
+  &::before {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    width: 100vw;
+    height: $page-footer-height;
+    background: $border-inverse;
+    content: '';
+  }
+}
+
+.grid {
+  padding-top: $spacing-06;
+
+  @include breakpoint(md) {
+    padding-bottom: $grid-padding-bottom;
+  }
+}
+
+.column {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding-bottom: $spacing-09;
+
+  @include breakpoint(md) {
+    padding: 0;
+    border-top: none;
+  }
+
+  &--border-top {
+    padding-top: $spacing-06;
+    border-top: 1px solid $border-strong-01;
+
+    @include breakpoint(md) {
+      padding: 0;
+      border-top: none;
+    }
+  }
+}
+
+.link {
+  color: $text-inverse;
+  text-decoration: none;
+  @include type-style('body-long-01');
+
+  &:hover,
+  &:focus {
+    color: $text-inverse;
+    text-decoration: underline;
+  }
+
+  &--underline {
+    text-decoration: underline;
+  }
+}
+
+.text {
+  color: $text-inverse;
+  @include type-style('body-long-01');
+}
+
+.icon {
+  position: relative;
+  padding-bottom: $spacing-07;
+}

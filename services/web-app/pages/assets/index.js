@@ -8,7 +8,6 @@
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import Footer from '@/components/footer'
 import PageHeaderLarge from '@/components/page-header-large/page-header-large'
 import { assetsNavData } from '@/data/nav-data'
 import { type } from '@/data/type'
@@ -36,7 +35,6 @@ const Index = () => {
       <NextSeo {...seo} />
       <PageHeaderLarge title={title} description={description} pictogram={type.element.icon} />
       <AssetLandingPage />
-      <Footer />
     </>
   )
 }

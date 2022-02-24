@@ -29,6 +29,19 @@ $container-margin: $spacing-09 + $spacing-03;
   }
 }
 
+.background {
+  position: relative;
+  &::before {
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    width: 200vw;
+    height: 100%;
+    background: $layer-01;
+    content: '';
+  }
+}
+
 .release-container {
   padding: $spacing-08 $spacing-05 0 $spacing-05;
 

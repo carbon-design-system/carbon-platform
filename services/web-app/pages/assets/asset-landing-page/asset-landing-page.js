@@ -129,27 +129,29 @@ const AssetLandingPage = () => {
           <p className={styles.pageDescription}>{pageDescription}</p>
         </Column>
       </Grid>
-      <Grid className={styles.releaseContainer}>
-        <Column sm={4} md={4} lg={4} xlg={4}>
-          <div className={clsx(styles.header, styles.headerRelease)}>{releaseInfo.header}</div>
-        </Column>
-        <Column sm={4} md={4} lg={8} xlg={7}>
-          <div className={clsx(styles.description, styles.descriptionRelease)}>
-            {releaseInfo.description}
-          </div>
-        </Column>
-      </Grid>
-      {pageHighlights.map((pageHighlight, i) => (
-        <Grid className={styles.highlightsContainer} key={i}>
-          <Column md={4} lg={4} xlg={4} key={i}>
-            <div className={styles.header}>{pageHighlight.header}</div>
+      <div className={styles.background}>
+        <Grid className={styles.releaseContainer}>
+          <Column sm={4} md={4} lg={4} xlg={4}>
+            <div className={clsx(styles.header, styles.headerRelease)}>{releaseInfo.header}</div>
           </Column>
-          <Column md={4} lg={8} xlg={7}>
-            <div className={styles.title}>{pageHighlight.title}</div>
-            <div className={styles.description}>{pageHighlight.description}</div>
+          <Column sm={4} md={4} lg={8} xlg={7}>
+            <div className={clsx(styles.description, styles.descriptionRelease)}>
+              {releaseInfo.description}
+            </div>
           </Column>
         </Grid>
-      ))}
+        {pageHighlights.map((pageHighlight, i) => (
+          <Grid className={styles.highlightsContainer} key={i}>
+            <Column md={4} lg={4} xlg={4} key={i}>
+              <div className={styles.header}>{pageHighlight.header}</div>
+            </Column>
+            <Column md={4} lg={8} xlg={7}>
+              <div className={styles.title}>{pageHighlight.title}</div>
+              <div className={styles.description}>{pageHighlight.description}</div>
+            </Column>
+          </Grid>
+        ))}
+      </div>
       <Grid className={styles.contentContainer}>
         <Column sm={4} md={8} lg={8} xlg={8}>
           <h1 className={clsx(styles.header, styles.headerContent)}>
@@ -165,19 +167,22 @@ const AssetLandingPage = () => {
               'To make this happen, we ask that you follow the instructions below to document your library’s metadata in the stuctured format we have provided.'
             }
           </p>
-          <Link href="https://www.google.com" renderIcon={ArrowRight}>
+          <Link
+            href="https://github.com/carbon-design-system/carbon-platform/blob/main/docs/resource-schemas.md#resource-schemas"
+            renderIcon={ArrowRight}
+          >
             <a className={styles.link}>{'Get started'}</a>
           </Link>
           <h1 className={clsx(styles.header, styles.headerContent)}>{'Platform roadmap'}</h1>
           <p className={clsx(styles.text, styles.text)}>
             {'Progress on the following releases are documented in '}
-            <Link href="https://www.google.com">
+            <Link href="https://github.com/carbon-design-system/carbon-platform">
               <a className={styles.link}>{'Github'}</a>
             </Link>
             {
               ', along with milestones, estimated dates, and descriptions of high level outcomes. For a visual overview of the following releases and their epics, view our roadmap in '
             }
-            <Link href="https://www.google.com">
+            <Link href="https://airtable.com/shrshl3XOeeT4Uxq0">
               <a className={styles.link}>{'Airtable.'}</a>
             </Link>
           </p>

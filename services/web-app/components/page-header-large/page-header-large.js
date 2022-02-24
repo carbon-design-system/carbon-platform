@@ -6,11 +6,12 @@
  */
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
+import Image from 'next/image'
 import PropTypes from 'prop-types'
 
 import styles from './page-header-large.module.scss'
 
-const PageHeaderLarge = ({ pictogram: Pictogram, title, description }) => {
+const PageHeaderLarge = ({ title, description }) => {
   return (
     <Grid className={styles.container}>
       <Column className={styles.column} sm={4} md={6} lg={8} xlg={7}>
@@ -19,11 +20,9 @@ const PageHeaderLarge = ({ pictogram: Pictogram, title, description }) => {
       <Column className={styles.column} sm={4} md={6} lg={8} xlg={8}>
         <p className={styles.description}>{description}</p>
       </Column>
-      {Pictogram && (
-        <Column className={clsx(styles.column, styles.columnLast)} sm={0} md={2} lg={2} xlg={3}>
-          <Pictogram className={styles.pictogram} />
-        </Column>
-      )}
+      <Column className={clsx(styles.column, styles.columnLast)} sm={0} md={2} lg={2} xlg={4}>
+        <Image />
+      </Column>
     </Grid>
   )
 }

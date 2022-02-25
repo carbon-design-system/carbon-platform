@@ -6,7 +6,8 @@
 //
 
 $page-header-height: $spacing-13 * 3.475;
-$background-header: $border-inverse;
+$illo-original-width: 1260px;
+$illo-original-height: 1078px;
 
 .container {
   background: $background;
@@ -32,11 +33,9 @@ $background-header: $border-inverse;
 .column {
   position: relative;
   z-index: 1;
-  padding: $spacing-08 $spacing-05;
+  padding: $spacing-08 $spacing-05 $spacing-10;
   @include breakpoint(md) {
-    padding-top: $spacing-09 + $spacing-03;
-    padding-right: 0;
-    padding-left: 0;
+    padding: ($spacing-09 + $spacing-03) 0 $spacing-05;
   }
 }
 
@@ -58,6 +57,11 @@ $background-header: $border-inverse;
   overflow: hidden;
   width: 50%;
   height: $page-header-height;
+  @include breakpoint(xlg) {
+    // -18vw chosen to horizontally center the illo in white space at ultra max viewport
+    right: -18vw;
+    width: $page-header-height * ($illo-original-width / $illo-original-height);
+  }
   @include breakpoint-down(md) {
     display: none;
   }

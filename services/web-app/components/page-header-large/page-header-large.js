@@ -8,7 +8,7 @@ import { Column, Grid, Theme } from '@carbon/react'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
 
-import SvgPageHeader from '../../public/page-header-illo.svg'
+import PageHeaderIllo from '../../public/page-header.png'
 import styles from './page-header-large.module.scss'
 
 const PageHeaderLarge = ({ title, description }) => {
@@ -23,7 +23,7 @@ const PageHeaderLarge = ({ title, description }) => {
       <div className={styles.image}>
         <Image
           alt="Asset illustration"
-          src={SvgPageHeader}
+          src={PageHeaderIllo}
           layout="fill"
           objectFit="cover"
           objectPosition="left center"

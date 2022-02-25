@@ -8,9 +8,13 @@ import { Column, Grid, Theme } from '@carbon/react'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
 
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
+
 import styles from './hero.module.scss'
 
 const Hero = ({ title, description, image, imageAlt }) => {
+  const isMd = useMatchMedia(mediaQueries.md)
+
   return (
     <Theme className={styles.container} theme="g100">
       <Grid className={styles.grid}>
@@ -26,7 +30,7 @@ const Hero = ({ title, description, image, imageAlt }) => {
             src={image}
             layout="fill"
             objectFit="cover"
-            objectPosition="left center"
+            objectPosition={isMd ? 'left center' : 'center top'}
           />
         </div>
       )}

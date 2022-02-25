@@ -7,8 +7,12 @@
 import amqp from 'amqplib'
 import { v4 as uuidv4 } from 'uuid'
 
-import { EventMessage, QueryMessage } from './config'
-import { CARBON_MESSAGE_QUEUE_URL, DEFAULT_SOCKET_OPTIONS } from './constants'
+import {
+  CARBON_MESSAGE_QUEUE_URL,
+  DEFAULT_SOCKET_OPTIONS,
+  EventMessage,
+  QueryMessage
+} from './constants'
 
 const RANDOM_QUEUE_NAME = ''
 const DEFAULT_ROUTING_KEY = ''

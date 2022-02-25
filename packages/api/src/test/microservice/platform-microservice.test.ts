@@ -16,6 +16,7 @@ import {
   Queue
 } from '../../main/messaging'
 import { PlatformMicroservice } from '../../main/microservice'
+import { getEnvironment } from '../../main/runtime'
 
 jest.mock('amqplib')
 jest.mock('@nestjs/core')
@@ -52,13 +53,14 @@ beforeEach(() => {
 })
 
 test('bind', async () => {
+  const fullQueueName = `${getEnvironment()}_${Queue.Logging}`
   const microservice = new PlatformMicroserviceImpl(Queue.Logging, { myOption: 'test' })
 
   await microservice.bind(EventMessage.LogLogged)
 
   expect(mockedAmqplib.connect).toHaveBeenCalled()
   expect(mockedConnection.createChannel).toHaveBeenCalled()
-  expect(mockedChannel.assertQueue).toHaveBeenCalledWith(Queue.Logging, {
+  expect(mockedChannel.assertQueue).toHaveBeenCalledWith(fullQueueName, {
     ...DEFAULT_QUEUE_OPTIONS,
     myOption: 'test'
   })
@@ -68,7 +70,7 @@ test('bind', async () => {
     DEFAULT_EXCHANGE_OPTIONS
   )
   expect(mockedChannel.bindQueue).toHaveBeenCalledWith(
-    Queue.Logging,
+    fullQueueName,
     EventMessage.LogLogged,
     DEFAULT_BIND_PATTERN
   )

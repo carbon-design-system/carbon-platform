@@ -19,6 +19,7 @@ import {
   QueryMessage,
   Queue
 } from '../messaging'
+import { getEnvironment } from '../runtime'
 import { CONNECT_RETRY_INTERVAL, PORT } from './constants'
 import { StatusModule } from './status-endpoint/status.module'
 
@@ -27,7 +28,7 @@ import { StatusModule } from './status-endpoint/status.module'
  * Carbon Platform microservice.
  */
 abstract class PlatformMicroservice {
-  private readonly queueName: Queue
+  private readonly queueName: string
   private readonly queueOptions: any
 
   /**
@@ -38,7 +39,8 @@ abstract class PlatformMicroservice {
    * acknowledgement or queue durability.
    */
   constructor(queueName: Queue, queueOptions?: any) {
-    this.queueName = queueName
+    // Use a queue name that is environment-specific
+    this.queueName = `${getEnvironment()}_${queueName}`
     this.queueOptions = {
       ...DEFAULT_QUEUE_OPTIONS,
       ...queueOptions

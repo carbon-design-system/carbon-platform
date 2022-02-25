@@ -25,8 +25,8 @@
     "services/web-app"
   ],
   "scripts": {
-    "all:build": "npm --workspaces run build",
-    "all:clean": "npm --workspaces run clean",
+    "all:build": "npm --workspaces --if-present run build",
+    "all:clean": "npm --workspaces --if-present run clean",
     "lint": "scripts/lint",
     "lint:fix": "scripts/lint_and_fix",
     "micromanage:bootstrap": "node packages/micromanage/scripts/bootstrap.js",

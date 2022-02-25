@@ -8,34 +8,35 @@ import { Column, Grid, Theme } from '@carbon/react'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
 
-import PageHeaderIllo from '../../public/page-header.png'
-import styles from './page-header-large.module.scss'
+import styles from './hero.module.scss'
 
-const PageHeaderLarge = ({ title, description }) => {
+const Hero = ({ title, description, image, imageAlt }) => {
   return (
     <Theme className={styles.container} theme="g100">
       <Grid className={styles.grid}>
         <Column className={styles.column} sm={4} md={6} lg={8}>
-          <h1 className={styles.title}>{title}</h1>
-          <p className={styles.description}>{description}</p>
+          {title && <h1 className={styles.title}>{title}</h1>}
+          {description && <p className={styles.description}>{description}</p>}
         </Column>
       </Grid>
-      <div className={styles.image}>
-        <Image
-          alt="Asset illustration"
-          src={PageHeaderIllo}
-          layout="fill"
-          objectFit="cover"
-          objectPosition="left center"
-        />
-      </div>
+      {image && (
+        <div className={styles.image}>
+          <Image
+            alt={imageAlt}
+            src={image}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="left center"
+          />
+        </div>
+      )}
     </Theme>
   )
 }
 
-PageHeaderLarge.propTypes = {
+Hero.propTypes = {
   pictogram: PropTypes.object,
   title: PropTypes.string.isRequired
 }
 
-export default PageHeaderLarge
+export default Hero

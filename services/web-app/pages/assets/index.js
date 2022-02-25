@@ -12,16 +12,16 @@ import Image from 'next/image'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import PageHeaderLarge from '@/components/page-header-large/page-header-large'
+import Hero from '@/components/hero'
 import { assetsNavData } from '@/data/nav-data'
-import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 
-import VersionImageOne from './index/images/carbon-next-v0.1.png'
-import VersionImageTwo from './index/images/carbon-next-v0.2.png'
-import VersionImageThree from './index/images/carbon-next-v1.0.png'
-import VersionImageFour from './index/images/carbon-next-v1.1.png'
-import VersionImageFive from './index/images/carbon-next-v2.0.png'
+import ReleaseOneImg from './index/images/carbon-next-v0.1.png'
+import ReleaseTwoImg from './index/images/carbon-next-v0.2.png'
+import ReleaseThreeImg from './index/images/carbon-next-v1.0.png'
+import ReleaseFourImg from './index/images/carbon-next-v1.1.png'
+import ReleaseFiveImg from './index/images/carbon-next-v2.0.png'
+import HeroImg from './index/images/hero-illo.png'
 import styles from './index/index.module.scss'
 
 const PageContent = () => {
@@ -57,7 +57,7 @@ const PageContent = () => {
       title: 'Standardize assets and libraries',
       description:
         'This private beta is the start to standardizing Carbon so we can bring everything together as one system. This release is focused on helping PAL maintainers classify libraries and assets through the application of a common schema. This release also prototypes asset discovery improvements as Carbon gets indexed through the application of the schema.',
-      image: VersionImageOne,
+      image: ReleaseOneImg,
       imageTitle: 'v0.1 User experience:',
       imageDescription:
         'Catalog assets link directly out to Carbon Design System and PAL sites to access an asset’s usage documentation.'
@@ -69,7 +69,7 @@ const PageContent = () => {
       title: 'For contributors and maintainers:',
       description:
         'A common schema will help PAL maintainers more easily manage their assets, keep content fresh in a live index, and add version control to their libraries.',
-      image: VersionImageTwo,
+      image: ReleaseTwoImg,
       imageTitle: 'v0.2 User experience:',
       imageDescription:
         'Users can begin to access some library and asset docs without leaving the platform; however the user will still need to go offsite for more detailed usage documentation.'
@@ -85,7 +85,7 @@ const PageContent = () => {
         'New login capabilities to view IBM internal content',
         'Global asset catalog no longer uses external links to legacy docs sites'
       ],
-      image: VersionImageThree,
+      image: ReleaseThreeImg,
       imageTitle: 'v1.0 User experience:',
       imageDescription:
         'This release replaces Carbon’s current website — all 32 “core” components will have fleshed out asset detail pages. If a PAL has migrated content, then it will begin to remove its external docs urls to leverage the detail pages. User Log in will be fully integrated into the experience as well.'
@@ -102,7 +102,7 @@ const PageContent = () => {
         'New standards added to the site',
         'New code package and component usage analytics'
       ],
-      image: VersionImageFour,
+      image: ReleaseFourImg,
       imageTitle: 'v1.1 User experience:',
       imageDescription:
         'In this release Standards content will be available on the platform and component usage analytics will allow us to track component insertions.'
@@ -133,7 +133,7 @@ const PageContent = () => {
         'Resource cross-linking among standards, libraries, assets',
         'Visual content authoring experience with less reliance on markdown'
       ],
-      image: VersionImageFive,
+      image: ReleaseFiveImg,
       imageTitle: 'v2.0 User experience:',
       imageDescription:
         'In this release, all external docs content has been fully migrated allowing the PALs to sunset. The team switcher will allow teams to view assets and documenation through the lens of their team.'
@@ -252,7 +252,11 @@ const PageContent = () => {
             </ul>
             <div className={styles.versionImage}>
               <AspectRatio ratio="16x9">
-                <Image alt="Version illustration" layout="responsive" src={versionRelease.image} />
+                <Image
+                  alt={versionRelease.imageTitle}
+                  layout="responsive"
+                  src={versionRelease.image}
+                />
               </AspectRatio>
               <div className={styles.imageTextContainer}>
                 <h1 className={styles.imageTitle}>{versionRelease.imageTitle}</h1>
@@ -285,7 +289,12 @@ const Index = () => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeaderLarge title={title} description={description} pictogram={type.element.icon} />
+      <Hero
+        title={title}
+        description={description}
+        image={HeroImg}
+        imageAlt="Carbon Next components"
+      />
       <PageContent />
     </>
   )

@@ -15,7 +15,7 @@ const PageHeaderLarge = ({ title, description }) => {
   return (
     <Theme className={styles.container} theme="g100">
       <Grid className={styles.grid}>
-        <Column className={styles.column} sm={4} md={6} lg={8} xlg={7}>
+        <Column className={styles.column} sm={4} md={6} lg={8}>
           <h1 className={styles.title}>{title}</h1>
           <p className={styles.description}>{description}</p>
         </Column>

@@ -37,6 +37,9 @@ $illo-original-height: 1078px;
   @include breakpoint(md) {
     padding: ($spacing-09 + $spacing-03) 0 $spacing-05;
   }
+  @include breakpoint(lg) {
+    padding-right: $spacing-06;
+  }
 }
 
 .title {

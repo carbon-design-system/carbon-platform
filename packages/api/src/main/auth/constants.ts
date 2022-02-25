@@ -33,7 +33,7 @@ const {
 
 const OIDC_DISCOVERY_URL =
   getRunMode() === RunMode.Prod && getEnvironment() === Environment.Production
-    ? 'TODO_ADD_PROD_VALUE_HERE'
+    ? 'https://login.ibm.com/oidc/endpoint/default/.well-known/openid-configuration'
     : 'https://prepiam.ice.ibmcloud.com/v1.0/endpoint/default/.well-known/openid-configuration'
 
 const OIDC_REDIRECT_URI = (() => {

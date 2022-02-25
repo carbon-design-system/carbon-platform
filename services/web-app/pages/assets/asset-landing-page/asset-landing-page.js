@@ -16,7 +16,7 @@ const AssetLandingPage = () => {
     'The new Carbon Design System will provide a single place to find and use all open and inner source assets they need to build consistent, scalable experiences with confidence.'
 
   const releaseInfo = {
-    header: 'This Release',
+    header: 'This release',
     description:
       'Our first release is the start to standardizing our community’s assets and surfacing them in one shared catalog.'
   }
@@ -65,7 +65,7 @@ const AssetLandingPage = () => {
       version: 'v1.0',
       targetRelease: 'Target release:',
       date: 'May 9',
-      title: 'General Availability',
+      title: 'General availability',
       description:
         "The platform's first major release will help system users discover and learn about all the assets and libraries in the system with confidence in their completeness, who maintains them, and how to use them. System users can access documentation for all indexed assets and libraries without leaving the platform.",
       bulletPoints: [
@@ -96,7 +96,7 @@ const AssetLandingPage = () => {
     },
     {
       version: 'v2.0',
-      targetRelease: 'Target Release:',
+      targetRelease: 'Target release:',
       date: 'Q3',
       title: 'System of systems',
       subtitle: "The platform's second major release will take the following Hills:",
@@ -164,7 +164,7 @@ const AssetLandingPage = () => {
           </h1>
           <p className={clsx(styles.text, styles.text)}>
             {
-              'Ensure your components, patterns, and functions are indexed in our unified asset discovery experience by March 30th.'
+              'Ensure your components, functions, patterns and templates are indexed in our unified asset discovery experience by March 30th.'
             }
           </p>
           <p className={clsx(styles.text, styles.text)}>
@@ -182,7 +182,7 @@ const AssetLandingPage = () => {
           <p className={clsx(styles.text, styles.text)}>
             {'Progress on the following releases are documented in '}
             <Link href="https://github.com/carbon-design-system/carbon-platform">
-              <a className={styles.link}>{'Github'}</a>
+              <a className={styles.link}>{'GitHub'}</a>
             </Link>
             {
               ', along with milestones, estimated dates, and descriptions of high level outcomes. For a visual overview of the following releases and their epics, view our roadmap in '

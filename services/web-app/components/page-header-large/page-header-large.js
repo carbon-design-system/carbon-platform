@@ -4,29 +4,32 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Grid } from '@carbon/react'
-import clsx from 'clsx'
+import { Column, Grid, Theme } from '@carbon/react'
+import Image from 'next/image'
 import PropTypes from 'prop-types'
 
+import SvgPageHeader from '../../public/page-header-illo.svg'
 import styles from './page-header-large.module.scss'
 
 const PageHeaderLarge = ({ title, description }) => {
   return (
-    <Grid className={styles.container}>
-      <Column className={styles.column} sm={4} md={6} lg={8} xlg={7}>
-        <h1 className={styles.title}>{title}</h1>
-      </Column>
-      <Column className={styles.column} sm={4} md={6} lg={8} xlg={8}>
-        <p className={styles.description}>{description}</p>
-      </Column>
-      <Column
-        className={clsx(styles.column, styles.columnLast)}
-        sm={0}
-        md={2}
-        lg={2}
-        xlg={4}
-      ></Column>
-    </Grid>
+    <Theme className={styles.container} theme="g100">
+      <Grid className={styles.grid}>
+        <Column className={styles.column} sm={4} md={6} lg={8} xlg={7}>
+          <h1 className={styles.title}>{title}</h1>
+          <p className={styles.description}>{description}</p>
+        </Column>
+      </Grid>
+      <div className={styles.image}>
+        <Image
+          alt="Asset illustration"
+          src={SvgPageHeader}
+          layout="fill"
+          objectFit="cover"
+          objectPosition="left center"
+        />
+      </div>
+    </Theme>
   )
 }
 

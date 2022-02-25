@@ -46,7 +46,8 @@ const AssetLandingPage = () => {
         'This private beta is the start to standardizing Carbon so we can bring everything together as one system. This release is focused on helping PAL maintainers classify libraries and assets through the application of a common schema. This release also prototypes asset discovery improvements as Carbon gets indexed through the application of the schema.',
       image: '',
       imageTitle: 'v0.1 User experience:',
-      imageDescription: 'Catalog assets link out to existing PAL sites'
+      imageDescription:
+        'Catalog assets link directly out to Carbon Design System and PAL sites to access an asset’s usage documentation.'
     },
     {
       version: 'v0.2',
@@ -57,7 +58,8 @@ const AssetLandingPage = () => {
         'A common schema will help PAL maintainers more easily manage their assets, keep content fresh in a live index, and add version control to their libraries.',
       image: '',
       imageTitle: 'v0.2 User experience:',
-      imageDescription: 'Lorem Ipsum'
+      imageDescription:
+        'Users can begin to access some library and asset docs without leaving the platform; however the user will still need to go offsite for more detailed usage documentation.'
     },
     {
       version: 'v1.0',
@@ -72,7 +74,8 @@ const AssetLandingPage = () => {
       ],
       image: '',
       imageTitle: 'v1.0 User experience',
-      imageDescription: 'Lorem Ipsum'
+      imageDescription:
+        'This release replaces Carbon’s current website — all 32 “core” components will have fleshed out asset detail pages. If a PAL has migrated content, then it will begin to remove its external docs urls to leverage the detail pages. User Log in will be fully integrated into the experience as well.'
     },
     {
       version: 'v1.1',
@@ -88,7 +91,8 @@ const AssetLandingPage = () => {
       ],
       image: '',
       imageTitle: 'v1.1 User experience:',
-      imageDescription: 'Lorem Ipsum'
+      imageDescription:
+        'In this release Standards content will be available on the platform and component usage analytics will allow us to track component insertions.'
     },
     {
       version: 'v2.0',
@@ -118,7 +122,8 @@ const AssetLandingPage = () => {
       ],
       image: '',
       imageTitle: 'v2.0 User experience:',
-      imageDescription: 'Lorem Ipsum'
+      imageDescription:
+        'In this release, all external docs content has been fully migrated allowing the PALs to sunset. The team switcher will allow teams to view assets and documenation through the lens of their team.'
     }
   ]
 

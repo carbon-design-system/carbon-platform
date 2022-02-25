@@ -1,11 +1,10 @@
-/* eslint-disable max-len */
 /*
  * Copyright IBM Corp. 2021, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { AspectRatio, Column, Grid, Link } from '@carbon/react'
+import { Column, Grid, Link } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
@@ -25,15 +24,6 @@ import HeroImg from './index/images/hero-illo.png'
 import styles from './index/index.module.scss'
 
 const PageContent = () => {
-  const pageDescription =
-    'The new Carbon Design System will provide a single place to find and use all open and inner source assets teams need to build consistent, scalable experiences with confidence.'
-
-  const releaseInfo = {
-    header: 'This release',
-    description:
-      'Our first release is the start to standardizing our community’s assets and surfacing them in one shared catalog.'
-  }
-
   const pageHighlights = [
     {
       header: 'Better discoverability',
@@ -45,6 +35,7 @@ const PageContent = () => {
       header: 'Easier management',
       title: 'For contributors and maintainers:',
       description:
+        // eslint-disable-next-line max-len
         'A common schema will help PAL maintainers more easily manage their assets, keep content fresh in a live index, and add version control to their libraries.'
     }
   ]
@@ -56,6 +47,7 @@ const PageContent = () => {
       date: 'February 27',
       title: 'Standardize assets and libraries',
       description:
+        // eslint-disable-next-line max-len
         'This private beta is the start to standardizing Carbon so we can bring everything together as one system. This release is focused on helping PAL maintainers classify libraries and assets through the application of a common schema. This release also prototypes asset discovery improvements as Carbon gets indexed through the application of the schema.',
       image: ReleaseOneImg,
       imageTitle: 'v0.1 User experience:',
@@ -68,10 +60,12 @@ const PageContent = () => {
       date: 'March 27',
       title: 'For contributors and maintainers:',
       description:
+        // eslint-disable-next-line max-len
         'A common schema will help PAL maintainers more easily manage their assets, keep content fresh in a live index, and add version control to their libraries.',
       image: ReleaseTwoImg,
       imageTitle: 'v0.2 User experience:',
       imageDescription:
+        // eslint-disable-next-line max-len
         'Users can begin to access some library and asset docs without leaving the platform; however the user will still need to go offsite for more detailed usage documentation.'
     },
     {
@@ -80,6 +74,7 @@ const PageContent = () => {
       date: 'May 9',
       title: 'General availability',
       description:
+        // eslint-disable-next-line max-len
         "The platform's first major release will help system users discover and learn about all the assets and libraries in the system with confidence in their completeness, who maintains them, and how to use them. System users can access documentation for all indexed assets and libraries without leaving the platform.",
       bulletPoints: [
         'New login capabilities to view IBM internal content',
@@ -88,6 +83,7 @@ const PageContent = () => {
       image: ReleaseThreeImg,
       imageTitle: 'v1.0 User experience:',
       imageDescription:
+        // eslint-disable-next-line max-len
         'This release replaces Carbon’s current website — all 32 “core” components will have fleshed out asset detail pages. If a PAL has migrated content, then it will begin to remove its external docs urls to leverage the detail pages. User Log in will be fully integrated into the experience as well.'
     },
     {
@@ -97,6 +93,7 @@ const PageContent = () => {
       title: 'Explore with confidence',
       subtitle: 'This release will fully take the following Hill:',
       description:
+        // eslint-disable-next-line max-len
         "An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can discover and learn about resources [standards and components/patterns] in the system with confidence in their completeness, who maintains them and where they're used.",
       bulletPoints: [
         'New standards added to the site',
@@ -105,6 +102,7 @@ const PageContent = () => {
       image: ReleaseFourImg,
       imageTitle: 'v1.1 User experience:',
       imageDescription:
+        // eslint-disable-next-line max-len
         'In this release Standards content will be available on the platform and component usage analytics will allow us to track component insertions.'
     },
     {
@@ -118,11 +116,13 @@ const PageContent = () => {
         {
           title: 'Contribute with ease',
           description:
+            // eslint-disable-next-line max-len
             'An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can create, document, share new resources [standards and components/patterns] to the system without Design Program Office (DPO) involvement or coding a documentation website.'
         },
         {
           title: 'Team experience',
           description:
+            // eslint-disable-next-line max-len
             'An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can consume any applicable and versioned resources [standards and components/patterns] for their team, in a single, curated experience.'
         }
       ],
@@ -136,6 +136,7 @@ const PageContent = () => {
       image: ReleaseFiveImg,
       imageTitle: 'v2.0 User experience:',
       imageDescription:
+        // eslint-disable-next-line max-len
         'In this release, all external docs content has been fully migrated allowing the PALs to sunset. The team switcher will allow teams to view assets and documenation through the lens of their team.'
     }
   ]
@@ -144,17 +145,22 @@ const PageContent = () => {
     <div className={styles.content}>
       <Grid>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <p className={styles.pageDescription}>{pageDescription}</p>
+          <p className={styles.pageDescription}>
+            The new Carbon Design System will provide a single place to find and use all open and
+            inner source assets teams need to build consistent, scalable experiences with
+            confidence.
+          </p>
         </Column>
       </Grid>
       <div className={styles.background}>
         <Grid className={styles.releaseContainer}>
           <Column sm={4} md={4} lg={4} xlg={4}>
-            <div className={clsx(styles.header, styles.headerRelease)}>{releaseInfo.header}</div>
+            <div className={clsx(styles.header, styles.headerRelease)}>This release</div>
           </Column>
           <Column sm={4} md={4} lg={8} xlg={7}>
             <div className={clsx(styles.description, styles.descriptionRelease)}>
-              {releaseInfo.description}
+              Our first release is the start to standardizing our community’s assets and surfacing
+              them in one shared catalog.
             </div>
           </Column>
         </Grid>
@@ -172,18 +178,14 @@ const PageContent = () => {
       </div>
       <Grid className={styles.contentContainer}>
         <Column sm={4} md={8} lg={8} xlg={8}>
-          <h1 className={clsx(styles.header, styles.headerContent)}>
-            {'How PAL teams can prepare'}
-          </h1>
+          <h1 className={clsx(styles.header, styles.headerContent)}>How PAL teams can prepare</h1>
           <p className={clsx(styles.text, styles.text)}>
-            {
-              'Ensure your components, functions, patterns and templates are indexed in our unified asset discovery experience by March 30th.'
-            }
+            Ensure your components, functions, patterns and templates are indexed in our unified
+            asset discovery experience by March 30th.
           </p>
           <p className={clsx(styles.text, styles.text)}>
-            {
-              'To make this happen, we ask that you follow the instructions below to document your library’s metadata in the stuctured format we have provided.'
-            }
+            To make this happen, we ask that you follow the instructions below to document your
+            library’s metadata in the stuctured format we have provided.
           </p>
           <Link
             href="https://github.com/carbon-design-system/carbon-platform/blob/main/docs/resource-schemas.md#resource-schemas"
@@ -193,15 +195,14 @@ const PageContent = () => {
           </Link>
           <h1 className={clsx(styles.header, styles.headerContent)}>{'Platform roadmap'}</h1>
           <p className={clsx(styles.text, styles.text)}>
-            {'Progress on the following releases are documented in '}
+            Progress on the following releases are documented in{' '}
             <Link href="https://github.com/carbon-design-system/carbon-platform">
-              <a className={styles.link}>{'GitHub'}</a>
+              <a className={styles.link}>GitHub</a>
             </Link>
-            {
-              ', along with milestones, estimated dates, and descriptions of high level outcomes. For a visual overview of the following releases and their epics, view our roadmap in '
-            }
+            , along with milestones, estimated dates, and descriptions of high level outcomes. For a
+            visual overview of the following releases and their epics, view our roadmap in{' '}
             <Link href="https://airtable.com/shrshl3XOeeT4Uxq0">
-              <a className={styles.link}>{'Airtable.'}</a>
+              <a className={styles.link}>Airtable</a>.
             </Link>
           </p>
         </Column>
@@ -251,13 +252,12 @@ const PageContent = () => {
                 })}
             </ul>
             <div className={styles.versionImage}>
-              <AspectRatio ratio="16x9">
-                <Image
-                  alt={versionRelease.imageTitle}
-                  layout="responsive"
-                  src={versionRelease.image}
-                />
-              </AspectRatio>
+              <Image
+                alt={versionRelease.imageTitle}
+                layout="responsive"
+                src={versionRelease.image}
+                placeholder="blur"
+              />
               <div className={styles.imageTextContainer}>
                 <h1 className={styles.imageTitle}>{versionRelease.imageTitle}</h1>
                 <p className={styles.imageDescription}>{versionRelease.imageDescription}</p>
@@ -277,11 +277,6 @@ const Index = () => {
     title: 'Assets'
   }
 
-  const title = 'Building the future of our design system together'
-
-  const description =
-    'IBM teams collectively maintain thousands of reusable assets, such as components and patterns, that enable us to deliver better experiences, faster. But for designers and developers, it can be challenging to find the right assets that comply with platform requirements, are convenient to implement, and are consistent with design patterns across the company.'
-
   useEffect(() => {
     setNavData(assetsNavData)
   }, [setNavData])
@@ -290,8 +285,9 @@ const Index = () => {
     <>
       <NextSeo {...seo} />
       <Hero
-        title={title}
-        description={description}
+        title="Building the future of our design system together"
+        // eslint-disable-next-line max-len
+        description="IBM teams collectively maintain thousands of reusable assets, such as components and patterns, that enable us to deliver better experiences, faster. But for designers and developers, it can be challenging to find the right assets that comply with platform requirements, are convenient to implement, and are consistent with design patterns across the company."
         image={HeroImg}
         imageAlt="Carbon Next components"
       />

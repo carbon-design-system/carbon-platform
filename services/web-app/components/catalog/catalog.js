@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { get, isArray, isEqual, remove, set, union } from 'lodash'
+import { get, isArray, remove, set, union } from 'lodash'
 import minimatch from 'minimatch'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
@@ -16,7 +16,6 @@ import CatalogPagination from '@/components/catalog-pagination'
 import CatalogResults from '@/components/catalog-results'
 import CatalogSearch from '@/components/catalog-search'
 import CatalogSort from '@/components/catalog-sort'
-import { getCleanFilter } from '@/data/filters'
 import {
   assetSortComparator,
   collapseAssetGroups,
@@ -79,10 +78,27 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     defaultValue: 60
   })
 
-  const [filter, setFilter] = useQueryState('filter', {
-    ...queryTypes.prettyObject,
-    defaultValue: getCleanFilter(defaultFilter)
-  })
+  // const [framework, setFramework] = useQueryState('framework', {
+  //   defaultValue: defaultFilter.framework
+  // })
+
+  // const [platform, setPlatform] = useQueryState('platform', {
+  //   defaultValue: defaultFilter.platform
+  // })
+
+  // const [tags, setTags] = useQueryState('tags', {
+  //   defaultValue: defaultFilter.tags
+  // })
+
+  // const [status, setStatus] = useQueryState('status', {
+  //   defaultValue: defaultFilter.status
+  // })
+
+  // const [sponsor, setSponsor] = useQueryState('sponsor', {
+  //   defaultValue: defaultFilter.sponsor
+  // })
+
+  const [filter, _] = useState(defaultFilter)
 
   const [libraries] = useState(
     data.libraries.filter((library) => library.assets.length).sort(librarySortComparator)
@@ -135,7 +151,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     setFilteredAssets(
       assets
         .sort(assetSortComparator(sort))
-        .filter((asset) => assetIsInFilter(asset, getCleanFilter(filter)))
+        .filter((asset) => assetIsInFilter(asset, filter))
         .filter((asset) => {
           const { description = '', name = '' } = asset.content
 
@@ -154,12 +170,21 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [assets, JSON.stringify(filter), sort, search])
 
-  useEffect(() => {
-    const validatedFilter = getCleanFilter(filter)
-    if (!isEqual(validatedFilter, filter)) {
-      setFilter(validatedFilter)
-    }
-  }, [filter, setFilter])
+  // useEffect(() => {
+  // const cleanFilter = Object.fromEntries(
+  //  Object.entries({ framework, sponsor, platform, tags, status }).filter(([_, v]) => !!v))
+  //   console.log(cleanFilter)
+  //   setFilter(cleanFilter, framework, sponsor, platform, tags, status)
+  // }, [framework, sponsor, platform, tags, status])
+
+  const updateQueryValues = (newFilter) => {
+    console.log('update query values', filter, newFilter)
+    // if (newFilter.sponsor !== filter.sponsor) setSponsor(newFilter.sponsor)
+    // if (newFilter.platform !== filter.platform) setPlatform(newFilter.platform)
+    // if (newFilter.status !== filter.status) setStatus(newFilter.status)
+    // if (newFilter.tags !== filter.tags) setTags(newFilter.tags)
+    // if (newFilter.framework !== filter.framework) setFramework(newFilter.framework)
+  }
 
   const handleFilter = (item, key, action = 'add') => {
     let updatedFilter = Object.assign({}, filter)
@@ -178,7 +203,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
       updatedFilter = {}
     }
 
-    setFilter(updatedFilter)
+    updateQueryValues(updatedFilter)
   }
 
   const handleSearch = (newValue, saveQuery) => {
@@ -189,20 +214,18 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     setSearch(newValue)
   }
 
-  const cleanFilter = getCleanFilter(filter)
-
   return (
     <>
       <CatalogSearch
         className={styles.search}
-        filter={cleanFilter}
+        filter={filter}
         initialFilter={{ collection, type }}
         search={search}
         onSearch={handleSearch}
         onFilter={handleFilter}
       />
       <CatalogFilters
-        filter={cleanFilter}
+        filter={filter}
         initialFilter={{ collection, type }}
         onFilter={handleFilter}
       />
@@ -212,7 +235,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
         assetCounts={assetCounts}
         assets={filteredAssets}
         isGrid={view === 'grid'}
-        filter={cleanFilter}
+        filter={filter}
         page={page}
         pageSize={pageSize}
       />

@@ -5,99 +5,62 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { set } from 'lodash'
 import { useRouter } from 'next/router'
+import queryString from 'query-string'
 import { useCallback, useEffect, useMemo } from 'react'
 
 import { isJsonString } from './string'
 
-const commonSerializer = (valueSerializer) => {
+const commonSerializer = () => {
   return (key, value, query) => {
-    query.set(key, valueSerializer(value))
+    const stringifiedVal = queryString.stringify({ [key]: value }, { arrayFormat: 'bracket' })
+    const [queryKey, val] = stringifiedVal.split('=')
+    query.set(queryKey, val)
   }
 }
 
 const commonParser = (valueParser) => {
   return (key, query, storageValue) => {
     const queryValue = query.get(key)
+    console.log(
+      queryString.parse(query.toString(), { arrayFormat: 'bracket' })[key],
+      valueParser(undefined)
+    )
+    // why is this causing an inifinite loop ?
+    // const queryValue = queryString.parse(query.toString(), { arrayFormat: 'bracket' })[key]
 
     return queryValue !== null ? valueParser(queryValue) : storageValue
   }
 }
 
-const parsePrettyObject = (name, query, storageValue) => {
-  const obj = {}
-  const keys = Array.from(query.keys()).filter((key) => key.startsWith(`${name}[`))
-  if (!keys.length) {
-    return storageValue
-  }
-  keys.forEach((key) => {
-    const val = query.getAll(key)
-    set(obj, key, val)
-  })
-  return obj[name]
-}
-
-const serializePrettyObject = (name, object, query) => {
-  const ExistingKeys = Array.from(query.keys()).filter((key) => key.startsWith(`${name}[`))
-  ExistingKeys.forEach((key) => query.delete(key))
-
-  const getPairs = (obj, keys = []) =>
-    Object.entries(obj).reduce((pairs, [key, value]) => {
-      if (value.constructor.name === 'Array') {
-        pairs.push([[...keys, key], value])
-      } else if (typeof value === 'object') {
-        pairs.push(...getPairs(value, [...keys, key]))
-      } else {
-        pairs.push([[...keys, key], value])
-      }
-      return pairs
-    }, [])
-
-  getPairs(object).forEach(([keys, value]) => {
-    const key = `${name}${keys.map((nextKey) => '[' + nextKey + ']').join('')}`
-    if (value.constructor.name === 'Array') {
-      value.forEach((val) => {
-        query.append(key, val)
-      })
-      return
-    }
-    query.set(key, value)
-  })
-}
-
 export const queryTypes = {
   string: {
     parse: commonParser((v) => v),
-    serialize: commonSerializer((v) => `${v}`)
+    serialize: commonSerializer()
   },
   integer: {
     parse: commonParser((v) => parseInt(v)),
-    serialize: commonSerializer((v) => Math.round(v).toFixed())
+    serialize: commonSerializer()
   },
   float: {
     parse: commonParser((v) => parseFloat(v)),
-    serialize: commonSerializer((v) => v.toString())
+    serialize: commonSerializer()
   },
   boolean: {
     parse: commonParser((v) => v === 'true'),
-    serialize: commonSerializer((v) => (v ? 'true' : 'false'))
+    serialize: commonSerializer()
   },
   timestamp: {
     parse: commonParser((v) => new Date(parseInt(v))),
-    serialize: commonSerializer((v) => v.valueOf().toString())
+    serialize: commonSerializer()
   },
   isoDateTime: {
     parse: commonParser((v) => new Date(v)),
-    serialize: commonSerializer((v) => v.toISOString())
+    serialize: commonSerializer()
   },
   object: {
     parse: commonParser((v) => (isJsonString(v) ? JSON.parse(v) : {})),
-    serialize: commonSerializer((v) => JSON.stringify(v))
-  },
-  prettyObject: {
-    parse: parsePrettyObject,
-    serialize: serializePrettyObject
+    serialize: commonSerializer()
   }
 }
 

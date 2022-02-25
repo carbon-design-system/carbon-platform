@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.57](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.56...@carbon-platform/web-app@0.1.57) (2022-02-25)
+
+
+### Features
+
+* rename private to noIndex in schema ([8a050b0](https://github.com/carbon-design-system/carbon-platform/commit/8a050b094179bc4c9113d55d9bc28bd8e2b8aac3))
+
 ### [0.1.56](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.55...@carbon-platform/web-app@0.1.56) (2022-02-24)
 
 

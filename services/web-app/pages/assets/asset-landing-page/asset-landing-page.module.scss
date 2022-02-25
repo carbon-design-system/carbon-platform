@@ -1,0 +1,310 @@
+//
+// Copyright IBM Corp. 2022, 2022
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+$content-padding: $spacing-12 + $spacing-07 + $spacing-03;
+$highlights-container-medium: $spacing-13 * 1.3;
+$highlights-container-large: $spacing-13 * 1.15;
+$container-margin: $spacing-09 + $spacing-03;
+
+.content {
+  padding-bottom: $content-padding;
+}
+
+.page-description {
+  @include type-style('expressive-heading-04');
+
+  padding: $spacing-10 $spacing-05;
+  @include breakpoint(md) {
+    padding: $spacing-10 $spacing-06 $spacing-10 0;
+  }
+  @include breakpoint(lg) {
+    padding-right: $spacing-05;
+  }
+  @include breakpoint(xlg) {
+    padding-right: $spacing-06;
+  }
+}
+
+.background {
+  position: relative;
+  &::before {
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    width: 200vw;
+    height: 100%;
+    background: $layer-01;
+    content: '';
+  }
+}
+
+.release-container {
+  padding: $spacing-08 $spacing-05 0 $spacing-05;
+
+  @include breakpoint(md) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  @include breakpoint(lg) {
+    padding-right: $spacing-05;
+  }
+  @include breakpoint(xlg) {
+    padding-right: $spacing-07;
+  }
+}
+
+.highlights-container {
+  position: relative;
+  border-top: 1px solid $border-strong-01;
+
+  @include breakpoint-down(md) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include breakpoint(md) {
+    height: $highlights-container-medium;
+    margin-right: -$spacing-05;
+    margin-left: -$spacing-05;
+  }
+
+  @include breakpoint(lg) {
+    height: $highlights-container-large;
+  }
+
+  &--version {
+    height: auto;
+    margin-bottom: $container-margin;
+  }
+}
+
+.header {
+  position: relative;
+  padding: $spacing-07 $spacing-10 0 $spacing-05;
+  color: $text-primary;
+  @include type-style('expressive-heading-04');
+
+  &--release {
+    padding: $spacing-02 $spacing-10 $spacing-06 0;
+    @include type-style('expressive-heading-03');
+  }
+
+  &--content {
+    padding: $spacing-11 0 $spacing-06 0;
+  }
+
+  &--version {
+    font-weight: 600;
+  }
+
+  &--target--release {
+    padding: 0 0 0 $spacing-05;
+  }
+
+  &--date {
+    padding: 0 0 0 $spacing-05;
+  }
+}
+
+.title {
+  position: relative;
+  padding: $spacing-06 0 0 $spacing-05;
+
+  color: $text-primary;
+  @include type-style('expressive-heading-02');
+
+  @include breakpoint(md) {
+    padding-top: $spacing-07;
+    margin-left: -$spacing-05;
+  }
+
+  @include breakpoint(lg) {
+    padding-left: $spacing-04;
+    margin-left: 0;
+  }
+
+  @include breakpoint(xlg) {
+    padding-left: 0;
+  }
+
+  &--version {
+    @include breakpoint(md) {
+      margin-left: 0;
+    }
+  }
+}
+
+.description {
+  position: relative;
+  padding: 0 $spacing-05 $spacing-08 $spacing-05;
+  color: $text-primary;
+  @include type-style('body-long-02');
+
+  @include breakpoint(md) {
+    padding: 0 $spacing-04 $spacing-08 0;
+  }
+
+  @include breakpoint(lg) {
+    padding: 0 $spacing-04 $spacing-08 $spacing-04;
+  }
+
+  @include breakpoint(xlg) {
+    padding: 0 0 $spacing-08 0;
+  }
+
+  &--release {
+    @include type-style('expressive-heading-04');
+
+    @include breakpoint-down(md) {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+.content-container {
+  position: relative;
+  padding: 0 $spacing-05 $spacing-08 $spacing-05;
+  background-color: $background;
+
+  @include breakpoint(md) {
+    padding: 0 0 $spacing-08 0;
+  }
+}
+
+.text {
+  @include type-style('body-long-02');
+
+  padding-bottom: $spacing-06;
+}
+
+.link {
+  color: $link-primary;
+  text-decoration: none;
+  @include type-style('body-long-02');
+
+  &:hover,
+  &:focus {
+    color: $link-primary-hover;
+    text-decoration: underline;
+  }
+}
+
+.subtitle {
+  padding: 0 $spacing-05 0 $spacing-05;
+  @include type-style('body-long-02');
+
+  @include breakpoint(lg) {
+    padding: 0 $spacing-04 0 $spacing-04;
+  }
+
+  @include breakpoint(xlg) {
+    padding: 0;
+  }
+}
+
+.version-description {
+  padding: $spacing-07 $spacing-05 0 $spacing-05;
+  @include type-style('body-long-02');
+
+  &--padding-none {
+    padding: 0 $spacing-05 0 $spacing-05;
+    @include type-style('body-long-02');
+
+    @include breakpoint(lg) {
+      padding: 0 $spacing-04 0 $spacing-04;
+    }
+
+    @include breakpoint(xlg) {
+      padding: 0;
+    }
+  }
+
+  @include breakpoint(lg) {
+    padding: $spacing-07 $spacing-04 0 $spacing-04;
+  }
+
+  @include breakpoint(xlg) {
+    padding: $spacing-07 0 0 0;
+  }
+}
+
+.description-block-text {
+  padding: 0 $spacing-05 $spacing-06 $spacing-05;
+  @include type-style('body-long-02');
+
+  @include breakpoint(lg) {
+    padding-left: $spacing-04;
+  }
+
+  @include breakpoint(xlg) {
+    padding-left: 0;
+  }
+}
+
+.bulletpoints-header {
+  padding: 0 $spacing-05 0 $spacing-05;
+  @include type-style('body-long-02');
+
+  @include breakpoint(lg) {
+    padding-left: $spacing-04;
+  }
+
+  @include breakpoint(xlg) {
+    padding: 0;
+  }
+}
+
+.bulletpoints {
+  padding: $spacing-06 $spacing-05;
+
+  @include type-style('body-long-02');
+
+  @include breakpoint(lg) {
+    padding: $spacing-06 $spacing-04;
+  }
+
+  @include breakpoint(xlg) {
+    padding: $spacing-06 0;
+  }
+}
+
+.version-image {
+  display: none;
+
+  @include breakpoint(md) {
+    display: block;
+  }
+}
+
+.image-text-container {
+  padding: $spacing-03 0 0 $spacing-05;
+
+  @include breakpoint(lg) {
+    padding-left: $spacing-04;
+  }
+
+  @include breakpoint(xlg) {
+    padding-left: 0;
+  }
+}
+
+.image-text-container h1,
+.image-text-container p {
+  display: inline;
+}
+
+.image-title {
+  padding-right: $spacing-02;
+  @include type-style('label-01');
+
+  font-weight: 600;
+}
+
+.image-description {
+  @include type-style('label-01');
+}

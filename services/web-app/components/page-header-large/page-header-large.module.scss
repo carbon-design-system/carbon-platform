@@ -1,0 +1,71 @@
+//
+// Copyright IBM Corp. 2021, 2022
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+$page-header-height: $spacing-13 * 3.475;
+$illo-original-width: 1260px;
+$illo-original-height: 1078px;
+
+.container {
+  background: $background;
+  @include breakpoint(md) {
+    height: $page-header-height;
+
+    &::before {
+      position: absolute;
+      z-index: 0;
+      left: 0;
+      width: 100vw;
+      height: $page-header-height;
+      background: $background;
+      content: '';
+    }
+  }
+}
+
+.grid {
+  height: 100%;
+}
+
+.column {
+  position: relative;
+  z-index: 1;
+  padding: $spacing-08 $spacing-05 $spacing-10;
+  @include breakpoint(md) {
+    padding: ($spacing-09 + $spacing-03) 0 $spacing-05;
+  }
+  @include breakpoint(lg) {
+    padding-right: $spacing-06;
+  }
+}
+
+.title {
+  color: $text-primary;
+  @include type-style('display-01', true);
+}
+
+.description {
+  margin-top: $spacing-06;
+  color: $text-primary;
+  @include type-style('body-long-02', true);
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  right: -25vw;
+  overflow: hidden;
+  width: 50%;
+  height: $page-header-height;
+  @include breakpoint(xlg) {
+    // -18vw chosen to horizontally center the illo in white space at ultra max viewport
+    right: -18vw;
+    width: $page-header-height * ($illo-original-width / $illo-original-height);
+  }
+  @include breakpoint-down(md) {
+    display: none;
+  }
+}

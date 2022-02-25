@@ -253,8 +253,8 @@ const AssetLandingPage = () => {
                 <Image alt="Version illustration" layout="responsive" src={versionRelease.image} />
               </AspectRatio>
               <div className={styles.imageTextContainer}>
-                <div className={styles.imageTitle}>{versionRelease.imageTitle}</div>
-                <div className={styles.imageDescription}>{versionRelease.imageDescription}</div>
+                <h1 className={styles.imageTitle}>{versionRelease.imageTitle}</h1>
+                <p className={styles.imageDescription}>{versionRelease.imageDescription}</p>
               </div>
             </div>
           </Column>

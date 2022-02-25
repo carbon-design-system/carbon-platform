@@ -282,8 +282,6 @@ $container-margin: $spacing-09 + $spacing-03;
 }
 
 .image-text-container {
-  display: flex;
-  flex-direction: row;
   padding: $spacing-03 0 0 $spacing-05;
 
   @include breakpoint(lg) {
@@ -295,8 +293,13 @@ $container-margin: $spacing-09 + $spacing-03;
   }
 }
 
+.image-text-container h1,
+.image-text-container p {
+  display: inline;
+}
+
 .image-title {
-  min-width: 8.25rem;
+  padding-right: $spacing-02;
   @include type-style('label-01');
 
   font-weight: 600;

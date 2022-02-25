@@ -296,6 +296,7 @@ $container-margin: $spacing-09 + $spacing-03;
 }
 
 .image-title {
+  min-width: 8.25rem;
   @include type-style('label-01');
 
   font-weight: 600;
@@ -303,6 +304,4 @@ $container-margin: $spacing-09 + $spacing-03;
 
 .image-description {
   @include type-style('label-01');
-
-  padding-left: $spacing-02;
 }

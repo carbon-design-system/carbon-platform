@@ -8,12 +8,18 @@
 import { AspectRatio, Column, Grid, Link } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
 import clsx from 'clsx'
+import Image from 'next/image'
 
+import VersionImageFive from '../../../public/asset-page/images/version-image-five.png'
+import VersionImageFour from '../../../public/asset-page/images/version-image-four.png'
+import VersionImageOne from '../../../public/asset-page/images/version-image-one.png'
+import VersionImageThree from '../../../public/asset-page/images/version-image-three.png'
+import VersionImageTwo from '../../../public/asset-page/images/version-image-two.png'
 import styles from './asset-landing-page.module.scss'
 
 const AssetLandingPage = () => {
   const pageDescription =
-    'The new Carbon Design System will provide a single place to find and use all open and inner source assets they need to build consistent, scalable experiences with confidence.'
+    'The new Carbon Design System will provide a single place to find and use all open and inner source assets teams need to build consistent, scalable experiences with confidence.'
 
   const releaseInfo = {
     header: 'This release',
@@ -44,7 +50,7 @@ const AssetLandingPage = () => {
       title: 'Standardize assets and libraries',
       description:
         'This private beta is the start to standardizing Carbon so we can bring everything together as one system. This release is focused on helping PAL maintainers classify libraries and assets through the application of a common schema. This release also prototypes asset discovery improvements as Carbon gets indexed through the application of the schema.',
-      image: '',
+      image: VersionImageOne,
       imageTitle: 'v0.1 User experience:',
       imageDescription:
         'Catalog assets link directly out to Carbon Design System and PAL sites to access an asset’s usage documentation.'
@@ -56,7 +62,7 @@ const AssetLandingPage = () => {
       title: 'For contributors and maintainers:',
       description:
         'A common schema will help PAL maintainers more easily manage their assets, keep content fresh in a live index, and add version control to their libraries.',
-      image: '',
+      image: VersionImageTwo,
       imageTitle: 'v0.2 User experience:',
       imageDescription:
         'Users can begin to access some library and asset docs without leaving the platform; however the user will still need to go offsite for more detailed usage documentation.'
@@ -72,8 +78,8 @@ const AssetLandingPage = () => {
         'New login capabilities to view IBM internal content',
         'Global asset catalog no longer uses external links to legacy docs sites'
       ],
-      image: '',
-      imageTitle: 'v1.0 User experience',
+      image: VersionImageThree,
+      imageTitle: 'v1.0 User experience:',
       imageDescription:
         'This release replaces Carbon’s current website — all 32 “core” components will have fleshed out asset detail pages. If a PAL has migrated content, then it will begin to remove its external docs urls to leverage the detail pages. User Log in will be fully integrated into the experience as well.'
     },
@@ -89,7 +95,7 @@ const AssetLandingPage = () => {
         'New standards added to the site',
         'New code package and component usage analytics'
       ],
-      image: '',
+      image: VersionImageFour,
       imageTitle: 'v1.1 User experience:',
       imageDescription:
         'In this release Standards content will be available on the platform and component usage analytics will allow us to track component insertions.'
@@ -120,7 +126,7 @@ const AssetLandingPage = () => {
         'Resource cross-linking among standards, libraries, assets',
         'Visual content authoring experience with less reliance on markdown'
       ],
-      image: '',
+      image: VersionImageFive,
       imageTitle: 'v2.0 User experience:',
       imageDescription:
         'In this release, all external docs content has been fully migrated allowing the PALs to sunset. The team switcher will allow teams to view assets and documenation through the lens of their team.'
@@ -243,9 +249,9 @@ const AssetLandingPage = () => {
                 : null}
             </ul>
             <div className={styles.versionImage}>
-              <div>
-                <AspectRatio ratio="16x9"></AspectRatio>
-              </div>
+              <AspectRatio ratio="16x9">
+                <Image alt="Version illustration" layout="responsive" src={versionRelease.image} />
+              </AspectRatio>
               <div className={styles.imageTextContainer}>
                 <div className={styles.imageTitle}>{versionRelease.imageTitle}</div>
                 <div className={styles.imageDescription}>{versionRelease.imageDescription}</div>

@@ -69,6 +69,7 @@ const Library = ({ libraryData, params }) => {
 
   return (
     <>
+      <NextSeo {...seo} />
       <PageHeader title={seo.title} pictogram={FileBackup} />
       <PageBreadcrumb items={breadcrumbItems} />
       <Dashboard className={styles.dashboard}>
@@ -119,7 +120,6 @@ const Library = ({ libraryData, params }) => {
         </Column>
       </Dashboard>
       <div className={pageStyles.content}>
-        <NextSeo {...seo} />
         <ul>
           {assets.map((asset, i) => (
             <li key={i}>
@@ -131,7 +131,6 @@ const Library = ({ libraryData, params }) => {
             </li>
           ))}
         </ul>
-        <pre className={pageStyles.data}>{JSON.stringify(libraryData, null, 2)}</pre>
       </div>
     </>
   )

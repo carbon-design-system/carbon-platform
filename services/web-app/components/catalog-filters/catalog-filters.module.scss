@@ -18,5 +18,7 @@
 
 .section {
   padding: $spacing-03 $spacing-04;
+  margin-right: -$spacing-05;
+  margin-left: -$spacing-05;
   background: $layer-01;
 }

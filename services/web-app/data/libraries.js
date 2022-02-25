@@ -38,10 +38,11 @@ const watsonMomentsGroup = {
 */
 
 /**
- * Libraries are only included in the platform if in this allowlist. Library slugs are specified as
- * object keys to ensure uniqueness.
+ * Libraries are only included in the production environment if in this allowlist. Add a library to
+ * this object to register the library in production and index its resources. Library slugs are
+ * specified as object keys to ensure uniqueness.
  */
-const libraries = {
+const prodLibraries = {
   // 'carbon-charts': {
   //   host: 'github.ibm.com',
   //   org: 'matt-rosno',
@@ -339,38 +340,53 @@ const libraries = {
 }
 
 /**
- * Libraries to persist to the `public/data` file system cache so we can use this local data when
- * deploying to Vercel.
+ * This libraries allowlist is just used for development purposes. These are persisted to the
+ * `public/data` file system cache and committed so we can use local data when deploying to Netlify
+ * (no dependencies on hitting GitHub APIs to fetch data.) In the future, we can replace these with
+ * mock libraries that hit edge cases and then use this data set in our test suite.
  */
-const ossLibraries = [
-  // 'carbon-charts',
-  // 'carbon-charts-angular',
-  // 'carbon-charts-react',
-  // 'carbon-charts-svelte',
-  // 'carbon-charts-vue',
-  // 'carbon-styles',
-  // 'carbon-components',
-  // 'carbon-angular',
-  // 'carbon-react',
-  // 'carbon-svelte',
-  // 'carbon-vue',
-  // 'carbon-web-components'
-  'ibmdotcom-react',
-  'ibmdotcom-web-components',
-  'ibmdotcom-services',
-  'ibmdotcom-styles',
-  'ibmdotcom-utilities'
-]
+const devLibraries = {
+  'ibmdotcom-react': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/react',
+    sponsor: 'ibm-dotcom',
+    group: ibmdotcomGroup
+  },
+  'ibmdotcom-web-components': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/web-components',
+    sponsor: 'ibm-dotcom',
+    group: ibmdotcomGroup
+  },
+  'ibmdotcom-services': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/services',
+    sponsor: 'ibm-dotcom'
+  },
+  'ibmdotcom-styles': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/styles',
+    sponsor: 'ibm-dotcom',
+    group: ibmdotcomGroup
+  },
+  'ibmdotcom-utilities': {
+    host: 'github.ibm.com',
+    org: 'francine-lucca',
+    repo: 'carbon-for-ibm-dotcom',
+    path: '/packages/utilities',
+    sponsor: 'ibm-dotcom'
+  }
+}
 
-/**
- * Only use the `ossLibraries` data set if specified in the environment variable.
- */
-const libraryAllowList = Object.keys(libraries)
-  .filter((key) => (getRunMode() === RunMode.Dev ? ossLibraries.includes(key) : true))
-  .reduce((obj, key) => {
-    obj[key] = libraries[key]
-    return obj
-  }, {})
+const libraryAllowList = getRunMode() === RunMode.Prod ? prodLibraries : devLibraries
 
 module.exports = {
   libraryAllowList

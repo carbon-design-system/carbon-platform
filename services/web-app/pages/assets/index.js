@@ -29,7 +29,8 @@ const PageContent = () => {
       header: 'Better discoverability',
       title: 'For designers and developers:',
       description:
-        'A unified discovery experience will help designers and developers find and access components, patterns, and functions across all IBM teams.'
+        // eslint-disable-next-line max-len
+        'A unified discovery experience will help designers and developers find and access components, patterns, functions and templates across all IBM teams.'
     },
     {
       header: 'Easier management',
@@ -58,10 +59,17 @@ const PageContent = () => {
       version: 'v0.2',
       targetRelease: 'Target release:',
       date: 'March 27',
-      title: 'For contributors and maintainers:',
+      title: 'Asset catalog experience',
       description:
         // eslint-disable-next-line max-len
-        'A common schema will help PAL maintainers more easily manage their assets, keep content fresh in a live index, and add version control to their libraries.',
+        'This release adds landing and detail pages to better describe the system and its content. With the addition of the detail pages, system users can access many asset and library docs without leaving the catalog, while still pointing to PAL documentation sites for most PAL-related content. As the system will be fully indexed, Carbon’s legacy website can direct traffic to the beta for asset discovery.',
+      bulletPoints: [
+        'New global navigation menu',
+        'New home page',
+        'New library detail page',
+        'New asset detail page',
+        'Replace legacy community component index with beta catalogs'
+      ],
       image: ReleaseTwoImg,
       imageTitle: 'v0.2 User experience:',
       imageDescription:
@@ -75,7 +83,7 @@ const PageContent = () => {
       title: 'General availability',
       description:
         // eslint-disable-next-line max-len
-        "The platform's first major release will help system users discover and learn about all the assets and libraries in the system with confidence in their completeness, who maintains them, and how to use them. System users can access documentation for all indexed assets and libraries without leaving the platform.",
+        'The platform’s first major release will help system users discover and learn about all the assets and libraries in the system with confidence in their completeness, who maintains them, and how to use them. System users can access documentation for all indexed assets and libraries without leaving the platform.',
       bulletPoints: [
         'New login capabilities to view IBM internal content',
         'Global asset catalog no longer uses external links to legacy docs sites'
@@ -84,7 +92,7 @@ const PageContent = () => {
       imageTitle: 'v1.0 User experience:',
       imageDescription:
         // eslint-disable-next-line max-len
-        'This release replaces Carbon’s current website — all 32 “core” components will have fleshed out asset detail pages. If a PAL has migrated content, then it will begin to remove its external docs urls to leverage the detail pages. User Log in will be fully integrated into the experience as well.'
+        'This release replaces Carbon’s current website — all 32 “core” components will have complete asset detail pages. If a PAL has migrated content, then it will begin to remove its external docs urls to leverage the detail pages. User log in will be fully integrated into the experience as well.'
     },
     {
       version: 'v1.1',
@@ -94,7 +102,7 @@ const PageContent = () => {
       subtitle: 'This release will fully take the following Hill:',
       description:
         // eslint-disable-next-line max-len
-        "An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can discover and learn about resources [standards and components/patterns] in the system with confidence in their completeness, who maintains them and where they're used.",
+        'An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can discover and learn about resources [standards and components/patterns] in the system with confidence in their completeness, who maintains them and where they’re used.',
       bulletPoints: [
         'New standards added to the site',
         'New code package and component usage analytics'
@@ -110,7 +118,7 @@ const PageContent = () => {
       targetRelease: 'Target release:',
       date: 'Q3',
       title: 'System of systems',
-      subtitle: "The platform's second major release will take the following Hills:",
+      subtitle: 'The platform’s second major release will take the following Hills:',
       description: '',
       descriptionBlock: [
         {
@@ -129,7 +137,7 @@ const PageContent = () => {
       bulletPointsHeader: 'This evolves the platform into a system of systems, with:',
       bulletPoints: [
         'Pattern and Asset Library (PAL) sites migrated as local systems',
-        "PAL sites sunset with redirects to Carbon's website",
+        'PAL sites sunset with redirects to Carbon’s website',
         'Resource cross-linking among standards, libraries, assets',
         'Visual content authoring experience with less reliance on markdown'
       ],
@@ -202,8 +210,9 @@ const PageContent = () => {
             , along with milestones, estimated dates, and descriptions of high level outcomes. For a
             visual overview of the following releases and their epics, view our roadmap in{' '}
             <Link href="https://airtable.com/shrshl3XOeeT4Uxq0">
-              <a className={styles.link}>Airtable</a>.
+              <a className={styles.link}>Airtable</a>
             </Link>
+            .
           </p>
         </Column>
       </Grid>

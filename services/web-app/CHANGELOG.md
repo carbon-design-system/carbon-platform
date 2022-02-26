@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.58](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.57...@carbon-platform/web-app@0.1.58) (2022-02-26)
+
+
+### Features
+
+* add libraries list styling ([ffc33d9](https://github.com/carbon-design-system/carbon-platform/commit/ffc33d9a5d2ba6349d1faad629970bee3004497f))
+* added footer component ([3c265bd](https://github.com/carbon-design-system/carbon-platform/commit/3c265bdf336df5a1ea1c5590613ce96559d03a83))
+* added images ([63ab2c3](https://github.com/carbon-design-system/carbon-platform/commit/63ab2c32af9b6f54305972c1c60f3fdcd6b1e2f0))
+* added links ([63dc498](https://github.com/carbon-design-system/carbon-platform/commit/63dc4984d34edc13749c12a1d8da5b549aa428da))
+* added links ([89348fe](https://github.com/carbon-design-system/carbon-platform/commit/89348fee4199bd866cf4789b68a89a799728c04b))
+* content - need to do versioning and footer ([d7e881c](https://github.com/carbon-design-system/carbon-platform/commit/d7e881c85a3d49a4294a966d3ae5ccab51561078))
+* fix styles, go below highlights, highlights for mobile ([bcf3255](https://github.com/carbon-design-system/carbon-platform/commit/bcf32554d7f86939332b440988087d056ca392f8))
+* responsive- clean up code, images, links, white background, footer ([b793373](https://github.com/carbon-design-system/carbon-platform/commit/b793373a112199c311d5da3ccd6c032291571b73))
+
+
+### Bug Fixes
+
+* added image descriptions ([2ebb2d3](https://github.com/carbon-design-system/carbon-platform/commit/2ebb2d3b953cfdd47f253856c578dbf84f3155a8))
+* content fixes ([2dada0b](https://github.com/carbon-design-system/carbon-platform/commit/2dada0bb8c271edac8df54c4d3b3e5d0d8d909ff))
+* fix image caption ([50ef361](https://github.com/carbon-design-system/carbon-platform/commit/50ef361d938853eca44520c350a6249e8cfb312f))
+* fixed bottom text ([039f4ef](https://github.com/carbon-design-system/carbon-platform/commit/039f4ef80e5903e5b8efa64f4bcb7cae6ccd4699))
+* page header background illo ([0b075d9](https://github.com/carbon-design-system/carbon-platform/commit/0b075d96e100831a1a4744cf60ab5c5ade15ef02))
+* page header measure width at lg and above ([90031a9](https://github.com/carbon-design-system/carbon-platform/commit/90031a90324adac8a97f94fab18e0286c0b36848))
+* sm and md padding fixes ([babd516](https://github.com/carbon-design-system/carbon-platform/commit/babd5163e23c24a5f0d87cf323511711b1c1f058))
+
 ### [0.1.57](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.56...@carbon-platform/web-app@0.1.57) (2022-02-25)
 
 

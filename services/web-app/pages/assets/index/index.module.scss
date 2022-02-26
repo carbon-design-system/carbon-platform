@@ -5,15 +5,40 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-$highlights-container-medium: $spacing-13 * 1.3;
-$highlights-container-large: $spacing-13 * 1.15;
-$container-margin: $spacing-09 + $spacing-03;
-
-.content {
+.container {
   padding-bottom: $spacing-13 + $spacing-07;
 }
 
-.page-description {
+/**
+ * Global
+ */
+
+.border {
+  position: relative;
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 1px;
+    background-color: $border-strong-01;
+    content: '';
+    @include breakpoint(md) {
+      margin-right: -$spacing-05;
+      margin-left: -$spacing-05;
+    }
+  }
+}
+
+.bold {
+  font-weight: 600;
+}
+
+/**
+ * Subheading
+ */
+
+.subheading {
   padding: $spacing-10 $spacing-05;
   @include type-style('expressive-heading-04');
   @include breakpoint(md) {
@@ -28,8 +53,17 @@ $container-margin: $spacing-09 + $spacing-03;
   }
 }
 
-.background {
+/**
+ * Highlights
+ */
+
+.highlights {
   position: relative;
+  padding: 0 $spacing-05;
+  @include breakpoint(md) {
+    padding: 0;
+  }
+
   &::before {
     position: absolute;
     top: 0;
@@ -41,269 +75,145 @@ $container-margin: $spacing-09 + $spacing-03;
   }
 }
 
-.release-container {
-  padding: $spacing-08 $spacing-05 0 $spacing-05;
+.hightlight-grid {
+  position: relative;
 
+  &--height {
+    @include breakpoint(md) {
+      min-height: $spacing-13 + $spacing-09;
+    }
+    @include breakpoint(lg) {
+      min-height: $spacing-13 + $spacing-06;
+    }
+  }
+}
+
+.highlight-heading {
+  margin-top: $spacing-08;
+  @include type-style('expressive-heading-03');
   @include breakpoint(md) {
+    margin-top: $spacing-08 + $spacing-02;
+  }
+  @include breakpoint(lg) {
+    padding-right: $spacing-07;
+  }
+
+  &--big {
+    margin-top: $spacing-07;
+    @include type-style('expressive-heading-04');
+  }
+}
+
+.highlight-description {
+  margin: $spacing-06 0 ($spacing-08 + $spacing-06);
+  @include type-style('body-long-02');
+  @include breakpoint(md) {
+    margin: $spacing-07 0;
+  }
+  @include breakpoint(lg) {
+    padding-right: $spacing-05;
+  }
+  @include breakpoint(xlg) {
     padding-right: 0;
+  }
+
+  &--big {
+    @include type-style('expressive-heading-04');
+    @include breakpoint(md) {
+      margin: $spacing-08 0;
+    }
+  }
+}
+
+.highlight-title {
+  display: block;
+  @include type-style('expressive-heading-02');
+}
+
+/**
+ * Content
+ */
+
+.content-column {
+  padding-right: $spacing-05;
+  padding-left: $spacing-05;
+  @include breakpoint(md) {
+    padding-right: $spacing-06;
     padding-left: 0;
   }
   @include breakpoint(lg) {
     padding-right: $spacing-05;
   }
   @include breakpoint(xlg) {
-    padding-right: $spacing-07;
+    padding-right: $spacing-06;
   }
 }
 
-.highlights-container {
-  position: relative;
-  border-top: 1px solid $border-strong-01;
-
-  @include breakpoint-down(md) {
-    display: flex;
-    flex-direction: column;
-  }
-
-  @include breakpoint(md) {
-    height: $highlights-container-medium;
-    margin-right: -$spacing-05;
-    margin-left: -$spacing-05;
-  }
-
-  @include breakpoint(lg) {
-    height: $highlights-container-large;
-  }
-
-  &--version {
-    height: auto;
-    margin-bottom: $container-margin;
-  }
-}
-
-.header {
-  position: relative;
-  padding: $spacing-07 $spacing-10 0 $spacing-05;
-  color: $text-primary;
+.content-heading {
+  margin-top: $spacing-11;
   @include type-style('expressive-heading-04');
+}
 
-  &--release {
-    padding: $spacing-02 $spacing-10 $spacing-06 0;
-    @include type-style('expressive-heading-03');
-  }
+.content-copy {
+  margin-top: $spacing-06;
+  @include type-style('body-long-02');
 
-  &--content {
-    padding: $spacing-11 0 $spacing-06 0;
-  }
-
-  &--version {
-    font-weight: 600;
-  }
-
-  &--target--release {
-    padding: 0 0 0 $spacing-05;
-  }
-
-  &--date {
-    padding: 0 0 0 $spacing-05;
+  &:last-child {
+    margin-bottom: $spacing-10;
   }
 }
 
-.title {
-  position: relative;
-  padding: $spacing-06 0 0 $spacing-05;
+/**
+ * Release
+ */
 
-  color: $text-primary;
+.release {
+  padding: 0 $spacing-05 ($spacing-09 + $spacing-03);
+  @include breakpoint(md) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.release-heading {
+  margin-top: $spacing-07;
+  @include type-style('expressive-heading-04');
+}
+
+.release-subheading {
   @include type-style('expressive-heading-02');
+}
 
+.release-copy {
+  @include type-style('body-long-02');
+
+  & + & {
+    margin-top: $spacing-06;
+  }
+}
+
+.release-content {
+  margin-top: $spacing-06;
   @include breakpoint(md) {
-    padding-top: $spacing-07;
-    margin-left: -$spacing-05;
+    padding-right: $spacing-06;
   }
-
   @include breakpoint(lg) {
-    padding-left: $spacing-04;
-    margin-left: 0;
+    padding-right: $spacing-05;
+    margin-top: $spacing-07;
   }
-
   @include breakpoint(xlg) {
-    padding-left: 0;
-  }
-
-  &--version {
-    @include breakpoint(md) {
-      margin-left: 0;
-    }
+    padding-right: $spacing-06;
   }
 }
 
-.description {
-  position: relative;
-  padding: 0 $spacing-05 $spacing-08 $spacing-05;
-  color: $text-primary;
-  @include type-style('body-long-02');
-
-  @include breakpoint(md) {
-    padding: 0 $spacing-04 $spacing-08 0;
-  }
-
-  @include breakpoint(lg) {
-    padding: 0 $spacing-04 $spacing-08 $spacing-04;
-  }
-
-  @include breakpoint(xlg) {
-    padding: 0 0 $spacing-08 0;
-  }
-
-  &--release {
-    @include type-style('expressive-heading-04');
-
-    @include breakpoint-down(md) {
-      padding-right: 0;
-      padding-left: 0;
-    }
+.release-image {
+  margin-top: $spacing-06;
+  @include breakpoint-down(md) {
+    display: none;
   }
 }
 
-.content-container {
-  position: relative;
-  padding: 0 $spacing-05 $spacing-08 $spacing-05;
-  background-color: $background;
-
-  @include breakpoint(md) {
-    padding: 0 0 $spacing-08 0;
-  }
-}
-
-.text {
-  @include type-style('body-long-02');
-
-  padding-bottom: $spacing-06;
-}
-
-.link {
-  color: $link-primary;
-  text-decoration: none;
-  @include type-style('body-long-02');
-
-  &:hover,
-  &:focus {
-    color: $link-primary-hover;
-    text-decoration: underline;
-  }
-}
-
-.subtitle {
-  padding: 0 $spacing-05 0 $spacing-05;
-  @include type-style('body-long-02');
-
-  @include breakpoint(lg) {
-    padding: 0 $spacing-04 0 $spacing-04;
-  }
-
-  @include breakpoint(xlg) {
-    padding: 0;
-  }
-}
-
-.version-description {
-  padding: $spacing-07 $spacing-05 0 $spacing-05;
-  @include type-style('body-long-02');
-
-  &--padding-none {
-    padding: 0 $spacing-05 0 $spacing-05;
-    @include type-style('body-long-02');
-
-    @include breakpoint(lg) {
-      padding: 0 $spacing-04 0 $spacing-04;
-    }
-
-    @include breakpoint(xlg) {
-      padding: 0;
-    }
-  }
-
-  @include breakpoint(lg) {
-    padding: $spacing-07 $spacing-04 0 $spacing-04;
-  }
-
-  @include breakpoint(xlg) {
-    padding: $spacing-07 0 0 0;
-  }
-}
-
-.description-block-text {
-  padding: 0 $spacing-05 $spacing-06 $spacing-05;
-  @include type-style('body-long-02');
-
-  @include breakpoint(lg) {
-    padding-left: $spacing-04;
-  }
-
-  @include breakpoint(xlg) {
-    padding-left: 0;
-  }
-}
-
-.bulletpoints-header {
-  padding: 0 $spacing-05 0 $spacing-05;
-  @include type-style('body-long-02');
-
-  @include breakpoint(lg) {
-    padding-left: $spacing-04;
-  }
-
-  @include breakpoint(xlg) {
-    padding: 0;
-  }
-}
-
-.bulletpoints {
-  padding: $spacing-06 $spacing-05;
-
-  @include type-style('body-long-02');
-
-  @include breakpoint(lg) {
-    padding: $spacing-06 $spacing-04;
-  }
-
-  @include breakpoint(xlg) {
-    padding: $spacing-06 0;
-  }
-}
-
-.version-image {
-  display: none;
-
-  @include breakpoint(md) {
-    display: block;
-  }
-}
-
-.image-text-container {
-  padding: $spacing-03 0 0 $spacing-05;
-
-  @include breakpoint(lg) {
-    padding-left: $spacing-04;
-  }
-
-  @include breakpoint(xlg) {
-    padding-left: 0;
-  }
-}
-
-.image-text-container h1,
-.image-text-container p {
-  display: inline;
-}
-
-.image-title {
-  padding-right: $spacing-02;
-  @include type-style('label-01');
-
-  font-weight: 600;
-}
-
-.image-description {
+.release-image-caption {
+  margin-top: $spacing-05;
   @include type-style('label-01');
 }

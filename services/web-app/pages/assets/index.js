@@ -150,59 +150,68 @@ const PageContent = () => {
   ]
 
   return (
-    <div className={styles.content}>
+    <div className={styles.container}>
       <Grid>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <h2 className={styles.pageDescription}>
+          <h2 className={styles.subheading}>
             The new Carbon Design System will provide a single place to find and use all open and
             inner source assets teams need to build consistent, scalable experiences with
             confidence.
           </h2>
         </Column>
       </Grid>
-      <div className={styles.background}>
-        <Grid className={styles.releaseContainer}>
-          <Column sm={4} md={4} lg={4} xlg={4}>
-            <h3 className={clsx(styles.header, styles.headerRelease)}>This release</h3>
+      <div className={styles.highlights}>
+        <Grid className={styles.hightlightGrid}>
+          <Column sm={4}>
+            <h3 className={styles.highlightHeading}>This release</h3>
           </Column>
-          <Column sm={4} md={4} lg={8} xlg={7}>
-            <p className={clsx(styles.description, styles.descriptionRelease)}>
+          <Column sm={4} lg={8} xlg={7}>
+            <p className={clsx(styles.highlightDescription, styles.highlightDescriptionBig)}>
               Our first release is the start to standardizing our community’s assets and surfacing
               them in one shared catalog.
             </p>
           </Column>
         </Grid>
         {highlights.map((highlight, i) => (
-          <Grid className={styles.highlightsContainer} key={i}>
-            <Column md={4} lg={4} xlg={4} key={i}>
-              <h3 className={styles.header}>{highlight.header}</h3>
+          <Grid
+            className={clsx(styles.hightlightGrid, styles.hightlightGridHeight, styles.border)}
+            key={i}
+          >
+            <Column sm={4} key={i}>
+              <h3 className={clsx(styles.highlightHeading, styles.highlightHeadingBig)}>
+                {highlight.header}
+              </h3>
             </Column>
-            <Column md={4} lg={8} xlg={7}>
-              <p className={styles.title}>{highlight.title}</p>
-              <p className={styles.description}>{highlight.description}</p>
+            <Column sm={4} lg={8} xlg={7}>
+              <p className={styles.highlightDescription}>
+                <span className={styles.highlightTitle}>{highlight.title}</span>
+                {highlight.description}
+              </p>
             </Column>
           </Grid>
         ))}
       </div>
-      <Grid className={styles.contentContainer}>
-        <Column sm={4} md={8} lg={8} xlg={8}>
-          <h2 className={clsx(styles.header, styles.headerContent)}>How PAL teams can prepare</h2>
-          <p className={clsx(styles.text, styles.text)}>
+      <Grid>
+        <Column sm={4} md={8} className={styles.contentColumn}>
+          <h2 className={styles.contentHeading}>How PAL teams can prepare</h2>
+          <p className={styles.contentCopy}>
             Ensure your components, functions, patterns and templates are indexed in our unified
             asset discovery experience by March 30th.
           </p>
-          <p className={clsx(styles.text, styles.text)}>
+          <p className={styles.contentCopy}>
             To make this happen, we ask that you follow the instructions below to document your
             library’s metadata in the stuctured format we have provided.
           </p>
-          <Link
-            href="https://github.com/carbon-design-system/carbon-platform/blob/main/docs/resource-schemas.md#resource-schemas"
-            renderIcon={ArrowRight}
-          >
-            <a className={styles.link}>{'Get started'}</a>
-          </Link>
-          <h2 className={clsx(styles.header, styles.headerContent)}>Platform roadmap</h2>
-          <p className={clsx(styles.text, styles.text)}>
+          <p className={styles.contentCopy}>
+            <Link
+              href="https://github.com/carbon-design-system/carbon-platform/blob/main/docs/resource-schemas.md#resource-schemas"
+              renderIcon={ArrowRight}
+            >
+              <a className={styles.link}>Get started</a>
+            </Link>
+          </p>
+          <h2 className={styles.contentHeading}>Platform roadmap</h2>
+          <p className={styles.contentCopy}>
             Progress on the following releases are documented in{' '}
             <Link href="https://github.com/carbon-design-system/carbon-platform">
               <a className={styles.link}>GitHub</a>
@@ -217,51 +226,46 @@ const PageContent = () => {
         </Column>
       </Grid>
       {releases.map((release, i) => (
-        <Grid
-          className={clsx(styles.highlightsContainer, styles.highlightsContainerVersion)}
-          key={i}
-        >
-          <Column md={8} lg={4} xlg={4} key={i}>
-            <h2 className={clsx(styles.header, styles.headerVersion)}>{release.version}</h2>
-            <h2 className={clsx(styles.header, styles.headerTargetRelease)}>{release.release}</h2>
-            <h2 className={clsx(styles.header, styles.headerDate)}>{release.date}</h2>
+        <Grid className={clsx(styles.release, styles.border)} key={i}>
+          <Column sm={4} md={8} lg={4}>
+            <h2 className={styles.releaseHeading}>
+              <div className={styles.bold}>{release.version}</div>
+              <div>{release.release}</div>
+              <div>{release.date}</div>
+            </h2>
           </Column>
-          <Column md={8} lg={8} xlg={7}>
-            <h3 className={clsx(styles.title, styles.titleVersion)}>{release.title}</h3>
-            <p className={styles.subtitle}>{release.subtitle ? release.subtitle : null}</p>
-            <p
-              className={clsx(
-                release.subtitle ? styles.versionDescription : styles.versionDescriptionPaddingNone
+          <Column sm={4} md={8}>
+            <div className={styles.releaseContent}>
+              {release.title && <h3 className={styles.releaseSubheading}>{release.title}</h3>}
+              {release.subtitle && <p className={styles.releaseCopy}>{release.subtitle}</p>}
+              {release.description && <p className={styles.releaseCopy}>{release.description}</p>}
+              {release.descriptionBlock &&
+                release.descriptionBlock.map((descriptionBlock, o) => (
+                  <div className={styles.releaseCopy} key={o}>
+                    <p>{descriptionBlock.title}</p>
+                    <p>{descriptionBlock.description}</p>
+                  </div>
+                ))}
+              {release.bulletPointsHeader && (
+                <p className={styles.releaseCopy}>{release.bulletPointsHeader}</p>
               )}
-            >
-              {release.description}
-            </p>
-            {release.descriptionBlock &&
-              release.descriptionBlock.map((descriptionBlock, o) => (
-                <div className={styles.descriptionBlockText} key={o}>
-                  <p>{descriptionBlock.title}</p>
-                  <p>{descriptionBlock.description}</p>
-                </div>
-              ))}
-            {release.bulletPointsHeader && (
-              <p className={styles.bulletpointsHeader}>{release.bulletPointsHeader}</p>
-            )}
-            <ul className={styles.bulletpoints}>
-              {release.bulletPoints &&
-                release.bulletPoints.map((bulletPoint, e) => {
-                  return <li key={e}>{'– ' + bulletPoint}</li>
-                })}
-            </ul>
-            <div className={styles.versionImage}>
+              {release.bulletPoints && (
+                <ul className={styles.releaseCopy}>
+                  {release.bulletPoints.map((bulletPoint, e) => {
+                    return <li key={e}>{'– ' + bulletPoint}</li>
+                  })}
+                </ul>
+              )}
+            </div>
+            <div className={styles.releaseImage}>
               <Image
                 alt={release.captionHeading}
                 layout="responsive"
                 src={release.image}
                 placeholder="blur"
               />
-              <p className={styles.imageTextContainer}>
-                <span className={styles.captionHeading}>{release.captionHeading}:</span>
-                <span className={styles.caption}>{release.caption}</span>
+              <p className={styles.releaseImageCaption}>
+                <span className={styles.bold}>{release.captionHeading}:</span> {release.caption}
               </p>
             </div>
           </Column>

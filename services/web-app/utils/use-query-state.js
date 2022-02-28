@@ -9,69 +9,9 @@ import { useRouter } from 'next/router'
 import queryString from 'query-string'
 import { useCallback, useEffect, useMemo } from 'react'
 
-import { isJsonString } from './string'
-
-const commonSerializer = () => {
-  return (key, value, query) => {
-    const stringifiedVal = queryString.stringify({ [key]: value }, { arrayFormat: 'bracket' })
-    const [queryKey, val] = stringifiedVal.split('=')
-    query.set(queryKey, val)
-  }
-}
-
-const commonParser = (valueParser) => {
-  return (key, query, storageValue) => {
-    const queryValue = query.get(key)
-    console.log(
-      queryString.parse(query.toString(), { arrayFormat: 'bracket' })[key],
-      valueParser(undefined)
-    )
-    // why is this causing an inifinite loop ?
-    // const queryValue = queryString.parse(query.toString(), { arrayFormat: 'bracket' })[key]
-
-    return queryValue !== null ? valueParser(queryValue) : storageValue
-  }
-}
-
-export const queryTypes = {
-  string: {
-    parse: commonParser((v) => v),
-    serialize: commonSerializer()
-  },
-  integer: {
-    parse: commonParser((v) => parseInt(v)),
-    serialize: commonSerializer()
-  },
-  float: {
-    parse: commonParser((v) => parseFloat(v)),
-    serialize: commonSerializer()
-  },
-  boolean: {
-    parse: commonParser((v) => v === 'true'),
-    serialize: commonSerializer()
-  },
-  timestamp: {
-    parse: commonParser((v) => new Date(parseInt(v))),
-    serialize: commonSerializer()
-  },
-  isoDateTime: {
-    parse: commonParser((v) => new Date(v)),
-    serialize: commonSerializer()
-  },
-  object: {
-    parse: commonParser((v) => (isJsonString(v) ? JSON.parse(v) : {})),
-    serialize: commonSerializer()
-  }
-}
-
 export const useQueryState = (
   key,
-  {
-    defaultValue = '',
-    parse = queryTypes.string.parse,
-    serialize = queryTypes.string.serialize,
-    saveToStorage = false
-  }
+  { defaultValue = '', saveToStorage = false, parseNumbers = false, parseBooleans = false }
 ) => {
   const router = useRouter()
 
@@ -82,35 +22,44 @@ export const useQueryState = (
       return null
     }
 
-    const query = new URLSearchParams(window.location.search)
+    const query = queryString.parseUrl(window.location.search, {
+      arrayFormat: 'bracket',
+      parseNumbers,
+      parseBooleans
+    }).query
     const storageValue = saveToStorage ? localStorage.getItem(`${router.pathname}:${key}`) : null
-    return parse(key, query, storageValue)
-  }, [key, parse, router.pathname, saveToStorage])
+
+    return query[key] !== null ? query[key] : storageValue
+  }, [key, parseBooleans, parseNumbers, router.pathname, saveToStorage])
 
   // Update the "state" when the router.query key changes
-  const value = useMemo(getValue, [getValue, router.query[key]])
+  const value = useMemo(getValue, [getValue, router.query[key], router.query[`${key}[]`]])
 
   // Replace the route to then update the "state"
   const update = useCallback(
-    (stateUpdater) => {
+    async (stateUpdater) => {
       const oldValue = getValue()
       const newValue = typeof stateUpdater === 'function' ? stateUpdater(oldValue) : stateUpdater
 
       // Don't rely on router.query here because that would cause unnecessary renders when other
       // query parameters change
-      const query = new URLSearchParams(window.location.search)
+      const query = queryString.parseUrl(window.location.search, {
+        arrayFormat: 'bracket',
+        parseNumbers,
+        parseBooleans
+      }).query
 
-      if (newValue === null || newValue === undefined) {
-        query.delete(key)
-      } else {
-        serialize(key, newValue, query)
-      }
+      query[key] = newValue
 
-      router.replace(`?${query.toString()}`, undefined, { shallow: true, scroll: false })
+      await router.replace(
+        `?${queryString.stringify(query, { arrayFormat: 'bracket' })}`,
+        undefined,
+        { shallow: true, scroll: false }
+      )
     },
     // The Next.js router updates `router.replace`, which should not trigger re-renders
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [getValue, key, serialize]
+    [getValue, key]
   )
 
   // Save the value to local storage as it changes

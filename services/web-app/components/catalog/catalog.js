@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { get, isArray, remove, set, union } from 'lodash'
+import { cloneDeep, get, isArray, isEqual, remove, set, union } from 'lodash'
 import minimatch from 'minimatch'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
@@ -23,7 +23,7 @@ import {
   getCanonicalLibraryId,
   librarySortComparator
 } from '@/utils/schema'
-import { queryTypes, useQueryState } from '@/utils/use-query-state'
+import { useQueryState } from '@/utils/use-query-state'
 
 import styles from './catalog.module.scss'
 
@@ -69,36 +69,36 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   })
 
   const [page, setPage] = useQueryState('page', {
-    ...queryTypes.integer,
-    defaultValue: 1
+    defaultValue: 1,
+    parseNumbers: true
   })
 
   const [pageSize, setPageSize] = useQueryState('items', {
-    ...queryTypes.integer,
-    defaultValue: 60
+    defaultValue: 60,
+    parseNumbers: true
   })
 
-  // const [framework, setFramework] = useQueryState('framework', {
-  //   defaultValue: defaultFilter.framework
-  // })
+  const [framework, setFramework] = useQueryState('framework', {
+    defaultValue: defaultFilter.framework
+  })
 
-  // const [platform, setPlatform] = useQueryState('platform', {
-  //   defaultValue: defaultFilter.platform
-  // })
+  const [platform, setPlatform] = useQueryState('platform', {
+    defaultValue: defaultFilter.platform
+  })
 
-  // const [tags, setTags] = useQueryState('tags', {
-  //   defaultValue: defaultFilter.tags
-  // })
+  const [tags, setTags] = useQueryState('tags', {
+    defaultValue: defaultFilter.tags
+  })
 
-  // const [status, setStatus] = useQueryState('status', {
-  //   defaultValue: defaultFilter.status
-  // })
+  const [status, setStatus] = useQueryState('status', {
+    defaultValue: defaultFilter.status
+  })
 
-  // const [sponsor, setSponsor] = useQueryState('sponsor', {
-  //   defaultValue: defaultFilter.sponsor
-  // })
+  const [sponsor, setSponsor] = useQueryState('sponsor', {
+    defaultValue: defaultFilter.sponsor
+  })
 
-  const [filter, _] = useState(defaultFilter)
+  const [filter, setFilter] = useState(defaultFilter)
 
   const [libraries] = useState(
     data.libraries.filter((library) => library.assets.length).sort(librarySortComparator)
@@ -170,24 +170,23 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [assets, JSON.stringify(filter), sort, search])
 
-  // useEffect(() => {
-  // const cleanFilter = Object.fromEntries(
-  //  Object.entries({ framework, sponsor, platform, tags, status }).filter(([_, v]) => !!v))
-  //   console.log(cleanFilter)
-  //   setFilter(cleanFilter, framework, sponsor, platform, tags, status)
-  // }, [framework, sponsor, platform, tags, status])
+  useEffect(() => {
+    const cleanFilter = Object.fromEntries(
+      Object.entries({ framework, sponsor, platform, tags, status }).filter(([_, v]) => !!v)
+    )
+    setFilter(cleanFilter, framework, sponsor, platform, tags, status)
+  }, [framework, sponsor, platform, tags, status])
 
-  const updateQueryValues = (newFilter) => {
-    console.log('update query values', filter, newFilter)
-    // if (newFilter.sponsor !== filter.sponsor) setSponsor(newFilter.sponsor)
-    // if (newFilter.platform !== filter.platform) setPlatform(newFilter.platform)
-    // if (newFilter.status !== filter.status) setStatus(newFilter.status)
-    // if (newFilter.tags !== filter.tags) setTags(newFilter.tags)
-    // if (newFilter.framework !== filter.framework) setFramework(newFilter.framework)
+  const updateQueryValues = async (newFilter) => {
+    if (!isEqual(newFilter.sponsor, filter.sponsor)) await setSponsor(newFilter.sponsor)
+    if (!isEqual(newFilter.platform, filter.platform)) await setPlatform(newFilter.platform)
+    if (!isEqual(newFilter.status, filter.status)) await setStatus(newFilter.status)
+    if (!isEqual(newFilter.tags, filter.tags)) await setTags(newFilter.tags)
+    if (!isEqual(newFilter.framework, filter.framework)) await setFramework(newFilter.framework)
   }
 
   const handleFilter = (item, key, action = 'add') => {
-    let updatedFilter = Object.assign({}, filter)
+    let updatedFilter = cloneDeep(filter)
 
     if (action === 'add') {
       updatedFilter[item] = union(updatedFilter[item] || [], [key])

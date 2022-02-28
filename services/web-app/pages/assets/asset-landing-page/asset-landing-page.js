@@ -219,34 +219,29 @@ const AssetLandingPage = () => {
               {versionRelease.subtitle ? versionRelease.subtitle : null}
             </div>
             <div
-              className={clsx(
-                versionRelease.subtitle
-                  ? styles.versionDescription
-                  : styles.versionDescriptionPaddingNone
-              )}
+              className={clsx({
+                [styles.versionDescription]: versionRelease.subtitle,
+                [styles.versionDescriptionPaddingNone]: !versionRelease.subtitle
+              })}
             >
               {versionRelease.description}
             </div>
 
-            {versionRelease.descriptionBlock
-              ? versionRelease.descriptionBlock.map((descriptionBlock, o) => (
-                  <div className={styles.descriptionBlockText} key={o}>
-                    <div>{descriptionBlock.title}</div>
-                    <div>{descriptionBlock.description}</div>
-                  </div>
-              ))
-              : null}
-            {versionRelease.bulletPointsHeader
-              ? (
+            {versionRelease.descriptionBlock &&
+              versionRelease.descriptionBlock.map((descriptionBlock, o) => (
+                <div className={styles.descriptionBlockText} key={o}>
+                  <div>{descriptionBlock.title}</div>
+                  <div>{descriptionBlock.description}</div>
+                </div>
+              ))}
+            {versionRelease.bulletPointsHeader && (
               <div className={styles.bulletpointsHeader}>{versionRelease.bulletPointsHeader}</div>
-                )
-              : null}
+            )}
             <ul className={styles.bulletpoints}>
-              {versionRelease.bulletPoints
-                ? versionRelease.bulletPoints.map((bulletPoint, e) => {
+              {versionRelease.bulletPoints &&
+                versionRelease.bulletPoints.map((bulletPoint, e) => {
                   return <li key={e}>{'– ' + bulletPoint}</li>
-                })
-                : null}
+                })}
             </ul>
             <div className={styles.versionImage}>
               <AspectRatio ratio="16x9">

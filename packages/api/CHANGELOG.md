@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.13...@carbon-platform/api@0.2.14) (2022-02-25)
+
+
+### Features
+
+* **logging:** make message queues environment-aware ([f3fa760](https://github.com/carbon-design-system/carbon-platform/commit/f3fa760a1b756441a240cc63c984fc4a2348e681))
+
+### [0.2.13](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.12...@carbon-platform/api@0.2.13) (2022-02-22)
+
+### [0.2.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.11...@carbon-platform/api@0.2.12) (2022-02-22)
+
+
+### Features
+
+* **api:** add additonal readiness endpoint ([25fa805](https://github.com/carbon-design-system/carbon-platform/commit/25fa8058f40f47d54597080138d70accffa9fa04))
+* **api:** add certs and auth to messaging ([532f1f6](https://github.com/carbon-design-system/carbon-platform/commit/532f1f6c54bf96088b093bcb6d27720fec9bdd44))
+* common microservice infrastructure ([37e77dc](https://github.com/carbon-design-system/carbon-platform/commit/37e77dcf7b4551d54c426339115d3d9b4a2a2f8b)), closes [#97](https://github.com/carbon-design-system/carbon-platform/issues/97)
+
+### [0.2.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.10...@carbon-platform/api@0.2.11) (2022-02-19)
+
+### [0.2.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.9...@carbon-platform/api@0.2.10) (2022-02-18)
+
 ### [0.2.9](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.8...@carbon-platform/api@0.2.9) (2022-02-16)
 
 ### [0.2.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.7...@carbon-platform/api@0.2.8) (2022-02-09)

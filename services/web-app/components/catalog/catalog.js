@@ -119,8 +119,8 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
         )
       }, [])
       .filter((asset) => {
-        // don't show private assets or assets of the wrong type
-        if (asset.content.private || (type && asset.content.type !== type)) return false
+        // don't show noIndex assets or assets of the wrong type
+        if (asset.content.noIndex || (type && asset.content.type !== type)) return false
 
         // don't show libraries or assets if they don't match the glob
         if (glob.data && glob.pattern) {

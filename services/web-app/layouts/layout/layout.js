@@ -9,8 +9,6 @@ import {
   Grid,
   Header,
   HeaderContainer,
-  HeaderGlobalAction,
-  HeaderGlobalBar,
   HeaderMenuButton,
   HeaderMenuItem,
   HeaderNavigation,
@@ -18,12 +16,9 @@ import {
   SideNav,
   SideNavItems,
   SideNavLink,
-  SideNavMenu,
-  SideNavMenuItem,
   SkipToContent,
   Theme
 } from '@carbon/react'
-import { Search, Switcher, User } from '@carbon/react/icons'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
@@ -68,7 +63,7 @@ const Layout = ({ children }) => {
                 onClick={onClickSideNavExpand}
                 isActive={isSideNavExpanded}
               />
-              <Link href="/">
+              <Link href="/assets">
                 <a className="cds--header__name">Carbon Design System</a>
               </Link>
               <HeaderNavigation aria-label="Main navigation">
@@ -83,17 +78,6 @@ const Layout = ({ children }) => {
                   </HeaderMenuItem>
                 ))}
               </HeaderNavigation>
-              <HeaderGlobalBar>
-                <HeaderGlobalAction aria-label="Search">
-                  <Search size={20} />
-                </HeaderGlobalAction>
-                <HeaderGlobalAction aria-label="Log in" href="/api/login">
-                  <User size={20} />
-                </HeaderGlobalAction>
-                <HeaderGlobalAction aria-label="Switch sites">
-                  <Switcher size={20} />
-                </HeaderGlobalAction>
-              </HeaderGlobalBar>
             </Header>
           </Theme>
           <Theme className={styles.body} theme="g10">
@@ -125,18 +109,19 @@ const Layout = ({ children }) => {
                           }
                           if (!data.path && data.items) {
                             return (
-                              <SideNavMenu defaultExpanded={true} key={i} title={data.title}>
+                              <>
+                                <h2 className={styles.sideNavHeading}>{data.title}</h2>
                                 {data.items.map((item, j) => (
-                                  <SideNavMenuItem
+                                  <SideNavLink
                                     element={NextLink}
+                                    href={item.path}
                                     isActive={router.pathname.startsWith(item.path)}
-                                    to={item.path}
                                     key={j}
                                   >
                                     {item.title}
-                                  </SideNavMenuItem>
+                                  </SideNavLink>
                                 ))}
-                              </SideNavMenu>
+                              </>
                             )
                           }
                           return null

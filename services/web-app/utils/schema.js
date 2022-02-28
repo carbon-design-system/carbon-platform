@@ -84,3 +84,45 @@ export const collapseAssetGroups = (asset, filter) => {
 
   return !filter.framework && canonicalLibrary
 }
+
+/**
+ * Gets the license from an asset
+ * @param {import('../typedefs').Asset} asset
+ * @returns {string} License
+ */
+export const getLicense = (asset) => {
+  const defaultLicense = asset.params.host === 'github.ibm.com' ? 'IBM internal' : 'No license'
+  const { license = defaultLicense } = asset.library ? asset.library.content : asset.content
+
+  return license
+}
+
+/**
+ * Gets the library, ref, and asset from a string like `carbon-styles@0.0.0/accordion`
+ * @param {string} str
+ * @returns {Object}
+ */
+export const getLibraryVersionAsset = (str = '') => {
+  let ref = ''
+  let asset = ''
+
+  const slashIndex = str.indexOf('/')
+
+  if (slashIndex !== -1) {
+    asset = str.substring(slashIndex + 1)
+    str = str.slice(0, slashIndex)
+  }
+
+  const atIndex = str.indexOf('@')
+
+  if (atIndex !== -1) {
+    ref = str.substring(atIndex + 1)
+    str = str.slice(0, atIndex)
+  }
+
+  return {
+    library: str,
+    ref,
+    asset
+  }
+}

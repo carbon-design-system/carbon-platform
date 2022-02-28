@@ -16,6 +16,7 @@ module.exports = {
         'messaging',
         'micromanage',
         'release',
+        'schemas',
         'search',
         'web-app'
       ]

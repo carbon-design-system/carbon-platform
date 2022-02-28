@@ -89,13 +89,15 @@ Here are the valid types that can be used in a commit message subject:
 
 Here are the valid scopes that can be used in a commit message subject if you opt to include one:
 
-- api
-- database
-- object-storage
-- icons
-- logging
-- messaging
-- micromanage
-- release
-- search
-- web-app
+- build
+- ci
+- chore
+- docs
+- feat
+- fix
+- perf
+- refactor
+- revert
+- style
+- test
+- wi

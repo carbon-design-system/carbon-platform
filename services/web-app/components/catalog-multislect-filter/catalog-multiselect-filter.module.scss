@@ -14,7 +14,7 @@
   position: relative;
   width: 100%;
   height: $spacing-09;
-  padding: 0 $spacing-04;
+  padding: 0 $spacing-05;
   border-top: 0;
   border-right: 0;
   border-bottom: 1px solid $border-strong;
@@ -87,18 +87,18 @@
   width: 100vw;
   max-width: none;
   @include breakpoint(md) {
-    // span two columns, where each column has a 1px gutter and the first column is hanging
-    width: calc(200% + #{calc($spacing-05 + 2px)});
+    // span two columns, where each column has a 1px gutter
+    width: calc(200% + 2px);
   }
-  // span three columns, where each column has a 1px gutter and the first two columns are hanging
+  // span three columns, where each column has a 1px gutter
   @include breakpoint(lg) {
-    width: calc(300% + #{calc(($spacing-05 * 2) + 3px)});
+    width: calc(300% + 3px);
   }
 }
 
 .grid {
   position: relative;
-  padding: $spacing-03 $spacing-05 $spacing-03 0;
+  padding: $spacing-03 0;
 
   &::before,
   &::after {
@@ -119,14 +119,11 @@
 }
 
 .column {
-  padding: $spacing-06 0;
+  padding: $spacing-05;
   border-top: 1px solid $layer-accent;
-  margin: 0 $spacing-05;
   @include breakpoint(md) {
-    padding: $spacing-05 0 $spacing-05 $spacing-05;
     border-top: 0;
     border-left: 1px solid $layer-accent;
-    margin: 0;
     &:nth-child(2n + 1) {
       border-left: 0;
     }

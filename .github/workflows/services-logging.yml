@@ -1,4 +1,4 @@
-name: services/logging Image Build
+name: Publish Logging
 on:
   push:
     tags:
@@ -29,4 +29,4 @@ jobs:
         run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io
 
       - name: Build, Push 🚀
-        run: node scripts/micromanage docker --build --push @carbon-platform/logging
+        run: node packages/micromanage docker --build --push @carbon-platform/logging

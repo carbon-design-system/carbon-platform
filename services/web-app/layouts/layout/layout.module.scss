@@ -6,6 +6,8 @@
 //
 
 .body {
+  // overflow hidden for full-bleed backgrounds
+  overflow: hidden;
   flex-grow: 1;
   background: $background;
 }
@@ -18,4 +20,11 @@
   :global(.cds--side-nav__overlay.cds--side-nav__overlay-active) {
     z-index: layout.z('overlay');
   }
+}
+
+.side-nav-heading {
+  padding-bottom: $spacing-03;
+  border-bottom: 1px solid $layer-accent;
+  margin: $spacing-08 $spacing-05 $spacing-03;
+  @include type-style('label-01');
 }

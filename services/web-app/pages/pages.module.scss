@@ -7,6 +7,9 @@
 
 .content {
   margin: $spacing-07 0;
+  @include breakpoint-down(md) {
+    padding: 0 $spacing-05;
+  }
 }
 
 .data {

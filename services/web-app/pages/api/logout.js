@@ -14,6 +14,11 @@ const logout = requireSession().get((req, res) => {
     delete req.session.next
   }
   req.session.destroy(function () {
+    // clear session cookie
+    res.setHeader(
+      'Set-Cookie',
+      'connect.sid=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'
+    )
     res.redirect(nextRoute)
     res.end('')
   })

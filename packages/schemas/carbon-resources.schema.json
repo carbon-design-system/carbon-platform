@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://carbondesignsystem.com/schemas/carbon-resources.schema.json",
+  "title": "Carbon Resources",
+  "description": "Defines Assets and Libraries",
+  "type": "object",
+  "properties": {
+    "assets": {
+      "type": "object",
+      "minProperties": 1,
+      "title": "Carbon Asset",
+      "description": "Object containing all assets",
+      "patternProperties": {
+        "^.*$": {
+          "description": "Assets are reusable units of work that are used in products and digital experiences. Every asset belongs to a library.",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Asset display name. Use sentence-case capitalization. All asset names in a library should be unique to prevent page collisions."
+            },
+            "description": {
+              "type": "string",
+              "description": "Asset description ideally between 50-160 characters in length. Use sentence-case capitalization."
+            },
+            "status": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "default": "draft",
+                  "enum": ["deprecated", "draft", "experimental", "stable"]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string",
+                      "default": "draft",
+                      "enum": ["deprecated", "draft", "experimental", "stable"]
+                    },
+                    "note": {
+                      "type": "string",
+                      "description": "Explains the key. This is often used to communicate the remaining effort to get something from draft or experimental to stable, estimated stability dates, and alternative assets to use when the asset has been deprecated."
+                    }
+                  },
+                  "required": ["key", "note"],
+                  "additionalProperties": false
+                }
+              ],
+              "description": "Used to set consumption expectations and the likelihood of future changes."
+            },
+            "type": {
+              "type": "string",
+              "enum": ["component", "element", "function", "template", "pattern"],
+              "description": "Asset categorization."
+            },
+            "tags": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "enum": [
+                  "content-block",
+                  "content-element",
+                  "contextual-navigation",
+                  "data-display",
+                  "data-visualization",
+                  "form",
+                  "input-control",
+                  "media",
+                  "shell",
+                  "structural-navigation",
+                  "system-feedback",
+                  "comparison",
+                  "connection",
+                  "correlation",
+                  "geographic-overlay",
+                  "geospatial-distortion",
+                  "part-to-whole",
+                  "trend",
+                  "hook",
+                  "service",
+                  "utility"
+                ]
+              },
+              "description": "Asset secondary categorizations."
+            },
+            "framework": {
+              "type": "string",
+              "enum": [
+                "angular",
+                "react",
+                "react-native",
+                "svelte",
+                "vanilla",
+                "vue",
+                "web-component",
+                "design-only"
+              ],
+              "description": "Asset frontend framework."
+            },
+            "platform": {
+              "type": "string",
+              "default": "web",
+              "enum": ["cross-platform", "web"],
+              "description": "Asset environment."
+            },
+            "thumbnailPath": {
+              "type": "string",
+              "description": "Relative location of the asset's thumbnail image."
+            },
+            "externalDocsUrl": {
+              "type": "string",
+              "description": "Absolute URL to externally-hosted documentation."
+            },
+            "noIndex": {
+              "type": "boolean",
+              "default": false,
+              "description": "If set to true, the catalogs will exclude the asset."
+            },
+            "demoLinks": {
+              "description": "Libraries and assets can specify links to demo sites.",
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["codesandbox", "github", "storybook"],
+                    "description": "Determines the display icon."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Display name."
+                  },
+                  "action": {
+                    "type": "string",
+                    "default": "link",
+                    "enum": ["download", "link"],
+                    "description": "Determines the action icon."
+                  },
+                  "url": {
+                    "type": "string",
+                    "description": "Link to the resource."
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["type", "name", "url"]
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": ["status"]
+        }
+      }
+    },
+    "library": {
+      "title": "Carbon Library",
+      "type": "object",
+      "description": "Libraries are the means to contribute, install, and use one or many assets in products and digital experiences.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Every library needs an identifier unique to the platform. Contact the Carbon Platform Devs to receive an id when registering a new library."
+        },
+        "name": {
+          "type": "string",
+          "description": "Library display name. Use title-case capitalization."
+        },
+        "description": {
+          "type": "string",
+          "description": "Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the package.json description if not set here."
+        },
+        "inherits": {
+          "type": "string",
+          "description": "Inherit properties from another library on a per-asset basis by specifying a library id optionally followed by @ and a version number."
+        },
+        "packageJsonPath": {
+          "type": "string",
+          "default": "/package.json",
+          "description": "Relative location of the library's package.json. This is used to reference the library's license, version, code package, and other information."
+        },
+        "externalDocsUrl": {
+          "type": "string",
+          "description": "Absolute URL to externally-hosted documentation."
+        },
+        "noIndex": {
+          "type": "boolean",
+          "default": false,
+          "description": "If set to true, the global catalogs will exclude the library."
+        },
+        "demoLinks": {
+          "description": "Libraries and assets can specify links to demo sites.",
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["codesandbox", "github", "storybook"],
+                "description": "Determines the display icon."
+              },
+              "name": {
+                "type": "string",
+                "description": "Display name."
+              },
+              "action": {
+                "type": "string",
+                "default": "link",
+                "enum": ["download", "link"],
+                "description": "Determines the action icon."
+              },
+              "url": {
+                "type": "string",
+                "description": "Link to the resource."
+              }
+            },
+            "additionalProperties": false,
+            "required": ["type", "name", "url"]
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": ["id", "name"]
+    }
+  },
+  "minProperties": 1,
+  "additionalProperties": false
+}

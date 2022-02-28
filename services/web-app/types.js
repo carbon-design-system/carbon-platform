@@ -20,11 +20,12 @@ export const paramsPropTypes = PropTypes.shape({
 export const libraryContentPropTypes = PropTypes.shape({
   description: PropTypes.string,
   externalDocsUrl: PropTypes.string,
+  inherits: PropTypes.string,
   id: PropTypes.string.isRequired,
   license: PropTypes.oneOf(['', 'Apache-2.0', 'MIT']),
   name: PropTypes.string.isRequired,
   package: PropTypes.string,
-  private: PropTypes.bool,
+  noIndex: PropTypes.bool,
   version: PropTypes.string
 })
 
@@ -40,10 +41,9 @@ export const assetContentPropTypes = PropTypes.shape({
     'design-only'
   ]),
   id: PropTypes.string.isRequired,
-  inherits: PropTypes.object,
   name: PropTypes.string.isRequired,
   platform: PropTypes.oneOf(['cross-platform', 'web']),
-  private: PropTypes.bool,
+  noIndex: PropTypes.bool,
   status: PropTypes.oneOf(['draft', 'experimental', 'stable', 'deprecated']),
   thumbnailPath: PropTypes.string,
   type: PropTypes.oneOf(['element', 'component', 'pattern', 'function', 'layout'])

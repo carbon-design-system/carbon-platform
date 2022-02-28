@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.17...@carbon-platform/icons@0.0.18) (2022-02-26)
+
+### [0.0.17](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.16...@carbon-platform/icons@0.0.17) (2022-02-22)
+
+
+### Features
+
+* common microservice infrastructure ([37e77dc](https://github.com/carbon-design-system/carbon-platform/commit/37e77dcf7b4551d54c426339115d3d9b4a2a2f8b)), closes [#97](https://github.com/carbon-design-system/carbon-platform/issues/97)
+* **micromanage:** refactor micromanage to its own package ([6013009](https://github.com/carbon-design-system/carbon-platform/commit/6013009b041a8ea296d788f772da53f6c8d32655))
+
+### [0.0.16](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.15...@carbon-platform/icons@0.0.16) (2022-02-19)
+
 ### [0.0.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.14...@carbon-platform/icons@0.0.15) (2022-02-15)
 
 

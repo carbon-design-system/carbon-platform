@@ -33,14 +33,14 @@ const {
 
 const OIDC_DISCOVERY_URL =
   getRunMode() === RunMode.Prod && getEnvironment() === Environment.Production
-    ? 'TODO_ADD_PROD_VALUE_HERE'
+    ? 'https://login.ibm.com/oidc/endpoint/default/.well-known/openid-configuration'
     : 'https://prepiam.ice.ibmcloud.com/v1.0/endpoint/default/.well-known/openid-configuration'
 
 const OIDC_REDIRECT_URI = (() => {
   if (getRunMode() === RunMode.Dev) {
     return 'https://localhost/api/auth-callback'
   } else if (getEnvironment() === Environment.Test) {
-    return 'https://web-app.j73b4w218e4.us-south.codeengine.appdomain.cloud/api/auth_callback'
+    return 'https://web-app.j73b4w218e4.us-south.codeengine.appdomain.cloud/api/auth-callback'
   }
   return 'https://next.carbondesignsystem.com/api/auth-callback'
 })()

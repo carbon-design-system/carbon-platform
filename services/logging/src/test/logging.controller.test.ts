@@ -6,6 +6,7 @@
  */
 import { LogLoggedMessage } from '@carbon-platform/api/logging'
 import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
+import { Environment } from '@carbon-platform/api/runtime'
 
 import { LogDnaService } from '../main/log-dna.service'
 import { LoggingController } from '../main/logging.controller'
@@ -16,7 +17,7 @@ test('logLogged runs without crashing', async () => {
 
   const data: LogLoggedMessage = {
     component: 'test',
-    environment: 'test',
+    environment: Environment.Test,
     level: 'debug',
     message: 'test message',
     service: 'test service',
@@ -40,7 +41,7 @@ describe('message validation', () => {
 
     data = {
       component: 'test',
-      environment: 'test',
+      environment: Environment.Test,
       level: 'debug',
       message: 'test message',
       service: 'test service',

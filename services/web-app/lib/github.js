@@ -5,18 +5,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 import yaml from 'js-yaml'
-import { isEmpty, isEqual } from 'lodash'
-import { getPlaiceholder } from 'plaiceholder'
+import { get, isEmpty, set } from 'lodash'
 
-import { IMAGES_CACHE_PATH } from '@/config/constants'
 import { libraryAllowList } from '@/data/libraries'
-import { getResponse, writeFile } from '@/lib/file-cache'
+import { getResponse } from '@/lib/file-cache'
+import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
 
 /**
  * Validates the route's parameters and returns an object that also includes the library's slug as
- * well as path to the directory that contains the carbon-library.yml. Returns an empty object if
+ * well as path to the directory that contains the carbon.yml. Returns an empty object if
  * not found. Does not validate ref, so people can set their own branch / tag / commit.
  * @param {import('../typedefs').Params} params - Partially-complete parameters
  * @returns {Promise<import('../typedefs').Params>} Complete parameters
@@ -66,35 +65,33 @@ const validateLibraryParams = async (params = {}) => {
 }
 
 /**
- * Takes an inheritance reference like `ibmdotcom-styles@latest/back-to-top` and returns parmas from
- * the library allowlist.
- * @param {string} inheritanceRef - Inheritance reference
- * @returns {import('../typedefs').Params} Resource parameters
+ * Merges inheritable properties from one asset to another if that property isn't set
+ * @param {import('../typedefs').Asset[]} assets
+ * @param {import('../typedefs').Asset[]} inheritAssets
+ * @returns {import('../typedefs').Asset[]}
  */
-const getParamsFromInheritedAsset = (inheritanceRef = '') => {
-  /**
-   * @type {import('../typedefs').Params}
-   */
-  let returnParams = {}
+const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
+  const inheritableProperties = ['name', 'description', 'type', 'tags', 'platform', 'thumbnailPath']
 
-  const [libraryId] = inheritanceRef.split('@')
-  const libraryRef = inheritanceRef.slice(
-    inheritanceRef.indexOf('@') + 1,
-    inheritanceRef.lastIndexOf('/')
-  )
-  const [assetId] = inheritanceRef.split('/').reverse()
+  return assets.map((asset) => {
+    const assetId = getAssetId(asset)
 
-  returnParams = libraryAllowList[libraryId] || {}
+    if (!assetId) return asset
 
-  if (libraryRef !== 'latest') {
-    returnParams.ref = libraryRef
-  }
+    const inheritAsset = inheritAssets.find((inherit) => getAssetId(inherit) === assetId)
 
-  return {
-    ...returnParams,
-    library: libraryId,
-    asset: assetId
-  }
+    if (inheritAsset) {
+      inheritableProperties.forEach((property) => {
+        const inheritProperty = get(inheritAsset, `content.${property}`)
+
+        if (!get(asset, `content.${property}`) && inheritProperty) {
+          set(asset, `content.${property}`, inheritProperty)
+        }
+      })
+    }
+
+    return asset
+  })
 }
 
 /**
@@ -117,21 +114,44 @@ export const getLibraryData = async (params = {}) => {
     response = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
       owner: libraryParams.org,
       repo: libraryParams.repo,
-      path: removeLeadingSlash(`${libraryParams.path}/carbon-library.yml`),
+      path: removeLeadingSlash(`${libraryParams.path}/carbon.yml`),
       ref: libraryParams.ref
     })
   } catch (err) {
     return null
   }
 
+  const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+
   /**
    * @type {import('../typedefs').LibraryContent}
    */
-  const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+  const { library } = content
 
-  const assets = await getLibraryAssets(params, true)
+  if (!library) {
+    return null
+  }
 
-  const packageJsonContent = await getPackageJsonContent(params, content.packageJsonPath)
+  let assets = await getLibraryAssets(params)
+
+  if (library.inherits) {
+    const inheritParams = getLibraryVersionAsset(library.inherits)
+
+    if (inheritParams.library && libraryAllowList[inheritParams.library]) {
+      const fullInheritParams = await validateLibraryParams({
+        ...libraryAllowList[inheritParams.library],
+        ...inheritParams
+      })
+
+      if (!isEmpty(fullInheritParams)) {
+        const inheritAssets = await getLibraryAssets(fullInheritParams)
+
+        assets = mergeInheritedAssets(assets, inheritAssets)
+      }
+    }
+  }
+
+  const packageJsonContent = await getPackageJsonContent(params, library.packageJsonPath)
 
   const filteredAssets = libraryParams.asset
     ? assets.filter((asset) => getSlug(asset.content) === libraryParams.asset)
@@ -142,8 +162,8 @@ export const getLibraryData = async (params = {}) => {
     response,
     content: {
       ...packageJsonContent,
-      ...content, // spread last to use schema description if set
-      private: !!content.private // default to false if not specified
+      ...library, // spread last to use schema description if set
+      noIndex: !!library.noIndex // default to false if not specified
     },
     assets: filteredAssets
   }
@@ -154,10 +174,9 @@ export const getLibraryData = async (params = {}) => {
  * specified ref, then recursively get all asset metadata files. Find the files that are in the
  * library's subdirectory and then fetch the contents for each asset metadata file.
  * @param {import('../typedefs').Params} params
- * @param {boolean} inheritContent
  * @returns {Promise<import('../typedefs').Asset[]>}
  */
-const getLibraryAssets = async (params = {}, inheritContent = false) => {
+const getLibraryAssets = async (params = {}) => {
   const libraryParams = await validateLibraryParams(params)
 
   if (isEmpty(libraryParams)) return []
@@ -190,7 +209,7 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
       (file) =>
         removeLeadingSlash(file.path).startsWith(
           removeLeadingSlash(addTrailingSlash(libraryParams.path))
-        ) && file.path.endsWith('carbon-asset.yml')
+        ) && file.path.endsWith('carbon.yml')
     )
     .map((file) => {
       return getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
@@ -203,184 +222,41 @@ const getLibraryAssets = async (params = {}, inheritContent = false) => {
 
   const assetContentData = await Promise.all(assetContentPromises)
 
-  const assets = assetContentData
-    .map((response) => {
-      /**
-       * @type {import('../typedefs').AssetContent}
-       */
-      const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+  let assets = []
 
-      return {
-        params: libraryParams,
-        response,
-        content: {
-          ...content,
-          private: !!content.private // default to false if not specified
-        }
-      }
-    })
-    .filter((asset) => {
-      // if fetching a specific asset, only return that
+  assetContentData.forEach((response) => {
+    const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+    /**
+     * @type {import('../typedefs').AssetContent[]}
+     */
+    const { assets: libAssets } = content
 
-      return libraryParams.asset ? getSlug(asset.content) === libraryParams.asset : true
-    })
-
-  const inheritedAssets = inheritContent ? await getInheritedAssets(assets) : []
-
-  // TODO this is commented out to prevent production build errors
-  const imgPlaceholders = [] // await getImagePlaceholders(assets)
-
-  return assets.map((asset) => {
-    const assetExtensions = getAssetExtensions(asset, inheritedAssets, imgPlaceholders)
-
-    return {
-      ...asset,
-      content: {
-        ...asset.content,
-        ...assetExtensions
-      }
+    if (!libAssets || isEmpty(libAssets)) {
+      return []
     }
-  })
-}
 
-/**
- * Merges inherited content and placeholder image data into an asset's content.
- * @param {import('../typedefs').Asset} originalAsset - Original asset
- * @param {import('../typedefs').Asset[]} inheritedAssets - Inherited assets
- * @param {import('../typedefs').PlaceholderImage[]} imgPlaceholders - Placeholder images
- * @returns {import('../typedefs').AssetContent}
- */
-const getAssetExtensions = (originalAsset, inheritedAssets, imgPlaceholders) => {
-  const assetExtensions = {}
-  const basePath = originalAsset.response.path.replace('/carbon-asset.yml', '')
-
-  // add image placeholder data
-
-  const foundImage = imgPlaceholders.find((image) => {
-    return (
-      image.img.src.includes(basePath) &&
-      image.img.src.includes(originalAsset.content.thumbnailPath)
+    assets.push(
+      ...Object.keys(libAssets).map((assetKey) => {
+        const asset = libAssets[assetKey]
+        return {
+          params: libraryParams,
+          response,
+          content: {
+            id: assetKey,
+            ...asset,
+            noIndex: !!asset.noIndex // default to false if not specified
+          }
+        }
+      })
     )
   })
 
-  if (foundImage) {
-    const { img, base64 } = foundImage
-    assetExtensions.thumbnailData = { img, base64 }
-  }
-
-  // add inherited data
-
-  if (originalAsset.content.inherits) {
-    const inheritedParams = getParamsFromInheritedAsset(originalAsset.content.inherits.asset)
-
-    const inheritedAsset = inheritedAssets.find((asset) => {
-      const params = asset.params
-
-      // if the inherited ref only specifies "latest", remove the ref from the original asset so
-      // we're not trying to match "latest" with the default branch "main" or "master"
-
-      if (!inheritedParams.ref) {
-        delete params.ref
-      }
-
-      return isEqual(params, inheritedParams)
-    })
-
-    if (
-      inheritedAsset &&
-      originalAsset.content.inherits &&
-      originalAsset.content.inherits.properties &&
-      originalAsset.content.inherits.properties.length
-    ) {
-      // loop over properties, extend
-
-      originalAsset.content.inherits.properties.forEach((property) => {
-        assetExtensions[property] = inheritedAsset.content[property] || ''
-      })
-
-      if (
-        originalAsset.content.inherits.properties.includes('thumbnailPath') &&
-        inheritedAsset.content.thumbnailData
-      ) {
-        assetExtensions.thumbnailData = inheritedAsset.content.thumbnailData
-      }
-    }
-  }
-
-  return assetExtensions
-}
-
-/**
- * Iterates over an array of assets and returns an array of assets that are to be inherited.
- * @param {import('../typedefs').Asset[]} assets - Assets
- * @returns {Promise<import('../typedefs').Asset[]>} Array of assets that will be inherited
- */
-const getInheritedAssets = async (assets) => {
-  const inheritedLibraryAssetsPromises = []
-
-  assets.forEach((asset) => {
-    if (asset.content.inherits) {
-      const inheritedParams = getParamsFromInheritedAsset(asset.content.inherits.asset)
-
-      if (!isEmpty(inheritedParams)) {
-        inheritedLibraryAssetsPromises.push(getLibraryAssets(inheritedParams, false))
-      }
-    }
+  assets = assets.filter((asset) => {
+    // if fetching a specific asset, only return that
+    return libraryParams.asset ? getSlug(asset.content) === libraryParams.asset : true
   })
 
-  const inheritedAssetsResponses = await Promise.all(inheritedLibraryAssetsPromises)
-
-  return inheritedAssetsResponses.flat()
-}
-
-/**
- * Finds thumbnail images, gets content of each image, writes each image to disk, generates
- * placeholder images, returns placeholder images
- * @param {import('../typedefs').Asset[]} assets - Assets
- * @returns {Promise<import('../typedefs').PlaceholderImage[]>} Array of placeholder objects
- */
-// eslint-disable-next-line no-unused-vars
-const getImagePlaceholders = async (assets) => {
-  // find all thumbnail images, get content of each image, filter out assets with no thumbnail
-
-  const imgContentsPromises = assets
-    .map((asset) => {
-      if (asset.content.thumbnailPath) {
-        return getResponse(asset.params.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
-          owner: asset.params.org,
-          repo: asset.params.repo,
-          path: asset.response.path.replace('/carbon-asset.yml', '') + asset.content.thumbnailPath,
-          ref: asset.params.ref
-        })
-      } else {
-        return null
-      }
-    })
-    .filter((item) => item)
-
-  const imgContents = await Promise.all(imgContentsPromises)
-
-  // write images to disk
-
-  const imgWritePromises = imgContents.map((content) => {
-    const path = content.html_url.replace('https://', '').replace('/blob', '')
-
-    return writeFile(path, Buffer.from(content.content, content.encoding))
-  })
-
-  await Promise.all(imgWritePromises)
-
-  // generate placeholder images
-
-  const imgPlaceholderPromises = imgContents.map((content) => {
-    const path = content.html_url.replace('https://', '').replace('/blob', '')
-
-    return getPlaiceholder(`/${IMAGES_CACHE_PATH}/${path}`, {
-      size: 10
-    })
-  })
-
-  return Promise.all(imgPlaceholderPromises)
+  return assets
 }
 
 /**

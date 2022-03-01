@@ -15,6 +15,18 @@ on:
 
   # Enable running this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      service_name:
+        description: Name of the package (from package.json)
+        required: true
+        type: string
+      service_tag:
+        description: Git tag representing the version to publish
+        required: true
+        type: string
+    secrets:
+      CONTAINER_REGISTRY_API_KEY:
+        required: true
 
 jobs:
   publish:

@@ -31,7 +31,7 @@ function handleVersionCommand(opts) {
   }
 
   if (!opts.dryRun) {
-    // We have work to do, so change branch to a temp one
+    // We have work to do so change branch to a temp one
     exec('git switch --create micromanage-temp')
   }
 

@@ -18,6 +18,8 @@ jobs:
   nightly-version:
     name: Nightly Version
     runs-on: ubuntu-latest
+    outputs:
+      changed_workspaces: ${{ steps.version.outputs.changed_workspaces }}
 
     steps:
       - name: Checkout 🛎
@@ -29,8 +31,8 @@ jobs:
 
       - name: Set up Git User 🤖
         run: |
-          git config --global user.email "carbon.platform.bot@outlook.com"
-          git config --global user.name "Carbon Platform Bot"
+          git config --global user.email 'carbon.platform.bot@outlook.com'
+          git config --global user.name 'Carbon Platform Bot'
 
       - name: Setup Node 🏗
         uses: actions/setup-node@v2
@@ -41,5 +43,70 @@ jobs:
       - name: Install Node Modules 🔧
         run: CI=true npm install
 
-      - name: Version 📆
+      - id: version
+        name: Version 📆
         run: node packages/micromanage version
+
+  logging:
+    name: Publish Logging Service
+    needs: nightly-version
+    if: >
+      ${{
+        contains(
+          needs.nightly-version.outputs.changed_workspaces,
+          '@carbon-platform/logging'
+        )
+      }}
+    uses: ./.github/workflows/publish-service.yml
+    with:
+      service_name: '@carbon-platform/logging'
+    secrets:
+      CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
+
+  web-app:
+    name: Publish Web App Service
+    needs: nightly-version
+    if: >
+      ${{
+        contains(
+          needs.nightly-version.outputs.changed_workspaces,
+          '@carbon-platform/web-app'
+        )
+      }}
+    uses: ./.github/workflows/publish-service.yml
+    with:
+      service_name: '@carbon-platform/web-app'
+    secrets:
+      CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
+
+  micromanage-cli:
+    name: Publish Micromanage CLI Package
+    needs: nightly-version
+    if: >
+      ${{
+        contains(
+          needs.nightly-version.outputs.changed_workspaces,
+          '@carbon-platform/micromanage-cli'
+        )
+      }}
+    uses: ./.github/workflows/publish-package.yml
+    with:
+      package_name: '@carbon-platform/micromanage-cli'
+    secrets:
+      NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+  schemas:
+    name: Publish Schemas Package
+    needs: nightly-version
+    if: >
+      ${{
+        contains(
+          needs.nightly-version.outputs.changed_workspaces,
+          '@carbon-platform/schemas'
+        )
+      }}
+    uses: ./.github/workflows/publish-package.yml
+    with:
+      package_name: '@carbon-platform/schemas'
+    secrets:
+      NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

@@ -1,8 +1,14 @@
-name: Publish Web App
+name: Publish Service
 on:
-  push:
-    tags:
-      - '@carbon-platform/web-app@*.*.*'
+  # Enable running this workflow from other workflows
+  workflow_call:
+    inputs:
+      service_name:
+        required: true
+        type: string
+    secrets:
+      CONTAINER_REGISTRY_API_KEY:
+        required: true
 
   # Enable running this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,4 +35,4 @@ jobs:
         run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io
 
       - name: Build, Push 🚀
-        run: node packages/micromanage docker --build --push @carbon-platform/web-app
+        run: node packages/micromanage docker --build --push ${{ inputs.service_name }}

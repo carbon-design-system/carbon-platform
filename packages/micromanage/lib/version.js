@@ -37,42 +37,42 @@ function handleVersionCommand(opts) {
 
   const newVersions = versionWorkspaces(updatedWorkspaces, opts.dryRun)
 
-  if (opts.dryRun) {
-    return
+  if (!opts.dryRun) {
+    // Ensure lock file remains up-to-date
+    exec('npm install')
+
+    exec(
+      'git commit --allow-empty -am "chore(release): update package-lock.json with new versions"'
+    )
+
+    exec('git switch -')
+
+    exec('git merge --squash --autostash micromanage-temp')
+
+    // Commit the results as a single commit with an appropriate commit message
+    exec(
+      "sed 's/Squashed commit of the following:/chore(release): new package and service versions/' " +
+        '.git/SQUASH_MSG | git commit -F -'
+    )
+
+    // Create tags
+    newVersions.forEach((version) => {
+      exec(`git tag --delete ${version}`) // Delete the one from above so we can consolidate
+      exec(`git tag -m "${version}" ${version}`)
+      console.error(`tagged HEAD as ${version}`)
+    })
+
+    exec('git push')
+
+    exec('git push --tags origin')
+
+    // Clean up the temp branch
+    exec('git branch -D micromanage-temp')
   }
-
-  // Ensure lock file remains up-to-date
-  exec('npm install')
-
-  exec('git commit --allow-empty -am "chore(release): update package-lock.json with new versions"')
-
-  exec('git switch -')
-
-  exec('git merge --squash --autostash micromanage-temp')
-
-  // Commit the results as a single commit with an appropriate commit message
-  exec(
-    "sed 's/Squashed commit of the following:/chore(release): new package and service versions/' " +
-      '.git/SQUASH_MSG | git commit -F -'
-  )
-
-  // Create tags
-  newVersions.forEach((version) => {
-    exec(`git tag --delete ${version}`) // Delete the one from above so we can consolidate
-    exec(`git tag -m "${version}" ${version}`)
-    console.error(`tagged HEAD as ${version}`)
-  })
-
-  exec('git push')
-
-  exec('git push --tags origin')
-
-  // Clean up the temp branch
-  exec('git branch -D micromanage-temp')
 
   // Output all updated workspaces to stdout
   const updatedWorkspaceNames = updatedWorkspaces.map((ws) => ws.name)
-  console.log(JSON.stringify(updatedWorkspaceNames))
+  console.log(`::set-output name=changed_workspaces::${JSON.stringify(updatedWorkspaceNames)}`)
 }
 
 function getUpdatedWorkspaces() {

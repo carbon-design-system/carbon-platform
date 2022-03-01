@@ -52,6 +52,4 @@ jobs:
         run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io
 
       - name: Build, Push 🚀
-        run: >
-          node packages/micromanage docker --build --push ${{ inputs.service_name ||
-          github.event.inputs.service_name }}
+        run: node packages/micromanage docker --build --push ${{ inputs.service_name || github.event.inputs.service_name }}

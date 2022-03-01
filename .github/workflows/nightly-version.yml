@@ -50,7 +50,7 @@ jobs:
   logging:
     name: Publish Logging Service
     needs: nightly-version
-    if: fromJSON(needs.nightly-version.outputs.changed_services)['@carbon-platform/logging']
+    if: fromJSON(needs.nightly-version.outputs.changed_workspaces)['@carbon-platform/logging']
     uses: ./.github/workflows/publish-service.yml
     with:
       service_name: '@carbon-platform/logging'
@@ -62,11 +62,7 @@ jobs:
   web-app:
     name: Publish Web App Service
     needs: nightly-version
-    if: |
-      contains(
-        fromJSON(needs.nightly-version.outputs.changed_workspaces),
-        '@carbon-platform/web-app'
-      )
+    if: fromJSON(needs.nightly-version.outputs.changed_workspaces)['@carbon-platform/web-app']
     uses: ./.github/workflows/publish-service.yml
     with:
       service_name: '@carbon-platform/web-app'
@@ -78,11 +74,7 @@ jobs:
   micromanage-cli:
     name: Publish Micromanage CLI Package
     needs: nightly-version
-    if: |
-      contains(
-        fromJSON(needs.nightly-version.outputs.changed_workspaces),
-        '@carbon-platform/micromanage-cli'
-      )
+    if: fromJSON(needs.nightly-version.outputs.changed_workspaces)['@carbon-platform/micromanage-cli']
     uses: ./.github/workflows/publish-package.yml
     with:
       package_name: '@carbon-platform/micromanage-cli'
@@ -94,11 +86,7 @@ jobs:
   schemas:
     name: Publish Schemas Package
     needs: nightly-version
-    if: |
-      contains(
-        fromJSON(needs.nightly-version.outputs.changed_workspaces),
-        '@carbon-platform/schemas'
-      )
+    if: fromJSON(needs.nightly-version.outputs.changed_workspaces)['@carbon-platform/schemas']
     uses: ./.github/workflows/publish-package.yml
     with:
       package_name: '@carbon-platform/schemas'

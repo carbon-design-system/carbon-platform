@@ -44,8 +44,8 @@ const PageContent = () => {
   const releases = [
     {
       version: 'v0.1',
-      release: 'Target release:',
-      date: 'February 27',
+      release: 'Released:',
+      date: 'February 25',
       title: 'Standardize assets and libraries',
       description:
         // eslint-disable-next-line max-len
@@ -58,7 +58,7 @@ const PageContent = () => {
     {
       version: 'v0.2',
       release: 'Target release:',
-      date: 'March 27',
+      date: 'March 31',
       title: 'Asset catalog experience',
       description:
         // eslint-disable-next-line max-len
@@ -79,7 +79,7 @@ const PageContent = () => {
     {
       version: 'v1.0',
       release: 'Target release:',
-      date: 'May 9',
+      date: 'May',
       title: 'General availability',
       description:
         // eslint-disable-next-line max-len
@@ -99,7 +99,7 @@ const PageContent = () => {
       release: 'Target release:',
       date: 'June',
       title: 'Explore with confidence',
-      subtitle: 'This release will fully take the following Hill:',
+      subtitle: 'This release will fully take the following Hill 1A:',
       description:
         // eslint-disable-next-line max-len
         'An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can discover and learn about resources [standards and components/patterns] in the system with confidence in their completeness, who maintains them and where they’re used.',
@@ -116,9 +116,9 @@ const PageContent = () => {
     {
       version: 'v2.0',
       release: 'Target release:',
-      date: 'Q3',
+      date: 'Q3 2022',
       title: 'System of systems',
-      subtitle: 'The platform’s second major release will take the following Hills:',
+      subtitle: 'The platform’s second major release will take the following Hills 1B and 1C:',
       description: '',
       descriptionBlock: [
         {

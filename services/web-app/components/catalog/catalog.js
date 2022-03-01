@@ -68,15 +68,23 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     saveToStorage: true
   })
 
-  const [page, setPage] = useQueryState('page', {
-    defaultValue: 1,
-    parseNumbers: true
-  })
+  const [page, setPage] = useQueryState(
+    'page',
+    {
+      defaultValue: 1,
+      parseNumbers: true
+    },
+    (value) => !isNaN(value)
+  )
 
-  const [pageSize, setPageSize] = useQueryState('items', {
-    defaultValue: 60,
-    parseNumbers: true
-  })
+  const [pageSize, setPageSize] = useQueryState(
+    'items',
+    {
+      defaultValue: 60,
+      parseNumbers: true
+    },
+    (value) => !isNaN(value)
+  )
 
   const [framework, setFramework] = useQueryState('framework', {
     defaultValue: defaultFilter.framework

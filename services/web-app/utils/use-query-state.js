@@ -11,7 +11,8 @@ import { useCallback, useEffect, useMemo } from 'react'
 
 export const useQueryState = (
   key,
-  { defaultValue = '', saveToStorage = false, parseNumbers = false, parseBooleans = false }
+  { defaultValue = '', saveToStorage = false, parseNumbers = false, parseBooleans = false },
+  validateValue = () => true
 ) => {
   const router = useRouter()
 
@@ -29,8 +30,14 @@ export const useQueryState = (
     }).query
     const storageValue = saveToStorage ? localStorage.getItem(`${router.pathname}:${key}`) : null
 
-    return query[key] !== null ? query[key] : storageValue
-  }, [key, parseBooleans, parseNumbers, router.pathname, saveToStorage])
+    let val = query[key]
+
+    if (val === null || (validateValue && !validateValue(val))) {
+      val = storageValue
+    }
+
+    return val
+  }, [key, parseBooleans, parseNumbers, router.pathname, saveToStorage, validateValue])
 
   // Update the "state" when the router.query key changes
   const value = useMemo(getValue, [getValue, router.query[key], router.query[`${key}[]`]])

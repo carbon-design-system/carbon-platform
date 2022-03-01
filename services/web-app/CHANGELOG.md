@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.64](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.63...@carbon-platform/web-app@0.1.64) (2022-03-01)
+
+
+### Features
+
+* add illo to mobile hero component ([15da76c](https://github.com/carbon-design-system/carbon-platform/commit/15da76c3202787fabbe2f276cff927365417b57f))
+
 ### [0.1.63](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.62...@carbon-platform/web-app@0.1.63) (2022-03-01)
 
 ### [0.1.62](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.61...@carbon-platform/web-app@0.1.62) (2022-03-01)

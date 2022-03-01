@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/schemas",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Schema files for indexing assets and libraries",
   "license": "Apache-2.0",
   "publishConfig": {

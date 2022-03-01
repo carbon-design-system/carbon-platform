@@ -56,8 +56,8 @@
     "prettier-config-carbon": "^0.6.0",
     "rimraf": "^3.0.2",
     "standard-version": "^9.3.2",
-    "stylelint": "^13.13.1",
-    "stylelint-config-carbon": "^1.7.0",
+    "stylelint": "^14.5.3",
+    "stylelint-config-carbon": "^1.8.0",
     "ts-jest": "^27.1.3"
   }
 }

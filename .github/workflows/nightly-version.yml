@@ -51,13 +51,8 @@ jobs:
     name: Publish Logging Service
     runs-on: ubuntu-latest
     needs: nightly-version
-    if: >
-      ${{
-        contains(
-          fromJSON(needs.nightly-version.outputs.changed_workspaces),
-          '@carbon-platform/logging'
-        )
-      }}
+    # prettier-ignore
+    if: contains(fromJSON(needs.nightly-version.outputs.changed_workspaces),'@carbon-platform/logging')
     steps:
       - run: echo ${{ needs.nightly-version.outputs.changed_workspaces }}
       # prettier-ignore

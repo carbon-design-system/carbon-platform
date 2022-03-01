@@ -54,14 +54,3 @@ export const getFilters = (initialFilter = {}) => {
 
   return { ...firstFilters, ...tagFilters, ...lastFilters }
 }
-
-const validFilterKeys = ['platform', 'status', 'sponsor', 'framework', 'tags']
-
-export const getCleanFilter = ({ ...filter } = {}) => {
-  Object.keys(filter).forEach((key) => {
-    if (!validFilterKeys.includes(key)) {
-      delete filter[key]
-    }
-  })
-  return filter
-}

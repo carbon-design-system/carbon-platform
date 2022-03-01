@@ -43,7 +43,7 @@
     "@types/amqplib": "^0.8.2",
     "@types/cookie-parser": "^1.4.2",
     "@types/express-session": "^1.17.4",
-    "@types/node": "^16.11.25",
+    "@types/node": "^16.11.26",
     "@types/passport": "^1.0.7",
     "@types/session-file-store": "^1.2.2",
     "@types/supertest": "^2.0.11",

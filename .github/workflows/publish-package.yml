@@ -37,7 +37,7 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v3
         with:
-          ref: ${{ inputs.package_tag }}
+          ref: ${{ inputs.package_tag || github.event.inputs.package_tag}}
 
       - name: Setup Node 🏗
         uses: actions/setup-node@v2
@@ -50,6 +50,8 @@ jobs:
         run: npm run micromanage:bootstrap
 
       - name: Publish 🚀
-        run: node packages/micromanage publish ${{ inputs.package_name }}
+        run: >
+          node packages/micromanage publish ${{ inputs.package_name ||
+          github.event.inputs.package_name }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

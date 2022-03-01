@@ -1,3 +1,3 @@
 # schemas
 
-Docs located [here](../../docs/resource-schemas.md)
+Docs located [here](../../docs/resource-schemas.md).

@@ -63,7 +63,6 @@ function handleVersionCommand(opts) {
     })
 
     exec('git push')
-
     exec('git push --tags origin')
 
     // Clean up the temp branch

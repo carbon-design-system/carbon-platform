@@ -49,67 +49,62 @@ jobs:
 
   logging:
     name: Publish Logging Service
-    runs-on: ubuntu-latest
     needs: nightly-version
     if: |
       contains(
         fromJSON(needs.nightly-version.outputs.changed_workspaces),
         '@carbon-platform/logging'
       )
-    steps:
-      - run: echo ${{ needs.nightly-version.outputs.changed_workspaces }}
-      # prettier-ignore
-      - run: echo ${{ contains( fromJSON(needs.nightly-version.outputs.changed_workspaces), '@carbon-platform/logging') }}
-    # uses: ./.github/workflows/publish-service.yml
-    # with:
-    #   service_name: '@carbon-platform/logging'
-    # secrets:
-    #   CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
+    uses: ./.github/workflows/publish-service.yml
+    with:
+      service_name: '@carbon-platform/logging'
+    secrets:
+      CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
 
-  # web-app:
-  #   name: Publish Web App Service
-  #   needs: nightly-version
-  #   if: >
-  #     ${{
-  #       contains(
-  #         fromJSON(needs.nightly-version.outputs.changed_workspaces),
-  #         '@carbon-platform/web-app'
-  #       )
-  #     }}
-  #   uses: ./.github/workflows/publish-service.yml
-  #   with:
-  #     service_name: '@carbon-platform/web-app'
-  #   secrets:
-  #     CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
+  web-app:
+    name: Publish Web App Service
+    needs: nightly-version
+    if: |
+      ${{
+        contains(
+          fromJSON(needs.nightly-version.outputs.changed_workspaces),
+          '@carbon-platform/web-app'
+        )
+      }}
+    uses: ./.github/workflows/publish-service.yml
+    with:
+      service_name: '@carbon-platform/web-app'
+    secrets:
+      CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
 
-  # micromanage-cli:
-  #   name: Publish Micromanage CLI Package
-  #   needs: nightly-version
-  #   if: >
-  #     ${{
-  #       contains(
-  #         fromJSON(needs.nightly-version.outputs.changed_workspaces),
-  #         '@carbon-platform/micromanage-cli'
-  #       )
-  #     }}
-  #   uses: ./.github/workflows/publish-package.yml
-  #   with:
-  #     package_name: '@carbon-platform/micromanage-cli'
-  #   secrets:
-  #     NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+  micromanage-cli:
+    name: Publish Micromanage CLI Package
+    needs: nightly-version
+    if: |
+      ${{
+        contains(
+          fromJSON(needs.nightly-version.outputs.changed_workspaces),
+          '@carbon-platform/micromanage-cli'
+        )
+      }}
+    uses: ./.github/workflows/publish-package.yml
+    with:
+      package_name: '@carbon-platform/micromanage-cli'
+    secrets:
+      NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
-  # schemas:
-  #   name: Publish Schemas Package
-  #   needs: nightly-version
-  #   if: >
-  #     ${{
-  #       contains(
-  #         fromJSON(needs.nightly-version.outputs.changed_workspaces),
-  #         '@carbon-platform/schemas'
-  #       )
-  #     }}
-  #   uses: ./.github/workflows/publish-package.yml
-  #   with:
-  #     package_name: '@carbon-platform/schemas'
-  #   secrets:
-  #     NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+  schemas:
+    name: Publish Schemas Package
+    needs: nightly-version
+    if: |
+      ${{
+        contains(
+          fromJSON(needs.nightly-version.outputs.changed_workspaces),
+          '@carbon-platform/schemas'
+        )
+      }}
+    uses: ./.github/workflows/publish-package.yml
+    with:
+      package_name: '@carbon-platform/schemas'
+    secrets:
+      NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

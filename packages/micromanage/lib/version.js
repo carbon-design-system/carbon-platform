@@ -26,7 +26,7 @@ function handleVersionCommand(opts) {
 
   if (updatedWorkspaces.length === 0) {
     console.error('Nothing to do')
-    console.log('[]')
+    echoJobOutput([])
     return
   }
 
@@ -72,7 +72,7 @@ function handleVersionCommand(opts) {
 
   // Output all updated workspaces to stdout
   const updatedWorkspaceNames = updatedWorkspaces.map((ws) => ws.name)
-  console.log(`::set-output name=changed_workspaces::${JSON.stringify(updatedWorkspaceNames)}`)
+  echoJobOutput(updatedWorkspaceNames)
 }
 
 function getUpdatedWorkspaces() {
@@ -139,6 +139,10 @@ function versionWorkspaces(updatedWorkspaces, isDryRun) {
 
     return newTag
   })
+}
+
+function echoJobOutput(updatedWorkspaceNames) {
+  console.log(`::set-output name=changed_workspaces::${JSON.stringify(updatedWorkspaceNames)}`)
 }
 
 module.exports = {

@@ -50,14 +50,12 @@ jobs:
   logging:
     name: Publish Logging Service
     needs: nightly-version
-    if: |
-      contains(
-        fromJSON(needs.nightly-version.outputs.changed_workspaces),
-        '@carbon-platform/logging'
-      )
+    if: fromJSON(needs.nightly-version.outputs.changed_services)['@carbon-platform/logging']
     uses: ./.github/workflows/publish-service.yml
     with:
       service_name: '@carbon-platform/logging'
+      service_tag:
+        ${{ needs.nightly-version.outputs.changed_workspaces['@carbon-platform/logging'] }}
     secrets:
       CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
 
@@ -72,6 +70,8 @@ jobs:
     uses: ./.github/workflows/publish-service.yml
     with:
       service_name: '@carbon-platform/web-app'
+      service_tag:
+        ${{ needs.nightly-version.outputs.changed_workspaces['@carbon-platform/web-app'] }}
     secrets:
       CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
 
@@ -86,6 +86,8 @@ jobs:
     uses: ./.github/workflows/publish-package.yml
     with:
       package_name: '@carbon-platform/micromanage-cli'
+      package_tag:
+        ${{ needs.nightly-version.outputs.changed_workspaces['@carbon-platform/micromanage-cli'] }}
     secrets:
       NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
@@ -100,5 +102,7 @@ jobs:
     uses: ./.github/workflows/publish-package.yml
     with:
       package_name: '@carbon-platform/schemas'
+      package_tag:
+        ${{ needs.nightly-version.outputs.changed_workspaces['@carbon-platform/schemas'] }}
     secrets:
       NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

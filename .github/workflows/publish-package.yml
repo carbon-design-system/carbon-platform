@@ -6,6 +6,9 @@ on:
       package_name:
         required: true
         type: string
+      package_tag:
+        required: true
+        type: string
     secrets:
       NODE_AUTH_TOKEN:
         required: true
@@ -20,9 +23,9 @@ jobs:
 
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          ref: ${{ inputs.package_tag }}
 
       - name: Setup Node 🏗
         uses: actions/setup-node@v2

@@ -6,6 +6,9 @@ on:
       service_name:
         required: true
         type: string
+      service_tag:
+        required: true
+        type: string
     secrets:
       CONTAINER_REGISTRY_API_KEY:
         required: true
@@ -20,9 +23,9 @@ jobs:
 
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          ref: ${{ inputs.service_tag }}
 
       - name: Setup Node 🏗
         uses: actions/setup-node@v2

@@ -92,7 +92,7 @@ const PageContent = () => {
       captionHeading: 'v1.0 User experience',
       caption:
         // eslint-disable-next-line max-len
-        'This release replaces Carbon’s current website — all 32 “core” components will have complete asset detail pages. If a PAL has migrated content, then it will begin to remove its external docs urls to leverage the detail pages. User log in will be fully integrated into the experience as well.'
+        'This release replaces Carbon’s current website — all 32 “core” components will have complete asset detail pages. If a PAL has migrated content, then it will begin to remove its external docs urls to leverage the detail pages. User login will be fully integrated into the experience as well.'
     },
     {
       version: 'v1.1',
@@ -111,7 +111,7 @@ const PageContent = () => {
       captionHeading: 'v1.1 User experience',
       caption:
         // eslint-disable-next-line max-len
-        'In this release Standards content will be available on the platform and component usage analytics will allow us to track component insertions.'
+        'In this release standards content will be available on the platform and component usage analytics will allow us to track component insertions.'
     },
     {
       version: 'v2.0',

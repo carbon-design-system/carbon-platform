@@ -1,5 +1,5 @@
 //
-// Copyright IBM Corp. 2021, 2022
+// Copyright IBM Corp. 2022, 2022
 //
 // This source code is licensed under the Apache-2.0 license found in the
 // LICENSE file in the root directory of this source tree.
@@ -24,6 +24,9 @@ $illo-original-height: 1078px;
       content: '';
     }
   }
+  @include breakpoint-down(md) {
+    position: relative;
+  }
 }
 
 .grid {
@@ -33,7 +36,7 @@ $illo-original-height: 1078px;
 .column {
   position: relative;
   z-index: 1;
-  padding: $spacing-08 $spacing-05 $spacing-10;
+  padding: $spacing-08 $spacing-05 ($spacing-08 + $spacing-12);
   @include breakpoint(md) {
     padding: ($spacing-09 + $spacing-03) 0 $spacing-05;
   }
@@ -53,7 +56,7 @@ $illo-original-height: 1078px;
   @include type-style('body-long-02', true);
 }
 
-.image {
+.image-wrap {
   position: absolute;
   top: 0;
   right: -25vw;
@@ -66,6 +69,18 @@ $illo-original-height: 1078px;
     width: $page-header-height * ($illo-original-width / $illo-original-height);
   }
   @include breakpoint-down(md) {
-    display: none;
+    // -33% and 170% picked to get iphone viewport to match design spec size and position
+    top: auto;
+    right: -33%;
+    bottom: 0;
+    width: 170%;
+    height: $spacing-12;
+  }
+}
+
+.image {
+  object-position: center top;
+  @include breakpoint(md) {
+    object-position: left center;
   }
 }

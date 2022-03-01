@@ -56,7 +56,7 @@ $illo-original-height: 1078px;
   @include type-style('body-long-02', true);
 }
 
-.image {
+.image-wrap {
   position: absolute;
   top: 0;
   right: -25vw;
@@ -75,5 +75,12 @@ $illo-original-height: 1078px;
     bottom: 0;
     width: 170%;
     height: $spacing-12;
+  }
+}
+
+.image {
+  object-position: center top;
+  @include breakpoint(md) {
+    object-position: left center;
   }
 }

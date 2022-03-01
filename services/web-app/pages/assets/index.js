@@ -196,7 +196,7 @@ const PageContent = () => {
           <h2 className={styles.contentHeading}>How PAL teams can prepare</h2>
           <p className={styles.contentCopy}>
             Ensure your components, functions, patterns and templates are indexed in our unified
-            asset discovery experience by March 30th.
+            asset discovery experience by March 31st.
           </p>
           <p className={styles.contentCopy}>
             To make this happen, we ask that you follow the instructions below to document your

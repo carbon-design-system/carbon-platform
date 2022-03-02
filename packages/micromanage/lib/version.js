@@ -31,7 +31,7 @@ function handleVersionCommand(opts) {
   }
 
   if (!opts.dryRun) {
-    // We have work to do, so change branch to a temp one
+    // We have work to do so change branch to a temp one
     exec('git switch --create micromanage-temp')
   }
 
@@ -56,10 +56,10 @@ function handleVersionCommand(opts) {
     )
 
     // Create tags
-    newVersions.forEach((version) => {
-      exec(`git tag --delete ${version}`) // Delete the one from above so we can consolidate
-      exec(`git tag -m "${version}" ${version}`)
-      console.error(`tagged HEAD as ${version}`)
+    newVersions.forEach((newVersionObj) => {
+      exec(`git tag --delete ${newVersionObj.tag}`) // Delete the one from above so we can consolidate
+      exec(`git tag -m "${newVersionObj.tag}" ${newVersionObj.tag}`)
+      console.error(`tagged HEAD as ${newVersionObj.tag}`)
     })
 
     exec('git push')
@@ -70,8 +70,7 @@ function handleVersionCommand(opts) {
   }
 
   // Output all updated workspaces to stdout
-  const updatedWorkspaceNames = updatedWorkspaces.map((ws) => ws.name)
-  echoJobOutput(updatedWorkspaceNames)
+  echoJobOutput(newVersions)
 }
 
 function getUpdatedWorkspaces() {
@@ -86,7 +85,6 @@ function getUpdatedWorkspaces() {
     const latestTag = tags[tags.length - 1]
     const changed =
       !latestTag || !!exec(`git diff --quiet HEAD ${latestTag} -- ${ws.path} || echo changed`)
-
     if (changed) {
       console.error(`*** ${ws.name} has changed since ${latestTag}`)
       return true
@@ -136,12 +134,20 @@ function versionWorkspaces(updatedWorkspaces, isDryRun) {
 
     console.error(`new version created: ${newTag}`)
 
-    return newTag
+    return {
+      name: ws.name,
+      tag: newTag
+    }
   })
 }
 
-function echoJobOutput(updatedWorkspaceNames) {
-  console.log(`::set-output name=changed_workspaces::${JSON.stringify(updatedWorkspaceNames)}`)
+function echoJobOutput(newVersions) {
+  const output = {}
+  newVersions.forEach((newVersionObj) => {
+    output[newVersionObj.name] = newVersionObj.tag
+  })
+
+  console.log(`::set-output name=changed_workspaces::${JSON.stringify(output)}`)
 }
 
 module.exports = {

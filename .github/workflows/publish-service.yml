@@ -6,12 +6,27 @@ on:
       service_name:
         required: true
         type: string
+      service_tag:
+        required: true
+        type: string
     secrets:
       CONTAINER_REGISTRY_API_KEY:
         required: true
 
   # Enable running this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      service_name:
+        description: Name of the service (from package.json)
+        required: true
+        type: string
+      service_tag:
+        description: Git tag representing the version to publish
+        required: true
+        type: string
+    secrets:
+      CONTAINER_REGISTRY_API_KEY:
+        required: true
 
 jobs:
   build-service-image:
@@ -20,9 +35,9 @@ jobs:
 
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          ref: ${{ inputs.service_tag || github.event.inputs.service_tag }}
 
       - name: Setup Node 🏗
         uses: actions/setup-node@v2
@@ -37,4 +52,4 @@ jobs:
         run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io
 
       - name: Build, Push 🚀
-        run: node packages/micromanage docker --build --push ${{ inputs.service_name }}
+        run: node packages/micromanage docker --build --push ${{ inputs.service_name || github.event.inputs.service_name }}

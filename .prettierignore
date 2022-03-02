@@ -18,5 +18,8 @@ generated/
 .test-coverage/
 .dev/
 
+# Github workflows
+.github/workflows/
+
 .history/
 services/web-app/public/data/

@@ -59,7 +59,7 @@ The current supported stable version of the resource schemas is _v1.1.5_. You ca
 validation to your YAML files by adding the following line to the top of your files:
 
 ```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@1.1.5/carbon-resources.schema.json`
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@1.1.5/carbon-resources.schema.json
 ```
 
 ## Resource schema keys

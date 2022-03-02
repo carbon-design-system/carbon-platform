@@ -9,7 +9,7 @@ import { Column, Grid, Popover, PopoverContent, Tag } from '@carbon/react'
 import { ChevronDown, Close, Filter } from '@carbon/react/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { getFilters } from '@/data/filters'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
@@ -33,6 +33,19 @@ const CatalogMultiselectFilter = ({
   const triggerRef = useRef()
   const contentRef = useRef()
 
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.keyCode === 27) {
+        setOpen(false)
+      }
+    }
+    window.addEventListener('keydown', handleEsc)
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc)
+    }
+  }, [])
+
   useOutsideClick(contentRef, (e) => {
     if (triggerRef.current && !triggerRef.current.contains(e.target)) {
       setOpen(false)
@@ -47,6 +60,13 @@ const CatalogMultiselectFilter = ({
     return sum + filter[item].length
   }, 0)
 
+  const popoverRef = useRef(null)
+
+  const onClickHandler = () => {
+    setOpen(!open)
+    popoverRef.current.focus()
+  }
+
   return (
     <Popover
       align="bottom-right"
@@ -59,9 +79,10 @@ const CatalogMultiselectFilter = ({
     >
       <button
         className={styles.trigger}
-        onClick={() => setOpen(!open)}
+        onClick={() => onClickHandler()}
         ref={triggerRef}
         type="button"
+        tabIndex="0"
       >
         <span className={styles.triggerInner}>
           {isMd && (
@@ -94,31 +115,33 @@ const CatalogMultiselectFilter = ({
         </span>
       </button>
       <PopoverContent className={styles.content} ref={contentRef}>
-        <Grid className={styles.grid} columns={columns}>
-          {Object.keys(getFilters(initialFilter)).map((item, i) => (
-            <Column className={styles.column} key={i}>
-              <h3 className={styles.heading}>{getFilters(initialFilter)[item].name}</h3>
-              <ul className={styles.list}>
-                {Object.keys(getFilters(initialFilter)[item].values).map((key, j) => (
-                  <li className={styles.listItem} key={j}>
-                    <Tag
-                      onClick={() => {
-                        onFilter(
-                          item,
-                          key,
-                          filter[item] && filter[item].includes(key) ? 'remove' : 'add'
-                        )
-                      }}
-                      type={filter[item] && filter[item].includes(key) ? 'high-contrast' : 'gray'}
-                    >
-                      {getFilters(initialFilter)[item].values[key].name}
-                    </Tag>
-                  </li>
-                ))}
-              </ul>
-            </Column>
-          ))}
-        </Grid>
+        <div className={styles.divTest} ref={popoverRef}>
+          <Grid className={styles.grid} columns={columns}>
+            {Object.keys(getFilters(initialFilter)).map((item, i) => (
+              <Column className={styles.column} key={i}>
+                <h3 className={styles.heading}>{getFilters(initialFilter)[item].name}</h3>
+                <ul className={styles.list}>
+                  {Object.keys(getFilters(initialFilter)[item].values).map((key, j) => (
+                    <li className={styles.listItem} key={j}>
+                      <Tag
+                        onClick={() => {
+                          onFilter(
+                            item,
+                            key,
+                            filter[item] && filter[item].includes(key) ? 'remove' : 'add'
+                          )
+                        }}
+                        type={filter[item] && filter[item].includes(key) ? 'high-contrast' : 'gray'}
+                      >
+                        {getFilters(initialFilter)[item].values[key].name}
+                      </Tag>
+                    </li>
+                  ))}
+                </ul>
+              </Column>
+            ))}
+          </Grid>
+        </div>
       </PopoverContent>
     </Popover>
   )

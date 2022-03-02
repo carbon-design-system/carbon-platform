@@ -28,15 +28,27 @@ export const useQueryState = (
       parseNumbers,
       parseBooleans
     }).query
-    const storageValue = saveToStorage ? localStorage.getItem(`${router.pathname}:${key}`) : null
+    const storageValue = saveToStorage
+      ? localStorage.getItem(`${router.pathname}:${key}`)
+      : undefined
 
     let val = query[key]
 
-    if (val === null || (validateValue && !validateValue(val))) {
+    if (val !== undefined && validateValue && !validateValue(val)) {
+      val = undefined
+      delete query[key]
+      router.replace(`?${queryString.stringify(query, { arrayFormat: 'bracket' })}`, undefined, {
+        shallow: true,
+        scroll: false
+      })
+    }
+
+    if (val === undefined) {
       val = storageValue
     }
 
     return val
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, parseBooleans, parseNumbers, router.pathname, saveToStorage, validateValue])
 
   // Update the "state" when the router.query key changes
@@ -44,7 +56,7 @@ export const useQueryState = (
 
   // Replace the route to then update the "state"
   const update = useCallback(
-    async (stateUpdater) => {
+    (stateUpdater) => {
       const oldValue = getValue()
       const newValue = typeof stateUpdater === 'function' ? stateUpdater(oldValue) : stateUpdater
 
@@ -58,11 +70,10 @@ export const useQueryState = (
 
       query[key] = newValue
 
-      await router.replace(
-        `?${queryString.stringify(query, { arrayFormat: 'bracket' })}`,
-        undefined,
-        { shallow: true, scroll: false }
-      )
+      router.replace(`?${queryString.stringify(query, { arrayFormat: 'bracket' })}`, undefined, {
+        shallow: true,
+        scroll: false
+      })
     },
     // The Next.js router updates `router.replace`, which should not trigger re-renders
     // eslint-disable-next-line react-hooks/exhaustive-deps

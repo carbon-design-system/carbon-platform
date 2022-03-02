@@ -68,15 +68,27 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
 
   const [search, setSearch] = useState(query)
 
-  const [sort, setSort] = useQueryState('sort', {
-    defaultValue: 'a-z',
-    saveToStorage: true
-  })
+  const [sort, setSort] = useQueryState(
+    'sort',
+    {
+      defaultValue: 'a-z',
+      saveToStorage: true
+    },
+    (value) => {
+      return !!value && typeof value === 'string' && ['a-z', 'status'].includes(value)
+    }
+  )
 
-  const [view, setView] = useQueryState('view', {
-    defaultValue: 'list',
-    saveToStorage: true
-  })
+  const [view, setView] = useQueryState(
+    'view',
+    {
+      defaultValue: 'list',
+      saveToStorage: true
+    },
+    (value) => {
+      return !!value && typeof value === 'string' && ['grid', 'list'].includes(value)
+    }
+  )
 
   const [page, setPage] = useQueryState(
     'page',

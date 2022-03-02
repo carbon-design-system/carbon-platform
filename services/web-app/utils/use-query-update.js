@@ -19,7 +19,8 @@ const useQueryUpdate = () => {
    */
   return (keyValPairs) => {
     const query = queryString.parseUrl(window.location.search, {
-      arrayFormat: 'bracket',
+      arrayFormat: 'bracket-separator',
+      arrayFormatSeparator: '|',
       parseNumbers: true,
       parseBooleans: true
     }).query
@@ -28,10 +29,17 @@ const useQueryUpdate = () => {
       query[queryKey] = queryValue
     })
 
-    router.replace(`?${queryString.stringify(query, { arrayFormat: 'bracket' })}`, undefined, {
-      shallow: true,
-      scroll: false
-    })
+    router.replace(
+      `?${queryString.stringify(query, {
+        arrayFormat: 'bracket-separator',
+        arrayFormatSeparator: '|'
+      })}`,
+      undefined,
+      {
+        shallow: true,
+        scroll: false
+      }
+    )
   }
 }
 

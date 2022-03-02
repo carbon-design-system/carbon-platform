@@ -24,7 +24,8 @@ export const useQueryState = (
     }
 
     const query = queryString.parseUrl(window.location.search, {
-      arrayFormat: 'bracket',
+      arrayFormat: 'bracket-separator',
+      arrayFormatSeparator: '|',
       parseNumbers,
       parseBooleans
     }).query
@@ -37,10 +38,17 @@ export const useQueryState = (
     if (val !== undefined && validateValue && !validateValue(val)) {
       val = undefined
       delete query[key]
-      router.replace(`?${queryString.stringify(query, { arrayFormat: 'bracket' })}`, undefined, {
-        shallow: true,
-        scroll: false
-      })
+      router.replace(
+        `?${queryString.stringify(query, {
+          arrayFormat: 'bracket-separator',
+          arrayFormatSeparator: '|'
+        })}`,
+        undefined,
+        {
+          shallow: true,
+          scroll: false
+        }
+      )
     }
 
     if (val === undefined) {
@@ -63,17 +71,25 @@ export const useQueryState = (
       // Don't rely on router.query here because that would cause unnecessary renders when other
       // query parameters change
       const query = queryString.parseUrl(window.location.search, {
-        arrayFormat: 'bracket',
+        arrayFormat: 'bracket-separator',
+        arrayFormatSeparator: '|',
         parseNumbers,
         parseBooleans
       }).query
 
       query[key] = newValue
 
-      router.replace(`?${queryString.stringify(query, { arrayFormat: 'bracket' })}`, undefined, {
-        shallow: true,
-        scroll: false
-      })
+      router.replace(
+        `?${queryString.stringify(query, {
+          arrayFormat: 'bracket-separator',
+          arrayFormatSeparator: '|'
+        })}`,
+        undefined,
+        {
+          shallow: true,
+          scroll: false
+        }
+      )
     },
     // The Next.js router updates `router.replace`, which should not trigger re-renders
     // eslint-disable-next-line react-hooks/exhaustive-deps

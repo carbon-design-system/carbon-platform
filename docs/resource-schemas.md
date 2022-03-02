@@ -16,7 +16,7 @@ more, see "[Learn YAML in Y minutes](https://learnxinyminutes.com/docs/yaml)."
 carbon.yml
 
 ```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@1.1.5/carbon-resources.schema.json`
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@1.1.5/carbon-resources.schema.json
 library:
   id: carbon-react
   name: Carbon React
@@ -53,7 +53,7 @@ assets:
       content.
 ```
 
-## Stable Schema Version
+## Stable schema version
 
 The current supported stable version of the resource schemas is _v1.1.5_. You can add schema
 validation to your YAML files by adding the following line to the top of your files:
@@ -83,7 +83,7 @@ the same directory as your library's `package.json` file.
 carbon.yml
 
 ```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@1.1.5/carbon-resources.schema.json`
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@1.1.5/carbon-resources.schema.json
 library:
   id: carbon-react
   name: Carbon React
@@ -147,7 +147,7 @@ belongs to a library.
 carbon.yml
 
 ```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@1.1.5/carbon-resources.schema.json`
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@1.1.5/carbon-resources.schema.json
 assets:
   accordion:
     name: Accordion
@@ -210,7 +210,7 @@ been deprecated.
 carbon.yml
 
 ```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@1.1.5/carbon-resources.schema.json`
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@1.1.5/carbon-resources.schema.json
 ---
 status:
   key: experimental
@@ -322,7 +322,7 @@ Libraries and assets can specify links to demo sites.
 carbon.yml
 
 ```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@1.1.5/carbon-resources.schema.json`
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@1.1.5/carbon-resources.schema.json
 ---
 demoLinks:
   - type: storybook

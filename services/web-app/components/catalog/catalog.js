@@ -268,7 +268,10 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     if (!isEqual(newFilter.platform, filter.platform)) queryUpdates.platform = newFilter.platform
     if (!isEqual(newFilter.status, filter.status)) queryUpdates.status = newFilter.status
     if (!isEqual(newFilter.tags, filter.tags)) queryUpdates.tags = newFilter.tags
-    if (!isEqual(newFilter.framework, filter.framework)) { queryUpdates.framework = newFilter.framework }
+
+    if (!isEqual(newFilter.framework, filter.framework)) {
+      queryUpdates.framework = newFilter.framework
+    }
 
     if (!isEmpty(queryUpdates)) bulkUpdateQuery(queryUpdates)
   }

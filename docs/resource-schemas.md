@@ -55,12 +55,17 @@ assets:
 
 ## Stable schema version
 
-The current supported stable version of the resource schemas is _v1.1.5_. You can add schema
-validation to your YAML files by adding the following line to the top of your files:
+The current supported stable version of the resource schemas is _v1.1.5_. You can add the yaml
+language server to your YAML files by adding the following line to the top of your files:
 
 ```yml
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@1.1.5/carbon-resources.schema.json
 ```
+
+**_Note:_** If you're using VS Code as your editor you may
+[install](https://code.visualstudio.com/docs/editor/extension-marketplace) a yaml extension, such as
+[YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) for additional
+language support
 
 ## Resource schema keys
 

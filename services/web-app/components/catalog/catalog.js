@@ -131,6 +131,15 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   })
 
   useEffect(() => {
+    const resultsCount = filteredAssets.length
+    const maxPageNumber = Math.max(Math.ceil(resultsCount / pageSize), 1)
+    if (page > maxPageNumber) {
+      // TODO: use useUpdateQuery() and add search (q) as well
+      setPage(1)
+    }
+  }, [filteredAssets, page, pageSize, setPage])
+
+  useEffect(() => {
     setFilteredAssets(
       assets
         .sort(assetSortComparator(sort))

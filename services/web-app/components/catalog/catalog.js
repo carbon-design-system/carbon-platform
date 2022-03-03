@@ -52,6 +52,8 @@ const assetIsInFilter = (asset, filter) => {
 }
 
 function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {} }) {
+  const [open, setOpen] = useState(false)
+
   const [query, setQuery] = useQueryState('q', {
     defaultValue: ''
   })
@@ -190,6 +192,8 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
         search={search}
         onSearch={handleSearch}
         onFilter={handleFilter}
+        open={open}
+        setOpen={setOpen}
       />
       <CatalogFilters
         filter={filter}

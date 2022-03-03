@@ -14,7 +14,16 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-search.module.scss'
 
-const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, search = '' }) => {
+const CatalogSearch = ({
+  className,
+  filter,
+  initialFilter,
+  onFilter,
+  onSearch,
+  search = '',
+  open,
+  setOpen
+}) => {
   const isMd = useMatchMedia(mediaQueries.md)
 
   const handleOnBlur = (event) => {
@@ -48,6 +57,8 @@ const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, s
             filter={filter}
             initialFilter={initialFilter}
             onFilter={onFilter}
+            open={open}
+            setOpen={setOpen}
           />
         )}
       </Column>
@@ -57,6 +68,8 @@ const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, s
             filter={filter}
             initialFilter={initialFilter}
             onFilter={onFilter}
+            open={open}
+            setOpen={setOpen}
           />
         </Column>
       )}

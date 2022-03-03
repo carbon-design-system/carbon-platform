@@ -12,6 +12,8 @@ import PropTypes from 'prop-types'
 import { useEffect, useRef, useState } from 'react'
 
 import { getFilters } from '@/data/filters'
+import useEscape from '@/utils/use-escape'
+import useFocus from '@/utils/use-focus'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import useOutsideClick from '@/utils/use-outside-click'
 
@@ -32,19 +34,14 @@ const CatalogMultiselectFilter = ({
   const isMd = useMatchMedia(mediaQueries.md)
   const triggerRef = useRef()
   const contentRef = useRef()
+  const popoverRef = useRef(null)
+  const focus = useFocus()
 
-  useEffect(() => {
-    const handleEsc = (event) => {
-      if (event.keyCode === 27) {
-        setOpen(false)
-      }
-    }
-    window.addEventListener('keydown', handleEsc)
+  useFocus()
 
-    return () => {
-      window.removeEventListener('keydown', handleEsc)
-    }
-  }, [])
+  useEscape('Escape', () => {
+    setOpen(false)
+  })
 
   useOutsideClick(contentRef, (e) => {
     if (triggerRef.current && !triggerRef.current.contains(e.target)) {
@@ -60,13 +57,6 @@ const CatalogMultiselectFilter = ({
     return sum + filter[item].length
   }, 0)
 
-  const popoverRef = useRef(null)
-
-  const onClickHandler = () => {
-    setOpen(!open)
-    popoverRef.current.focus()
-  }
-
   return (
     <Popover
       align="bottom-right"
@@ -79,10 +69,12 @@ const CatalogMultiselectFilter = ({
     >
       <button
         className={styles.trigger}
-        onClick={() => onClickHandler()}
+        onClick={() => {
+          setOpen(!open)
+          focus(popoverRef)
+        }}
         ref={triggerRef}
         type="button"
-        tabIndex="0"
       >
         <span className={styles.triggerInner}>
           {isMd && (
@@ -115,7 +107,8 @@ const CatalogMultiselectFilter = ({
         </span>
       </button>
       <PopoverContent className={styles.content} ref={contentRef}>
-        <div className={styles.divTest} ref={popoverRef}>
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+        <div className={styles.wrapper} ref={popoverRef} tabIndex="0">
           <Grid className={styles.grid} columns={columns}>
             {Object.keys(getFilters(initialFilter)).map((item, i) => (
               <Column className={styles.column} key={i}>

@@ -9,12 +9,12 @@ import { Column, Grid, Popover, PopoverContent, Tag } from '@carbon/react'
 import { ChevronDown, Close, Filter } from '@carbon/react/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { getFilters } from '@/data/filters'
-import useEscape from '@/utils/use-escape'
 import useFocus from '@/utils/use-focus'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
+import useOnKey from '@/utils/use-on-key'
 import useOutsideClick from '@/utils/use-outside-click'
 
 import styles from './catalog-multiselect-filter.module.scss'
@@ -39,7 +39,7 @@ const CatalogMultiselectFilter = ({
 
   useFocus()
 
-  useEscape('Escape', () => {
+  useOnKey('Escape', () => {
     setOpen(false)
   })
 

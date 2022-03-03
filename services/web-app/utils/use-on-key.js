@@ -7,7 +7,7 @@
 
 import { useEffect } from 'react'
 
-export default function useEscape(key, action) {
+export default function useOnKey(key, action) {
   useEffect(() => {
     function onKeyup(event) {
       if (event.key === key) action()

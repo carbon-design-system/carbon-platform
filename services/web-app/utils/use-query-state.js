@@ -6,7 +6,7 @@
  */
 
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export const queryTypes = {
   string: {
@@ -64,8 +64,7 @@ export const useQueryState = (
     return queryValue !== null ? parse(queryValue) : storageValue
   }, [key, parse, router.pathname, saveToStorage])
 
-  // Update the "state" when the router.query key changes
-  const value = useMemo(getValue, [getValue, router.query[key]])
+  const [value, setValue] = useState(getValue())
 
   // Replace the route to then update the "state"
   const update = useCallback(
@@ -83,7 +82,10 @@ export const useQueryState = (
         query.set(key, serialize(newValue))
       }
 
-      router.replace(`?${query.toString()}`, undefined, { shallow: true, scroll: false })
+      // change query state without rerendering page
+      history.replaceState(null, null, `?${query.toString()}`)
+
+      setValue(getValue())
     },
     // The Next.js router updates `router.replace`, which should not trigger re-renders
     // eslint-disable-next-line react-hooks/exhaustive-deps

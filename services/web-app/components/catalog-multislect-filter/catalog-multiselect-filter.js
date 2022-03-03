@@ -9,7 +9,7 @@ import { Column, Grid, Popover, PopoverContent, Tag } from '@carbon/react'
 import { ChevronDown, Close, Filter } from '@carbon/react/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 import { getFilters } from '@/data/filters'
 import useFocus from '@/utils/use-focus'
@@ -30,9 +30,7 @@ const CatalogMultiselectFilter = ({
   filter,
   initialFilter,
   className: customClassName,
-  onFilter,
-  open,
-  setOpen
+  onFilter
 }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
   const isMd = useMatchMedia(mediaQueries.md)
@@ -42,6 +40,8 @@ const CatalogMultiselectFilter = ({
   const focus = useFocus()
 
   useFocus()
+
+  const [open, setOpen] = useState(false)
 
   useOnKey('Escape', () => {
     setOpen(false)

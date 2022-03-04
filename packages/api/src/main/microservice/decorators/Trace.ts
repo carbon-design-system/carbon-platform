@@ -6,8 +6,6 @@
  */
 import { PlatformController } from '../'
 
-// TODO: incorporate messaging into this and make it more general purpose
-
 /**
  * Returns a decorated version of a method that automatically uses the instance's NestJS logger
  * object to log an informational message containing the name of the called function, along with its

@@ -7,9 +7,9 @@
 
 import { useRouter } from 'next/router'
 import queryString from 'query-string'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
-export const useQueryState = (
+const useQueryState = (
   key,
   { defaultValue = '', saveToStorage = false, parseNumbers = false, parseBooleans = false },
   validateValue = () => true
@@ -38,16 +38,15 @@ export const useQueryState = (
     if (val !== undefined && validateValue && !validateValue(val)) {
       val = undefined
       delete query[key]
-      router.replace(
+
+      // change query state without rerendering page
+      history.replaceState(
+        null,
+        null,
         `?${queryString.stringify(query, {
           arrayFormat: 'bracket-separator',
           arrayFormatSeparator: '|'
-        })}`,
-        undefined,
-        {
-          shallow: true,
-          scroll: false
-        }
+        })}`
       )
     }
 
@@ -59,8 +58,7 @@ export const useQueryState = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, parseBooleans, parseNumbers, router.pathname, saveToStorage, validateValue])
 
-  // Update the "state" when the router.query key changes
-  const value = useMemo(getValue, [getValue, router.query[key], router.query[`${key}[]`]])
+  const [value, setValue] = useState(getValue())
 
   // Replace the route to then update the "state"
   const update = useCallback(
@@ -79,19 +77,18 @@ export const useQueryState = (
 
       query[key] = newValue
 
-      router.replace(
+      // change query state without rerendering page
+      history.replaceState(
+        null,
+        null,
         `?${queryString.stringify(query, {
           arrayFormat: 'bracket-separator',
           arrayFormatSeparator: '|'
-        })}`,
-        undefined,
-        {
-          shallow: true,
-          scroll: false
-        }
+        })}`
       )
+
+      setValue(getValue())
     },
-    // The Next.js router updates `router.replace`, which should not trigger re-renders
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [getValue, key]
   )
@@ -105,3 +102,5 @@ export const useQueryState = (
 
   return [value ?? defaultValue ?? null, update]
 }
+
+export default useQueryState

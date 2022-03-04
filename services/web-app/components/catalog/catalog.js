@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { cloneDeep, get, isArray, isEmpty, isEqual, remove, set, union } from 'lodash'
+import { cloneDeep, get, isArray, isEqual, remove, set, union } from 'lodash'
 import minimatch from 'minimatch'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
@@ -24,8 +24,7 @@ import {
   getCanonicalLibraryId,
   librarySortComparator
 } from '@/utils/schema'
-import { useQueryState } from '@/utils/use-query-state'
-import useQueryUpdate from '@/utils/use-query-update'
+import useQueryState from '@/utils/use-query-state'
 
 import styles from './catalog.module.scss'
 
@@ -55,8 +54,6 @@ const assetIsInFilter = (asset, filter) => {
 
 function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {} }) {
   const [possibleFilterValues, setPossibleFilterValues] = useState(getFilters({ collection, type }))
-
-  const bulkUpdateQuery = useQueryUpdate()
 
   const [query, setQuery] = useQueryState(
     'q',
@@ -108,84 +105,66 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     (value) => !isNaN(value)
   )
 
-  const [framework] = useQueryState(
+  /**
+   * checks if the value of a filter property is valid
+   * acceptable criteria
+   * - Has a value
+   * - Value is of Array type
+   * - The property key is defined in `possibleFilterValues` object and it's values are defined
+   * - Each entry in the parametered `value` is contained in the list
+   *  of acceptable values for the propertyKey as defined in `possibleFilterValues`
+   *
+   * @param {string} propertyKey
+   * @param {string[]} value value to be evaluated
+   * @returns {boolean} true if value is valid
+   */
+  const filterPropertyHasValidValue = (propertyKey, value) => {
+    return (
+      !!value &&
+      value.constructor === Array &&
+      !!possibleFilterValues?.[propertyKey]?.values &&
+      !value.some((val) => !Object.keys(possibleFilterValues[propertyKey].values).includes(val))
+    )
+  }
+
+  const [framework, setFramework] = useQueryState(
     'framework',
     {
       defaultValue: defaultFilter.framework
     },
-    (value) => {
-      // assert framework value is an array and has valid values
-      return (
-        !!value &&
-        value.constructor === Array &&
-        !!possibleFilterValues?.framework?.values &&
-        !value.some((val) => !Object.keys(possibleFilterValues.framework.values).includes(val))
-      )
-    }
+    (value) => filterPropertyHasValidValue('framework', value)
   )
 
-  const [platform] = useQueryState(
+  const [platform, setPlatform] = useQueryState(
     'platform',
     {
       defaultValue: defaultFilter.platform
     },
-    (value) => {
-      // assert platform value is an array and has valid values
-      return (
-        !!value &&
-        value.constructor === Array &&
-        !!possibleFilterValues?.platform?.values &&
-        !value.some((val) => !Object.keys(possibleFilterValues.platform.values).includes(val))
-      )
-    }
+    (value) => filterPropertyHasValidValue('platform', value)
   )
 
-  const [tags] = useQueryState(
+  const [tags, setTags] = useQueryState(
     'tags',
     {
       defaultValue: defaultFilter.tags
     },
-    (value) => {
-      // assert tags value is an array and has valid values
-      return (
-        !!value &&
-        value.constructor === Array &&
-        !!possibleFilterValues?.tags?.values &&
-        !value.some((val) => !Object.keys(possibleFilterValues.tags.values).includes(val))
-      )
-    }
+    (value) => filterPropertyHasValidValue('tags', value)
   )
 
-  const [status] = useQueryState(
+  const [status, setStatus] = useQueryState(
     'status',
     {
       defaultValue: defaultFilter.status
     },
-    (value) => {
-      // assert status value is an array and has valid values
-      return (
-        !!value &&
-        value.constructor === Array &&
-        !!possibleFilterValues?.status?.values &&
-        !value.some((val) => !Object.keys(possibleFilterValues.status.values).includes(val))
-      )
-    }
+    (value) => filterPropertyHasValidValue('status', value)
   )
 
-  const [sponsor] = useQueryState(
+  const [sponsor, setSponsor] = useQueryState(
     'sponsor',
     {
       defaultValue: defaultFilter.sponsor
     },
-    (value) => {
-      // assert sponsor value is an array and has valid values
-      return (
-        !!value &&
-        value.constructor === Array &&
-        !!possibleFilterValues?.sponsor?.values &&
-        !value.some((val) => !Object.keys(possibleFilterValues.sponsor.values).includes(val))
-      )
-    }
+    (value) => filterPropertyHasValidValue('sponsor', value)
   )
 
   const [filter, setFilter] = useState(defaultFilter)
@@ -275,17 +254,11 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   }, [collection, type])
 
   const updateQueryValues = (newFilter) => {
-    const queryUpdates = {}
-    if (!isEqual(newFilter.sponsor, filter.sponsor)) queryUpdates.sponsor = newFilter.sponsor
-    if (!isEqual(newFilter.platform, filter.platform)) queryUpdates.platform = newFilter.platform
-    if (!isEqual(newFilter.status, filter.status)) queryUpdates.status = newFilter.status
-    if (!isEqual(newFilter.tags, filter.tags)) queryUpdates.tags = newFilter.tags
-
-    if (!isEqual(newFilter.framework, filter.framework)) {
-      queryUpdates.framework = newFilter.framework
-    }
-
-    if (!isEmpty(queryUpdates)) bulkUpdateQuery(queryUpdates)
+    if (!isEqual(newFilter.sponsor, filter.sponsor)) setSponsor(newFilter.sponsor)
+    if (!isEqual(newFilter.platform, filter.platform)) setPlatform(newFilter.platform)
+    if (!isEqual(newFilter.status, filter.status)) setStatus(newFilter.status)
+    if (!isEqual(newFilter.tags, filter.tags)) setTags(newFilter.tags)
+    if (!isEqual(newFilter.framework, filter.framework)) setFramework(newFilter.framework)
   }
 
   const handleFilter = (item, key, action = 'add') => {

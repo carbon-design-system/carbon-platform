@@ -55,6 +55,48 @@ const assetIsInFilter = (asset, filter) => {
 function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {} }) {
   const [possibleFilterValues, setPossibleFilterValues] = useState(getFilters({ collection, type }))
 
+  const getFilteredAssets = () => {
+    return (
+      assets
+        ?.sort(assetSortComparator(sort))
+        .filter((asset) => assetIsInFilter(asset, filter))
+        .filter((asset) => {
+          const { description = '', name = '' } = asset.content
+
+          if (search) {
+            return (
+              (name && name.toLowerCase().includes(search.toLowerCase())) ||
+              (description && description.toLowerCase().includes(search.toLowerCase()))
+            )
+          }
+
+          return true
+        }) ?? []
+    )
+  }
+
+  /**
+   * checks if the value of a filter property is valid
+   * acceptable criteria
+   * - Has a value
+   * - Value is of Array type
+   * - The property key is defined in `possibleFilterValues` object and it's values are defined
+   * - Each entry in the parametered `value` is contained in the list
+   *  of acceptable values for the propertyKey as defined in `possibleFilterValues`
+   *
+   * @param {string} propertyKey
+   * @param {string[]} value value to be evaluated
+   * @returns {boolean} true if value is valid
+   */
+  const filterPropertyHasValidValue = (propertyKey, value) => {
+    return (
+      !!value &&
+      value.constructor === Array &&
+      !!possibleFilterValues?.[propertyKey]?.values &&
+      !value.some((val) => !Object.keys(possibleFilterValues[propertyKey].values).includes(val))
+    )
+  }
+
   const [query, setQuery] = useQueryState(
     'q',
     {
@@ -105,28 +147,6 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     (value) => !isNaN(value)
   )
 
-  /**
-   * checks if the value of a filter property is valid
-   * acceptable criteria
-   * - Has a value
-   * - Value is of Array type
-   * - The property key is defined in `possibleFilterValues` object and it's values are defined
-   * - Each entry in the parametered `value` is contained in the list
-   *  of acceptable values for the propertyKey as defined in `possibleFilterValues`
-   *
-   * @param {string} propertyKey
-   * @param {string[]} value value to be evaluated
-   * @returns {boolean} true if value is valid
-   */
-  const filterPropertyHasValidValue = (propertyKey, value) => {
-    return (
-      !!value &&
-      value.constructor === Array &&
-      !!possibleFilterValues?.[propertyKey]?.values &&
-      !value.some((val) => !Object.keys(possibleFilterValues[propertyKey].values).includes(val))
-    )
-  }
-
   const [framework, setFramework] = useQueryState(
     'framework',
     {
@@ -167,7 +187,11 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     (value) => filterPropertyHasValidValue('sponsor', value)
   )
 
-  const [filter, setFilter] = useState(defaultFilter)
+  const [filter, setFilter] = useState(
+    Object.fromEntries(
+      Object.entries({ framework, sponsor, platform, tags, status }).filter(([_, v]) => !!v)
+    )
+  )
 
   const [libraries] = useState(
     data.libraries.filter((library) => library.assets.length).sort(librarySortComparator)
@@ -200,7 +224,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
       })
   })
 
-  const [filteredAssets, setFilteredAssets] = useState(assets)
+  const [filteredAssets, setFilteredAssets] = useState(getFilteredAssets())
 
   const [assetCounts] = useState(() => {
     const totals = {}
@@ -217,24 +241,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   })
 
   useEffect(() => {
-    setFilteredAssets(
-      assets
-        .sort(assetSortComparator(sort))
-        .filter((asset) => assetIsInFilter(asset, filter))
-        .filter((asset) => {
-          const { description = '', name = '' } = asset.content
-
-          if (search) {
-            return (
-              (name && name.toLowerCase().includes(search.toLowerCase())) ||
-              (description && description.toLowerCase().includes(search.toLowerCase()))
-            )
-          }
-
-          return true
-        })
-    )
-
+    setFilteredAssets(getFilteredAssets())
     // avoid deep object equality comparison in the effect by using JSON.stringify
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [assets, JSON.stringify(filter), sort, search])

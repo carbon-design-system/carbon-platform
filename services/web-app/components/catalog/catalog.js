@@ -53,7 +53,8 @@ const assetIsInFilter = (asset, filter) => {
 
 function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {} }) {
   const [query, setQuery] = useQueryState('q', {
-    defaultValue: ''
+    defaultValue: '',
+    saveToStorage: true
   })
 
   const [search, setSearch] = useState(query)
@@ -70,17 +71,21 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
 
   const [page, setPage] = useQueryState('page', {
     ...queryTypes.integer,
-    defaultValue: 1
+    defaultValue: 1,
+    saveToStorage: true
   })
 
   const [pageSize, setPageSize] = useQueryState('items', {
     ...queryTypes.integer,
-    defaultValue: 60
+    defaultValue: 60,
+    saveToStorage: true
   })
 
+  // this will change with query refactor
   const [filter, setFilter] = useQueryState('filter', {
     ...queryTypes.object,
-    defaultValue: defaultFilter
+    defaultValue: defaultFilter,
+    saveToStorage: true
   })
 
   const [libraries] = useState(

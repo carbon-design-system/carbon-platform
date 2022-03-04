@@ -134,10 +134,12 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     const resultsCount = filteredAssets.length
     const maxPageNumber = Math.max(Math.ceil(resultsCount / pageSize), 1)
     if (page > maxPageNumber) {
-      // TODO: use useUpdateQuery() and add search (q) as well
+      // TODO: this setQuery can probably be removed after use-query-state refactor merge
+      setQuery(search)
       setPage(1)
     }
-  }, [filteredAssets, page, pageSize, setPage])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filteredAssets])
 
   useEffect(() => {
     setFilteredAssets(

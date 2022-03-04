@@ -36,8 +36,6 @@
     display: none;
   }
 
-  // TODO temporarily fix search bar height until its fixed upstream after `@carbon/react@0.11.0`,
-  // tracked here: https://github.com/carbon-design-system/carbon/discussions/10247
   :global(.cds--search--lg .cds--search-input),
   :global(.cds--search--lg .cds--search-close) {
     height: $spacing-09;

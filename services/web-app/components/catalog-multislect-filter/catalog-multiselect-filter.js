@@ -32,8 +32,6 @@ const CatalogMultiselectFilter = ({
   const popoverRef = useRef(null)
   const focus = useFocus()
 
-  useFocus()
-
   const [open, setOpen] = useState(false)
 
   useOnKey('Escape', () => {

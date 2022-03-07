@@ -52,6 +52,16 @@
   --space: 0;
 }
 
+.list {
+  --space: #{$spacing-06};
+
+  margin-top: var(--space);
+}
+
+.list .list {
+  --space: 0;
+}
+
 // Headings
 .h1 {
   @include type-style('expressive-heading-05', true);
@@ -78,3 +88,17 @@
 .paragraph {
   @include type-style('body-long-02');
 }
+
+// List
+.list-item {
+  @include type-style('body-long-02');
+
+  padding-left: $spacing-02;
+  margin-left: $spacing-05;
+}
+
+/*
+ TODO: sync with design on ordered list styles, gatsby styles don't match core Carbon
+
+.ol .list-item {}
+*/

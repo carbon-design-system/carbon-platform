@@ -9,7 +9,8 @@ import '@/styles/styles.scss'
 import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
 
-import { H1, H2, H3, H4, H5, H6 } from '@/components/markdown'
+import Link from '@/components/link'
+import { H1, H2, H3, H4, H5, H6, LI, OL, P, UL } from '@/components/markdown'
 import PageDescription from '@/components/page-description'
 import defaultSeo from '@/config/seo.json'
 import { AuthProvider } from '@/contexts/auth'
@@ -22,6 +23,11 @@ const components = {
   h4: H4,
   h5: H5,
   h6: H6,
+  p: P,
+  ul: UL,
+  ol: OL,
+  li: LI,
+  a: Link,
   PageDescription: PageDescription
 }
 

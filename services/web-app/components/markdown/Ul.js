@@ -4,23 +4,21 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Grid } from '@carbon/react'
+import { Column, Grid, UnorderedList } from '@carbon/react'
 import cx from 'classnames'
-
-import AutolinkHeader from '@/components/autolink-header'
 
 import styles from './markdown.module.scss'
 
-const H1 = ({ children, className, ...rest }) => {
+const Ul = ({ children, className, ...rest }) => {
   return (
-    <Grid className={cx(className, styles.h1Container)} {...rest}>
+    <Grid>
       <Column sm={4} md={6} lg={8}>
-        <AutolinkHeader is="h1" className={styles.h1}>
+        <UnorderedList className={cx(className, styles.list)} {...rest}>
           {children}
-        </AutolinkHeader>
+        </UnorderedList>
       </Column>
     </Grid>
   )
 }
 
-export default H1
+export default Ul

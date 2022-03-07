@@ -7,20 +7,16 @@
 import { Column, Grid } from '@carbon/react'
 import cx from 'classnames'
 
-import AutolinkHeader from '@/components/autolink-header'
-
 import styles from './markdown.module.scss'
 
-const H1 = ({ children, className, ...rest }) => {
+const P = ({ children, className, ...rest }) => {
   return (
-    <Grid className={cx(className, styles.h1Container)} {...rest}>
+    <Grid className={cx(className, styles.paragraphContainer)} {...rest}>
       <Column sm={4} md={6} lg={8}>
-        <AutolinkHeader is="h1" className={styles.h1}>
-          {children}
-        </AutolinkHeader>
+        <p className={styles.paragraph}>{children}</p>
       </Column>
     </Grid>
   )
 }
 
-export default H1
+export default P

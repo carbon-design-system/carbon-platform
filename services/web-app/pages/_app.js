@@ -10,7 +10,8 @@ import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
 
 import Link from '@/components/link'
-import { H1, H2, H3, H4, H5, H6, LI, OL, P, UL } from '@/components/markdown'
+import { Blockquote, H1, H2, H3, H4, H5, H6, LI, OL, P, UL } from '@/components/markdown'
+// import MarkdownTable from '@/components/markdown-table'
 import PageDescription from '@/components/page-description'
 import defaultSeo from '@/config/seo.json'
 import { AuthProvider } from '@/contexts/auth'
@@ -28,6 +29,8 @@ const components = {
   ol: OL,
   li: LI,
   a: Link,
+  blockquote: Blockquote,
+  // table: MarkdownTable,
   PageDescription: PageDescription
 }
 

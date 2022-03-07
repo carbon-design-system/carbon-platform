@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+export { default as Blockquote } from './blockquote'
 export { default as H1 } from './h1'
 export { default as H2 } from './h2'
 export { default as H3 } from './h3'

@@ -28,12 +28,26 @@ import useQueryState from '@/utils/use-query-state'
 
 import styles from './catalog.module.scss'
 
+/**
+ * Iterates over an array and returns true if another array has at least one value in the first
+ * array. This could probably be replaced by checking the length of the Lodash `intersection()`
+ * function return.
+ * @param {string[]} arr1
+ * @param {string[]} arr2
+ * @returns {boolean}
+ */
 const valuesIntersect = (arr1, arr2) => {
   if (!isArray(arr1) || !isArray(arr2)) return false
 
   return arr1.filter((v) => arr2.includes(v)).length
 }
 
+/**
+ * Returns true if an asset should be included in the catalog results given the filter.
+ * @param {import('../../typedefs').Asset} asset
+ * @param {Object} filter
+ * @returns {boolean}
+ */
 const assetIsInFilter = (asset, filter) => {
   for (const [key, value] of Object.entries(filter)) {
     if (key === 'sponsor') {
@@ -52,50 +66,59 @@ const assetIsInFilter = (asset, filter) => {
   return true
 }
 
+/**
+ * Sorts and filters an array of assets given a filter, sort key, and search query. Until a better
+ * solution is in place, the search is simply a filter to remove assets that don't match any part of
+ * the name or description.
+ * @param {import('../../typedefs').Asset[]} assets
+ * @param {Object} filter
+ * @param {string} sort
+ * @param {string} search
+ * @returns {import('../../typedefs').Asset[]}
+ */
+const getFilteredAssets = (assets, filter, sort, search) => {
+  return (
+    assets
+      ?.sort(assetSortComparator(sort))
+      .filter((asset) => assetIsInFilter(asset, filter))
+      .filter((asset) => {
+        const { description = '', name = '' } = asset.content
+
+        if (search) {
+          return (
+            (name && name.toLowerCase().includes(search.toLowerCase())) ||
+            (description && description.toLowerCase().includes(search.toLowerCase()))
+          )
+        }
+
+        return true
+      }) ?? []
+  )
+}
+
+/**
+ * Checks if the value of a filter property is valid. Acceptance criteria:
+ * - Has a value
+ * - Value is of Array type
+ * - The property key is defined in `filters` object and its values are defined
+ * - Each entry in the parametered `value` is contained in the list of acceptable values for the
+ * key as defined in `filter`
+ * @param {Object} filter
+ * @param {string} key
+ * @param {string[]} value
+ * @returns {boolean} True if value is valid
+ */
+const filterPropertyHasValidValue = (filter, key, value) => {
+  return (
+    !!value &&
+    value.constructor === Array &&
+    !!filter?.[key]?.values &&
+    !value.some((val) => !Object.keys(filter[key].values).includes(val))
+  )
+}
+
 function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {} }) {
   const [possibleFilterValues, setPossibleFilterValues] = useState(getFilters({ collection, type }))
-
-  const getFilteredAssets = () => {
-    return (
-      assets
-        ?.sort(assetSortComparator(sort))
-        .filter((asset) => assetIsInFilter(asset, filter))
-        .filter((asset) => {
-          const { description = '', name = '' } = asset.content
-
-          if (search) {
-            return (
-              (name && name.toLowerCase().includes(search.toLowerCase())) ||
-              (description && description.toLowerCase().includes(search.toLowerCase()))
-            )
-          }
-
-          return true
-        }) ?? []
-    )
-  }
-
-  /**
-   * checks if the value of a filter property is valid
-   * acceptable criteria
-   * - Has a value
-   * - Value is of Array type
-   * - The property key is defined in `possibleFilterValues` object and it's values are defined
-   * - Each entry in the parametered `value` is contained in the list
-   *  of acceptable values for the propertyKey as defined in `possibleFilterValues`
-   *
-   * @param {string} propertyKey
-   * @param {string[]} value value to be evaluated
-   * @returns {boolean} true if value is valid
-   */
-  const filterPropertyHasValidValue = (propertyKey, value) => {
-    return (
-      !!value &&
-      value.constructor === Array &&
-      !!possibleFilterValues?.[propertyKey]?.values &&
-      !value.some((val) => !Object.keys(possibleFilterValues[propertyKey].values).includes(val))
-    )
-  }
 
   const [query, setQuery] = useQueryState(
     'q',
@@ -152,7 +175,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     {
       defaultValue: defaultFilter.framework
     },
-    (value) => filterPropertyHasValidValue('framework', value)
+    (value) => filterPropertyHasValidValue(possibleFilterValues, 'framework', value)
   )
 
   const [platform, setPlatform] = useQueryState(
@@ -160,7 +183,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     {
       defaultValue: defaultFilter.platform
     },
-    (value) => filterPropertyHasValidValue('platform', value)
+    (value) => filterPropertyHasValidValue(possibleFilterValues, 'platform', value)
   )
 
   const [tags, setTags] = useQueryState(
@@ -168,7 +191,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     {
       defaultValue: defaultFilter.tags
     },
-    (value) => filterPropertyHasValidValue('tags', value)
+    (value) => filterPropertyHasValidValue(possibleFilterValues, 'tags', value)
   )
 
   const [status, setStatus] = useQueryState(
@@ -176,7 +199,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     {
       defaultValue: defaultFilter.status
     },
-    (value) => filterPropertyHasValidValue('status', value)
+    (value) => filterPropertyHasValidValue(possibleFilterValues, 'status', value)
   )
 
   const [sponsor, setSponsor] = useQueryState(
@@ -184,7 +207,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     {
       defaultValue: defaultFilter.sponsor
     },
-    (value) => filterPropertyHasValidValue('sponsor', value)
+    (value) => filterPropertyHasValidValue(possibleFilterValues, 'sponsor', value)
   )
 
   const [filter, setFilter] = useState(
@@ -200,7 +223,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   const [assets] = useState(() => {
     return libraries
       .reduce((assetsArray, library) => {
-        // flatten all asset into a single array and save library data per asset
+        // Flatten all asset into a single array and save library data per asset
         return assetsArray.concat(
           library.assets.map((asset) => ({
             ...asset,
@@ -212,10 +235,10 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
         )
       }, [])
       .filter((asset) => {
-        // don't show noIndex assets or assets of the wrong type
+        // Don't show noIndex assets or assets of the wrong type
         if (asset.content.noIndex || (type && asset.content.type !== type)) return false
 
-        // don't show libraries or assets if they don't match the glob
+        // Don't show libraries or assets if they don't match the glob
         if (glob.data && glob.pattern) {
           return minimatch(get(asset, glob.data), glob.pattern)
         }
@@ -224,7 +247,9 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
       })
   })
 
-  const [filteredAssets, setFilteredAssets] = useState(getFilteredAssets())
+  const [filteredAssets, setFilteredAssets] = useState(
+    getFilteredAssets(assets, filter, sort, search)
+  )
 
   const [assetCounts] = useState(() => {
     const totals = {}
@@ -240,33 +265,29 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     return totals
   })
 
+  // Set assets array that gets rendered as the filter, sort, and search changes. Avoid deep object
+  // equality comparison in the effect by using JSON.stringify.
   useEffect(() => {
-    setFilteredAssets(getFilteredAssets())
-    // avoid deep object equality comparison in the effect by using JSON.stringify
+    setFilteredAssets(getFilteredAssets(assets, filter, sort, search))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [assets, JSON.stringify(filter), sort, search])
 
+  // Update the filter when each individual key/value(s) in the filter get updated
   useEffect(() => {
     const cleanFilter = Object.fromEntries(
       Object.entries({ framework, sponsor, platform, tags, status }).filter(([_, v]) => !!v)
     )
+
     if (!isEqual(cleanFilter, filter)) {
       setFilter(cleanFilter)
     }
   }, [framework, sponsor, platform, tags, status, filter])
 
+  // Update possible filter values if the collection or type changes
   useEffect(() => {
     setPossibleFilterValues(getFilters({ collection, type }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collection, type])
-
-  const updateQueryValues = (newFilter) => {
-    if (!isEqual(newFilter.sponsor, filter.sponsor)) setSponsor(newFilter.sponsor)
-    if (!isEqual(newFilter.platform, filter.platform)) setPlatform(newFilter.platform)
-    if (!isEqual(newFilter.status, filter.status)) setStatus(newFilter.status)
-    if (!isEqual(newFilter.tags, filter.tags)) setTags(newFilter.tags)
-    if (!isEqual(newFilter.framework, filter.framework)) setFramework(newFilter.framework)
-  }
 
   const handleFilter = (item, key, action = 'add') => {
     let updatedFilter = cloneDeep(filter)
@@ -285,7 +306,11 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
       updatedFilter = {}
     }
 
-    updateQueryValues(updatedFilter)
+    if (!isEqual(updatedFilter.sponsor, filter.sponsor)) setSponsor(updatedFilter.sponsor)
+    if (!isEqual(updatedFilter.platform, filter.platform)) setPlatform(updatedFilter.platform)
+    if (!isEqual(updatedFilter.status, filter.status)) setStatus(updatedFilter.status)
+    if (!isEqual(updatedFilter.tags, filter.tags)) setTags(updatedFilter.tags)
+    if (!isEqual(updatedFilter.framework, filter.framework)) setFramework(updatedFilter.framework)
   }
 
   const handleSearch = (newValue, saveQuery) => {

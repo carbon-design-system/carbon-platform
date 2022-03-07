@@ -9,6 +9,11 @@ import { useRouter } from 'next/router'
 import queryString from 'query-string'
 import { useCallback, useEffect, useState } from 'react'
 
+const queryStringConfig = {
+  arrayFormat: 'bracket-separator',
+  arrayFormatSeparator: '|'
+}
+
 const useQueryState = (
   key,
   { defaultValue = '', saveToStorage = false, parseNumbers = false, parseBooleans = false },
@@ -24,11 +29,11 @@ const useQueryState = (
     }
 
     const query = queryString.parseUrl(window.location.search, {
-      arrayFormat: 'bracket-separator',
-      arrayFormatSeparator: '|',
+      ...queryStringConfig,
       parseNumbers,
       parseBooleans
     }).query
+
     const storageValue = saveToStorage
       ? localStorage.getItem(`${router.pathname}:${key}`)
       : undefined
@@ -39,15 +44,8 @@ const useQueryState = (
       val = undefined
       delete query[key]
 
-      // change query state without rerendering page
-      history.replaceState(
-        null,
-        null,
-        `?${queryString.stringify(query, {
-          arrayFormat: 'bracket-separator',
-          arrayFormatSeparator: '|'
-        })}`
-      )
+      // Change query state without rerendering page
+      history.replaceState(null, null, `?${queryString.stringify(query, queryStringConfig)}`)
     }
 
     if (val === undefined) {
@@ -69,23 +67,15 @@ const useQueryState = (
       // Don't rely on router.query here because that would cause unnecessary renders when other
       // query parameters change
       const query = queryString.parseUrl(window.location.search, {
-        arrayFormat: 'bracket-separator',
-        arrayFormatSeparator: '|',
+        ...queryStringConfig,
         parseNumbers,
         parseBooleans
       }).query
 
       query[key] = newValue
 
-      // change query state without rerendering page
-      history.replaceState(
-        null,
-        null,
-        `?${queryString.stringify(query, {
-          arrayFormat: 'bracket-separator',
-          arrayFormatSeparator: '|'
-        })}`
-      )
+      // Change query state without rerendering page
+      history.replaceState(null, null, `?${queryString.stringify(query, queryStringConfig)}`)
 
       setValue(getValue())
     },

@@ -9,6 +9,7 @@ import '@/styles/styles.scss'
 import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
 
+// import Code from '@/components/code'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, LI, OL, P, UL } from '@/components/markdown'
 // import MarkdownTable from '@/components/markdown-table'
@@ -30,6 +31,7 @@ const components = {
   li: LI,
   a: Link,
   blockquote: Blockquote,
+  // code: Code,
   // table: MarkdownTable,
   PageDescription: PageDescription
 }

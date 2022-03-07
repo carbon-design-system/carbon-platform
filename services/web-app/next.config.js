@@ -6,11 +6,13 @@
  */
 'use strict'
 
+// const remarkGfm = require('remark-gfm')
 const path = require('path')
 const libraries = require('./data/libraries')
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
   options: {
+    // remarkPlugins: [remarkGfm],
     providerImportSource: '@mdx-js/react'
   }
 })

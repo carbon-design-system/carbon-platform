@@ -37,7 +37,7 @@
     "fs-extra": "^10.0.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
-    "minimatch": "^3.1.2",
+    "minimatch": "^5.0.1",
     "next": "^12.1.0",
     "next-connect": "^0.12.1",
     "next-seo": "^5.1.0",

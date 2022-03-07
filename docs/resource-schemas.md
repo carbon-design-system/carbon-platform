@@ -65,7 +65,7 @@ language server to your YAML files by adding the following line to the top of yo
 **_Note:_** If you're using VS Code as your editor you may
 [install](https://code.visualstudio.com/docs/editor/extension-marketplace) a yaml extension, such as
 [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) for additional
-language support
+language support.
 
 ## Resource schema keys
 

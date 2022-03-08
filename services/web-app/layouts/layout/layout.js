@@ -45,12 +45,6 @@ const Layout = ({ children }) => {
     setShowSideNav(!router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
   }, [router.pathname])
 
-  /**
-   * @todo the HeaderGlobalAction component has icons that aren't centered using the latest
-   * `@carbon/react@0.11.0`. This has been reported:
-   * {@link https://github.com/carbon-design-system/carbon/discussions/10247}.
-   */
-
   return (
     <HeaderContainer
       render={({ isSideNavExpanded, onClickSideNavExpand }) => (

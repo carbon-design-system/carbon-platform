@@ -72,7 +72,7 @@ language support.
 A resource file can contain a library, an object of assets or both.
 
 <!-- prettier-ignore -->
-| Key| Description | Required | Type | Default | Valid values |
+| Key | Description | Required | Type | Default | Valid values |
 | --- | --- | --- | --- | --- | --- |
 | `library` | Object containing library details. See [library schema](#library-schema) for more info. | Optional | Object | – | – |
 | `assets` | Object containing one or more assets organized by `id`. See [asset schema](#asset-schema) for more info. | Optional | Object | – | – |
@@ -104,7 +104,7 @@ library:
 ### Library keys
 
 <!-- prettier-ignore -->
-| Key| Description | Required | Type | Default | Valid values |
+| Key | Description | Required | Type | Default | Valid values |
 | --- | --- | --- | --- | --- | --- |
 | `id` | Every library needs an identifier unique to the platform. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive an `id` when registering a new library. See [identifiers](#identifiers) for more info. | Required | String | – | – |
 | `name` | Library display name. Use title-case capitalization. | Required | String | – | – |

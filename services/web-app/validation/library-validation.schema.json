@@ -1,70 +1,70 @@
 {
-    "title": "Carbon Library",
-    "type": "object",
-    "description": "Libraries are the means to contribute, install, and use one or many assets in products and digital experiences.",
-    "properties": {
-      "id": {
-        "type": "string",
-        "description": "Every library needs an identifier unique to the platform. Contact the Carbon Platform Devs to receive an id when registering a new library."
-      },
-      "name": {
-        "type": "string",
-        "description": "Library display name. Use title-case capitalization."
-      },
-      "description": {
-        "type": "string",
-        "description": "Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the package.json description if not set here."
-      },
-      "inherits": {
-        "type": "string",
-        "description": "Inherit properties from another library on a per-asset basis by specifying a library id optionally followed by @ and a version number."
-      },
-      "packageJsonPath": {
-        "type": "string",
-        "default": "/package.json",
-        "description": "Relative location of the library's package.json. This is used to reference the library's license, version, code package, and other information."
-      },
-      "externalDocsUrl": {
-        "type": "string",
-        "description": "Absolute URL to externally-hosted documentation."
-      },
-      "noIndex": {
-        "type": "boolean",
-        "default": false,
-        "description": "If set to true, the global catalogs will exclude the library."
-      },
-      "demoLinks": {
-        "description": "Libraries and assets can specify links to demo sites.",
-        "minItems": 1,
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": ["codesandbox", "github", "storybook"],
-              "description": "Determines the display icon."
-            },
-            "name": {
-              "type": "string",
-              "description": "Display name."
-            },
-            "action": {
-              "type": "string",
-              "default": "link",
-              "enum": ["download", "link"],
-              "description": "Determines the action icon."
-            },
-            "url": {
-              "type": "string",
-              "description": "Link to the resource."
-            }
-          },
-          "additionalProperties": false,
-          "required": ["type", "name", "url"]
-        }
-      }
+  "title": "Carbon Library",
+  "type": "object",
+  "description": "Libraries are the means to contribute, install, and use one or many assets in products and digital experiences.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Every library needs an identifier unique to the platform. Contact the Carbon Platform Devs to receive an id when registering a new library."
     },
-    "additionalProperties": false,
-    "required": ["id", "name"]
-  }
+    "name": {
+      "type": "string",
+      "description": "Library display name. Use title-case capitalization."
+    },
+    "description": {
+      "type": "string",
+      "description": "Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the package.json description if not set here."
+    },
+    "inherits": {
+      "type": "string",
+      "description": "Inherit properties from another library on a per-asset basis by specifying a library id optionally followed by @ and a version number."
+    },
+    "packageJsonPath": {
+      "type": "string",
+      "default": "/package.json",
+      "description": "Relative location of the library's package.json. This is used to reference the library's license, version, code package, and other information."
+    },
+    "externalDocsUrl": {
+      "type": "string",
+      "description": "Absolute URL to externally-hosted documentation."
+    },
+    "noIndex": {
+      "type": "boolean",
+      "default": false,
+      "description": "If set to true, the global catalogs will exclude the library."
+    },
+    "demoLinks": {
+      "description": "Libraries and assets can specify links to demo sites.",
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["codesandbox", "github", "storybook"],
+            "description": "Determines the display icon."
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name."
+          },
+          "action": {
+            "type": "string",
+            "default": "link",
+            "enum": ["download", "link"],
+            "description": "Determines the action icon."
+          },
+          "url": {
+            "type": "string",
+            "description": "Link to the resource."
+          }
+        },
+        "additionalProperties": false,
+        "required": ["type", "name", "url"]
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": ["id", "name"]
+}

@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.14...@carbon-platform/api@0.2.15) (2022-03-05)
+
 ### [0.2.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.13...@carbon-platform/api@0.2.14) (2022-02-25)
 
 

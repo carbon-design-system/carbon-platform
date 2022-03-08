@@ -36,6 +36,7 @@ rules that we also enforce, namely that:
 
 - The header must always be fewer than **72** characters
 - Any line in the commit body must be fewer than **100** characters
+- Header and scope must each be a value from [.commitlintrc.js](../.commitlintrc.js)
 
 Most of these rules are to help with integration of `git` with common tools.
 
@@ -68,36 +69,8 @@ rest of the commit message is then used for this.
 
 ### Type
 
-Here are the valid types that can be used in a commit message subject:
-
-- `build` - Changes that affect the build system or external dependencies (e.g. npm, tsconfig, etc.)
-- `chore` - Repetitive maintenance-type tasks
-- `ci` - Changes to CI configuration files and scripts (e.g. GH Workflows, SonarCloud, etc.)
-- `docs` - Documentation changes
-- `feat` - A new feature (corresponds to a minor version)
-- `fix` - A fix for an issue (corresponds to a patch version)
-- `perf` - A code change that improves performance
-- `refactor` - A large-scale rework of existing code that does not change the externals
-- `revert` - A revert of a previous commit to cancel out its changes
-- `style` - Changes that do not affect the meaning of the code (white-space, formatting, missing
-  semi-colons, etc.)
-- `test` - Changes/additions to tests
-- `wip` - A work-in-progress commit, mostly for local use. Not intended for commits in a main
-  development branch
+See the `type-enum` section of [.commitlintrc.js](../.commitlintrc.js).
 
 ### Scope
 
-Here are the valid scopes that can be used in a commit message subject if you opt to include one:
-
-- build
-- ci
-- chore
-- docs
-- feat
-- fix
-- perf
-- refactor
-- revert
-- style
-- test
-- wi
+See the `scope-enum` section of [.commitlintrc.js](../.commitlintrc.js).

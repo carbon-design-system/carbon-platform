@@ -4,7 +4,6 @@
 // This source code is licensed under the Apache-2.0 license found in the
 // LICENSE file in the root directory of this source tree.
 //
-
 .container {
   width: 100%;
   background: $background;
@@ -124,6 +123,7 @@
   @include breakpoint(md) {
     border-top: 0;
     border-left: 1px solid $layer-accent;
+
     &:nth-child(2n + 1) {
       border-left: 0;
     }
@@ -132,6 +132,7 @@
     &:nth-child(2n + 1) {
       border-left: 1px solid $layer-accent;
     }
+
     &:nth-child(3n + 1) {
       border-left: 0;
     }

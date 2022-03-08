@@ -40,7 +40,7 @@ const useQueryState = (
 
     let val = query[key]
 
-    if (val !== undefined && validateValue && !validateValue(val)) {
+    if (val !== undefined && typeof validateValue === 'function' && !validateValue(val)) {
       val = undefined
       delete query[key]
 

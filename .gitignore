@@ -14,9 +14,7 @@ generated/
 
 # IDE stuff
 .vscode/
+.history/
 
 # Dotenv stuff
 .env
-
-
-.history/

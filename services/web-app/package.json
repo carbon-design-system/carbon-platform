@@ -48,7 +48,7 @@
     "slugify": "^1.6.5"
   },
   "devDependencies": {
-    "css-loader": "^6.7.0",
+    "css-loader": "^6.7.1",
     "sass": "^1.49.9"
   }
 }

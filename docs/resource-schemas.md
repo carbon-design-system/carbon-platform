@@ -16,7 +16,7 @@ more, see "[Learn YAML in Y minutes](https://learnxinyminutes.com/docs/yaml)."
 carbon.yml
 
 ```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas/carbon-resources.schema.json
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 library:
   id: carbon-react
   name: Carbon React
@@ -53,6 +53,20 @@ assets:
       content.
 ```
 
+## Stable schema version
+
+The current supported stable version of the resource schemas is _v1_. You can add the yaml language
+server to your YAML files by adding the following line to the top of your files:
+
+```yml
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
+```
+
+**_Note:_** If you're using VS Code as your editor you may
+[install](https://code.visualstudio.com/docs/editor/extension-marketplace) a yaml extension, such as
+[YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) for additional
+language support.
+
 ## Resource schema keys
 
 A resource file can contain a library, an object of assets or both.
@@ -74,7 +88,7 @@ the same directory as your library's `package.json` file.
 carbon.yml
 
 ```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas/carbon-resources.schema.json
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 library:
   id: carbon-react
   name: Carbon React
@@ -138,7 +152,7 @@ belongs to a library.
 carbon.yml
 
 ```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas/carbon-resources.schema.json
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 assets:
   accordion:
     name: Accordion
@@ -201,7 +215,7 @@ been deprecated.
 carbon.yml
 
 ```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas/carbon-resources.schema.json
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 ---
 status:
   key: experimental
@@ -313,7 +327,7 @@ Libraries and assets can specify links to demo sites.
 carbon.yml
 
 ```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas/carbon-resources.schema.json
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 ---
 demoLinks:
   - type: storybook

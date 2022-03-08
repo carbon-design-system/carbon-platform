@@ -34,6 +34,10 @@
   font-weight: 600;
 }
 
+.link {
+  @include type-style('body-long-02');
+}
+
 /**
  * Subheading
  */

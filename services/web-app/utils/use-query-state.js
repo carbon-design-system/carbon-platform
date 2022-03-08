@@ -21,8 +21,6 @@ const useQueryState = (
 ) => {
   const router = useRouter()
 
-  // When not in a SSR context, get the query value directly from URLSearchParams so there's no
-  // reliance on router.query which may not be populated yet.
   const getValue = useCallback(() => {
     if (typeof window === 'undefined') {
       return null
@@ -53,7 +51,6 @@ const useQueryState = (
     }
 
     return val
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, parseBooleans, parseNumbers, router.pathname, saveToStorage, validateValue])
 
   const [value, setValue] = useState(getValue())

@@ -77,23 +77,23 @@ const assetIsInFilter = (asset, filter) => {
  * @returns {import('../../typedefs').Asset[]}
  */
 const getFilteredAssets = (assets, filter, sort, search) => {
-  return (
-    assets
-      ?.sort(assetSortComparator(sort))
-      .filter((asset) => assetIsInFilter(asset, filter))
-      .filter((asset) => {
-        const { description = '', name = '' } = asset.content
+  return assets
+    ? [...assets]
+        .sort(assetSortComparator(sort))
+        .filter((asset) => assetIsInFilter(asset, filter))
+        .filter((asset) => {
+          const { description = '', name = '' } = asset.content
 
-        if (search) {
-          return (
-            (name && name.toLowerCase().includes(search.toLowerCase())) ||
-            (description && description.toLowerCase().includes(search.toLowerCase()))
-          )
-        }
+          if (search) {
+            return (
+              (name && name.toLowerCase().includes(search.toLowerCase())) ||
+              (description && description.toLowerCase().includes(search.toLowerCase()))
+            )
+          }
 
-        return true
-      }) ?? []
-  )
+          return true
+        })
+    : []
 }
 
 /**

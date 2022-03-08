@@ -35,7 +35,8 @@
 }
 
 .link {
-  @include type-style('body-long-02');
+  // override carbon
+  font-size: inherit;
 }
 
 /**

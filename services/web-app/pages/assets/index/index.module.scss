@@ -34,6 +34,12 @@
   font-weight: 600;
 }
 
+.link {
+  // override carbon
+  font-size: inherit;
+  line-height: inherit;
+}
+
 /**
  * Subheading
  */

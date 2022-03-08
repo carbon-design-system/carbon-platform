@@ -22,6 +22,7 @@ module.exports = {
     { type: 'test', section: SECTIONS.tests },
     { type: 'ci', hidden: true },
     { type: 'docs', hidden: true },
+    { type: 'release', hidden: true },
     { type: 'wip', hidden: true }
   ]
 }

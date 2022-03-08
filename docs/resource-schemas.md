@@ -55,8 +55,8 @@ assets:
 
 ## Stable schema version
 
-The current supported stable version of the resource schemas is _v1_. You can add the yaml
-language server to your YAML files by adding the following line to the top of your files:
+The current supported stable version of the resource schemas is _v1_. You can add the yaml language
+server to your YAML files by adding the following line to the top of your files:
 
 ```yml
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json

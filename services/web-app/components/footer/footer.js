@@ -101,7 +101,7 @@ const Footer = ({ hasSideNav }) => {
 }
 
 Footer.propTypes = {
-  isExpanded: PropTypes.bool
+  hasSideNav: PropTypes.bool
 }
 
 export default Footer

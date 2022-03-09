@@ -117,7 +117,7 @@ const CatalogItemMeta = ({ asset, className, properties }) => {
 
     return (
       <>
-        <StatusIcon className={styles.metaIcon} status={asset.content.status} />
+        <StatusIcon className={styles.metaIcon} status={statusKey} />
         <span>{name}</span>
       </>
     )

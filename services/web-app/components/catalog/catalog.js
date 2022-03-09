@@ -30,15 +30,15 @@ import styles from './catalog.module.scss'
 const valuesIntersect = (arr1, arr2) => {
   if (!isArray(arr1) || !isArray(arr2)) return false
 
-  return arr1.filter((v) => arr2.includes(v)).length
+  return arr1.filter((v) => arr2.includes(v)).length > 0
 }
 
 const assetIsInFilter = (asset, filter) => {
   for (const [key, value] of Object.entries(filter)) {
     if (key === 'sponsor') {
       if (!value.includes(asset.params[key])) return false
-    } else if (key === 'tags' && !valuesIntersect(value, asset.content[key])) {
-      return false
+    } else if (key === 'tags') {
+      if (!valuesIntersect(value, asset.content[key])) return false
     } else {
       if (!value.includes(asset.content[key])) return false
     }

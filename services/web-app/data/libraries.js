@@ -13,12 +13,12 @@ const { RunMode, getRunMode } = require('@carbon-platform/api/runtime')
  * applied.
  */
 
-/**
 const carbonChartsGroup = {
   base: 'carbon-charts',
   canonical: 'carbon-charts'
 }
 
+/**
 const carbonComponentsGroup = {
   base: 'carbon-styles',
   canonical: 'carbon-react'
@@ -43,46 +43,46 @@ const watsonMomentsGroup = {
  * specified as object keys to ensure uniqueness.
  */
 const prodLibraries = {
-  // 'carbon-charts': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon-charts',
-  //   path: '/packages/core',
-  //   sponsor: 'carbon',
-  //   group: carbonChartsGroup
-  // },
-  // 'carbon-charts-angular': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon-charts',
-  //   path: '/packages/angular',
-  //   sponsor: 'carbon',
-  //   group: carbonChartsGroup
-  // },
-  // 'carbon-charts-react': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon-charts',
-  //   path: '/packages/react',
-  //   sponsor: 'carbon',
-  //   group: carbonChartsGroup
-  // },
-  // 'carbon-charts-svelte': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon-charts',
-  //   path: '/packages/svelte',
-  //   sponsor: 'carbon',
-  //   group: carbonChartsGroup
-  // },
-  // 'carbon-charts-vue': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon-charts',
-  //   path: '/packages/vue',
-  //   sponsor: 'carbon',
-  //   group: carbonChartsGroup
-  // },
+  'carbon-charts': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-charts',
+    path: '/packages/core',
+    sponsor: 'carbon',
+    group: carbonChartsGroup
+  },
+  'carbon-charts-angular': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-charts',
+    path: '/packages/angular',
+    sponsor: 'carbon',
+    group: carbonChartsGroup
+  },
+  'carbon-charts-react': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-charts',
+    path: '/packages/react',
+    sponsor: 'carbon',
+    group: carbonChartsGroup
+  },
+  'carbon-charts-svelte': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-charts',
+    path: '/packages/svelte',
+    sponsor: 'carbon',
+    group: carbonChartsGroup
+  },
+  'carbon-charts-vue': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-charts',
+    path: '/packages/vue',
+    sponsor: 'carbon',
+    group: carbonChartsGroup
+  },
   // 'carbon-styles': {
   //   host: 'github.ibm.com',
   //   org: 'matt-rosno',
@@ -346,6 +346,46 @@ const prodLibraries = {
  * mock libraries that hit edge cases and then use this data set in our test suite.
  */
 const devLibraries = {
+  'carbon-charts': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-charts',
+    path: '/packages/core',
+    sponsor: 'carbon',
+    group: carbonChartsGroup
+  },
+  'carbon-charts-angular': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-charts',
+    path: '/packages/angular',
+    sponsor: 'carbon',
+    group: carbonChartsGroup
+  },
+  'carbon-charts-react': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-charts',
+    path: '/packages/react',
+    sponsor: 'carbon',
+    group: carbonChartsGroup
+  },
+  'carbon-charts-svelte': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-charts',
+    path: '/packages/svelte',
+    sponsor: 'carbon',
+    group: carbonChartsGroup
+  },
+  'carbon-charts-vue': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-charts',
+    path: '/packages/vue',
+    sponsor: 'carbon',
+    group: carbonChartsGroup
+  },
   'ibmdotcom-react': {
     host: 'github.com',
     org: 'mattrosno',

@@ -82,7 +82,7 @@ const Footer = ({ hasSideNav }) => {
           <Column sm={4} md={3} lg={4} className={styles.column}>
             <p className={styles.text}>
               Have questions?{' '}
-              <Link href="https://github.com/carbon-design-system/carbon-platform>
+              <Link href="https://github.com/carbon-design-system/carbon-platform">
                 <a className={clsx(styles.text, styles.link)}>Email</a>
               </Link>{' '}
               us for site feedback or open an issue in{' '}

@@ -55,6 +55,11 @@ It's up to you on if you'd prefer to see these globally or only for the Carbon P
   // IBM recommends this setting to prevent unwanted guests in liveshare sessions
   "liveshare.guestApprovalRequired": true,
 
+  // Turn off line wrapping in markdown files. Allow prettier to handle all wrapping
+  "[markdown]": {
+    "editor.wordWrap": "off"
+  },
+
   // Only apply prettier formatting if there's a config file present
   "prettier.requireConfig": true,
 

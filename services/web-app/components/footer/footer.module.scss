@@ -5,71 +5,56 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-$page-footer-height: $spacing-13 + $spacing-12 + $spacing-09 + $spacing-04;
-$grid-padding-bottom: $spacing-12 + $spacing-09;
+$footer-height: $spacing-13 + $spacing-12;
+$grid-padding-bottom: $spacing-12;
 
-.container {
+.default {
   height: auto;
-  padding-right: $spacing-05;
-  padding-left: $spacing-05;
-  background: $border-inverse;
-
-  @include breakpoint(md) {
-    height: $page-footer-height;
-    padding-left: 0;
-  }
+  background: $background;
 
   &::before {
     position: absolute;
     z-index: 0;
     left: 0;
     width: 100vw;
-    height: $page-footer-height;
-    background: $border-inverse;
+    height: $footer-height;
+    background: $background;
     content: '';
   }
 }
 
 .grid {
-  padding-top: $spacing-06;
+  padding: 0 $spacing-04;
 
   @include breakpoint(md) {
-    padding-bottom: $grid-padding-bottom;
+    padding: 0 0 $grid-padding-bottom 0;
   }
 }
 
 .column {
   position: relative;
   display: flex;
-  height: 100%;
   flex-direction: column;
-  padding-bottom: $spacing-09;
+  padding: $spacing-06 0 $spacing-09 0;
 
-  @include breakpoint(md) {
-    padding: 0;
-    border-top: none;
-  }
-
-  &--border-top {
-    padding-top: $spacing-06;
+  &--border {
     border-top: 1px solid $border-strong-01;
-
     @include breakpoint(md) {
-      padding: 0;
       border-top: none;
     }
   }
 }
 
-.link {
-  color: $text-inverse;
+.text {
+  color: $text-primary;
   text-decoration: none;
   @include type-style('body-long-01');
 
-  &:hover,
-  &:focus {
-    color: $text-inverse;
-    text-decoration: underline;
+  &--link {
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
   }
 
   &--underline {
@@ -77,12 +62,10 @@ $grid-padding-bottom: $spacing-12 + $spacing-09;
   }
 }
 
-.text {
-  color: $text-inverse;
-  @include type-style('body-long-01');
-}
+// .logo {
+//   position: absolute;
+//   margin-bottom: -$grid-padding-bottom;
 
-.icon {
-  position: relative;
-  padding-bottom: $spacing-07;
-}
+//   color: $text-primary;
+//   @include type-style('body-long-01');
+// }

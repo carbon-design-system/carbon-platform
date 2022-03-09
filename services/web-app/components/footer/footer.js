@@ -4,71 +4,84 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Grid } from '@carbon/react'
-import { IbmCloud } from '@carbon/react/icons'
+import { Column, Grid, Theme } from '@carbon/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 
 import styles from './footer.module.scss'
 
-const Footer = () => {
+const Footer = ({ isExpanded }) => {
+  const container = clsx(styles.default, {
+    [styles.expanded]: isExpanded
+  })
+
+  const colOne = [
+    {
+      text: 'Contribute',
+      link: ''
+    },
+    {
+      text: 'Privacy',
+      link: ''
+    },
+    {
+      text: 'Terms of Use',
+      link: ''
+    },
+    {
+      text: 'IBM.com',
+      link: ''
+    }
+  ]
+
+  const colTwo = [
+    {
+      text: 'Medium',
+      link: ''
+    },
+    {
+      text: 'Twitter',
+      link: ''
+    }
+  ]
+
   return (
-    <div className={styles.container}>
+    <Theme theme="g100" className={container} isExpanded={isExpanded}>
       <Grid className={styles.grid}>
-        <Column className={styles.column} sm={4} md={2} lg={2}>
-          <Link href="https://www.google.com">
-            <a className={styles.link}>{'Contribute'}</a>
-          </Link>
-          <Link href="https://www.google.com">
-            <a className={styles.link}>{'Privacy'}</a>
-          </Link>
-          <Link href="https://www.google.com">
-            <a className={styles.link}>{'Terms of use'}</a>
-          </Link>
-          <Link href="https://www.google.com">
-            <a className={styles.link}>{'Ibm.com'}</a>
-          </Link>
-        </Column>
-        <Column className={clsx(styles.column, styles.columnBorderTop)} sm={4} md={2} lg={4}>
-          <Link href="https://www.google.com">
-            <a className={styles.link}>{'Medium'}</a>
-          </Link>
-          <Link href="https://www.google.com">
-            <a className={styles.link}>{'Twitter'}</a>
-          </Link>
-        </Column>
-        <Column
-          className={clsx(styles.column, styles.columnBorderTop)}
-          sm={4}
-          md={3}
-          lg={4}
-          xlg={3}
-        >
-          <p className={styles.text}>
-            {'Have questions? '}
-            <Link href="https://www.google.com">
-              <a className={clsx(styles.link, styles.linkUnderline)}>{'Email'}</a>
+        <Column sm={4} md={2} className={styles.column}>
+          {colOne.map((item, i) => (
+            <Link href={item.link} key={i}>
+              <a className={clsx(styles.text, styles.textLink)}>{item.text}</a>
             </Link>
-            {' us for site feedback or open an issue in '}
+          ))}
+        </Column>
+        <Column sm={4} md={2} lg={4} className={clsx(styles.column, styles.columnBorder)}>
+          {colTwo.map((item, i) => (
+            <Link href={item.link} key={i}>
+              <a className={clsx(styles.text, styles.textLink)}>{item.text}</a>
+            </Link>
+          ))}
+        </Column>
+        <Column sm={4} md={3} lg={4} xlg={3} className={clsx(styles.column, styles.columnBorder)}>
+          <p className={styles.text}>
+            Have questions?{' '}
             <Link href="https://www.google.com">
-              <a className={clsx(styles.link, styles.linkUnderline)}>{'Github.'}</a>
+              <a className={clsx(styles.text, styles.textUnderline)}>Email</a>
+            </Link>{' '}
+            us for site feedback or open an issue in{' '}
+            <Link href="https://www.google.com">
+              <a className={clsx(styles.text, styles.textUnderline)}>Github.</a>
             </Link>
           </p>
         </Column>
       </Grid>
-      <Grid>
-        <Column sm={4} md={6} lg={6} xlg={6}>
-          <IbmCloud className={styles.icon} size={64} />
-        </Column>
-      </Grid>
-    </div>
+    </Theme>
   )
 }
 
 Footer.propTypes = {
-  pictogram: PropTypes.object,
-  title: PropTypes.string.isRequired
+  isExpanded: PropTypes.bool
 }
 
 export default Footer

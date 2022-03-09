@@ -23,6 +23,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
 
+import Footer from '@/components/footer'
 import NextLink from '@/components/next-link'
 import { globalNavData } from '@/data/nav-data'
 
@@ -129,6 +130,7 @@ const Layout = ({ children }) => {
                 {children}
               </Column>
             </Grid>
+            <Footer />
           </Theme>
         </>
       )}

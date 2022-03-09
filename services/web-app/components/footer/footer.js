@@ -68,7 +68,7 @@ const Footer = ({ hasSideNav }) => {
               ))}
             </ul>
           </Column>
-          <Column sm={4} md={2} lg={2} className={clsx(styles.column)}>
+          <Column sm={4} md={2} lg={4} className={clsx(styles.column)}>
             <ul>
               {colTwo.map((item, i) => (
                 <li key={item}>
@@ -79,7 +79,6 @@ const Footer = ({ hasSideNav }) => {
               ))}
             </ul>
           </Column>
-          <Column lg={2} />
           <Column sm={4} md={3} lg={4} className={styles.column}>
             <p className={styles.text}>
               Have questions?{' '}

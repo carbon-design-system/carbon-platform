@@ -11,7 +11,6 @@ import Image from 'next/image'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import Footer from '@/components/footer'
 import Hero from '@/components/hero'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
@@ -302,7 +301,6 @@ const Index = () => {
         imageAlt="Carbon Next components"
       />
       <PageContent />
-      <Footer isExpanded={false} />
     </>
   )
 }

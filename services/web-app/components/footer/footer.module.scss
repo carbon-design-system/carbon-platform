@@ -5,10 +5,10 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-$footer-height: $spacing-13 + $spacing-12;
-$grid-padding-bottom: $spacing-12;
+$footer-height: $spacing-13 + $spacing-12 + $spacing-10;
+$extra-margin-bottom: $spacing-12;
 
-.default {
+.container {
   height: auto;
   background: $background;
 
@@ -24,10 +24,10 @@ $grid-padding-bottom: $spacing-12;
 }
 
 .grid {
-  padding: 0 $spacing-04;
+  margin: 0;
 
-  @include breakpoint(md) {
-    padding: 0 0 $grid-padding-bottom 0;
+  @include breakpoint-down(md) {
+    padding: 0 $spacing-04;
   }
 }
 
@@ -37,10 +37,13 @@ $grid-padding-bottom: $spacing-12;
   flex-direction: column;
   padding: $spacing-06 0 $spacing-09 0;
 
+  @include breakpoint(md) {
+    margin-bottom: $extra-margin-bottom;
+  }
+
   &--border {
-    border-top: 1px solid $border-strong-01;
-    @include breakpoint(md) {
-      border-top: none;
+    @include breakpoint-down(md) {
+      border-top: 1px solid $border-strong-01;
     }
   }
 }
@@ -62,10 +65,7 @@ $grid-padding-bottom: $spacing-12;
   }
 }
 
-// .logo {
-//   position: absolute;
-//   margin-bottom: -$grid-padding-bottom;
-
-//   color: $text-primary;
-//   @include type-style('body-long-01');
-// }
+.logo {
+  position: relative;
+  padding-bottom: $spacing-07;
+}

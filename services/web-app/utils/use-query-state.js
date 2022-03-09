@@ -95,14 +95,6 @@ export const useQueryState = (
     if (saveToStorage && value) {
       localStorage.setItem(`${router.pathname}:${key}`, value)
     }
-    if (saveToStorage) {
-      if (value) {
-        localStorage.setItem(`${router.pathname}:${key}`, value)
-      } else if (localStorage.getItem(`${router.pathname}:${key}`)) {
-        // user has removed selection, remove localStorage item
-        localStorage.removeItem(`${router.pathname}:${key}`)
-      }
-    }
   }, [key, router.pathname, saveToStorage, value])
 
   return [value ?? defaultValue ?? null, update]

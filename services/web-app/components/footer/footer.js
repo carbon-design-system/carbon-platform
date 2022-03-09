@@ -56,46 +56,42 @@ const Footer = ({ hasSideNav }) => {
   return (
     <Theme theme="g100" className={styles.container}>
       <footer>
-        <Grid className={styles.grid}>
-          <Column
-            sm={4}
-            md={2}
-            lg={{ span: 2, start: 6 }}
-            xlg={{ span: 2, start: 5 }}
-            className={styles.column}
-          >
-            {colOne.map((item, i) => (
-              <Link href={item.link} key={i}>
-                <a className={clsx(styles.text, styles.textLink)}>{item.text}</a>
-              </Link>
-            ))}
+        <Grid className={styles.footer}>
+          <Column sm={4} md={2} lg={{ span: 2, start: 5 }} className={styles.column}>
+            <ul>
+              {colOne.map((item, i) => (
+                <li key={item}>
+                  <Link href={item.link} key={i}>
+                    <a className={clsx(styles.text, styles.link, styles.listLink)}>{item.text}</a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </Column>
-          <Column sm={4} md={2} lg={4} className={clsx(styles.column, styles.columnBorder)}>
-            {colTwo.map((item, i) => (
-              <Link href={item.link} key={i}>
-                <a className={clsx(styles.text, styles.textLink)}>{item.text}</a>
-              </Link>
-            ))}
+          <Column sm={4} md={2} lg={4} className={clsx(styles.column)}>
+            <ul>
+              {colTwo.map((item, i) => (
+                <li key={item}>
+                  <Link href={item.link} key={i}>
+                    <a className={clsx(styles.text, styles.link, styles.listLink)}>{item.text}</a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </Column>
-          <Column sm={4} md={3} lg={4} xlg={3} className={clsx(styles.column, styles.columnBorder)}>
+          <Column sm={4} md={3} lg={4} className={styles.column}>
             <p className={styles.text}>
               Have questions?{' '}
               <Link href="https://github.com/carbon-design-system/carbon-platform">
-                <a className={clsx(styles.text, styles.textUnderline)}>Email</a>
+                <a className={clsx(styles.text, styles.link)}>Email</a>
               </Link>{' '}
               us for site feedback or open an issue in{' '}
               <Link href="https://github.com/carbon-design-system/carbon-platform">
-                <a className={clsx(styles.text, styles.textUnderline)}>Github.</a>
+                <a className={clsx(styles.text, styles.link)}>Github.</a>
               </Link>
             </p>
           </Column>
-          <Column
-            sm={4}
-            md={8}
-            lg={hasSideNav ? { span: 16, start: 6 } : { span: 16, start: 1 }}
-            xlg={hasSideNav ? { span: 16, start: 5 } : { span: 16, start: 1 }}
-            className={styles.logo}
-          >
+          <Column lg={hasSideNav ? { start: 5 } : { start: 1 }} className={styles.logo}>
             <IBMLogo />
           </Column>
         </Grid>
@@ -105,7 +101,7 @@ const Footer = ({ hasSideNav }) => {
 }
 
 Footer.propTypes = {
-  isExpanded: PropTypes.bool
+  hasSideNav: PropTypes.bool
 }
 
 export default Footer

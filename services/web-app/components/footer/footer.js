@@ -15,30 +15,30 @@ const Footer = ({ hasSideNav }) => {
   const colOne = [
     {
       text: 'Contribute',
-      link: ''
+      link: 'https://github.com/carbon-design-system/carbon-platform'
     },
     {
       text: 'Privacy',
-      link: ''
+      link: 'https://github.com/carbon-design-system/carbon-platform'
     },
     {
       text: 'Terms of Use',
-      link: ''
+      link: 'https://github.com/carbon-design-system/carbon-platform'
     },
     {
       text: 'IBM.com',
-      link: ''
+      link: 'https://github.com/carbon-design-system/carbon-platform'
     }
   ]
 
   const colTwo = [
     {
       text: 'Medium',
-      link: ''
+      link: 'https://github.com/carbon-design-system/carbon-platform'
     },
     {
       text: 'Twitter',
-      link: ''
+      link: 'https://github.com/carbon-design-system/carbon-platform'
     }
   ]
 
@@ -80,11 +80,11 @@ const Footer = ({ hasSideNav }) => {
           <Column sm={4} md={3} lg={4} xlg={3} className={clsx(styles.column, styles.columnBorder)}>
             <p className={styles.text}>
               Have questions?{' '}
-              <Link href="https://www.google.com">
+              <Link href="https://github.com/carbon-design-system/carbon-platform">
                 <a className={clsx(styles.text, styles.textUnderline)}>Email</a>
               </Link>{' '}
               us for site feedback or open an issue in{' '}
-              <Link href="https://www.google.com">
+              <Link href="https://github.com/carbon-design-system/carbon-platform">
                 <a className={clsx(styles.text, styles.textUnderline)}>Github.</a>
               </Link>
             </p>

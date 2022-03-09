@@ -275,6 +275,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   // equality comparison in the effect by using JSON.stringify.
   useEffect(() => {
     setFilteredAssets(getFilteredAssets(assets, filter, sort, search))
+    // Do not want to run this everytime the filter changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [assets, JSON.stringify(filter), sort, search])
 

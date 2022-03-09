@@ -110,7 +110,7 @@ CatalogItemContent.propTypes = {
 
 const CatalogItemMeta = ({ asset, className, properties }) => {
   const renderStatus = () => {
-    const statusKey = asset?.content.status.key ?? asset?.content.status ?? 'draft'
+    const statusKey = asset?.content.status?.key ?? asset?.content.status ?? 'draft'
     const { name } = status[statusKey]
 
     if (!name) return null

@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import queryString from 'query-string'
 import { useCallback, useEffect, useState } from 'react'
 
+// see "bracket-separator" entry on https://www.npmjs.com/package/query-string
 const queryStringConfig = {
   arrayFormat: 'bracket-separator',
   arrayFormatSeparator: '|'
@@ -40,10 +41,6 @@ const useQueryState = (
 
     if (val !== undefined && typeof validateValue === 'function' && !validateValue(val)) {
       val = undefined
-      delete query[key]
-
-      // Change query state without rerendering page
-      history.replaceState(null, null, `?${queryString.stringify(query, queryStringConfig)}`)
     }
 
     if (val === undefined) {
@@ -72,7 +69,7 @@ const useQueryState = (
       query[key] = newValue
 
       // Change query state without rerendering page
-      history.replaceState(null, null, `?${queryString.stringify(query, queryStringConfig)}`)
+      history.pushState(null, null, `?${queryString.stringify(query, queryStringConfig)}`)
 
       setValue(getValue())
     },

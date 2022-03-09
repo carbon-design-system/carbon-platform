@@ -17,6 +17,8 @@ import CatalogResults from '@/components/catalog-results'
 import CatalogSearch from '@/components/catalog-search'
 import CatalogSort from '@/components/catalog-sort'
 import { getFilters } from '@/data/filters'
+import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
+import { GRID_VIEW, LIST_VIEW } from '@/data/view'
 import {
   assetSortComparator,
   collapseAssetGroups,
@@ -110,7 +112,7 @@ const getFilteredAssets = (assets, filter, sort, search) => {
  */
 const filterPropertyHasValidValue = (filter, key, value) => {
   return (
-    !!value &&
+    value &&
     value.constructor === Array &&
     !!filter?.[key]?.values &&
     !value.some((val) => !Object.keys(filter[key].values).includes(val))
@@ -133,22 +135,26 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   const [sort, setSort] = useQueryState(
     'sort',
     {
-      defaultValue: 'a-z',
+      defaultValue: ALPHABETICAL_ORDER,
       saveToStorage: true
     },
     (value) => {
-      return !!value && typeof value === 'string' && ['a-z', 'status'].includes(value)
+      return (
+        value &&
+        typeof value === 'string' &&
+        sortItems.map((sortItem) => sortItem.id).includes(value)
+      )
     }
   )
 
   const [view, setView] = useQueryState(
     'view',
     {
-      defaultValue: 'list',
+      defaultValue: LIST_VIEW,
       saveToStorage: true
     },
     (value) => {
-      return !!value && typeof value === 'string' && ['grid', 'list'].includes(value)
+      return value && typeof value === 'string' && [GRID_VIEW, LIST_VIEW].includes(value)
     }
   )
 
@@ -341,7 +347,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
       <CatalogList
         assetCounts={assetCounts}
         assets={filteredAssets}
-        isGrid={view === 'grid'}
+        isGrid={view === GRID_VIEW}
         filter={filter}
         page={page}
         pageSize={pageSize}

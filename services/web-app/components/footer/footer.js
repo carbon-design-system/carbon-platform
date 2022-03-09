@@ -60,7 +60,7 @@ const Footer = ({ hasSideNav }) => {
           <Column
             sm={4}
             md={2}
-            lg={hasSideNav ? { span: 2, start: 6 } : { span: 2, start: 1 }}
+            lg={{ span: 2, start: 6 }}
             xlg={{ span: 2, start: 5 }}
             className={styles.column}
           >
@@ -70,13 +70,7 @@ const Footer = ({ hasSideNav }) => {
               </Link>
             ))}
           </Column>
-          <Column
-            sm={4}
-            md={2}
-            lg={hasSideNav ? 5 : 6}
-            xlg={4}
-            className={clsx(styles.column, styles.columnBorder)}
-          >
+          <Column sm={4} md={2} lg={4} className={clsx(styles.column, styles.columnBorder)}>
             {colTwo.map((item, i) => (
               <Link href={item.link} key={i}>
                 <a className={clsx(styles.text, styles.textLink)}>{item.text}</a>

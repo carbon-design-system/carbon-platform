@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/logging",
   "description": "Carbon platform logging service",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "main": "dist/main/index.js",
   "license": "Apache-2.0",
   "private": true,

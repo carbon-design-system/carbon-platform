@@ -85,12 +85,12 @@ Removing dependencies works the same way with the `npm uninstall` command.
 To update the node modules across all workspaces, from the top-level in the repo, run:
 
 ```
-$ npm update
-$ npx --workspaces --include-workspace-root ncu --upgrade --target=minor
-$ npm install
+npm update
+npx --workspaces --include-workspace-root ncu --upgrade --target=minor
+npm install --prefer-dedupe
 ```
 
-> Note: `major` or `patch` can also be used, depending on the objective.
+> Note: An ncu target of `latest` or `patch` can also be used, depending on the objective.
 
 To update the node modules only for a specific workspace, from the top-level in the repo, run:
 

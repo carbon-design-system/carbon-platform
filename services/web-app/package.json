@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.1.68",
+  "version": "0.1.71",
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
@@ -26,20 +26,20 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "dependencies": {
-    "@carbon/pictograms-react": "^11.22.0",
-    "@carbon/react": "^0.14.0",
+    "@carbon/pictograms-react": "^11.23.0",
+    "@carbon/react": "^0.15.2",
     "@octokit/core": "^3.5.1",
     "cache-manager": "^3.6.0",
     "cache-manager-fs-hash": "^1.0.0",
     "clsx": "^1.1.1",
     "cookie-parser": "^1.4.6",
     "express-session": "^1.17.2",
-    "fs-extra": "^10.0.0",
+    "fs-extra": "^10.0.1",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
-    "minimatch": "^3.1.2",
+    "minimatch": "^5.0.1",
     "next": "^12.1.0",
-    "next-connect": "^0.12.1",
+    "next-connect": "^0.12.2",
     "next-seo": "^5.1.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
@@ -48,7 +48,7 @@
     "slugify": "^1.6.5"
   },
   "devDependencies": {
-    "css-loader": "^6.6.0",
-    "sass": "^1.49.8"
+    "css-loader": "^6.7.1",
+    "sass": "^1.49.9"
   }
 }

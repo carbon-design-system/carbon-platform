@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/icons",
   "description": "Carbon platform icons",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "module": "dist/main/generated/index.js",
   "types": "dist/main/generated/index.d.ts",
   "license": "Apache-2.0",
@@ -29,6 +29,6 @@
     "@types/react": "^17.0.39",
     "react": "^17.0.2",
     "rimraf": "^3.0.2",
-    "typescript": "^4.5.5"
+    "typescript": "^4.6.2"
   }
 }

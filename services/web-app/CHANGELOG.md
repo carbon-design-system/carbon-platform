@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.71](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.70...@carbon-platform/web-app@0.1.71) (2022-03-09)
+
+
+### Bug Fixes 🐛
+
+* broken link styling asset lp ([21af3d8](https://github.com/carbon-design-system/carbon-platform/commit/21af3d8dcea137bca67e07501e09f4f888cf6296))
+
+
+### Misc. 🔮
+
+* lock file rebuild ([712c37d](https://github.com/carbon-design-system/carbon-platform/commit/712c37d59c92919bb5b08e7d37ffb5664cec4318))
+* update node modules ([d2bcb5a](https://github.com/carbon-design-system/carbon-platform/commit/d2bcb5adf89a8e90e03daa2b8d4f00343343d0b6))
+
+### [0.1.70](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.69...@carbon-platform/web-app@0.1.70) (2022-03-08)
+
+### [0.1.69](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.68...@carbon-platform/web-app@0.1.69) (2022-03-05)
+
 ### [0.1.68](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.67...@carbon-platform/web-app@0.1.68) (2022-03-03)
 
 ### [0.1.67](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.66...@carbon-platform/web-app@0.1.67) (2022-03-01)

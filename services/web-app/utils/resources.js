@@ -38,7 +38,7 @@ const getValidationErrors = (content, schema) => {
  * @param {import('../typedefs').Asset} assetContent a library asset object to be validated
  * @returns {object[]} Array of AJV error objects, empty array if valid asset
  */
-const validateAsset = (assetContent) => getValidationErrors(assetContent, assetValidationSchema)
+const getAssetErrors = (assetContent) => getValidationErrors(assetContent, assetValidationSchema)
 
 /**
  * Given a library object, obtains list of errors regarding it's structure and content
@@ -46,7 +46,7 @@ const validateAsset = (assetContent) => getValidationErrors(assetContent, assetV
  * @param {import('../typedefs').Library} libraryContent a library object to be validated
  * @returns {object[]} Array of AJV error objects, empty array if valid library
  */
-const validateLibrary = (libraryContent) =>
+const getLibraryErrors = (libraryContent) =>
   getValidationErrors(libraryContent, libraryValidationSchema)
 
-export { validateAsset, validateLibrary }
+export { getAssetErrors, getLibraryErrors }

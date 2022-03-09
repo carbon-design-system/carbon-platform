@@ -10,7 +10,7 @@ import { get, isEmpty, set } from 'lodash'
 
 import { libraryAllowList } from '@/data/libraries'
 import { getResponse } from '@/lib/file-cache'
-import { validateAsset, validateLibrary } from '@/utils/resources'
+import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
@@ -99,6 +99,45 @@ const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
 }
 
 /**
+ * Validates a library's structure and content and logs any validation errors as warnings
+ * @param {import('../typedefs').library} library
+ * @returns {boolean} whether the library is valid or not
+ */
+const validateLibrary = (library) => {
+  const libraryErrors = getLibraryErrors(library)
+  if (libraryErrors.length) {
+    const errors = libraryErrors.map((err) => {
+      const { instancePath, message } = err
+      return { instancePath, message }
+    })
+    logging.warn(
+      `Skipping library: ${getSlug(library)} due to the following errors: ${JSON.stringify(errors)}`
+    )
+    return false
+  }
+  return true
+}
+
+/**
+ * Validates an asset's structure and content and logs any validation errors as warnings
+ * @param {import('../typedefs').asset} asset
+ * @returns {boolean} whether the asset is valid or not
+ */
+const validateAsset = (asset, library) => {
+  const assetErrors = getAssetErrors(asset)
+  if (assetErrors.length) {
+    const errors = assetErrors.map((err) => {
+      const { instancePath, message } = err
+      return { instancePath, message }
+    })
+    logging.warn(`Skipping asset: ${getSlug(asset)} for library: ${getSlug(library)}
+    due to the following errors: ${JSON.stringify(errors)}`)
+    return false
+  }
+  return true
+}
+
+/**
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  * @param {import('../typedefs').Params} params
@@ -137,15 +176,7 @@ export const getLibraryData = async (params = {}) => {
     return null
   }
 
-  const invalidLibraryParams = validateLibrary(library)
-  if (invalidLibraryParams.length) {
-    const errors = invalidLibraryParams.map((err) => {
-      const { instancePath, message } = err
-      return { instancePath, message }
-    })
-    logging.warn(
-      `Skipping library: ${getSlug(library)} due to the following errors: ${JSON.stringify(errors)}`
-    )
+  if (!validateLibrary(library)) {
     return null
   }
 
@@ -175,16 +206,7 @@ export const getLibraryData = async (params = {}) => {
     : assets
 
   filteredAssets = filteredAssets.filter((asset) => {
-    const invalidAssetParams = validateAsset(asset.content)
-    const isValidAsset = !invalidAssetParams.length
-    if (!isValidAsset) {
-      const errors = invalidAssetParams.map((err) => {
-        const { instancePath, message } = err
-        return { instancePath, message }
-      })
-      logging.warn(`Skipping asset: ${getSlug(asset.content)} for library: ${getSlug(library)}
-      due to the following errors: ${JSON.stringify(errors)}`)
-    }
+    const isValidAsset = validateAsset(asset.content, library)
     if (libraryParams.asset) {
       return isValidAsset && getSlug(asset.content) === libraryParams.asset
     }

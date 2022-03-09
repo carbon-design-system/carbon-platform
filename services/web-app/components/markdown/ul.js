@@ -13,7 +13,7 @@ const Ul = ({ children, className, ...rest }) => {
   return (
     <Grid>
       <Column sm={4} md={6} lg={8}>
-        <UnorderedList className={cx(className, styles.list)} {...rest}>
+        <UnorderedList isExpressive className={cx(className, styles.list, styles.ul)} {...rest}>
           {children}
         </UnorderedList>
       </Column>

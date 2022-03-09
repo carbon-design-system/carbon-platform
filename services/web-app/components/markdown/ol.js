@@ -13,7 +13,7 @@ const Ol = ({ children, className, ...rest }) => {
   return (
     <Grid>
       <Column sm={4} md={6} lg={8}>
-        <OrderedList className={cx(className, styles.list, styles.ol)} {...rest}>
+        <OrderedList isExpressive className={cx(className, styles.list, styles.ol)} {...rest}>
           {children}
         </OrderedList>
       </Column>

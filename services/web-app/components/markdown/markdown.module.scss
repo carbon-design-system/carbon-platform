@@ -5,7 +5,7 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-// Spacing
+/*  Spacing */
 .h1-container.h1-container {
   --space: #{$spacing-12};
 
@@ -52,6 +52,7 @@
   --space: 0;
 }
 
+/* Spacing List */
 .list {
   --space: #{$spacing-06};
 
@@ -62,7 +63,22 @@
   --space: 0;
 }
 
-// Headings
+.ul {
+  /* remove hanging bullet */
+  margin-left: $spacing-05;
+}
+
+.ol {
+  /*  remove hanging bullet */
+  margin-left: $spacing-06;
+}
+
+/* TODO: pull in nested list prop diredtly from core Carbon for correct bullets */
+.list-item .list {
+  margin-left: $spacing-07;
+}
+
+/* Headings */
 .h1 {
   @include type-style('expressive-heading-05', true);
 }
@@ -84,26 +100,12 @@
   @include type-style('heading-01');
 }
 
-// Paragraph
+/* Paragraph */
 .paragraph {
   @include type-style('body-long-02');
 }
 
-// List
-.list-item {
-  @include type-style('body-long-02');
-
-  padding-left: $spacing-02;
-  margin-left: $spacing-05;
-}
-
-/*
- TODO: sync with design on ordered list styles, gatsby styles don't match core Carbon
-
-.ol .list-item {}
-*/
-
-// Blockquote
+/*  Blockquote */
 .blockquote {
   padding-left: 1ch;
   margin: $spacing-08 0;

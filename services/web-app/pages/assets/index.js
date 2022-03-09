@@ -204,22 +204,26 @@ const PageContent = () => {
           </p>
           <p className={styles.contentCopy}>
             <Link
+              className={styles.link}
               href="https://github.com/carbon-design-system/carbon-platform/blob/main/docs/resource-schemas.md#resource-schemas"
               renderIcon={ArrowRight}
             >
-              <a className={styles.link}>Get started</a>
+              Get started
             </Link>
           </p>
           <h2 className={styles.contentHeading}>Platform roadmap</h2>
           <p className={styles.contentCopy}>
             Progress on the following releases are documented in{' '}
-            <Link href="https://github.com/carbon-design-system/carbon-platform">
-              <a className={styles.link}>GitHub</a>
+            <Link
+              className={styles.link}
+              href="https://github.com/carbon-design-system/carbon-platform"
+            >
+              GitHub
             </Link>
             , along with milestones, estimated dates, and descriptions of high level outcomes. For a
             visual overview of the following releases and their epics, view our roadmap in{' '}
-            <Link href="https://airtable.com/shrshl3XOeeT4Uxq0">
-              <a className={styles.link}>Airtable</a>
+            <Link className={styles.link} href="https://airtable.com/shrshl3XOeeT4Uxq0">
+              Airtable
             </Link>
             .
           </p>

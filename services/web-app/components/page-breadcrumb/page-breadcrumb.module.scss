@@ -36,19 +36,24 @@ $breadcrumb-container-width: $spacing-10 * 4;
       left: 0;
       content: '↳';
     }
+
     .text {
       padding-left: $spacing-05;
     }
   }
+
   &:nth-child(3) {
     margin-left: $spacing-05;
   }
+
   &:nth-child(4) {
     margin-left: $spacing-05 * 2;
   }
+
   &:nth-child(5) {
     margin-left: $spacing-05 * 3;
   }
+
   &:nth-child(6) {
     margin-left: $spacing-05 * 4;
   }

@@ -132,21 +132,34 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
 
   useEffect(() => {
     const skippedAssets = []
-    const assetsWithAppliedFilter = assets
-      .sort(assetSortComparator(sort))
-      .filter((asset) => {
-        if (assetIsInFilter(asset, filter)) {
-          if (collapseAssetGroups(asset, filter)) {
-            const isCanonicalAsset = isCanonicalLibAsset(asset)
-            if (!isCanonicalAsset) skippedAssets.push(asset)
-            return isCanonicalAsset
-          }
-          return true
-        } else {
-          return false
+    const assetsWithAppliedFilter = assets.filter((asset) => {
+      if (assetIsInFilter(asset, filter)) {
+        if (collapseAssetGroups(asset, filter)) {
+          const isCanonicalAsset = isCanonicalLibAsset(asset)
+          if (!isCanonicalAsset) skippedAssets.push(asset)
+          return isCanonicalAsset
         }
-      })
-      .filter((asset) => {
+        return true
+      } else {
+        return false
+      }
+    })
+
+    const assetsNotInCanonical = skippedAssets.filter(
+      (asset) =>
+        !assetsWithAppliedFilter.some(
+          (filteredAsset) => getSlug(filteredAsset.content) === getSlug(asset.content)
+        )
+    )
+
+    assetsWithAppliedFilter.push(
+      ...assetsNotInCanonical.filter(
+        (value, index, self) => index === self.findIndex((t) => t.content.id === value.content.id)
+      )
+    )
+
+    setFilteredAssets(
+      assetsWithAppliedFilter.sort(assetSortComparator(sort)).filter((asset) => {
         const { description = '', name = '' } = asset.content
 
         if (search) {
@@ -158,18 +171,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
 
         return true
       })
-
-    let assetsNotInCanonical = skippedAssets.filter(
-      (asset) =>
-        !assetsWithAppliedFilter.some(
-          (filteredAsset) => getSlug(filteredAsset.content) === getSlug(asset.content)
-        )
     )
-
-    assetsNotInCanonical = assetsNotInCanonical.filter(
-      (value, index, self) => index === self.findIndex((t) => t.content.id === value.content.id)
-    )
-    setFilteredAssets([...assetsWithAppliedFilter, ...assetsNotInCanonical])
 
     // avoid deep object equality comparison in the effect by using JSON.stringify
     // eslint-disable-next-line react-hooks/exhaustive-deps

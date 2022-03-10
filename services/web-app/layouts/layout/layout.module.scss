@@ -11,6 +11,11 @@
   background: $background;
 }
 
+:global(.cds--header__nav::before) {
+  // override Carbon, hide divider line
+  display: none;
+}
+
 .main {
   // position for PageBreadcrumb
   position: relative;
@@ -26,4 +31,23 @@
   border-bottom: 1px solid $layer-accent;
   margin: $spacing-08 $spacing-05 $spacing-03;
   @include type-style('label-01');
+}
+
+.header-name {
+  @include breakpoint(lg) {
+    position: absolute;
+    // match width of side nav
+    width: 16rem;
+  }
+}
+
+.header-navigation {
+  @include breakpoint(lg) {
+    //align nav to grid
+    margin-left: 24.3%;
+  }
+
+  @include breakpoint(max) {
+    margin-left: 390px;
+  }
 }

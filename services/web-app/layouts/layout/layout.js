@@ -57,10 +57,12 @@ const Layout = ({ children }) => {
                 onClick={onClickSideNavExpand}
                 isActive={isSideNavExpanded}
               />
-              <Link href="/assets">
-                <a className="cds--header__name">Carbon Design System</a>
-              </Link>
-              <HeaderNavigation aria-label="Main navigation">
+              <div className={styles.headerName}>
+                <Link href="/assets">
+                  <a className="cds--header__name">Carbon Design System</a>
+                </Link>
+              </div>
+              <HeaderNavigation aria-label="Main navigation" className={styles.headerNavigation}>
                 {globalNavData.map((data) => (
                   <HeaderMenuItem
                     key={data.path}

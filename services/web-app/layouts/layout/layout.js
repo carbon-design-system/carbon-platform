@@ -50,7 +50,7 @@ const Layout = ({ children }) => {
       render={({ isSideNavExpanded, onClickSideNavExpand }) => (
         <>
           <Theme theme="g100">
-            <Header aria-label="Carbon Design System">
+            <Header aria-label="Carbon Design System" className={styles.header}>
               <SkipToContent />
               <HeaderMenuButton
                 aria-label="Open menu"

@@ -11,9 +11,11 @@
   background: $background;
 }
 
-:global(.cds--header__nav::before) {
-  // override Carbon, hide divider line
-  display: none;
+.header {
+  :global(.cds--header__nav::before) {
+    // override Carbon, hide divider line
+    display: none;
+  }
 }
 
 .main {

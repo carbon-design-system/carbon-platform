@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use '@carbon/react/scss/motion' as *;
 
 .header {
   position: relative;
@@ -11,8 +12,9 @@
 
 .anchor {
   opacity: 0;
-  // Undefined vairable error
-  //transition: opacity $duration-fast-01 $standard-easing;
+
+  transition: opacity $duration-fast-01 $standard-easing;
+
   &:hover,
   &:active,
   &:focus {

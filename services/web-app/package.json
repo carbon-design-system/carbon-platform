@@ -26,8 +26,6 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "dependencies": {
-    "@mdx-js/loader": "^2.0.0",
-    "@next/mdx": "^12.1.0",
     "@carbon/pictograms-react": "^11.23.0",
     "@carbon/react": "^0.15.2",
     "@mdx-js/loader": "^2.0.0",

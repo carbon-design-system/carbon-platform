@@ -36,8 +36,6 @@
 .header-name {
   @include breakpoint(lg) {
     position: absolute;
-    // match width of side nav
-    width: 16rem;
   }
 }
 

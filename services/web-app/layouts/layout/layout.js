@@ -130,8 +130,8 @@ const Layout = ({ children }) => {
                 {children}
               </Column>
             </Grid>
-            <Footer hasSideNav={showSideNav} />
           </Theme>
+          <Footer hasSideNav={showSideNav} />
         </>
       )}
     />

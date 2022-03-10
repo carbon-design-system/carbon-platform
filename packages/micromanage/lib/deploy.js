@@ -8,7 +8,7 @@ const { Command } = require('commander')
 const path = require('path')
 const { exec, spawn } = require('./utils')
 
-const DEPLOY_TARGETS = ['test', 'production']
+const DEPLOY_TARGETS = ['test', 'prod']
 
 const REQUIRED_ENV_VARS = [
   'CONTAINER_REGISTRY',

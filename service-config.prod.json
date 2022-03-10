@@ -1,10 +1,10 @@
 {
   "deployedServices": {
     "@carbon-platform/web-app": {
-      "deployedVersion": "0.1.72"
+      "deployedVersion": "0.1.73"
     },
     "@carbon-platform/logging": {
-      "deployedVersion": "0.1.34"
+      "deployedVersion": "0.1.35"
     }
   }
 }

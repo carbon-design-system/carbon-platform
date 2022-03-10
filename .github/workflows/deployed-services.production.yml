@@ -6,6 +6,9 @@ on:
       - 'deployed-services/production'
     paths:
       - 'service-config.prod.json'
+      
+  # Enable running this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   deploy-production:

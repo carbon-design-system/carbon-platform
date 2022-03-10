@@ -71,7 +71,7 @@ const Footer = ({ hasSideNav }) => {
             <p className={styles.text}>
               Last updated {currentMonth} {currentYear}
               <br />
-              ©2022 IBM Design Program Office
+              ©{currentYear} IBM Design Program Office
             </p>
           </Column>
           <Column lg={hasSideNav ? { start: 5 } : { start: 1 }} className={styles.logo}>

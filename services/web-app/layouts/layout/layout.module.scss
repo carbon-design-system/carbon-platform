@@ -36,6 +36,7 @@
 }
 
 .header-name {
+  height: 100%;
   @include breakpoint(lg) {
     position: absolute;
   }

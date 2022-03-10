@@ -23,7 +23,6 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'jest', 'notice', 'simple-import-sort'],
   rules: {
-    '@typescript-eslint/no-use-before-define': 'error',
     'jest/consistent-test-it': ['error', { fn: 'test', withinDescribe: 'it' }],
     // Avoid false-positives on Next.js `Link`s that don't appear to satisfy a11y requirements
     'jsx-a11y/anchor-is-valid': [
@@ -47,7 +46,6 @@ module.exports = {
         templateFile: path.join(__dirname, '.copyright.js')
       }
     ],
-    'no-use-before-define': 'off', // Disabled in favor of @typescript-eslint/no-use-before-define
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'space-before-function-paren': [

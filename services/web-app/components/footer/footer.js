@@ -1,49 +1,53 @@
 /*
- * Copyright IBM Corp. 2021, 2022
+ * Copyright IBM Corp. 2022, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { Column, Grid, Theme } from '@carbon/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
+
+import { currentMonth, currentYear } from '@/utils/date'
 
 import styles from './footer.module.scss'
 
 const Footer = ({ hasSideNav }) => {
   const colOne = [
     {
-      text: 'Contribute',
-      link: 'https://github.com/carbon-design-system/carbon-platform'
-    },
-    {
       text: 'Privacy',
-      link: 'https://github.com/carbon-design-system/carbon-platform'
+      link: 'https://www.ibm.com/privacy'
     },
     {
       text: 'Terms of Use',
-      link: 'https://github.com/carbon-design-system/carbon-platform'
-    },
-    {
-      text: 'IBM.com',
-      link: 'https://github.com/carbon-design-system/carbon-platform'
+      link: 'https://www.ibm.com/legal'
     }
   ]
 
   const colTwo = [
     {
       text: 'Medium',
-      link: 'https://github.com/carbon-design-system/carbon-platform'
+      link: 'https://medium.com/design-ibm'
     },
     {
       text: 'Twitter',
-      link: 'https://github.com/carbon-design-system/carbon-platform'
+      link: 'https://twitter.com/ibmdesign'
     }
   ]
 
+  const getColList = (col) =>
+    col.map((item, i) => (
+      <li key={item}>
+        <Link href={item.link} key={i}>
+          <a className={clsx(styles.text, styles.link, styles.listLink)}>{item.text}</a>
+        </Link>
+      </li>
+    ))
+
   const IBMLogo = () => (
-    <svg fill="#f4f4f4" width="81" height="32" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="#F4F4F4" width="81" height="32" xmlns="http://www.w3.org/2000/svg">
       {' '}
       <g fillRule="evenodd">
         {' '}
@@ -58,37 +62,16 @@ const Footer = ({ hasSideNav }) => {
       <footer>
         <Grid className={styles.footer}>
           <Column sm={4} md={2} lg={{ span: 2, start: 5 }} className={styles.column}>
-            <ul>
-              {colOne.map((item, i) => (
-                <li key={item}>
-                  <Link href={item.link} key={i}>
-                    <a className={clsx(styles.text, styles.link, styles.listLink)}>{item.text}</a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <ul>{getColList(colOne)}</ul>
           </Column>
-          <Column sm={4} md={2} lg={4} className={clsx(styles.column)}>
-            <ul>
-              {colTwo.map((item, i) => (
-                <li key={item}>
-                  <Link href={item.link} key={i}>
-                    <a className={clsx(styles.text, styles.link, styles.listLink)}>{item.text}</a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <Column sm={4} md={2} lg={4} className={styles.column}>
+            <ul>{getColList(colTwo)}</ul>
           </Column>
-          <Column sm={4} md={3} lg={4} className={styles.column}>
+          <Column sm={4} md={3} lg={3} className={styles.column}>
             <p className={styles.text}>
-              Have questions?{' '}
-              <Link href="https://github.com/carbon-design-system/carbon-platform">
-                <a className={clsx(styles.text, styles.link)}>Email</a>
-              </Link>{' '}
-              us for site feedback or open an issue in{' '}
-              <Link href="https://github.com/carbon-design-system/carbon-platform">
-                <a className={clsx(styles.text, styles.link)}>Github.</a>
-              </Link>
+              Last updated {currentMonth} {currentYear}
+              <br />
+              ©2022 IBM Design Program Office
             </p>
           </Column>
           <Column lg={hasSideNav ? { start: 5 } : { start: 1 }} className={styles.logo}>

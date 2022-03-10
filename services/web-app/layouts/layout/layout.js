@@ -62,18 +62,25 @@ const Layout = ({ children }) => {
                   <a className="cds--header__name">Carbon Design System</a>
                 </Link>
               </div>
-              <HeaderNavigation aria-label="Main navigation" className={styles.headerNavigation}>
-                {globalNavData.map((data) => (
-                  <HeaderMenuItem
-                    key={data.path}
-                    isCurrentPage={router.pathname.startsWith(data.path)}
-                    href={data.path}
-                    element={NextLink}
+              <Grid condensed className={styles.headerGrid}>
+                <Column sm={0} lg={{ span: 8, offset: 4 }}>
+                  <HeaderNavigation
+                    aria-label="Main navigation"
+                    className={styles.headerNavigation}
                   >
-                    {data.title}
-                  </HeaderMenuItem>
-                ))}
-              </HeaderNavigation>
+                    {globalNavData.map((data) => (
+                      <HeaderMenuItem
+                        key={data.path}
+                        isCurrentPage={router.pathname.startsWith(data.path)}
+                        href={data.path}
+                        element={NextLink}
+                      >
+                        {data.title}
+                      </HeaderMenuItem>
+                    ))}
+                  </HeaderNavigation>
+                </Column>
+              </Grid>
             </Header>
           </Theme>
           <Theme className={styles.body} theme="g10">

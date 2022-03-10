@@ -41,13 +41,14 @@
   }
 }
 
-.header-navigation {
+.header-grid {
   @include breakpoint(lg) {
-    //align nav to grid
-    margin-left: 24.3%;
+    width: 100%;
+    height: 100%;
+    margin: 0;
   }
+}
 
-  @include breakpoint(max) {
-    margin-left: 390px;
-  }
+.header-navigation {
+  margin-left: -$spacing-05;
 }

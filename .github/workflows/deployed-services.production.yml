@@ -5,7 +5,7 @@ on:
     branches:
       - 'deployed-services/production'
     paths:
-      - 'service-config.production.json'
+      - 'service-config.prod.json'
 
 jobs:
   deploy-production:

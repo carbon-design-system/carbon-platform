@@ -50,28 +50,37 @@ const Layout = ({ children }) => {
       render={({ isSideNavExpanded, onClickSideNavExpand }) => (
         <>
           <Theme theme="g100">
-            <Header aria-label="Carbon Design System">
+            <Header aria-label="Carbon Design System" className={styles.header}>
               <SkipToContent />
               <HeaderMenuButton
                 aria-label="Open menu"
                 onClick={onClickSideNavExpand}
                 isActive={isSideNavExpanded}
               />
-              <Link href="/assets">
-                <a className="cds--header__name">Carbon Design System</a>
-              </Link>
-              <HeaderNavigation aria-label="Main navigation">
-                {globalNavData.map((data) => (
-                  <HeaderMenuItem
-                    key={data.path}
-                    isCurrentPage={router.pathname.startsWith(data.path)}
-                    href={data.path}
-                    element={NextLink}
+              <div className={styles.headerName}>
+                <Link href="/assets">
+                  <a className="cds--header__name">Carbon Design System</a>
+                </Link>
+              </div>
+              <Grid condensed className={styles.headerGrid}>
+                <Column sm={0} lg={{ span: 8, offset: 4 }}>
+                  <HeaderNavigation
+                    aria-label="Main navigation"
+                    className={styles.headerNavigation}
                   >
-                    {data.title}
-                  </HeaderMenuItem>
-                ))}
-              </HeaderNavigation>
+                    {globalNavData.map((data) => (
+                      <HeaderMenuItem
+                        key={data.path}
+                        isCurrentPage={router.pathname.startsWith(data.path)}
+                        href={data.path}
+                        element={NextLink}
+                      >
+                        {data.title}
+                      </HeaderMenuItem>
+                    ))}
+                  </HeaderNavigation>
+                </Column>
+              </Grid>
             </Header>
           </Theme>
           <Theme className={styles.body} theme="g10">

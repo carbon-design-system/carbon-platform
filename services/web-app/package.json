@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.1.70",
+  "version": "0.1.71",
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
@@ -49,7 +49,7 @@
     "slugify": "^1.6.5"
   },
   "devDependencies": {
-    "css-loader": "^6.7.0",
+    "css-loader": "^6.7.1",
     "sass": "^1.49.9"
   }
 }

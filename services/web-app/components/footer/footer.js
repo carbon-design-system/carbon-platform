@@ -74,7 +74,7 @@ const Footer = ({ hasSideNav }) => {
               ©{currentYear} IBM Design Program Office
             </p>
           </Column>
-          <Column lg={hasSideNav ? { start: 5 } : { start: 1 }} className={styles.logo}>
+          <Column md={{ start: 1 }}  lg={hasSideNav ? { start: 5 } : { start: 1 }} className={styles.logo}>
             <IBMLogo />
           </Column>
         </Grid>

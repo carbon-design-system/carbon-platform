@@ -67,7 +67,7 @@ const Footer = ({ hasSideNav }) => {
           <Column sm={4} md={2} lg={4} className={styles.column}>
             <ul>{getColList(colTwo)}</ul>
           </Column>
-          <Column sm={4} md={3} lg={3} className={styles.column}>
+          <Column sm={4} md={3} lg={5} className={styles.column}>
             <p className={styles.text}>
               Last updated {currentMonth} {currentYear}
               <br />

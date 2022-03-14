@@ -36,7 +36,7 @@ rules that we also enforce, namely that:
 
 - The header must always be fewer than **72** characters
 - Any line in the commit body must be fewer than **100** characters
-- Header and scope must each be a value from [.commitlintrc.js](../.commitlintrc.js)
+- Header and scope must each be a value from [.commitlintrc.js](https://github.com/carbon-design-system/carbon-platform/blob/main/.commitlintrc.js)
 
 Most of these rules are to help with integration of `git` with common tools.
 
@@ -69,8 +69,8 @@ rest of the commit message is then used for this.
 
 ### Type
 
-See the `type-enum` section of [.commitlintrc.js](../.commitlintrc.js).
+See the `type-enum` section of [.commitlintrc.js](https://github.com/carbon-design-system/carbon-platform/blob/main/.commitlintrc.js).
 
 ### Scope
 
-See the `scope-enum` section of [.commitlintrc.js](../.commitlintrc.js).
+See the `scope-enum` section of [.commitlintrc.js](https://github.com/carbon-design-system/carbon-platform/blob/main/.commitlintrc.js).

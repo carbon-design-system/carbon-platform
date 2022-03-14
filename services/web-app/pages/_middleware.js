@@ -32,12 +32,26 @@ function exitWith404(req) {
 }
 
 export async function middleware(req) {
+  const protocol =
+    getRunMode === RunMode.Prod || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
+
+  // log page request
+  fetch(`${protocol}://localhost:${req.nextUrl.port}/api/log-message`, {
+    method: 'POST',
+    body: JSON.stringify({
+      logMessage: `[${new Date().toISOString()}] "${req.method} ${req.nextUrl.pathname}" "${
+        req.ua.ua
+      }" "${req.ip}"`
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
   if (req.nextUrl.pathname === '/404' || req.nextUrl.pathname.startsWith('/api/')) {
     return NextResponse.next()
   }
 
-  const protocol =
-    getRunMode === RunMode.Prod || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
   const userResponse = await fetch(
     `${protocol}://localhost:${req.nextUrl.port}/api/user`,
     getRequestOptions(req)

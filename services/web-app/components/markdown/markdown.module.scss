@@ -1,0 +1,132 @@
+//
+// Copyright IBM Corp. 2022, 2022
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+/*  Spacing */
+.h1-container.h1-container {
+  --space: #{$spacing-12};
+
+  margin-top: var(--space);
+}
+
+.h2-container.h2-container {
+  --space: #{$spacing-11};
+
+  margin-top: var(--space);
+}
+
+.h3-container.h3-container {
+  --space: #{$spacing-10};
+
+  margin-top: var(--space);
+}
+
+.h4-container.h4-container {
+  --space: #{$spacing-07};
+
+  margin-top: var(--space);
+}
+
+.h5-container,
+.h6-container {
+  --space: 0;
+}
+
+.paragraph-container {
+  --space: #{$spacing-06};
+
+  margin-top: var(--space);
+}
+
+.h1-container + *,
+.h2-container + *,
+.h3-container + *,
+.paragraph-container + * {
+  --space: #{$spacing-06};
+}
+
+.h4-container + * {
+  --space: 0;
+}
+
+/* Spacing List */
+.list {
+  --space: #{$spacing-06};
+
+  margin-top: var(--space);
+}
+
+.list .list {
+  --space: 0;
+}
+
+.ul {
+  /* remove hanging bullet */
+  margin-left: $spacing-05;
+}
+
+.ol {
+  /*  remove hanging bullet */
+  margin-left: $spacing-06;
+}
+
+/* TODO: pull in nested list prop diredtly from core Carbon issue #309 */
+.list-item .list {
+  margin-left: $spacing-07;
+}
+
+/* Headings */
+.h1 {
+  @include type-style('expressive-heading-05', true);
+}
+
+.h2 {
+  @include type-style('expressive-heading-04', true);
+}
+
+.h3 {
+  @include type-style('expressive-heading-03', true);
+}
+
+.h4 {
+  @include type-style('heading-02');
+}
+
+.h5,
+.h6 {
+  @include type-style('heading-01');
+}
+
+/* Paragraph */
+.paragraph {
+  @include type-style('body-long-02');
+}
+
+/*  Blockquote */
+.blockquote {
+  padding-left: 1ch;
+  margin: $spacing-08 0;
+  margin-left: $spacing-05;
+
+  @include breakpoint('md') {
+    margin-left: $spacing-08;
+  }
+}
+
+.blockquote .paragraph {
+  @include type-style('expressive-heading-03', true);
+
+  font-style: italic;
+}
+
+.blockquote cite {
+  @include type-style('body-long-01');
+
+  display: block;
+  margin-top: $spacing-02;
+  font-style: italic;
+  text-indent: 0;
+}

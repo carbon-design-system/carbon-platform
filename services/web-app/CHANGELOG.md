@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.73](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.72...@carbon-platform/web-app@0.1.73) (2022-03-10)
+
+### [0.1.72](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.71...@carbon-platform/web-app@0.1.72) (2022-03-10)
+
+
+### Misc. 🔮
+
+* add another optional chain ([085ede0](https://github.com/carbon-design-system/carbon-platform/commit/085ede09fe6538edd6dcbbaf30db606f124c05bd))
+
+
+### Bug Fixes 🐛
+
+* add global inside header ([c4f5d84](https://github.com/carbon-design-system/carbon-platform/commit/c4f5d84468d9398c0043031f2448f15c7619116c))
+* align nav to grid ([873b750](https://github.com/carbon-design-system/carbon-platform/commit/873b750bc4d24188b9c42d0b7fb769e36e10e5bd))
+* cleanup ([b9ba99d](https://github.com/carbon-design-system/carbon-platform/commit/b9ba99d938b44c38ad776dd8c0e2455ca33910b5))
+* render status when it has a note ([82b3178](https://github.com/carbon-design-system/carbon-platform/commit/82b3178842dcf46dfa0ecd2fe72579a7be801f47))
+* thumbnail backgrounds ([c29e88f](https://github.com/carbon-design-system/carbon-platform/commit/c29e88f3ac62c2727fb08164c15243a8e2c460ff))
+* thumbnail backgrounds ([0716f6d](https://github.com/carbon-design-system/carbon-platform/commit/0716f6da7955d73ea426796d9b61441b6ef38b9d))
+* update to use grid components ([d006422](https://github.com/carbon-design-system/carbon-platform/commit/d0064225ca0f6208469557705e9dcaa78b3423e2))
+* **web-app:** filter catalog by tag(s) ([576a56f](https://github.com/carbon-design-system/carbon-platform/commit/576a56fac1569335ea600c49cd5a93c58fede881))
+
 ### [0.1.71](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.70...@carbon-platform/web-app@0.1.71) (2022-03-09)
 
 

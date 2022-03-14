@@ -110,13 +110,14 @@ CatalogItemContent.propTypes = {
 
 const CatalogItemMeta = ({ asset, className, properties }) => {
   const renderStatus = () => {
-    const { name } = status[asset.content.status]
+    const statusKey = asset?.content.status?.key ?? asset?.content.status ?? 'draft'
+    const { name } = status[statusKey]
 
     if (!name) return null
 
     return (
       <>
-        <StatusIcon className={styles.metaIcon} status={asset.content.status} />
+        <StatusIcon className={styles.metaIcon} status={statusKey} />
         <span>{name}</span>
       </>
     )

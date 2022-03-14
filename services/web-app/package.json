@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.1.71",
+  "version": "0.1.73",
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
@@ -28,6 +28,8 @@
   "dependencies": {
     "@carbon/pictograms-react": "^11.23.0",
     "@carbon/react": "^0.15.2",
+    "@mdx-js/loader": "^2.0.0",
+    "@next/mdx": "^12.1.0",
     "@octokit/core": "^3.5.1",
     "cache-manager": "^3.6.0",
     "cache-manager-fs-hash": "^1.0.0",

@@ -24,12 +24,12 @@ import StatusIcon from '@/components/status-icon'
 import { framework } from '@/data/framework'
 import { assetsNavData } from '@/data/nav-data'
 import { status } from '@/data/status'
-import { tagsForCollection, tagsForType } from '@/data/tags'
 import { teams } from '@/data/teams'
 import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
+import { getTagsList } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 
 import styles from './[asset].module.scss'
@@ -99,32 +99,6 @@ const Asset = ({ libraryData }) => {
     )
   }
 
-  let tagList = '–'
-  if (assetData.content.tags) {
-    tagList = (
-      <>
-        {assetData.content.tags.map((tag, i) => {
-          let tagName
-
-          if (tagsForType.component[tag]) {
-            tagName = tagsForType.component[tag].name
-          } else if (tagsForType.function[tag]) {
-            tagName = tagsForType.function[tag].name
-          } else if (tagsForCollection['data-visualization'][tag]) {
-            tagName = tagsForCollection['data-visualization'][tag].name
-          }
-
-          return (
-            <span key={i}>
-              {tagName}
-              {i < assetData.content.tags.length - 1 ? ', ' : ''}
-            </span>
-          )
-        })}
-      </>
-    )
-  }
-
   return (
     <>
       <NextSeo {...seo} />
@@ -187,7 +161,7 @@ const Asset = ({ libraryData }) => {
               </Column>
               <Column className={dashboardStyles.subcolumn}>
                 <dt className={dashboardStyles.label}>Tags</dt>
-                <dd className={dashboardStyles.meta}>{tagList}</dd>
+                <dd className={dashboardStyles.meta}>{getTagsList(assetData).join(', ') || '–'}</dd>
               </Column>
               <Button className={styles.kitsButton}>
                 Coming soon...

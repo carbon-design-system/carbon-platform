@@ -7,6 +7,7 @@
 
 import { get } from 'lodash'
 
+import { tagsForCollection, tagsForType } from '@/data/tags'
 /**
  * Defines the sort order of assets by a key
  * @param {string} key
@@ -125,4 +126,41 @@ export const getLibraryVersionAsset = (str = '') => {
     ref,
     asset
   }
+}
+
+/**
+ * Gets an array of tag names given an asset
+ * @param {import('../typedefs').Asset} asset
+ * @returns {string[]} An array of tag names
+ */
+export const getTagsList = (asset) => {
+  const tagNames = []
+
+  const tags = asset?.content?.tags ?? []
+
+  // Iterate over all tags
+  tags.forEach((tag) => {
+    // Look for a matching tag by asset type
+    const foundTag = get(tagsForType, `${asset?.content.type}.${tag}`)
+
+    if (foundTag) {
+      // It's a match, save it
+      tagNames.push(foundTag.name)
+    } else {
+      // It's not a match, see if it's part of a collection
+      Object.keys(tagsForCollection).forEach((collectionKey) => {
+        if (tags.includes(collectionKey)) {
+          // The asset is part of a collection, search in that collection's tags
+          const foundCollectionTag = get(tagsForCollection, `${collectionKey}.${tag}`)
+
+          if (foundCollectionTag) {
+            // It's a match, save it
+            tagNames.push(foundCollectionTag.name)
+          }
+        }
+      })
+    }
+  })
+
+  return tagNames
 }

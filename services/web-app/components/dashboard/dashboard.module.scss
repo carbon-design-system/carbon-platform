@@ -74,18 +74,6 @@
   @include type-style('body-short-02');
 }
 
-.meta-link {
-  color: $link-primary;
-  text-decoration: none;
-  @include type-style('body-short-02');
-
-  &:hover,
-  &:focus {
-    color: $link-primary-hover;
-    text-decoration: underline;
-  }
-
-  &--large {
-    @include type-style('expressive-heading-04');
-  }
+.meta-link--large {
+  @include type-style('expressive-heading-04');
 }

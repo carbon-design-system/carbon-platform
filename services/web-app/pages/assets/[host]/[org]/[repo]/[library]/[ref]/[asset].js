@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Button, Column, Grid } from '@carbon/react'
+import { Button, Column, Grid, Link as CarbonLink } from '@carbon/react'
 import { ArrowRight, Events, Launch } from '@carbon/react/icons'
 import { Svg32Github } from '@carbon-platform/icons'
 import clsx from 'clsx'
@@ -24,6 +24,7 @@ import StatusIcon from '@/components/status-icon'
 import { framework } from '@/data/framework'
 import { assetsNavData } from '@/data/nav-data'
 import { status } from '@/data/status'
+import { tagsForCollection, tagsForType } from '@/data/tags'
 import { teams } from '@/data/teams'
 import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
@@ -80,6 +81,48 @@ const Asset = ({ libraryData }) => {
     const testPath = /^https?:\/\//i
 
     return testPath.test(path)
+  }
+
+  let demoLinks = '–'
+  if (assetData.content.demoLinks) {
+    demoLinks = (
+      <>
+        {assetData.content.demoLinks.map((link, i) => (
+          <>
+            <CarbonLink size="lg" key={i} href={link.url} aria-label={link.name}>
+              {link.name}
+            </CarbonLink>
+            {i < assetData.content.demoLinks.length - 1 ? ', ' : ''}
+          </>
+        ))}
+      </>
+    )
+  }
+
+  let tagList = '–'
+  if (assetData.content.tags) {
+    tagList = (
+      <>
+        {assetData.content.tags.map((tag, i) => {
+          let tagName
+
+          if (tagsForType.component[tag]) {
+            tagName = tagsForType.component[tag].name
+          } else if (tagsForType.function[tag]) {
+            tagName = tagsForType.function[tag].name
+          } else if (tagsForCollection['data-visualization'][tag]) {
+            tagName = tagsForCollection['data-visualization'][tag].name
+          }
+
+          return (
+            <span key={i}>
+              {tagName}
+              {i < assetData.content.tags.length - 1 ? ', ' : ''}
+            </span>
+          )
+        })}
+      </>
+    )
   }
 
   return (
@@ -139,16 +182,12 @@ const Asset = ({ libraryData }) => {
                 </dd>
               </Column>
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
-                <dt className={clsx(dashboardStyles.label)}>Demos</dt>
-                <dd className={dashboardStyles.meta}>
-                  <Link href={libraryPath}>
-                    <a className={dashboardStyles.metaLink}>Coming soon...</a>
-                  </Link>
-                </dd>
+                <dt className={clsx(dashboardStyles.label)}>Demo links</dt>
+                <dd className={dashboardStyles.meta}>{demoLinks}</dd>
               </Column>
               <Column className={dashboardStyles.subcolumn}>
                 <dt className={dashboardStyles.label}>Tags</dt>
-                <dd className={dashboardStyles.meta}>Coming soon...</dd>
+                <dd className={dashboardStyles.meta}>{tagList}</dd>
               </Column>
               <Button className={styles.kitsButton}>
                 Coming soon...

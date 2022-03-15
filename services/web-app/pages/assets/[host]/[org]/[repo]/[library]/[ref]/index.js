@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { FileBackup } from '@carbon/pictograms-react'
-import { Button, Column, Grid } from '@carbon/react'
+import { Button, Column, Grid, Link as CarbonLink } from '@carbon/react'
 import { ArrowRight, Events } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
@@ -67,6 +67,22 @@ const Library = ({ libraryData, params }) => {
   const { sponsor } = libraryData.params
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
 
+  let demoLinks = '–'
+  if (libraryData.content.demoLinks) {
+    demoLinks = (
+      <>
+        {libraryData.content.demoLinks.map((link, i) => (
+          <>
+            <CarbonLink size="lg" key={i} href={link.url} aria-label={link.name}>
+              {link.name}
+            </CarbonLink>
+            {i < libraryData.content.demoLinks.length - 1 ? ', ' : ''}
+          </>
+        ))}
+      </>
+    )
+  }
+
   return (
     <>
       <NextSeo {...seo} />
@@ -104,12 +120,8 @@ const Library = ({ libraryData, params }) => {
                 <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
               </Column>
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
-                <dt className={clsx(dashboardStyles.label)}>Demos</dt>
-                <dd className={dashboardStyles.meta}>
-                  <Link href="https://carbondesignsystem.com">
-                    <a className={dashboardStyles.metaLink}>Coming soon...</a>
-                  </Link>
-                </dd>
+                <dt className={clsx(dashboardStyles.label)}>Demo links</dt>
+                <dd className={dashboardStyles.meta}>{demoLinks}</dd>
               </Column>
               <Button className={styles.versionsButton}>
                 Coming soon...

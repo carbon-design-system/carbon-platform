@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Button, Column, Grid, Link as CarbonLink } from '@carbon/react'
+import { Button, Column, Grid } from '@carbon/react'
 import { ArrowRight, Events, Launch } from '@carbon/react/icons'
 import { Svg32Github } from '@carbon-platform/icons'
 import clsx from 'clsx'
@@ -18,6 +18,7 @@ import { libraryPropTypes } from 'types'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
+import DemoLinks from '@/components/demo-links'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import StatusIcon from '@/components/status-icon'
@@ -83,22 +84,6 @@ const Asset = ({ libraryData }) => {
     return testPath.test(path)
   }
 
-  let demoLinks = '–'
-  if (assetData.content.demoLinks) {
-    demoLinks = (
-      <>
-        {assetData.content.demoLinks.map((link, i) => (
-          <>
-            <CarbonLink size="lg" key={i} href={link.url} aria-label={link.name}>
-              {link.name}
-            </CarbonLink>
-            {i < assetData.content.demoLinks.length - 1 ? ', ' : ''}
-          </>
-        ))}
-      </>
-    )
-  }
-
   return (
     <>
       <NextSeo {...seo} />
@@ -157,7 +142,9 @@ const Asset = ({ libraryData }) => {
               </Column>
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
                 <dt className={clsx(dashboardStyles.label)}>Demo links</dt>
-                <dd className={dashboardStyles.meta}>{demoLinks}</dd>
+                <dd className={dashboardStyles.meta}>
+                  <DemoLinks links={assetData.content.demoLinks} />
+                </dd>
               </Column>
               <Column className={dashboardStyles.subcolumn}>
                 <dt className={dashboardStyles.label}>Tags</dt>

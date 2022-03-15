@@ -162,7 +162,7 @@ const Asset = ({ libraryData }) => {
               </Column>
               <Column className={dashboardStyles.subcolumn}>
                 <dt className={dashboardStyles.label}>Tags</dt>
-                <dd className={dashboardStyles.meta}>{tagList}</dd>
+<dd className={dashboardStyles.meta}>{getTagsList(assetData).join(', ') || '–'}</dd>
               </Column>
               <Button className={styles.kitsButton}>
                 Coming soon...

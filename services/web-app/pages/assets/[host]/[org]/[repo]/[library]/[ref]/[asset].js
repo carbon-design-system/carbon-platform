@@ -99,31 +99,6 @@ const Asset = ({ libraryData }) => {
     )
   }
 
-  let tagList = '–'
-  if (assetData.content.tags) {
-    tagList = (
-      <>
-        {assetData.content.tags.map((tag, i) => {
-          let tagName
-
-          if (tagsForType.component[tag]) {
-            tagName = tagsForType.component[tag].name
-          } else if (tagsForType.function[tag]) {
-            tagName = tagsForType.function[tag].name
-          } else if (tagsForCollection['data-visualization'][tag]) {
-            tagName = tagsForCollection['data-visualization'][tag].name
-          }
-
-          return (
-            <span key={i}>
-              {tagName}
-              {i < assetData.content.tags.length - 1 ? ', ' : ''}
-            </span>
-          )
-        })}
-      </>
-    )
-  }
 
   return (
     <>

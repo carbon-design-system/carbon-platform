@@ -6,15 +6,17 @@
  */
 import { Logging } from '@carbon-platform/api/logging'
 
-const logging = new Logging('web-app', 'log-message-api')
+const logging = new Logging('web-app', 'log-request-api')
 
 const logMessage = (req, res) => {
   if (!req.body) {
+    console.log('bad request no body')
     res.status(400).send('Bad request (no body)')
     return
   }
 
   if (!req.body.logMessage) {
+    console.log('bad request no logmessage')
     res.status(400).send('Bad request (no logMessage)')
     return
   }

@@ -5,25 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
-import cookie from 'cookie'
 import { NextResponse } from 'next/server'
 
+import sendLocalRequest from '@/utils/sendLocalRequest'
 import { isValidIbmEmail } from '@/utils/string'
 
-/**
- * Creates request options for retrieveUser api call including headers and agent if necessary
- *
- * @param {NextRequest} req getServerSideProps request object
- * @returns {RequestInit} request options
- */
-function getRequestOptions(req) {
-  const sessionCookie = req.cookies['connect.sid']
-  const cookies = sessionCookie ? cookie.serialize('connect.sid', sessionCookie) : ''
-  return {
-    headers: { cookie: cookies }
-  }
-}
+class NotAuthorizedError extends Error {}
 
 function exitWith404(req) {
   const url = req.nextUrl.clone()
@@ -31,46 +18,46 @@ function exitWith404(req) {
   return NextResponse.rewrite(url)
 }
 
-export async function middleware(req) {
-  const protocol =
-    getRunMode === RunMode.Prod || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
-
-  // log page request
-  fetch(`${protocol}://localhost:${req.nextUrl.port}/api/log-message`, {
-    method: 'POST',
-    body: JSON.stringify({
-      logMessage: `[${new Date().toISOString()}] "${req.method} ${req.nextUrl.pathname}" "${
-        req.ua.ua
-      }" "${req.ip}"`
-    }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
+function logIncomingRequest(req) {
+  sendLocalRequest(req, '/api/log-request', false, 'POST', {
+    logMessage: `[${new Date().toISOString()}] "${req.method} ${req.nextUrl.pathname}" "${
+      req.ua.ua
+    }" "${req.ip}"`
   })
+}
 
+async function applyAuthMiddleware(req) {
   if (req.nextUrl.pathname === '/404' || req.nextUrl.pathname.startsWith('/api/')) {
     return NextResponse.next()
   }
 
-  const userResponse = await fetch(
-    `${protocol}://localhost:${req.nextUrl.port}/api/user`,
-    getRequestOptions(req)
-  )
+  const userResponse = await sendLocalRequest(req, '/api/user', true)
 
   // Guard - non-200 user api response
   if (!userResponse.ok) {
-    return exitWith404(req)
+    throw new NotAuthorizedError()
   }
 
   const user = await userResponse.json()
 
   // Guard - no valid user
   if (!user?.email) {
-    return exitWith404(req)
+    throw new NotAuthorizedError()
   }
 
   // Guard - not a valid IBMer
   if (!isValidIbmEmail(user.email)) {
+    throw new NotAuthorizedError()
+  }
+
+  return NextResponse.next()
+}
+
+export async function middleware(req) {
+  try {
+    await logIncomingRequest(req)
+    await applyAuthMiddleware(req)
+  } catch (err) {
     return exitWith404(req)
   }
 

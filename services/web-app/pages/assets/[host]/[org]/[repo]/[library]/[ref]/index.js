@@ -105,7 +105,7 @@ const Library = ({ libraryData, params }) => {
                 <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
               </Column>
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
-                <dt className={clsx(dashboardStyles.label)}>Demo links</dt>
+                <dt className={clsx(dashboardStyles.label)}>Links</dt>
                 <dd className={dashboardStyles.meta}>
                   <DemoLinks links={libraryData.content.demoLinks} />
                 </dd>

@@ -21,58 +21,63 @@ const queryStringConfig = {
  * This hook allows to manage the state of a key/value in the browser query,
  *  with the following considerations:
  * 1- the value contained in `value` will automatically be updated when the browser query changes
- * 2- subscribing components can mamipulate the query value by calling the `update`
+ * 2- subscribing components can manipulate the query value by calling the `update`
  * function with a desired value
- * 3 - The `validateValue` function receives the current query string value
+ * 3 - All queryState key/values will be saved to localStorage
+ * 4 - The `validateValue` function receives the current query string value
  * and should return true if the value is valid or false otherwise. If the value is invalid,
- * the hook will return a value of `undefined`
- * 3- Supplying options `parseNumbers` or `parseBoolean` = `true` will cause the type of value
+ * the hook will return the last value saved to localStorage (null if not set)
+ * 5 - By default, queryStates are always saved to localStorage;
+ * supplying option `resetOnLoad` = `false` will cause the value to be removed from localStorage
+ * everytime a new page navigation to the path occurs
+ * 6- Supplying options `parseNumbers` or `parseBoolean` = `true` will cause the type of value
  * to be casted to desired type if possible, otherwise type will be string
- * 4 - Supplying option `saveToStorage` = `true` will cause the value
- * to be stored within browser's localStorage. This value will be used instead of
- * the query string value if it happens to be invalid or undefined
- * 5 - Calling the update function with a `null`, or `undefined` value
- * will cause the localStorage entry to be removed (if any)
  * @param {string} key Key to use in the query string
- * @param {{defaultValue: string, saveToStorage: boolean,
- * parseNumbers: boolean, parseBooleans: boolean}} options Extra config options
+ * @param {{defaultValue: string, parseNumbers: boolean,
+ * parseBooleans: boolean, resetOnLoad: boolean}} options Extra config options
  *
  * @returns {{value, update}} Current value and update function
  */
 const useQueryState = (
   key,
-  { defaultValue = '', saveToStorage = false, parseNumbers = false, parseBooleans = false },
+  { defaultValue = '', parseNumbers = false, parseBooleans = false, resetOnLoad = true },
   validateValue = () => true
 ) => {
   const router = useRouter()
 
-  const getValue = useCallback(() => {
-    if (typeof window === 'undefined') {
-      return null
-    }
+  const getValue = useCallback(
+    (isInternalCall = false) => {
+      if (typeof window === 'undefined') {
+        return null
+      }
 
-    const query = queryString.parseUrl(window.location.search, {
-      ...queryStringConfig,
-      parseNumbers,
-      parseBooleans
-    }).query
+      const query = queryString.parseUrl(window.location.search, {
+        ...queryStringConfig,
+        parseNumbers,
+        parseBooleans
+      }).query
 
-    const storageValue = saveToStorage
-      ? localStorage.getItem(`${router.pathname}:${key}`)
-      : undefined
+      if (!isInternalCall && resetOnLoad) {
+        localStorage.setItem(`${router.pathname}:${key}`, defaultValue)
+      }
 
-    let val = query[key]
+      let val = query[key]
 
-    if (val !== undefined && typeof validateValue === 'function' && !validateValue(val)) {
-      val = undefined
-    }
+      if (typeof validateValue === 'function' && !validateValue(val)) {
+        const storageValue = localStorage.getItem(`${router.pathname}:${key}`)
+        if (parseBooleans) {
+          val = storageValue === 'true'
+        } else if (parseNumbers) {
+          val = Number(storageValue)
+        } else {
+          val = storageValue
+        }
+      }
 
-    if (val === undefined) {
-      val = storageValue
-    }
-
-    return val
-  }, [key, parseBooleans, parseNumbers, router.pathname, saveToStorage, validateValue])
+      return val
+    },
+    [key, parseBooleans, parseNumbers, router.pathname, resetOnLoad, validateValue, defaultValue]
+  )
 
   const [value, setValue] = useState(getValue())
 
@@ -92,30 +97,20 @@ const useQueryState = (
 
       query[key] = newValue
 
-      if ((newValue === null || newValue === undefined) && saveToStorage) {
-        const localStorageKey = `${router.pathname}:${key}`
-
-        // user has removed selection, remove localStorage item
-        if (localStorage.getItem(localStorageKey)) {
-          localStorage.removeItem(localStorageKey)
-        }
-      }
-
       // Change query state without rerendering page
       history.pushState(null, null, `?${queryString.stringify(query, queryStringConfig)}`)
 
-      setValue(getValue())
+      setValue(getValue(true))
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [getValue, key]
+    [getValue, key, parseBooleans, parseNumbers]
   )
 
   // Save the value to local storage as it changes
   useEffect(() => {
-    if (saveToStorage && value !== null && value !== undefined) {
+    if (validateValue(value)) {
       localStorage.setItem(`${router.pathname}:${key}`, value)
     }
-  }, [key, router.pathname, saveToStorage, value])
+  }, [key, router.pathname, value, validateValue])
 
   return [value ?? defaultValue ?? null, update]
 }

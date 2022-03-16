@@ -136,7 +136,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     'sort',
     {
       defaultValue: ALPHABETICAL_ORDER,
-      saveToStorage: true
+      resetOnLoad: false
     },
     (value) => {
       return (
@@ -151,7 +151,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     'view',
     {
       defaultValue: LIST_VIEW,
-      saveToStorage: true
+      resetOnLoad: false
     },
     (value) => {
       return value && typeof value === 'string' && [GRID_VIEW, LIST_VIEW].includes(value)
@@ -271,13 +271,9 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     return totals
   })
 
-  // Set assets array that gets rendered as the filter, sort, and search changes. Avoid deep object
-  // equality comparison in the effect by using JSON.stringify.
   useEffect(() => {
     setFilteredAssets(getFilteredAssets(assets, filter, sort, search))
-    // Do not want to run this everytime the filter changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [assets, JSON.stringify(filter), sort, search])
+  }, [assets, filter, sort, search])
 
   // Update the filter when each individual key/value(s) in the filter get updated
   useEffect(() => {

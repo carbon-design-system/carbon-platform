@@ -5,21 +5,21 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-$page-header-height: $spacing-13 * 3.475;
+$hero-height: $spacing-13 * 3.475;
 $illo-original-width: 1260px;
 $illo-original-height: 1078px;
 
 .container {
   background: $background;
   @include breakpoint(md) {
-    height: $page-header-height;
+    height: $hero-height;
 
     &::before {
       position: absolute;
       z-index: 0;
       left: 0;
       width: 100vw;
-      height: $page-header-height;
+      height: $hero-height;
       background: $background;
       content: '';
     }
@@ -62,11 +62,11 @@ $illo-original-height: 1078px;
   right: -25vw;
   overflow: hidden;
   width: 50%;
-  height: $page-header-height;
+  height: $hero-height;
   @include breakpoint(xlg) {
     // -18vw chosen to horizontally center the illo in white space at ultra max viewport
     right: -18vw;
-    width: $page-header-height * ($illo-original-width / $illo-original-height);
+    width: $hero-height * ($illo-original-width / $illo-original-height);
   }
   @include breakpoint-down(md) {
     // -33% and 170% picked to get iphone viewport to match design spec size and position

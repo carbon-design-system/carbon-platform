@@ -8,8 +8,15 @@
 
 const path = require('path')
 const libraries = require('./data/libraries')
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/,
+  options: {
+    providerImportSource: '@mdx-js/react'
+  }
+})
 
-module.exports = {
+module.exports = withMDX({
+  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   experimental: {
     outputStandalone: true,
     // this includes files from the monorepo base two directories up
@@ -95,4 +102,4 @@ module.exports = {
 
     return rewrites
   }
-}
+})

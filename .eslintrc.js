@@ -86,8 +86,8 @@ module.exports = {
     {
       files: ['*.ts'],
       rules: {
-        'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': ['error']
+        'no-unused-vars': 'off', // Disabled in favor of @typescript-eslint/no-unused-vars
+        '@typescript-eslint/no-unused-vars': 'error'
       }
     }
   ],

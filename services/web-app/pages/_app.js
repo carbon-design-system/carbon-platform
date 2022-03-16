@@ -6,8 +6,10 @@
  */
 import '@/styles/styles.scss'
 
+import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
 
+import components from '@/components/mdx'
 import defaultSeo from '@/config/seo.json'
 import { AuthProvider } from '@/contexts/auth'
 import Layout, { LayoutProvider } from '@/layouts/layout'
@@ -18,7 +20,9 @@ function App({ Component, pageProps }) {
       <LayoutProvider>
         <Layout>
           <DefaultSeo {...defaultSeo} />
-          <Component {...pageProps} />
+          <MDXProvider components={components}>
+            <Component {...pageProps} />
+          </MDXProvider>
         </Layout>
       </LayoutProvider>
     </AuthProvider>

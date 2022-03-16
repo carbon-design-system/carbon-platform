@@ -10,8 +10,7 @@
       "@/lib/*": ["lib/*"],
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"],
-      "@/utils/*": ["utils/*"],
-      "@/validation/*": ["validation/*"]
+      "@/utils/*": ["utils/*"]
     }
   },
   "exclude": [".next", "node_modules"]

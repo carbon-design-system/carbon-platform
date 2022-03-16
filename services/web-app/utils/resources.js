@@ -11,8 +11,8 @@
 //  * LICENSE file in the root directory of this source tree.
 //  */
 
-import assetValidationSchema from '@/validation/asset-validation.schema.json'
-import libraryValidationSchema from '@/validation/library-validation.schema.json'
+import assetValidationSchema from '@carbon-platform/schemas/internal/validation/asset-validation.schema.json'
+import libraryValidationSchema from '@carbon-platform/schemas/internal/validation/library-validation.schema.json'
 
 const Ajv = require('ajv')
 const ajv = new Ajv({ allErrors: true, verbose: true })

@@ -15,9 +15,9 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 import { libraryPropTypes, paramsPropTypes } from 'types'
 
+import AssetLinks from '@/components/asset-links'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
-import DemoLinks from '@/components/demo-links'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
@@ -68,6 +68,15 @@ const Library = ({ libraryData, params }) => {
   const { sponsor } = libraryData.params
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
 
+  const assetLinks = libraryData.content.demoLinks
+
+  // add to asset links list
+  // alphabetize
+  // const externalDocs = {
+  //   name: 'External docs',
+  //   url: libraryData.content.externalDocsUrl
+  // }
+
   return (
     <>
       <NextSeo {...seo} />
@@ -107,7 +116,7 @@ const Library = ({ libraryData, params }) => {
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
                 <dt className={clsx(dashboardStyles.label)}>Links</dt>
                 <dd className={dashboardStyles.meta}>
-                  <DemoLinks links={libraryData.content.demoLinks} />
+                  <AssetLinks links={assetLinks} />
                 </dd>
               </Column>
               <Button className={styles.versionsButton}>

@@ -7,18 +7,18 @@
 import { Link as CarbonLink } from '@carbon/react'
 import PropTypes from 'prop-types'
 
-const DemoLinks = ({ links }) => {
+const AssetLinks = ({ links }) => {
   let linkList = '–'
   if (links) {
     linkList = (
       <>
         {links.map((link, i) => (
-          <>
+          <span key={link.url}>
             <CarbonLink size="lg" key={i} href={link.url} aria-label={link.name}>
               {link.name}
             </CarbonLink>
             {i < links.length - 1 ? ', ' : ''}
-          </>
+          </span>
         ))}
       </>
     )
@@ -26,8 +26,8 @@ const DemoLinks = ({ links }) => {
   return linkList
 }
 
-DemoLinks.propTypes = {
+AssetLinks.propTypes = {
   links: PropTypes.array
 }
 
-export default DemoLinks
+export default AssetLinks

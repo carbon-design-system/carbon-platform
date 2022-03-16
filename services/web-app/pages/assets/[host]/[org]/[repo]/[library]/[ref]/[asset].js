@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Button, Column, Grid } from '@carbon/react'
+import { Button, Column, Grid, Tab, Tabs, unstable_TabList as TabList } from '@carbon/react'
 import { ArrowRight, Events, Launch } from '@carbon/react/icons'
 import { Svg32Github } from '@carbon-platform/icons'
 import clsx from 'clsx'
@@ -87,6 +87,20 @@ const Asset = ({ libraryData }) => {
       <NextSeo {...seo} />
       <PageHeader title={seo.title} pictogram={get(type, `[${assetData.content.type}].icon`)} />
       <PageBreadcrumb items={breadcrumbItems} />
+      <Grid className={styles.tabsContainer}>
+        <Column sm={4} md={8}>
+          <Tabs>
+            <TabList aria-label="List of tabs" className={styles.tabList}>
+              <Tab>Usage</Tab>
+              <Tab>Design</Tab>
+              <Tab>Code</Tab>
+              <Tab>Usage</Tab>
+              <Tab>Design</Tab>
+              <Tab>Code</Tab>
+            </TabList>
+          </Tabs>
+        </Column>
+      </Grid>
       <Dashboard className={styles.dashboard}>
         <Column className={dashboardStyles.column} lg={1}>
           <DashboardItem

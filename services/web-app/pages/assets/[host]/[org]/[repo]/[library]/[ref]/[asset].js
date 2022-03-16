@@ -16,9 +16,9 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 import { libraryPropTypes } from 'types'
 
-import AssetLinks from '@/components/asset-links'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
+import ExternalLinks from '@/components/external-links'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import StatusIcon from '@/components/status-icon'
@@ -152,7 +152,7 @@ const Asset = ({ libraryData }) => {
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
                 <dt className={clsx(dashboardStyles.label)}>Links</dt>
                 <dd className={dashboardStyles.meta}>
-                  <AssetLinks links={assetLinks} />
+                  <ExternalLinks links={assetLinks} />
                 </dd>
               </Column>
               <Column className={dashboardStyles.subcolumn}>

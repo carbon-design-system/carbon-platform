@@ -7,7 +7,7 @@
 import { Link as CarbonLink } from '@carbon/react'
 import PropTypes from 'prop-types'
 
-const AssetLinks = ({ links }) => {
+const ExternalLinks = ({ links }) => {
   let linkList = '–'
   if (links) {
     links.sort((a, b) => a.name > b.name)
@@ -27,8 +27,8 @@ const AssetLinks = ({ links }) => {
   return linkList
 }
 
-AssetLinks.propTypes = {
+ExternalLinks.propTypes = {
   links: PropTypes.array
 }
 
-export default AssetLinks
+export default ExternalLinks

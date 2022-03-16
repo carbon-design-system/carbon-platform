@@ -141,5 +141,5 @@
     }
   },
   "additionalProperties": false,
-  "required": ["id", "name", "description", "status", "type"]
+  "required": ["id", "name", "status", "type"]
 }

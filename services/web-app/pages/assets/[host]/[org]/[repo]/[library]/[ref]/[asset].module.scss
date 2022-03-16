@@ -37,7 +37,7 @@
 }
 
 .tabs-container {
-  @include breakpoint(sm) {
+  @include breakpoint(md) {
     margin-left: -$spacing-05;
   }
 
@@ -58,10 +58,14 @@
 
   :global(.cds--tabs__nav-link) {
     max-width: fit-content;
-    border-bottom-color: transparent;
+
+    border-bottom: $spacing-02 solid var(--tab-border-color, transparent);
+    color: $text-primary;
+    @include type-style('body-short-02', true);
   }
 
   :global(.cds--tabs__nav-item--selected) {
-    border-bottom: 2px solid $border-interactive;
+    border-bottom: $spacing-02 solid $border-interactive;
+    font-weight: 600;
   }
 }

@@ -1,11 +1,17 @@
-//
-// Copyright IBM Corp. 2022, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
 .container {
-  padding-bottom: $spacing-13 + $spacing-07;
+  padding-bottom: spacing.$spacing-13 + spacing.$spacing-07;
 }
 
 /**
@@ -21,11 +27,11 @@
     right: 0;
     left: 0;
     height: 1px;
-    background-color: $border-strong-01;
+    background-color: theme.$border-strong-01;
     content: '';
-    @include breakpoint(md) {
-      margin-right: -$spacing-05;
-      margin-left: -$spacing-05;
+    @include breakpoint.breakpoint(md) {
+      margin-right: -(spacing.$spacing-05);
+      margin-left: -(spacing.$spacing-05);
     }
   }
 }
@@ -45,17 +51,17 @@
  */
 
 .subheading {
-  padding: $spacing-10 $spacing-05;
-  @include type-style('expressive-heading-04');
-  @include breakpoint(md) {
-    padding-right: $spacing-06;
+  padding: spacing.$spacing-10 spacing.$spacing-05;
+  @include type.type-style('expressive-heading-04');
+  @include breakpoint.breakpoint(md) {
+    padding-right: spacing.$spacing-06;
     padding-left: 0;
   }
-  @include breakpoint(lg) {
-    padding-right: $spacing-05;
+  @include breakpoint.breakpoint(lg) {
+    padding-right: spacing.$spacing-05;
   }
-  @include breakpoint(xlg) {
-    padding-right: $spacing-06;
+  @include breakpoint.breakpoint(xlg) {
+    padding-right: spacing.$spacing-06;
   }
 }
 
@@ -65,8 +71,8 @@
 
 .highlights {
   position: relative;
-  padding: 0 $spacing-05;
-  @include breakpoint(md) {
+  padding: 0 spacing.$spacing-05;
+  @include breakpoint.breakpoint(md) {
     padding: 0;
   }
 
@@ -76,7 +82,7 @@
     left: -100vw;
     width: 200vw;
     height: 100%;
-    background: $layer-01;
+    background: theme.$layer-01;
     content: '';
   }
 }
@@ -85,55 +91,55 @@
   position: relative;
 
   &--height {
-    @include breakpoint(md) {
-      min-height: $spacing-13 + $spacing-09;
+    @include breakpoint.breakpoint(md) {
+      min-height: spacing.$spacing-13 + spacing.$spacing-09;
     }
-    @include breakpoint(lg) {
-      min-height: $spacing-13 + $spacing-06;
+    @include breakpoint.breakpoint(lg) {
+      min-height: spacing.$spacing-13 + spacing.$spacing-06;
     }
   }
 }
 
 .highlight-heading {
-  margin-top: $spacing-08;
-  @include type-style('expressive-heading-03');
-  @include breakpoint(md) {
-    margin-top: $spacing-08 + $spacing-02;
+  margin-top: spacing.$spacing-08;
+  @include type.type-style('expressive-heading-03');
+  @include breakpoint.breakpoint(md) {
+    margin-top: spacing.$spacing-08 + spacing.$spacing-02;
   }
-  @include breakpoint(lg) {
-    padding-right: $spacing-07;
+  @include breakpoint.breakpoint(lg) {
+    padding-right: spacing.$spacing-07;
   }
 
   &--big {
-    margin-top: $spacing-07;
-    @include type-style('expressive-heading-04');
+    margin-top: spacing.$spacing-07;
+    @include type.type-style('expressive-heading-04');
   }
 }
 
 .highlight-description {
-  margin: $spacing-06 0 ($spacing-08 + $spacing-06);
-  @include type-style('body-long-02');
-  @include breakpoint(md) {
-    margin: $spacing-07 0;
+  margin: spacing.$spacing-06 0 (spacing.$spacing-08 + spacing.$spacing-06);
+  @include type.type-style('body-long-02');
+  @include breakpoint.breakpoint(md) {
+    margin: spacing.$spacing-07 0;
   }
-  @include breakpoint(lg) {
-    padding-right: $spacing-05;
+  @include breakpoint.breakpoint(lg) {
+    padding-right: spacing.$spacing-05;
   }
-  @include breakpoint(xlg) {
+  @include breakpoint.breakpoint(xlg) {
     padding-right: 0;
   }
 
   &--big {
-    @include type-style('expressive-heading-04');
-    @include breakpoint(md) {
-      margin: $spacing-08 0;
+    @include type.type-style('expressive-heading-04');
+    @include breakpoint.breakpoint(md) {
+      margin: spacing.$spacing-08 0;
     }
   }
 }
 
 .highlight-title {
   display: block;
-  @include type-style('expressive-heading-02');
+  @include type.type-style('expressive-heading-02');
 }
 
 /**
@@ -141,31 +147,31 @@
  */
 
 .content-column {
-  padding-right: $spacing-05;
-  padding-left: $spacing-05;
-  @include breakpoint(md) {
-    padding-right: $spacing-06;
+  padding-right: spacing.$spacing-05;
+  padding-left: spacing.$spacing-05;
+  @include breakpoint.breakpoint(md) {
+    padding-right: spacing.$spacing-06;
     padding-left: 0;
   }
-  @include breakpoint(lg) {
-    padding-right: $spacing-05;
+  @include breakpoint.breakpoint(lg) {
+    padding-right: spacing.$spacing-05;
   }
-  @include breakpoint(xlg) {
-    padding-right: $spacing-06;
+  @include breakpoint.breakpoint(xlg) {
+    padding-right: spacing.$spacing-06;
   }
 }
 
 .content-heading {
-  margin-top: $spacing-11;
-  @include type-style('expressive-heading-04');
+  margin-top: spacing.$spacing-11;
+  @include type.type-style('expressive-heading-04');
 }
 
 .content-copy {
-  margin-top: $spacing-06;
-  @include type-style('body-long-02');
+  margin-top: spacing.$spacing-06;
+  @include type.type-style('body-long-02');
 
   &:last-child {
-    margin-bottom: $spacing-10;
+    margin-bottom: spacing.$spacing-10;
   }
 }
 
@@ -174,52 +180,52 @@
  */
 
 .release {
-  padding: 0 $spacing-05 ($spacing-09 + $spacing-03);
-  @include breakpoint(md) {
+  padding: 0 spacing.$spacing-05 (spacing.$spacing-09 + spacing.$spacing-03);
+  @include breakpoint.breakpoint(md) {
     padding-right: 0;
     padding-left: 0;
   }
 }
 
 .release-heading {
-  margin-top: $spacing-07;
-  @include type-style('expressive-heading-04');
+  margin-top: spacing.$spacing-07;
+  @include type.type-style('expressive-heading-04');
 }
 
 .release-subheading {
-  @include type-style('expressive-heading-02');
+  @include type.type-style('expressive-heading-02');
 }
 
 .release-copy {
-  @include type-style('body-long-02');
+  @include type.type-style('body-long-02');
 
   & + & {
-    margin-top: $spacing-06;
+    margin-top: spacing.$spacing-06;
   }
 }
 
 .release-content {
-  margin-top: $spacing-06;
-  @include breakpoint(md) {
-    padding-right: $spacing-06;
+  margin-top: spacing.$spacing-06;
+  @include breakpoint.breakpoint(md) {
+    padding-right: spacing.$spacing-06;
   }
-  @include breakpoint(lg) {
-    padding-right: $spacing-05;
-    margin-top: $spacing-07;
+  @include breakpoint.breakpoint(lg) {
+    padding-right: spacing.$spacing-05;
+    margin-top: spacing.$spacing-07;
   }
-  @include breakpoint(xlg) {
-    padding-right: $spacing-06;
+  @include breakpoint.breakpoint(xlg) {
+    padding-right: spacing.$spacing-06;
   }
 }
 
 .release-image {
-  margin-top: $spacing-06;
-  @include breakpoint-down(md) {
+  margin-top: spacing.$spacing-06;
+  @include breakpoint.breakpoint-down(md) {
     display: none;
   }
 }
 
 .release-image-caption {
-  margin-top: $spacing-05;
-  @include type-style('label-01');
+  margin-top: spacing.$spacing-05;
+  @include type.type-style('label-01');
 }

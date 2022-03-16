@@ -1,29 +1,38 @@
-//
-// Copyright IBM Corp. 2021, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
 @use 'sass:math';
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/motion' as motion;
+@use '@carbon/motion/scss' as motion-utils;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+@use '~styles/mixins' as mixins;
 
 .column {
   position: relative;
-  transition: border-color $fast-02 carbon--motion(standard, productive);
+  transition: border-color motion.$duration-fast-02
+    motion-utils.carbon--motion(standard, productive);
 
   &:not(:first-child) {
-    @include breakpoint(md) {
-      border-left: 1px solid $layer-accent;
+    @include breakpoint.breakpoint(md) {
+      border-left: 1px solid theme.$layer-accent;
     }
 
     .anchor:hover &,
     .anchor:focus & {
-      border-color: $border-subtle-selected;
+      border-color: theme.$border-subtle-selected;
     }
   }
 
   &--image {
-    @include breakpoint-down(md) {
+    @include breakpoint.breakpoint-down(md) {
       display: none;
     }
   }
@@ -31,66 +40,67 @@
 
 .anchor {
   display: block;
-  background: $layer-01;
+  background: theme.$layer-01;
   text-decoration: none;
-  transition: background $fast-02 carbon--motion(standard, productive);
+  transition: background motion.$duration-fast-02 motion-utils.carbon--motion(standard, productive);
 
   &:hover,
   &:focus {
-    background: $layer-hover;
+    background: theme.$layer-hover;
   }
 
   &:active {
-    outline: 2px solid $focus;
+    outline: 2px solid theme.$focus;
     outline-offset: -2px;
   }
 
   &:not(.anchor--grid) {
-    border-top: 1px solid $layer-accent;
+    border-top: 1px solid theme.$layer-accent;
   }
 }
 
 .content {
-  padding: $spacing-05;
-  @include breakpoint(lg) {
+  padding: spacing.$spacing-05;
+  @include breakpoint.breakpoint(lg) {
     padding-right: 0;
   }
 
   .anchor--grid & {
-    border-top: 1px solid $layer-accent;
+    border-top: 1px solid theme.$layer-accent;
     margin-right: 0;
-    transition: border-color $fast-02 carbon--motion(standard, productive);
+    transition: border-color motion.$duration-fast-02
+      motion-utils.carbon--motion(standard, productive);
   }
 
   .anchor--grid:hover &,
   .anchor--grid:focus & {
-    border-color: $border-subtle-selected;
+    border-color: theme.$border-subtle-selected;
   }
 }
 
 .library {
-  color: $text-primary;
-  @include line-clamp(1);
-  @include type-style('label-01');
+  color: theme.$text-primary;
+  @include mixins.line-clamp(1);
+  @include type.type-style('label-01');
 }
 
 .name {
-  color: $text-primary;
-  @include line-clamp(2);
-  @include type-style('productive-heading-02');
+  color: theme.$text-primary;
+  @include mixins.line-clamp(2);
+  @include type.type-style('productive-heading-02');
 
   .anchor--grid & {
-    @include breakpoint-down(xlg) {
-      @include line-clamp(1);
+    @include breakpoint.breakpoint-down(xlg) {
+      @include mixins.line-clamp(1);
     }
   }
 }
 
 .description {
-  margin-top: $spacing-02;
-  color: $text-primary;
-  @include line-clamp(3);
-  @include type-style('body-short-01');
+  margin-top: spacing.$spacing-02;
+  color: theme.$text-primary;
+  @include mixins.line-clamp(3);
+  @include type.type-style('body-short-01');
 
   .anchor--grid & {
     display: none;
@@ -99,33 +109,33 @@
 
 .icon {
   position: absolute;
-  right: $spacing-04;
-  bottom: $spacing-04;
+  right: spacing.$spacing-04;
+  bottom: spacing.$spacing-04;
   display: block;
-  width: $spacing-09;
-  height: $spacing-09;
-  border: 1px solid $border-subtle;
-  background: $layer-01;
+  width: spacing.$spacing-09;
+  height: spacing.$spacing-09;
+  border: 1px solid theme.$border-subtle;
+  background: theme.$layer-01;
   border-radius: 100%;
-  color: $icon-primary;
-  transition: all $fast-02 carbon--motion(standard, productive);
-  @include breakpoint(xlg) {
-    width: $spacing-09 + $spacing-03;
-    height: $spacing-09 + $spacing-03;
+  color: theme.$icon-primary;
+  transition: all motion.$duration-fast-02 motion-utils.carbon--motion(standard, productive);
+  @include breakpoint.breakpoint(xlg) {
+    width: spacing.$spacing-09 + spacing.$spacing-03;
+    height: spacing.$spacing-09 + spacing.$spacing-03;
   }
 
   .anchor--grid & {
-    top: math.div(-$spacing-09, 2);
+    top: math.div(-(spacing.$spacing-09), 2);
     bottom: auto;
-    @include breakpoint(xlg) {
-      top: math.div(-$spacing-09 - $spacing-03, 2);
+    @include breakpoint.breakpoint(xlg) {
+      top: math.div(-(spacing.$spacing-09) - spacing.$spacing-03, 2);
     }
   }
 
   .anchor:hover &,
   .anchor:focus & {
-    border-color: $border-subtle-selected;
-    background: $layer-hover;
+    border-color: theme.$border-subtle-selected;
+    background: theme.$layer-hover;
   }
 }
 
@@ -135,7 +145,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: opacity $fast-02 carbon--motion(standard, productive);
+  transition: opacity motion.$duration-fast-02 motion-utils.carbon--motion(standard, productive);
 }
 
 .icon-sponsor {
@@ -158,30 +168,30 @@
 
 .framework {
   position: absolute;
-  top: $spacing-04;
-  right: $spacing-04;
-  transition: background $fast-02 carbon--motion(standard, productive);
+  top: spacing.$spacing-04;
+  right: spacing.$spacing-04;
+  transition: background motion.$duration-fast-02 motion-utils.carbon--motion(standard, productive);
 
   .anchor--grid & {
     top: auto;
-    bottom: $spacing-04;
+    bottom: spacing.$spacing-04;
   }
 
   .anchor:hover &,
   .anchor:focus & {
-    background: $border-subtle-selected;
+    background: theme.$border-subtle-selected;
   }
 }
 
 .meta {
-  margin-top: $spacing-02;
-  color: $text-secondary;
-  @include type-style('label-01');
+  margin-top: spacing.$spacing-02;
+  color: theme.$text-secondary;
+  @include type.type-style('label-01');
 
   &--absolute {
     position: absolute;
-    bottom: $spacing-04;
-    left: $spacing-04;
+    bottom: spacing.$spacing-04;
+    left: spacing.$spacing-04;
   }
 }
 
@@ -189,14 +199,14 @@
   display: inline;
 
   &:not(:first-child) {
-    margin-left: $spacing-03;
+    margin-left: spacing.$spacing-03;
   }
 }
 
 .meta-icon {
   position: relative;
   top: 3px;
-  margin-right: $spacing-02;
+  margin-right: spacing.$spacing-02;
 }
 
 .image {

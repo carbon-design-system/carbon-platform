@@ -1,109 +1,119 @@
-//
-// Copyright IBM Corp. 2022, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/motion' as motion;
+@use '@carbon/motion/scss' as motion-utils;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+@use '~styles/mixins' as mixins;
+
 .list {
-  border-bottom: 1px solid $layer-accent;
-  margin: $spacing-07 0;
-  @include breakpoint(md) {
-    margin-right: -$spacing-05;
-    margin-left: -$spacing-05;
+  border-bottom: 1px solid theme.$layer-accent;
+  margin: spacing.$spacing-07 0;
+  @include breakpoint.breakpoint(md) {
+    margin-right: -(spacing.$spacing-05);
+    margin-left: -(spacing.$spacing-05);
   }
 }
 
 .anchor {
   position: relative;
   display: block;
-  border-top: 1px solid $layer-accent;
-  background: $layer-01;
+  border-top: 1px solid theme.$layer-accent;
+  background: theme.$layer-01;
   text-decoration: none;
-  transition: background $fast-02 carbon--motion(standard, productive);
+  transition: background motion.$duration-fast-02 motion-utils.carbon--motion(standard, productive);
 
   &:hover,
   &:focus {
-    background: $layer-hover;
+    background: theme.$layer-hover;
   }
 
   &:active {
-    outline: 2px solid $focus;
+    outline: 2px solid theme.$focus;
     outline-offset: -2px;
   }
 }
 
 .content {
-  padding: $spacing-05;
-  @include breakpoint(md) {
-    height: $spacing-13 + $spacing-05;
+  padding: spacing.$spacing-05;
+  @include breakpoint.breakpoint(md) {
+    height: spacing.$spacing-13 + spacing.$spacing-05;
   }
-  @include breakpoint(xlg) {
-    padding-right: $spacing-05 + $spacing-06;
+  @include breakpoint.breakpoint(xlg) {
+    padding-right: spacing.$spacing-05 + spacing.$spacing-06;
   }
 }
 
 .sponsor {
-  color: $text-primary;
-  @include line-clamp(1);
-  @include type-style('label-01');
+  color: theme.$text-primary;
+  @include mixins.line-clamp(1);
+  @include type.type-style('label-01');
 }
 
 .name {
-  color: $text-primary;
-  @include line-clamp(2);
-  @include type-style('productive-heading-02');
+  color: theme.$text-primary;
+  @include mixins.line-clamp(2);
+  @include type.type-style('productive-heading-02');
 }
 
 .description {
-  margin-top: $spacing-02;
-  color: $text-primary;
-  @include line-clamp(3);
-  @include type-style('body-short-01');
+  margin-top: spacing.$spacing-02;
+  color: theme.$text-primary;
+  @include mixins.line-clamp(3);
+  @include type.type-style('body-short-01');
 }
 
 .meta {
   position: absolute;
-  bottom: $spacing-04;
-  left: $spacing-04;
-  color: $text-secondary;
-  @include type-style('label-01');
+  bottom: spacing.$spacing-04;
+  left: spacing.$spacing-04;
+  color: theme.$text-secondary;
+  @include type.type-style('label-01');
 }
 
 .meta-item {
   display: inline;
 
   &:not(:first-child) {
-    margin-left: $spacing-03;
+    margin-left: spacing.$spacing-03;
   }
 }
 
 .meta-icon {
   position: relative;
   top: 3px;
-  margin-right: $spacing-02;
+  margin-right: spacing.$spacing-02;
 }
 
 .icon {
   position: absolute;
-  right: $spacing-04;
-  bottom: $spacing-04;
+  right: spacing.$spacing-04;
+  bottom: spacing.$spacing-04;
   display: block;
-  width: $spacing-09;
-  height: $spacing-09;
-  border: 1px solid $border-subtle;
-  background: $layer-01;
+  width: spacing.$spacing-09;
+  height: spacing.$spacing-09;
+  border: 1px solid theme.$border-subtle;
+  background: theme.$layer-01;
   border-radius: 100%;
-  color: $icon-primary;
-  transition: all $fast-02 carbon--motion(standard, productive);
-  @include breakpoint(xlg) {
-    width: $spacing-09 + $spacing-03;
-    height: $spacing-09 + $spacing-03;
+  color: theme.$icon-primary;
+  transition: all motion.$duration-fast-02 motion-utils.carbon--motion(standard, productive);
+  @include breakpoint.breakpoint(xlg) {
+    width: spacing.$spacing-09 + spacing.$spacing-03;
+    height: spacing.$spacing-09 + spacing.$spacing-03;
   }
 
   .anchor:hover &,
   .anchor:focus & {
-    border-color: $border-subtle-selected;
-    background: $layer-hover;
+    border-color: theme.$border-subtle-selected;
+    background: theme.$layer-hover;
   }
 }
 
@@ -112,5 +122,5 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: opacity $fast-02 carbon--motion(standard, productive);
+  transition: opacity motion.$duration-fast-02 motion-utils.carbon--motion(standard, productive);
 }

@@ -84,6 +84,15 @@ const Asset = ({ libraryData }) => {
     return testPath.test(path)
   }
 
+  let assetLinks = assetData.content.demoLinks
+  if (assetData.content.externalDocsUrl) {
+    const externalDocs = {
+      name: 'External docs',
+      url: assetData.content.externalDocsUrl
+    }
+    assetLinks = assetLinks.concat(externalDocs)
+  }
+
   return (
     <>
       <NextSeo {...seo} />
@@ -143,7 +152,7 @@ const Asset = ({ libraryData }) => {
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
                 <dt className={clsx(dashboardStyles.label)}>Links</dt>
                 <dd className={dashboardStyles.meta}>
-                  <AssetLinks links={assetData.content.demoLinks} />
+                  <AssetLinks links={assetLinks} />
                 </dd>
               </Column>
               <Column className={dashboardStyles.subcolumn}>

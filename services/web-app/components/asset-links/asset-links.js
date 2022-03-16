@@ -10,6 +10,7 @@ import PropTypes from 'prop-types'
 const AssetLinks = ({ links }) => {
   let linkList = '–'
   if (links) {
+    links.sort((a, b) => a.name > b.name)
     linkList = (
       <>
         {links.map((link, i) => (

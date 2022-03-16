@@ -68,14 +68,14 @@ const Library = ({ libraryData, params }) => {
   const { sponsor } = libraryData.params
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
 
-  const assetLinks = libraryData.content.demoLinks
-
-  // add to asset links list
-  // alphabetize
-  // const externalDocs = {
-  //   name: 'External docs',
-  //   url: libraryData.content.externalDocsUrl
-  // }
+  let assetLinks = libraryData.content.demoLinks
+  if (libraryData.content.externalDocsUrl) {
+    const externalDocs = {
+      name: 'External docs',
+      url: libraryData.content.externalDocsUrl
+    }
+    assetLinks = assetLinks.concat(externalDocs)
+  }
 
   return (
     <>

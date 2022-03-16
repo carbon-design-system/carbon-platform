@@ -136,17 +136,17 @@ export const getLibraryVersionAsset = (str = '') => {
 export const getTagsList = (asset) => {
   const tags = asset?.content?.tags ?? []
 
-// retrieve valid tags for asset type
+  // retrieve valid tags for asset type
   const componentTypeTags = get(tagsForType, asset?.content.type, {})
 
-// flatten all collections to obtain single object with all tags keys
+  // flatten all collections to obtain single object with all tags keys
   const allCollectionTags = Object.keys(tagsForCollection).reduce((prev, currKey) => {
     return Object.assign(prev, tagsForCollection[currKey])
   }, {})
 
-// object containing all possible valid tags the asset can have given it's type
+  // object containing all possible valid tags the asset can have given it's type
   const allPossibleTags = Object.assign(componentTypeTags, allCollectionTags)
 
-// return array of tag names
-  return tags.map(tag => allPossibleTags[tag]?.name).filter(val => !!val)
+  // return array of tag names
+  return tags.map((tag) => allPossibleTags[tag]?.name).filter((val) => !!val)
 }

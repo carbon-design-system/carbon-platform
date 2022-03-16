@@ -7,7 +7,6 @@
 
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/motion' as motion;
-@use '@carbon/motion/scss' as motion-utils;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
@@ -29,9 +28,8 @@
   background-color: theme.$field;
   color: theme.$text-primary;
   cursor: pointer;
-  transition: background-color motion.$duration-fast-01
-      motion-utils.carbon--motion(standard, productive),
-    outline motion.$duration-fast-01 motion-utils.carbon--motion(standard, productive);
+  transition: background-color motion.$duration-fast-01 motion.motion(standard, productive),
+    outline motion.$duration-fast-01 motion.motion(standard, productive);
   @include type.type-style('body-short-01');
 
   &:focus,
@@ -66,7 +64,7 @@
 
 .icon {
   fill: theme.$icon-primary;
-  transition: transform motion.$duration-fast-01 motion-utils.carbon--motion(standard, productive);
+  transition: transform motion.$duration-fast-01 motion.motion(standard, productive);
 
   &--rotate {
     transform: rotate(180deg);

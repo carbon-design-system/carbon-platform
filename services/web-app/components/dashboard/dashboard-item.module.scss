@@ -6,7 +6,6 @@
  */
 
 @use '@carbon/react/scss/motion' as motion;
-@use '@carbon/motion/scss' as motion-utils;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 
@@ -22,7 +21,7 @@
   padding: spacing.$spacing-05;
   margin-right: 1px;
   background: theme.$layer-01;
-  transition: background motion.$duration-fast-02 motion-utils.carbon--motion(standard, productive);
+  transition: background motion.$duration-fast-02 motion.motion(standard, productive);
 
   &--border {
     outline: 1px solid theme.$background;

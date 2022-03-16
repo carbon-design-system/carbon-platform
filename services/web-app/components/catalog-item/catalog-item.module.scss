@@ -8,7 +8,6 @@
 @use 'sass:math';
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/motion' as motion;
-@use '@carbon/motion/scss' as motion-utils;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
@@ -17,8 +16,7 @@
 
 .column {
   position: relative;
-  transition: border-color motion.$duration-fast-02
-    motion-utils.carbon--motion(standard, productive);
+  transition: border-color motion.$duration-fast-02 motion.motion(standard, productive);
 
   &:not(:first-child) {
     @include breakpoint.breakpoint(md) {
@@ -42,7 +40,7 @@
   display: block;
   background: theme.$layer-01;
   text-decoration: none;
-  transition: background motion.$duration-fast-02 motion-utils.carbon--motion(standard, productive);
+  transition: background motion.$duration-fast-02 motion.motion(standard, productive);
 
   &:hover,
   &:focus {
@@ -68,8 +66,7 @@
   .anchor--grid & {
     border-top: 1px solid theme.$layer-accent;
     margin-right: 0;
-    transition: border-color motion.$duration-fast-02
-      motion-utils.carbon--motion(standard, productive);
+    transition: border-color motion.$duration-fast-02 motion.motion(standard, productive);
   }
 
   .anchor--grid:hover &,
@@ -118,7 +115,7 @@
   background: theme.$layer-01;
   border-radius: 100%;
   color: theme.$icon-primary;
-  transition: all motion.$duration-fast-02 motion-utils.carbon--motion(standard, productive);
+  transition: all motion.$duration-fast-02 motion.motion(standard, productive);
   @include breakpoint.breakpoint(xlg) {
     width: spacing.$spacing-09 + spacing.$spacing-03;
     height: spacing.$spacing-09 + spacing.$spacing-03;
@@ -145,7 +142,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: opacity motion.$duration-fast-02 motion-utils.carbon--motion(standard, productive);
+  transition: opacity motion.$duration-fast-02 motion.motion(standard, productive);
 }
 
 .icon-sponsor {
@@ -170,7 +167,7 @@
   position: absolute;
   top: spacing.$spacing-04;
   right: spacing.$spacing-04;
-  transition: background motion.$duration-fast-02 motion-utils.carbon--motion(standard, productive);
+  transition: background motion.$duration-fast-02 motion.motion(standard, productive);
 
   .anchor--grid & {
     top: auto;

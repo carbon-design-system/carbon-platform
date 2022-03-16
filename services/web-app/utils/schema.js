@@ -134,33 +134,19 @@ export const getLibraryVersionAsset = (str = '') => {
  * @returns {string[]} An array of tag names
  */
 export const getTagsList = (asset) => {
-  const tagNames = []
-
   const tags = asset?.content?.tags ?? []
 
-  // Iterate over all tags
-  tags.forEach((tag) => {
-    // Look for a matching tag by asset type
-    const foundTag = get(tagsForType, `${asset?.content.type}.${tag}`)
+// retrieve valid tags for asset type
+  const componentTypeTags = get(tagsForType, asset?.content.type, {})
 
-    if (foundTag) {
-      // It's a match, save it
-      tagNames.push(foundTag.name)
-    } else {
-      // It's not a match, see if it's part of a collection
-      Object.keys(tagsForCollection).forEach((collectionKey) => {
-        if (tags.includes(collectionKey)) {
-          // The asset is part of a collection, search in that collection's tags
-          const foundCollectionTag = get(tagsForCollection, `${collectionKey}.${tag}`)
+// flatten all collections to obtain single object with all tags keys
+  const allCollectionTags = Object.keys(tagsForCollection).reduce((prev, currKey) => {
+    return Object.assign(prev, tagsForCollection[currKey])
+  }, {})
 
-          if (foundCollectionTag) {
-            // It's a match, save it
-            tagNames.push(foundCollectionTag.name)
-          }
-        }
-      })
-    }
-  })
+// object containing all possible valid tags the asset can have given it's type
+  const allPossibleTags = Object.assign(componentTypeTags, allCollectionTags)
 
-  return tagNames
+// return array of tag names
+  return tags.map(tag => allPossibleTags[tag]?.name).filter(val => !!val)
 }

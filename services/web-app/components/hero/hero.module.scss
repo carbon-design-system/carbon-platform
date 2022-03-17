@@ -1,17 +1,22 @@
-//
-// Copyright IBM Corp. 2022, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-$hero-height: $spacing-13 * 3.475;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+$hero-height: spacing.$spacing-13 * 3.475;
 $illo-original-width: 1260px;
 $illo-original-height: 1078px;
 
 .container {
-  background: $background;
-  @include breakpoint(md) {
+  background: theme.$background;
+  @include breakpoint.breakpoint(md) {
     height: $hero-height;
 
     &::before {
@@ -20,11 +25,11 @@ $illo-original-height: 1078px;
       left: 0;
       width: 100vw;
       height: $hero-height;
-      background: $background;
+      background: theme.$background;
       content: '';
     }
   }
-  @include breakpoint-down(md) {
+  @include breakpoint.breakpoint-down(md) {
     position: relative;
   }
 }
@@ -36,24 +41,24 @@ $illo-original-height: 1078px;
 .column {
   position: relative;
   z-index: 1;
-  padding: $spacing-08 $spacing-05 ($spacing-08 + $spacing-12);
-  @include breakpoint(md) {
-    padding: ($spacing-09 + $spacing-03) 0 $spacing-05;
+  padding: spacing.$spacing-08 spacing.$spacing-05 (spacing.$spacing-08 + spacing.$spacing-12);
+  @include breakpoint.breakpoint(md) {
+    padding: (spacing.$spacing-09 + spacing.$spacing-03) 0 spacing.$spacing-05;
   }
-  @include breakpoint(lg) {
-    padding-right: $spacing-06;
+  @include breakpoint.breakpoint(lg) {
+    padding-right: spacing.$spacing-06;
   }
 }
 
 .title {
-  color: $text-primary;
-  @include type-style('display-01', true);
+  color: theme.$text-primary;
+  @include type.type-style('display-01', true);
 }
 
 .description {
-  margin-top: $spacing-06;
-  color: $text-primary;
-  @include type-style('body-long-02', true);
+  margin-top: spacing.$spacing-06;
+  color: theme.$text-primary;
+  @include type.type-style('body-long-02', true);
 }
 
 .image-wrap {
@@ -63,24 +68,24 @@ $illo-original-height: 1078px;
   overflow: hidden;
   width: 50%;
   height: $hero-height;
-  @include breakpoint(xlg) {
+  @include breakpoint.breakpoint(xlg) {
     // -18vw chosen to horizontally center the illo in white space at ultra max viewport
     right: -18vw;
     width: $hero-height * ($illo-original-width / $illo-original-height);
   }
-  @include breakpoint-down(md) {
+  @include breakpoint.breakpoint-down(md) {
     // -33% and 170% picked to get iphone viewport to match design spec size and position
     top: auto;
     right: -33%;
     bottom: 0;
     width: 170%;
-    height: $spacing-12;
+    height: spacing.$spacing-12;
   }
 }
 
 .image {
   object-position: center top;
-  @include breakpoint(md) {
+  @include breakpoint.breakpoint(md) {
     object-position: left center;
   }
 }

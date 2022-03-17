@@ -1,18 +1,25 @@
-//
-// Copyright IBM Corp. 2021, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-$page-header-height: $spacing-13 * 2;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+@use '~styles/mixins' as mixins;
+
+$page-header-height: spacing.$spacing-13 * 2;
 $background-header: #d0e2ff;
 
 .container {
   height: $page-header-height;
   background: $background-header;
-  @include breakpoint-down(md) {
-    padding: 0 $spacing-05;
+  @include breakpoint.breakpoint-down(md) {
+    padding: 0 spacing.$spacing-05;
   }
 
   &::before {
@@ -34,24 +41,24 @@ $background-header: #d0e2ff;
 
   &-last {
     justify-content: flex-end;
-    @include breakpoint-down(md) {
+    @include breakpoint.breakpoint-down(md) {
       display: none;
     }
   }
 }
 
 .title {
-  margin-bottom: $spacing-07;
-  color: $text-primary;
-  @include type-style('display-01', true);
-  @include line-clamp(2);
-  @include breakpoint-down(md) {
-    @include type-style('quotation-02');
+  margin-bottom: spacing.$spacing-07;
+  color: theme.$text-primary;
+  @include type.type-style('display-01', true);
+  @include mixins.line-clamp(2);
+  @include breakpoint.breakpoint-down(md) {
+    @include type.type-style('quotation-02');
 
-    font-family: font-family('sans');
+    font-family: type.font-family('sans');
   }
 }
 
 .pictogram {
-  margin-bottom: $spacing-08;
+  margin-bottom: spacing.$spacing-08;
 }

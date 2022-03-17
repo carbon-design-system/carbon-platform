@@ -55,7 +55,7 @@ $background-header: #d0e2ff;
   @include breakpoint.breakpoint-down(md) {
     @include type.type-style('quotation-02');
 
-    font-family: font-family('sans');
+    font-family: type.font-family('sans');
   }
 }
 

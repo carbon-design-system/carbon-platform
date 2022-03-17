@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 const ExternalLinks = ({ links = [] }) => {
   const linkList = links.filter((link) => !!link).sort((a, b) => a.name > b.name)
 
-  //   // en dash
+  // en dash
   let allLinks = '\u2014'
   if (linkList.length > 0) {
     allLinks = (

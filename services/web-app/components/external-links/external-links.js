@@ -8,24 +8,23 @@ import { Link as CarbonLink } from '@carbon/react'
 import PropTypes from 'prop-types'
 
 const ExternalLinks = ({ links = [] }) => {
-  const linkList = links.filter((e) => e != null).flat()
-  let allLinks = '–'
-  if (linkList.length > 0) {
-    linkList.sort((a, b) => a.name > b.name)
-    allLinks = (
-      <>
-        {linkList.map((link, i) => (
-          <span key={link.url}>
-            <CarbonLink size="lg" key={i} href={link.url} aria-label={link.name}>
-              {link.name}
-            </CarbonLink>
-            {i < linkList.length - 1 ? ', ' : ''}
-          </span>
-        ))}
-      </>
-    )
+  const linkList = links.filter((link) => !!link).flat()
+
+  if (linkList.length === 0) {
+    // en dash
+    return '\u2014'
   }
-  return allLinks
+
+  linkList.sort((a, b) => a.name > b.name)
+
+  return linkList.map((link, i) => (
+    <span key={i}>
+      <CarbonLink size="lg" href={link.url} aria-label={link.name}>
+        {link.name}
+      </CarbonLink>
+      {i < linkList.length - 1 ? ', ' : ''}
+    </span>
+  ))
 }
 
 ExternalLinks.propTypes = {

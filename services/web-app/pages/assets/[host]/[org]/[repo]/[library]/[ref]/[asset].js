@@ -84,9 +84,9 @@ const Asset = ({ libraryData }) => {
     return testPath.test(path)
   }
 
-  let externalDocLink
+  let externalDocsLink
   if (assetData.content.externalDocsUrl) {
-    externalDocLink = [
+    externalDocsLink = [
       {
         name: 'External docs',
         url: assetData.content.externalDocsUrl
@@ -153,7 +153,7 @@ const Asset = ({ libraryData }) => {
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
                 <dt className={clsx(dashboardStyles.label)}>Links</dt>
                 <dd className={dashboardStyles.meta}>
-                  <ExternalLinks links={[externalDocLink, assetData.content.demoLinks]} />
+                  <ExternalLinks links={[externalDocsLink, assetData.content.demoLinks]} />
                 </dd>
               </Column>
               <Column className={dashboardStyles.subcolumn}>

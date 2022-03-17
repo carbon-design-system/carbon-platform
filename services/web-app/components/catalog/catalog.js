@@ -23,6 +23,7 @@ import {
   getCanonicalLibraryId,
   librarySortComparator
 } from '@/utils/schema'
+import { getSlug } from '@/utils/slug'
 import { queryTypes, useQueryState } from '@/utils/use-query-state'
 
 import styles from './catalog.module.scss'
@@ -44,12 +45,11 @@ const assetIsInFilter = (asset, filter) => {
     }
   }
 
-  if (collapseAssetGroups(asset, filter)) {
-    return get(asset, 'library.content.id') === getCanonicalLibraryId(asset)
-  }
-
   return true
 }
+
+const isCanonicalLibAsset = (asset) =>
+  get(asset, 'library.content.id') === getCanonicalLibraryId(asset)
 
 function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {} }) {
   const [query, setQuery] = useQueryState('q', {
@@ -131,22 +131,46 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   })
 
   useEffect(() => {
+    const skippedAssets = []
+    const assetsWithAppliedFilter = assets.filter((asset) => {
+      if (assetIsInFilter(asset, filter)) {
+        if (collapseAssetGroups(asset, filter)) {
+          const isCanonicalAsset = isCanonicalLibAsset(asset)
+          if (!isCanonicalAsset) skippedAssets.push(asset)
+          return isCanonicalAsset
+        }
+        return true
+      } else {
+        return false
+      }
+    })
+
+    const assetsNotInCanonical = skippedAssets.filter(
+      (asset) =>
+        !assetsWithAppliedFilter.some(
+          (filteredAsset) => getSlug(filteredAsset.content) === getSlug(asset.content)
+        )
+    )
+
+    assetsWithAppliedFilter.push(
+      ...assetsNotInCanonical.filter(
+        (value, index, self) => index === self.findIndex((t) => t.content.id === value.content.id)
+      )
+    )
+
     setFilteredAssets(
-      assets
-        .sort(assetSortComparator(sort))
-        .filter((asset) => assetIsInFilter(asset, filter))
-        .filter((asset) => {
-          const { description = '', name = '' } = asset.content
+      assetsWithAppliedFilter.sort(assetSortComparator(sort)).filter((asset) => {
+        const { description = '', name = '' } = asset.content
 
-          if (search) {
-            return (
-              (name && name.toLowerCase().includes(search.toLowerCase())) ||
-              (description && description.toLowerCase().includes(search.toLowerCase()))
-            )
-          }
+        if (search) {
+          return (
+            (name && name.toLowerCase().includes(search.toLowerCase())) ||
+            (description && description.toLowerCase().includes(search.toLowerCase()))
+          )
+        }
 
-          return true
-        })
+        return true
+      })
     )
 
     // avoid deep object equality comparison in the effect by using JSON.stringify

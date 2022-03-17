@@ -7,24 +7,33 @@
 import { Link as CarbonLink } from '@carbon/react'
 import PropTypes from 'prop-types'
 
-const ExternalLinks = ({ links }) => {
-  let linkList = '–'
-  if (links) {
-    links.sort((a, b) => a.name > b.name)
-    linkList = (
+const ExternalLinks = ({ links = [] }) => {
+  // removes null values from array
+  const linkList = links.filter((e) => e != null)
+
+  let allLinks = '–'
+  if (linkList.length > 0) {
+    // todo figure out sorting, this doesn't work anymore
+    // linkList.sort((a, b) => a.name > b.name)
+    allLinks = (
       <>
-        {links.map((link, i) => (
-          <span key={link.url}>
-            <CarbonLink size="lg" key={i} href={link.url} aria-label={link.name}>
-              {link.name}
-            </CarbonLink>
-            {i < links.length - 1 ? ', ' : ''}
+        {linkList.map((links, i) => (
+          <span key={i}>
+            {links.map((link, i) => (
+              <span key={link.url}>
+                <CarbonLink size="lg" key={i} href={link.url} aria-label={link.name}>
+                  {link.name}
+                </CarbonLink>
+                {i < links.length - 1 ? ', ' : ''}
+              </span>
+            ))}
+            {i < linkList.length - 1 ? ', ' : ''}
           </span>
         ))}
       </>
     )
   }
-  return linkList
+  return allLinks
 }
 
 ExternalLinks.propTypes = {

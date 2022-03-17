@@ -68,13 +68,14 @@ const Library = ({ libraryData, params }) => {
   const { sponsor } = libraryData.params
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
 
-  let libraryLinks = libraryData.content.demoLinks
+  let externalDocLink
   if (libraryData.content.externalDocsUrl) {
-    const externalDocs = {
-      name: 'External docs',
-      url: libraryData.content.externalDocsUrl
-    }
-    libraryLinks = libraryLinks.concat(externalDocs)
+    externalDocLink = [
+      {
+        name: 'External docs',
+        url: libraryData.content.externalDocsUrl
+      }
+    ]
   }
 
   return (
@@ -116,7 +117,7 @@ const Library = ({ libraryData, params }) => {
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
                 <dt className={clsx(dashboardStyles.label)}>Links</dt>
                 <dd className={dashboardStyles.meta}>
-                  <ExternalLinks links={libraryLinks} />
+                  <ExternalLinks links={[externalDocLink, libraryData.content.demoLinks]} />
                 </dd>
               </Column>
               <Button className={styles.versionsButton}>

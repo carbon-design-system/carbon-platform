@@ -8,14 +8,12 @@ import { Link as CarbonLink } from '@carbon/react'
 import PropTypes from 'prop-types'
 
 const ExternalLinks = ({ links = [] }) => {
-  const linkList = links.filter((link) => !!link)
+  const linkList = links.filter((link) => !!link).sort((a, b) => a.name > b.name)
 
   if (linkList.length === 0) {
     // en dash
     return '\u2014'
   }
-
-  linkList.sort((a, b) => a.name > b.name)
 
   return linkList.map((link, i) => (
     <span key={i}>

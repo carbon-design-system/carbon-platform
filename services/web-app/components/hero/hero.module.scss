@@ -6,6 +6,7 @@
 //
 
 $hero-height: $spacing-13 * 3.475;
+$illo-mobile-height: $spacing-08 + $spacing-12;
 $illo-original-width: 1260px;
 $illo-original-height: 1078px;
 
@@ -36,7 +37,7 @@ $illo-original-height: 1078px;
 .column {
   position: relative;
   z-index: 1;
-  padding: $spacing-08 $spacing-05 ($spacing-08 + $spacing-12);
+  padding: $spacing-08 $spacing-05 $illo-mobile-height;
   @include breakpoint(md) {
     padding: ($spacing-09 + $spacing-03) 0 $spacing-05;
   }
@@ -56,17 +57,35 @@ $illo-original-height: 1078px;
   @include type-style('body-long-02', true);
 }
 
-.image-wrap {
+.image-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: $illo-mobile-height;
+
+  @include breakpoint(md) {
+    top: 0;
+    bottom: auto;
+    height: $hero-height;
+  }
+}
+
+.image-position {
   position: absolute;
   top: 0;
   right: -25vw;
-  overflow: hidden;
   width: 50%;
   height: $hero-height;
   @include breakpoint(xlg) {
     // -18vw chosen to horizontally center the illo in white space at ultra max viewport
     right: -18vw;
     width: $hero-height * ($illo-original-width / $illo-original-height);
+  }
+  @include breakpoint(max) {
+    // match xlg position
+    right: -285px;
   }
   @include breakpoint-down(md) {
     // -33% and 170% picked to get iphone viewport to match design spec size and position

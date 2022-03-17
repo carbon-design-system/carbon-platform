@@ -26,6 +26,7 @@ import {
   getCanonicalLibraryId,
   librarySortComparator
 } from '@/utils/schema'
+import usePrevious from '@/utils/use-previous'
 import useQueryState from '@/utils/use-query-state'
 
 import styles from './catalog.module.scss'
@@ -271,9 +272,16 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     return totals
   })
 
+  const prevValues = usePrevious({ sort, search, filter })
   useEffect(() => {
-    setFilteredAssets(getFilteredAssets(assets, filter, sort, search))
-  }, [assets, filter, sort, search])
+    if (
+      prevValues?.sort !== sort ||
+      prevValues?.search !== search ||
+      !isEqual(prevValues?.filter, filter)
+    ) {
+      setFilteredAssets(getFilteredAssets(assets, filter, sort, search))
+    }
+  }, [assets, filter, sort, search, prevValues])
 
   // Update the filter when each individual key/value(s) in the filter get updated
   useEffect(() => {

@@ -10,19 +10,23 @@ import PropTypes from 'prop-types'
 const ExternalLinks = ({ links = [] }) => {
   const linkList = links.filter((link) => !!link).sort((a, b) => a.name > b.name)
 
-  if (linkList.length === 0) {
-    // en dash
-    return '\u2014'
+  //   // en dash
+  let allLinks = '\u2014'
+  if (linkList.length > 0) {
+    allLinks = (
+      <>
+        {linkList.map((link, i) => (
+          <span key={link.url}>
+            <CarbonLink size="lg" key={i} href={link.url} aria-label={link.name}>
+              {link.name}
+            </CarbonLink>
+            {i < linkList.length - 1 ? ', ' : ''}
+          </span>
+        ))}
+      </>
+    )
   }
-
-  return linkList.map((link, i) => (
-    <span key={i}>
-      <CarbonLink size="lg" href={link.url} aria-label={link.name}>
-        {link.name}
-      </CarbonLink>
-      {i < linkList.length - 1 ? ', ' : ''}
-    </span>
-  ))
+  return allLinks
 }
 
 ExternalLinks.propTypes = {

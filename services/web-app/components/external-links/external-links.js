@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2021, 2022
+ * Copyright IBM Corp. 2022, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -28,7 +28,12 @@ const ExternalLinks = ({ links = [] }) => {
 }
 
 ExternalLinks.propTypes = {
-  links: PropTypes.array
+  links: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired
+    })
+  )
 }
 
 export default ExternalLinks

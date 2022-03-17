@@ -1,17 +1,21 @@
-//
-// Copyright IBM Corp. 2022, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+
 .dashboard {
-  margin-top: $spacing-07;
-  margin-bottom: $spacing-07;
+  margin-top: spacing.$spacing-07;
+  margin-bottom: spacing.$spacing-07;
 }
 
 .sponsor-icon {
-  @include breakpoint-down(md) {
-    right: $spacing-04;
+  @include breakpoint.breakpoint-down(md) {
+    right: spacing.$spacing-04;
     left: auto;
   }
 }
@@ -23,8 +27,8 @@
   bottom: 0;
   width: 100%;
   max-width: none;
-  padding-right: $spacing-05;
-  @include breakpoint(lg) {
+  padding-right: spacing.$spacing-05;
+  @include breakpoint.breakpoint(lg) {
     width: 50%;
   }
 }

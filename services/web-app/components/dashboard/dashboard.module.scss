@@ -1,9 +1,14 @@
-//
-// Copyright IBM Corp. 2022, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
 
 /*
  * Layout
@@ -13,20 +18,20 @@
   position: relative;
   grid-gap: 0;
 
-  @include breakpoint(md) {
-    margin-right: -$spacing-05;
-    margin-left: -$spacing-05;
+  @include breakpoint.breakpoint(md) {
+    margin-right: -(spacing.$spacing-05);
+    margin-left: -(spacing.$spacing-05);
   }
 }
 
 .subgrid {
-  margin-right: -$spacing-05;
-  margin-left: -$spacing-05;
+  margin-right: -(spacing.$spacing-05);
+  margin-left: -(spacing.$spacing-05);
 }
 
 .subcolumn {
-  @include breakpoint-down(md) {
-    padding-left: $spacing-05;
+  @include breakpoint.breakpoint-down(md) {
+    padding-left: spacing.$spacing-05;
   }
 
   &--links {
@@ -41,16 +46,16 @@
 
 .position-bottom-left {
   position: absolute;
-  bottom: $spacing-04;
-  left: $spacing-04;
-  color: $text-primary;
+  bottom: spacing.$spacing-04;
+  left: spacing.$spacing-04;
+  color: theme.$text-primary;
 }
 
 .position-bottom-right {
   position: absolute;
-  right: $spacing-04;
-  bottom: $spacing-04;
-  color: $text-primary;
+  right: spacing.$spacing-04;
+  bottom: spacing.$spacing-04;
+  color: theme.$text-primary;
 }
 
 /*
@@ -58,21 +63,22 @@
  */
 
 .label {
-  padding-bottom: $spacing-01;
-  color: $text-secondary;
-  @include type-style('body-short-01');
+  padding-bottom: spacing.$spacing-01;
+  color: theme.$text-secondary;
+  @include type.type-style('body-short-01');
 
   &--large {
-    color: $text-primary;
-    @include type-style('expressive-heading-04');
+    color: theme.$text-primary;
+    @include type.type-style('expressive-heading-04');
   }
 }
 
 .meta {
-  padding-bottom: $spacing-06;
-  color: $text-primary;
-  @include type-style('body-short-02');
+  padding-bottom: spacing.$spacing-06;
+  color: theme.$text-primary;
+  @include type.type-style('body-short-02');
 }
+
 
 .meta-link--large {
   @include type-style('expressive-heading-04');

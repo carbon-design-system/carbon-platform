@@ -130,8 +130,11 @@ const validateAsset = (asset, library) => {
       const { instancePath, message } = err
       return { instancePath, message }
     })
-    logging.warn(`Skipping asset: ${getSlug(asset)} for library: ${getSlug(library)}
-    due to the following errors: ${JSON.stringify(errors)}`)
+    logging.warn(
+      `Skipping asset: ${getSlug(asset)} for library: ${getSlug(
+        library
+      )} due to the following errors: ${JSON.stringify(errors)}`
+    )
     return false
   }
   return true

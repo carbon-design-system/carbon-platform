@@ -12,12 +12,12 @@ const Ajv = require('ajv')
 const ajv = new Ajv({ allErrors: true, verbose: true })
 
 /**
- * Given a javascript object and a JSON schema, obtains list of errors
- * regarding the object structure and content
+ * Given a JavaScript object and a JSON schema, obtains list of errors regarding the object
+ * structure and content
  *
- * @param {object} content Javascript object to be evaluated against schema
- * @param {object} schema JSON schema to validate against
- * @returns {object[]} Array of AJV error objects, empty array if valid content
+ * @param {Object} content JavaScript object to be evaluated against schema
+ * @param {Object} schema JSON schema to validate against
+ * @returns {Object[]} Array of AJV error objects, empty array if valid content
  */
 const getValidationErrors = (content, schema) => {
   const validatorFunction = ajv.compile(schema)
@@ -27,18 +27,18 @@ const getValidationErrors = (content, schema) => {
 }
 
 /**
- * Given a library asset object, obtains list of errors regarding it's structure and content
+ * Given a library asset object, obtains list of errors regarding its structure and content
  *
  * @param {import('../typedefs').Asset} assetContent a library asset object to be validated
- * @returns {object[]} Array of AJV error objects, empty array if valid asset
+ * @returns {Object[]} Array of AJV error objects, empty array if valid asset
  */
 const getAssetErrors = (assetContent) => getValidationErrors(assetContent, assetValidationSchema)
 
 /**
- * Given a library object, obtains list of errors regarding it's structure and content
+ * Given a library object, obtains list of errors regarding its structure and content
  *
  * @param {import('../typedefs').Library} libraryContent a library object to be validated
- * @returns {object[]} Array of AJV error objects, empty array if valid library
+ * @returns {Object[]} Array of AJV error objects, empty array if valid library
  */
 const getLibraryErrors = (libraryContent) =>
   getValidationErrors(libraryContent, libraryValidationSchema)

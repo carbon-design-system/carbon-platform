@@ -153,7 +153,7 @@ const Asset = ({ libraryData }) => {
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
                 <dt className={clsx(dashboardStyles.label)}>Links</dt>
                 <dd className={dashboardStyles.meta}>
-                  <ExternalLinks links={[externalDocsLink, assetData.content.demoLinks]} />
+                  <ExternalLinks links={[assetData.content.demoLinks, externalDocsLink]} />
                 </dd>
               </Column>
               <Column className={dashboardStyles.subcolumn}>

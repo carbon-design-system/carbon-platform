@@ -297,7 +297,6 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   // Update possible filter values if the collection or type changes
   useEffect(() => {
     setPossibleFilterValues(getFilters({ collection, type }))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collection, type])
 
   const handleFilter = (item, key, action = 'add') => {

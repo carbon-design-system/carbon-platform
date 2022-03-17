@@ -70,12 +70,10 @@ const Library = ({ libraryData, params }) => {
 
   let externalDocsLink
   if (libraryData.content.externalDocsUrl) {
-    externalDocsLink = [
-      {
-        name: 'External docs',
-        url: libraryData.content.externalDocsUrl
-      }
-    ]
+    externalDocsLink = {
+      name: 'External docs',
+      url: libraryData.content.externalDocsUrl
+    }
   }
 
   return (
@@ -117,7 +115,9 @@ const Library = ({ libraryData, params }) => {
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
                 <dt className={clsx(dashboardStyles.label)}>Links</dt>
                 <dd className={dashboardStyles.meta}>
-                  <ExternalLinks links={[libraryData.content.demoLinks, externalDocsLink]} />
+                  <ExternalLinks
+                    links={[...get(libraryData, 'content.demoLinks', []), externalDocsLink]}
+                  />
                 </dd>
               </Column>
               <Button className={styles.versionsButton}>

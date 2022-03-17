@@ -8,7 +8,7 @@ import { Link as CarbonLink } from '@carbon/react'
 import PropTypes from 'prop-types'
 
 const ExternalLinks = ({ links = [] }) => {
-  const linkList = links.filter((link) => !!link).flat()
+  const linkList = links.filter((link) => !!link)
 
   if (linkList.length === 0) {
     // en dash

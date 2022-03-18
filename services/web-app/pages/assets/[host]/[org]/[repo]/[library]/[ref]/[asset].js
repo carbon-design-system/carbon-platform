@@ -83,7 +83,7 @@ const Asset = ({ libraryData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader
-        bgColor={get(type, `[${assetData.content.type}].color`)}
+        bgColor={get(type, `[${assetData.content.type}].bgColor`)}
         title={seo.title}
         pictogram={get(type, `[${assetData.content.type}].icon`)}
       />

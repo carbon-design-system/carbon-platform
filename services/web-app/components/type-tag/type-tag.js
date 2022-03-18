@@ -17,12 +17,15 @@ const TypeTag = ({ className, type }) => {
 
   if (!item) return null
 
-  const { name, color } = item
+  const { name, bgColor, textColor } = item
 
-  if (!name || !color) return null
+  if (!name || !bgColor || !textColor) return null
 
   return (
-    <span className={clsx(styles.container, className)} style={{ '--cds-background': color }}>
+    <span
+      className={clsx(styles.container, className)}
+      style={{ '--cds-background': bgColor, '--cds-text-primary': textColor }}
+    >
       {name}
     </span>
   )

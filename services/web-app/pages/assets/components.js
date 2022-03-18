@@ -32,7 +32,7 @@ const Components = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader bgColor={component.color} title={seo.title} pictogram={component.icon} />
+      <PageHeader bgColor={component.bgColor} title={seo.title} pictogram={component.icon} />
       <Catalog data={librariesData} type="component" />
     </>
   )

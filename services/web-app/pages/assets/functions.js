@@ -32,7 +32,7 @@ const Functions = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader bgColor={func.color} title={seo.title} pictogram={func.icon} />
+      <PageHeader bgColor={func.bgColor} title={seo.title} pictogram={func.icon} />
       <Catalog data={librariesData} type="function" />
     </>
   )

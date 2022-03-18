@@ -14,7 +14,7 @@
 }
 
 .grid {
-  margin-top: spacing.$spacing-10;
+  margin: spacing.$spacing-10 0;
   @include breakpoint.breakpoint-down(md) {
     padding-right: spacing.$spacing-05;
     padding-left: spacing.$spacing-05;

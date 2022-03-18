@@ -30,7 +30,7 @@ const Templates = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader bgColor={template.color} title={seo.title} pictogram={template.icon} />
+      <PageHeader bgColor={template.bgColor} title={seo.title} pictogram={template.icon} />
       <Catalog data={librariesData} type="template" />
     </>
   )

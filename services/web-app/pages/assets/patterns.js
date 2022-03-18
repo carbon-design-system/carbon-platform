@@ -32,7 +32,7 @@ const Patterns = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader bgColor={pattern.color} title={seo.title} pictogram={pattern.icon} />
+      <PageHeader bgColor={pattern.bgColor} title={seo.title} pictogram={pattern.icon} />
       <Catalog data={librariesData} type="pattern" />
     </>
   )

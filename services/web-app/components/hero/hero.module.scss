@@ -43,7 +43,7 @@ $illo-original-height: 1078px;
   position: relative;
   z-index: 1;
   padding: spacing.$spacing-08 spacing.$spacing-05 $illo-mobile-height;
-  @include breakpoint(md) {
+  @include breakpoint.breakpoint(md) {
     padding: (spacing.$spacing-09 + spacing.$spacing-03) 0 spacing.$spacing-05;
   }
   @include breakpoint.breakpoint(lg) {
@@ -70,7 +70,7 @@ $illo-original-height: 1078px;
   width: calc(100vw - var(--scrollbar-width));
   height: $illo-mobile-height;
 
-  @include breakpoint(md) {
+  @include breakpoint.breakpoint(md) {
     top: 0;
     bottom: auto;
     height: $hero-height;
@@ -88,11 +88,11 @@ $illo-original-height: 1078px;
     right: -18vw;
     width: $hero-height * ($illo-original-width / $illo-original-height);
   }
-  @include breakpoint(max) {
+  @include breakpoint.breakpoint(max) {
     // match xlg position
     right: -285px;
   }
-  @include breakpoint-down(md) {
+  @include breakpoint.breakpoint-down(md) {
     // -33% and 170% picked to get iphone viewport to match design spec size and position
     top: auto;
     right: -33%;

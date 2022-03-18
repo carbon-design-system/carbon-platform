@@ -84,17 +84,17 @@
     height: 100%;
     background: theme.$layer-01;
     content: '';
-    @include breakpoint(md) {
+    @include breakpoint.breakpoint(md) {
       // grid margin + gutter
-      left: -($spacing-05 + $spacing-05);
+      left: -(spacing.$spacing-05 + spacing.$spacing-05);
     }
-    @include breakpoint(lg) {
+    @include breakpoint.breakpoint(lg) {
       // grid margin + 6.25% column * 4 columns + gutter
-      left: calc(-25vw - #{$spacing-06});
+      left: calc(-25vw - #{spacing.$spacing-06});
     }
-    @include breakpoint(max) {
+    @include breakpoint.breakpoint(max) {
       // grid margin + 96px column * 4 columns + gutter
-      left: -($spacing-06 + $spacing-12 * 4 + $spacing-05);
+      left: -(spacing.$spacing-06 + spacing.$spacing-12 * 4 + spacing.$spacing-05);
     }
   }
 }

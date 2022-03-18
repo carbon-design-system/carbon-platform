@@ -9,7 +9,6 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
-@use '@carbon/styles/scss/utilities/z-index' as z-index;
 
 .body {
   // overflow hidden for full-bleed backgrounds
@@ -18,21 +17,10 @@
   background: theme.$background;
 }
 
-.header {
-  :global(.cds--header__nav::before) {
-    // override Carbon, hide divider line
-    display: none;
-  }
-}
-
 .main {
   // position for PageBreadcrumb
   position: relative;
   margin: spacing.$spacing-09 0 0;
-  // have carbon overlay use higher z-index than we're using on our custom components
-  :global(.cds--side-nav__overlay.cds--side-nav__overlay-active) {
-    z-index: z-index.z('overlay');
-  }
 }
 
 .side-nav-heading {

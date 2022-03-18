@@ -5,13 +5,32 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use '@carbon/styles/scss/utilities/z-index' as z-index;
+
 .cds--content {
   margin-top: 3rem;
 }
 
-// v11 bug where interactive tags don't remove border on the button
-// also, the text sits high in v11 so setting a line height fixes that
+// v11 bug where interactive tags don't remove border on the button, Also, the text sits high in v11
+// so setting a line height fixes that.
 .cds--tag {
   border: 0;
   line-height: 1rem;
+}
+
+// Hide divider line because we're grid-aligning the header links
+.cds--header__nav::before {
+  display: none;
+}
+
+// Make underline flush left with the column so it's not indented
+.cds--header__menu-item--current::after,
+a.cds--header__menu-item[aria-current='page']::after {
+  left: -2px;
+  width: calc(100% + 2px);
+}
+
+// Have carbon overlay use higher z-index than we're using on our custom components
+.cds--side-nav__overlay.cds--side-nav__overlay-active {
+  z-index: z-index.z('overlay');
 }

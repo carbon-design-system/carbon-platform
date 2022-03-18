@@ -82,6 +82,18 @@ const Asset = ({ libraryData }) => {
     return testPath.test(path)
   }
 
+  const githubRepoUrl = `http://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
+  // %20label%20%22enhancement%22
+  fetch(
+    'https://api.github.com/search/issues?q=repo:carbon-design-system/carbon-charts%20is:issue%20is:open%20chart%20in:title'
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      // console.log(data)
+      console.log(data.total_count)
+    })
+    .catch((error) => console.error(error))
+
   return (
     <>
       <NextSeo {...seo} />
@@ -161,25 +173,15 @@ const Asset = ({ libraryData }) => {
           <DashboardItem
             aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
             border={['sm', 'md', 'lg', 'xlg']}
+            href={`${githubRepoUrl}/issues`}
+            // todo: pull in github label from schema
           >
             <dl>
-              <dt className={dashboardStyles.label}>Coming soon...</dt>
-              <dd className={dashboardStyles.labelLarge}>–</dd>
-            </dl>
-          </DashboardItem>
-        </Column>
-        <Column className={dashboardStyles.column} sm={0} md={1}>
-          <DashboardItem
-            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-            border={['sm', 'md', 'lg', 'xlg']}
-            href={libraryPath}
-          >
-            <dl>
-              <dt className={dashboardStyles.label}>Coming soon...</dt>
+              <dt className={dashboardStyles.label}>Pull requests</dt>
               <dd className={dashboardStyles.labelLarge}>–</dd>
             </dl>
             <Svg32Github className={dashboardStyles.positionBottomLeft} />
-            {pathIsAbsolute(libraryPath) && (
+            {pathIsAbsolute(githubRepoUrl) && (
               <Launch className={dashboardStyles.positionBottomRight} size={20} />
             )}
           </DashboardItem>
@@ -188,14 +190,15 @@ const Asset = ({ libraryData }) => {
           <DashboardItem
             aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
             border={['sm', 'md', 'lg', 'xlg']}
-            href="https://carbondesignsystem.com"
+            href={`${githubRepoUrl}/pulls`}
+            // todo: pull in github label from schema
           >
             <dl>
-              <dt className={dashboardStyles.label}>Coming soon...</dt>
+              <dt className={dashboardStyles.label}>Open issues</dt>
               <dd className={dashboardStyles.labelLarge}>–</dd>
             </dl>
             <Svg32Github className={dashboardStyles.positionBottomLeft} />
-            {pathIsAbsolute('https://carbondesignsystem.com') && (
+            {pathIsAbsolute(githubRepoUrl) && (
               <Launch className={dashboardStyles.positionBottomRight} size={20} />
             )}
           </DashboardItem>

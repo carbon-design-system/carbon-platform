@@ -90,7 +90,7 @@ const Asset = ({ libraryData }) => {
       <NextSeo {...seo} />
       <PageHeader title={seo.title} pictogram={get(type, `[${assetData.content.type}].icon`)} />
       <PageBreadcrumb items={breadcrumbItems} />
-      <PageTabs tabs={pageTabs} />
+      <PageTabs pageTabs={pageTabs} />
       <Dashboard className={styles.dashboard}>
         <Column className={dashboardStyles.column} lg={1}>
           <DashboardItem

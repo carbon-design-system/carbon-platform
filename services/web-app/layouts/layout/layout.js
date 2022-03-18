@@ -86,9 +86,9 @@ const Layout = ({ children }) => {
           </Theme>
           <Theme className={styles.body} theme="g10">
             <Grid as="main" className={styles.main} id="main-content">
-              <Column sm={4} md={8} lg={4}>
-                <Theme theme="white">
-                  {showSideNav && (
+              {showSideNav && (
+                <Column sm={4} md={8} lg={4}>
+                  <Theme theme="white">
                     <SideNav aria-label="Side navigation" expanded={isSideNavExpanded}>
                       <SideNavItems>
                         <HeaderSideNavItems>
@@ -132,10 +132,10 @@ const Layout = ({ children }) => {
                         })}
                       </SideNavItems>
                     </SideNav>
-                  )}
-                </Theme>
-              </Column>
-              <Column sm={4} md={8} lg={12}>
+                  </Theme>
+                </Column>
+              )}
+              <Column sm={4} md={8} lg={showSideNav ? 12 : 16}>
                 {children}
               </Column>
             </Grid>

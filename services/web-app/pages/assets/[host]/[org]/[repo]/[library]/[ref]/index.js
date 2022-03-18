@@ -70,68 +70,79 @@ const Library = ({ libraryData, params }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} pictogram={FileBackup} />
-      <PageBreadcrumb items={breadcrumbItems} />
-      <Dashboard className={styles.dashboard}>
-        <Column className={dashboardStyles.column} lg={1}>
-          <DashboardItem
-            aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
-            border={['sm']}
-          >
-            <dl>
-              <dt className={dashboardStyles.label}>Version</dt>
-              <dd className={dashboardStyles.labelLarge}>{`v${libraryData.content.version}`}</dd>
-            </dl>
-            {SponsorIcon && (
-              <SponsorIcon
-                className={clsx(dashboardStyles.positionBottomLeft, styles.sponsorIcon)}
-                size={64}
-              />
-            )}
-          </DashboardItem>
+      <Grid>
+        <Column lg={{ start: 5, span: 12 }}>
+          <PageHeader title={seo.title} pictogram={FileBackup} />
+          <PageBreadcrumb items={breadcrumbItems} />
         </Column>
-        <Column className={dashboardStyles.column} lg={2}>
-          <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
-            <Grid as="dl" columns={2} className={dashboardStyles.subgrid}>
-              <Column className={dashboardStyles.subcolumn}>
-                <dt className={dashboardStyles.label}>Sponsor</dt>
-                <dd className={dashboardStyles.meta}>
-                  {get(teams, `[${libraryData.params.sponsor}].name`, 'Community maintained')}
-                </dd>
-              </Column>
-              <Column className={dashboardStyles.subcolumn}>
-                <dt className={dashboardStyles.label}>License</dt>
-                <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
-              </Column>
-              <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
-                <dt className={clsx(dashboardStyles.label)}>Demos</dt>
-                <dd className={dashboardStyles.meta}>
-                  <Link href="https://carbondesignsystem.com">
-                    <a className={dashboardStyles.metaLink}>Coming soon...</a>
-                  </Link>
-                </dd>
-              </Column>
-              <Button className={styles.versionsButton}>
-                Coming soon...
-                <ArrowRight size={16} />
-              </Button>
-            </Grid>
-          </DashboardItem>
-        </Column>
-      </Dashboard>
-      <div className={pageStyles.content}>
-        <ul>
-          {assets.map((asset, i) => (
-            <li key={i}>
-              <Link
-                href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}
+        <Column lg={4}>{/* In page nav  */}</Column>
+        <Column lg={12}>
+          <Dashboard className={styles.dashboard}>
+            <Column className={dashboardStyles.column} lg={1}>
+              <DashboardItem
+                aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
+                border={['sm']}
               >
-                <a>{asset.content.name || 'Asset'}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+                <dl>
+                  <dt className={dashboardStyles.label}>Version</dt>
+                  <dd
+                    className={dashboardStyles.labelLarge}
+                  >{`v${libraryData.content.version}`}</dd>
+                </dl>
+                {SponsorIcon && (
+                  <SponsorIcon
+                    className={clsx(dashboardStyles.positionBottomLeft, styles.sponsorIcon)}
+                    size={64}
+                  />
+                )}
+              </DashboardItem>
+            </Column>
+            <Column className={dashboardStyles.column} lg={2}>
+              <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
+                <Grid as="dl" columns={2} className={dashboardStyles.subgrid}>
+                  <Column className={dashboardStyles.subcolumn}>
+                    <dt className={dashboardStyles.label}>Sponsor</dt>
+                    <dd className={dashboardStyles.meta}>
+                      {get(teams, `[${libraryData.params.sponsor}].name`, 'Community maintained')}
+                    </dd>
+                  </Column>
+                  <Column className={dashboardStyles.subcolumn}>
+                    <dt className={dashboardStyles.label}>License</dt>
+                    <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
+                  </Column>
+                  <Column
+                    className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}
+                  >
+                    <dt className={clsx(dashboardStyles.label)}>Demos</dt>
+                    <dd className={dashboardStyles.meta}>
+                      <Link href="https://carbondesignsystem.com">
+                        <a className={dashboardStyles.metaLink}>Coming soon...</a>
+                      </Link>
+                    </dd>
+                  </Column>
+                  <Button className={styles.versionsButton}>
+                    Coming soon...
+                    <ArrowRight size={16} />
+                  </Button>
+                </Grid>
+              </DashboardItem>
+            </Column>
+          </Dashboard>
+          <div className={pageStyles.content}>
+            <ul>
+              {assets.map((asset, i) => (
+                <li key={i}>
+                  <Link
+                    href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}
+                  >
+                    <a>{asset.content.name || 'Asset'}</a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Column>
+      </Grid>
     </>
   )
 }

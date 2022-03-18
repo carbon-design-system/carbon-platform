@@ -71,12 +71,14 @@ const Library = ({ libraryData, params }) => {
     <>
       <NextSeo {...seo} />
       <Grid>
-        <Column lg={{ start: 5, span: 12 }}>
+        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <PageHeader title={seo.title} pictogram={FileBackup} />
           <PageBreadcrumb items={breadcrumbItems} />
         </Column>
-        <Column lg={4}>{/* In page nav  */}</Column>
-        <Column lg={12}>
+        <Column sm={4} md={8} lg={4}>
+          {/* In page nav  */}
+        </Column>
+        <Column sm={4} md={8} lg={12}>
           <Dashboard className={styles.dashboard}>
             <Column className={dashboardStyles.column} lg={1}>
               <DashboardItem

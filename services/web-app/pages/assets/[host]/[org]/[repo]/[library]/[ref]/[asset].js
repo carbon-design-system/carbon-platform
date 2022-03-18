@@ -86,11 +86,11 @@ const Asset = ({ libraryData }) => {
     <>
       <NextSeo {...seo} />
       <Grid>
-        <Column lg={{ start: 5, span: 12 }}>
+        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <PageHeader title={seo.title} pictogram={get(type, `[${assetData.content.type}].icon`)} />
           <PageBreadcrumb items={breadcrumbItems} />
         </Column>
-        <Column lg={{ start: 5, span: 12 }}>
+        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <Dashboard className={styles.dashboard}>
             <Column className={dashboardStyles.column} lg={1}>
               <DashboardItem

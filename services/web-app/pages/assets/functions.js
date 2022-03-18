@@ -19,6 +19,8 @@ import { getAllLibraries } from '@/lib/github'
 const Functions = ({ librariesData }) => {
   const { setNavData } = useContext(LayoutContext)
 
+  const { function: func } = type
+
   const seo = {
     title: 'Functions'
   }
@@ -30,7 +32,7 @@ const Functions = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} pictogram={type.function.icon} />
+      <PageHeader bgColor={func.color} title={seo.title} pictogram={func.icon} />
       <Catalog data={librariesData} type="function" />
     </>
   )

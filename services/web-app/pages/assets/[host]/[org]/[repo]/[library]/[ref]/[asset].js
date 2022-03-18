@@ -85,7 +85,11 @@ const Asset = ({ libraryData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} pictogram={get(type, `[${assetData.content.type}].icon`)} />
+      <PageHeader
+        bgColor={get(type, `[${assetData.content.type}].color`)}
+        title={seo.title}
+        pictogram={get(type, `[${assetData.content.type}].icon`)}
+      />
       <PageBreadcrumb items={breadcrumbItems} />
       <Dashboard className={styles.dashboard}>
         <Column className={dashboardStyles.column} lg={1}>

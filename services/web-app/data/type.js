@@ -8,6 +8,7 @@ import { CodeSyntax, Construct, Pattern, TextInput, TextLayout } from '@carbon/p
 
 export const type = {
   component: {
+    color: '#d0e2ff',
     icon: TextInput,
     name: 'Component'
   },
@@ -16,14 +17,17 @@ export const type = {
     name: 'Element'
   },
   function: {
+    color: '#a7f0ba',
     icon: CodeSyntax,
     name: 'Function'
   },
   pattern: {
+    color: '#e8daff',
     icon: Pattern,
     name: 'Pattern'
   },
   template: {
+    color: '#ffd6d8',
     icon: TextLayout,
     name: 'Template'
   }

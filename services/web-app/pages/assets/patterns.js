@@ -19,6 +19,8 @@ import { getAllLibraries } from '@/lib/github'
 const Patterns = ({ librariesData }) => {
   const { setNavData } = useContext(LayoutContext)
 
+  const { pattern } = type
+
   const seo = {
     title: 'Patterns'
   }
@@ -30,7 +32,7 @@ const Patterns = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} pictogram={type.pattern.icon} />
+      <PageHeader bgColor={pattern.color} title={seo.title} pictogram={pattern.icon} />
       <Catalog data={librariesData} type="pattern" />
     </>
   )

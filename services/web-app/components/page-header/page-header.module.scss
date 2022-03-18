@@ -13,11 +13,10 @@
 @use '~styles/mixins' as mixins;
 
 $page-header-height: spacing.$spacing-13 * 2;
-$background-header: #d0e2ff;
 
 .container {
   height: $page-header-height;
-  background: $background-header;
+  background: theme.$background;
   @include breakpoint.breakpoint-down(md) {
     padding: 0 spacing.$spacing-05;
   }
@@ -28,9 +27,13 @@ $background-header: #d0e2ff;
     left: 0;
     width: 100vw;
     height: $page-header-height;
-    background: $background-header;
+    background: theme.$background;
     content: '';
   }
+}
+
+.grid {
+  height: $page-header-height;
 }
 
 .column {
@@ -61,4 +64,5 @@ $background-header: #d0e2ff;
 
 .pictogram {
   margin-bottom: spacing.$spacing-08;
+  fill: theme.$icon-primary;
 }

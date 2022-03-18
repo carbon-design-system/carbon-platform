@@ -35,37 +35,3 @@
     width: 50%;
   }
 }
-
-.tabs-container {
-  @include breakpoint(md) {
-    margin-left: -$spacing-05;
-  }
-
-  &::before {
-    position: absolute;
-    z-index: 0;
-    left: 0;
-    width: 100vw;
-    height: $spacing-09;
-    border-bottom: 1px solid $layer-active-01;
-    content: '';
-  }
-}
-
-//override Carbon min height and border bottom styles
-.tab-list {
-  min-height: $spacing-09;
-
-  :global(.cds--tabs__nav-link) {
-    max-width: fit-content;
-
-    border-bottom: $spacing-02 solid var(--tab-border-color, transparent);
-    color: $text-primary;
-    @include type-style('body-short-02', true);
-  }
-
-  :global(.cds--tabs__nav-item--selected) {
-    border-bottom: $spacing-02 solid $border-interactive;
-    font-weight: 600;
-  }
-}

@@ -1,0 +1,45 @@
+//
+// Copyright IBM Corp. 2022, 2022
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+.container {
+  @include breakpoint(md) {
+    margin-left: -$spacing-05;
+  }
+
+  &::before {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    width: 100vw;
+    height: $spacing-09;
+    border-bottom: 1px solid $layer-active-01;
+    content: '';
+  }
+}
+
+// override Carbon min height and border bottom styles
+.tab-list {
+  min-height: $spacing-09;
+
+  // TODO: fix hover / active styles
+  :global(.cds--tabs__nav-item--selected) {
+    border-bottom: $spacing-02 solid $border-interactive;
+    font-weight: 600;
+  }
+
+  :global(.cds--tabs__nav-link) {
+    max-width: fit-content;
+
+    border-bottom: $spacing-02 solid var(--tab-border-color, transparent);
+    color: $text-secondary;
+    @include type-style('body-short-02', true);
+
+    &:hover {
+      border-bottom: $spacing-02 solid $layer-active-01;
+      color: $text-primary;
+    }
+  }
+}

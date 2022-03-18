@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Button, Column, Grid, Tab, Tabs, unstable_TabList as TabList } from '@carbon/react'
+import { Button, Column, Grid } from '@carbon/react'
 import { ArrowRight, Events, Launch } from '@carbon/react/icons'
 import { Svg32Github } from '@carbon-platform/icons'
 import clsx from 'clsx'
@@ -20,6 +20,7 @@ import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
+import PageTabs from '@/components/page-tabs'
 import StatusIcon from '@/components/status-icon'
 import { framework } from '@/data/framework'
 import { assetsNavData } from '@/data/nav-data'
@@ -82,25 +83,14 @@ const Asset = ({ libraryData }) => {
     return testPath.test(path)
   }
 
+  const pageTabs = ['Usage', 'Design', 'Code', 'Accessibility']
+
   return (
     <>
       <NextSeo {...seo} />
       <PageHeader title={seo.title} pictogram={get(type, `[${assetData.content.type}].icon`)} />
       <PageBreadcrumb items={breadcrumbItems} />
-      <Grid className={styles.tabsContainer}>
-        <Column sm={4} md={8}>
-          <Tabs>
-            <TabList aria-label="List of tabs" className={styles.tabList}>
-              <Tab>Usage</Tab>
-              <Tab>Design</Tab>
-              <Tab>Code</Tab>
-              <Tab>Usage</Tab>
-              <Tab>Design</Tab>
-              <Tab>Code</Tab>
-            </TabList>
-          </Tabs>
-        </Column>
-      </Grid>
+      <PageTabs tabs={pageTabs} />
       <Dashboard className={styles.dashboard}>
         <Column className={dashboardStyles.column} lg={1}>
           <DashboardItem

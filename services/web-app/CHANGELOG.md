@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.75](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.74...@carbon-platform/web-app@0.1.75) (2022-03-18)
+
+
+### Features 🌟
+
+* **web-app:** also collapse non-canonical assets ([d951d99](https://github.com/carbon-design-system/carbon-platform/commit/d951d995a345eccce7bacea36c39f8ea0307b6ba))
+
+
+### Misc. 🔮
+
+* **web-app:** per-file sass use statements ([4aaca5b](https://github.com/carbon-design-system/carbon-platform/commit/4aaca5b82dca4baf791faeb0e122189290b52c8c)), closes [#391](https://github.com/carbon-design-system/carbon-platform/issues/391)
+* **web-app:** prefer carbon/react use statements ([a96ee4f](https://github.com/carbon-design-system/carbon-platform/commit/a96ee4ff5fe48c0ea8b2a1cc5eaadbad26fd117c))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** commit code review suggestion ([7a5a932](https://github.com/carbon-design-system/carbon-platform/commit/7a5a932da3c664d5c19536a047eda9bd53426de6))
+* **web-app:** sort and search after adding non canonical assets ([e935a9a](https://github.com/carbon-design-system/carbon-platform/commit/e935a9a827c53903f2237e2a7965938dd155e018))
+
 ### [0.1.74](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.73...@carbon-platform/web-app@0.1.74) (2022-03-15)
 
 

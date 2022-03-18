@@ -42,6 +42,17 @@ const Layout = ({ children }) => {
   const [showSideNav, setShowSideNav] = useState(true)
   const { navData } = useContext(LayoutContext)
 
+  // For use with 100vw widths to account for the scrollbar width, e.g. instead of `width: 100vw;`
+  // use `width: calc(100vw - var(--scrollbar-width));`.
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      document.documentElement.style.setProperty(
+        '--scrollbar-width',
+        window.innerWidth - document.documentElement.clientWidth + 'px'
+      )
+    }
+  }, [])
+
   useEffect(() => {
     setShowSideNav(!router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
   }, [router.pathname])

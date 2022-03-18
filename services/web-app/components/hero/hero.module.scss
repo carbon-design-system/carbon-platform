@@ -19,7 +19,7 @@ $illo-original-height: 1078px;
       position: absolute;
       z-index: 0;
       left: 0;
-      width: 100vw;
+      width: calc(100vw - var(--scrollbar-width));
       height: $hero-height;
       background: $background;
       content: '';
@@ -62,7 +62,7 @@ $illo-original-height: 1078px;
   bottom: 0;
   left: 0;
   overflow: hidden;
-  width: 100vw;
+  width: calc(100vw - var(--scrollbar-width));
   height: $illo-mobile-height;
 
   @include breakpoint(md) {

@@ -74,7 +74,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: calc(100vw - var(--scrollbar-width));
     height: 100%;
     background: $layer-01;
     content: '';

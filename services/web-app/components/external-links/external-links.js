@@ -8,7 +8,7 @@ import { Link as CarbonLink } from '@carbon/react'
 import PropTypes from 'prop-types'
 
 const ExternalLinks = ({ links = [] }) => {
-  const linkList = links.filter((link) => !!link).sort((a, b) => a.name > b.name)
+  const linkList = links.filter((link) => !!link).sort((a, b) => a.name.localeCompare(b.name))
 
   // en dash
   let allLinks = '\u2014'

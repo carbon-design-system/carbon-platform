@@ -15,6 +15,7 @@ import { assetPropTypes } from 'types'
 
 import FrameworkIcon from '@/components/framework-icon'
 import StatusIcon from '@/components/status-icon'
+import TypeTag from '@/components/type-tag'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
 import { collapseAssetGroups, getBaseIdentifier, getLicense } from '@/utils/schema'
@@ -93,11 +94,14 @@ const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false })
             properties={['status', 'license']}
           />
         )}
-        <FrameworkIcon
-          className={styles.framework}
-          framework={asset.content.framework}
-          otherCount={otherFrameworkCount()}
-        />
+        <div className={styles.tags}>
+          <TypeTag className={styles.tagsItem} type={asset.content.type} />
+          <FrameworkIcon
+            className={styles.framework}
+            framework={asset.content.framework}
+            otherCount={otherFrameworkCount()}
+          />
+        </div>
       </Column>
     </Grid>
   )

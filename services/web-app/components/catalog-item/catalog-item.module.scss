@@ -163,16 +163,24 @@
   }
 }
 
-.framework {
+.tags {
   position: absolute;
   top: spacing.$spacing-04;
   right: spacing.$spacing-04;
-  transition: background motion.$duration-fast-02 motion.motion(standard, productive);
+  display: flex;
 
   .anchor--grid & {
     top: auto;
     bottom: spacing.$spacing-04;
   }
+}
+
+.tags-item {
+  margin: 0 spacing.$spacing-03;
+}
+
+.framework {
+  transition: background motion.$duration-fast-02 motion.motion(standard, productive);
 
   .anchor:hover &,
   .anchor:focus & {

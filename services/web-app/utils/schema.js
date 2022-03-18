@@ -7,6 +7,8 @@
 
 import { get } from 'lodash'
 
+import { type } from '@/data/type'
+
 /**
  * Defines the sort order of assets by a key
  * @param {string} key
@@ -41,6 +43,15 @@ export const librarySortComparator = (libraryA, libraryB) => {
  */
 export const getAssetId = (asset) => {
   return get(asset, 'content.id')
+}
+
+/**
+ * Gets the asset type object. If not found, default to component.
+ * @param {import('../typedefs').Asset} asset
+ * @returns {Object} Asset type
+ */
+export const getAssetType = (asset) => {
+  return get(type, `.${asset.content.type}`, type.component)
 }
 
 /**

@@ -10,25 +10,35 @@ export const type = {
   component: {
     color: '#d0e2ff',
     icon: TextInput,
-    name: 'Component'
+    name: 'Component',
+    namePlural: 'Components',
+    path: '/assets/components'
   },
   element: {
     icon: Construct,
-    name: 'Element'
+    name: 'Element',
+    namePlural: 'Elements',
+    path: '/assets/elements'
   },
   function: {
     color: '#a7f0ba',
     icon: CodeSyntax,
-    name: 'Function'
+    name: 'Function',
+    namePlural: 'Functions',
+    path: '/assets/functions'
   },
   pattern: {
     color: '#e8daff',
     icon: Pattern,
-    name: 'Pattern'
+    name: 'Pattern',
+    namePlural: 'Patterns',
+    path: '/assets/patterns'
   },
   template: {
     color: '#ffd6d8',
     icon: TextLayout,
-    name: 'Template'
+    name: 'Template',
+    namePlural: 'Templates',
+    path: '/assets/templates'
   }
 }

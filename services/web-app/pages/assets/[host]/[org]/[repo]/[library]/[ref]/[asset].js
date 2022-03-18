@@ -29,6 +29,7 @@ import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
+import { getAssetType } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 
 import styles from './[asset].module.scss'
@@ -54,12 +55,8 @@ const Asset = ({ libraryData }) => {
 
   const breadcrumbItems = [
     {
-      name: 'Libraries',
-      path: '/assets/libraries'
-    },
-    {
-      name: libraryData.content.name,
-      path: `/assets/${getSlug(libraryData.content)}`
+      name: getAssetType(assetData).namePlural,
+      path: getAssetType(assetData).path
     },
     {
       name

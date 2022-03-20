@@ -19,7 +19,7 @@
   @include breakpoint.breakpoint(lg) {
     position: sticky;
 
-    top: spacing.$spacing-09 + spacing.$spacing-05;
+    top: calc(spacing.$spacing-11 + spacing.$spacing-10);
   }
 }
 

@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { FileBackup } from '@carbon/pictograms-react'
 import { Button, Column, Grid } from '@carbon/react'
 import { ArrowRight, Events } from '@carbon/react/icons'
@@ -19,6 +20,7 @@ import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
+import PageNav from '@/components/page-nav'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
@@ -67,6 +69,21 @@ const Library = ({ libraryData, params }) => {
   const { sponsor } = libraryData.params
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
 
+  const pageNavItems = [
+    {
+      name: 'At a glance',
+      path: '#at-a-glance'
+    },
+    {
+      name: 'Dependencies',
+      path: '#dependencies'
+    },
+    {
+      name: 'Contributors',
+      path: '#contributors'
+    }
+  ]
+
   return (
     <>
       <NextSeo {...seo} />
@@ -76,11 +93,11 @@ const Library = ({ libraryData, params }) => {
           <PageBreadcrumb items={breadcrumbItems} />
         </Column>
         <Column sm={4} md={8} lg={4}>
-          {/* In page nav  */}
+          <PageNav items={pageNavItems}></PageNav>
         </Column>
         <Column sm={4} md={8} lg={12}>
           <Dashboard className={styles.dashboard}>
-            <Column className={dashboardStyles.column} lg={1}>
+            <Column className={dashboardStyles.column} lg={1} id="at-a-glance">
               <DashboardItem
                 aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
                 border={['sm']}
@@ -143,6 +160,13 @@ const Library = ({ libraryData, params }) => {
               ))}
             </ul>
           </div>
+
+          <h3 id="dependencies" className={styles.h3}>
+            Dependencies
+          </h3>
+          <h3 id="contributors" className={styles.h3}>
+            Contributors
+          </h3>
         </Column>
       </Grid>
     </>

@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use '@carbon/react/scss/spacing' as spacing;
 
 *,
 *::before,
@@ -13,6 +14,13 @@
 
 html {
   box-sizing: border-box;
+  scroll-behavior: smooth;
+  // nav height + spacing
+  scroll-padding-top: calc(spacing.$spacing-09 + spacing.$spacing-07);
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
 }
 
 html,

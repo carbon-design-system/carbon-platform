@@ -1,0 +1,54 @@
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+@use '~styles/mixins' as mixins;
+
+.container {
+  margin-top: spacing.$spacing-11;
+  margin-left: -(spacing.$spacing-06);
+
+  @include breakpoint.breakpoint(lg) {
+    position: sticky;
+
+    top: spacing.$spacing-09 + spacing.$spacing-05;
+  }
+}
+
+.link {
+  @include type.type-style('productive-heading-01');
+
+  display: flex;
+  width: 100%;
+  height: 32px;
+  align-items: center;
+  padding-left: calc(spacing.$spacing-06 - spacing.$spacing-02);
+  border-left: 4px solid theme.$border-subtle-03;
+  color: theme.$text-secondary;
+  font-weight: normal;
+  text-decoration: none;
+
+  &:hover {
+    border-color: theme.$border-subtle-selected-03;
+    color: theme.$text-primary;
+  }
+
+  &:focus {
+    outline: 2px solid theme.$border-interactive;
+  }
+}
+
+.link-active,
+.link-active:hover {
+  border-color: theme.$link-primary;
+  color: theme.$text-primary;
+  font-weight: bold;
+}

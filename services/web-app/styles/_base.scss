@@ -13,10 +13,12 @@
 }
 
 html {
+  /* nav height + spacing */
+  --scroll-height: #{calc(spacing.$spacing-09 + spacing.$spacing-07)};
+
   box-sizing: border-box;
   scroll-behavior: smooth;
-  // nav height + spacing
-  scroll-padding-top: calc(spacing.$spacing-09 + spacing.$spacing-07);
+  scroll-padding-top: var(--scroll-height);
 
   @media (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;

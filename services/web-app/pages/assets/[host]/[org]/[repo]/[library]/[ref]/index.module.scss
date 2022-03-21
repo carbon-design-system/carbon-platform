@@ -33,8 +33,9 @@
   }
 }
 
-//delete this before merging
+/* delete this before merging */
 .h3 {
   display: block;
   height: 2500px;
+  /* scroll-margin-top: height of any sticky elements; */
 }

@@ -17,6 +17,7 @@ import { libraryPropTypes, paramsPropTypes } from 'types'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
+import ExternalLinks from '@/components/external-links'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
@@ -67,6 +68,14 @@ const Library = ({ libraryData, params }) => {
   const { sponsor } = libraryData.params
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
 
+  let externalDocsLink
+  if (libraryData.content.externalDocsUrl) {
+    externalDocsLink = {
+      name: 'External docs',
+      url: libraryData.content.externalDocsUrl
+    }
+  }
+
   return (
     <>
       <NextSeo {...seo} />
@@ -115,11 +124,11 @@ const Library = ({ libraryData, params }) => {
                   <Column
                     className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}
                   >
-                    <dt className={clsx(dashboardStyles.label)}>Demos</dt>
+                    <dt className={clsx(dashboardStyles.label)}>Links</dt>
                     <dd className={dashboardStyles.meta}>
-                      <Link href="https://carbondesignsystem.com">
-                        <a className={dashboardStyles.metaLink}>Coming soon...</a>
-                      </Link>
+                      <ExternalLinks
+                        links={[...get(libraryData, 'content.demoLinks', []), externalDocsLink]}
+                      />
                     </dd>
                   </Column>
                   <Button className={styles.versionsButton}>

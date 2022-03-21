@@ -26,7 +26,7 @@ $background-header: #d0e2ff;
     position: absolute;
     z-index: 0;
     left: 0;
-    width: 100vw;
+    width: calc(100vw - var(--scrollbar-width));
     height: $page-header-height;
     background: $background-header;
     content: '';

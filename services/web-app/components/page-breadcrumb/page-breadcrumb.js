@@ -12,7 +12,7 @@ import styles from './page-breadcrumb.module.scss'
 
 const PageBreadcrumb = ({ className, items = [] }) => {
   return (
-    <nav className={clsx(styles.container, className)}>
+    <nav className={clsx(styles.container, className)} aria-label="Breadcrumb">
       <ol className={styles.list}>
         {items.map((item, i) => (
           <li className={styles.item} key={i}>

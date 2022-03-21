@@ -15,7 +15,7 @@ const PageNav = ({ className, items = [] }) => {
   const router = useRouter()
 
   return (
-    <nav className={clsx(styles.container, className)}>
+    <nav className={clsx(styles.container, className)} aria-label="Page navigation">
       <ul className={styles.list}>
         {items.map((item, i) => (
           <li className={styles.item} key={i}>

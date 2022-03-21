@@ -13,7 +13,7 @@
 }
 
 html {
-  /* nav height + spacing */
+  /* nav height + spacing, will need to set this dynamically for other sticky elements */
   --scroll-height: #{calc(spacing.$spacing-09 + spacing.$spacing-07)};
 
   box-sizing: border-box;

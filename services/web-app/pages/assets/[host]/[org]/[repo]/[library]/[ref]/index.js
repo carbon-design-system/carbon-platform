@@ -71,16 +71,16 @@ const Library = ({ libraryData, params }) => {
 
   const pageNavItems = [
     {
-      name: 'At a glance',
-      path: '#at-a-glance'
+      title: 'At a glance',
+      id: 'glance'
     },
     {
-      name: 'Dependencies',
-      path: '#dependencies'
+      title: 'Dependencies',
+      id: 'dependencies'
     },
     {
-      name: 'Contributors',
-      path: '#contributors'
+      title: 'Contributors',
+      id: 'contributors'
     }
   ]
 
@@ -97,7 +97,7 @@ const Library = ({ libraryData, params }) => {
         </Column>
         <Column sm={4} md={8} lg={12}>
           <Dashboard className={styles.dashboard}>
-            <Column className={dashboardStyles.column} lg={1} id="at-a-glance">
+            <Column className={dashboardStyles.column} lg={1} id="glance">
               <DashboardItem
                 aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
                 border={['sm']}

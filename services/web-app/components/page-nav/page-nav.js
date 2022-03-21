@@ -19,15 +19,15 @@ const PageNav = ({ className, items = [] }) => {
       <ul className={styles.list}>
         {items.map((item, i) => (
           <li className={styles.item} key={i}>
-            {item.path && (
-              <Link href={item.path}>
+            {item.id && (
+              <Link href={`#${item.id}`}>
                 <a
                   className={clsx(
                     styles.link,
-                    router.asPath.includes(item.path) ? styles.linkActive : ''
+                    router.asPath.includes(item.id) ? styles.linkActive : ''
                   )}
                 >
-                  {item.name}
+                  {item.title}
                 </a>
               </Link>
             )}

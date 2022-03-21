@@ -18,6 +18,7 @@ import { libraryPropTypes } from 'types'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
+import ExternalLinks from '@/components/external-links'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import StatusIcon from '@/components/status-icon'
@@ -29,6 +30,7 @@ import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
+import { getTagsList } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 
 import styles from './[asset].module.scss'
@@ -82,6 +84,14 @@ const Asset = ({ libraryData }) => {
     return testPath.test(path)
   }
 
+  let externalDocsLink
+  if (assetData.content.externalDocsUrl) {
+    externalDocsLink = {
+      name: 'External docs',
+      url: assetData.content.externalDocsUrl
+    }
+  }
+
   return (
     <>
       <NextSeo {...seo} />
@@ -98,7 +108,7 @@ const Asset = ({ libraryData }) => {
               <dd className={dashboardStyles.labelLarge}>{libraryData.content.name}</dd>
             </dl>
             <Link href={libraryPath}>
-              <a className={clsx(dashboardStyles.metaLink, dashboardStyles.metaLinkLarge)}>
+              <a className={clsx(dashboardStyles.metaLinkLarge, 'cds--link')}>
                 {`v${libraryData.content.version}`}
               </a>
             </Link>
@@ -139,16 +149,16 @@ const Asset = ({ libraryData }) => {
                 </dd>
               </Column>
               <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
-                <dt className={clsx(dashboardStyles.label)}>Demos</dt>
+                <dt className={clsx(dashboardStyles.label)}>Links</dt>
                 <dd className={dashboardStyles.meta}>
-                  <Link href={libraryPath}>
-                    <a className={dashboardStyles.metaLink}>Coming soon...</a>
-                  </Link>
+                  <ExternalLinks
+                    links={[...get(assetData, 'content.demoLinks', []), externalDocsLink]}
+                  />
                 </dd>
               </Column>
               <Column className={dashboardStyles.subcolumn}>
                 <dt className={dashboardStyles.label}>Tags</dt>
-                <dd className={dashboardStyles.meta}>Coming soon...</dd>
+                <dd className={dashboardStyles.meta}>{getTagsList(assetData).join(', ') || '–'}</dd>
               </Column>
               <Button className={styles.kitsButton}>
                 Coming soon...

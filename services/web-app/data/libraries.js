@@ -388,41 +388,46 @@ const devLibraries = {
   },
   'ibmdotcom-react': {
     host: 'github.com',
-    org: 'mattrosno',
+    org: 'francinelucca',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/react',
     sponsor: 'ibm-dotcom',
-    group: ibmdotcomGroup
+    group: ibmdotcomGroup,
+    ref: 'feat/carbon-platform/index-libraries'
   },
   'ibmdotcom-web-components': {
     host: 'github.com',
-    org: 'mattrosno',
+    org: 'francinelucca',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/web-components',
     sponsor: 'ibm-dotcom',
-    group: ibmdotcomGroup
+    group: ibmdotcomGroup,
+    ref: 'feat/carbon-platform/index-libraries'
   },
   'ibmdotcom-services': {
     host: 'github.com',
-    org: 'mattrosno',
+    org: 'francinelucca',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/services',
-    sponsor: 'ibm-dotcom'
+    sponsor: 'ibm-dotcom',
+    ref: 'feat/carbon-platform/index-libraries'
   },
   'ibmdotcom-styles': {
     host: 'github.com',
-    org: 'mattrosno',
+    org: 'francinelucca',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/styles',
     sponsor: 'ibm-dotcom',
-    group: ibmdotcomGroup
+    group: ibmdotcomGroup,
+    ref: 'feat/carbon-platform/index-libraries'
   },
   'ibmdotcom-utilities': {
     host: 'github.com',
-    org: 'mattrosno',
+    org: 'francinelucca',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/utilities',
-    sponsor: 'ibm-dotcom'
+    sponsor: 'ibm-dotcom',
+    ref: 'feat/carbon-platform/index-libraries'
   }
 }
 

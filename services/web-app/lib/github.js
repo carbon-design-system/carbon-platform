@@ -163,7 +163,7 @@ export const getLibraryData = async (params = {}) => {
     content: {
       ...packageJsonContent,
       ...library, // spread last to use schema description if set
-      noIndex: !!library.noIndex // default to false if not specified
+      noIndex: !!library.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
     },
     assets: filteredAssets
   }
@@ -244,7 +244,7 @@ const getLibraryAssets = async (params = {}) => {
           content: {
             id: assetKey,
             ...asset,
-            noIndex: !!asset.noIndex // default to false if not specified
+            noIndex: !!asset.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
           }
         }
       })
@@ -269,9 +269,9 @@ export const getAllLibraries = async () => {
 
   for (const [slug, library] of Object.entries(libraryAllowList)) {
     const params = {
-      ...library,
       library: slug,
-      ref: 'latest'
+      ref: 'latest',
+      ...library
     }
 
     promises.push(getLibraryData(params))

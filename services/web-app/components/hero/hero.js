@@ -20,14 +20,16 @@ const Hero = ({ title, description, image, imageAlt }) => {
         </Column>
       </Grid>
       {image && (
-        <div className={styles.imageWrap}>
-          <Image
-            alt={imageAlt}
-            className={styles.image}
-            src={image}
-            layout="fill"
-            objectFit="cover"
-          />
+        <div className={styles.imageContainer}>
+          <div className={styles.imagePosition}>
+            <Image
+              alt={imageAlt}
+              className={styles.image}
+              src={image}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
         </div>
       )}
     </Theme>

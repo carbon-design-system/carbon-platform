@@ -23,6 +23,10 @@ html {
   @media (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;
   }
+  // This is a fallback in case the effect does not run in the Layout component. It can't be unit-
+  // less for the CSS custom property to be picked up.
+  /* stylelint-disable-next-line length-zero-no-unit */
+  --scrollbar-width: 0px;
 }
 
 html,

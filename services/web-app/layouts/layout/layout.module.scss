@@ -12,8 +12,6 @@
 @use '@carbon/styles/scss/utilities/z-index' as z-index;
 
 .body {
-  // overflow hidden for full-bleed backgrounds
-  overflow: hidden;
   flex-grow: 1;
   background: theme.$background;
 }

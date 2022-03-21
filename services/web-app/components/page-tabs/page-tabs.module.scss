@@ -24,12 +24,6 @@
 .tab-list {
   min-height: $spacing-09;
 
-  // TODO: fix hover / active styles
-  :global(.cds--tabs__nav-item--selected) {
-    border-bottom: $spacing-02 solid $border-interactive;
-    font-weight: 600;
-  }
-
   :global(.cds--tabs__nav-link) {
     max-width: fit-content;
 
@@ -37,9 +31,17 @@
     color: $text-secondary;
     @include type-style('body-short-02', true);
 
-    &:hover {
+    &:hover:not(:focus) {
       border-bottom: $spacing-02 solid $layer-active-01;
       color: $text-primary;
     }
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  :global(.cds--tabs__nav-item--selected) {
+    border-bottom: $spacing-02 solid $border-interactive;
+    @include type-style('heading-02');
+
+    color: $text-primary;
   }
 }

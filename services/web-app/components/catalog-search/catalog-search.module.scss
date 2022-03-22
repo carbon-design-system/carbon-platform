@@ -1,22 +1,27 @@
-//
-// Copyright IBM Corp. 2021, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+
 .container {
   // position above CatalogSort
   // override carbon grid gutter
   position: sticky;
   z-index: 2;
-  top: $spacing-09 + $spacing-05;
+  top: spacing.$spacing-09 + spacing.$spacing-05;
   --cds-grid-gutter: 0;
-  @include breakpoint-down(md) {
-    top: $spacing-09;
+  @include breakpoint.breakpoint-down(md) {
+    top: spacing.$spacing-09;
   }
-  @include breakpoint(md) {
-    margin-right: -$spacing-05;
-    margin-left: -$spacing-05;
+  @include breakpoint.breakpoint(md) {
+    margin-right: -(spacing.$spacing-05);
+    margin-left: -(spacing.$spacing-05);
   }
 
   // gray background above search when scrolled
@@ -24,9 +29,9 @@
     position: absolute;
     right: 0;
     bottom: 100%;
-    left: -$spacing-05;
-    height: $spacing-05;
-    background: $background;
+    left: -(spacing.$spacing-05);
+    height: spacing.$spacing-05;
+    background: theme.$background;
     content: '';
   }
 
@@ -37,26 +42,26 @@
 
   :global(.cds--search--lg .cds--search-input),
   :global(.cds--search--lg .cds--search-close) {
-    height: $spacing-09;
+    height: spacing.$spacing-09;
   }
 }
 
 .column {
   &:not(:first-child) {
-    border-left: 1px solid $layer-accent;
+    border-left: 1px solid theme.$layer-accent;
   }
 }
 
 .column-search {
-  @include breakpoint-down(md) {
+  @include breakpoint.breakpoint-down(md) {
     display: flex;
   }
 }
 
 .filter {
-  @include breakpoint-down(md) {
-    flex-basis: $spacing-09;
+  @include breakpoint.breakpoint-down(md) {
+    flex-basis: spacing.$spacing-09;
     flex-shrink: 0;
-    border-left: 1px solid $layer-accent;
+    border-left: 1px solid theme.$layer-accent;
   }
 }

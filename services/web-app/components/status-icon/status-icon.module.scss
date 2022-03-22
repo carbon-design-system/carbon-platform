@@ -1,17 +1,19 @@
-//
-// Copyright IBM Corp. 2021, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/theme' as theme;
 
 $status-experimental: #8a3ffc;
 
 .icon {
-  color: $icon-primary;
+  color: theme.$icon-primary;
 
   &--draft {
-    color: $text-helper;
+    color: theme.$text-helper;
   }
 
   &--experimental {
@@ -19,10 +21,10 @@ $status-experimental: #8a3ffc;
   }
 
   &--stable {
-    color: $support-success;
+    color: theme.$support-success;
   }
 
   &--deprecated {
-    color: $support-error;
+    color: theme.$support-error;
   }
 }

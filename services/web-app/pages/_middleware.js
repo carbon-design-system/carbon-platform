@@ -20,7 +20,7 @@ function exitWith404(req) {
 
 function logIncomingRequest(req) {
   sendLocalRequest(req, '/api/log-request', false, 'POST', {
-    logMessage: `[${new Date().toISOString()}] "${req.method} ${req.nextUrl.pathname}" "${
+    logMessage: `"${req.method} ${req.nextUrl.pathname}" "${
       req.ua.ua
     }" "${req.ip}"`
   })

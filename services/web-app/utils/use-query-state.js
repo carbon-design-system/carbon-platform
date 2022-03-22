@@ -68,16 +68,20 @@ const useQueryState = (
       if (typeof validateValue === 'function' && !validateValue(val)) {
         const storageValue = localStorage.getItem(`${router.pathname}:${key}`)
         const parsedValue = isJsonString(storageValue) ? JSON.parse(storageValue) : storageValue
-        const queryStringFromStorage = queryString.stringify(
-          { key: parsedValue },
-          queryStringConfig
-        )
+        if (parsedValue !== undefined) {
+          const queryStringFromStorage = queryString.stringify(
+            { key: parsedValue },
+            queryStringConfig
+          )
 
-        return queryString.parseUrl(`?${queryStringFromStorage}`, {
-          ...queryStringConfig,
-          parseNumbers,
-          parseBooleans
-        }).query.key
+          return queryString.parseUrl(`?${queryStringFromStorage}`, {
+            ...queryStringConfig,
+            parseNumbers,
+            parseBooleans
+          }).query.key
+        }
+        // invalid val and no storage value set, returning null
+        return null
       }
 
       return val

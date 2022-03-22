@@ -67,14 +67,47 @@ const assetIsInFilter = (asset, filter) => {
 }
 
 /**
+ * Takes an array of assets and returns only id-unique assets (removes duplicate IDs)
+ * @param {import('../../typedefs').Asset[]} assets list of assets to remove duplicates from
+ * @returns {import('../../typedefs').Asset[]} array of unique assets
+ */
+const getUniqueAssetsById = (assets) => {
+  return assets.filter(
+    (value, index, self) => index === self.findIndex((t) => t.content.id === value.content.id)
+  )
+}
+
+/**
+ * Finds and returns assets that match a search criteria (name or description)
+ * from an array of assets
+ * @param {import('../../typedefs').Asset[]} assets list of assets to filter
+ * @param {string} search search string to match assets against
+ * @returns {import('../../typedefs').Asset[]} array of assets that match search criteria
+ */
+const filterAssetsBysearch = (assets, search) => {
+  return assets.filter((asset) => {
+    const { description = '', name = '' } = asset.content
+
+    if (search) {
+      return (
+        (name && name.toLowerCase().includes(search.toLowerCase())) ||
+        (description && description.toLowerCase().includes(search.toLowerCase()))
+      )
+    }
+
+    return true
+  })
+}
+
+/**
  * Sorts and filters an array of assets given a filter, sort key, and search query. Until a better
  * solution is in place, the search is simply a filter to remove assets that don't match any part of
  * the name or description.
- * @param {import('../../typedefs').Asset[]} assets
- * @param {Object} filter
- * @param {string} sort
- * @param {string} search
- * @returns {import('../../typedefs').Asset[]}
+ * @param {import('../../typedefs').Asset[]} assets list of assets to filter
+ * @param {Object} filter filter object to apply to assets
+ * @param {string} sort sort type to apply to assets
+ * @param {string} search search string to match assets against
+ * @returns {import('../../typedefs').Asset[]} array of filtered assets
  */
 const getFilteredAssets = (assets, filter, sort, search) => {
   const skippedAssets = []
@@ -100,24 +133,9 @@ const getFilteredAssets = (assets, filter, sort, search) => {
       )
   )
 
-  assetsWithAppliedFilter.push(
-    ...assetsNotInCanonical.filter(
-      (value, index, self) => index === self.findIndex((t) => t.content.id === value.content.id)
-    )
-  )
+  assetsWithAppliedFilter.push(...getUniqueAssetsById(assetsNotInCanonical))
 
-  return assetsWithAppliedFilter.sort(assetSortComparator(sort)).filter((asset) => {
-    const { description = '', name = '' } = asset.content
-
-    if (search) {
-      return (
-        (name && name.toLowerCase().includes(search.toLowerCase())) ||
-        (description && description.toLowerCase().includes(search.toLowerCase()))
-      )
-    }
-
-    return true
-  })
+  return filterAssetsBysearch(assetsWithAppliedFilter.sort(assetSortComparator(sort), search))
 }
 
 /**

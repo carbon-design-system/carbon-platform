@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.1.76",
+  "version": "0.1.77",
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
@@ -19,23 +19,24 @@
     "dev:secure:clean": "npm run clean && npm run dev:secure",
     "lint": "next lint",
     "service:build": "npm run build",
-    "start": "node server.js",
+    "start": "next start",
     "test": "echo 'No tests defined yet!'"
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "dependencies": {
-    "@carbon/pictograms-react": "^11.23.0",
-    "@carbon/react": "^0.15.2",
-    "@mdx-js/loader": "^2.0.0",
+    "@carbon/pictograms-react": "^11.24.0",
+    "@carbon/react": "^0.16.2",
+    "@mdx-js/loader": "^2.1.0",
     "@next/mdx": "^12.1.0",
-    "@octokit/core": "^3.5.1",
     "ajv": "^8.10.0",
+    "@octokit/core": "^3.6.0",
     "cache-manager": "^3.6.0",
     "cache-manager-fs-hash": "^1.0.0",
     "clsx": "^1.1.1",
     "cookie-parser": "^1.4.6",
+    "css-loader": "^6.7.1",
     "express-session": "^1.17.2",
     "fs-extra": "^10.0.1",
     "js-yaml": "^4.1.0",
@@ -48,10 +49,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
+    "sass": "^1.49.9",
     "slugify": "^1.6.5"
-  },
-  "devDependencies": {
-    "css-loader": "^6.7.1",
-    "sass": "^1.49.9"
   }
 }

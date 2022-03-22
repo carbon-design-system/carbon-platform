@@ -111,7 +111,7 @@ const Asset = ({ libraryData }) => {
                   <dt className={dashboardStyles.label}>Library</dt>
                   <dd className={dashboardStyles.labelLarge}>{libraryData.content.name}</dd>
                 </dl>
-                <Link href={libraryPath} passHref={true}>
+                <Link href={libraryPath} passHref>
                   <CarbonLink className={clsx(dashboardStyles.metaLinkLarge)}>
                     {`v${libraryData.content.version}`}
                   </CarbonLink>

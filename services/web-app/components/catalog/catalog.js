@@ -134,8 +134,9 @@ const getFilteredAssets = (assets, filter, sort, search) => {
   )
 
   assetsWithAppliedFilter.push(...getUniqueAssetsById(assetsNotInCanonical))
+  assetsWithAppliedFilter.sort(assetSortComparator(sort))
 
-  return filterAssetsBysearch(assetsWithAppliedFilter.sort(assetSortComparator(sort), search))
+  return filterAssetsBysearch(assetsWithAppliedFilter, search)
 }
 
 /**

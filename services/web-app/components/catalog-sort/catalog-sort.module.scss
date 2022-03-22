@@ -14,8 +14,6 @@
     position: sticky;
     z-index: 1;
     top: spacing.$spacing-09 + spacing.$spacing-05 + spacing.$spacing-09;
-    margin-right: -(spacing.$spacing-05);
-    margin-left: -(spacing.$spacing-05);
 
     &--sticky {
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);

@@ -32,7 +32,7 @@ const CatalogList = ({
   const renderAssets = assets.slice(start, end)
 
   return (
-    <Grid as="ul" className={clsx(styles.container, isLgGrid && styles.containerGrid)}>
+    <Grid as="ul" className={clsx(styles.container, isLgGrid && styles.containerGrid)} condensed>
       {renderAssets.map((asset, i) => (
         <CatalogItem
           assetCounts={assetCounts}

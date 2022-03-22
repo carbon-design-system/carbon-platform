@@ -19,10 +19,6 @@
   @include breakpoint.breakpoint-down(md) {
     top: spacing.$spacing-09;
   }
-  @include breakpoint.breakpoint(md) {
-    margin-right: -(spacing.$spacing-05);
-    margin-left: -(spacing.$spacing-05);
-  }
 
   // gray background above search when scrolled
   &::before {

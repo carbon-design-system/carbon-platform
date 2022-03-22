@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.21](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.20...@carbon-platform/icons@0.0.21) (2022-03-22)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** update @carbon/react and other packages ([eac0c0d](https://github.com/carbon-design-system/carbon-platform/commit/eac0c0d397209bee13b8818055e2f9a075922253))
+
+### [0.0.20](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.19...@carbon-platform/icons@0.0.20) (2022-03-15)
+
+
+### Features 🌟
+
+* moved IBM logo to carboon-icons package ([1e714d0](https://github.com/carbon-design-system/carbon-platform/commit/1e714d012d21ce70eb202e5de87b3912e161bdf6))
+
 ### [0.0.19](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.18...@carbon-platform/icons@0.0.19) (2022-03-09)
 
 

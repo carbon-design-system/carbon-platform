@@ -29,20 +29,6 @@ module.exports = withMDX({
   images: {
     domains: ['raw.githubusercontent.com']
   },
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-    prependData: `
-      @use '~@carbon/motion/scss/motion' as *;
-      @use '~@carbon/react/scss/breakpoint' as *;
-      @use '~@carbon/react/scss/spacing' as *;
-      @use '~@carbon/react/scss/theme' as *;
-      @use '~@carbon/react/scss/themes';
-      @use '~@carbon/react/scss/type' as *;
-      @use '~@carbon/react/scss/zone';
-      @use './styles/mixins' as *;
-      @use '~carbon-components/scss/globals/scss/_layout' as layout;
-    `
-  },
   swcMinify: true,
   webpack(config) {
     const rules = config.module.rules

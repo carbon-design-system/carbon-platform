@@ -1,16 +1,21 @@
-//
-// Copyright IBM Corp. 2021, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+
 .container {
-  @include breakpoint(md) {
+  @include breakpoint.breakpoint(md) {
     position: sticky;
     z-index: 1;
-    top: $spacing-09 + $spacing-05 + $spacing-09;
-    margin-right: -$spacing-05;
-    margin-left: -$spacing-05;
+    top: spacing.$spacing-09 + spacing.$spacing-05 + spacing.$spacing-09;
+    margin-right: -(spacing.$spacing-05);
+    margin-left: -(spacing.$spacing-05);
 
     &--sticky {
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -25,20 +30,20 @@
 
 .grid {
   // override carbon grid gutter
-  background: $layer-01;
+  background: theme.$layer-01;
   --cds-grid-gutter: 0;
 }
 
 .column {
-  background: $layer-01;
+  background: theme.$layer-01;
 
   &:not(:first-child) {
-    border-left: 1px solid $layer-accent;
+    border-left: 1px solid theme.$layer-accent;
   }
 
   &--switcher {
     text-align: right;
-    @include breakpoint-down(lg) {
+    @include breakpoint.breakpoint-down(lg) {
       display: none;
     }
   }
@@ -49,12 +54,12 @@
   position: relative;
   display: flex;
   width: 100%;
-  padding-left: $spacing-05;
+  padding-left: spacing.$spacing-05;
   grid-gap: 0;
 
   // overide carbon color
   :global(.cds--label) {
-    color: $text-primary;
+    color: theme.$text-primary;
   }
 
   // overide carbon position, flex-grow
@@ -72,8 +77,8 @@
 
 .button {
   // override carbon because `lg` isn't supported
-  width: $spacing-09;
-  height: $spacing-09;
+  width: spacing.$spacing-09;
+  height: spacing.$spacing-09;
 
   // override icon alignment because the IconButton only supports `sm` size currently
   &:global(.cds--btn--sm) {

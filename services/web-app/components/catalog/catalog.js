@@ -26,6 +26,7 @@ import {
   getCanonicalLibraryId,
   librarySortComparator
 } from '@/utils/schema'
+import { getSlug } from '@/utils/slug'
 import usePrevious from '@/utils/use-previous'
 import useQueryState from '@/utils/use-query-state'
 
@@ -60,10 +61,6 @@ const assetIsInFilter = (asset, filter) => {
     } else {
       if (!value.includes(asset.content[key])) return false
     }
-  }
-
-  if (collapseAssetGroups(asset, filter)) {
-    return get(asset, 'library.content.id') === getCanonicalLibraryId(asset)
   }
 
   return true
@@ -119,6 +116,8 @@ const filterPropertyHasValidValue = (filter, key, value) => {
     !value.some((val) => !Object.keys(filter[key].values).includes(val))
   )
 }
+const isCanonicalLibAsset = (asset) =>
+  get(asset, 'library.content.id') === getCanonicalLibraryId(asset)
 
 function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {} }) {
   const [possibleFilterValues, setPossibleFilterValues] = useState(getFilters({ collection, type }))
@@ -288,11 +287,52 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     const cleanFilter = Object.fromEntries(
       Object.entries({ framework, sponsor, platform, tags, status }).filter(([_, v]) => !!v)
     )
+    const skippedAssets = []
+    const assetsWithAppliedFilter = assets.filter((asset) => {
+      if (assetIsInFilter(asset, filter)) {
+        if (collapseAssetGroups(asset, filter)) {
+          const isCanonicalAsset = isCanonicalLibAsset(asset)
+          if (!isCanonicalAsset) skippedAssets.push(asset)
+          return isCanonicalAsset
+        }
+        return true
+      } else {
+        return false
+      }
+    })
+
+    const assetsNotInCanonical = skippedAssets.filter(
+      (asset) =>
+        !assetsWithAppliedFilter.some(
+          (filteredAsset) => getSlug(filteredAsset.content) === getSlug(asset.content)
+        )
+    )
+
+    assetsWithAppliedFilter.push(
+      ...assetsNotInCanonical.filter(
+        (value, index, self) => index === self.findIndex((t) => t.content.id === value.content.id)
+      )
+    )
+
+    setFilteredAssets(
+      assetsWithAppliedFilter.sort(assetSortComparator(sort)).filter((asset) => {
+        const { description = '', name = '' } = asset.content
+
+        if (search) {
+          return (
+            (name && name.toLowerCase().includes(search.toLowerCase())) ||
+            (description && description.toLowerCase().includes(search.toLowerCase()))
+          )
+        }
+
+        return true
+      })
+    )
 
     if (!isEqual(cleanFilter, filter)) {
       setFilter(cleanFilter)
     }
-  }, [framework, sponsor, platform, tags, status, filter])
+  }, [framework, sponsor, platform, tags, status, filter, assets, search, sort])
 
   // Update possible filter values if the collection or type changes
   useEffect(() => {

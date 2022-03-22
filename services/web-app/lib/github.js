@@ -204,11 +204,7 @@ export const getLibraryData = async (params = {}) => {
 
   const packageJsonContent = await getPackageJsonContent(params, library.packageJsonPath)
 
-  let filteredAssets = libraryParams.asset
-    ? assets.filter((asset) => getSlug(asset.content) === libraryParams.asset)
-    : assets
-
-  filteredAssets = filteredAssets.filter((asset) => {
+  const filteredAssets = assets.filter((asset) => {
     const isValidAsset = validateAsset(asset.content, library)
     if (libraryParams.asset) {
       return isValidAsset && getSlug(asset.content) === libraryParams.asset

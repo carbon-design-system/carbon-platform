@@ -59,7 +59,7 @@
     "prettier-config-carbon": "^0.6.0",
     "standard-version": "^9.3.2",
     "stylelint": "^14.6.0",
-    "stylelint-config-carbon": "^1.9.0",
+    "stylelint-config-carbon": "^1.8.0",
     "ts-jest": "^27.1.3"
   }
 }

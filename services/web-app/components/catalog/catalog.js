@@ -300,6 +300,8 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     return totals
   })
 
+  // using hook to store previous values of params to determine whether
+  // the following useEffect should run (doing deep comparison with isEqual on filter)
   const prevValues = usePrevious({ sort, search, filter })
   useEffect(() => {
     if (

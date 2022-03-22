@@ -77,23 +77,47 @@ const assetIsInFilter = (asset, filter) => {
  * @returns {import('../../typedefs').Asset[]}
  */
 const getFilteredAssets = (assets, filter, sort, search) => {
-  return assets
-    ? [...assets]
-        .sort(assetSortComparator(sort))
-        .filter((asset) => assetIsInFilter(asset, filter))
-        .filter((asset) => {
-          const { description = '', name = '' } = asset.content
-
-          if (search) {
-            return (
-              (name && name.toLowerCase().includes(search.toLowerCase())) ||
-              (description && description.toLowerCase().includes(search.toLowerCase()))
-            )
+  const skippedAssets = []
+  const assetsWithAppliedFilter = assets
+    ? [...assets].filter((asset) => {
+        if (assetIsInFilter(asset, filter)) {
+          if (collapseAssetGroups(asset, filter)) {
+            const isCanonicalAsset = isCanonicalLibAsset(asset)
+            if (!isCanonicalAsset) skippedAssets.push(asset)
+            return isCanonicalAsset
           }
-
           return true
-        })
+        } else {
+          return false
+        }
+      })
     : []
+
+  const assetsNotInCanonical = skippedAssets.filter(
+    (asset) =>
+      !assetsWithAppliedFilter.some(
+        (filteredAsset) => getSlug(filteredAsset.content) === getSlug(asset.content)
+      )
+  )
+
+  assetsWithAppliedFilter.push(
+    ...assetsNotInCanonical.filter(
+      (value, index, self) => index === self.findIndex((t) => t.content.id === value.content.id)
+    )
+  )
+
+  return assetsWithAppliedFilter.sort(assetSortComparator(sort)).filter((asset) => {
+    const { description = '', name = '' } = asset.content
+
+    if (search) {
+      return (
+        (name && name.toLowerCase().includes(search.toLowerCase())) ||
+        (description && description.toLowerCase().includes(search.toLowerCase()))
+      )
+    }
+
+    return true
+  })
 }
 
 /**
@@ -127,7 +151,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     {
       defaultValue: ''
     },
-    (value) => !!value
+    () => true
   )
 
   const [search, setSearch] = useState(query)
@@ -181,7 +205,8 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     {
       defaultValue: defaultFilter.framework
     },
-    (value) => filterPropertyHasValidValue(possibleFilterValues, 'framework', value)
+    (value) =>
+      value === undefined || filterPropertyHasValidValue(possibleFilterValues, 'framework', value)
   )
 
   const [platform, setPlatform] = useQueryState(
@@ -189,7 +214,8 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     {
       defaultValue: defaultFilter.platform
     },
-    (value) => filterPropertyHasValidValue(possibleFilterValues, 'platform', value)
+    (value) =>
+      value === undefined || filterPropertyHasValidValue(possibleFilterValues, 'platform', value)
   )
 
   const [tags, setTags] = useQueryState(
@@ -197,7 +223,8 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     {
       defaultValue: defaultFilter.tags
     },
-    (value) => filterPropertyHasValidValue(possibleFilterValues, 'tags', value)
+    (value) =>
+      value === undefined || filterPropertyHasValidValue(possibleFilterValues, 'tags', value)
   )
 
   const [status, setStatus] = useQueryState(
@@ -205,7 +232,8 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     {
       defaultValue: defaultFilter.status
     },
-    (value) => filterPropertyHasValidValue(possibleFilterValues, 'status', value)
+    (value) =>
+      value === undefined || filterPropertyHasValidValue(possibleFilterValues, 'status', value)
   )
 
   const [sponsor, setSponsor] = useQueryState(
@@ -213,7 +241,8 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     {
       defaultValue: defaultFilter.sponsor
     },
-    (value) => filterPropertyHasValidValue(possibleFilterValues, 'sponsor', value)
+    (value) =>
+      value === undefined || filterPropertyHasValidValue(possibleFilterValues, 'sponsor', value)
   )
 
   const [filter, setFilter] = useState(
@@ -287,52 +316,11 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
     const cleanFilter = Object.fromEntries(
       Object.entries({ framework, sponsor, platform, tags, status }).filter(([_, v]) => !!v)
     )
-    const skippedAssets = []
-    const assetsWithAppliedFilter = assets.filter((asset) => {
-      if (assetIsInFilter(asset, filter)) {
-        if (collapseAssetGroups(asset, filter)) {
-          const isCanonicalAsset = isCanonicalLibAsset(asset)
-          if (!isCanonicalAsset) skippedAssets.push(asset)
-          return isCanonicalAsset
-        }
-        return true
-      } else {
-        return false
-      }
-    })
-
-    const assetsNotInCanonical = skippedAssets.filter(
-      (asset) =>
-        !assetsWithAppliedFilter.some(
-          (filteredAsset) => getSlug(filteredAsset.content) === getSlug(asset.content)
-        )
-    )
-
-    assetsWithAppliedFilter.push(
-      ...assetsNotInCanonical.filter(
-        (value, index, self) => index === self.findIndex((t) => t.content.id === value.content.id)
-      )
-    )
-
-    setFilteredAssets(
-      assetsWithAppliedFilter.sort(assetSortComparator(sort)).filter((asset) => {
-        const { description = '', name = '' } = asset.content
-
-        if (search) {
-          return (
-            (name && name.toLowerCase().includes(search.toLowerCase())) ||
-            (description && description.toLowerCase().includes(search.toLowerCase()))
-          )
-        }
-
-        return true
-      })
-    )
 
     if (!isEqual(cleanFilter, filter)) {
       setFilter(cleanFilter)
     }
-  }, [framework, sponsor, platform, tags, status, filter, assets, search, sort])
+  }, [framework, sponsor, platform, tags, status, filter])
 
   // Update possible filter values if the collection or type changes
   useEffect(() => {

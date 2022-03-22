@@ -9,6 +9,8 @@ import { useRouter } from 'next/router'
 import queryString from 'query-string'
 import { useCallback, useEffect, useState } from 'react'
 
+import { isJsonString } from './string'
+
 // see "bracket-separator" entry on https://www.npmjs.com/package/query-string
 const queryStringConfig = {
   arrayFormat: 'bracket-separator',
@@ -27,9 +29,9 @@ const queryStringConfig = {
  * 4 - The `validateValue` function receives the current query string value
  * and should return true if the value is valid or false otherwise. If the value is invalid,
  * the hook will return the last value saved to localStorage (null if not set)
- * 5 - By default, queryStates are always saved to localStorage;
- * supplying option `resetOnLoad` = `false` will cause the value to be removed from localStorage
- * everytime a new page navigation to the path occurs
+ * 5 - By default, queryStates are always saved to localStorage and this value is reset
+ * to the provided `defaultValue` every time a new page navigation to the path occurs;
+ * supplying option `resetOnLoad` = `false` will cause the value to never be reset
  * 6- Supplying options `parseNumbers` or `parseBoolean` = `true` will cause the type of value
  * to be cast to desired type if possible, otherwise type will be string
  * @param {string} key Key to use in the query string
@@ -61,17 +63,21 @@ const useQueryState = (
         localStorage.setItem(`${router.pathname}:${key}`, defaultValue)
       }
 
-      let val = query[key]
+      const val = query[key]
 
       if (typeof validateValue === 'function' && !validateValue(val)) {
         const storageValue = localStorage.getItem(`${router.pathname}:${key}`)
-        if (parseBooleans) {
-          val = storageValue === 'true'
-        } else if (parseNumbers) {
-          val = Number(storageValue)
-        } else {
-          val = storageValue
-        }
+        const parsedValue = isJsonString(storageValue) ? JSON.parse(storageValue) : storageValue
+        const queryStringFromStorage = queryString.stringify(
+          { key: parsedValue },
+          queryStringConfig
+        )
+
+        return queryString.parseUrl(`?${queryStringFromStorage}`, {
+          ...queryStringConfig,
+          parseNumbers,
+          parseBooleans
+        }).query.key
       }
 
       return val
@@ -84,7 +90,7 @@ const useQueryState = (
   // Replace the route to then update the "state"
   const update = useCallback(
     (stateUpdater) => {
-      const oldValue = getValue()
+      const oldValue = getValue(true)
       const newValue = typeof stateUpdater === 'function' ? stateUpdater(oldValue) : stateUpdater
 
       // Don't rely on router.query here because that would cause unnecessary renders when other
@@ -107,8 +113,9 @@ const useQueryState = (
 
   // Save the value to local storage as it changes
   useEffect(() => {
-    if (validateValue(value)) {
-      localStorage.setItem(`${router.pathname}:${key}`, value)
+    if (typeof validateValue === 'function' && validateValue(value)) {
+      // stringifying because localStorage can't handle arrays
+      localStorage.setItem(`${router.pathname}:${key}`, JSON.stringify(value))
     }
   }, [key, router.pathname, value, validateValue])
 

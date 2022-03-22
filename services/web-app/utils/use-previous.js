@@ -7,16 +7,25 @@
 
 const { useRef, useEffect } = require('react')
 
-// Hook, see: https://usehooks.com/usePrevious/
+// see: https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state
+/**
+ * Keeps track of last value of the given parameter (object, string, boolean...) to compare against
+ *
+ * Example usage
+ * const count = useState(1)
+ * const prevCount = usePrevious(count)
+ * function functionThatDoesSomething(){
+ *  if(count !== prevCount)
+ *    // count has changed
+ * }
+ * @param {any} value value to keep previous track of
+ * @returns {{any}} ref.current Current saved reference value (equivalent to previous value)
+ */
 function usePrevious(value) {
-  // The ref object is a generic container whose current property is mutable ...
-  // ... and can hold any value, similar to an instance property on a class
   const ref = useRef()
-  // Store current value in ref
   useEffect(() => {
     ref.current = value
-  }, [value]) // Only re-run if value changes
-  // Return previous value (happens before update in useEffect above)
+  })
   return ref.current
 }
 

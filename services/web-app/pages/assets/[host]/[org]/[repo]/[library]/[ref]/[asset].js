@@ -5,11 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Button, Column, Grid, Link as CarbonLink } from '@carbon/react'
+import { Button, Column, Grid } from '@carbon/react'
 import { ArrowRight, Events, Launch } from '@carbon/react/icons'
 import { Svg32Github } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
@@ -115,13 +116,11 @@ const Asset = ({ libraryData }) => {
                   <dt className={dashboardStyles.label}>Library</dt>
                   <dd className={dashboardStyles.labelLarge}>{libraryData.content.name}</dd>
                 </dl>
-                <CarbonLink
-                  aria-label={libraryData.content.version}
-                  href={libraryPath}
-                  className={clsx(dashboardStyles.metaLink, dashboardStyles.metaLinkLarge)}
-                >
-                  {`v${libraryData.content.version}`}
-                </CarbonLink>
+                <Link href={libraryPath}>
+                  <a className={clsx(dashboardStyles.metaLink, dashboardStyles.metaLinkLarge)}>
+                    {`v${libraryData.content.version}`}
+                  </a>
+                </Link>
                 {SponsorIcon && (
                   <SponsorIcon
                     className={clsx(dashboardStyles.positionBottomLeft, styles.sponsorIcon)}

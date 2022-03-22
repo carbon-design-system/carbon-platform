@@ -83,16 +83,6 @@ const Asset = ({ libraryData }) => {
   }
 
   const githubRepoUrl = `http://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
-  // %20label%20%22enhancement%22
-  fetch(
-    'https://api.github.com/search/issues?q=repo:carbon-design-system/carbon-charts%20is:issue%20is:open%20chart%20in:title'
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      // console.log(data)
-      console.log(data.total_count)
-    })
-    .catch((error) => console.error(error))
 
   return (
     <>
@@ -173,11 +163,10 @@ const Asset = ({ libraryData }) => {
           <DashboardItem
             aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
             border={['sm', 'md', 'lg', 'xlg']}
-            href={`${githubRepoUrl}/issues`}
-            // todo: pull in github label from schema
+            href={`${githubRepoUrl}/issues/?q=is%3Aissue+is%3Aopen+in%3Atitle+${assetData.content.id}`}
           >
             <dl>
-              <dt className={dashboardStyles.label}>Pull requests</dt>
+              <dt className={dashboardStyles.label}>Open issues</dt>
               <dd className={dashboardStyles.labelLarge}>–</dd>
             </dl>
             <Svg32Github className={dashboardStyles.positionBottomLeft} />
@@ -190,11 +179,10 @@ const Asset = ({ libraryData }) => {
           <DashboardItem
             aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
             border={['sm', 'md', 'lg', 'xlg']}
-            href={`${githubRepoUrl}/pulls`}
-            // todo: pull in github label from schema
+            href={`${githubRepoUrl}/discussions/?discussions_q=in%3Atitle+${assetData.content.id}`}
           >
             <dl>
-              <dt className={dashboardStyles.label}>Open issues</dt>
+              <dt className={dashboardStyles.label}>Discussions</dt>
               <dd className={dashboardStyles.labelLarge}>–</dd>
             </dl>
             <Svg32Github className={dashboardStyles.positionBottomLeft} />

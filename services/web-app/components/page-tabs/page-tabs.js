@@ -12,7 +12,7 @@ import styles from './page-tabs.module.scss'
 const PageTabs = ({ pageTabs = [] }) => {
   return (
     <Grid className={styles.container}>
-      <Column sm={4} md={8}>
+      <Column sm={4} md={8} lg={12}>
         <Tabs>
           <TabList aria-label="List of tabs" className={styles.tabList}>
             {pageTabs.map((pageTab, i) => (

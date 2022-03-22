@@ -112,7 +112,7 @@ const Asset = ({ libraryData }) => {
                   <dd className={dashboardStyles.labelLarge}>{libraryData.content.name}</dd>
                 </dl>
                 <Link href={libraryPath}>
-                  <a className={clsx(dashboardStyles.metaLink, dashboardStyles.metaLinkLarge)}>
+                  <a className={clsx('cds--link', dashboardStyles.metaLinkLarge)}>
                     {`v${libraryData.content.version}`}
                   </a>
                 </Link>

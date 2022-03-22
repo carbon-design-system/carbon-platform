@@ -18,27 +18,6 @@
   margin: spacing.$spacing-07 0;
 }
 
-@media screen and (prefers-reduced-motion: reduce) {
-  .anchor {
-    position: relative;
-    display: block;
-    border-top: 1px solid theme.$layer-accent;
-    background: theme.$layer-01;
-    text-decoration: none;
-    transition: none;
-
-    &:hover,
-    &:focus {
-      background: theme.$layer-hover;
-    }
-
-    &:active {
-      outline: 2px solid theme.$focus;
-      outline-offset: -2px;
-    }
-  }
-}
-
 .anchor {
   position: relative;
   display: block;
@@ -55,6 +34,10 @@
   &:active {
     outline: 2px solid theme.$focus;
     outline-offset: -2px;
+  }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
   }
 }
 
@@ -109,32 +92,6 @@
   margin-right: spacing.$spacing-02;
 }
 
-@media screen and (prefers-reduced-motion: reduce) {
-  .icon {
-    position: absolute;
-    right: spacing.$spacing-04;
-    bottom: spacing.$spacing-04;
-    display: block;
-    width: spacing.$spacing-09;
-    height: spacing.$spacing-09;
-    border: 1px solid theme.$border-subtle;
-    background: theme.$layer-01;
-    border-radius: 100%;
-    color: theme.$icon-primary;
-    transition: none;
-    @include breakpoint.breakpoint(xlg) {
-      width: spacing.$spacing-09 + spacing.$spacing-03;
-      height: spacing.$spacing-09 + spacing.$spacing-03;
-    }
-
-    .anchor:hover &,
-    .anchor:focus & {
-      border-color: theme.$border-subtle-selected;
-      background: theme.$layer-hover;
-    }
-  }
-}
-
 .icon {
   position: absolute;
   right: spacing.$spacing-04;
@@ -157,14 +114,8 @@
     border-color: theme.$border-subtle-selected;
     background: theme.$layer-hover;
   }
-}
 
-@media screen and (prefers-reduced-motion: reduce) {
-  .icon-sponsor {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  @media screen and (prefers-reduced-motion: reduce) {
     transition: none;
   }
 }
@@ -175,4 +126,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   transition: opacity motion.$duration-fast-02 motion.motion(standard, productive);
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }

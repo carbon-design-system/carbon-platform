@@ -31,7 +31,7 @@ const queryStringConfig = {
  * supplying option `resetOnLoad` = `false` will cause the value to be removed from localStorage
  * everytime a new page navigation to the path occurs
  * 6- Supplying options `parseNumbers` or `parseBoolean` = `true` will cause the type of value
- * to be casted to desired type if possible, otherwise type will be string
+ * to be cast to desired type if possible, otherwise type will be string
  * @param {string} key Key to use in the query string
  * @param {{defaultValue: string, parseNumbers: boolean,
  * parseBooleans: boolean, resetOnLoad: boolean}} options Extra config options

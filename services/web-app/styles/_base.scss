@@ -13,20 +13,21 @@
 }
 
 html {
-  /* nav height + spacing, will need to set this dynamically for other sticky elements */
-  --scroll-height: #{calc(spacing.$spacing-09 + spacing.$spacing-07)};
-
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  scroll-padding-top: var(--scroll-height);
-
-  @media (prefers-reduced-motion: reduce) {
-    scroll-behavior: auto;
-  }
   // This is a fallback in case the effect does not run in the Layout component. It can't be unit-
   // less for the CSS custom property to be picked up.
   /* stylelint-disable-next-line length-zero-no-unit */
   --scrollbar-width: 0px;
+
+  /* nav height + spacing, will need to set this dynamically for other sticky elements */
+  --scroll-padding: #{calc(spacing.$spacing-09 + spacing.$spacing-07)};
+
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--scroll-padding);
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
 }
 
 html,

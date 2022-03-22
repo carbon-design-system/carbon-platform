@@ -79,11 +79,23 @@
   &::before {
     position: absolute;
     top: 0;
-    left: -100vw;
-    width: 200vw;
+    left: 0;
+    width: calc(100vw - var(--scrollbar-width));
     height: 100%;
     background: theme.$layer-01;
     content: '';
+    @include breakpoint.breakpoint(md) {
+      // grid margin + gutter
+      left: -(spacing.$spacing-05 + spacing.$spacing-05);
+    }
+    @include breakpoint.breakpoint(lg) {
+      // grid margin + 6.25% column * 4 columns + gutter
+      left: calc(-25vw - #{spacing.$spacing-06});
+    }
+    @include breakpoint.breakpoint(max) {
+      // grid margin + 96px column * 4 columns + gutter
+      left: -(spacing.$spacing-06 + spacing.$spacing-12 * 4 + spacing.$spacing-05);
+    }
   }
 }
 

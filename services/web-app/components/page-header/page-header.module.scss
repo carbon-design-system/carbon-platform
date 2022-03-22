@@ -25,7 +25,7 @@ $page-header-height: spacing.$spacing-13 * 2;
     position: absolute;
     z-index: 0;
     left: 0;
-    width: 100vw;
+    width: calc(100vw - var(--scrollbar-width));
     height: $page-header-height;
     background: theme.$background;
     content: '';

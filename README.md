@@ -64,3 +64,9 @@ on and what we have planned for the future.
 ## Developer docs
 
 https://carbon-design-system.github.io/carbon-platform/
+
+## Deployment Branches
+
+[deployed-services/production](https://github.com/carbon-design-system/carbon-platform/tree/deployed-services/production)
+
+[deployed-services/test](https://github.com/carbon-design-system/carbon-platform/tree/deployed-services/test)

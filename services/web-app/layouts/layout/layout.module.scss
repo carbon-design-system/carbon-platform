@@ -11,8 +11,6 @@
 @use '@carbon/react/scss/type' as type;
 
 .body {
-  // overflow hidden for full-bleed backgrounds
-  overflow: hidden;
   flex-grow: 1;
   background: theme.$background;
 }

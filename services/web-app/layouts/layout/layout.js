@@ -147,7 +147,11 @@ const Layout = ({ children }) => {
                 </Column>
               )}
               <Column sm={4} md={8} lg={showSideNav ? 12 : 16}>
-                {children}
+                <Grid narrow>
+                  <Column sm={4} md={8} lg={showSideNav ? 12 : 16}>
+                    {children}
+                  </Column>
+                </Grid>
               </Column>
             </Grid>
           </Theme>

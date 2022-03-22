@@ -15,7 +15,9 @@
   position: sticky;
   z-index: 2;
   top: spacing.$spacing-09 + spacing.$spacing-05;
+  padding-right: spacing.$spacing-05;
   --cds-grid-gutter: 0;
+
   @include breakpoint.breakpoint-down(md) {
     top: spacing.$spacing-09;
   }

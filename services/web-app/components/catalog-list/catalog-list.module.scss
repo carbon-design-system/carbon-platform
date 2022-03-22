@@ -11,13 +11,11 @@
 @use '@carbon/react/scss/type' as type;
 
 .container {
+  padding-right: spacing.$spacing-05;
   background: theme.$background;
-  @include breakpoint.breakpoint(md) {
-    margin-right: -(spacing.$spacing-05);
-    margin-left: -(spacing.$spacing-05);
-  }
 
   &--grid {
+    padding-right: 0;
     margin-top: (spacing.$spacing-05);
     margin-bottom: (spacing.$spacing-05);
     row-gap: (spacing.$spacing-05);

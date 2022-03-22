@@ -12,7 +12,7 @@
 
 .container {
   @include breakpoint.breakpoint(md) {
-    margin-left: -(spacing.$spacing-05);
+    margin-left: -(spacing.$spacing-04);
   }
 
   &::before {

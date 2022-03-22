@@ -1,39 +1,43 @@
-//
-// Copyright IBM Corp. 2021, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-@import '@carbon/colors/scss/colors';
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/colors' as colors;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
 
 .container {
-  background: $black-100;
+  background: colors.$black-100;
 }
 
 .footer {
   margin: 0;
-  @include type-style('body-long-01');
+  @include type.type-style('body-long-01');
 
-  @include breakpoint-down(md) {
-    padding: 0 $spacing-05;
+  @include breakpoint.breakpoint-down(md) {
+    padding: 0 spacing.$spacing-05;
   }
 }
 
 .text {
-  @include type-style('body-long-01');
+  @include type.type-style('body-long-01');
 
-  color: $text-primary;
+  color: theme.$text-primary;
 }
 
 .link {
-  color: $text-primary;
+  color: theme.$text-primary;
   text-decoration: underline;
 }
 
 .list-link {
   display: block;
-  margin-bottom: $spacing-02;
+  margin-bottom: spacing.$spacing-02;
   text-decoration: none;
 
   &:hover {
@@ -42,16 +46,16 @@
 }
 
 .column {
-  padding-top: $spacing-06;
-  padding-bottom: $spacing-09;
-  border-top: 1px solid $border-strong-01;
+  padding-top: spacing.$spacing-06;
+  padding-bottom: spacing.$spacing-09;
+  border-top: 1px solid theme.$border-strong-01;
 
-  @include breakpoint(md) {
+  @include breakpoint.breakpoint(md) {
     border-top: 0;
-    margin-bottom: $spacing-12;
+    margin-bottom: spacing.$spacing-12;
   }
 }
 
 .logo {
-  padding-bottom: $spacing-07;
+  padding-bottom: spacing.$spacing-07;
 }

@@ -5,6 +5,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-.link {
-  font-size: inherit;
-}
+export { default } from './external-links'

@@ -2,22 +2,18 @@ FROM local/carbon-platform/base:latest AS builder
 
 WORKDIR /ibm
 
-COPY . services/logging
-
-RUN CI=true npm -w services/logging install
 RUN npm -w services/logging run build
+RUN npm -w services/logging run bundle
 
 ###
 
-FROM local/carbon-platform/base:latest
+FROM node:16-alpine
 
-WORKDIR /ibm
+WORKDIR /ibm/services/logging
 
-COPY package.json services/logging/package.json
+ENV NODE_ENV=production
+ENV CARBON_RUN_MODE=PROD
 
-RUN CI=true npm -w services/logging install --production
+COPY --from=builder /ibm/services/logging/dist/out.js dist/out.js
 
-# This is done at the end so the install above can happen in parallel
-COPY --from=builder /ibm/services/logging/dist services/logging/dist
-
-CMD ["npm", "--workspace=services/logging", "run", "start"]
+CMD ["node", "dist/out.js"]

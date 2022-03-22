@@ -1,21 +1,26 @@
-//
-// Copyright IBM Corp. 2021, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/type' as type;
+
 .content {
-  margin: $spacing-07 0;
-  @include breakpoint-down(md) {
-    padding: 0 $spacing-05;
+  margin: spacing.$spacing-07 0;
+  @include breakpoint.breakpoint-down(md) {
+    padding: 0 spacing.$spacing-05;
   }
 }
 
 .data {
-  margin: $spacing-07 0;
+  margin: spacing.$spacing-07 0;
   white-space: pre-wrap;
   word-break: break-all;
-  @include type-style('code-01');
+  @include type.type-style('code-01');
 }
 
 .bullets {
@@ -23,5 +28,5 @@
 }
 
 .bullets-item {
-  margin-left: $spacing-07;
+  margin-left: spacing.$spacing-07;
 }

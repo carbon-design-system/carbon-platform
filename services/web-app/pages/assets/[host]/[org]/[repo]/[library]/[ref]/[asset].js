@@ -18,6 +18,7 @@ import { libraryPropTypes } from 'types'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
+import ExternalLinks from '@/components/external-links'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import StatusIcon from '@/components/status-icon'
@@ -29,6 +30,7 @@ import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
+import { getTagsList } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 
 import styles from './[asset].module.scss'
@@ -82,132 +84,150 @@ const Asset = ({ libraryData }) => {
     return testPath.test(path)
   }
 
+  let externalDocsLink
+  if (assetData.content.externalDocsUrl) {
+    externalDocsLink = {
+      name: 'External docs',
+      url: assetData.content.externalDocsUrl
+    }
+  }
+
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} pictogram={get(type, `[${assetData.content.type}].icon`)} />
-      <PageBreadcrumb items={breadcrumbItems} />
-      <Dashboard className={styles.dashboard}>
-        <Column className={dashboardStyles.column} lg={1}>
-          <DashboardItem
-            aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
-            border={['sm']}
-          >
-            <dl>
-              <dt className={dashboardStyles.label}>Library</dt>
-              <dd className={dashboardStyles.labelLarge}>{libraryData.content.name}</dd>
-            </dl>
-            <Link href={libraryPath}>
-              <a className={clsx(dashboardStyles.metaLink, dashboardStyles.metaLinkLarge)}>
-                {`v${libraryData.content.version}`}
-              </a>
-            </Link>
-            {SponsorIcon && (
-              <SponsorIcon
-                className={clsx(dashboardStyles.positionBottomLeft, styles.sponsorIcon)}
-                size={64}
+      <Grid>
+        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
+          <PageHeader title={seo.title} pictogram={get(type, `[${assetData.content.type}].icon`)} />
+          <PageBreadcrumb items={breadcrumbItems} />
+        </Column>
+        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
+          <Dashboard className={styles.dashboard}>
+            <Column className={dashboardStyles.column} lg={1}>
+              <DashboardItem
+                aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
+                border={['sm']}
+              >
+                <dl>
+                  <dt className={dashboardStyles.label}>Library</dt>
+                  <dd className={dashboardStyles.labelLarge}>{libraryData.content.name}</dd>
+                </dl>
+                <Link href={libraryPath}>
+                  <a className={clsx(dashboardStyles.metaLink, dashboardStyles.metaLinkLarge)}>
+                    {`v${libraryData.content.version}`}
+                  </a>
+                </Link>
+                {SponsorIcon && (
+                  <SponsorIcon
+                    className={clsx(dashboardStyles.positionBottomLeft, styles.sponsorIcon)}
+                    size={64}
+                  />
+                )}
+              </DashboardItem>
+            </Column>
+            <Column className={dashboardStyles.column} lg={2}>
+              <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
+                <Grid as="dl" columns={2} className={dashboardStyles.subgrid}>
+                  <Column className={dashboardStyles.subcolumn}>
+                    <dt className={dashboardStyles.label}>Sponsor</dt>
+                    <dd className={dashboardStyles.meta}>
+                      {get(teams, `[${assetData.params.sponsor}].name`, 'Community maintained')}
+                    </dd>
+                  </Column>
+                  <Column className={dashboardStyles.subcolumn}>
+                    <dt className={dashboardStyles.label}>Type</dt>
+                    <dd className={dashboardStyles.meta}>
+                      {get(type, `[${assetData.content.type}].name`, '–')}
+                    </dd>
+                  </Column>
+                  <Column className={dashboardStyles.subcolumn}>
+                    <dt className={dashboardStyles.label}>Framework</dt>
+                    <dd className={dashboardStyles.meta}>
+                      {get(framework, `[${assetData.content.framework}].name`, '–')}
+                    </dd>
+                  </Column>
+                  <Column className={dashboardStyles.subcolumn}>
+                    <dt className={dashboardStyles.label}>Status</dt>
+                    <dd className={dashboardStyles.meta}>
+                      <StatusIcon className={styles.statusIcon} status={assetData.content.status} />
+                      {get(status, `[${assetData.content.status}].name`, '–')}
+                    </dd>
+                  </Column>
+                  <Column
+                    className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}
+                  >
+                    <dt className={clsx(dashboardStyles.label)}>Links</dt>
+                    <dd className={dashboardStyles.meta}>
+                      <ExternalLinks
+                        links={[...get(assetData, 'content.demoLinks', []), externalDocsLink]}
+                      />
+                    </dd>
+                  </Column>
+                  <Column className={dashboardStyles.subcolumn}>
+                    <dt className={dashboardStyles.label}>Tags</dt>
+                    <dd className={dashboardStyles.meta}>
+                      {getTagsList(assetData).join(', ') || '–'}
+                    </dd>
+                  </Column>
+                  <Button className={styles.kitsButton}>
+                    Coming soon...
+                    <ArrowRight size={16} />
+                  </Button>
+                </Grid>
+              </DashboardItem>
+            </Column>
+            <Column className={dashboardStyles.column} sm={0} md={1}>
+              <DashboardItem
+                aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+              >
+                <dl>
+                  <dt className={dashboardStyles.label}>Coming soon...</dt>
+                  <dd className={dashboardStyles.labelLarge}>–</dd>
+                </dl>
+              </DashboardItem>
+            </Column>
+            <Column className={dashboardStyles.column} sm={0} md={1}>
+              <DashboardItem
+                aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+                href={libraryPath}
+              >
+                <dl>
+                  <dt className={dashboardStyles.label}>Coming soon...</dt>
+                  <dd className={dashboardStyles.labelLarge}>–</dd>
+                </dl>
+                <Svg32Github className={dashboardStyles.positionBottomLeft} />
+                {pathIsAbsolute(libraryPath) && (
+                  <Launch className={dashboardStyles.positionBottomRight} size={20} />
+                )}
+              </DashboardItem>
+            </Column>
+            <Column className={dashboardStyles.column} sm={0} md={1}>
+              <DashboardItem
+                aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+                href="https://carbondesignsystem.com"
+              >
+                <dl>
+                  <dt className={dashboardStyles.label}>Coming soon...</dt>
+                  <dd className={dashboardStyles.labelLarge}>–</dd>
+                </dl>
+                <Svg32Github className={dashboardStyles.positionBottomLeft} />
+                {pathIsAbsolute('https://carbondesignsystem.com') && (
+                  <Launch className={dashboardStyles.positionBottomRight} size={20} />
+                )}
+              </DashboardItem>
+            </Column>
+            <Column className={dashboardStyles.column} sm={0} md={1} lg={0}>
+              <DashboardItem
+                aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+                spacer
               />
-            )}
-          </DashboardItem>
+            </Column>
+          </Dashboard>
         </Column>
-        <Column className={dashboardStyles.column} lg={2}>
-          <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
-            <Grid as="dl" columns={2} className={dashboardStyles.subgrid}>
-              <Column className={dashboardStyles.subcolumn}>
-                <dt className={dashboardStyles.label}>Sponsor</dt>
-                <dd className={dashboardStyles.meta}>
-                  {get(teams, `[${assetData.params.sponsor}].name`, 'Community maintained')}
-                </dd>
-              </Column>
-              <Column className={dashboardStyles.subcolumn}>
-                <dt className={dashboardStyles.label}>Type</dt>
-                <dd className={dashboardStyles.meta}>
-                  {get(type, `[${assetData.content.type}].name`, '–')}
-                </dd>
-              </Column>
-              <Column className={dashboardStyles.subcolumn}>
-                <dt className={dashboardStyles.label}>Framework</dt>
-                <dd className={dashboardStyles.meta}>
-                  {get(framework, `[${assetData.content.framework}].name`, '–')}
-                </dd>
-              </Column>
-              <Column className={dashboardStyles.subcolumn}>
-                <dt className={dashboardStyles.label}>Status</dt>
-                <dd className={dashboardStyles.meta}>
-                  <StatusIcon className={styles.statusIcon} status={assetData.content.status} />
-                  {get(status, `[${assetData.content.status}].name`, '–')}
-                </dd>
-              </Column>
-              <Column className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}>
-                <dt className={clsx(dashboardStyles.label)}>Demos</dt>
-                <dd className={dashboardStyles.meta}>
-                  <Link href={libraryPath}>
-                    <a className={dashboardStyles.metaLink}>Coming soon...</a>
-                  </Link>
-                </dd>
-              </Column>
-              <Column className={dashboardStyles.subcolumn}>
-                <dt className={dashboardStyles.label}>Tags</dt>
-                <dd className={dashboardStyles.meta}>Coming soon...</dd>
-              </Column>
-              <Button className={styles.kitsButton}>
-                Coming soon...
-                <ArrowRight size={16} />
-              </Button>
-            </Grid>
-          </DashboardItem>
-        </Column>
-        <Column className={dashboardStyles.column} sm={0} md={1}>
-          <DashboardItem
-            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-            border={['sm', 'md', 'lg', 'xlg']}
-          >
-            <dl>
-              <dt className={dashboardStyles.label}>Coming soon...</dt>
-              <dd className={dashboardStyles.labelLarge}>–</dd>
-            </dl>
-          </DashboardItem>
-        </Column>
-        <Column className={dashboardStyles.column} sm={0} md={1}>
-          <DashboardItem
-            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-            border={['sm', 'md', 'lg', 'xlg']}
-            href={libraryPath}
-          >
-            <dl>
-              <dt className={dashboardStyles.label}>Coming soon...</dt>
-              <dd className={dashboardStyles.labelLarge}>–</dd>
-            </dl>
-            <Svg32Github className={dashboardStyles.positionBottomLeft} />
-            {pathIsAbsolute(libraryPath) && (
-              <Launch className={dashboardStyles.positionBottomRight} size={20} />
-            )}
-          </DashboardItem>
-        </Column>
-        <Column className={dashboardStyles.column} sm={0} md={1}>
-          <DashboardItem
-            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-            border={['sm', 'md', 'lg', 'xlg']}
-            href="https://carbondesignsystem.com"
-          >
-            <dl>
-              <dt className={dashboardStyles.label}>Coming soon...</dt>
-              <dd className={dashboardStyles.labelLarge}>–</dd>
-            </dl>
-            <Svg32Github className={dashboardStyles.positionBottomLeft} />
-            {pathIsAbsolute('https://carbondesignsystem.com') && (
-              <Launch className={dashboardStyles.positionBottomRight} size={20} />
-            )}
-          </DashboardItem>
-        </Column>
-        <Column className={dashboardStyles.column} sm={0} md={1} lg={0}>
-          <DashboardItem
-            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-            border={['sm', 'md', 'lg', 'xlg']}
-            spacer
-          />
-        </Column>
-      </Dashboard>
+      </Grid>
     </>
   )
 }

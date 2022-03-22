@@ -4,7 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use '@carbon/react/scss/motion' as *;
+@use '@carbon/react/scss/motion' as motion;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
 
 .header {
   position: relative;
@@ -13,7 +16,7 @@
 .anchor {
   opacity: 0;
 
-  transition: opacity $duration-fast-01 $standard-easing;
+  transition: opacity motion.$duration-fast-01 motion.$standard-easing;
 
   &:hover,
   &:active,
@@ -22,26 +25,26 @@
   }
 
   &:focus {
-    outline: 2px solid $focus;
+    outline: 2px solid theme.$focus;
   }
 
   svg {
-    fill: $link-primary;
+    fill: theme.$link-primary;
   }
 }
 
 .left-anchor {
   position: absolute;
   top: 0;
-  left: calc(#{$spacing-06} * -1);
+  left: calc(#{spacing.$spacing-06} * -1);
 }
 
 .right-anchor {
-  margin-left: $spacing-03;
+  margin-left: spacing.$spacing-03;
   white-space: nowrap;
 }
 
-@include breakpoint('md') {
+@include breakpoint.breakpoint('md') {
   .header:hover .anchor {
     opacity: 1;
   }

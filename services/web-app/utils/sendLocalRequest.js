@@ -35,7 +35,7 @@ export default function sendLocalRequest(
   path,
   forwardAuthCookie = false,
   method = 'GET',
-  body = {},
+  body = null,
   requestOptions = {}
 ) {
   const protocol =
@@ -52,7 +52,7 @@ export default function sendLocalRequest(
     ...requestOptions
   }
 
-  if (method !== 'GET') {
+  if (body !== null) {
     reqOptions.body = JSON.stringify(body)
   }
 

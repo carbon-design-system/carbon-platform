@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/logging",
   "description": "Carbon platform logging service",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "main": "dist/main/index.js",
   "license": "Apache-2.0",
   "private": true,
@@ -15,6 +15,7 @@
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "scripts": {
     "build": "nest build",
+    "bundle": "node esbuild.js",
     "clean": "rimraf dist",
     "service:build": "npm run build",
     "start": "node dist/main/index.js",
@@ -24,12 +25,10 @@
   },
   "dependencies": {
     "@logdna/logger": "^2.6.1",
-    "rimraf": "^3.0.2"
-  },
-  "devDependencies": {
-    "@nestjs/cli": "^8.2.2",
+    "@nestjs/cli": "^8.2.4",
     "@types/amqplib": "^0.8.2",
     "@types/node": "^16.11.26",
+    "rimraf": "^3.0.2",
     "typescript": "^4.6.2"
   }
 }

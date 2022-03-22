@@ -11,10 +11,14 @@
 @use '@carbon/react/scss/type' as type;
 
 .container {
-  margin: spacing.$spacing-07 0 spacing.$spacing-05;
-  @include breakpoint.breakpoint(md) {
-    margin-right: -(spacing.$spacing-05);
-    margin-left: -(spacing.$spacing-05);
+  //margin: spacing.$spacing-07 0 spacing.$spacing-05;
+  margin-top: spacing.$spacing-07;
+  margin-bottom: spacing.$spacing-05;
+}
+
+.column {
+  @include breakpoint.breakpoint-down(lg) {
+    margin-right: 0;
   }
 }
 

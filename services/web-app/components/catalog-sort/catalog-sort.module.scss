@@ -28,12 +28,15 @@
 
 .grid {
   // override carbon grid gutter
-  background: theme.$layer-01;
   --cds-grid-gutter: 0;
 }
 
 .column {
   background: theme.$layer-01;
+
+  &:first-child {
+    margin-right: 0;
+  }
 
   &:not(:first-child) {
     border-left: 1px solid theme.$layer-accent;

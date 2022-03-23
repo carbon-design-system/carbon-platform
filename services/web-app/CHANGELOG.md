@@ -2,12 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [0.2.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.77...@carbon-platform/web-app@0.2.0) (2022-03-23)
+## [0.1.78](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.77...@carbon-platform/web-app@0.2.0) (2022-03-23)
 
-
-### ⚠ BREAKING CHANGES
-
-* **api:** RunMode.Prod has been replaced with RunMode.Standard
 
 ### Features 🌟
 

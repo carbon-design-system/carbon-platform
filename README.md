@@ -28,10 +28,10 @@
       alt="Continuous Integration Checks status"
     />
   </a>
-  <a href="https://github.com/carbon-design-system/carbon-platform/actions/workflows/nightly-version.yml">
+  <a href="https://github.com/carbon-design-system/carbon-platform/actions/workflows/nightly.yml">
     <img
-      src="https://github.com/carbon-design-system/carbon-platform/actions/workflows/nightly-version.yml/badge.svg"
-      alt="Nightly Version job status"
+      src="https://github.com/carbon-design-system/carbon-platform/actions/workflows/nightly.yml/badge.svg"
+      alt="Nightly Build job status"
     />
   </a>
 </p>

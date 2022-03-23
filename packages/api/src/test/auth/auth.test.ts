@@ -21,14 +21,14 @@ import { getRunMode, RunMode } from '../../main/runtime'
 const signature = require('cookie-signature')
 
 describe('getPassportInstance', () => {
-  it('crashes on PROD when no env vars have been set', async () => {
+  it('crashes in "Standard" mode when no env vars have been set', async () => {
     const oldCarbonRunMode = getRunMode()
-    process.env.CARBON_RUN_MODE = RunMode.Prod
+    process.env.CARBON_RUN_MODE = RunMode.Standard
     await expect(async () => getPassportInstance()).rejects.toThrow()
     process.env.CARBON_RUN_MODE = oldCarbonRunMode
     __test__.destroyInstance()
   })
-  it('can be retrieved without crashing on DEV', async () => {
+  it('can be retrieved without crashing on "Dev"', async () => {
     const passportInstance = await getPassportInstance()
     expect(passportInstance).toBeDefined()
     __test__.destroyInstance()
@@ -113,10 +113,10 @@ describe('authenticateWithPassport', () => {
 
     const authHandler = await authenticateWithPassport()
 
-    let nextRequest
+    let nextRequest: any
 
     await new Promise((resolve) => {
-      authHandler({}, {}, (req) => {
+      authHandler({}, {}, (req: any) => {
         nextRequest = req
         resolve(null)
       })
@@ -133,7 +133,7 @@ describe('authenticateWithPassport', () => {
 describe('getStore', () => {
   it('on production mode without env variables throws error', async () => {
     const oldCarbonRunMode = getRunMode()
-    process.env.CARBON_RUN_MODE = RunMode.Prod
+    process.env.CARBON_RUN_MODE = RunMode.Standard
     await expect(() => store.getStore()).rejects.toThrow()
     process.env.CARBON_RUN_MODE = oldCarbonRunMode
   })

@@ -42,14 +42,15 @@ how to set up the auth package)
 
 ## Adding Local Certificates
 
-In PROD run mode, the application must run on https for IBMid authentication to work properly. For
-such purposes, local certificates must be generated to use authentication in the web-app when
-running locally in PROD mode. The [mkcert](https://github.com/FiloSottile/mkcert#installation) tool
-can help generate these certificates and is used implicitly by the `start-secure` node script of the
-web-app. With the tool downloaded, the certificates will be automatically generated the next time
-you [run the app securely](#running-app-securely).
+In Standard run mode, the application must run on https for IBMid authentication to work properly.
+For such purposes, local certificates must be generated to use authentication in the web-app when
+running locally in Standard run mode. The
+[mkcert](https://github.com/FiloSottile/mkcert#installation) tool can help generate these
+certificates and is used implicitly by the `start-secure` node script of the web-app. With the tool
+downloaded, the certificates will be automatically generated the next time you
+[run the app securely](#running-app-securely).
 
-_Note_: you may also _choose_ to use IBMid authentication when running on DEV mode, in that case the
+_Note_: you may also _choose_ to use IBMid authentication when running on Dev mode, in that case the
 same steps apply
 
 ## Running App Securely

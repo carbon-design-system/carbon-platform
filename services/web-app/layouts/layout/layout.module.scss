@@ -17,8 +17,13 @@
 }
 
 .header {
+  :global(.cds--header__nav) {
+    // override carbon, in subgrid
+    padding-left: 0;
+  }
+
   :global(.cds--header__nav::before) {
-    // override Carbon, hide divider line
+    // override carbon, hide divider line
     display: none;
   }
 }
@@ -53,8 +58,4 @@
     height: 100%;
     margin: 0;
   }
-}
-
-.header-navigation {
-  margin-left: -(spacing.$spacing-05);
 }

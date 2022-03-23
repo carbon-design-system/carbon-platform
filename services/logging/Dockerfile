@@ -12,7 +12,7 @@ FROM node:16-alpine
 WORKDIR /ibm/services/logging
 
 ENV NODE_ENV=production
-ENV CARBON_RUN_MODE=PROD
+ENV CARBON_RUN_MODE=STANDARD
 
 COPY --from=builder /ibm/services/logging/dist/out.js dist/out.js
 

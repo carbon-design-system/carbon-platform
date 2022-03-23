@@ -10,8 +10,8 @@ being used.
 
 ### IBMid Authentication Variables
 
-Set these variables to override local authentication and use IBMID authentication instead (these are
-optional in development mode but required on PRODUCTION)
+Set these variables to override local authentication and use IBMid authentication instead (these are
+optional in "Dev" run mode but required in "Standard" run mode).
 
 - `CARBON_IBM_ISV_CLIENT_ID=[client id]`
   - Client ID tied to App registration on SSO provisioner (get this from dev team)
@@ -118,7 +118,7 @@ expressSession({
   secret: SESSION_SECRET,
   cookie: {
     path: '/',
-    secure: getRunMode() === RunMode.Prod,
+    secure: getRunMode() === RunMode.Standard,
     maxAge: 60 * 60 * 2 * 1000 // 2 hours
   }
 })

@@ -7,7 +7,7 @@
 import { Environment, getEnvironment } from '../../main/runtime'
 
 describe('getEnvironment', () => {
-  it('returns TEST when the envvar is not set', () => {
+  it('returns test when the envvar is not set', () => {
     const old = process.env.CARBON_ENVIRONMENT
     delete process.env.CARBON_ENVIRONMENT
 
@@ -16,19 +16,25 @@ describe('getEnvironment', () => {
     process.env.CARBON_ENVIRONMENT = old
   })
 
-  it('returns TEST when the envvar is set to Environment.Test', () => {
+  it('returns test when the envvar is set to Environment.Test', () => {
     const old = process.env.CARBON_ENVIRONMENT
-    process.env.CARBON_ENVIRONMENT = Environment.Test
 
+    process.env.CARBON_ENVIRONMENT = 'TEST'
+    expect(getEnvironment()).toBe(Environment.Test)
+
+    process.env.CARBON_ENVIRONMENT = 'test'
     expect(getEnvironment()).toBe(Environment.Test)
 
     process.env.CARBON_ENVIRONMENT = old
   })
 
-  it('returns PRODUCTION when the envvar is set to Environment.Production', () => {
+  it('returns production when the envvar is set to Environment.Production', () => {
     const old = process.env.CARBON_ENVIRONMENT
-    process.env.CARBON_ENVIRONMENT = Environment.Production
 
+    process.env.CARBON_ENVIRONMENT = 'PRODUCTION'
+    expect(getEnvironment()).toBe(Environment.Production)
+
+    process.env.CARBON_ENVIRONMENT = 'production'
     expect(getEnvironment()).toBe(Environment.Production)
 
     process.env.CARBON_ENVIRONMENT = old

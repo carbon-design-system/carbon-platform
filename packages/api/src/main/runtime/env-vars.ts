@@ -39,7 +39,7 @@ function loadEnvVars<T extends Vars>(vars: T): Validated<T> {
 function getEnvVar(varName: string, fallbackValue = ''): string {
   const value = process.env[varName]
 
-  if (!value && getRunMode() === RunMode.Prod) {
+  if (!value && getRunMode() !== RunMode.Dev) {
     throw new Error(`${varName} is not exported as an environment variable`)
   }
 

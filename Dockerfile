@@ -10,7 +10,7 @@ WORKDIR /ibm
 
 # Force only production node modules to be installed
 ENV NODE_ENV=production
-ENV CARBON_RUN_MODE=PROD
+ENV CARBON_RUN_MODE=STANDARD
 
 ARG CI=true
 

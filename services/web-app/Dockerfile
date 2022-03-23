@@ -14,7 +14,7 @@ FROM node:16-alpine
 WORKDIR /ibm/services/web-app
 
 ENV NODE_ENV=production
-ENV CARBON_RUN_MODE=PROD
+ENV CARBON_RUN_MODE=STANDARD
 
 COPY --from=builder /ibm/services/web-app/.next/standalone .next/standalone
 COPY --from=builder /ibm/services/web-app/public .next/standalone/services/web-app/public

@@ -84,7 +84,6 @@ const Asset = ({ libraryData }) => {
     return testPath.test(path)
   }
 
-  const githubRepoUrl = `http://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
   let externalDocsLink
   if (assetData.content.externalDocsUrl) {
     externalDocsLink = {
@@ -92,6 +91,10 @@ const Asset = ({ libraryData }) => {
       url: assetData.content.externalDocsUrl
     }
   }
+
+  const githubRepoUrl = `http://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
+  const issueCount = '+10'
+  const discussionCount = '+3'
 
   return (
     <>
@@ -184,7 +187,7 @@ const Asset = ({ libraryData }) => {
                 </Grid>
               </DashboardItem>
             </Column>
-            <Column className={dashboardStyles.column} sm={0} md={1}>
+            <Column className={dashboardStyles.column} sm={0} md={4}>
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
@@ -192,7 +195,7 @@ const Asset = ({ libraryData }) => {
               >
                 <dl>
                   <dt className={dashboardStyles.label}>Open issues</dt>
-                  <dd className={dashboardStyles.labelLarge}>–</dd>
+                  <dd className={dashboardStyles.labelLarge}>{issueCount}</dd>
                 </dl>
                 <Svg32Github className={dashboardStyles.positionBottomLeft} />
                 {pathIsAbsolute(githubRepoUrl) && (
@@ -200,7 +203,7 @@ const Asset = ({ libraryData }) => {
                 )}
               </DashboardItem>
             </Column>
-            <Column className={dashboardStyles.column} sm={0} md={1}>
+            <Column className={dashboardStyles.column} sm={0} md={4}>
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
@@ -208,7 +211,7 @@ const Asset = ({ libraryData }) => {
               >
                 <dl>
                   <dt className={dashboardStyles.label}>Discussions</dt>
-                  <dd className={dashboardStyles.labelLarge}>–</dd>
+                  <dd className={dashboardStyles.labelLarge}>{discussionCount}</dd>
                 </dl>
                 <Svg32Github className={dashboardStyles.positionBottomLeft} />
                 {pathIsAbsolute(githubRepoUrl) && (

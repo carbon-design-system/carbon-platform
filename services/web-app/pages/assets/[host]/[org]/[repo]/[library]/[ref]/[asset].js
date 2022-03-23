@@ -96,6 +96,16 @@ const Asset = ({ libraryData }) => {
   const issueCount = '+10'
   const discussionCount = '+3'
 
+  fetch(
+    'https://api.github.com/search/issues?q=repo:carbon-design-system/carbon-charts%20is:issue%20is:open%20chart%20in:title'
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+      console.log(data.total_count)
+    })
+    .catch((error) => console.error(error))
+
   return (
     <>
       <NextSeo {...seo} />

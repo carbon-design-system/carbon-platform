@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, UnorderedList } from '@carbon/react'
-import cx from 'classnames'
+import clsx from 'clsx'
 
 import styles from './markdown.module.scss'
 
@@ -13,7 +13,7 @@ const Ul = ({ children, className, ...rest }) => {
   return (
     <Grid>
       <Column sm={4} md={6} lg={8}>
-        <UnorderedList isExpressive className={cx(className, styles.list, styles.ul)} {...rest}>
+        <UnorderedList isExpressive className={clsx(className, styles.list, styles.ul)} {...rest}>
           {children}
         </UnorderedList>
       </Column>

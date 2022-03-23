@@ -111,7 +111,7 @@ const Library = ({ libraryData, params }) => {
             <Column className={dashboardStyles.column} sm={4} lg={8}>
               <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
                 <Grid as="dl" columns={2} className={dashboardStyles.subgrid}>
-                  <Column className={dashboardStyles.subcolumn} sm={4}>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Sponsor</dt>
                     <dd className={dashboardStyles.meta}>
                       {get(teams, `[${libraryData.params.sponsor}].name`, 'Community maintained')}
@@ -122,7 +122,7 @@ const Library = ({ libraryData, params }) => {
                     <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
                   </Column>
                   <Column
-                    lg={4}
+                    sm={4}
                     className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}
                   >
                     <dt className={clsx(dashboardStyles.label)}>Links</dt>

@@ -8,20 +8,11 @@ import { Grid } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
-import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
-
 import styles from './dashboard.module.scss'
 
 export const Dashboard = ({ children, className }) => {
-  const isLg = useMatchMedia(mediaQueries.lg)
-  const isMd = useMatchMedia(mediaQueries.md)
-
-  let columns = 1
-  if (isMd) columns = 2
-  if (isLg) columns = 3
-
   return (
-    <Grid className={clsx(styles.grid, className)} columns={columns} condensed>
+    <Grid className={clsx(styles.grid, className)} condensed>
       {children}
     </Grid>
   )

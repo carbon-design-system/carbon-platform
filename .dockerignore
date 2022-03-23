@@ -7,7 +7,7 @@
 **/.*ignore
 **/.env*
 **/*.md
-Dockerfile
+**/Dockerfile
 sonar-project.properties
 
 # Dirs
@@ -20,4 +20,13 @@ sonar-project.properties
 .vscode/
 docs/
 scripts/
-services/
+
+#
+# Service-Specific
+#
+
+# web-app
+services/web-app/.carbon/
+services/web-app/.next/
+services/web-app/pages/samples/
+services/web-app/public/data/

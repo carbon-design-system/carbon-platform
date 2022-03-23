@@ -6,16 +6,16 @@
  */
 enum RunMode {
   Dev = 'DEV',
-  Prod = 'PROD'
+  Standard = 'STANDARD'
 }
 
 function getRunMode(): RunMode {
-  const mode = process.env.CARBON_RUN_MODE
+  const mode = process.env.CARBON_RUN_MODE?.toUpperCase()
 
   switch (mode) {
     // Normal cases
     case RunMode.Dev:
-    case RunMode.Prod:
+    case RunMode.Standard:
       return mode
     case undefined:
       // Not specified. Default to Dev
@@ -26,4 +26,13 @@ function getRunMode(): RunMode {
   }
 }
 
-export { getRunMode, RunMode }
+const __test__ = {
+  mockRunMode: (runMode: RunMode) => {
+    process.env.CARBON_RUN_MODE = runMode
+  },
+  resetRunMode: () => {
+    delete process.env.CARBON_RUN_MODE
+  }
+}
+
+export { __test__, getRunMode, RunMode }

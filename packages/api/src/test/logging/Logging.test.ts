@@ -7,10 +7,7 @@
 import { Logging, LogLoggedMessage } from '../../main/logging'
 import { EventMessage, MessagingClient } from '../../main/messaging'
 import { Environment } from '../../main/runtime'
-import * as runMode from '../../main/runtime/run-mode'
-
-jest.mock('../../main/runtime/run-mode')
-const mockedRunMode = runMode as jest.Mocked<typeof runMode>
+import { __test__ as RunModeTestUtils, RunMode } from '../../main/runtime/run-mode'
 
 let mockedEmit: any
 
@@ -22,9 +19,9 @@ beforeEach(() => {
 })
 
 describe('message emission', () => {
-  describe('DEV mode', () => {
-    beforeEach(() => {
-      mockedRunMode.getRunMode.mockReturnValue(runMode.RunMode.Dev)
+  describe('"Dev" mode', () => {
+    beforeAll(() => {
+      RunModeTestUtils.mockRunMode(RunMode.Dev)
     })
 
     it('does not emit any messages', async () => {
@@ -36,13 +33,17 @@ describe('message emission', () => {
 
       expect(mockedEmit).not.toHaveBeenCalled()
     })
+
+    afterAll(() => {
+      RunModeTestUtils.resetRunMode()
+    })
   })
 
-  describe('PROD mode', () => {
+  describe('"Standard" mode', () => {
     let dateNow: any
 
     beforeEach(() => {
-      mockedRunMode.getRunMode.mockReturnValue(runMode.RunMode.Prod)
+      RunModeTestUtils.mockRunMode(RunMode.Standard)
 
       dateNow = Date.now
       Date.now = jest.fn().mockReturnValue(1234)
@@ -84,6 +85,7 @@ describe('message emission', () => {
 
     afterEach(() => {
       Date.now = dateNow
+      RunModeTestUtils.resetRunMode()
     })
   })
 })
@@ -92,7 +94,7 @@ describe('console output', () => {
   let consoleDebug: any, consoleInfo: any, consoleWarn: any, consoleError: any
 
   beforeEach(() => {
-    mockedRunMode.getRunMode.mockReturnValue(runMode.RunMode.Dev)
+    RunModeTestUtils.mockRunMode(RunMode.Dev)
 
     consoleDebug = console.debug
     consoleInfo = console.info
@@ -152,6 +154,8 @@ describe('console output', () => {
   })
 
   afterEach(() => {
+    RunModeTestUtils.resetRunMode()
+
     console.debug = consoleDebug
     console.info = consoleInfo
     console.warn = consoleWarn

@@ -13,19 +13,11 @@
 .container {
   background: theme.$background;
 
-  @include breakpoint.breakpoint(lg) {
-    padding-right: spacing.$spacing-05;
-  }
-
   &--grid {
-    padding-right: 0;
     margin-top: (spacing.$spacing-05);
     margin-bottom: (spacing.$spacing-05);
     row-gap: (spacing.$spacing-05);
     --cds-grid-gutter: 1rem;
-    @include breakpoint.breakpoint(md) {
-      margin-right: 0;
-    }
   }
 }
 

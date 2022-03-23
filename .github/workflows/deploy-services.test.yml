@@ -11,6 +11,9 @@ jobs:
   deploy-test:
     name: Deploy (Test)
     runs-on: ubuntu-latest
+    environment:
+      name: Test
+      url: https://web-app.j73b4w218e4.us-south.codeengine.appdomain.cloud
 
     steps:
       - name: Checkout 🛎

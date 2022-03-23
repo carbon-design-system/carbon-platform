@@ -7,6 +7,7 @@
 
 import { NextResponse } from 'next/server'
 
+import { CARBON_INTERNAL_API_SECRET } from '@/config/constants'
 import sendLocalRequest from '@/utils/sendLocalRequest'
 import { isValidIbmEmail } from '@/utils/string'
 
@@ -20,7 +21,8 @@ function exitWith404(req) {
 
 function logIncomingRequest(req) {
   sendLocalRequest(req, '/api/log-request', false, 'POST', {
-    logMessage: `"${req.method} ${req.nextUrl.pathname}" "${req.ua.ua}" "${req.ip}"`
+    logMessage: `"${req.method} ${req.nextUrl.pathname}" "${req.ua.ua}" "${req.ip}"`,
+    internalApiSecret: CARBON_INTERNAL_API_SECRET
   })
 }
 

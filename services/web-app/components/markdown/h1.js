@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
-import cx from 'classnames'
+import clsx from 'clsx'
 
 import AutolinkHeader from '@/components/autolink-header'
 
@@ -13,7 +13,7 @@ import styles from './markdown.module.scss'
 
 const H1 = ({ children, className, ...rest }) => {
   return (
-    <Grid className={cx(className, styles.h1Container)} {...rest}>
+    <Grid className={clsx(className, styles.h1Container)} {...rest}>
       <Column sm={4} md={6} lg={8}>
         <AutolinkHeader is="h1" className={styles.h1}>
           {children}

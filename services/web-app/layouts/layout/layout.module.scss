@@ -59,3 +59,11 @@
     margin: 0;
   }
 }
+
+.column-content {
+  @include breakpoint.breakpoint-down(md) {
+    // override carbon 0.5px left and right margins in condensed nested grid
+    margin-right: 0;
+    margin-left: 0;
+  }
+}

@@ -150,7 +150,7 @@ const Layout = ({ children }) => {
               )}
               <Column sm={4} md={8} lg={showSideNav ? 12 : 16}>
                 <Grid condensed={!isLg} narrow={isLg}>
-                  <Column sm={4} md={8} lg={showSideNav ? 12 : 16}>
+                  <Column className={styles.columnContent} sm={4} md={8} lg={showSideNav ? 12 : 16}>
                     {children}
                   </Column>
                 </Grid>

@@ -7,6 +7,8 @@
 
 import { get } from 'lodash'
 
+import { ORDER_BY_STATUS } from '@/data/sort'
+import { status } from '@/data/status'
 import { tagsForCollection, tagsForType } from '@/data/tags'
 /**
  * Defines the sort order of assets by a key
@@ -14,12 +16,26 @@ import { tagsForCollection, tagsForType } from '@/data/tags'
  * @returns {number} Sort order
  */
 export const assetSortComparator = (key) => (assetA, assetB) => {
-  const sort = key === 'status' ? 'status' : 'name'
+  const sort = key === ORDER_BY_STATUS ? 'status' : 'name'
+  const statusKeys = Object.keys(status)
 
   if (assetA.content[sort] === assetB.content[sort]) {
     return 0
+  } else {
+    if (key === ORDER_BY_STATUS) {
+      const statusA =
+        typeof assetA.content.status === 'object'
+          ? assetA.content.status.key
+          : assetA.content.status
+      const statusB =
+        typeof assetB.content.status === 'object'
+          ? assetB.content.status.key
+          : assetB.content.status
+      return statusKeys.indexOf(statusA) > statusKeys.indexOf(statusB) ? 1 : -1
+    } else {
+      return assetA.content[sort] > assetB.content[sort] ? 1 : -1
+    }
   }
-  return assetA.content[sort] > assetB.content[sort] ? 1 : -1
 }
 
 /**

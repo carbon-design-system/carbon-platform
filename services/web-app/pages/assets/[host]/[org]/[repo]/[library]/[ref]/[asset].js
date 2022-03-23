@@ -93,18 +93,7 @@ const Asset = ({ libraryData }) => {
   }
 
   const githubRepoUrl = `http://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
-  const issueCount = '+10'
-  const discussionCount = '+3'
-
-  fetch(
-    'https://api.github.com/search/issues?q=repo:carbon-design-system/carbon-charts%20is:issue%20is:open%20chart%20in:title'
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data)
-      console.log(data.total_count)
-    })
-    .catch((error) => console.error(error))
+  const discussionCount = '0'
 
   return (
     <>
@@ -201,11 +190,13 @@ const Asset = ({ libraryData }) => {
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
-                href={`${githubRepoUrl}/issues/?q=is%3Aissue+is%3Aopen+in%3Atitle+${assetData.content.id}`}
+                href={`${githubRepoUrl}/issues/?q=is%3Aissue+is%3Aopen+in%3Atitle+${assetData.content.name}`}
               >
                 <dl>
                   <dt className={dashboardStyles.label}>Open issues</dt>
-                  <dd className={dashboardStyles.labelLarge}>{issueCount}</dd>
+                  <dd className={dashboardStyles.labelLarge}>
+                    {assetData.content.issueCount || 0}
+                  </dd>
                 </dl>
                 <Svg32Github className={dashboardStyles.positionBottomLeft} />
                 {pathIsAbsolute(githubRepoUrl) && (

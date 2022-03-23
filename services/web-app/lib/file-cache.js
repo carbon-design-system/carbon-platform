@@ -49,7 +49,11 @@ const slugifyRequest = (host, route, options = {}) => {
   }
 
   if (options.ref) {
-    mergedStr += `?ref=${options.ref}`
+    mergedStr += ` ref=${options.ref}`
+  }
+
+  if (options.q) {
+    mergedStr += ` q=${options.q}`
   }
 
   return mergedStr

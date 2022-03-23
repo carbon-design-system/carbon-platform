@@ -14,6 +14,9 @@ jobs:
   deploy-production:
     name: Deploy (Production)
     runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: https://next.carbondesignsystem.com
 
     steps:
       - name: Checkout 🛎

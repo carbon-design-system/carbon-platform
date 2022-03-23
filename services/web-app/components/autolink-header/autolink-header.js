@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Link } from '@carbon/react/icons'
+import { Link } from '@carbon/react/icons' 
 import clsx from 'clsx'
 // eslint-disable-next-line no-use-before-define
 import React from 'react'

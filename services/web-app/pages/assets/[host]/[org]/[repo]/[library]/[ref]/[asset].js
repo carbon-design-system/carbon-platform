@@ -93,7 +93,6 @@ const Asset = ({ libraryData }) => {
   }
 
   const githubRepoUrl = `http://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
-  const discussionCount = '0'
 
   return (
     <>
@@ -102,14 +101,6 @@ const Asset = ({ libraryData }) => {
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <PageHeader title={seo.title} pictogram={get(type, `[${assetData.content.type}].icon`)} />
           <PageBreadcrumb items={breadcrumbItems} />
-        </Column>
-
-        <Column className={dashboardStyles.column} sm={0} md={1} lg={0}>
-          <DashboardItem
-            aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-            border={['sm', 'md', 'lg', 'xlg']}
-            spacer
-          />
         </Column>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <Dashboard className={styles.dashboard}>
@@ -214,7 +205,7 @@ const Asset = ({ libraryData }) => {
               >
                 <dl>
                   <dt className={dashboardStyles.label}>Discussions</dt>
-                  <dd className={dashboardStyles.labelLarge}>{discussionCount}</dd>
+                  <dd className={dashboardStyles.labelLarge}>–</dd>
                 </dl>
                 <Svg32Github className={dashboardStyles.positionBottomLeft} />
                 {pathIsAbsolute(githubRepoUrl) && (

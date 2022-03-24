@@ -126,7 +126,7 @@ const Asset = ({ libraryData }) => {
             </Column>
             <Column className={dashboardStyles.column} sm={4} lg={8}>
               <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
-                <Grid as="dl" narrow>
+                <Grid as="dl" className={dashboardStyles.subgrid}>
                   <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Sponsor</dt>
                     <dd className={dashboardStyles.meta}>

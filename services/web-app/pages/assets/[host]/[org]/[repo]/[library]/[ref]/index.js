@@ -40,9 +40,13 @@ const Library = ({ libraryData, params }) => {
 
   if (router.isFallback) {
     return (
-      <div className={pageStyles.content}>
-        <h1>Loading...</h1>
-      </div>
+      <Grid>
+        <Column sm={4} md={8} lg={16}>
+          <div className={pageStyles.content}>
+            <h1>Loading...</h1>
+          </div>
+        </Column>
+      </Grid>
     )
   }
 

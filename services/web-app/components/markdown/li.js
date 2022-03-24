@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { ListItem } from '@carbon/react'
-import cx from 'classnames'
+import clsx from 'clsx'
 
 import styles from './markdown.module.scss'
 
 const LI = ({ children, className, ...rest }) => (
-  <ListItem className={cx(className, styles.listItem)} {...rest}>
+  <ListItem className={clsx(className, styles.listItem)} {...rest}>
     {children}
   </ListItem>
 )

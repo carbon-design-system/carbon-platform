@@ -11,6 +11,7 @@
 @use '@carbon/react/scss/type' as type;
 
 $hero-height: spacing.$spacing-13 * 3.475;
+$illo-mobile-height: spacing.$spacing-08 + spacing.$spacing-12;
 $illo-original-width: 1260px;
 $illo-original-height: 1078px;
 
@@ -23,7 +24,7 @@ $illo-original-height: 1078px;
       position: absolute;
       z-index: 0;
       left: 0;
-      width: 100vw;
+      width: calc(100vw - var(--scrollbar-width));
       height: $hero-height;
       background: theme.$background;
       content: '';
@@ -41,7 +42,7 @@ $illo-original-height: 1078px;
 .column {
   position: relative;
   z-index: 1;
-  padding: spacing.$spacing-08 spacing.$spacing-05 (spacing.$spacing-08 + spacing.$spacing-12);
+  padding: spacing.$spacing-08 0 $illo-mobile-height;
   @include breakpoint.breakpoint(md) {
     padding: (spacing.$spacing-09 + spacing.$spacing-03) 0 spacing.$spacing-05;
   }
@@ -61,17 +62,35 @@ $illo-original-height: 1078px;
   @include type.type-style('body-long-02', true);
 }
 
-.image-wrap {
+.image-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  width: calc(100vw - var(--scrollbar-width));
+  height: $illo-mobile-height;
+
+  @include breakpoint.breakpoint(md) {
+    top: 0;
+    bottom: auto;
+    height: $hero-height;
+  }
+}
+
+.image-position {
   position: absolute;
   top: 0;
   right: -25vw;
-  overflow: hidden;
   width: 50%;
   height: $hero-height;
   @include breakpoint.breakpoint(xlg) {
     // -18vw chosen to horizontally center the illo in white space at ultra max viewport
     right: -18vw;
     width: $hero-height * ($illo-original-width / $illo-original-height);
+  }
+  @include breakpoint.breakpoint(max) {
+    // match xlg position
+    right: -285px;
   }
   @include breakpoint.breakpoint-down(md) {
     // -33% and 170% picked to get iphone viewport to match design spec size and position

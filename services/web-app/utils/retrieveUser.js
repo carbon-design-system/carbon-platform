@@ -32,7 +32,7 @@ export async function retrieveUser(context) {
   const sessionCookie = context.req.cookies?.['connect.sid']
   if (sessionCookie) {
     const protocol =
-      getRunMode() === RunMode.Prod || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
+      getRunMode() === RunMode.Standard || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
     const userResponse = await fetch(
       `${protocol}://localhost:${req.socket.localPort}/api/user`,
       getRequestOptions(req)

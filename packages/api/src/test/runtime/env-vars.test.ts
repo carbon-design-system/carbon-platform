@@ -11,7 +11,7 @@ describe('loadEnvVars', () => {
     const oldRunMode = process.env.CARBON_RUN_MODE
     const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
-    process.env.CARBON_RUN_MODE = RunMode.Prod
+    process.env.CARBON_RUN_MODE = RunMode.Standard
     process.env.FAKE_ENV_VAR = ''
 
     expect(() => loadEnvVars({ FAKE_ENV_VAR: 'fallback' })).toThrow()
@@ -23,7 +23,7 @@ describe('loadEnvVars', () => {
     const oldRunMode = process.env.CARBON_RUN_MODE
     const oldFakeEnvVar = process.env.FAKE_ENV_VAR
 
-    process.env.CARBON_RUN_MODE = RunMode.Prod
+    process.env.CARBON_RUN_MODE = RunMode.Standard
     process.env.FAKE_ENV_VAR = 'SOME VALUE'
 
     const vars = loadEnvVars({ FAKE_ENV_VAR: 'fallback' })
@@ -36,16 +36,16 @@ describe('loadEnvVars', () => {
 
   it('returns the fallback when required env vars have not been set in Dev mode', () => {
     const oldRunMode = process.env.CARBON_RUN_MODE
-    const oldFakeProdEnvVar = process.env.FAKE_PROD_ENV_VAR
+    const oldFakeStandardModeEnvVar = process.env.FAKE_STANDARD_MODE_ENV_VAR
 
     process.env.CARBON_RUN_MODE = RunMode.Dev
-    process.env.FAKE_PROD_ENV_VAR = ''
+    process.env.FAKE_STANDARD_MODE_ENV_VAR = ''
 
-    const vars = loadEnvVars({ FAKE_PROD_ENV_VAR: 'fallback' })
+    const vars = loadEnvVars({ FAKE_STANDARD_MODE_ENV_VAR: 'fallback' })
 
-    expect(vars.FAKE_PROD_ENV_VAR).toBe('fallback')
+    expect(vars.FAKE_STANDARD_MODE_ENV_VAR).toBe('fallback')
 
     process.env.CARBON_RUN_MODE = oldRunMode
-    process.env.FAKE_PROD_ENV_VAR = oldFakeProdEnvVar
+    process.env.FAKE_STANDARD_MODE_ENV_VAR = oldFakeStandardModeEnvVar
   })
 })

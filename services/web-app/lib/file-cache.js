@@ -21,7 +21,7 @@ const diskCache = cacheManager.caching({
   store: fsStore,
   options: {
     path: CACHE_PATH,
-    ttl: getRunMode() === RunMode.Prod ? 60 * 60 : 60 * 60 * 24 * 365 /* seconds */,
+    ttl: getRunMode() === RunMode.Standard ? 60 * 60 : 60 * 60 * 24 * 365 /* seconds */,
     zip: false
   }
 })

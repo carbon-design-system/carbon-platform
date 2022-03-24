@@ -431,7 +431,7 @@ const devLibraries = {
   }
 }
 
-const libraryAllowList = getRunMode() === RunMode.Prod ? prodLibraries : devLibraries
+const libraryAllowList = getRunMode() === RunMode.Standard ? prodLibraries : devLibraries
 
 module.exports = {
   libraryAllowList

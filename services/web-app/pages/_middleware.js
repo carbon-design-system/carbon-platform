@@ -37,7 +37,7 @@ export async function middleware(req) {
   }
 
   const protocol =
-    getRunMode === RunMode.Prod || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
+    getRunMode === RunMode.Standard || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
   const userResponse = await fetch(
     `${protocol}://localhost:${req.nextUrl.port}/api/user`,
     getRequestOptions(req)

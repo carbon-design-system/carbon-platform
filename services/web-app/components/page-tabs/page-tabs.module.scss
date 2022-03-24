@@ -11,10 +11,6 @@
 @use '@carbon/react/scss/type' as type;
 
 .container {
-  @include breakpoint.breakpoint(md) {
-    margin-left: -(spacing.$spacing-04);
-  }
-
   &::before {
     position: absolute;
     z-index: 0;

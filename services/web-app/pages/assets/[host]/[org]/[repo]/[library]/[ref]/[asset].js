@@ -85,7 +85,24 @@ const Asset = ({ libraryData }) => {
     return testPath.test(path)
   }
 
-  const pageTabs = ['Usage', 'Design', 'Code', 'Accessibility']
+  const pageTabs = [
+    {
+      name: 'Usage',
+      path: ''
+    },
+    {
+      name: 'Design',
+      path: ''
+    },
+    {
+      name: 'Code',
+      path: ''
+    },
+    {
+      name: 'Accessibility',
+      path: ''
+    }
+  ]
 
   let externalDocsLink
 
@@ -105,7 +122,7 @@ const Asset = ({ libraryData }) => {
           <PageBreadcrumb items={breadcrumbItems} />
         </Column>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
-          <PageTabs pageTabs={pageTabs} />
+          <PageTabs tabs={pageTabs} />
           <Dashboard className={styles.dashboard}>
             <Column className={dashboardStyles.column} sm={4}>
               <DashboardItem

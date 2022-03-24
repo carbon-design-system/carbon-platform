@@ -35,7 +35,7 @@ const CatalogSort = ({ onSort, onView, sort, view }) => {
 
   return (
     <div className={clsx(styles.container, isSticky && styles.containerSticky)} ref={containerRef}>
-      <Grid className={styles.grid} condensed>
+      <Grid className={styles.grid} narrow>
         <Column className={styles.column} sm={4} md={8} lg={4}>
           <Dropdown
             id="catalog-sort"

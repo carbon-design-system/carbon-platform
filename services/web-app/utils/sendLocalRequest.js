@@ -41,7 +41,8 @@ export default function sendLocalRequest(
   const protocol =
     getRunMode() === RunMode.Standard || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
 
-  const requestUrl = `${protocol}://localhost:${req.nextUrl.port}/${path}`
+  const port = req.nextUrl?.port ?? req.socket?.localPort
+  const requestUrl = `${protocol}://localhost:${port}/${path}`
 
   const reqOptions = {
     method,

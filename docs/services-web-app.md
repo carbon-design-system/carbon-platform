@@ -23,6 +23,13 @@ access to private repos and increases API quotas. To set up a personal access to
 1. Copy the `/services/web-app/.env.example` file and rename to `/services/web-app/.env.local`
 1. Add your token to that new `.env.local` file
 
+## CARBON_INTERNAL_API_SECRET
+
+This enviornment variable is used to assert internal requests are being made to the log-request api;
+the web-app middleware sends this value inside the request body and the api compares it against it's
+environment to authorize the request. You can ignore this variable on dev mode as it is not
+necessary. For STANDARD mode, any robust password-like value should suffice
+
 ## Dependencies Set up
 
 ### Run Mode

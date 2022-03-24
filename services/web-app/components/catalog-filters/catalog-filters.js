@@ -10,14 +10,17 @@ import { isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
 
 import { getFilters } from '@/data/filters'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-filters.module.scss'
 
 const CatalogFilters = ({ filter, initialFilter, onFilter }) => {
+  const isLg = useMatchMedia(mediaQueries.lg)
+
   if (isEmpty(filter)) return null
 
   return (
-    <Grid className={styles.container} narrow>
+    <Grid className={styles.container} condensed={!isLg} narrow={isLg}>
       <Column sm={4} md={8} lg={12}>
         <div className={styles.section}>
           {Object.keys(filter).map((item) =>

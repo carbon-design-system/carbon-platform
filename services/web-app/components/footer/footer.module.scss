@@ -18,10 +18,6 @@
 .footer {
   margin: 0;
   @include type.type-style('body-long-01');
-
-  @include breakpoint.breakpoint-down(md) {
-    padding: 0 spacing.$spacing-05;
-  }
 }
 
 .text {
@@ -49,6 +45,10 @@
   padding-top: spacing.$spacing-06;
   padding-bottom: spacing.$spacing-09;
   border-top: 1px solid theme.$border-strong-01;
+
+  &:first-child {
+    border: 0;
+  }
 
   @include breakpoint.breakpoint(md) {
     border-top: 0;

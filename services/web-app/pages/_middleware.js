@@ -54,8 +54,8 @@ async function applyAuthMiddleware(req) {
 }
 
 export async function middleware(req) {
+  logIncomingRequest(req)
   try {
-    logIncomingRequest(req)
     await applyAuthMiddleware(req)
   } catch (err) {
     return exitWith404(req)

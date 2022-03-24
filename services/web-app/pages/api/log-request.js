@@ -24,8 +24,7 @@ const logRequest = (req, res) => {
   }
 
   if (!internalApiSecret || internalApiSecret !== CARBON_INTERNAL_API_SECRET) {
-    logging.warn(`unauthorized access from ${req.socket.remoteAddress}`)
-    res.status(401).send('Bad request (no internalApiSecret)')
+    res.status(401).send('Unauthorized.')
     return
   }
 

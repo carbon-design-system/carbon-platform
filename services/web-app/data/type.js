@@ -6,7 +6,7 @@
  */
 
 import { black, blue, green, magenta, purple, white } from '@carbon/colors'
-import { CodeSyntax, Construct, Pattern, TextInput, TextLayout } from '@carbon/pictograms-react'
+import { CodeSyntax, Construct, Dashboard, Pattern, TextInput } from '@carbon/pictograms-react'
 
 export const type = {
   component: {
@@ -15,7 +15,7 @@ export const type = {
     name: 'Component',
     namePlural: 'Components',
     path: '/assets/components',
-    textColor: blue[60]
+    textColor: blue[70]
   },
   element: {
     bgColor: black,
@@ -31,7 +31,7 @@ export const type = {
     name: 'Function',
     namePlural: 'Functions',
     path: '/assets/functions',
-    textColor: green[60]
+    textColor: green[70]
   },
   pattern: {
     bgColor: purple[20],
@@ -39,14 +39,14 @@ export const type = {
     name: 'Pattern',
     namePlural: 'Patterns',
     path: '/assets/patterns',
-    textColor: purple[60]
+    textColor: purple[70]
   },
   template: {
     bgColor: magenta[20],
-    icon: TextLayout,
+    icon: Dashboard,
     name: 'Template',
     namePlural: 'Templates',
     path: '/assets/templates',
-    textColor: magenta[60]
+    textColor: magenta[70]
   }
 }

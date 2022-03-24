@@ -40,7 +40,7 @@ const Footer = ({ hasSideNav }) => {
 
   const getColList = (col) =>
     col.map((item, i) => (
-      <li key={item}>
+      <li key={item.text}>
         <Link href={item.link} key={i}>
           <a className={clsx(styles.text, styles.link, styles.listLink)}>{item.text}</a>
         </Link>

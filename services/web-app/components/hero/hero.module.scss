@@ -42,7 +42,7 @@ $illo-original-height: 1078px;
 .column {
   position: relative;
   z-index: 1;
-  padding: spacing.$spacing-08 spacing.$spacing-05 $illo-mobile-height;
+  padding: spacing.$spacing-08 0 $illo-mobile-height;
   @include breakpoint.breakpoint(md) {
     padding: (spacing.$spacing-09 + spacing.$spacing-03) 0 spacing.$spacing-05;
   }

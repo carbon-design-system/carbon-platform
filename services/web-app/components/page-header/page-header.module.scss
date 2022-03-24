@@ -18,9 +18,6 @@ $background-header: #d0e2ff;
 .container {
   height: $page-header-height;
   background: $background-header;
-  @include breakpoint.breakpoint-down(md) {
-    padding: 0 spacing.$spacing-05;
-  }
 
   &::before {
     position: absolute;

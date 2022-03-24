@@ -10,8 +10,4 @@
 
 .container {
   margin-bottom: spacing.$spacing-07;
-  @include breakpoint.breakpoint(md) {
-    margin-right: -(spacing.$spacing-05);
-    margin-left: -(spacing.$spacing-05);
-  }
 }

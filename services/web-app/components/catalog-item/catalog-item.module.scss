@@ -58,10 +58,7 @@
 }
 
 .content {
-  padding: spacing.$spacing-05;
-  @include breakpoint.breakpoint(lg) {
-    padding-right: 0;
-  }
+  padding: spacing.$spacing-05 0;
 
   .anchor--grid & {
     border-top: 1px solid theme.$layer-accent;
@@ -106,7 +103,7 @@
 
 .icon {
   position: absolute;
-  right: spacing.$spacing-04;
+  right: 0;
   bottom: spacing.$spacing-04;
   display: block;
   width: spacing.$spacing-09;
@@ -116,6 +113,9 @@
   border-radius: 100%;
   color: theme.$icon-primary;
   transition: all motion.$duration-fast-02 motion.motion(standard, productive);
+  @include breakpoint.breakpoint(lg) {
+    right: spacing.$spacing-04;
+  }
   @include breakpoint.breakpoint(xlg) {
     width: spacing.$spacing-09 + spacing.$spacing-03;
     height: spacing.$spacing-09 + spacing.$spacing-03;
@@ -166,8 +166,12 @@
 .tags {
   position: absolute;
   top: spacing.$spacing-04;
-  right: spacing.$spacing-04;
+  right: 0;
   display: flex;
+  transition: background motion.$duration-fast-02 motion.motion(standard, productive);
+  @include breakpoint.breakpoint(lg) {
+    right: spacing.$spacing-04;
+  }
 
   .anchor--grid & {
     top: auto;

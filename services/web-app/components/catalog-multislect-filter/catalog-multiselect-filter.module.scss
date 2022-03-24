@@ -96,15 +96,19 @@
     // span two columns, where each column has a 1px gutter
     width: calc(200% + 2px);
   }
-  // span three columns, where each column has a 1px gutter
+  // span three columns, plus an offset for gutters
   @include breakpoint.breakpoint(lg) {
-    width: calc(300% + 3px);
+    width: calc(300% + #{spacing.$spacing-07});
   }
 }
 
 .grid {
   position: relative;
   padding: spacing.$spacing-03 0;
+  @include breakpoint.breakpoint(lg) {
+    // override carbon grid to get 3 column popover content to asymetrically grid align
+    margin-right: -(spacing.$spacing-07);
+  }
 
   &::before,
   &::after {
@@ -113,6 +117,9 @@
     height: spacing.$spacing-06;
     background: theme.$layer-01;
     content: '';
+    @include breakpoint.breakpoint(lg) {
+      width: calc(100% - #{spacing.$spacing-05});
+    }
   }
 
   &::before {
@@ -125,11 +132,15 @@
 }
 
 .column {
-  padding: spacing.$spacing-05;
+  padding: spacing.$spacing-05 0;
   border-top: 1px solid theme.$layer-accent;
+  margin: 0 spacing.$spacing-05;
   @include breakpoint.breakpoint(md) {
+    padding-right: spacing.$spacing-05;
+    padding-left: spacing.$spacing-05;
     border-top: 0;
     border-left: 1px solid theme.$layer-accent;
+    margin: 0;
 
     &:nth-child(2n + 1) {
       border-left: 0;
@@ -142,6 +153,10 @@
 
     &:nth-child(3n + 1) {
       border-left: 0;
+    }
+
+    &:nth-child(3n) {
+      padding-right: spacing.$spacing-07;
     }
   }
 

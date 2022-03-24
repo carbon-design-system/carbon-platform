@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.79](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.78...@carbon-platform/web-app@0.1.79) (2022-03-24)
+
+
+### Features 🌟
+
+* **web-app:** add library and asset validation ([546db0f](https://github.com/carbon-design-system/carbon-platform/commit/546db0f8bba02e30b550fbe27311fb53b3870ddb))
+
+
+### Misc. 🔮
+
+* update node modules ([46b6888](https://github.com/carbon-design-system/carbon-platform/commit/46b6888d984dffa11374b1564aef54e9ab3d1d3e))
+
+
+### Bug Fixes 🐛
+
+* address pr review comments ([190ef9d](https://github.com/carbon-design-system/carbon-platform/commit/190ef9d0f6b4a4762c70550e22d36bb6955076db))
+* clsx imports ([0ecf51f](https://github.com/carbon-design-system/carbon-platform/commit/0ecf51fb9c03c361aa5dbf52729555a866ecf0af))
+* link style on asset detail page ([e98353a](https://github.com/carbon-design-system/carbon-platform/commit/e98353af46971f87da123e9016cecd8403486e97))
+* lint issues ([a6a3142](https://github.com/carbon-design-system/carbon-platform/commit/a6a3142c7cb2a82b6329b9a77b3df343eaad754d))
+* **web-app:** merge with main ([56b88f5](https://github.com/carbon-design-system/carbon-platform/commit/56b88f569658cbb75bfb67ea812049331193e282))
+* **web-app:** new object when getting allTags,fix catalog tag issue ([d32378a](https://github.com/carbon-design-system/carbon-platform/commit/d32378a669bf9984abf5746f73527f04136140ca))
+* **web-app:** remove unnecessary filtering ([1743300](https://github.com/carbon-design-system/carbon-platform/commit/174330032e220506ebe2a08e6032847902f1870c))
+* **web-app:** sonarcloud CC issue ([96b219a](https://github.com/carbon-design-system/carbon-platform/commit/96b219a41c5868b9334e825501adacb344af73da))
+
+## [0.1.78](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.77...@carbon-platform/web-app@0.2.0) (2022-03-23)
+
+
+### Features 🌟
+
+* **api:** rename prod run mode to standard to avoid confusion ([1664681](https://github.com/carbon-design-system/carbon-platform/commit/16646815268838b5b196892d1bd809bb1a461f0b)), closes [#412](https://github.com/carbon-design-system/carbon-platform/issues/412)
+
+### [0.1.77](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.76...@carbon-platform/web-app@0.1.77) (2022-03-22)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** update @carbon/react and other packages ([eac0c0d](https://github.com/carbon-design-system/carbon-platform/commit/eac0c0d397209bee13b8818055e2f9a075922253))
+
 ### [0.1.76](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.75...@carbon-platform/web-app@0.1.76) (2022-03-22)
 
 

@@ -15,10 +15,6 @@
 
 .grid {
   margin: spacing.$spacing-10 0;
-  @include breakpoint.breakpoint-down(md) {
-    padding-right: spacing.$spacing-05;
-    padding-left: spacing.$spacing-05;
-  }
 }
 
 // override carbon max-width and padding-right

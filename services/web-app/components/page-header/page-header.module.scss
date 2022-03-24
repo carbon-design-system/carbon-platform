@@ -17,9 +17,6 @@ $page-header-height: spacing.$spacing-13 * 2;
 .container {
   height: $page-header-height;
   background: theme.$background;
-  @include breakpoint.breakpoint-down(md) {
-    padding: 0 spacing.$spacing-05;
-  }
 
   &::before {
     position: absolute;

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, OrderedList } from '@carbon/react'
-import cx from 'classnames'
+import clsx from 'clsx'
 
 import styles from './markdown.module.scss'
 
@@ -13,7 +13,7 @@ const Ol = ({ children, className, ...rest }) => {
   return (
     <Grid>
       <Column sm={4} md={6} lg={8}>
-        <OrderedList isExpressive className={cx(className, styles.list, styles.ol)} {...rest}>
+        <OrderedList isExpressive className={clsx(className, styles.list, styles.ol)} {...rest}>
           {children}
         </OrderedList>
       </Column>

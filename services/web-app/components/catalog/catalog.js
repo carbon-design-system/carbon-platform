@@ -323,17 +323,6 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   // the following useEffect should run (doing deep comparison with isEqual on filter)
   const prevValues = usePrevious({ sort, search, filter })
   useEffect(() => {
-    const resultsCount = filteredAssets.length
-    const maxPageNumber = Math.max(Math.ceil(resultsCount / pageSize), 1)
-    if (page > maxPageNumber) {
-      // TODO: this setQuery can probably be removed after use-query-state refactor merge
-      setQuery(search)
-      setPage(1)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filteredAssets])
-
-  useEffect(() => {
     if (
       prevValues?.sort !== sort ||
       prevValues?.search !== search ||
@@ -358,6 +347,14 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   useEffect(() => {
     setPossibleFilterValues(getFilters({ collection, type }))
   }, [collection, type])
+
+  useEffect(() => {
+    const resultsCount = filteredAssets.length
+    const maxPageNumber = Math.max(Math.ceil(resultsCount / pageSize), 1)
+    if (page > maxPageNumber) {
+      setPage(1)
+    }
+  }, [filteredAssets, page, pageSize, setPage])
 
   const handleFilter = (item, key, action = 'add') => {
     let updatedFilter = cloneDeep(filter)

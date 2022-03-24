@@ -100,16 +100,11 @@
   @include breakpoint.breakpoint(lg) {
     width: calc(300% + #{spacing.$spacing-07});
   }
-}
-
-.wrapper {
-  transition: background motion.$duration-fast-01 carbon--motion(standard, productive);
 
   &:focus,
   &:active {
-    border: 1px solid theme.$focus;
-    margin: -1px;
-    outline: none;
+    border-color: transparent;
+    box-shadow: 0 0 0 1px theme.$focus;
   }
 }
 

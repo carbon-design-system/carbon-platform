@@ -30,7 +30,7 @@ const CatalogMultiselectFilter = ({
   const triggerRef = useRef()
   const contentRef = useRef()
   const popoverRef = useRef(null)
-  // const focus = useFocus()
+  const focus = useFocus()
 
   const [open, setOpen] = useState(false)
 
@@ -102,8 +102,7 @@ const CatalogMultiselectFilter = ({
         </span>
       </button>
       <PopoverContent className={styles.content} ref={contentRef}>
-        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
-        <Column className={styles.wrapper} ref={popoverRef} tabIndex="0" span={columns}>
+        <Column span={columns} ref={popoverRef} className={styles.wrapper}>
           <Grid className={styles.grid} condensed>
             {Object.keys(getFilters(initialFilter)).map((item, i) => (
               <Column className={styles.column} key={i} sm={1}>

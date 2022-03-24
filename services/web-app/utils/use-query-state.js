@@ -6,96 +6,124 @@
  */
 
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useMemo } from 'react'
+import queryString from 'query-string'
+import { useCallback, useEffect, useState } from 'react'
 
-export const queryTypes = {
-  string: {
-    parse: (v) => v,
-    serialize: (v) => `${v}`
-  },
-  integer: {
-    parse: (v) => parseInt(v),
-    serialize: (v) => Math.round(v).toFixed()
-  },
-  float: {
-    parse: (v) => parseFloat(v),
-    serialize: (v) => v.toString()
-  },
-  boolean: {
-    parse: (v) => v === 'true',
-    serialize: (v) => (v ? 'true' : 'false')
-  },
-  timestamp: {
-    parse: (v) => new Date(parseInt(v)),
-    serialize: (v) => v.valueOf().toString()
-  },
-  isoDateTime: {
-    parse: (v) => new Date(v),
-    serialize: (v) => v.toISOString()
-  },
-  object: {
-    parse: (v) => JSON.parse(v),
-    serialize: (v) => JSON.stringify(v)
-  }
+import { isJsonString } from './string'
+
+// see "bracket-separator" entry on https://www.npmjs.com/package/query-string
+const queryStringConfig = {
+  arrayFormat: 'bracket-separator',
+  arrayFormatSeparator: '|'
 }
 
-export const useQueryState = (
+/**
+ * Write to query state and get updates on query state change
+ *
+ * This hook allows to manage the state of a key/value in the browser query,
+ *  with the following considerations:
+ * 1- the value contained in `value` will automatically be updated when the browser query changes
+ * 2- subscribing components can manipulate the query value by calling the `update`
+ * function with a desired value
+ * 3 - All queryState key/values will be saved to localStorage
+ * 4 - The `validateValue` function receives the current query string value
+ * and should return true if the value is valid or false otherwise. If the value is invalid,
+ * the hook will return the last value saved to localStorage (null if not set)
+ * 5 - By default, queryStates are always saved to localStorage and this value is reset
+ * to the provided `defaultValue` every time a new page navigation to the path occurs;
+ * supplying option `resetOnLoad` = `false` will cause the value to never be reset
+ * 6- Supplying options `parseNumbers` or `parseBoolean` = `true` will cause the type of value
+ * to be cast to desired type if possible, otherwise type will be string
+ * @param {string} key Key to use in the query string
+ * @param {{defaultValue: string, parseNumbers: boolean,
+ * parseBooleans: boolean, resetOnLoad: boolean}} options Extra config options
+ *
+ * @returns {{value, update}} Current value and update function
+ */
+const useQueryState = (
   key,
-  {
-    defaultValue = '',
-    parse = queryTypes.string.parse,
-    serialize = queryTypes.string.serialize,
-    saveToStorage = false
-  }
+  { defaultValue = '', parseNumbers = false, parseBooleans = false, resetOnLoad = true },
+  validateValue = () => true
 ) => {
   const router = useRouter()
 
-  // When not in a SSR context, get the query value directly from URLSearchParams so there's no
-  // reliance on router.query which may not be populated yet.
-  const getValue = useCallback(() => {
-    if (typeof window === 'undefined') {
-      return null
-    }
+  const getValue = useCallback(
+    (isInternalCall = false) => {
+      if (typeof window === 'undefined') {
+        return null
+      }
 
-    const query = new URLSearchParams(window.location.search)
-    const queryValue = query.get(key)
-    const storageValue = saveToStorage ? localStorage.getItem(`${router.pathname}:${key}`) : null
+      const query = queryString.parseUrl(window.location.search, {
+        ...queryStringConfig,
+        parseNumbers,
+        parseBooleans
+      }).query
 
-    return queryValue !== null ? parse(queryValue) : storageValue
-  }, [key, parse, router.pathname, saveToStorage])
+      if (!isInternalCall && resetOnLoad) {
+        localStorage.setItem(`${router.pathname}:${key}`, defaultValue)
+      }
 
-  // Update the "state" when the router.query key changes
-  const value = useMemo(getValue, [getValue, router.query[key]])
+      const val = query[key]
+
+      if (typeof validateValue === 'function' && !validateValue(val)) {
+        const storageValue = localStorage.getItem(`${router.pathname}:${key}`)
+        const parsedValue = isJsonString(storageValue) ? JSON.parse(storageValue) : storageValue
+        if (parsedValue !== undefined) {
+          const queryStringFromStorage = queryString.stringify(
+            { key: parsedValue },
+            queryStringConfig
+          )
+
+          return queryString.parseUrl(`?${queryStringFromStorage}`, {
+            ...queryStringConfig,
+            parseNumbers,
+            parseBooleans
+          }).query.key
+        }
+        // invalid val and no storage value set, returning null
+        return null
+      }
+
+      return val
+    },
+    [key, parseBooleans, parseNumbers, router.pathname, resetOnLoad, validateValue, defaultValue]
+  )
+
+  const [value, setValue] = useState(getValue())
 
   // Replace the route to then update the "state"
   const update = useCallback(
     (stateUpdater) => {
-      const oldValue = getValue()
+      const oldValue = getValue(true)
       const newValue = typeof stateUpdater === 'function' ? stateUpdater(oldValue) : stateUpdater
 
       // Don't rely on router.query here because that would cause unnecessary renders when other
       // query parameters change
-      const query = new URLSearchParams(window.location.search)
+      const query = queryString.parseUrl(window.location.search, {
+        ...queryStringConfig,
+        parseNumbers,
+        parseBooleans
+      }).query
 
-      if (newValue === null || newValue === undefined) {
-        query.delete(key)
-      } else {
-        query.set(key, serialize(newValue))
-      }
+      query[key] = newValue
 
-      router.replace(`?${query.toString()}`, undefined, { shallow: true, scroll: false })
+      // Change query state without rerendering page
+      history.pushState(null, null, `?${queryString.stringify(query, queryStringConfig)}`)
+
+      setValue(getValue(true))
     },
-    // The Next.js router updates `router.replace`, which should not trigger re-renders
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [getValue, key, serialize]
+    [getValue, key, parseBooleans, parseNumbers]
   )
 
   // Save the value to local storage as it changes
   useEffect(() => {
-    if (saveToStorage && value) {
-      localStorage.setItem(`${router.pathname}:${key}`, value)
+    if (typeof validateValue === 'function' && validateValue(value)) {
+      // stringifying because localStorage can't handle arrays
+      localStorage.setItem(`${router.pathname}:${key}`, JSON.stringify(value))
     }
-  }, [key, router.pathname, saveToStorage, value])
+  }, [key, router.pathname, value, validateValue])
 
   return [value ?? defaultValue ?? null, update]
 }
+
+export default useQueryState

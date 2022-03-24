@@ -14,9 +14,37 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './page-nav.module.scss'
 
-const PageNav = ({ items = [] }) => {
+const PageNav = ({ items = [], contentRef }) => {
   const router = useRouter()
   const isLg = useMatchMedia(mediaQueries.lg)
+
+  // const navLinks = contentRef.current.querySelectorAll('[class^="page-nav_link"]')
+  // console.log(navLinks)
+
+  // const contentAreas = contentRef.current.querySelectorAll('[id]')
+
+  // console.log(contentAreas[2].id)
+
+  const allNavLinks = contentRef.current.querySelectorAll('[class^="page-nav_link"]')
+  const navLinks = []
+  allNavLinks.forEach((element) => {
+    navLinks.push({
+      id: element.getAttribute('data-id')
+    })
+  })
+  console.log('nav links', navLinks)
+
+  const allContentSections = contentRef.current.querySelectorAll('[id]')
+  const contentSections = []
+  allContentSections.forEach((element) => {
+    contentSections.push({
+      id: element.getAttribute('id')
+    })
+  })
+  console.log('content sections', contentSections)
+  console.log('content section 1 id: ', contentSections[0].id)
+
+  // if the content section id is visible then set the active class for the link with the same
 
   return (
     <Grid narrow={isLg} className={styles.container}>
@@ -28,6 +56,7 @@ const PageNav = ({ items = [] }) => {
                 {item.id && (
                   <Link href={`#${item.id}`}>
                     <a
+                      data-id={item.id}
                       className={clsx(
                         styles.link,
                         router.asPath.includes(item.id) ? styles.linkActive : ''
@@ -47,7 +76,7 @@ const PageNav = ({ items = [] }) => {
 }
 
 PageNav.propTypes = {
-  className: PropTypes.string,
+  contentRef: PropTypes.object,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,

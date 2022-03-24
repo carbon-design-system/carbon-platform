@@ -310,34 +310,19 @@ const getLibraryAssets = async (params = {}) => {
     // if fetching a specific asset, only return that
     return libraryParams.asset ? getSlug(asset.content) === libraryParams.asset : true
   })
-
-  // fetch github issue count for all assets
-
-  const assetGitHubIssuePromises = []
-
-  assets.forEach((asset) => {
-    assetGitHubIssuePromises.push(
-      getResponse(params.host, 'GET /search/issues', {
-        q: `${asset.content.name}+repo:${params.org}/${params.repo}+is:issue+is:open+in:title`
-      })
-    )
-  })
-
-  const assetIssueCounts = await Promise.all(assetGitHubIssuePromises)
-
-  // Merge counts into assets
-
-  assets = assets.map((asset, i) => {
-    return {
-      ...asset,
-      content: {
-        ...asset.content,
-        issueCount: assetIssueCounts[i]?.total_count ?? 0
-      }
-    }
-  })
-
   return assets
+}
+
+export const getAssetIssueCount = async (asset) => {
+  const { host, org, repo } = asset.params
+  console.log(asset.prams, 'hi')
+  return (
+    (
+      await getResponse(host, 'GET /search/issues', {
+        q: `${asset.content.name}+repo:${org}/${repo}+is:issue+is:open+in:title`
+      })
+    ).total_count ?? 0
+  )
 }
 
 /**

@@ -28,7 +28,7 @@ import { status } from '@/data/status'
 import { teams } from '@/data/teams'
 import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
-import { getLibraryData } from '@/lib/github'
+import { getAssetIssueCount, getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { getTagsList } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
@@ -231,7 +231,7 @@ Asset.propTypes = {
   libraryData: libraryPropTypes
 }
 
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
   const libraryData = await getLibraryData(params)
 
   if (!libraryData || !libraryData.assets || !libraryData.assets.length) {
@@ -240,19 +240,14 @@ export const getStaticProps = async ({ params }) => {
     }
   }
 
+  const [assetData] = libraryData.assets
+  assetData.content.issueCount = await getAssetIssueCount(assetData)
+
   return {
     props: {
       libraryData,
       params
-    },
-    revalidate: 10
-  }
-}
-
-export const getStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: true
+    }
   }
 }
 

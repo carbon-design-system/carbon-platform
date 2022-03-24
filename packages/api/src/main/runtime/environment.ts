@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 enum Environment {
+  Build = 'BUILD',
   Test = 'TEST',
   Production = 'PRODUCTION'
 }
@@ -14,6 +15,7 @@ function getEnvironment(): Environment {
 
   switch (environment) {
     // Normal cases
+    case Environment.Build:
     case Environment.Test:
     case Environment.Production:
       return environment

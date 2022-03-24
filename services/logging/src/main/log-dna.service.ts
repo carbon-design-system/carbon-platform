@@ -20,8 +20,8 @@ class LogDnaService {
   private readonly logDna?: Logger
 
   constructor() {
-    // In DEV mode, the service is a no-op
-    if (getRunMode() === RunMode.Prod) {
+    // In "Dev" mode, the service is a no-op
+    if (getRunMode() === RunMode.Standard) {
       this.logDna = LogDna.createLogger(CARBON_LOGDNA_KEY, {
         url: CARBON_LOGDNA_ENDPOINT,
         env: getRunMode()
@@ -32,7 +32,7 @@ class LogDnaService {
   /**
    * Logs the provided log entry on the LogDNA server.
    *
-   * **NOTE:** In DEV run-mode, this is effectively a no-op.
+   * **NOTE:** In "Dev" run-mode, this is effectively a no-op.
    *
    * @param logEntry The log to send to LogDNA.
    */

@@ -37,9 +37,7 @@ async function createOpenIDStrategy(): Promise<OpenIdStrategy<unknown, BaseClien
     response_types: ['code']
   })
   return new OpenIdStrategy({ client }, (_: any, user: any, done: any) => {
-    // TODO: validate the user or potentially create a new user account
     // this has more info, right now just saving name & email
-    // if it's not an ibm.com addr, potentially redirect to a 'not yet supported' route
     done(null, { name: user.name, email: user.email })
   })
 }
@@ -68,8 +66,8 @@ async function createCustomStrategy(): Promise<passport.Strategy> {
 }
 
 /**
- * Determines if an OpenId passport strategy should be used
- * This strategy is used if running on PROD mode or the necessary env variables have been set
+ * Determines if an OpenId passport strategy should be used.
+ * This strategy is used if running in "Standard" mode or the necessary env variables have been set.
  *
  * @returns {boolean} true if should use OpenId strategy
  */
@@ -80,7 +78,7 @@ function shouldUseOpenIdStrategy(): boolean {
     PASSPORT_STRATEGY_NAME !== 'custom' &&
     !!CARBON_IBM_ISV_CLIENT_ID &&
     !!CARBON_IBM_ISV_CLIENT_SECRET
-  return getRunMode() === RunMode.Prod || (hasValidOpenIdValues && isRunningSecurely)
+  return getRunMode() === RunMode.Standard || (hasValidOpenIdValues && isRunningSecurely)
 }
 
 /**

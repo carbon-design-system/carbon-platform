@@ -126,7 +126,7 @@ function versionWorkspaces(updatedWorkspaces, isDryRun) {
       ${dryRun} \
       --path . \
       --tag-prefix="${ws.name}@" \
-      --releaseCommitMessageFormat="chore(release): ${ws.name}@{{currentTag}}"`,
+      --releaseCommitMessageFormat="release: ${ws.name}@{{currentTag}}"`,
       { cwd: ws.path }
     )
     const newVersion = versionOutput.split('\n')[0].split(' ').pop()

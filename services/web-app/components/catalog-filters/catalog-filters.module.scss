@@ -1,24 +1,26 @@
-//
-// Copyright IBM Corp. 2021, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
 
 .container {
-  @include breakpoint-down(md) {
+  @include breakpoint.breakpoint-down(md) {
     display: none;
   }
 
   // override carbon margin
   :global(.cds--tag) {
-    margin: $spacing-02;
+    margin: spacing.$spacing-02;
   }
 }
 
 .section {
-  padding: $spacing-03 $spacing-04;
-  margin-right: -$spacing-05;
-  margin-left: -$spacing-05;
-  background: $layer-01;
+  padding: spacing.$spacing-03 spacing.$spacing-04;
+  background: theme.$layer-01;
 }

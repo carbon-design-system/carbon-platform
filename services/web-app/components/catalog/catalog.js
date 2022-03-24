@@ -16,6 +16,7 @@ import CatalogPagination from '@/components/catalog-pagination'
 import CatalogResults from '@/components/catalog-results'
 import CatalogSearch from '@/components/catalog-search'
 import CatalogSort from '@/components/catalog-sort'
+import { ALPHABETICAL_ORDER } from '@/data/sort'
 import {
   assetSortComparator,
   collapseAssetGroups,
@@ -23,6 +24,7 @@ import {
   getCanonicalLibraryId,
   librarySortComparator
 } from '@/utils/schema'
+import { getSlug } from '@/utils/slug'
 import { queryTypes, useQueryState } from '@/utils/use-query-state'
 
 import styles from './catalog.module.scss'
@@ -30,26 +32,25 @@ import styles from './catalog.module.scss'
 const valuesIntersect = (arr1, arr2) => {
   if (!isArray(arr1) || !isArray(arr2)) return false
 
-  return arr1.filter((v) => arr2.includes(v)).length
+  return arr1.filter((v) => arr2.includes(v)).length > 0
 }
 
 const assetIsInFilter = (asset, filter) => {
   for (const [key, value] of Object.entries(filter)) {
     if (key === 'sponsor') {
       if (!value.includes(asset.params[key])) return false
-    } else if (key === 'tags' && !valuesIntersect(value, asset.content[key])) {
-      return false
+    } else if (key === 'tags') {
+      if (!valuesIntersect(value, asset.content[key])) return false
     } else {
       if (!value.includes(asset.content[key])) return false
     }
   }
 
-  if (collapseAssetGroups(asset, filter)) {
-    return get(asset, 'library.content.id') === getCanonicalLibraryId(asset)
-  }
-
   return true
 }
+
+const isCanonicalLibAsset = (asset) =>
+  get(asset, 'library.content.id') === getCanonicalLibraryId(asset)
 
 function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {} }) {
   const [query, setQuery] = useQueryState('q', {
@@ -59,7 +60,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   const [search, setSearch] = useState(query)
 
   const [sort, setSort] = useQueryState('sort', {
-    defaultValue: 'a-z',
+    defaultValue: ALPHABETICAL_ORDER,
     saveToStorage: true
   })
 
@@ -131,22 +132,46 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   })
 
   useEffect(() => {
+    const skippedAssets = []
+    const assetsWithAppliedFilter = assets.filter((asset) => {
+      if (assetIsInFilter(asset, filter)) {
+        if (collapseAssetGroups(asset, filter)) {
+          const isCanonicalAsset = isCanonicalLibAsset(asset)
+          if (!isCanonicalAsset) skippedAssets.push(asset)
+          return isCanonicalAsset
+        }
+        return true
+      } else {
+        return false
+      }
+    })
+
+    const assetsNotInCanonical = skippedAssets.filter(
+      (asset) =>
+        !assetsWithAppliedFilter.some(
+          (filteredAsset) => getSlug(filteredAsset.content) === getSlug(asset.content)
+        )
+    )
+
+    assetsWithAppliedFilter.push(
+      ...assetsNotInCanonical.filter(
+        (value, index, self) => index === self.findIndex((t) => t.content.id === value.content.id)
+      )
+    )
+
     setFilteredAssets(
-      assets
-        .sort(assetSortComparator(sort))
-        .filter((asset) => assetIsInFilter(asset, filter))
-        .filter((asset) => {
-          const { description = '', name = '' } = asset.content
+      assetsWithAppliedFilter.sort(assetSortComparator(sort)).filter((asset) => {
+        const { description = '', name = '' } = asset.content
 
-          if (search) {
-            return (
-              (name && name.toLowerCase().includes(search.toLowerCase())) ||
-              (description && description.toLowerCase().includes(search.toLowerCase()))
-            )
-          }
+        if (search) {
+          return (
+            (name && name.toLowerCase().includes(search.toLowerCase())) ||
+            (description && description.toLowerCase().includes(search.toLowerCase()))
+          )
+        }
 
-          return true
-        })
+        return true
+      })
     )
 
     // avoid deep object equality comparison in the effect by using JSON.stringify

@@ -43,8 +43,7 @@ async function createFileStore(): Promise<expressSession.Store> {
  */
 const getStore = async (): Promise<expressSession.Store> => {
   if (!storeInstance) {
-    // TODO: remove use of CARBON_USE_LOCAL_DB when mongo db is set up
-    if (getRunMode() === RunMode.Prod && process.env.CARBON_USE_LOCAL_DB !== '1') {
+    if (getRunMode() === RunMode.Standard && process.env.CARBON_USE_LOCAL_DB !== '1') {
       storeInstance = await createMongoStore()
     } else {
       storeInstance = await createFileStore()

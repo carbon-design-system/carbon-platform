@@ -110,13 +110,14 @@ CatalogItemContent.propTypes = {
 
 const CatalogItemMeta = ({ asset, className, properties }) => {
   const renderStatus = () => {
-    const { name } = status[asset.content.status]
+    const statusKey = asset?.content.status?.key ?? asset?.content.status ?? 'draft'
+    const { name } = status[statusKey]
 
     if (!name) return null
 
     return (
       <>
-        <StatusIcon className={styles.metaIcon} status={asset.content.status} />
+        <StatusIcon className={styles.metaIcon} status={statusKey} />
         <span>{name}</span>
       </>
     )
@@ -200,7 +201,7 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
     <Column as="li" sm={4} md={8} lg={12}>
       <Link href={anchorHref}>
         <a className={anchorStyles} {...anchorProps}>
-          <Grid condensed>
+          <Grid narrow>
             <Column className={clsx(styles.column, styles.columnImage)} md={4}>
               <AspectRatio ratio={imageAspectRatio()}>
                 <CatalogItemImage asset={asset} />

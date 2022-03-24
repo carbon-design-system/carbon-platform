@@ -10,7 +10,7 @@ enum Environment {
 }
 
 function getEnvironment(): Environment {
-  const environment = process.env.CARBON_ENVIRONMENT
+  const environment = process.env.CARBON_ENVIRONMENT?.toUpperCase()
 
   switch (environment) {
     // Normal cases

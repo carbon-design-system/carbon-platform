@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.19](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.0.18...@carbon-platform/logging@1.0.19) (2022-03-24)
+
+## [1.0.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.0.17...@carbon-platform/logging@2.0.0) (2022-03-23)
+
+
+### Features 🌟
+
+* **api:** rename prod run mode to standard to avoid confusion ([1664681](https://github.com/carbon-design-system/carbon-platform/commit/16646815268838b5b196892d1bd809bb1a461f0b)), closes [#412](https://github.com/carbon-design-system/carbon-platform/issues/412)
+
+### [1.0.17](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.0.16...@carbon-platform/logging@1.0.17) (2022-03-22)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** update @carbon/react and other packages ([eac0c0d](https://github.com/carbon-design-system/carbon-platform/commit/eac0c0d397209bee13b8818055e2f9a075922253))
+
+### [1.0.16](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.0.15...@carbon-platform/logging@1.0.16) (2022-03-15)
+
+### [1.0.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.0.14...@carbon-platform/logging@1.0.15) (2022-03-10)
+
+### [1.0.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.0.13...@carbon-platform/logging@1.0.14) (2022-03-09)
+
+
+### Misc. 🔮
+
+* lock file rebuild ([712c37d](https://github.com/carbon-design-system/carbon-platform/commit/712c37d59c92919bb5b08e7d37ffb5664cec4318))
+* update node modules ([d2bcb5a](https://github.com/carbon-design-system/carbon-platform/commit/d2bcb5adf89a8e90e03daa2b8d4f00343343d0b6))
+
+### [1.0.13](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.0.12...@carbon-platform/logging@1.0.13) (2022-03-05)
+
 ### [1.0.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.0.11...@carbon-platform/logging@1.0.12) (2022-03-01)
 
 ### [1.0.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.0.10...@carbon-platform/logging@1.0.11) (2022-03-01)

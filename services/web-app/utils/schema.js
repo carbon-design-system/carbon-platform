@@ -7,18 +7,41 @@
 
 import { get } from 'lodash'
 
+import { ORDER_BY_STATUS } from '@/data/sort'
+import { status } from '@/data/status'
+import { tagsForCollection, tagsForType } from '@/data/tags'
+/**
+ * Defines the sort order of assets by status
+ * @param {import('../typedefs').Asset} assetA
+ * @param {import('../typedefs').Asset} assetB
+ * @returns {number} Sort order
+ */
+export const statusSortComparator = (assetA, assetB) => {
+  const statusKeys = Object.keys(status)
+
+  const statusA =
+    typeof assetA.content.status === 'object' ? assetA.content.status.key : assetA.content.status
+  const statusB =
+    typeof assetB.content.status === 'object' ? assetB.content.status.key : assetB.content.status
+  return statusKeys.indexOf(statusA) > statusKeys.indexOf(statusB) ? 1 : -1
+}
 /**
  * Defines the sort order of assets by a key
  * @param {string} key
  * @returns {number} Sort order
  */
 export const assetSortComparator = (key) => (assetA, assetB) => {
-  const sort = key === 'status' ? 'status' : 'name'
+  const sort = key === ORDER_BY_STATUS ? 'status' : 'name'
 
   if (assetA.content[sort] === assetB.content[sort]) {
     return 0
+  } else {
+    if (key === ORDER_BY_STATUS) {
+      return statusSortComparator(assetA, assetB)
+    } else {
+      return assetA.content[sort] > assetB.content[sort] ? 1 : -1
+    }
   }
-  return assetA.content[sort] > assetB.content[sort] ? 1 : -1
 }
 
 /**
@@ -125,4 +148,27 @@ export const getLibraryVersionAsset = (str = '') => {
     ref,
     asset
   }
+}
+
+/**
+ * Gets an array of tag names given an asset
+ * @param {import('../typedefs').Asset} asset
+ * @returns {string[]} An array of tag names
+ */
+export const getTagsList = (asset) => {
+  const tags = asset?.content?.tags ?? []
+
+  // retrieve valid tags for asset type
+  const componentTypeTags = get(tagsForType, asset?.content.type, {})
+
+  // flatten all collections to obtain single object with all tags keys
+  const allCollectionTags = Object.keys(tagsForCollection).reduce((prev, currKey) => {
+    return Object.assign(prev, tagsForCollection[currKey])
+  }, {})
+
+  // object containing all possible valid tags the asset can have given it's type
+  const allPossibleTags = Object.assign({ ...componentTypeTags }, allCollectionTags)
+
+  // return array of tag names
+  return tags.map((tag) => allPossibleTags[tag]?.name).filter((val) => !!val)
 }

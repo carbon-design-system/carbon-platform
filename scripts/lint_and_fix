@@ -10,6 +10,6 @@ set -e
 
 prettier --check --write .
 
-stylelint --fix '**/*.{css,scss,js,jsx,ts,tsx}'
+stylelint --fix '**/*.{css,scss}'
 
 eslint --fix --ext .js,.jsx,.ts,.tsx .

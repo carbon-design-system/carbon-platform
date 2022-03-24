@@ -103,10 +103,10 @@ const CatalogMultiselectFilter = ({
       </button>
       <PopoverContent className={styles.content} ref={contentRef}>
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
-        <div className={styles.wrapper} ref={popoverRef} tabIndex="0">
-          <Grid className={styles.grid} columns={columns}>
+        <Column className={styles.wrapper} ref={popoverRef} tabIndex="0" span={columns}>
+          <Grid className={styles.grid} condensed>
             {Object.keys(getFilters(initialFilter)).map((item, i) => (
-              <Column className={styles.column} key={i}>
+              <Column className={styles.column} key={i} sm={1}>
                 <h3 className={styles.heading}>{getFilters(initialFilter)[item].name}</h3>
                 <ul className={styles.list}>
                   {Object.keys(getFilters(initialFilter)[item].values).map((key, j) => (
@@ -129,7 +129,7 @@ const CatalogMultiselectFilter = ({
               </Column>
             ))}
           </Grid>
-        </div>
+        </Column>
       </PopoverContent>
     </Popover>
   )

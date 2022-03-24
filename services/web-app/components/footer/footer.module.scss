@@ -1,88 +1,61 @@
-//
-// Copyright IBM Corp. 2021, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-$page-footer-height: $spacing-13 + $spacing-12 + $spacing-09 + $spacing-04;
-$grid-padding-bottom: $spacing-12 + $spacing-09;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/colors' as colors;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
 
 .container {
-  height: auto;
-  padding-right: $spacing-05;
-  padding-left: $spacing-05;
-  background: $border-inverse;
-
-  @include breakpoint(md) {
-    height: $page-footer-height;
-    padding-left: 0;
-  }
-
-  &::before {
-    position: absolute;
-    z-index: 0;
-    left: 0;
-    width: 100vw;
-    height: $page-footer-height;
-    background: $border-inverse;
-    content: '';
-  }
+  background: colors.$black-100;
 }
 
-.grid {
-  padding-top: $spacing-06;
+.footer {
+  margin: 0;
+  @include type.type-style('body-long-01');
+}
 
-  @include breakpoint(md) {
-    padding-bottom: $grid-padding-bottom;
+.text {
+  @include type.type-style('body-long-01');
+
+  color: theme.$text-primary;
+}
+
+.link {
+  color: theme.$text-primary;
+  text-decoration: underline;
+}
+
+.list-link {
+  display: block;
+  margin-bottom: spacing.$spacing-02;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
   }
 }
 
 .column {
-  position: relative;
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  padding-bottom: $spacing-09;
+  padding-top: spacing.$spacing-06;
+  padding-bottom: spacing.$spacing-09;
+  border-top: 1px solid theme.$border-strong-01;
 
-  @include breakpoint(md) {
-    padding: 0;
-    border-top: none;
+  &:first-child {
+    border: 0;
   }
 
-  &--border-top {
-    padding-top: $spacing-06;
-    border-top: 1px solid $border-strong-01;
-
-    @include breakpoint(md) {
-      padding: 0;
-      border-top: none;
-    }
+  @include breakpoint.breakpoint(md) {
+    border-top: 0;
+    margin-bottom: spacing.$spacing-12;
   }
 }
 
-.link {
-  color: $text-inverse;
-  text-decoration: none;
-  @include type-style('body-long-01');
-
-  &:hover,
-  &:focus {
-    color: $text-inverse;
-    text-decoration: underline;
-  }
-
-  &--underline {
-    text-decoration: underline;
-  }
-}
-
-.text {
-  color: $text-inverse;
-  @include type-style('body-long-01');
-}
-
-.icon {
-  position: relative;
-  padding-bottom: $spacing-07;
+.logo {
+  padding-bottom: spacing.$spacing-07;
 }

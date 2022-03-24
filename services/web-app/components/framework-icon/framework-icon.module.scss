@@ -1,28 +1,32 @@
-//
-// Copyright IBM Corp. 2021, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
 
 .container {
   display: flex;
-  min-width: $spacing-06;
-  height: $spacing-06;
+  min-width: spacing.$spacing-06;
+  height: spacing.$spacing-06;
   align-items: center;
   justify-content: center;
-  padding: $spacing-02;
-  background: $layer-accent;
-  border-radius: $spacing-06;
-  color: $icon-primary;
+  padding: spacing.$spacing-02;
+  background: theme.$layer-accent;
+  border-radius: spacing.$spacing-06;
+  color: theme.$icon-primary;
 }
 
 .icon {
-  width: $spacing-05;
-  height: $spacing-05;
+  width: spacing.$spacing-05;
+  height: spacing.$spacing-05;
 }
 
 .text {
-  margin: 0 $spacing-02;
-  @include type-style('label-01');
+  margin: 0 spacing.$spacing-02;
+  @include type.type-style('label-01');
 }

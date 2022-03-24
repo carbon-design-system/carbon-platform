@@ -4,7 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 import { FileBackup } from '@carbon/pictograms-react'
 import { Button, Column, Grid } from '@carbon/react'
 import { ArrowRight, Events } from '@carbon/react/icons'
@@ -70,6 +69,14 @@ const Library = ({ libraryData, params }) => {
   const { sponsor } = libraryData.params
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
 
+  let externalDocsLink
+  if (libraryData.content.externalDocsUrl) {
+    externalDocsLink = {
+      name: 'External docs',
+      url: libraryData.content.externalDocsUrl
+    }
+  }
+
   const pageNavItems = [
     {
       title: 'At a glance',
@@ -84,13 +91,6 @@ const Library = ({ libraryData, params }) => {
       id: 'contributors'
     }
   ]
-  let externalDocsLink
-  if (libraryData.content.externalDocsUrl) {
-    externalDocsLink = {
-      name: 'External docs',
-      url: libraryData.content.externalDocsUrl
-    }
-  }
 
   return (
     <>
@@ -105,7 +105,7 @@ const Library = ({ libraryData, params }) => {
         </Column>
         <Column sm={4} md={8} lg={12}>
           <Dashboard className={styles.dashboard}>
-            <Column className={dashboardStyles.column} lg={1} id="glance">
+            <Column className={dashboardStyles.column} sm={4}>
               <DashboardItem
                 aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
                 border={['sm']}
@@ -124,20 +124,21 @@ const Library = ({ libraryData, params }) => {
                 )}
               </DashboardItem>
             </Column>
-            <Column className={dashboardStyles.column} lg={2}>
+            <Column className={dashboardStyles.column} sm={4} lg={8}>
               <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
-                <Grid as="dl" columns={2} className={dashboardStyles.subgrid}>
-                  <Column className={dashboardStyles.subcolumn}>
+                <Grid as="dl" className={dashboardStyles.subgrid}>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Sponsor</dt>
                     <dd className={dashboardStyles.meta}>
                       {get(teams, `[${libraryData.params.sponsor}].name`, 'Community maintained')}
                     </dd>
                   </Column>
-                  <Column className={dashboardStyles.subcolumn}>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>License</dt>
                     <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
                   </Column>
                   <Column
+                    sm={4}
                     className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}
                   >
                     <dt className={clsx(dashboardStyles.label)}>Links</dt>
@@ -168,7 +169,6 @@ const Library = ({ libraryData, params }) => {
               ))}
             </ul>
           </div>
-
           <h3 id="dependencies" className={styles.h3}>
             Dependencies
           </h3>

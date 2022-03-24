@@ -45,13 +45,13 @@ to provide to `console.log`.
 Logs a debugging message. This includes things like important function entry/exit, the size of a
 list obtained from a remote source, the results after filtering an input set, etc.
 
-> NOTE: Debug messaging is enabled in the DEV run mode and disabled in the PROD run mode.It is safe
-> and acceptable to leave debug statements in code, where appropriate, unlike `console.log`
+> NOTE: Debug messaging is enabled in the Dev run mode and disabled in the Standard run mode. It is
+> safe and acceptable to leave debug statements in code, where appropriate, unlike `console.log`
 > statements, which would typically be removed from production code.
 
-> NOTE: Debug logging can be turned on for a service running in PROD mode if `CARBON_DEBUG=true` is
-> exported as an environment variables. This isn't typically needed, but can be useful for advanced
-> debugging of production-running applications.
+> NOTE: Debug logging can be turned on for a service running in Standard mode if `CARBON_DEBUG=true`
+> is exported as an environment variables. This isn't typically needed, but can be useful for
+> advanced debugging of production-running applications.
 
 **Examples**
 

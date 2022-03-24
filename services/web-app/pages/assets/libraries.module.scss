@@ -16,10 +16,6 @@
 .list {
   border-bottom: 1px solid theme.$layer-accent;
   margin: spacing.$spacing-07 0;
-  @include breakpoint.breakpoint(md) {
-    margin-right: -(spacing.$spacing-05);
-    margin-left: -(spacing.$spacing-05);
-  }
 }
 
 .anchor {
@@ -39,10 +35,14 @@
     outline: 2px solid theme.$focus;
     outline-offset: -2px;
   }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 .content {
-  padding: spacing.$spacing-05;
+  padding: spacing.$spacing-05 spacing.$spacing-05 spacing.$spacing-05 0;
   @include breakpoint.breakpoint(md) {
     height: spacing.$spacing-13 + spacing.$spacing-05;
   }
@@ -114,6 +114,10 @@
     border-color: theme.$border-subtle-selected;
     background: theme.$layer-hover;
   }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 .icon-sponsor {
@@ -122,4 +126,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   transition: opacity motion.$duration-fast-02 motion.motion(standard, productive);
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }

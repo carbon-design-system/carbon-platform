@@ -90,31 +90,33 @@ const CatalogMultiselectFilter = ({
         </span>
       </button>
       <PopoverContent className={styles.content} ref={contentRef}>
-        <Grid className={styles.grid} columns={columns}>
-          {Object.keys(getFilters(initialFilter)).map((item, i) => (
-            <Column className={styles.column} key={i}>
-              <h3 className={styles.heading}>{getFilters(initialFilter)[item].name}</h3>
-              <ul className={styles.list}>
-                {Object.keys(getFilters(initialFilter)[item].values).map((key, j) => (
-                  <li className={styles.listItem} key={j}>
-                    <Tag
-                      onClick={() => {
-                        onFilter(
-                          item,
-                          key,
-                          filter[item] && filter[item].includes(key) ? 'remove' : 'add'
-                        )
-                      }}
-                      type={filter[item] && filter[item].includes(key) ? 'high-contrast' : 'gray'}
-                    >
-                      {getFilters(initialFilter)[item].values[key].name}
-                    </Tag>
-                  </li>
-                ))}
-              </ul>
-            </Column>
-          ))}
-        </Grid>
+        <Column span={columns}>
+          <Grid className={styles.grid} condensed>
+            {Object.keys(getFilters(initialFilter)).map((item, i) => (
+              <Column className={styles.column} key={i} sm={1}>
+                <h3 className={styles.heading}>{getFilters(initialFilter)[item].name}</h3>
+                <ul className={styles.list}>
+                  {Object.keys(getFilters(initialFilter)[item].values).map((key, j) => (
+                    <li className={styles.listItem} key={j}>
+                      <Tag
+                        onClick={() => {
+                          onFilter(
+                            item,
+                            key,
+                            filter[item] && filter[item].includes(key) ? 'remove' : 'add'
+                          )
+                        }}
+                        type={filter[item] && filter[item].includes(key) ? 'high-contrast' : 'gray'}
+                      >
+                        {getFilters(initialFilter)[item].values[key].name}
+                      </Tag>
+                    </li>
+                  ))}
+                </ul>
+              </Column>
+            ))}
+          </Grid>
+        </Column>
       </PopoverContent>
     </Popover>
   )

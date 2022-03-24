@@ -4,14 +4,18 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Logging } from '@carbon-platform/api/logging'
 import yaml from 'js-yaml'
 import { get, isEmpty, set } from 'lodash'
 
 import { libraryAllowList } from '@/data/libraries'
 import { getResponse } from '@/lib/file-cache'
+import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
+
+const logging = new Logging('web-app', 'github.js')
 
 /**
  * Validates the route's parameters and returns an object that also includes the library's slug as
@@ -95,6 +99,48 @@ const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
 }
 
 /**
+ * Validates a library's structure and content and logs any validation errors as warnings
+ * @param {import('../typedefs').library} library
+ * @returns {boolean} whether the library is valid or not
+ */
+const validateLibrary = (library) => {
+  const libraryErrors = getLibraryErrors(library)
+  if (libraryErrors.length) {
+    const errors = libraryErrors.map((err) => {
+      const { instancePath, message } = err
+      return { instancePath, message }
+    })
+    logging.warn(
+      `Skipping library: ${getSlug(library)} due to the following errors: ${JSON.stringify(errors)}`
+    )
+    return false
+  }
+  return true
+}
+
+/**
+ * Validates an asset's structure and content and logs any validation errors as warnings
+ * @param {import('../typedefs').asset} asset
+ * @returns {boolean} whether the asset is valid or not
+ */
+const validateAsset = (asset, library) => {
+  const assetErrors = getAssetErrors(asset)
+  if (assetErrors.length) {
+    const errors = assetErrors.map((err) => {
+      const { instancePath, message } = err
+      return { instancePath, message }
+    })
+    logging.warn(
+      `Skipping asset: ${getSlug(asset)} for library: ${getSlug(
+        library
+      )} due to the following errors: ${JSON.stringify(errors)}`
+    )
+    return false
+  }
+  return true
+}
+
+/**
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  * @param {import('../typedefs').Params} params
@@ -129,6 +175,11 @@ export const getLibraryData = async (params = {}) => {
   const { library } = content
 
   if (!library) {
+    logging.warn(`Could not retrieve ${libraryParams.library} library's content at this time`)
+    return null
+  }
+
+  if (!validateLibrary(library)) {
     return null
   }
 
@@ -153,9 +204,13 @@ export const getLibraryData = async (params = {}) => {
 
   const packageJsonContent = await getPackageJsonContent(params, library.packageJsonPath)
 
-  const filteredAssets = libraryParams.asset
-    ? assets.filter((asset) => getSlug(asset.content) === libraryParams.asset)
-    : assets
+  const filteredAssets = assets.filter((asset) => {
+    const isValidAsset = validateAsset(asset.content, library)
+    if (libraryParams.asset) {
+      return isValidAsset && getSlug(asset.content) === libraryParams.asset
+    }
+    return isValidAsset
+  })
 
   return {
     params: libraryParams,

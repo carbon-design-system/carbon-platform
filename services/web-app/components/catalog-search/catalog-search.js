@@ -16,6 +16,7 @@ import styles from './catalog-search.module.scss'
 
 const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, search = '' }) => {
   const isMd = useMatchMedia(mediaQueries.md)
+  const isLg = useMatchMedia(mediaQueries.lg)
 
   const handleOnBlur = (event) => {
     onSearch(event.target.value, true)
@@ -30,7 +31,7 @@ const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, s
   }
 
   return (
-    <Grid className={clsx(styles.container, className)} condensed>
+    <Grid className={clsx(styles.container, className)} condensed={!isLg} narrow={isLg}>
       <Column className={clsx(styles.column, styles.columnSearch)} sm={4} md={4} lg={8}>
         <Search
           id="catalog-search"

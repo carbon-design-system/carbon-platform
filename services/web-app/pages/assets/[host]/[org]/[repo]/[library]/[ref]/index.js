@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { FileBackup } from '@carbon/pictograms-react'
-import { Button, Column, Grid } from '@carbon/react'
+import { Button, Column, Grid, Theme } from '@carbon/react'
 import { ArrowRight, Events } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
@@ -82,7 +82,9 @@ const Library = ({ libraryData, params }) => {
       <Grid>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <PageHeader title={seo.title} pictogram={FileBackup} />
-          <PageBreadcrumb items={breadcrumbItems} />
+          <Theme theme="g100">
+            <PageBreadcrumb items={breadcrumbItems} />
+          </Theme>
         </Column>
         <Column sm={4} md={8} lg={4}>
           {/* In page nav  */}

@@ -11,6 +11,7 @@
 @use '@carbon/react/scss/type' as type;
 
 @use '~styles/mixins' as mixins;
+@use '~styles/variables' as variables;
 
 $page-header-height: spacing.$spacing-13 * 2;
 
@@ -38,13 +39,6 @@ $page-header-height: spacing.$spacing-13 * 2;
   display: flex;
   height: 100%;
   align-items: flex-end;
-
-  &-last {
-    justify-content: flex-end;
-    @include breakpoint.breakpoint-down(md) {
-      display: none;
-    }
-  }
 }
 
 .title {
@@ -60,6 +54,14 @@ $page-header-height: spacing.$spacing-13 * 2;
 }
 
 .pictogram {
+  position: absolute;
+  // header + page header - pictogram height - bottom space
+  top: variables.$header-height + $page-header-height - spacing.$spacing-10 - spacing.$spacing-08;
+  right: 0;
+  margin-right: spacing.$spacing-07;
   margin-bottom: spacing.$spacing-08;
   fill: theme.$icon-primary;
+  @include breakpoint.breakpoint-down(md) {
+    display: none;
+  }
 }

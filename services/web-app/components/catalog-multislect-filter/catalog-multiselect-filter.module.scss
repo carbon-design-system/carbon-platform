@@ -103,11 +103,11 @@
 }
 
 .wrapper {
-  transition: background $fast-01 carbon--motion(standard, productive);
+  transition: background motion.$duration-fast-01 carbon--motion(standard, productive);
 
   &:focus,
   &:active {
-    border: 1px solid $focus;
+    border: 1px solid theme.$focus;
     margin: -1px;
     outline: none;
   }

@@ -30,7 +30,7 @@ const CatalogMultiselectFilter = ({
   const triggerRef = useRef()
   const contentRef = useRef()
   const popoverRef = useRef(null)
-  const focus = useFocus()
+  // const focus = useFocus()
 
   const [open, setOpen] = useState(false)
 

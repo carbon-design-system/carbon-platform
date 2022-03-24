@@ -50,8 +50,8 @@ PageNav.propTypes = {
   className: PropTypes.string,
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      path: PropTypes.string
+      title: PropTypes.string.isRequired,
+      id: PropTypes.string
     })
   )
 }

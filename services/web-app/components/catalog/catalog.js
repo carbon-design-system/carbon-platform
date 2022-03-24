@@ -226,6 +226,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
         assetCounts={assetCounts}
         assets={filteredAssets}
         isGrid={view === 'grid'}
+        isType={!!type}
         filter={filter}
         page={page}
         pageSize={pageSize}

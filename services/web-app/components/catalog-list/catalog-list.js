@@ -20,6 +20,7 @@ const CatalogList = ({
   assets,
   filter = {},
   isGrid = false,
+  isType = false,
   page = 1,
   pageSize = 10
 }) => {
@@ -45,6 +46,7 @@ const CatalogList = ({
           filter={filter}
           key={`${i}-${getSlug(asset.content)}`}
           isGrid={isGrid && isLg}
+          isType={isType}
         />
       ))}
       {(!renderAssets || renderAssets.length === 0) && (
@@ -66,6 +68,7 @@ CatalogList.propTypes = {
   assets: PropTypes.arrayOf(assetPropTypes),
   filter: PropTypes.object,
   isGrid: PropTypes.bool,
+  isType: PropTypes.bool,
   page: PropTypes.number,
   pageSize: PropTypes.number
 }

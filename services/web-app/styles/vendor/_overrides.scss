@@ -18,6 +18,11 @@
   line-height: 1rem;
 }
 
+// Remove padding because we're placing this in a narrow grid
+.cds--header__nav {
+  padding-left: 0;
+}
+
 // Hide divider line because we're grid-aligning the header links
 .cds--header__nav::before {
   display: none;

@@ -167,7 +167,7 @@ export const getTagsList = (asset) => {
   }, {})
 
   // object containing all possible valid tags the asset can have given it's type
-  const allPossibleTags = Object.assign(componentTypeTags, allCollectionTags)
+  const allPossibleTags = Object.assign({ ...componentTypeTags }, allCollectionTags)
 
   // return array of tag names
   return tags.map((tag) => allPossibleTags[tag]?.name).filter((val) => !!val)

@@ -16,12 +16,6 @@
 
 .grid {
   position: relative;
-  grid-gap: 0;
-
-  @include breakpoint.breakpoint(md) {
-    margin-right: -(spacing.$spacing-05);
-    margin-left: -(spacing.$spacing-05);
-  }
 }
 
 .subgrid {
@@ -30,10 +24,6 @@
 }
 
 .subcolumn {
-  @include breakpoint.breakpoint-down(md) {
-    padding-left: spacing.$spacing-05;
-  }
-
   &--links {
     display: flex;
     flex-direction: column;

@@ -8,6 +8,8 @@ import { Column, Grid, Pagination } from '@carbon/react'
 import PropTypes from 'prop-types'
 import { assetPropTypes } from 'types'
 
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
+
 import styles from './catalog-pagination.module.scss'
 
 const CatalogPagination = ({
@@ -17,8 +19,10 @@ const CatalogPagination = ({
   setPage,
   setPageSize
 }) => {
+  const isLg = useMatchMedia(mediaQueries.lg)
+
   return (
-    <Grid className={styles.container} condensed>
+    <Grid className={styles.container} condensed={!isLg} narrow={isLg}>
       <Column className={styles.column} sm={4} md={8} lg={12}>
         <Pagination
           onChange={({ page, pageSize }) => {

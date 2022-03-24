@@ -35,6 +35,8 @@ testing and code smells. They help out with SonarCloud's "clean as you code" phi
   - Provides style linting, fixing, formatting as you type.
 - **Live Share** (ms-vsliveshare.vsliveshare)
   - Allows devs to start on-demand live coding sessions with each other.
+- **Local History** (xyz.local-history)
+  - Saves a local copy of each incremental edit you make to files while developing.
 - **YAML** (redhat.vscode-yaml)
   - YAML Language Support for viewing/editing asset schemas.
 

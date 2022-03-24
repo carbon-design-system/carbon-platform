@@ -20,6 +20,7 @@ import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import ExternalLinks from '@/components/external-links'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
+import PageNav from '@/components/page-nav'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
@@ -76,6 +77,21 @@ const Library = ({ libraryData, params }) => {
     }
   }
 
+  const pageNavItems = [
+    {
+      title: 'At a glance',
+      id: 'glance'
+    },
+    {
+      title: 'Dependencies',
+      id: 'dependencies'
+    },
+    {
+      title: 'Contributors',
+      id: 'contributors'
+    }
+  ]
+
   return (
     <>
       <NextSeo {...seo} />
@@ -85,7 +101,7 @@ const Library = ({ libraryData, params }) => {
           <PageBreadcrumb items={breadcrumbItems} />
         </Column>
         <Column sm={4} md={8} lg={4}>
-          {/* In page nav  */}
+          <PageNav items={pageNavItems}></PageNav>
         </Column>
         <Column sm={4} md={8} lg={12}>
           <Dashboard className={styles.dashboard}>
@@ -153,6 +169,12 @@ const Library = ({ libraryData, params }) => {
               ))}
             </ul>
           </div>
+          <h2 id="dependencies" className={pageStyles.h2}>
+            Dependencies
+          </h2>
+          <h2 id="contributors" className={pageStyles.h2}>
+            Contributors
+          </h2>
         </Column>
       </Grid>
     </>

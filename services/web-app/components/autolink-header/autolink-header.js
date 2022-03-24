@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Link } from '@carbon/react/icons'
-import cx from 'classnames'
+import clsx from 'clsx'
 // eslint-disable-next-line no-use-before-define
 import React from 'react'
 import slugify from 'slugify'
@@ -15,7 +15,7 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import styles from './autolink-header.module.scss'
 
 const Anchor = ({ id, string, position }) => {
-  const anchorClasses = cx(styles.anchor, {
+  const anchorClasses = clsx(styles.anchor, {
     [styles.leftAnchor]: position === 'left',
     [styles.rightAnchor]: position === 'right'
   })
@@ -40,7 +40,7 @@ const AutolinkHeader = ({ is: Component, className, ...props }) => {
   const anchorPosition = () => (isSm ? 'left' : 'right')
 
   return (
-    <Component className={cx(styles.header, className)} {...props} id={id}>
+    <Component className={clsx(styles.header, className)} {...props} id={id}>
       {props.children}
       <Anchor id={id} string={string} position={anchorPosition()} />
     </Component>

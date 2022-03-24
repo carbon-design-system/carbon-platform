@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { sortItems } from '@/data/sort'
-import { GRID_VIEW, LIST_VIEW, viewItems } from '@/data/view'
+import { GRID_VIEW, LIST_VIEW } from '@/data/view'
 import useEventListener from '@/utils/use-event-listener'
 
 import styles from './catalog-sort.module.scss'
@@ -36,7 +36,7 @@ const CatalogSort = ({ onSort, onView, sort, view }) => {
 
   return (
     <div className={clsx(styles.container, isSticky && styles.containerSticky)} ref={containerRef}>
-      <Grid className={styles.grid} condensed>
+      <Grid className={styles.grid} narrow>
         <Column className={styles.column} sm={4} md={8} lg={4}>
           <Dropdown
             id="catalog-sort"
@@ -87,8 +87,8 @@ const CatalogSort = ({ onSort, onView, sort, view }) => {
 CatalogSort.propTypes = {
   onSort: PropTypes.func,
   onView: PropTypes.func,
-  sort: PropTypes.oneOf(sortItems.map((sortItem) => sortItem.id)),
-  view: PropTypes.oneOf(viewItems)
+  sort: PropTypes.oneOf(sortItems.map((item) => item.id)),
+  view: PropTypes.oneOf(['grid', 'list'])
 }
 
 export default CatalogSort

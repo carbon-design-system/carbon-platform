@@ -18,18 +18,24 @@ describe('getRunMode', () => {
 
   it('returns dev when the envvar is set to RunMode.Dev', () => {
     const old = process.env.CARBON_RUN_MODE
-    process.env.CARBON_RUN_MODE = 'DEV'
 
+    process.env.CARBON_RUN_MODE = 'DEV'
+    expect(getRunMode()).toBe(RunMode.Dev)
+
+    process.env.CARBON_RUN_MODE = 'dev'
     expect(getRunMode()).toBe(RunMode.Dev)
 
     process.env.CARBON_RUN_MODE = old
   })
 
-  it('returns production when the envvar is set to RunMode.Prod', () => {
+  it('returns standard when the envvar is set to RunMode.Standard', () => {
     const old = process.env.CARBON_RUN_MODE
-    process.env.CARBON_RUN_MODE = 'PROD'
 
-    expect(getRunMode()).toBe(RunMode.Prod)
+    process.env.CARBON_RUN_MODE = 'STANDARD'
+    expect(getRunMode()).toBe(RunMode.Standard)
+
+    process.env.CARBON_RUN_MODE = 'standard'
+    expect(getRunMode()).toBe(RunMode.Standard)
 
     process.env.CARBON_RUN_MODE = old
   })

@@ -154,6 +154,10 @@
     &:nth-child(3n + 1) {
       border-left: 0;
     }
+
+    &:nth-child(3n) {
+      padding-right: spacing.$spacing-07;
+    }
   }
 
   &:first-child {

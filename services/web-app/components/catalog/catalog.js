@@ -16,6 +16,7 @@ import CatalogPagination from '@/components/catalog-pagination'
 import CatalogResults from '@/components/catalog-results'
 import CatalogSearch from '@/components/catalog-search'
 import CatalogSort from '@/components/catalog-sort'
+import { ALPHABETICAL_ORDER } from '@/data/sort'
 import {
   assetSortComparator,
   collapseAssetGroups,
@@ -59,7 +60,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   const [search, setSearch] = useState(query)
 
   const [sort, setSort] = useQueryState('sort', {
-    defaultValue: 'a-z',
+    defaultValue: ALPHABETICAL_ORDER,
     saveToStorage: true
   })
 

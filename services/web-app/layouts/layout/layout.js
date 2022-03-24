@@ -126,7 +126,7 @@ const Layout = ({ children }) => {
                           }
                           if (!data.path && data.items) {
                             return (
-                              <>
+                              <div key={i}>
                                 <h2 className={styles.sideNavHeading}>{data.title}</h2>
                                 {data.items.map((item, j) => (
                                   <SideNavLink
@@ -138,7 +138,7 @@ const Layout = ({ children }) => {
                                     {item.title}
                                   </SideNavLink>
                                 ))}
-                              </>
+                              </div>
                             )
                           }
                           return null

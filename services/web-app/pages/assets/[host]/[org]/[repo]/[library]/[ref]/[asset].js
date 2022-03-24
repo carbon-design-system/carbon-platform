@@ -102,7 +102,7 @@ const Asset = ({ libraryData }) => {
         </Column>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <Dashboard className={styles.dashboard}>
-            <Column className={dashboardStyles.column} lg={1}>
+            <Column className={dashboardStyles.column} sm={4}>
               <DashboardItem
                 aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
                 border={['sm']}
@@ -124,28 +124,28 @@ const Asset = ({ libraryData }) => {
                 )}
               </DashboardItem>
             </Column>
-            <Column className={dashboardStyles.column} lg={2}>
+            <Column className={dashboardStyles.column} sm={4} lg={8}>
               <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
-                <Grid as="dl" columns={2} className={dashboardStyles.subgrid}>
-                  <Column className={dashboardStyles.subcolumn}>
+                <Grid as="dl" className={dashboardStyles.subgrid}>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Sponsor</dt>
                     <dd className={dashboardStyles.meta}>
                       {get(teams, `[${assetData.params.sponsor}].name`, 'Community maintained')}
                     </dd>
                   </Column>
-                  <Column className={dashboardStyles.subcolumn}>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Type</dt>
                     <dd className={dashboardStyles.meta}>
                       {get(type, `[${assetData.content.type}].name`, '–')}
                     </dd>
                   </Column>
-                  <Column className={dashboardStyles.subcolumn}>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Framework</dt>
                     <dd className={dashboardStyles.meta}>
                       {get(framework, `[${assetData.content.framework}].name`, '–')}
                     </dd>
                   </Column>
-                  <Column className={dashboardStyles.subcolumn}>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Status</dt>
                     <dd className={dashboardStyles.meta}>
                       <StatusIcon className={styles.statusIcon} status={assetData.content.status} />
@@ -154,6 +154,8 @@ const Asset = ({ libraryData }) => {
                   </Column>
                   <Column
                     className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}
+                    sm={2}
+                    lg={4}
                   >
                     <dt className={clsx(dashboardStyles.label)}>Links</dt>
                     <dd className={dashboardStyles.meta}>
@@ -162,7 +164,7 @@ const Asset = ({ libraryData }) => {
                       />
                     </dd>
                   </Column>
-                  <Column className={dashboardStyles.subcolumn}>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Tags</dt>
                     <dd className={dashboardStyles.meta}>
                       {getTagsList(assetData).join(', ') || '–'}
@@ -175,7 +177,7 @@ const Asset = ({ libraryData }) => {
                 </Grid>
               </DashboardItem>
             </Column>
-            <Column className={dashboardStyles.column} sm={0} md={1}>
+            <Column className={dashboardStyles.column} sm={0} md={4}>
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
@@ -186,7 +188,7 @@ const Asset = ({ libraryData }) => {
                 </dl>
               </DashboardItem>
             </Column>
-            <Column className={dashboardStyles.column} sm={0} md={1}>
+            <Column className={dashboardStyles.column} sm={0} md={4}>
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
@@ -202,7 +204,7 @@ const Asset = ({ libraryData }) => {
                 )}
               </DashboardItem>
             </Column>
-            <Column className={dashboardStyles.column} sm={0} md={1}>
+            <Column className={dashboardStyles.column} sm={0} md={4}>
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
@@ -217,13 +219,6 @@ const Asset = ({ libraryData }) => {
                   <Launch className={dashboardStyles.positionBottomRight} size={20} />
                 )}
               </DashboardItem>
-            </Column>
-            <Column className={dashboardStyles.column} sm={0} md={1} lg={0}>
-              <DashboardItem
-                aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-                border={['sm', 'md', 'lg', 'xlg']}
-                spacer
-              />
             </Column>
           </Dashboard>
         </Column>

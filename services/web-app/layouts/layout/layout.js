@@ -23,8 +23,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
 
+import Footer from '@/components/footer'
 import NextLink from '@/components/next-link'
 import { globalNavData } from '@/data/nav-data'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './layout.module.scss'
 
@@ -40,6 +42,18 @@ const Layout = ({ children }) => {
   const router = useRouter()
   const [showSideNav, setShowSideNav] = useState(true)
   const { navData } = useContext(LayoutContext)
+  const isLg = useMatchMedia(mediaQueries.lg)
+
+  // For use with 100vw widths to account for the scrollbar width, e.g. instead of `width: 100vw;`
+  // use `width: calc(100vw - var(--scrollbar-width));`.
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      document.documentElement.style.setProperty(
+        '--scrollbar-width',
+        window.innerWidth - document.documentElement.clientWidth + 'px'
+      )
+    }
+  }, [])
 
   useEffect(() => {
     setShowSideNav(!router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
@@ -50,35 +64,44 @@ const Layout = ({ children }) => {
       render={({ isSideNavExpanded, onClickSideNavExpand }) => (
         <>
           <Theme theme="g100">
-            <Header aria-label="Carbon Design System">
+            <Header aria-label="Carbon Design System" className={styles.header}>
               <SkipToContent />
               <HeaderMenuButton
                 aria-label="Open menu"
                 onClick={onClickSideNavExpand}
                 isActive={isSideNavExpanded}
               />
-              <Link href="/assets">
-                <a className="cds--header__name">Carbon Design System</a>
-              </Link>
-              <HeaderNavigation aria-label="Main navigation">
-                {globalNavData.map((data) => (
-                  <HeaderMenuItem
-                    key={data.path}
-                    isCurrentPage={router.pathname.startsWith(data.path)}
-                    href={data.path}
-                    element={NextLink}
+              <div className={styles.headerName}>
+                <Link href="/assets">
+                  <a className="cds--header__name">Carbon Design System</a>
+                </Link>
+              </div>
+              <Grid narrow className={styles.headerGrid}>
+                <Column sm={0} lg={{ span: 8, offset: 4 }}>
+                  <HeaderNavigation
+                    aria-label="Main navigation"
+                    className={styles.headerNavigation}
                   >
-                    {data.title}
-                  </HeaderMenuItem>
-                ))}
-              </HeaderNavigation>
+                    {globalNavData.map((data) => (
+                      <HeaderMenuItem
+                        key={data.path}
+                        isCurrentPage={router.pathname.startsWith(data.path)}
+                        href={data.path}
+                        element={NextLink}
+                      >
+                        {data.title}
+                      </HeaderMenuItem>
+                    ))}
+                  </HeaderNavigation>
+                </Column>
+              </Grid>
             </Header>
           </Theme>
           <Theme className={styles.body} theme="g10">
             <Grid as="main" className={styles.main} id="main-content">
-              <Column sm={4} md={8} lg={4}>
-                <Theme theme="white">
-                  {showSideNav && (
+              {showSideNav && (
+                <Column sm={4} md={8} lg={4}>
+                  <Theme theme="white">
                     <SideNav aria-label="Side navigation" expanded={isSideNavExpanded}>
                       <SideNavItems>
                         <HeaderSideNavItems>
@@ -103,7 +126,7 @@ const Layout = ({ children }) => {
                           }
                           if (!data.path && data.items) {
                             return (
-                              <>
+                              <div key={i}>
                                 <h2 className={styles.sideNavHeading}>{data.title}</h2>
                                 {data.items.map((item, j) => (
                                   <SideNavLink
@@ -115,21 +138,26 @@ const Layout = ({ children }) => {
                                     {item.title}
                                   </SideNavLink>
                                 ))}
-                              </>
+                              </div>
                             )
                           }
                           return null
                         })}
                       </SideNavItems>
                     </SideNav>
-                  )}
-                </Theme>
-              </Column>
-              <Column sm={4} md={8} lg={12}>
-                {children}
+                  </Theme>
+                </Column>
+              )}
+              <Column sm={4} md={8} lg={showSideNav ? 12 : 16}>
+                <Grid condensed={!isLg} narrow={isLg}>
+                  <Column className={styles.columnContent} sm={4} md={8} lg={showSideNav ? 12 : 16}>
+                    {children}
+                  </Column>
+                </Grid>
               </Column>
             </Grid>
           </Theme>
+          <Footer hasSideNav={showSideNav} />
         </>
       )}
     />

@@ -49,27 +49,29 @@ A module that indicates the type of runtime environment in which the service/pro
 This corresponds to the cloud environment and in typically only used for logging purposes. The
 module that exports two things:
 
-1. An enum called `Environment` containing the values `Test` and `Production`
-2. A function valled `getEnvironment()`, which returns one of the two enum values, depending on the
-   value of the `CARBON_ENVIRONMENT` environment variable.
+1. An enum called `Environment` containing the values `Build`, `Test`, and `Production`.
+2. A function valled `getEnvironment()`, which returns one of the three enum values, depending on
+   the value of the `CARBON_ENVIRONMENT` environment variable.
 
 `CARBON_ENVIRONMENT` can be set to the following values:
 
+- `BUILD`
+  - Causes `getEnvironment()` to return `Environment.Build`
 - `TEST`
   - Causes `getEnvironment()` to return `Environment.Test`
 - `PRODUCTION`
   - Causes `getEnvironment()` to return `Environment.Production`
 
-If the `CARBON_ENVIRONMENT` environment variable is not set, the mode will default to "TEST".
+If the `CARBON_ENVIRONMENT` environment variable is not set, the mode will default to `Test`.
 
 Setting this env var to any other value will result in an error being thrown.
 
 ### run-mode
 
-A module that provides a runtime switch between development hooks and production code to make local
-development easier. The module that exports two things:
+A module that provides a runtime switch between hooks and standard code and development hooks to
+make local development easier. The module that exports two things:
 
-1. An enum called `RunMode` containing the values `Dev` and `Prod`.
+1. An enum called `RunMode` containing the values `Dev` and `Standard`.
 2. A function called `getRunMode()`, which returns one of two enum values, depending on the value of
    the `CARBON_RUN_MODE` environment variable.
 
@@ -77,10 +79,10 @@ development easier. The module that exports two things:
 
 - `DEV`
   - Causes `getRunMode()` to return `RunMode.Dev`
-- `PROD`
-  - Causes `getRunMode()` to return `RunMode.Prod`
+- `STANDARD`
+  - Causes `getRunMode()` to return `RunMode.Standard`
 
-If the `CARBON_RUN_MODE` environment variable is not set, the mode will default to the "DEV" run
+If the `CARBON_RUN_MODE` environment variable is not set, the mode will default to the "Dev" run
 mode.
 
 Setting this env var to any other value will result in an error being thrown.

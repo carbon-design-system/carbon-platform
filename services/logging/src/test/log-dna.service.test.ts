@@ -13,14 +13,14 @@ jest.mock('@logdna/logger')
 const mockedLogDna = logDna as jest.Mocked<typeof logDna>
 
 jest.mock('@carbon-platform/api/runtime', () => ({
-  getRunMode: jest.fn(() => runtime.RunMode.Prod),
+  getRunMode: jest.fn(() => runtime.RunMode.Standard),
   loadEnvVars: jest.fn(() => ({ CARBON_LOGDNA_ENDPOINT: 'fake test endpoint' })),
   RunMode: {
-    Prod: 'PROD'
+    Standard: 'STANDARD'
   }
 }))
 
-test('service creates a LogDna logger in PROD mode', () => {
+test('service creates a LogDna logger in "Standard" mode', () => {
   const mockedLogger = {
     log: jest.fn()
   }

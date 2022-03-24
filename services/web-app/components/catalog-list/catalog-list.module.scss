@@ -1,49 +1,47 @@
-//
-// Copyright IBM Corp. 2021, 2022
-//
-// This source code is licensed under the Apache-2.0 license found in the
-// LICENSE file in the root directory of this source tree.
-//
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
 
 .container {
-  background: $background;
-  @include breakpoint(md) {
-    margin-right: -$spacing-05;
-    margin-left: -$spacing-05;
-  }
+  background: theme.$background;
 
   &--grid {
-    margin-top: $spacing-05;
-    margin-bottom: $spacing-05;
-    row-gap: $spacing-05;
+    margin-top: (spacing.$spacing-05);
+    margin-bottom: (spacing.$spacing-05);
+    row-gap: (spacing.$spacing-05);
     --cds-grid-gutter: 1rem;
-    @include breakpoint(md) {
-      margin-right: 0;
-    }
   }
 }
 
 .copy {
-  margin-top: $spacing-09;
-  margin-bottom: $spacing-09;
-  @include breakpoint-down(md) {
-    padding-right: $spacing-05;
-    padding-left: $spacing-05;
+  margin-top: spacing.$spacing-09;
+  margin-bottom: spacing.$spacing-09;
+  @include breakpoint.breakpoint-down(md) {
+    padding-right: (spacing.$spacing-05);
+    padding-left: (spacing.$spacing-05);
   }
 
   &--grid {
-    padding-right: $spacing-05;
-    padding-left: $spacing-05;
-    margin-top: ($spacing-09 - $spacing-05);
-    margin-bottom: ($spacing-09 - $spacing-05);
+    padding-right: (spacing.$spacing-05);
+    padding-left: (spacing.$spacing-05);
+    margin-top: (spacing.$spacing-09 - (spacing.$spacing-05));
+    margin-bottom: (spacing.$spacing-09 - (spacing.$spacing-05));
   }
 }
 
 .heading {
-  @include type-style('productive-heading-04');
+  @include type.type-style('productive-heading-04');
 }
 
 .paragraph {
-  margin-top: $spacing-05;
-  @include type-style('body-short-01');
+  margin-top: (spacing.$spacing-05);
+  @include type.type-style('body-short-01');
 }

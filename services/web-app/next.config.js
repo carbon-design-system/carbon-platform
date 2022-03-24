@@ -8,8 +8,15 @@
 
 const path = require('path')
 const libraries = require('./data/libraries')
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/,
+  options: {
+    providerImportSource: '@mdx-js/react'
+  }
+})
 
-module.exports = {
+module.exports = withMDX({
+  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   experimental: {
     outputStandalone: true,
     // this includes files from the monorepo base two directories up
@@ -21,20 +28,6 @@ module.exports = {
   },
   images: {
     domains: ['raw.githubusercontent.com']
-  },
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-    prependData: `
-      @use '~@carbon/motion/scss/motion' as *;
-      @use '~@carbon/react/scss/breakpoint' as *;
-      @use '~@carbon/react/scss/spacing' as *;
-      @use '~@carbon/react/scss/theme' as *;
-      @use '~@carbon/react/scss/themes';
-      @use '~@carbon/react/scss/type' as *;
-      @use '~@carbon/react/scss/zone';
-      @use './styles/mixins' as *;
-      @use '~carbon-components/scss/globals/scss/_layout' as layout;
-    `
   },
   swcMinify: true,
   webpack(config) {
@@ -95,4 +88,4 @@ module.exports = {
 
     return rewrites
   }
-}
+})

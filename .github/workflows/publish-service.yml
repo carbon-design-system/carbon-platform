@@ -24,9 +24,6 @@ on:
         description: Git tag representing the version to publish
         required: true
         type: string
-    secrets:
-      CONTAINER_REGISTRY_API_KEY:
-        required: true
 
 jobs:
   build-service-image:
@@ -40,7 +37,7 @@ jobs:
           ref: ${{ inputs.service_tag || github.event.inputs.service_tag }}
 
       - name: Setup Node 🏗
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'npm'
@@ -53,3 +50,5 @@ jobs:
 
       - name: Build, Push 🚀
         run: node packages/micromanage docker --build --push ${{ inputs.service_name || github.event.inputs.service_name }}
+        env:
+          CARBON_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

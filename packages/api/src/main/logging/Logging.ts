@@ -21,8 +21,8 @@ type Loggable = string | number | boolean | Array<any> | Object | Error
 
 /**
  * An instantiatable class that provides API methods that can be used to log application data. In
- * DEV run mode, logs are only output locally. In PROD run mode, they are sent as messages to the
- * logging service, which ultimately logs them in LogDNA.
+ * "Dev" run mode, logs are only output locally. In "Standard" run mode, they are sent as messages
+ * to the logging service, which ultimately logs them in LogDNA.
  */
 class Logging {
   private readonly component: string
@@ -44,7 +44,8 @@ class Logging {
     this.component = component
     this.environment = getEnvironment()
     this.isDebugLoggingEnabled = getRunMode() === RunMode.Dev || isDebugEnabled()
-    this.isRemoteLoggingEnabled = getRunMode() === RunMode.Prod
+    this.isRemoteLoggingEnabled =
+      getRunMode() === RunMode.Standard && getEnvironment() !== Environment.Build
     this.service = serviceName
 
     if (this.isRemoteLoggingEnabled) {
@@ -56,11 +57,11 @@ class Logging {
    * Logs a debugging message. This includes things like important function entry/exit, the size of
    * a list obtained from a remote source, the results after filtering an input set, etc.
    *
-   * **NOTE:** Debug messaging is enabled in the DEV run mode and disabled in the PROD run mode. It
-   * is safe and acceptable to leave debug statements in code, where appropriate, unlike
+   * **NOTE:** Debug messaging is enabled in the "Dev" run mode and disabled in the "Standard" run
+   * mode. It is safe and acceptable to leave debug statements in code, where appropriate, unlike
    * `console.log` statements, which would typically be removed from production code.
    *
-   * **NOTE:** Debug logging can be turned on for a service running in PROD mode if
+   * **NOTE:** Debug logging can be turned on for a service running in "Standard" mode if
    * `CARBON_DEBUG=true` is exported as an environment variables. This isn't typically needed, but
    * can be useful for advanced debugging of production-running applications.
    *

@@ -32,3 +32,13 @@ export const isValidIbmEmail = (str) => {
   const acceptableEmailSuffixes = ['.ibm.com', '@ibm.com']
   return acceptableEmailSuffixes.some((suffix) => str.endsWith(suffix))
 }
+
+/**
+ * Adds https protocol to url if no protocol present
+ * @param {string} url
+ * @returns {string} url with protocol
+ */
+export const getUrlWithProtocol = (url) => {
+  if (url.startsWith('http://') || url.startsWith('https://')) return url
+  return `https://${url}`
+}

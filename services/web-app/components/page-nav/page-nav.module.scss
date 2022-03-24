@@ -14,22 +14,16 @@
 
 .container {
   margin-top: spacing.$spacing-11;
-  margin-left: spacing.$spacing-05;
-
-  @include breakpoint.breakpoint(md) {
-    margin-left: 0;
-  }
 
   @include breakpoint.breakpoint(lg) {
     position: sticky;
-
     top: calc(spacing.$spacing-11 + spacing.$spacing-10);
     margin-top: spacing.$spacing-11;
-    margin-left: -(spacing.$spacing-06);
   }
 }
 
 .link {
+  // Anchor link styles
   @include breakpoint.breakpoint-down(lg) {
     @include type.type-style('expressive-heading-03', true);
 
@@ -54,35 +48,37 @@
     }
   }
 
+  // Sticky side nav stylese
   @include breakpoint.breakpoint(lg) {
-    @include type.type-style('productive-heading-01');
+    @include type.type-style('body-short-01');
 
     display: flex;
     width: 100%;
     height: 32px;
     align-items: center;
-    padding-left: calc(spacing.$spacing-06 - spacing.$spacing-02);
-    border-left: 4px solid theme.$border-subtle-03;
+    padding-left: spacing.$spacing-05;
+    border-left: 4px solid theme.$border-subtle;
     color: theme.$text-secondary;
     font-weight: normal;
     text-decoration: none;
 
     &:hover {
-      border-color: theme.$border-subtle-selected-03;
+      border-color: theme.$border-subtle-selected;
       color: theme.$text-primary;
     }
   }
 
   &:focus {
-    outline: 2px solid theme.$border-interactive;
+    outline: 2px solid theme.$focus;
   }
-}
 
-.link-active,
-.link-active:hover {
-  @include breakpoint.breakpoint(lg) {
-    border-color: theme.$link-primary;
-    color: theme.$text-primary;
-    font-weight: bold;
+  &-active,
+  &-active:hover {
+    @include breakpoint.breakpoint(lg) {
+      @include type.type-style('heading-01');
+
+      border-color: theme.$border-interactive;
+      color: theme.$text-primary;
+    }
   }
 }

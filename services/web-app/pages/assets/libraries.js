@@ -52,7 +52,7 @@ const LibrariesItem = ({ library = {} }) => {
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
 
   const renderContent = () => (
-    <Grid className={styles.grid} condensed>
+    <Grid className={styles.grid}>
       <Column sm={4} md={8}>
         <div className={styles.content}>
           {sponsorName && <p className={styles.sponsor}>{sponsorName}</p>}

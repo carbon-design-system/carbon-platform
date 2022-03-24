@@ -12,15 +12,18 @@
 @use '@carbon/styles/scss/utilities/z-index' as z-index;
 
 .body {
-  // overflow hidden for full-bleed backgrounds
-  overflow: hidden;
   flex-grow: 1;
   background: theme.$background;
 }
 
 .header {
+  :global(.cds--header__nav) {
+    // override carbon, in subgrid
+    padding-left: 0;
+  }
+
   :global(.cds--header__nav::before) {
-    // override Carbon, hide divider line
+    // override carbon, hide divider line
     display: none;
   }
 }
@@ -57,6 +60,10 @@
   }
 }
 
-.header-navigation {
-  margin-left: -(spacing.$spacing-05);
+.column-content {
+  @include breakpoint.breakpoint-down(md) {
+    // override carbon 0.5px left and right margins in condensed nested grid
+    margin-right: 0;
+    margin-left: 0;
+  }
 }

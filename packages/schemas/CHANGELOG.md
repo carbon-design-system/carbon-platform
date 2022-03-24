@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.1.5...@carbon-platform/schemas@1.1.6) (2022-03-24)
+
+
+### Bug Fixes 🐛
+
+* address pr review comments ([190ef9d](https://github.com/carbon-design-system/carbon-platform/commit/190ef9d0f6b4a4762c70550e22d36bb6955076db))
+* **schemas:** description no longer required for asset validation ([cf646c5](https://github.com/carbon-design-system/carbon-platform/commit/cf646c559090d60c071997a4c18f54e8a305a6d1))
+
 ### [1.1.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.1.4...@carbon-platform/schemas@1.1.5) (2022-03-01)
 
 ### [1.1.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.1.3...@carbon-platform/schemas@1.1.4) (2022-03-01)

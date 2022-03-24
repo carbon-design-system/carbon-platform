@@ -24,8 +24,8 @@
   &::after {
     position: absolute;
     top: 0;
-    right: 0;
-    left: 0;
+    right: spacing.$spacing-05;
+    left: spacing.$spacing-05;
     height: 1px;
     background-color: theme.$border-strong-01;
     content: '';
@@ -51,11 +51,10 @@
  */
 
 .subheading {
-  padding: spacing.$spacing-10 spacing.$spacing-05;
+  padding: spacing.$spacing-10 0;
   @include type.type-style('expressive-heading-04');
   @include breakpoint.breakpoint(md) {
     padding-right: spacing.$spacing-06;
-    padding-left: 0;
   }
   @include breakpoint.breakpoint(lg) {
     padding-right: spacing.$spacing-05;
@@ -71,19 +70,27 @@
 
 .highlights {
   position: relative;
-  padding: 0 spacing.$spacing-05;
-  @include breakpoint.breakpoint(md) {
-    padding: 0;
-  }
 
   &::before {
     position: absolute;
     top: 0;
-    left: -100vw;
-    width: 200vw;
+    left: 0;
+    width: calc(100vw - var(--scrollbar-width));
     height: 100%;
     background: theme.$layer-01;
     content: '';
+    @include breakpoint.breakpoint(md) {
+      // grid margin
+      left: -(spacing.$spacing-05);
+    }
+    @include breakpoint.breakpoint(lg) {
+      // grid margin + 6.25% column * 4 columns + 8px
+      left: calc(-25vw - #{spacing.$spacing-03});
+    }
+    @include breakpoint.breakpoint(max) {
+      // grid margin + 96px column * 4 columns
+      left: -(spacing.$spacing-06 + spacing.$spacing-12 * 4);
+    }
   }
 }
 
@@ -147,11 +154,8 @@
  */
 
 .content-column {
-  padding-right: spacing.$spacing-05;
-  padding-left: spacing.$spacing-05;
   @include breakpoint.breakpoint(md) {
     padding-right: spacing.$spacing-06;
-    padding-left: 0;
   }
   @include breakpoint.breakpoint(lg) {
     padding-right: spacing.$spacing-05;
@@ -180,7 +184,7 @@
  */
 
 .release {
-  padding: 0 spacing.$spacing-05 (spacing.$spacing-09 + spacing.$spacing-03);
+  padding-bottom: spacing.$spacing-09 + spacing.$spacing-03;
   @include breakpoint.breakpoint(md) {
     padding-right: 0;
     padding-left: 0;

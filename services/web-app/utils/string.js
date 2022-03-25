@@ -52,7 +52,14 @@ export const isJsonString = (str) => {
  * @param {string} url
  * @returns {string} url with protocol
  */
-export const getUrlWithProtocol = (url = '') => {
-  if (url.startsWith('http://') || url.startsWith('https://')) return url
+export const getUrlWithProtocol = (url) => {
+  if (!url) {
+    throw new Error('URL must be provided')
+  }
+  
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+  
   return `https://${url}`
 }

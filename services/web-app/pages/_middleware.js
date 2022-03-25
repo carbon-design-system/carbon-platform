@@ -11,6 +11,8 @@ import { CARBON_INTERNAL_API_SECRET } from '@/config/constants'
 import sendLocalRequest from '@/utils/sendLocalRequest'
 import { isValidIbmEmail } from '@/utils/string'
 
+const apiSecret = CARBON_INTERNAL_API_SECRET || process.env.CARBON_INTERNAL_API_SECRET
+
 class NotAuthorizedError extends Error {}
 
 function exitWith404(req) {
@@ -22,7 +24,7 @@ function exitWith404(req) {
 function logIncomingRequest(req) {
   sendLocalRequest(req, '/api/log-request', false, 'POST', {
     logMessage: `"${req.method} ${req.nextUrl.pathname}" "${req.ua.ua}" "${req.ip}"`,
-    internalApiSecret: CARBON_INTERNAL_API_SECRET
+    internalApiSecret: apiSecret
   })
 }
 

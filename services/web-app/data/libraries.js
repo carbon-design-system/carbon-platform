@@ -271,7 +271,7 @@ const prodLibraries = {
   // },
   'ibmdotcom-react': {
     host: 'github.com',
-    org: 'mattrosno',
+    org: 'carbon-design-system',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/react',
     sponsor: 'ibm-dotcom',
@@ -279,7 +279,7 @@ const prodLibraries = {
   },
   'ibmdotcom-web-components': {
     host: 'github.com',
-    org: 'mattrosno',
+    org: 'carbon-design-system',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/web-components',
     sponsor: 'ibm-dotcom',
@@ -287,14 +287,14 @@ const prodLibraries = {
   },
   'ibmdotcom-services': {
     host: 'github.com',
-    org: 'mattrosno',
+    org: 'carbon-design-system',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/services',
     sponsor: 'ibm-dotcom'
   },
   'ibmdotcom-styles': {
     host: 'github.com',
-    org: 'mattrosno',
+    org: 'carbon-design-system',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/styles',
     sponsor: 'ibm-dotcom',
@@ -302,7 +302,7 @@ const prodLibraries = {
   },
   'ibmdotcom-utilities': {
     host: 'github.com',
-    org: 'mattrosno',
+    org: 'carbon-design-system',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/utilities',
     sponsor: 'ibm-dotcom'
@@ -388,46 +388,41 @@ const devLibraries = {
   },
   'ibmdotcom-react': {
     host: 'github.com',
-    org: 'francinelucca',
+    org: 'carbon-design-system',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/react',
     sponsor: 'ibm-dotcom',
-    group: ibmdotcomGroup,
-    ref: 'feat/carbon-platform/index-libraries'
+    group: ibmdotcomGroup
   },
   'ibmdotcom-web-components': {
     host: 'github.com',
-    org: 'francinelucca',
+    org: 'carbon-design-system',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/web-components',
     sponsor: 'ibm-dotcom',
-    group: ibmdotcomGroup,
-    ref: 'feat/carbon-platform/index-libraries'
+    group: ibmdotcomGroup
   },
   'ibmdotcom-services': {
     host: 'github.com',
-    org: 'francinelucca',
+    org: 'carbon-design-system',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/services',
-    sponsor: 'ibm-dotcom',
-    ref: 'feat/carbon-platform/index-libraries'
+    sponsor: 'ibm-dotcom'
   },
   'ibmdotcom-styles': {
     host: 'github.com',
-    org: 'francinelucca',
+    org: 'carbon-design-system',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/styles',
     sponsor: 'ibm-dotcom',
-    group: ibmdotcomGroup,
-    ref: 'feat/carbon-platform/index-libraries'
+    group: ibmdotcomGroup
   },
   'ibmdotcom-utilities': {
     host: 'github.com',
-    org: 'francinelucca',
+    org: 'carbon-design-system',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/utilities',
-    sponsor: 'ibm-dotcom',
-    ref: 'feat/carbon-platform/index-libraries'
+    sponsor: 'ibm-dotcom'
   }
 }
 

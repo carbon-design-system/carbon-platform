@@ -16,6 +16,12 @@ WORKDIR /ibm/services/web-app
 ENV NODE_ENV=production
 ENV CARBON_RUN_MODE=STANDARD
 
+# Dependencies required for node-gyp to run on Alpine Linux. This is needed for "sharp"
+RUN apk add --no-cache python3 make g++
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+RUN CI=true npm install sharp
+
 COPY --from=builder /ibm/services/web-app/.next/standalone .next/standalone
 COPY --from=builder /ibm/services/web-app/public .next/standalone/services/web-app/public
 COPY --from=builder /ibm/services/web-app/.next/static .next/standalone/services/web-app/.next/static

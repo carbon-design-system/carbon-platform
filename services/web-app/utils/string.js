@@ -34,6 +34,20 @@ export const isValidIbmEmail = (str) => {
 }
 
 /**
+ * checks if a given string is a valid JSON
+ * @param {string} str strings to evaluate
+ * @returns {boolean} true if string is a valid JSON
+ */
+export const isJsonString = (str) => {
+  try {
+    JSON.parse(str)
+  } catch (e) {
+    return false
+  }
+  return true
+}
+
+/**
  * Adds https protocol to url if no protocol present
  * @param {string} url
  * @returns {string} url with protocol

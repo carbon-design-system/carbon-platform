@@ -40,6 +40,18 @@ describe('getEnvironment', () => {
     process.env.CARBON_ENVIRONMENT = old
   })
 
+  it('returns build when the envvar is set to Environment.Build', () => {
+    const old = process.env.CARBON_ENVIRONMENT
+
+    process.env.CARBON_ENVIRONMENT = 'BUILD'
+    expect(getEnvironment()).toBe(Environment.Build)
+
+    process.env.CARBON_ENVIRONMENT = 'build'
+    expect(getEnvironment()).toBe(Environment.Build)
+
+    process.env.CARBON_ENVIRONMENT = old
+  })
+
   it('throws when the envvar is set to an unknown value', () => {
     const old = process.env.CARBON_ENVIRONMENT
     process.env.CARBON_ENVIRONMENT = 'bad'

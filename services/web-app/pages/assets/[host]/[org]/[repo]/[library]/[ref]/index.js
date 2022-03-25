@@ -94,20 +94,20 @@ const Library = ({ libraryData, params }) => {
   ]
 
   return (
-    <>
+    <div ref={contentRef}>
       <NextSeo {...seo} />
-      <div ref={contentRef}>
-        <Grid>
-          <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
-            <PageHeader title={seo.title} pictogram={FileBackup} />
-            <PageBreadcrumb items={breadcrumbItems} />
-          </Column>
-          <Column sm={4} md={8} lg={4}>
-            <PageNav items={pageNavItems} contentRef={contentRef} />
-          </Column>
-          <Column sm={4} md={8} lg={12}>
+      <Grid>
+        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
+          <PageHeader title={seo.title} pictogram={FileBackup} />
+          <PageBreadcrumb items={breadcrumbItems} />
+        </Column>
+        <Column sm={4} md={8} lg={4}>
+          <PageNav items={pageNavItems} contentRef={contentRef} />
+        </Column>
+        <Column sm={4} md={8} lg={12}>
+          <section id="glance">
             <Dashboard className={styles.dashboard}>
-              <Column className={dashboardStyles.column} sm={4} id="glance">
+              <Column className={dashboardStyles.column} sm={4}>
                 <DashboardItem
                   aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
                   border={['sm']}
@@ -158,31 +158,29 @@ const Library = ({ libraryData, params }) => {
                 </DashboardItem>
               </Column>
             </Dashboard>
-            <div className={pageStyles.content}>
-              <ul>
-                {assets.map((asset, i) => (
-                  <li key={i}>
-                    <Link
-                      href={`/assets/${asset.params.library}/${params.ref}/${getSlug(
-                        asset.content
-                      )}`}
-                    >
-                      <a>{asset.content.name || 'Asset'}</a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <h2 id="dependencies" className={pageStyles.h2}>
-                Dependencies
-              </h2>
-              <h2 id="contributors" className={pageStyles.h2}>
-                Contributors
-              </h2>
-            </div>
-          </Column>
-        </Grid>
-      </div>
-    </>
+            <ul>
+              {assets.map((asset, i) => (
+                <li key={i}>
+                  <Link
+                    href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}
+                  >
+                    <a>{asset.content.name || 'Asset'}</a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <div className={pageStyles.content}>
+            <section id="dependencies">
+              <h2 className={pageStyles.h2}>Dependencies</h2>
+            </section>
+            <section id="contributors">
+              <h2 className={pageStyles.h2}>Contributors</h2>
+            </section>
+          </div>
+        </Column>
+      </Grid>
+    </div>
   )
 }
 

@@ -6,45 +6,53 @@
  */
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
+import { useCallback, useEffect } from 'react'
 
+import useEventListener from '@/utils/use-event-listener'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './page-nav.module.scss'
 
-const PageNav = ({ items = [], contentRef }) => {
-  const router = useRouter()
+const PageNav = ({ contentRef, items = [] }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
 
-  // const navLinks = contentRef.current.querySelectorAll('[class^="page-nav_link"]')
-  // console.log(navLinks)
+  function navActive() {
+    const navLinks = contentRef.current.querySelectorAll('[class^="page-nav_link"]')
+    const sections = contentRef.current.querySelectorAll('[id]')
 
-  // const contentAreas = contentRef.current.querySelectorAll('[id]')
+    sections.forEach((section) => {
+      const sectionHeight = section.offsetHeight
+      const sectionTopDistance = section.getBoundingClientRect().top
+      const scrollDistance = 90
 
-  // console.log(contentAreas[2].id)
-
-  const allNavLinks = contentRef.current.querySelectorAll('[class^="page-nav_link"]')
-  const navLinks = []
-  allNavLinks.forEach((element) => {
-    navLinks.push({
-      id: element.getAttribute('data-id')
+      if (
+        sectionTopDistance < scrollDistance &&
+        sectionHeight + sectionTopDistance - scrollDistance > 0
+      ) {
+        navLinks.forEach((link) => {
+          if (section.id === link.dataset.id) {
+            link.classList.add(styles.linkActive)
+          }
+        })
+      } else {
+        navLinks.forEach((link) => {
+          if (section.id === link.dataset.id) {
+            link.classList.remove(styles.linkActive)
+          }
+        })
+      }
     })
-  })
-  console.log('nav links', navLinks)
+  }
 
-  const allContentSections = contentRef.current.querySelectorAll('[id]')
-  const contentSections = []
-  allContentSections.forEach((element) => {
-    contentSections.push({
-      id: element.getAttribute('id')
-    })
+  const scrollHandler = useCallback(() => {
+    navActive()
   })
-  console.log('content sections', contentSections)
-  console.log('content section 1 id: ', contentSections[0].id)
 
-  // if the content section id is visible then set the active class for the link with the same
+  useEventListener('scroll', scrollHandler)
+  useEffect(() => {
+    scrollHandler()
+  }, [scrollHandler])
 
   return (
     <Grid narrow={isLg} className={styles.container}>
@@ -54,17 +62,9 @@ const PageNav = ({ items = [], contentRef }) => {
             {items.map((item, i) => (
               <li className={styles.item} key={i}>
                 {item.id && (
-                  <Link href={`#${item.id}`}>
-                    <a
-                      data-id={item.id}
-                      className={clsx(
-                        styles.link,
-                        router.asPath.includes(item.id) ? styles.linkActive : ''
-                      )}
-                    >
-                      {item.title}
-                    </a>
-                  </Link>
+                  <a href={`#${item.id}`} data-id={item.id} className={clsx(styles.link)}>
+                    {item.title}
+                  </a>
                 )}
               </li>
             ))}
@@ -77,12 +77,7 @@ const PageNav = ({ items = [], contentRef }) => {
 
 PageNav.propTypes = {
   contentRef: PropTypes.object,
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      id: PropTypes.string
-    })
-  )
+  items: PropTypes.array
 }
 
 export default PageNav

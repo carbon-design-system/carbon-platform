@@ -17,10 +17,10 @@ import styles from './page-nav.module.scss'
 const PageNav = ({ contentRef, items = [] }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
 
-  function navActive() {
-    const navLinks = contentRef.current.querySelectorAll('[class^="page-nav_link"]')
-    const sections = contentRef.current.querySelectorAll('[id]')
+  const navLinks = contentRef.current.querySelectorAll('[class^="page-nav_link"]')
+  const sections = contentRef.current.querySelectorAll('[id]')
 
+  const scrollHandler = useCallback(() => {
     sections.forEach((section) => {
       const sectionHeight = section.offsetHeight
       const sectionTopDistance = section.getBoundingClientRect().top
@@ -43,10 +43,6 @@ const PageNav = ({ contentRef, items = [] }) => {
         })
       }
     })
-  }
-
-  const scrollHandler = useCallback(() => {
-    navActive()
   })
 
   useEventListener('scroll', scrollHandler)

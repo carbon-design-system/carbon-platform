@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.81](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.80...@carbon-platform/web-app@0.1.81) (2022-03-25)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** directly reference env var in middleware ([2598382](https://github.com/carbon-design-system/carbon-platform/commit/2598382d66d4b555bf49a0c3b2992ec2931481ae))
+
 ### [0.1.80](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.79...@carbon-platform/web-app@0.1.80) (2022-03-25)
 
 

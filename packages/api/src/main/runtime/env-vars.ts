@@ -6,6 +6,7 @@
  */
 
 import { getRunMode, RunMode } from '.'
+import { Environment, getEnvironment } from './environment'
 
 type Fallback = string
 
@@ -30,16 +31,20 @@ function loadEnvVars<T extends Vars>(vars: T): Validated<T> {
 }
 
 /**
- * Retrieves environment variable value and defaults to fallback if provided (only on Dev mode)
+ * Does one of three things:
+ * - Retrieve an environment variable's value (if it is set)
+ * - Return a default, fallback value (if the var is not set and the app is running in dev mode or
+ *   in a build environment).
+ * - Otherwise, throws an exception, indicating that the specified var is required.
  *
- * @param varName name of env variable
+ * @param varName Name of env variable
  * @param fallbackValue Value to return if env var is not set in Dev mode
- * @returns value of env variable or supplied fallback value
+ * @returns Value of env variable or supplied fallback value
  */
 function getEnvVar(varName: string, fallbackValue = ''): string {
   const value = process.env[varName]
 
-  if (!value && getRunMode() !== RunMode.Dev) {
+  if (!value && getRunMode() !== RunMode.Dev && getEnvironment() !== Environment.Build) {
     throw new Error(`${varName} is not exported as an environment variable`)
   }
 

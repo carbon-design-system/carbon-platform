@@ -6,7 +6,6 @@
  */
 import { Button, Column, Grid, Theme } from '@carbon/react'
 import { ArrowRight, Events } from '@carbon/react/icons'
-import { Svg64Backup } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
 import Link from 'next/link'
@@ -81,7 +80,7 @@ const Library = ({ libraryData, params }) => {
       <NextSeo {...seo} />
       <Grid>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
-          <PageHeader title={seo.title} pictogram={Svg64Backup} />
+          <PageHeader title={seo.title} />
           <Theme theme="g100">
             <PageBreadcrumb items={breadcrumbItems} />
           </Theme>

@@ -6,7 +6,6 @@
  */
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import { Events, Scales } from '@carbon/react/icons'
-import { Svg64Backup } from '@carbon-platform/icons'
 import { get, isEmpty } from 'lodash'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
@@ -102,7 +101,7 @@ const Libraries = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} pictogram={Svg64Backup} />
+      <PageHeader title={seo.title} />
       <LibrariesList libraries={libraries} />
     </>
   )

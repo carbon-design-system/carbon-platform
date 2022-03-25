@@ -45,13 +45,7 @@ CatalogItemImage.propTypes = {
   asset: assetPropTypes
 }
 
-const CatalogItemContent = ({
-  asset,
-  assetCounts,
-  filter = {},
-  isGrid = false,
-  isType = false
-}) => {
+const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
 
   const { name, description, externalDocsUrl } = asset.content
@@ -101,7 +95,7 @@ const CatalogItemContent = ({
           />
         )}
         <div className={styles.tags}>
-          {!isType && <TypeTag className={styles.tagsItem} type={asset.content.type} />}
+          <TypeTag className={styles.tagsItem} type={asset.content.type} />
           <FrameworkIcon
             className={styles.framework}
             framework={asset.content.framework}
@@ -115,8 +109,7 @@ const CatalogItemContent = ({
 
 CatalogItemContent.propTypes = {
   asset: assetPropTypes,
-  isGrid: PropTypes.bool,
-  isType: PropTypes.bool
+  isGrid: PropTypes.bool
 }
 
 const CatalogItemMeta = ({ asset, className, properties }) => {
@@ -161,7 +154,7 @@ CatalogItemMeta.propTypes = {
   properties: PropTypes.array
 }
 
-const CatalogItem = ({ asset, assetCounts, filter, isGrid = false, isType = false }) => {
+const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
   const isXlg = useMatchMedia(mediaQueries.xlg)
@@ -201,7 +194,6 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false, isType = fals
               assetCounts={assetCounts}
               filter={filter}
               isGrid={isGrid}
-              isType={isType}
             />
           </AspectRatio>
         </a>
@@ -227,7 +219,6 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false, isType = fals
                     assetCounts={assetCounts}
                     filter={filter}
                     isGrid={isGrid}
-                    isType={isType}
                   />
                 </AspectRatio>
               )}
@@ -237,7 +228,6 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false, isType = fals
                   assetCounts={assetCounts}
                   filter={filter}
                   isGrid={isGrid}
-                  isType={isType}
                 />
               )}
             </Column>
@@ -254,8 +244,7 @@ CatalogItem.propTypes = {
   asset: assetPropTypes,
   assetCounts: PropTypes.object,
   filter: PropTypes.object,
-  isGrid: PropTypes.bool,
-  isType: PropTypes.bool
+  isGrid: PropTypes.bool
 }
 
 export default CatalogItem

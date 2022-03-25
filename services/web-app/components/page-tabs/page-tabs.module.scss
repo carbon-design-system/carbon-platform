@@ -39,6 +39,7 @@
     }
   }
 
+  // stylelint not recognizing class selectors in sass module global syntax
   /* stylelint-disable-next-line no-descending-specificity */
   :global(.cds--tabs__nav-item--selected) {
     border-bottom: spacing.$spacing-02 solid theme.$border-interactive;

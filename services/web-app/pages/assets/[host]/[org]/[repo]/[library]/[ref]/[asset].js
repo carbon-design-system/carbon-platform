@@ -21,6 +21,7 @@ import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import ExternalLinks from '@/components/external-links'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
+import PageTabs from '@/components/page-tabs'
 import StatusIcon from '@/components/status-icon'
 import { framework } from '@/data/framework'
 import { assetsNavData } from '@/data/nav-data'
@@ -84,7 +85,27 @@ const Asset = ({ libraryData }) => {
     return testPath.test(path)
   }
 
+  const pageTabs = [
+    {
+      name: 'Usage',
+      path: ''
+    },
+    {
+      name: 'Design',
+      path: ''
+    },
+    {
+      name: 'Code',
+      path: ''
+    },
+    {
+      name: 'Accessibility',
+      path: ''
+    }
+  ]
+
   let externalDocsLink
+
   if (assetData.content.externalDocsUrl) {
     externalDocsLink = {
       name: 'External docs',
@@ -101,6 +122,7 @@ const Asset = ({ libraryData }) => {
           <PageBreadcrumb items={breadcrumbItems} />
         </Column>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
+          <PageTabs tabs={pageTabs} />
           <Dashboard className={styles.dashboard}>
             <Column className={dashboardStyles.column} sm={4}>
               <DashboardItem

@@ -78,7 +78,7 @@ const Asset = ({ libraryData }) => {
   const { sponsor } = assetData.params
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
 
-  const pathIsAbsolute = (path) => {
+  const isPathAbsolute = (path) => {
     const testPath = /^https?:\/\//i
 
     return testPath.test(path)
@@ -92,7 +92,7 @@ const Asset = ({ libraryData }) => {
     }
   }
 
-  const githubRepoUrl = `http://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
+  const githubRepoUrl = `https://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
 
   return (
     <>
@@ -192,7 +192,7 @@ const Asset = ({ libraryData }) => {
                   </dd>
                 </dl>
                 <Svg32Github className={dashboardStyles.positionBottomLeft} />
-                {pathIsAbsolute(githubRepoUrl) && (
+                {isPathAbsolute(githubRepoUrl) && (
                   <Launch className={dashboardStyles.positionBottomRight} size={20} />
                 )}
               </DashboardItem>
@@ -208,7 +208,7 @@ const Asset = ({ libraryData }) => {
                   <dd className={dashboardStyles.labelLarge}>–</dd>
                 </dl>
                 <Svg32Github className={dashboardStyles.positionBottomLeft} />
-                {pathIsAbsolute(githubRepoUrl) && (
+                {isPathAbsolute(githubRepoUrl) && (
                   <Launch className={dashboardStyles.positionBottomRight} size={20} />
                 )}
               </DashboardItem>

@@ -56,10 +56,10 @@ export const getUrlWithProtocol = (url) => {
   if (!url) {
     throw new Error('URL must be provided')
   }
-  
+
   if (url.startsWith('http://') || url.startsWith('https://')) {
     return url
   }
-  
+
   return `https://${url}`
 }

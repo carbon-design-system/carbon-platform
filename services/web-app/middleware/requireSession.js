@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { getPassportInstance, SESSION_SECRET, store } from '@carbon-platform/api/auth'
+import { Logging } from '@carbon-platform/api/logging'
 import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 import cookieParser from 'cookie-parser'
 import expressSession from 'express-session'
@@ -17,9 +18,10 @@ import nextConnect from 'next-connect'
  * @returns {import('next-connect').NextConnect} NextConnect middleware with session configuration
  */
 export default function requireSession(needsUser = false) {
+  const logging = new Logging('web-app', 'require-session')
   return nextConnect({
     onError: (err, req, res) => {
-      console.error(err.stack)
+      logging.error(err.stack)
       res.status(500).end('Something broke!')
     }
   })

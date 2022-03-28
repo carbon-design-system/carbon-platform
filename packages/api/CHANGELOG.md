@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.0...@carbon-platform/api@0.3.1) (2022-03-25)
+
+
+### Bug Fixes 🐛
+
+* **logging:** no longer remote logging in build environment ([5f4c8da](https://github.com/carbon-design-system/carbon-platform/commit/5f4c8da407434456c655f5294467480f17ad6898))
+
 ## [0.3.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.2.17...@carbon-platform/api@0.3.0) (2022-03-23)
 
 

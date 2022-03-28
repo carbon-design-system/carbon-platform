@@ -1,0 +1,50 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+.container {
+  &::before {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    width: 100vw;
+    height: spacing.$spacing-09;
+    border-bottom: 1px solid theme.$layer-active-01;
+    content: '';
+  }
+}
+
+// override Carbon min height and border bottom styles
+.tab-list {
+  min-height: spacing.$spacing-09;
+
+  :global(.cds--tabs__nav-link) {
+    max-width: fit-content;
+
+    border-bottom: spacing.$spacing-02 solid transparent;
+    color: theme.$text-secondary;
+    @include type.type-style('body-short-02', true);
+
+    &:hover:not(:focus) {
+      border-bottom: spacing.$spacing-02 solid theme.$layer-active-01;
+      color: theme.$text-primary;
+    }
+  }
+
+  // stylelint not recognizing class selectors in sass module global syntax
+  /* stylelint-disable-next-line no-descending-specificity */
+  :global(.cds--tabs__nav-item--selected) {
+    border-bottom: spacing.$spacing-02 solid theme.$border-interactive;
+    @include type.type-style('heading-02');
+
+    color: theme.$text-primary;
+  }
+}

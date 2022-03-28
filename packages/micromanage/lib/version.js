@@ -41,9 +41,7 @@ function handleVersionCommand(opts) {
     // Ensure lock file remains up-to-date
     exec('npm install')
 
-    exec(
-      'git commit --allow-empty -am "chore(release): update package-lock.json with new versions"'
-    )
+    exec('git commit --allow-empty -am "release: update package-lock.json with new versions"')
 
     exec('git switch -')
 
@@ -51,7 +49,7 @@ function handleVersionCommand(opts) {
 
     // Commit the results as a single commit with an appropriate commit message
     exec(
-      "sed 's/Squashed commit of the following:/chore(release): new package and service versions/' " +
+      "sed 's/Squashed commit of the following:/release: new package and service versions/' " +
         '.git/SQUASH_MSG | git commit -F -'
     )
 

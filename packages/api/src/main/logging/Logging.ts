@@ -44,7 +44,8 @@ class Logging {
     this.component = component
     this.environment = getEnvironment()
     this.isDebugLoggingEnabled = getRunMode() === RunMode.Dev || isDebugEnabled()
-    this.isRemoteLoggingEnabled = getRunMode() === RunMode.Standard
+    this.isRemoteLoggingEnabled =
+      getRunMode() === RunMode.Standard && getEnvironment() !== Environment.Build
     this.service = serviceName
 
     if (this.isRemoteLoggingEnabled) {

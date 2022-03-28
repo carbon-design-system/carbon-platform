@@ -36,6 +36,21 @@ describe('loadEnvVars', () => {
 
   it('returns the fallback when required env vars have not been set in Dev mode', () => {
     const oldRunMode = process.env.CARBON_RUN_MODE
+    const oldFakeDevModeEnvVar = process.env.FAKE_DEV_MODE_ENV_VAR
+
+    process.env.CARBON_RUN_MODE = RunMode.Dev
+    process.env.FAKE_DEV_MODE_ENV_VAR = ''
+
+    const vars = loadEnvVars({ FAKE_DEV_MODE_ENV_VAR: 'fallback' })
+
+    expect(vars.FAKE_DEV_MODE_ENV_VAR).toBe('fallback')
+
+    process.env.CARBON_RUN_MODE = oldRunMode
+    process.env.FAKE_DEV_MODE_ENV_VAR = oldFakeDevModeEnvVar
+  })
+
+  it('returns the fallback when in Build env + Standard mode and no value is set', () => {
+    const oldRunMode = process.env.CARBON_RUN_MODE
     const oldFakeStandardModeEnvVar = process.env.FAKE_STANDARD_MODE_ENV_VAR
 
     process.env.CARBON_RUN_MODE = RunMode.Dev

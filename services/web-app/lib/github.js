@@ -218,7 +218,7 @@ export const getLibraryData = async (params = {}) => {
     content: {
       ...packageJsonContent,
       ...library, // spread last to use schema description if set
-      noIndex: !!library.noIndex // default to false if not specified
+      noIndex: !!library.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
     },
     assets: filteredAssets
   }
@@ -299,7 +299,7 @@ const getLibraryAssets = async (params = {}) => {
           content: {
             id: assetKey,
             ...asset,
-            noIndex: !!asset.noIndex // default to false if not specified
+            noIndex: !!asset.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
           }
         }
       })

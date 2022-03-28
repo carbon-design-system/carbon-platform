@@ -21,6 +21,7 @@ import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import ExternalLinks from '@/components/external-links'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
+import PageTabs from '@/components/page-tabs'
 import StatusIcon from '@/components/status-icon'
 import { framework } from '@/data/framework'
 import { assetsNavData } from '@/data/nav-data'
@@ -30,7 +31,7 @@ import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
-import { getTagsList } from '@/utils/schema'
+import { getAssetType, getTagsList } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 
 import styles from './[asset].module.scss'
@@ -56,12 +57,8 @@ const Asset = ({ libraryData }) => {
 
   const breadcrumbItems = [
     {
-      name: 'Libraries',
-      path: '/assets/libraries'
-    },
-    {
-      name: libraryData.content.name,
-      path: `/assets/${getSlug(libraryData.content)}`
+      name: getAssetType(assetData).namePlural,
+      path: getAssetType(assetData).path
     },
     {
       name
@@ -84,7 +81,27 @@ const Asset = ({ libraryData }) => {
     return testPath.test(path)
   }
 
+  const pageTabs = [
+    {
+      name: 'Usage',
+      path: ''
+    },
+    {
+      name: 'Design',
+      path: ''
+    },
+    {
+      name: 'Code',
+      path: ''
+    },
+    {
+      name: 'Accessibility',
+      path: ''
+    }
+  ]
+
   let externalDocsLink
+
   if (assetData.content.externalDocsUrl) {
     externalDocsLink = {
       name: 'External docs',
@@ -97,10 +114,15 @@ const Asset = ({ libraryData }) => {
       <NextSeo {...seo} />
       <Grid>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
-          <PageHeader title={seo.title} pictogram={get(type, `[${assetData.content.type}].icon`)} />
+          <PageHeader
+            bgColor={get(type, `[${assetData.content.type}].bgColor`)}
+            title={seo.title}
+            pictogram={get(type, `[${assetData.content.type}].icon`)}
+          />
           <PageBreadcrumb items={breadcrumbItems} />
         </Column>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
+          <PageTabs tabs={pageTabs} />
           <Dashboard className={styles.dashboard}>
             <Column className={dashboardStyles.column} sm={4}>
               <DashboardItem

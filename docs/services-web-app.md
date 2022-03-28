@@ -23,6 +23,11 @@ access to private repos and increases API quotas. To set up a personal access to
 1. Copy the `/services/web-app/.env.example` file and rename to `/services/web-app/.env.local`
 1. Add your token to that new `.env.local` file
 
+### INDEX_ALL
+
+Setting this env var to "1" shows all libraries and assets in the web app even if they are indexed
+as `noIndex: true`.
+
 ## Production Environment Variables
 
 ### CARBON_INTERNAL_API_SECRET

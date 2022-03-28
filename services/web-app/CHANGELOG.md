@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.82](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.81...@carbon-platform/web-app@0.1.82) (2022-03-26)
+
+
+### Features 🌟
+
+* add text color to type tags ([1cf86f0](https://github.com/carbon-design-system/carbon-platform/commit/1cf86f0e3d5dd3bc391e107e16efab92f05596a5))
+* added tabs to PageTabs ([778f4cd](https://github.com/carbon-design-system/carbon-platform/commit/778f4cdbf859114c8f81951affa9b3f45f96d4a3))
+* added tabs with placeholder contnent ([5a94c43](https://github.com/carbon-design-system/carbon-platform/commit/5a94c439e6044a43a58999e4676cbc73e2427af5))
+* fix page tab import ([7d80850](https://github.com/carbon-design-system/carbon-platform/commit/7d80850dd16c77e5ba65896c8b3040dd717b7ff8))
+* fixed link large styling and updated styles ([d793c7e](https://github.com/carbon-design-system/carbon-platform/commit/d793c7e6664df287427aa1b13a438083d7ab202c))
+* move page header pictogram to far right ([15c85ad](https://github.com/carbon-design-system/carbon-platform/commit/15c85ad18e230a51e0226edb21ed45293eb88822))
+* need to fix hover styles ([1d4b244](https://github.com/carbon-design-system/carbon-platform/commit/1d4b2449084956d158f7a47ed617aa244ccb547c))
+* only show type tag on collections ([7055735](https://github.com/carbon-design-system/carbon-platform/commit/7055735a5fee680f9f898fe8cd66cc29cd3065e2))
+* override carbon style updates ([94f5342](https://github.com/carbon-design-system/carbon-platform/commit/94f53423da8aac94dda52c6441686cef8db146a4))
+* update style imports ([47e04fc](https://github.com/carbon-design-system/carbon-platform/commit/47e04fc442bd0078dfbc3c3413784dfba70e2e39))
+* update template pictogram ([0ec15e6](https://github.com/carbon-design-system/carbon-platform/commit/0ec15e612f717ff3e99a2ab47a22d4657ca46d38))
+* updated styles with hover ([18d6479](https://github.com/carbon-design-system/carbon-platform/commit/18d6479a3f11f459314792f32ea3bcff95bf5008))
+* **web-app:** add asset type to all catalog items ([50207bd](https://github.com/carbon-design-system/carbon-platform/commit/50207bd8e744c018a75217be3f1da1bc5e5cbf75))
+* **web-app:** add INDEX_ALL local env variable ([b80edee](https://github.com/carbon-design-system/carbon-platform/commit/b80edee4011f22bf04b57b7004ac70c10dd2271f))
+* **web-app:** asset detail breadcrumb links back to catalog ([118309a](https://github.com/carbon-design-system/carbon-platform/commit/118309a9765c405534d0733d2a9ae31ff4cd392a))
+* **web-app:** page header default black ([1627e2c](https://github.com/carbon-design-system/carbon-platform/commit/1627e2c7a36ab061949835e4b0f9526aafe8bb0c))
+
+
+### Bug Fixes 🐛
+
+* adjust override width ([cc2bed0](https://github.com/carbon-design-system/carbon-platform/commit/cc2bed086c786b38d2b746fc199ae7f7c1ac6de8))
+* fixed left margin ([4e63902](https://github.com/carbon-design-system/carbon-platform/commit/4e639021a1105d537b4d65d9b104805d474d4fb2))
+* hero image alignment ([dcb3161](https://github.com/carbon-design-system/carbon-platform/commit/dcb316196cacec086abf2b964c957bf3c1147578))
+* merge conflict ([5641d8d](https://github.com/carbon-design-system/carbon-platform/commit/5641d8d0194fc49ab16893000a0572d1c4545695))
+* remove page header pictograms ([c18289b](https://github.com/carbon-design-system/carbon-platform/commit/c18289b4ff9158b346accc02bb855e632101c380))
+* reverting link style changes ([0dc8af9](https://github.com/carbon-design-system/carbon-platform/commit/0dc8af9d7044770f75a7260a2af45a98cfb8e170))
+* show asset type tag everywhere ([d16b4e4](https://github.com/carbon-design-system/carbon-platform/commit/d16b4e494624817dfb865c448c544819146d9245))
+* **web-app:** add sharp as a module in web-app docker builds ([75a74d1](https://github.com/carbon-design-system/carbon-platform/commit/75a74d13de14be76639083cae3bb76fc5138eb14))
+* **web-app:** localhost fetch requests ([974e2e0](https://github.com/carbon-design-system/carbon-platform/commit/974e2e0e4b8693e5a9537d343359034a853f1823))
+* **web-app:** override header underline width ([6deea5e](https://github.com/carbon-design-system/carbon-platform/commit/6deea5efc058bcde0a985cb9c261693e499db5aa))
+
+### [0.1.81](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.80...@carbon-platform/web-app@0.1.81) (2022-03-25)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** directly reference env var in middleware ([2598382](https://github.com/carbon-design-system/carbon-platform/commit/2598382d66d4b555bf49a0c3b2992ec2931481ae))
+
 ### [0.1.80](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.79...@carbon-platform/web-app@0.1.80) (2022-03-25)
 
 

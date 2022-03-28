@@ -11,13 +11,13 @@
 @use '@carbon/react/scss/type' as type;
 
 @use '~styles/mixins' as mixins;
+@use '~styles/variables' as variables;
 
 $page-header-height: spacing.$spacing-13 * 2;
-$background-header: #d0e2ff;
 
 .container {
   height: $page-header-height;
-  background: $background-header;
+  background: theme.$background;
 
   &::before {
     position: absolute;
@@ -25,9 +25,13 @@ $background-header: #d0e2ff;
     left: 0;
     width: calc(100vw - var(--scrollbar-width));
     height: $page-header-height;
-    background: $background-header;
+    background: theme.$background;
     content: '';
   }
+}
+
+.grid {
+  height: $page-header-height;
 }
 
 .column {
@@ -35,13 +39,6 @@ $background-header: #d0e2ff;
   display: flex;
   height: 100%;
   align-items: flex-end;
-
-  &-last {
-    justify-content: flex-end;
-    @include breakpoint.breakpoint-down(md) {
-      display: none;
-    }
-  }
 }
 
 .title {
@@ -57,5 +54,15 @@ $background-header: #d0e2ff;
 }
 
 .pictogram {
+  position: absolute;
+  // header + page header - pictogram height - bottom space
+  top: variables.$header-height + $page-header-height - spacing.$spacing-10 - spacing.$spacing-08;
+  right: 0;
+  margin-right: spacing.$spacing-07;
   margin-bottom: spacing.$spacing-08;
+  color: theme.$icon-primary;
+  fill: theme.$icon-primary;
+  @include breakpoint.breakpoint-down(md) {
+    display: none;
+  }
 }

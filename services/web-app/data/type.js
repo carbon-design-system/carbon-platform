@@ -4,27 +4,49 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { CodeSyntax, Construct, Pattern, TextInput, TextLayout } from '@carbon/pictograms-react'
+
+import { black, blue, green, magenta, purple, white } from '@carbon/colors'
+import { CodeSyntax, Construct, Dashboard, Pattern, TextInput } from '@carbon/pictograms-react'
 
 export const type = {
   component: {
+    bgColor: blue[20],
     icon: TextInput,
-    name: 'Component'
+    name: 'Component',
+    namePlural: 'Components',
+    path: '/assets/components',
+    textColor: blue[70]
   },
   element: {
+    bgColor: black,
     icon: Construct,
-    name: 'Element'
+    name: 'Element',
+    namePlural: 'Elements',
+    path: '/assets/elements',
+    textColor: white
   },
   function: {
+    bgColor: green[20],
     icon: CodeSyntax,
-    name: 'Function'
+    name: 'Function',
+    namePlural: 'Functions',
+    path: '/assets/functions',
+    textColor: green[70]
   },
   pattern: {
+    bgColor: purple[20],
     icon: Pattern,
-    name: 'Pattern'
+    name: 'Pattern',
+    namePlural: 'Patterns',
+    path: '/assets/patterns',
+    textColor: purple[70]
   },
   template: {
-    icon: TextLayout,
-    name: 'Template'
+    bgColor: magenta[20],
+    icon: Dashboard,
+    name: 'Template',
+    namePlural: 'Templates',
+    path: '/assets/templates',
+    textColor: magenta[70]
   }
 }

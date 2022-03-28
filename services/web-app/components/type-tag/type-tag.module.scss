@@ -1,0 +1,20 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+
+.container {
+  display: flex;
+  min-width: spacing.$spacing-06;
+  height: spacing.$spacing-06;
+  padding: spacing.$spacing-02 spacing.$spacing-03;
+  background: theme.$background;
+  border-radius: spacing.$spacing-06;
+  color: theme.$text-primary;
+  @include type.type-style('label-01');
+}

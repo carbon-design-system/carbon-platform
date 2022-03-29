@@ -11,7 +11,7 @@ import { get } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
-import { useContext, useEffect, useRef } from 'react'
+import { useContext, useEffect } from 'react'
 import { libraryPropTypes, paramsPropTypes } from 'types'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
@@ -19,7 +19,6 @@ import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import ExternalLinks from '@/components/external-links'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
-import PageNav from '@/components/page-nav'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
@@ -33,7 +32,6 @@ import styles from './index.module.scss'
 const Library = ({ libraryData, params }) => {
   const { setNavData } = useContext(LayoutContext)
   const router = useRouter()
-  const contentRef = useRef(null)
 
   useEffect(() => {
     setNavData(assetsNavData)
@@ -77,23 +75,8 @@ const Library = ({ libraryData, params }) => {
     }
   }
 
-  const pageNavItems = [
-    {
-      title: 'At a glance',
-      id: 'glance'
-    },
-    {
-      title: 'Dependencies',
-      id: 'dependencies'
-    },
-    {
-      title: 'Contributors',
-      id: 'contributors'
-    }
-  ]
-
   return (
-    <div ref={contentRef}>
+    <>
       <NextSeo {...seo} />
       <Grid>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
@@ -102,63 +85,60 @@ const Library = ({ libraryData, params }) => {
             <PageBreadcrumb items={breadcrumbItems} />
           </Theme>
         </Column>
-        <Column sm={4} md={8} lg={4}>
-          <PageNav items={pageNavItems} contentRef={contentRef} />
-        </Column>
-        <Column sm={4} md={8} lg={12}>
-          <section id="glance">
-            <Dashboard className={styles.dashboard}>
-              <Column className={dashboardStyles.column} sm={4}>
-                <DashboardItem
-                  aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
-                  border={['sm']}
-                >
-                  <dl>
-                    <dt className={dashboardStyles.label}>Version</dt>
-                    <dd
-                      className={dashboardStyles.labelLarge}
-                    >{`v${libraryData.content.version}`}</dd>
-                  </dl>
-                  {SponsorIcon && (
-                    <SponsorIcon
-                      className={clsx(dashboardStyles.positionBottomLeft, styles.sponsorIcon)}
-                      size={64}
-                    />
-                  )}
-                </DashboardItem>
-              </Column>
-              <Column className={dashboardStyles.column} sm={4} lg={8}>
-                <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
-                  <Grid as="dl" className={dashboardStyles.subgrid}>
-                    <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
-                      <dt className={dashboardStyles.label}>Sponsor</dt>
-                      <dd className={dashboardStyles.meta}>
-                        {get(teams, `[${libraryData.params.sponsor}].name`, 'Community maintained')}
-                      </dd>
-                    </Column>
-                    <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
-                      <dt className={dashboardStyles.label}>License</dt>
-                      <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
-                    </Column>
-                    <Column
-                      sm={4}
-                      className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}
-                    >
-                      <dt className={clsx(dashboardStyles.label)}>Links</dt>
-                      <dd className={dashboardStyles.meta}>
-                        <ExternalLinks
-                          links={[...get(libraryData, 'content.demoLinks', []), externalDocsLink]}
-                        />
-                      </dd>
-                    </Column>
-                    <Button className={styles.versionsButton}>
-                      Coming soon...
-                      <ArrowRight size={16} />
-                    </Button>
-                  </Grid>
-                </DashboardItem>
-              </Column>
-            </Dashboard>
+        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
+          <Dashboard className={styles.dashboard}>
+            <Column className={dashboardStyles.column} sm={4}>
+              <DashboardItem
+                aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
+                border={['sm']}
+              >
+                <dl>
+                  <dt className={dashboardStyles.label}>Version</dt>
+                  <dd
+                    className={dashboardStyles.labelLarge}
+                  >{`v${libraryData.content.version}`}</dd>
+                </dl>
+                {SponsorIcon && (
+                  <SponsorIcon
+                    className={clsx(dashboardStyles.positionBottomLeft, styles.sponsorIcon)}
+                    size={64}
+                  />
+                )}
+              </DashboardItem>
+            </Column>
+            <Column className={dashboardStyles.column} sm={4} lg={8}>
+              <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
+                <Grid as="dl" className={dashboardStyles.subgrid}>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                    <dt className={dashboardStyles.label}>Sponsor</dt>
+                    <dd className={dashboardStyles.meta}>
+                      {get(teams, `[${libraryData.params.sponsor}].name`, 'Community maintained')}
+                    </dd>
+                  </Column>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                    <dt className={dashboardStyles.label}>License</dt>
+                    <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
+                  </Column>
+                  <Column
+                    sm={4}
+                    className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}
+                  >
+                    <dt className={clsx(dashboardStyles.label)}>Links</dt>
+                    <dd className={dashboardStyles.meta}>
+                      <ExternalLinks
+                        links={[...get(libraryData, 'content.demoLinks', []), externalDocsLink]}
+                      />
+                    </dd>
+                  </Column>
+                  <Button className={styles.versionsButton}>
+                    Coming soon...
+                    <ArrowRight size={16} />
+                  </Button>
+                </Grid>
+              </DashboardItem>
+            </Column>
+          </Dashboard>
+          <div className={pageStyles.content}>
             <ul>
               {assets.map((asset, i) => (
                 <li key={i}>
@@ -170,18 +150,10 @@ const Library = ({ libraryData, params }) => {
                 </li>
               ))}
             </ul>
-          </section>
-          <div className={pageStyles.content}>
-            <section id="dependencies">
-              <h2 className={pageStyles.h2}>Dependencies</h2>
-            </section>
-            <section id="contributors">
-              <h2 className={pageStyles.h2}>Contributors</h2>
-            </section>
           </div>
         </Column>
       </Grid>
-    </div>
+    </>
   )
 }
 

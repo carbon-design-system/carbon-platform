@@ -137,12 +137,12 @@ const Asset = ({ libraryData }) => {
             pictogram={get(type, `[${assetData.content.type}].icon`)}
           />
           <PageBreadcrumb items={breadcrumbItems} />
+          <PageTabs tabs={pageTabs} />
         </Column>
         <Column sm={4} md={8} lg={4}>
           <PageNav items={pageNavItems} contentRef={contentRef} />
         </Column>
         <Column sm={4} md={8} lg={12}>
-          <PageTabs tabs={pageTabs} />
           <section id="glance">
             <Dashboard className={styles.dashboard}>
               <Column className={dashboardStyles.column} sm={4}>

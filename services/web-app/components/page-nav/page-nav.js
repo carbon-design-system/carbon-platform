@@ -121,48 +121,6 @@ const PageNav = ({ contentRef, items = [] }) => {
     })
   }
 
-  // const scrollHandler = useCallback(() => {
-  //   // if (!contentRef && !contentRef.current) return
-  //   const navLinks = contentRef.current.querySelectorAll('[class^="page-nav_link"]')
-  //   const sections = contentRef.current.querySelectorAll('[id]')
-  //   sections.forEach((section) => {
-  //     const sectionHeight = section.offsetHeight
-  //     const sectionTopDistance = section.getBoundingClientRect().top
-  //     // Space between top of screen and where we want section to be "Active"
-  //     const scrollDistance = 90
-  //     if (
-  //       // Setting active class when the top of the section is at the top
-  //       // of the scree nand the bottom of the section is visible
-  //       sectionTopDistance < scrollDistance &&
-  //       sectionHeight + sectionTopDistance - scrollDistance > 0
-  //     ) {
-  //       navLinks.forEach((link) => {
-  //         if (section.id === link.dataset.id) {
-  //           link.classList.add(styles.linkActive)
-  //           // Set url to current link as you scroll past
-
-  //           // router.push(link.href, undefined, { shallow: true })
-  //         }
-  //       })
-  //     } else {
-  //       navLinks.forEach((link) => {
-  //         if (section.id === link.dataset.id) {
-  //           link.classList.remove(styles.linkActive)
-  //         }
-  //       })
-  //     }
-  //   })
-  // }, [contentRef])
-
-  // useEventListener('scroll', scrollHandler)
-
-  // useEffect(() => {
-  //   scrollHandler()
-  //   console.log('contentRef: ', contentRef)
-  // }, [contentRef, scrollHandler])
-
-  //  }, [contentRef, scrollHandler])
-
   return (
     <Grid narrow={isLg} className={styles.container}>
       <Column sm={4} md={8} lg={4}>

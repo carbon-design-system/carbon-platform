@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Button, Column, Grid, Theme } from '@carbon/react'
+import { Button, Column, Grid } from '@carbon/react'
 import { ArrowRight, Events } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
@@ -17,7 +17,6 @@ import { libraryPropTypes, paramsPropTypes } from 'types'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import ExternalLinks from '@/components/external-links'
-import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
@@ -47,16 +46,6 @@ const Library = ({ libraryData, params }) => {
 
   const { name, description } = libraryData.content
 
-  const breadcrumbItems = [
-    {
-      name: 'Libraries',
-      path: '/assets/libraries'
-    },
-    {
-      name
-    }
-  ]
-
   const seo = {
     title: name,
     description
@@ -79,14 +68,8 @@ const Library = ({ libraryData, params }) => {
     <>
       <NextSeo {...seo} />
       <Grid>
-        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
+        <Column sm={4} md={8} lg={12}>
           <PageHeader title={seo.title} />
-          <Theme theme="g100">
-            <PageBreadcrumb items={breadcrumbItems} />
-          </Theme>
-        </Column>
-        <Column sm={4} md={8} lg={4}>
-          {/* In page nav  */}
         </Column>
         <Column sm={4} md={8} lg={12}>
           <Dashboard className={styles.dashboard}>

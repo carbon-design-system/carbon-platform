@@ -13,6 +13,7 @@ import {
   HeaderMenuItem,
   HeaderNavigation,
   HeaderSideNavItems,
+  Link as CarbonLink,
   SideNav,
   SideNavItems,
   SideNavLink,
@@ -41,6 +42,7 @@ export const LayoutProvider = ({ children }) => {
 const Layout = ({ children }) => {
   const router = useRouter()
   const [showSideNav, setShowSideNav] = useState(true)
+  const [showLibrarySideNav, setShowLibrarySideNav] = useState(true)
   const { navData } = useContext(LayoutContext)
   const isLg = useMatchMedia(mediaQueries.lg)
 
@@ -56,7 +58,10 @@ const Layout = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    setShowSideNav(!router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
+    setShowSideNav(
+      !router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]')
+    )
+    setShowLibrarySideNav(router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]'))
   }, [router.pathname])
 
   return (
@@ -102,7 +107,11 @@ const Layout = ({ children }) => {
               {showSideNav && (
                 <Column sm={4} md={8} lg={4}>
                   <Theme theme="white">
-                    <SideNav aria-label="Side navigation" expanded={isSideNavExpanded}>
+                    <SideNav
+                      aria-label="Side navigation"
+                      expanded={isSideNavExpanded}
+                      className={showLibrarySideNav ? styles.navHidden : styles.nav}
+                    >
                       <SideNavItems>
                         <HeaderSideNavItems>
                           {globalNavData.map((data, i) => (
@@ -111,6 +120,7 @@ const Layout = ({ children }) => {
                             </SideNavLink>
                           ))}
                         </HeaderSideNavItems>
+
                         {navData.map((data, i) => {
                           if (data.path && data.title) {
                             return (
@@ -145,6 +155,20 @@ const Layout = ({ children }) => {
                         })}
                       </SideNavItems>
                     </SideNav>
+                    {/* {showLibrarySideNav && ( */}
+                    <SideNav
+                      aria-label="Library side navigation"
+                      expanded={isSideNavExpanded}
+                      className={showLibrarySideNav ? styles.navIn : styles.navOut}
+                    >
+                      <Link href="/assets/libraries" passHref>
+                        <CarbonLink>Back to all Libraries</CarbonLink>
+                      </Link>
+                      <SideNavItems>
+                        <SideNavLink>Library side nav</SideNavLink>
+                      </SideNavItems>
+                    </SideNav>
+                    {/* )} */}
                   </Theme>
                 </Column>
               )}

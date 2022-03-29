@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/motion' as motion;
 
 .body {
   flex-grow: 1;
@@ -46,5 +47,33 @@
     // override carbon 0.5px left and right margins in condensed nested grid
     margin-right: 0;
     margin-left: 0;
+  }
+}
+
+.nav-hidden {
+  opacity: 0.5;
+}
+
+.nav-in {
+  left: -256px;
+  animation: slide-in motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
+  animation-delay: 1ms;
+}
+
+@keyframes slide-in {
+  100% {
+    left: 0;
+  }
+}
+
+.nav-out {
+  left: 0;
+  animation: slide-out motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
+  animation-delay: 1ms;
+}
+
+@keyframes slide-out {
+  100% {
+    left: -256px;
   }
 }

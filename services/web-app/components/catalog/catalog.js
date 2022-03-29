@@ -207,7 +207,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
       defaultValue: 1,
       parseNumbers: true
     },
-    (value) => !isNaN(value)
+    (value) => !!parseInt(value)
   )
 
   const [pageSize, setPageSize] = useQueryState(
@@ -216,7 +216,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
       defaultValue: 60,
       parseNumbers: true
     },
-    (value) => !isNaN(value)
+    (value) => !!parseInt(value)
   )
 
   const [framework, setFramework] = useQueryState(

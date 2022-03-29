@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '~styles/variables' as variables;
 
 $hero-height: spacing.$spacing-13 * 3.475;
 $illo-mobile-height: spacing.$spacing-08 + spacing.$spacing-12;
@@ -71,7 +72,7 @@ $illo-original-height: 1078px;
   height: $illo-mobile-height;
 
   @include breakpoint.breakpoint(md) {
-    top: 0;
+    top: variables.$header-height;
     bottom: auto;
     height: $hero-height;
   }

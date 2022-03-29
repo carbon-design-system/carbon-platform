@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.22...@carbon-platform/icons@0.0.23) (2022-03-26)
+
+
+### Features 🌟
+
+* only show type tag on collections ([7055735](https://github.com/carbon-design-system/carbon-platform/commit/7055735a5fee680f9f898fe8cd66cc29cd3065e2))
+
 ### [0.0.22](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.21...@carbon-platform/icons@0.0.22) (2022-03-24)
 
 

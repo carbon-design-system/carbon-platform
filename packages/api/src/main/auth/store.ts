@@ -103,7 +103,7 @@ const getUserBySessionKey = (sessionKey: string): Promise<User | undefined> => {
  * Updates the user object for a given session key
  *
  * @param {string} sessionKey Session Key
- * @param {Object} userInfo Additional/Updated user info
+ * @param {object} userInfo Additional/Updated user info
  * @returns {Promise<boolean>} Promise that resolves to boolean indicating success status
  */
 const updateUserBySessionKey = (sessionKey: string, userInfo: Object): Promise<boolean> => {

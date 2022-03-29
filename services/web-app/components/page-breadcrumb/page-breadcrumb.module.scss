@@ -11,13 +11,14 @@
 @use '@carbon/react/scss/type' as type;
 
 @use '~styles/mixins' as mixins;
+@use '~styles/variables' as variables;
 
 // 256px to match width of side nav
 $breadcrumb-container-width: spacing.$spacing-10 * 4;
 
 .container {
   position: absolute;
-  top: 0;
+  top: variables.$header-height;
   left: 0;
   max-width: $breadcrumb-container-width;
   padding: spacing.$spacing-06 0 0 spacing.$spacing-07;
@@ -36,6 +37,7 @@ $breadcrumb-container-width: spacing.$spacing-10 * 4;
 
 .item {
   position: relative;
+  color: theme.$text-primary;
 
   &:not(:first-child) {
     &::before {

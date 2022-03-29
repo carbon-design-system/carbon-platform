@@ -10,6 +10,7 @@ import { get } from 'lodash'
 import { ORDER_BY_STATUS } from '@/data/sort'
 import { status } from '@/data/status'
 import { tagsForCollection, tagsForType } from '@/data/tags'
+import { type } from '@/data/type'
 /**
  * Defines the sort order of assets by status
  * @param {import('../typedefs').Asset} assetA
@@ -67,6 +68,15 @@ export const getAssetId = (asset) => {
 }
 
 /**
+ * Gets the asset type object. If not found, default to component.
+ * @param {import('../typedefs').Asset} asset
+ * @returns {object} Asset type
+ */
+export const getAssetType = (asset) => {
+  return get(type, `.${asset.content.type}`, type.component)
+}
+
+/**
  * Gets the fully qualified path `library-id/asset-id` for a base library
  * @param {import('../typedefs').Asset} asset
  * @returns {string} Base library asset identifier
@@ -99,7 +109,7 @@ export const getCanonicalLibraryId = (asset) => {
 /**
  * Determines if assets should be collapsed by framework
  * @param {import('../typedefs').Asset} asset
- * @param {Object} filter
+ * @param {object} filter
  * @returns {boolean} If asset frameworks are collapsed
  */
 export const collapseAssetGroups = (asset, filter) => {
@@ -123,7 +133,7 @@ export const getLicense = (asset) => {
 /**
  * Gets the library, ref, and asset from a string like `carbon-styles@0.0.0/accordion`
  * @param {string} str
- * @returns {Object}
+ * @returns {object}
  */
 export const getLibraryVersionAsset = (str = '') => {
   let ref = ''

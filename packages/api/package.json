@@ -22,7 +22,7 @@
   "dependencies": {
     "@nestjs/common": "^8.4.2",
     "@nestjs/core": "^8.4.2",
-    "@nestjs/microservices": "^8.4.2",
+    "@nestjs/microservices": "^8.4.3",
     "@nestjs/platform-express": "^8.4.2",
     "@types/amqplib": "^0.8.2",
     "@types/cookie-parser": "^1.4.2",

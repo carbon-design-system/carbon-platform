@@ -7,6 +7,8 @@
 import { Link as CarbonLink } from '@carbon/react'
 import PropTypes from 'prop-types'
 
+import { getUrlWithProtocol } from '@/utils/string'
+
 const ExternalLinks = ({ links = [] }) => {
   const linkList = links.filter((link) => !!link).sort((a, b) => a.name.localeCompare(b.name))
 
@@ -17,7 +19,12 @@ const ExternalLinks = ({ links = [] }) => {
       <>
         {linkList.map((link, i) => (
           <span key={link.url}>
-            <CarbonLink size="lg" key={i} href={link.url} aria-label={link.name}>
+            <CarbonLink
+              size="lg"
+              key={i}
+              href={getUrlWithProtocol(link.url)}
+              aria-label={link.name}
+            >
               {link.name}
             </CarbonLink>
             {i < linkList.length - 1 ? ', ' : ''}

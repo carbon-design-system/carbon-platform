@@ -70,7 +70,7 @@ export const getAssetId = (asset) => {
 /**
  * Gets the asset type object. If not found, default to component.
  * @param {import('../typedefs').Asset} asset
- * @returns {Object} Asset type
+ * @returns {object} Asset type
  */
 export const getAssetType = (asset) => {
   return get(type, `.${asset.content.type}`, type.component)
@@ -109,7 +109,7 @@ export const getCanonicalLibraryId = (asset) => {
 /**
  * Determines if assets should be collapsed by framework
  * @param {import('../typedefs').Asset} asset
- * @param {Object} filter
+ * @param {object} filter
  * @returns {boolean} If asset frameworks are collapsed
  */
 export const collapseAssetGroups = (asset, filter) => {
@@ -133,7 +133,7 @@ export const getLicense = (asset) => {
 /**
  * Gets the library, ref, and asset from a string like `carbon-styles@0.0.0/accordion`
  * @param {string} str
- * @returns {Object}
+ * @returns {object}
  */
 export const getLibraryVersionAsset = (str = '') => {
   let ref = ''

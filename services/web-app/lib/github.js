@@ -324,9 +324,9 @@ export const getAllLibraries = async () => {
 
   for (const [slug, library] of Object.entries(libraryAllowList)) {
     const params = {
-      ...library,
       library: slug,
-      ref: 'latest'
+      ref: 'latest',
+      ...library
     }
 
     promises.push(getLibraryData(params))

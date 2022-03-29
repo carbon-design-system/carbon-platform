@@ -10,7 +10,7 @@
  * context and returns a boolean indicating whether user is authorized to view resource or not
  * @param {async (GetServerSidePropsContext) => Object} gssp - Component's own
  * getServerSideProps function
- * @returns {Object} The component's props object, including an isAuthorized key
+ * @returns {object} The component's props object, including an isAuthorized key
  */
 export function getPropsWithAuth(authChecker, gssp) {
   return async (context) => {

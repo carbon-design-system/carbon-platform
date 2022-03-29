@@ -38,7 +38,7 @@ const octokitIbm = new Octokit({
  * Creates a unique key based on the host and request to use in the file cache.
  * @param {string} host - GitHub API base URL
  * @param {string} route - GitHub API request route
- * @param {Object} options - Options merged into the request route
+ * @param {object} options - Options merged into the request route
  * @returns {string} Unique key to use in the file cache
  */
 const slugifyRequest = (host, route, options = {}) => {
@@ -59,8 +59,8 @@ const slugifyRequest = (host, route, options = {}) => {
  * Internal function that proxies GitHub requests.
  * @param {string} host - GitHub API base URL
  * @param {string} route - GitHub API request route
- * @param {Object} options - Options merged into the request route
- * @returns {Object} GitHub API response data
+ * @param {object} options - Options merged into the request route
+ * @returns {object} GitHub API response data
  */
 const _getResponse = async (host, route, options) => {
   // console.log('CACHE MISS', responseKey)
@@ -80,8 +80,8 @@ const _getResponse = async (host, route, options) => {
  * request.
  * @param {string} host - GitHub API base URL
  * @param {string} route - GitHub API request route
- * @param {Object} options - Options merged into the request route
- * @returns {Promise<Object>} GitHub API response data
+ * @param {object} options - Options merged into the request route
+ * @returns {Promise<object>} GitHub API response data
  */
 export const getResponse = (host, route, options) => {
   const responseKey = slugifyRequest(host, route, options)

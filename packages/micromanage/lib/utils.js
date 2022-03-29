@@ -127,7 +127,7 @@ function getFiles(dir, extensions, exclusions = []) {
 /**
  * Returns the top-level package.json file for the repository.
  *
- * @returns {Object} The package.json file as a JSON object.
+ * @returns {object} The package.json file as a JSON object.
  */
 function getPackageJson() {
   return require(path.join(process.cwd(), 'package.json'))
@@ -168,7 +168,7 @@ function getTags() {
 /**
  * Output information contained in an error object, if present.
  *
- * @param {Object} err Error object from which to obtain and output data.
+ * @param {object} err Error object from which to obtain and output data.
  */
 function logErrorInfo(err) {
   console.error(err)

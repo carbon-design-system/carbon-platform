@@ -25,8 +25,8 @@ function getAuthCookie(req) {
  * @param {string} path - Relative path to request
  * @param {boolean} forwardAuthCookie - Should auth cookie be forwarded to local request
  * @param {string} method - Request method to use, default to 'GET'
- * @param {Object} body - Body object to send to fetch command
- * @param {Object} requestOptions - Additional request options to send to the fetch command
+ * @param {object} body - Body object to send to fetch command
+ * @param {object} requestOptions - Additional request options to send to the fetch command
  * @returns {Promise<Response>} Promise return from fetch()
  */
 export default function sendLocalRequest(

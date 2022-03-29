@@ -36,7 +36,7 @@
     "test": "jest --config=./.jestrc.js"
   },
   "dependencies": {
-    "esbuild": "~0.14.27",
+    "esbuild": "~0.14.28",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {

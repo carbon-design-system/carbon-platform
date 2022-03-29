@@ -20,7 +20,7 @@ html {
   --scrollbar-width: 0px;
 
   /* nav height + spacing, will need to set this dynamically for other sticky elements */
-  --scroll-padding: #{calc(spacing.$spacing-09 + spacing.$spacing-07)};
+  --scroll-padding: #{calc(spacing.$spacing-09 + spacing.$spacing-06)};
 
   scroll-behavior: smooth;
   scroll-padding-top: var(--scroll-padding);

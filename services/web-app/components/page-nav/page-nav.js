@@ -7,28 +7,81 @@
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
-// import { useCallback, useEffect } from 'react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-// import useEventListener from '@/utils/use-event-listener'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './page-nav.module.scss'
 
 const PageNav = ({ contentRef, items = [] }) => {
-  const router = useRouter()
   const isLg = useMatchMedia(mediaQueries.lg)
+
+  const [lastActiveLink, setLastActiveLink] = useState(null)
+  const [activeItem, setActiveItem] = useState(null)
 
   useEffect(() => {
     const handleRAF = () => {
-      window.requestAnimationFrame(setSelectedItem)
+      if (!activeItem || (!checkIfSectionIdIsActive(activeItem) && lastActiveLink === activeItem)) {
+        window.requestAnimationFrame(setSelectedItem)
+      }
     }
 
     window.addEventListener('scroll', handleRAF)
     return () => window.removeEventListener('scroll', handleRAF)
   })
+
+  const refreshHash = () => {
+    const hash = window?.location?.hash?.replace('#', '') ?? null
+    setActiveItem(hash)
+    checkIfSectionIdIsActive(hash)
+  }
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      refreshHash()
+    }
+
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  })
+
+  useEffect(() => {
+    refreshHash()
+  }, [refreshHash])
+
+  const checkIfSectionIdIsActive = (id) => {
+    const section = document.getElementById(id)
+    if (!section) return false
+    const sectionHeight = section.offsetHeight
+    const sectionBoundingClientRect = section.getBoundingClientRect()
+    const sectionTopDistance = sectionBoundingClientRect.top
+    // Space between top of screen and where we want section to be "Active"
+    const scrollDistance = 90
+    const sectionIsAtTheTopOfTheView =
+      sectionTopDistance < scrollDistance && sectionHeight + sectionTopDistance - scrollDistance > 0
+
+    const sectionIsInView =
+      sectionBoundingClientRect.top >= 0 &&
+      sectionBoundingClientRect.left >= 0 &&
+      sectionBoundingClientRect.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) /* or $(window).height() */ &&
+      sectionBoundingClientRect.right <=
+        (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
+
+    const bottomReached =
+      document.documentElement.scrollTop + document.documentElement.clientHeight ===
+      document.documentElement.scrollHeight
+
+    const sectionActive = sectionIsAtTheTopOfTheView || (sectionIsInView && bottomReached)
+
+    if (sectionActive) {
+      setLastActiveLink(id)
+    } else {
+      setLastActiveLink(null)
+    }
+    return sectionActive
+  }
 
   const setSelectedItem = () => {
     const navLinks = contentRef.current.querySelectorAll('[class^="page-nav_link"]')
@@ -50,16 +103,18 @@ const PageNav = ({ contentRef, items = [] }) => {
             link.classList.add(styles.linkActive)
 
             // Set url to current link as you scroll past
-            // This works to set the url, but breaks
-            // TODO - create issue?
-            // This is broken
-            // router.push(link.href, undefined, { shallow: true })
+            history.pushState(null, null, link.href)
+            setActiveItem(link.href.split('#')[1])
           }
         })
       } else {
         navLinks.forEach((link) => {
           if (section.id === link.dataset.id) {
             link.classList.remove(styles.linkActive)
+            if (activeItem === section.id) {
+              setActiveItem(null)
+              history.pushState(null, null, window.location.pathname + window.location.search)
+            }
           }
         })
       }
@@ -119,10 +174,7 @@ const PageNav = ({ contentRef, items = [] }) => {
                   <Link href={`#${item.id}`}>
                     <a
                       data-id={item.id}
-                      className={clsx(
-                        styles.link,
-                        router.asPath.includes(item.id) ? styles.linkActive : ''
-                      )}
+                      className={clsx(styles.link, activeItem === item.id ? styles.linkActive : '')}
                     >
                       {item.title}
                     </a>

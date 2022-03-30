@@ -68,7 +68,7 @@ const Library = ({ libraryData, params }) => {
 
   const backLink = () => {
     setSlideNav(false)
-    router.push('/assets/libraries')
+    setTimeout(() => router.push('/assets/libraries'), 150)
   }
 
   const navItems = [

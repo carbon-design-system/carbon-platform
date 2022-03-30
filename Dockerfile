@@ -11,8 +11,8 @@ WORKDIR /ibm
 # Force only production node modules to be installed
 ENV NODE_ENV=production
 ENV CARBON_RUN_MODE=STANDARD
-
-ARG CI=true
+ENV CARBON_ENVIRONMENT=BUILD
+ENV CI=true
 
 # Dependencies required for node-gyp to run on Alpine Linux
 RUN apk add --no-cache python3 make g++

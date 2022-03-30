@@ -4,7 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { FileBackup } from '@carbon/pictograms-react'
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import { Events, Scales } from '@carbon/react/icons'
 import { get, isEmpty } from 'lodash'
@@ -102,7 +101,7 @@ const Libraries = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} pictogram={FileBackup} />
+      <PageHeader title={seo.title} />
       <LibrariesList libraries={libraries} />
     </>
   )

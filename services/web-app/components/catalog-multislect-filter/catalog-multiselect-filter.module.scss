@@ -108,6 +108,16 @@
   }
 }
 
+.wrapper {
+  transition: background motion.$duration-fast-01 carbon--motion(standard, productive);
+
+  &:focus,
+  &:active {
+    border: 1px solid theme.$focus;
+    margin: -1px;
+  }
+}
+
 .grid {
   position: relative;
   padding: spacing.$spacing-03 0;

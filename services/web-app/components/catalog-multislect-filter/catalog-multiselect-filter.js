@@ -102,7 +102,7 @@ const CatalogMultiselectFilter = ({
         </span>
       </button>
       <PopoverContent className={styles.content} ref={contentRef}>
-        {/* need add div wrapper to receive focus */}
+        {/* div wrapper addeed to receive focus */}
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
         <div className={styles.wrapper} ref={popoverRef} tabIndex="0">
           <Column span={columns}>

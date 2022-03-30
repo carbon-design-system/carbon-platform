@@ -272,14 +272,12 @@ const Asset = ({ libraryData }) => {
               </Column>
             </Dashboard>
           </section>
-          <div className={pageStyles.content}>
-            <section id="dependencies">
-              <h2 className={pageStyles.h2}>Dependencies</h2>
-            </section>
-            <section id="contributors">
-              <h2 className={pageStyles.h2}>Contributors</h2>
-            </section>
-          </div>
+          <section id="dependencies">
+            <h2 className={pageStyles.h2}>Dependencies</h2>
+          </section>
+          <section id="contributors">
+            <h2 className={pageStyles.h2}>Contributors</h2>
+          </section>
         </Column>
       </Grid>
     </div>

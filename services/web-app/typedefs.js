@@ -89,7 +89,7 @@
  */
 
 /**
- * @typedef {Object} GitHubSearchResponse
+ * @typedef {object} GitHubSearchResponse
  * @property {number} total_count
  * @property {boolean} incomplete_results
  */

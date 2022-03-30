@@ -21,11 +21,11 @@ const PageNav = ({ contentRef, items = [] }) => {
   const [lastActiveLink, setLastActiveLink] = useState(null)
   const [activeItem, setActiveItem] = useState(null)
 
-  const handleRAF = useCallback(() => {
+  const handleRAF = () => {
     if (!activeItem || (!checkIfSectionIdIsActive(activeItem) && lastActiveLink === activeItem)) {
       window.requestAnimationFrame(setSelectedItem)
     }
-  }, [])
+  }
 
   const handleHashChange = useCallback(() => {
     const hash = window?.location?.hash?.replace('#', '') ?? null
@@ -80,9 +80,9 @@ const PageNav = ({ contentRef, items = [] }) => {
     setActiveItem(link.href.split('#')[1])
   }
 
-  const removeActiveLink = (link, id) => {
+  const removeActiveLink = (link) => {
     link.classList.remove(styles.linkActive)
-    if (activeItem === id) {
+    if (activeItem === link.dataset.id) {
       setActiveItem(null)
       history.pushState(null, null, window.location.pathname + window.location.search)
     }
@@ -92,27 +92,28 @@ const PageNav = ({ contentRef, items = [] }) => {
     const navLinks = Array.from(contentRef.current.querySelectorAll('[class^="page-nav_link"]'))
     const sections = contentRef.current.querySelectorAll('[id]')
 
+    let activeSession = null
+    // Space between top of screen and where we want section to be "Active"
+    const scrollDistance = 90
+
     sections.forEach((section) => {
       const sectionHeight = section.offsetHeight
       const sectionTopDistance = section.getBoundingClientRect().top
-      // Space between top of screen and where we want section to be "Active"
-      const scrollDistance = 90
       if (
         // Setting active class when the top of the section is at the top
         // of the scree nand the bottom of the section is visible
         sectionTopDistance < scrollDistance &&
         sectionHeight + sectionTopDistance - scrollDistance > 0
       ) {
-        const activeLink = navLinks.find((link) => link.dataset.id === section.id)
-        if (activeLink) {
-          setActiveLink(activeLink)
-        }
+        activeSession = section
+      }
+    })
+
+    navLinks.forEach((link) => {
+      if (activeSession?.id === link.dataset.id) {
+        setActiveLink(link)
       } else {
-        navLinks.forEach((link) => {
-          if (section.id === link.dataset.id) {
-            removeActiveLink(link, section.id)
-          }
-        })
+        removeActiveLink(link)
       }
     })
   }

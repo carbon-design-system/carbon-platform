@@ -19,7 +19,7 @@ html {
   /* stylelint-disable-next-line length-zero-no-unit */
   --scrollbar-width: 0px;
 
-  /* nav height + spacing, will need to set this dynamically for other sticky elements */
+  /* nav height + default top spacing */
   --scroll-padding: #{calc(spacing.$spacing-09 + spacing.$spacing-06)};
 
   scroll-behavior: smooth;

@@ -8,8 +8,9 @@ import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
+import useEventListener from '@/utils/use-event-listener'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './page-nav.module.scss'
@@ -20,35 +21,24 @@ const PageNav = ({ contentRef, items = [] }) => {
   const [lastActiveLink, setLastActiveLink] = useState(null)
   const [activeItem, setActiveItem] = useState(null)
 
-  useEffect(() => {
-    const handleRAF = () => {
-      if (!activeItem || (!checkIfSectionIdIsActive(activeItem) && lastActiveLink === activeItem)) {
-        window.requestAnimationFrame(setSelectedItem)
-      }
+  const handleRAF = useCallback(() => {
+    if (!activeItem || (!checkIfSectionIdIsActive(activeItem) && lastActiveLink === activeItem)) {
+      window.requestAnimationFrame(setSelectedItem)
     }
+  }, [])
 
-    window.addEventListener('scroll', handleRAF)
-    return () => window.removeEventListener('scroll', handleRAF)
-  })
-
-  const refreshHash = () => {
+  const handleHashChange = useCallback(() => {
     const hash = window?.location?.hash?.replace('#', '') ?? null
     setActiveItem(hash)
     checkIfSectionIdIsActive(hash)
-  }
+  }, [])
+
+  useEventListener('scroll', handleRAF)
+  useEventListener('hashchange', handleHashChange)
 
   useEffect(() => {
-    const handleHashChange = () => {
-      refreshHash()
-    }
-
-    window.addEventListener('hashchange', handleHashChange)
-    return () => window.removeEventListener('hashchange', handleHashChange)
-  })
-
-  useEffect(() => {
-    refreshHash()
-  }, [refreshHash])
+    handleHashChange()
+  }, [handleHashChange])
 
   const checkIfSectionIdIsActive = (id) => {
     const section = document.getElementById(id)
@@ -65,9 +55,8 @@ const PageNav = ({ contentRef, items = [] }) => {
       sectionBoundingClientRect.top >= 0 &&
       sectionBoundingClientRect.left >= 0 &&
       sectionBoundingClientRect.bottom <=
-        (window.innerHeight || document.documentElement.clientHeight) /* or $(window).height() */ &&
-      sectionBoundingClientRect.right <=
-        (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      sectionBoundingClientRect.right <= (window.innerWidth || document.documentElement.clientWidth)
 
     const bottomReached =
       document.documentElement.scrollTop + document.documentElement.clientHeight ===
@@ -83,8 +72,24 @@ const PageNav = ({ contentRef, items = [] }) => {
     return sectionActive
   }
 
+  const setActiveLink = (link) => {
+    link.classList.add(styles.linkActive)
+
+    // Set url to current link as you scroll past
+    history.pushState(null, null, link.href)
+    setActiveItem(link.href.split('#')[1])
+  }
+
+  const removeActiveLink = (link, id) => {
+    link.classList.remove(styles.linkActive)
+    if (activeItem === id) {
+      setActiveItem(null)
+      history.pushState(null, null, window.location.pathname + window.location.search)
+    }
+  }
+
   const setSelectedItem = () => {
-    const navLinks = contentRef.current.querySelectorAll('[class^="page-nav_link"]')
+    const navLinks = Array.from(contentRef.current.querySelectorAll('[class^="page-nav_link"]'))
     const sections = contentRef.current.querySelectorAll('[id]')
 
     sections.forEach((section) => {
@@ -98,23 +103,14 @@ const PageNav = ({ contentRef, items = [] }) => {
         sectionTopDistance < scrollDistance &&
         sectionHeight + sectionTopDistance - scrollDistance > 0
       ) {
-        navLinks.forEach((link) => {
-          if (section.id === link.dataset.id) {
-            link.classList.add(styles.linkActive)
-
-            // Set url to current link as you scroll past
-            history.pushState(null, null, link.href)
-            setActiveItem(link.href.split('#')[1])
-          }
-        })
+        const activeLink = navLinks.find((link) => link.dataset.id === section.id)
+        if (activeLink) {
+          setActiveLink(activeLink)
+        }
       } else {
         navLinks.forEach((link) => {
           if (section.id === link.dataset.id) {
-            link.classList.remove(styles.linkActive)
-            if (activeItem === section.id) {
-              setActiveItem(null)
-              history.pushState(null, null, window.location.pathname + window.location.search)
-            }
+            removeActiveLink(link, section.id)
           }
         })
       }

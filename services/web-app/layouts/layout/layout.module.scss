@@ -49,31 +49,3 @@
     margin-left: 0;
   }
 }
-
-.nav-hidden {
-  opacity: 0.5;
-}
-
-.nav-in {
-  left: -256px;
-  animation: slide-in motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
-  animation-delay: 1ms;
-}
-
-@keyframes slide-in {
-  100% {
-    left: 0;
-  }
-}
-
-.nav-out {
-  left: 0;
-  animation: slide-out motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
-  animation-delay: 1ms;
-}
-
-@keyframes slide-out {
-  100% {
-    left: -256px;
-  }
-}

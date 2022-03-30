@@ -4,14 +4,14 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Button, Column, Grid } from '@carbon/react'
-import { ArrowRight, Events } from '@carbon/react/icons'
+import { Button, Column, Grid, Link as CarbonLink, SideNav } from '@carbon/react'
+import { ArrowLeft, ArrowRight, Events } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { libraryPropTypes, paramsPropTypes } from 'types'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
@@ -31,6 +31,7 @@ import styles from './index.module.scss'
 const Library = ({ libraryData, params }) => {
   const { setNavData } = useContext(LayoutContext)
   const router = useRouter()
+  const [slideNav, setSlideNav] = useState(true)
 
   useEffect(() => {
     setNavData(assetsNavData)
@@ -64,9 +65,30 @@ const Library = ({ libraryData, params }) => {
     }
   }
 
+  const backLink = () => {
+    setSlideNav(false)
+    router.push('/assets/libraries')
+  }
+
   return (
     <>
       <NextSeo {...seo} />
+      <SideNav
+        aria-label="Library side navigation"
+        className={slideNav ? styles.libraryNavIn : styles.libraryNavOut}
+      >
+        <CarbonLink onClick={backLink} className={styles.back}>
+          <ArrowLeft className={styles.backIcon} size={16} />
+          Back to all Libraries
+        </CarbonLink>
+        <Link href="/assets" passHref>
+          <h2 className={clsx(styles.navHeading, styles.navHeadingActive)}>
+            {seo.title}
+            <br />
+            {`v${libraryData.content.version}`}
+          </h2>
+        </Link>
+      </SideNav>
       <Grid>
         <Column sm={4} md={8} lg={12}>
           <PageHeader title={seo.title} />

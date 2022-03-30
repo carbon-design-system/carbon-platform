@@ -7,6 +7,9 @@
 
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/motion' as motion;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
 
 .dashboard {
   margin-top: spacing.$spacing-07;
@@ -32,3 +35,87 @@
     width: 50%;
   }
 }
+
+.back {
+  padding: spacing.$spacing-05;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline-offset: -2px;
+    outline-width: 2px;
+  }
+}
+
+.back-icon {
+  position: relative;
+  // visually center align icon with text
+  top: spacing.$spacing-01;
+  margin-right: spacing.$spacing-03;
+}
+
+.library-nav-in {
+  animation: slide-in motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
+  transform: translateX(-256px);
+}
+
+.library-nav-out {
+  animation: slide-out motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
+  transform: translateX(0);
+}
+
+@keyframes slide-in {
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out {
+  100% {
+    transform: translateX(-256px);
+  }
+}
+
+.nav-heading {
+  @include type.type-style('label-01');
+
+  height: spacing.$spacing-11;
+  padding: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
+  border-top: 1px solid theme.$border-subtle;
+  border-bottom: 1px solid theme.$border-subtle;
+  color: theme.$text-secondary;
+}
+
+.nav-heading-active {
+  padding-left: spacing.$spacing-04;
+  border-left: 4px solid theme.$border-interactive;
+  background-color: theme.$background-selected;
+  color: theme.$text-primary;
+}
+
+/*
+Nav heading link styles
+
+.nav-heading-link {
+  text-decoration: none;
+
+  &:hover {
+    // what is correct token, this isn't working
+    // background: theme.$hover-ui;
+    color: theme.$text-primary;
+  }
+
+  &:active {
+    // what is correct token, this isn't working
+    // background: theme.$hover-ui;
+  }
+
+  &:focus {
+    outline: 2px solid theme.$focus;
+    outline-offset: -2px;
+  }
+}
+*/

@@ -7,11 +7,8 @@
 
 import { NextResponse } from 'next/server'
 
-import { CARBON_INTERNAL_API_SECRET } from '@/config/constants'
 import sendLocalRequest from '@/utils/sendLocalRequest'
 import { isValidIbmEmail } from '@/utils/string'
-
-const apiSecret = CARBON_INTERNAL_API_SECRET || process.env.CARBON_INTERNAL_API_SECRET
 
 class NotAuthorizedError extends Error {}
 
@@ -19,13 +16,6 @@ function exitWith404(req) {
   const url = req.nextUrl.clone()
   url.pathname = '/404'
   return NextResponse.rewrite(url)
-}
-
-function logIncomingRequest(req) {
-  sendLocalRequest(req, '/api/log-request', false, 'POST', {
-    logMessage: `"${req.method} ${req.nextUrl.pathname}" "${req.ua.ua}" "${req.ip}"`,
-    internalApiSecret: apiSecret
-  })
 }
 
 async function applyAuthMiddleware(req) {
@@ -56,7 +46,6 @@ async function applyAuthMiddleware(req) {
 }
 
 export async function middleware(req) {
-  logIncomingRequest(req)
   try {
     await applyAuthMiddleware(req)
   } catch (err) {

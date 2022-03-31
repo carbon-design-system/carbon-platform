@@ -138,6 +138,11 @@
         "additionalProperties": false,
         "required": ["type", "name", "url"]
       }
+    },
+    "issueCount": {
+      "type": "number",
+      "default": false,
+      "description": "Count of open related GitHub issues."
     }
   },
   "additionalProperties": false,

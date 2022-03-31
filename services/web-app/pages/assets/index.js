@@ -57,7 +57,7 @@ const PageContent = () => {
     },
     {
       version: 'v0.2',
-      release: 'Target release:',
+      release: 'Released:',
       date: 'March 31',
       title: 'Asset catalog experience',
       description:

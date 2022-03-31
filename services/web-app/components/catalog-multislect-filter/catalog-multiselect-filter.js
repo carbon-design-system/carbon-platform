@@ -12,7 +12,9 @@ import PropTypes from 'prop-types'
 import { useRef, useState } from 'react'
 
 import { getFilters } from '@/data/filters'
+import useFocus from '@/utils/use-focus'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
+import useOnKey from '@/utils/use-on-key'
 import useOutsideClick from '@/utils/use-outside-click'
 
 import styles from './catalog-multiselect-filter.module.scss'
@@ -23,11 +25,18 @@ const CatalogMultiselectFilter = ({
   className: customClassName,
   onFilter
 }) => {
-  const [open, setOpen] = useState(false)
   const isLg = useMatchMedia(mediaQueries.lg)
   const isMd = useMatchMedia(mediaQueries.md)
   const triggerRef = useRef()
   const contentRef = useRef()
+  const popoverRef = useRef(null)
+  const focus = useFocus()
+
+  const [open, setOpen] = useState(false)
+
+  useOnKey('Escape', () => {
+    setOpen(false)
+  })
 
   useOutsideClick(contentRef, (e) => {
     if (triggerRef.current && !triggerRef.current.contains(e.target)) {
@@ -55,7 +64,10 @@ const CatalogMultiselectFilter = ({
     >
       <button
         className={styles.trigger}
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          setOpen(!open)
+          focus(popoverRef)
+        }}
         ref={triggerRef}
         type="button"
       >
@@ -90,33 +102,39 @@ const CatalogMultiselectFilter = ({
         </span>
       </button>
       <PopoverContent className={styles.content} ref={contentRef}>
-        <Column span={columns}>
-          <Grid className={styles.grid} condensed>
-            {Object.keys(getFilters(initialFilter)).map((item, i) => (
-              <Column className={styles.column} key={i} sm={1}>
-                <h3 className={styles.heading}>{getFilters(initialFilter)[item].name}</h3>
-                <ul className={styles.list}>
-                  {Object.keys(getFilters(initialFilter)[item].values).map((key, j) => (
-                    <li className={styles.listItem} key={j}>
-                      <Tag
-                        onClick={() => {
-                          onFilter(
-                            item,
-                            key,
-                            filter[item] && filter[item].includes(key) ? 'remove' : 'add'
-                          )
-                        }}
-                        type={filter[item] && filter[item].includes(key) ? 'high-contrast' : 'gray'}
-                      >
-                        {getFilters(initialFilter)[item].values[key].name}
-                      </Tag>
-                    </li>
-                  ))}
-                </ul>
-              </Column>
-            ))}
-          </Grid>
-        </Column>
+        {/* div wrapper addeed to receive focus */}
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+        <div className={styles.wrapper} ref={popoverRef} tabIndex="0">
+          <Column span={columns}>
+            <Grid className={styles.grid} condensed>
+              {Object.keys(getFilters(initialFilter)).map((item, i) => (
+                <Column className={styles.column} key={i} sm={1}>
+                  <h3 className={styles.heading}>{getFilters(initialFilter)[item].name}</h3>
+                  <ul className={styles.list}>
+                    {Object.keys(getFilters(initialFilter)[item].values).map((key, j) => (
+                      <li className={styles.listItem} key={j}>
+                        <Tag
+                          onClick={() => {
+                            onFilter(
+                              item,
+                              key,
+                              filter[item] && filter[item].includes(key) ? 'remove' : 'add'
+                            )
+                          }}
+                          type={
+                            filter[item] && filter[item].includes(key) ? 'high-contrast' : 'gray'
+                          }
+                        >
+                          {getFilters(initialFilter)[item].values[key].name}
+                        </Tag>
+                      </li>
+                    ))}
+                  </ul>
+                </Column>
+              ))}
+            </Grid>
+          </Column>
+        </div>
       </PopoverContent>
     </Popover>
   )

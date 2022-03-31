@@ -6,6 +6,8 @@
  */
 const path = require('path')
 
+const noUnusedVarsOptions = { args: 'all', argsIgnorePattern: '^_' }
+
 module.exports = {
   env: {
     browser: true,
@@ -40,6 +42,7 @@ module.exports = {
         comments: 100
       }
     ],
+    'no-unused-vars': ['error', noUnusedVarsOptions],
     'notice/notice': [
       'error',
       {
@@ -87,7 +90,7 @@ module.exports = {
       files: ['*.ts'],
       rules: {
         'no-unused-vars': 'off', // Disabled in favor of @typescript-eslint/no-unused-vars
-        '@typescript-eslint/no-unused-vars': 'error'
+        '@typescript-eslint/no-unused-vars': ['error', noUnusedVarsOptions]
       }
     }
   ],

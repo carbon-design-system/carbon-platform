@@ -20,7 +20,7 @@ import nextConnect from 'next-connect'
 export default function requireSession(needsUser = false) {
   const logging = new Logging('web-app', 'require-session')
   return nextConnect({
-    onError: (err, req, res) => {
+    onError: (err, _req, res) => {
       logging.error(err.stack)
       res.status(500).end('Something broke!')
     }

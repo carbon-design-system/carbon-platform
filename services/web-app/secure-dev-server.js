@@ -11,9 +11,9 @@
 const { createServer } = require('https')
 const next = require('next')
 const fs = require('fs')
-const { RunMode, getRunMode, loadEnvVars } = require('@carbon-platform/api/runtime')
+const { RunMode, getRunMode } = require('@carbon-platform/api/runtime')
 
-const { PORT } = loadEnvVars({ PORT: '443' })
+const PORT = 3001
 
 const hostname = 'localhost'
 

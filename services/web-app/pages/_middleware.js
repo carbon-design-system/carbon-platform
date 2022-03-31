@@ -49,7 +49,10 @@ export async function middleware(req) {
   try {
     await applyAuthMiddleware(req)
   } catch (err) {
-    return exitWith404(req)
+    if (err instanceof NotAuthorizedError) {
+      return exitWith404(req)
+    }
+    throw err
   }
 
   return NextResponse.next()

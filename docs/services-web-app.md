@@ -28,16 +28,6 @@ access to private repos and increases API quotas. To set up a personal access to
 Setting this env var to "1" shows all libraries and assets in the web app even if they are indexed
 as `noIndex: true`.
 
-## Production Environment Variables
-
-### CARBON_INTERNAL_API_SECRET
-
-This environment variable is used to assert that internal requests being made to the log-request API
-are coming from a trusted source. The web-app middleware sends this value inside the request body
-and the log-request API compares it against its secret to authorize the request. This value can be
-ignored in "Dev" mode as it is not necessary. For "Standard" mode, a robust password-like value
-acting as the shared secret is set on the web-app.
-
 ## Dependencies Set up
 
 ### Run Mode

@@ -88,4 +88,10 @@
  * @property {object[]} tree
  */
 
+/**
+ * @typedef {object} GitHubSearchResponse
+ * @property {number} total_count
+ * @property {boolean} incomplete_results
+ */
+
 exports.unused = {}

@@ -310,8 +310,31 @@ const getLibraryAssets = async (params = {}) => {
     // if fetching a specific asset, only return that
     return libraryParams.asset ? getSlug(asset.content) === libraryParams.asset : true
   })
-
   return assets
+}
+
+/**
+ * Gets the GitHub open issue count for an asset using the asset's name searching only issue title
+ * @param {import('../typedefs').Asset} asset
+ * @returns {number}
+ */
+export const getAssetIssueCount = async (asset) => {
+  const { host, org, repo } = asset.params
+
+  /**
+   * @type {import('../typedefs').GitHubSearchResponse}
+   */
+  let response = {}
+
+  try {
+    response = await getResponse(host, 'GET /search/issues', {
+      q: `${asset.content.name}+repo:${org}/${repo}+is:issue+is:open+in:title`
+    })
+  } catch (err) {
+    return null
+  }
+
+  return response?.total_count ?? 0
 }
 
 /**
@@ -324,9 +347,9 @@ export const getAllLibraries = async () => {
 
   for (const [slug, library] of Object.entries(libraryAllowList)) {
     const params = {
-      ...library,
       library: slug,
-      ref: 'latest'
+      ref: 'latest',
+      ...library
     }
 
     promises.push(getLibraryData(params))

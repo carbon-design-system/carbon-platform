@@ -83,7 +83,6 @@ const useQueryState = (
         // invalid val and no storage value set, returning null
         return null
       }
-
       return val
     },
     [key, parseBooleans, parseNumbers, router.pathname, resetOnLoad, validateValue, defaultValue]

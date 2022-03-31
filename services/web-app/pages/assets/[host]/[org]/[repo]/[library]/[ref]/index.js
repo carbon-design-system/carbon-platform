@@ -40,9 +40,13 @@ const Library = ({ libraryData, params }) => {
 
   if (router.isFallback) {
     return (
-      <div className={pageStyles.content}>
-        <h1>Loading...</h1>
-      </div>
+      <Grid>
+        <Column sm={4} md={8} lg={16}>
+          <div className={pageStyles.content}>
+            <h1>Loading...</h1>
+          </div>
+        </Column>
+      </Grid>
     )
   }
 
@@ -234,7 +238,7 @@ Library.propTypes = {
   params: paramsPropTypes
 }
 
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
   const libraryData = await getLibraryData(params)
 
   if (!libraryData) {
@@ -247,15 +251,7 @@ export const getStaticProps = async ({ params }) => {
     props: {
       libraryData,
       params
-    },
-    revalidate: 10
-  }
-}
-
-export const getStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: true
+    }
   }
 }
 

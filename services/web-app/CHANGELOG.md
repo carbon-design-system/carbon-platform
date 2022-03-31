@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.85](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.84...@carbon-platform/web-app@0.1.85) (2022-03-31)
+
+
+### Features 🌟
+
+* added esc hook and focus hook ([434d495](https://github.com/carbon-design-system/carbon-platform/commit/434d4950f0a4b74822991213111126b74e9e7d62))
+* added esc hook and focus hook - fix styling and hook ([13bd2a4](https://github.com/carbon-design-system/carbon-platform/commit/13bd2a4ca9d5bbe189a4c521a167b2de6a0312f2))
+* added esc working on focus ([513d942](https://github.com/carbon-design-system/carbon-platform/commit/513d9424953e4b153ddc72cc031dfef166a53939))
+* updated popover state ([6f3bdcc](https://github.com/carbon-design-system/carbon-platform/commit/6f3bdcc769d0714a276a3dd51a865e03e2a95212))
+
+
+### Bug Fixes 🐛
+
+* fix broken styles need to fix useFocus ([34a83a4](https://github.com/carbon-design-system/carbon-platform/commit/34a83a498a4224fed9cbd2ec3ff10795fd4573ae))
+* fix color tokens ([99375a3](https://github.com/carbon-design-system/carbon-platform/commit/99375a38717460e57f71dcb7e9e8e94f16840011))
+* fixes merge and focus hook ([3d92f65](https://github.com/carbon-design-system/carbon-platform/commit/3d92f651afe5c2f86a3c00d64009c0f40754a5ea))
+* remove unnecessary hook ([b7dfc56](https://github.com/carbon-design-system/carbon-platform/commit/b7dfc56e4fd7978b579757682d26347cd1753033))
+* testing different state theories ([084bfd7](https://github.com/carbon-design-system/carbon-platform/commit/084bfd79c02e726c64b9d2392e7e0159163c74d1))
+* **web-app:** do not rerender on query change ([447b01f](https://github.com/carbon-design-system/carbon-platform/commit/447b01f343ab233dd49662579c8006e0bd385604))
+
+### [0.1.84](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.83...@carbon-platform/web-app@0.1.84) (2022-03-30)
+
+
+### Bug Fixes 🐛
+
+* grid align loading message in ISR pages ([9fd892c](https://github.com/carbon-design-system/carbon-platform/commit/9fd892c3a97730e912755be752efdd3130946e70))
+* **web-app:** add protocol to url if not present ([7b2a496](https://github.com/carbon-design-system/carbon-platform/commit/7b2a496e650686884de5de5eef495d6058cc5acf))
+* **web-app:** index dotcom from og repo ([e2985fe](https://github.com/carbon-design-system/carbon-platform/commit/e2985fe4a62c6c47ec93b6991402a5416cf19bbb))
+* **web-app:** linter fix ([fdaf8ec](https://github.com/carbon-design-system/carbon-platform/commit/fdaf8ec2a6163548cd1967bc1ac37d03b0198834))
+* **web-app:** merge with main ([5415c61](https://github.com/carbon-design-system/carbon-platform/commit/5415c6165f56bacb5e0c5c9d2f07a510e2654774))
+* **web-app:** new thumbnails ([e777e90](https://github.com/carbon-design-system/carbon-platform/commit/e777e90099448ab49b61a0fb912e7bc3375eab2a))
+* **web-app:** pr review comments ([10a4085](https://github.com/carbon-design-system/carbon-platform/commit/10a408541ea69922683a13c708f974938e2545de))
+
+
+### Misc. 🔮
+
+* update node modules ([2da3f3a](https://github.com/carbon-design-system/carbon-platform/commit/2da3f3acd0b4513ba2e29b43151587e70219bcb8))
+
 ### [0.1.83](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.82...@carbon-platform/web-app@0.1.83) (2022-03-29)
 
 ### [0.1.82](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.81...@carbon-platform/web-app@0.1.82) (2022-03-26)

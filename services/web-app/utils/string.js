@@ -46,3 +46,20 @@ export const isJsonString = (str) => {
   }
   return true
 }
+
+/**
+ * Adds https protocol to url if no protocol present
+ * @param {string} url
+ * @returns {string} url with protocol
+ */
+export const getUrlWithProtocol = (url) => {
+  if (!url) {
+    throw new Error('URL must be provided')
+  }
+
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+
+  return `https://${url}`
+}

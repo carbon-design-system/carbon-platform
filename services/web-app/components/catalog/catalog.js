@@ -49,7 +49,7 @@ const valuesIntersect = (arr1, arr2) => {
 /**
  * Returns true if an asset should be included in the catalog results given the filter.
  * @param {import('../../typedefs').Asset} asset
- * @param {Object} filter
+ * @param {object} filter
  * @returns {boolean}
  */
 const assetIsInFilter = (asset, filter) => {
@@ -104,7 +104,7 @@ const filterAssetsBysearch = (assets, search) => {
  * solution is in place, the search is simply a filter to remove assets that don't match any part of
  * the name or description.
  * @param {import('../../typedefs').Asset[]} assets list of assets to filter
- * @param {Object} filter filter object to apply to assets
+ * @param {object} filter filter object to apply to assets
  * @param {string} sort sort type to apply to assets
  * @param {string} search search string to match assets against
  * @returns {import('../../typedefs').Asset[]} array of filtered assets
@@ -146,7 +146,7 @@ const getFilteredAssets = (assets, filter, sort, search) => {
  * - The property key is defined in `filters` object and its values are defined
  * - Each entry in the parametered `value` is contained in the list of acceptable values for the
  * key as defined in `filter`
- * @param {Object} filter
+ * @param {object} filter
  * @param {string} key
  * @param {string[]} value
  * @returns {boolean} True if value is valid
@@ -207,7 +207,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
       defaultValue: 1,
       parseNumbers: true
     },
-    (value) => !isNaN(value)
+    (value) => !!parseInt(value)
   )
 
   const [pageSize, setPageSize] = useQueryState(
@@ -216,7 +216,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
       defaultValue: 60,
       parseNumbers: true
     },
-    (value) => !isNaN(value)
+    (value) => !!parseInt(value)
   )
 
   const [framework, setFramework] = useQueryState(
@@ -347,6 +347,14 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   useEffect(() => {
     setPossibleFilterValues(getFilters({ collection, type }))
   }, [collection, type])
+
+  useEffect(() => {
+    const resultsCount = filteredAssets.length
+    const maxPageNumber = Math.max(Math.ceil(resultsCount / pageSize), 1)
+    if (page > maxPageNumber) {
+      setPage(1)
+    }
+  }, [filteredAssets, page, pageSize, setPage])
 
   const handleFilter = (item, key, action = 'add') => {
     let updatedFilter = cloneDeep(filter)

@@ -36,27 +36,44 @@
   }
 }
 
+// override Carbon ghost button styles
 .back {
+  display: block;
+  width: 100%;
   padding: spacing.$spacing-05;
+  border: 0;
+  background: transparent;
+  color: theme.$link-primary;
   cursor: pointer;
+  text-align: left;
 
   &:hover {
+    background: transparent;
     text-decoration: none;
   }
 
+  &:active {
+    color: theme.$text-primary;
+  }
+
   &:focus {
+    outline: 2px solid theme.$focus;
     outline-offset: -2px;
-    outline-width: 2px;
   }
 }
 
-.back-icon {
+// Specificity needed to overide Carbon button styles
+.back:not([disabled]) .back-icon {
   position: relative;
   // visually center align icon with text
-  top: spacing.$spacing-01;
+  top: spacing.$spacing-02;
   margin-right: spacing.$spacing-03;
+  fill: currentColor;
 }
 
+// .library-nav {
+//   margin-left: 800px;
+// }
 .library-nav-in {
   animation: slide-in motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
   transform: translateX(-256px);

@@ -10,16 +10,23 @@ import PropTypes from 'prop-types'
 import styles from './nav-tree.module.scss'
 
 const NavTree = ({ items = [] }) => {
+  // treeview requires a function be passed to onToggle
+  const toggle = function () {}
   return (
     <TreeView className={styles.container}>
       {items.map((item) => (
-        <TreeNode label={item.title} value={item.title} key={item.title}>
+        <TreeNode label={item.title} value={item.title} key={item.title} onToggle={toggle}>
           {item.items &&
             item.items.map((item2) => (
-              <TreeNode label={item2.title} value={item2.title} key={item2.title}>
+              <TreeNode label={item2.title} value={item2.title} key={item2.title} onToggle={toggle}>
                 {item2.items &&
                   item2.items.map((item3) => (
-                    <TreeNode label={item3.title} value={item3.title} key={item3.title} />
+                    <TreeNode
+                      label={item3.title}
+                      value={item3.title}
+                      key={item3.title}
+                      onToggle={toggle}
+                    />
                   ))}
               </TreeNode>
             ))}

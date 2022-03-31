@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Button, Column, Grid, Link as CarbonLink, SideNav, Theme } from '@carbon/react'
+import { Button, Column, Grid, SideNav, Theme } from '@carbon/react'
 import { ArrowLeft, ArrowRight, Events } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
@@ -142,12 +142,12 @@ const Library = ({ libraryData, params }) => {
       <Theme theme="white">
         <SideNav
           aria-label="Library side navigation"
-          className={slideNav ? styles.libraryNavIn : styles.libraryNavOut}
+          className={clsx(styles.libraryNav, slideNav ? styles.libraryNavIn : styles.libraryNavOut)}
         >
-          <CarbonLink onClick={backLink} className={styles.back}>
+          <Button kind="ghost" onClick={backLink} className={styles.back}>
             <ArrowLeft className={styles.backIcon} size={16} />
             Back to all Libraries
-          </CarbonLink>
+          </Button>
           <h2 className={clsx(styles.navHeading, styles.navHeadingActive)}>
             {seo.title}
             <br />

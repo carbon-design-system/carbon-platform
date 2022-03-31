@@ -151,25 +151,14 @@ const PageContent = () => {
 
   return (
     <div className={styles.container}>
-      <Grid>
-        <Column sm={4} md={8} lg={8} xlg={7}>
-          <h2 className={styles.subheading}>
-            The new Carbon Design System will provide a single place to find and use all open and
-            inner source assets teams need to build consistent, scalable experiences with
-            confidence.
-          </h2>
-        </Column>
-      </Grid>
       <div className={styles.highlights}>
         <Grid className={styles.hightlightGrid}>
-          <Column sm={4}>
-            <h3 className={styles.highlightHeading}>This release</h3>
-          </Column>
-          <Column sm={4} lg={8} xlg={7}>
-            <p className={clsx(styles.highlightDescription, styles.highlightDescriptionBig)}>
-              Our first release is the start to standardizing our community’s assets and surfacing
-              them in one shared catalog.
-            </p>
+          <Column sm={4} md={8} lg={8} xlg={7}>
+            <h2 className={styles.subheading}>
+              The new Carbon Design System will provide a single place to find and use all open and
+              inner source assets teams need to build consistent, scalable experiences with
+              confidence.
+            </h2>
           </Column>
         </Grid>
         {highlights.map((highlight, i) => (
@@ -191,6 +180,53 @@ const PageContent = () => {
           </Grid>
         ))}
       </div>
+      <Grid className={styles.hightlightGrid}>
+        <Column sm={4} md={8} lg={8} xlg={7}>
+          <p className={clsx(styles.subheadingMedium)}>
+            The <span className={styles.bold}>asset discovery experience</span> is your efficient
+            pathway to accessing components, patterns, functions, templates, and other re-usable
+            resources across all IBM teams.
+          </p>
+        </Column>
+      </Grid>
+      <Grid className={styles.hightlightGrid}>
+        <Column sm={4} md={8} lg={8} xlg={7}>
+          <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>Asset catalog</h2>
+          <p className={styles.subheadingContent}>
+            Asset catalogs allow you to search across all open and inner source resources and apply
+            complex filters for any scenario—so that you can apply other teams’ knowledge to your
+            own work.
+          </p>
+        </Column>
+      </Grid>
+      <Grid className={styles.hightlightGrid}>
+        <Column sm={4} md={8} lg={8} xlg={7}>
+          <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>Asset collections</h2>
+          <p className={styles.subheadingContent}>
+            Collections allow you to explore curated lists of assets, like a playlist, so that you
+            can easily locate your relevant resources when you come back.
+          </p>
+        </Column>
+      </Grid>
+      <Grid className={styles.hightlightGrid}>
+        <Column sm={4} md={8} lg={8} xlg={7}>
+          <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>Featured bills</h2>
+          <p className={styles.subheadingContent}>
+            Libraries are the means to contribute, install, and use one or many assets in products
+            and digital experiences.
+          </p>
+        </Column>
+      </Grid>
+      <Grid className={styles.hightlightGrid}>
+        <Column sm={4} md={8} lg={8} xlg={7}>
+          <p className={clsx(styles.subheadingLarge)}>
+            By standardizing our assets and surfacing them, we can help our makers find assets that{' '}
+            <span className={styles.bold}>comply</span> with platform requirements, are{' '}
+            <span className={styles.bold}>convenient</span> to implement, and are{' '}
+            <span className={styles.bold}>consistent</span> with design patterns across the company.
+          </p>
+        </Column>
+      </Grid>
       <Grid>
         <Column sm={4} md={8} className={styles.contentColumn}>
           <h2 className={styles.contentHeading}>How PAL teams can prepare</h2>

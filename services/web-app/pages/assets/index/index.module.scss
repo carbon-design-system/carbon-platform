@@ -51,17 +51,32 @@
  */
 
 .subheading {
-  padding: spacing.$spacing-10 0;
+  padding: (spacing.$spacing-08 + spacing.$spacing-06) 0 spacing.$spacing-08;
   @include type.type-style('expressive-heading-04');
-  @include breakpoint.breakpoint(md) {
-    padding-right: spacing.$spacing-06;
+
+  @include breakpoint.breakpoint-down(md) {
+    padding-bottom: (spacing.$spacing-08 + spacing.$spacing-05);
   }
-  @include breakpoint.breakpoint(lg) {
-    padding-right: spacing.$spacing-05;
+
+  &--no-padding {
+    padding: 0;
   }
-  @include breakpoint.breakpoint(xlg) {
-    padding-right: spacing.$spacing-06;
-  }
+}
+
+.subheading-medium {
+  padding: (spacing.$spacing-08 + spacing.$spacing-06) 0;
+  @include type.type-style('expressive-heading-04');
+}
+
+.subheading-large {
+  padding: (spacing.$spacing-10 + spacing.$spacing-05) 0 spacing.$spacing-05;
+  @include type.type-style('expressive-heading-04');
+}
+
+.subheading-content {
+  @include type.type-style('body-long-02');
+
+  padding: spacing.$spacing-05 0;
 }
 
 /**
@@ -111,7 +126,7 @@
   margin-top: spacing.$spacing-08;
   @include type.type-style('expressive-heading-03');
   @include breakpoint.breakpoint(md) {
-    margin-top: spacing.$spacing-08 + spacing.$spacing-02;
+    margin-top: spacing.$spacing-08 + spacing.$spacing-06 + spacing.$spacing-02;
   }
   @include breakpoint.breakpoint(lg) {
     padding-right: spacing.$spacing-07;
@@ -124,7 +139,7 @@
 }
 
 .highlight-description {
-  margin: spacing.$spacing-06 0 (spacing.$spacing-08 + spacing.$spacing-06);
+  margin: spacing.$spacing-06 0 (spacing.$spacing-08 + spacing.$spacing-05);
   @include type.type-style('body-long-02');
   @include breakpoint.breakpoint(md) {
     margin: spacing.$spacing-07 0;

@@ -29,7 +29,7 @@ import { status } from '@/data/status'
 import { teams } from '@/data/teams'
 import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
-import { getLibraryData } from '@/lib/github'
+import { getAssetIssueCount, getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { getAssetType, getTagsList } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
@@ -79,7 +79,7 @@ const Asset = ({ libraryData }) => {
   const { sponsor } = assetData.params
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
 
-  const pathIsAbsolute = (path) => {
+  const isPathAbsolute = (path) => {
     const testPath = /^https?:\/\//i
 
     return testPath.test(path)
@@ -112,6 +112,8 @@ const Asset = ({ libraryData }) => {
       url: assetData.content.externalDocsUrl
     }
   }
+
+  const githubRepoUrl = `https://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
 
   return (
     <>
@@ -207,25 +209,16 @@ const Asset = ({ libraryData }) => {
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
+                href={`${githubRepoUrl}/issues/?q=is%3Aissue+is%3Aopen+in%3Atitle+${assetData.content.name}`}
               >
                 <dl>
-                  <dt className={dashboardStyles.label}>Coming soon...</dt>
-                  <dd className={dashboardStyles.labelLarge}>–</dd>
-                </dl>
-              </DashboardItem>
-            </Column>
-            <Column className={dashboardStyles.column} sm={0} md={4}>
-              <DashboardItem
-                aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-                border={['sm', 'md', 'lg', 'xlg']}
-                href={libraryPath}
-              >
-                <dl>
-                  <dt className={dashboardStyles.label}>Coming soon...</dt>
-                  <dd className={dashboardStyles.labelLarge}>–</dd>
+                  <dt className={dashboardStyles.label}>Open issues</dt>
+                  <dd className={dashboardStyles.labelLarge}>
+                    {assetData.content.issueCount || 0}
+                  </dd>
                 </dl>
                 <Svg32Github className={dashboardStyles.positionBottomLeft} />
-                {pathIsAbsolute(libraryPath) && (
+                {isPathAbsolute(githubRepoUrl) && (
                   <Launch className={dashboardStyles.positionBottomRight} size={20} />
                 )}
               </DashboardItem>
@@ -234,14 +227,14 @@ const Asset = ({ libraryData }) => {
               <DashboardItem
                 aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
-                href="https://carbondesignsystem.com"
+                href={`${githubRepoUrl}/discussions/?discussions_q=in%3Atitle+${assetData.content.id}`}
               >
                 <dl>
-                  <dt className={dashboardStyles.label}>Coming soon...</dt>
+                  <dt className={dashboardStyles.label}>Discussions</dt>
                   <dd className={dashboardStyles.labelLarge}>–</dd>
                 </dl>
                 <Svg32Github className={dashboardStyles.positionBottomLeft} />
-                {pathIsAbsolute('https://carbondesignsystem.com') && (
+                {isPathAbsolute(githubRepoUrl) && (
                   <Launch className={dashboardStyles.positionBottomRight} size={20} />
                 )}
               </DashboardItem>
@@ -257,7 +250,7 @@ Asset.propTypes = {
   libraryData: libraryPropTypes
 }
 
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
   const libraryData = await getLibraryData(params)
 
   if (!libraryData || !libraryData.assets || !libraryData.assets.length) {
@@ -266,19 +259,14 @@ export const getStaticProps = async ({ params }) => {
     }
   }
 
+  const [assetData] = libraryData.assets
+  assetData.content.issueCount = await getAssetIssueCount(assetData)
+
   return {
     props: {
       libraryData,
       params
-    },
-    revalidate: 10
-  }
-}
-
-export const getStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: true
+    }
   }
 }
 

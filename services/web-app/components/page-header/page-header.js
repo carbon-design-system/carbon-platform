@@ -4,24 +4,29 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Grid } from '@carbon/react'
-import clsx from 'clsx'
+import { Column, Grid, Theme } from '@carbon/react'
 import PropTypes from 'prop-types'
 
 import styles from './page-header.module.scss'
 
-const PageHeader = ({ pictogram: Pictogram, title }) => {
+const PageHeader = ({ bgColor, pictogram: Pictogram, title }) => {
+  let containerStyle = {}
+
+  if (bgColor) {
+    containerStyle = {
+      '--cds-background': bgColor
+    }
+  }
+
   return (
-    <Grid className={styles.container}>
-      <Column className={styles.column} sm={4} md={6} lg={10}>
-        <h1 className={styles.title}>{title}</h1>
-      </Column>
-      {Pictogram && (
-        <Column className={clsx(styles.column, styles.columnLast)} sm={0} md={2} lg={2}>
-          <Pictogram className={styles.pictogram} />
+    <Theme className={styles.container} style={containerStyle} theme={bgColor ? 'white' : 'g100'}>
+      <Grid className={styles.grid}>
+        <Column className={styles.column} sm={4} md={6} lg={10}>
+          <h1 className={styles.title}>{title}</h1>
         </Column>
-      )}
-    </Grid>
+        {Pictogram && <Pictogram className={styles.pictogram} />}
+      </Grid>
+    </Theme>
   )
 }
 

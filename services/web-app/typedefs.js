@@ -8,7 +8,7 @@
 /* eslint-disable max-len */
 
 /**
- * @typedef {Object} Params
+ * @typedef {object} Params
  * @property {string} asset - Asset slug
  * @property {"github.com" | "github.ibm.com"} host - GitHub API base URL
  * @property {string} library - Library slug
@@ -20,27 +20,27 @@
  */
 
 /**
- * @typedef {Object} Library
+ * @typedef {object} Library
  * @property {Asset[]} assets - Library assets
  * @property {LibraryContent} content - Library content
  * @property {Params} params - Params used to fetch library content
- * @property {Object} response - GitHub API response from fetching carbon.yml file
+ * @property {object} response - GitHub API response from fetching carbon.yml file
  */
 
 /**
- * @typedef {Object} Libraries
+ * @typedef {object} Libraries
  * @property {Library[]} libraries - Libraries array
  */
 
 /**
- * @typedef {Object} Asset
+ * @typedef {object} Asset
  * @property {AssetContent} content - Asset content
  * @property {Params} params - Params used to fetch asset content
- * @property {Object} response - GitHub API response from fetching carbon.yml file
+ * @property {object} response - GitHub API response from fetching carbon.yml file
  */
 
 /**
- * @typedef {Object} LibraryContent
+ * @typedef {object} LibraryContent
  * @property {string} description - One-two sentence description
  * @property {string} externalDocsUrl - Absolute URL to externally-hosted documentation
  * @property {string} id - Unique identifier within the platform
@@ -53,7 +53,7 @@
  */
 
 /**
- * @typedef {Object} AssetContent
+ * @typedef {object} AssetContent
  * @property {string} description - One-two sentence description
  * @property {string} externalDocsUrl - Absolute URL to externally-hosted documentation
  * @property {"angular" | "react" | "react-native" | "svelte" | "vue" | "web-component" | "design-only"} framework - Asset framework
@@ -68,9 +68,9 @@
  */
 
 /**
- * @typedef {Object} PlaceholderImage
+ * @typedef {object} PlaceholderImage
  * @property {string} base64 - Base 64 encoded placeholder image
- * @property {Object} img - Img object
+ * @property {object} img - Img object
  * @property {number} img.height - Unitless height in pixels
  * @property {string} img.src - Path to image relative to the `/public` directory
  * @property {string} img.type - Image file extension
@@ -78,14 +78,14 @@
  */
 
 /**
- * @typedef {Object} GitHubContentResponse
+ * @typedef {object} GitHubContentResponse
  * @property {string} content
  * @property {string} encoding
  */
 
 /**
- * @typedef {Object} GitHubTreeResponse
- * @property {Object[]} tree
+ * @typedef {object} GitHubTreeResponse
+ * @property {object[]} tree
  */
 
 /**

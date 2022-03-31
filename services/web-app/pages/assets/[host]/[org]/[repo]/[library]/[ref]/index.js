@@ -4,8 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { FileBackup } from '@carbon/pictograms-react'
-import { Button, Column, Grid } from '@carbon/react'
+import { Button, Column, Grid, Theme } from '@carbon/react'
 import { ArrowRight, Events } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
@@ -40,9 +39,13 @@ const Library = ({ libraryData, params }) => {
 
   if (router.isFallback) {
     return (
-      <div className={pageStyles.content}>
-        <h1>Loading...</h1>
-      </div>
+      <Grid>
+        <Column sm={4} md={8} lg={16}>
+          <div className={pageStyles.content}>
+            <h1>Loading...</h1>
+          </div>
+        </Column>
+      </Grid>
     )
   }
 
@@ -81,8 +84,10 @@ const Library = ({ libraryData, params }) => {
       <NextSeo {...seo} />
       <Grid>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
-          <PageHeader title={seo.title} pictogram={FileBackup} />
-          <PageBreadcrumb items={breadcrumbItems} />
+          <PageHeader title={seo.title} />
+          <Theme theme="g100">
+            <PageBreadcrumb items={breadcrumbItems} />
+          </Theme>
         </Column>
         <Column sm={4} md={8} lg={4}>
           {/* In page nav  */}

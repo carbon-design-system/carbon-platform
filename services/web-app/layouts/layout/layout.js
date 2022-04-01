@@ -41,6 +41,7 @@ export const LayoutProvider = ({ children }) => {
 const Layout = ({ children }) => {
   const router = useRouter()
   const [showSideNav, setShowSideNav] = useState(true)
+  const [librarySideNav, setLibrarySideNav] = useState(false)
   const { navData } = useContext(LayoutContext)
   const isLg = useMatchMedia(mediaQueries.lg)
 
@@ -59,7 +60,11 @@ const Layout = ({ children }) => {
     setShowSideNav(
       !router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]')
     )
+    setLibrarySideNav(!router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
   }, [router.pathname])
+
+  console.log(librarySideNav)
+  console.log(router.pathname)
 
   return (
     <HeaderContainer
@@ -108,7 +113,12 @@ const Layout = ({ children }) => {
                       <SideNavItems>
                         <HeaderSideNavItems>
                           {globalNavData.map((data, i) => (
-                            <SideNavLink element={NextLink} href={data.path} key={i}>
+                            <SideNavLink
+                              element={NextLink}
+                              href={data.path}
+                              key={i}
+                              tabIndex={!librarySideNav && '-1'}
+                            >
                               {data.title}
                             </SideNavLink>
                           ))}
@@ -121,6 +131,7 @@ const Layout = ({ children }) => {
                                 href={data.path}
                                 isActive={router.pathname === data.path}
                                 key={i}
+                                tabIndex={!librarySideNav && '-1'}
                               >
                                 {data.title}
                               </SideNavLink>
@@ -136,6 +147,7 @@ const Layout = ({ children }) => {
                                     href={item.path}
                                     isActive={router.pathname.startsWith(item.path)}
                                     key={j}
+                                    tabIndex={!librarySideNav && '-1'}
                                   >
                                     {item.title}
                                   </SideNavLink>

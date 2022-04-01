@@ -31,8 +31,8 @@ import styles from './index.module.scss'
 
 const Library = ({ libraryData, params }) => {
   const { setNavData } = useContext(LayoutContext)
-  const router = useRouter()
   const [slideNav, setSlideNav] = useState(true)
+  const router = useRouter()
 
   useEffect(() => {
     setNavData(assetsNavData)

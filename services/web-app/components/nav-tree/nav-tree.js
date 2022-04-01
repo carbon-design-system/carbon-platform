@@ -10,7 +10,9 @@ import PropTypes from 'prop-types'
 import styles from './nav-tree.module.scss'
 
 const NavTree = ({ items = [], label }) => {
-  const toggle = function () {}
+  const toggle = function () {
+    return null
+  }
   return (
     <TreeView className={styles.container} label={label} hideLabel>
       {items.map((item) => (

@@ -9,11 +9,11 @@ import PropTypes from 'prop-types'
 
 import styles from './nav-tree.module.scss'
 
-const NavTree = ({ items = [] }) => {
+const NavTree = ({ label, items = [] }) => {
   // treeview requires a function be passed to onToggle
   const toggle = function () {}
   return (
-    <TreeView className={styles.container}>
+    <TreeView className={styles.container} label={label} hideLabel>
       {items.map((item) => (
         <TreeNode label={item.title} value={item.title} key={item.title} onToggle={toggle}>
           {item.items &&
@@ -42,7 +42,8 @@ NavTree.propTypes = {
       title: PropTypes.string.isRequired,
       path: PropTypes.string
     })
-  )
+  ),
+  label: PropTypes.string
 }
 
 export default NavTree

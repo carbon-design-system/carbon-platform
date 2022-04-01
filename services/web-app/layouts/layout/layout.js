@@ -63,9 +63,6 @@ const Layout = ({ children }) => {
     setLibrarySideNav(!router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
   }, [router.pathname])
 
-  console.log(librarySideNav)
-  console.log(router.pathname)
-
   return (
     <HeaderContainer
       render={({ isSideNavExpanded, onClickSideNavExpand }) => (

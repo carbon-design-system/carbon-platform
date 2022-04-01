@@ -153,12 +153,11 @@ const Library = ({ libraryData, params }) => {
             <ArrowLeft className={styles.backIcon} size={16} />
             Back to all Libraries
           </Button>
-          <h2 className={clsx(styles.navHeading, styles.navHeadingActive)}>
+          <h2 className={clsx(styles.navHeading, styles.navHeadingSelected)}>
             {seo.title}
             <br />
             {`v${libraryData.content.version}`}
           </h2>
-
           <NavTree items={navItems} label="Library navigation" />
         </SideNav>
       </Theme>

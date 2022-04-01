@@ -34,15 +34,37 @@ export const LayoutContext = createContext()
 
 export const LayoutProvider = ({ children }) => {
   const [navData, setNavData] = useState([])
+  const [showSideNav, setShowSideNav] = useState(true)
+  const [librarySideNav, setLibrarySideNav] = useState(false)
+  const [isSideNavExpanded, toggleSideNavExpanded] = useState()
 
-  return <LayoutContext.Provider value={{ navData, setNavData }}>{children}</LayoutContext.Provider>
+  const value = {
+    navData,
+    setNavData,
+    showSideNav,
+    setShowSideNav,
+    librarySideNav,
+    setLibrarySideNav,
+    isSideNavExpanded,
+    toggleSideNavExpanded
+  }
+
+  return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
 }
 
 const Layout = ({ children }) => {
   const router = useRouter()
-  const [showSideNav, setShowSideNav] = useState(true)
-  const [librarySideNav, setLibrarySideNav] = useState(false)
-  const { navData } = useContext(LayoutContext)
+
+  const {
+    navData,
+    setShowSideNav,
+    showSideNav,
+    librarySideNav,
+    setLibrarySideNav,
+    isSideNavExpanded,
+    toggleSideNavExpanded
+  } = useContext(LayoutContext)
+
   const isLg = useMatchMedia(mediaQueries.lg)
 
   // For use with 100vw widths to account for the scrollbar width, e.g. instead of `width: 100vw;`
@@ -60,12 +82,16 @@ const Layout = ({ children }) => {
     setShowSideNav(
       !router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]')
     )
-    setLibrarySideNav(!router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
-  }, [router.pathname])
+    setLibrarySideNav(router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
+  }, [setShowSideNav, setLibrarySideNav, router.pathname])
+
+  const onClickSideNavExpand = () => {
+    toggleSideNavExpanded(!isSideNavExpanded)
+  }
 
   return (
     <HeaderContainer
-      render={({ isSideNavExpanded, onClickSideNavExpand }) => (
+      render={() => (
         <>
           <Theme theme="g100">
             <Header aria-label="Carbon Design System" className={styles.header}>
@@ -75,6 +101,7 @@ const Layout = ({ children }) => {
                 onClick={onClickSideNavExpand}
                 isActive={isSideNavExpanded}
               />
+
               <div className={styles.headerName}>
                 <Link href="/assets">
                   <a className="cds--header__name">Carbon Design System</a>

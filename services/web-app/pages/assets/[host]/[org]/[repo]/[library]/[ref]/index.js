@@ -11,7 +11,7 @@ import { get } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { libraryPropTypes, paramsPropTypes } from 'types'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
@@ -30,8 +30,9 @@ import { getSlug } from '@/utils/slug'
 import styles from './index.module.scss'
 
 const Library = ({ libraryData, params }) => {
-  const { setNavData } = useContext(LayoutContext)
-  const [slideNav, setSlideNav] = useState(true)
+  const { setNavData, librarySideNav, setLibrarySideNav, isSideNavExpanded } =
+    useContext(LayoutContext)
+
   const router = useRouter()
 
   useEffect(() => {
@@ -71,7 +72,7 @@ const Library = ({ libraryData, params }) => {
   }
 
   const backLink = () => {
-    setSlideNav(false)
+    setLibrarySideNav(false)
     setTimeout(() => router.push('/assets/libraries'), 150)
   }
 
@@ -142,7 +143,11 @@ const Library = ({ libraryData, params }) => {
       <Theme theme="white">
         <SideNav
           aria-label="Library side navigation"
-          className={clsx(styles.libraryNav, slideNav ? styles.libraryNavIn : styles.libraryNavOut)}
+          expanded={isSideNavExpanded}
+          className={clsx(
+            styles.libraryNav,
+            librarySideNav ? styles.libraryNavIn : styles.libraryNavOut
+          )}
         >
           <Button kind="ghost" onClick={backLink} className={styles.back}>
             <ArrowLeft className={styles.backIcon} size={16} />
@@ -154,7 +159,7 @@ const Library = ({ libraryData, params }) => {
             {`v${libraryData.content.version}`}
           </h2>
 
-          <NavTree items={navItems} />
+          <NavTree items={navItems} label="Library navigation" />
         </SideNav>
       </Theme>
       <Grid>

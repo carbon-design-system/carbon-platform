@@ -25,6 +25,10 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'jest', 'notice', 'simple-import-sort'],
   rules: {
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      { functions: false, classes: true, variables: false }
+    ],
     'jest/consistent-test-it': ['error', { fn: 'test', withinDescribe: 'it' }],
     // Avoid false-positives on Next.js `Link`s that don't appear to satisfy a11y requirements
     'jsx-a11y/anchor-is-valid': [
@@ -42,6 +46,7 @@ module.exports = {
         comments: 100
       }
     ],
+    'no-use-before-define': 'off', // Disabled in favor of @typescript-eslint/no-use-before-define
     'no-unused-vars': ['error', noUnusedVarsOptions],
     'notice/notice': [
       'error',

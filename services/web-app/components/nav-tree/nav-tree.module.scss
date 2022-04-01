@@ -40,11 +40,26 @@
     content: '';
   }
 
+  :global(.cds--tree-node--selected > .cds--tree-node__label::before) {
+    left: 24px;
+  }
+
   :global(.cds--tree-node__children .cds--tree-node__children .cds--tree-node__label) {
     @include type.type-style('body-compact-01');
   }
 
   :global(.cds--tree-node[aria-expanded='true'] > * > .cds--tree-parent-node__toggle::after) {
     transform: rotate(180deg);
+  }
+
+  :global(.cds--tree-parent-node.cds--tree-node--selected > .cds--tree-node__label::before) {
+    left: 0;
+  }
+
+  :global(.cds--tree-node__children
+      .cds--tree-node__children
+      .cds--tree-node--selected
+      > .cds--tree-node__label::before) {
+    left: 24px;
   }
 }

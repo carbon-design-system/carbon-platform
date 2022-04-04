@@ -12,6 +12,8 @@ const { getRunMode, RunMode } = require('@carbon-platform/api/runtime')
 
 const logging = new Logging('web-app', 'express-proxy')
 
+const port = process.env.PORT || 3000
+
 const app = express()
 app.disable('x-powered-by')
 
@@ -23,6 +25,10 @@ const nextJsProxy = createProxyMiddleware('/', {
   target: BASE_URL,
   changeOrigin: true,
   secure: getRunMode() === RunMode.Standard,
+  onProxyReq: (_, req) => {
+    req.id = uuidv4()
+    performance.mark(req.id)
+  },
   onProxyRes: (proxyRes, req) => {
     const { method, socket, url } = req
     const { remoteAddress, remotePort } = socket
@@ -34,16 +40,11 @@ const nextJsProxy = createProxyMiddleware('/', {
     logging.info(logMessage)
     performance.clearMarks(req.id)
     performance.clearMeasures(req.id)
-  },
-  onProxyReq: (_, req) => {
-    req.id = uuidv4()
-    performance.mark(req.id)
   }
 })
 
 app.use(apiProxy)
 
-const port = process.env.PORT || 3000
 app.listen(port, () => {
   logging.info(`listening on port ${port}`)
 })

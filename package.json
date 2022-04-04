@@ -36,7 +36,7 @@
     "test": "jest --config=./.jestrc.js"
   },
   "dependencies": {
-    "esbuild": "~0.14.31",
+    "esbuild": "~0.14.28",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
@@ -46,16 +46,16 @@
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "eslint": "^7.32.0",
     "eslint-config-carbon": "^2.12.0",
-    "eslint-config-next": "^12.1.4",
+    "eslint-config-next": "^12.1.2",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-jest": "^26.1.3",
-    "eslint-plugin-jsdoc": "^38.1.6",
+    "eslint-plugin-jsdoc": "^38.1.4",
     "eslint-plugin-notice": "^0.9.10",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
-    "npm-check-updates": "^12.5.7",
+    "npm-check-updates": "^12.5.4",
     "prettier-config-carbon": "^0.6.0",
     "standard-version": "^9.3.2",
     "stylelint": "^14.6.1",

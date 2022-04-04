@@ -314,15 +314,16 @@ const PageContent = () => {
           </p>
         </Column>
       </Grid>
-      <Grid className={styles.featureCard} condensed>
+      <Grid className={styles.featureCardContainer} condensed>
         <Column sm={4} md={8} lg={{ start: 1, span: 12 }}>
           <FeatureCard
             aspectRatio={{ sm: '2x1', md: '16x9', lg: '2x1' }}
             href="/assets/components"
             title="Data visualization"
             subtitle="A collection of reusable charting components to build websites and user interfaces."
-            image={HeroImg}
-          />
+          >
+            <Image alt={'image'} src={HeroImg} layout="fill" objectFit="cover" />
+          </FeatureCard>
         </Column>
       </Grid>
       <Grid className={styles.hightlightGrid}>
@@ -334,18 +335,19 @@ const PageContent = () => {
           </p>
         </Column>
       </Grid>
-      <Grid className={styles.featureCard} condensed>
+      <Grid className={styles.featureCardContainer} condensed>
         <Column sm={4} md={8} lg={{ start: 1, span: 12 }}>
           <FeatureCard
             aspectRatio={{ md: '16x9', lg: '2x1' }}
             href="/assets/components"
             title="Carbon React library"
             subtitle="A library of reusable React components to build websites and user interfaces."
-            image={HeroImg}
-          />
+          >
+            <Image alt={'image'} src={HeroImg} layout="fill" objectFit="cover" />
+          </FeatureCard>
         </Column>
       </Grid>
-      <Grid className={styles.hightlightGrid}>
+      <Grid className={clsx(styles.hightlightGrid, styles.border)}>
         <Column sm={4} md={8} lg={8} xlg={7}>
           <p className={clsx(styles.subheadingLarge)}>
             By standardizing our assets and surfacing them, we can help our makers find assets that{' '}

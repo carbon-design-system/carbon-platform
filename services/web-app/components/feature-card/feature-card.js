@@ -9,7 +9,6 @@ import { AspectRatio } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { isEmpty } from 'lodash'
-import Image from 'next/image'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 
@@ -22,8 +21,7 @@ export const FeatureCard = ({
   as: element = 'span',
   aspectRatio = {},
   href,
-  image,
-  imageAlt,
+  children,
   subtitle,
   title
 }) => {
@@ -48,32 +46,20 @@ export const FeatureCard = ({
   }
 
   const renderElement = () => (
-    <>
-      {image && (
-        <div className={styles.imageContainer}>
-          <div className={styles.imagePosition}>
-            <Image
-              alt={imageAlt}
-              className={styles.image}
-              src={image}
-              layout="fill"
-              objectFit="cover"
-            />
-          </div>
-        </div>
-      )}
-      <Element className={clsx(styles.element, styles.tile)} {...props}>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.subtitle}>{subtitle}</p>
-        <ArrowRight className={clsx(dashboardStyles.positionBottomRight, styles.link)} size={20} />
-      </Element>
-    </>
+    <Element className={clsx(styles.element, styles.tile)} {...props}>
+      <h1 className={styles.title}>{title}</h1>
+      <p className={styles.subtitle}>{subtitle}</p>
+      <ArrowRight className={clsx(dashboardStyles.positionBottomRight, styles.link)} size={20} />
+    </Element>
   )
 
   if (href) {
     return (
       <Link href={href}>
-        <a className={styles.anchor}>{renderElement()}</a>
+        <a className={styles.anchor}>
+          {renderElement()}
+          <div classNam={styles.image}>{children}</div>
+        </a>
       </Link>
     )
   }
@@ -84,6 +70,7 @@ export const FeatureCard = ({
 FeatureCard.propTypes = {
   as: PropTypes.string,
   aspectRatio: PropTypes.object,
+  children: PropTypes.node,
   href: PropTypes.string,
   subtitle: PropTypes.string,
   title: PropTypes.string

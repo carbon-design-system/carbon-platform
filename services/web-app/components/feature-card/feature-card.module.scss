@@ -17,28 +17,33 @@
   text-decoration: none;
 
   &:active {
-    outline: 2px solid theme.$border-interactive;
-    outline-offset: -2px;
+    outline: 3px solid theme.$border-interactive;
+    outline-offset: -1px;
   }
+}
+
+.image {
+  position: absolute;
+  z-index: -1;
 }
 
 .tile {
   position: absolute;
+  z-index: 1;
   right: 0;
   bottom: 0;
   width: 367px;
   height: 183px;
   padding: spacing.$spacing-05;
   background-color: theme.$layer-01;
+}
 
-  &:hover,
-  &:focus {
-    background: theme.$layer-hover;
-  }
+.anchor:hover .tile {
+  background: theme.$layer-hover;
+}
 
-  &:active {
-    background: theme.$layer-active-01;
-  }
+.anchor:focus .tile {
+  background: theme.$layer-active-01;
 }
 
 .title {

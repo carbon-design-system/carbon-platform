@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.87](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.86...@carbon-platform/web-app@0.1.87) (2022-04-04)
+
+
+### Features 🌟
+
+* added spacing need to resource cards ([4883aa2](https://github.com/carbon-design-system/carbon-platform/commit/4883aa254fb302ad95a7d9ed21ca6ecbbbf3263f))
+
 ### [0.1.86](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.85...@carbon-platform/web-app@0.1.86) (2022-03-31)
 
 

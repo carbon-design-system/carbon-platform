@@ -43,7 +43,7 @@ const nextJsProxy = createProxyMiddleware('/', {
   }
 })
 
-app.use(apiProxy)
+app.use(nextJsProxy)
 
 app.listen(port, () => {
   logging.info(`listening on port ${port}`)

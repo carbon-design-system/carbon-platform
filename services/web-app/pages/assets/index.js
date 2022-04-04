@@ -24,6 +24,7 @@ import Hero from '@/components/hero'
 import { assetsNavData } from '@/data/nav-data'
 import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import ReleaseOneImg from './index/images/carbon-next-v0.1.png'
 import ReleaseTwoImg from './index/images/carbon-next-v0.2.png'
@@ -34,6 +35,7 @@ import HeroImg from './index/images/hero-illo.png'
 import styles from './index/index.module.scss'
 
 const PageContent = () => {
+  const isMd = useMatchMedia(mediaQueries.md)
   const highlights = [
     {
       header: 'Better discoverability',
@@ -314,13 +316,12 @@ const PageContent = () => {
           </p>
         </Column>
       </Grid>
-      <Grid className={styles.featureCardContainer} condensed>
+      <Grid className={styles.featureCardContainer} condensed={isMd}>
         <Column sm={4} md={8} lg={{ start: 1, span: 12 }}>
           <FeatureCard
-            aspectRatio={{ sm: '2x1', md: '16x9', lg: '2x1' }}
             href="/assets/components"
             title="Data visualization"
-            subtitle="A collection of reusable charting components to build websites and user interfaces."
+            description="A collection of reusable charting components to build websites and user interfaces."
           >
             <Image alt={'image'} src={HeroImg} layout="fill" objectFit="cover" />
           </FeatureCard>
@@ -335,13 +336,12 @@ const PageContent = () => {
           </p>
         </Column>
       </Grid>
-      <Grid className={styles.featureCardContainer} condensed>
-        <Column sm={4} md={8} lg={{ start: 1, span: 12 }}>
+      <Grid className={styles.featureCardContainer} condensed={isMd}>
+        <Column sm={{ start: 1, span: 4 }} md={8} lg={{ start: 1, span: 12 }}>
           <FeatureCard
-            aspectRatio={{ md: '16x9', lg: '2x1' }}
             href="/assets/components"
             title="Carbon React library"
-            subtitle="A library of reusable React components to build websites and user interfaces."
+            description="A library of reusable React components to build websites and user interfaces."
           >
             <Image alt={'image'} src={HeroImg} layout="fill" objectFit="cover" />
           </FeatureCard>

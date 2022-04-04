@@ -9,12 +9,39 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+
+$sm-anchor-height: spacing.$spacing-12 * 4.5;
+$md-anchor-height: spacing.$spacing-12 * 3.75;
+$lg-anchor-height: spacing.$spacing-12 * 3.5;
+$xlg-anchor-height: spacing.$spacing-12 * 2.5;
+
+$sm-tile-height: spacing.$spacing-12 * 1.5;
+$md-tile-height: spacing.$spacing-12 * 1.85;
+$lg-tile-height: spacing.$spacing-12 * 1.7;
+$xlg-tile-height: spacing.$spacing-12 * 1.8;
+
+$md-tile-width: spacing.$spacing-12 * 3.2;
+$lg-tile-width: spacing.$spacing-12 * 2.5;
+$xlg-tile-width: spacing.$spacing-12 * 3.2;
 
 .anchor {
   position: relative;
   display: block;
-  min-height: 500px;
+  height: $sm-anchor-height;
   text-decoration: none;
+
+  @include breakpoint.breakpoint(md) {
+    min-height: $md-anchor-height;
+  }
+
+  @include breakpoint.breakpoint(lg) {
+    min-height: $lg-anchor-height;
+  }
+
+  @include breakpoint.breakpoint(xlg) {
+    min-height: $xlg-anchor-height;
+  }
 
   &:active {
     outline: 3px solid theme.$border-interactive;
@@ -22,20 +49,30 @@
   }
 }
 
-.image {
-  position: absolute;
-  z-index: -1;
-}
-
 .tile {
   position: absolute;
   z-index: 1;
   right: 0;
   bottom: 0;
-  width: 367px;
-  height: 183px;
+  width: auto;
+  height: $sm-tile-height;
   padding: spacing.$spacing-05;
   background-color: theme.$layer-01;
+
+  @include breakpoint.breakpoint(md) {
+    width: $md-tile-width;
+    height: $md-tile-height;
+  }
+
+  @include breakpoint.breakpoint(lg) {
+    width: $lg-tile-width;
+    height: $lg-tile-height;
+  }
+
+  @include breakpoint.breakpoint(xlg) {
+    width: $xlg-tile-width;
+    height: $xlg-tile-height;
+  }
 }
 
 .anchor:hover .tile {
@@ -52,14 +89,21 @@
   color: theme.$text-primary;
 }
 
-.subtitle {
+.description {
   @include type.type-style('body-long-01');
 
   width: 80%;
-
   color: theme.$text-primary;
+
+  @include breakpoint.breakpoint(md) {
+    width: 75%;
+  }
+
+  @include breakpoint.breakpoint(lg) {
+    width: 100%;
+  }
 }
 
-.link {
+.arrow-right {
   color: theme.$link-primary;
 }

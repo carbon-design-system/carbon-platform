@@ -22,7 +22,7 @@ export const FeatureCard = ({
   aspectRatio = {},
   href,
   children,
-  subtitle,
+  description,
   title
 }) => {
   const isMd = useMatchMedia(mediaQueries.md)
@@ -46,10 +46,13 @@ export const FeatureCard = ({
   }
 
   const renderElement = () => (
-    <Element className={clsx(styles.element, styles.tile)} {...props}>
-      <h1 className={styles.title}>{title}</h1>
-      <p className={styles.subtitle}>{subtitle}</p>
-      <ArrowRight className={clsx(dashboardStyles.positionBottomRight, styles.link)} size={20} />
+    <Element className={styles.tile} {...props}>
+      <h5 className={styles.title}>{title}</h5>
+      <p className={styles.description}>{description}</p>
+      <ArrowRight
+        className={clsx(dashboardStyles.positionBottomRight, styles.arrowRight)}
+        size={20}
+      />
     </Element>
   )
 
@@ -58,7 +61,7 @@ export const FeatureCard = ({
       <Link href={href}>
         <a className={styles.anchor}>
           {renderElement()}
-          <div classNam={styles.image}>{children}</div>
+          {children}
         </a>
       </Link>
     )
@@ -71,7 +74,7 @@ FeatureCard.propTypes = {
   as: PropTypes.string,
   aspectRatio: PropTypes.object,
   children: PropTypes.node,
+  description: PropTypes.string,
   href: PropTypes.string,
-  subtitle: PropTypes.string,
   title: PropTypes.string
 }

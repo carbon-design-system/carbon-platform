@@ -19,7 +19,7 @@ const protocol =
   getRunMode() === RunMode.Standard || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
 const BASE_URL = `${protocol}://localhost:3001`
 
-const apiProxy = createProxyMiddleware('/', {
+const nextJsProxy = createProxyMiddleware('/', {
   target: BASE_URL,
   changeOrigin: true,
   secure: getRunMode() === RunMode.Standard,
@@ -45,5 +45,5 @@ app.use(apiProxy)
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
-  console.log(`listening on port ${port}`)
+  logging.info(`listening on port ${port}`)
 })

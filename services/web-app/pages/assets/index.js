@@ -4,6 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import {
+  CodeSyntax,
+  Dashboard as DashboardPictogram,
+  Pattern,
+  TextInput
+} from '@carbon/pictograms-react'
 import { Column, Grid, Link } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
 import clsx from 'clsx'
@@ -11,8 +17,12 @@ import Image from 'next/image'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import { Dashboard, DashboardItem } from '@/components/dashboard'
+import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
+import { FeatureCard } from '@/components/feature-card/feature-card'
 import Hero from '@/components/hero'
 import { assetsNavData } from '@/data/nav-data'
+import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 
 import ReleaseOneImg from './index/images/carbon-next-v0.1.png'
@@ -149,6 +159,8 @@ const PageContent = () => {
     }
   ]
 
+  const { component, pattern, function: func, template } = type
+
   return (
     <div className={styles.container}>
       <div className={styles.highlights}>
@@ -199,6 +211,98 @@ const PageContent = () => {
           </p>
         </Column>
       </Grid>
+      <Grid className={styles.dashboard}>
+        <Column sm={4} md={8} lg={{ start: 1, span: 12 }}>
+          <Dashboard>
+            <Column className={dashboardStyles.column} sm={4} lg={6}>
+              <DashboardItem
+                href="/assets/components"
+                aspectRatio={{ md: '4x3', lg: '3x2', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+              >
+                <dl>
+                  <dt className={styles.dashboardLabel}>Components</dt>
+                  <dd className={styles.dashboardContent}>
+                    Building blocks (such as buttons, links, and dropdown menus) that are pre-built
+                    and ready to use when creating new experiences.
+                  </dd>
+                </dl>
+                <TextInput
+                  fill={component.textColor}
+                  size={64}
+                  className={styles.dashboardPictogram}
+                />
+                <ArrowRight
+                  className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
+                  size={20}
+                />
+              </DashboardItem>
+            </Column>
+            <Column className={dashboardStyles.column} sm={4} lg={6}>
+              <DashboardItem
+                aspectRatio={{ md: '4x3', lg: '3x2', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+                href="/assets/patterns"
+              >
+                <dl>
+                  <dt className={styles.dashboardLabel}>Patterns</dt>
+                  <dd className={styles.dashboardContent}>
+                    Reusable combinations of components and content with sequences and flows.
+                  </dd>
+                </dl>
+                <Pattern fill={pattern.textColor} size={64} className={styles.dashboardPictogram} />
+                <ArrowRight
+                  className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
+                  size={20}
+                />
+              </DashboardItem>
+            </Column>
+            <Column className={dashboardStyles.column} sm={4} lg={6}>
+              <DashboardItem
+                aspectRatio={{ md: '4x3', lg: '3x2', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+                href="/assets/functions"
+              >
+                <dl>
+                  <dt className={styles.dashboardLabel}>Functions</dt>
+                  <dd className={styles.dashboardContent}>
+                    Code that performs a single action and has no user interface.
+                  </dd>
+                </dl>
+                <CodeSyntax fill={func.textColor} size={64} className={styles.dashboardPictogram} />
+                <ArrowRight
+                  className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
+                  size={20}
+                />
+              </DashboardItem>
+            </Column>
+            <Column className={dashboardStyles.column} sm={4} lg={6}>
+              <DashboardItem
+                aspectRatio={{ md: '4x3', lg: '3x2', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+                href="/assets/templates"
+              >
+                <dl>
+                  <dt className={styles.dashboardLabel}>Templates</dt>
+                  <dd className={styles.dashboardContent}>
+                    Templates specify order and placement of patterns and components for a given
+                    scenario.
+                  </dd>
+                </dl>
+                <DashboardPictogram
+                  fill={template.textColor}
+                  size={64}
+                  className={styles.dashboardPictogram}
+                />
+                <ArrowRight
+                  className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
+                  size={20}
+                />
+              </DashboardItem>
+            </Column>
+          </Dashboard>
+        </Column>
+      </Grid>
       <Grid className={styles.hightlightGrid}>
         <Column sm={4} md={8} lg={8} xlg={7}>
           <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>Asset collections</h2>
@@ -208,6 +312,17 @@ const PageContent = () => {
           </p>
         </Column>
       </Grid>
+      <Grid className={styles.featureCard} condensed>
+        <Column sm={4} md={8} lg={{ start: 1, span: 12 }}>
+          <FeatureCard
+            aspectRatio={{ sm: '2x1', md: '16x9', lg: '2x1' }}
+            href="/assets/components"
+            title="Data visualization"
+            subtitle="A collection of reusable charting components to build websites and user interfaces."
+            image={HeroImg}
+          />
+        </Column>
+      </Grid>
       <Grid className={styles.hightlightGrid}>
         <Column sm={4} md={8} lg={8} xlg={7}>
           <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>Featured bills</h2>
@@ -215,6 +330,17 @@ const PageContent = () => {
             Libraries are the means to contribute, install, and use one or many assets in products
             and digital experiences.
           </p>
+        </Column>
+      </Grid>
+      <Grid className={styles.featureCard} condensed>
+        <Column sm={4} md={8} lg={{ start: 1, span: 12 }}>
+          <FeatureCard
+            aspectRatio={{ md: '16x9', lg: '2x1' }}
+            href="/assets/components"
+            title="Carbon React library"
+            subtitle="A library of reusable React components to build websites and user interfaces."
+            image={HeroImg}
+          />
         </Column>
       </Grid>
       <Grid className={styles.hightlightGrid}>

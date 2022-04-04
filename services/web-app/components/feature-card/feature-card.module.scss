@@ -1,0 +1,60 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/motion' as motion;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+.anchor {
+  position: relative;
+  display: block;
+  min-height: 500px;
+  text-decoration: none;
+
+  &:active {
+    outline: 2px solid theme.$border-interactive;
+    outline-offset: -2px;
+  }
+}
+
+.tile {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 367px;
+  height: 183px;
+  padding: spacing.$spacing-05;
+  background-color: theme.$layer-01;
+
+  &:hover,
+  &:focus {
+    background: theme.$layer-hover;
+  }
+
+  &:active {
+    background: theme.$layer-active-01;
+  }
+}
+
+.title {
+  @include type.type-style('productive-heading-01');
+
+  color: theme.$text-primary;
+}
+
+.subtitle {
+  @include type.type-style('body-long-01');
+
+  width: 80%;
+
+  color: theme.$text-primary;
+}
+
+.link {
+  color: theme.$link-primary;
+}

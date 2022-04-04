@@ -31,7 +31,7 @@ beforeEach(() => {
       }
     }),
     close: jest.fn(),
-    consume: jest.fn().mockImplementation((queueName: string, callback: (reply: any) => void) => {
+    consume: jest.fn().mockImplementation((_queueName: string, callback: (reply: any) => void) => {
       replyCallback = callback
     }),
     publish: jest.fn().mockReturnValue(true),

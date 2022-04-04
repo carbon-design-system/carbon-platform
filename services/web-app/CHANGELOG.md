@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.86](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.85...@carbon-platform/web-app@0.1.86) (2022-03-31)
+
+
+### Features 🌟
+
+* add github issue discussion links ([86b00de](https://github.com/carbon-design-system/carbon-platform/commit/86b00de70669acd2a45e91f454afa740ab3c80e1))
+* add open issue count to asset detail page ([3d1f325](https://github.com/carbon-design-system/carbon-platform/commit/3d1f325a6ac4b976f10876bf182675fb94270352))
+* added static props ([647299f](https://github.com/carbon-design-system/carbon-platform/commit/647299ff7a19762ecc882ef5ba5b862e95111c4f))
+* catalog items always link to detail pages ([ae36a65](https://github.com/carbon-design-system/carbon-platform/commit/ae36a658071b703c5987ce3dc440308a110e3af5))
+* cleanup ([6f6edd3](https://github.com/carbon-design-system/carbon-platform/commit/6f6edd3b6e1c8e2b204221ccce0c1d3f0aa30951))
+* github issue count cleanup ([43f5778](https://github.com/carbon-design-system/carbon-platform/commit/43f5778236872b5b3a3572a0c5be06dc56d05a14))
+* issue counts ([4713182](https://github.com/carbon-design-system/carbon-platform/commit/4713182c46ee4a2557af4429bbae1afce46432a9))
+* update footer ([8277562](https://github.com/carbon-design-system/carbon-platform/commit/827756268946f372bf90ddbabced2293505a36ef))
+* update roadmap copy ([63d597b](https://github.com/carbon-design-system/carbon-platform/commit/63d597b455ed8a0d2a85c6c6fda233d436dcabce))
+
+
+### Bug Fixes 🐛
+
+* getAssetType to not always return component ([702f456](https://github.com/carbon-design-system/carbon-platform/commit/702f45618e75ba50def8ef1369d266ab787b3beb))
+* getserversideprops ([2675adc](https://github.com/carbon-design-system/carbon-platform/commit/2675adcce2f25b4d0b22a431365ab5e22024cf1d))
+* link style ([83ba4df](https://github.com/carbon-design-system/carbon-platform/commit/83ba4dfb5b2ee06fd97653b8fa355a0f785bfecc))
+* merge conflcits ([d524aee](https://github.com/carbon-design-system/carbon-platform/commit/d524aee8323e29e25c4b633abd06ec2a1ff04dbc))
+* merge main ([e37008b](https://github.com/carbon-design-system/carbon-platform/commit/e37008b324189e47cbb2c9a0494e36f309fb76a7))
+* sonarlint var usage code smells ([663404e](https://github.com/carbon-design-system/carbon-platform/commit/663404ef4b78d1baca73634f3b78b301653eb4f2))
+* typedefs ([e0ff080](https://github.com/carbon-design-system/carbon-platform/commit/e0ff08084207683e7b04ffb804f0ab22d0689cd1))
+* update copy ([45988fe](https://github.com/carbon-design-system/carbon-platform/commit/45988fe30cdc71bd0df3bb98b79951fef9c1394b))
+* update typedefs ([a867eb3](https://github.com/carbon-design-system/carbon-platform/commit/a867eb39dd1355c7bea45a5d0e28ce8e1b7c85b7))
+* **web-app:** change @carbon/styles imports for @carbon/react ([30ed09a](https://github.com/carbon-design-system/carbon-platform/commit/30ed09a319232dc9aefdaf46422711a7d93a767a))
+* **web-app:** merge with main ([1d4dc54](https://github.com/carbon-design-system/carbon-platform/commit/1d4dc54b39b43894210753462b1ea3d60686c3b1))
+* **web-app:** pr review comments ([18344ba](https://github.com/carbon-design-system/carbon-platform/commit/18344ba7cb98183428cedb96dc6f3dae16eec8a5))
+* **web-app:** update @carbon/react and other packages ([e47e42b](https://github.com/carbon-design-system/carbon-platform/commit/e47e42b1661e343e92d0de9873734b57c98ff6a7))
+* **web-app:** validate pagination ([c8ae31c](https://github.com/carbon-design-system/carbon-platform/commit/c8ae31ccc08e7581393c60b5428db9f7d2ebc2fd))
+
 ### [0.1.85](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.84...@carbon-platform/web-app@0.1.85) (2022-03-31)
 
 

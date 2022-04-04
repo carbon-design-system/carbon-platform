@@ -14,7 +14,7 @@ import { PlatformController } from '../'
  * @returns A decorated method.
  */
 function Trace(): MethodDecorator {
-  return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) => {
+  return (_target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) => {
     const original = descriptor.value
     descriptor.value = function (...args: any[]) {
       const _this = this as PlatformController

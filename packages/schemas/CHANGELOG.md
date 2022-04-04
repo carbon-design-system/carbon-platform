@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.1.6...@carbon-platform/schemas@1.2.0) (2022-03-31)
+
+
+### Bug Fixes 🐛
+
+* merge main ([e37008b](https://github.com/carbon-design-system/carbon-platform/commit/e37008b324189e47cbb2c9a0494e36f309fb76a7))
+
+
+### Features 🌟
+
+* add open issue count to asset detail page ([3d1f325](https://github.com/carbon-design-system/carbon-platform/commit/3d1f325a6ac4b976f10876bf182675fb94270352))
+
 ### [1.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.1.5...@carbon-platform/schemas@1.1.6) (2022-03-24)
 
 

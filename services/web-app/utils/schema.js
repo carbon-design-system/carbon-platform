@@ -73,7 +73,7 @@ export const getAssetId = (asset) => {
  * @returns {object} Asset type
  */
 export const getAssetType = (asset) => {
-  return get(type, `.${asset.content.type}`, type.component)
+  return get(type, `${asset.content.type}`, type.component)
 }
 
 /**

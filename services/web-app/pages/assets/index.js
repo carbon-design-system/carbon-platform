@@ -67,18 +67,18 @@ const PageContent = () => {
     },
     {
       version: 'v0.2',
-      release: 'Target release:',
+      release: 'Released:',
       date: 'March 31',
       title: 'Asset catalog experience',
       description:
         // eslint-disable-next-line max-len
-        'This release adds landing and detail pages to better describe the system and its content. With the addition of the detail pages, system users can access many asset and library docs without leaving the catalog, while still pointing to PAL documentation sites for most PAL-related content. As the system will be fully indexed, Carbon’s legacy website can direct traffic to the beta for asset discovery.',
+        'This release adds library and asset detail pages to surface the standardized content coming from the applied schema. All detail pages link out to the legacy Carbon and PAL websites for complete documentation while that additional content gets indexed into the system.',
       bulletPoints: [
-        'New global navigation menu',
-        'New home page',
-        'New library detail page',
-        'New asset detail page',
-        'Replace legacy community component index with beta catalogs'
+        // eslint-disable-next-line max-len
+        'Indexed Carbon Charts, Carbon Charts Angular, Carbon Charts React, Carbon Charts Svelte, Carbon Charts Vue, IBM.com React, and IBM.com Web Components libraries that are included in the catalogs',
+        // eslint-disable-next-line max-len
+        'Indexed IBM.com Services, IBM.com Styles, and IBM.com Utilities libraries that are excluded from the catalogs and will be surfaced in a v2 release local system',
+        'New external docs and demo links, and open GitHub issue counts, in asset detail pages'
       ],
       image: ReleaseTwoImg,
       captionHeading: 'v0.2 User experience',
@@ -89,39 +89,40 @@ const PageContent = () => {
     {
       version: 'v1.0',
       release: 'Target release:',
-      date: 'May',
+      date: 'June',
       title: 'General availability',
       description:
         // eslint-disable-next-line max-len
         'The platform’s first major release will help system users discover and learn about all the assets and libraries in the system with confidence in their completeness, who maintains them, and how to use them. System users can access documentation for all indexed assets and libraries without leaving the platform.',
       bulletPoints: [
-        'New login capabilities to view IBM internal content',
-        'Global asset catalog no longer uses external links to legacy docs sites'
+        'All legacy Carbon website content available in the site',
+        'All open-source Carbon libraries indexed and available in the catalogs'
       ],
       image: ReleaseThreeImg,
       captionHeading: 'v1.0 User experience',
       caption:
         // eslint-disable-next-line max-len
-        'This release replaces Carbon’s current website — all 32 “core” components will have complete asset detail pages. If a PAL has migrated content, then it will begin to remove its external docs urls to leverage the detail pages. User login will be fully integrated into the experience as well.'
+        'This release replaces Carbon’s current website — all 32 “core” components will have complete asset detail pages.'
     },
     {
       version: 'v1.1',
       release: 'Target release:',
-      date: 'June',
+      date: 'July',
       title: 'Explore with confidence',
       subtitle: 'This release will fully take the following Hill 1A:',
       description:
         // eslint-disable-next-line max-len
         'An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can discover and learn about resources [standards and components/patterns] in the system with confidence in their completeness, who maintains them and where they’re used.',
       bulletPoints: [
+        'New login capabilities to view IBM internal content',
         'New standards added to the site',
-        'New code package and component usage analytics'
+        'IBM internal Carbon libraries indexed and available in the catalogs upon logging in'
       ],
       image: ReleaseFourImg,
       captionHeading: 'v1.1 User experience',
       caption:
         // eslint-disable-next-line max-len
-        'In this release standards content will be available on the platform and component usage analytics will allow us to track component insertions.'
+        'In this release standards content will be available on the platform and IBM internal libraries will be discoverable after logging in.'
     },
     {
       version: 'v2.0',
@@ -149,7 +150,8 @@ const PageContent = () => {
         'Pattern and Asset Library (PAL) sites migrated as local systems',
         'PAL sites sunset with redirects to Carbon’s website',
         'Resource cross-linking among standards, libraries, assets',
-        'Visual content authoring experience with less reliance on markdown'
+        'Visual content authoring experience with less reliance on markdown',
+        'New code package and component usage analytics'
       ],
       image: ReleaseFiveImg,
       captionHeading: 'v2.0 User experience',

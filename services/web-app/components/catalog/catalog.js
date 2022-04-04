@@ -207,7 +207,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
       defaultValue: 1,
       parseNumbers: true
     },
-    (value) => !isNaN(value)
+    (value) => !!parseInt(value)
   )
 
   const [pageSize, setPageSize] = useQueryState(
@@ -216,7 +216,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
       defaultValue: 60,
       parseNumbers: true
     },
-    (value) => !isNaN(value)
+    (value) => !!parseInt(value)
   )
 
   const [framework, setFramework] = useQueryState(
@@ -347,6 +347,14 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   useEffect(() => {
     setPossibleFilterValues(getFilters({ collection, type }))
   }, [collection, type])
+
+  useEffect(() => {
+    const resultsCount = filteredAssets.length
+    const maxPageNumber = Math.max(Math.ceil(resultsCount / pageSize), 1)
+    if (page > maxPageNumber) {
+      setPage(1)
+    }
+  }, [filteredAssets, page, pageSize, setPage])
 
   const handleFilter = (item, key, action = 'add') => {
     let updatedFilter = cloneDeep(filter)

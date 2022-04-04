@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { AspectRatio, Column, Grid } from '@carbon/react'
-import { ArrowUpRight, Events, Scales } from '@carbon/react/icons'
+import { Events, Scales } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
 import Link from 'next/link'
@@ -48,7 +48,7 @@ CatalogItemImage.propTypes = {
 const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
 
-  const { name, description, externalDocsUrl } = asset.content
+  const { name, description } = asset.content
   const { sponsor } = asset.params
 
   const sponsorTitle = teams[sponsor]
@@ -74,8 +74,7 @@ const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false })
         {name && <p className={styles.name}>{name}</p>}
         {description && <p className={styles.description}>{description}</p>}
         <div className={styles.icon} title={sponsorTitle}>
-          {SponsorIcon && <SponsorIcon className={styles.iconSponsor} size={24} />}
-          {externalDocsUrl && <ArrowUpRight className={styles.iconExternal} size={24} />}
+          <SponsorIcon className={styles.iconSponsor} size={24} />
         </div>
         {isSeparatedMeta && (
           <>
@@ -166,25 +165,15 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
   }
 
   const anchorStyles = clsx(styles.anchor, {
-    [styles.anchorGrid]: isGrid,
-    [styles.anchorExternal]: asset.content.externalDocsUrl
+    [styles.anchorGrid]: isGrid
   })
 
-  const anchorHref =
-    asset.content.externalDocsUrl ||
-    `/assets/${asset.params.library}/latest/${getSlug(asset.content)}`
-
-  const anchorProps = asset.content.externalDocsUrl
-    ? {
-        rel: 'noreferrer',
-        target: '_blank'
-      }
-    : {}
+  const anchorHref = `/assets/${asset.params.library}/latest/${getSlug(asset.content)}`
 
   const renderGrid = () => (
     <Column as="li" md={4}>
       <Link href={anchorHref}>
-        <a className={anchorStyles} {...anchorProps}>
+        <a className={anchorStyles}>
           <AspectRatio ratio="3x2">
             <CatalogItemImage asset={asset} />
           </AspectRatio>
@@ -204,7 +193,7 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
   const renderList = () => (
     <Column as="li" sm={4} md={8} lg={12}>
       <Link href={anchorHref}>
-        <a className={anchorStyles} {...anchorProps}>
+        <a className={anchorStyles}>
           <Grid narrow>
             <Column className={clsx(styles.column, styles.columnImage)} md={4}>
               <AspectRatio ratio={imageAspectRatio()}>

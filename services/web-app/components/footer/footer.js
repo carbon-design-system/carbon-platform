@@ -22,8 +22,12 @@ const Footer = ({ hasSideNav }) => {
       link: 'https://www.ibm.com/privacy'
     },
     {
-      text: 'Terms of Use',
+      text: 'Terms of use',
       link: 'https://www.ibm.com/legal'
+    },
+    {
+      text: 'Accessibility',
+      link: 'https://www.ibm.com/able/'
     }
   ]
 

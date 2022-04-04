@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.2...@carbon-platform/api@0.3.3) (2022-03-31)
+
+
+### Bug Fixes 🐛
+
+* sonarlint var usage code smells ([663404e](https://github.com/carbon-design-system/carbon-platform/commit/663404ef4b78d1baca73634f3b78b301653eb4f2))
+
 ### [0.3.2](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.1...@carbon-platform/api@0.3.2) (2022-03-30)
 
 

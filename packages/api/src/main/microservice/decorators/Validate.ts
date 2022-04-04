@@ -16,7 +16,7 @@ import { PlatformController } from '../'
  * @returns A method decorator that performs validation.
  */
 function Validate(validator: Function): MethodDecorator {
-  return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) => {
+  return (_target: any, _propertyKey: string | symbol, descriptor: PropertyDescriptor) => {
     const original = descriptor.value
     descriptor.value = function (...args: any[]) {
       const _this = this as PlatformController

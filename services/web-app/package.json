@@ -36,7 +36,7 @@
     "cache-manager": "^3.6.0",
     "cache-manager-fs-hash": "^1.0.0",
     "clsx": "^1.1.1",
-    "concurrently": "^7.0.0",
+    "concurrently": "^7.1.0",
     "cookie-parser": "^1.4.6",
     "css-loader": "^6.7.1",
     "express": "^4.17.3",

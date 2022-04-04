@@ -87,7 +87,8 @@ To update the node modules across all workspaces, from the top-level in the repo
 ```
 npm update
 npx --workspaces --include-workspace-root ncu --upgrade --target=minor
-npm install --prefer-dedupe
+npm install
+npm dedupe
 ```
 
 > Note: An ncu target of `latest` or `patch` can also be used, depending on the objective.

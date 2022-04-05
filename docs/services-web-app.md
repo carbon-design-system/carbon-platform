@@ -51,19 +51,31 @@ In Standard run mode, the application must run on https for IBMid authentication
 For such purposes, local certificates must be generated to use authentication in the web-app when
 running locally in Standard run mode. The
 [mkcert](https://github.com/FiloSottile/mkcert#installation) tool can help generate these
-certificates and is used implicitly by the `start-secure` node script of the web-app. With the tool
+certificates and is used implicitly by the `dev:secure` node script of the web-app. With the tool
 downloaded, the certificates will be automatically generated the next time you
 [run the app securely](#running-app-securely).
 
 _Note_: you may also _choose_ to use IBMid authentication when running on Dev mode, in that case the
 same steps apply
 
+## Running on Dev Mode
+
+To run the app, run the following command from the [web-app's directory](../services/web-app):
+
+`npm run dev` or, alternatively, run `npm run dev:clean` to run from a clean environment
+
+App will run on https://localhost:8080
+
 ## Running App Securely
 
-To run the app on https, it must be served from [server.js](../services/web-app/server.js). To do
-this, run the following command from the [web-app's directory](../services/web-app):
+To run the app on https, it must be served from
+[proxy-server.js](../services/web-app/proxy-server.js). To do this, run the following command from
+the [web-app's directory](../services/web-app):
 
-`npm run start-secure`
+`npm run dev:secure` or, alternatively, run `npm run dev:secure:clean` to run from a clean
+environment
+
+App will run on https://localhost:8443
 
 ## Protecting a Route
 

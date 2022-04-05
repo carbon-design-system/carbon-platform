@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 import cookie from 'cookie'
 
 /**
@@ -38,11 +37,8 @@ export default function sendLocalRequest(
   body = null,
   requestOptions = {}
 ) {
-  const protocol =
-    getRunMode() === RunMode.Standard || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
-
   const port = req.nextUrl?.port ?? req.socket?.localPort
-  const requestUrl = `${protocol}://localhost:${port}/${path}`
+  const requestUrl = `http://localhost:${port}/${path}`
 
   const reqOptions = {
     method,

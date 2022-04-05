@@ -8,23 +8,21 @@ const express = require('express')
 const { createProxyMiddleware } = require('http-proxy-middleware')
 const { Logging } = require('@carbon-platform/api/logging')
 const { v4: uuidv4 } = require('uuid')
-const { getRunMode, RunMode } = require('@carbon-platform/api/runtime')
+const fs = require('fs')
+const http = require('http')
+const https = require('https')
 
 const logging = new Logging('web-app', 'express-proxy')
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT ?? process.env.RUNNING_SECURELY === '1' ? 8443 : 8080
 
 const app = express()
 app.disable('x-powered-by')
 
-const protocol =
-  getRunMode() === RunMode.Standard || process.env.RUNNING_SECURELY === '1' ? 'https' : 'http'
-const BASE_URL = `${protocol}://localhost:3001`
+const BASE_URL = 'http://localhost:3001'
 
 const nextJsProxy = createProxyMiddleware('/', {
   target: BASE_URL,
-  changeOrigin: true,
-  secure: getRunMode() === RunMode.Standard,
   onProxyReq: (_, req) => {
     req.id = uuidv4()
     performance.mark(req.id)
@@ -40,11 +38,25 @@ const nextJsProxy = createProxyMiddleware('/', {
     logging.info(logMessage)
     performance.clearMarks(req.id)
     performance.clearMeasures(req.id)
-  }
+  },
+  ws: true
 })
+
+const credentials =
+  process.env.RUNNING_SECURELY === '1'
+    ? {
+        key: fs.readFileSync('./certificates/localhost.key'),
+        cert: fs.readFileSync('./certificates/localhost.crt')
+      }
+    : null
 
 app.use(nextJsProxy)
 
-app.listen(port, () => {
+const server =
+  process.env.RUNNING_SECURELY === '1'
+    ? https.createServer(credentials, app)
+    : http.createServer(app)
+
+server.listen(port, undefined, undefined, () => {
   logging.info(`listening on port ${port}`)
 })

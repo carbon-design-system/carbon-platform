@@ -74,7 +74,10 @@ const components = {
   ListSection: ({ children }) => (
     <Placeholder name="ComponeListSectiontDemo">{children}</Placeholder>
   ),
-  ColorPalette: ({ children }) => <Placeholder name="ColorPalette">{children}</Placeholder>
+  ColorPalette: ({ children }) => <Placeholder name="ColorPalette">{children}</Placeholder>,
+  StatusIndicatorTable: ({ children }) => (
+    <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
+  )
 }
 
 export default components

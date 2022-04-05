@@ -5,43 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 
-$sm-anchor-height: spacing.$spacing-12 * 4.5;
-$md-anchor-height: spacing.$spacing-12 * 3.75;
-$lg-anchor-height: spacing.$spacing-12 * 3.5;
-$xlg-anchor-height: spacing.$spacing-12 * 2.5;
-
-$sm-tile-height: spacing.$spacing-12 * 1.5;
-$md-tile-height: spacing.$spacing-12 * 1.85;
-$lg-tile-height: spacing.$spacing-12 * 1.7;
-$xlg-tile-height: spacing.$spacing-12 * 1.8;
-
-$md-tile-width: spacing.$spacing-12 * 3.2;
-$lg-tile-width: spacing.$spacing-12 * 2.5;
-$xlg-tile-width: spacing.$spacing-12 * 3.2;
-
-.anchor {
+.feature-card {
   position: relative;
   display: block;
-  height: $sm-anchor-height;
+  margin-bottom: spacing.$spacing-10;
   text-decoration: none;
-
-  @include breakpoint.breakpoint(md) {
-    min-height: $md-anchor-height;
-  }
-
-  @include breakpoint.breakpoint(lg) {
-    min-height: $lg-anchor-height;
-  }
-
-  @include breakpoint.breakpoint(xlg) {
-    min-height: $xlg-anchor-height;
-  }
 
   &:active {
     outline: 3px solid theme.$border-interactive;
@@ -49,61 +22,43 @@ $xlg-tile-width: spacing.$spacing-12 * 3.2;
   }
 }
 
+.grid-tile {
+  @include breakpoint.breakpoint(md) {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+}
+
 .tile {
-  position: absolute;
-  z-index: 1;
-  right: 0;
-  bottom: 0;
-  width: auto;
-  height: $sm-tile-height;
+  display: block;
+  width: 100%;
+  height: 100%;
   padding: spacing.$spacing-05;
   background-color: theme.$layer-01;
+  color: theme.$text-primary;
 
-  @include breakpoint.breakpoint(md) {
-    width: $md-tile-width;
-    height: $md-tile-height;
+  &:hover {
+    background: theme.$layer-hover;
   }
 
-  @include breakpoint.breakpoint(lg) {
-    width: $lg-tile-width;
-    height: $lg-tile-height;
-  }
-
-  @include breakpoint.breakpoint(xlg) {
-    width: $xlg-tile-width;
-    height: $xlg-tile-height;
+  &:active {
+    background: theme.$layer-active-01;
   }
 }
 
-.anchor:hover .tile {
+.feature-card:hover .tile {
   background: theme.$layer-hover;
-}
-
-.anchor:focus .tile {
-  background: theme.$layer-active-01;
 }
 
 .title {
   @include type.type-style('productive-heading-01');
-
-  color: theme.$text-primary;
 }
 
 .description {
   @include type.type-style('body-long-01');
-
-  width: 80%;
-  color: theme.$text-primary;
-
-  @include breakpoint.breakpoint(md) {
-    width: 75%;
-  }
-
-  @include breakpoint.breakpoint(lg) {
-    width: 100%;
-  }
 }
 
 .arrow-right {
-  color: theme.$link-primary;
+  fill: theme.$link-primary;
 }

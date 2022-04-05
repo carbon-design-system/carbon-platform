@@ -32,10 +32,12 @@ import ReleaseThreeImg from './index/images/carbon-next-v1.0.png'
 import ReleaseFourImg from './index/images/carbon-next-v1.1.png'
 import ReleaseFiveImg from './index/images/carbon-next-v2.0.png'
 import HeroImg from './index/images/hero-illo.png'
+import Placeholder from './index/images/image.png'
 import styles from './index/index.module.scss'
 
 const PageContent = () => {
   const isMd = useMatchMedia(mediaQueries.md)
+
   const highlights = [
     {
       header: 'Better discoverability',
@@ -316,17 +318,16 @@ const PageContent = () => {
           </p>
         </Column>
       </Grid>
-      <Grid className={styles.featureCardContainer} condensed={isMd}>
-        <Column sm={4} md={8} lg={{ start: 1, span: 12 }}>
-          <FeatureCard
-            href="/assets/components"
-            title="Data visualization"
-            description="A collection of reusable charting components to build websites and user interfaces."
-          >
-            <Image alt={'image'} src={HeroImg} layout="fill" objectFit="cover" />
-          </FeatureCard>
-        </Column>
-      </Grid>
+
+      <FeatureCard
+        href="/assets/components"
+        title="Data visualization"
+        description="A collection of reusable charting components to build websites and user interfaces."
+      >
+        {!isMd && <Image alt={'image'} src={Placeholder} layout="fill" objectFit="cover" />}
+        {isMd && <Image alt={'image'} src={Placeholder} layout="responsive" />}
+      </FeatureCard>
+
       <Grid className={styles.hightlightGrid}>
         <Column sm={4} md={8} lg={8} xlg={7}>
           <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>Featured bills</h2>
@@ -336,17 +337,16 @@ const PageContent = () => {
           </p>
         </Column>
       </Grid>
-      <Grid className={styles.featureCardContainer} condensed={isMd}>
-        <Column sm={{ start: 1, span: 4 }} md={8} lg={{ start: 1, span: 12 }}>
-          <FeatureCard
-            href="/assets/components"
-            title="Carbon React library"
-            description="A library of reusable React components to build websites and user interfaces."
-          >
-            <Image alt={'image'} src={HeroImg} layout="fill" objectFit="cover" />
-          </FeatureCard>
-        </Column>
-      </Grid>
+
+      <FeatureCard
+        href="/assets/components"
+        title="Carbon React library"
+        description="A library of reusable React components to build websites and user interfaces."
+      >
+        {!isMd && <Image alt={'image'} src={Placeholder} layout="fill" objectFit="cover" />}
+        {isMd && <Image alt={'image'} src={Placeholder} layout="responsive" />}
+      </FeatureCard>
+
       <Grid className={clsx(styles.hightlightGrid, styles.border)}>
         <Column sm={4} md={8} lg={8} xlg={7}>
           <p className={clsx(styles.subheadingLarge)}>

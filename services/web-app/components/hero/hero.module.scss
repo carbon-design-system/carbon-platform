@@ -18,7 +18,7 @@ $hero-height: 560px;
   &::before {
     position: absolute;
     z-index: 0;
-    top: 0;
+    top: 46px;
     left: 0;
     width: calc(100vw - var(--scrollbar-width));
     height: $hero-height;
@@ -55,10 +55,12 @@ $hero-height: 560px;
  */
 
 :global(.assets).container::before {
-  background: url(../../pages/assets/index/images/hero-repeat.png) repeat-x top right / auto 560px;
+  background: url(../../pages/assets/index/images/assets-hero_mobile.svg) no-repeat bottom right /
+    100% auto;
 
   @include breakpoint.breakpoint(md) {
-    background: url(../../pages/assets/index/images/hero.png) no-repeat top right / auto 560px,
-      url(../../pages/assets/index/images/hero-repeat.png) repeat-x top right / auto 560px;
+    background: url(../../pages/assets/index/images/assets-hero.svg) no-repeat top right / auto
+        560px,
+      url(../../pages/assets/index/images/assets-hero_repeat.svg) repeat-x top right / auto 560px;
   }
 }

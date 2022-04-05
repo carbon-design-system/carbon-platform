@@ -60,5 +60,8 @@
 }
 
 .arrow-right {
+  position: absolute;
+  right: spacing.$spacing-04;
+  bottom: spacing.$spacing-04;
   fill: theme.$link-primary;
 }

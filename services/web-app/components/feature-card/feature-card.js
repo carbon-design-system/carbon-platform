@@ -7,11 +7,9 @@
 
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
-import clsx from 'clsx'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 
-import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './feature-card.module.scss'
@@ -42,10 +40,7 @@ export const FeatureCard = ({ href, children, description, title }) => {
                 <AspectRatio ratio={tileAspectRatio()} className={styles.tile}>
                   <h5 className={styles.title}>{title}</h5>
                   <p className={styles.description}>{description}</p>
-                  <ArrowRight
-                    className={clsx(dashboardStyles.positionBottomRight, styles.arrowRight)}
-                    size={20}
-                  />
+                  <ArrowRight className={styles.arrowRight} size={20} />
                 </AspectRatio>
               </Column>
             </Grid>

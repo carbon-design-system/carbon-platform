@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.87](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.86...@carbon-platform/web-app@0.1.87) (2022-04-05)
+
+
+### Misc. 🔮
+
+* revert and cleanup dependencies ([8fa6cb0](https://github.com/carbon-design-system/carbon-platform/commit/8fa6cb0cbe2fd7a8af0138832e3646141883bbcc))
+* update node modules ([4e4bb6f](https://github.com/carbon-design-system/carbon-platform/commit/4e4bb6fc6717eef4106c2d4c9a4ea0b795411a4d))
+
 ### [0.1.86](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.85...@carbon-platform/web-app@0.1.86) (2022-03-31)
 
 

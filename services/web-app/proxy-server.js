@@ -19,7 +19,7 @@ const port = process.env.PORT ?? process.env.RUNNING_SECURELY === '1' ? 8443 : 8
 const app = express()
 app.disable('x-powered-by')
 
-const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'http://localhost:3000'
 
 const nextJsProxy = createProxyMiddleware('/', {
   target: BASE_URL,

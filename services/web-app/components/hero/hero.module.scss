@@ -18,7 +18,7 @@ $hero-height: 560px;
   &::before {
     position: absolute;
     z-index: 0;
-    top: 46px;
+    top: spacing.$spacing-09;
     left: 0;
     width: calc(100vw - var(--scrollbar-width));
     height: $hero-height;

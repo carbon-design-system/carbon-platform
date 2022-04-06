@@ -13,7 +13,7 @@
 @use '~styles/mixins' as mixins;
 
 .container {
-  margin-top: spacing.$spacing-11;
+  margin: spacing.$spacing-11 0 spacing.$spacing-13;
 
   @include breakpoint.breakpoint(lg) {
     position: sticky;

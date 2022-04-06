@@ -6,6 +6,7 @@
  */
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, LI, OL, P, UL } from '@/components/markdown'
+import PageDescription from '@/components/PageDescription'
 
 const components = {
   h1: H1,
@@ -22,7 +23,8 @@ const components = {
     'li.ul': (props) => <UnorderedList isExpressive nested {...props} /> ,
     'li.ol': (props) => <OrderedList isExpressive nested {...props} />, */
   a: Link,
-  blockquote: Blockquote
+  blockquote: Blockquote,
+  PageDescription: PageDescription
 }
 
 export default components

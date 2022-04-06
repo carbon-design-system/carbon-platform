@@ -12,7 +12,7 @@ import styles from './hero.module.scss'
 
 const Hero = ({ title, section }) => {
   return (
-    <Theme className={clsx(styles[section], styles.container, styles.here)} theme="g100">
+    <Theme className={clsx(styles[section], styles.container)} theme="g100">
       <Grid>
         <Column className={styles.column} sm={4} md={4} lg={8}>
           {title && <h1 className={styles.title}>{title}</h1>}

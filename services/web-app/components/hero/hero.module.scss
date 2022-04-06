@@ -54,7 +54,8 @@ $hero-height: 560px;
 
   @include breakpoint.breakpoint(md) {
     background: url(../../pages/assets/index/images/assets-hero.svg) no-repeat top right / auto
-        560px,
-      url(../../pages/assets/index/images/assets-hero_repeat.svg) repeat-x top right / auto 560px;
+        $hero-height,
+      url(../../pages/assets/index/images/assets-hero_repeat.svg) repeat-x top right / auto
+        $hero-height;
   }
 }

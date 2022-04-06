@@ -45,17 +45,15 @@ $hero-height: 560px;
 }
 
 /*
- * Assets hero image & custom styles
- */
+  * Assets hero image & custom styles
+  */
 
 .assets::before {
   background: url(../../pages/assets/index/images/assets-hero_mobile.svg) no-repeat bottom right /
     100% auto;
 
   @include breakpoint.breakpoint(md) {
-    background: url(../../pages/assets/index/images/assets-hero.svg) no-repeat top right / auto
-        $hero-height,
-      url(../../pages/assets/index/images/assets-hero_repeat.svg) repeat-x top right / auto
-        $hero-height;
+    background: url(../../pages/assets/index/images/assets-hero.png) no-repeat top right / auto
+      $hero-height;
   }
 }

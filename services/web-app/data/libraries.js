@@ -386,6 +386,15 @@ const devLibraries = {
     sponsor: 'carbon',
     group: carbonChartsGroup
   },
+  'carbon-styles': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon',
+    path: '/packages/styles',
+    sponsor: 'carbon',
+    ref: 'feat/carbon-platform/index-styles'
+    // group: carbonComponentsGroup
+  },
   'ibmdotcom-react': {
     host: 'github.com',
     org: 'carbon-design-system',

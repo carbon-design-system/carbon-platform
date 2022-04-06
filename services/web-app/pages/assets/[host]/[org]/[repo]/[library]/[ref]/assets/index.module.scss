@@ -10,9 +10,11 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/theme' as theme;
 
+@use '~styles/mixins' as mixins;
+
 .content-heading {
   margin-bottom: spacing.$spacing-06;
-  @include type.type-style('expressive-heading-04');
+  @include type.type-style('fluid-heading-04');
 }
 
 /**
@@ -20,8 +22,8 @@
  */
 
 .subheading {
-  padding: (spacing.$spacing-10) 0 spacing.$spacing-12;
-  @include type.type-style('expressive-heading-04');
+  padding: (spacing.$spacing-11) 0 spacing.$spacing-11;
+  @include type.type-style('fluid-heading-03');
 
   @include breakpoint.breakpoint-down(md) {
     padding-bottom: (spacing.$spacing-08 + spacing.$spacing-05);
@@ -75,4 +77,25 @@
   :global(.cds--list-box__menu) {
     max-width: none;
   }
+}
+
+.design-tag {
+  margin-left: spacing.$spacing-03;
+  white-space: nowrap;
+}
+
+.truncated-text {
+  @include mixins.line-clamp(1);
+}
+
+.asset-row {
+  &:hover,
+  &:focus {
+    background: theme.$layer-hover;
+    cursor: pointer;
+  }
+}
+
+.library-assets-container {
+  margin-bottom: spacing.$spacing-07;
 }

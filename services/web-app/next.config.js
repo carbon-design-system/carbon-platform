@@ -81,6 +81,16 @@ module.exports = withMDX({
       })
 
       rewrites.push({
+        source: `/assets/${slug}/assets`,
+        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest/assets`
+      })
+
+      rewrites.push({
+        source: `/assets/${slug}/:ref*/assets`,
+        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/assets`
+      })
+
+      rewrites.push({
         source: `/assets/${slug}/:ref*`,
         destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
       })

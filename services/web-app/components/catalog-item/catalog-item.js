@@ -14,15 +14,14 @@ import { useState } from 'react'
 import { assetPropTypes } from 'types'
 
 import FrameworkIcon from '@/components/framework-icon'
-import StatusIcon from '@/components/status-icon'
 import TypeTag from '@/components/type-tag'
-import { status } from '@/data/status'
 import { teams } from '@/data/teams'
-import { collapseAssetGroups, getBaseIdentifier, getLicense } from '@/utils/schema'
+import { collapseAssetGroups, getBaseIdentifier } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-item.module.scss'
+import CatalogItemMeta from './catalog-item-meta'
 
 const CatalogItemImage = ({ asset }) => {
   const [src, setSrc] = useState(`/assets/thumbnails/${getSlug(asset.content)}.svg`)
@@ -78,7 +77,7 @@ const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false })
         </div>
         {isSeparatedMeta && (
           <>
-            <CatalogItemMeta asset={asset} className={styles.metaInline} properties={['license']} />
+            <CatalogItemMeta asset={asset} properties={['license']} />
             <CatalogItemMeta
               asset={asset}
               className={styles.metaAbsolute}
@@ -109,48 +108,6 @@ const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false })
 CatalogItemContent.propTypes = {
   asset: assetPropTypes,
   isGrid: PropTypes.bool
-}
-
-const CatalogItemMeta = ({ asset, className, properties }) => {
-  const renderStatus = () => {
-    const statusKey = asset?.content.status?.key ?? asset?.content.status ?? 'draft'
-    const { name } = status[statusKey]
-
-    if (!name) return null
-
-    return (
-      <>
-        <StatusIcon className={styles.metaIcon} status={statusKey} />
-        <span>{name}</span>
-      </>
-    )
-  }
-
-  const renderLicense = () => {
-    return (
-      <>
-        <Scales className={styles.metaIcon} size={16} />
-        <span>{getLicense(asset)}</span>
-      </>
-    )
-  }
-
-  return (
-    <ul className={clsx(styles.meta, className)}>
-      {properties.map((prop, i) => (
-        <li className={styles.metaItem} key={i}>
-          {prop === 'status' && renderStatus()}
-          {prop === 'license' && renderLicense()}
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-CatalogItemMeta.propTypes = {
-  asset: assetPropTypes,
-  className: PropTypes.string,
-  properties: PropTypes.array
 }
 
 const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {

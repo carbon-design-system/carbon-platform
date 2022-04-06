@@ -18,19 +18,22 @@ import {
   TableHeader,
   TableRow
 } from '@carbon/react'
-import { get } from 'lodash'
+import { ArrowRight } from '@carbon/react/icons'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useState } from 'react'
 import { libraryPropTypes, paramsPropTypes } from 'types'
 
+import CatalogItemMeta from '@/components/catalog-item/catalog-item-meta'
 import PageHeader from '@/components/page-header'
+import TypeTag from '@/components/type-tag'
 import { framework } from '@/data/framework'
 import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
 import { getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { assetSortComparator } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './index.module.scss'
 
@@ -58,6 +61,8 @@ const headerData = [
 ]
 
 const LibrayAssets = ({ libraryData, params }) => {
+  const isLg = useMatchMedia(mediaQueries.lg)
+
   const [sort, setSort] = useState(ALPHABETICAL_ORDER)
   const router = useRouter()
 
@@ -87,17 +92,24 @@ const LibrayAssets = ({ libraryData, params }) => {
     const assetRow = {
       id: asset.content.id,
       name: asset.content.name,
-      type: asset.content.type,
-      status: get(asset, 'content.status.key', asset.content.status),
-      tags: asset.content.tags.join('; '),
+      type: <TypeTag type={asset.content.type} />,
+      status: <CatalogItemMeta asset={asset} properties={['status']} />,
+      tags: <span className={styles.truncatedText}>{asset.content.tags.join('; ')}</span>,
       link: (
-        <Link href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}>
-          <a>-&gt;</a>
+        <Link>
+          <a href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}>
+            <ArrowRight size={16} />
+          </a>
         </Link>
       )
     }
-    if (asset.content.framework === framework['design-only']) {
-      assetRow.type = [assetRow.type, framework['design-only'].name].join(', ')
+    if (asset.content.framework !== framework['design-only']) {
+      assetRow.type = (
+        <div style={{ display: 'flex' }}>
+          <TypeTag type={asset.content.type} />
+          <TypeTag type={'design-only'} className={styles.designTag} />
+        </div>
+      )
     }
     return assetRow
   })
@@ -107,7 +119,7 @@ const LibrayAssets = ({ libraryData, params }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <Grid>
+      <Grid className={styles.libraryAssetsContainer}>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <PageHeader title={seo.title} />
         </Column>
@@ -121,8 +133,8 @@ const LibrayAssets = ({ libraryData, params }) => {
             </Column>
           </Grid>
           <h2 className={styles.contentHeading}>All library assets</h2>
-          <Grid>
-            <Column className={styles.sortColumn} sm={4} md={8} lg={4}>
+          <Grid condensed={!isLg} narrow={isLg}>
+            <Column className={styles.sortColumn} sm={4} md={4} lg={5}>
               <Dropdown
                 id="catalog-sort"
                 className={styles.dropdown}
@@ -139,32 +151,36 @@ const LibrayAssets = ({ libraryData, params }) => {
               />
             </Column>
           </Grid>
-          <DataTable rows={assets} headers={headerData}>
-            {({ rows, headers, getHeaderProps, getTableProps }) => (
-              <TableContainer>
-                <Table {...getTableProps()}>
-                  <TableHead>
-                    <TableRow>
-                      {headers.map((header) => (
-                        <TableHeader {...getHeaderProps({ header })} key={header.id}>
-                          {header.header}
-                        </TableHeader>
-                      ))}
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {rows.map((row) => (
-                      <TableRow key={row.id}>
-                        {row.cells.map((cell) => (
-                          <TableCell key={cell.id}>{cell.value}</TableCell>
+          <Grid condensed={!isLg} narrow={isLg}>
+            <Column sm={4} md={8} lg={12}>
+              <DataTable rows={assets} headers={headerData}>
+                {({ rows, headers, getHeaderProps, getTableProps }) => (
+                  <TableContainer>
+                    <Table {...getTableProps()}>
+                      <TableHead>
+                        <TableRow>
+                          {headers.map((header) => (
+                            <TableHeader {...getHeaderProps({ header })} key={header.id}>
+                              {header.header}
+                            </TableHeader>
+                          ))}
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {rows.map((row) => (
+                          <TableRow key={row.id} className={styles.assetRow}>
+                            {row.cells.map((cell) => (
+                              <TableCell key={cell.id}>{cell.value}</TableCell>
+                            ))}
+                          </TableRow>
                         ))}
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            )}
-          </DataTable>
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                )}
+              </DataTable>
+            </Column>
+          </Grid>
         </Column>
       </Grid>
     </>

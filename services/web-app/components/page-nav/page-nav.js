@@ -101,7 +101,7 @@ const PageNav = ({ contentRef, items = [] }) => {
       const sectionTopDistance = section.getBoundingClientRect().top
       if (
         // Setting active class when the top of the section is at the top
-        // of the scree nand the bottom of the section is visible
+        // of the screen and the bottom of the section is visible
         sectionTopDistance < scrollDistance &&
         sectionHeight + sectionTopDistance - scrollDistance > 0
       ) {

@@ -18,6 +18,7 @@
   @include breakpoint.breakpoint(lg) {
     position: sticky;
     top: calc(spacing.$spacing-11 + spacing.$spacing-10);
+    margin-left: -(spacing.$spacing-07);
   }
 }
 

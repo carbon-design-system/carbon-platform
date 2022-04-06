@@ -44,12 +44,6 @@ $hero-height: 560px;
   @include type.type-style('display-01', true);
 }
 
-.description {
-  margin-top: spacing.$spacing-06;
-  color: theme.$text-primary;
-  @include type.type-style('body-long-02', true);
-}
-
 /*
  * Assets hero image & custom styles
  */

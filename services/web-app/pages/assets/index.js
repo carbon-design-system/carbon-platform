@@ -36,7 +36,7 @@ import ReactImg from './index/images/react-banner.png'
 import styles from './index/index.module.scss'
 
 const PageContent = () => {
-  const isMd = useMatchMedia(mediaQueries.md)
+  const isLg = useMatchMedia(mediaQueries.lg)
 
   const highlights = [
     {
@@ -326,7 +326,7 @@ const PageContent = () => {
         <Image
           alt={'image'}
           src={ChartImg}
-          layout={isMd ? 'responsive' : 'fill'}
+          layout={isLg ? 'responsive' : 'fill'}
           objectFit="cover"
         />
       </FeatureCard>
@@ -347,7 +347,7 @@ const PageContent = () => {
         <Image
           alt={'image'}
           src={ReactImg}
-          layout={isMd ? 'responsive' : 'fill'}
+          layout={isLg ? 'responsive' : 'fill'}
           objectFit="cover"
         />
       </FeatureCard>

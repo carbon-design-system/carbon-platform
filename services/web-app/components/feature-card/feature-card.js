@@ -16,10 +16,11 @@ import styles from './feature-card.module.scss'
 
 export const FeatureCard = ({ href, children, description, title }) => {
   const isMd = useMatchMedia(mediaQueries.md)
+  const isLg = useMatchMedia(mediaQueries.lg)
 
   const imageAspectRatio = () => {
-    if (isMd) return ''
-    // ask design what is aspect ratio for tablet?
+    if (isLg) return ''
+    if (isMd) return '16x9'
     return '1x1'
   }
 

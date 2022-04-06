@@ -49,7 +49,7 @@
   }
 
   :global(.cds--tree-node--selected > .cds--tree-node__label::before) {
-    left: 24px;
+    left: spacing.$spacing-06;
   }
 
   :global(.cds--tree-node--selected > .cds--tree-node__label:hover) {
@@ -72,6 +72,6 @@
       .cds--tree-node__children
       .cds--tree-node--selected
       > .cds--tree-node__label::before) {
-    left: 24px;
+    left: spacing.$spacing-06;
   }
 }

@@ -11,13 +11,10 @@ import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 
 import useEventListener from '@/utils/use-event-listener'
-import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './page-nav.module.scss'
 
 const PageNav = ({ contentRef, items = [] }) => {
-  const isLg = useMatchMedia(mediaQueries.lg)
-
   const [lastActiveLink, setLastActiveLink] = useState(null)
   const [activeItem, setActiveItem] = useState(null)
 
@@ -119,7 +116,7 @@ const PageNav = ({ contentRef, items = [] }) => {
   }
 
   return (
-    <Grid narrow={isLg} className={styles.container}>
+    <Grid narrow className={styles.container}>
       <Column sm={4} md={8} lg={4}>
         <nav aria-label="Page navigation">
           <ul className={styles.list}>

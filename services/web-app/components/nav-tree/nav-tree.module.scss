@@ -18,6 +18,8 @@
 
   :global(.cds--tree-node__label) {
     @include type.type-style('heading-01');
+
+    cursor: pointer;
   }
 
   :global(.cds--tree-parent-node__toggle-icon) {

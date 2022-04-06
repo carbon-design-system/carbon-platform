@@ -79,11 +79,11 @@ const Library = ({ libraryData, params }) => {
   const navItems = [
     {
       title: 'Assets',
-      path: '#'
+      path: '/assets/'
     },
     {
       title: 'Design kits',
-      path: '#'
+      path: ''
     },
     {
       title: 'Tutorials',
@@ -93,43 +93,43 @@ const Library = ({ libraryData, params }) => {
           items: [
             {
               title: 'Overview',
-              path: '#'
+              path: ''
             },
             {
               title: '1. Installing Carbon',
-              path: '#'
+              path: ''
             },
             {
               title: '2. Building pages',
-              path: '#'
+              path: ''
             },
             {
               title: '3. Using APIs',
-              path: '#'
+              path: ''
             },
             {
               title: '4. Creating components',
-              path: '#'
+              path: ''
             },
             {
               title: '5. Deploying to cloud',
-              path: '#'
+              path: ''
             },
             {
               title: 'Conclusion',
-              path: '#'
+              path: ''
             }
           ]
         },
         {
           title: 'Tutorial 2',
-          path: '#'
+          path: ''
         }
       ]
     },
     {
       title: 'Versions',
-      path: '#'
+      path: ''
     },
 
     {

@@ -323,8 +323,12 @@ const PageContent = () => {
         title="Data visualization"
         description="A collection of reusable charting components to build websites and user interfaces."
       >
-        {!isMd && <Image alt={'image'} src={ChartImg} layout="fill" objectFit="cover" />}
-        {isMd && <Image alt={'image'} src={ChartImg} layout="responsive" />}
+        <Image
+          alt={'image'}
+          src={ChartImg}
+          layout={isMd ? 'responsive' : 'fill'}
+          objectFit="cover"
+        />
       </FeatureCard>
       <Grid className={styles.hightlightGrid}>
         <Column sm={4} md={8} lg={8} xlg={7}>
@@ -340,8 +344,12 @@ const PageContent = () => {
         title="Carbon React library"
         description="A library of reusable React components to build websites and user interfaces."
       >
-        {!isMd && <Image alt={'image'} src={ReactImg} layout="fill" objectFit="cover" />}
-        {isMd && <Image alt={'image'} src={ReactImg} layout="responsive" />}
+        <Image
+          alt={'image'}
+          src={ReactImg}
+          layout={isMd ? 'responsive' : 'fill'}
+          objectFit="cover"
+        />
       </FeatureCard>
       <Grid className={clsx(styles.hightlightGrid, styles.border)}>
         <Column sm={4} md={8} lg={8} xlg={7}>

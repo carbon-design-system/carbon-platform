@@ -60,7 +60,7 @@
 .name {
   color: theme.$text-primary;
   @include mixins.line-clamp(2);
-  @include type.type-style('productive-heading-02');
+  @include type.type-style('heading-02');
 }
 
 .description {

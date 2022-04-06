@@ -19,6 +19,13 @@
   margin: spacing.$spacing-09 0 0;
 }
 
+// carbon override add border to sidenav
+.side-nav {
+  @include breakpoint.breakpoint(lg) {
+    border-right: 1px solid theme.$border-subtle-00;
+  }
+}
+
 .side-nav-heading {
   padding-bottom: spacing.$spacing-03;
   border-bottom: 1px solid theme.$layer-accent;

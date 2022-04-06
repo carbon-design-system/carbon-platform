@@ -9,41 +9,28 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
-@use '~styles/variables' as variables;
 
-$hero-height: spacing.$spacing-13 * 3.475;
-$illo-mobile-height: spacing.$spacing-08 + spacing.$spacing-12;
-$illo-original-width: 1260px;
-$illo-original-height: 1078px;
+$hero-height: 560px;
 
 .container {
-  background: theme.$background;
-  @include breakpoint.breakpoint(md) {
+  height: $hero-height;
+
+  &::before {
+    position: absolute;
+    z-index: 0;
+    top: spacing.$spacing-09;
+    left: 0;
+    width: calc(100vw - var(--scrollbar-width));
     height: $hero-height;
-
-    &::before {
-      position: absolute;
-      z-index: 0;
-      left: 0;
-      width: calc(100vw - var(--scrollbar-width));
-      height: $hero-height;
-      background: theme.$background;
-      content: '';
-    }
+    background: theme.$background;
+    content: '';
   }
-  @include breakpoint.breakpoint-down(md) {
-    position: relative;
-  }
-}
-
-.grid {
-  height: 100%;
 }
 
 .column {
   position: relative;
   z-index: 1;
-  padding: spacing.$spacing-08 0 $illo-mobile-height;
+  padding: spacing.$spacing-08 0;
   @include breakpoint.breakpoint(md) {
     padding: (spacing.$spacing-09 + spacing.$spacing-03) 0 spacing.$spacing-05;
   }
@@ -57,55 +44,18 @@ $illo-original-height: 1078px;
   @include type.type-style('display-01', true);
 }
 
-.description {
-  margin-top: spacing.$spacing-06;
-  color: theme.$text-primary;
-  @include type.type-style('body-long-02', true);
-}
+/*
+ * Assets hero image & custom styles
+ */
 
-.image-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  width: calc(100vw - var(--scrollbar-width));
-  height: $illo-mobile-height;
+.assets::before {
+  background: url(../../pages/assets/index/images/assets-hero_mobile.svg) no-repeat bottom right /
+    100% auto;
 
   @include breakpoint.breakpoint(md) {
-    top: variables.$header-height;
-    bottom: auto;
-    height: $hero-height;
-  }
-}
-
-.image-position {
-  position: absolute;
-  top: 0;
-  right: -25vw;
-  width: 50%;
-  height: $hero-height;
-  @include breakpoint.breakpoint(xlg) {
-    // -18vw chosen to horizontally center the illo in white space at ultra max viewport
-    right: -18vw;
-    width: $hero-height * ($illo-original-width / $illo-original-height);
-  }
-  @include breakpoint.breakpoint(max) {
-    // match xlg position
-    right: -285px;
-  }
-  @include breakpoint.breakpoint-down(md) {
-    // -33% and 170% picked to get iphone viewport to match design spec size and position
-    top: auto;
-    right: -33%;
-    bottom: 0;
-    width: 170%;
-    height: spacing.$spacing-12;
-  }
-}
-
-.image {
-  object-position: center top;
-  @include breakpoint.breakpoint(md) {
-    object-position: left center;
+    background: url(../../pages/assets/index/images/assets-hero.svg) no-repeat top right / auto
+        $hero-height,
+      url(../../pages/assets/index/images/assets-hero_repeat.svg) repeat-x top right / auto
+        $hero-height;
   }
 }

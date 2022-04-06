@@ -5,41 +5,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, Theme } from '@carbon/react'
-import Image from 'next/image'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
 import styles from './hero.module.scss'
 
-const Hero = ({ title, description, image, imageAlt }) => {
+const Hero = ({ title, section }) => {
   return (
-    <Theme className={styles.container} theme="g100">
-      <Grid className={styles.grid}>
-        <Column className={styles.column} sm={4} md={6} lg={8}>
+    <Theme className={clsx(styles[section], styles.container)} theme="g100">
+      <Grid>
+        <Column className={styles.column} sm={4} md={4} lg={8}>
           {title && <h1 className={styles.title}>{title}</h1>}
-          {description && <p className={styles.description}>{description}</p>}
         </Column>
       </Grid>
-      {image && (
-        <div className={styles.imageContainer}>
-          <div className={styles.imagePosition}>
-            <Image
-              alt={imageAlt}
-              className={styles.image}
-              src={image}
-              layout="fill"
-              objectFit="cover"
-            />
-          </div>
-        </div>
-      )}
     </Theme>
   )
 }
 
 Hero.propTypes = {
-  description: PropTypes.string,
-  image: PropTypes.object,
-  imageAlt: PropTypes.string,
+  section: PropTypes.string,
   title: PropTypes.string.isRequired
 }
 

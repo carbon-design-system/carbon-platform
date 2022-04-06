@@ -4,14 +4,14 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import {
-  CodeSyntax,
-  Dashboard as DashboardPictogram,
-  Pattern,
-  TextInput
-} from '@carbon/pictograms-react'
 import { Column, Grid, Link } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
+import {
+  Svg64Components,
+  Svg64Functions,
+  Svg64Patterns,
+  Svg64Templates
+} from '@carbon-platform/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { NextSeo } from 'next-seo'
@@ -22,7 +22,6 @@ import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import { FeatureCard } from '@/components/feature-card/feature-card'
 import Hero from '@/components/hero'
 import { assetsNavData } from '@/data/nav-data'
-import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
@@ -165,8 +164,6 @@ const PageContent = () => {
     }
   ]
 
-  const { component, pattern, function: func, template } = type
-
   return (
     <div className={styles.container}>
       <div className={styles.highlights}>
@@ -233,11 +230,7 @@ const PageContent = () => {
                     and ready to use when creating new experiences.
                   </dd>
                 </dl>
-                <TextInput
-                  fill={component.textColor}
-                  size={64}
-                  className={styles.dashboardPictogram}
-                />
+                <Svg64Components className={styles.dashboardIcon} />
                 <ArrowRight
                   className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
                   size={20}
@@ -256,7 +249,7 @@ const PageContent = () => {
                     Reusable combinations of components and content with sequences and flows.
                   </dd>
                 </dl>
-                <Pattern fill={pattern.textColor} size={64} className={styles.dashboardPictogram} />
+                <Svg64Patterns className={styles.dashboardIcon} />
                 <ArrowRight
                   className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
                   size={20}
@@ -275,7 +268,7 @@ const PageContent = () => {
                     Code that performs a single action and has no user interface.
                   </dd>
                 </dl>
-                <CodeSyntax fill={func.textColor} size={64} className={styles.dashboardPictogram} />
+                <Svg64Functions className={styles.dashboardIcon} />
                 <ArrowRight
                   className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
                   size={20}
@@ -295,11 +288,7 @@ const PageContent = () => {
                     scenario.
                   </dd>
                 </dl>
-                <DashboardPictogram
-                  fill={template.textColor}
-                  size={64}
-                  className={styles.dashboardPictogram}
-                />
+                <Svg64Templates className={styles.dashboardIcon} />
                 <ArrowRight
                   className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
                   size={20}

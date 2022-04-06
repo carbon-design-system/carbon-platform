@@ -49,7 +49,7 @@ $hero-height: 560px;
   */
 
 .assets::before {
-  background: url(../../pages/assets/index/images/assets-hero_mobile.svg) no-repeat bottom right /
+  background: url(../../pages/assets/index/images/assets-hero_mobile.png) no-repeat bottom right /
     100% auto;
 
   @include breakpoint.breakpoint(md) {

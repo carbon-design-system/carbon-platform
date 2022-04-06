@@ -21,7 +21,9 @@
 
 // carbon override add border to sidenav
 .side-nav {
-  border-right: 1px solid theme.$border-subtle-00;
+  @include breakpoint.breakpoint(lg) {
+    border-right: 1px solid theme.$border-subtle-00;
+  }
 }
 
 .side-nav-heading {

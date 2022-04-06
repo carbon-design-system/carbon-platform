@@ -54,7 +54,7 @@ $hero-height: 560px;
  * Assets hero image & custom styles
  */
 
-:global(.assets).container::before {
+.assets::before {
   background: url(../../pages/assets/index/images/assets-hero_mobile.svg) no-repeat bottom right /
     100% auto;
 

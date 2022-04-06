@@ -36,7 +36,7 @@ export const LayoutProvider = ({ children }) => {
   const [navData, setNavData] = useState([])
   const [showSideNav, setShowSideNav] = useState(true)
   const [librarySideNav, setLibrarySideNav] = useState(false)
-  const [isSideNavExpanded, toggleSideNavExpanded] = useState()
+  const [isSideNavExpanded, toggleSideNavExpanded] = useState(false)
 
   const value = {
     navData,
@@ -141,7 +141,7 @@ const Layout = ({ children }) => {
                               element={NextLink}
                               href={data.path}
                               key={i}
-                              tabIndex={!librarySideNav && '-1'}
+                              tabIndex={librarySideNav && '-1'}
                             >
                               {data.title}
                             </SideNavLink>
@@ -155,7 +155,7 @@ const Layout = ({ children }) => {
                                 href={data.path}
                                 isActive={router.pathname === data.path}
                                 key={i}
-                                tabIndex={!librarySideNav && '-1'}
+                                tabIndex={librarySideNav && '-1'}
                               >
                                 {data.title}
                               </SideNavLink>
@@ -171,7 +171,7 @@ const Layout = ({ children }) => {
                                     href={item.path}
                                     isActive={router.pathname.startsWith(item.path)}
                                     key={j}
-                                    tabIndex={!librarySideNav && '-1'}
+                                    tabIndex={librarySideNav && '-1'}
                                   >
                                     {item.title}
                                   </SideNavLink>

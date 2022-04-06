@@ -47,7 +47,7 @@
     }
   }
 
-  // Sticky side nav stylese
+  // Sticky side nav styles
   @include breakpoint.breakpoint(lg) {
     @include type.type-style('body-short-01');
 

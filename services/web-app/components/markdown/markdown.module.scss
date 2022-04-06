@@ -84,15 +84,15 @@
 
 /* Headings */
 .h1 {
-  @include type.type-style('expressive-heading-05', true);
+  @include type.type-style('fluid-heading-05', true);
 }
 
 .h2 {
-  @include type.type-style('expressive-heading-04', true);
+  @include type.type-style('fluid-heading-04', true);
 }
 
 .h3 {
-  @include type.type-style('expressive-heading-03', true);
+  @include type.type-style('fluid-heading-03', true);
 }
 
 .h4 {
@@ -121,7 +121,7 @@
 }
 
 .blockquote .paragraph {
-  @include type.type-style('expressive-heading-03', true);
+  @include type.type-style('fluid-heading-03', true);
 
   font-style: italic;
 }

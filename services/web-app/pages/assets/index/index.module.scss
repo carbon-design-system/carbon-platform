@@ -51,7 +51,7 @@
  */
 
 .subheading {
-  padding: (spacing.$spacing-08 + spacing.$spacing-06) 0 spacing.$spacing-08;
+  padding: pacing.$spacing-10 0 spacing.$spacing-08;
   @include type.type-style('fluid-heading-05');
 
   @include breakpoint.breakpoint-down(md) {

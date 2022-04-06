@@ -51,7 +51,7 @@
  */
 
 .subheading {
-  padding: pacing.$spacing-10 0 spacing.$spacing-08;
+  padding: spacing.$spacing-10 0 spacing.$spacing-08;
   @include type.type-style('fluid-heading-05');
 
   @include breakpoint.breakpoint-down(md) {
@@ -64,12 +64,12 @@
 }
 
 .subheading-medium {
-  padding: (spacing.$spacing-08 + spacing.$spacing-06) 0;
+  padding: spacing.$spacing-10 0;
   @include type.type-style('fluid-heading-04');
 }
 
 .subheading-large {
-  padding: (spacing.$spacing-10 + spacing.$spacing-05) 0 spacing.$spacing-05;
+  padding: spacing.$spacing-11 0 spacing.$spacing-05;
   @include type.type-style('fluid-heading-04');
 }
 

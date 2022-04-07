@@ -64,7 +64,7 @@ To run the app, run the following command from the [web-app's directory](../serv
 
 `npm run dev` or, alternatively, run `npm run dev:clean` to run from a clean environment
 
-App will run on https://localhost:8080
+App will run on https://localhost:3000
 
 ## Running App Securely
 
@@ -72,10 +72,24 @@ To run the app on https, it must be served from
 [proxy-server.js](../services/web-app/proxy-server.js). To do this, run the following command from
 the [web-app's directory](../services/web-app):
 
-`npm run dev:secure` or, alternatively, run `npm run dev:secure:clean` to run from a clean
-environment
+`npm run dev:secure`
 
-App will run on https://localhost:8443
+App will run on https://localhost:8443, you can still access the unproxied application at
+http://localhost:3000
+
+## Proxy Server
+
+In Standard mode, the app uses a proxy server to perform some middleware and routing
+functionalities, such as logging. These configurations are stored in `proxy-server.js` within the
+web-app folder. To run the app as close to the Standard mode as possible, see
+[Running App Securely](#running-app-securely). If you do not wish to run the app over https, you may
+choose to manually run the web-app and the proxy by running the following commands in separate
+terminals from the [web-app's directory](../services/web-app):
+
+`npm run dev` , `npm run start:proxy`
+
+App will run on http://localhost:8080, you can still access the unproxied application at
+http://localhost:3000
 
 ## Protecting a Route
 

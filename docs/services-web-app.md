@@ -88,7 +88,7 @@ terminals from the [web-app's directory](../services/web-app):
 
 `npm run dev` , `npm run start:proxy`
 
-App will run on http://localhost:8080, you can still access the unproxied application at
+The proxied version of the app will run on http://localhost:8080. You can still access the unproxied application at
 http://localhost:3000
 
 ## Protecting a Route

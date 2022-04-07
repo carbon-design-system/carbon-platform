@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.88](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.87...@carbon-platform/web-app@0.1.88) (2022-04-07)
+
+
+### Features 🌟
+
+* add component ([8f4ebed](https://github.com/carbon-design-system/carbon-platform/commit/8f4ebed110f3f5b6e37cc26d6c6eed609a4312e2))
+* placeholder mdx components ([ed1a175](https://github.com/carbon-design-system/carbon-platform/commit/ed1a175f19f224a3509ed6da7f1412a6fb336f93))
+
+
+### Bug Fixes 🐛
+
+* add border to side nav ([a4c2a05](https://github.com/carbon-design-system/carbon-platform/commit/a4c2a0556b264ee3b61346e65cc6e28fb48063e6))
+* hide nav border tablet mobile ([e0a7a26](https://github.com/carbon-design-system/carbon-platform/commit/e0a7a26e661f8f7d5a67efe92d965470f572a7ca))
+* udpate type token ([c6909dc](https://github.com/carbon-design-system/carbon-platform/commit/c6909dc07c68e75d2a36ed810aaa7bd3c1f30946))
+* update type tokens to v11 ([e4cb9ae](https://github.com/carbon-design-system/carbon-platform/commit/e4cb9ae13c696f23b0911d7088d9d79bd3ead721))
+
+### [0.1.87](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.86...@carbon-platform/web-app@0.1.87) (2022-04-05)
+
+
+### Misc. 🔮
+
+* revert and cleanup dependencies ([8fa6cb0](https://github.com/carbon-design-system/carbon-platform/commit/8fa6cb0cbe2fd7a8af0138832e3646141883bbcc))
+* update node modules ([4e4bb6f](https://github.com/carbon-design-system/carbon-platform/commit/4e4bb6fc6717eef4106c2d4c9a4ea0b795411a4d))
+
 ### [0.1.86](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.85...@carbon-platform/web-app@0.1.86) (2022-03-31)
 
 

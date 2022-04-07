@@ -15,12 +15,12 @@ import Hero from '@/components/hero'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
+import ReleaseOneImg from './index/images/carbon-next-v0.1.png'
+import ReleaseTwoImg from './index/images/carbon-next-v0.2.png'
+import ReleaseThreeImg from './index/images/carbon-next-v1.0.png'
+import ReleaseFourImg from './index/images/carbon-next-v1.1.png'
+import ReleaseFiveImg from './index/images/carbon-next-v2.0.png'
 import HeroImg from './index/images/hero-illo.png'
-import ReleaseOneImg from './index/images/roadmap-v0.1.png'
-import ReleaseTwoImg from './index/images/roadmap-v0.2.png'
-import ReleaseThreeImg from './index/images/roadmap-v1.0.png'
-import ReleaseFourImg from './index/images/roadmap-v1.1.png'
-import ReleaseFiveImg from './index/images/roadmap-v2.0.png'
 import styles from './index/index.module.scss'
 
 const PageContent = () => {

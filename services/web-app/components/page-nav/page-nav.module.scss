@@ -24,6 +24,7 @@
 }
 
 .link {
+  cursor: pointer;
   // Anchor link styles
   @include breakpoint.breakpoint-down(lg) {
     @include type.type-style('expressive-heading-03', true);

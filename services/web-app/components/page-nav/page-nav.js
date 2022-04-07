@@ -6,7 +6,6 @@
  */
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 
@@ -35,7 +34,14 @@ const PageNav = ({ contentRef, items = [] }) => {
 
   useEffect(() => {
     handleHashChange()
-  }, [handleHashChange])
+    const hash = window?.location?.hash
+    // account for race condition on browser when ids haven't been set yet
+    if (hash) {
+      requestAnimationFrame(() => {
+        contentRef.current?.querySelector(hash)?.scrollIntoView(true)
+      })
+    }
+  }, [handleHashChange, contentRef])
 
   const checkIfSectionIdIsActive = (id) => {
     const section = document.getElementById(id)
@@ -73,15 +79,15 @@ const PageNav = ({ contentRef, items = [] }) => {
     link.classList.add(styles.linkActive)
 
     // Set url to current link as you scroll past
-    history.pushState(null, null, link.href)
-    setActiveItem(link.href.split('#')[1])
+    history.replaceState(null, null, `#${link.dataset.id}`)
+    setActiveItem(link.dataset.id)
   }
 
   const removeActiveLink = (link) => {
     link.classList.remove(styles.linkActive)
     if (activeItem === link.dataset.id) {
       setActiveItem(null)
-      history.pushState(null, null, window.location.pathname + window.location.search)
+      history.replaceState(null, null, window.location.pathname + window.location.search)
     }
   }
 
@@ -115,6 +121,12 @@ const PageNav = ({ contentRef, items = [] }) => {
     })
   }
 
+  const linkClicked = (id) => {
+    history.replaceState(null, null, `#${id}`)
+    handleHashChange()
+    contentRef.current.querySelector(`#${id}`)?.scrollIntoView(true)
+  }
+
   return (
     <Grid narrow className={styles.container}>
       <Column sm={4} md={8} lg={4}>
@@ -123,14 +135,16 @@ const PageNav = ({ contentRef, items = [] }) => {
             {items.map((item, i) => (
               <li className={styles.item} key={i}>
                 {item.id && (
-                  <Link href={`#${item.id}`}>
-                    <a
-                      data-id={item.id}
-                      className={clsx(styles.link, activeItem === item.id ? styles.linkActive : '')}
-                    >
-                      {item.title}
-                    </a>
-                  </Link>
+                  <span
+                    data-id={item.id}
+                    className={clsx(styles.link, activeItem === item.id ? styles.linkActive : '')}
+                    onClick={() => linkClicked(item.id)}
+                    onKeyDown={() => linkClicked(item.id)}
+                    role="link"
+                    tabIndex="0"
+                  >
+                    {item.title}
+                  </span>
                 )}
               </li>
             ))}

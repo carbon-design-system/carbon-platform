@@ -25,13 +25,13 @@ import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
-import ReleaseOneImg from './index/images/carbon-next-v0.1.png'
-import ReleaseTwoImg from './index/images/carbon-next-v0.2.png'
-import ReleaseThreeImg from './index/images/carbon-next-v1.0.png'
-import ReleaseFourImg from './index/images/carbon-next-v1.1.png'
-import ReleaseFiveImg from './index/images/carbon-next-v2.0.png'
 import ChartImg from './index/images/chart-banner.png'
 import ReactImg from './index/images/react-banner.png'
+import ReleaseOneImg from './index/images/roadmap-v0.1.png'
+import ReleaseTwoImg from './index/images/roadmap-v0.2.png'
+import ReleaseThreeImg from './index/images/roadmap-v1.0.png'
+import ReleaseFourImg from './index/images/roadmap-v1.1.png'
+import ReleaseFiveImg from './index/images/roadmap-v2.0.png'
 import styles from './index/index.module.scss'
 
 const PageContent = () => {

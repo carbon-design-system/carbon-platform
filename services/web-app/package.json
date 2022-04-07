@@ -11,12 +11,13 @@
   },
   "scripts": {
     "build": "npm run clean && next build",
+    "bundle": "node esbuild.js",
     "clean": "rimraf .carbon public/.carbon .next .dev",
     "dev": "next dev",
     "dev:clean": "npm run clean && npm run dev",
-    "dev:secure": "concurrently \"sh ./scripts/create-local-certificates.sh && npm run dev\" \"RUNNING_SECURELY=1 npm run start:proxy\"",
+    "dev:secure": "sh scripts/create-local-certificates.sh && concurrently 'npm run dev' 'RUNNING_SECURELY=1 npm run start:proxy'",
     "service:build": "npm run build",
-    "start": "concurrently \"npm run start:proxy\" \"next start\"",
+    "start": "concurrently 'npm run start:proxy' 'next start'",
     "start:proxy": "node proxy-server.js",
     "test": "echo 'No tests defined yet!'"
   },

@@ -12,51 +12,73 @@ const fs = require('fs')
 const http = require('http')
 const https = require('https')
 
+const port = process.env.PORT ?? process.env.RUNNING_SECURELY === '1' ? 8443 : 8080
 const logging = new Logging('web-app', 'express-proxy')
 
-const port = process.env.PORT ?? process.env.RUNNING_SECURELY === '1' ? 8443 : 8080
+function getCredentials() {
+  return {
+    key: fs.readFileSync('./certificates/localhost.key'),
+    cert: fs.readFileSync('./certificates/localhost.crt')
+  }
+}
 
-const app = express()
-app.disable('x-powered-by')
+function logRequest(proxyRes, req) {
+  const { httpVersion, method, socket, url, hostname } = req
+  const { remoteAddress, remotePort } = socket
+  const { statusCode } = proxyRes
+  const responseTime = performance.measure(req.id, req.id)?.duration?.toFixed(4)
 
-const BASE_URL = 'http://localhost:3000'
+  const logParts = [
+    hostname,
+    '"' + method + ' ' + url + ' HTTP/' + httpVersion + '"',
+    statusCode,
+    responseTime + 'ms',
+    '[' + remoteAddress + ']:' + remotePort,
+    '"' + req.get('User-Agent') + '"'
+  ]
 
-const nextJsProxy = createProxyMiddleware('/', {
-  target: BASE_URL,
-  onProxyReq: (_, req) => {
-    req.id = uuidv4()
-    performance.mark(req.id)
-  },
-  onProxyRes: (proxyRes, req) => {
-    const { method, socket, url } = req
-    const { remoteAddress, remotePort } = socket
-    const { statusCode } = proxyRes
-    const responseTime = performance.measure(req.id)?.duration?.toFixed(2)
-    const logMessage = `"${method} ${url}" "${statusCode}" "${responseTime}ms" "${req.get(
-      'User-Agent'
-    )}" "${remoteAddress}" "${remotePort}"`
-    logging.info(logMessage)
-    performance.clearMarks(req.id)
-    performance.clearMeasures(req.id)
-  },
-  ws: true
-})
+  logging.info(logParts.join(' '))
+}
 
-const credentials =
-  process.env.RUNNING_SECURELY === '1'
-    ? {
-        key: fs.readFileSync('./certificates/localhost.key'),
-        cert: fs.readFileSync('./certificates/localhost.crt')
-      }
-    : null
+function startBenchmark(req) {
+  req.id = uuidv4()
+  performance.mark(req.id)
+}
 
-app.use(nextJsProxy)
+function clearBenchmark(req) {
+  performance.clearMarks(req.id)
+  performance.clearMeasures(req.id)
+}
 
-const server =
-  process.env.RUNNING_SECURELY === '1'
-    ? https.createServer(credentials, app)
-    : http.createServer(app)
+function createNextJsProxy() {
+  return createProxyMiddleware('/', {
+    target: 'http://localhost:3000',
+    onProxyReq: (_, req) => {
+      startBenchmark(req)
+    },
+    onProxyRes: (proxyRes, req) => {
+      logRequest(proxyRes, req)
+      clearBenchmark(req)
+    },
+    ws: true
+  })
+}
 
-server.listen(port, undefined, undefined, () => {
-  logging.info(`listening on port ${port}`)
-})
+function start() {
+  const app = express()
+  const nextJsProxy = createNextJsProxy()
+
+  app.use(nextJsProxy)
+  app.disable('X-Powered-By')
+
+  const server =
+    process.env.RUNNING_SECURELY === '1'
+      ? https.createServer(getCredentials(), app)
+      : http.createServer(app)
+
+  server.listen(port, undefined, undefined, () => {
+    logging.info(`listening on port ${port}`)
+  })
+}
+
+start()

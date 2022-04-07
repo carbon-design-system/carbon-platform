@@ -74,8 +74,8 @@ the [web-app's directory](../services/web-app):
 
 `npm run dev:secure`
 
-The proxied version of the app will run on https://localhost:8443. You can still access the unproxied application at
-http://localhost:3000
+The proxied version of the app will run on https://localhost:8443. You can still access the
+unproxied application at http://localhost:3000
 
 ## Proxy Server
 
@@ -88,8 +88,8 @@ terminals from the [web-app's directory](../services/web-app):
 
 `npm run dev` , `npm run start:proxy`
 
-The proxied version of the app will run on http://localhost:8080. You can still access the unproxied application at
-http://localhost:3000
+The proxied version of the app will run on http://localhost:8080. You can still access the unproxied
+application at http://localhost:3000
 
 ## Protecting a Route
 

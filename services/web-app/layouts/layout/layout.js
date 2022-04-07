@@ -133,7 +133,11 @@ const Layout = ({ children }) => {
               {showSideNav && (
                 <Column sm={4} md={8} lg={4}>
                   <Theme theme="white">
-                    <SideNav aria-label="Side navigation" expanded={isSideNavExpanded}>
+                    <SideNav
+                      aria-label="Side navigation"
+                      expanded={isSideNavExpanded}
+                      className={styles.sideNav}
+                    >
                       <SideNavItems>
                         <HeaderSideNavItems>
                           {globalNavData.map((data, i) => (

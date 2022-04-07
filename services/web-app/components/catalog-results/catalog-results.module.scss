@@ -18,5 +18,5 @@
 .results {
   padding: 0 spacing.$spacing-05 spacing.$spacing-03;
   border-bottom: 1px solid theme.$layer-accent;
-  @include type.type-style('productive-heading-02');
+  @include type.type-style('heading-02');
 }

@@ -64,7 +64,7 @@ To run the app, run the following command from the [web-app's directory](../serv
 
 `npm run dev` or, alternatively, run `npm run dev:clean` to run from a clean environment
 
-App will run on https://localhost:3000
+App will run on http://localhost:3000
 
 ## Running App Securely
 

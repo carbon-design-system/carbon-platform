@@ -137,6 +137,7 @@ const Layout = ({ children }) => {
                       aria-label="Side navigation"
                       expanded={isSideNavExpanded}
                       className={styles.sideNav}
+                      aria-hidden={librarySideNav ? 'true' : 'false'}
                     >
                       <SideNavItems>
                         <HeaderSideNavItems>

@@ -9,7 +9,6 @@ import {
   DataTable,
   Dropdown,
   Grid,
-  Link,
   Table,
   TableBody,
   TableCell,
@@ -19,6 +18,8 @@ import {
   TableRow
 } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
+import { FilingCabinet } from '@carbon-platform/icons'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useState } from 'react'
@@ -85,34 +86,32 @@ const LibrayAssets = ({ libraryData, params }) => {
     description
   }
 
-  // TODO: useEffect assets, sort, keep rows separate, visuals on table,
-  // link on table, margin bottom of table,
-  // convert values, truncate
-  const assets = libraryData.assets.sort(assetSortComparator(sort)).map((asset) => {
-    const assetRow = {
-      id: asset.content.id,
-      name: asset.content.name,
-      type: <TypeTag type={asset.content.type} />,
-      status: <CatalogItemMeta asset={asset} properties={['status']} />,
-      tags: <span className={styles.truncatedText}>{asset.content.tags.join('; ')}</span>,
-      link: (
-        <Link>
-          <a href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}>
-            <ArrowRight size={16} />
-          </a>
-        </Link>
-      )
-    }
-    if (asset.content.framework !== framework['design-only']) {
-      assetRow.type = (
-        <div style={{ display: 'flex' }}>
-          <TypeTag type={asset.content.type} />
-          <TypeTag type={'design-only'} className={styles.designTag} />
-        </div>
-      )
-    }
-    return assetRow
-  })
+  const assets =
+    libraryData.assets?.sort(assetSortComparator(sort)).map((asset) => {
+      const assetRow = {
+        id: asset.content.id,
+        name: asset.content.name,
+        type: <TypeTag type={asset.content.type} />,
+        status: <CatalogItemMeta asset={asset} properties={['status']} />,
+        tags: <span className={styles.truncatedText}>{asset.content.tags.join('; ')}</span>,
+        link: (
+          <Link href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}>
+            <a>
+              <ArrowRight size={16} />
+            </a>
+          </Link>
+        )
+      }
+      if (asset.content.framework === framework['design-only']) {
+        assetRow.type = (
+          <div style={{ display: 'flex' }}>
+            <TypeTag type={asset.content.type} />
+            <TypeTag type={'design-only'} className={styles.designTag} />
+          </div>
+        )
+      }
+      return assetRow
+    }) ?? []
 
   const onSort = (sortOrder) => setSort(sortOrder)
 
@@ -167,13 +166,34 @@ const LibrayAssets = ({ libraryData, params }) => {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {rows.map((row) => (
-                          <TableRow key={row.id} className={styles.assetRow}>
-                            {row.cells.map((cell) => (
-                              <TableCell key={cell.id}>{cell.value}</TableCell>
-                            ))}
+                        {/* I can't get this to work */}
+                        {/* eslint-disable multiline-ternary */}
+                        {rows.length > 0 ? (
+                          rows.map((row) => (
+                            <TableRow key={row.id} className={styles.assetRow}>
+                              {row.cells.map((cell) => (
+                                <TableCell key={cell.id}>{cell.value}</TableCell>
+                              ))}
+                            </TableRow>
+                          ))
+                        ) : (
+                          <TableRow>
+                            <TableCell colSpan={5}>
+                              <div className={styles.noResultsContainer}>
+                                <FilingCabinet />
+                                <h2 className={styles.noResultsHeading}>No assets in library.</h2>
+                                <h3 className={styles.noResultsSubheading}>
+                                  This library does not contain any assets.
+                                </h3>
+                                {/* library maintainers should be a link but leaving as text for
+                                  now until we figure out contributors discussion */}
+                                <h3 className={styles.noResultsSubheading}>
+                                  Contact library maintainers for further details.
+                                </h3>
+                              </div>
+                            </TableCell>
                           </TableRow>
-                        ))}
+                        )}
                       </TableBody>
                     </Table>
                   </TableContainer>

@@ -139,23 +139,42 @@
 }
 
 @include breakpoint.breakpoint(lg) {
-  .library-nav {
-    animation: slide-in motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
-    transform: translateX(-256px);
+  .nav-container {
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 256px;
+    height: 100%;
   }
 
-  .library-nav-out {
-    animation: slide-out motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
+  .library-nav {
+    left: 256px;
     transform: translateX(0);
   }
 
-  @keyframes slide-in {
+  .nav-container-library-nav-in {
+    position: absolute;
+    z-index: 3;
+    animation: slide-left motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
+    transform: translateX(0);
+  }
+
+  .nav-container-library-nav-out {
+    position: absolute;
+    z-index: 3;
+    animation: slide-right motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
+    transform: translateX(-256px);
+  }
+
+  @keyframes slide-right {
     100% {
       transform: translateX(0);
     }
   }
 
-  @keyframes slide-out {
+  @keyframes slide-left {
     100% {
       transform: translateX(-256px);
     }

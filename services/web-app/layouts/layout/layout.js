@@ -99,9 +99,12 @@ const Layout = ({ children }) => {
     toggleSideNavExpanded(!isSideNavExpanded)
   }
 
+  // $duration-moderate-01 = 150ms
+  const slideDelay = 150
+
   const backLink = () => {
     setLibraryNavSlideOut(true)
-    setTimeout(() => router.push('/assets/libraries'), 150)
+    setTimeout(() => router.push('/assets/libraries'), slideDelay)
   }
 
   // TODO issue #523 const libraryActive = false (set to true when on library page)
@@ -149,95 +152,103 @@ const Layout = ({ children }) => {
             <Grid as="main" className={styles.main} id="main-content">
               {showSideNav && (
                 <Column sm={4} md={8} lg={4}>
-                  <Theme theme="white">
-                    <SideNav
-                      aria-label="Side navigation"
-                      expanded={isSideNavExpanded}
-                      className={styles.sideNav}
-                      aria-hidden={librarySideNav ? 'true' : 'false'}
-                    >
-                      <SideNavItems>
-                        <HeaderSideNavItems>
-                          {globalNavData.map((data, i) => (
-                            <SideNavLink
-                              element={NextLink}
-                              href={data.path}
-                              key={i}
-                              tabIndex={librarySideNav && '-1'}
-                            >
-                              {data.title}
-                            </SideNavLink>
-                          ))}
-                        </HeaderSideNavItems>
-                        {navData.map((data, i) => {
-                          if (data.path && data.title) {
-                            return (
+                  <section className={styles.navContainer}>
+                    {console.log(' 🐬 👀 librarySideNav', librarySideNav)}
+                    <Theme theme="white">
+                      <SideNav
+                        aria-label="Side navigation"
+                        expanded={isSideNavExpanded}
+                        className={clsx(
+                          styles.sideNav,
+                          librarySideNav && styles.navContainerLibraryNavIn,
+                          libraryNavSlideOut && styles.navContainerLibraryNavOut
+                        )}
+                        aria-hidden={librarySideNav ? 'true' : 'false'}
+                      >
+                        <SideNavItems>
+                          <HeaderSideNavItems>
+                            {globalNavData.map((data, i) => (
                               <SideNavLink
                                 element={NextLink}
                                 href={data.path}
-                                isActive={router.pathname === data.path}
                                 key={i}
                                 tabIndex={librarySideNav && '-1'}
                               >
                                 {data.title}
                               </SideNavLink>
-                            )
-                          }
-                          if (!data.path && data.items) {
-                            return (
-                              <div key={i}>
-                                <h2 className={styles.sideNavHeading}>{data.title}</h2>
-                                {data.items.map((item, j) => (
-                                  <SideNavLink
-                                    element={NextLink}
-                                    href={item.path}
-                                    isActive={router.pathname.startsWith(item.path)}
-                                    key={j}
-                                    tabIndex={librarySideNav && '-1'}
-                                  >
-                                    {item.title}
-                                  </SideNavLink>
-                                ))}
-                              </div>
-                            )
-                          }
-                          return null
-                        })}
-                      </SideNavItems>
-                    </SideNav>
+                            ))}
+                          </HeaderSideNavItems>
+                          {navData.map((data, i) => {
+                            if (data.path && data.title) {
+                              return (
+                                <SideNavLink
+                                  element={NextLink}
+                                  href={data.path}
+                                  isActive={router.pathname === data.path}
+                                  key={i}
+                                  tabIndex={librarySideNav && '-1'}
+                                >
+                                  {data.title}
+                                </SideNavLink>
+                              )
+                            }
+                            if (!data.path && data.items) {
+                              return (
+                                <div key={i}>
+                                  <h2 className={styles.sideNavHeading}>{data.title}</h2>
+                                  {data.items.map((item, j) => (
+                                    <SideNavLink
+                                      element={NextLink}
+                                      href={item.path}
+                                      isActive={router.pathname.startsWith(item.path)}
+                                      key={j}
+                                      tabIndex={librarySideNav && '-1'}
+                                    >
+                                      {item.title}
+                                    </SideNavLink>
+                                  ))}
+                                </div>
+                              )
+                            }
+                            return null
+                          })}
+                        </SideNavItems>
+                      </SideNav>
 
-                    {librarySideNav && (
-                      <SideNav
-                        aria-label="Library side navigation"
-                        expanded={isSideNavExpanded}
-                        className={clsx(
-                          styles.libraryNav,
-                          libraryNavSlideOut && styles.libraryNavOut
-                        )}
-                      >
-                        <Button kind="ghost" onClick={backLink} className={styles.back}>
-                          <ArrowLeft className={styles.backIcon} size={16} />
-                          Back to all Libraries
-                        </Button>
-                        {/* TODO issue #523 add link back to library if libraryActive=false */}
-                        <h2
+                      {librarySideNav && (
+                        <SideNav
+                          aria-label="Library side navigation"
+                          expanded={isSideNavExpanded}
                           className={clsx(
-                            styles.navHeading /* TODO issue #523 ,libraryActive && styles.navHeadingSelected */
+                            styles.libraryNav,
+                            librarySideNav && styles.navContainerLibraryNavIn,
+                            libraryNavSlideOut && styles.navContainerLibraryNavOut
                           )}
                         >
-                          {/* TODO issue #523 need title and version datta */}
-                          Library name
-                          <br />
-                          v1.0.0
-                        </h2>
-                        <NavTree
-                          items={libraryNavData}
-                          label="Library navigation"
-                          activeItem={router.asPath.substring(router.asPath.lastIndexOf('/') + 1)}
-                        />
-                      </SideNav>
-                    )}
-                  </Theme>
+                          <Button kind="ghost" onClick={backLink} className={styles.back}>
+                            <ArrowLeft className={styles.backIcon} size={16} />
+                            Back to all Libraries
+                          </Button>
+                          {/* TODO issue #523 add link back to library if libraryActive=false */}
+                          <h2
+                            className={
+                              styles.navHeading /* TODO issue #523 ,libraryActive && styles.navHeadingSelected */
+                            }
+                          >
+                            {/* TODO issue #523 need title and version datta */}
+                            Library name
+                            <br />
+                            v1.0.0
+                          </h2>
+                          <NavTree
+                            items={libraryNavData}
+                            label="Library navigation"
+                            activeItem={router.asPath.substring(router.asPath.lastIndexOf('/') + 1)}
+                          />
+                        </SideNav>
+                      )}
+                    </Theme>
+                  </section>
                 </Column>
               )}
               <Column sm={4} md={8} lg={showSideNav ? 12 : 16}>

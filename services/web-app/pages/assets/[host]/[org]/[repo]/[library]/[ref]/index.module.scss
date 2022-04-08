@@ -7,8 +7,6 @@
 
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
-@use '@carbon/react/scss/theme' as theme;
-@use '@carbon/react/scss/type' as type;
 
 .dashboard {
   margin-top: spacing.$spacing-07;

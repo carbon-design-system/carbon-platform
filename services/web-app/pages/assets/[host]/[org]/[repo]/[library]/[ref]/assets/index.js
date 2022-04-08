@@ -19,6 +19,7 @@ import {
 } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
 import { FilingCabinet } from '@carbon-platform/icons'
+import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
@@ -91,7 +92,7 @@ const LibrayAssets = ({ libraryData, params }) => {
       const assetRow = {
         id: asset.content.id,
         name: asset.content.name,
-        type: <TypeTag type={asset.content.type} />,
+        type: <TypeTag type={asset.content.type} className={styles.tag} />,
         status: <CatalogItemMeta asset={asset} properties={['status']} />,
         tags: <span className={styles.truncatedText}>{asset.content.tags.join('; ')}</span>,
         link: (
@@ -105,8 +106,8 @@ const LibrayAssets = ({ libraryData, params }) => {
       if (asset.content.framework === framework['design-only']) {
         assetRow.type = (
           <div style={{ display: 'flex' }}>
-            <TypeTag type={asset.content.type} />
-            <TypeTag type={'design-only'} className={styles.designTag} />
+            <TypeTag type={asset.content.type} className={styles.tag} />
+            <TypeTag type={'design-only'} className={clsx(styles.designTag, styles.tag)} />
           </div>
         )
       }

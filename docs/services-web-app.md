@@ -28,16 +28,6 @@ access to private repos and increases API quotas. To set up a personal access to
 Setting this env var to "1" shows all libraries and assets in the web app even if they are indexed
 as `noIndex: true`.
 
-## Production Environment Variables
-
-### CARBON_INTERNAL_API_SECRET
-
-This environment variable is used to assert that internal requests being made to the log-request API
-are coming from a trusted source. The web-app middleware sends this value inside the request body
-and the log-request API compares it against its secret to authorize the request. This value can be
-ignored in "Dev" mode as it is not necessary. For "Standard" mode, a robust password-like value
-acting as the shared secret is set on the web-app.
-
 ## Dependencies Set up
 
 ### Run Mode
@@ -61,19 +51,45 @@ In Standard run mode, the application must run on https for IBMid authentication
 For such purposes, local certificates must be generated to use authentication in the web-app when
 running locally in Standard run mode. The
 [mkcert](https://github.com/FiloSottile/mkcert#installation) tool can help generate these
-certificates and is used implicitly by the `start-secure` node script of the web-app. With the tool
+certificates and is used implicitly by the `dev:secure` node script of the web-app. With the tool
 downloaded, the certificates will be automatically generated the next time you
 [run the app securely](#running-app-securely).
 
 _Note_: you may also _choose_ to use IBMid authentication when running on Dev mode, in that case the
 same steps apply
 
+## Running on Dev Mode
+
+To run the app, run the following command from the [web-app's directory](../services/web-app):
+
+`npm run dev` or, alternatively, run `npm run dev:clean` to run from a clean environment
+
+App will run on http://localhost:3000
+
 ## Running App Securely
 
-To run the app on https, it must be served from [server.js](../services/web-app/server.js). To do
-this, run the following command from the [web-app's directory](../services/web-app):
+To run the app on https, it must be served from
+[proxy-server.js](../services/web-app/proxy-server.js). To do this, run the following command from
+the [web-app's directory](../services/web-app):
 
-`npm run start-secure`
+`npm run dev:secure`
+
+The proxied version of the app will run on https://localhost:8443. You can still access the
+unproxied application at http://localhost:3000
+
+## Proxy Server
+
+In Standard mode, the app uses a proxy server to perform some middleware and routing
+functionalities, such as logging. These configurations are stored in `proxy-server.js` within the
+web-app folder. To run the app as close to the Standard mode as possible, see
+[Running App Securely](#running-app-securely). If you do not wish to run the app over https, you may
+choose to manually run the web-app and the proxy by running the following commands in separate
+terminals from the [web-app's directory](../services/web-app):
+
+`npm run dev` , `npm run start:proxy`
+
+The proxied version of the app will run on http://localhost:8080. You can still access the unproxied
+application at http://localhost:3000
 
 ## Protecting a Route
 

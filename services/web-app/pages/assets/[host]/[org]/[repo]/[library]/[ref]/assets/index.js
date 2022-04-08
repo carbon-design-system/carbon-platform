@@ -97,8 +97,8 @@ const LibrayAssets = ({ libraryData, params }) => {
         tags: <span className={styles.truncatedText}>{asset.content.tags.join('; ')}</span>,
         link: (
           <Link href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}>
-            <a>
-              <ArrowRight size={16} />
+            <a className={styles.rowAnchor}>
+              <ArrowRight size={16} className={styles.arrowIcon} />
             </a>
           </Link>
         )

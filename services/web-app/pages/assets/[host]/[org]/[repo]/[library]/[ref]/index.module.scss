@@ -7,7 +7,6 @@
 
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
-@use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 
@@ -33,110 +32,5 @@
   padding-right: spacing.$spacing-05;
   @include breakpoint.breakpoint(lg) {
     width: 50%;
-  }
-}
-
-// override Carbon ghost button styles
-.back {
-  display: block;
-  width: 100%;
-  padding: spacing.$spacing-05;
-  border: 0;
-  background: transparent;
-  color: theme.$link-primary;
-  cursor: pointer;
-  text-align: left;
-
-  &:hover {
-    background: transparent;
-    text-decoration: none;
-  }
-
-  &:active {
-    color: theme.$text-primary;
-  }
-
-  &:focus {
-    outline: 2px solid theme.$focus;
-    outline-offset: -2px;
-  }
-}
-
-// Specificity needed to overide Carbon button styles
-.back:not([disabled]) .back-icon {
-  position: relative;
-  // visually center align icon with text
-  top: spacing.$spacing-02;
-  margin-right: spacing.$spacing-03;
-  fill: currentColor;
-}
-
-.nav-heading {
-  @include type.type-style('label-01');
-
-  height: spacing.$spacing-11;
-  padding: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
-  border-top: 1px solid theme.$border-subtle;
-  border-bottom: 1px solid theme.$border-subtle;
-  color: theme.$text-secondary;
-}
-
-.nav-heading-selected {
-  position: relative;
-  background-color: theme.$background-selected;
-  color: theme.$text-primary;
-
-  &::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: spacing.$spacing-02;
-    height: 100%;
-    background-color: theme.$border-interactive;
-    content: '';
-  }
-}
-
-// future styles when we add heading link
-.nav-heading-link {
-  text-decoration: none;
-
-  &:hover {
-    background: theme.$background-hover;
-    color: theme.$text-primary;
-  }
-
-  &:active {
-    background: theme.$background-selected;
-  }
-
-  &:focus {
-    outline: 2px solid theme.$focus;
-    outline-offset: -2px;
-  }
-}
-
-@include breakpoint.breakpoint(lg) {
-  .library-nav-in {
-    animation: slide-in motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
-    transform: translateX(-256px);
-  }
-
-  .library-nav-out {
-    animation: slide-out motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
-    transform: translateX(0);
-  }
-
-  @keyframes slide-in {
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slide-out {
-    100% {
-      transform: translateX(-256px);
-    }
   }
 }

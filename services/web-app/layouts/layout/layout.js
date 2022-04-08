@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {
+  Button,
   Column,
   Grid,
   Header,
@@ -19,13 +20,16 @@ import {
   SkipToContent,
   Theme
 } from '@carbon/react'
+import { ArrowLeft } from '@carbon/react/icons'
+import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import Footer from '@/components/footer'
+import NavTree from '@/components/nav-tree'
 import NextLink from '@/components/next-link'
-import { globalNavData } from '@/data/nav-data'
+import { globalNavData, libraryNavData } from '@/data/nav-data'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './layout.module.scss'
@@ -37,6 +41,7 @@ export const LayoutProvider = ({ children }) => {
   const [showSideNav, setShowSideNav] = useState(true)
   const [librarySideNav, setLibrarySideNav] = useState(false)
   const [isSideNavExpanded, toggleSideNavExpanded] = useState(false)
+  const [libraryNavSlideOut, setLibraryNavSlideOut] = useState(false)
 
   const value = {
     navData,
@@ -46,7 +51,9 @@ export const LayoutProvider = ({ children }) => {
     librarySideNav,
     setLibrarySideNav,
     isSideNavExpanded,
-    toggleSideNavExpanded
+    toggleSideNavExpanded,
+    libraryNavSlideOut,
+    setLibraryNavSlideOut
   }
 
   return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
@@ -62,7 +69,9 @@ const Layout = ({ children }) => {
     librarySideNav,
     setLibrarySideNav,
     isSideNavExpanded,
-    toggleSideNavExpanded
+    toggleSideNavExpanded,
+    libraryNavSlideOut,
+    setLibraryNavSlideOut
   } = useContext(LayoutContext)
 
   const isLg = useMatchMedia(mediaQueries.lg)
@@ -83,10 +92,16 @@ const Layout = ({ children }) => {
       !router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]')
     )
     setLibrarySideNav(router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
-  }, [setShowSideNav, setLibrarySideNav, router.pathname])
+    setLibraryNavSlideOut(false)
+  }, [setShowSideNav, setLibrarySideNav, setLibraryNavSlideOut, router.pathname])
 
   const onClickSideNavExpand = () => {
     toggleSideNavExpanded(!isSideNavExpanded)
+  }
+
+  const backLink = () => {
+    setLibraryNavSlideOut(true)
+    setTimeout(() => router.push('/assets/libraries'), 150)
   }
 
   return (
@@ -188,6 +203,28 @@ const Layout = ({ children }) => {
                         })}
                       </SideNavItems>
                     </SideNav>
+
+                    {librarySideNav && (
+                      <SideNav
+                        aria-label="Library side navigation"
+                        expanded={isSideNavExpanded}
+                        className={clsx(
+                          styles.libraryNav,
+                          libraryNavSlideOut && styles.libraryNavOut
+                        )}
+                      >
+                        <Button kind="ghost" onClick={backLink} className={styles.back}>
+                          <ArrowLeft className={styles.backIcon} size={16} />
+                          Back to all Libraries
+                        </Button>
+                        <h2 className={clsx(styles.navHeading, styles.navHeadingSelected)}>
+                          {/* {seo.title} */}
+                          <br />
+                          {/* {`v${libraryData.content.version}`} */}
+                        </h2>
+                        <NavTree items={libraryNavData} label="Library navigation" />
+                      </SideNav>
+                    )}
                   </Theme>
                 </Column>
               )}

@@ -4,8 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Button, Column, Grid, SideNav, Theme } from '@carbon/react'
-import { ArrowLeft, ArrowRight, Events } from '@carbon/react/icons'
+import { Button, Column, Grid } from '@carbon/react'
+import { ArrowRight, Events } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
 import Link from 'next/link'
@@ -17,7 +17,6 @@ import { libraryPropTypes, paramsPropTypes } from 'types'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import ExternalLinks from '@/components/external-links'
-import NavTree from '@/components/nav-tree'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
@@ -30,8 +29,7 @@ import { getSlug } from '@/utils/slug'
 import styles from './index.module.scss'
 
 const Library = ({ libraryData, params }) => {
-  const { setNavData, librarySideNav, setLibrarySideNav, isSideNavExpanded } =
-    useContext(LayoutContext)
+  const { setNavData } = useContext(LayoutContext)
 
   const router = useRouter()
 
@@ -71,96 +69,14 @@ const Library = ({ libraryData, params }) => {
     }
   }
 
-  const backLink = () => {
-    setLibrarySideNav(false)
-    setTimeout(() => router.push('/assets/libraries'), 150)
-  }
-
-  const navItems = [
-    {
-      title: 'Assets',
-      path: '/assets/'
-    },
-    {
-      title: 'Design kits',
-      path: ''
-    },
-    {
-      title: 'Tutorials',
-      items: [
-        {
-          title: 'Tutorial 1',
-          items: [
-            {
-              title: 'Overview',
-              path: ''
-            },
-            {
-              title: '1. Installing Carbon',
-              path: ''
-            },
-            {
-              title: '2. Building pages',
-              path: ''
-            },
-            {
-              title: '3. Using APIs',
-              path: ''
-            },
-            {
-              title: '4. Creating components',
-              path: ''
-            },
-            {
-              title: '5. Deploying to cloud',
-              path: ''
-            },
-            {
-              title: 'Conclusion',
-              path: ''
-            }
-          ]
-        },
-        {
-          title: 'Tutorial 2',
-          path: ''
-        }
-      ]
-    },
-    {
-      title: 'Versions',
-      path: ''
-    },
-
-    {
-      title: 'Catalogs'
-    }
-  ]
-
   return (
     <>
       <NextSeo {...seo} />
-      <Theme theme="white">
-        <SideNav
-          aria-label="Library side navigation"
-          expanded={isSideNavExpanded}
-          className={clsx(
-            styles.libraryNav,
-            librarySideNav ? styles.libraryNavIn : styles.libraryNavOut
-          )}
-        >
-          <Button kind="ghost" onClick={backLink} className={styles.back}>
-            <ArrowLeft className={styles.backIcon} size={16} />
-            Back to all Libraries
-          </Button>
-          <h2 className={clsx(styles.navHeading, styles.navHeadingSelected)}>
+      {/* <h2 className={clsx(styles.navHeading, styles.navHeadingSelected)}>
             {seo.title}
             <br />
             {`v${libraryData.content.version}`}
-          </h2>
-          <NavTree items={navItems} label="Library navigation" />
-        </SideNav>
-      </Theme>
+          </h2> */}
       <Grid>
         <Column sm={4} md={8} lg={12}>
           <PageHeader title={seo.title} />

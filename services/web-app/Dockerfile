@@ -6,6 +6,7 @@ ARG CARBON_GITHUB_TOKEN
 ARG GITHUB_TOKEN=${CARBON_GITHUB_TOKEN}
 
 RUN npm -w services/web-app run build
+RUN npm -w services/web-app run bundle
 
 ###
 
@@ -20,11 +21,13 @@ ENV CARBON_RUN_MODE=STANDARD
 RUN apk add --no-cache python3 make g++
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-RUN CI=true npm install sharp
+RUN CI=true npm install concurrently sharp
 
+COPY --from=builder /ibm/services/web-app/dist/out.js dist/out.js
 COPY --from=builder /ibm/services/web-app/.next/standalone .next/standalone
 COPY --from=builder /ibm/services/web-app/public .next/standalone/services/web-app/public
 COPY --from=builder /ibm/services/web-app/.next/static .next/standalone/services/web-app/.next/static
 COPY --from=builder /ibm/services/web-app/.carbon .next/standalone/services/web-app/.carbon
 
-CMD ["node", ".next/standalone/services/web-app/server.js"]
+# Run NextJS app concurrently with the express proxy server
+CMD ["npx", "concurrently", "node .next/standalone/services/web-app/server.js", "node dist/out.js"]

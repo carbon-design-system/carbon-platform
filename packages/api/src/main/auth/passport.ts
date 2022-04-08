@@ -72,13 +72,12 @@ async function createCustomStrategy(): Promise<passport.Strategy> {
  * @returns {boolean} true if should use OpenId strategy
  */
 function shouldUseOpenIdStrategy(): boolean {
-  const isRunningSecurely = process.env.RUNNING_SECURELY === '1'
   const hasValidOpenIdValues =
     !!PASSPORT_STRATEGY_NAME &&
     PASSPORT_STRATEGY_NAME !== 'custom' &&
     !!CARBON_IBM_ISV_CLIENT_ID &&
     !!CARBON_IBM_ISV_CLIENT_SECRET
-  return getRunMode() === RunMode.Standard || (hasValidOpenIdValues && isRunningSecurely)
+  return getRunMode() === RunMode.Standard || hasValidOpenIdValues
 }
 
 /**

@@ -22,11 +22,15 @@
  */
 
 .subheading {
-  padding: (spacing.$spacing-11) 0 spacing.$spacing-11;
+  padding: (spacing.$spacing-11) spacing.$spacing-05 spacing.$spacing-11 0;
   @include type.type-style('fluid-heading-03');
 
   @include breakpoint.breakpoint-down(md) {
     padding-bottom: (spacing.$spacing-08 + spacing.$spacing-05);
+  }
+
+  @include breakpoint.breakpoint(xlg) {
+    padding-right: spacing.$spacing-06;
   }
 
   &--no-padding {
@@ -89,7 +93,12 @@
 }
 
 .truncated-text {
-  @include mixins.line-clamp(1);
+  @include breakpoint.breakpoint(lg) {
+    @include mixins.line-clamp(1);
+  }
+  @include breakpoint.breakpoint-down(md) {
+    white-space: nowrap;
+  }
 }
 
 .asset-row {
@@ -135,4 +144,11 @@
 
 .no-results-subheading {
   @include type.type-style('body-02');
+}
+
+.container {
+  // override carbon padding
+  :global(.cds--data-table-container) {
+    padding-top: 0;
+  }
 }

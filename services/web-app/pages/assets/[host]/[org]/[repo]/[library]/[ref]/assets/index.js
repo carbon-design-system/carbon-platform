@@ -94,7 +94,11 @@ const LibrayAssets = ({ libraryData, params }) => {
         name: asset.content.name,
         type: <TypeTag type={asset.content.type} className={styles.tag} />,
         status: <CatalogItemMeta asset={asset} properties={['status']} />,
-        tags: <span className={styles.truncatedText}>{asset.content.tags.join('; ')}</span>,
+        tags: (
+          <span className={styles.truncatedText}>
+            {asset.content.tags.join('; ').replaceAll('-', '‑')}
+          </span>
+        ),
         link: (
           <Link href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}>
             <a className={styles.rowAnchor}>
@@ -151,8 +155,8 @@ const LibrayAssets = ({ libraryData, params }) => {
               />
             </Column>
           </Grid>
-          <Grid condensed={!isLg} narrow={isLg}>
-            <Column sm={4} md={8} lg={12}>
+          <Grid condensed={!isLg} narrow={isLg} className={styles.container}>
+            <Column sm={4} md={8} lg={12} className={styles.assetsTableCol}>
               <DataTable rows={assets} headers={headerData}>
                 {({ rows, headers, getHeaderProps, getTableProps }) => (
                   <TableContainer>
@@ -167,17 +171,15 @@ const LibrayAssets = ({ libraryData, params }) => {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {/* I can't get this to work */}
-                        {/* eslint-disable multiline-ternary */}
-                        {rows.length > 0 ? (
+                        {rows.length > 0 &&
                           rows.map((row) => (
                             <TableRow key={row.id} className={styles.assetRow}>
                               {row.cells.map((cell) => (
                                 <TableCell key={cell.id}>{cell.value}</TableCell>
                               ))}
                             </TableRow>
-                          ))
-                        ) : (
+                          ))}
+                        {rows.length <= 0 && (
                           <TableRow>
                             <TableCell colSpan={5}>
                               <div className={styles.noResultsContainer}>

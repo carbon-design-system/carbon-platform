@@ -28,7 +28,7 @@ export const FeatureCard = ({ href, children, description, title }) => {
     if (isMd) return '16x9'
     return '2x1'
   }
-  const renderElement = () => (
+  return (
     <Grid>
       <Column sm={4} md={8} lg={12}>
         <Link href={href}>
@@ -50,8 +50,6 @@ export const FeatureCard = ({ href, children, description, title }) => {
       </Column>
     </Grid>
   )
-
-  return renderElement()
 }
 
 FeatureCard.propTypes = {

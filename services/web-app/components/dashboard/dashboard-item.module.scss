@@ -23,12 +23,12 @@
   transition: background motion.$duration-fast-02 motion.motion(standard, productive);
 
   &--border {
-    outline: 1px solid theme.$border-subtle;
+    outline: 1px solid theme.$background;
     outline-offset: 0;
   }
 
   &--spacer {
-    background: theme.$border-subtle;
+    background: theme.$background;
   }
 
   .anchor & {

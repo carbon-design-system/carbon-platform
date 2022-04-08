@@ -202,9 +202,9 @@ const PageContent = () => {
       <Grid className={styles.hightlightGrid}>
         <Column sm={4} md={8} lg={8} xlg={7}>
           <p className={clsx(styles.subheadingMedium)}>
-            The <span className={styles.bold}>asset discovery experience</span> is your efficient
-            pathway to accessing components, patterns, functions, templates, and other re-usable
-            resources across all IBM teams.
+            The <strong>asset discovery experience</strong> is your efficient pathway to accessing
+            components, patterns, functions, templates, and other re-usable resources across all IBM
+            teams.
           </p>
         </Column>
       </Grid>
@@ -354,9 +354,8 @@ const PageContent = () => {
         <Column sm={4} md={8} lg={8} xlg={7}>
           <p className={clsx(styles.subheadingLarge)}>
             By standardizing our assets and surfacing them, we can help our makers find assets that{' '}
-            <span className={styles.bold}>comply</span> with platform requirements, are{' '}
-            <span className={styles.bold}>convenient</span> to implement, and are{' '}
-            <span className={styles.bold}>consistent</span> with design patterns across the company.
+            <strong>comply</strong> with platform requirements, are <strong>convenient</strong> to
+            implement, and are <strong>consistent</strong> with design patterns across the company.
           </p>
         </Column>
       </Grid>

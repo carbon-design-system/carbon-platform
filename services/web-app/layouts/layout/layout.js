@@ -104,6 +104,8 @@ const Layout = ({ children }) => {
     setTimeout(() => router.push('/assets/libraries'), 150)
   }
 
+  const libraryActive = false // TODO set to true when on library page
+
   return (
     <HeaderContainer
       render={() => (
@@ -217,14 +219,22 @@ const Layout = ({ children }) => {
                           <ArrowLeft className={styles.backIcon} size={16} />
                           Back to all Libraries
                         </Button>
-                        <h2 className={clsx(styles.navHeading, styles.navHeadingSelected)}>
-                          {/* {seo.title} */}
+                        {/* TODO add link back to library if libraryActive=false */}
+                        <h2
+                          className={clsx(
+                            styles.navHeading,
+                            libraryActive && styles.navHeadingSelected
+                          )}
+                        >
+                          {/* TODO need title and version datta */}
+                          {/* {title} */}
                           <br />
-                          {/* {`v${libraryData.content.version}`} */}
+                          {/* {`v${version}`} */}
                         </h2>
                         <NavTree
                           items={libraryNavData}
-                          label="Library navigation" /* activeItem={TODO set nav item name} */
+                          label="Library navigation"
+                          activeItem={router.asPath.substring(router.asPath.lastIndexOf('/') + 1)}
                         />
                       </SideNav>
                     )}

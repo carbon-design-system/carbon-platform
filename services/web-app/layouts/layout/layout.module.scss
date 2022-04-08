@@ -20,20 +20,6 @@
   margin: spacing.$spacing-09 0 0;
 }
 
-// carbon override add border to sidenav
-.side-nav {
-  @include breakpoint.breakpoint(lg) {
-    border-right: 1px solid theme.$border-subtle-00;
-  }
-}
-
-.side-nav-heading {
-  padding-bottom: spacing.$spacing-03;
-  border-bottom: 1px solid theme.$layer-accent;
-  margin: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
-  @include type.type-style('label-01');
-}
-
 .header-name {
   height: 100%;
   @include breakpoint.breakpoint(lg) {
@@ -49,11 +35,64 @@
   }
 }
 
-.column-content {
-  @include breakpoint.breakpoint-down(md) {
-    // override carbon 0.5px left and right margins in condensed nested grid
-    margin-right: 0;
-    margin-left: 0;
+.side-nav-container {
+  @include breakpoint.breakpoint(lg) {
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 256px;
+    height: 100%;
+  }
+}
+
+// carbon override add border to sidenav
+.side-nav {
+  @include breakpoint.breakpoint(lg) {
+    border-right: 1px solid theme.$border-subtle-00;
+  }
+}
+
+.side-nav-heading {
+  padding-bottom: spacing.$spacing-03;
+  border-bottom: 1px solid theme.$layer-accent;
+  margin: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
+  @include type.type-style('label-01');
+}
+
+.library-side-nav {
+  @include breakpoint.breakpoint(lg) {
+    left: 256px;
+    transform: translateX(0);
+  }
+}
+
+@include breakpoint.breakpoint(lg) {
+  .library-nav-in {
+    position: absolute;
+    z-index: 3;
+    animation: slide-left motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
+    transform: translateX(0);
+  }
+
+  .library-nav-out {
+    position: absolute;
+    z-index: 3;
+    animation: slide-right motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
+    transform: translateX(-256px);
+  }
+
+  @keyframes slide-right {
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-left {
+    100% {
+      transform: translateX(-256px);
+    }
   }
 }
 
@@ -138,45 +177,10 @@
   }
 }
 
-@include breakpoint.breakpoint(lg) {
-  .nav-container {
-    position: fixed;
-    z-index: 3;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    width: 256px;
-    height: 100%;
-  }
-
-  .library-nav {
-    left: 256px;
-    transform: translateX(0);
-  }
-
-  .nav-container-library-nav-in {
-    position: absolute;
-    z-index: 3;
-    animation: slide-left motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
-    transform: translateX(0);
-  }
-
-  .nav-container-library-nav-out {
-    position: absolute;
-    z-index: 3;
-    animation: slide-right motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
-    transform: translateX(-256px);
-  }
-
-  @keyframes slide-right {
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slide-left {
-    100% {
-      transform: translateX(-256px);
-    }
+.column-content {
+  @include breakpoint.breakpoint-down(md) {
+    // override carbon 0.5px left and right margins in condensed nested grid
+    margin-right: 0;
+    margin-left: 0;
   }
 }

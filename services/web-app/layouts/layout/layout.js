@@ -152,16 +152,15 @@ const Layout = ({ children }) => {
             <Grid as="main" className={styles.main} id="main-content">
               {showSideNav && (
                 <Column sm={4} md={8} lg={4}>
-                  <section className={styles.navContainer}>
-                    {console.log(' 🐬 👀 librarySideNav', librarySideNav)}
+                  <section className={styles.sideNavContainer}>
                     <Theme theme="white">
                       <SideNav
                         aria-label="Side navigation"
                         expanded={isSideNavExpanded}
                         className={clsx(
                           styles.sideNav,
-                          librarySideNav && styles.navContainerLibraryNavIn,
-                          libraryNavSlideOut && styles.navContainerLibraryNavOut
+                          librarySideNav && styles.libraryNavIn,
+                          libraryNavSlideOut && styles.libraryNavOut
                         )}
                         aria-hidden={librarySideNav ? 'true' : 'false'}
                       >
@@ -220,9 +219,9 @@ const Layout = ({ children }) => {
                           aria-label="Library side navigation"
                           expanded={isSideNavExpanded}
                           className={clsx(
-                            styles.libraryNav,
-                            librarySideNav && styles.navContainerLibraryNavIn,
-                            libraryNavSlideOut && styles.navContainerLibraryNavOut
+                            styles.librarySideNav,
+                            librarySideNav && styles.libraryNavIn,
+                            libraryNavSlideOut && styles.libraryNavOut
                           )}
                         >
                           <Button kind="ghost" onClick={backLink} className={styles.back}>

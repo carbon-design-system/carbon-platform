@@ -104,7 +104,7 @@ const Layout = ({ children }) => {
     setTimeout(() => router.push('/assets/libraries'), 150)
   }
 
-  const libraryActive = false // TODO issue #523 set to true when on library page
+  // TODO issue #523 const libraryActive = false (set to true when on library page)
 
   return (
     <HeaderContainer
@@ -222,16 +222,13 @@ const Layout = ({ children }) => {
                         {/* TODO issue #523 add link back to library if libraryActive=false */}
                         <h2
                           className={clsx(
-                            styles.navHeading,
-                            libraryActive && styles.navHeadingSelected
+                            styles.navHeading /* TODO issue #523 ,libraryActive && styles.navHeadingSelected */
                           )}
                         >
                           {/* TODO issue #523 need title and version datta */}
-                          {/* {title} */}
                           Library name
                           <br />
                           v1.0.0
-                          {/* {`v${version}`} */}
                         </h2>
                         <NavTree
                           items={libraryNavData}

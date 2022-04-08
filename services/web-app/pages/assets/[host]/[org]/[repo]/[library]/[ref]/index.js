@@ -158,7 +158,10 @@ const Library = ({ libraryData, params }) => {
             <br />
             {`v${libraryData.content.version}`}
           </h2>
-          <NavTree items={navItems} label="Library navigation" />
+          <NavTree
+            items={navItems}
+            label="Library navigation" /* activeItem={TODO set nav item name} */
+          />
         </SideNav>
       </Theme>
       <Grid>

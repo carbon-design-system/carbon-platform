@@ -222,7 +222,10 @@ const Layout = ({ children }) => {
                           <br />
                           {/* {`v${libraryData.content.version}`} */}
                         </h2>
-                        <NavTree items={libraryNavData} label="Library navigation" />
+                        <NavTree
+                          items={libraryNavData}
+                          label="Library navigation" /* activeItem={TODO set nav item name} */
+                        />
                       </SideNav>
                     )}
                   </Theme>

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { AspectRatio, Column, Grid } from '@carbon/react'
-import { Events, Scales } from '@carbon/react/icons'
+import { Events } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
 import Link from 'next/link'

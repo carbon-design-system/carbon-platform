@@ -7,6 +7,10 @@
 import { Column, Grid, Link } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
 import {
+  Svg48Components,
+  Svg48Functions,
+  Svg48Patterns,
+  Svg48Templates,
   Svg64Components,
   Svg64Functions,
   Svg64Patterns,
@@ -220,7 +224,7 @@ const PageContent = () => {
             <Column className={dashboardStyles.column} sm={4} lg={6}>
               <DashboardItem
                 href="/assets/components"
-                aspectRatio={{ md: '4x3', lg: '3x2', xlg: '2x1' }}
+                aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
               >
                 <dl>
@@ -230,7 +234,8 @@ const PageContent = () => {
                     and ready to use when creating new experiences.
                   </dd>
                 </dl>
-                <Svg64Components className={styles.dashboardIcon} />
+                {!isLg && <Svg48Components className={styles.dashboardIcon} />}
+                {isLg && <Svg64Components className={styles.dashboardIcon} />}
                 <ArrowRight
                   className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
                   size={20}
@@ -239,7 +244,7 @@ const PageContent = () => {
             </Column>
             <Column className={dashboardStyles.column} sm={4} lg={6}>
               <DashboardItem
-                aspectRatio={{ md: '4x3', lg: '3x2', xlg: '2x1' }}
+                aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
                 href="/assets/patterns"
               >
@@ -249,7 +254,8 @@ const PageContent = () => {
                     Reusable combinations of components and content with sequences and flows.
                   </dd>
                 </dl>
-                <Svg64Patterns className={styles.dashboardIcon} />
+                {!isLg && <Svg48Patterns className={styles.dashboardIcon} />}
+                {isLg && <Svg64Patterns className={styles.dashboardIcon} />}
                 <ArrowRight
                   className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
                   size={20}
@@ -258,7 +264,7 @@ const PageContent = () => {
             </Column>
             <Column className={dashboardStyles.column} sm={4} lg={6}>
               <DashboardItem
-                aspectRatio={{ md: '4x3', lg: '3x2', xlg: '2x1' }}
+                aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
                 href="/assets/functions"
               >
@@ -268,7 +274,8 @@ const PageContent = () => {
                     Code that performs a single action and has no user interface.
                   </dd>
                 </dl>
-                <Svg64Functions className={styles.dashboardIcon} />
+                {!isLg && <Svg48Functions className={styles.dashboardIcon} />}
+                {isLg && <Svg64Functions className={styles.dashboardIcon} />}
                 <ArrowRight
                   className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
                   size={20}
@@ -277,7 +284,7 @@ const PageContent = () => {
             </Column>
             <Column className={dashboardStyles.column} sm={4} lg={6}>
               <DashboardItem
-                aspectRatio={{ md: '4x3', lg: '3x2', xlg: '2x1' }}
+                aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
                 href="/assets/templates"
               >
@@ -288,7 +295,8 @@ const PageContent = () => {
                     scenario.
                   </dd>
                 </dl>
-                <Svg64Templates className={styles.dashboardIcon} />
+                {!isLg && <Svg48Templates className={styles.dashboardIcon} />}
+                {isLg && <Svg64Templates className={styles.dashboardIcon} />}
                 <ArrowRight
                   className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
                   size={20}
@@ -321,7 +329,9 @@ const PageContent = () => {
       </FeatureCard>
       <Grid className={styles.hightlightGrid}>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>Featured bills</h2>
+          <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>
+            Featured libraries
+          </h2>
           <p className={styles.subheadingContent}>
             Libraries are the means to contribute, install, and use one or many assets in products
             and digital experiences.

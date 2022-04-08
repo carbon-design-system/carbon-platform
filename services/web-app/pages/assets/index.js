@@ -47,14 +47,14 @@ const PageContent = () => {
       title: 'For designers and developers:',
       description:
         // eslint-disable-next-line max-len
-        'A unified discovery experience will help designers and developers find and access components, patterns, functions and templates across all IBM teams.'
+        'A unified discovery experience helps designers and developers find and access components, patterns, functions and templates across all IBM teams.'
     },
     {
       header: 'Easier management',
       title: 'For contributors and maintainers:',
       description:
         // eslint-disable-next-line max-len
-        'A common schema will help PAL maintainers more easily manage their assets, keep content fresh in a live index, and add version control to their libraries.'
+        'A common schema helps PAL maintainers more easily manage their assets, keep content fresh in a live index, and add version control to their libraries.'
     }
   ]
 
@@ -174,7 +174,7 @@ const PageContent = () => {
         <Grid className={styles.hightlightGrid}>
           <Column sm={4} md={8} lg={8} xlg={7}>
             <h2 className={styles.subheading}>
-              The new Carbon Design System will provide a single place to find and use all open and
+              The new Carbon Design System provides a single place to find and use all open and
               inner source assets teams need to build consistent, scalable experiences with
               confidence.
             </h2>
@@ -364,8 +364,9 @@ const PageContent = () => {
         <Column sm={4} md={8} className={styles.contentColumn}>
           <h2 className={styles.contentHeading}>How PAL teams can prepare</h2>
           <p className={styles.contentCopy}>
-            Ensure your components, functions, patterns and templates are indexed in our unified
-            asset discovery experience by March 31st.
+            Ensure your components, patterns, and functions are indexed in our unified asset
+            discovery experience. To help you get started, our team will reach out to document your
+            library’s metadata in the structured format we have provided.
           </p>
           <p className={styles.contentCopy}>
             To make this happen, we ask that you follow the instructions below to document your

@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.89](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.88...@carbon-platform/web-app@0.1.89) (2022-04-09)
+
+
+### Features 🌟
+
+* **web-app:** request-proxy, minor additions ([9a6c107](https://github.com/carbon-design-system/carbon-platform/commit/9a6c107c9068b039ef622adb1fbe789e41ac2160))
+
+
+### Misc. 🔮
+
+* **web-app:** reinstall new node modules ([d4b61e5](https://github.com/carbon-design-system/carbon-platform/commit/d4b61e575e4a030ea95c5ad0134af16453259ff1))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** address code review commennts ([96b45d7](https://github.com/carbon-design-system/carbon-platform/commit/96b45d7bf35682d4c83efefa08599fb2f69cb547))
+* **web-app:** cr comments, consolidate secure-server with proxy-server ([c45ae8e](https://github.com/carbon-design-system/carbon-platform/commit/c45ae8e63c06a1d8c167ed583408ba4c3715b312))
+* **web-app:** linting issues ([891ca1f](https://github.com/carbon-design-system/carbon-platform/commit/891ca1fe6639bf64a1ba67c94e56a5e309576c2f))
+* **web-app:** update proxy server ([9353413](https://github.com/carbon-design-system/carbon-platform/commit/9353413964ea8c033ffafd1ca2018f2602938a59))
+
 ### [0.1.88](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.87...@carbon-platform/web-app@0.1.88) (2022-04-07)
 
 

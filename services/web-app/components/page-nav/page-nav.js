@@ -76,15 +76,12 @@ const PageNav = ({ contentRef, items = [] }) => {
   }
 
   const setActiveLink = (link) => {
-    link.classList.add(styles.linkActive)
-
     // Set url to current link as you scroll past
     history.replaceState(null, null, `#${link.dataset.id}`)
     setActiveItem(link.dataset.id)
   }
 
   const removeActiveLink = (link) => {
-    link.classList.remove(styles.linkActive)
     if (activeItem === link.dataset.id) {
       setActiveItem(null)
       history.replaceState(null, null, window.location.pathname + window.location.search)
@@ -93,9 +90,11 @@ const PageNav = ({ contentRef, items = [] }) => {
 
   const setSelectedItem = () => {
     const navLinks = Array.from(contentRef.current.querySelectorAll('[class^="page-nav_link"]'))
-    const sections = contentRef.current.querySelectorAll('[id]')
+    const sections = Array.from(contentRef.current.querySelectorAll('[id]'))?.filter((section) =>
+      items.some((item) => item.id === section.id)
+    )
 
-    let activeSession = null
+    let activeSection = null
     // Space between top of screen and where we want section to be "Active"
     const scrollDistance = 90
 
@@ -108,12 +107,12 @@ const PageNav = ({ contentRef, items = [] }) => {
         sectionTopDistance < scrollDistance &&
         sectionHeight + sectionTopDistance - scrollDistance > 0
       ) {
-        activeSession = section
+        activeSection = section
       }
     })
 
     navLinks.forEach((link) => {
-      if (activeSession?.id === link.dataset.id) {
+      if (activeSection?.id === link.dataset.id) {
         setActiveLink(link)
       } else {
         removeActiveLink(link)
@@ -121,7 +120,7 @@ const PageNav = ({ contentRef, items = [] }) => {
     })
   }
 
-  const linkClicked = (id) => {
+  const handleLinkClicked = (id) => {
     history.replaceState(null, null, `#${id}`)
     handleHashChange()
     contentRef.current.querySelector(`#${id}`)?.scrollIntoView(true)
@@ -137,9 +136,12 @@ const PageNav = ({ contentRef, items = [] }) => {
                 {item.id && (
                   <span
                     data-id={item.id}
-                    className={clsx(styles.link, activeItem === item.id ? styles.linkActive : '')}
-                    onClick={() => linkClicked(item.id)}
-                    onKeyDown={() => linkClicked(item.id)}
+                    className={clsx(
+                      styles.link,
+                      activeItem === item.id || (!activeItem && i === 0) ? styles.linkActive : ''
+                    )}
+                    onClick={() => handleLinkClicked(item.id)}
+                    onKeyDown={() => handleLinkClicked(item.id)}
                     role="link"
                     tabIndex="0"
                   >

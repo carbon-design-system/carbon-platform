@@ -171,7 +171,7 @@
   margin-top: spacing.$spacing-08;
   @include type.type-style('fluid-heading-03');
   @include breakpoint.breakpoint(md) {
-    margin-top: spacing.$spacing-08 + spacing.$spacing-06 + spacing.$spacing-02;
+    margin-top: spacing.$spacing-10 + spacing.$spacing-02;
   }
   @include breakpoint.breakpoint(lg) {
     padding-right: spacing.$spacing-07;

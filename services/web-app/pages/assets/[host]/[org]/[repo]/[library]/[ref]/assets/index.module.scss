@@ -92,11 +92,15 @@
   white-space: nowrap;
 }
 
+.asset-name {
+  white-space: nowrap;
+}
+
 .truncated-text {
   @include breakpoint.breakpoint(lg) {
     @include mixins.line-clamp(1);
   }
-  @include breakpoint.breakpoint-down(md) {
+  @include breakpoint.breakpoint-down(lg) {
     white-space: nowrap;
   }
 }

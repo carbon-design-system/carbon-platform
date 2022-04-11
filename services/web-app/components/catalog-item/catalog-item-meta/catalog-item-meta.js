@@ -23,19 +23,19 @@ const CatalogItemMeta = ({ asset, className, properties }) => {
     if (!name) return null
 
     return (
-      <>
+      <span className={styles.container}>
         <StatusIcon className={styles.metaIcon} status={statusKey} />
         <span>{name}</span>
-      </>
+      </span>
     )
   }
 
   const renderLicense = () => {
     return (
-      <>
+      <span className={styles.container}>
         <Scales className={styles.metaIcon} size={16} />
         <span>{getLicense(asset)}</span>
-      </>
+      </span>
     )
   }
 

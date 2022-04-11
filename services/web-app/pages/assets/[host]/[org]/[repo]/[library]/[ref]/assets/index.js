@@ -91,7 +91,7 @@ const LibrayAssets = ({ libraryData, params }) => {
     libraryData.assets?.sort(assetSortComparator(sort)).map((asset) => {
       const assetRow = {
         id: asset.content.id,
-        name: asset.content.name,
+        name: <span className={styles.assetName}>{asset.content.name}</span>,
         type: <TypeTag type={asset.content.type} className={styles.tag} />,
         status: <CatalogItemMeta asset={asset} properties={['status']} />,
         tags: (

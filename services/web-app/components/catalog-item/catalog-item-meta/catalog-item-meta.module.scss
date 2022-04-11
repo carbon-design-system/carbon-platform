@@ -15,6 +15,10 @@
   @include type.type-style('label-01');
 }
 
+.container {
+  white-space: nowrap;
+}
+
 .meta-item {
   display: inline;
 

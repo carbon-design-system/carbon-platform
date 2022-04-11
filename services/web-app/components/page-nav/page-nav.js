@@ -120,7 +120,7 @@ const PageNav = ({ contentRef, items = [] }) => {
     })
   }
 
-  const handleLinkClicked = (id) => {
+  const handleLinkClick = (id) => {
     history.replaceState(null, null, `#${id}`)
     handleHashChange()
     contentRef.current.querySelector(`#${id}`)?.scrollIntoView(true)
@@ -140,8 +140,8 @@ const PageNav = ({ contentRef, items = [] }) => {
                       styles.link,
                       activeItem === item.id || (!activeItem && i === 0) ? styles.linkActive : ''
                     )}
-                    onClick={() => handleLinkClicked(item.id)}
-                    onKeyDown={() => handleLinkClicked(item.id)}
+                    onClick={() => handleLinkClick(item.id)}
+                    onKeyDown={() => handleLinkClick(item.id)}
                     role="link"
                     tabIndex="0"
                   >

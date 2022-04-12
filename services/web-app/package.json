@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.1.87",
+  "version": "0.1.89",
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
@@ -11,15 +11,14 @@
   },
   "scripts": {
     "build": "npm run clean && next build",
+    "bundle": "node esbuild.js",
     "clean": "rimraf .carbon public/.carbon .next .dev",
-    "clean:data": "rimraf public/data",
     "dev": "next dev",
-    "dev:clean": "npm run clean && next dev",
-    "dev:secure": "sh ./scripts/create-local-certificates.sh && RUNNING_SECURELY=1 NODE_TLS_REJECT_UNAUTHORIZED=0 node secure-dev-server.js",
-    "dev:secure:clean": "npm run clean && npm run dev:secure",
-    "lint": "next lint",
+    "dev:clean": "npm run clean && npm run dev",
+    "dev:secure": "sh scripts/create-local-certificates.sh && concurrently 'npm run dev' 'RUNNING_SECURELY=1 npm run start:proxy'",
     "service:build": "npm run build",
-    "start": "next start",
+    "start": "concurrently 'npm run start:proxy' 'next start'",
+    "start:proxy": "node proxy-server.js",
     "test": "echo 'No tests defined yet!'"
   },
   "bugs": {
@@ -35,10 +34,13 @@
     "cache-manager": "^3.6.0",
     "cache-manager-fs-hash": "^1.0.0",
     "clsx": "^1.1.1",
+    "concurrently": "^7.1.0",
     "cookie-parser": "^1.4.6",
     "css-loader": "^6.7.1",
+    "express": "^4.17.3",
     "express-session": "^1.17.2",
     "fs-extra": "^10.0.1",
+    "http-proxy-middleware": "^2.0.4",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
     "minimatch": "^5.0.1",
@@ -51,6 +53,7 @@
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
     "sass": "^1.49.9",
-    "slugify": "^1.6.5"
+    "slugify": "^1.6.5",
+    "uuid": "^8.3.2"
   }
 }

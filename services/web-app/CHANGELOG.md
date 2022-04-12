@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.89](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.88...@carbon-platform/web-app@0.1.89) (2022-04-09)
+
+
+### Features 🌟
+
+* **web-app:** request-proxy, minor additions ([9a6c107](https://github.com/carbon-design-system/carbon-platform/commit/9a6c107c9068b039ef622adb1fbe789e41ac2160))
+
+
+### Misc. 🔮
+
+* **web-app:** reinstall new node modules ([d4b61e5](https://github.com/carbon-design-system/carbon-platform/commit/d4b61e575e4a030ea95c5ad0134af16453259ff1))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** address code review commennts ([96b45d7](https://github.com/carbon-design-system/carbon-platform/commit/96b45d7bf35682d4c83efefa08599fb2f69cb547))
+* **web-app:** cr comments, consolidate secure-server with proxy-server ([c45ae8e](https://github.com/carbon-design-system/carbon-platform/commit/c45ae8e63c06a1d8c167ed583408ba4c3715b312))
+* **web-app:** linting issues ([891ca1f](https://github.com/carbon-design-system/carbon-platform/commit/891ca1fe6639bf64a1ba67c94e56a5e309576c2f))
+* **web-app:** update proxy server ([9353413](https://github.com/carbon-design-system/carbon-platform/commit/9353413964ea8c033ffafd1ca2018f2602938a59))
+
+### [0.1.88](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.87...@carbon-platform/web-app@0.1.88) (2022-04-07)
+
+
+### Features 🌟
+
+* add component ([8f4ebed](https://github.com/carbon-design-system/carbon-platform/commit/8f4ebed110f3f5b6e37cc26d6c6eed609a4312e2))
+* placeholder mdx components ([ed1a175](https://github.com/carbon-design-system/carbon-platform/commit/ed1a175f19f224a3509ed6da7f1412a6fb336f93))
+
+
+### Bug Fixes 🐛
+
+* add border to side nav ([a4c2a05](https://github.com/carbon-design-system/carbon-platform/commit/a4c2a0556b264ee3b61346e65cc6e28fb48063e6))
+* hide nav border tablet mobile ([e0a7a26](https://github.com/carbon-design-system/carbon-platform/commit/e0a7a26e661f8f7d5a67efe92d965470f572a7ca))
+* udpate type token ([c6909dc](https://github.com/carbon-design-system/carbon-platform/commit/c6909dc07c68e75d2a36ed810aaa7bd3c1f30946))
+* update type tokens to v11 ([e4cb9ae](https://github.com/carbon-design-system/carbon-platform/commit/e4cb9ae13c696f23b0911d7088d9d79bd3ead721))
+
 ### [0.1.87](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.86...@carbon-platform/web-app@0.1.87) (2022-04-05)
 
 

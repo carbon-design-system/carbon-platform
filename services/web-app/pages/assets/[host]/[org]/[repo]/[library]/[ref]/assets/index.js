@@ -138,7 +138,7 @@ const LibrayAssets = ({ libraryData, params }) => {
           </Grid>
           <h2 className={styles.contentHeading}>All library assets</h2>
           <Grid condensed={!isLg} narrow={isLg}>
-            <Column className={styles.sortColumn} sm={4} md={4} lg={5}>
+            <Column className={styles.sortColumn} sm={4} md={4} lg={4}>
               <Dropdown
                 id="catalog-sort"
                 className={styles.dropdown}

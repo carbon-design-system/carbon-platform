@@ -6,38 +6,55 @@
  */
 import { Column, Grid, Link } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
+import {
+  Svg48Components,
+  Svg48Functions,
+  Svg48Patterns,
+  Svg48Templates,
+  Svg64Components,
+  Svg64Functions,
+  Svg64Patterns,
+  Svg64Templates
+} from '@carbon-platform/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import { Dashboard, DashboardItem } from '@/components/dashboard'
+import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
+import { FeatureCard } from '@/components/feature-card/feature-card'
 import Hero from '@/components/hero'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
-import ReleaseOneImg from './index/images/carbon-next-v0.1.png'
-import ReleaseTwoImg from './index/images/carbon-next-v0.2.png'
-import ReleaseThreeImg from './index/images/carbon-next-v1.0.png'
-import ReleaseFourImg from './index/images/carbon-next-v1.1.png'
-import ReleaseFiveImg from './index/images/carbon-next-v2.0.png'
-import HeroImg from './index/images/hero-illo.png'
+import ChartImg from './index/images/chart-banner.png'
+import ReactImg from './index/images/react-banner.png'
+import ReleaseOneImg from './index/images/roadmap-v0.1.png'
+import ReleaseTwoImg from './index/images/roadmap-v0.2.png'
+import ReleaseThreeImg from './index/images/roadmap-v1.0.png'
+import ReleaseFourImg from './index/images/roadmap-v1.1.png'
+import ReleaseFiveImg from './index/images/roadmap-v2.0.png'
 import styles from './index/index.module.scss'
 
 const PageContent = () => {
+  const isLg = useMatchMedia(mediaQueries.lg)
+
   const highlights = [
     {
       header: 'Better discoverability',
       title: 'For designers and developers:',
       description:
         // eslint-disable-next-line max-len
-        'A unified discovery experience will help designers and developers find and access components, patterns, functions and templates across all IBM teams.'
+        'A unified discovery experience helps designers and developers find and access components, patterns, functions and templates across all IBM teams.'
     },
     {
       header: 'Easier management',
       title: 'For contributors and maintainers:',
       description:
         // eslint-disable-next-line max-len
-        'A common schema will help PAL maintainers more easily manage their assets, keep content fresh in a live index, and add version control to their libraries.'
+        'A common schema helps PAL maintainers more easily manage their assets, keep content fresh in a live index, and add version control to their libraries.'
     }
   ]
 
@@ -153,25 +170,14 @@ const PageContent = () => {
 
   return (
     <div className={styles.container}>
-      <Grid>
-        <Column sm={4} md={8} lg={8} xlg={7}>
-          <h2 className={styles.subheading}>
-            The new Carbon Design System will provide a single place to find and use all open and
-            inner source assets teams need to build consistent, scalable experiences with
-            confidence.
-          </h2>
-        </Column>
-      </Grid>
       <div className={styles.highlights}>
         <Grid className={styles.hightlightGrid}>
-          <Column sm={4}>
-            <h3 className={styles.highlightHeading}>This release</h3>
-          </Column>
-          <Column sm={4} lg={8} xlg={7}>
-            <p className={clsx(styles.highlightDescription, styles.highlightDescriptionBig)}>
-              Our first release is the start to standardizing our community’s assets and surfacing
-              them in one shared catalog.
-            </p>
+          <Column sm={4} md={8} lg={8} xlg={7}>
+            <h2 className={styles.subheading}>
+              The new Carbon Design System provides a single place to find and use all open and
+              inner source assets teams need to build consistent, scalable experiences with
+              confidence.
+            </h2>
           </Column>
         </Grid>
         {highlights.map((highlight, i) => (
@@ -193,12 +199,173 @@ const PageContent = () => {
           </Grid>
         ))}
       </div>
+      <Grid className={styles.hightlightGrid}>
+        <Column sm={4} md={8} lg={8} xlg={7}>
+          <p className={clsx(styles.subheadingMedium)}>
+            The <strong>asset discovery experience</strong> is your efficient pathway to accessing
+            components, patterns, functions, templates, and other re-usable resources across all IBM
+            teams.
+          </p>
+        </Column>
+      </Grid>
+      <Grid className={styles.hightlightGrid}>
+        <Column sm={4} md={8} lg={8} xlg={7}>
+          <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>Asset catalog</h2>
+          <p className={styles.subheadingContent}>
+            Asset catalogs allow you to search across all open and inner source resources and apply
+            complex filters for any scenario—so that you can apply other teams’ knowledge to your
+            own work.
+          </p>
+        </Column>
+      </Grid>
+      <Grid className={styles.dashboard}>
+        <Column sm={4} md={8} lg={{ start: 1, span: 12 }}>
+          <Dashboard>
+            <Column className={dashboardStyles.column} sm={4} lg={6}>
+              <DashboardItem
+                href="/assets/components"
+                aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+              >
+                <dl>
+                  <dt className={styles.dashboardLabel}>Components</dt>
+                  <dd className={styles.dashboardContent}>
+                    Building blocks (such as buttons, links, and dropdown menus) that are pre-built
+                    and ready to use when creating new experiences.
+                  </dd>
+                </dl>
+                {!isLg && <Svg48Components className={styles.dashboardIcon} />}
+                {isLg && <Svg64Components className={styles.dashboardIcon} />}
+                <ArrowRight
+                  className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
+                  size={20}
+                />
+              </DashboardItem>
+            </Column>
+            <Column className={dashboardStyles.column} sm={4} lg={6}>
+              <DashboardItem
+                aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+                href="/assets/patterns"
+              >
+                <dl>
+                  <dt className={styles.dashboardLabel}>Patterns</dt>
+                  <dd className={styles.dashboardContent}>
+                    Reusable combinations of components and content with sequences and flows.
+                  </dd>
+                </dl>
+                {!isLg && <Svg48Patterns className={styles.dashboardIcon} />}
+                {isLg && <Svg64Patterns className={styles.dashboardIcon} />}
+                <ArrowRight
+                  className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
+                  size={20}
+                />
+              </DashboardItem>
+            </Column>
+            <Column className={dashboardStyles.column} sm={4} lg={6}>
+              <DashboardItem
+                aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+                href="/assets/functions"
+              >
+                <dl>
+                  <dt className={styles.dashboardLabel}>Functions</dt>
+                  <dd className={styles.dashboardContent}>
+                    Code that performs a single action and has no user interface.
+                  </dd>
+                </dl>
+                {!isLg && <Svg48Functions className={styles.dashboardIcon} />}
+                {isLg && <Svg64Functions className={styles.dashboardIcon} />}
+                <ArrowRight
+                  className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
+                  size={20}
+                />
+              </DashboardItem>
+            </Column>
+            <Column className={dashboardStyles.column} sm={4} lg={6}>
+              <DashboardItem
+                aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
+                border={['sm', 'md', 'lg', 'xlg']}
+                href="/assets/templates"
+              >
+                <dl>
+                  <dt className={styles.dashboardLabel}>Templates</dt>
+                  <dd className={styles.dashboardContent}>
+                    Templates specify order and placement of patterns and components for a given
+                    scenario.
+                  </dd>
+                </dl>
+                {!isLg && <Svg48Templates className={styles.dashboardIcon} />}
+                {isLg && <Svg64Templates className={styles.dashboardIcon} />}
+                <ArrowRight
+                  className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
+                  size={20}
+                />
+              </DashboardItem>
+            </Column>
+          </Dashboard>
+        </Column>
+      </Grid>
+      <Grid className={styles.hightlightGrid}>
+        <Column sm={4} md={8} lg={8} xlg={7}>
+          <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>Asset collections</h2>
+          <p className={styles.subheadingContent}>
+            Collections allow you to explore curated lists of assets, like a playlist, so that you
+            can easily locate your relevant resources when you come back.
+          </p>
+        </Column>
+      </Grid>
+      <FeatureCard
+        href="/assets/data-visualization"
+        title="Data visualization"
+        description="A collection of reusable charting components to build websites and user interfaces."
+      >
+        <Image
+          alt={'image'}
+          src={ChartImg}
+          layout={isLg ? 'responsive' : 'fill'}
+          objectFit="cover"
+        />
+      </FeatureCard>
+      <Grid className={styles.hightlightGrid}>
+        <Column sm={4} md={8} lg={8} xlg={7}>
+          <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>
+            Featured libraries
+          </h2>
+          <p className={styles.subheadingContent}>
+            Libraries are the means to contribute, install, and use one or many assets in products
+            and digital experiences.
+          </p>
+        </Column>
+      </Grid>
+      <FeatureCard
+        href="/assets/libraries"
+        title="Carbon React library"
+        description="A library of reusable React components to build websites and user interfaces."
+      >
+        <Image
+          alt={'image'}
+          src={ReactImg}
+          layout={isLg ? 'responsive' : 'fill'}
+          objectFit="cover"
+        />
+      </FeatureCard>
+      <Grid className={clsx(styles.hightlightGrid, styles.border)}>
+        <Column sm={4} md={8} lg={8} xlg={7}>
+          <p className={clsx(styles.subheadingLarge)}>
+            By standardizing our assets and surfacing them, we can help our makers find assets that{' '}
+            <strong>comply</strong> with platform requirements, are <strong>convenient</strong> to
+            implement, and are <strong>consistent</strong> with design patterns across the company.
+          </p>
+        </Column>
+      </Grid>
       <Grid>
         <Column sm={4} md={8} className={styles.contentColumn}>
           <h2 className={styles.contentHeading}>How PAL teams can prepare</h2>
           <p className={styles.contentCopy}>
-            Ensure your components, functions, patterns and templates are indexed in our unified
-            asset discovery experience by March 31st.
+            Ensure your components, patterns, and functions are indexed in our unified asset
+            discovery experience. To help you get started, our team will reach out to document your
+            library’s metadata in the structured format we have provided.
           </p>
           <p className={styles.contentCopy}>
             To make this happen, we ask that you follow the instructions below to document your
@@ -295,13 +462,7 @@ const Index = () => {
   return (
     <>
       <NextSeo {...seo} />
-      <Hero
-        title="Building the future of our design system together"
-        // eslint-disable-next-line max-len
-        description="IBM teams collectively maintain thousands of reusable assets, such as components and patterns, that enable us to deliver better experiences, faster. But for designers and developers, it can be challenging to find the right assets that comply with platform requirements, are convenient to implement, and are consistent with design patterns across the company."
-        image={HeroImg}
-        imageAlt="Carbon Next components"
-      />
+      <Hero title="Find assets across teams—and build with confidence." section="assets" />
       <PageContent />
     </>
   )

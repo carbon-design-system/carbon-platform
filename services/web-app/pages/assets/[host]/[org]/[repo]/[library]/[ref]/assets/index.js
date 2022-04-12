@@ -127,10 +127,7 @@ const LibrayAssets = ({ libraryData, params }) => {
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <PageHeader title={seo.title} />
         </Column>
-        <Column sm={4} md={8} lg={4}>
-          {/* In page nav  */}
-        </Column>
-        <Column sm={4} md={8} lg={12}>
+        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <Grid>
             <Column sm={4} md={8} lg={8}>
               <h2 className={styles.subheading}>{description}</h2>

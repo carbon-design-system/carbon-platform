@@ -6,7 +6,7 @@
  */
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, LI, OL, P, UL } from '@/components/markdown'
-import PageDescription from '@/components/PageDescription'
+import PageDescription from '@/components/page-description'
 
 const components = {
   h1: H1,

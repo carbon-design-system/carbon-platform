@@ -5,14 +5,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/type' as type;
+
 .page-description {
-  --space: #{$spacing-06};
+  --space: #{spacing.$spacing-06};
 
   margin-top: var(--space);
 }
 
 .page-description p {
-  @include type-style('expressive-heading-03', true);
+  @include type.type-style('fluid-heading-03', true);
 }
 
 .page-description > * + * {

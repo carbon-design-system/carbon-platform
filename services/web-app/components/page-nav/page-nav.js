@@ -50,7 +50,7 @@ const PageNav = ({ contentRef, items = [] }) => {
     const sectionBoundingClientRect = section.getBoundingClientRect()
     const sectionTopDistance = sectionBoundingClientRect.top
     // Space between top of screen and where we want section to be "active"
-    const scrollDistance = 90
+    const scrollDistance = 120
     const sectionIsAtTheTopOfTheView =
       sectionTopDistance < scrollDistance && sectionHeight + sectionTopDistance - scrollDistance > 0
 
@@ -96,7 +96,7 @@ const PageNav = ({ contentRef, items = [] }) => {
 
     let activeSection = null
     // Space between top of screen and where we want section to be "Active"
-    const scrollDistance = 90
+    const scrollDistance = 120
 
     sections.forEach((section) => {
       const sectionHeight = section.offsetHeight

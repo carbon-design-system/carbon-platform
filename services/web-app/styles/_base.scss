@@ -20,7 +20,7 @@ html {
   --scrollbar-width: 0px;
 
   /* nav height + default top spacing */
-  --scroll-padding: #{calc(spacing.$spacing-09 + spacing.$spacing-06)};
+  --scroll-padding: #{calc(spacing.$spacing-09 + spacing.$spacing-11)};
 
   scroll-behavior: smooth;
   scroll-padding-top: var(--scroll-padding);

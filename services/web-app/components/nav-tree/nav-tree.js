@@ -15,6 +15,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
   const toggle = function () {
     return null
   }
+  console.log('test')
 
   function renderTree({ items }) {
     if (!items) {

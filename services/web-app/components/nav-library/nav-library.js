@@ -17,7 +17,7 @@ import { LayoutContext } from '@/layouts/layout'
 
 import styles from './nav-library.module.scss'
 
-const NavMain = () => {
+const NavLibrary = () => {
   const router = useRouter()
   const { librarySideNav, isSideNavExpanded, libraryNavSlideOut, setLibraryNavSlideOut } =
     useContext(LayoutContext)
@@ -66,4 +66,4 @@ const NavMain = () => {
   )
 }
 
-export default NavMain
+export default NavLibrary

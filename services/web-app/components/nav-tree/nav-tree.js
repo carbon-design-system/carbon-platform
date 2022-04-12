@@ -16,6 +16,25 @@ const NavTree = ({ activeItem, items = [], label }) => {
     return null
   }
 
+  function renderTree({ items }) {
+    if (!items) {
+      return
+    }
+    return items.map(({ items, label, value, id, key, onClick, onToggle, ...nodeProps }) => (
+      <TreeNode
+        label={nodeProps.title}
+        value={nodeProps.title}
+        id={nodeProps.title.toLowerCase().replace(/\s/g, '')}
+        key={nodeProps.title}
+        onToggle={toggle}
+        onClick={() => nodeProps.path && router.push(nodeProps.path)}
+        {...nodeProps}
+      >
+        {renderTree({ items: items, label, value, id, key, onClick, onToggle })}
+      </TreeNode>
+    ))
+  }
+
   return (
     <TreeView
       className={styles.container}
@@ -24,40 +43,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
       active={activeItem}
       selected={[activeItem]}
     >
-      {items.map((item) => (
-        <TreeNode
-          label={item.title}
-          value={item.title}
-          id={item.title.toLowerCase().replace(/\s/g, '')}
-          key={item.title}
-          onToggle={toggle}
-          onClick={() => item.path && router.push(item.path)}
-        >
-          {item.items &&
-            item.items.map((item2) => (
-              <TreeNode
-                label={item2.title}
-                value={item2.title}
-                id={item2.title.toLowerCase().replace(/\s/g, '')}
-                key={item2.title}
-                onToggle={toggle}
-                onClick={() => item2.path && router.push(item2.path)}
-              >
-                {item2.items &&
-                  item2.items.map((item3) => (
-                    <TreeNode
-                      label={item3.title}
-                      value={item3.title}
-                      id={item3.title.toLowerCase().replace(/\s/g, '')}
-                      key={item3.title}
-                      onToggle={toggle}
-                      onClick={() => item3.path && router.push(item3.path)}
-                    />
-                  ))}
-              </TreeNode>
-            ))}
-        </TreeNode>
-      ))}
+      {renderTree({ items })}
     </TreeView>
   )
 }

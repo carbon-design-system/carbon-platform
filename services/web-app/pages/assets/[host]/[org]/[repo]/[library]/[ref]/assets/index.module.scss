@@ -12,11 +12,6 @@
 
 @use '~styles/mixins' as mixins;
 
-.content-heading {
-  margin-bottom: spacing.$spacing-06;
-  @include type.type-style('fluid-heading-04');
-}
-
 /**
  * Subheading
  */

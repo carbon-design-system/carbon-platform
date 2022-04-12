@@ -83,7 +83,7 @@ const LibrayAssets = ({ libraryData, params }) => {
   const { description } = libraryData.content
 
   const seo = {
-    title: 'Assets',
+    title: 'Library assets',
     description
   }
 
@@ -136,7 +136,6 @@ const LibrayAssets = ({ libraryData, params }) => {
               <h2 className={styles.subheading}>{description}</h2>
             </Column>
           </Grid>
-          <h2 className={styles.contentHeading}>All library assets</h2>
           <Grid condensed={!isLg} narrow={isLg}>
             <Column className={styles.sortColumn} sm={4} md={4} lg={4}>
               <Dropdown

@@ -9,8 +9,12 @@
 @use '@carbon/react/scss/spacing' as spacing;
 
 .dashboard {
-  margin-top: spacing.$spacing-11;
+  margin-top: spacing.$spacing-07;
   margin-bottom: spacing.$spacing-07;
+
+  @include breakpoint.breakpoint(lg) {
+    margin-top: spacing.$spacing-11;
+  }
 }
 
 .sponsor-icon {

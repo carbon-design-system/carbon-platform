@@ -7,6 +7,7 @@
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, LI, OL, P, UL } from '@/components/markdown'
 import PageDescription from '@/components/page-description'
+import Title from '@/components/title'
 
 const Placeholder = ({ name, children }) => {
   return (
@@ -41,6 +42,7 @@ const components = {
   a: Link,
   blockquote: Blockquote,
   PageDescription: PageDescription,
+  Title: Title,
   /* Gatsby theme components */
   AnchorLinks: ({ children }) => <Placeholder name="AnchorLinks">{children}</Placeholder>,
   AnchorLink: ({ children }) => <Placeholder name="AnchorLink">{children}</Placeholder>,
@@ -59,7 +61,7 @@ const components = {
   SquareCard: ({ children }) => <Placeholder name="SquareCard">{children}</Placeholder>,
   Tabs: ({ children }) => <Placeholder name="Tabs">{children}</Placeholder>,
   Tab: ({ children }) => <Placeholder name="Tab">{children}</Placeholder>,
-  Title: ({ children }) => <Placeholder name="Title">{children}</Placeholder>,
+
   InlineNotification: ({ children }) => (
     <Placeholder name="InlineNotification">{children}</Placeholder>
   ),

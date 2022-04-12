@@ -6,13 +6,13 @@
  */
 
 import { Column, Grid } from '@carbon/react'
-import cx from 'classnames'
+import clsx from 'clsx'
 
 import styles from './page-description.module.scss'
 
 const PageDescription = ({ children, className, ...rest }) => (
   <Grid>
-    <Column sm={4} md={6} lg={8} className={cx(styles.pageDescription, className)} {...rest}>
+    <Column sm={4} md={6} lg={8} className={clsx(styles.pageDescription, className)} {...rest}>
       {children}
     </Column>
   </Grid>

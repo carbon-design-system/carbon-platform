@@ -18,12 +18,10 @@ const carbonChartsGroup = {
   canonical: 'carbon-charts'
 }
 
-/**
 const carbonComponentsGroup = {
   base: 'carbon-styles',
   canonical: 'carbon-react'
 }
-*/
 
 const ibmdotcomGroup = {
   base: 'ibmdotcom-styles',
@@ -93,12 +91,12 @@ const prodLibraries = {
     // group: carbonComponentsGroup
   },
   // 'carbon-react': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
   //   repo: 'carbon',
-  //   path: '/packages/carbon-react',
+  //   path: '/packages/react',
   //   sponsor: 'carbon',
-  //   group: carbonComponentsGroup
+  //   group: carbonComponentsGroup,
   // },
   // 'carbon-angular': {
   //   host: 'github.ibm.com',
@@ -392,9 +390,17 @@ const devLibraries = {
     org: 'carbon-design-system',
     repo: 'carbon',
     path: '/packages/styles',
-    sponsor: 'carbon'
-    // waiting for carbon react to be indexed
-    // group: carbonComponentsGroup
+    sponsor: 'carbon',
+    group: carbonComponentsGroup
+  },
+  'carbon-react': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon',
+    path: '/packages/react',
+    sponsor: 'carbon',
+    group: carbonComponentsGroup,
+    ref: '451-index-carbon-react'
   },
   'ibmdotcom-react': {
     host: 'github.com',

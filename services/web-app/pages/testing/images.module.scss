@@ -1,0 +1,30 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/* stylelint-disable declaration-property-value-disallowed-list */
+/* stylelint-disable declaration-no-important */
+@use '@carbon/react/scss/spacing' as spacing;
+
+.grid {
+  margin: spacing.$spacing-07 0;
+  row-gap: spacing.$spacing-07;
+}
+
+.image-container {
+  width: 100%;
+
+  > span {
+    position: unset !important;
+  }
+
+  .image {
+    position: relative !important;
+    width: 100% !important;
+    height: unset !important;
+    object-fit: contain;
+  }
+}

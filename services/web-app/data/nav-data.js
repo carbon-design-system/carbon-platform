@@ -16,6 +16,10 @@ export const globalNavData = [
   {
     path: '/assets',
     title: 'Assets'
+  },
+  {
+    path: '/testing/images',
+    title: 'Images'
   }
 ]
 

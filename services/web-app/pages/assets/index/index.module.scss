@@ -52,16 +52,76 @@
 
 .subheading {
   padding: spacing.$spacing-10 0;
-  @include type.type-style('expressive-heading-04');
+  @include type.type-style('fluid-heading-04');
   @include breakpoint.breakpoint(md) {
     padding-right: spacing.$spacing-06;
   }
   @include breakpoint.breakpoint(lg) {
     padding-right: spacing.$spacing-05;
   }
-  @include breakpoint.breakpoint(xlg) {
-    padding-right: spacing.$spacing-06;
+
+  &--no-padding {
+    padding: 0;
   }
+}
+
+.subheading-medium {
+  padding: spacing.$spacing-10 0;
+  @include type.type-style('fluid-heading-04');
+}
+
+.subheading-large {
+  padding: spacing.$spacing-11 0 spacing.$spacing-05;
+  @include type.type-style('fluid-heading-04');
+}
+
+.subheading-content {
+  @include type.type-style('body-long-02');
+
+  padding: spacing.$spacing-06 0;
+}
+
+/**
+ * Dashboard
+ */
+
+.dashboard {
+  padding-bottom: spacing.$spacing-10;
+}
+
+.dashboard-label {
+  @include type.type-style('expressive-heading-03');
+
+  padding-bottom: spacing.$spacing-05;
+
+  color: theme.$text-primary;
+}
+
+.dashboard-content {
+  @include type.type-style('body-long-01');
+
+  width: 75%;
+
+  color: theme.$text-primary;
+}
+
+.dashboard-link {
+  color: theme.$link-primary;
+}
+
+.dashboard-icon {
+  position: absolute;
+  bottom: spacing.$spacing-05;
+  left: spacing.$spacing-05;
+  color: theme.$text-primary;
+}
+
+/**
+ * Feature Card
+ */
+
+.feature-card-container {
+  padding-bottom: spacing.$spacing-10;
 }
 
 /**
@@ -109,9 +169,9 @@
 
 .highlight-heading {
   margin-top: spacing.$spacing-08;
-  @include type.type-style('expressive-heading-03');
+  @include type.type-style('fluid-heading-03');
   @include breakpoint.breakpoint(md) {
-    margin-top: spacing.$spacing-08 + spacing.$spacing-02;
+    margin-top: spacing.$spacing-10 + spacing.$spacing-02;
   }
   @include breakpoint.breakpoint(lg) {
     padding-right: spacing.$spacing-07;
@@ -119,12 +179,12 @@
 
   &--big {
     margin-top: spacing.$spacing-07;
-    @include type.type-style('expressive-heading-04');
+    @include type.type-style('fluid-heading-04');
   }
 }
 
 .highlight-description {
-  margin: spacing.$spacing-06 0 (spacing.$spacing-08 + spacing.$spacing-06);
+  margin: spacing.$spacing-06 0 (spacing.$spacing-08 + spacing.$spacing-05);
   @include type.type-style('body-long-02');
   @include breakpoint.breakpoint(md) {
     margin: spacing.$spacing-07 0;
@@ -137,7 +197,7 @@
   }
 
   &--big {
-    @include type.type-style('expressive-heading-04');
+    @include type.type-style('fluid-heading-04');
     @include breakpoint.breakpoint(md) {
       margin: spacing.$spacing-08 0;
     }
@@ -146,7 +206,7 @@
 
 .highlight-title {
   display: block;
-  @include type.type-style('expressive-heading-02');
+  @include type.type-style('heading-02');
 }
 
 /**
@@ -167,7 +227,7 @@
 
 .content-heading {
   margin-top: spacing.$spacing-11;
-  @include type.type-style('expressive-heading-04');
+  @include type.type-style('fluid-heading-04');
 }
 
 .content-copy {
@@ -193,11 +253,11 @@
 
 .release-heading {
   margin-top: spacing.$spacing-07;
-  @include type.type-style('expressive-heading-04');
+  @include type.type-style('fluid-heading-04');
 }
 
 .release-subheading {
-  @include type.type-style('expressive-heading-02');
+  @include type.type-style('heading-02');
 }
 
 .release-copy {

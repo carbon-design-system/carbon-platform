@@ -11,16 +11,17 @@ import PropTypes from 'prop-types'
 import styles from './nav-tree.module.scss'
 
 const NavTree = ({ activeItem, items = [], label }) => {
+  const nodes = items
   const router = useRouter()
   const toggle = function () {
     return null
   }
 
-  function renderTree({ items }) {
-    if (!items) {
+  function renderTree({ nodes }) {
+    if (!nodes) {
       return
     }
-    return items.map(({ items, label, value, id, key, onClick, onToggle, ...nodeProps }) => (
+    return nodes.map(({ items, label, value, id, key, onClick, onToggle, ...nodeProps }) => (
       <TreeNode
         label={nodeProps.title}
         value={nodeProps.title}
@@ -30,7 +31,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
         onClick={() => nodeProps.path && router.push(nodeProps.path)}
         {...nodeProps}
       >
-        {renderTree({ items: items, label, value, id, key, onClick, onToggle })}
+        {renderTree({ nodes: items, label, value, id, key, onClick, onToggle })}
       </TreeNode>
     ))
   }
@@ -43,7 +44,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
       active={activeItem}
       selected={[activeItem]}
     >
-      {renderTree({ items })}
+      {renderTree({ nodes })}
     </TreeView>
   )
 }

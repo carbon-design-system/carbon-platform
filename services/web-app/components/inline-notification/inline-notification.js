@@ -5,12 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import cx from 'classnames'
-import { InlineNotification as CarbonInlineNotification } from '@carbon/react'
-import { ErrorFilled, CheckmarkFilled, WarningFilled, InformationFilled } from '@carbon/react/icons'
 import { Column, Grid } from '@carbon/react'
+import { CheckmarkFilled, ErrorFilled, InformationFilled, WarningFilled } from '@carbon/react/icons'
+import cx from 'classnames'
+import PropTypes from 'prop-types'
 
 import styles from './inline-notification.module.scss'
 
@@ -23,10 +21,10 @@ const iconTypes = {
 
 const InlineNotification = ({ children, className, kind = 'info' }) => {
   const containerClassName = cx(className, {
-    [`cds--inline-notification`]: true,
-    [`cds--inline-notification--low-contrast`]: true,
+    'cds--inline-notification': true,
+    'cds--inline-notification--low-contrast': true,
     [`cds--inline-notification--${kind}`]: kind,
-    [`cds--inline-notification--hide-close-button`]: true
+    'cds--inline-notification--hide-close-button': true
   })
   const IconForKind = iconTypes[kind]
   if (!IconForKind) {
@@ -38,11 +36,13 @@ const InlineNotification = ({ children, className, kind = 'info' }) => {
       <Column sm={4} md={6} lg={8} className={cx(styles.notification, className)}>
         <div className={containerClassName}>
           <div className="cds--inline-notification__details">
-            {IconForKind ? (
+            {IconForKind
+              ? (
               <IconForKind className="cds--inline-notification__icon" size={20}>
                 <title>{`${kind} icon`}</title>
               </IconForKind>
-            ) : null}
+                )
+              : null}
             <div className="cds--inline-notification__text-wrapper">
               <div className={styles.content}>{children}</div>
             </div>

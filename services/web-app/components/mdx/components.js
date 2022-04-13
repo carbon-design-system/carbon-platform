@@ -6,9 +6,7 @@
  */
 
 import Link from '@/components/link'
-import { Blockquote, H1, H2, H3, H4, H5, H6, LI, OL, P, UL } from '@/components/markdown'
-
-import Image from '@/components/markdown/image'
+import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 
 const Placeholder = ({ name, children }) => {
   return (

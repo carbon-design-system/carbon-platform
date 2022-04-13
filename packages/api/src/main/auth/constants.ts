@@ -38,7 +38,7 @@ const OIDC_DISCOVERY_URL =
 
 const OIDC_REDIRECT_URI = (() => {
   if (getRunMode() === RunMode.Dev) {
-    return 'https://localhost/api/auth-callback'
+    return 'https://localhost:8443/api/auth-callback'
   } else if (getEnvironment() === Environment.Test) {
     return 'https://web-app.j73b4w218e4.us-south.codeengine.appdomain.cloud/api/auth-callback'
   }

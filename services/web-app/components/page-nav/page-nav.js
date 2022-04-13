@@ -16,6 +16,7 @@ import styles from './page-nav.module.scss'
 const PageNav = ({ contentRef, items = [] }) => {
   const [lastActiveLink, setLastActiveLink] = useState(null)
   const [activeItem, setActiveItem] = useState(null)
+  const scrollTopDistance = 120
 
   const handleRAF = () => {
     if (!activeItem || (!checkIfSectionIdIsActive(activeItem) && lastActiveLink === activeItem)) {
@@ -50,7 +51,7 @@ const PageNav = ({ contentRef, items = [] }) => {
     const sectionBoundingClientRect = section.getBoundingClientRect()
     const sectionTopDistance = sectionBoundingClientRect.top
     // Space between top of screen and where we want section to be "active"
-    const scrollDistance = 120
+    const scrollDistance = scrollTopDistance
     const sectionIsAtTheTopOfTheView =
       sectionTopDistance < scrollDistance && sectionHeight + sectionTopDistance - scrollDistance > 0
 
@@ -96,7 +97,7 @@ const PageNav = ({ contentRef, items = [] }) => {
 
     let activeSection = null
     // Space between top of screen and where we want section to be "Active"
-    const scrollDistance = 120
+    const scrollDistance = scrollTopDistance
 
     sections.forEach((section) => {
       const sectionHeight = section.offsetHeight

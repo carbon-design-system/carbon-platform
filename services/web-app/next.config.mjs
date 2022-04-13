@@ -29,7 +29,6 @@ const withMDX = nextMdx({
 const nextConfig = withMDX({
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   experimental: {
-    esmExternals: true,
     outputStandalone: true,
     // this includes files from the monorepo base two directories up
     outputFileTracingRoot: path.join(__dirname, '..', '..')

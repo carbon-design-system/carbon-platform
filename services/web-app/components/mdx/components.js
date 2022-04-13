@@ -49,6 +49,12 @@ const components = {
   PageDescription: PageDescription,
   Title: Title,
   Caption: Caption,
+  img: Image,
+  Image: (props) => (
+    <P>
+      <Image {...props}></Image>
+    </P>
+  ),
   /* Gatsby theme components */
   AnchorLinks: AnchorLinks,
   AnchorLink: AnchorLink,

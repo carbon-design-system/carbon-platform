@@ -7,6 +7,7 @@
 
 import { Accordion as CarbonAccordion, Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 
 import styles from './accordion.module.scss'
 
@@ -17,4 +18,9 @@ const Accordion = ({ className, ...rest }) => (
     </Column>
   </Grid>
 )
+
+Accordion.propTypes = {
+  className: PropTypes.string
+}
+
 export default Accordion

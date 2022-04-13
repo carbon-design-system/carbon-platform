@@ -47,6 +47,7 @@ const InlineNotification = ({ children, className, kind = 'info' }) => {
 }
 
 InlineNotification.propTypes = {
+  className: PropTypes.string,
   kind: PropTypes.oneOf(['error', 'info', 'success', 'warning'])
 }
 

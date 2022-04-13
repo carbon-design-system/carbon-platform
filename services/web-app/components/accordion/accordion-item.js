@@ -7,11 +7,16 @@
 
 import { AccordionItem as CarbonAccordionItem } from '@carbon/react'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 
 const AccordionItem = ({ className, children, ...rest }) => (
   <CarbonAccordionItem {...rest} className={clsx(className)}>
     {children}
   </CarbonAccordionItem>
 )
+
+AccordionItem.propTypes = {
+  className: PropTypes.string
+}
 
 export default AccordionItem

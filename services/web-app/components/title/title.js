@@ -7,6 +7,7 @@
 
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 
 import markdownStyles from '@/components/markdown/markdown.module.scss'
 
@@ -20,4 +21,7 @@ const Title = ({ children, className }) => (
   </Grid>
 )
 
+Title.propTypes = {
+  className: PropTypes.string
+}
 export default Title

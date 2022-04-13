@@ -6,6 +6,7 @@
  */
 
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 import slugify from 'slugify'
 
 import styles from './anchor-links.module.scss'
@@ -17,6 +18,10 @@ const AnchorLink = ({ to, children, className }) => {
       {children}
     </a>
   )
+}
+
+AnchorLink.propTypes = {
+  className: PropTypes.string
 }
 
 export default AnchorLink

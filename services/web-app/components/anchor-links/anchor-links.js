@@ -37,5 +37,6 @@ export default class AnchorLinks extends React.Component {
 
 AnchorLinks.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   small: PropTypes.bool
 }

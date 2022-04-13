@@ -7,6 +7,7 @@
 
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 
 import styles from './page-description.module.scss'
 
@@ -17,5 +18,9 @@ const PageDescription = ({ children, className, ...rest }) => (
     </Column>
   </Grid>
 )
+
+PageDescription.propTypes = {
+  className: PropTypes.string
+}
 
 export default PageDescription

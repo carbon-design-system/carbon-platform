@@ -62,8 +62,7 @@ const Layout = ({ children }) => {
     librarySideNav,
     setLibrarySideNav,
     isSideNavExpanded,
-    toggleSideNavExpanded,
-    setLibraryNavSlideOut
+    toggleSideNavExpanded
   } = useContext(LayoutContext)
 
   const isLg = useMatchMedia(mediaQueries.lg)
@@ -84,8 +83,7 @@ const Layout = ({ children }) => {
       !router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]')
     )
     setLibrarySideNav(router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
-    setLibraryNavSlideOut(false)
-  }, [setShowSideNav, setLibrarySideNav, setLibraryNavSlideOut, router.pathname])
+  }, [setShowSideNav, setLibrarySideNav, router.pathname])
 
   const onClickSideNavExpand = () => {
     toggleSideNavExpanded(!isSideNavExpanded)

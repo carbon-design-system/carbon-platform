@@ -19,15 +19,24 @@ import styles from './nav-library.module.scss'
 
 const NavLibrary = () => {
   const router = useRouter()
-  const { librarySideNav, isSideNavExpanded, libraryNavSlideOut, setLibraryNavSlideOut } =
-    useContext(LayoutContext)
+  const {
+    librarySideNav,
+    isSideNavExpanded,
+    libraryNavSlideOut,
+    setLibraryNavSlideOut,
+    setLibrarySideNav
+  } = useContext(LayoutContext)
 
   // $duration-moderate-01 = 150ms
   const slideDelay = 150
 
   const backLink = () => {
     setLibraryNavSlideOut(true)
-    setTimeout(() => router.push('/assets/libraries'), slideDelay)
+    setTimeout(() => {
+      setLibraryNavSlideOut(false)
+      setLibrarySideNav(false)
+      router.push('/assets/libraries', undefined, { shallow: true })
+    }, slideDelay)
   }
 
   // TODO issue #523 (set to false when on child pages)

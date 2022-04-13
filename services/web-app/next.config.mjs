@@ -6,7 +6,12 @@
  */
 'use strict'
 
+import nextMdx from '@next/mdx'
+import path from 'path'
 import remarkGfm from 'remark-gfm'
+import { fileURLToPath } from 'url'
+
+import { libraryAllowList as libraries } from './data/libraries.js'
 import path from 'path'
 
 import { libraryAllowList as libraries } from './data/libraries.js'
@@ -40,7 +45,9 @@ const nextConfig = withMDX({
   },
   swcMinify: true,
   webpack(config) {
-    // silence cache warning notifications due to next.config.mjs imports for now, open issues: https://github.com/vercel/next.js/issues/33693 -> https://github.com/webpack/webpack/issues/15574
+// silence cache warning notifications due to next.config.mjs imports for now, open issues:
+// https://github.com/vercel/next.js/issues/33693
+// https://github.com/webpack/webpack/issues/15574
     config.infrastructureLogging = { level: 'error' }
 
     const rules = config.module.rules

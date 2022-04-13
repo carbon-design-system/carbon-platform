@@ -6,17 +6,15 @@
  */
 'use strict'
 
-
 import remarkGfm from 'remark-gfm'
 import path from 'path'
 
-
-import { libraryAllowList as libraries} from './data/libraries.js'
+import { libraryAllowList as libraries } from './data/libraries.js'
 import nextMdx from '@next/mdx'
-import {fileURLToPath} from 'url';
+import { fileURLToPath } from 'url'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const withMDX = nextMdx({
   extension: /\.mdx?$/,
@@ -43,7 +41,7 @@ const nextConfig = withMDX({
   swcMinify: true,
   webpack(config) {
     // silence cache warning notifications due to next.config.mjs imports for now, open issues: https://github.com/vercel/next.js/issues/33693 -> https://github.com/webpack/webpack/issues/15574
-    config.infrastructureLogging = { level: "error" }
+    config.infrastructureLogging = { level: 'error' }
 
     const rules = config.module.rules
       .find((rule) => typeof rule.oneOf === 'object')

@@ -10,7 +10,7 @@ import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import Caption from '@/components/caption'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
-import { Blockquote, H1, H2, H3, H4, H5, H6, LI, OL, P, UL } from '@/components/markdown'
+import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import PageDescription from '@/components/page-description'
 import Title from '@/components/title'
 
@@ -49,6 +49,12 @@ const components = {
   PageDescription: PageDescription,
   Title: Title,
   Caption: Caption,
+  img: Image,
+  Image: (props) => (
+    <P>
+      <Image {...props}></Image>
+    </P>
+  ),
   /* Gatsby theme components */
   AnchorLinks: AnchorLinks,
   AnchorLink: AnchorLink,

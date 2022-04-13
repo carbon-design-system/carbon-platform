@@ -27,22 +27,15 @@ const InlineNotification = ({ children, className, kind = 'info' }) => {
     'cds--inline-notification--hide-close-button': true
   })
   const IconForKind = iconTypes[kind]
-  if (!IconForKind) {
-    return null
-  }
 
   return (
     <Grid>
       <Column sm={4} md={6} lg={8} className={cx(styles.notification, className)}>
         <div className={containerClassName}>
           <div className="cds--inline-notification__details">
-            {IconForKind
-              ? (
-              <IconForKind className="cds--inline-notification__icon" size={20}>
-                <title>{`${kind} icon`}</title>
-              </IconForKind>
-                )
-              : null}
+            <IconForKind className="cds--inline-notification__icon" size={20}>
+              <title>{`${kind} icon`}</title>
+            </IconForKind>
             <div className="cds--inline-notification__text-wrapper">
               <div className={styles.content}>{children}</div>
             </div>

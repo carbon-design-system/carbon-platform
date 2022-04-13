@@ -12,21 +12,12 @@
   margin-top: spacing.$spacing-06;
 }
 
+// override carbon, accordion right spacing
 .accordion :global(.cds--accordion__content) {
   padding-right: spacing.$spacing-10;
 }
 
-.accordion :global(.cds--accordion__heading) {
-  padding-top: spacing.$spacing-04;
-  padding-bottom: spacing.$spacing-04;
-}
-
+// override carbon, title font and spacing
 .accordion :global(.cds--accordion__title) {
   @include type.type-style('heading-02');
-
-  padding-right: spacing.$spacing-07;
-}
-
-.accordion :global(.cds--accordion__content) p {
-  @include type.type-style('body-02');
 }

@@ -13,7 +13,7 @@ import styles from './accordion.module.scss'
 const Accordion = ({ className, ...rest }) => (
   <Grid narrow>
     <Column sm={4} md={8} lg={8}>
-      <CarbonAccordion {...rest} className={clsx(className, styles.accordion)} />
+      <CarbonAccordion size="xl" {...rest} className={clsx(className, styles.accordion)} />
     </Column>
   </Grid>
 )

@@ -12,6 +12,7 @@
   margin-top: spacing.$spacing-05;
 }
 
+// override carbon, notification width
 .notification :global(.cds--inline-notification) {
   max-width: 100%;
 }

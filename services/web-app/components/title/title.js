@@ -12,10 +12,10 @@ import markdownStyles from '@/components/markdown/markdown.module.scss'
 
 import styles from './title.module.scss'
 
-const Title = ({ className, ...rest }) => (
+const Title = ({ children, className }) => (
   <Grid className={clsx(className, styles.title)}>
     <Column sm={4} md={6} lg={8}>
-      <span {...rest} className={markdownStyles.h4} />
+      <p className={markdownStyles.h4}>{children}</p>
     </Column>
   </Grid>
 )

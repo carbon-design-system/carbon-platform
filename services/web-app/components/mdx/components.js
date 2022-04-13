@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import Caption from '@/components/caption'
 import InlineNotification from '@/components/inline-notification'
@@ -52,6 +53,8 @@ const components = {
   AnchorLinks: AnchorLinks,
   AnchorLink: AnchorLink,
   InlineNotification: InlineNotification,
+  Accordion: Accordion,
+  AccordionItem: AccordionItem,
   Row: ({ children }) => <Placeholder name="Row">{children}</Placeholder>,
   Column: ({ children }) => <Placeholder name="Column">{children}</Placeholder>,
   Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,

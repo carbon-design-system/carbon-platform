@@ -30,7 +30,8 @@ const NavLibrary = () => {
     setTimeout(() => router.push('/assets/libraries'), slideDelay)
   }
 
-  // TODO issue #523 const libraryActive = false (set to true when on library page)
+  // TODO issue #523 (set to false when on child pages)
+  const libraryActive = true
 
   return (
     <SideNav
@@ -47,12 +48,8 @@ const NavLibrary = () => {
         Back to all Libraries
       </Button>
       {/* TODO issue #523 add link back to library if libraryActive=false */}
-      <h2
-        className={
-          styles.navHeading /* TODO issue #523 ,libraryActive && styles.navHeadingSelected */
-        }
-      >
-        {/* TODO issue #523 need title and version datta */}
+      <h2 className={clsx(styles.navHeading, libraryActive && styles.navHeadingSelected)}>
+        {/* TODO issue #523 need title and version data */}
         Library name
         <br />
         v1.0.0

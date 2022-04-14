@@ -89,10 +89,7 @@ const Library = ({ libraryData, params }) => {
             <PageBreadcrumb items={breadcrumbItems} />
           </Theme>
         </Column>
-        <Column sm={4} md={8} lg={4}>
-          {/* In page nav  */}
-        </Column>
-        <Column sm={4} md={8} lg={12}>
+        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <Dashboard className={styles.dashboard}>
             <Column className={dashboardStyles.column} sm={4}>
               <DashboardItem

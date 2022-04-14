@@ -44,7 +44,7 @@ $page-header-height: spacing.$spacing-13 * 2;
 .title {
   margin-bottom: spacing.$spacing-07;
   color: theme.$text-primary;
-  @include type.type-style('display-01', true);
+  @include type.type-style('fluid-display-01', true);
   @include mixins.line-clamp(2);
   @include breakpoint.breakpoint-down(md) {
     @include type.type-style('quotation-02');

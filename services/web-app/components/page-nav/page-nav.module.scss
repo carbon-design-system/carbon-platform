@@ -1,0 +1,86 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+@use '~styles/mixins' as mixins;
+
+.container {
+  margin: spacing.$spacing-11 0 0 0;
+
+  @include breakpoint.breakpoint(lg) {
+    position: sticky;
+    top: calc(spacing.$spacing-11 + spacing.$spacing-10);
+    margin: spacing.$spacing-11 0 spacing.$spacing-13;
+    margin-left: -(spacing.$spacing-06);
+  }
+}
+
+.link {
+  cursor: pointer;
+  // Anchor link styles
+  @include breakpoint.breakpoint-down(lg) {
+    @include type.type-style('expressive-heading-03', true);
+
+    position: relative;
+    display: inline-block;
+    margin-bottom: spacing.$spacing-03;
+    margin-left: spacing.$spacing-06;
+    color: theme.$text-primary;
+    text-decoration: none;
+
+    &::before {
+      position: absolute;
+      left: -1.5rem;
+      color: currentColor;
+      //"↳"
+      content: '\21B3';
+      cursor: pointer;
+    }
+
+    &:hover {
+      color: theme.$link-primary;
+    }
+  }
+
+  // Sticky side nav styles
+  @include breakpoint.breakpoint(lg) {
+    @include type.type-style('body-short-01');
+
+    display: flex;
+    width: 100%;
+    height: spacing.$spacing-07;
+    align-items: center;
+    padding-left: calc(spacing.$spacing-06 - spacing.$spacing-02);
+    border-left: spacing.$spacing-02 solid theme.$border-subtle;
+    color: theme.$text-secondary;
+    font-weight: normal;
+    text-decoration: none;
+
+    &:hover {
+      border-color: theme.$border-subtle-selected;
+      color: theme.$text-primary;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid theme.$focus;
+  }
+
+  &-active,
+  &-active:hover {
+    @include breakpoint.breakpoint(lg) {
+      @include type.type-style('heading-01');
+
+      border-color: theme.$border-interactive;
+      color: theme.$text-primary;
+    }
+  }
+}

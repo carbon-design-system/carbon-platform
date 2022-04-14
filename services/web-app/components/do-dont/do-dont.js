@@ -76,13 +76,8 @@ export default class DoDont extends React.Component {
           <div className={wrapperClassNames}>
             <div className={styles.card}>
               <div className={styles.cardContent}>
-                {type === 'do'
-                  ? (
-                  <CheckmarkFilled size={24} className={iconClassNames} />
-                    )
-                  : (
-                  <Misuse size={24} className={iconClassNames} />
-                    )}
+                {type === 'do' && <CheckmarkFilled size={24} className={iconClassNames} />}
+                {type !== 'do' && <Misuse size={24} className={iconClassNames} />}
                 <div className={styles.content}>
                   {children}
                   {text ? <p className={styles.text}>{text}</p> : null}

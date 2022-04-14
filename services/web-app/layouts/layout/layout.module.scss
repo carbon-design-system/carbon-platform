@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+/* stylelint-disable declaration-no-important */
 
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
@@ -45,6 +46,38 @@
     width: 100%;
     height: 100%;
     margin: 0;
+  }
+}
+
+// carbon override, disabled header nav item
+.header-nav-item-disabled {
+  span {
+    color: theme.$text-disabled;
+  }
+
+  a:hover {
+    background-color: transparent;
+  }
+
+  a:focus {
+    border-color: transparent;
+    background-color: transparent;
+  }
+}
+
+// carbon override, disabled side nav item
+// !important needed to override carbon specificty
+.side-nav-disabled {
+  span {
+    color: theme.$text-disabled !important;
+  }
+
+  &:hover {
+    background-color: transparent !important;
+  }
+
+  &:focus {
+    outline: none !important;
   }
 }
 

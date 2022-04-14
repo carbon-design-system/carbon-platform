@@ -82,16 +82,28 @@ const Layout = ({ children }) => {
                     aria-label="Main navigation"
                     className={styles.headerNavigation}
                   >
-                    {globalNavData.map((data) => (
-                      <HeaderMenuItem
-                        key={data.path}
-                        isCurrentPage={router.pathname.startsWith(data.path)}
-                        href={data.path}
-                        element={NextLink}
-                      >
-                        {data.title}
-                      </HeaderMenuItem>
-                    ))}
+                    {globalNavData.map((data) =>
+                      data.path
+                        ? (
+                        <HeaderMenuItem
+                          key={data.path}
+                          isCurrentPage={router.pathname.startsWith(data.path)}
+                          href={data.path}
+                          element={NextLink}
+                        >
+                          {data.title}
+                        </HeaderMenuItem>
+                          )
+                        : (
+                        <HeaderMenuItem
+                          key={data.title}
+                          tabIndex="-1"
+                          className={styles.headerNavItemDisabled}
+                        >
+                          {data.title}
+                        </HeaderMenuItem>
+                          )
+                    )}
                   </HeaderNavigation>
                 </Column>
               </Grid>
@@ -109,11 +121,19 @@ const Layout = ({ children }) => {
                     >
                       <SideNavItems>
                         <HeaderSideNavItems>
-                          {globalNavData.map((data, i) => (
-                            <SideNavLink element={NextLink} href={data.path} key={i}>
-                              {data.title}
-                            </SideNavLink>
-                          ))}
+                          {globalNavData.map((data, i) =>
+                            data.path
+                              ? (
+                              <SideNavLink element={NextLink} href={data.path} key={i}>
+                                {data.title}
+                              </SideNavLink>
+                                )
+                              : (
+                              <SideNavLink tabIndex="-1" key={i} className={styles.sideNavDisabled}>
+                                {data.title}
+                              </SideNavLink>
+                                )
+                          )}
                         </HeaderSideNavItems>
                         {navData.map((data, i) => {
                           if (data.path && data.title) {

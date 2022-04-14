@@ -82,29 +82,30 @@ const Layout = ({ children }) => {
                     aria-label="Main navigation"
                     className={styles.headerNavigation}
                   >
-                    {globalNavData.map((data) =>
-                      data.path
-                        ? (
-                        <HeaderMenuItem
-                          key={data.title}
-                          isCurrentPage={data.path && router.pathname.startsWith(data.path)}
-                          href={data.path && data.path}
-                          element={data.path && NextLink}
-                          tabIndex={!data.path && '-1'}
-                        >
-                          {data.title}
-                        </HeaderMenuItem>
-                          )
-                        : (
-                        <HeaderMenuItem
-                          key={data.title}
-                          tabIndex="-1"
-                          className={styles.headerNavItemDisabled}
-                        >
-                          {data.title}
-                        </HeaderMenuItem>
-                          )
-                    )}
+                    {globalNavData.map((data) => (
+                      <>
+                        {data.path && (
+                          <HeaderMenuItem
+                            key={data.title}
+                            isCurrentPage={data.path && router.pathname.startsWith(data.path)}
+                            href={data.path && data.path}
+                            element={data.path && NextLink}
+                            tabIndex={!data.path && '-1'}
+                          >
+                            {data.title}
+                          </HeaderMenuItem>
+                        )}
+                        {!data.path && (
+                          <HeaderMenuItem
+                            key={data.title}
+                            tabIndex="-1"
+                            className={styles.headerNavItemDisabled}
+                          >
+                            {data.title}
+                          </HeaderMenuItem>
+                        )}
+                      </>
+                    ))}
                   </HeaderNavigation>
                 </Column>
               </Grid>
@@ -122,19 +123,24 @@ const Layout = ({ children }) => {
                     >
                       <SideNavItems>
                         <HeaderSideNavItems>
-                          {globalNavData.map((data, i) =>
-                            data.path
-                              ? (
-                              <SideNavLink element={NextLink} href={data.path} key={i}>
-                                {data.title}
-                              </SideNavLink>
-                                )
-                              : (
-                              <SideNavLink tabIndex="-1" key={i} className={styles.sideNavDisabled}>
-                                {data.title}
-                              </SideNavLink>
-                                )
-                          )}
+                          {globalNavData.map((data, i) => (
+                            <>
+                              {data.path && (
+                                <SideNavLink element={NextLink} href={data.path} key={i}>
+                                  {data.title}
+                                </SideNavLink>
+                              )}
+                              {!data.path && (
+                                <SideNavLink
+                                  tabIndex="-1"
+                                  key={i}
+                                  className={styles.sideNavDisabled}
+                                >
+                                  {data.title}
+                                </SideNavLink>
+                              )}
+                            </>
+                          ))}
                         </HeaderSideNavItems>
                         {navData.map((data, i) => {
                           if (data.path && data.title) {

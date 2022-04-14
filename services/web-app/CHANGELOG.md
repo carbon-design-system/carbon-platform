@@ -2,6 +2,79 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.91](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.90...@carbon-platform/web-app@0.1.91) (2022-04-14)
+
+
+### Features 🌟
+
+* add accordion mdx component ([982c7bd](https://github.com/carbon-design-system/carbon-platform/commit/982c7bdaaef83e2d633a4b4c8467c74d49c11f01))
+* add anchor link mdx component ([2b3ec20](https://github.com/carbon-design-system/carbon-platform/commit/2b3ec203357c431c11006055065a1a47878ebcfe))
+* add caption mdx component ([f82f4e7](https://github.com/carbon-design-system/carbon-platform/commit/f82f4e79ae4c29ba475a987243112fe005a25e60))
+* add mdx title component ([dd1b910](https://github.com/carbon-design-system/carbon-platform/commit/dd1b91052d247cb1b1d02dfd2526559ba48735e7))
+* add page-description ([afb29c0](https://github.com/carbon-design-system/carbon-platform/commit/afb29c09008d0463dd1d52b37102df5a47578224))
+* add page-description component ([2480221](https://github.com/carbon-design-system/carbon-platform/commit/2480221ebbad0fab6ab9ed95532f99fe5ae44093))
+* mdx components ([140db5b](https://github.com/carbon-design-system/carbon-platform/commit/140db5b53515e7d4c747adf0ce03f0cc783aeb31))
+* **web-app:** [#499](https://github.com/carbon-design-system/carbon-platform/issues/499) next/image support for mdx ([b21260e](https://github.com/carbon-design-system/carbon-platform/commit/b21260ee414968af17d8448e3aed3308e0058437))
+
+
+### Bug Fixes 🐛
+
+* accordion styles ([3db462c](https://github.com/carbon-design-system/carbon-platform/commit/3db462c28446660189b3c8eb4d749705c3fde1a4))
+* add proptypes ([d20919d](https://github.com/carbon-design-system/carbon-platform/commit/d20919dc8372d7f6a3107cf0b5e176e0febdb529))
+* copyright dates ([c4c8170](https://github.com/carbon-design-system/carbon-platform/commit/c4c8170bad2841223b3f39b5bce29cb4ec536ae9))
+* linting ([4c5a84c](https://github.com/carbon-design-system/carbon-platform/commit/4c5a84c1cdd996fafbb6c12bcf77535b85805828))
+* linting ([2822c0d](https://github.com/carbon-design-system/carbon-platform/commit/2822c0d1c7f840fc07b491f4355e4f505ee346f2))
+* **web-app:** mdx image optimizations, moving stuff around ([6950af2](https://github.com/carbon-design-system/carbon-platform/commit/6950af2ce0cd4bd9aa891fd8a8b7f6bd4a8adbb0))
+* **web-app:** turn unoptimized image into a component ([a1ad610](https://github.com/carbon-design-system/carbon-platform/commit/a1ad610d038654f8e9b49fe5c3eb4285d5ec1fe5))
+* **web-app:** unify imports ([161a0db](https://github.com/carbon-design-system/carbon-platform/commit/161a0dbbb2ef5420d3dd2b653840a80f1dcba452))
+
+### [0.1.90](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.89...@carbon-platform/web-app@0.1.90) (2022-04-13)
+
+
+### Bug Fixes 🐛
+
+* added updated roadmap images ([a5958b0](https://github.com/carbon-design-system/carbon-platform/commit/a5958b040bf622f3ae4caeecaccb8fd0a5f15c59))
+* clean up code ([7cee110](https://github.com/carbon-design-system/carbon-platform/commit/7cee1109e364bb2dab2a783d87a7b9ca1f11f80a))
+* fix return statment ([8bfe742](https://github.com/carbon-design-system/carbon-platform/commit/8bfe742ea2880332635beb08dc7ac47214ae9301))
+* update padding ([e848bf2](https://github.com/carbon-design-system/carbon-platform/commit/e848bf26ac43d78c6bec96f87160194e707fbe12))
+* updated html tag ([ca1f0e7](https://github.com/carbon-design-system/carbon-platform/commit/ca1f0e785d3779142d6609266e4f56cdd0499389))
+* updated images and icons ([fbd04b8](https://github.com/carbon-design-system/carbon-platform/commit/fbd04b8cbd5f52304fc683bc6c7af1529271b3dd))
+* **web-app:** add new thumbnails ([5bc0b74](https://github.com/carbon-design-system/carbon-platform/commit/5bc0b7430e943057692ae293fca0f052ee3429ec))
+* **web-app:** new thumbs ([d8e4c83](https://github.com/carbon-design-system/carbon-platform/commit/d8e4c83c7737c3a4d11e17a6e1f7df921dbb45fa))
+
+
+### Features 🌟
+
+* added spacing need to resource cards ([6aea35a](https://github.com/carbon-design-system/carbon-platform/commit/6aea35a232181f7ee0226c89e29d0857b5ebfc78))
+* fix styles and aspect ratios ([ea84533](https://github.com/carbon-design-system/carbon-platform/commit/ea84533cd4a0984e2c916a1f10f336e0ed187e22))
+* fixing active states move image to child ([959ec95](https://github.com/carbon-design-system/carbon-platform/commit/959ec95515ace337a74d4fcbe2089ba29c211669))
+* need to fix mobile styles and active ([ebe0668](https://github.com/carbon-design-system/carbon-platform/commit/ebe0668ace08406c44b79cc74504113d7965e017))
+* update hero image ([47068e4](https://github.com/carbon-design-system/carbon-platform/commit/47068e40a9169d31e52f0f13fc4f1a33af4be500))
+* update hero image ([fd862b8](https://github.com/carbon-design-system/carbon-platform/commit/fd862b86b8b2c7fc8ea2f7c3ce915dc3c2eda28d))
+* update hero image ([09379c7](https://github.com/carbon-design-system/carbon-platform/commit/09379c78be2aa7581cb08d5011e4451f1425fe43))
+* update hero images ([4624151](https://github.com/carbon-design-system/carbon-platform/commit/4624151599f92e350472b96aa73223f8eab8ee89))
+* **web-app:** add @carbon/styles to libraries entries ([587557a](https://github.com/carbon-design-system/carbon-platform/commit/587557adfada59acc68ea997ac9354f05f16aa02))
+
+### [0.1.89](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.88...@carbon-platform/web-app@0.1.89) (2022-04-09)
+
+
+### Features 🌟
+
+* **web-app:** request-proxy, minor additions ([9a6c107](https://github.com/carbon-design-system/carbon-platform/commit/9a6c107c9068b039ef622adb1fbe789e41ac2160))
+
+
+### Misc. 🔮
+
+* **web-app:** reinstall new node modules ([d4b61e5](https://github.com/carbon-design-system/carbon-platform/commit/d4b61e575e4a030ea95c5ad0134af16453259ff1))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** address code review commennts ([96b45d7](https://github.com/carbon-design-system/carbon-platform/commit/96b45d7bf35682d4c83efefa08599fb2f69cb547))
+* **web-app:** cr comments, consolidate secure-server with proxy-server ([c45ae8e](https://github.com/carbon-design-system/carbon-platform/commit/c45ae8e63c06a1d8c167ed583408ba4c3715b312))
+* **web-app:** linting issues ([891ca1f](https://github.com/carbon-design-system/carbon-platform/commit/891ca1fe6639bf64a1ba67c94e56a5e309576c2f))
+* **web-app:** update proxy server ([9353413](https://github.com/carbon-design-system/carbon-platform/commit/9353413964ea8c033ffafd1ca2018f2602938a59))
+
 ### [0.1.88](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.87...@carbon-platform/web-app@0.1.88) (2022-04-07)
 
 

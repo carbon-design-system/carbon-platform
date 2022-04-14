@@ -29,6 +29,7 @@
 
 .meta-icon {
   position: relative;
+  // top offset to visually align svg to text
   top: 3px;
   margin-right: spacing.$spacing-02;
 }

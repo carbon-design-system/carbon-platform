@@ -75,11 +75,8 @@ const Library = ({ libraryData, params }) => {
       <Grid>
         <Column sm={4} md={8} lg={12}>
           <PageHeader title={seo.title} />
-          <Theme theme="g100">
-            <PageBreadcrumb items={breadcrumbItems} />
-          </Theme>
         </Column>
-        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
+        <Column sm={4} md={8} lg={12}>
           <Dashboard className={styles.dashboard}>
             <Column className={dashboardStyles.column} sm={4}>
               <DashboardItem

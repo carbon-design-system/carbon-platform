@@ -87,10 +87,9 @@ const Layout = ({ children }) => {
                         {data.path && (
                           <HeaderMenuItem
                             key={data.title}
-                            isCurrentPage={data.path && router.pathname.startsWith(data.path)}
-                            href={data.path && data.path}
-                            element={data.path && NextLink}
-                            tabIndex={!data.path && '-1'}
+                            isCurrentPage={router.pathname.startsWith(data.path)}
+                            href={data.path}
+                            element={NextLink}
                           >
                             {data.title}
                           </HeaderMenuItem>

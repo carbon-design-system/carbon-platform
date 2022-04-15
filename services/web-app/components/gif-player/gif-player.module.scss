@@ -1,0 +1,54 @@
+@use '@carbon/react/scss/theme' as theme;
+
+.container {
+  position: relative;
+}
+
+.controls {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.controls svg {
+  fill: #ffffff;
+}
+
+.dark svg {
+  fill: #000000;
+}
+
+.controls:focus svg {
+  outline: 2px solid theme.$focus;
+  outline-offset: -2px;
+}
+
+//toggle static image
+.img-hidden {
+  display: none;
+}
+
+.img-displayed {
+  display: block;
+}
+
+//toggle gif
+.gif-displayed {
+  display: block;
+}
+
+.gif-hidden {
+  display: none;
+}
+
+//styles for gif player in image gallery
+.gif-in-dialog {
+  top: 50%;
+  transform: translateY(-50%);
+}

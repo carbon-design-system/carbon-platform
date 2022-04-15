@@ -10,7 +10,7 @@
 @use '@carbon/react/scss/type' as type;
 
 .title {
-  @include type.type-style('display-01', true);
+  @include type.type-style('fluid-display-01', true);
 }
 
 .grid {

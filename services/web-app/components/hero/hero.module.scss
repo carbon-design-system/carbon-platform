@@ -41,7 +41,7 @@ $hero-height: 560px;
 
 .title {
   color: theme.$text-primary;
-  @include type.type-style('display-01', true);
+  @include type.type-style('fluid-display-01', true);
 }
 
 /*

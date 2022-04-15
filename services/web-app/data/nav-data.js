@@ -71,3 +71,64 @@ export const assetsNavData = [
     ]
   }
 ]
+
+export const libraryNavData = [
+  {
+    title: 'Assets',
+    path: '/assets/carbon-charts/assets'
+  },
+  {
+    title: 'Design kits',
+    path: ''
+  },
+  {
+    title: 'Tutorials',
+    items: [
+      {
+        title: 'Tutorial 1',
+        items: [
+          {
+            title: 'Overview',
+            path: ''
+          },
+          {
+            title: '1. Installing Carbon',
+            path: ''
+          },
+          {
+            title: '2. Building pages',
+            path: ''
+          },
+          {
+            title: '3. Using APIs',
+            path: ''
+          },
+          {
+            title: '4. Creating components',
+            path: ''
+          },
+          {
+            title: '5. Deploying to cloud',
+            path: ''
+          },
+          {
+            title: 'Conclusion',
+            path: ''
+          }
+        ]
+      },
+      {
+        title: 'Tutorial 2',
+        path: ''
+      }
+    ]
+  },
+  {
+    title: 'Versions',
+    path: ''
+  },
+
+  {
+    title: 'Catalogs'
+  }
+]

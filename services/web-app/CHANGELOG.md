@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.92](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.91...@carbon-platform/web-app@0.1.92) (2022-04-15)
+
+
+### Features 🌟
+
+* inpage nav styles ([48ea461](https://github.com/carbon-design-system/carbon-platform/commit/48ea461bc11bb849d216a466bea70a20fbd7bb5f))
+
+
+### Misc. 🔮
+
+* **web-app:** cleanup, decrease cogn. compl., use useEventListener ([9743838](https://github.com/carbon-design-system/carbon-platform/commit/974383833144cad08cc372cb33c2cd098e4e1ce4))
+
+
+### Bug Fixes 🐛
+
+* add bottom padding and update type token ([2ff28eb](https://github.com/carbon-design-system/carbon-platform/commit/2ff28ebb47a4617e63ee2cfbe415c64f5e383ffe))
+* add label for a11y violation breadcrumb ([8792e23](https://github.com/carbon-design-system/carbon-platform/commit/8792e23399fda72d89e563acf5ac1048261d9e5c))
+* anchor link spacing ([1fea6e1](https://github.com/carbon-design-system/carbon-platform/commit/1fea6e15c8cd371925715fa6a3608f0d758b3bf2))
+* cleanup css ([0dd650b](https://github.com/carbon-design-system/carbon-platform/commit/0dd650b7bb457a97f444e0b4837c63aa2b0abe57))
+* dashboard top spacing ([a78c6d8](https://github.com/carbon-design-system/carbon-platform/commit/a78c6d8988883e075ca97a08d8887b5ca2261950))
+* focus state styles ([29c633e](https://github.com/carbon-design-system/carbon-platform/commit/29c633ef06b32fa6ea1799f0dfcbbed90261d59e))
+* left position text alignment ([3292189](https://github.com/carbon-design-system/carbon-platform/commit/329218944318196fbbb1c9a012e2d53fea3987e4))
+* merge conflicts ([c2b86ac](https://github.com/carbon-design-system/carbon-platform/commit/c2b86ace0eb54b4a2b4eff3f51980bdd2afdd964))
+* merge conflicts ([d50691a](https://github.com/carbon-design-system/carbon-platform/commit/d50691ad4c996d3247b70af3754da97c2a4bbab4))
+* scrolltopdistance const ([9958740](https://github.com/carbon-design-system/carbon-platform/commit/995874009f4281289c10b0c7bb3eb7c9a15b4655))
+* spacing ([7babc11](https://github.com/carbon-design-system/carbon-platform/commit/7babc11d2f65b2ce2c42994bb819bd4d19083848))
+* update scrollpadding ([180c93e](https://github.com/carbon-design-system/carbon-platform/commit/180c93e941cb20b995e08c1d4c280cc4e0d70e09))
+* **web-app:** backbutton bug and race condition sticky nav ([2af5d00](https://github.com/carbon-design-system/carbon-platform/commit/2af5d0005af38aca84af3de6a081bb1ec09ba05e))
+* **web-app:** cleanup sticky page  nav ([013bd0d](https://github.com/carbon-design-system/carbon-platform/commit/013bd0d9de12bc5df4cd32e1c9cec0c799a8c6a1))
+* **web-app:** rename click handler ([ad952b7](https://github.com/carbon-design-system/carbon-platform/commit/ad952b77c7e85420543b729be34c6921e718873c))
+* **web-app:** start-off first item selected, review comments ([62457bb](https://github.com/carbon-design-system/carbon-platform/commit/62457bb80fd971b1ee4359d7b597810848c1bce4))
+* **web-app:** sticky page nav: multiple fixes ([028b403](https://github.com/carbon-design-system/carbon-platform/commit/028b403bc502b5126b9d5d58e2541fc35a6557a7))
+
 ### [0.1.91](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.90...@carbon-platform/web-app@0.1.91) (2022-04-14)
 
 

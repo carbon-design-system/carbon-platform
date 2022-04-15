@@ -12,6 +12,7 @@ import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import PageDescription from '@/components/page-description'
+import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 
 const Placeholder = ({ name, children }) => {
@@ -46,21 +47,24 @@ const components = {
     'li.ol': (props) => <OrderedList isExpressive nested {...props} />, */
   a: Link,
   blockquote: Blockquote,
-  PageDescription: PageDescription,
-  Title: Title,
-  Caption: Caption,
   img: Image,
-  Image: (props) => (
+  /* Custom comps */
+  Caption: Caption,
+  Image: ({ alt, ...props }) => (
     <P>
-      <Image {...props}></Image>
+      <Image alt={alt} {...props}></Image>
     </P>
   ),
+  PageDescription: PageDescription,
+  Title: Title,
   /* Gatsby theme components */
-  AnchorLinks: AnchorLinks,
-  AnchorLink: AnchorLink,
-  InlineNotification: InlineNotification,
   Accordion: Accordion,
   AccordionItem: AccordionItem,
+  AnchorLink: AnchorLink,
+  AnchorLinks: AnchorLinks,
+  InlineNotification: InlineNotification,
+  Tabs: Tabs,
+  Tab: Tab,
   Row: ({ children }) => <Placeholder name="Row">{children}</Placeholder>,
   Column: ({ children }) => <Placeholder name="Column">{children}</Placeholder>,
   Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,
@@ -74,9 +78,6 @@ const components = {
   ResourceCard: ({ children }) => <Placeholder name="ResourceCard">{children}</Placeholder>,
   ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,
   SquareCard: ({ children }) => <Placeholder name="SquareCard">{children}</Placeholder>,
-  Tabs: ({ children }) => <Placeholder name="Tabs">{children}</Placeholder>,
-  Tab: ({ children }) => <Placeholder name="Tab">{children}</Placeholder>,
-
   ExpressiveListContainer: ({ children }) => (
     <Placeholder name="ExpressiveListContainer">{children}</Placeholder>
   ),

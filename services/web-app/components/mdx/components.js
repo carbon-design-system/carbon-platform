@@ -7,6 +7,7 @@
 
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
+import ArtDirection from '@/components/art-direction'
 import Caption from '@/components/caption'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
@@ -61,6 +62,7 @@ const components = {
   InlineNotification: InlineNotification,
   Accordion: Accordion,
   AccordionItem: AccordionItem,
+  ArtDirection: ArtDirection,
   Row: ({ children }) => <Placeholder name="Row">{children}</Placeholder>,
   Column: ({ children }) => <Placeholder name="Column">{children}</Placeholder>,
   Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,

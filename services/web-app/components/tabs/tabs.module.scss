@@ -15,17 +15,11 @@
   display: flex;
   max-width: min-content;
   border-bottom: 1px solid theme.$border-subtle-01;
-  margin-right: -1rem;
-  margin-left: -1rem;
   overflow-x: auto;
   scrollbar-width: none;
   @include breakpoint.breakpoint('md') {
     overflow: visible;
   }
-}
-
-.dropdownWrapper {
-
 }
 
 .panel {
@@ -67,7 +61,7 @@
   &:focus {
     // allows overflow to be above subsequent tab
     z-index: 1;
-    border-right: 1px solid  theme.$border-inverse;
+    border-right: 1px solid theme.$border-inverse;
     outline: 1px solid theme.$focus-inverse;
     outline-offset: -4px;
   }

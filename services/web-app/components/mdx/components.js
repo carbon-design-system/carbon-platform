@@ -8,6 +8,7 @@
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import Caption from '@/components/caption'
+import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
@@ -53,18 +54,18 @@ const components = {
   img: Image,
   Image: Image,
   /* Gatsby theme components */
-  AnchorLinks: AnchorLinks,
-  AnchorLink: AnchorLink,
-  InlineNotification: InlineNotification,
   Accordion: Accordion,
   AccordionItem: AccordionItem,
+  AnchorLink: AnchorLink,
+  AnchorLinks: AnchorLinks,
+  DoDontRow: DoDontRow,
+  DoDont: DoDont,
+  GifPlayer: GifPlayer,
+  InlineNotification: InlineNotification,
   Row: ({ children }) => <Placeholder name="Row">{children}</Placeholder>,
   Column: ({ children }) => <Placeholder name="Column">{children}</Placeholder>,
   Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,
   DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
-  DoDontRow: ({ children }) => <Placeholder name="DoDontRow">{children}</Placeholder>,
-  DoDont: ({ children }) => <Placeholder name="DoDont">{children}</Placeholder>,
-  GifPlayer: GifPlayer,
   ArticleCard: ({ children }) => <Placeholder name="ArticleCard">{children}</Placeholder>,
   Aside: ({ children }) => <Placeholder name="Aside">{children}</Placeholder>,
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,

@@ -96,7 +96,7 @@ const prodLibraries = {
   //   repo: 'carbon',
   //   path: '/packages/react',
   //   sponsor: 'carbon',
-  //   group: carbonComponentsGroup,
+  //   group: carbonComponentsGroup
   // },
   // 'carbon-angular': {
   //   host: 'github.ibm.com',

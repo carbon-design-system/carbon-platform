@@ -6,7 +6,7 @@
  */
 
 import { Dropdown } from 'carbon-components-react'
-import cx from 'classnames'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
 
@@ -49,7 +49,7 @@ Select.propTypes = {
 const TabList = ({ children, className, _id }) => {
   const { activeTab } = useContext(TabContext)
   return (
-    <ul className={cx(className, styles.tabList)} role="tablist">
+    <ul className={clsx(className, styles.tabList)} role="tablist">
       {React.Children.map(children, (child, index) => {
         if (elementIsNullOrString(child)) return child
         return React.cloneElement(child, {

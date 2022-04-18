@@ -41,8 +41,8 @@ div.video-button:hover {
 }
 
 div.video-button > svg {
-  margin-left: 4px;
-  fill: colors.$white-0;
+  margin-left: spacing.$spacing-02;
+  fill: colors.$icon-inverse;
   transition: all motion.$duration-moderate-01 motion(entrance, productive);
 }
 

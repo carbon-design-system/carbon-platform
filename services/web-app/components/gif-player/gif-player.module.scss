@@ -1,4 +1,5 @@
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/spacing' as spacing;
 
 .container {
   position: relative;
@@ -6,8 +7,8 @@
 
 .controls {
   position: absolute;
-  bottom: 1rem;
-  left: 1rem;
+  bottom: spacing.$spacing-05;
+  left: spacing.$spacing-05;
   width: 1.5rem;
   height: 1.5rem;
   padding: 0;
@@ -17,11 +18,11 @@
 }
 
 .controls svg {
-  fill: #ffffff;
+  fill: theme.$icon-inverse;
 }
 
 .dark svg {
-  fill: #000000;
+  fill: theme.$icon-primary;
 }
 
 .controls:focus svg {

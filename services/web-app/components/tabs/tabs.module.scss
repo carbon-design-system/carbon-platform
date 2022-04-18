@@ -70,8 +70,8 @@
   &:focus {
     // allows overflow to be above subsequent tab
     z-index: 1;
-    border-right: 1px solid #000000;
-    outline: 1px solid #ffffff;
+    border-right: 1px solid  theme.$border-inverse;
+    outline: 1px solid theme.$focus-inverse;
     outline-offset: -4px;
   }
 

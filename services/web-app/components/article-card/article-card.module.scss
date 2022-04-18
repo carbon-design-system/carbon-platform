@@ -33,7 +33,7 @@
 }
 
 .title {
-  @include type.type-style('body-short-02');
+  @include type.type-style('body-compact-02');
 
   color: theme.$text-primary;
   text-decoration: none;

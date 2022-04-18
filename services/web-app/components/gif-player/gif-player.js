@@ -10,7 +10,7 @@ import {
   PlayOutline24,
   PlayOutlineFilled24
 } from '@carbon/icons-react'
-import cx from 'classnames'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 
@@ -32,19 +32,19 @@ const GifPlayer = ({ children, color, className, isInDialog }) => {
     setPaused(!paused)
   }
 
-  const controlsClassNames = cx(styles.controls, {
+  const controlsClassNames = clsx(styles.controls, {
     [styles.dark]: color === 'dark'
   })
 
-  const containerClassNames = cx(className, styles.container, {
+  const containerClassNames = clsx(className, styles.container, {
     [styles.gifInDialog]: isInDialog
   })
 
-  const staticImageClassNames = cx(styles.imgHidden, {
+  const staticImageClassNames = clsx(styles.imgHidden, {
     [styles.imgDisplayed]: paused
   })
 
-  const gifClassNames = cx(styles.gifDisplayed, {
+  const gifClassNames = clsx(styles.gifDisplayed, {
     [styles.gifHidden]: paused
   })
 

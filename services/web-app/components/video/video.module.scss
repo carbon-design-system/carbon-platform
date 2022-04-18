@@ -1,6 +1,7 @@
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/colors' as colors;
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/spacing' as spacing;
 
 .video {
   width: 100%;
@@ -42,7 +43,7 @@ div.video-button:hover {
 
 div.video-button > svg {
   margin-left: spacing.$spacing-02;
-  fill: colors.$icon-inverse;
+  fill: theme.$icon-inverse;
   transition: all motion.$duration-moderate-01 motion(entrance, productive);
 }
 

@@ -54,6 +54,11 @@ module.exports = withMDX({
       })
     })
 
+    config.module.rules.push({
+      test: /\.mp4$/,
+      use: 'file-loader?name=static/media/[name].[ext]'
+    })
+
     return config
   },
   async redirects() {

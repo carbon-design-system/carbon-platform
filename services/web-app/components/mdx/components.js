@@ -14,6 +14,7 @@ import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import PageDescription from '@/components/page-description'
 import Title from '@/components/title'
+import Video from '@/components/video'
 
 const Placeholder = ({ name, children }) => {
   return (
@@ -64,9 +65,9 @@ const components = {
   InlineNotification: InlineNotification,
   Accordion: Accordion,
   AccordionItem: AccordionItem,
+  Video: Video,
   Row: ({ children }) => <Placeholder name="Row">{children}</Placeholder>,
   Column: ({ children }) => <Placeholder name="Column">{children}</Placeholder>,
-  Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,
   DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
   GifPlayer: ({ children }) => <Placeholder name="GifPlayer">{children}</Placeholder>,
   ArticleCard: ({ children }) => <Placeholder name="ArticleCard">{children}</Placeholder>,

@@ -12,10 +12,6 @@ import {
   HeaderMenuButton,
   HeaderMenuItem,
   HeaderNavigation,
-  HeaderSideNavItems,
-  SideNav,
-  SideNavItems,
-  SideNavLink,
   SkipToContent,
   Theme
 } from '@carbon/react'
@@ -24,6 +20,8 @@ import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import Footer from '@/components/footer'
+import NavLibrary from '@/components/nav-library'
+import NavMain from '@/components/nav-main'
 import NextLink from '@/components/next-link'
 import { globalNavData } from '@/data/nav-data'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
@@ -34,14 +32,39 @@ export const LayoutContext = createContext()
 
 export const LayoutProvider = ({ children }) => {
   const [navData, setNavData] = useState([])
+  const [showSideNav, setShowSideNav] = useState(true)
+  const [librarySideNav, setLibrarySideNav] = useState(false)
+  const [isSideNavExpanded, toggleSideNavExpanded] = useState(false)
+  const [libraryNavSlideOut, setLibraryNavSlideOut] = useState(false)
 
-  return <LayoutContext.Provider value={{ navData, setNavData }}>{children}</LayoutContext.Provider>
+  const value = {
+    navData,
+    setNavData,
+    showSideNav,
+    setShowSideNav,
+    librarySideNav,
+    setLibrarySideNav,
+    isSideNavExpanded,
+    toggleSideNavExpanded,
+    libraryNavSlideOut,
+    setLibraryNavSlideOut
+  }
+
+  return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
 }
 
 const Layout = ({ children }) => {
   const router = useRouter()
-  const [showSideNav, setShowSideNav] = useState(true)
-  const { navData } = useContext(LayoutContext)
+
+  const {
+    setShowSideNav,
+    showSideNav,
+    librarySideNav,
+    setLibrarySideNav,
+    isSideNavExpanded,
+    toggleSideNavExpanded
+  } = useContext(LayoutContext)
+
   const isLg = useMatchMedia(mediaQueries.lg)
 
   // For use with 100vw widths to account for the scrollbar width, e.g. instead of `width: 100vw;`
@@ -56,12 +79,19 @@ const Layout = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    setShowSideNav(!router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
-  }, [router.pathname])
+    setShowSideNav(
+      !router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]')
+    )
+    setLibrarySideNav(router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
+  }, [setShowSideNav, setLibrarySideNav, router.pathname])
+
+  const onClickSideNavExpand = () => {
+    toggleSideNavExpanded(!isSideNavExpanded)
+  }
 
   return (
     <HeaderContainer
-      render={({ isSideNavExpanded, onClickSideNavExpand }) => (
+      render={() => (
         <>
           <Theme theme="g100">
             <Header aria-label="Carbon Design System" className={styles.header}>
@@ -71,6 +101,7 @@ const Layout = ({ children }) => {
                 onClick={onClickSideNavExpand}
                 isActive={isSideNavExpanded}
               />
+
               <div className={styles.headerName}>
                 <Link href="/assets">
                   <a className="cds--header__name">Carbon Design System</a>
@@ -114,68 +145,12 @@ const Layout = ({ children }) => {
             <Grid as="main" className={styles.main} id="main-content">
               {showSideNav && (
                 <Column sm={4} md={8} lg={4}>
-                  <Theme theme="white">
-                    <SideNav
-                      aria-label="Side navigation"
-                      expanded={isSideNavExpanded}
-                      className={styles.sideNav}
-                    >
-                      <SideNavItems>
-                        <HeaderSideNavItems>
-                          {globalNavData.map((data, i) => (
-                            <>
-                              {data.path && (
-                                <SideNavLink element={NextLink} href={data.path} key={i}>
-                                  {data.title}
-                                </SideNavLink>
-                              )}
-                              {!data.path && (
-                                <SideNavLink
-                                  tabIndex="-1"
-                                  key={i}
-                                  className={styles.sideNavDisabled}
-                                >
-                                  {data.title}
-                                </SideNavLink>
-                              )}
-                            </>
-                          ))}
-                        </HeaderSideNavItems>
-                        {navData.map((data, i) => {
-                          if (data.path && data.title) {
-                            return (
-                              <SideNavLink
-                                element={NextLink}
-                                href={data.path}
-                                isActive={router.pathname === data.path}
-                                key={i}
-                              >
-                                {data.title}
-                              </SideNavLink>
-                            )
-                          }
-                          if (!data.path && data.items) {
-                            return (
-                              <div key={i}>
-                                <h2 className={styles.sideNavHeading}>{data.title}</h2>
-                                {data.items.map((item, j) => (
-                                  <SideNavLink
-                                    element={NextLink}
-                                    href={item.path}
-                                    isActive={router.pathname.startsWith(item.path)}
-                                    key={j}
-                                  >
-                                    {item.title}
-                                  </SideNavLink>
-                                ))}
-                              </div>
-                            )
-                          }
-                          return null
-                        })}
-                      </SideNavItems>
-                    </SideNav>
-                  </Theme>
+                  <section className={styles.sideNavContainer}>
+                    <Theme theme="white">
+                      <NavMain items={globalNavData} />
+                      {librarySideNav && <NavLibrary />}
+                    </Theme>
+                  </section>
                 </Column>
               )}
               <Column sm={4} md={8} lg={showSideNav ? 12 : 16}>

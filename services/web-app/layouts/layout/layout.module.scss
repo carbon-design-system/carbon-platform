@@ -4,12 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-/* stylelint-disable declaration-no-important */
 
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
-@use '@carbon/react/scss/type' as type;
 
 .body {
   flex-grow: 1;
@@ -20,32 +18,10 @@
   margin: spacing.$spacing-09 0 0;
 }
 
-// carbon override add border to sidenav
-.side-nav {
-  @include breakpoint.breakpoint(lg) {
-    border-right: 1px solid theme.$border-subtle-00;
-  }
-}
-
-.side-nav-heading {
-  padding-bottom: spacing.$spacing-03;
-  border-bottom: 1px solid theme.$layer-accent;
-  margin: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
-  @include type.type-style('label-01');
-}
-
 .header-name {
   height: 100%;
   @include breakpoint.breakpoint(lg) {
     position: absolute;
-  }
-}
-
-.header-grid {
-  @include breakpoint.breakpoint(lg) {
-    width: 100%;
-    height: 100%;
-    margin: 0;
   }
 }
 
@@ -65,19 +41,23 @@
   }
 }
 
-// carbon override, disabled side nav item
-// !important needed to override carbon specificty
-.side-nav-disabled {
-  span {
-    color: theme.$text-disabled !important;
+.header-grid {
+  @include breakpoint.breakpoint(lg) {
+    width: 100%;
+    height: 100%;
+    margin: 0;
   }
+}
 
-  &:hover {
-    background-color: transparent !important;
-  }
-
-  &:focus {
-    outline: none !important;
+.side-nav-container {
+  @include breakpoint.breakpoint(lg) {
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 256px;
+    height: 100%;
   }
 }
 

@@ -23,7 +23,8 @@ const Column = ({
   offsetMd,
   offsetLg,
   offsetXl,
-  offsetMax
+  offsetMax,
+  ...props
 }) => {
   let sm = ''
   if (offsetSm !== undefined) {
@@ -67,6 +68,7 @@ const Column = ({
       lg={lg}
       xlg={xlg}
       max={max}
+      {...props}
       className={clsx(styles.column, className)}
     >
       {children}

@@ -10,7 +10,7 @@ import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import Caption from '@/components/caption'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
-import { Column, Row } from '@/components/grid-transform'
+import { Column, Grid, Row } from '@/components/grid-transform'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
@@ -57,6 +57,7 @@ const components = {
   /* Gatsby theme components */
   Accordion: Accordion,
   AccordionItem: AccordionItem,
+  Grid: Grid,
   Row: Row,
   Column: Column,
   AnchorLink: AnchorLink,

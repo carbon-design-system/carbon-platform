@@ -5,32 +5,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { AspectRatio, Column } from '@carbon/react'
 import PropTypes from 'prop-types'
-import React from 'react'
 
-import {
-  cardContainer,
-  contentContainer,
-  imageContainer,
-  nameStyle,
-  profileContainer,
-  titleStyle
-} from './profile.module.scss'
+import styles from './profile.module.scss'
 
 const Profile = ({ name, title, children }) => (
-  <div className={`${profileContainer} cds--col-md-4 cds--col-lg-4 cds--no-gutter-sm`}>
-    <div className={'cds--aspect-ratio cds--aspect-ratio--2x1'}>
-      <div className={'cds--aspect-ratio--object'}>
-        <div className={cardContainer}>
-          <div className={contentContainer}>
-            <div className={nameStyle}>{name}</div>
-            <div className={titleStyle}>{title}</div>
-          </div>
-          <div className={imageContainer}>{children}</div>
+  <Column sm={4} md={4} lg={4} xlg={4} max={4} className={styles.profileContainer}>
+    <AspectRatio ratio="2x1">
+      <div className={styles.cardContainer}>
+        <div className={styles.contentContainer}>
+          <div className={styles.nameStyle}>{name}</div>
+          <div className={styles.titleStyle}>{title}</div>
         </div>
+        <div className={styles.imageContainer}>{children}</div>
       </div>
-    </div>
-  </div>
+    </AspectRatio>
+  </Column>
 )
 
 Profile.propTypes = {

@@ -74,7 +74,6 @@ const components = {
   SquareCard: ({ children }) => <Placeholder name="SquareCard">{children}</Placeholder>,
   Tabs: ({ children }) => <Placeholder name="Tabs">{children}</Placeholder>,
   Tab: ({ children }) => <Placeholder name="Tab">{children}</Placeholder>,
-
   ExpressiveListContainer: ({ children }) => (
     <Placeholder name="ExpressiveListContainer">{children}</Placeholder>
   ),

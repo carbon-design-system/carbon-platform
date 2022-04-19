@@ -9,7 +9,7 @@
 @use '@carbon/react/scss/type' as type;
 
 .caption-container {
-  --space: #{spacing.$spacing-05};
+  margin-top: spacing.$spacing-05;
 }
 
 .caption {

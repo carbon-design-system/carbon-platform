@@ -1,0 +1,252 @@
+designKits:
+  carbon-white-sketch:
+    name: White theme
+    tool: sketch
+    type: components
+    status: stable
+    url: sketch://add-library/cloud/557b75ff-67d3-41ab-ada5-fa25447218c1
+    action: link
+  carbon-g10-sketch:
+    name: Gray 10 theme
+    tool: sketch
+    type: components
+    status: stable
+    url: sketch://add-library/cloud/b4ea2a21-4b1a-4c64-99dc-a1365eff5d5f
+    action: link
+  carbon-g90-sketch:
+    name: Gray 90 theme
+    tool: sketch
+    type: components
+    status: stable
+    url: sketch://add-library/cloud/a324c6dd-df97-435e-b79f-3a29e04922fc
+    action: link
+  carbon-g100-sketch:
+    name: Gray 100 theme
+    tool: sketch
+    type: components
+    status: stable
+    url: sketch://add-library/cloud/9d47a4fd-70dd-44ff-bc57-22c79da8e477
+    action: link
+  ibm-design-language-sketch:
+    name: IBM Design Language
+    tool: sketch
+    type: elements
+    status: stable
+    url: sketch://add-library/cloud/4f1cbe6c-6626-405e-8c46-a9ae41a30cba
+    action: link
+  ibm-icons-16-20-sketch:
+    name: IBM Icons (16px, 20px)
+    tool: sketch
+    type: elements
+    status: stable
+    url: sketch://add-library/cloud/028e0598-591e-428c-a490-f6ec64b15ea7
+    action: link
+  ibm-icons-24-32-sketch:
+    name: IBM Icons (24px, 32px)
+    tool: sketch
+    type: elements
+    status: stable
+    url: sketch://add-library/cloud/d530998a-c94c-4f1c-bc0e-c05417e067e3
+    action: link
+  ibm-grid-sketch:
+    name: IBM Grid template
+    tool: sketch
+    type: elements
+    status: stable
+    url: https://www.sketch.com/s/3a3f3f2d-94d7-4c16-8e2e-88ba80a6382e
+    action: link
+  carbon-shell-sketch:
+    name: UI Shell template
+    tool: sketch
+    type: elements
+    status: stable
+    url: https://www.sketch.com/s/6a8e1d7b-f00a-4d8d-9d83-79ecf4dc12a0
+    action: link
+  carbon-white-figma:
+    name: White theme
+    tool: figma
+    type: components
+    status:
+      key: experimental
+      note:
+        The Figma kit is currently only available to IBMers through a private Figma organization. We
+        are working on getting the kit added to the Figma open community and expect it to be
+        published at the end of Q2 for external use.
+    url: https://www.figma.com/file/Vzz8k68Pqk5HfaTdQOQrGu/White-Theme---Carbon-Design-System
+    action: link
+  carbon-g10-figma:
+    name: Gray 10 theme
+    tool: figma
+    type: components
+    status:
+      key: experimental
+      note:
+        The Figma kit is currently only available to IBMers through a private Figma organization. We
+        are working on getting the kit added to the Figma open community and expect it to be
+        published at the end of Q2 for external use.
+    url: https://www.figma.com/file/i6y80WeotmhmbWxpmcffz7/Gray-10-Theme---Carbon-Design-System
+    action: link
+  carbon-g90-figma:
+    name: Gray 90 theme
+    tool: figma
+    type: components
+    status:
+      key: experimental
+      note:
+        The Figma kit is currently only available to IBMers through a private Figma organization. We
+        are working on getting the kit added to the Figma open community and expect it to be
+        published at the end of Q2 for external use.
+    url: https://www.figma.com/file/fCucrHE8tdGDVJX7ODqajd/Gray-90-Theme---Carbon-Design-System
+    action: link
+  carbon-g100-figma:
+    name: Gray 100 theme
+    tool: figma
+    type: components
+    status:
+      key: experimental
+      note:
+        The Figma kit is currently only available to IBMers through a private Figma organization. We
+        are working on getting the kit added to the Figma open community and expect it to be
+        published at the end of Q2 for external use.
+    url: https://www.figma.com/file/TckQzGe3bNxHPLoRhbXFal/Gray-100-Theme---Carbon-Design-System
+    action: link
+  carbon-white-adobe-xd:
+    name: White theme
+    tool: adobe-xd
+    type: components
+    status: stable
+    url: https://assets.adobe.com/libraries/urn:aaid:sc:VA7:35c94afd-9cc4-4703-a4b0-49acb165d28d?libraryVersion=8&org=973430F0543801CA0A4C98C6%40AdobeOrg
+    action: link
+  carbon-g10-adobe-xd:
+    name: Gray 10 theme
+    tool: adobe-xd
+    type: components
+    status: stable
+    url: https://assets.adobe.com/libraries/urn:aaid:sc:VA7:92418e29-f824-4cfc-9be2-866a5230cbb1?libraryVersion=5&org=973430F0543801CA0A4C98C6%40AdobeOrg
+    action: link
+  carbon-g90-adobe-xd:
+    name: Gray 90 theme
+    tool: adobe-xd
+    type: components
+    status: stable
+    url: https://assets.adobe.com/libraries/urn:aaid:sc:VA7:fc4859fd-beea-4407-b41c-34170a4e8203?libraryVersion=9&org=973430F0543801CA0A4C98C6%40AdobeOrg
+    action: link
+  carbon-g100-adobe-xd:
+    name: Gray 100 theme
+    tool: adobe-xd
+    type: components
+    status: stable
+    url: https://assets.adobe.com/libraries/urn:aaid:sc:VA7:4f44b97f-34a1-413b-b188-fc15337df1b6?libraryVersion=14&org=973430F0543801CA0A4C98C6%40AdobeOrg
+    action: link
+  ibm-icons-adobe-xd:
+    name: IBM Icons
+    tool: adobe-xd
+    type: elements
+    status: stable
+    url: https://assets.adobe.com/more-libraries/urn:aaid:sc:VA7:3609d51f-f1ec-4ad3-87a5-744638af0413?libraryVersion=6&org=973430F0543801CA0A4C98C6%40AdobeOrg
+    action: link
+  carbon-g10-axure:
+    name: Gray 10
+    tool: axure
+    type: components
+    status: stable
+    url: https://github.com/IBM/design-kit/blob/master/Axure/IBM%20Carbon%2010.rplib?raw=true
+    action: download
+  carbon-template-axure:
+    name: Axure template
+    tool: axure
+    type: elements
+    status: stable
+    url: https://github.com/IBM/design-kit/blob/master/Axure/ibm-carbon-template.rp?raw=true
+    action: download
+  data-viz-sketch:
+    name: Data vizualization
+    tool: sketch
+    type: components
+    status: stable
+    url: https://www.sketch.com/s/1a36060a-7a5d-4ddb-aab1-639caa1f74d4
+    action: link
+  color-palettes-ase-clr:
+    name: RGB color palettes (.ase and .clr)
+    tool: adobe-ase
+    type: elements
+    status: stable
+    url: https://github.com/carbon-design-system/carbon/raw/v10/packages/colors/artifacts/IBM_Colors.zip
+    action: download
+  text-toolbar-sketch:
+    name: Text toolbar pattern
+    tool: sketch
+    type: components
+    status: stable
+    url: sketch://add-library/cloud/f32b7e90-d97e-48ef-ae53-beabf75f5846
+    action: download
+  carbon-gatsby-theme-sketch:
+    name: Gatsby theme
+    tool: sketch
+    type: utility
+    status: stable
+    url: sketch://add-library/cloud/304313c1-29a8-4946-a6f0-51dbec953bc2
+    action: download
+  image-production-guidelines-sketch:
+    name: Image production guidelines
+    tool: sketch
+    type: utility
+    status: stable
+    url: https://www.sketch.com/s/240226b0-f455-484d-b412-cfd13fb1bb39
+    action: link
+  carbon-mobile-light-sketch:
+    name: Light theme for mobile
+    tool: sketch
+    type: components
+    status: stable
+    url: sketch://add-library/cloud/s/a3343128-adb6-489c-9e62-709d89ba76e9
+    action: link
+  carbon-mobile-dark-sketch:
+    name: Dark theme for mobile
+    tool: sketch
+    type: components
+    status: stable
+    url: sketch://add-library/cloud/s/1f59f590-6915-47b0-bf06-6fd66209b3b3
+    action: link
+  ibm-grid-mobile-sketch:
+    name: IBM Grid template for mobile
+    tool: sketch
+    type: components
+    status: stable
+    url: https://www.sketch.com/s/42e694ee-4b37-41c9-8c8f-480e2415d9de
+    action: link
+  mobile-patterns-sketch:
+    name: Mobile patterns and examples
+    tool: sketch
+    type: components
+    status: stable
+    url: https://www.sketch.com/s/f13d67b9-3116-4b50-a2e9-56148f1976b0
+    action: link
+  ibm-accessibility-sketch:
+    name: IBM Accessibility Sketch kit
+    tool: sketch
+    type: utility
+    status: stable
+    url: https://www.sketch.com/s/f0a04c0d-fb62-4d71-92c6-07c402f8cae7
+    action: link
+  ibm-accessibility-figma:
+    name: IBM Accessibility Figma kit
+    tool: figma
+    type: utility
+    status: stable
+    url: https://www.figma.com/file/zJlvN4TRbslRtyjFuxIDom/IBM-Accessibility-Design-Kit?node-id=0%3A1
+    action: link
+  carbon-mid-fi-sketch:
+    name: Carbon Mid-Fi Sketch kit
+    tool: sketch
+    type: components
+    status: stable
+    url: sketch://add-library/cloud/e888aa99-4d88-46a4-9b33-3a033e7f5ca2
+    action: link
+  carbon-wireframe-invision-freehand:
+    name: Invision Freehand wireframe kit
+    tool: invision-freehand
+    type: components
+    status: stable
+    url: https://pages.github.ibm.com/cdai-design/cloud-pal/resources/resources/#invision-freehand-kit
+    action: link

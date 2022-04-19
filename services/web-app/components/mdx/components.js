@@ -7,6 +7,7 @@
 
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
+import ArtDirection from '@/components/art-direction'
 import Caption from '@/components/caption'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
@@ -58,6 +59,7 @@ const components = {
   AccordionItem: AccordionItem,
   AnchorLink: AnchorLink,
   AnchorLinks: AnchorLinks,
+  ArtDirection: ArtDirection,
   DoDontRow: DoDontRow,
   DoDont: DoDont,
   GifPlayer: GifPlayer,

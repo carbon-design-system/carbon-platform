@@ -1,32 +1,44 @@
 designKits:
   carbon-white-sketch:
     name: White theme
+    themes:
+      - white
     tool: sketch
     type: components
     status: stable
     url: sketch://add-library/cloud/557b75ff-67d3-41ab-ada5-fa25447218c1
     action: link
+    sponsor: carbon
   carbon-g10-sketch:
     name: Gray 10 theme
+    themes:
+      - g10
     tool: sketch
     type: components
     status: stable
     url: sketch://add-library/cloud/b4ea2a21-4b1a-4c64-99dc-a1365eff5d5f
     action: link
+    sponsor: carbon
   carbon-g90-sketch:
     name: Gray 90 theme
+    themes:
+      - g90
     tool: sketch
     type: components
     status: stable
     url: sketch://add-library/cloud/a324c6dd-df97-435e-b79f-3a29e04922fc
     action: link
+    sponsor: carbon
   carbon-g100-sketch:
     name: Gray 100 theme
+    themes:
+      - g100
     tool: sketch
     type: components
     status: stable
     url: sketch://add-library/cloud/9d47a4fd-70dd-44ff-bc57-22c79da8e477
     action: link
+    sponsor: carbon
   ibm-design-language-sketch:
     name: IBM Design Language
     tool: sketch
@@ -41,6 +53,7 @@ designKits:
     status: stable
     url: sketch://add-library/cloud/028e0598-591e-428c-a490-f6ec64b15ea7
     action: link
+    sponsor: carbon
   ibm-icons-24-32-sketch:
     name: IBM Icons (24px, 32px)
     tool: sketch
@@ -48,6 +61,7 @@ designKits:
     status: stable
     url: sketch://add-library/cloud/d530998a-c94c-4f1c-bc0e-c05417e067e3
     action: link
+    sponsor: carbon
   ibm-grid-sketch:
     name: IBM Grid template
     tool: sketch
@@ -62,8 +76,11 @@ designKits:
     status: stable
     url: https://www.sketch.com/s/6a8e1d7b-f00a-4d8d-9d83-79ecf4dc12a0
     action: link
+    sponsor: carbon
   carbon-white-figma:
     name: White theme
+    themes:
+      - white
     tool: figma
     type: components
     status:
@@ -74,8 +91,11 @@ designKits:
         published at the end of Q2 for external use.
     url: https://www.figma.com/file/Vzz8k68Pqk5HfaTdQOQrGu/White-Theme---Carbon-Design-System
     action: link
+    sponsor: carbon
   carbon-g10-figma:
     name: Gray 10 theme
+    themes:
+      - g10
     tool: figma
     type: components
     status:
@@ -86,8 +106,11 @@ designKits:
         published at the end of Q2 for external use.
     url: https://www.figma.com/file/i6y80WeotmhmbWxpmcffz7/Gray-10-Theme---Carbon-Design-System
     action: link
+    sponsor: carbon
   carbon-g90-figma:
     name: Gray 90 theme
+    themes:
+      - g90
     tool: figma
     type: components
     status:
@@ -98,8 +121,11 @@ designKits:
         published at the end of Q2 for external use.
     url: https://www.figma.com/file/fCucrHE8tdGDVJX7ODqajd/Gray-90-Theme---Carbon-Design-System
     action: link
+    sponsor: carbon
   carbon-g100-figma:
     name: Gray 100 theme
+    themes:
+      - g100
     tool: figma
     type: components
     status:
@@ -110,8 +136,11 @@ designKits:
         published at the end of Q2 for external use.
     url: https://www.figma.com/file/TckQzGe3bNxHPLoRhbXFal/Gray-100-Theme---Carbon-Design-System
     action: link
+    sponsor: carbon
   carbon-white-adobe-xd:
     name: White theme
+    themes:
+      - white
     tool: adobe-xd
     type: components
     status: stable
@@ -119,6 +148,8 @@ designKits:
     action: link
   carbon-g10-adobe-xd:
     name: Gray 10 theme
+    themes:
+      - g10
     tool: adobe-xd
     type: components
     status: stable
@@ -126,6 +157,8 @@ designKits:
     action: link
   carbon-g90-adobe-xd:
     name: Gray 90 theme
+    themes:
+      - g90
     tool: adobe-xd
     type: components
     status: stable
@@ -133,6 +166,8 @@ designKits:
     action: link
   carbon-g100-adobe-xd:
     name: Gray 100 theme
+    themes:
+      - g100
     tool: adobe-xd
     type: components
     status: stable
@@ -147,6 +182,8 @@ designKits:
     action: link
   carbon-g10-axure:
     name: Gray 10
+    themes:
+      - g10
     tool: axure
     type: components
     status: stable
@@ -166,7 +203,8 @@ designKits:
     status: stable
     url: https://www.sketch.com/s/1a36060a-7a5d-4ddb-aab1-639caa1f74d4
     action: link
-  color-palettes-ase-clr:
+    sponsor: carbon
+  ibm-color-palettes-ase-clr:
     name: RGB color palettes (.ase and .clr)
     tool: adobe-ase
     type: elements
@@ -194,8 +232,12 @@ designKits:
     status: stable
     url: https://www.sketch.com/s/240226b0-f455-484d-b412-cfd13fb1bb39
     action: link
+    sponsor: carbon
   carbon-mobile-light-sketch:
     name: Light theme for mobile
+    themes:
+      - white
+      - g10
     tool: sketch
     type: components
     status: stable
@@ -203,6 +245,9 @@ designKits:
     action: link
   carbon-mobile-dark-sketch:
     name: Dark theme for mobile
+    themes:
+      - g90
+      - g100
     tool: sketch
     type: components
     status: stable
@@ -250,3 +295,4 @@ designKits:
     status: stable
     url: https://pages.github.ibm.com/cdai-design/cloud-pal/resources/resources/#invision-freehand-kit
     action: link
+    sponsor: ibm-cloud

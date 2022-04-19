@@ -25,6 +25,22 @@
   }
 }
 
+// carbon override, disabled header nav item
+.header-nav-item-disabled {
+  span {
+    color: theme.$text-disabled;
+  }
+
+  a:hover {
+    background-color: transparent;
+  }
+
+  a:focus {
+    border-color: transparent;
+    background-color: transparent;
+  }
+}
+
 .header-grid {
   @include breakpoint.breakpoint(lg) {
     width: 100%;

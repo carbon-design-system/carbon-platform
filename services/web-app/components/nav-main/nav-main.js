@@ -36,14 +36,23 @@ const NavMain = ({ items = [] }) => {
       <SideNavItems>
         <HeaderSideNavItems>
           {items.map((data, i) => (
-            <SideNavLink
-              element={NextLink}
-              href={data.path}
-              key={i}
-              tabIndex={librarySideNav && '-1'}
-            >
-              {data.title}
-            </SideNavLink>
+            <>
+              {data.path && (
+                <SideNavLink
+                  element={NextLink}
+                  href={data.path}
+                  key={i}
+                  tabIndex={librarySideNav && '-1'}
+                >
+                  {data.title}
+                </SideNavLink>
+              )}
+              {!data.path && (
+                <SideNavLink tabIndex="-1" key={i} className={styles.sideNavDisabled}>
+                  {data.title}
+                </SideNavLink>
+              )}
+            </>
           ))}
         </HeaderSideNavItems>
         {navData.map((data, i) => {

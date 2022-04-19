@@ -114,14 +114,27 @@ const Layout = ({ children }) => {
                     className={styles.headerNavigation}
                   >
                     {globalNavData.map((data) => (
-                      <HeaderMenuItem
-                        key={data.path}
-                        isCurrentPage={router.pathname.startsWith(data.path)}
-                        href={data.path}
-                        element={NextLink}
-                      >
-                        {data.title}
-                      </HeaderMenuItem>
+                      <>
+                        {data.path && (
+                          <HeaderMenuItem
+                            key={data.title}
+                            isCurrentPage={router.pathname.startsWith(data.path)}
+                            href={data.path}
+                            element={NextLink}
+                          >
+                            {data.title}
+                          </HeaderMenuItem>
+                        )}
+                        {!data.path && (
+                          <HeaderMenuItem
+                            key={data.title}
+                            tabIndex="-1"
+                            className={styles.headerNavItemDisabled}
+                          >
+                            {data.title}
+                          </HeaderMenuItem>
+                        )}
+                      </>
                     ))}
                   </HeaderNavigation>
                 </Column>

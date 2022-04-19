@@ -53,6 +53,7 @@ const components = {
   Title: Title,
   Caption: Caption,
   img: Image,
+  Image: Image,
   /* Gatsby theme components */
   Accordion: Accordion,
   AccordionItem: AccordionItem,

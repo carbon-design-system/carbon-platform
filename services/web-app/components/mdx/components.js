@@ -5,8 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Column, Grid } from '@carbon/react'
-
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArticleCard from '@/components/article-card'
@@ -60,8 +58,6 @@ const components = {
   Accordion: Accordion,
   AccordionItem: AccordionItem,
   ArticleCard: ArticleCard,
-  Grid: Grid,
-  Column: Column,
   AnchorLink: AnchorLink,
   AnchorLinks: AnchorLinks,
   DoDontRow: DoDontRow,
@@ -69,6 +65,7 @@ const components = {
   GifPlayer: GifPlayer,
   InlineNotification: InlineNotification,
   Row: ({ children }) => <Placeholder name="Row">{children}</Placeholder>,
+  Column: ({ children }) => <Placeholder name="Column">{children}</Placeholder>,
   Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,
   DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
   Aside: ({ children }) => <Placeholder name="Aside">{children}</Placeholder>,
@@ -78,7 +75,6 @@ const components = {
   SquareCard: ({ children }) => <Placeholder name="SquareCard">{children}</Placeholder>,
   Tabs: ({ children }) => <Placeholder name="Tabs">{children}</Placeholder>,
   Tab: ({ children }) => <Placeholder name="Tab">{children}</Placeholder>,
-
   ExpressiveListContainer: ({ children }) => (
     <Placeholder name="ExpressiveListContainer">{children}</Placeholder>
   ),

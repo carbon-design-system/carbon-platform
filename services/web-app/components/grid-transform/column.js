@@ -6,7 +6,10 @@
  */
 
 import { Column as CarbonColumn } from '@carbon/react'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
+
+import styles from './grid.module.scss'
 
 const Column = ({
   children,
@@ -58,7 +61,14 @@ const Column = ({
   }
 
   return (
-    <CarbonColumn sm={sm} md={md} lg={lg} xlg={xlg} max={max} className={className}>
+    <CarbonColumn
+      sm={sm}
+      md={md}
+      lg={lg}
+      xlg={xlg}
+      max={max}
+      className={clsx(styles.column, className)}
+    >
       {children}
     </CarbonColumn>
   )

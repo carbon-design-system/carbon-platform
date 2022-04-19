@@ -1,0 +1,62 @@
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// .profileContainer:nth-child(3n + 2),
+// .profileContainer:nth-child(3n + 3) {
+//   border-bottom: 1px solid $gray-30;
+//   border-left: 1px solid $gray-30;
+// }
+
+// .profileContainer:nth-child(3n + 1) {
+//   border-bottom: 1px solid $gray-30;
+// }
+
+// .profileContainer:nth-last-child(-n + 3) {
+//   @include breakpoint('lg') {
+//     border-bottom: 0;
+//   }
+// }
+
+// .profileContainer:nth-last-child(-n + 2) {
+//   @include breakpoint('md') {
+//     border-bottom: 0;
+//   }
+// }
+
+// .cardContainer {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   background: $white-0;
+// }
+
+// .contentContainer {
+//   width: 100%;
+// }
+
+// .imageContainer {
+//   width: 100%;
+//   height: 100%;
+// }
+
+// .nameStyle {
+//   @include type-style('heading-01', true);
+
+//   padding-top: $spacing-05;
+//   padding-left: $spacing-05;
+
+//   color: $black-100;
+// }
+
+// .titleStyle {
+//   @include type-style('label-01', true);
+
+//   width: 95%;
+//   padding-left: $spacing-05;
+
+//   color: $gray-80;
+// }

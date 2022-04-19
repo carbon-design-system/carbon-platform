@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.94](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.93...@carbon-platform/web-app@0.1.94) (2022-04-19)
+
+
+### Features 🌟
+
+* add do-dont mdx component ([e5b9f16](https://github.com/carbon-design-system/carbon-platform/commit/e5b9f1658df0a632c0a2d12672aafe0323af8a9e))
+
+
+### Bug Fixes 🐛
+
+* remove ternary ([e07189a](https://github.com/carbon-design-system/carbon-platform/commit/e07189a34a5888914108b6d4d8e19ac60aa2cf52))
+* **web-app:** merge with main ([e7888f3](https://github.com/carbon-design-system/carbon-platform/commit/e7888f35bd1a63ade81eb801838f97c22da48315))
+
 ### [0.1.93](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.92...@carbon-platform/web-app@0.1.93) (2022-04-16)
 
 

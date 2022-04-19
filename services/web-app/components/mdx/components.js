@@ -7,6 +7,7 @@
 
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
+import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Caption from '@/components/caption'
 import { DoDont, DoDontRow } from '@/components/do-dont'
@@ -60,6 +61,7 @@ const components = {
   ArticleCard: ArticleCard,
   AnchorLink: AnchorLink,
   AnchorLinks: AnchorLinks,
+  ArtDirection: ArtDirection,
   DoDontRow: DoDontRow,
   DoDont: DoDont,
   GifPlayer: GifPlayer,

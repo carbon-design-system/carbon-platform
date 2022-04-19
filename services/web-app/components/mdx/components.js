@@ -13,6 +13,7 @@ import GifPlayer from '@/components/gif-player'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
+import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
 import Title from '@/components/title'
 
@@ -62,6 +63,7 @@ const components = {
   DoDont: DoDont,
   GifPlayer: GifPlayer,
   InlineNotification: InlineNotification,
+  MdxWrapper: MdxWrapper,
   Row: ({ children }) => <Placeholder name="Row">{children}</Placeholder>,
   Column: ({ children }) => <Placeholder name="Column">{children}</Placeholder>,
   Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,

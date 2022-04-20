@@ -19,6 +19,7 @@ import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/comp
 import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
 import Profile from '@/components/profile'
+import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import Video from '@/components/video'
 
@@ -54,10 +55,11 @@ const components = {
     'li.ol': (props) => <OrderedList isExpressive nested {...props} />, */
   a: Link,
   blockquote: Blockquote,
+  img: Image,
+  /* Custom comps */
+  Caption: Caption,
   PageDescription: PageDescription,
   Title: Title,
-  Caption: Caption,
-  img: Image,
   Image: Image,
   /* Gatsby theme components */
   Accordion: Accordion,
@@ -69,10 +71,12 @@ const components = {
   AnchorLink: AnchorLink,
   AnchorLinks: AnchorLinks,
   ArtDirection: ArtDirection,
-  DoDontRow: DoDontRow,
   DoDont: DoDont,
+  DoDontRow: DoDontRow,
   GifPlayer: GifPlayer,
   InlineNotification: InlineNotification,
+  Tabs: Tabs,
+  Tab: Tab,
   Video: Video,
   MdxWrapper: MdxWrapper,
   DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
@@ -81,8 +85,6 @@ const components = {
   ResourceCard: ({ children }) => <Placeholder name="ResourceCard">{children}</Placeholder>,
   ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,
   SquareCard: ({ children }) => <Placeholder name="SquareCard">{children}</Placeholder>,
-  Tabs: ({ children }) => <Placeholder name="Tabs">{children}</Placeholder>,
-  Tab: ({ children }) => <Placeholder name="Tab">{children}</Placeholder>,
   ExpressiveListContainer: ({ children }) => (
     <Placeholder name="ExpressiveListContainer">{children}</Placeholder>
   ),

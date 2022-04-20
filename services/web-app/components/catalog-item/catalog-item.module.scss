@@ -33,6 +33,8 @@
     @include breakpoint.breakpoint-down(md) {
       display: none;
     }
+
+    margin-right: 0;
   }
 }
 

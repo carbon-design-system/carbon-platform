@@ -8,6 +8,7 @@
 
 import nextMdx from '@next/mdx'
 import path from 'path'
+import remarkGfm from 'remark-gfm'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import { fileURLToPath } from 'url'
 
@@ -20,7 +21,7 @@ const __dirname = path.dirname(__filename)
 const withMDX = nextMdx({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [mdxWrapperPlugin, remarkUnwrapImages],
+    remarkPlugins: [mdxWrapperPlugin, remarkGfm, remarkUnwrapImages],
     providerImportSource: '@mdx-js/react'
   }
 })

@@ -16,6 +16,7 @@ import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import PageDescription from '@/components/page-description'
+import Profile from '@/components/profile'
 import Title from '@/components/title'
 
 const Placeholder = ({ name, children }) => {
@@ -83,7 +84,7 @@ const components = {
   ),
   ExpressiveList: ({ children }) => <Placeholder name="ExpressiveList">{children}</Placeholder>,
   /* Carbon website components */
-  Profile: ({ children }) => <Placeholder name="Profile">{children}</Placeholder>,
+  Profile: Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
   ComponentDemo: ({ children }) => <Placeholder name="ComponentDemo">{children}</Placeholder>,
   ComponentVariant: ({ children }) => <Placeholder name="ComponentVariant">{children}</Placeholder>,

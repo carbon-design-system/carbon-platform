@@ -5,14 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Grid } from '@carbon/react'
-
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
 import Caption from '@/components/caption'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
+import { Column, Grid, Row } from '@/components/grid-transform'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
@@ -60,6 +59,9 @@ const components = {
   /* Gatsby theme components */
   Accordion: Accordion,
   AccordionItem: AccordionItem,
+  Grid: Grid,
+  Row: Row,
+  Column: Column,
   AnchorLink: AnchorLink,
   AnchorLinks: AnchorLinks,
   ArtDirection: ArtDirection,

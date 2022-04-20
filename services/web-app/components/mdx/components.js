@@ -8,6 +8,7 @@
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
+import ArticleCard from '@/components/article-card'
 import Caption from '@/components/caption'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
@@ -59,6 +60,7 @@ const components = {
   /* Gatsby theme components */
   Accordion: Accordion,
   AccordionItem: AccordionItem,
+  ArticleCard: ArticleCard,
   Grid: Grid,
   Row: Row,
   Column: Column,
@@ -71,7 +73,6 @@ const components = {
   InlineNotification: InlineNotification,
   Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,
   DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
-  ArticleCard: ({ children }) => <Placeholder name="ArticleCard">{children}</Placeholder>,
   Aside: ({ children }) => <Placeholder name="Aside">{children}</Placeholder>,
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
   ResourceCard: ({ children }) => <Placeholder name="ResourceCard">{children}</Placeholder>,

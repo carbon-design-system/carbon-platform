@@ -1,0 +1,85 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+.container {
+  // overide Carbon treeview
+  :global(.cds--tree-node) {
+    padding-left: spacing.$spacing-05;
+    background: transparent;
+  }
+
+  :global(.cds--tree-node__label) {
+    @include type.type-style('heading-01');
+
+    position: relative;
+    cursor: pointer;
+  }
+
+  :global(.cds--tree-parent-node__toggle-icon) {
+    display: none;
+  }
+
+  :global(.cds--tree-parent-node__toggle) {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    margin-right: 0;
+  }
+
+  :global(.cds--tree-parent-node__toggle::after) {
+    position: absolute;
+    top: spacing.$spacing-03;
+    right: spacing.$spacing-05;
+    display: block;
+    width: spacing.$spacing-05;
+    height: spacing.$spacing-05;
+    // override carbon icon and add chevron icon
+    background-image: url("data:image/svg+xml,%3Csvg focusable='false' preserveAspectRatio='xMidYMid meet' xmlns='http://www.w3.org/2000/svg' fill='currentColor' width='16' height='16' viewBox='0 0 16 16' aria-hidden='true' class='cds--tree-node__icon'%3E%3Cpath d='M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z'%3E%3C/path%3E%3C/svg%3E%0A");
+    content: '';
+  }
+
+  :global(.cds--tree-node__label:hover) {
+    background-color: theme.$background-hover;
+  }
+
+  :global(.cds--tree-node--selected > .cds--tree-node__label) {
+    background-color: theme.$background-selected;
+  }
+
+  :global(.cds--tree-node--selected > .cds--tree-node__label::before) {
+    left: spacing.$spacing-06;
+  }
+
+  :global(.cds--tree-node--selected > .cds--tree-node__label:hover) {
+    background-color: theme.$background-selected;
+  }
+
+  :global(.cds--tree-node__children .cds--tree-node__children .cds--tree-node__label) {
+    @include type.type-style('body-compact-01');
+  }
+
+  :global(.cds--tree-node[aria-expanded='true'] > * > .cds--tree-parent-node__toggle::after) {
+    transform: rotate(180deg);
+  }
+
+  :global(.cds--tree-parent-node.cds--tree-node--selected > .cds--tree-node__label::before) {
+    left: 0;
+  }
+
+  :global(.cds--tree-node__children
+      .cds--tree-node__children
+      .cds--tree-node--selected
+      > .cds--tree-node__label::before) {
+    left: spacing.$spacing-06;
+  }
+}

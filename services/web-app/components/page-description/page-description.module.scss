@@ -1,0 +1,28 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/type' as type;
+
+.page-description {
+  --space: #{spacing.$spacing-06};
+
+  margin-top: var(--space);
+}
+
+.page-description p {
+  @include type.type-style('fluid-heading-03', true);
+}
+
+.page-description > * + * {
+  margin-top: var(--space);
+}
+
+.page-description code {
+  font-size: 0.75em;
+  line-height: 1.25;
+}

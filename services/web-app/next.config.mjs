@@ -6,16 +6,25 @@
  */
 'use strict'
 
-const path = require('path')
-const libraries = require('./data/libraries')
-const withMDX = require('@next/mdx')({
+import nextMdx from '@next/mdx'
+import path from 'path'
+import remarkUnwrapImages from 'remark-unwrap-images'
+import { fileURLToPath } from 'url'
+
+import { libraryAllowList as libraries } from './data/libraries.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+const withMDX = nextMdx({
   extension: /\.mdx?$/,
   options: {
+    remarkPlugins: [remarkUnwrapImages],
     providerImportSource: '@mdx-js/react'
   }
 })
 
-module.exports = withMDX({
+const nextConfig = withMDX({
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   experimental: {
     outputStandalone: true,
@@ -31,6 +40,11 @@ module.exports = withMDX({
   },
   swcMinify: true,
   webpack(config) {
+    // silence cache warning notifications due to next.config.mjs imports for now, open issues:
+    // https://github.com/vercel/next.js/issues/33693
+    // https://github.com/webpack/webpack/issues/15574
+    config.infrastructureLogging = { level: 'error' }
+
     const rules = config.module.rules
       .find((rule) => typeof rule.oneOf === 'object')
       .oneOf.filter((rule) => Array.isArray(rule.use))
@@ -74,7 +88,7 @@ module.exports = withMDX({
   async rewrites() {
     const rewrites = []
 
-    for (const [slug, library] of Object.entries(libraries.libraryAllowList)) {
+    for (const [slug, library] of Object.entries(libraries)) {
       rewrites.push({
         source: `/assets/${slug}`,
         destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest`
@@ -99,3 +113,5 @@ module.exports = withMDX({
     return rewrites
   }
 })
+
+export default nextConfig

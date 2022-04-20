@@ -35,18 +35,15 @@ const Column = ({
   }
 
   // remove 'noGutter' props to avoid react console error
-  const cleanProps = Object.keys(props).filter(key =>
-    !key.startsWith('noGutter')).reduce((obj, key) => {
-    obj[key] = props[key]
-    return obj
-  }, {})
+  const cleanProps = Object.keys(props)
+    .filter((key) => !key.startsWith('noGutter'))
+    .reduce((obj, key) => {
+      obj[key] = props[key]
+      return obj
+    }, {})
 
   return (
-    <CarbonColumn
-      {...colSizes}
-      {...cleanProps}
-      className={clsx(styles.column, className)}
-    >
+    <CarbonColumn {...colSizes} {...cleanProps} className={clsx(styles.column, className)}>
       {children}
     </CarbonColumn>
   )

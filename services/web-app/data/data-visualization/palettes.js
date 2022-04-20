@@ -4,1144 +4,189 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+import colors from '@/data/colors'
+
 export const categoricalLight = [
-  {
-    name: 'Purple 70',
-    hex: '6929c4',
-    light: true
-  },
-  {
-    name: 'Cyan 50',
-    hex: '1192e8',
-    light: false
-  },
-  {
-    name: 'Teal 70',
-    hex: '005d5d',
-    light: true
-  },
-  {
-    name: 'Magenta 70',
-    hex: '9f1853',
-    light: true
-  },
-  {
-    name: 'Red 50',
-    hex: 'fa4d56',
-    light: false
-  },
-  {
-    name: 'Red 90',
-    hex: '570408',
-    light: true
-  },
-  {
-    name: 'Green 60',
-    hex: '198038',
-    light: true
-  },
-  {
-    name: 'Blue 80',
-    hex: '002d9c',
-    light: true
-  },
-  {
-    name: 'Magenta 50',
-    hex: 'ee538b',
-    light: false
-  },
-  {
-    name: 'Yellow 50',
-    hex: 'b28600',
-    light: false
-  },
-  {
-    name: 'Teal 50',
-    hex: '009d9a',
-    light: false
-  },
-  {
-    name: 'Cyan 90',
-    hex: '012749',
-    light: true
-  },
-  {
-    name: 'Orange 70',
-    hex: '8a3800',
-    light: true
-  },
-  {
-    name: 'Purple 50',
-    hex: 'a56eff',
-    light: false
-  }
+  colors.Purple70,
+  colors.Cyan50,
+  colors.Teal70,
+  colors.Magenta70,
+  colors.Red50,
+  colors.Red90,
+  colors.Green60,
+  colors.Blue80,
+  colors.Magenta50,
+  colors.Yellow50,
+  colors.Teal50,
+  colors.Cyan90,
+  colors.Orange70,
+  colors.Purple50
 ]
 
-export const oneColorLight = [
-  [
-    {
-      name: 'Purple 70',
-      hex: '6929c4',
-      light: true
-    }
-  ],
-  [
-    {
-      name: 'Blue 80',
-      hex: '002d9c',
-      light: true
-    }
-  ],
-  [
-    {
-      name: 'Cyan 50',
-      hex: '1192e8',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Teal 70',
-      hex: '005d5d',
-      light: true
-    }
-  ]
-]
+export const oneColorLight = [[colors.Purple70], [colors.Blue80], [colors.Cyan50], [colors.Teal70]]
 
 export const twoColorLight = [
-  [
-    {
-      name: 'Purple 70',
-      hex: '6929c4',
-      light: true
-    },
-    {
-      name: 'Teal 50',
-      hex: '009d9a',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Purple 60',
-      hex: '8a3ffc',
-      light: true
-    },
-    {
-      name: 'Red 90',
-      hex: '570408',
-      light: true
-    }
-  ],
-  [
-    {
-      name: 'Magenta 70',
-      hex: '9f1853',
-      light: true
-    },
-    {
-      name: 'Red 90',
-      hex: '570408',
-      light: true
-    }
-  ],
-  [
-    {
-      name: 'Cyan 50',
-      hex: '1192e8',
-      light: false
-    },
-    {
-      name: 'Teal 70',
-      hex: '005d5d',
-      light: true
-    }
-  ],
-  [
-    {
-      name: 'Teal 50',
-      hex: '009d9a',
-      light: false
-    },
-    {
-      name: 'Blue 80',
-      hex: '002d9c',
-      light: true
-    }
-  ]
+  [colors.Purple70, colors.Teal50],
+  [colors.Purple60, colors.Red90],
+  [colors.Magenta70, colors.Red90],
+  [colors.Cyan50, colors.Teal70],
+  [colors.Teal50, colors.Blue80]
 ]
 
 export const threeColorLight = [
-  [
-    {
-      name: 'Purple 50',
-      hex: 'a56eff',
-      light: true
-    },
-    {
-      name: 'Teal 70',
-      hex: '005d5d',
-      light: true
-    },
-    {
-      name: 'Magenta 70',
-      hex: '9f1853',
-      light: true
-    }
-  ],
-  [
-    {
-      name: 'Magenta 70',
-      hex: '9f1853',
-      light: true
-    },
-    {
-      name: 'Red 50',
-      hex: 'fa4d56',
-      light: true
-    },
-    {
-      name: 'Red 90',
-      hex: '570408',
-      light: true
-    }
-  ],
-  [
-    {
-      name: 'Purple 50',
-      hex: 'a56eff',
-      light: true
-    },
-    {
-      name: 'Teal 70',
-      hex: '005d5d',
-      light: true
-    },
-    {
-      name: 'Blue 80',
-      hex: '002d9c',
-      light: true
-    }
-  ],
-  [
-    {
-      name: 'Magenta 50',
-      hex: 'ee538b',
-      light: false
-    },
-    {
-      name: 'Cyan 50',
-      hex: '1192e8',
-      light: false
-    },
-    {
-      name: 'Purple 70',
-      hex: '6929c4',
-      light: true
-    }
-  ],
-  [
-    {
-      name: 'Cyan 90',
-      hex: '012749',
-      light: true
-    },
-    {
-      name: 'Purple 70',
-      hex: '6929c4',
-      light: true
-    },
-    {
-      name: 'Teal 50',
-      hex: '009d9a',
-      light: false
-    }
-  ]
+  [colors.Purple50, colors.Teal70, colors.Magenta70],
+  [colors.Magenta70, colors.Red50, colors.Red90],
+  [colors.Purple50, colors.Teal70, colors.Blue80],
+  [colors.Magenta50, colors.Cyan50, colors.Purple70],
+  [colors.Cyan90, colors.Purple70, colors.Teal50]
 ]
 
 export const fourColorLight = [
-  [
-    {
-      name: 'Magenta 70',
-      hex: '9f1853',
-      light: true
-    },
-    {
-      name: 'Red 50',
-      hex: 'fa4d56',
-      light: true
-    },
-    {
-      name: 'Red 90',
-      hex: '570408',
-      light: true
-    },
-    {
-      name: 'Purple 50',
-      hex: 'a56eff',
-      light: true
-    }
-  ],
-  [
-    {
-      name: 'Purple 70',
-      hex: '6929c4',
-      light: true
-    },
-    {
-      name: 'Cyan 90',
-      hex: '012749',
-      light: true
-    },
-    {
-      name: 'Teal 50',
-      hex: '009d9a',
-      light: false
-    },
-    {
-      name: 'Magenta 50',
-      hex: 'ee538b',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Teal 50',
-      hex: '009d9a',
-      light: false
-    },
-    {
-      name: 'Blue 80',
-      hex: '002d9c',
-      light: true
-    },
-    {
-      name: 'Purple 50',
-      hex: 'a56eff',
-      light: true
-    },
-    {
-      name: 'Magenta 70',
-      hex: '9f1853',
-      light: true
-    }
-  ]
+  [colors.Magenta70, colors.Red50, colors.Red90, colors.Purple50],
+  [colors.Purple70, colors.Cyan90, colors.Teal50, colors.Magenta50],
+  [colors.Teal50, colors.Blue80, colors.Purple50, colors.Magenta70]
 ]
 
 export const fiveColorLight = [
-  [
-    {
-      name: 'Purple 70',
-      hex: '6929c4',
-      light: true
-    },
-    {
-      name: 'Cyan 50',
-      hex: '1192e8',
-      light: false
-    },
-    {
-      name: 'Teal 70',
-      hex: '005d5d',
-      light: true
-    },
-    {
-      name: 'Magenta 70',
-      hex: '9f1853',
-      light: true
-    },
-    {
-      name: 'Red 90',
-      hex: '570408',
-      light: true
-    }
-  ],
-  [
-    {
-      name: 'Blue 80',
-      hex: '002d9c',
-      light: true
-    },
-    {
-      name: 'Teal 50',
-      hex: '009d9a',
-      light: false
-    },
-    {
-      name: 'Magenta 70',
-      hex: '9f1853',
-      light: true
-    },
-    {
-      name: 'Red 90',
-      hex: '570408',
-      light: true
-    },
-    {
-      name: 'Purple 50',
-      hex: 'a56eff',
-      light: true
-    }
-  ]
+  [colors.Purple70, colors.Cyan50, colors.Teal70, colors.Magenta70, colors.Red90],
+  [colors.Blue80, colors.Teal50, colors.Magenta70, colors.Red90, colors.Purple50]
 ]
 
 export const categoricalDark = [
-  {
-    name: 'Purple 60',
-    hex: '8a3ffc',
-    light: true
-  },
-  {
-    name: 'Cyan 40',
-    hex: '33b1ff',
-    light: false
-  },
-  {
-    name: 'Teal 60',
-    hex: '007d79',
-    light: true
-  },
-  {
-    name: 'Magenta 40',
-    hex: 'ff7eb6',
-    light: false
-  },
-  {
-    name: 'Red 50',
-    hex: 'fa4d56',
-    light: false
-  },
-  {
-    name: 'Red 10',
-    hex: 'fff1f1',
-    light: false
-  },
-  {
-    name: 'Green 30',
-    hex: '6fdc8c',
-    light: false
-  },
-  {
-    name: 'Blue 50',
-    hex: '4589ff',
-    light: false
-  },
-  {
-    name: 'Magenta 60',
-    hex: 'd12771',
-    light: true
-  },
-  {
-    name: 'Yellow 40',
-    hex: 'd2a106',
-    light: false
-  },
-  {
-    name: 'Teal 40',
-    hex: '08bdba',
-    light: false
-  },
-  {
-    name: 'Cyan 20',
-    hex: 'bae6ff',
-    light: false
-  },
-  {
-    name: 'Orange 60',
-    hex: 'ba4e00',
-    light: true
-  },
-  {
-    name: 'Purple 30',
-    hex: 'd4bbff',
-    light: false
-  }
+  colors.Purple60,
+  colors.Cyan40,
+  colors.Teal60,
+  colors.Magenta40,
+  colors.Red50,
+  colors.Red10,
+  colors.Green30,
+  colors.Blue50,
+  colors.Magenta60,
+  colors.Yellow40,
+  colors.Teal40,
+  colors.Cyan20,
+  colors.Orange60,
+  colors.Purple30
 ]
 
-export const oneColorDark = [
-  [
-    {
-      name: 'Purple 30',
-      hex: 'd4bbff',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Blue 50',
-      hex: '4589ff',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Cyan 40',
-      hex: '33b1ff',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Teal 40',
-      hex: '08bdba',
-      light: false
-    }
-  ]
-]
+export const oneColorDark = [[colors.Purple30], [colors.Blue50], [colors.Cyan40], [colors.Teal40]]
 
 export const twoColorDark = [
-  [
-    {
-      name: 'Purple 60',
-      hex: '8a3ffc',
-      light: true
-    },
-    {
-      name: 'Teal 40',
-      hex: '08bdba',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Purple 60',
-      hex: '8a3ffc',
-      light: true
-    },
-    {
-      name: 'Magenta 40',
-      hex: 'ff7eb6',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Magenta 40',
-      hex: 'ff7eb6',
-      light: false
-    },
-    {
-      name: 'Red 10',
-      hex: 'fff1f1',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Blue 50',
-      hex: '4589ff',
-      light: false
-    },
-    {
-      name: 'Cyan 20',
-      hex: 'bae6ff',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Teal 60',
-      hex: '007d79',
-      light: true
-    },
-    {
-      name: 'Green 30',
-      hex: '6fdc8c',
-      light: false
-    }
-  ]
+  [colors.Purple60, colors.Teal40],
+  [colors.Purple60, colors.Magenta40],
+  [colors.Magenta40, colors.Red10],
+  [colors.Blue50, colors.Cyan20],
+  [colors.Teal60, colors.Green30]
 ]
 
 export const threeColorDark = [
-  [
-    {
-      name: 'Purple 60',
-      hex: '8a3ffc',
-      light: true
-    },
-    {
-      name: 'Teal 40',
-      hex: '08bdba',
-      light: false
-    },
-    {
-      name: 'Cyan 20',
-      hex: 'bae6ff',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Purple 60',
-      hex: '8a3ffc',
-      light: true
-    },
-    {
-      name: 'Magenta 40',
-      hex: 'ff7eb6',
-      light: false
-    },
-    {
-      name: 'Red 10',
-      hex: 'fff1f1',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Blue 50',
-      hex: '4589ff',
-      light: false
-    },
-    {
-      name: 'Teal 40',
-      hex: '08bdba',
-      light: false
-    },
-    {
-      name: 'Purple 30',
-      hex: 'd4bbff',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Blue 50',
-      hex: '4589ff',
-      light: false
-    },
-    {
-      name: 'Green 30',
-      hex: '6fdc8c',
-      light: false
-    },
-    {
-      name: 'Red 10',
-      hex: 'fff1f1',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Teal 60',
-      hex: '012749',
-      light: true
-    },
-    {
-      name: 'Green 30',
-      hex: '6fdc8c',
-      light: false
-    },
-    {
-      name: 'Cyan 20',
-      hex: 'bae6ff',
-      light: false
-    }
-  ]
+  [colors.Purple60, colors.Teal40, colors.Cyan20],
+  [colors.Purple60, colors.Magenta40, colors.Red10],
+  [colors.Blue50, colors.Teal40, colors.Purple30],
+  [colors.Blue50, colors.Green30, colors.Red10],
+  [colors.Teal60, colors.Green30, colors.Cyan20]
 ]
 
 export const fourColorDark = [
-  [
-    {
-      name: 'Purple 60',
-      hex: '8a3ffc',
-      light: true
-    },
-    {
-      name: 'Teal 40',
-      hex: '08bdba',
-      light: false
-    },
-    {
-      name: 'Cyan 20',
-      hex: 'bae6ff',
-      light: false
-    },
-    {
-      name: 'Blue 50',
-      hex: '4589ff',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Blue 50',
-      hex: '4589ff',
-      light: false
-    },
-    {
-      name: 'Teal 40',
-      hex: '08bdba',
-      light: false
-    },
-    {
-      name: 'Purple 30',
-      hex: 'd4bbff',
-      light: false
-    },
-    {
-      name: 'Red 10',
-      hex: 'fff1f1',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Teal 60',
-      hex: '007d79',
-      light: true
-    },
-    {
-      name: 'Red 10',
-      hex: 'fff1f1',
-      light: false
-    },
-    {
-      name: 'Cyan 40',
-      hex: '33b1ff',
-      light: false
-    },
-    {
-      name: 'Green 30',
-      hex: '6fdc8c',
-      light: false
-    }
-  ]
+  [colors.Purple60, colors.Teal40, colors.Cyan20, colors.Blue50],
+  [colors.Blue50, colors.Teal40, colors.Purple30, colors.Red10],
+  [colors.Teal60, colors.Red10, colors.Cyan40, colors.Green30]
 ]
 
 export const fiveColorDark = [
-  [
-    {
-      name: 'Purple 60',
-      hex: '8a3ffc',
-      light: true
-    },
-    {
-      name: 'Teal 40',
-      hex: '08bdba',
-      light: false
-    },
-    {
-      name: 'Cyan 20',
-      hex: 'bae6ff',
-      light: false
-    },
-    {
-      name: 'Blue 50',
-      hex: '4589ff',
-      light: false
-    },
-    {
-      name: 'Magenta 40',
-      hex: 'ff7eb6',
-      light: false
-    }
-  ],
-  [
-    {
-      name: 'Blue 50',
-      hex: '4589ff',
-      light: false
-    },
-    {
-      name: 'Teal 40',
-      hex: '08bdba',
-      light: false
-    },
-    {
-      name: 'Purple 30',
-      hex: 'd4bbff',
-      light: false
-    },
-    {
-      name: 'Red 10',
-      hex: 'fff1f1',
-      light: false
-    },
-    {
-      name: 'Green 30',
-      hex: '6fdc8c',
-      light: false
-    }
-  ]
+  [colors.Purple60, colors.Teal40, colors.Cyan20, colors.Blue50, colors.Magenta40],
+  [colors.Blue50, colors.Teal40, colors.Purple30, colors.Red10, colors.Green30]
 ]
 
 const monoSequentialOne = [
-  {
-    name: 'Blue 10',
-    hex: 'edf5ff',
-    light: false
-  },
-  {
-    name: 'Blue 20',
-    hex: 'd0e2ff',
-    light: false
-  },
-  {
-    name: 'Blue 30',
-    hex: 'a6c8ff',
-    light: false
-  },
-  {
-    name: 'Blue 40',
-    hex: '78a9ff',
-    light: false
-  },
-  {
-    name: 'Blue 50',
-    hex: '4589ff',
-    light: false
-  },
-  {
-    name: 'Blue 60',
-    hex: '0f62fe',
-    light: true
-  },
-  {
-    name: 'Blue 70',
-    hex: '0043ce',
-    light: true
-  },
-  {
-    name: 'Blue 80',
-    hex: '002d9c',
-    light: true
-  },
-  {
-    name: 'Blue 90',
-    hex: '001d6c',
-    light: true
-  },
-  {
-    name: 'Blue 100',
-    hex: '001141',
-    light: true
-  }
+  colors.Blue10,
+  colors.Blue20,
+  colors.Blue30,
+  colors.Blue40,
+  colors.Blue50,
+  colors.Blue60,
+  colors.Blue70,
+  colors.Blue80,
+  colors.Blue90,
+  colors.Blue100
 ]
 
 const monoSequentialTwo = [
-  {
-    name: 'Purple 10',
-    hex: 'f6f2ff',
-    light: false
-  },
-  {
-    name: 'Purple 20',
-    hex: 'e8daff',
-    light: false
-  },
-  {
-    name: 'Purple 30',
-    hex: 'd4bbff',
-    light: false
-  },
-  {
-    name: 'Purple 40',
-    hex: 'be95ff',
-    light: false
-  },
-  {
-    name: 'Purple 50',
-    hex: 'a56eff',
-    light: false
-  },
-  {
-    name: 'Purple 60',
-    hex: '8a3ffc',
-    light: true
-  },
-  {
-    name: 'Purple 70',
-    hex: '6929c4',
-    light: true
-  },
-  {
-    name: 'Purple 80',
-    hex: '491d8b',
-    light: true
-  },
-  {
-    name: 'Purple 90',
-    hex: '31135e',
-    light: true
-  },
-  {
-    name: 'Purple 100',
-    hex: '1c0f30',
-    light: true
-  }
+  colors.Purple10,
+  colors.Purple20,
+  colors.Purple30,
+  colors.Purple40,
+  colors.Purple50,
+  colors.Purple60,
+  colors.Purple70,
+  colors.Purple80,
+  colors.Purple90,
+  colors.Purple100
 ]
 
 const monoSequentialThree = [
-  {
-    name: 'Cyan 10',
-    hex: 'e5f6ff',
-    light: false
-  },
-  {
-    name: 'Cyan 20',
-    hex: 'bae6ff',
-    light: false
-  },
-  {
-    name: 'Cyan 30',
-    hex: '82cfff',
-    light: false
-  },
-  {
-    name: 'Cyan 40',
-    hex: '33b1ff',
-    light: false
-  },
-  {
-    name: 'Cyan 50',
-    hex: '1192e8',
-    light: false
-  },
-  {
-    name: 'Cyan 60',
-    hex: '0072c3',
-    light: true
-  },
-  {
-    name: 'Cyan 70',
-    hex: '00539a',
-    light: true
-  },
-  {
-    name: 'Cyan 80',
-    hex: '003a6d',
-    light: true
-  },
-  {
-    name: 'Cyan 90',
-    hex: '012749',
-    light: true
-  },
-  {
-    name: 'Cyan 100',
-    hex: '1c0f30',
-    light: true
-  }
+  colors.Cyan10,
+  colors.Cyan20,
+  colors.Cyan30,
+  colors.Cyan40,
+  colors.Cyan50,
+  colors.Cyan60,
+  colors.Cyan70,
+  colors.Cyan80,
+  colors.Cyan90,
+  colors.Cyan100
 ]
 
 const monoSequentialFour = [
-  {
-    name: 'Teal 10',
-    hex: 'd9fbfb',
-    light: false
-  },
-  {
-    name: 'Teal 20',
-    hex: '9ef0f0',
-    light: false
-  },
-  {
-    name: 'Teal 30',
-    hex: '3ddbd9',
-    light: false
-  },
-  {
-    name: 'Teal 40',
-    hex: '08bdba',
-    light: false
-  },
-  {
-    name: 'Teal 50',
-    hex: '009d9a',
-    light: false
-  },
-  {
-    name: 'Teal 60',
-    hex: '007d79',
-    light: true
-  },
-  {
-    name: 'Teal 70',
-    hex: '005d5d',
-    light: true
-  },
-  {
-    name: 'Teal 80',
-    hex: '004144',
-    light: true
-  },
-  {
-    name: 'Teal 90',
-    hex: '022b30',
-    light: true
-  },
-  {
-    name: 'Teal 100',
-    hex: '081a1c',
-    light: true
-  }
+  colors.Teal10,
+  colors.Teal20,
+  colors.Teal30,
+  colors.Teal40,
+  colors.Teal50,
+  colors.Teal60,
+  colors.Teal70,
+  colors.Teal80,
+  colors.Teal90,
+  colors.Teal100
 ]
 
 const divergingSequentialOne = [
-  {
-    name: 'Red 80',
-    hex: '750e13',
-    light: true
-  },
-  {
-    name: 'Red 70',
-    hex: 'a2191f',
-    light: true
-  },
-  {
-    name: 'Red 60',
-    hex: 'da1e28',
-    light: true
-  },
-  {
-    name: 'Red 50',
-    hex: 'fa4d56',
-    light: false
-  },
-  {
-    name: 'Red 40',
-    hex: 'ff8389',
-    light: false
-  },
-  {
-    name: 'Red 30',
-    hex: 'ffb3b8',
-    light: false
-  },
-  {
-    name: 'Red 20',
-    hex: 'ffd7d9',
-    light: false
-  },
-  {
-    name: 'Red 10',
-    hex: 'fff1f1',
-    light: false
-  },
-  {
-    name: 'Cyan 10',
-    hex: 'e5f6ff',
-    light: false
-  },
-  {
-    name: 'Cyan 20',
-    hex: 'bae6ff',
-    light: false
-  },
-  {
-    name: 'Cyan 30',
-    hex: '82cfff',
-    light: false
-  },
-  {
-    name: 'Cyan 40',
-    hex: '33b1ff',
-    light: false
-  },
-  {
-    name: 'Cyan 50',
-    hex: '1192e8',
-    light: false
-  },
-  {
-    name: 'Cyan 60',
-    hex: '0072c3',
-    light: true
-  },
-  {
-    name: 'Cyan 70',
-    hex: '00539a',
-    light: true
-  },
-  {
-    name: 'Cyan 80',
-    hex: '003a6d',
-    light: true
-  }
+  colors.Red80,
+  colors.Red70,
+  colors.Red60,
+  colors.Red50,
+  colors.Red40,
+  colors.Red30,
+  colors.Red20,
+  colors.Red10,
+  colors.Cyan10,
+  colors.Cyan20,
+  colors.Cyan30,
+  colors.Cyan40,
+  colors.Cyan50,
+  colors.Cyan60,
+  colors.Cyan70,
+  colors.Cyan80
 ]
 
 const divergingSequentialTwo = [
-  {
-    name: 'Purple 80',
-    hex: '491d8b',
-    light: true
-  },
-  {
-    name: 'Purple 70',
-    hex: '6929c4',
-    light: true
-  },
-  {
-    name: 'Purple 60',
-    hex: '8a3ffc',
-    light: true
-  },
-  {
-    name: 'Purple 50',
-    hex: 'a56eff',
-    light: false
-  },
-  {
-    name: 'Purple 40',
-    hex: 'be95ff',
-    light: false
-  },
-  {
-    name: 'Purple 30',
-    hex: 'd4bbff',
-    light: false
-  },
-  {
-    name: 'Purple 20',
-    hex: 'e8daff',
-    light: false
-  },
-  {
-    name: 'Purple 10',
-    hex: 'f6f2ff',
-    light: false
-  },
-  {
-    name: 'Teal 10',
-    hex: 'd9fbfb',
-    light: false
-  },
-  {
-    name: 'Teal 20',
-    hex: '9ef0f0',
-    light: false
-  },
-  {
-    name: 'Teal 30',
-    hex: '3ddbd9',
-    light: false
-  },
-  {
-    name: 'Teal 40',
-    hex: '08bdba',
-    light: false
-  },
-  {
-    name: 'Teal 50',
-    hex: '009d9a',
-    light: false
-  },
-  {
-    name: 'Teal 60',
-    hex: '007d79',
-    light: true
-  },
-  {
-    name: 'Teal 70',
-    hex: '005d5d',
-    light: true
-  },
-  {
-    name: 'Teal 80',
-    hex: '004144',
-    light: true
-  }
+  colors.Purple80,
+  colors.Purple70,
+  colors.Purple60,
+  colors.Purple50,
+  colors.Purple40,
+  colors.Purple30,
+  colors.Purple20,
+  colors.Purple10,
+  colors.Teal10,
+  colors.Teal20,
+  colors.Teal30,
+  colors.Teal40,
+  colors.Teal50,
+  colors.Teal60,
+  colors.Teal70,
+  colors.Teal80
 ]
 
 export const monoColors = [
@@ -1174,48 +219,6 @@ export const divergingColors = [
   }
 ]
 
-export const alertLight = [
-  {
-    name: 'Red 60',
-    hex: 'da1e28',
-    light: true
-  },
-  {
-    name: 'Orange 40',
-    hex: 'ff832b',
-    light: false
-  },
-  {
-    name: 'Yellow 30',
-    hex: 'f1c21b',
-    light: false
-  },
-  {
-    name: 'Green 60',
-    hex: '198038',
-    light: true
-  }
-]
+export const alertLight = [colors.Red60, colors.Orange40, colors.Yellow30, colors.Green60]
 
-export const alertDark = [
-  {
-    name: 'Red 50',
-    hex: 'fa4d56',
-    light: false
-  },
-  {
-    name: 'Orange 40',
-    hex: 'ff832b',
-    light: false
-  },
-  {
-    name: 'Yellow 30',
-    hex: 'f1c21b',
-    light: false
-  },
-  {
-    name: 'Green 50',
-    hex: '24a148',
-    light: false
-  }
-]
+export const alertDark = [colors.Red50, colors.Orange40, colors.Yellow30, colors.Green50]

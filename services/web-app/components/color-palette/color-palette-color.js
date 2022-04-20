@@ -20,7 +20,7 @@ const ColorPaletteColor = ({
   continuous
 }) => {
   // determine styles
-  const defaultStyle = { background: `#${hex}` }
+  const defaultStyle = { background: `${hex}` }
   const sequentialStyle = !continuous ? defaultStyle : null
 
   // determine number
@@ -37,7 +37,7 @@ const ColorPaletteColor = ({
         {number}
         {name}
       </span>
-      <span>{hex}</span>
+      <span>{hex?.replace('#', '')}</span>
     </div>
   )
 }

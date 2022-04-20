@@ -26,49 +26,25 @@ const Column = ({
   offsetMax,
   ...props
 }) => {
-  let sm = ''
-  if (offsetSm !== undefined) {
-    sm = { span: colSm, offset: offsetSm }
-  } else {
-    sm = colSm
+  const colSizes = {
+    sm: offsetSm ? { span: colSm, offset: offsetSm } : colSm,
+    md: offsetMd ? { span: colMd, offset: offsetMd } : colMd,
+    lg: offsetLg ? { span: colLg, offset: offsetLg } : colLg,
+    xlg: offsetXl ? { span: colXl, offset: offsetXl } : colXl,
+    max: offsetMax ? { span: colMax, offset: offsetMax } : colMax
   }
 
-  let md = ''
-  if (offsetLg !== undefined) {
-    md = { span: colMd, offset: offsetMd }
-  } else {
-    md = colMd
-  }
-
-  let lg = ''
-  if (offsetLg !== undefined) {
-    lg = { span: colLg, offset: offsetLg }
-  } else {
-    lg = colLg
-  }
-
-  let xlg = ''
-  if (offsetXl !== undefined) {
-    xlg = { span: colXl, offset: offsetXl }
-  } else {
-    xlg = colXl
-  }
-
-  let max = ''
-  if (offsetMax !== undefined) {
-    max = { span: colMax, offset: offsetMax }
-  } else {
-    max = colMax
-  }
+  // remove 'noGutter' props to avoid react console error
+  const cleanProps = Object.keys(props).filter(key =>
+    !key.startsWith('noGutter')).reduce((obj, key) => {
+    obj[key] = props[key]
+    return obj
+  }, {})
 
   return (
     <CarbonColumn
-      sm={sm}
-      md={md}
-      lg={lg}
-      xlg={xlg}
-      max={max}
-      {...props}
+      {...colSizes}
+      {...cleanProps}
       className={clsx(styles.column, className)}
     >
       {children}

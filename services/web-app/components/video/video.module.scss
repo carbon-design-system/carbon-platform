@@ -56,6 +56,7 @@ div.video--is-playing > svg {
   position: relative;
   overflow: hidden;
   height: 0;
+  // hack to allow vimeo videos to display correctly and assume full width available
   padding-bottom: 56.543%;
 
   iframe {

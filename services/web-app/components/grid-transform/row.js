@@ -15,53 +15,40 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import styles from './grid.module.scss'
 
 const Row = ({ children, className }) => {
+  const arrayChildren = Children.toArray(children)
+
   const isSm = useMatchMedia(mediaQueries.sm)
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
   const isXlg = useMatchMedia(mediaQueries.xlg)
   const isMax = useMatchMedia(mediaQueries.max)
 
-  const arrayChildren = Children.toArray(children)
+  const sizeMappings = {
+    Sm: isSm,
+    Md: isMd,
+    Lg: isLg,
+    Xl: isXlg,
+    Max: isMax
+  }
 
   let narrow = false
   let condensed = false
+
   Children.map(arrayChildren, (child) => {
-    for (const prop in child.props) {
-      if (prop === 'noGutterSm') {
-        condensed = isSm
-      }
-      if (prop === 'noGutterMd') {
-        condensed = isMd
-      }
-      if (prop === 'noGutterLg') {
-        condensed = isLg
-      }
-      if (prop === 'noGutterXl') {
-        condensed = isXlg
-      }
-      if (prop === 'noGutterMax') {
-        condensed = isMax
-      }
-      if (prop === 'noGutterSmLeft') {
-        narrow = isSm
-      }
-      if (prop === 'noGutterMdLeft') {
-        narrow = isMd
-      }
-      if (prop === 'noGutterLgLeft') {
-        narrow = isLg
-      }
-      if (prop === 'noGutterXlLeft') {
-        narrow = isXlg
-      }
-      if (prop === 'noGutterMaxLeft') {
-        narrow = isMax
-      }
-      if (prop === 'gutterLg') {
-        narrow = !isLg
-        condensed = !isLg
-      }
-    }
+    const condensedProps = Object.keys(child.props).filter(
+      (prop) => prop.startsWith('noGutter') && !prop.endsWith('Left')
+    )
+    condensedProps.forEach((prop) => {
+      const size = prop.replace('noGutter', '')
+      condensed = sizeMappings[size]
+    })
+    const narrowProps = Object.keys(child.props).filter(
+      (prop) => prop.startsWith('noGutter') && prop.endsWith('Left')
+    )
+    narrowProps.forEach((prop) => {
+      const size = prop.replace('noGutter', '').replace('Left', '')
+      narrow = sizeMappings[size]
+    })
   })
 
   return (

@@ -47,5 +47,5 @@ export const useId = (label) => {
       serverHandoffComplete = true
     }
   }, [])
-  return `gtc__${label}__${id}`
+  return `cp__${label}__${id}`
 }

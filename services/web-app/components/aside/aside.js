@@ -12,14 +12,14 @@ import PropTypes from 'prop-types'
 import styles from './aside.module.scss'
 
 const Aside = ({ children, className, hideRule, ...rest }) => {
-  const captionClasses = clsx(styles.aside, className, {
+  const asideClasses = clsx(styles.aside, className, {
     [styles.asideNoRule]: !!hideRule
   })
 
   return (
     <Grid>
       <Column md={{ span: 2, offset: 1 }} lg={{ span: 4, offset: 1 }}>
-        <aside className={captionClasses} {...rest}>
+        <aside className={asideClasses} {...rest}>
           {children}
         </aside>
       </Column>

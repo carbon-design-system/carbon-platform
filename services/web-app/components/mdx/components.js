@@ -9,6 +9,7 @@ import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
 import Caption from '@/components/caption'
+import ColorPalette from '@/components/color-palette'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
 import InlineNotification from '@/components/inline-notification'
@@ -82,6 +83,7 @@ const components = {
   ),
   ExpressiveList: ({ children }) => <Placeholder name="ExpressiveList">{children}</Placeholder>,
   /* Carbon website components */
+  ColorPalette: ColorPalette,
   Profile: ({ children }) => <Placeholder name="Profile">{children}</Placeholder>,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
   ComponentDemo: ({ children }) => <Placeholder name="ComponentDemo">{children}</Placeholder>,
@@ -89,7 +91,6 @@ const components = {
   ListSection: ({ children }) => (
     <Placeholder name="ComponeListSectiontDemo">{children}</Placeholder>
   ),
-  ColorPalette: ({ children }) => <Placeholder name="ColorPalette">{children}</Placeholder>,
   StatusIndicatorTable: ({ children }) => (
     <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
   )

@@ -8,6 +8,7 @@
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
+import ArticleCard from '@/components/article-card'
 import Caption from '@/components/caption'
 import ColorPalette from '@/components/color-palette'
 import { DoDont, DoDontRow } from '@/components/do-dont'
@@ -16,8 +17,11 @@ import { Column, Grid, Row } from '@/components/grid-transform'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
+import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
+import Profile from '@/components/profile'
 import Title from '@/components/title'
+import Video from '@/components/video'
 
 const Placeholder = ({ name, children }) => {
   return (
@@ -59,6 +63,7 @@ const components = {
   /* Gatsby theme components */
   Accordion: Accordion,
   AccordionItem: AccordionItem,
+  ArticleCard: ArticleCard,
   Grid: Grid,
   Row: Row,
   Column: Column,
@@ -69,9 +74,9 @@ const components = {
   DoDont: DoDont,
   GifPlayer: GifPlayer,
   InlineNotification: InlineNotification,
-  Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,
+  Video: Video,
+  MdxWrapper: MdxWrapper,
   DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
-  ArticleCard: ({ children }) => <Placeholder name="ArticleCard">{children}</Placeholder>,
   Aside: ({ children }) => <Placeholder name="Aside">{children}</Placeholder>,
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
   ResourceCard: ({ children }) => <Placeholder name="ResourceCard">{children}</Placeholder>,
@@ -85,7 +90,7 @@ const components = {
   ExpressiveList: ({ children }) => <Placeholder name="ExpressiveList">{children}</Placeholder>,
   /* Carbon website components */
   ColorPalette: ColorPalette,
-  Profile: ({ children }) => <Placeholder name="Profile">{children}</Placeholder>,
+  Profile: Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
   ComponentDemo: ({ children }) => <Placeholder name="ComponentDemo">{children}</Placeholder>,
   ComponentVariant: ({ children }) => <Placeholder name="ComponentVariant">{children}</Placeholder>,

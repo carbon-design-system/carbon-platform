@@ -7,8 +7,10 @@
 
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
+import ArtDirection from '@/components/art-direction'
 import Caption from '@/components/caption'
 import { DoDont, DoDontRow } from '@/components/do-dont'
+import GifPlayer from '@/components/gif-player'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
@@ -51,20 +53,18 @@ const components = {
   img: Image,
   /* Custom comps */
   Caption: Caption,
-  Image: ({ alt, ...props }) => (
-    <P>
-      <Image alt={alt} {...props}></Image>
-    </P>
-  ),
   PageDescription: PageDescription,
   Title: Title,
+  Image: Image,
   /* Gatsby theme components */
   Accordion: Accordion,
   AccordionItem: AccordionItem,
   AnchorLink: AnchorLink,
   AnchorLinks: AnchorLinks,
+  ArtDirection: ArtDirection,
   DoDont: DoDont,
   DoDontRow: DoDontRow,
+  GifPlayer: GifPlayer,
   InlineNotification: InlineNotification,
   Tabs: Tabs,
   Tab: Tab,
@@ -72,7 +72,6 @@ const components = {
   Column: ({ children }) => <Placeholder name="Column">{children}</Placeholder>,
   Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,
   DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
-  GifPlayer: ({ children }) => <Placeholder name="GifPlayer">{children}</Placeholder>,
   ArticleCard: ({ children }) => <Placeholder name="ArticleCard">{children}</Placeholder>,
   Aside: ({ children }) => <Placeholder name="Aside">{children}</Placeholder>,
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,

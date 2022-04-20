@@ -21,6 +21,7 @@ import PageDescription from '@/components/page-description'
 import { Tab, Tabs } from '@/components/tabs'
 import Profile from '@/components/profile'
 import Title from '@/components/title'
+import Video from '@/components/video'
 
 const Placeholder = ({ name, children }) => {
   return (
@@ -76,8 +77,8 @@ const components = {
   InlineNotification: InlineNotification,
   Tabs: Tabs,
   Tab: Tab,
+  Video: Video,
   MdxWrapper: MdxWrapper,
-  Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,
   DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
   Aside: ({ children }) => <Placeholder name="Aside">{children}</Placeholder>,
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,

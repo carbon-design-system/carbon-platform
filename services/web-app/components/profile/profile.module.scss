@@ -59,7 +59,7 @@
 .titleStyle {
   @include type.type-style('label-01');
 
-  width: 95%;
+  padding-right: spacing.$spacing-03;
   padding-left: spacing.$spacing-05;
   color: theme.$text-secondary;
 }

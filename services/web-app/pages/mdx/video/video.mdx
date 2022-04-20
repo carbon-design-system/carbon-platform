@@ -1,0 +1,30 @@
+import localVideo from './local-video.mp4'
+import localPoster from './local-poster.jpeg'
+
+## Video
+
+<Video title="Carbon homepage video" vimeoId="322021187" />
+
+<Video src="/videos/hero-video.mp4" poster="/videos/poster.png">
+  <track kind="captions" default src="/videos/hero-video.vtt" srcLang="en" />
+</Video>
+
+<Video src={localVideo} poster={localPoster} />
+
+### inside of DoDont
+
+<DoDontRow>
+
+<DoDont aspectRatio="1:1">
+
+<Video src={localVideo} poster={localPoster} />
+
+</DoDont>
+
+<DoDont aspectRatio="1:1" type="dont">
+
+<Video src={localVideo} poster={localPoster} />
+
+</DoDont>
+
+</DoDontRow>

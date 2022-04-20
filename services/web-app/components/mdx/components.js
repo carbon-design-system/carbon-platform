@@ -20,6 +20,7 @@ import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
 import Profile from '@/components/profile'
 import Title from '@/components/title'
+import Video from '@/components/video'
 
 const Placeholder = ({ name, children }) => {
   return (
@@ -72,8 +73,8 @@ const components = {
   DoDont: DoDont,
   GifPlayer: GifPlayer,
   InlineNotification: InlineNotification,
+  Video: Video,
   MdxWrapper: MdxWrapper,
-  Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,
   DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
   Aside: ({ children }) => <Placeholder name="Aside">{children}</Placeholder>,
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,

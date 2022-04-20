@@ -41,6 +41,7 @@
     "express-session": "^1.17.2",
     "file-loader": "^6.2.0",
     "fs-extra": "^10.0.1",
+    "gray-matter": "^4.0.3",
     "http-proxy-middleware": "^2.0.4",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",

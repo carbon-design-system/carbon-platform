@@ -279,10 +279,11 @@ have the following values:
 
 ## Design kit schema
 
-Design kits are files for various design tools that contain elements, components, or other utilities
-as the design counterpart to coded assets. Design kits are index in the
-[carbon-platform](https://github.com/carbon-design-system/carbon-platform)
-[`carbon.yml` data file](https://github.com/carbon-design-system/carbon-platform/blob/main/services/web-app/data/carbon.yml).
+Design kits contain elements, components, or other utilities for various design tools as the design
+counterpart to coded assets. Design kits are indexed in the
+[carbon-platform](https://github.com/carbon-design-system/carbon-platform) repository
+[`carbon.yml`](https://github.com/carbon-design-system/carbon-platform/blob/main/services/web-app/data/carbon.yml)
+data file.
 
 **Example**
 
@@ -305,25 +306,25 @@ designKits:
 
 ### Design kit keys
 
-| Key       | Description                                                                                                                                                                                                                                                                   | Required | Type             | Default      | Valid values                                                             |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ---------------- | ------------ | ------------------------------------------------------------------------ |
-| `id`      | Every design kit needs an identifier unique to the platform. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive an `id` when registering a new design kit. See [identifiers](#identifiers) for more info. | Required | String           | –            | –                                                                        |
-| `name`    | Design kit display name. Use title-case capitalization.                                                                                                                                                                                                                       | Required | String           | –            | –                                                                        |
-| `themes`  | One or many color themes provided in the design kit.                                                                                                                                                                                                                          | Optional | Array            | –            | `white`, `g10`, `g90`, `g100`                                            |
-| `tool`    | The design tool that the kit is for.                                                                                                                                                                                                                                          | Required | String           | –            | `adobe-ase`, `adobe-xd`, `axure`, `figma`, `invision-freehand`, `sketch` |
-| `type`    | Design kit primary categorization.                                                                                                                                                                                                                                            | Required | String           | –            | `components`, `elements`, `utility`                                      |
-| `status`  | Design kit consumption exptectations. See [status](#status).                                                                                                                                                                                                                  | Required | String \| Object | `draft`      | `draft`, `experimental`, `stable`, `deprecated`                          |
-| `url`     | Design kit URL.                                                                                                                                                                                                                                                               | Required | String           | –            | –                                                                        |
-| `action`  | Determines the action icon.                                                                                                                                                                                                                                                   | Optional | String           | `link`       | `download`, `link`                                                       |
-| `sponsor` | The `id` of a sponsoring team. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive the valid `id`s.                                                                                                        | Optional | String           | –            | –                                                                        |
-| `license` | Open-source license or `IBM Internal`.                                                                                                                                                                                                                                        | Optional | String           | `Apache 2.0` | `Apache 2.0`, `IBM Internal`, `MIT`                                      |
-| `noIndex` | If set to `true`, the global catalogs will exclude the kit.                                                                                                                                                                                                                   | Optional | Boolean          | `false`      | –                                                                        |
+| Key       | Description                                                                                                                                                                                                                                                                   | Required | Type             | Default        | Valid values                                                             |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ---------------- | -------------- | ------------------------------------------------------------------------ |
+| `id`      | Every design kit needs an identifier unique to the platform. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive an `id` when registering a new design kit. See [identifiers](#identifiers) for more info. | Required | String           | –              | –                                                                        |
+| `name`    | Design kit display name. Use title-case capitalization.                                                                                                                                                                                                                       | Required | String           | –              | –                                                                        |
+| `themes`  | One or many color themes provided in the design kit.                                                                                                                                                                                                                          | Optional | Array            | –              | `white`, `g10`, `g90`, `g100`                                            |
+| `tool`    | Design kit's compatible tool.                                                                                                                                                                                                                                                 | Required | String           | –              | `adobe-ase`, `adobe-xd`, `axure`, `figma`, `invision-freehand`, `sketch` |
+| `type`    | Design kit primary categorization.                                                                                                                                                                                                                                            | Required | String           | –              | `components`, `elements`, `utility`                                      |
+| `status`  | Design kit consumption exptectations. See [status](#status).                                                                                                                                                                                                                  | Required | String \| Object | `draft`        | `draft`, `experimental`, `stable`, `deprecated`                          |
+| `url`     | Design kit URL.                                                                                                                                                                                                                                                               | Required | String           | –              | –                                                                        |
+| `action`  | Determines the action icon.                                                                                                                                                                                                                                                   | Optional | String           | `link`         | `download`, `link`                                                       |
+| `sponsor` | The `id` of a sponsoring team. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive the valid `id`s.                                                                                                        | Optional | String           | –              | –                                                                        |
+| `license` | Open-source license or `IBM Internal`.                                                                                                                                                                                                                                        | Optional | String           | `IBM Internal` | `Apache 2.0`, `IBM Internal`, `MIT`                                      |
+| `noIndex` | If set to `true`, the global catalogs will exclude the kit.                                                                                                                                                                                                                   | Optional | Boolean          | `false`        | –                                                                        |
 
 ## Shared schemas
 
 The following properties are used in multiple schemas.
 
-#### Demo links
+### Demo links
 
 Libraries and assets can specify links to demo sites.
 
@@ -350,12 +351,12 @@ For the value of the `demoLinks` array, you can set the following keys.
 | `action`  | Determines the action icon.  | Optional | String | `link`  | `download`, `link`                   |
 | `url`     | Link to the resource.        | Required | String | –       | –                                    |
 
-#### Identifiers
+### Identifiers
 
 Libraries and assets have `id`s to uniquely identify each resource and establish relationships
 between resources. More guidance around format and absolute identifiers coming here soon!
 
-#### Status
+### Status
 
 Status is used by maintainers to set resource consumption expectations of stability and the
 likelihood of future changes. The `status` key can have the following values:

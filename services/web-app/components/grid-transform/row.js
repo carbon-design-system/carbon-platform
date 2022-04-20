@@ -75,4 +75,5 @@ Row.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string
 }
+
 export default Row

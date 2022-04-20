@@ -8,6 +8,7 @@
 
 import nextMdx from '@next/mdx'
 import path from 'path'
+import remarkGfm from 'remark-gfm'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import { fileURLToPath } from 'url'
 
@@ -19,7 +20,7 @@ const __dirname = path.dirname(__filename)
 const withMDX = nextMdx({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkUnwrapImages],
+    remarkPlugins: [remarkGfm, remarkUnwrapImages],
     providerImportSource: '@mdx-js/react'
   }
 })
@@ -97,6 +98,16 @@ const nextConfig = withMDX({
       rewrites.push({
         source: `/assets/${slug}`,
         destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest`
+      })
+
+      rewrites.push({
+        source: `/assets/${slug}/library-assets`,
+        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest/library-assets`
+      })
+
+      rewrites.push({
+        source: `/assets/${slug}/:ref*/library-assets`,
+        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/library-assets`
       })
 
       rewrites.push({

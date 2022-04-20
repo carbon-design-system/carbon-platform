@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 import styles from './profile.module.scss'
 
 const Profile = ({ name, title, children }) => (
-  <Column sm={4} md={4} lg={4} xlg={4} max={4} className={styles.profileContainer}>
+  <Column sm={4} className={styles.profileContainer}>
     <AspectRatio ratio="2x1">
       <div className={styles.cardContainer}>
         <div className={styles.contentContainer}>

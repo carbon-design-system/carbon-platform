@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.95](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.94...@carbon-platform/web-app@0.1.95) (2022-04-20)
+
+
+### Features 🌟
+
+* add disabled main nav items ([82e2b91](https://github.com/carbon-design-system/carbon-platform/commit/82e2b91d63b07e84d606f9faced8ecb7ca5aff22))
+* **web-app:** mdx art-direction component ([595c40a](https://github.com/carbon-design-system/carbon-platform/commit/595c40a37e162566138fee8c22f67b0869b58d17))
+* **web-app:** migrate gifplayer from gatsby-theme for mdx usage ([22b3d06](https://github.com/carbon-design-system/carbon-platform/commit/22b3d066b2899823381cc61bd62861d1add59d22))
+
+
+### Bug Fixes 🐛
+
+* build ([b32562f](https://github.com/carbon-design-system/carbon-platform/commit/b32562f9132c6cd81ef7b70cd4cb3e324976558d))
+* linting ([c8ae3bc](https://github.com/carbon-design-system/carbon-platform/commit/c8ae3bc78b9017ca89b832d8293b00d349d6bd54))
+* linting ([af58c8d](https://github.com/carbon-design-system/carbon-platform/commit/af58c8d6d9290f0b5cdd9d3e4f9f57f9e1f1f69b))
+* linting remove ternary ([5757ca2](https://github.com/carbon-design-system/carbon-platform/commit/5757ca21e29944b8140953b946cd0b33dcd2cbd5))
+* merge conflicts ([cf7fe2f](https://github.com/carbon-design-system/carbon-platform/commit/cf7fe2fdc691a44760a1cfd9f48aa5ef9bb2d185))
+* merge conflicts ([90908b6](https://github.com/carbon-design-system/carbon-platform/commit/90908b63fc36b494716c729efb5a70f8a5775ac1))
+* remove extra logic ([e464c6e](https://github.com/carbon-design-system/carbon-platform/commit/e464c6ee1b95d218ad092072cdfca8c2e4426806))
+* **web-app:** linter issues ([2555899](https://github.com/carbon-design-system/carbon-platform/commit/255589967a31050bdcf6d9a00a395e177e9a5e0e))
+* **web-app:** merge with main ([c1f4e90](https://github.com/carbon-design-system/carbon-platform/commit/c1f4e900daf78fa0e9de8727e005054a79ef67c5))
+* **web-app:** pr review comments ([269c92c](https://github.com/carbon-design-system/carbon-platform/commit/269c92c1430d912941e117ae3d29454c49e4660b))
+
 ### [0.1.94](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.93...@carbon-platform/web-app@0.1.94) (2022-04-19)
 
 

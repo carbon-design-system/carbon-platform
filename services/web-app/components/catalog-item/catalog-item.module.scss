@@ -193,29 +193,11 @@
 }
 
 .meta {
-  margin-top: spacing.$spacing-02;
-  color: theme.$text-secondary;
-  @include type.type-style('label-01');
-
   &--absolute {
     position: absolute;
     bottom: spacing.$spacing-04;
     left: spacing.$spacing-04;
   }
-}
-
-.meta-item {
-  display: inline;
-
-  &:not(:first-child) {
-    margin-left: spacing.$spacing-03;
-  }
-}
-
-.meta-icon {
-  position: relative;
-  top: 3px;
-  margin-right: spacing.$spacing-02;
 }
 
 .image {

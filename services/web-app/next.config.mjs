@@ -95,6 +95,16 @@ const nextConfig = withMDX({
       })
 
       rewrites.push({
+        source: `/assets/${slug}/library-assets`,
+        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest/library-assets`
+      })
+
+      rewrites.push({
+        source: `/assets/${slug}/:ref*/library-assets`,
+        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/library-assets`
+      })
+
+      rewrites.push({
         source: `/assets/${slug}/:ref*`,
         destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
       })

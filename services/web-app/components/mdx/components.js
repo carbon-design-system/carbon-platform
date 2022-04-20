@@ -12,6 +12,7 @@ import ArticleCard from '@/components/article-card'
 import Caption from '@/components/caption'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
+import { Column, Grid, Row } from '@/components/grid-transform'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
@@ -59,6 +60,9 @@ const components = {
   Accordion: Accordion,
   AccordionItem: AccordionItem,
   ArticleCard: ArticleCard,
+  Grid: Grid,
+  Row: Row,
+  Column: Column,
   AnchorLink: AnchorLink,
   AnchorLinks: AnchorLinks,
   ArtDirection: ArtDirection,
@@ -66,8 +70,6 @@ const components = {
   DoDont: DoDont,
   GifPlayer: GifPlayer,
   InlineNotification: InlineNotification,
-  Row: ({ children }) => <Placeholder name="Row">{children}</Placeholder>,
-  Column: ({ children }) => <Placeholder name="Column">{children}</Placeholder>,
   Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,
   DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
   Aside: ({ children }) => <Placeholder name="Aside">{children}</Placeholder>,

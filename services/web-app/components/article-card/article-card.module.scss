@@ -64,7 +64,7 @@
   fill: theme.$icon-primary;
 }
 
-// Disabled
+// carbon override, disabled state
 .disabled.article-card,
 .disabled :global(.cds--tile) {
   cursor: not-allowed;

@@ -12,12 +12,12 @@
 
 .profileContainer:nth-child(3n + 2),
 .profileContainer:nth-child(3n + 3) {
-  border-bottom: 1px solid theme.$border-subtle-selected-01;
-  border-left: 1px solid theme.$border-subtle-selected-01;
+  border-bottom: 1px solid theme.$border-subtle;
+  border-left: 1px solid theme.$border-subtle;
 }
 
 .profileContainer:nth-child(3n + 1) {
-  border-bottom: 1px solid theme.$border-subtle-selected-01;
+  border-bottom: 1px solid theme.$border-subtle;
 }
 
 .profileContainer:nth-last-child(-n + 3) {

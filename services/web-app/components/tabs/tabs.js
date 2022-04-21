@@ -13,7 +13,7 @@ import React, { createContext, useCallback, useContext, useEffect, useRef, useSt
 import { useId } from '@/utils/use-id'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
-import * as styles from './tabs.module.scss'
+import styles from './tabs.module.scss'
 
 function elementIsNullOrString(child) {
   return !child || typeof child.type === 'string'

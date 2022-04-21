@@ -64,6 +64,7 @@
 }
 
 // Disabled
+// override carbon tile
 .disabled :global(.cds--tile:hover) {
   background: theme.$layer-01;
   cursor: not-allowed;

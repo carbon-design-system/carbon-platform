@@ -8,7 +8,7 @@
 @use '@carbon/react/scss/theme' as theme;
 
 // Resource card group
-// Add border only inbetween group of cards
+// Add border only in between group of cards
 // Forces 3rd card to start new "row"
 // override carbon grid styles
 :global(.resource-card-group) {

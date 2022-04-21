@@ -96,6 +96,7 @@ const components = {
   ExpressiveListContainer: ({ children }) => (
     <Placeholder name="ExpressiveListContainer">{children}</Placeholder>
   ),
+  DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
   ExpressiveList: ({ children }) => <Placeholder name="ExpressiveList">{children}</Placeholder>
 }
 

@@ -13,7 +13,4 @@
 
 .column {
   margin-bottom: spacing.$spacing-06;
-  @include breakpoint.breakpoint(lg) {
-    margin-bottom: 0;
-  }
 }

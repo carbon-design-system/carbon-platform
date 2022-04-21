@@ -8,6 +8,7 @@
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
+import ArticleCard from '@/components/article-card'
 import Caption from '@/components/caption'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
@@ -15,8 +16,12 @@ import { Column, Grid, Row } from '@/components/grid-transform'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
+import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
+import Profile from '@/components/profile'
+import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
+import Video from '@/components/video'
 
 const Placeholder = ({ name, children }) => {
   return (
@@ -50,40 +55,42 @@ const components = {
     'li.ol': (props) => <OrderedList isExpressive nested {...props} />, */
   a: Link,
   blockquote: Blockquote,
+  img: Image,
+  /* Custom comps */
+  Caption: Caption,
   PageDescription: PageDescription,
   Title: Title,
-  Caption: Caption,
-  img: Image,
   Image: Image,
   /* Gatsby theme components */
   Accordion: Accordion,
   AccordionItem: AccordionItem,
+  ArticleCard: ArticleCard,
   Grid: Grid,
   Row: Row,
   Column: Column,
   AnchorLink: AnchorLink,
   AnchorLinks: AnchorLinks,
   ArtDirection: ArtDirection,
-  DoDontRow: DoDontRow,
   DoDont: DoDont,
+  DoDontRow: DoDontRow,
   GifPlayer: GifPlayer,
   InlineNotification: InlineNotification,
-  Video: ({ children }) => <Placeholder name="Video">{children}</Placeholder>,
+  Tabs: Tabs,
+  Tab: Tab,
+  Video: Video,
+  MdxWrapper: MdxWrapper,
   DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
-  ArticleCard: ({ children }) => <Placeholder name="ArticleCard">{children}</Placeholder>,
   Aside: ({ children }) => <Placeholder name="Aside">{children}</Placeholder>,
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
   ResourceCard: ({ children }) => <Placeholder name="ResourceCard">{children}</Placeholder>,
   ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,
   SquareCard: ({ children }) => <Placeholder name="SquareCard">{children}</Placeholder>,
-  Tabs: ({ children }) => <Placeholder name="Tabs">{children}</Placeholder>,
-  Tab: ({ children }) => <Placeholder name="Tab">{children}</Placeholder>,
   ExpressiveListContainer: ({ children }) => (
     <Placeholder name="ExpressiveListContainer">{children}</Placeholder>
   ),
   ExpressiveList: ({ children }) => <Placeholder name="ExpressiveList">{children}</Placeholder>,
   /* Carbon website components */
-  Profile: ({ children }) => <Placeholder name="Profile">{children}</Placeholder>,
+  Profile: Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
   ComponentDemo: ({ children }) => <Placeholder name="ComponentDemo">{children}</Placeholder>,
   ComponentVariant: ({ children }) => <Placeholder name="ComponentVariant">{children}</Placeholder>,

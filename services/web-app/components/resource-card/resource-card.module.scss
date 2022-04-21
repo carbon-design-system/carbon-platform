@@ -27,7 +27,7 @@
 }
 
 .title {
-  @include type.type-style('productive-heading-03');
+  @include type.type-style('heading-03');
 
   color: theme.$text-primary;
   text-decoration: none;

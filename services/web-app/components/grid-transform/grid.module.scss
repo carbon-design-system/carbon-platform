@@ -4,14 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 @use '@carbon/react/scss/spacing' as spacing;
-@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
 
-.caption-container {
-  margin-top: spacing.$spacing-05;
+.grid {
+  margin-top: spacing.$spacing-06;
 }
 
-.caption {
-  @include type.type-style('body-short-01');
+.column {
+  margin-bottom: spacing.$spacing-06;
 }

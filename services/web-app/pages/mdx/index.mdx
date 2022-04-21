@@ -1,0 +1,642 @@
+---
+title: MDX sandbox
+description: this is the description
+keywords: hola, adios, hasta luego
+tabs: ['Tab one', 'Tab two', 'Tab three', 'Tab four']
+---
+
+## Accordion
+
+<Accordion>
+  <AccordionItem title="Title 1">Content Section</AccordionItem>
+  <AccordionItem title="Title 2">Content Section</AccordionItem>
+  <AccordionItem title="Title 3">Content Section</AccordionItem>
+</Accordion>
+
+## AnchorLinks
+
+<AnchorLinks>
+  <AnchorLink>Link 1</AnchorLink>
+  <AnchorLink>Link 2</AnchorLink>
+  <AnchorLink>Link 3</AnchorLink>
+  <AnchorLink>Link 4</AnchorLink>
+  <AnchorLink>Link 5</AnchorLink>
+  <AnchorLink>Link 6</AnchorLink>
+  <AnchorLink>Link 7</AnchorLink>
+</AnchorLinks>
+
+<AnchorLinks small>
+  <AnchorLink>Small link 1</AnchorLink>
+  <AnchorLink>Small link 2</AnchorLink>
+  <AnchorLink>Small link 3</AnchorLink>
+</AnchorLinks>
+
+## ArtDirection
+
+<ArtDirection>
+
+![Mobile image](/mdx/mobile.jpg)
+
+![Tablet image](/mdx/tablet.jpg)
+
+![Desktop image](/mdx/desktop.jpg)
+
+</ArtDirection>
+
+## Example
+
+<Row>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      subTitle="subTitle"
+      title="Title"
+      author="Josh Black"
+      date="April 29, 2019"
+      readTime="Read time: 5 min"
+      href="/"
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      title="Explore & Create"
+      author="Josh Black"
+      href="https://www.ibm.com"
+      actionIcon="arrowRight"
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      title="Explore & Create a longer title example in this space"
+      href="https://www.ibm.com"
+      disabled
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      title="Explore & Create"
+      color="dark"
+      href="https://www.ibm.com"
+      actionIcon="download"
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      subTitle="subTitle"
+      title="Explore & Create"
+      author="Josh Black"
+      readTime="Read time: 5 min"
+      color="dark"
+      href="https://www.ibm.com"
+      actionIcon="email"
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      subTitle="subTitle"
+      title="Explore & Create"
+      author="Josh Black"
+      date="April 29, 2019"
+      readTime="Read time: 5 min"
+      color="dark"
+      disabled
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+</Row>
+
+## Aside
+
+<Grid>
+<Column md={5} lg={8}>
+
+<Title>With hanging rule</Title>
+
+</Column>
+<Column md={3} lg={4}>
+<Aside aria-label="Example aside">
+
+**Good design is always good design.**
+
+What we borrow from our own design history is not a mid-century aesthetic in stylistic terms, but
+the modernist attitudes and approach used at the time.
+
+</Aside>
+</Column>
+</Grid>
+
+<Grid>
+<Column md={5} lg={8}>
+
+<Title>Without hanging rule</Title>
+
+</Column>
+<Column md={3} lg={4}>
+<Aside aria-label="Example aside" hideRule>
+
+A by-product of every experience with IBM should be time—time saved or time well-spent.
+
+</Aside>
+</Column>
+</Grid>
+
+## Caption
+
+<Caption>Lorem ipsum dolor sit amet Lorem Lorem Lorem Lorem Lorem Lorem ipsum.</Caption>
+
+## DoDont
+
+<DoDontRow>
+
+<DoDont aspectRatio="1:1">
+
+![Alt text](/mdx/light-theme.jpg)
+
+</DoDont>
+
+<DoDont aspectRatio="1:1" type="dont">
+
+![Alt text](/mdx/light-theme.jpg)
+
+</DoDont>
+
+</DoDontRow>
+
+<DoDontRow>
+
+<DoDont aspectRatio="1:1" text="This is some text" />
+
+<DoDont type="dont" aspectRatio="1:1" text="This is some text" color="dark" />
+
+</DoDontRow>
+
+<DoDontRow>
+
+<DoDont
+  text="This is some text that is 8 columns"
+  color="dark"
+  captionTitle="Caption title"
+  caption="Caption"
+  colLg="8"
+/>
+
+</DoDontRow>
+
+<DoDontRow>
+
+<DoDont aspectRatio="4:3" text="4:3" />
+
+<DoDont aspectRatio="16:9" text="16:9" />
+
+<DoDont aspectRatio="2:1" text="2:1" />
+
+</DoDontRow>
+
+<DoDontRow>
+
+<DoDont aspectRatio="9:16" text="9:16" />
+
+<DoDont aspectRatio="1:2" text="1:2" />
+
+<DoDont aspectRatio="3:4" text="3:4" />
+
+</DoDontRow>
+<DoDontRow>
+
+<DoDont aspectRatio="1:1" text="1:1" />
+
+</DoDontRow>
+
+## Video example coming soon
+
+<DoDontRow>
+
+<DoDont colLg='8'>
+
+<Video title="Video example" vimeoId="310583077" />
+
+</DoDont>
+
+</DoDontRow>
+
+## GifPlayer
+
+<Grid>
+<Column lg={3}>
+<GifPlayer>
+
+![IBM Cloud Pictograms](/IBM_Cloud_Pictograms.gif)
+
+![IBM Cloud Pictograms](/IBM_Cloud_Pictograms.jpeg)
+
+</GifPlayer>
+</Column>
+
+<Column lg={3}>
+    <GifPlayer>
+
+    <Image src="/IBM_Cloud_Pictograms.gif" />
+    <Image src="/IBM_Cloud_Pictograms.jpeg" />
+
+    </GifPlayer>
+
+</Column>
+</Grid>
+
+## Gatsby grid examples
+
+### Example
+
+<Row>
+  <Column colMd={4} colLg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Row>
+
+### No gutter left -> translate to narrow grid mode
+
+<Row>
+  <Column colMd={4} colLg={4} noGutterMdLeft>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4} noGutterMdLeft>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4} noGutterMdLeft>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Row>
+
+### No gutter -> translate to condensed grid mode
+
+<Row>
+  <Column colMd={4} colLg={4} noGutterSm>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Row>
+
+### Offset
+
+<Row>
+  <Column colMd={4} colLg={4} offsetLg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Row>
+
+## CSS Grid examples
+
+### Default
+
+<Grid>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Grid>
+
+### Narrow
+
+<Grid narrow>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Grid>
+
+### Condensed
+
+<Grid condensed>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Grid>
+
+### Offset
+
+<Grid>
+  <Column md={4} lg={{ span: 4, offset: 4 }}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Grid>
+
+## InlineNotification
+
+#### Info
+
+<InlineNotification>
+
+**Lorem ipsum:** dolor sit amet, [consectetur adipiscing](/components/InlineNotification) elit.
+Curabitur ac odio arcu. Vestibulum egestas eleifend porttitor. Quisque malesuada pulvinar
+pellentesque. Nunc dictum odio eu enim venenatis fringilla. Nunc finibus enim dui, a tempus quam
+commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
+
+</InlineNotification>
+
+#### Error
+
+<InlineNotification kind="error">
+
+**Error:** dolor sit amet, [consectetur adipiscing](/components/InlineNotification) elit. Curabitur
+ac odio arcu. Vestibulum egestas eleifend porttitor. Quisque malesuada pulvinar pellentesque. Nunc
+dictum odio eu enim venenatis fringilla. Nunc finibus enim dui, a tempus quam commodo vitae. Donec
+non eros gravida dolor porta suscipit non vel quam.
+
+</InlineNotification>
+
+#### Warning
+
+<InlineNotification kind="warning">
+
+**Warning:** dolor sit amet, [consectetur adipiscing](/components/InlineNotification) elit.
+Curabitur ac odio arcu. Vestibulum egestas eleifend porttitor. Quisque malesuada pulvinar
+pellentesque. Nunc dictum odio eu enim venenatis fringilla. Nunc finibus enim dui, a tempus quam
+commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
+
+</InlineNotification>
+
+#### Success
+
+<InlineNotification kind="success">
+
+**Success:** dolor sit amet, [consectetur adipiscing](/components/InlineNotification) elit.
+Curabitur ac odio arcu. Vestibulum egestas eleifend porttitor. Quisque malesuada pulvinar
+pellentesque. Nunc dictum odio eu enim venenatis fringilla. Nunc finibus enim dui, a tempus quam
+commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
+
+</InlineNotification>
+
+## PageDescription
+
+<PageDescription>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
+tempor in. Maecenas ultrices sem nec blandit dictum. [Pellentesque]() fermentum ullamcorper pretium.
+Duis turpis elit, facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus.
+Cras euismod facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In
+hac habitasse platea dictumst.
+
+</PageDescription>
+
+## Profile
+
+<Grid condensed>
+<Profile name="Abbey Hart" title="Front-end Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Alessandra Davila" title="Front-end Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Alison Joseph" title="Development Manager">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Andrea Cardona" title="Front-end Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Anna Gonzales" title="Senior Visual Designer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="D.A. Kahn" title="Front-end Developer, Accessibility Advocate">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Francine Lucca" title="Front-end Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Jeannie Servaas" title="IBM Design Principal">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="John Bister" title="Motion Designer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Josh Black" title="Software Developer, Technical Lead">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Joe Harvey" title="Full-stack Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Josefina Mancilla"  title="Front-end Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Lauren Rice" title="Visual Designer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Matt Rosno" title="Product Manager">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Scott Strubberg" title="Development Manager">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Taylor Jones" title="Software Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Thy Do" title="Visual Designer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="TJ Egan" title="Front-end Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Tracey King" title="Senior Visual Designer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+</Grid>
+
+## ResourceCard
+
+<Row className="resource-card-group">
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="With subtitle"
+      title="Title"
+      aspectRatio="2:1"
+      actionIcon="arrowRight"
+      href="https://gatsby.carbondesignsystem.com"
+      >
+
+![Sketch icon](/mdx/sketch-icon.png)
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Only subtitle"
+      actionIcon="download"
+      aspectRatio="2:1"
+      href="https://gatsby.carbondesignsystem.com"
+      >
+
+![Sketch icon](/mdx/sketch-icon.png)
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Alternate color"
+      title="Dark"
+      aspectRatio="2:1"
+      color="dark"
+      actionIcon="email"
+      href="https://gatsby.carbondesignsystem.com"
+      >
+
+![Sketch icon](/mdx/sketch-icon.png)
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      title="Disabled card"
+      aspectRatio="2:1"
+      disabled
+      href="https://gatsby.carbondesignsystem.com"
+      >
+
+![Sketch icon](/mdx/sketch-icon.png)
+
+  </ResourceCard>
+</Column>
+</Row>
+
+## Tabs
+
+<Tabs>
+
+    <Tab label="Text">
+
+    The tab component can be used for a variety of content. From text, to images, to
+    columns. If you want to have multiple columns, you’ll need to use our `Row` and
+    `Column` helpers as demonstrated in the "Two images" tab.
+
+    </Tab>
+
+    <Tab label="Single image">
+    If your content is full width, you don’t need `Row` and `Column` ![carbon logo](/carbon.png)
+    </Tab>
+
+</Tabs>
+
+## Title
+
+<Title>Lorem ipsum dolor sit amet</Title>
+
+## ColorPalette
+
+## categorical
+
+<ColorPalette type="categorical" />
+
+## grouped
+
+<ColorPalette type="grouped" />
+
+## sequential mono
+
+<ColorPalette type="sequential" isMono />
+
+## sequential diverging
+
+<ColorPalette type="sequential" isDiverging />
+
+## alert
+
+<ColorPalette twoColumn type="alert" />
+
+## status
+
+<ColorPalette twoColumn type="status" />
+
+## status-extended with out controls
+
+<ColorPalette type="status-extended" shouldShowControls={false} />

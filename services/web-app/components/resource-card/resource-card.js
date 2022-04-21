@@ -49,32 +49,15 @@ export default class ResourceCard extends React.Component {
         {title && <h4 className={styles.title}>{title}</h4>}
         <div className={styles.iconImg}>{children}</div>
         <div className={styles.iconAction}>
-          {actionIcon === 'launch' && !disabled
-            ? (
-            <Launch size={20} aria-label="Open resource" />
-              )
-            : null}
-          {actionIcon === 'arrowRight' && !disabled
-            ? (
+          {actionIcon === 'launch' && !disabled && <Launch size={20} aria-label="Open resource" />}
+          {actionIcon === 'arrowRight' && !disabled && (
             <ArrowRight size={20} aria-label="Open resource" />
-              )
-            : null}
-          {actionIcon === 'download' && !disabled
-            ? (
-            <Download size={20} aria-label="Download" />
-              )
-            : null}
-          {actionIcon === 'email' && !disabled ? <Email size={20} aria-label="Email" /> : null}
-          {actionIcon === 'calendar' && !disabled
-            ? (
-            <Calendar size={20} aria-label="Calendar" />
-              )
-            : null}
-          {actionIcon === 'disabled' || disabled === true
-            ? (
-            <Error size={20} aria-label="disabled" />
-              )
-            : null}
+          )}
+          {actionIcon === 'download' && !disabled && <Download size={20} aria-label="Download" />}
+          {actionIcon === 'email' && !disabled && <Email size={20} aria-label="Email" />}
+          {actionIcon === 'calendar' && !disabled && <Calendar size={20} aria-label="Calendar" />}
+          {actionIcon === 'disabled' ||
+            (disabled === true && <Error size={20} aria-label="disabled" />)}
         </div>
       </>
     )

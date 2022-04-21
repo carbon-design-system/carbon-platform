@@ -54,7 +54,7 @@ const NavLibrary = () => {
     >
       <Button kind="ghost" onClick={backLink} className={styles.back}>
         <ArrowLeft className={styles.backIcon} size={16} />
-        Back to all Libraries
+        Libraries
       </Button>
       {/* TODO issue #523 add link back to library if libraryActive=false */}
       <h2 className={clsx(styles.navHeading, libraryActive && styles.navHeadingSelected)}>

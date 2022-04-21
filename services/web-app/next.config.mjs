@@ -73,12 +73,6 @@ const nextConfig = withMDX({
   },
   async redirects() {
     return [
-      // temporarily redirect home page for the first release
-      {
-        source: '/',
-        destination: '/assets',
-        permanent: false
-      },
       {
         source: '/assets/:host/:org/:repo/:library',
         destination: '/assets/:host/:org/:repo/:library/latest',
@@ -96,13 +90,13 @@ const nextConfig = withMDX({
       })
 
       rewrites.push({
-        source: `/assets/${slug}/library-assets`,
-        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest/library-assets`
+        source: `/assets/${slug}/assets`,
+        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest/assets`
       })
 
       rewrites.push({
-        source: `/assets/${slug}/:ref*/library-assets`,
-        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/library-assets`
+        source: `/assets/${slug}/:ref*/assets`,
+        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/assets`
       })
 
       rewrites.push({

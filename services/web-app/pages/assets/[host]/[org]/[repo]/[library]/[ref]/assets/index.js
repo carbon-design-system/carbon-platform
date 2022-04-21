@@ -83,7 +83,7 @@ const LibrayAssets = ({ libraryData, params }) => {
   const { description } = libraryData.content
 
   const seo = {
-    title: 'Library assets',
+    title: 'Assets',
     description
   }
 

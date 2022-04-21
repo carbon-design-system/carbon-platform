@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2021, 2022
+ * Copyright IBM Corp. 2022, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -8,20 +8,20 @@ import { Column, Grid } from '@carbon/react'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import { standardsNavData } from '@/data/nav-data'
+import { aboutNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
 import styles from './pages.module.scss'
 
-const Standards = () => {
+const About = () => {
   const { setNavData } = useContext(LayoutContext)
 
   const seo = {
-    title: 'Standards'
+    title: 'About'
   }
 
   useEffect(() => {
-    setNavData(standardsNavData)
+    setNavData(aboutNavData)
   }, [setNavData])
 
   return (
@@ -29,11 +29,11 @@ const Standards = () => {
       <NextSeo {...seo} />
       <Grid>
         <Column sm={4} md={8} lg={12}>
-          <div className={styles.content}>Standards pages coming soon...</div>
+          <div className={styles.content}>About pages coming soon...</div>
         </Column>
       </Grid>
     </>
   )
 }
 
-export default Standards
+export default About

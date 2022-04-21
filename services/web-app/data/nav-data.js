@@ -9,14 +9,23 @@ import { type } from '@/data/type'
 
 export const globalNavData = [
   {
+    path: '/about',
     title: 'About'
   },
   {
+    path: '/standards',
     title: 'Standards'
   },
   {
     path: '/assets',
     title: 'Assets'
+  }
+]
+
+export const aboutNavData = [
+  {
+    path: '/about',
+    title: 'About Carbon'
   }
 ]
 
@@ -37,17 +46,16 @@ export const assetsNavData = [
     title: 'Libraries'
   },
   {
+    path: '/assets/design-kits',
+    title: 'Design kits'
+  },
+  {
     title: 'Catalogs',
     items: [
       {
         path: type.component.path,
         title: type.component.namePlural
       },
-      // remove elements for the first release
-      // {
-      //   path: type.element.path,
-      //   title: type.element.namePlural
-      // },
       {
         path: type.function.path,
         title: type.function.namePlural
@@ -76,60 +84,28 @@ export const assetsNavData = [
 export const libraryNavData = [
   {
     title: 'Assets',
-    path: '/assets/carbon-charts/library-assets'
+    path: '/assets/carbon-charts/assets'
   },
   {
     title: 'Design kits',
     path: ''
   },
   {
-    title: 'Tutorials',
+    title: 'Pages...',
     items: [
       {
-        title: 'Tutorial 1',
+        title: 'Sub pages...',
         items: [
           {
-            title: 'Overview',
-            path: ''
-          },
-          {
-            title: '1. Installing Carbon',
-            path: ''
-          },
-          {
-            title: '2. Building pages',
-            path: ''
-          },
-          {
-            title: '3. Using APIs',
-            path: ''
-          },
-          {
-            title: '4. Creating components',
-            path: ''
-          },
-          {
-            title: '5. Deploying to cloud',
-            path: ''
-          },
-          {
-            title: 'Conclusion',
-            path: ''
+            title: 'Sub page...',
+            path: '/'
           }
         ]
-      },
-      {
-        title: 'Tutorial 2',
-        path: ''
       }
     ]
   },
   {
     title: 'Versions',
     path: ''
-  },
-
-  {
-    title: 'Catalogs'
   }
 ]

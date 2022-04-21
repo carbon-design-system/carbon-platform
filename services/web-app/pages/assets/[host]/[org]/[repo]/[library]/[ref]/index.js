@@ -8,7 +8,6 @@ import { Button, Column, Grid } from '@carbon/react'
 import { ArrowRight, Events } from '@carbon/react/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
@@ -23,12 +22,11 @@ import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
-import { assetSortComparator, getLicense } from '@/utils/schema'
-import { getSlug } from '@/utils/slug'
+import { getLicense } from '@/utils/schema'
 
 import styles from './index.module.scss'
 
-const Library = ({ libraryData, params }) => {
+const Library = ({ libraryData }) => {
   const { setNavData } = useContext(LayoutContext)
 
   const router = useRouter()
@@ -55,8 +53,6 @@ const Library = ({ libraryData, params }) => {
     title: name,
     description
   }
-
-  const assets = libraryData.assets.sort(assetSortComparator)
 
   const { sponsor } = libraryData.params
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
@@ -122,26 +118,13 @@ const Library = ({ libraryData, params }) => {
                     </dd>
                   </Column>
                   <Button className={styles.versionsButton}>
-                    Coming soon...
+                    View assets
                     <ArrowRight size={16} />
                   </Button>
                 </Grid>
               </DashboardItem>
             </Column>
           </Dashboard>
-          <div className={pageStyles.content}>
-            <ul>
-              {assets.map((asset, i) => (
-                <li key={i}>
-                  <Link
-                    href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}
-                  >
-                    <a>{asset.content.name || 'Asset'}</a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
         </Column>
       </Grid>
     </>

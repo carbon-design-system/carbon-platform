@@ -210,7 +210,7 @@ const PageContent = () => {
       </Grid>
       <Grid className={styles.hightlightGrid}>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>Asset catalog</h2>
+          <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>Asset catalogs</h2>
           <p className={styles.subheadingContent}>
             Asset catalogs allow you to search across all open and inner source resources and apply
             complex filters for any scenario—so that you can apply other teams’ knowledge to your
@@ -339,7 +339,7 @@ const PageContent = () => {
         </Column>
       </Grid>
       <FeatureCard
-        href="/assets/libraries"
+        href="/assets/carbon-styles"
         title="Carbon React library"
         description="A library of reusable React components to build websites and user interfaces."
       >

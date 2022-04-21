@@ -15,6 +15,7 @@ import {
   SkipToContent,
   Theme
 } from '@carbon/react'
+import { isEmpty } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
@@ -32,7 +33,6 @@ export const LayoutContext = createContext()
 
 export const LayoutProvider = ({ children }) => {
   const [navData, setNavData] = useState([])
-  const [showSideNav, setShowSideNav] = useState(true)
   const [librarySideNav, setLibrarySideNav] = useState(false)
   const [isSideNavExpanded, toggleSideNavExpanded] = useState(false)
   const [libraryNavSlideOut, setLibraryNavSlideOut] = useState(false)
@@ -40,8 +40,6 @@ export const LayoutProvider = ({ children }) => {
   const value = {
     navData,
     setNavData,
-    showSideNav,
-    setShowSideNav,
     librarySideNav,
     setLibrarySideNav,
     isSideNavExpanded,
@@ -56,15 +54,10 @@ export const LayoutProvider = ({ children }) => {
 const Layout = ({ children }) => {
   const router = useRouter()
 
-  const {
-    setShowSideNav,
-    showSideNav,
-    librarySideNav,
-    setLibrarySideNav,
-    isSideNavExpanded,
-    toggleSideNavExpanded
-  } = useContext(LayoutContext)
+  const { navData, librarySideNav, setLibrarySideNav, isSideNavExpanded, toggleSideNavExpanded } =
+    useContext(LayoutContext)
 
+  const [showSideNav, setShowSideNav] = useState(!isEmpty(navData))
   const isLg = useMatchMedia(mediaQueries.lg)
 
   // For use with 100vw widths to account for the scrollbar width, e.g. instead of `width: 100vw;`
@@ -79,11 +72,9 @@ const Layout = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    setShowSideNav(
-      !router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]')
-    )
+    setShowSideNav(!isEmpty(navData))
     setLibrarySideNav(router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
-  }, [setShowSideNav, setLibrarySideNav, router.pathname])
+  }, [navData, setShowSideNav, setLibrarySideNav, router.pathname])
 
   const onClickSideNavExpand = () => {
     toggleSideNavExpanded(!isSideNavExpanded)
@@ -101,9 +92,8 @@ const Layout = ({ children }) => {
                 onClick={onClickSideNavExpand}
                 isActive={isSideNavExpanded}
               />
-
               <div className={styles.headerName}>
-                <Link href="/assets">
+                <Link href="/">
                   <a className="cds--header__name">Carbon Design System</a>
                 </Link>
               </div>

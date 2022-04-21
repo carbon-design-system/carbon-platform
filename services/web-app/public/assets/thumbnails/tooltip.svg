@@ -22,12 +22,12 @@
                     </g>
                     <rect id="transparent-rectangle" x="0" y="0" width="15" height="15"></rect>
                 </g>
-                <rect id="Rectangle" fill="#BEBEBE" x="13" y="42" width="115" height="5"></rect>
-                <rect id="Rectangle-Copy-2" fill="#BEBEBE" x="13" y="62" width="115" height="5"></rect>
-                <rect id="Rectangle-Copy" fill="#BEBEBE" x="13" y="52" width="87" height="5"></rect>
-                <rect id="Rectangle-Copy-3" fill="#BEBEBE" x="13" y="72" width="87" height="5"></rect>
+                <rect id="Rectangle" fill="#BEBEBE" x="14" y="42" width="115" height="5"></rect>
+                <rect id="Rectangle-Copy-2" fill="#BEBEBE" x="14" y="62" width="115" height="5"></rect>
+                <rect id="Rectangle-Copy" fill="#BEBEBE" x="14" y="52" width="87" height="5"></rect>
+                <rect id="Rectangle-Copy-3" fill="#BEBEBE" x="14" y="72" width="87" height="5"></rect>
             </g>
-            <rect id="Rectangle-Copy-2" x="10" y="92" width="24" height="24"></rect>
+            <rect id="Rectangle-Copy-2" x="11" y="92" width="24" height="24"></rect>
         </g>
     </g>
 </svg>

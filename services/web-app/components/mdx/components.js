@@ -11,6 +11,7 @@ import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
+import ColorPalette from '@/components/color-palette'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
 import { Column, Grid, Row } from '@/components/grid-transform'
@@ -84,7 +85,7 @@ const components = {
   Aside: Aside,
   Profile: Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
-  ColorPalette: ({ children }) => <Placeholder name="ColorPalette">{children}</Placeholder>,
+  ColorPalette: ColorPalette,
   StatusIndicatorTable: ({ children }) => (
     <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
   ),
@@ -95,8 +96,8 @@ const components = {
   ExpressiveListContainer: ({ children }) => (
     <Placeholder name="ExpressiveListContainer">{children}</Placeholder>
   ),
-  ExpressiveList: ({ children }) => <Placeholder name="ExpressiveList">{children}</Placeholder>,
-  DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>
+  DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
+  ExpressiveList: ({ children }) => <Placeholder name="ExpressiveList">{children}</Placeholder>
 }
 
 export default components

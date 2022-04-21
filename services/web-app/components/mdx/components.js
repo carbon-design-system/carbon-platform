@@ -20,6 +20,7 @@ import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/comp
 import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
 import Profile from '@/components/profile'
+import ResourceCard from '@/components/resource-card'
 import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import Video from '@/components/video'
@@ -57,12 +58,11 @@ const components = {
   a: Link,
   blockquote: Blockquote,
   img: Image,
-  /* Custom comps */
+  /* Gatsby theme components */
   Caption: Caption,
   PageDescription: PageDescription,
   Title: Title,
   Image: Image,
-  /* Gatsby theme components */
   Accordion: Accordion,
   AccordionItem: AccordionItem,
   ArticleCard: ArticleCard,
@@ -80,28 +80,23 @@ const components = {
   Tab: Tab,
   Video: Video,
   MdxWrapper: MdxWrapper,
-  DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
+  ResourceCard: ResourceCard,
   Aside: Aside,
+  Profile: Profile,
+  MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
+  ColorPalette: ({ children }) => <Placeholder name="ColorPalette">{children}</Placeholder>,
+  StatusIndicatorTable: ({ children }) => (
+    <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
+  ),
+  /* Gatsby theme components, not used in Carbon website, out of scope v1 */
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
-  ResourceCard: ({ children }) => <Placeholder name="ResourceCard">{children}</Placeholder>,
   ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,
   SquareCard: ({ children }) => <Placeholder name="SquareCard">{children}</Placeholder>,
   ExpressiveListContainer: ({ children }) => (
     <Placeholder name="ExpressiveListContainer">{children}</Placeholder>
   ),
   ExpressiveList: ({ children }) => <Placeholder name="ExpressiveList">{children}</Placeholder>,
-  /* Carbon website components */
-  Profile: Profile,
-  MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
-  ComponentDemo: ({ children }) => <Placeholder name="ComponentDemo">{children}</Placeholder>,
-  ComponentVariant: ({ children }) => <Placeholder name="ComponentVariant">{children}</Placeholder>,
-  ListSection: ({ children }) => (
-    <Placeholder name="ComponeListSectiontDemo">{children}</Placeholder>
-  ),
-  ColorPalette: ({ children }) => <Placeholder name="ColorPalette">{children}</Placeholder>,
-  StatusIndicatorTable: ({ children }) => (
-    <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
-  )
+  DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>
 }
 
 export default components

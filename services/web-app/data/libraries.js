@@ -153,7 +153,8 @@ const prodLibraries = {
     org: 'carbon-design-system',
     repo: 'carbon',
     path: '/packages/components',
-    group: carbonComponentsGroup
+    group: carbonComponentsGroup,
+    ref: 'v10'
   },
   // 'carbon-elements': {
   //   host: 'github.ibm.com',
@@ -397,7 +398,8 @@ const devLibraries = {
     org: 'carbon-design-system',
     repo: 'carbon',
     path: '/packages/components',
-    group: carbonComponentsGroup
+    group: carbonComponentsGroup,
+    ref: 'v10'
   },
   'carbon-react': {
     host: 'github.com',

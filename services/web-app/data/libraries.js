@@ -398,7 +398,7 @@ const devLibraries = {
     repo: 'carbon',
     path: '/packages/react',
     sponsor: 'carbon',
-    group: carbonComponentsGroup,
+    group: carbonComponentsGroup
   },
   'ibmdotcom-react': {
     host: 'github.com',

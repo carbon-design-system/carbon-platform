@@ -57,7 +57,6 @@ const Layout = ({ children }) => {
   const { navData, librarySideNav, setLibrarySideNav, isSideNavExpanded, toggleSideNavExpanded } =
     useContext(LayoutContext)
 
-  const [showSideNav, setShowSideNav] = useState(!isEmpty(navData))
   const isLg = useMatchMedia(mediaQueries.lg)
 
   // For use with 100vw widths to account for the scrollbar width, e.g. instead of `width: 100vw;`
@@ -72,13 +71,14 @@ const Layout = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    setShowSideNav(!isEmpty(navData))
     setLibrarySideNav(router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
-  }, [navData, setShowSideNav, setLibrarySideNav, router.pathname])
+  }, [setLibrarySideNav, router.pathname])
 
   const onClickSideNavExpand = () => {
     toggleSideNavExpanded(!isSideNavExpanded)
   }
+
+  const showSideNav = !isEmpty(navData) || !isLg
 
   return (
     <HeaderContainer

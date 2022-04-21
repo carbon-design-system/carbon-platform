@@ -10,11 +10,13 @@ import { useContext, useEffect } from 'react'
 import PageNotFound from '@/components/page-not-found'
 import { LayoutContext } from '@/layouts/layout'
 
+const navData = []
+
 const FourOhFour = () => {
   const { setNavData } = useContext(LayoutContext)
 
   useEffect(() => {
-    setNavData([])
+    setNavData(navData)
   }, [setNavData])
 
   const seo = {

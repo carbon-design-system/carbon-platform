@@ -13,12 +13,7 @@ import { LayoutContext } from '@/layouts/layout'
 
 import styles from './pages.module.scss'
 
-const navData = [
-  {
-    path: '/',
-    title: 'Carbon Design System'
-  }
-]
+const navData = []
 
 const Index = () => {
   const { setNavData } = useContext(LayoutContext)

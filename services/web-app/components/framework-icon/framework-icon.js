@@ -33,8 +33,8 @@ const FrameworkIcon = ({ className, framework, otherCount = 0 }) => {
 
 FrameworkIcon.propTypes = {
   className: PropTypes.string,
-  otherCount: PropTypes.number,
-  status: PropTypes.oneOf(Object.keys(frameworkMap))
+  framework: PropTypes.oneOf(Object.keys(frameworkMap)),
+  otherCount: PropTypes.number
 }
 
 export default FrameworkIcon

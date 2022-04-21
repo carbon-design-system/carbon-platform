@@ -1,0 +1,46 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/theme' as theme;
+
+// Resource card group
+// Add border only inbetween group of cards
+// Forces 3rd card to start new "row"
+:global(.resource-card-group) {
+  :global(.cds--css-grid-column) {
+    margin-bottom: 0;
+  }
+
+  :global([class*='cds--lg:col-span-4']:nth-child(3n)) {
+    @include breakpoint.breakpoint('lg') {
+      grid-column-start: 1;
+    }
+  }
+
+  .resource-card {
+    border-top: 1px solid theme.$border-subtle;
+  }
+
+  :global([class*='cds--lg:col-span-4']:first-child) .resource-card,
+  :global([class*='cds--lg:col-span-4']:nth-child(2)) .resource-card {
+    @include breakpoint.breakpoint('md') {
+      border-top: 0 solid transparent;
+    }
+  }
+
+  :global([class*='cds--lg:col-span-4']:nth-child(odd)) .resource-card {
+    @include breakpoint.breakpoint('md') {
+      border-left: 1px solid transparent;
+    }
+  }
+
+  :global([class*='cds--lg:col-span-4']:nth-child(even)) .resource-card {
+    @include breakpoint.breakpoint('md') {
+      border-left: 1px solid theme.$border-subtle;
+    }
+  }
+}

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.27](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.26...@carbon-platform/icons@0.0.27) (2022-04-21)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** library assets, add empty state ([ec31b3e](https://github.com/carbon-design-system/carbon-platform/commit/ec31b3e4f15d034d98aab04bb21fefe7d477e5ca))
+
 ### [0.0.26](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.25...@carbon-platform/icons@0.0.26) (2022-04-13)
 
 

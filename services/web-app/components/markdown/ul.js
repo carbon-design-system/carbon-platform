@@ -14,20 +14,34 @@ import styles from './markdown.module.scss'
 const Ul = ({ children, className, ...rest }) => {
   return (
     <LiConsumer>
-      {(value) => (
-        <Grid>
-          <Column sm={4} md={6} lg={8}>
+      {(value) => {
+        if (value.hasListItemParent) {
+          return (
             <UnorderedList
               isExpressive
               className={clsx(className, styles.list, styles.ul)}
-              nested={value.hasListItemParent}
+              nested
               {...rest}
             >
               {children}
             </UnorderedList>
-          </Column>
-        </Grid>
-      )}
+          )
+        } else {
+          return (
+            <Grid>
+              <Column sm={4} md={6} lg={8}>
+                <UnorderedList
+                  isExpressive
+                  className={clsx(className, styles.list, styles.ul)}
+                  {...rest}
+                >
+                  {children}
+                </UnorderedList>
+              </Column>
+            </Grid>
+          )
+        }
+      }}
     </LiConsumer>
   )
 }

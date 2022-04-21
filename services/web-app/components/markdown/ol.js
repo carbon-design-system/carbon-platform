@@ -14,20 +14,34 @@ import styles from './markdown.module.scss'
 const Ol = ({ children, className, ...rest }) => {
   return (
     <LiConsumer>
-      {(value) => (
-        <Grid>
-          <Column sm={4} md={6} lg={8}>
+      {(value) => {
+        if (value.hasListItemParent) {
+          return (
             <OrderedList
               isExpressive
               className={clsx(className, styles.list, styles.ol)}
-              nested={value.hasListItemParent}
+              nested
               {...rest}
             >
               {children}
             </OrderedList>
-          </Column>
-        </Grid>
-      )}
+          )
+        } else {
+          return (
+            <Grid>
+              <Column sm={4} md={6} lg={8}>
+                <OrderedList
+                  isExpressive
+                  className={clsx(className, styles.list, styles.ol)}
+                  {...rest}
+                >
+                  {children}
+                </OrderedList>
+              </Column>
+            </Grid>
+          )
+        }
+      }}
     </LiConsumer>
   )
 }

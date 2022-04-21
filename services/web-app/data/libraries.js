@@ -148,13 +148,13 @@ const prodLibraries = {
   //   path: '/packages/colors',
   //   sponsor: 'carbon'
   // },
-  // 'carbon-components': {
-  //   host: 'github.com',
-  //   org: 'carbon-design-system',
-  //   repo: 'carbon',
-  //   path: '/packages/components',
-  //   group: carbonComponentsGroup
-  // },
+  'carbon-components': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon',
+    path: '/packages/components',
+    group: carbonComponentsGroup
+  },
   // 'carbon-elements': {
   //   host: 'github.ibm.com',
   //   org: 'matt-rosno',
@@ -397,8 +397,7 @@ const devLibraries = {
     org: 'carbon-design-system',
     repo: 'carbon',
     path: '/packages/components',
-    group: carbonComponentsGroup,
-    ref: '515-index-carbon-components-v10'
+    group: carbonComponentsGroup
   },
   'carbon-react': {
     host: 'github.com',

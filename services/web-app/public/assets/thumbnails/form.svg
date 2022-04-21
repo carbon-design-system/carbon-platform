@@ -1,77 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>form</title>
-    <defs>
-        <polygon id="path-1" points="2.5 0 5 2.5 4.6465 2.8535 2.5 0.707 0.3535 2.8535 0 2.5"></polygon>
-        <polygon id="path-3" points="2.5 0 5 2.5 4.6465 2.8535 2.5 0.707 0.3535 2.8535 0 2.5"></polygon>
-        <polygon id="path-5" points="2.5 0 5 2.5 4.6465 2.8535 2.5 0.707 0.3535 2.8535 0 2.5"></polygon>
-    </defs>
-    <g id="form" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="color/gray/10-copy-12" transform="translate(90.000000, 32.000000)" fill="#F3F3F3">
-            <rect id="Rectangle" x="0" y="0" width="152" height="116"></rect>
+    <title>form-group</title>
+    <g id="form-group" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-25-Copy-22" fill="#F4F4F4" x="90" y="74" width="140" height="16"></rect>
+        <rect id="Rectangle-25-Copy-24" fill="#8D8D8D" x="90" y="89" width="140" height="1"></rect>
+        <rect id="Rectangle-25-Copy-23" stroke="#006AFF" stroke-width="1.14" fill="#F4F4F4" x="90.57" y="39.57" width="138.86" height="14.86"></rect>
+        <rect id="Rectangle-Copy-30" fill="#C6C6C6" x="104" y="112" width="27" height="3"></rect>
+        <rect id="Rectangle-Copy-34" fill="#C6C6C6" x="153" y="112" width="27" height="3"></rect>
+        <rect id="Rectangle-Copy-31" fill="#C6C6C6" x="91" y="32" width="33" height="3"></rect>
+        <rect id="Rectangle-Copy-32" fill="#C6C6C6" x="91" y="67" width="33" height="3"></rect>
+        <rect id="Rectangle-Copy-33" fill="#C6C6C6" x="91" y="102" width="33" height="3"></rect>
+        <rect id="Rectangle-Copy-24" fill="#0F6DFF" x="90" y="130" width="76" height="18"></rect>
+        <g id="icon-/-toggle-/-radio-button-/-checked-/-20" transform="translate(90.000000, 109.000000)" fill="#161616">
+            <path d="M4.5,0.5625 C2.3253788,0.5625 0.5625,2.3253788 0.5625,4.5 C0.5625,6.6746212 2.3253788,8.4375 4.5,8.4375 C6.6746212,8.4375 8.4375,6.6746212 8.4375,4.5 C8.4375,3.45571007 8.02265744,2.45419154 7.28423295,1.71576705 C6.54580846,0.977342559 5.54428993,0.5625 4.5,0.5625 Z M4.5,7.875 C2.63603897,7.875 1.125,6.36396103 1.125,4.5 C1.125,2.63603897 2.63603897,1.125 4.5,1.125 C6.36396103,1.125 7.875,2.63603897 7.875,4.5 C7.875,6.36396103 6.36396103,7.875 4.5,7.875 L4.5,7.875 Z M4.5,2.8125 C3.56801948,2.8125 2.8125,3.56801948 2.8125,4.5 C2.8125,5.43198052 3.56801948,6.1875 4.5,6.1875 C5.43198052,6.1875 6.1875,5.43198052 6.1875,4.5 C6.1875,3.56801948 5.43198052,2.8125 4.5,2.8125 Z" id="Fill"></path>
         </g>
-        <rect id="Rectangle-Copy-6" fill="#A8A8A8" x="99" y="41" width="48.59854" height="5"></rect>
-        <rect id="Rectangle-Copy-14" fill="#C6C6C6" x="99" y="52" width="89" height="3"></rect>
-        <rect id="Rectangle-Copy-26" fill="#C6C6C6" x="99" y="58" width="72.7591241" height="3"></rect>
-        <rect id="Rectangle-25-Copy-22" stroke="#006AFF" stroke-width="1.14" fill="#FFFFFF" x="90.57" y="72.57" width="150.86" height="14.86"></rect>
-        <rect id="Rectangle-Copy-27" fill="#C6C6C6" x="99" y="78" width="62.9489051" height="3"></rect>
-        <rect id="Rectangle-Copy-28" fill="#C6C6C6" x="99" y="95" width="33.948905" height="3"></rect>
-        <rect id="Rectangle-Copy-30" fill="#C6C6C6" x="111" y="112" width="38.948905" height="3"></rect>
-        <rect id="Rectangle-Copy-29" fill="#C6C6C6" x="172" y="95" width="33.948905" height="3"></rect>
-        <rect id="Rectangle-Copy-56" fill="#C6C6C6" x="91" y="104" width="151" height="1"></rect>
-        <rect id="Rectangle-Copy-57" fill="#C6C6C6" x="163" y="88" width="1" height="16"></rect>
-        <g id="Group" transform="translate(228.000000, 76.000000)">
-            <g id="Group" transform="translate(4.000000, 4.000000) scale(1, -1) translate(-4.000000, -4.000000) ">
-                <g id="chevron--up" transform="translate(1.500000, 2.500000)">
-                    <mask id="mask-2" fill="white">
-                        <use xlink:href="#path-1"></use>
-                    </mask>
-                    <use id="Mask" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
-                    <g id="Group" mask="url(#mask-2)">
-                        <g transform="translate(-1.500000, -2.500000)" id="icon-color">
-                            <rect id="Rectangle" fill="#000000" x="0" y="0" width="20" height="20"></rect>
-                        </g>
-                    </g>
-                </g>
-                <polygon id="transparent-rectangle" transform="translate(4.000000, 4.000000) rotate(-90.000000) translate(-4.000000, -4.000000) " points="-8.8817842e-16 -5.72739022e-15 8 -5.72739022e-15 8 8 -8.8817842e-16 8"></polygon>
-            </g>
+        <g id="icon-/-toggle-/-radio-button-/-unchecked-/-20" transform="translate(139.000000, 109.000000)" fill="#161616">
+            <path d="M4.5,0.5625 C2.3253788,0.5625 0.5625,2.3253788 0.5625,4.5 C0.5625,6.6746212 2.3253788,8.4375 4.5,8.4375 C6.6746212,8.4375 8.4375,6.6746212 8.4375,4.5 C8.4375,3.45571007 8.02265744,2.45419154 7.28423295,1.71576705 C6.54580846,0.977342559 5.54428993,0.5625 4.5,0.5625 Z M4.5,7.875 C2.63603897,7.875 1.125,6.36396103 1.125,4.5 C1.125,2.63603897 2.63603897,1.125 4.5,1.125 C6.36396103,1.125 7.875,2.63603897 7.875,4.5 C7.875,6.36396103 6.36396103,7.875 4.5,7.875 L4.5,7.875 Z" id="Fill"></path>
         </g>
-        <g id="Group" transform="translate(228.000000, 92.000000)">
-            <g id="Group" transform="translate(4.000000, 4.000000) scale(1, -1) translate(-4.000000, -4.000000) ">
-                <g id="chevron--up" transform="translate(1.500000, 2.500000)">
-                    <mask id="mask-4" fill="white">
-                        <use xlink:href="#path-3"></use>
-                    </mask>
-                    <use id="Mask" fill="#000000" fill-rule="nonzero" xlink:href="#path-3"></use>
-                    <g id="Group" mask="url(#mask-4)">
-                        <g transform="translate(-1.500000, -2.500000)" id="icon-color">
-                            <rect id="Rectangle" fill="#000000" x="0" y="0" width="20" height="20"></rect>
-                        </g>
-                    </g>
-                </g>
-                <polygon id="transparent-rectangle" transform="translate(4.000000, 4.000000) rotate(-90.000000) translate(-4.000000, -4.000000) " points="-8.8817842e-16 -5.72739022e-15 8 -5.72739022e-15 8 8 -8.8817842e-16 8"></polygon>
-            </g>
-        </g>
-        <g id="Group" transform="translate(149.000000, 92.000000)">
-            <g id="Group" transform="translate(4.000000, 4.000000) scale(1, -1) translate(-4.000000, -4.000000) ">
-                <g id="chevron--up" transform="translate(1.500000, 2.500000)">
-                    <mask id="mask-6" fill="white">
-                        <use xlink:href="#path-5"></use>
-                    </mask>
-                    <use id="Mask" fill="#000000" fill-rule="nonzero" xlink:href="#path-5"></use>
-                    <g id="Group" mask="url(#mask-6)">
-                        <g transform="translate(-1.500000, -2.500000)" id="icon-color">
-                            <rect id="Rectangle" fill="#000000" x="0" y="0" width="20" height="20"></rect>
-                        </g>
-                    </g>
-                </g>
-                <polygon id="transparent-rectangle" transform="translate(4.000000, 4.000000) rotate(-90.000000) translate(-4.000000, -4.000000) " points="-8.8817842e-16 -5.72739022e-15 8 -5.72739022e-15 8 8 -8.8817842e-16 8"></polygon>
-            </g>
-        </g>
-        <rect id="Rectangle-Copy-24" fill="#0F6DFF" x="166" y="130" width="76" height="18"></rect>
-        <rect id="Rectangle-Copy-25" fill="#3D3D3D" x="90" y="130" width="75" height="18"></rect>
-        <g id="checkbox" transform="translate(97.000000, 109.000000)" fill="#161616">
-            <path d="M7.3125,1.125 L1.6875,1.125 C1.37683983,1.125 1.125,1.37683983 1.125,1.6875 L1.125,7.3125 C1.125,7.62316017 1.37683983,7.875 1.6875,7.875 L7.3125,7.875 C7.62316017,7.875 7.875,7.62316017 7.875,7.3125 L7.875,1.6875 C7.875,1.37683983 7.62316017,1.125 7.3125,1.125 Z M1.6875,7.3125 L1.6875,1.6875 L7.3125,1.6875 L7.3125,7.3125 L1.6875,7.3125 Z" id="Fill"></path>
+        <rect id="Rectangle-Copy-35" fill="#C6C6C6" x="202" y="112" width="27" height="3"></rect>
+        <g id="icon-/-toggle-/-radio-button-/-unchecked-/-20" transform="translate(188.000000, 109.000000)" fill="#161616">
+            <path d="M4.5,0.5625 C2.3253788,0.5625 0.5625,2.3253788 0.5625,4.5 C0.5625,6.6746212 2.3253788,8.4375 4.5,8.4375 C6.6746212,8.4375 8.4375,6.6746212 8.4375,4.5 C8.4375,3.45571007 8.02265744,2.45419154 7.28423295,1.71576705 C6.54580846,0.977342559 5.54428993,0.5625 4.5,0.5625 Z M4.5,7.875 C2.63603897,7.875 1.125,6.36396103 1.125,4.5 C1.125,2.63603897 2.63603897,1.125 4.5,1.125 C6.36396103,1.125 7.875,2.63603897 7.875,4.5 C7.875,6.36396103 6.36396103,7.875 4.5,7.875 L4.5,7.875 Z" id="Fill"></path>
         </g>
     </g>
 </svg>

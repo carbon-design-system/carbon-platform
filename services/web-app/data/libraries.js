@@ -399,6 +399,7 @@ const devLibraries = {
     path: '/packages/components',
     group: carbonComponentsGroup,
     ref: '515-index-carbon-components-v10'
+  },
   'carbon-react': {
     host: 'github.com',
     org: 'carbon-design-system',

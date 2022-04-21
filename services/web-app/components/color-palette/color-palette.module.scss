@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/colors' as colors;
 
 // MAIN CONTAINER
 .color-palette-wrapper {
@@ -265,16 +266,16 @@
 .gradient-purple {
   background: linear-gradient(
     to bottom,
-    #f6f2ff,
-    #e8daff,
-    #d4bbff,
-    #be95ff,
-    #a56eff,
-    #8a3ffc,
-    #6929c4,
-    #491d8b,
-    #31135e,
-    #1c0f30
+    colors.$purple-10,
+    colors.$purple-20,
+    colors.$purple-30,
+    colors.$purple-40,
+    colors.$purple-50,
+    colors.$purple-60,
+    colors.$purple-70,
+    colors.$purple-80,
+    colors.$purple-90,
+    colors.$purple-100
   );
 }
 

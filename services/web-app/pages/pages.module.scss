@@ -27,3 +27,9 @@
 .bullets-item {
   margin-left: spacing.$spacing-07;
 }
+
+.h2 {
+  @include type.type-style('expressive-heading-04', true);
+  // for testing sticky in page nav
+  padding-bottom: 500px;
+}

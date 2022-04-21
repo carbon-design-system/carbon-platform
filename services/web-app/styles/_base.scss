@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use '@carbon/react/scss/spacing' as spacing;
 
 *,
 *::before,
@@ -17,6 +18,16 @@ html {
   // less for the CSS custom property to be picked up.
   /* stylelint-disable-next-line length-zero-no-unit */
   --scrollbar-width: 0px;
+
+  /* nav height + default top spacing */
+  --scroll-padding: #{calc(spacing.$spacing-09 + spacing.$spacing-11)};
+
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--scroll-padding);
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
 }
 
 html,
@@ -29,4 +40,8 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+
+[hidden] {
+  display: none;
 }

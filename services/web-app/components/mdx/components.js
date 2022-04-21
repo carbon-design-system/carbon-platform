@@ -9,6 +9,7 @@ import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
+import Aside from '@/components/aside'
 import Caption from '@/components/caption'
 import ColorPalette from '@/components/color-palette'
 import { DoDont, DoDontRow } from '@/components/do-dont'
@@ -20,6 +21,8 @@ import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/comp
 import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
 import Profile from '@/components/profile'
+import ResourceCard from '@/components/resource-card'
+import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import Video from '@/components/video'
 
@@ -55,12 +58,12 @@ const components = {
     'li.ol': (props) => <OrderedList isExpressive nested {...props} />, */
   a: Link,
   blockquote: Blockquote,
+  img: Image,
+  /* Gatsby theme components */
+  Caption: Caption,
   PageDescription: PageDescription,
   Title: Title,
-  Caption: Caption,
-  img: Image,
   Image: Image,
-  /* Gatsby theme components */
   Accordion: Accordion,
   AccordionItem: AccordionItem,
   ArticleCard: ArticleCard,
@@ -70,36 +73,30 @@ const components = {
   AnchorLink: AnchorLink,
   AnchorLinks: AnchorLinks,
   ArtDirection: ArtDirection,
-  DoDontRow: DoDontRow,
   DoDont: DoDont,
+  DoDontRow: DoDontRow,
   GifPlayer: GifPlayer,
   InlineNotification: InlineNotification,
+  Tabs: Tabs,
+  Tab: Tab,
   Video: Video,
   MdxWrapper: MdxWrapper,
-  DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
-  Aside: ({ children }) => <Placeholder name="Aside">{children}</Placeholder>,
+  ResourceCard: ResourceCard,
+  Aside: Aside,
+  Profile: Profile,
+  MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
+  ColorPalette: ColorPalette,
+  StatusIndicatorTable: ({ children }) => (
+    <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
+  ),
+  /* Gatsby theme components, not used in Carbon website, out of scope v1 */
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
-  ResourceCard: ({ children }) => <Placeholder name="ResourceCard">{children}</Placeholder>,
   ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,
   SquareCard: ({ children }) => <Placeholder name="SquareCard">{children}</Placeholder>,
-  Tabs: ({ children }) => <Placeholder name="Tabs">{children}</Placeholder>,
-  Tab: ({ children }) => <Placeholder name="Tab">{children}</Placeholder>,
   ExpressiveListContainer: ({ children }) => (
     <Placeholder name="ExpressiveListContainer">{children}</Placeholder>
   ),
-  ExpressiveList: ({ children }) => <Placeholder name="ExpressiveList">{children}</Placeholder>,
-  /* Carbon website components */
-  ColorPalette: ColorPalette,
-  Profile: Profile,
-  MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
-  ComponentDemo: ({ children }) => <Placeholder name="ComponentDemo">{children}</Placeholder>,
-  ComponentVariant: ({ children }) => <Placeholder name="ComponentVariant">{children}</Placeholder>,
-  ListSection: ({ children }) => (
-    <Placeholder name="ComponeListSectiontDemo">{children}</Placeholder>
-  ),
-  StatusIndicatorTable: ({ children }) => (
-    <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
-  )
+  ExpressiveList: ({ children }) => <Placeholder name="ExpressiveList">{children}</Placeholder>
 }
 
 export default components

@@ -397,7 +397,6 @@ const devLibraries = {
     org: 'carbon-design-system',
     repo: 'carbon',
     path: '/packages/components',
-    sponsor: 'carbon',
     group: carbonComponentsGroup,
     ref: '515-index-carbon-components'
   },

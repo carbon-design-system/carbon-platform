@@ -6,13 +6,16 @@
  */
 import { ListItem } from '@carbon/react'
 import clsx from 'clsx'
+import React from 'react'
 
 import styles from './markdown.module.scss'
+const { Provider, Consumer: LiConsumer } = React.createContext({})
 
 const LI = ({ children, className, ...rest }) => (
   <ListItem className={clsx(className, styles.listItem)} {...rest}>
-    {children}
+    <Provider value={{ hasListItemParent: true }}>{children}</Provider>
   </ListItem>
 )
 
 export default LI
+export { LiConsumer }

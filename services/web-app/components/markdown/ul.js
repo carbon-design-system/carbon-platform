@@ -6,18 +6,29 @@
  */
 import { Column, Grid, UnorderedList } from '@carbon/react'
 import clsx from 'clsx'
+import React from 'react'
 
+import { LiConsumer } from './li'
 import styles from './markdown.module.scss'
 
 const Ul = ({ children, className, ...rest }) => {
   return (
-    <Grid>
-      <Column sm={4} md={6} lg={8}>
-        <UnorderedList isExpressive className={clsx(className, styles.list, styles.ul)} {...rest}>
-          {children}
-        </UnorderedList>
-      </Column>
-    </Grid>
+    <LiConsumer>
+      {(value) => (
+        <Grid>
+          <Column sm={4} md={6} lg={8}>
+            <UnorderedList
+              isExpressive
+              className={clsx(className, styles.list, styles.ul)}
+              nested={value.hasListItemParent}
+              {...rest}
+            >
+              {children}
+            </UnorderedList>
+          </Column>
+        </Grid>
+      )}
+    </LiConsumer>
   )
 }
 

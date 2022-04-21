@@ -74,15 +74,8 @@ export default class ResourceCard extends React.Component {
         </Link>
       )
     } else {
-      // URL assumed to be external if http protocol present or defaulted
-      const isExternalURL = /^(https?:)?\/\//g.test(href)
-
       cardContainer = (
-        <a
-          href={rest.download && !isExternalURL ? href : href}
-          className={carbonTileclassNames}
-          {...rest}
-        >
+        <a href={href} className={carbonTileclassNames} {...rest}>
           {cardContent}
         </a>
       )

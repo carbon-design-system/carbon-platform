@@ -9,6 +9,7 @@ import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
+import Aside from '@/components/aside'
 import Caption from '@/components/caption'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
@@ -80,7 +81,7 @@ const components = {
   Video: Video,
   MdxWrapper: MdxWrapper,
   DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
-  Aside: ({ children }) => <Placeholder name="Aside">{children}</Placeholder>,
+  Aside: Aside,
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
   ResourceCard: ({ children }) => <Placeholder name="ResourceCard">{children}</Placeholder>,
   ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,

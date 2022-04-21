@@ -282,91 +282,91 @@
 .gradient-blue {
   background: linear-gradient(
     to bottom,
-    #edf5ff,
-    #d0e2ff,
-    #a6c8ff,
-    #78a9ff,
-    #4589ff,
-    #0f62fe,
-    #0043ce,
-    #002d9c,
-    #001d6c,
-    #001141
+    colors.$blue-10,
+    colors.$blue-20,
+    colors.$blue-30,
+    colors.$blue-40,
+    colors.$blue-50,
+    colors.$blue-60,
+    colors.$blue-70,
+    colors.$blue-80,
+    colors.$blue-90,
+    colors.$blue-100
   );
 }
 
 .gradient-red {
   background: linear-gradient(
     to bottom,
-    #750e13,
-    #a2191f,
-    #da1e28,
-    #fa4d56,
-    #fa4d56,
-    #ffb3b8,
-    #ffd7d9,
-    #fff1f1,
-    #e5f6ff,
-    #bae6ff,
-    #82cfff,
-    #33b1ff,
-    #1192e8,
-    #0072c3,
-    #00539a,
-    #003a6d
+    colors.$red-80,
+    colors.$red-70,
+    colors.$red-60,
+    colors.$red-50,
+    colors.$red-50,
+    colors.$red-30,
+    colors.$red-20,
+    colors.$red-10,
+    colors.$cyan-10,
+    colors.$cyan-20,
+    colors.$cyan-30,
+    colors.$cyan-40,
+    colors.$cyan-50,
+    colors.$cyan-60,
+    colors.$cyan-70,
+    colors.$cyan-80
   );
 }
 
 .gradient-teal {
   background: linear-gradient(
     to bottom,
-    #491d8b,
-    #6929c4,
-    #8a3ffc,
-    #a56eff,
-    #be95ff,
-    #d4bbff,
-    #e8daff,
-    #f6f2ff,
-    #d9fbfb,
-    #9ef0f0,
-    #3ddbd9,
-    #08bdba,
-    #009d9a,
-    #007d79,
-    #005d5d,
-    #004144
+    colors.$purple-80,
+    colors.$purple-70,
+    colors.$purple-60,
+    colors.$purple-50,
+    colors.$purple-50,
+    colors.$purple-30,
+    colors.$purple-20,
+    colors.$purple-10,
+    colors.$teal-10,
+    colors.$teal-20,
+    colors.$teal-30,
+    colors.$teal-40,
+    colors.$teal-50,
+    colors.$teal-60,
+    colors.$teal-70,
+    colors.$teal-80
   );
 }
 
 .gradient-cyan {
   background: linear-gradient(
     to bottom,
-    #e5f6ff,
-    #bae6ff,
-    #82cfff,
-    #33b1ff,
-    #1192e8,
-    #0072c3,
-    #00539a,
-    #003a6d,
-    #012749,
-    #1c0f30
+    colors.$cyan-10,
+    colors.$cyan-20,
+    colors.$cyan-30,
+    colors.$cyan-40,
+    colors.$cyan-50,
+    colors.$cyan-60,
+    colors.$cyan-70,
+    colors.$cyan-80,
+    colors.$cyan-90,
+    colors.$purple-100
   );
 }
 
 .gradient-teal-only {
   background: linear-gradient(
     to bottom,
-    #d9fbfb,
-    #9ef0f0,
-    #3ddbd9,
-    #08bdba,
-    #009d9a,
-    #007d79,
-    #005d5d,
-    #004144,
-    #022b30,
-    #081a1c
+    colors.$teal-10,
+    colors.$teal-20,
+    colors.$teal-30,
+    colors.$teal-40,
+    colors.$teal-50,
+    colors.$teal-60,
+    colors.$teal-70,
+    colors.$teal-80,
+    colors.$teal-90,
+    colors.$teal-100
   );
 }

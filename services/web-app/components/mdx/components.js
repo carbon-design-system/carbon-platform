@@ -9,6 +9,7 @@ import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
+import Aside from '@/components/aside'
 import Caption from '@/components/caption'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
@@ -80,8 +81,7 @@ const components = {
   Video: Video,
   MdxWrapper: MdxWrapper,
   ResourceCard: ResourceCard,
-  Aside: ({ children }) => <Placeholder name="Aside">{children}</Placeholder>,
-  /* Carbon website components */
+  Aside: Aside,
   Profile: Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
   ColorPalette: ({ children }) => <Placeholder name="ColorPalette">{children}</Placeholder>,

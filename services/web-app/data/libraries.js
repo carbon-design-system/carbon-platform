@@ -86,17 +86,17 @@ const prodLibraries = {
     org: 'carbon-design-system',
     repo: 'carbon',
     path: '/packages/styles',
-    sponsor: 'carbon'
-    // group: carbonComponentsGroup
+    sponsor: 'carbon',
+    group: carbonComponentsGroup
   },
-  // 'carbon-react': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/carbon-react',
-  //   sponsor: 'carbon',
-  //   group: carbonComponentsGroup
-  // },
+  'carbon-react': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon',
+    path: '/packages/react',
+    sponsor: 'carbon',
+    group: carbonComponentsGroup
+  },
   // 'carbon-angular': {
   //   host: 'github.ibm.com',
   //   org: 'matt-rosno',
@@ -399,6 +399,13 @@ const devLibraries = {
     path: '/packages/components',
     group: carbonComponentsGroup,
     ref: '515-index-carbon-components-v10'
+  'carbon-react': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon',
+    path: '/packages/react',
+    sponsor: 'carbon',
+    group: carbonComponentsGroup
   },
   'ibmdotcom-react': {
     host: 'github.com',

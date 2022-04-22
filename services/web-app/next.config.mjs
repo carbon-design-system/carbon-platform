@@ -7,6 +7,7 @@
 'use strict'
 
 import nextMdx from '@next/mdx'
+import withYaml from 'next-plugin-yaml'
 import path from 'path'
 import remarkGfm from 'remark-gfm'
 import remarkUnwrapImages from 'remark-unwrap-images'
@@ -26,7 +27,7 @@ const withMDX = nextMdx({
   }
 })
 
-const nextConfig = withMDX({
+const nextConfig = withMDX(withYaml({
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   experimental: {
     outputStandalone: true,
@@ -119,6 +120,6 @@ const nextConfig = withMDX({
 
     return rewrites
   }
-})
+}))
 
 export default nextConfig

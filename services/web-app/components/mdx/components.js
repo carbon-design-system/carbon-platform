@@ -26,6 +26,8 @@ import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import Video from '@/components/video'
 
+import StatusIndicatorTable from '../status-indicator-table'
+
 const Placeholder = ({ name, children }) => {
   return (
     <div
@@ -60,35 +62,33 @@ const components = {
   blockquote: Blockquote,
   img: Image,
   /* Gatsby theme components */
-  Caption: Caption,
-  PageDescription: PageDescription,
-  Title: Title,
-  Image: Image,
-  Accordion: Accordion,
-  AccordionItem: AccordionItem,
-  ArticleCard: ArticleCard,
-  Grid: Grid,
-  Row: Row,
-  Column: Column,
-  AnchorLink: AnchorLink,
-  AnchorLinks: AnchorLinks,
-  ArtDirection: ArtDirection,
-  DoDont: DoDont,
-  DoDontRow: DoDontRow,
-  GifPlayer: GifPlayer,
-  InlineNotification: InlineNotification,
-  Tabs: Tabs,
-  Tab: Tab,
-  Video: Video,
-  MdxWrapper: MdxWrapper,
-  ResourceCard: ResourceCard,
-  Aside: Aside,
-  Profile: Profile,
+  Caption,
+  PageDescription,
+  Title,
+  Image,
+  Accordion,
+  AccordionItem,
+  ArticleCard,
+  Grid,
+  Row,
+  Column,
+  AnchorLink,
+  AnchorLinks,
+  ArtDirection,
+  DoDont,
+  DoDontRow,
+  GifPlayer,
+  InlineNotification,
+  Tabs,
+  Tab,
+  Video,
+  MdxWrapper,
+  ResourceCard,
+  Aside,
+  Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
-  ColorPalette: ColorPalette,
-  StatusIndicatorTable: ({ children }) => (
-    <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
-  ),
+  ColorPalette,
+  StatusIndicatorTable,
   /* Gatsby theme components, not used in Carbon website, out of scope v1 */
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
   ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,

@@ -1,0 +1,141 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/colors' as colors;
+@use '@carbon/react/scss/theme' as theme;
+
+.iconWrapper {
+  display: flex;
+  height: 100%;
+}
+
+.iconGroup {
+  display: flex;
+  width: 100%;
+  padding: spacing.$spacing-05;
+
+  @include breakpoint.breakpoint('lg') {
+    width: 50%;
+  }
+}
+
+.iconGroup.isDark {
+  position: relative;
+  background-color: colors.$gray-100;
+}
+
+// Covers the top border of the dark cells with appropriate border color
+.iconGroup.isDark::before {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: theme.$background-inverse;
+  content: '';
+}
+
+.icon {
+  min-width: 20px;
+  height: 20px;
+  background: transparent;
+}
+
+.icon.glyph {
+  min-width: 16px;
+  height: 16px;
+}
+
+.icon:first-child {
+  margin-right: spacing.$spacing-03;
+}
+
+.table {
+  overflow: hidden;
+  width: 100%;
+  height: 1px;
+  background: theme.$layer-01;
+}
+
+.table .cell,
+.table .headerCell {
+  padding: spacing.$spacing-05;
+  color: theme.$text-primary;
+  vertical-align: top;
+}
+
+.table :is(.cell) {
+  border-collapse: collapse;
+  color: var(--cds-text-01);
+}
+
+.table .cell:first-child {
+  height: 100%;
+  padding: 0;
+}
+
+// override carbon padding, first table cell
+.container
+  :global(.cds--structured-list .cds--structured-list-row .cds--structured-list-td:first-of-type) {
+  padding-left: 0;
+}
+
+.descriptionCell {
+  min-width: 240px;
+}
+
+.statusIndicatorRow {
+  height: 100%;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.statusIndicatorRow:last-child {
+  border-bottom: none;
+}
+
+.statusIndicatorTableWrapper {
+  margin-top: spacing.$spacing-06;
+  //Needed for Safari
+  // override carbon col widths
+  @include breakpoint.breakpoint('md') {
+    :global(.cds--col-md-1) {
+      width: 12.5%;
+    }
+
+    :global(.cds--col-md-2) {
+      width: 25%;
+    }
+
+    :global(.cds--col-md-3) {
+      width: 37.5%;
+    }
+  }
+
+  // override carbon col widths
+  @include breakpoint.breakpoint('lg') {
+    :global(.cds--col-lg-4) {
+      width: 33.3333%;
+    }
+
+    :global(.cds--col-lg-2) {
+      width: 16.6667%;
+    }
+  }
+}
+
+@include breakpoint.breakpoint-between('sm', 'lg') {
+  .statusIndicatorTableWrapper {
+    overflow: scroll;
+  }
+
+  .iconGroup.isDark {
+    display: none;
+  }
+}

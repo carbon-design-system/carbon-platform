@@ -371,7 +371,7 @@ const PageContent = () => {
             To make this happen, we ask that you follow the instructions below to document your
             library’s metadata in the stuctured format we have provided.
           </p>
-          <p className={styles.contentCopy}>
+          <div className={styles.contentCopy}>
             <Link
               className={styles.link}
               href="https://github.com/carbon-design-system/carbon-platform/blob/main/docs/resource-schemas.md#resource-schemas"
@@ -379,7 +379,7 @@ const PageContent = () => {
             >
               Get started
             </Link>
-          </p>
+          </div>
           <h2 className={styles.contentHeading}>Platform roadmap</h2>
           <p className={styles.contentCopy}>
             Progress on the following releases are documented in{' '}

@@ -113,9 +113,9 @@ const Layout = ({ children }) => {
                     aria-label="Main navigation"
                     className={styles.headerNavigation}
                   >
-                    {globalNavData.map((data) => (
-                      <>
-                        {data.path && (
+                    {globalNavData.map((data) => {
+                      if (data.path) {
+                        return (
                           <HeaderMenuItem
                             key={data.title}
                             isCurrentPage={router.pathname.startsWith(data.path)}
@@ -124,18 +124,19 @@ const Layout = ({ children }) => {
                           >
                             {data.title}
                           </HeaderMenuItem>
-                        )}
-                        {!data.path && (
+                        )
+                      } else {
+                        return (
                           <HeaderMenuItem
                             key={data.title}
-                            tabIndex="-1"
+                            tabIndex={-1}
                             className={styles.headerNavItemDisabled}
                           >
                             {data.title}
                           </HeaderMenuItem>
-                        )}
-                      </>
-                    ))}
+                        )
+                      }
+                    })}
                   </HeaderNavigation>
                 </Column>
               </Grid>

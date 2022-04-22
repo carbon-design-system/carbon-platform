@@ -19,7 +19,7 @@ export const FeatureCard = ({ href, children, description, title }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
 
   const imageAspectRatio = () => {
-    if (isLg) return ''
+    if (isLg) return null
     if (isMd) return '16x9'
     return '1x1'
   }

@@ -10,45 +10,45 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 
-.profileContainer:nth-child(3n + 2),
-.profileContainer:nth-child(3n + 3) {
+.profile:nth-child(3n + 2),
+.profile:nth-child(3n + 3) {
   border-bottom: 1px solid theme.$border-subtle;
   border-left: 1px solid theme.$border-subtle;
 }
 
-.profileContainer:nth-child(3n + 1) {
+.profile:nth-child(3n + 1) {
   border-bottom: 1px solid theme.$border-subtle;
 }
 
-.profileContainer:nth-last-child(-n + 3) {
+.profile:nth-last-child(-n + 3) {
   @include breakpoint.breakpoint('lg') {
     border-bottom: 0;
   }
 }
 
-.profileContainer:nth-last-child(-n + 2) {
+.profile:nth-last-child(-n + 2) {
   @include breakpoint.breakpoint('md') {
     border-bottom: 0;
   }
 }
 
-.cardContainer {
+.card {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background: theme.$layer-01;
 }
 
-.contentContainer {
+.content {
   width: 100%;
 }
 
-.imageContainer {
+.image {
   width: 100%;
   height: 100%;
 }
 
-.nameStyle {
+.name {
   @include type.type-style('heading-01');
 
   padding-top: spacing.$spacing-05;
@@ -56,7 +56,7 @@
   color: theme.$text-primary;
 }
 
-.titleStyle {
+.title {
   @include type.type-style('label-01');
 
   padding-right: spacing.$spacing-03;

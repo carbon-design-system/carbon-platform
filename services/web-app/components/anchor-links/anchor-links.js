@@ -17,8 +17,8 @@ export default class AnchorLinks extends React.Component {
     const { children, small, className } = this.props
     const isColumn = React.Children.count(children) > 6
     const classNames = clsx(className, {
-      [styles.listSmall]: small,
-      [styles.multipleColumns]: isColumn
+      [styles['list--small']]: small,
+      [styles['multiple-columns']]: isColumn
     })
 
     return (

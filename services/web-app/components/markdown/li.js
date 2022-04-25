@@ -10,7 +10,7 @@ import clsx from 'clsx'
 import styles from './markdown.module.scss'
 
 const LI = ({ children, className, ...rest }) => (
-  <ListItem className={clsx(className, styles.listItem)} {...rest}>
+  <ListItem className={clsx(className, styles['list-item'])} {...rest}>
     {children}
   </ListItem>
 )

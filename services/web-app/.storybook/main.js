@@ -51,20 +51,7 @@ module.exports = {
     // Add Sass support
     config.module.rules.push({
       test: /\.scss$/,
-      use: [
-        'style-loader',
-        'css-loader',
-        // {
-        //   loader: 'css-loader',
-        //   options: {
-        //     modules: {
-        //       mode: 'local',
-        //       exportLocalsConvention: 'camelCase'
-        //     }
-        //   }
-        // },
-        'sass-loader'
-      ],
+      use: ['style-loader', 'css-loader', 'sass-loader'],
       include: path.resolve(__dirname, '../')
     })
 

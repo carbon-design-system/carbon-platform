@@ -40,8 +40,8 @@ export default class DoDont extends React.Component {
     } = this.props
 
     const iconClassNames = clsx(styles.icon, {
-      [styles.iconCorrect]: type === 'do',
-      [styles.iconIncorrect]: type === 'dont'
+      [styles['icon-correct']]: type === 'do',
+      [styles['icon-incorrect']]: type === 'dont'
     })
 
     const wrapperClassNames = clsx(className, styles.example, {
@@ -75,7 +75,7 @@ export default class DoDont extends React.Component {
         <Theme theme={color === 'dark' && 'g100'}>
           <div className={wrapperClassNames}>
             <div className={styles.card}>
-              <div className={styles.cardContent}>
+              <div className={styles['card-content']}>
                 {type === 'do' && <CheckmarkFilled size={24} className={iconClassNames} />}
                 {type !== 'do' && <Misuse size={24} className={iconClassNames} />}
                 <div className={styles.content}>

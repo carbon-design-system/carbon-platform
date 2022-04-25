@@ -71,7 +71,7 @@ const CatalogMultiselectFilter = ({
         ref={triggerRef}
         type="button"
       >
-        <span className={styles.triggerInner}>
+        <span className={styles['trigger-inner']}>
           {isMd && (
             <>
               {count !== 0 && (
@@ -88,8 +88,11 @@ const CatalogMultiselectFilter = ({
                   {count}
                 </Tag>
               )}
-              <span className={styles.triggerText}>Filters</span>
-              <ChevronDown className={clsx(styles.icon, open && styles.iconRotate)} size={16} />
+              <span className={styles['trigger-text']}>Filters</span>
+              <ChevronDown
+                className={clsx(styles.icon, open && styles['icon--rotate'])}
+                size={16}
+              />
             </>
           )}
           {!isMd && open && <Close size={20} />}
@@ -112,7 +115,7 @@ const CatalogMultiselectFilter = ({
                   <h3 className={styles.heading}>{getFilters(initialFilter)[item].name}</h3>
                   <ul className={styles.list}>
                     {Object.keys(getFilters(initialFilter)[item].values).map((key, j) => (
-                      <li className={styles.listItem} key={j}>
+                      <li className={styles['list-item']} key={j}>
                         <Tag
                           onClick={() => {
                             onFilter(

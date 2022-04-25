@@ -13,7 +13,7 @@ import React, { createContext, useCallback, useContext, useEffect, useRef, useSt
 import { useId } from '@/utils/use-id'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
-import * as styles from './tabs.module.scss'
+import styles from './tabs.module.scss'
 
 function elementIsNullOrString(child) {
   return !child || typeof child.type === 'string'
@@ -28,16 +28,14 @@ const Select = ({ children, _id }) => {
     index
   }))
   return (
-    <div className={styles.dropdownWrapper}>
-      <Dropdown
-        size="xl"
-        onChange={({ selectedItem }) => setActiveTab(selectedItem.index)}
-        initialSelectedItem={items[0]}
-        label="tab selection"
-        items={items}
-        id={_id}
-      />
-    </div>
+    <Dropdown
+      size="xl"
+      onChange={({ selectedItem }) => setActiveTab(selectedItem.index)}
+      initialSelectedItem={items[0]}
+      label="tab selection"
+      items={items}
+      id={_id}
+    />
   )
 }
 
@@ -49,7 +47,7 @@ Select.propTypes = {
 const TabList = ({ children, className, _id }) => {
   const { activeTab } = useContext(TabContext)
   return (
-    <ul className={clsx(className, styles.tabList)} role="tablist">
+    <ul className={clsx(className, styles['tab-list'])} role="tablist">
       {React.Children.map(children, (child, index) => {
         if (elementIsNullOrString(child)) return child
         return React.cloneElement(child, {

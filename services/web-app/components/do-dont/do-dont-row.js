@@ -16,7 +16,7 @@ export default class DoDontRow extends React.Component {
   render() {
     const { children, className } = this.props
 
-    return <Grid className={clsx(className, styles.doDontRow)}>{children}</Grid>
+    return <Grid className={clsx(className, styles['do-dont-row'])}>{children}</Grid>
   }
 }
 

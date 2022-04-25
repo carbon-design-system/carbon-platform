@@ -47,29 +47,6 @@ const nextConfig = withMDX({
     // https://github.com/webpack/webpack/issues/15574
     config.infrastructureLogging = { level: 'error' }
 
-    const rules = config.module.rules
-      .find((rule) => typeof rule.oneOf === 'object')
-      .oneOf.filter((rule) => Array.isArray(rule.use))
-
-    rules.forEach((rule) => {
-      rule.use.forEach((moduleLoader) => {
-        if (
-          moduleLoader.loader &&
-          moduleLoader.loader.includes('css-loader') &&
-          typeof moduleLoader.options.modules === 'object'
-        ) {
-          moduleLoader.options = {
-            ...moduleLoader.options,
-            modules: {
-              ...moduleLoader.options.modules,
-              exportLocalsConvention: 'camelCase', // https://github.com/webpack-contrib/css-loader#exportlocalsconvention
-              mode: 'local' // https://github.com/webpack-contrib/css-loader#mode
-            }
-          }
-        }
-      })
-    })
-
     config.module.rules.push({
       test: /\.mp4$/,
       use: 'file-loader?name=static/media/[name].[ext]'

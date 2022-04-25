@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/theme' as theme;
 
+// scoped to div code to override global reset styles
 :global(div) code {
   padding: 0 spacing.$spacing-03;
   background-color: theme.$layer-01;

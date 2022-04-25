@@ -22,6 +22,8 @@ import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
+import IconLibrary from '@/components/svg-libraries/icon-library'
+import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import Video from '@/components/video'
@@ -76,7 +78,9 @@ const components = {
   DoDont: DoDont,
   DoDontRow: DoDontRow,
   GifPlayer: GifPlayer,
+  IconLibrary,
   InlineNotification: InlineNotification,
+  PictogramLibrary,
   Tabs: Tabs,
   Tab: Tab,
   Video: Video,

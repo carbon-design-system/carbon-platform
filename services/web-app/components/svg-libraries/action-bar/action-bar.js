@@ -4,8 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Code16, Download16 } from '@carbon/icons-react'
-import { Button } from '@carbon/react'
+import { Code32, Download32 } from '@carbon/icons-react'
+import { IconButton } from '@carbon/react'
 import { pascalCase } from 'change-case'
 import clsx from 'clsx'
 import copy from 'copy-to-clipboard'
@@ -44,7 +44,7 @@ const ActionBar = ({
     setIsActionBarVisible(isStillFocusedWithin)
   }
 
-  const tooltipAlignment = isLastCard ? 'end' : 'center'
+  const tooltipAlignment = isLastCard ? 'top-right' : 'top'
 
   const handleDownload = () => {
     const a = document.body.appendChild(document.createElement('a'))
@@ -73,33 +73,31 @@ const ActionBar = ({
         [hidden]: !isActionBarVisible
       })}
     >
-      <Button
+      <IconButton
         kind="ghost"
+        align={tooltipAlignment}
+        label="Download SVG"
         size="sm"
-        hasIconOnly
-        tooltipAlignment={tooltipAlignment}
-        tooltipPosition="top"
-        iconDescription="Download SVG"
-        renderIcon={Download16}
         onFocus={() => setIsActionBarVisible(true)}
         onClick={handleDownload}
         className={tooltip}
         triggerClassName={trigger}
-      />
+      >
+        <Download32 />
+      </IconButton>
       {shouldShowCopyButton && (
-        <Button
+        <IconButton
           kind="ghost"
+          align={tooltipAlignment}
+          label={copyText}
           size="sm"
-          hasIconOnly
-          tooltipAlignment={tooltipAlignment}
-          tooltipPosition="top"
-          iconDescription={copyText}
-          renderIcon={Code16}
           onClick={handleCopy}
           onFocus={() => setIsActionBarVisible(true)}
           className={tooltip}
           triggerClassName={trigger}
-        />
+        >
+          <Code32 />
+        </IconButton>
       )}
     </div>
   )

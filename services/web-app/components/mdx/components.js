@@ -20,6 +20,7 @@ import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
+import Preview from '@/components/preview'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
 import { Tab, Tabs } from '@/components/tabs'
@@ -89,6 +90,7 @@ const components = {
   StatusIndicatorTable: ({ children }) => (
     <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
   ),
+  Preview,
   /* Gatsby theme components, not used in Carbon website, out of scope v1 */
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
   ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,

@@ -22,7 +22,7 @@ Object.defineProperty(NextImage, 'default', {
     delete modifiedProps.placeholder
 
     return (
-      <div className={clsx(styles.imageContainer, props.className)}>
+      <div className={clsx(styles['image-container'], props.className)}>
         <OriginalNextImage {...modifiedProps} className={styles.image} unoptimized />
       </div>
     )

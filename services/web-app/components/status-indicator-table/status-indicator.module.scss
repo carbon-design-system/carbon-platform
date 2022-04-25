@@ -73,7 +73,7 @@
 
 .table :is(.cell) {
   border-collapse: collapse;
-  color: var(--cds-text-01);
+  color: theme.$text-primary;
 }
 
 .table .cell:first-child {

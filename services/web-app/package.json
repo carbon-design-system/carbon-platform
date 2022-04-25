@@ -14,7 +14,7 @@
     "bundle": "node esbuild.js",
     "clean": "rimraf .carbon public/.carbon .next .dev",
     "dev": "next dev",
-    "dev:all": "concurrently 'next dev' 'npm run storybook'",
+    "dev:all": "concurrently 'open http://localhost:3000 && next dev' 'npm run storybook'",
     "dev:clean": "npm run clean && npm run dev",
     "dev:secure": "sh scripts/create-local-certificates.sh && concurrently 'npm run dev' 'RUNNING_SECURELY=1 npm run start:proxy'",
     "service:build": "npm run build",

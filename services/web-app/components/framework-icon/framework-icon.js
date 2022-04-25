@@ -12,6 +12,9 @@ import { framework as frameworkMap } from '@/data/framework'
 
 import styles from './framework-icon.module.scss'
 
+/**
+ * Renders an icon per supported `framework` and an `otherCount` of related frameworks if specified.
+ */
 const FrameworkIcon = ({ className, framework, otherCount = 0 }) => {
   const item = frameworkMap[framework]
 
@@ -32,8 +35,18 @@ const FrameworkIcon = ({ className, framework, otherCount = 0 }) => {
 }
 
 FrameworkIcon.propTypes = {
+  /**
+   * Optional container class name.
+   */
   className: PropTypes.string,
+  /**
+   * Framework key from the asset schema. See:
+   * https://github.com/carbon-design-system/carbon-platform/blob/main/docs/resource-schemas.md.
+   */
   framework: PropTypes.oneOf(Object.keys(frameworkMap)),
+  /**
+   * Optional number of other frameworks that have implemented the asset.
+   */
   otherCount: PropTypes.number
 }
 

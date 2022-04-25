@@ -7,10 +7,30 @@
 import React from 'react'
 
 import FrameworkIcon from '@/components/framework-icon/framework-icon'
+import { framework as frameworkMap } from '@/data/framework'
 
 const stories = {
   title: 'Components/FrameworkIcon',
-  component: FrameworkIcon
+  component: FrameworkIcon,
+  argTypes: {
+    framework: {
+      options: Object.keys(frameworkMap)
+    },
+    otherCount: {
+      control: {
+        type: 'number',
+        min: 0
+      }
+    }
+  },
+  parameters: {
+    docs: {
+      source: {
+        state: 'open'
+      }
+    },
+    viewMode: 'docs'
+  }
 }
 
 export default stories
@@ -19,7 +39,7 @@ const Template = (args) => <FrameworkIcon {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  framework: 'react'
+  framework: 'angular'
 }
 
 export const WithCount = Template.bind({})

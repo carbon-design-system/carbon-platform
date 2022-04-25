@@ -12,7 +12,12 @@ const stories = {
   title: 'Pages/Assets',
   component: Assets,
   parameters: {
-    layout: 'fullscreen'
+    options: { showPanel: false },
+    layout: 'fullscreen',
+    previewTabs: {
+      'storybook/docs/panel': { hidden: true }
+    },
+    viewMode: 'canvas'
   }
 }
 

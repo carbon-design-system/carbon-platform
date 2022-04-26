@@ -17,10 +17,10 @@ import styles from '../svg-library.module.scss'
 const IconCategory = ({ category, icons, columnCount }) => {
   const [subCategoryRef, containerIsVisible] = useIntersectionObserver()
   return (
-    <section className={styles.svgCategory}>
-      <h2 className={clsx(h2, styles.categoryTitle)}>{category}</h2>
+    <section className={styles['svg-category']}>
+      <h2 className={clsx(h2, styles['category-title'])}>{category}</h2>
       <ul ref={subCategoryRef}>
-        <ul className={styles.svgGrid}>
+        <ul className={styles['svg-grid']}>
           {icons.map((icon, i) => (
             <SvgCard
               isLastCard={(i + 1) % columnCount === 0}

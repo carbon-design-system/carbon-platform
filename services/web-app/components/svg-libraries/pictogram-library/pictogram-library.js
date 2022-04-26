@@ -89,7 +89,7 @@ const PictogramLibrary = () => {
   return (
     <Grid condensed>
       <Column sm={4} md={8} lg={12}>
-        <div className={styles.svgPage}>
+        <div className={styles['svg-page']}>
           <FilterRow
             type="pictogram"
             categoryList={categoryList}
@@ -108,7 +108,7 @@ const PictogramLibrary = () => {
             />
           )}
           {!shouldShowNoResult && (
-            <div className={styles.svgLibrary}>
+            <div className={styles['svg-library']}>
               {filteredCategories.map(([category, pictograms]) => (
                 <PictogramCategory
                   columnCount={columnCount}

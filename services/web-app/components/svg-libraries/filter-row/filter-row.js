@@ -29,7 +29,7 @@ const FilterRow = ({
     <div
       data-stuck={isSticky || undefined}
       ref={filterRowRef}
-      className={clsx(styles.filterRow, {
+      className={clsx(styles['filter-row'], {
         [styles.pictograms]: type !== 'icon'
       })}
     >

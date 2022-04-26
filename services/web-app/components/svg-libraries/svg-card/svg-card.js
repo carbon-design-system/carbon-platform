@@ -31,13 +31,13 @@ const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
       onMouseLeave={() => {
         setIsActionBarVisible(false)
       }}
-      className={styles.svgCard}
+      className={styles['svg-card']}
     >
-      <div className={styles.svgCardInside}>
-        <span className={styles.triggerText}>{friendlyName}</span>
+      <div className={styles['svg-card-inside']}>
+        <span className={styles['trigger-text']}>{friendlyName}</span>
         {containerIsVisible && (
           <>
-            <div className={styles.flexContainer}>
+            <div className={styles['flex-container']}>
               {Component && (
                 <Component size={32} {...rest}>
                   <title>{friendlyName}</title>

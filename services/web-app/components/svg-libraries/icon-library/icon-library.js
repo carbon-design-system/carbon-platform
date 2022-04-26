@@ -106,7 +106,7 @@ const IconLibrary = () => {
   return (
     <Grid condensed>
       <Column sm={4} md={8} lg={12}>
-        <div className={styles.svgPage}>
+        <div className={styles['svg-page']}>
           <FilterRow
             categoryList={categoryList}
             selectedCategory={selectedCategory}
@@ -123,7 +123,7 @@ const IconLibrary = () => {
             />
           )}
           {!shouldShowNoResult && (
-            <div className={styles.svgLibrary}>
+            <div className={styles['svg-library']}>
               {filteredCategories.map(([category, icons]) => (
                 <IconCategory
                   columnCount={columnCount}

@@ -26,10 +26,10 @@ const NoResult = ({
 }) => {
   const designType = pageName === 'icon' ? 'an icon' : 'a pictogram'
   return (
-    <div className={styles.noResult}>
+    <div className={styles['no-result']}>
       {allIconResults > 0 && (
         <>
-          <span className={styles.searchLabel}>
+          <span className={styles['search-label']}>
             {`0 results found in the "${selectedCategory}" category.`}
           </span>
           <h2 className={markdownStyles.h2}>
@@ -37,7 +37,7 @@ const NoResult = ({
             <button
               type="button"
               onClick={() => setSelectedCategory(`All ${type}`)}
-              className={clsx(styles.allSvgs, 'cds--link')}
+              className={clsx(styles['all-svgs'], 'cds--link')}
             >
               all {type}.
             </button>

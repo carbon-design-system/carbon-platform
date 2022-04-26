@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { black, blue, green, magenta, purple, white } from '@carbon/colors'
+import { black, blue, gray, green, magenta, purple, white } from '@carbon/colors'
 import { CodeSyntax, Construct, Dashboard, Pattern, TextInput } from '@carbon/pictograms-react'
 
 export const type = {
@@ -48,5 +48,11 @@ export const type = {
     namePlural: 'Templates',
     path: '/assets/templates',
     textColor: magenta[70]
+  },
+  'design-only': {
+    bgColor: gray[20],
+    name: 'Design Only',
+    path: '/assets',
+    textColor: gray[70]
   }
 }

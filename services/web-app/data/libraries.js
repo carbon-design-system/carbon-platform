@@ -18,12 +18,10 @@ const carbonChartsGroup = {
   canonical: 'carbon-charts'
 }
 
-/**
 const carbonComponentsGroup = {
   base: 'carbon-styles',
   canonical: 'carbon-react'
 }
-*/
 
 const ibmdotcomGroup = {
   base: 'ibmdotcom-styles',
@@ -88,18 +86,17 @@ const prodLibraries = {
     org: 'carbon-design-system',
     repo: 'carbon',
     path: '/packages/styles',
-    sponsor: 'carbon'
-    // waiting for carbon react to be indexed
-    // group: carbonComponentsGroup
+    sponsor: 'carbon',
+    group: carbonComponentsGroup
   },
-  // 'carbon-react': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/carbon-react',
-  //   sponsor: 'carbon',
-  //   group: carbonComponentsGroup
-  // },
+  'carbon-react': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon',
+    path: '/packages/react',
+    sponsor: 'carbon',
+    group: carbonComponentsGroup
+  },
   // 'carbon-angular': {
   //   host: 'github.ibm.com',
   //   org: 'matt-rosno',
@@ -151,13 +148,14 @@ const prodLibraries = {
   //   path: '/packages/colors',
   //   sponsor: 'carbon'
   // },
-  // 'carbon-components': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/components',
-  //   group: carbonComponentsGroup
-  // },
+  'carbon-components': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon',
+    path: '/packages/components',
+    group: carbonComponentsGroup,
+    ref: 'v10'
+  },
   // 'carbon-elements': {
   //   host: 'github.ibm.com',
   //   org: 'matt-rosno',
@@ -392,9 +390,24 @@ const devLibraries = {
     org: 'carbon-design-system',
     repo: 'carbon',
     path: '/packages/styles',
-    sponsor: 'carbon'
-    // waiting for carbon react to be indexed
-    // group: carbonComponentsGroup
+    sponsor: 'carbon',
+    group: carbonComponentsGroup
+  },
+  'carbon-components': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon',
+    path: '/packages/components',
+    group: carbonComponentsGroup,
+    ref: 'v10'
+  },
+  'carbon-react': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon',
+    path: '/packages/react',
+    sponsor: 'carbon',
+    group: carbonComponentsGroup
   },
   'ibmdotcom-react': {
     host: 'github.com',

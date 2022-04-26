@@ -96,7 +96,7 @@ designKits:
     url: https://www.figma.com/file/Vzz8k68Pqk5HfaTdQOQrGu/White-Theme---Carbon-Design-System
     action: link
     sponsor: carbon
-    license: Apache 2.0
+    license: IBM Internal
   carbon-g10-figma:
     name: Gray 10 theme
     themes:
@@ -107,7 +107,7 @@ designKits:
     url: https://www.figma.com/file/i6y80WeotmhmbWxpmcffz7/Gray-10-Theme---Carbon-Design-System
     action: link
     sponsor: carbon
-    license: Apache 2.0
+    license: IBM Internal
   carbon-g90-figma:
     name: Gray 90 theme
     themes:
@@ -118,7 +118,7 @@ designKits:
     url: https://www.figma.com/file/fCucrHE8tdGDVJX7ODqajd/Gray-90-Theme---Carbon-Design-System
     action: link
     sponsor: carbon
-    license: Apache 2.0
+    license: IBM Internal
   carbon-g100-figma:
     name: Gray 100 theme
     themes:
@@ -129,7 +129,7 @@ designKits:
     url: https://www.figma.com/file/TckQzGe3bNxHPLoRhbXFal/Gray-100-Theme---Carbon-Design-System
     action: link
     sponsor: carbon
-    license: Apache 2.0
+    license: IBM Internal
   carbon-white-adobe-xd:
     name: White theme
     themes:
@@ -291,7 +291,7 @@ designKits:
     status: stable
     url: https://www.figma.com/file/zJlvN4TRbslRtyjFuxIDom/IBM-Accessibility-Design-Kit?node-id=0%3A1
     action: link
-    license: Apache 2.0
+    license: IBM Internal
   carbon-mid-fi-sketch:
     name: Carbon Mid-Fi Sketch kit
     tool: sketch

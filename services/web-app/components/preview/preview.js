@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { preview } from './preview.module.scss'
+import styles from './preview.module.scss'
 
 const Preview = ({ title, ...props }) => (
-  <iframe loading="lazy" title={title} {...props} className={preview} />
+  <iframe loading="lazy" title={title} {...props} className={styles.preview} />
 )
 
 export default Preview

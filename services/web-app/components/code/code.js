@@ -13,7 +13,7 @@ const Code = ({ children }) => (
   <Theme theme={'g100'}>
     <Grid>
       <Column sm={4} md={6} lg={8}>
-        <CodeSnippet type="multi" wrapText="true" feedback="Copied!" className={styles.code}>
+        <CodeSnippet type="multi" wrapText feedback="Copied!" className={styles.code}>
           {children}
         </CodeSnippet>
       </Column>

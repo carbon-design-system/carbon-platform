@@ -4,14 +4,15 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { LogoGithub32 } from '@carbon/icons-react'
+import { Svg32Illustrator } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import React from 'react'
 
 import { Column, Row } from '@/components/grid-transform'
-import { h2, paragraph } from '@/components/markdown/markdown.module.scss'
+import markdownStyles from '@/components/markdown/markdown.module.scss'
 import ResourceCard from '@/components/resource-card'
 
-import { Github, Illustrator } from '../icons'
 import styles from '../svg-library.module.scss'
 
 const NoResult = ({
@@ -30,7 +31,7 @@ const NoResult = ({
           <span className={styles.searchLabel}>
             {`0 results found in the "${selectedCategory}" category.`}
           </span>
-          <h2 className={h2}>
+          <h2 className={markdownStyles.h2}>
             {allIconResults} matches found in{' '}
             <button
               type="button"
@@ -44,8 +45,8 @@ const NoResult = ({
       )}
       {!allIconResults && (
         <>
-          <h2 className={h2}>No result found</h2>
-          <p className={paragraph}>
+          <h2 className={markdownStyles.h2}>No result found</h2>
+          <p className={markdownStyles.paragraph}>
             It appears we don’t have an icon that matches your search. Try different search terms or
             give us a hand—submit your own design to the library!
           </p>
@@ -55,7 +56,7 @@ const NoResult = ({
                 subTitle={`Submit ${designType} design`}
                 href="https://github.ibm.com/brand/pictograms/issues/new"
               >
-                <Github />
+                <LogoGithub32 className={styles.icon} />
               </ResourceCard>
             </Column>
             <Column colMd={4} colLg={4} noGutterSm>
@@ -64,7 +65,7 @@ const NoResult = ({
                 href={pageUrl}
                 subTitle={`Download the ${pageName} master`}
               >
-                <Illustrator />
+                <Svg32Illustrator />
               </ResourceCard>
             </Column>
           </Row>

@@ -16,7 +16,18 @@ const AccordionItem = ({ className, children, ...rest }) => (
 )
 
 AccordionItem.propTypes = {
-  className: PropTypes.string
+  /**
+   * Provide the contents of your `AccordionItem`.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Optional container class name.
+   */
+  className: PropTypes.string,
+  /**
+   * Provide the title of your `AccordionItem`.
+   */
+  title: PropTypes.string.isRequired
 }
 
 export default AccordionItem

@@ -35,9 +35,14 @@ export default class ResourceCard extends React.Component {
       isLink = href.charAt(0) === '/'
     }
 
-    const ResourceCardClassNames = clsx(className, styles.resourceCard, groupStyles.resourceCard, {
-      [styles.disabled]: disabled
-    })
+    const ResourceCardClassNames = clsx(
+      className,
+      styles['resource-card'],
+      groupStyles['resource-card'],
+      {
+        [styles.disabled]: disabled
+      }
+    )
 
     const carbonTileclassNames = clsx(['cds--tile'], {
       'cds--tile--clickable': href !== undefined
@@ -47,8 +52,8 @@ export default class ResourceCard extends React.Component {
       <>
         {subTitle && <h5 className={styles.subtitle}>{subTitle}</h5>}
         {title && <h4 className={styles.title}>{title}</h4>}
-        <div className={styles.iconImg}>{children}</div>
-        <div className={styles.iconAction}>
+        <div className={styles['icon-img']}>{children}</div>
+        <div className={styles['icon-action']}>
           {actionIcon === 'launch' && !disabled && <Launch size={20} aria-label="Open resource" />}
           {actionIcon === 'arrowRight' && !disabled && (
             <ArrowRight size={20} aria-label="Open resource" />

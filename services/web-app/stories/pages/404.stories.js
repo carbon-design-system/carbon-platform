@@ -9,7 +9,7 @@ import Layout, { LayoutProvider } from '@/layouts/layout'
 import FourOhFour from '@/pages/404.js'
 
 const stories = {
-  title: 'Pages/404',
+  title: 'Platform/Pages/404',
   component: FourOhFour,
   parameters: {
     options: { showPanel: false },

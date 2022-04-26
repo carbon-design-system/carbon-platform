@@ -9,7 +9,7 @@ import Layout, { LayoutProvider } from '@/layouts/layout'
 import Assets from '@/pages/assets/index.js'
 
 const stories = {
-  title: 'Pages/Assets',
+  title: 'Platform/Pages/Assets',
   component: Assets,
   parameters: {
     options: { showPanel: false },

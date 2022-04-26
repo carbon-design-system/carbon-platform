@@ -43,7 +43,13 @@ export const parameters = {
       date: /Date$/
     }
   },
+  docs: {
+    source: {
+      state: 'open'
+    }
+  },
   nextRouter: {
     Provider: RouterContext.Provider
-  }
+  },
+  viewMode: 'docs'
 }

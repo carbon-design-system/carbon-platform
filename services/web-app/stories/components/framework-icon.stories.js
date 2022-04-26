@@ -10,7 +10,7 @@ import FrameworkIcon from '@/components/framework-icon/framework-icon'
 import { framework as frameworkMap } from '@/data/framework'
 
 const stories = {
-  title: 'Components/FrameworkIcon',
+  title: 'Platform/Components/FrameworkIcon',
   component: FrameworkIcon,
   argTypes: {
     framework: {
@@ -22,14 +22,6 @@ const stories = {
         min: 0
       }
     }
-  },
-  parameters: {
-    docs: {
-      source: {
-        state: 'open'
-      }
-    },
-    viewMode: 'docs'
   }
 }
 

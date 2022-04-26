@@ -20,10 +20,14 @@ ColorSwatch.propTypes = {
   hex: PropTypes.string
 }
 
+/**
+ * The `<ColorGrid>` component is used to display color swatches showing
+ * all color steps or alert colors.
+ */
 export default function ColorGrid({ colorFamily, ...rest }) {
   if (colorFamily === 'alerts') {
     return (
-      <div {...rest} className={styles.colorGrid}>
+      <div {...rest} className={styles['color-grid']}>
         <ColorSwatch hex={red60} />
         <ColorSwatch hex={orange40} />
         <ColorSwatch hex={yellow20} />
@@ -32,7 +36,7 @@ export default function ColorGrid({ colorFamily, ...rest }) {
     )
   }
   return (
-    <div {...rest} className={styles.colorGrid}>
+    <div {...rest} className={styles['color-grid']}>
       <ColorSwatch hex={black100} />
       {Object.values(colors[colorFamily])
         .reverse()

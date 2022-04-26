@@ -5,10 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import styles from './color-block.module.scss'
 
+/**
+ * The `<ColorBlock>` component displays the color of the hex value.
+ * Designed to be used within a page table for documentation.
+ */
 export default class ColorBlock extends React.Component {
   render() {
     const hex = this.props.children
@@ -23,4 +28,11 @@ export default class ColorBlock extends React.Component {
       </div>
     )
   }
+}
+
+ColorBlock.propTypes = {
+  /**
+   * hex value to set color
+   */
+  children: PropTypes.string
 }

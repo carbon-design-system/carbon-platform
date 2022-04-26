@@ -37,15 +37,12 @@ const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
         {containerIsVisible && (
           <>
             <div className={styles.flexContainer}>
-              {Component
-                ? (
+              {Component && (
                 <Component size={32} {...rest}>
                   <title>{friendlyName}</title>
                 </Component>
-                  )
-                : (
-                <p>Error: no component found for {pascalCase(friendlyName)}</p>
-                  )}
+              )}
+              {!Component && <p>Error: no component found for {pascalCase(friendlyName)}</p>}
             </div>
             <ActionBar
               isLastCard={isLastCard}

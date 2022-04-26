@@ -25,8 +25,7 @@ const NoResult = ({
   const designType = pageName === 'icon' ? 'an icon' : 'a pictogram'
   return (
     <div className={styles.noResult}>
-      {allIconResults
-        ? (
+      {allIconResults && (
         <>
           <span className={styles.searchLabel}>
             {`0 results found in the "${selectedCategory}" category.`}
@@ -42,8 +41,8 @@ const NoResult = ({
             </button>
           </h2>
         </>
-          )
-        : (
+      )}
+      {!allIconResults && (
         <>
           <h2 className={h2}>No result found</h2>
           <p className={paragraph}>
@@ -70,7 +69,7 @@ const NoResult = ({
             </Column>
           </Row>
         </>
-          )}
+      )}
     </div>
   )
 }

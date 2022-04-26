@@ -113,8 +113,7 @@ const IconLibrary = () => {
             onSearchChange={(e) => debouncedSetSearchInputValue(e.currentTarget.value)}
             onDropdownChange={({ selectedItem }) => setSelectedCategory(selectedItem)}
           />
-          {shouldShowNoResult
-            ? (
+          {shouldShowNoResult && (
             <NoResult
               selectedCategory={selectedCategory}
               setSelectedCategory={setSelectedCategory}
@@ -122,8 +121,8 @@ const IconLibrary = () => {
               pageName="icon"
               pageUrl="https://github.com/carbon-design-system/carbon/blob/v10/packages/icons/master/ui-icon-master.ai"
             />
-              )
-            : (
+          )}
+          {!shouldShowNoResult && (
             <div className={styles.svgLibrary}>
               {filteredCategories.map(([category, icons]) => (
                 <IconCategory
@@ -134,7 +133,7 @@ const IconLibrary = () => {
                 />
               ))}
             </div>
-              )}
+          )}
         </div>
       </Column>
     </Grid>

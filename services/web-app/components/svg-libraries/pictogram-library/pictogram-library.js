@@ -97,8 +97,7 @@ const PictogramLibrary = () => {
             onSearchChange={(e) => debouncedSetSearchInputValue(e.currentTarget.value)}
             onDropdownChange={({ selectedItem }) => setSelectedCategory(selectedItem)}
           />
-          {shouldShowNoResult
-            ? (
+          {shouldShowNoResult && (
             <NoResult
               type="pictograms"
               selectedCategory={selectedCategory}
@@ -107,8 +106,8 @@ const PictogramLibrary = () => {
               pageName="pictogram"
               pageUrl="https://github.com/carbon-design-system/carbon/raw/v10/packages/pictograms/master/productive-pictogram-master.ai"
             />
-              )
-            : (
+          )}
+          {!shouldShowNoResult && (
             <div className={styles.svgLibrary}>
               {filteredCategories.map(([category, pictograms]) => (
                 <PictogramCategory
@@ -119,7 +118,7 @@ const PictogramLibrary = () => {
                 />
               ))}
             </div>
-              )}
+          )}
         </div>
       </Column>
     </Grid>

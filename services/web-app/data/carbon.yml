@@ -244,7 +244,7 @@ designKits:
   carbon-gatsby-theme-sketch:
     name: Gatsby theme
     tool: sketch
-    type: utility
+    type: components
     status: stable
     url: sketch://add-library/cloud/304313c1-29a8-4946-a6f0-51dbec953bc2
     action: download
@@ -252,7 +252,7 @@ designKits:
   image-production-guidelines-sketch:
     name: Image production guidelines
     tool: sketch
-    type: utility
+    type: guidelines
     status: stable
     url: https://www.sketch.com/s/240226b0-f455-484d-b412-cfd13fb1bb39
     action: link
@@ -299,7 +299,7 @@ designKits:
   ibm-accessibility-sketch:
     name: IBM Accessibility Sketch kit
     tool: sketch
-    type: utility
+    type: guidelines
     status: stable
     url: https://www.sketch.com/s/f0a04c0d-fb62-4d71-92c6-07c402f8cae7
     action: link
@@ -307,7 +307,7 @@ designKits:
   ibm-accessibility-figma:
     name: IBM Accessibility Figma kit
     tool: figma
-    type: utility
+    type: guidelines
     status: stable
     url: https://www.figma.com/file/zJlvN4TRbslRtyjFuxIDom/IBM-Accessibility-Design-Kit?node-id=0%3A1
     action: link
@@ -315,7 +315,7 @@ designKits:
   carbon-mid-fi-sketch:
     name: Carbon Mid-Fi Sketch kit
     tool: sketch
-    type: components
+    type: wireframes
     status: stable
     url: sketch://add-library/cloud/e888aa99-4d88-46a4-9b33-3a033e7f5ca2
     action: link
@@ -323,7 +323,7 @@ designKits:
   carbon-wireframe-invision-freehand:
     name: Invision Freehand wireframe kit
     tool: invision-freehand
-    type: components
+    type: wireframes
     status: stable
     url: https://pages.github.ibm.com/cdai-design/cloud-pal/resources/resources/#invision-freehand-kit
     action: link

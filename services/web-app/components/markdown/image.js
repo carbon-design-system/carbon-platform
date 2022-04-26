@@ -31,7 +31,7 @@ const Image = ({ alt, ...props }) => {
   const imageProps = getImageProps(props)
 
   return (
-    <div className={clsx(imageProps.layout === 'fill' && styles.imageContainer)}>
+    <div className={clsx(imageProps.layout === 'fill' && styles['image-container'])}>
       <NextImage alt={alt} {...imageProps} />
     </div>
   )

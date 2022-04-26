@@ -47,17 +47,17 @@ const NavLibrary = () => {
       aria-label="Library side navigation"
       expanded={isSideNavExpanded}
       className={clsx(
-        styles.librarySideNav,
-        librarySideNav && styles.libraryNavIn,
-        libraryNavSlideOut && styles.libraryNavOut
+        styles['library-side-nav'],
+        librarySideNav && styles['library-nav-in'],
+        libraryNavSlideOut && styles['library-nav-out']
       )}
     >
       <Button kind="ghost" onClick={backLink} className={styles.back}>
-        <ArrowLeft className={styles.backIcon} size={16} />
+        <ArrowLeft className={styles['back-icon']} size={16} />
         Back to all Libraries
       </Button>
       {/* TODO issue #523 add link back to library if libraryActive=false */}
-      <h2 className={clsx(styles.navHeading, libraryActive && styles.navHeadingSelected)}>
+      <h2 className={clsx(styles['nav-heading'], libraryActive && styles['nav-heading-selected'])}>
         {/* TODO issue #523 need title and version data */}
         Library name
         <br />

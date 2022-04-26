@@ -13,6 +13,7 @@ import styles from './anchor-links.module.scss'
 
 const AnchorLink = ({ to, children, className }) => {
   const href = to || `#${slugify(children, { lower: true })}`
+
   return (
     <a className={clsx(styles.link, className)} href={href}>
       {children}
@@ -21,7 +22,19 @@ const AnchorLink = ({ to, children, className }) => {
 }
 
 AnchorLink.propTypes = {
-  className: PropTypes.string
+  /**
+   * Provide the contents of your `AnchorLink`.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Optional container class name.
+   */
+  className: PropTypes.string,
+  /**
+   * By default, the `AnchorLink` slugifys the children you pass in. Use the to prop to override
+   * this target.
+   */
+  to: PropTypes.string
 }
 
 export default AnchorLink

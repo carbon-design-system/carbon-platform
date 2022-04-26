@@ -11,7 +11,7 @@ import styles from './markdown.module.scss'
 
 const H5 = ({ children, className, ...rest }) => {
   return (
-    <Grid className={clsx(className, styles.h5Container)} {...rest}>
+    <Grid className={clsx(className, styles['h5-container'])} {...rest}>
       <Column sm={4} md={6} lg={8}>
         <h5 className={styles.h5}>{children}</h5>
       </Column>

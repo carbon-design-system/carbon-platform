@@ -62,7 +62,6 @@ const nextConfig = withMDX({
             ...moduleLoader.options,
             modules: {
               ...moduleLoader.options.modules,
-              exportLocalsConvention: 'camelCase', // https://github.com/webpack-contrib/css-loader#exportlocalsconvention
               mode: 'local' // https://github.com/webpack-contrib/css-loader#mode
             }
           }

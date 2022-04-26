@@ -7,6 +7,10 @@
 
 import styles from './preview.module.scss'
 
+/**
+ * The `<Preview>` component is a simple wrapper for an `<iframe />` with
+ * styling added to allow it to display responsively within the Platform.
+ */
 const Preview = ({ title, ...props }) => (
   <iframe loading="lazy" title={title} {...props} className={styles.preview} />
 )

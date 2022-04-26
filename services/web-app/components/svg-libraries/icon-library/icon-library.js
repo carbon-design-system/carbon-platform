@@ -8,8 +8,8 @@
 /* eslint-disable no-debugger */
 import metaData from '@carbon/icons/metadata.json'
 import { Column, Grid } from '@carbon/react'
+import loadable from '@loadable/component'
 import { debounce, groupBy } from 'lodash-es'
-import dynamic from 'next/dynamic'
 import React, { useEffect, useState } from 'react'
 
 import FilterRow from '@/components/svg-libraries/filter-row'
@@ -49,7 +49,7 @@ const IconLibrary = () => {
           ...accumulator,
           {
             ...icon,
-            Component: dynamic(() => import(`@carbon/icons-react/lib/${path}`))
+            Component: loadable(() => import(`@carbon/icons-react/lib/${path}`))
           }
         ]
       }
@@ -57,7 +57,7 @@ const IconLibrary = () => {
         ...accumulator,
         {
           ...icon,
-          Component: dynamic(() => import(`@carbon/icons-react/lib/${path}`))
+          Component: loadable(() => import(`@carbon/icons-react/lib/${path}`))
         }
       ]
     }, [])

@@ -7,8 +7,8 @@
 /* eslint-disable no-debugger */
 import metaData from '@carbon/pictograms/metadata.json'
 import { Column, Grid } from '@carbon/react'
-import loadable from '@loadable/component'
 import { debounce, groupBy } from 'lodash-es'
+import dynamic from 'next/dynamic'
 import React, { useEffect, useState } from 'react'
 
 import useColumnCount from '@/utils/use-column-count'
@@ -42,7 +42,7 @@ const PictogramLibrary = () => {
         ...accumulator,
         {
           ...pictogram,
-          Component: loadable(() => import(`@carbon/pictograms-react/lib/${path}`))
+          Component: dynamic(() => import(`@carbon/pictograms-react/lib/${path}`))
         }
       ]
     }, [])
@@ -84,7 +84,7 @@ const PictogramLibrary = () => {
       ? allCategories
       : allCategories.filter(([category]) => category === selectedCategory)
 
-  const shouldShowNoResult = categoriesLoaded && filteredCategories.length < 1
+  const shouldShowNoResult = !!(categoriesLoaded && filteredCategories.length < 1)
 
   return (
     <Grid condensed>

@@ -26,7 +26,7 @@ const NoResult = ({
   const designType = pageName === 'icon' ? 'an icon' : 'a pictogram'
   return (
     <div className={styles.noResult}>
-      {allIconResults && (
+      {allIconResults > 0 && (
         <>
           <span className={styles.searchLabel}>
             {`0 results found in the "${selectedCategory}" category.`}

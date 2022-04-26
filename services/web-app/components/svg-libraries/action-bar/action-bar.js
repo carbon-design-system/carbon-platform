@@ -81,7 +81,6 @@ const ActionBar = ({
         onFocus={() => setIsActionBarVisible(true)}
         onClick={handleDownload}
         className={styles.tooltip}
-        triggerClassName={styles.trigger}
       >
         <Download32 />
       </IconButton>
@@ -94,7 +93,6 @@ const ActionBar = ({
           onClick={handleCopy}
           onFocus={() => setIsActionBarVisible(true)}
           className={styles.tooltip}
-          triggerClassName={styles.trigger}
         >
           <Code32 />
         </IconButton>

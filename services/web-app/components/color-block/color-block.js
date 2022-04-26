@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import PropTypes from 'prop-types'
 import React from 'react'
 
 import styles from './color-block.module.scss'
@@ -28,11 +27,4 @@ export default class ColorBlock extends React.Component {
       </div>
     )
   }
-}
-
-ColorBlock.propTypes = {
-  /**
-   * hex value to set color
-   */
-  children: PropTypes.string
 }

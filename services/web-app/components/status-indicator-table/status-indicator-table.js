@@ -18,33 +18,40 @@ import React from 'react'
 
 import yaml from '@/data/status-indicators/status-indicators.yaml'
 
-import {
-  container,
-  headerCell,
-  statusIndicatorTableWrapper,
-  table
-} from './status-indicator.module.scss'
+import styles from './status-indicator.module.scss'
 import StatusIndicatorRow from './status-indicator-row'
 
 // migrating this comment as-is:
 // TODO: Organize styles, add the rest of the yaml
 const StatusIndicatorTable = ({ attention }) => (
-  <Grid condensed className={container}>
+  <Grid condensed className={styles.container}>
     <Column sm={4} md={8} lg={12}>
-      <div className={statusIndicatorTableWrapper}>
-        <StructuredListWrapper className={table}>
+      <div className={styles.statusIndicatorTableWrapper}>
+        <StructuredListWrapper className={styles.table}>
           <StructuredListHead className="cds--grid">
             <StructuredListRow className="cds--row" head>
-              <StructuredListCell className={`cds--col-lg-4 cds--col-md-1 ${headerCell}`} head>
+              <StructuredListCell
+                className={`cds--col-lg-4 cds--col-md-1 ${styles.headerCell}`}
+                head
+              >
                 Icon
               </StructuredListCell>
-              <StructuredListCell className={`cds--col-lg-2 cds--col-md-2 ${headerCell}`} head>
+              <StructuredListCell
+                className={`cds--col-lg-2 cds--col-md-2 ${styles.headerCell}`}
+                head
+              >
                 Name
               </StructuredListCell>
-              <StructuredListCell className={`cds--col-lg-2 cds--col-md-2 ${headerCell}`} head>
+              <StructuredListCell
+                className={`cds--col-lg-2 cds--col-md-2 ${styles.headerCell}`}
+                head
+              >
                 Token
               </StructuredListCell>
-              <StructuredListCell className={`cds--col-lg-4 cds--col-md-3 ${headerCell}`} head>
+              <StructuredListCell
+                className={`cds--col-lg-4 cds--col-md-3 ${styles.headerCell}`}
+                head
+              >
                 Description & usage
               </StructuredListCell>
             </StructuredListRow>

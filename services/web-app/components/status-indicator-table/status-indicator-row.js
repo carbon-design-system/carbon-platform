@@ -9,16 +9,7 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  cell,
-  descriptionCell,
-  glyph,
-  icon,
-  iconGroup,
-  iconWrapper,
-  isDark,
-  statusIndicatorRow
-} from './status-indicator.module.scss'
+import styles from './status-indicator.module.scss'
 
 export const StatusIcon = ({ attention, theme, fileName, isGlyph }) => {
   const path = `/status-icons/${attention}/${theme}/${fileName}.svg`
@@ -27,7 +18,7 @@ export const StatusIcon = ({ attention, theme, fileName, isGlyph }) => {
     <object
       height={size}
       width={size}
-      className={clsx(icon, isGlyph && glyph)}
+      className={clsx(styles.icon, isGlyph && styles.glyph)}
       aria-label={`${fileName} status icon`}
       type="image/svg+xml"
       data={path}
@@ -42,15 +33,17 @@ StatusIcon.propTypes = {
   theme: PropTypes.string
 }
 
-export const StatusIconWrapper = ({ children }) => <div className={iconWrapper}>{children}</div>
+export const StatusIconWrapper = ({ children }) => (
+  <div className={styles.iconWrapper}>{children}</div>
+)
 
 StatusIconWrapper.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node)
 }
 
 export const StatusIconGroup = ({ theme = 'light', children, attention }) => {
-  const className = clsx(iconGroup, {
-    [isDark]: theme === 'dark'
+  const className = clsx(styles.iconGroup, {
+    [styles.isDark]: theme === 'dark'
   })
   return (
     <div className={className}>
@@ -68,8 +61,8 @@ StatusIconGroup.propTypes = {
 const StatusIndicatorRow = ({ attention, fileNames, name, token, description, usage }) => {
   const isGlyph = attention === 'glyph'
   return (
-    <StructuredListRow className={statusIndicatorRow}>
-      <StructuredListCell className={cell}>
+    <StructuredListRow className={styles.statusIndicatorRow}>
+      <StructuredListCell className={styles.cell}>
         <StatusIconWrapper>
           <StatusIconGroup attention={attention}>
             {fileNames.map((fileName) => (
@@ -83,9 +76,9 @@ const StatusIndicatorRow = ({ attention, fileNames, name, token, description, us
           </StatusIconGroup>
         </StatusIconWrapper>
       </StructuredListCell>
-      <StructuredListCell className={cell}>{name}</StructuredListCell>
-      <StructuredListCell className={cell}>{token}</StructuredListCell>
-      <StructuredListCell className={clsx(cell, descriptionCell)}>
+      <StructuredListCell className={styles.cell}>{name}</StructuredListCell>
+      <StructuredListCell className={styles.cell}>{token}</StructuredListCell>
+      <StructuredListCell className={clsx(styles.cell, styles.descriptionCell)}>
         {description}
         <br />
         {usage ? <em>Used for: {usage}</em> : null}

@@ -11,20 +11,15 @@ import { h2 } from '@/components/markdown/markdown.module.scss'
 import useIntersectionObserver from '@/utils/use-intersection-observer'
 
 import SvgCard from '../svg-card'
-import {
-  categoryTitle,
-  pictograms as pictogramList,
-  svgCategory,
-  svgGrid
-} from '../svg-library.module.scss'
+import styles from '../svg-library.module.scss'
 
 const PictogramCategory = ({ category, pictograms, columnCount }) => {
   const [sectionRef, containerIsVisible] = useIntersectionObserver()
 
   return (
-    <section ref={sectionRef} className={svgCategory}>
-      <h2 className={clsx(h2, categoryTitle)}>{category}</h2>
-      <ul className={clsx(svgGrid, pictogramList)}>
+    <section ref={sectionRef} className={styles.svgCategory}>
+      <h2 className={clsx(h2, styles.categoryTitle)}>{category}</h2>
+      <ul className={clsx(styles.svgGrid, styles.pictogramList)}>
         {pictograms
           .filter((pictogram) => {
             return !(pictogram.name === 'ibm--z' || pictogram.name === 'ibm--z--partition')

@@ -12,7 +12,7 @@ import { h2, paragraph } from '@/components/markdown/markdown.module.scss'
 import ResourceCard from '@/components/resource-card'
 
 import { Github, Illustrator } from '../icons'
-import { allSvgs, noResult, searchLabel } from '../svg-library.module.scss'
+import styles from '../svg-library.module.scss'
 
 const NoResult = ({
   allIconResults,
@@ -24,11 +24,11 @@ const NoResult = ({
 }) => {
   const designType = pageName === 'icon' ? 'an icon' : 'a pictogram'
   return (
-    <div className={noResult}>
+    <div className={styles.noResult}>
       {allIconResults
         ? (
         <>
-          <span className={searchLabel}>
+          <span className={styles.searchLabel}>
             {`0 results found in the "${selectedCategory}" category.`}
           </span>
           <h2 className={h2}>
@@ -36,7 +36,7 @@ const NoResult = ({
             <button
               type="button"
               onClick={() => setSelectedCategory(`All ${type}`)}
-              className={clsx(allSvgs, 'cds--link')}
+              className={clsx(styles.allSvgs, 'cds--link')}
             >
               all {type}.
             </button>

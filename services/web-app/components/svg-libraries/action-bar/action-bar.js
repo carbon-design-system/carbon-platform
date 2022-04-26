@@ -12,7 +12,7 @@ import copy from 'copy-to-clipboard'
 import React, { useContext, useRef, useState } from 'react'
 
 import { LibraryContext } from '../library-provider'
-import { container, hidden, tooltip, trigger } from './action-bar.module.scss'
+import styles from './action-bar.module.scss'
 
 const ActionBar = ({
   name,
@@ -69,8 +69,8 @@ const ActionBar = ({
       ref={actionBarRef}
       onBlur={handleBlurEvent}
       aria-hidden={!isActionBarVisible}
-      className={clsx(container, {
-        [hidden]: !isActionBarVisible
+      className={clsx(styles.container, {
+        [styles.hidden]: !isActionBarVisible
       })}
     >
       <IconButton
@@ -80,8 +80,8 @@ const ActionBar = ({
         size="sm"
         onFocus={() => setIsActionBarVisible(true)}
         onClick={handleDownload}
-        className={tooltip}
-        triggerClassName={trigger}
+        className={styles.tooltip}
+        triggerClassName={styles.trigger}
       >
         <Download32 />
       </IconButton>
@@ -93,8 +93,8 @@ const ActionBar = ({
           size="sm"
           onClick={handleCopy}
           onFocus={() => setIsActionBarVisible(true)}
-          className={tooltip}
-          triggerClassName={trigger}
+          className={styles.tooltip}
+          triggerClassName={styles.trigger}
         >
           <Code32 />
         </IconButton>

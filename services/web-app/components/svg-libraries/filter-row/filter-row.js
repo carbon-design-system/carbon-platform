@@ -10,7 +10,7 @@ import React from 'react'
 
 import useSticky from '@/utils/use-sticky'
 
-import { dropdown, filterRow, pictograms } from '../svg-library.module.scss'
+import styles from '../svg-library.module.scss'
 
 const FilterRow = ({
   onSearchChange,
@@ -28,8 +28,8 @@ const FilterRow = ({
     <div
       data-stuck={isSticky || undefined}
       ref={filterRowRef}
-      className={clsx(filterRow, {
-        [pictograms]: type !== 'icon'
+      className={clsx(styles.filterRow, {
+        [styles.pictograms]: type !== 'icon'
       })}
     >
       <Search
@@ -39,7 +39,7 @@ const FilterRow = ({
         size="lg"
       />
       <Dropdown
-        className={dropdown}
+        className={styles.dropdown}
         id="category-filter"
         size="lg"
         direction="bottom"

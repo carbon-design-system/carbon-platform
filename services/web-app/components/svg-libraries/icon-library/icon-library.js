@@ -16,7 +16,7 @@ import FilterRow from '@/components/svg-libraries/filter-row'
 import useColumnCount from '@/utils/use-column-count'
 
 import NoResult from '../no-result'
-import { svgLibrary, svgPage } from '../svg-library.module.scss'
+import styles from '../svg-library.module.scss'
 import IconCategory from './icon-category'
 
 const { icons: iconMetaData, categories: iconCategoryMetadata } = metaData
@@ -106,7 +106,7 @@ const IconLibrary = () => {
   return (
     <Grid condensed>
       <Column sm={4} md={8} lg={12}>
-        <div className={svgPage}>
+        <div className={styles.svgPage}>
           <FilterRow
             categoryList={categoryList}
             selectedCategory={selectedCategory}
@@ -124,7 +124,7 @@ const IconLibrary = () => {
             />
               )
             : (
-            <div className={svgLibrary}>
+            <div className={styles.svgLibrary}>
               {filteredCategories.map(([category, icons]) => (
                 <IconCategory
                   columnCount={columnCount}

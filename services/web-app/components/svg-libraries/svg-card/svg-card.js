@@ -9,7 +9,7 @@ import { pascalCase } from 'change-case'
 import React, { useState } from 'react'
 
 import ActionBar from '../action-bar'
-import { flexContainer, svgCard, svgCardInside, triggerText } from '../svg-library.module.scss'
+import styles from '../svg-library.module.scss'
 
 const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
   const { name, Component, friendlyName, assets } = icon
@@ -30,13 +30,13 @@ const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
       onMouseLeave={() => {
         setIsActionBarVisible(false)
       }}
-      className={svgCard}
+      className={styles.svgCard}
     >
-      <div className={svgCardInside}>
-        <span className={triggerText}>{friendlyName}</span>
+      <div className={styles.svgCardInside}>
+        <span className={styles.triggerText}>{friendlyName}</span>
         {containerIsVisible && (
           <>
-            <div className={flexContainer}>
+            <div className={styles.flexContainer}>
               {Component
                 ? (
                 <Component size={32} {...rest}>

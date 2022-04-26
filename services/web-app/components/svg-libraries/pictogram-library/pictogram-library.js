@@ -15,7 +15,7 @@ import useColumnCount from '@/utils/use-column-count'
 
 import FilterRow from '../filter-row'
 import NoResult from '../no-result'
-import { svgLibrary, svgPage } from '../svg-library.module.scss'
+import styles from '../svg-library.module.scss'
 import PictogramCategory from './pictogram-category'
 
 const { icons: pictogramMetaData, categories: pictogramCategoryMetadata } = metaData
@@ -89,7 +89,7 @@ const PictogramLibrary = () => {
   return (
     <Grid condensed>
       <Column sm={4} md={8} lg={12}>
-        <div className={svgPage}>
+        <div className={styles.svgPage}>
           <FilterRow
             type="pictogram"
             categoryList={categoryList}
@@ -109,7 +109,7 @@ const PictogramLibrary = () => {
             />
               )
             : (
-            <div className={svgLibrary}>
+            <div className={styles.svgLibrary}>
               {filteredCategories.map(([category, pictograms]) => (
                 <PictogramCategory
                   columnCount={columnCount}

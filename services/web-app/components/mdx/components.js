@@ -11,6 +11,7 @@ import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
+import ColorBlock from '@/components/color-block'
 import ColorPalette from '@/components/color-palette'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
@@ -86,6 +87,7 @@ const components = {
   Profile: Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
   ColorPalette: ColorPalette,
+  ColorBlock,
   StatusIndicatorTable: ({ children }) => (
     <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
   ),

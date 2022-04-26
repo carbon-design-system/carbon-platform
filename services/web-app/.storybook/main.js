@@ -39,20 +39,20 @@ module.exports = {
      */
     config.resolve.alias = {
       ...config.resolve?.alias,
-      '@': [path.resolve(__dirname, '../src/'), path.resolve(__dirname, '../')]
+      '@': [path.resolve(__dirname, '..', 'src'), path.resolve(__dirname, '..')]
     }
 
     /**
      * Fixes font import with /
      * @see https://github.com/storybookjs/storybook/issues/12844#issuecomment-867544160
      */
-    config.resolve.roots = [path.resolve(__dirname, '../public'), 'node_modules']
+    config.resolve.roots = [path.resolve(__dirname, '..', 'public'), 'node_modules']
 
     // Add Sass support
     config.module.rules.push({
       test: /\.scss$/,
       use: ['style-loader', 'css-loader', 'sass-loader'],
-      include: path.resolve(__dirname, '../')
+      include: path.resolve(__dirname, '..')
     })
 
     return config

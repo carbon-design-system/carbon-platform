@@ -11,6 +11,7 @@ import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 const stories = {
   title: 'MDX/AnchorLinks',
   component: AnchorLinks,
+  subcomponents: { AnchorLink },
   argTypes: {
     small: {
       control: 'boolean'

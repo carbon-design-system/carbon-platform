@@ -11,6 +11,7 @@ import { Accordion, AccordionItem } from '@/components/accordion'
 const stories = {
   title: 'MDX/Accordion',
   component: Accordion,
+  subcomponents: { AccordionItem },
   argTypes: {},
   parameters: {
     layout: 'fullscreen'

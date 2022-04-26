@@ -11,6 +11,10 @@ import PropTypes from 'prop-types'
 
 import styles from './accordion.module.scss'
 
+/**
+ * The `<Accordion>` and `<AccordionItem>` components are used together to display a list of content
+ * sections that can be toggled open by clicking the respective title of each section.
+ */
 const Accordion = ({ className, ...rest }) => (
   <Grid narrow>
     <Column sm={4} md={8} lg={8}>
@@ -20,6 +24,9 @@ const Accordion = ({ className, ...rest }) => (
 )
 
 Accordion.propTypes = {
+  /**
+   * Optional class name on the accordion.
+   */
   className: PropTypes.string
 }
 

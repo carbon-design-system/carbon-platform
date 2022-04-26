@@ -12,6 +12,7 @@ import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
 import ColorBlock from '@/components/color-block'
+import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
@@ -88,6 +89,7 @@ const components = {
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
   ColorPalette: ColorPalette,
   ColorBlock,
+  ColorGrid,
   StatusIndicatorTable: ({ children }) => (
     <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
   ),

@@ -6,6 +6,7 @@
  */
 /* eslint-disable camelcase */
 import { pascalCase } from 'change-case'
+import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 
 import ActionBar from '../action-bar'
@@ -58,6 +59,22 @@ const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
       </div>
     </li>
   )
+}
+
+SvgCard.propTypes = {
+  containerIsVisible: PropTypes.bool,
+  icon: PropTypes.shape({
+    name: PropTypes.string,
+    Component: PropTypes.func,
+    friendlyName: PropTypes.string,
+    assets: PropTypes.arrayOf(
+      PropTypes.shape({
+        size: PropTypes.number,
+        source: PropTypes.string
+      })
+    )
+  }),
+  isLastCard: PropTypes.bool
 }
 
 export default SvgCard

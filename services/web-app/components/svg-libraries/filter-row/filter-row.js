@@ -6,6 +6,7 @@
  */
 import { Dropdown, Search } from '@carbon/react'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import useSticky from '@/utils/use-sticky'
@@ -50,6 +51,18 @@ const FilterRow = ({
       />
     </div>
   )
+}
+
+FilterRow.defaultProps = {
+  type: 'icon'
+}
+
+FilterRow.propTypes = {
+  categoryList: PropTypes.arrayOf(PropTypes.string),
+  onDropdownChange: PropTypes.func,
+  onSearchChange: PropTypes.func,
+  selectedCategory: PropTypes.string,
+  type: PropTypes.string
 }
 
 export default FilterRow

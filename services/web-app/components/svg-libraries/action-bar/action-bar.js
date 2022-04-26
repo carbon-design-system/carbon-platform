@@ -9,6 +9,7 @@ import { IconButton } from '@carbon/react'
 import { pascalCase } from 'change-case'
 import clsx from 'clsx'
 import copy from 'copy-to-clipboard'
+import PropTypes from 'prop-types'
 import React, { useContext, useRef, useState } from 'react'
 
 import { LibraryContext } from '../library-provider'
@@ -99,6 +100,16 @@ const ActionBar = ({
       )}
     </div>
   )
+}
+
+ActionBar.propTypes = {
+  friendlyName: PropTypes.string,
+  glyphOnly: PropTypes.bool,
+  isActionBarVisible: PropTypes.bool,
+  isLastCard: PropTypes.bool,
+  name: PropTypes.string,
+  setIsActionBarVisible: PropTypes.func,
+  source: PropTypes.any
 }
 
 export default ActionBar

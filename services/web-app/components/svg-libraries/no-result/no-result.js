@@ -7,6 +7,7 @@
 import { LogoGithub32 } from '@carbon/icons-react'
 import { Svg32Illustrator } from '@carbon-platform/icons'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import { Column, Row } from '@/components/grid-transform'
@@ -73,6 +74,19 @@ const NoResult = ({
       )}
     </div>
   )
+}
+
+NoResult.defaultProps = {
+  type: 'icons'
+}
+
+NoResult.propTypes = {
+  allIconResults: PropTypes.number,
+  pageName: PropTypes.string,
+  pageUrl: PropTypes.string,
+  selectedCategory: PropTypes.string,
+  setSelectedCategory: PropTypes.func,
+  type: PropTypes.string
 }
 
 export default NoResult

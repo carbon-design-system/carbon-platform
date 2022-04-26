@@ -92,12 +92,7 @@ designKits:
       - white
     tool: figma
     type: components
-    status:
-      key: experimental
-      note:
-        The Figma kit is currently only available to IBMers through a private Figma organization. We
-        are working on getting the kit added to the Figma open community and expect it to be
-        published at the end of Q2 for external use.
+    status: experimental
     url: https://www.figma.com/file/Vzz8k68Pqk5HfaTdQOQrGu/White-Theme---Carbon-Design-System
     action: link
     sponsor: carbon
@@ -108,12 +103,7 @@ designKits:
       - g10
     tool: figma
     type: components
-    status:
-      key: experimental
-      note:
-        The Figma kit is currently only available to IBMers through a private Figma organization. We
-        are working on getting the kit added to the Figma open community and expect it to be
-        published at the end of Q2 for external use.
+    status: experimental
     url: https://www.figma.com/file/i6y80WeotmhmbWxpmcffz7/Gray-10-Theme---Carbon-Design-System
     action: link
     sponsor: carbon
@@ -124,12 +114,7 @@ designKits:
       - g90
     tool: figma
     type: components
-    status:
-      key: experimental
-      note:
-        The Figma kit is currently only available to IBMers through a private Figma organization. We
-        are working on getting the kit added to the Figma open community and expect it to be
-        published at the end of Q2 for external use.
+    status: experimental
     url: https://www.figma.com/file/fCucrHE8tdGDVJX7ODqajd/Gray-90-Theme---Carbon-Design-System
     action: link
     sponsor: carbon
@@ -140,12 +125,7 @@ designKits:
       - g100
     tool: figma
     type: components
-    status:
-      key: experimental
-      note:
-        The Figma kit is currently only available to IBMers through a private Figma organization. We
-        are working on getting the kit added to the Figma open community and expect it to be
-        published at the end of Q2 for external use.
+    status: experimental
     url: https://www.figma.com/file/TckQzGe3bNxHPLoRhbXFal/Gray-100-Theme---Carbon-Design-System
     action: link
     sponsor: carbon

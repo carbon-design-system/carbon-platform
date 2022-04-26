@@ -17,9 +17,7 @@ const stories = {
       control: 'boolean'
     }
   },
-  parameters: {
-    layout: 'fullscreen'
-  }
+  parameters: {}
 }
 
 export default stories

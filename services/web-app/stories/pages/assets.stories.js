@@ -13,7 +13,6 @@ const stories = {
   component: Assets,
   parameters: {
     options: { showPanel: false },
-    layout: 'fullscreen',
     previewTabs: {
       'storybook/docs/panel': { hidden: true }
     },

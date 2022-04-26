@@ -13,7 +13,6 @@ const stories = {
   component: FourOhFour,
   parameters: {
     options: { showPanel: false },
-    layout: 'fullscreen',
     previewTabs: {
       'storybook/docs/panel': { hidden: true }
     },

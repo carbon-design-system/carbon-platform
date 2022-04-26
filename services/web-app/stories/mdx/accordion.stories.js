@@ -13,9 +13,7 @@ const stories = {
   component: Accordion,
   subcomponents: { AccordionItem },
   argTypes: {},
-  parameters: {
-    layout: 'fullscreen'
-  }
+  parameters: {}
 }
 
 export default stories

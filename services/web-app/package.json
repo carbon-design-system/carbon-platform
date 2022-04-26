@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build": "npm run clean && next build",
+    "build:storybook": "build-storybook -o .storybook-static",
     "bundle": "node esbuild.js",
     "clean": "rimraf .carbon public/.carbon .next .dev",
     "dev": "next dev",
@@ -21,7 +22,6 @@
     "start": "concurrently 'npm run start:proxy' 'next start'",
     "start:proxy": "node proxy-server.js",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o .storybook-static",
     "test": "echo 'No tests defined yet!'"
   },
   "bugs": {

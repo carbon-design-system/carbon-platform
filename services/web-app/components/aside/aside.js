@@ -13,7 +13,7 @@ import styles from './aside.module.scss'
 
 const Aside = ({ children, className, hideRule, ...rest }) => {
   const asideClasses = clsx(styles.aside, className, {
-    [styles.asideNoRule]: !!hideRule
+    [styles['aside--no-rule']]: !!hideRule
   })
 
   return (

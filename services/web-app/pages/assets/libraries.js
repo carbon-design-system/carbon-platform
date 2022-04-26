@@ -58,13 +58,13 @@ const LibrariesItem = ({ library = {} }) => {
           {name && <p className={styles.name}>{name}</p>}
           {description && <p className={styles.description}>{description}</p>}
           <ul className={styles.meta}>
-            <li className={styles.metaItem}>
-              <Scales className={styles.metaIcon} size={16} />
+            <li className={styles['meta-item']}>
+              <Scales className={styles['meta-icon']} size={16} />
               <span>{getLicense(library)}</span>
             </li>
           </ul>
           <div className={styles.icon} title={sponsorTitle}>
-            {SponsorIcon && <SponsorIcon className={styles.iconSponsor} size={24} />}
+            {SponsorIcon && <SponsorIcon className={styles['icon-sponsor']} size={24} />}
           </div>
         </div>
       </Column>

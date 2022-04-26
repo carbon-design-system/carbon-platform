@@ -36,17 +36,13 @@ export default class ArticleCard extends React.Component {
       isLink = href.charAt(0) === '/'
     }
 
-    const ArticleCardClassNames = clsx(className, styles.articleCard, {
+    const ArticleCardClassNames = clsx(className, styles['article-card'], {
       [styles.disabled]: disabled
     })
 
-    const aspectRatioClassNames = clsx(['cds--aspect-ratio'], ['cds--aspect-ratio--2x1'])
+    const aspectRatioClassNames = clsx('cds--aspect-ratio', 'cds--aspect-ratio--2x1')
 
-    const cardContentClassNames = clsx(
-      ['cds--tile'],
-      ['cds--tile--clickable'],
-      [styles.articleCardContent]
-    )
+    const cardContentClassNames = clsx('cds--tile', 'cds--tile--clickable')
 
     const cardContent = (
       <>
@@ -56,11 +52,11 @@ export default class ArticleCard extends React.Component {
             {subTitle && <h5 className={styles.subtitle}>{subTitle}</h5>}
             {title && <h4 className={styles.title}>{title}</h4>}
             <div className={styles.info}>
-              {author && <p className={styles.articleCardAuthor}>{author}</p>}
-              {date && <p className={styles.articleCardDate}>{date}</p>}
-              {readTime && <p className={styles.articleCardReadTime}>{readTime}</p>}
+              {author && <p>{author}</p>}
+              {date && <p>{date}</p>}
+              {readTime && <p>{readTime}</p>}
             </div>
-            <div className={styles.iconAction}>
+            <div className={styles['icon-action']}>
               {actionIcon === 'launch' && !disabled && <Launch size={20} aria-label="Open" />}
               {actionIcon === 'arrowRight' && !disabled && (
                 <ArrowRight size={20} aria-label="Open" />

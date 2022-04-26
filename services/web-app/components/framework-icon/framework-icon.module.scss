@@ -10,7 +10,7 @@
 @use '@carbon/react/scss/type' as type;
 
 .container {
-  display: flex;
+  display: inline-flex;
   min-width: spacing.$spacing-06;
   height: spacing.$spacing-06;
   align-items: center;

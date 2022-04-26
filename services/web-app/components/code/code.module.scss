@@ -24,5 +24,6 @@
 .code code {
   @include type.type-style('code-02');
 
+  padding: 0;
   color: theme.$text-primary;
 }

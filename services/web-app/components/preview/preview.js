@@ -6,6 +6,7 @@
  */
 
 import styles from './preview.module.scss'
+import Proptypes from 'prop-types'
 
 /**
  * The `<Preview>` component is a simple wrapper for an `<iframe />` with

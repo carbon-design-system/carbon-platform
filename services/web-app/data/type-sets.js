@@ -1,5 +1,10 @@
-/* eslint-disable */
-export default {
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+export const typeSets = {
   smallStyle: [
     {
       description: 'This is for inline code snippets and smaller code elements.',
@@ -15,24 +20,28 @@ export default {
     },
     {
       description:
+        // eslint-disable-next-line max-len
         'This is a multipurpose type style that can be used for field labels in components, error messages, and captions. It should not be used for body copy.',
       key: 'label-01',
       name: 'label-01'
     },
     {
       description:
+        // eslint-disable-next-line max-len
         'This is a multipurpose type style that can be used for field labels in components, error messages, and captions. It should not be used for body copy.',
       key: 'label-02',
       name: 'label-02'
     },
     {
       description:
+        // eslint-disable-next-line max-len
         'This is for explanatory helper text that appears below a field title within a component.',
       key: 'helper-text-01',
       name: 'helper-text-01'
     },
     {
       description:
+        // eslint-disable-next-line max-len
         'This is for explanatory helper text that appears below a field title within a component.',
       key: 'helper-text-02',
       name: 'helper-text-02'
@@ -51,24 +60,28 @@ export default {
   body: [
     {
       description:
+        // eslint-disable-next-line max-len
         'This is for short paragraphs with no more than four lines and is commonly used in components.',
       key: 'body-compact-01',
       name: 'body-compact-01'
     },
     {
       description:
+        // eslint-disable-next-line max-len
         'This is for short paragraphs with no more than four lines. Use in expressive components, such as button and link.',
       key: 'body-compact-02',
       name: 'body-compact-02'
     },
     {
       description:
+        // eslint-disable-next-line max-len
         'With a slightly taller line height than body-compact-01, this body style is used in productive layouts for long paragraphs with more than four lines. Use also for longer body copy in components such as accordion or structured list. It is always left-aligned. Body-long-01 can also be used for productive moments within expressive experiences.',
       key: 'body-01',
       name: 'body-01'
     },
     {
       description:
+        // eslint-disable-next-line max-len
         'With a slightly taller line height than body-compact-02, this style is commonly used in expressive layouts for long paragraphs with four lines or more. It is always left-aligned.',
       key: 'body-02',
       name: 'body-02'
@@ -76,6 +89,7 @@ export default {
   ],
   fixedHeadings: [
     {
+      // eslint-disable-next-line max-len
       description: 'This is for component and layout headings. It pairs with $body-compact-01.',
       key: 'heading-compact-01',
       name: 'heading-compact-01'

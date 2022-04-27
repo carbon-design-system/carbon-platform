@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
 import clsx from 'clsx'
 import { baseFontSize, breakpoints as carbonBreakpoints } from '@carbon/elements'
 import { findLastIndex, values } from 'lodash'
@@ -11,8 +10,8 @@ import InputRange from './input-range'
 import StickyContainer from './sticky-container'
 import TypesetExample from './typeset-example'
 
-import typeScale from './type-scale'
-import typeSets from './type-sets'
+import { typeScale } from '@/data/type-scale'
+import { typeSets } from '@/data/type-sets'
 
 import styles from './typeset-style.module.scss'
 
@@ -126,7 +125,7 @@ class TypesetStyle extends React.Component {
       typesets
     } = this.props
 
-    const typesetStyleStickyClassnames = classnames([styles['controls-sticky']], {
+    const typesetStyleStickyClassnames = clsx([styles['controls-sticky']], {
       [styles['controls-sticky-stuck']]: this.state.sticky
     })
 

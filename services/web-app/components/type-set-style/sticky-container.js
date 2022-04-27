@@ -4,20 +4,19 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import classnames from 'classnames'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
 
 import styles from './typeset-style.module.scss'
 
 const StickyContainer = ({ children, banner, navBar, secondary, top, className }) => {
-  const stickyClass = classnames(styles['cds--sticky-container'], className, {
-    [styles['cds--sticky-container-banner']]: banner,
-    [styles['cds--sticky-container-visible']]: navBar,
-    [styles['cds--sticky-container-hidden']]: !navBar,
-    [styles['cds--sticky-container-secondary']]: secondary,
-    [styles['cds--sticky-container-secondary-visible']]: navBar && secondary,
-    [styles['cds--sticky-container-secondary-hidden']]: !navBar && secondary
+  const stickyClass = clsx(styles['sticky-container'], className, {
+    [styles['sticky-container-banner']]: banner,
+    [styles['sticky-container-visible']]: navBar,
+    [styles['sticky-container-hidden']]: !navBar,
+    [styles['sticky-container-secondary']]: secondary,
+    [styles['sticky-container-secondary-visible']]: navBar && secondary,
+    [styles['sticky-container-secondary-hidden']]: !navBar && secondary
   })
 
   return (

@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import PropTypes from 'prop-types'
-import React from 'react'
 
 import styles from './typeset-style.module.scss'
 

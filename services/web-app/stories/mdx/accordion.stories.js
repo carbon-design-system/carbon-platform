@@ -11,9 +11,7 @@ import { Accordion, AccordionItem } from '@/components/accordion'
 const stories = {
   title: 'MDX/Accordion',
   component: Accordion,
-  subcomponents: { AccordionItem },
-  argTypes: {},
-  parameters: {}
+  subcomponents: { AccordionItem }
 }
 
 export default stories

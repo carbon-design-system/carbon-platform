@@ -5,6 +5,5 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// export { default as TypesetStyle } from './type-style'
 export { default as TypeScaleTable } from './type-scale-table'
 export { default as TypeWeight } from './type-weight'

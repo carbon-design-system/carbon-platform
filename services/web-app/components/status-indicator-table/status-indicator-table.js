@@ -26,30 +26,30 @@ import StatusIndicatorRow from './status-indicator-row'
 const StatusIndicatorTable = ({ attention }) => (
   <Grid condensed className={styles.container}>
     <Column sm={4} md={8} lg={12}>
-      <div className={styles.statusIndicatorTableWrapper}>
+      <div className={styles['status-indicator-table-wrapper']}>
         <StructuredListWrapper className={styles.table}>
           <StructuredListHead className="cds--grid">
             <StructuredListRow className="cds--row" head>
               <StructuredListCell
-                className={`cds--col-lg-4 cds--col-md-1 ${styles.headerCell}`}
+                className={`cds--col-lg-4 cds--col-md-1 ${styles['header-cell']}`}
                 head
               >
                 Icon
               </StructuredListCell>
               <StructuredListCell
-                className={`cds--col-lg-2 cds--col-md-2 ${styles.headerCell}`}
+                className={`cds--col-lg-2 cds--col-md-2 ${styles['header-cell']}`}
                 head
               >
                 Name
               </StructuredListCell>
               <StructuredListCell
-                className={`cds--col-lg-2 cds--col-md-2 ${styles.headerCell}`}
+                className={`cds--col-lg-2 cds--col-md-2 ${styles['header-cell']}`}
                 head
               >
                 Token
               </StructuredListCell>
               <StructuredListCell
-                className={`cds--col-lg-4 cds--col-md-3 ${styles.headerCell}`}
+                className={`cds--col-lg-4 cds--col-md-3 ${styles['header-cell']}`}
                 head
               >
                 Description & usage

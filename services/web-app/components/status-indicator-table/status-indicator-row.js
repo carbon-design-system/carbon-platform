@@ -34,7 +34,7 @@ StatusIcon.propTypes = {
 }
 
 export const StatusIconWrapper = ({ children }) => (
-  <div className={styles.iconWrapper}>{children}</div>
+  <div className={styles['icon-wrapper']}>{children}</div>
 )
 
 StatusIconWrapper.propTypes = {
@@ -42,8 +42,8 @@ StatusIconWrapper.propTypes = {
 }
 
 export const StatusIconGroup = ({ theme = 'light', children, attention }) => {
-  const className = clsx(styles.iconGroup, {
-    [styles.isDark]: theme === 'dark'
+  const className = clsx(styles['icon-group'], {
+    [styles['is-dark']]: theme === 'dark'
   })
   return (
     <div className={className}>
@@ -61,7 +61,7 @@ StatusIconGroup.propTypes = {
 const StatusIndicatorRow = ({ attention, fileNames, name, token, description, usage }) => {
   const isGlyph = attention === 'glyph'
   return (
-    <StructuredListRow className={styles.statusIndicatorRow}>
+    <StructuredListRow className={styles['status-indicator-row']}>
       <StructuredListCell className={styles.cell}>
         <StatusIconWrapper>
           <StatusIconGroup attention={attention}>
@@ -78,7 +78,7 @@ const StatusIndicatorRow = ({ attention, fileNames, name, token, description, us
       </StructuredListCell>
       <StructuredListCell className={styles.cell}>{name}</StructuredListCell>
       <StructuredListCell className={styles.cell}>{token}</StructuredListCell>
-      <StructuredListCell className={clsx(styles.cell, styles.descriptionCell)}>
+      <StructuredListCell className={clsx(styles.cell, styles['description-cell'])}>
         {description}
         <br />
         {usage ? <em>Used for: {usage}</em> : null}

@@ -10,10 +10,6 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 
-.container {
-  padding-bottom: spacing.$spacing-13 + spacing.$spacing-07;
-}
-
 /**
  * Global
  */
@@ -154,7 +150,7 @@
   }
 }
 
-.hightlight-grid {
+.highlight-grid {
   position: relative;
 
   &--height {

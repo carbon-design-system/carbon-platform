@@ -92,17 +92,15 @@ const Layout = ({ children }) => {
                 onClick={onClickSideNavExpand}
                 isActive={isSideNavExpanded}
               />
-              <div className={styles.headerName}>
+
+              <div className={styles['header-name']}>
                 <Link href="/">
                   <a className="cds--header__name">Carbon Design System</a>
                 </Link>
               </div>
-              <Grid narrow className={styles.headerGrid}>
+              <Grid narrow className={styles['header-grid']}>
                 <Column sm={0} lg={{ span: 8, offset: 4 }}>
-                  <HeaderNavigation
-                    aria-label="Main navigation"
-                    className={styles.headerNavigation}
-                  >
+                  <HeaderNavigation aria-label="Main navigation">
                     {globalNavData.map((data) => (
                       <>
                         {data.path && (
@@ -119,7 +117,7 @@ const Layout = ({ children }) => {
                           <HeaderMenuItem
                             key={data.title}
                             tabIndex="-1"
-                            className={styles.headerNavItemDisabled}
+                            className={styles['header-nav-item-disabled']}
                           >
                             {data.title}
                           </HeaderMenuItem>
@@ -135,7 +133,7 @@ const Layout = ({ children }) => {
             <Grid as="main" className={styles.main} id="main-content">
               {showSideNav && (
                 <Column sm={4} md={8} lg={4}>
-                  <section className={styles.sideNavContainer}>
+                  <section className={styles['side-nav-container']}>
                     <Theme theme="white">
                       <NavMain items={globalNavData} />
                       {librarySideNav && <NavLibrary />}
@@ -145,7 +143,12 @@ const Layout = ({ children }) => {
               )}
               <Column sm={4} md={8} lg={showSideNav ? 12 : 16}>
                 <Grid condensed={!isLg} narrow={isLg}>
-                  <Column className={styles.columnContent} sm={4} md={8} lg={showSideNav ? 12 : 16}>
+                  <Column
+                    className={styles['column-content']}
+                    sm={4}
+                    md={8}
+                    lg={showSideNav ? 12 : 16}
+                  >
                     {children}
                   </Column>
                 </Grid>

@@ -82,12 +82,15 @@ const Library = ({ libraryData }) => {
                 <dl>
                   <dt className={dashboardStyles.label}>Version</dt>
                   <dd
-                    className={dashboardStyles.labelLarge}
+                    className={dashboardStyles['label--large']}
                   >{`v${libraryData.content.version}`}</dd>
                 </dl>
                 {SponsorIcon && (
                   <SponsorIcon
-                    className={clsx(dashboardStyles.positionBottomLeft, styles.sponsorIcon)}
+                    className={clsx(
+                      dashboardStyles['position-bottom-left'],
+                      styles['sponsor-icon']
+                    )}
                     size={64}
                   />
                 )}
@@ -108,7 +111,7 @@ const Library = ({ libraryData }) => {
                   </Column>
                   <Column
                     sm={4}
-                    className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}
+                    className={clsx(dashboardStyles.subcolumn, dashboardStyles['subcolumn--links'])}
                   >
                     <dt className={clsx(dashboardStyles.label)}>Links</dt>
                     <dd className={dashboardStyles.meta}>
@@ -117,7 +120,7 @@ const Library = ({ libraryData }) => {
                       />
                     </dd>
                   </Column>
-                  <Button className={styles.versionsButton}>
+                  <Button className={styles['versions-button']}>
                     View assets
                     <ArrowRight size={16} />
                   </Button>

@@ -24,7 +24,7 @@ const CatalogItemMeta = ({ asset, className, properties }) => {
 
     return (
       <span className={styles.container}>
-        <StatusIcon className={styles.metaIcon} status={statusKey} />
+        <StatusIcon className={styles['meta-icon']} status={statusKey} />
         <span>{name}</span>
       </span>
     )
@@ -33,7 +33,7 @@ const CatalogItemMeta = ({ asset, className, properties }) => {
   const renderLicense = () => {
     return (
       <span className={styles.container}>
-        <Scales className={styles.metaIcon} size={16} />
+        <Scales className={styles['meta-icon']} size={16} />
         <span>{getLicense(asset)}</span>
       </span>
     )
@@ -42,7 +42,7 @@ const CatalogItemMeta = ({ asset, className, properties }) => {
   return (
     <ul className={clsx(styles.meta, className)}>
       {properties.map((prop, i) => (
-        <li className={styles.metaItem} key={i}>
+        <li className={styles['meta-item']} key={i}>
           {prop === 'status' && renderStatus()}
           {prop === 'license' && renderLicense()}
         </li>

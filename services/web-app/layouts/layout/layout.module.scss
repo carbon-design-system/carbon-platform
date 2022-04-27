@@ -11,6 +11,7 @@
 
 .body {
   flex-grow: 1;
+  padding-bottom: spacing.$spacing-13 + spacing.$spacing-07;
   background: theme.$background;
 }
 

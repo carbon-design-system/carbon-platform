@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { baseFontSize, breakpoints as carbonBreakpoints } from '@carbon/elements'
-import { CodeSnippet, Column, Grid } from '@carbon/react'
+import { CodeSnippet, Column, Grid, Theme } from '@carbon/react'
 import classnames from 'classnames'
 import { findKey, values } from 'lodash'
 import React from 'react'
@@ -105,10 +105,7 @@ const TypesetExample = (props) => (
       const versionClassNames = classnames(`cds--type-${type.key}`, versionClassName)
 
       return (
-        <div
-          key={`${props.name}${type.key}${type.version}`}
-          className={styles['cds--typeset-example']}
-        >
+        <div key={`${props.name}${type.key}${type.version}`} className={styles['typeset-example']}>
           <Grid className={styles['example-row']}>
             <Column sm={4} md={5} lg={8} className={styles['example-description']}>
               <p className={versionClassNames} style={specs}>
@@ -142,9 +139,11 @@ const TypesetExample = (props) => (
                 <br />
                   )}
               <div className={styles['example-code-style']}>
-                <CodeSnippet type="inline" feedback="Copied!" light>
-                  ${type.name.split(' ')[0]}
-                </CodeSnippet>
+                <Theme theme="white">
+                  <CodeSnippet type="inline" feedback="Copied!">
+                    ${type.name.split(' ')[0]}
+                  </CodeSnippet>
+                </Theme>
               </div>
             </Column>
           </Grid>

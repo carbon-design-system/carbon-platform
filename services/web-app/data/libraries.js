@@ -100,9 +100,8 @@ const prodLibraries = {
   // 'carbon-components-svelte': {
   //   host: 'github.com',
   //   org: 'carbon-design-system',
-  //   repo: 'carbon',
+  //   repo: 'carbon-components-svelte',
   //   path: '/',
-  //   sponsor: 'carbon',
   //   group: carbonComponentsGroup,
   // },
   // 'carbon-angular': {

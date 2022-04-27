@@ -11,7 +11,12 @@ import Preview from '@/components/preview'
 const stories = {
   title: 'MDX/Preview',
   component: Preview,
-  parameters: {}
+  parameters: {},
+  argTypes: {
+    title: {
+      control: false
+    }
+  }
 }
 
 export default stories

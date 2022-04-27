@@ -7,7 +7,7 @@
 import { Pause32, Play32 } from '@carbon/icons-react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import styles from './video.module.scss'
 
@@ -103,8 +103,9 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
         {isPlaying ? <Pause32 /> : <Play32 />}
         <span className="cds--assistive-text">{isPlaying ? 'Pause' : 'Play'}</span>
       </div>
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
+        muted // TODO: Do we want to allow a captions <track> to be provided? This is the only way
+        // to avoid having to mark the video as muted for a11y compliance.
         autoPlay={autoPlay}
         className={styles.video}
         type="video/mp4"
@@ -121,6 +122,7 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
 Video.propTypes = {
   autoPlay: PropTypes.bool,
   children: PropTypes.element,
+  muted: PropTypes.bool,
   poster: PropTypes.oneOf(PropTypes.string, PropTypes.object),
   src: PropTypes.string,
   title: PropTypes.string,

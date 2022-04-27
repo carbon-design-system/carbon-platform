@@ -157,16 +157,19 @@ const Asset = ({ libraryData }) => {
                 >
                   <dl>
                     <dt className={dashboardStyles.label}>Library</dt>
-                    <dd className={dashboardStyles.labelLarge}>{libraryData.content.name}</dd>
+                    <dd className={dashboardStyles['label--large']}>{libraryData.content.name}</dd>
                   </dl>
                   <Link href={libraryPath} passHref>
-                    <CarbonLink className={dashboardStyles.metaLinkLarge}>
+                    <CarbonLink className={dashboardStyles['meta-link--large']}>
                       {`v${libraryData.content.version}`}
                     </CarbonLink>
                   </Link>
                   {SponsorIcon && (
                     <SponsorIcon
-                      className={clsx(dashboardStyles.positionBottomLeft, styles.sponsorIcon)}
+                      className={clsx(
+                        dashboardStyles['position-bottom-left'],
+                        styles['sponsor-icon']
+                      )}
                       size={64}
                     />
                   )}
@@ -197,14 +200,17 @@ const Asset = ({ libraryData }) => {
                       <dt className={dashboardStyles.label}>Status</dt>
                       <dd className={dashboardStyles.meta}>
                         <StatusIcon
-                          className={styles.statusIcon}
+                          className={styles['status-icon']}
                           status={assetData.content.status}
                         />
                         {get(status, `[${assetData.content.status}].name`, '–')}
                       </dd>
                     </Column>
                     <Column
-                      className={clsx(dashboardStyles.subcolumn, dashboardStyles.subcolumnLinks)}
+                      className={clsx(
+                        dashboardStyles.subcolumn,
+                        dashboardStyles['subcolumn--links']
+                      )}
                       sm={2}
                       lg={4}
                     >
@@ -221,7 +227,7 @@ const Asset = ({ libraryData }) => {
                         {getTagsList(assetData).join(', ') || '–'}
                       </dd>
                     </Column>
-                    <Button className={styles.kitsButton}>
+                    <Button className={styles['kits-button']}>
                       Coming soon...
                       <ArrowRight size={16} />
                     </Button>
@@ -236,13 +242,13 @@ const Asset = ({ libraryData }) => {
                 >
                   <dl>
                     <dt className={dashboardStyles.label}>Open issues</dt>
-                    <dd className={dashboardStyles.labelLarge}>
+                    <dd className={dashboardStyles['label--large']}>
                       {assetData.content.issueCount || 0}
                     </dd>
                   </dl>
-                  <Svg32Github className={dashboardStyles.positionBottomLeft} />
+                  <Svg32Github className={dashboardStyles['position-bottom-left']} />
                   {isPathAbsolute(githubRepoUrl) && (
-                    <Launch className={dashboardStyles.positionBottomRight} size={20} />
+                    <Launch className={dashboardStyles['position-bottom-right']} size={20} />
                   )}
                 </DashboardItem>
               </Column>
@@ -254,11 +260,11 @@ const Asset = ({ libraryData }) => {
                 >
                   <dl>
                     <dt className={dashboardStyles.label}>Discussions</dt>
-                    <dd className={dashboardStyles.labelLarge}>–</dd>
+                    <dd className={dashboardStyles['label-large']}>–</dd>
                   </dl>
-                  <Svg32Github className={dashboardStyles.positionBottomLeft} />
+                  <Svg32Github className={dashboardStyles['position-bottom-left']} />
                   {isPathAbsolute(githubRepoUrl) && (
-                    <Launch className={dashboardStyles.positionBottomRight} size={20} />
+                    <Launch className={dashboardStyles['position-bottom-right']} size={20} />
                   )}
                 </DashboardItem>
               </Column>

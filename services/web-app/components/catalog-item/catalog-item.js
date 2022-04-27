@@ -73,14 +73,14 @@ const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false })
         {name && <p className={styles.name}>{name}</p>}
         {description && <p className={styles.description}>{description}</p>}
         <div className={styles.icon} title={sponsorTitle}>
-          <SponsorIcon className={styles.iconSponsor} size={24} />
+          <SponsorIcon className={styles['icon-sponsor']} size={24} />
         </div>
         {isSeparatedMeta && (
           <>
             <CatalogItemMeta asset={asset} properties={['license']} />
             <CatalogItemMeta
               asset={asset}
-              className={styles.metaAbsolute}
+              className={styles['meta--absolute']}
               properties={['status']}
             />
           </>
@@ -88,12 +88,12 @@ const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false })
         {!isSeparatedMeta && (
           <CatalogItemMeta
             asset={asset}
-            className={styles.metaAbsolute}
+            className={styles['meta--absolute']}
             properties={['status', 'license']}
           />
         )}
         <div className={styles.tags}>
-          <TypeTag className={styles.tagsItem} type={asset.content.type} />
+          <TypeTag className={styles['tags-item']} type={asset.content.type} />
           <FrameworkIcon
             className={styles.framework}
             framework={asset.content.framework}
@@ -122,7 +122,7 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
   }
 
   const anchorStyles = clsx(styles.anchor, {
-    [styles.anchorGrid]: isGrid
+    [styles['anchor--grid']]: isGrid
   })
 
   const anchorHref = `/assets/${asset.params.library}/latest/${getSlug(asset.content)}`
@@ -152,12 +152,12 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
       <Link href={anchorHref}>
         <a className={anchorStyles}>
           <Grid narrow>
-            <Column className={clsx(styles.column, styles.columnImage)} md={4}>
+            <Column className={clsx(styles.column, styles['column--image'])} md={4}>
               <AspectRatio ratio={imageAspectRatio()}>
                 <CatalogItemImage asset={asset} />
               </AspectRatio>
             </Column>
-            <Column className={clsx(styles.column, styles.columnContent)} sm={4} md={4} lg={8}>
+            <Column className={clsx(styles.column, styles['column--content'])} sm={4} md={4} lg={8}>
               {!isMd && (
                 <AspectRatio ratio="3x2">
                   <CatalogItemContent

@@ -24,6 +24,7 @@ import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
 import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
+import TypesetStyle from '@/components/type-set-style'
 import Video from '@/components/video'
 
 const Placeholder = ({ name, children }) => {
@@ -89,6 +90,7 @@ const components = {
   StatusIndicatorTable: ({ children }) => (
     <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
   ),
+  TypesetStyle,
   /* Gatsby theme components, not used in Carbon website, out of scope v1 */
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
   ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,

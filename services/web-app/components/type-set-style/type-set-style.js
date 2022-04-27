@@ -2,8 +2,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import clsx from 'clsx'
 import { baseFontSize, breakpoints as carbonBreakpoints } from '@carbon/elements'
-import { findLastIndex, values } from 'lodash-es'
+import { findLastIndex, values } from 'lodash'
+import { Grid, Column } from '@carbon/react'
 
 import InputRange from './input-range'
 import StickyContainer from './sticky-container'
@@ -94,14 +96,16 @@ class TypesetStyle extends React.Component {
   getButtons = () =>
     Object.keys(breakpoints).map((breakpointName) => (
       <button
-        className={
-          (styles['cds--typeset-style-button'],
-          `cds--type-body-long-01 ${
-            isWithinBreakpoint(this.state.simulatedScreenWidth, breakpoints[breakpointName])
-              ? 'selected'
-              : ''
-          }`)
-        }
+        className={clsx(
+          styles['button'],
+          styles[
+            `${
+              isWithinBreakpoint(this.state.simulatedScreenWidth, breakpoints[breakpointName])
+                ? 'selected'
+                : ''
+            }`
+          ]
+        )}
         value={breakpoints[breakpointName]}
         selected={isWithinBreakpoint(this.state.simulatedScreenWidth, breakpoints[breakpointName])}
         onClick={this.toggleBreakpoint}
@@ -122,16 +126,12 @@ class TypesetStyle extends React.Component {
       typesets
     } = this.props
 
-    const typesetStyleStickyClassnames = classnames(
-      [styles['cds--typeset-style-controls-sticky']],
-      [`cds--row`],
-      {
-        [styles['cds--typeset-style-controls-sticky-stuck']]: this.state.sticky
-      }
-    )
+    const typesetStyleStickyClassnames = classnames([styles['controls-sticky']], {
+      [styles['controls-sticky-stuck']]: this.state.sticky
+    })
 
     return (
-      <div className={styles['cds--typeset-style-container']}>
+      <div className={styles['container']}>
         <StickyContainer
           navBar={navBar || true}
           banner={banner || true}
@@ -140,28 +140,14 @@ class TypesetStyle extends React.Component {
         >
           {breakpointControls && (
             <>
-              <div className={styles['cds--typeset-style-title-shiv cds--row']} />
-              <div ref="stickyBar" className={typesetStyleStickyClassnames}>
-                <div className={styles['cds--typeset-style-breakpoint-controls']}>
-                  <span
-                    className={(`cds--type-body-long-01`, styles['ibm-padding--horizontal'])}
-                    style={{ marginBottom: 0 }}
-                  >
-                    Breakpoints
-                  </span>
-                  <div className={styles['cds--typeset-style-button-controls-container']}>
-                    {this.getButtons()}
-                  </div>
-                </div>
-                <div className={styles['cds--typeset-style-screen-controls']}>
-                  <span
-                    className={
-                      (`cds--type-body-long-01`, styles['cds--typeset-style-screen-width-label'])
-                    }
-                    style={{ marginBottom: 0, whiteSpace: 'nowrap' }}
-                  >
-                    Screen width
-                  </span>
+              <Grid />
+              <Grid ref="stickyBar" className={typesetStyleStickyClassnames}>
+                <Column sm={4} md={4} lg={6} className={styles['breakpoint-controls']}>
+                  <span>Breakpoints</span>
+                  <div className={styles['button-controls-container']}>{this.getButtons()}</div>
+                </Column>
+                <Column sm={4} md={4} lg={6} className={styles['screen-controls']}>
+                  <span className={styles['screen-width-label']}>Screen width</span>
                   <InputRange
                     id="screenWidthInput"
                     min={breakpoints.sm}
@@ -169,16 +155,11 @@ class TypesetStyle extends React.Component {
                     value={this.state.simulatedScreenWidth}
                     onChange={this.toggleBreakpoint}
                   />
-                  <label
-                    className={
-                      (styles['cds--typeset-style-screen-label'], `cds--type-body-long-01`)
-                    }
-                    htmlFor="screenWidthInput"
-                  >
+                  <label className={styles['screen-label']} htmlFor="screenWidthInput">
                     {this.state.simulatedScreenWidth}
                   </label>
-                </div>
-              </div>
+                </Column>
+              </Grid>
             </>
           )}
         </StickyContainer>

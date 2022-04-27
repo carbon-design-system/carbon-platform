@@ -19,7 +19,7 @@ const InputRange = ({ step, min, max, value, onChange, id }) => (
     value={value}
     onChange={onChange}
     style={{ '--track-width': `${((value - min) / (max - min)) * 100}%` }}
-    className={styles['cds--input-range']}
+    className={styles['input-range']}
   />
 )
 

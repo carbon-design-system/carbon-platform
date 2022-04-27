@@ -1,0 +1,435 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/* stylelint-disable no-descending-specificity */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/colors' as colors;
+@use '@carbon/react/scss/motion' as motion;
+// @use '@carbon/type';
+
+@include type.type-classes();
+
+.example-container {
+  margin-top: spacing.$spacing-05;
+}
+
+.cds--typeset-example {
+  margin-top: spacing.$spacing-05;
+  margin-right: -(spacing.$spacing-03);
+  margin-left: -(spacing.$spacing-03);
+
+  @include breakpoint.breakpoint('md') {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+.example-row {
+  min-height: 216px;
+  background-color: theme.$layer-01;
+}
+
+.example-group-title {
+  height: 4rem;
+  background-color: colors.$gray-20;
+}
+
+.example-description {
+  overflow: hidden;
+  padding: spacing.$spacing-05 0;
+
+  @include breakpoint.breakpoint('md') {
+    padding-right: 15%;
+  }
+}
+
+.example-specs {
+  @include type.type-style('body-compact-01');
+
+  padding: spacing.$spacing-05 spacing.$spacing-06;
+
+  @include breakpoint.breakpoint('md') {
+    border-left: 1px solid theme.$border-subtle;
+  }
+}
+
+.example-code-style {
+  display: block;
+  margin-top: spacing.$spacing-03;
+}
+
+// Typeset Style
+.container {
+  position: relative;
+  padding: 0 spacing.$spacing-03;
+  margin-bottom: spacing.$spacing-09;
+
+  @include breakpoint.breakpoint('md') {
+    left: 0;
+    padding: 0;
+    margin-right: 0;
+  }
+
+  @include breakpoint.breakpoint('lg') {
+    margin-top: 0;
+  }
+}
+
+.button {
+  z-index: 4;
+  height: 100%;
+  padding: 0 spacing.$spacing-05;
+  border: none;
+  margin: 0;
+  background-color: transparent;
+  border-radius: 0;
+  text-transform: capitalize;
+
+  &:hover {
+    background-color: colors.$gray-20;
+  }
+
+  &.selected {
+    background-color: colors.$gray-100;
+    color: colors.$gray-10;
+
+    &:hover {
+      background-color: colors.$gray-100;
+    }
+  }
+
+  &:focus {
+    position: relative;
+    outline: 2px solid theme.$focus;
+    outline-offset: 0;
+  }
+}
+
+.controls {
+  //position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+
+  @include breakpoint.breakpoint('md') {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.controls-sticky {
+  z-index: 2;
+  width: auto;
+  box-sizing: content-box;
+  align-items: center;
+  background-color: colors.$white-0;
+  box-shadow: 0 2px 6px 0 rgba(colors.$black-100, 0.2);
+}
+
+.controls-sticky-stuck {
+  box-shadow: 0 2px 6px 0 rgba(colors.$black-100, 0.2);
+
+  &::before,
+  &::after {
+    position: absolute;
+    width: 1rem;
+    height: 6rem;
+    background: colors.$gray-10;
+    content: '';
+
+    @include breakpoint.breakpoint('md') {
+      height: 4rem;
+    }
+  }
+
+  &::before {
+    left: -2rem;
+  }
+
+  &::after {
+    right: -2rem;
+  }
+}
+
+.breakpoint-controls {
+  @include type.type-style('body-compact-01');
+
+  display: flex;
+  width: 100%;
+  height: 3rem;
+  align-items: center;
+  padding-right: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.screen-width-label {
+  display: inline-block;
+  padding-right: spacing.$spacing-05;
+}
+
+.screen-controls {
+  @include type.type-style('body-compact-01');
+
+  display: grid;
+  width: 100%;
+  height: 3rem;
+  align-items: center;
+  padding-right: spacing.$spacing-07;
+  border-top: 1px solid theme.$border-subtle;
+  grid-template-columns: auto 1fr auto;
+
+  @include breakpoint.breakpoint('md') {
+    border-top: none;
+  }
+}
+
+.screen-label {
+  // Need to set the width explicitly to make sure the slider
+  // keeps the same size when going from three to four digits (999-1000)
+  min-width: 3.4rem;
+  height: auto;
+  margin-bottom: 0;
+  text-align: right;
+}
+
+.input {
+  width: 100%;
+  margin: 0;
+  margin-right: 20px;
+}
+
+.toggle-container {
+  position: relative;
+  z-index: 1;
+}
+
+.toggle-button {
+  height: 3rem;
+  border: none;
+  margin: 0;
+  background-color: colors.$white-0;
+  box-shadow: inset 0 -1px 0 0 colors.$gray-20;
+  color: colors.$gray-100;
+  cursor: pointer;
+
+  input {
+    width: 0;
+    margin: 0;
+    visibility: hidden;
+  }
+
+  &.checked {
+    background-color: colors.$gray-100;
+    color: colors.$white-0;
+
+    &:hover {
+      background-color: colors.$gray-100;
+    }
+  }
+
+  &:hover {
+    background-color: colors.$gray-20;
+  }
+}
+
+.button-controls-container {
+  height: 100%;
+  padding-right: spacing.$spacing-05;
+  margin-left: spacing.$spacing-05;
+
+  @include breakpoint.breakpoint('md') {
+    margin-left: auto;
+  }
+}
+
+.breakpoints-container {
+  position: relative;
+  margin-top: spacing.$spacing-05;
+
+  @include breakpoint.breakpoint('md') {
+    margin-top: 0;
+  }
+}
+
+// ------------------------------------------------------
+// Input Range
+// ------------------------------------------------------
+.input-range {
+  position: relative;
+  width: 100%;
+  // Provide a larger interaction hit area
+  padding-top: spacing.$spacing-03;
+  padding-bottom: spacing.$spacing-03;
+  appearance: none;
+  cursor: pointer;
+  font-size: 0;
+
+  // Remove extra padding on Edge that causes vertical misalignment
+  // IE Edge 16+ CSS
+  // See https://browserstrangeness.github.io/css_hacks.html
+  @supports (-ms-ime-align: auto) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  // Chaining the selectors doesn't work because browsers.
+  // See https://css-tricks.com/sliding-nightmare-understanding-range-input/#structure
+  &::-webkit-slider-runnable-track {
+    height: 1px;
+    background: colors.$gray-20;
+  }
+
+  &::-moz-range-track {
+    height: 1px;
+    background: colors.$gray-20;
+  }
+
+  &::-webkit-slider-thumb {
+    width: 14px;
+    height: 14px;
+    border: 0;
+    margin-top: -7px;
+    appearance: none;
+    background: colors.$black-100;
+    border-radius: 100%;
+    transition-duration: 0.1s;
+    transition-property: height, width, margin;
+    transition-timing-function: motion.$standard-easing;
+  }
+
+  &::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border: 0;
+    margin-top: -7px;
+    appearance: none;
+    background: colors.$black-100;
+    border-radius: 100%;
+    transition-duration: 0.1s;
+    transition-property: height, width, margin;
+    transition-timing-function: motion.$standard-easing;
+  }
+
+  &::-ms-track {
+    height: 1px;
+    border-width: 14px 0;
+    border-color: transparent;
+    background: transparent;
+    color: transparent;
+  }
+
+  &::-ms-fill-lower {
+    background: colors.$black-100;
+  }
+
+  &::-ms-fill-upper {
+    background: colors.$black-100;
+  }
+
+  &::-ms-thumb {
+    width: 14px;
+    height: 14px;
+    border: 0;
+    margin-top: -1px;
+    appearance: none;
+    background: colors.$black-100;
+    border-radius: 100%;
+  }
+
+  &::after {
+    position: absolute;
+    width: var(--track-width);
+    height: 1px;
+    background: colors.$black-100;
+    content: '';
+  }
+
+  &:hover,
+  &:active {
+    &::-webkit-slider-thumb {
+      width: 18px;
+      height: 18px;
+      margin-top: -9px;
+    }
+
+    &::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      margin-top: -9px;
+    }
+
+    &::-ms-thumb {
+      width: 18px;
+      height: 18px;
+      margin-top: -2px;
+    }
+  }
+
+  &:focus {
+    outline: 2px solid theme.$focus;
+    outline-offset: 0;
+  }
+}
+
+// ------------------------------------------------------
+// Sticky Container
+// ------------------------------------------------------
+.cds--sticky-container {
+  position: sticky;
+  z-index: 5;
+  top: 0;
+  margin-right: -(spacing.$spacing-03);
+  margin-left: -(spacing.$spacing-03);
+  transition-duration: motion.$transition-expansion;
+  transition-property: top;
+  transition-timing-function: motion.$standard-easing;
+
+  @include breakpoint.breakpoint('md') {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+div[class*='PageHeader-module--page-header--shifted'] + div > div > .cds--sticky-container-visible {
+  top: 3rem;
+}
+
+.cds--sticky-container-visible {
+  top: 6rem;
+}
+
+.cds--sticky-container-hidden {
+  &.cds--sticky-container-banner {
+    top: 2.5rem;
+  }
+}
+
+.cds--sticky-container-secondary {
+  z-index: 4;
+}
+
+.cds--sticky-container-secondary-hidden {
+  top: 3rem;
+
+  &.cds--sticky-container-banner {
+    top: 5.5rem;
+  }
+}
+
+.cds--sticky-container-secondary-visible {
+  top: 6rem;
+
+  &.cds--sticky-container-banner {
+    top: 8.5rem;
+  }
+}

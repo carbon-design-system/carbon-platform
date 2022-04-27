@@ -31,6 +31,7 @@
     "@carbon/elements": "^11.1.0",
     "@carbon/pictograms-react": "^11.25.0",
     "@carbon/react": "~0.16.2",
+    "@carbon/type": "^11.1.0",
     "@mdx-js/loader": "^2.1.0",
     "@next/mdx": "^12.1.2",
     "@octokit/core": "^3.6.0",

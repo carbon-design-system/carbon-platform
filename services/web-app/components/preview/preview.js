@@ -5,8 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import styles from './preview.module.scss'
 import Proptypes from 'prop-types'
+
+import styles from './preview.module.scss'
 
 /**
  * The `<Preview>` component is a simple wrapper for an `<iframe />` with

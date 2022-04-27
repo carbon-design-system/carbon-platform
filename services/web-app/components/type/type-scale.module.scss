@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-/* eslint-disable scss/no-global-function-names */
+
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
@@ -70,7 +70,8 @@ $type-scale: 0.75rem, 0.875rem, 1rem, 1.125rem, 1.25rem, 1.5rem, 1.75rem, 2rem, 
   @for $i from 1 through length($type-scale) {
     table tbody tr:nth-child(#{$i}) td:nth-child(2) {
       width: 100%;
-      // font-size: nth($type-scale, $i);
+      /* stylelint-disable scss/no-global-function-names */
+      font-size: nth($type-scale, $i);
       line-height: 70%;
       white-space: nowrap;
     }

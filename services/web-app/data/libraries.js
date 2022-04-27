@@ -419,10 +419,9 @@ const devLibraries = {
   },
   'carbon-components-svelte': {
     host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon',
+    org: 'andreancardona',
+    repo: 'carbon-components-svelte',
     path: '/',
-    sponsor: 'carbon',
     group: carbonComponentsGroup,
     ref: '516-index-carbon-svelte'
   },

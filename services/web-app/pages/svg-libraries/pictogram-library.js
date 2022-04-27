@@ -7,7 +7,7 @@
 
 /* eslint-disable max-len */
 import MdxWrapper from '@/components/mdx-wrapper'
-import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
+import PictogramLibraryComponent from '@/components/svg-libraries/pictogram-library'
 
 const frontmatter = {
   label:
@@ -18,10 +18,10 @@ const frontmatter = {
   tabs: ['Library', 'Usage', 'Code', 'Contribute']
 }
 
-const PictogramPage = () => (
+const PictogramLibrary = () => (
   <MdxWrapper frontmatter={JSON.stringify(frontmatter)}>
-    <PictogramLibrary />
+    <PictogramLibraryComponent />
   </MdxWrapper>
 )
 
-export default PictogramPage
+export default PictogramLibrary

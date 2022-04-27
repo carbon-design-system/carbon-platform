@@ -11,7 +11,7 @@ import styles from './markdown.module.scss'
 
 const P = ({ children, className, ...rest }) => {
   return (
-    <Grid className={clsx(className, styles.paragraphContainer)} {...rest}>
+    <Grid className={clsx(className, styles['paragraph-container'])} {...rest}>
       <Column sm={4} md={6} lg={8}>
         <p className={styles.paragraph}>{children}</p>
       </Column>

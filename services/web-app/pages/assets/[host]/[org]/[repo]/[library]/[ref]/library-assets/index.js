@@ -91,18 +91,18 @@ const LibrayAssets = ({ libraryData, params }) => {
     libraryData.assets?.sort(assetSortComparator(sort)).map((asset) => {
       const assetRow = {
         id: asset.content.id,
-        name: <span className={styles.assetName}>{asset.content.name}</span>,
+        name: <span className={styles['asset-name']}>{asset.content.name}</span>,
         type: <TypeTag type={asset.content.type} className={styles.tag} />,
         status: <CatalogItemMeta asset={asset} properties={['status']} />,
         tags: (
-          <span className={styles.truncatedText}>
+          <span className={styles['truncated-text']}>
             {asset.content.tags.join('; ').replaceAll('-', '‑')}
           </span>
         ),
         link: (
           <Link href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}>
-            <a className={styles.rowAnchor}>
-              <ArrowRight size={16} className={styles.arrowIcon} />
+            <a className={styles['row-anchor']}>
+              <ArrowRight size={16} className={styles['arrow-icon']} />
             </a>
           </Link>
         )
@@ -111,7 +111,7 @@ const LibrayAssets = ({ libraryData, params }) => {
         assetRow.type = (
           <div style={{ display: 'flex' }}>
             <TypeTag type={asset.content.type} className={styles.tag} />
-            <TypeTag type={'design-only'} className={clsx(styles.designTag, styles.tag)} />
+            <TypeTag type={'design-only'} className={clsx(styles['design-tag'], styles.tag)} />
           </div>
         )
       }
@@ -123,7 +123,7 @@ const LibrayAssets = ({ libraryData, params }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <Grid className={styles.libraryAssetsContainer}>
+      <Grid className={styles['library-assets-container']}>
         <Column sm={4} md={8} lg={12}>
           <PageHeader title={seo.title} />
         </Column>
@@ -134,7 +134,7 @@ const LibrayAssets = ({ libraryData, params }) => {
             </Column>
           </Grid>
           <Grid condensed={!isLg} narrow={isLg}>
-            <Column className={styles.sortColumn} sm={4} md={4} lg={4}>
+            <Column className={styles['sort-column']} sm={4} md={4} lg={4}>
               <Dropdown
                 id="catalog-sort"
                 className={styles.dropdown}
@@ -152,7 +152,7 @@ const LibrayAssets = ({ libraryData, params }) => {
             </Column>
           </Grid>
           <Grid condensed={!isLg} narrow={isLg} className={styles.container}>
-            <Column sm={4} md={8} lg={12} className={styles.assetsTableCol}>
+            <Column sm={4} md={8} lg={12}>
               <DataTable rows={assets} headers={headerData}>
                 {({ rows, headers, getHeaderProps, getTableProps }) => (
                   <TableContainer>
@@ -169,7 +169,7 @@ const LibrayAssets = ({ libraryData, params }) => {
                       <TableBody>
                         {rows.length > 0 &&
                           rows.map((row) => (
-                            <TableRow key={row.id} className={styles.assetRow}>
+                            <TableRow key={row.id} className={styles['asset-row']}>
                               {row.cells.map((cell) => (
                                 <TableCell key={cell.id}>{cell.value}</TableCell>
                               ))}
@@ -178,15 +178,17 @@ const LibrayAssets = ({ libraryData, params }) => {
                         {rows.length <= 0 && (
                           <TableRow>
                             <TableCell colSpan={5}>
-                              <div className={styles.noResultsContainer}>
+                              <div className={styles['no-results-container']}>
                                 <FilingCabinet />
-                                <h2 className={styles.noResultsHeading}>No assets in library.</h2>
-                                <h3 className={styles.noResultsSubheading}>
+                                <h2 className={styles['no-results-heading']}>
+                                  No assets in library.
+                                </h2>
+                                <h3 className={styles['no-results-subheading']}>
                                   This library does not contain any assets.
                                 </h3>
                                 {/* library maintainers should be a link but leaving as text for
                                   now until we figure out contributors discussion */}
-                                <h3 className={styles.noResultsSubheading}>
+                                <h3 className={styles['no-results-subheading']}>
                                   Contact library maintainers for further details.
                                 </h3>
                               </div>

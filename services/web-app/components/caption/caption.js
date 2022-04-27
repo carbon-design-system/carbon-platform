@@ -11,7 +11,7 @@ import clsx from 'clsx'
 import styles from './caption.module.scss'
 
 const Caption = ({ children, className }) => (
-  <Grid className={clsx(className, styles.captionContainer)}>
+  <Grid className={clsx(className, styles.container)}>
     <Column sm={4} md={6} lg={6}>
       <p className={styles.caption}>{children}</p>
     </Column>

@@ -171,7 +171,7 @@ const PageContent = () => {
   return (
     <div className={styles.container}>
       <div className={styles.highlights}>
-        <Grid className={styles.hightlightGrid}>
+        <Grid className={styles['highlight-grid']}>
           <Column sm={4} md={8} lg={8} xlg={7}>
             <h2 className={styles.subheading}>
               The new Carbon Design System provides a single place to find and use all open and
@@ -182,36 +182,42 @@ const PageContent = () => {
         </Grid>
         {highlights.map((highlight, i) => (
           <Grid
-            className={clsx(styles.hightlightGrid, styles.hightlightGridHeight, styles.border)}
+            className={clsx(
+              styles['highlight-grid'],
+              styles['highlight-grid--height'],
+              styles.border
+            )}
             key={i}
           >
             <Column sm={4} key={i}>
-              <h3 className={clsx(styles.highlightHeading, styles.highlightHeadingBig)}>
+              <h3 className={clsx(styles['highlight-heading'], styles['highlight-heading--big'])}>
                 {highlight.header}
               </h3>
             </Column>
             <Column sm={4} lg={8} xlg={7}>
-              <p className={styles.highlightDescription}>
-                <span className={styles.highlightTitle}>{highlight.title}</span>
+              <p className={styles['highlight-description']}>
+                <span className={styles['highlight-title']}>{highlight.title}</span>
                 {highlight.description}
               </p>
             </Column>
           </Grid>
         ))}
       </div>
-      <Grid className={styles.hightlightGrid}>
+      <Grid className={styles['highlight-grid']}>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <p className={clsx(styles.subheadingMedium)}>
+          <p className={clsx(styles['subheading-medium'])}>
             The <strong>asset discovery experience</strong> is your efficient pathway to accessing
             components, patterns, functions, templates, and other re-usable resources across all IBM
             teams.
           </p>
         </Column>
       </Grid>
-      <Grid className={styles.hightlightGrid}>
+      <Grid className={styles['highlight-grid']}>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>Asset catalog</h2>
-          <p className={styles.subheadingContent}>
+          <h2 className={clsx(styles.subheading, styles['subheading--no-padding'])}>
+            Asset catalog
+          </h2>
+          <p className={styles['subheading-content']}>
             Asset catalogs allow you to search across all open and inner source resources and apply
             complex filters for any scenario—so that you can apply other teams’ knowledge to your
             own work.
@@ -228,16 +234,19 @@ const PageContent = () => {
                 border={['sm', 'md', 'lg', 'xlg']}
               >
                 <dl>
-                  <dt className={styles.dashboardLabel}>Components</dt>
-                  <dd className={styles.dashboardContent}>
+                  <dt className={styles['dashboard-label']}>Components</dt>
+                  <dd className={styles['dashboard-content']}>
                     Building blocks (such as buttons, links, and dropdown menus) that are pre-built
                     and ready to use when creating new experiences.
                   </dd>
                 </dl>
-                {!isLg && <Svg48Components className={styles.dashboardIcon} />}
-                {isLg && <Svg64Components className={styles.dashboardIcon} />}
+                {!isLg && <Svg48Components className={styles['dashboard-icon']} />}
+                {isLg && <Svg64Components className={styles['dashboard-icon']} />}
                 <ArrowRight
-                  className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
+                  className={clsx(
+                    dashboardStyles['position-bottom-right'],
+                    styles['dashboard-link']
+                  )}
                   size={20}
                 />
               </DashboardItem>
@@ -249,15 +258,18 @@ const PageContent = () => {
                 href="/assets/patterns"
               >
                 <dl>
-                  <dt className={styles.dashboardLabel}>Patterns</dt>
-                  <dd className={styles.dashboardContent}>
+                  <dt className={styles['dashboard-label']}>Patterns</dt>
+                  <dd className={styles['dashboard-content']}>
                     Reusable combinations of components and content with sequences and flows.
                   </dd>
                 </dl>
-                {!isLg && <Svg48Patterns className={styles.dashboardIcon} />}
-                {isLg && <Svg64Patterns className={styles.dashboardIcon} />}
+                {!isLg && <Svg48Patterns className={styles['dashboard-icon']} />}
+                {isLg && <Svg64Patterns className={styles['dashboard-icon']} />}
                 <ArrowRight
-                  className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
+                  className={clsx(
+                    dashboardStyles['position-bottom-right'],
+                    styles['dashboard-link']
+                  )}
                   size={20}
                 />
               </DashboardItem>
@@ -269,15 +281,18 @@ const PageContent = () => {
                 href="/assets/functions"
               >
                 <dl>
-                  <dt className={styles.dashboardLabel}>Functions</dt>
-                  <dd className={styles.dashboardContent}>
+                  <dt className={styles['dashboard-label']}>Functions</dt>
+                  <dd className={styles['dashboard-content']}>
                     Code that performs a single action and has no user interface.
                   </dd>
                 </dl>
-                {!isLg && <Svg48Functions className={styles.dashboardIcon} />}
-                {isLg && <Svg64Functions className={styles.dashboardIcon} />}
+                {!isLg && <Svg48Functions className={styles['dashboard-icon']} />}
+                {isLg && <Svg64Functions className={styles['dashboard-icon']} />}
                 <ArrowRight
-                  className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
+                  className={clsx(
+                    dashboardStyles['position-bottom-right'],
+                    styles['dashboard-link']
+                  )}
                   size={20}
                 />
               </DashboardItem>
@@ -289,16 +304,19 @@ const PageContent = () => {
                 href="/assets/templates"
               >
                 <dl>
-                  <dt className={styles.dashboardLabel}>Templates</dt>
-                  <dd className={styles.dashboardContent}>
+                  <dt className={styles['dashboard-label']}>Templates</dt>
+                  <dd className={styles['dashboard-content']}>
                     Templates specify order and placement of patterns and components for a given
                     scenario.
                   </dd>
                 </dl>
-                {!isLg && <Svg48Templates className={styles.dashboardIcon} />}
-                {isLg && <Svg64Templates className={styles.dashboardIcon} />}
+                {!isLg && <Svg48Templates className={styles['dashboard-icon']} />}
+                {isLg && <Svg64Templates className={styles['dashboard-icon']} />}
                 <ArrowRight
-                  className={clsx(dashboardStyles.positionBottomRight, styles.dashboardLink)}
+                  className={clsx(
+                    dashboardStyles['position-bottom-right'],
+                    styles['dashboard-link']
+                  )}
                   size={20}
                 />
               </DashboardItem>
@@ -306,10 +324,12 @@ const PageContent = () => {
           </Dashboard>
         </Column>
       </Grid>
-      <Grid className={styles.hightlightGrid}>
+      <Grid className={styles['highlight-grid']}>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>Asset collections</h2>
-          <p className={styles.subheadingContent}>
+          <h2 className={clsx(styles.subheading, styles['subheading--no-padding'])}>
+            Asset collections
+          </h2>
+          <p className={styles['subheading-content']}>
             Collections allow you to explore curated lists of assets, like a playlist, so that you
             can easily locate your relevant resources when you come back.
           </p>
@@ -327,12 +347,12 @@ const PageContent = () => {
           objectFit="cover"
         />
       </FeatureCard>
-      <Grid className={styles.hightlightGrid}>
+      <Grid className={styles['highlight-grid']}>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <h2 className={clsx(styles.subheading, styles.subheadingNoPadding)}>
+          <h2 className={clsx(styles.subheading, styles['subheading--no-padding'])}>
             Featured libraries
           </h2>
-          <p className={styles.subheadingContent}>
+          <p className={styles['subheading-content']}>
             Libraries are the means to contribute, install, and use one or many assets in products
             and digital experiences.
           </p>
@@ -350,9 +370,9 @@ const PageContent = () => {
           objectFit="cover"
         />
       </FeatureCard>
-      <Grid className={clsx(styles.hightlightGrid, styles.border)}>
+      <Grid className={clsx(styles['highlight-grid'], styles.border)}>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <p className={clsx(styles.subheadingLarge)}>
+          <p className={clsx(styles['subheading-large'])}>
             By standardizing our assets and surfacing them, we can help our makers find assets that{' '}
             <strong>comply</strong> with platform requirements, are <strong>convenient</strong> to
             implement, and are <strong>consistent</strong> with design patterns across the company.
@@ -360,18 +380,18 @@ const PageContent = () => {
         </Column>
       </Grid>
       <Grid>
-        <Column sm={4} md={8} className={styles.contentColumn}>
-          <h2 className={styles.contentHeading}>How PAL teams can prepare</h2>
-          <p className={styles.contentCopy}>
+        <Column sm={4} md={8} className={styles['content-column']}>
+          <h2 className={styles['content-heading']}>How PAL teams can prepare</h2>
+          <p className={styles['content-copy']}>
             Ensure your components, patterns, and functions are indexed in our unified asset
             discovery experience. To help you get started, our team will reach out to document your
             library’s metadata in the structured format we have provided.
           </p>
-          <p className={styles.contentCopy}>
+          <p className={styles['content-copy']}>
             To make this happen, we ask that you follow the instructions below to document your
             library’s metadata in the stuctured format we have provided.
           </p>
-          <div className={styles.contentCopy}>
+          <div className={styles['content-copy']}>
             <Link
               className={styles.link}
               href="https://github.com/carbon-design-system/carbon-platform/blob/main/docs/resource-schemas.md#resource-schemas"
@@ -380,8 +400,8 @@ const PageContent = () => {
               Get started
             </Link>
           </div>
-          <h2 className={styles.contentHeading}>Platform roadmap</h2>
-          <p className={styles.contentCopy}>
+          <h2 className={styles['content-heading']}>Platform roadmap</h2>
+          <p className={styles['content-copy']}>
             Progress on the following releases are documented in{' '}
             <Link
               className={styles.link}
@@ -401,43 +421,45 @@ const PageContent = () => {
       {releases.map((release, i) => (
         <Grid className={clsx(styles.release, styles.border)} key={i}>
           <Column sm={4} md={8} lg={4}>
-            <h2 className={styles.releaseHeading}>
+            <h2 className={styles['release-heading']}>
               <div className={styles.bold}>{release.version}</div>
               <div>{release.release}</div>
               <div>{release.date}</div>
             </h2>
           </Column>
           <Column sm={4} md={8}>
-            <div className={styles.releaseContent}>
-              {release.title && <h3 className={styles.releaseSubheading}>{release.title}</h3>}
-              {release.subtitle && <p className={styles.releaseCopy}>{release.subtitle}</p>}
-              {release.description && <p className={styles.releaseCopy}>{release.description}</p>}
+            <div className={styles['release-content']}>
+              {release.title && <h3 className={styles['release-subheading']}>{release.title}</h3>}
+              {release.subtitle && <p className={styles['release-copy']}>{release.subtitle}</p>}
+              {release.description && (
+                <p className={styles['release-copy']}>{release.description}</p>
+              )}
               {release.descriptionBlock &&
                 release.descriptionBlock.map((descriptionBlock, o) => (
-                  <div className={styles.releaseCopy} key={o}>
+                  <div className={styles['release-copy']} key={o}>
                     <p>{descriptionBlock.title}</p>
                     <p>{descriptionBlock.description}</p>
                   </div>
                 ))}
               {release.bulletPointsHeader && (
-                <p className={styles.releaseCopy}>{release.bulletPointsHeader}</p>
+                <p className={styles['release-copy']}>{release.bulletPointsHeader}</p>
               )}
               {release.bulletPoints && (
-                <ul className={styles.releaseCopy}>
+                <ul className={styles['release-copy']}>
                   {release.bulletPoints.map((bulletPoint, e) => {
                     return <li key={e}>{'– ' + bulletPoint}</li>
                   })}
                 </ul>
               )}
             </div>
-            <div className={styles.releaseImage}>
+            <div className={styles['release-image']}>
               <Image
                 alt={release.captionHeading}
                 layout="responsive"
                 src={release.image}
                 placeholder="blur"
               />
-              <p className={styles.releaseImageCaption}>
+              <p className={styles['release-image-caption']}>
                 <span className={styles.bold}>{release.captionHeading}:</span> {release.caption}
               </p>
             </div>

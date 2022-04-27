@@ -27,9 +27,9 @@ const NavMain = ({ items = [] }) => {
       aria-label="Side navigation"
       expanded={isSideNavExpanded}
       className={clsx(
-        styles.sideNav,
-        librarySideNav && libraryStyles.libraryNavIn,
-        libraryNavSlideOut && libraryStyles.libraryNavOut
+        styles['side-nav'],
+        librarySideNav && libraryStyles['library-nav-in'],
+        libraryNavSlideOut && libraryStyles['library-nav-out']
       )}
       aria-hidden={librarySideNav ? 'true' : 'false'}
     >
@@ -49,7 +49,7 @@ const NavMain = ({ items = [] }) => {
               )
             } else {
               return (
-                <SideNavLink tabIndex="-1" key={i} className={styles.sideNavDisabled}>
+                <SideNavLink tabIndex="-1" key={i} className={styles['side-nav-disabled']}>
                   {data.title}
                 </SideNavLink>
               )
@@ -73,7 +73,7 @@ const NavMain = ({ items = [] }) => {
           if (!data.path && data.items) {
             return (
               <div key={i}>
-                <h2 className={styles.sideNavHeading}>{data.title}</h2>
+                <h2 className={styles['side-nav-heading']}>{data.title}</h2>
                 {data.items.map((item, j) => (
                   <SideNavLink
                     element={NextLink}

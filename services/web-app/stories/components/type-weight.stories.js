@@ -6,18 +6,28 @@
  */
 import React from 'react'
 
-import { TypeScaleTable } from '@/components/type'
+import { TypeWeight } from '@/components/type'
 
 const stories = {
-  title: 'MDX/TypeScaleTable',
-  component: TypeScaleTable,
+  title: 'Platform/Components/TypeWeight',
+  component: TypeWeight,
   argTypes: {},
   parameters: {}
 }
 
 export default stories
 
-const Template = (args) => <TypeScaleTable {...args} />
+const Template = (args) => <TypeWeight {...args} />
 
 export const Default = Template.bind({})
 Default.args = {}
+
+export const Italic = Template.bind({})
+Italic.args = {
+  type: 'italic'
+}
+
+export const Types = Template.bind({})
+Types.args = {
+  type: 'types'
+}

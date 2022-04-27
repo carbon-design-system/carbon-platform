@@ -15,4 +15,8 @@ const Preview = ({ title, ...props }) => (
   <iframe loading="lazy" title={title} {...props} className={styles.preview} />
 )
 
+Preview.propTypes = {
+  title: Proptypes.string
+}
+
 export default Preview

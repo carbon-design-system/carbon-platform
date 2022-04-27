@@ -27,16 +27,24 @@ const StickyContainer = ({ children, banner, navBar, secondary, top, className }
 }
 
 StickyContainer.propTypes = {
-  // if site has banner at top ( ex. go to v1)
+  /**
+   * if site has banner at top ( ex. go to v1)
+   */
   banner: PropTypes.bool,
 
-  // if page navBar is showing / hiding, toggle this on/off
+  /**
+   * if page navBar is showing / hiding, toggle this on/off
+   */
   navBar: PropTypes.bool,
 
-  // for items that are on pages that already have a sticky item
+  /**
+   * for items that are on pages that already have a sticky item
+   */
   secondary: PropTypes.bool,
 
-  // if custom top is necessary, must include units - (rem, px)
+  /**
+   * if custom top is necessary, must include units - (rem, px)
+   */
   top: PropTypes.string
 }
 

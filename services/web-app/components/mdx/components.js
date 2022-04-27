@@ -24,7 +24,7 @@ import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
 import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
-import TypesetStyle from '@/components/type-set-style'
+import TypesetStyle from '@/components/typeset-style'
 import Video from '@/components/video'
 
 const Placeholder = ({ name, children }) => {

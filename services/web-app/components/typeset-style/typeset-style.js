@@ -36,6 +36,9 @@ const isWithinBreakpoint = (viewportWidth, currentBreakpoint) => {
   )
 }
 
+/**
+ * The `<TypeSetStyle>` component displays all of the type styles provided by Carbon.
+ */
 class TypesetStyle extends React.Component {
   state = {
     simulatedScreenWidth: 1056,
@@ -128,6 +131,8 @@ class TypesetStyle extends React.Component {
     const typesetStyleStickyClassnames = clsx([styles['controls-sticky']], {
       [styles['controls-sticky-stuck']]: this.state.sticky
     })
+
+    console.log(' 🐬 👀 this.state.sticky', this.state.sticky)
 
     return (
       <div className={styles['container']}>

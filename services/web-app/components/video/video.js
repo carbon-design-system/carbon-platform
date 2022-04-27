@@ -9,14 +9,14 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import React, { useEffect, useRef, useState } from 'react'
 
-import { video, videoButton, videoContainer, videoIsPlaying, vimeo } from './video.module.scss'
+import styles from './video.module.scss'
 
 const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const videoRef = useRef(null)
   const iframeRef = useRef(null)
-  const buttonClassName = clsx(videoButton, {
-    [videoIsPlaying]: isPlaying
+  const buttonClassName = clsx(styles['video-button'], {
+    [styles['video--is-playing']]: isPlaying
   })
 
   // React doesn't handle the muted attribute well
@@ -29,8 +29,8 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
 
   if (vimeoId) {
     return (
-      <div className={videoContainer}>
-        <div className={clsx(video, vimeo)}>
+      <div className={styles['video-container']}>
+        <div className={clsx(styles.video, styles.vimeo)}>
           <div className="embedVideo-container">
             <iframe
               allow="autoplay"
@@ -92,7 +92,7 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
   }
 
   return (
-    <div className={videoContainer}>
+    <div className={styles['video-container']}>
       <div
         className={buttonClassName}
         role="button"
@@ -106,7 +106,7 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
         autoPlay={autoPlay}
-        className={video}
+        className={styles.video}
         type="video/mp4"
         ref={videoRef}
         onEnded={onEnded}

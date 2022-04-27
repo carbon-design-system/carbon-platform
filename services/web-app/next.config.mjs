@@ -57,14 +57,13 @@ const nextConfig = withMDX(
         rule.use.forEach((moduleLoader) => {
           if (
             moduleLoader.loader &&
-            moduleLoader.loader.includes('css-loader') &&
-            typeof moduleLoader.options.modules === 'object'
+          moduleLoader.loader.includes('css-loader') &&
+          typeof moduleLoader.options.modules === 'object'
           ) {
             moduleLoader.options = {
               ...moduleLoader.options,
               modules: {
                 ...moduleLoader.options.modules,
-                exportLocalsConvention: 'camelCase', // https://github.com/webpack-contrib/css-loader#exportlocalsconvention
                 mode: 'local' // https://github.com/webpack-contrib/css-loader#mode
               }
             }

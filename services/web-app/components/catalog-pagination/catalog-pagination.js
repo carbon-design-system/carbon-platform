@@ -23,7 +23,7 @@ const CatalogPagination = ({
 
   return (
     <Grid className={styles.container} condensed={!isLg} narrow={isLg}>
-      <Column className={styles.column} sm={4} md={8} lg={12}>
+      <Column sm={4} md={8} lg={12}>
         <Pagination
           onChange={({ page, pageSize }) => {
             if (pageSize !== currentPageSize) {

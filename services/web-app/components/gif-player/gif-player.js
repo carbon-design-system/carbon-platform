@@ -37,15 +37,15 @@ const GifPlayer = ({ children, color, className, isInDialog }) => {
   })
 
   const containerClassNames = clsx(className, styles.container, {
-    [styles.gifInDialog]: isInDialog
+    [styles['gif-in-dialog']]: isInDialog
   })
 
-  const staticImageClassNames = clsx(styles.imgHidden, {
-    [styles.imgDisplayed]: paused
+  const staticImageClassNames = clsx(styles['img-hidden'], {
+    [styles['img-displayed']]: paused
   })
 
-  const gifClassNames = clsx(styles.gifDisplayed, {
-    [styles.gifHidden]: paused
+  const gifClassNames = clsx(styles['gif-displayed'], {
+    [styles['gif-hidden']]: paused
   })
 
   const childrenArray = React.Children.toArray(children)

@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.99](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.98...@carbon-platform/web-app@0.1.99) (2022-04-27)
+
+
+### Bug Fixes 🐛
+
+* image container in storybook ([354c194](https://github.com/carbon-design-system/carbon-platform/commit/354c194f408af62228690d9e0c86bc1ec8fcf52d))
+* newly added components class names ([a34fd01](https://github.com/carbon-design-system/carbon-platform/commit/a34fd012aafb2ea24d5c98780285283e4394e781))
+* update class names no camel case ([5885561](https://github.com/carbon-design-system/carbon-platform/commit/5885561e12373a2ff02c19bb472a94d256b3c949))
+
 ### [0.1.98](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.97...@carbon-platform/web-app@0.1.98) (2022-04-23)
 
 

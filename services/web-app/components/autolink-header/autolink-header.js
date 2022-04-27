@@ -16,8 +16,8 @@ import styles from './autolink-header.module.scss'
 
 const Anchor = ({ id, string, position }) => {
   const anchorClasses = clsx(styles.anchor, {
-    [styles.leftAnchor]: position === 'left',
-    [styles.rightAnchor]: position === 'right'
+    [styles['left-anchor']]: position === 'left',
+    [styles['right-anchor']]: position === 'right'
   })
 
   return (

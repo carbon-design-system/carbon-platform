@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.1.98",
+  "version": "0.1.99",
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
@@ -11,14 +11,17 @@
   },
   "scripts": {
     "build": "npm run clean && next build",
+    "build:storybook": "build-storybook -o .storybook-static",
     "bundle": "node esbuild.js",
     "clean": "rimraf .carbon public/.carbon .next .dev",
     "dev": "next dev",
+    "dev:all": "concurrently 'open http://localhost:3000 && next dev' 'npm run storybook'",
     "dev:clean": "npm run clean && npm run dev",
     "dev:secure": "sh scripts/create-local-certificates.sh && concurrently 'npm run dev' 'RUNNING_SECURELY=1 npm run start:proxy'",
     "service:build": "npm run build",
     "start": "concurrently 'npm run start:proxy' 'next start'",
     "start:proxy": "node proxy-server.js",
+    "storybook": "start-storybook -p 6006",
     "test": "echo 'No tests defined yet!'"
   },
   "bugs": {
@@ -60,5 +63,16 @@
     "sass": "^1.49.9",
     "slugify": "^1.6.5",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/addon-links": "^6.4.22",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/builder-webpack5": "^6.4.22",
+    "@storybook/manager-webpack5": "^6.4.22",
+    "@storybook/react": "^6.4.22",
+    "sass-loader": "^12.6.0",
+    "storybook-addon-next-router": "^3.1.1"
   }
 }

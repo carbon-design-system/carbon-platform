@@ -14,7 +14,7 @@ const PageTabs = ({ tabs = [] }) => {
     <Grid className={styles.container} narrow>
       <Column sm={4} md={8} lg={12}>
         <Tabs>
-          <TabList aria-label="List of tabs" className={styles.tabList}>
+          <TabList aria-label="List of tabs" className={styles['tab-list']}>
             {tabs.map((tab, i) => (
               <Tab href={tab.path} key={i}>
                 {tab.name}

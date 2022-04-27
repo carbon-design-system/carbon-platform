@@ -22,7 +22,7 @@ export default class ColorBlock extends React.Component {
     }
 
     return (
-      <div className={styles.colorBlock}>
+      <div className={styles['color-block']}>
         <span className={styles.color} style={colorBlockStyles} />
       </div>
     )

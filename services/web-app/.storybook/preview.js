@@ -35,15 +35,21 @@ export const decorators = [
   (Story, context) => {
     const { layout, theme } = context.globals
 
+    // padded layout, set background and internal padding because storybook is configured fullscreen
+    const style = {
+      background: 'var(--cds-background)',
+      padding: '1rem'
+    }
+
+    // fullscreen layout, margin collapse for compoents with top margins
+    if (layout === 'fullscreen') {
+      style.margin = '-1px'
+      style.padding = '1px'
+    }
+
     return (
       <Theme theme={theme}>
-        <div
-          style={{
-            background: 'var(--cds-background)',
-            padding: layout === 'fullscreen' ? '1px' : '1rem',
-            margin: '-1px'
-          }}
-        >
+        <div style={style}>
           <Story {...context} />
         </div>
       </Theme>

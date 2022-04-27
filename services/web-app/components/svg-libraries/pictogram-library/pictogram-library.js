@@ -4,11 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-/* eslint-disable no-debugger */
 import metaData from '@carbon/pictograms/metadata.json'
 import { Column, Grid } from '@carbon/react'
-import loadable from '@loadable/component'
 import { debounce, groupBy } from 'lodash-es'
+import dynamic from 'next/dynamic'
 import React, { useEffect, useState } from 'react'
 
 import useColumnCount from '@/utils/use-column-count'
@@ -42,7 +41,7 @@ const PictogramLibrary = () => {
         ...accumulator,
         {
           ...pictogram,
-          Component: loadable(() => import(`@carbon/pictograms-react/lib/${path}`))
+          Component: dynamic(() => import(`@carbon/pictograms-react/lib/${path}`))
         }
       ]
     }, [])
@@ -57,20 +56,17 @@ const PictogramLibrary = () => {
     if (!searchInputValue) {
       return pictogramComponents
     }
-    return pictogramComponents.filter(
-      // eslint-disable-next-line camelcase
-      ({ friendlyName, category, aliases = [], name }) => {
-        const searchValue = searchInputValue.toLowerCase()
-        return (
-          friendlyName.toLowerCase().includes(searchValue) ||
-          aliases
-            .filter(Boolean)
-            .some((alias) => alias.toString().toLowerCase().includes(searchValue)) ||
-          category.toLowerCase().includes(searchValue) ||
-          name.toLowerCase().includes(searchValue)
-        )
-      }
-    )
+    return pictogramComponents.filter(({ friendlyName, category, aliases = [], name }) => {
+      const searchValue = searchInputValue.toLowerCase()
+      return (
+        friendlyName.toLowerCase().includes(searchValue) ||
+        aliases
+          .filter(Boolean)
+          .some((alias) => alias.toString().toLowerCase().includes(searchValue)) ||
+        category.toLowerCase().includes(searchValue) ||
+        name.toLowerCase().includes(searchValue)
+      )
+    })
   }
 
   const filteredPictograms = getFilteredPictorams()
@@ -88,7 +84,7 @@ const PictogramLibrary = () => {
 
   return (
     <Grid condensed>
-      <Column sm={4} md={8} lg={12}>
+      <Column sm={4} md={8} lg={16}>
         <div className={styles['svg-page']}>
           <FilterRow
             type="pictogram"

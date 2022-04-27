@@ -73,7 +73,7 @@ const StatusIndicatorTable = ({ attention }) => (
 )
 
 StatusIndicatorTable.propTypes = {
-  attention: PropTypes.string
+  attention: PropTypes.oneOf(['high', 'medium', 'low', 'glyph'])
 }
 
 export default StatusIndicatorTable

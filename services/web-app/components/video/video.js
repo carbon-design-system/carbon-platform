@@ -123,7 +123,7 @@ Video.propTypes = {
   autoPlay: PropTypes.bool,
   children: PropTypes.element,
   muted: PropTypes.bool,
-  poster: PropTypes.oneOf(PropTypes.string, PropTypes.object),
+  poster: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   src: PropTypes.string,
   title: PropTypes.string,
   videoSourceValidator: (props) => {

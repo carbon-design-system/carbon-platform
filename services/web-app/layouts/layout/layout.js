@@ -110,9 +110,9 @@ const Layout = ({ children }) => {
               <Grid narrow className={styles['header-grid']}>
                 <Column sm={0} lg={{ span: 8, offset: 4 }}>
                   <HeaderNavigation aria-label="Main navigation">
-                    {globalNavData.map((data) => (
-                      <>
-                        {data.path && (
+                    {globalNavData.map((data) => {
+                      if (data.path) {
+                        return (
                           <HeaderMenuItem
                             key={data.title}
                             isCurrentPage={router.pathname.startsWith(data.path)}
@@ -121,18 +121,19 @@ const Layout = ({ children }) => {
                           >
                             {data.title}
                           </HeaderMenuItem>
-                        )}
-                        {!data.path && (
+                        )
+                      } else {
+                        return (
                           <HeaderMenuItem
                             key={data.title}
-                            tabIndex="-1"
+                            tabIndex={-1}
                             className={styles['header-nav-item-disabled']}
                           >
                             {data.title}
                           </HeaderMenuItem>
-                        )}
-                      </>
-                    ))}
+                        )
+                      }
+                    })}
                   </HeaderNavigation>
                 </Column>
               </Grid>

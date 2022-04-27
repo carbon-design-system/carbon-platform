@@ -58,7 +58,6 @@ const CatalogMultiselectFilter = ({
       className={clsx(styles.container, customClassName)}
       dropShadow={true}
       highContrast={false}
-      light={false}
       open={open}
     >
       <button

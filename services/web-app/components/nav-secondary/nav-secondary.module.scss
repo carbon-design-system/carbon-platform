@@ -21,9 +21,10 @@
   color: theme.$link-primary;
   cursor: pointer;
   text-align: left;
+  transition: background motion.$duration-fast-02 motion.motion(standard, productive);
 
   &:hover {
-    background: transparent;
+    background: theme.$layer-hover;
     text-decoration: none;
   }
 

@@ -46,6 +46,9 @@ const SIDE_NAV_PATHS = [
   '/standards'
 ]
 
+// Only slide to the secondary navigation on page load for these paths.
+const SECONDARY_NAV_SLIDE_PATHS = ['/libraries/[host]/[org]/[repo]/[library]/[ref]']
+
 export const LayoutContext = createContext()
 
 export const LayoutProvider = ({ children }) => {
@@ -74,34 +77,47 @@ export const LayoutProvider = ({ children }) => {
 }
 
 const SideNav = () => {
+  const router = useRouter()
   const { secondaryNavData } = useContext(LayoutContext)
-  const [showSecondaryNav, setShowSecondaryNav] = useState(!isEmpty(secondaryNavData))
-  const [delayedShowSecondary, setDelayedShowSecondary] = useState(false)
 
-  useEffect(() => {
-    setShowSecondaryNav(!isEmpty(secondaryNavData))
-  }, [secondaryNavData])
+  const isSecondarySlidePath = SECONDARY_NAV_SLIDE_PATHS.includes(router.pathname)
+  const hasSecondaryNavData = !isEmpty(secondaryNavData)
 
+  // Initially show if there's secondary nav data and it's not a slide path
+  const [showSecondaryNav, setShowSecondaryNav] = useState(
+    hasSecondaryNavData && !isSecondarySlidePath
+  )
+
+  // Wait a render cycle before adding the class name to slide to the secondary nav
   useEffect(() => {
     setTimeout(() => {
-      setDelayedShowSecondary(showSecondaryNav)
+      setShowSecondaryNav(hasSecondaryNavData || isSecondarySlidePath)
     }, 0)
-  }, [showSecondaryNav])
+  }, [hasSecondaryNavData, isSecondarySlidePath])
+
+  const handleSlidePrimary = () => {
+    setShowSecondaryNav(false)
+  }
+
+  const cnSlide = clsx(styles['side-nav-slide'], {
+    [styles['side-nav-slide--secondary']]: showSecondaryNav
+  })
 
   return (
     <Column sm={4} md={8} lg={4}>
-      <section className={styles['side-nav']}>
-        <Theme
-          className={clsx(
-            styles['side-nav-slide'],
-            delayedShowSecondary && styles['side-nav-slide--secondary']
-          )}
-          theme="white"
-        >
-          <NavPrimary className={styles['side-nav-item']} globalItems={globalNavData} />
-          <NavSecondary className={styles['side-nav-item']} />
-        </Theme>
-      </section>
+      <Theme theme="white">
+        <section className={styles['side-nav']}>
+          <div className={styles['side-nav-inner']}>
+            <div className={cnSlide}>
+              <NavPrimary className={styles['side-nav-item']} globalItems={globalNavData} />
+              <NavSecondary
+                className={styles['side-nav-item']}
+                onSlidePrimary={handleSlidePrimary}
+              />
+            </div>
+          </div>
+        </section>
+      </Theme>
     </Column>
   )
 }

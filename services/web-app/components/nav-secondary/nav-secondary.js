@@ -17,12 +17,15 @@ import { LayoutContext } from '@/layouts/layout'
 
 import styles from './nav-secondary.module.scss'
 
-const NavSecondary = ({ className }) => {
+const NavSecondary = ({ className, onSlidePrimary }) => {
   const router = useRouter()
   const { secondaryNavData = [] } = useContext(LayoutContext)
 
   const handleBack = () => {
-    router.push('/libraries')
+    onSlidePrimary()
+    setTimeout(() => {
+      router.push('/libraries')
+    }, 150) // $duration-moderate-01 is 150ms
   }
 
   const showSecondaryNav = !isEmpty(secondaryNavData)

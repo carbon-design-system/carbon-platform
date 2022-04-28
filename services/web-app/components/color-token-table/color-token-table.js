@@ -163,7 +163,7 @@ export default class ColorTokenTable extends React.Component {
           <H3>Background</H3>
 
           <Grid condensed>
-            <Column sm={4} md={8} lg={12}>
+            <Column sm={4} md={8} lg={16}>
               <table className={tableStyles['page-table']}>
                 <thead>
                   <tr>
@@ -184,7 +184,7 @@ export default class ColorTokenTable extends React.Component {
           <H3>Layer</H3>
 
           <Grid condensed>
-            <Column sm={4} md={8} lg={12}>
+            <Column sm={4} md={8} lg={16}>
               <table className={tableStyles['page-table']}>
                 <thead>
                   <tr>
@@ -204,7 +204,7 @@ export default class ColorTokenTable extends React.Component {
           <H3>Layer accent</H3>
 
           <Grid condensed>
-            <Column sm={4} md={8} lg={12}>
+            <Column sm={4} md={8} lg={16}>
               <table className={tableStyles['page-table']}>
                 <thead>
                   <tr>
@@ -224,7 +224,7 @@ export default class ColorTokenTable extends React.Component {
 
           <H3>Field</H3>
           <Grid condensed>
-            <Column sm={4} md={8} lg={12}>
+            <Column sm={4} md={8} lg={16}>
               <table className={tableStyles['page-table']}>
                 <thead>
                   <tr>
@@ -244,7 +244,7 @@ export default class ColorTokenTable extends React.Component {
 
           <H3>Border</H3>
           <Grid condensed>
-            <Column sm={4} md={8} lg={12}>
+            <Column sm={4} md={8} lg={16}>
               <table className={tableStyles['page-table']}>
                 <thead>
                   <tr>
@@ -263,7 +263,7 @@ export default class ColorTokenTable extends React.Component {
           </Grid>
           <H3>Text</H3>
           <Grid condensed>
-            <Column sm={4} md={8} lg={12}>
+            <Column sm={4} md={8} lg={16}>
               <table className={tableStyles['page-table']}>
                 <thead>
                   <tr>
@@ -282,7 +282,7 @@ export default class ColorTokenTable extends React.Component {
           </Grid>
           <H3>Link</H3>
           <Grid condensed>
-            <Column sm={4} md={8} lg={12}>
+            <Column sm={4} md={8} lg={16}>
               <table className={tableStyles['page-table']}>
                 <thead>
                   <tr>
@@ -302,7 +302,7 @@ export default class ColorTokenTable extends React.Component {
 
           <H3>Icon</H3>
           <Grid condensed>
-            <Column sm={4} md={8} lg={12}>
+            <Column sm={4} md={8} lg={16}>
               <table className={tableStyles['page-table']}>
                 <thead>
                   <tr>
@@ -321,7 +321,7 @@ export default class ColorTokenTable extends React.Component {
           </Grid>
           <H3>Button</H3>
           <Grid condensed>
-            <Column sm={4} md={8} lg={12}>
+            <Column sm={4} md={8} lg={16}>
               <table className={tableStyles['page-table']}>
                 <thead>
                   <tr>
@@ -340,7 +340,7 @@ export default class ColorTokenTable extends React.Component {
           </Grid>
           <H3>Support</H3>
           <Grid condensed>
-            <Column sm={4} md={8} lg={12}>
+            <Column sm={4} md={8} lg={16}>
               <table className={tableStyles['page-table']}>
                 <thead>
                   <tr>
@@ -359,7 +359,7 @@ export default class ColorTokenTable extends React.Component {
           </Grid>
           <H3>Focus</H3>
           <Grid condensed>
-            <Column sm={4} md={8} lg={12}>
+            <Column sm={4} md={8} lg={16}>
               <table className={tableStyles['page-table']}>
                 <thead>
                   <tr>
@@ -378,7 +378,7 @@ export default class ColorTokenTable extends React.Component {
           </Grid>
           <H3>Miscellaneous</H3>
           <Grid condensed>
-            <Column sm={4} md={8} lg={12}>
+            <Column sm={4} md={8} lg={16}>
               <table className={tableStyles['page-table']}>
                 <thead>
                   <tr>

@@ -6,18 +6,43 @@
  */
 import { Column, Grid, OrderedList } from '@carbon/react'
 import clsx from 'clsx'
+import React from 'react'
 
+import { LiConsumer } from './li'
 import styles from './markdown.module.scss'
 
 const Ol = ({ children, className, ...rest }) => {
   return (
-    <Grid>
-      <Column sm={4} md={6} lg={8}>
-        <OrderedList isExpressive className={clsx(className, styles.list, styles.ol)} {...rest}>
-          {children}
-        </OrderedList>
-      </Column>
-    </Grid>
+    <LiConsumer>
+      {(value) => {
+        if (value.hasListItemParent) {
+          return (
+            <OrderedList
+              isExpressive
+              className={clsx(className, styles.list, styles.ol)}
+              nested
+              {...rest}
+            >
+              {children}
+            </OrderedList>
+          )
+        } else {
+          return (
+            <Grid>
+              <Column sm={4} md={6} lg={8}>
+                <OrderedList
+                  isExpressive
+                  className={clsx(className, styles.list, styles.ol)}
+                  {...rest}
+                >
+                  {children}
+                </OrderedList>
+              </Column>
+            </Grid>
+          )
+        }
+      }}
+    </LiConsumer>
   )
 }
 

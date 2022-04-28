@@ -39,7 +39,7 @@ export default class PageTable extends React.Component {
       <Grid condensed>
         <Column sm={4} md={md} lg={lg}>
           <div className={styles.container}>
-            <table className={styles.pageTable}>{children}</table>
+            <table className={styles['page-table']}>{children}</table>
           </div>
         </Column>
       </Grid>

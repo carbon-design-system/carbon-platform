@@ -9,7 +9,6 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
-@use '@carbon/react/scss/colors' as colors;
 @use '@carbon/react/scss/motion' as motion;
 
 //TODO: figure out why this isn't generating classes
@@ -44,15 +43,15 @@
   text-transform: capitalize;
 
   &:hover {
-    background-color: colors.$gray-20;
+    background-color: theme.$layer-selected-01;
   }
 
   &.selected {
-    background-color: colors.$gray-100;
-    color: colors.$gray-10;
+    background-color: theme.$layer-selected-inverse;
+    color: theme.$text-inverse;
 
     &:hover {
-      background-color: colors.$gray-100;
+      background-color: theme.$layer-selected-inverse;
     }
   }
 
@@ -86,7 +85,7 @@
 }
 
 .controls-sticky-stuck {
-  box-shadow: 0 2px 6px 0 rgba(colors.$black-100, 0.2);
+  box-shadow: 0 2px 6px 0 rgba(theme.$layer-selected-inverse, 0.2);
 
   &::before {
     position: absolute;
@@ -154,9 +153,9 @@
   height: 3rem;
   border: none;
   margin: 0;
-  background-color: colors.$white-0;
-  box-shadow: inset 0 -1px 0 0 colors.$gray-20;
-  color: colors.$gray-100;
+  background-color: theme.$layer-01;
+  box-shadow: inset 0 -1px 0 0 theme.$layer-accent-01;
+  color: theme.$text-primary;
   cursor: pointer;
 
   input {
@@ -166,16 +165,16 @@
   }
 
   &.checked {
-    background-color: colors.$gray-100;
-    color: colors.$white-0;
+    background-color: theme.$layer-selected-inverse;
+    color: theme.$text-inverse;
 
     &:hover {
-      background-color: colors.$gray-100;
+      background-color: theme.$layer-selected-inverse;
     }
   }
 
   &:hover {
-    background-color: colors.$gray-20;
+    background-color: theme.$layer-accent-hover-01;
   }
 }
 
@@ -208,8 +207,8 @@
   padding-top: spacing.$spacing-03;
   padding-bottom: spacing.$spacing-03;
   appearance: none;
+  background: theme.$layer-01;
   cursor: pointer;
-  font-size: 0;
 
   // Remove extra padding on Edge that causes vertical misalignment
   // IE Edge 16+ CSS
@@ -223,12 +222,12 @@
   // See https://css-tricks.com/sliding-nightmare-understanding-range-input/#structure
   &::-webkit-slider-runnable-track {
     height: 1px;
-    background: colors.$gray-20;
+    background: theme.$layer-selected-01;
   }
 
   &::-moz-range-track {
     height: 1px;
-    background: colors.$gray-20;
+    background: theme.$layer-selected-01;
   }
 
   &::-webkit-slider-thumb {
@@ -237,7 +236,7 @@
     border: 0;
     margin-top: -7px;
     appearance: none;
-    background: colors.$black-100;
+    background: theme.$layer-selected-inverse;
     border-radius: 100%;
     transition-duration: 0.1s;
     transition-property: height, width, margin;
@@ -250,7 +249,7 @@
     border: 0;
     margin-top: -7px;
     appearance: none;
-    background: colors.$black-100;
+    background: theme.$layer-selected-inverse;
     border-radius: 100%;
     transition-duration: 0.1s;
     transition-property: height, width, margin;
@@ -266,11 +265,11 @@
   }
 
   &::-ms-fill-lower {
-    background: colors.$black-100;
+    background: theme.$layer-selected-inverse;
   }
 
   &::-ms-fill-upper {
-    background: colors.$black-100;
+    background: theme.$layer-selected-inverse;
   }
 
   &::-ms-thumb {
@@ -279,7 +278,7 @@
     border: 0;
     margin-top: -1px;
     appearance: none;
-    background: colors.$black-100;
+    background: theme.$layer-selected-inverse;
     border-radius: 100%;
   }
 
@@ -287,7 +286,7 @@
     position: absolute;
     width: var(--track-width);
     height: 1px;
-    background: colors.$black-100;
+    background: theme.$layer-selected-inverse;
     content: '';
   }
 

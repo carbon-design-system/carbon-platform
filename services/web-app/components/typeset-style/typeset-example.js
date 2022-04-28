@@ -10,7 +10,7 @@ import classnames from 'classnames'
 import { findKey, values } from 'lodash'
 import React from 'react'
 
-import styles from './typeset-style.module.scss'
+import styles from './typeset-example.module.scss'
 
 const breakpoints = {
   sm: Number(carbonBreakpoints.sm.width.replace('rem', '')) * baseFontSize,
@@ -126,18 +126,15 @@ const TypesetExample = (props) => (
               Letter spacing: {displaySpecs.letterSpacing}px
               <br />
               Type set: {displaySpecs.typeSet}
-              {displaySpecs.warning != null
-                ? (
+              {displaySpecs.warning != null && (
                 <span>
                   <br />
                   <strong>warning: </strong>
                   {displaySpecs.warning}
                   <br />
                 </span>
-                  )
-                : (
-                <br />
-                  )}
+              )}
+              {displaySpecs.warning == null && <br />}
               <div className={styles['example-code-style']}>
                 <Theme theme="white">
                   <CodeSnippet type="inline" feedback="Copied!">

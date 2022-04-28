@@ -15,57 +15,6 @@
 //TODO: figure out why this isn't generating classes
 @include type.type-classes();
 
-.example-container {
-  margin-top: spacing.$spacing-05;
-  color: theme.$text-primary;
-}
-
-.typeset-example {
-  margin-top: spacing.$spacing-05;
-  margin-right: -(spacing.$spacing-03);
-  margin-left: -(spacing.$spacing-03);
-
-  @include breakpoint.breakpoint('md') {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-
-.example-row {
-  min-height: 216px;
-  background-color: theme.$layer-01;
-}
-
-.example-group-title {
-  height: 4rem;
-  background-color: colors.$gray-20;
-}
-
-.example-description {
-  overflow: hidden;
-  padding: spacing.$spacing-05 0;
-
-  @include breakpoint.breakpoint('md') {
-    padding-right: 15%;
-  }
-}
-
-.example-specs {
-  @include type.type-style('body-compact-01');
-
-  padding: spacing.$spacing-05 0;
-
-  @include breakpoint.breakpoint('md') {
-    padding: spacing.$spacing-05 spacing.$spacing-06;
-    border-left: 1px solid theme.$border-subtle;
-  }
-}
-
-.example-code-style {
-  display: block;
-  margin-top: spacing.$spacing-03;
-}
-
 // Typeset Style
 .container {
   position: relative;

@@ -9,23 +9,8 @@ import { type } from '@/data/type'
 
 export const globalNavData = [
   {
-    path: '/about',
-    title: 'About'
-  },
-  {
     path: '/standards',
     title: 'Standards'
-  },
-  {
-    path: '/assets',
-    title: 'Assets'
-  }
-]
-
-export const aboutNavData = [
-  {
-    path: '/about',
-    title: 'About Carbon'
   }
 ]
 
@@ -36,17 +21,17 @@ export const standardsNavData = [
   }
 ]
 
-export const assetsNavData = [
+export const homeNavData = [
   {
-    path: '/assets',
-    title: 'About Assets'
+    path: '/about',
+    title: 'About'
   },
   {
-    path: '/assets/libraries',
+    path: '/libraries',
     title: 'Libraries'
   },
   {
-    path: '/assets/design-kits',
+    path: '/design-kits',
     title: 'Design kits'
   },
   {
@@ -74,7 +59,7 @@ export const assetsNavData = [
     title: 'Collections',
     items: [
       {
-        path: '/assets/data-visualization',
+        path: '/collections/data-visualization',
         title: 'Data visualization'
       }
     ]

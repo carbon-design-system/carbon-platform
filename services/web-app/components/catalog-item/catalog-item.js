@@ -125,7 +125,7 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
     [styles['anchor--grid']]: isGrid
   })
 
-  const anchorHref = `/assets/${asset.params.library}/latest/${getSlug(asset.content)}`
+  const anchorHref = `/libraries/${asset.params.library}/latest/${getSlug(asset.content)}`
 
   const renderGrid = () => (
     <Column as="li" md={4}>

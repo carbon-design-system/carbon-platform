@@ -19,7 +19,7 @@ import styles from './nav-primary.module.scss'
 
 const NavPrimary = ({ className, globalItems = [] }) => {
   const router = useRouter()
-  const { primaryNavData, secondaryNavData } = useContext(LayoutContext)
+  const { primaryNavData = [], secondaryNavData = [] } = useContext(LayoutContext)
 
   const showPrimaryNav = !isEmpty(primaryNavData)
   const showSecondaryNav = !isEmpty(secondaryNavData)

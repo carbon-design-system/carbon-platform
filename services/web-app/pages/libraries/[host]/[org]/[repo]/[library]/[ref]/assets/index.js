@@ -30,7 +30,7 @@ import CatalogItemMeta from '@/components/catalog-item/catalog-item-meta'
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
 import { framework } from '@/data/framework'
-import { assetsNavData } from '@/data/nav-data'
+import { homeNavData } from '@/data/nav-data'
 import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
@@ -44,7 +44,7 @@ import styles from './index.module.scss'
 const libraryNavData = [
   {
     title: 'Assets',
-    path: '/assets/carbon-charts/assets'
+    path: '/libraries/carbon-charts/assets'
   },
   {
     title: 'Design kits',
@@ -100,7 +100,7 @@ const LibrayAssets = ({ libraryData, params }) => {
   const router = useRouter()
 
   useEffect(() => {
-    setPrimaryNavData(assetsNavData)
+    setPrimaryNavData(homeNavData)
     setSecondaryNavData(libraryNavData)
   }, [setPrimaryNavData, setSecondaryNavData])
 
@@ -136,7 +136,7 @@ const LibrayAssets = ({ libraryData, params }) => {
           </span>
         ),
         link: (
-          <Link href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}>
+          <Link href={`/libraries/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}>
             <a className={styles['row-anchor']}>
               <ArrowRight size={16} className={styles['arrow-icon']} />
             </a>

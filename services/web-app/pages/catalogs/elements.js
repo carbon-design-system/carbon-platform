@@ -11,35 +11,33 @@ import { libraryPropTypes } from 'types'
 
 import Catalog from '@/components/catalog'
 import PageHeader from '@/components/page-header'
-import { assetsNavData } from '@/data/nav-data'
+import { homeNavData } from '@/data/nav-data'
 import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 
-const Functions = ({ librariesData }) => {
+const Elements = ({ librariesData }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
-  const { function: func } = type
-
   const seo = {
-    title: 'Functions'
+    title: 'Elements'
   }
 
   useEffect(() => {
-    setPrimaryNavData(assetsNavData)
+    setPrimaryNavData(homeNavData)
     setSecondaryNavData()
   }, [setPrimaryNavData, setSecondaryNavData])
 
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader bgColor={func.bgColor} title={seo.title} pictogram={func.icon} />
-      <Catalog data={librariesData} type="function" />
+      <PageHeader title={seo.title} pictogram={type.element.icon} />
+      <Catalog data={librariesData} type="element" />
     </>
   )
 }
 
-Functions.propTypes = {
+Elements.propTypes = {
   librariesData: PropTypes.shape({
     libraries: PropTypes.arrayOf(libraryPropTypes)
   })
@@ -55,4 +53,4 @@ export const getStaticProps = async () => {
   }
 }
 
-export default Functions
+export default Elements

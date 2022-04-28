@@ -19,10 +19,10 @@ import styles from './nav-secondary.module.scss'
 
 const NavSecondary = ({ className }) => {
   const router = useRouter()
-  const { secondaryNavData } = useContext(LayoutContext)
+  const { secondaryNavData = [] } = useContext(LayoutContext)
 
   const handleBack = () => {
-    router.push('/assets/libraries')
+    router.push('/libraries')
   }
 
   const showSecondaryNav = !isEmpty(secondaryNavData)

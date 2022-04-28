@@ -34,16 +34,15 @@ import styles from './layout.module.scss'
 // set that here.
 const SIDE_NAV_PATHS = [
   '/about',
-  '/assets',
-  '/assets/components',
-  '/assets/data-visualization',
-  '/assets/design-kits',
-  '/assets/functions',
-  '/assets/libraries',
-  '/assets/patterns',
-  '/assets/templates',
-  '/assets/[host]/[org]/[repo]/[library]/[ref]',
-  '/assets/libraries',
+  '/catalogs/components',
+  '/catalogs/functions',
+  '/catalogs/libraries',
+  '/catalogs/patterns',
+  '/catalogs/templates',
+  '/collections/data-visualization',
+  '/libraries',
+  '/libraries/[host]/[org]/[repo]/[library]/[ref]',
+  '/design-kits',
   '/standards'
 ]
 

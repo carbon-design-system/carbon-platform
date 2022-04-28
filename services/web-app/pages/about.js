@@ -8,7 +8,7 @@ import { Column, Grid } from '@carbon/react'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import { aboutNavData } from '@/data/nav-data'
+import { homeNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
 import styles from './pages.module.scss'
@@ -21,7 +21,7 @@ const About = () => {
   }
 
   useEffect(() => {
-    setPrimaryNavData(aboutNavData)
+    setPrimaryNavData(homeNavData)
     setSecondaryNavData()
   }, [setPrimaryNavData, setSecondaryNavData])
 
@@ -30,7 +30,7 @@ const About = () => {
       <NextSeo {...seo} />
       <Grid>
         <Column sm={4} md={8} lg={12}>
-          <div className={styles.content}>About pages coming soon...</div>
+          <div className={styles.content}>About page coming soon...</div>
         </Column>
       </Grid>
     </>

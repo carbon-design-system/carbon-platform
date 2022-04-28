@@ -17,7 +17,7 @@ import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import ExternalLinks from '@/components/external-links'
 import PageHeader from '@/components/page-header'
-import { assetsNavData } from '@/data/nav-data'
+import { homeNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
@@ -29,7 +29,7 @@ import styles from './index.module.scss'
 const libraryNavData = [
   {
     title: 'Assets',
-    path: '/assets/carbon-charts/assets'
+    path: '/libraries/carbon-charts/assets'
   },
   {
     title: 'Design kits',
@@ -61,7 +61,7 @@ const Library = ({ libraryData }) => {
   const router = useRouter()
 
   useEffect(() => {
-    setPrimaryNavData(assetsNavData)
+    setPrimaryNavData(homeNavData)
     setSecondaryNavData(libraryNavData)
   }, [setPrimaryNavData, setSecondaryNavData])
 

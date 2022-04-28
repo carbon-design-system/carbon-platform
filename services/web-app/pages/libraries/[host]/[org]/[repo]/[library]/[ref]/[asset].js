@@ -71,7 +71,7 @@ const Asset = ({ libraryData }) => {
     }
   ]
 
-  const libraryPath = `/assets/${getSlug(libraryData.content)}`
+  const libraryPath = `/libraries/${getSlug(libraryData.content)}`
 
   const seo = {
     title: name,

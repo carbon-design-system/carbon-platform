@@ -10,7 +10,7 @@ import { useContext, useEffect } from 'react'
 
 import Catalog from '@/components/catalog'
 import PageHeader from '@/components/page-header'
-import { assetsNavData } from '@/data/nav-data'
+import { homeNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 
@@ -22,7 +22,7 @@ const DataVisualization = ({ librariesData }) => {
   }
 
   useEffect(() => {
-    setPrimaryNavData(assetsNavData)
+    setPrimaryNavData(homeNavData)
     setSecondaryNavData()
   }, [setPrimaryNavData, setSecondaryNavData])
 

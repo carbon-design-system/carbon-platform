@@ -76,16 +76,6 @@ const nextConfig = withMDX({
 
     return config
   },
-  async redirects() {
-    return [
-      {
-        // ensure every library route has a ref with value "latest" if not specified
-        source: '/libraries/:host/:org/:repo/:library',
-        destination: '/libraries/:host/:org/:repo/:library/latest',
-        permanent: false
-      }
-    ]
-  },
   async rewrites() {
     const rewrites = []
 

@@ -31,7 +31,7 @@ import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getAssetIssueCount, getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
-import { getAssetType, getTagsList } from '@/utils/schema'
+import { getTagsList } from '@/utils/schema'
 
 import styles from './[asset].module.scss'
 
@@ -60,18 +60,18 @@ const Asset = ({ libraryData, params }) => {
   const [assetData] = libraryData.assets
   const { name, description } = assetData.content
 
+  const libraryPath = `/libraries/${params.library}/${params.ref}`
+  const designKitsPath = libraryPath + '/design-kits'
+
   const breadcrumbItems = [
     {
-      name: getAssetType(assetData).namePlural,
-      path: getAssetType(assetData).path
+      name: libraryData?.content?.name ?? 'Library',
+      path: libraryPath + '/assets'
     },
     {
       name
     }
   ]
-
-  const libraryPath = `/libraries/${params.library}/${params.ref}`
-  const designKitsPath = libraryPath + '/design-kits'
 
   const seo = {
     title: name,
@@ -88,6 +88,10 @@ const Asset = ({ libraryData, params }) => {
   }
 
   const pageTabs = [
+    {
+      name: 'Overview',
+      path: ''
+    },
     {
       name: 'Usage',
       path: ''
@@ -117,16 +121,16 @@ const Asset = ({ libraryData, params }) => {
 
   const pageNavItems = [
     {
-      title: 'At a glance',
-      id: 'glance'
+      title: 'Dashboard',
+      id: 'dashboard'
     },
     {
-      title: 'Dependencies',
-      id: 'dependencies'
+      title: 'Live demo',
+      id: 'live-demo'
     },
     {
-      title: 'Contributors',
-      id: 'contributors'
+      title: 'Related assets',
+      id: 'related-assets'
     }
   ]
   const githubRepoUrl = `https://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
@@ -148,7 +152,7 @@ const Asset = ({ libraryData, params }) => {
           <PageNav items={pageNavItems} contentRef={contentRef} />
         </Column>
         <Column sm={4} md={8} lg={12}>
-          <section id="glance">
+          <section id="dashboard">
             <Dashboard className={styles.dashboard}>
               <Column className={dashboardStyles.column} sm={4}>
                 <DashboardItem
@@ -275,11 +279,11 @@ const Asset = ({ libraryData, params }) => {
               </Column>
             </Dashboard>
           </section>
-          <section id="dependencies">
-            <h2 className={pageStyles.h2}>Dependencies</h2>
+          <section id="live-demo">
+            <h2 className={pageStyles.h2}>Live demo</h2>
           </section>
-          <section id="contributors">
-            <h2 className={pageStyles.h2}>Contributors</h2>
+          <section id="related-assets">
+            <h2 className={pageStyles.h2}>Related assets</h2>
           </section>
         </Column>
       </Grid>

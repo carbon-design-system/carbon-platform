@@ -43,6 +43,9 @@ const SIDE_NAV_PATHS = [
   '/collections/data-visualization',
   '/libraries',
   '/libraries/[host]/[org]/[repo]/[library]/[ref]',
+  '/libraries/[host]/[org]/[repo]/[library]/[ref]/assets',
+  '/libraries/[host]/[org]/[repo]/[library]/[ref]/design-kits',
+  '/libraries/[host]/[org]/[repo]/[library]/[ref]/versions',
   '/design-kits',
   '/standards'
 ]

@@ -11,7 +11,9 @@ import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
+import Code from '@/components/code'
 import ColorPalette from '@/components/color-palette'
+import ColorTokenTable from '@/components/color-token-table'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
 import { Column, Grid, Row } from '@/components/grid-transform'
@@ -61,6 +63,7 @@ const components = {
   blockquote: Blockquote,
   img: Image,
   table: PageTable,
+  pre: Code,
   /* Gatsby theme components */
   Caption: Caption,
   PageDescription: PageDescription,
@@ -91,6 +94,7 @@ const components = {
   StatusIndicatorTable: ({ children }) => (
     <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
   ),
+  ColorTokenTable,
   /* Gatsby theme components, not used in Carbon website, out of scope v1 */
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
   ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,

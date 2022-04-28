@@ -16,8 +16,7 @@ const stories = {
     small: {
       control: 'boolean'
     }
-  },
-  parameters: {}
+  }
 }
 
 export default stories

@@ -26,14 +26,44 @@ import { getLicense } from '@/utils/schema'
 
 import styles from './index.module.scss'
 
+const libraryNavData = [
+  {
+    title: 'Assets',
+    path: '/assets/carbon-charts/assets'
+  },
+  {
+    title: 'Design kits',
+    path: '/'
+  },
+  {
+    title: 'Pages...',
+    items: [
+      {
+        title: 'Sub pages...',
+        items: [
+          {
+            title: 'Sub page...',
+            path: '/'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    title: 'Versions',
+    path: '/'
+  }
+]
+
 const Library = ({ libraryData }) => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const router = useRouter()
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+    setSecondaryNavData(libraryNavData)
+  }, [setPrimaryNavData, setSecondaryNavData])
 
   if (router.isFallback) {
     return (

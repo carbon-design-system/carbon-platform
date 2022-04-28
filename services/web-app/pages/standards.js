@@ -14,15 +14,16 @@ import { LayoutContext } from '@/layouts/layout'
 import styles from './pages.module.scss'
 
 const Standards = () => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const seo = {
     title: 'Standards'
   }
 
   useEffect(() => {
-    setNavData(standardsNavData)
-  }, [setNavData])
+    setPrimaryNavData(standardsNavData)
+    setSecondaryNavData()
+  }, [setPrimaryNavData, setSecondaryNavData])
 
   return (
     <>

@@ -15,7 +15,7 @@ import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 
 const Templates = ({ librariesData }) => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const { template } = type
 
@@ -24,8 +24,9 @@ const Templates = ({ librariesData }) => {
   }
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+    setSecondaryNavData()
+  }, [setPrimaryNavData, setSecondaryNavData])
 
   return (
     <>

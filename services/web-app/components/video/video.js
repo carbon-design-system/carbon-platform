@@ -121,7 +121,7 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
 Video.propTypes = {
   autoPlay: PropTypes.bool,
   children: PropTypes.element,
-  poster: PropTypes.oneOf(PropTypes.string, PropTypes.object),
+  poster: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   src: PropTypes.string,
   title: PropTypes.string,
   videoSourceValidator: (props) => {

@@ -7,55 +7,45 @@
 
 import { HeaderSideNavItems, SideNav, SideNavItems, SideNavLink } from '@carbon/react'
 import clsx from 'clsx'
+import { isEmpty } from 'lodash'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import { useContext } from 'react'
 
-import libraryStyles from '@/components/nav-library/nav-library.module.scss'
 import NextLink from '@/components/next-link'
 import { LayoutContext } from '@/layouts/layout'
 
-import styles from './nav-main.module.scss'
+import styles from './nav-primary.module.scss'
 
-const NavMain = ({ items = [] }) => {
+const NavPrimary = ({ className, globalItems = [] }) => {
   const router = useRouter()
-  const { librarySideNav, isSideNavExpanded, libraryNavSlideOut, navData } =
-    useContext(LayoutContext)
+  const { primaryNavData, secondaryNavData } = useContext(LayoutContext)
+
+  const showPrimaryNav = !isEmpty(primaryNavData)
+  const showSecondaryNav = !isEmpty(secondaryNavData)
 
   return (
     <SideNav
       aria-label="Side navigation"
-      expanded={isSideNavExpanded}
-      className={clsx(
-        styles['side-nav'],
-        librarySideNav && libraryStyles['library-nav-in'],
-        libraryNavSlideOut && libraryStyles['library-nav-out']
-      )}
-      aria-hidden={librarySideNav ? 'true' : 'false'}
+      expanded={showPrimaryNav}
+      className={clsx(className)}
+      aria-hidden={showSecondaryNav ? 'true' : 'false'}
     >
       <SideNavItems>
         <HeaderSideNavItems>
-          {items.map((data, i) => (
-            <>
-              {data.path && (
-                <SideNavLink
-                  element={NextLink}
-                  href={data.path}
-                  key={i}
-                  tabIndex={librarySideNav && '-1'}
-                >
-                  {data.title}
-                </SideNavLink>
-              )}
-              {!data.path && (
-                <SideNavLink tabIndex="-1" key={i} className={styles['side-nav-disabled']}>
-                  {data.title}
-                </SideNavLink>
-              )}
-            </>
+          {globalItems.map((data, i) => (
+            <SideNavLink
+              element={NextLink}
+              href={data.path}
+              key={i}
+              tabIndex={showSecondaryNav || !data.path ? -1 : 0}
+              className={clsx(!data.path && styles['link--disabled'])}
+            >
+              {data.title}
+            </SideNavLink>
           ))}
         </HeaderSideNavItems>
-        {navData.map((data, i) => {
+        {primaryNavData.map((data, i) => {
           if (data.path && data.title) {
             return (
               <SideNavLink
@@ -63,7 +53,7 @@ const NavMain = ({ items = [] }) => {
                 href={data.path}
                 isActive={router.pathname === data.path}
                 key={i}
-                tabIndex={librarySideNav && '-1'}
+                tabIndex={showSecondaryNav ? -1 : 0}
               >
                 {data.title}
               </SideNavLink>
@@ -72,14 +62,14 @@ const NavMain = ({ items = [] }) => {
           if (!data.path && data.items) {
             return (
               <div key={i}>
-                <h2 className={styles['side-nav-heading']}>{data.title}</h2>
+                <h2 className={styles.heading}>{data.title}</h2>
                 {data.items.map((item, j) => (
                   <SideNavLink
                     element={NextLink}
                     href={item.path}
                     isActive={router.pathname.startsWith(item.path)}
                     key={j}
-                    tabIndex={librarySideNav && '-1'}
+                    tabIndex={showSecondaryNav ? -1 : 0}
                   >
                     {item.title}
                   </SideNavLink>
@@ -94,8 +84,8 @@ const NavMain = ({ items = [] }) => {
   )
 }
 
-NavMain.propTypes = {
-  items: PropTypes.arrayOf(
+NavPrimary.propTypes = {
+  globalItems: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       path: PropTypes.string
@@ -103,4 +93,4 @@ NavMain.propTypes = {
   )
 }
 
-export default NavMain
+export default NavPrimary

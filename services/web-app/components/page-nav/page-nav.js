@@ -146,7 +146,7 @@ const PageNav = ({ contentRef, items = [] }) => {
                     onClick={() => handleLinkClick(item.id)}
                     onKeyDown={() => handleLinkClick(item.id)}
                     role="link"
-                    tabIndex="0"
+                    tabIndex={0}
                   >
                     {item.title}
                   </span>

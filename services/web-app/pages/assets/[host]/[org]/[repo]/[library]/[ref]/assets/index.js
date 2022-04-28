@@ -23,14 +23,16 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { libraryPropTypes, paramsPropTypes } from 'types'
 
 import CatalogItemMeta from '@/components/catalog-item/catalog-item-meta'
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
 import { framework } from '@/data/framework'
+import { assetsNavData } from '@/data/nav-data'
 import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
+import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { assetSortComparator } from '@/utils/schema'
@@ -38,6 +40,35 @@ import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './index.module.scss'
+
+const libraryNavData = [
+  {
+    title: 'Assets',
+    path: '/assets/carbon-charts/assets'
+  },
+  {
+    title: 'Design kits',
+    path: '/'
+  },
+  {
+    title: 'Pages...',
+    items: [
+      {
+        title: 'Sub pages...',
+        items: [
+          {
+            title: 'Sub page...',
+            path: '/'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    title: 'Versions',
+    path: '/'
+  }
+]
 
 const headerData = [
   {
@@ -64,9 +95,14 @@ const headerData = [
 
 const LibrayAssets = ({ libraryData, params }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
-
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
   const [sort, setSort] = useState(ALPHABETICAL_ORDER)
   const router = useRouter()
+
+  useEffect(() => {
+    setPrimaryNavData(assetsNavData)
+    setSecondaryNavData(libraryNavData)
+  }, [setPrimaryNavData, setSecondaryNavData])
 
   if (router.isFallback) {
     return (

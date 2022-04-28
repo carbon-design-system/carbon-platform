@@ -10,14 +10,7 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 
-// carbon override add border to sidenav
-.side-nav {
-  @include breakpoint.breakpoint(lg) {
-    border-right: 1px solid theme.$border-subtle-00;
-  }
-}
-
-.side-nav-heading {
+.heading {
   padding-bottom: spacing.$spacing-03;
   border-bottom: 1px solid theme.$layer-accent;
   margin: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
@@ -26,7 +19,7 @@
 
 // carbon override, disabled side nav item
 // !important needed to override carbon specificty
-.side-nav-disabled {
+.link--disabled {
   span {
     color: theme.$text-disabled !important;
   }

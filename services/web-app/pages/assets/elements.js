@@ -17,15 +17,16 @@ import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 
 const Elements = ({ librariesData }) => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const seo = {
     title: 'Elements'
   }
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+    setSecondaryNavData()
+  }, [setPrimaryNavData, setSecondaryNavData])
 
   return (
     <>

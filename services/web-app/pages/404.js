@@ -10,14 +10,13 @@ import { useContext, useEffect } from 'react'
 import PageNotFound from '@/components/page-not-found'
 import { LayoutContext } from '@/layouts/layout'
 
-const navData = []
-
 const FourOhFour = () => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   useEffect(() => {
-    setNavData(navData)
-  }, [setNavData])
+    setPrimaryNavData()
+    setSecondaryNavData()
+  }, [setPrimaryNavData, setSecondaryNavData])
 
   const seo = {
     title: 'Page not found'

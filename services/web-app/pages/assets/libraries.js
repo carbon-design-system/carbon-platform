@@ -84,15 +84,16 @@ const LibrariesItem = ({ library = {} }) => {
 }
 
 const Libraries = ({ librariesData }) => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const seo = {
     title: 'Libraries'
   }
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+    setSecondaryNavData()
+  }, [setPrimaryNavData, setSecondaryNavData])
 
   const libraries = librariesData.libraries
     .filter((library) => !library.content.noIndex)

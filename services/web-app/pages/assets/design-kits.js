@@ -14,15 +14,16 @@ import { LayoutContext } from '@/layouts/layout'
 import styles from '../pages.module.scss'
 
 const DesignKits = () => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const seo = {
     title: 'Design kits'
   }
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+    setSecondaryNavData()
+  }, [setPrimaryNavData, setSecondaryNavData])
 
   return (
     <>

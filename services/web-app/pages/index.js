@@ -13,10 +13,8 @@ import { LayoutContext } from '@/layouts/layout'
 
 import styles from './pages.module.scss'
 
-const navData = []
-
 const Index = () => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const seo = {
     title: defaultSeo.title,
@@ -24,8 +22,9 @@ const Index = () => {
   }
 
   useEffect(() => {
-    setNavData(navData)
-  }, [setNavData])
+    setPrimaryNavData()
+    setSecondaryNavData()
+  }, [setPrimaryNavData, setSecondaryNavData])
 
   return (
     <>

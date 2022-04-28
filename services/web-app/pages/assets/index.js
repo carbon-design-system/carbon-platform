@@ -359,7 +359,7 @@ const PageContent = () => {
         </Column>
       </Grid>
       <FeatureCard
-        href="/assets/carbon-styles"
+        href="/assets/carbon-react"
         title="Carbon React library"
         description="A library of reusable React components to build websites and user interfaces."
       >
@@ -471,15 +471,16 @@ const PageContent = () => {
 }
 
 const Index = () => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const seo = {
     title: 'Assets'
   }
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+    setSecondaryNavData()
+  }, [setPrimaryNavData, setSecondaryNavData])
 
   return (
     <>

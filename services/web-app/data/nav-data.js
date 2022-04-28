@@ -80,32 +80,3 @@ export const assetsNavData = [
     ]
   }
 ]
-
-export const libraryNavData = [
-  {
-    title: 'Assets',
-    path: '/assets/carbon-charts/assets'
-  },
-  {
-    title: 'Design kits',
-    path: ''
-  },
-  {
-    title: 'Pages...',
-    items: [
-      {
-        title: 'Sub pages...',
-        items: [
-          {
-            title: 'Sub page...',
-            path: '/'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    title: 'Versions',
-    path: ''
-  }
-]

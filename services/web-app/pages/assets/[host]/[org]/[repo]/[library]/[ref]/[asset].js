@@ -25,7 +25,6 @@ import PageNav from '@/components/page-nav'
 import PageTabs from '@/components/page-tabs'
 import StatusIcon from '@/components/status-icon'
 import { framework } from '@/data/framework'
-import { assetsNavData } from '@/data/nav-data'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
 import { type } from '@/data/type'
@@ -38,13 +37,14 @@ import { getSlug } from '@/utils/slug'
 import styles from './[asset].module.scss'
 
 const Asset = ({ libraryData }) => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
   const router = useRouter()
   const contentRef = useRef(null)
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData()
+    setSecondaryNavData()
+  }, [setPrimaryNavData, setSecondaryNavData])
 
   if (router.isFallback) {
     return (

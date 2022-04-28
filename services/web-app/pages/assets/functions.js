@@ -17,7 +17,7 @@ import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 
 const Functions = ({ librariesData }) => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const { function: func } = type
 
@@ -26,8 +26,9 @@ const Functions = ({ librariesData }) => {
   }
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+    setSecondaryNavData()
+  }, [setPrimaryNavData, setSecondaryNavData])
 
   return (
     <>

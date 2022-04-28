@@ -8,6 +8,7 @@
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/motion' as motion;
 
 .body {
   flex-grow: 1;
@@ -50,16 +51,35 @@
   }
 }
 
-.side-nav-container {
+.side-nav {
   @include breakpoint.breakpoint(lg) {
     position: fixed;
     z-index: 3;
     top: 0;
     left: 0;
     overflow: hidden;
-    width: 256px;
+    width: 16rem;
     height: 100%;
+    border-right: 1px solid theme.$border-subtle-00;
   }
+}
+
+.side-nav-slide {
+  display: flex;
+  width: 32rem;
+  height: 100%;
+  transform: translateX(0);
+  transition: transform motion.$duration-moderate-01 motion.motion(entrance, productive);
+
+  &--secondary {
+    transform: translateX(-16rem);
+  }
+}
+
+.side-nav-item {
+  // override carbon side nav position fixed
+  position: relative;
+  flex: 1;
 }
 
 .column-content {

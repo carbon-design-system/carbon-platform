@@ -11,13 +11,6 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
 
-.library-side-nav {
-  @include breakpoint.breakpoint(lg) {
-    left: 256px;
-    transform: translateX(0);
-  }
-}
-
 // override carbon ghost button styles
 .back {
   display: block;
@@ -44,7 +37,7 @@
   }
 }
 
-// Specificity needed to overide Carbon button styles
+// specificity needed to overide carbon button styles
 .back:not([disabled]) .back-icon {
   position: relative;
   // visually center align icon with text
@@ -53,7 +46,7 @@
   fill: currentColor;
 }
 
-.nav-heading {
+.heading {
   @include type.type-style('label-01');
 
   height: spacing.$spacing-11;
@@ -63,7 +56,7 @@
   color: theme.$text-secondary;
 }
 
-.nav-heading-selected {
+.heading--selected {
   position: relative;
   background-color: theme.$background-selected;
   color: theme.$text-primary;
@@ -81,7 +74,7 @@
 }
 
 // future styles when we add heading link
-.nav-heading-link {
+.heading-link {
   text-decoration: none;
 
   &:hover {
@@ -96,34 +89,5 @@
   &:focus {
     outline: 2px solid theme.$focus;
     outline-offset: -2px;
-  }
-}
-
-// slide in/out animation
-@include breakpoint.breakpoint(lg) {
-  .library-nav-in {
-    position: absolute;
-    z-index: 3;
-    animation: slide-left motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
-    transform: translateX(0);
-  }
-
-  .library-nav-out {
-    position: absolute;
-    z-index: 3;
-    animation: slide-right motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
-    transform: translateX(-256px);
-  }
-
-  @keyframes slide-right {
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slide-left {
-    100% {
-      transform: translateX(-256px);
-    }
   }
 }

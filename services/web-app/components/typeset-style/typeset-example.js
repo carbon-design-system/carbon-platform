@@ -38,7 +38,6 @@ const TypesetExample = (props) => (
       const getCurrentCompoundStylesForBreakpoint = (breakpointName) => {
         const typeKeys = Object.keys(breakpoints)
         const typeStylesUntilCurrentBreakpoint = []
-        // eslint-disable-next-line no-restricted-syntax
         for (const item of typeKeys) {
           typeStylesUntilCurrentBreakpoint.push(props.typeScale[type.key][item])
           if (item === breakpointName) {
@@ -92,7 +91,6 @@ const TypesetExample = (props) => (
         ]
           .toString()
           .replace('0.', '.')}rem`,
-        // eslint-disable-next-line no-useless-concat
         lineHeight: `${`${calculateFluidLineHeight('line-height')}px / `}${
           currentBreakpointSpecs['line-height']
         }rem`,

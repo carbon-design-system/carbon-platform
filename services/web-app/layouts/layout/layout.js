@@ -9,6 +9,7 @@ import {
   Grid,
   Header,
   HeaderContainer,
+  HeaderMenuButton,
   HeaderMenuItem,
   HeaderNavigation,
   SkipToContent,
@@ -126,6 +127,7 @@ const Layout = ({ children }) => {
   const router = useRouter()
   const { showSideNav } = useContext(LayoutContext)
   const isLg = useMatchMedia(mediaQueries.lg)
+  const [isSideNavExpanded, toggleSideNavExpanded] = useState(false)
 
   // For use with 100vw widths to account for the scrollbar width, e.g. instead of `width: 100vw;`
   // use `width: calc(100vw - var(--scrollbar-width));`.
@@ -138,6 +140,10 @@ const Layout = ({ children }) => {
     }
   }, [])
 
+  const onClickSideNavExpand = () => {
+    toggleSideNavExpanded(!isSideNavExpanded)
+  }
+
   return (
     <HeaderContainer
       render={() => (
@@ -145,6 +151,11 @@ const Layout = ({ children }) => {
           <Theme theme="g100">
             <Header aria-label="Carbon Design System" className={styles.header}>
               <SkipToContent />
+              <HeaderMenuButton
+                aria-label="Open menu"
+                onClick={onClickSideNavExpand}
+                isActive={isSideNavExpanded}
+              />
               <div className={styles['header-name']}>
                 <Link href="/">
                   <a className="cds--header__name">Carbon Design System</a>

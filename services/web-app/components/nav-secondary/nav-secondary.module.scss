@@ -55,27 +55,6 @@
   border-top: 1px solid theme.$border-subtle;
   border-bottom: 1px solid theme.$border-subtle;
   color: theme.$text-secondary;
-}
-
-.heading--selected {
-  position: relative;
-  background-color: theme.$background-selected;
-  color: theme.$text-primary;
-
-  &::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: spacing.$spacing-02;
-    height: 100%;
-    background-color: theme.$border-interactive;
-    content: '';
-  }
-}
-
-// future styles when we add heading link
-.heading-link {
   text-decoration: none;
 
   &:hover {
@@ -91,4 +70,25 @@
     outline: 2px solid theme.$focus;
     outline-offset: -2px;
   }
+}
+
+.heading--active {
+  position: relative;
+  background-color: theme.$background-selected;
+  color: theme.$text-primary;
+
+  &::after {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    display: block;
+    width: spacing.$spacing-02;
+    height: calc(100% + 2px);
+    background-color: theme.$border-interactive;
+    content: '';
+  }
+}
+
+.heading-item {
+  display: block;
 }

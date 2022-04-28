@@ -20,50 +20,21 @@ import PageHeader from '@/components/page-header'
 import { homeNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
-import { getLibraryData } from '@/lib/github'
+import { getLibraryData, getLibraryNavData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { getLicense } from '@/utils/schema'
 
 import styles from './index.module.scss'
 
-const libraryNavData = [
-  {
-    title: 'Assets',
-    path: '/libraries/carbon-charts/assets'
-  },
-  {
-    title: 'Design kits',
-    path: '/'
-  },
-  {
-    title: 'Pages...',
-    items: [
-      {
-        title: 'Sub pages...',
-        items: [
-          {
-            title: 'Sub page...',
-            path: '/'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    title: 'Versions',
-    path: '/'
-  }
-]
-
-const Library = ({ libraryData }) => {
+const Library = ({ libraryData, navData }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const router = useRouter()
 
   useEffect(() => {
     setPrimaryNavData(homeNavData)
-    setSecondaryNavData(libraryNavData)
-  }, [setPrimaryNavData, setSecondaryNavData])
+    setSecondaryNavData(navData)
+  }, [navData, setPrimaryNavData, setSecondaryNavData])
 
   if (router.isFallback) {
     return (
@@ -178,9 +149,12 @@ export const getServerSideProps = async ({ params }) => {
     }
   }
 
+  const navData = getLibraryNavData(params, libraryData)
+
   return {
     props: {
       libraryData,
+      navData,
       params
     }
   }

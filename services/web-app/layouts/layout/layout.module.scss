@@ -64,7 +64,7 @@
       position: absolute;
       z-index: 1;
       top: 0;
-      right: 0;
+      right: -1px;
       width: 1px;
       height: 100%;
       background: theme.$border-subtle-00;
@@ -80,8 +80,6 @@
 }
 
 .side-nav-slide {
-  position: relative;
-  z-index: 1;
   display: flex;
   width: 32rem;
   height: 100%;

@@ -79,6 +79,7 @@ const nextConfig = withMDX({
   async redirects() {
     return [
       {
+        // ensure every library route has a ref with value "latest" if not specified
         source: '/libraries/:host/:org/:repo/:library',
         destination: '/libraries/:host/:org/:repo/:library/latest',
         permanent: false
@@ -92,16 +93,6 @@ const nextConfig = withMDX({
       rewrites.push({
         source: `/libraries/${slug}`,
         destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/latest`
-      })
-
-      rewrites.push({
-        source: `/libraries/${slug}/assets`,
-        destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/latest/assets`
-      })
-
-      rewrites.push({
-        source: `/libraries/${slug}/:ref*/assets`,
-        destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/assets`
       })
 
       rewrites.push({

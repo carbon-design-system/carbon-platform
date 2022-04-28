@@ -33,42 +33,13 @@ import { framework } from '@/data/framework'
 import { homeNavData } from '@/data/nav-data'
 import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
 import { LayoutContext } from '@/layouts/layout'
-import { getLibraryData } from '@/lib/github'
+import { getLibraryData, getLibraryNavData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { assetSortComparator } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './index.module.scss'
-
-const libraryNavData = [
-  {
-    title: 'Assets',
-    path: '/libraries/carbon-charts/assets'
-  },
-  {
-    title: 'Design kits',
-    path: '/'
-  },
-  {
-    title: 'Pages...',
-    items: [
-      {
-        title: 'Sub pages...',
-        items: [
-          {
-            title: 'Sub page...',
-            path: '/'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    title: 'Versions',
-    path: '/'
-  }
-]
 
 const headerData = [
   {
@@ -93,7 +64,7 @@ const headerData = [
   }
 ]
 
-const LibrayAssets = ({ libraryData, params }) => {
+const Assets = ({ libraryData, navData, params }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
   const [sort, setSort] = useState(ALPHABETICAL_ORDER)
@@ -101,8 +72,8 @@ const LibrayAssets = ({ libraryData, params }) => {
 
   useEffect(() => {
     setPrimaryNavData(homeNavData)
-    setSecondaryNavData(libraryNavData)
-  }, [setPrimaryNavData, setSecondaryNavData])
+    setSecondaryNavData(navData)
+  }, [navData, setPrimaryNavData, setSecondaryNavData])
 
   if (router.isFallback) {
     return (
@@ -159,16 +130,11 @@ const LibrayAssets = ({ libraryData, params }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <Grid className={styles['library-assets-container']}>
+      <Grid>
         <Column sm={4} md={8} lg={12}>
           <PageHeader title={seo.title} />
         </Column>
-        <Column sm={4} md={8} lg={12}>
-          <Grid>
-            <Column sm={4} md={8} lg={8}>
-              <h2 className={styles.subheading}>{description}</h2>
-            </Column>
-          </Grid>
+        <Column sm={4} md={8} lg={12} className={styles.container}>
           <Grid condensed={!isLg} narrow={isLg}>
             <Column className={styles['sort-column']} sm={4} md={4} lg={4}>
               <Dropdown
@@ -187,7 +153,7 @@ const LibrayAssets = ({ libraryData, params }) => {
               />
             </Column>
           </Grid>
-          <Grid condensed={!isLg} narrow={isLg} className={styles.container}>
+          <Grid condensed={!isLg} narrow={isLg}>
             <Column sm={4} md={8} lg={12}>
               <DataTable rows={assets} headers={headerData}>
                 {({ rows, headers, getHeaderProps, getTableProps }) => (
@@ -244,7 +210,7 @@ const LibrayAssets = ({ libraryData, params }) => {
   )
 }
 
-LibrayAssets.propTypes = {
+Assets.propTypes = {
   libraryData: libraryPropTypes,
   params: paramsPropTypes
 }
@@ -258,12 +224,15 @@ export const getServerSideProps = async ({ params }) => {
     }
   }
 
+  const navData = getLibraryNavData(params, libraryData)
+
   return {
     props: {
       libraryData,
+      navData,
       params
     }
   }
 }
 
-export default LibrayAssets
+export default Assets

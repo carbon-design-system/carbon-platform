@@ -225,6 +225,60 @@ export const getLibraryData = async (params = {}) => {
 }
 
 /**
+ * Generate and return the nav data for a library.
+ * @param {import('../typedefs').Params} params
+ * @param {import('../typedefs').Library} libraryData
+ * @returns {import('../typedefs').LibraryNavData}
+ */
+export const getLibraryNavData = (params, libraryData) => {
+  if (isEmpty(libraryData)) return {}
+
+  return {
+    back: {
+      title: 'Libraries',
+      path: '/libraries'
+    },
+    headings: [
+      libraryData?.content?.name ?? 'Library',
+      `v${libraryData?.content?.version ?? 'Version'}`
+    ],
+    items: [
+      {
+        title: 'Assets',
+        path: `/libraries/${params.library}/${params.ref}/assets`
+      },
+      {
+        title: 'Design kits',
+        path: `/libraries/${params.library}/${params.ref}/design-kits`
+      },
+      {
+        title: 'Tree node...',
+        items: [
+          {
+            title: 'Tree sub node...',
+            items: [
+              {
+                title: 'A page...',
+                path: `/libraries/${params.library}/${params.ref}/pages/a-page`
+              },
+              {
+                title: 'Another page...',
+                path: `/libraries/${params.library}/${params.ref}/pages/another-page`
+              }
+            ]
+          }
+        ]
+      },
+      {
+        title: 'Versions',
+        path: `/libraries/${params.library}/${params.ref}/versions`
+      }
+    ],
+    path: `/libraries/${params.library}/${params.ref}`
+  }
+}
+
+/**
  * If the params map to a valid library in the allowlist, get the default branch if there isn't a
  * specified ref, then recursively get all asset metadata files. Find the files that are in the
  * library's subdirectory and then fetch the contents for each asset metadata file.

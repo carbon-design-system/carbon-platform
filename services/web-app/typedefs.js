@@ -53,6 +53,13 @@
  */
 
 /**
+ * @typedef {object} LibraryNavData
+ * @property {object} back - Has `title` and `path` keys
+ * @property {string[]} headings - Library name followed by version
+ * @property {object[]} items - Nav item objects that have `title` and `path` or `items`
+ */
+
+/**
  * @typedef {object} AssetContent
  * @property {string} description - One-two sentence description
  * @property {string} externalDocsUrl - Absolute URL to externally-hosted documentation

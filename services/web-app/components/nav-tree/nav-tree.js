@@ -5,29 +5,30 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { unstable_TreeNode as TreeNode, unstable_TreeView as TreeView } from '@carbon/react'
+import { isEmpty } from 'lodash'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
+import slugify from 'slugify'
 
 import styles from './nav-tree.module.scss'
 
-const NavTree = ({ activeItem, items = [], label }) => {
-  const nodes = items
+const NavTree = ({ activeItem, items: navItems = [], label: navLabel }) => {
   const router = useRouter()
-  const toggle = function () {
-    return null
-  }
 
-  function renderTree({ nodes }) {
+  if (isEmpty(navItems)) return null
+
+  const renderTree = ({ nodes }) => {
     if (!nodes) {
       return
     }
     return nodes.map(({ items, label, value, id, key, onClick, onToggle, ...nodeProps }) => (
       <TreeNode
         label={nodeProps.title}
-        value={nodeProps.title}
-        id={nodeProps.title.toLowerCase().replace(/\s/g, '')}
+        id={nodeProps.path || slugify(nodeProps.title, { lower: true })}
         key={nodeProps.title}
-        onToggle={toggle}
+        onToggle={() => {
+          return null
+        }}
         onClick={() => nodeProps.path && router.push(nodeProps.path)}
         {...nodeProps}
       >
@@ -39,12 +40,12 @@ const NavTree = ({ activeItem, items = [], label }) => {
   return (
     <TreeView
       className={styles.container}
-      label={label}
+      label={navLabel}
       hideLabel
       active={activeItem}
       selected={[activeItem]}
     >
-      {renderTree({ nodes })}
+      {renderTree({ nodes: navItems })}
     </TreeView>
   )
 }
@@ -53,6 +54,7 @@ NavTree.propTypes = {
   activeItem: PropTypes.string,
   items: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       path: PropTypes.string
     })

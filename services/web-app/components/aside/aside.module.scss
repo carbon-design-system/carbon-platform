@@ -17,6 +17,7 @@
   top: -(spacing.$spacing-04);
   display: none;
   padding-top: spacing.$spacing-04;
+  color: theme.$text-primary;
 
   @include breakpoint.breakpoint('md') {
     display: block;

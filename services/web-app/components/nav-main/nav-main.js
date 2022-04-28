@@ -35,25 +35,26 @@ const NavMain = ({ items = [] }) => {
     >
       <SideNavItems>
         <HeaderSideNavItems>
-          {items.map((data, i) => (
-            <>
-              {data.path && (
+          {items.map((data, i) => {
+            if (data.path) {
+              return (
                 <SideNavLink
                   element={NextLink}
                   href={data.path}
                   key={i}
-                  tabIndex={librarySideNav && '-1'}
+                  tabIndex={librarySideNav ? '-1' : 0}
                 >
                   {data.title}
                 </SideNavLink>
-              )}
-              {!data.path && (
+              )
+            } else {
+              return (
                 <SideNavLink tabIndex="-1" key={i} className={styles['side-nav-disabled']}>
                   {data.title}
                 </SideNavLink>
-              )}
-            </>
-          ))}
+              )
+            }
+          })}
         </HeaderSideNavItems>
         {navData.map((data, i) => {
           if (data.path && data.title) {
@@ -63,7 +64,7 @@ const NavMain = ({ items = [] }) => {
                 href={data.path}
                 isActive={router.pathname === data.path}
                 key={i}
-                tabIndex={librarySideNav && '-1'}
+                tabIndex={librarySideNav ? '-1' : 0}
               >
                 {data.title}
               </SideNavLink>
@@ -79,7 +80,7 @@ const NavMain = ({ items = [] }) => {
                     href={item.path}
                     isActive={router.pathname.startsWith(item.path)}
                     key={j}
-                    tabIndex={librarySideNav && '-1'}
+                    tabIndex={librarySideNav ? '-1' : 0}
                   >
                     {item.title}
                   </SideNavLink>

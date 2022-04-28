@@ -32,11 +32,10 @@ import { LayoutContext } from '@/layouts/layout'
 import { getAssetIssueCount, getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { getAssetType, getTagsList } from '@/utils/schema'
-import { getSlug } from '@/utils/slug'
 
 import styles from './[asset].module.scss'
 
-const Asset = ({ libraryData }) => {
+const Asset = ({ libraryData, params }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
   const router = useRouter()
   const contentRef = useRef(null)
@@ -71,7 +70,8 @@ const Asset = ({ libraryData }) => {
     }
   ]
 
-  const libraryPath = `/libraries/${getSlug(libraryData.content)}`
+  const libraryPath = `/libraries/${params.library}/${params.ref}`
+  const designKitsPath = libraryPath + '/design-kits'
 
   const seo = {
     title: name,
@@ -227,8 +227,13 @@ const Asset = ({ libraryData }) => {
                         {getTagsList(assetData).join(', ') || '–'}
                       </dd>
                     </Column>
-                    <Button className={styles['kits-button']}>
-                      Coming soon...
+                    <Button
+                      className={styles['kits-button']}
+                      onClick={() => {
+                        router.push(designKitsPath)
+                      }}
+                    >
+                      View design kits
                       <ArrowRight size={16} />
                     </Button>
                   </Grid>

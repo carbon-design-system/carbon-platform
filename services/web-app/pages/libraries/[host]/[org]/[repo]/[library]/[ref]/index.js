@@ -26,7 +26,7 @@ import { getLicense } from '@/utils/schema'
 
 import styles from './index.module.scss'
 
-const Library = ({ libraryData, navData }) => {
+const Library = ({ libraryData, navData, params }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const router = useRouter()
@@ -57,6 +57,8 @@ const Library = ({ libraryData, navData }) => {
 
   const { sponsor } = libraryData.params
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
+
+  const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
 
   let externalDocsLink
   if (libraryData.content.externalDocsUrl) {
@@ -121,7 +123,12 @@ const Library = ({ libraryData, navData }) => {
                       />
                     </dd>
                   </Column>
-                  <Button className={styles['versions-button']}>
+                  <Button
+                    className={styles['versions-button']}
+                    onClick={() => {
+                      router.push(assetsPath)
+                    }}
+                  >
                     View assets
                     <ArrowRight size={16} />
                   </Button>

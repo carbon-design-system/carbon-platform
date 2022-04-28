@@ -34,7 +34,7 @@ const CatalogList = ({
   return (
     <Grid
       as="ul"
-      className={clsx(styles.container, isLgGrid && styles.containerGrid)}
+      className={clsx(styles.container, isLgGrid && styles['container--grid'])}
       condensed={!isLg}
       narrow={isLg}
     >
@@ -48,7 +48,12 @@ const CatalogList = ({
         />
       ))}
       {(!renderAssets || renderAssets.length === 0) && (
-        <Column className={clsx(styles.copy, isLgGrid && styles.copyGrid)} sm={4} md={8} lg={12}>
+        <Column
+          className={clsx(styles.copy, isLgGrid && styles['copy--grid'])}
+          sm={4}
+          md={8}
+          lg={12}
+        >
           <h2 className={styles.heading}>No results found</h2>
           <p className={styles.paragraph}>
             {

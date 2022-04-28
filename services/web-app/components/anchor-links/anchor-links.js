@@ -12,13 +12,21 @@ import React from 'react'
 
 import styles from './anchor-links.module.scss'
 
+/**
+ * The `<AnchorLinks>` and `<AnchorLink>` components are used together to display a list of anchor
+ * links for navigation within the page. Use these to link to `<h2>` or `<h3>` anywhere within your
+ * page. As long as the anchor link text and header text matches the link will work.
+ *
+ * For most pages, we recommend starting with a `PageDescription` followed by `AnchorLinks` if the
+ * content is long enough.
+ */
 export default class AnchorLinks extends React.Component {
   render() {
     const { children, small, className } = this.props
     const isColumn = React.Children.count(children) > 6
     const classNames = clsx(className, {
-      [styles.listSmall]: small,
-      [styles.multipleColumns]: isColumn
+      [styles['list--small']]: small,
+      [styles['multiple-columns']]: isColumn
     })
 
     return (
@@ -36,7 +44,16 @@ export default class AnchorLinks extends React.Component {
 }
 
 AnchorLinks.propTypes = {
+  /**
+   * `<AnchorLink>` components.
+   */
   children: PropTypes.node.isRequired,
+  /**
+   * Optional class name on the `ul`.
+   */
   className: PropTypes.string,
+  /**
+   * Display small font size.
+   */
   small: PropTypes.bool
 }

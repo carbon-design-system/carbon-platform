@@ -19,10 +19,10 @@ const StatusIcon = ({ className, status }) => {
   if (!Icon) return null
 
   const stylesIcon = clsx(styles.icon, className, {
-    [styles.iconDraft]: status === 'draft',
-    [styles.iconExperimental]: status === 'experimental',
-    [styles.iconStable]: status === 'stable',
-    [styles.iconDeprecated]: status === 'deprecated'
+    [styles['icon--draft']]: status === 'draft',
+    [styles['icon--experimental']]: status === 'experimental',
+    [styles['icon--stable']]: status === 'stable',
+    [styles['icon--deprecated']]: status === 'deprecated'
   })
 
   return (

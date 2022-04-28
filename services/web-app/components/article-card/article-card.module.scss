@@ -17,6 +17,10 @@
   &:hover {
     background: theme.$layer-hover-01;
   }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 //overide carbon tile, custom styles for article card

@@ -5,29 +5,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Layout, { LayoutProvider } from '@/layouts/layout'
 import FourOhFour from '@/pages/404.js'
+
+import { pageConfig, PageLayout } from '../../.storybook/layout'
 
 const stories = {
   title: 'Platform/Pages/404',
   component: FourOhFour,
-  parameters: {
-    options: { showPanel: false },
-    previewTabs: {
-      'storybook/docs/panel': { hidden: true }
-    },
-    viewMode: 'canvas'
-  }
+  ...pageConfig
 }
 
 export default stories
 
 const Template = (args) => (
-  <LayoutProvider {...args}>
-    <Layout>
-      <FourOhFour />
-    </Layout>
-  </LayoutProvider>
+  <PageLayout args={args}>
+    <FourOhFour />
+  </PageLayout>
 )
 
 export const Default = Template.bind({})

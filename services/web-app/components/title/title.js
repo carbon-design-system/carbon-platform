@@ -13,6 +13,11 @@ import markdownStyles from '@/components/markdown/markdown.module.scss'
 
 import styles from './title.module.scss'
 
+/**
+ * The `<Title>` component is used to provide a title to a subsequent component
+ * (table, image, video, code block). The Title should be used in favor of other
+ * techniques for bolded text (h4s) to preserve page structure and heading hierarchy.
+ */
 const Title = ({ children, className }) => (
   <Grid className={clsx(className, styles.title)}>
     <Column sm={4} md={6} lg={8}>
@@ -22,6 +27,9 @@ const Title = ({ children, className }) => (
 )
 
 Title.propTypes = {
+  /**
+   * Optional class name on the title.
+   */
   className: PropTypes.string
 }
 export default Title

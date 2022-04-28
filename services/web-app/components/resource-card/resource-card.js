@@ -15,6 +15,10 @@ import React from 'react'
 import styles from './resource-card.module.scss'
 import groupStyles from './resource-card-group.module.scss'
 
+/**
+ * The `<ResourceCard>` component should be wrapped with `<Grid>` and `<Column>` components,
+ * with a className of `resource-card-group` to allow correct border placement between cards.
+ */
 export default class ResourceCard extends React.Component {
   render() {
     const {
@@ -100,22 +104,25 @@ export default class ResourceCard extends React.Component {
 
 ResourceCard.propTypes = {
   /**
-   * Action icon, default is launch, options are Launch, ArrowRight, Download, Error
+   * Action icon
    */
-  actionIcon: PropTypes.string,
+  actionIcon: PropTypes.oneOf(['launch', 'arrowRight', 'download', 'email', 'calendar', 'error']),
   /**
-   * Set card aspect ratio, default is 2:1, options are 1:1, 16:9, 4:3
+   * Set card aspect ratio
    */
-  aspectRatio: PropTypes.string,
+  aspectRatio: PropTypes.oneOf(['2:1', '1:1', '16:9', '4:3']),
+  /**
+   * Add an image to display in lower left
+   */
   children: PropTypes.node,
   /**
-   * Specify a custom class
+   * Optional class name
    */
   className: PropTypes.string,
   /**
    * set to "dark" for dark background card
    */
-  color: PropTypes.string,
+  color: PropTypes.oneOf(['light', 'dark']),
 
   /**
    * Use for disabled card

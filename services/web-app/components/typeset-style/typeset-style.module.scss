@@ -139,12 +139,6 @@
   text-align: right;
 }
 
-.input {
-  width: 100%;
-  margin: 0;
-  margin-right: 20px;
-}
-
 .toggle-container {
   position: relative;
   z-index: 1;
@@ -339,10 +333,6 @@
 
 .sticky-container-visible {
   top: 4rem;
-}
-
-div[class*='PageHeader-module--page-header--shifted'] + div > div > .sticky-container-visible {
-  top: 3rem;
 }
 
 .sticky-container-hidden {

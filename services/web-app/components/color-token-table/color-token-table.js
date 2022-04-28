@@ -150,253 +150,255 @@ export default class ColorTokenTable extends React.Component {
     })
 
     return (
-      <div className={clsx(styles['color-token-table'], 'cds--row')}>
-        <StickyContainer navBar banner secondary={false}>
-          <ContentSwitcher className={themeSwitcherClasses} onChange={this.switchTheme}>
-            <Switch name="white" text={this.state.mobile ? 'Wte' : 'White'} />
-            <Switch name="g10" text={this.state.mobile ? 'G10' : 'Gray 10'} />
-            <Switch name="g90" text={this.state.mobile ? 'G90' : 'Gray 90'} />
-            <Switch name="g100" text={this.state.mobile ? 'G100' : 'Gray 100'} />
-          </ContentSwitcher>
-        </StickyContainer>
-        <section>
-          <H3>Background</H3>
+      <Grid condensed className={clsx(styles['color-token-table'])}>
+        <Column sm={4} md={8} lg={16}>
+          <StickyContainer navBar banner secondary={false}>
+            <ContentSwitcher className={themeSwitcherClasses} onChange={this.switchTheme}>
+              <Switch name="white" text={this.state.mobile ? 'Wte' : 'White'} />
+              <Switch name="g10" text={this.state.mobile ? 'G10' : 'Gray 10'} />
+              <Switch name="g90" text={this.state.mobile ? 'G90' : 'Gray 90'} />
+              <Switch name="g100" text={this.state.mobile ? 'G100' : 'Gray 100'} />
+            </ContentSwitcher>
+          </StickyContainer>
+          <section>
+            <H3>Background</H3>
 
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['background-tokens']).map((token, i) =>
-                    this.renderToken(token, colorTokens['background-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
+            <Grid condensed>
+              <Column sm={4} md={8} lg={16}>
+                <table className={tableStyles['page-table']}>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['background-tokens']).map((token, i) =>
+                      this.renderToken(token, colorTokens['background-tokens'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </Column>
+            </Grid>
 
-          <H3>Layer</H3>
+            <H3>Layer</H3>
 
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['layer-tokens']).map((token, i) =>
-                    this.renderToken(token, colorTokens['layer-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Layer accent</H3>
+            <Grid condensed>
+              <Column sm={4} md={8} lg={16}>
+                <table className={tableStyles['page-table']}>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['layer-tokens']).map((token, i) =>
+                      this.renderToken(token, colorTokens['layer-tokens'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </Column>
+            </Grid>
+            <H3>Layer accent</H3>
 
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['layer-accent-tokens']).map((token, i) =>
-                    this.renderToken(token, colorTokens['layer-accent-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
+            <Grid condensed>
+              <Column sm={4} md={8} lg={16}>
+                <table className={tableStyles['page-table']}>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['layer-accent-tokens']).map((token, i) =>
+                      this.renderToken(token, colorTokens['layer-accent-tokens'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </Column>
+            </Grid>
 
-          <H3>Field</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['field-tokens']).map((token, i) =>
-                    this.renderToken(token, colorTokens['field-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
+            <H3>Field</H3>
+            <Grid condensed>
+              <Column sm={4} md={8} lg={16}>
+                <table className={tableStyles['page-table']}>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['field-tokens']).map((token, i) =>
+                      this.renderToken(token, colorTokens['field-tokens'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </Column>
+            </Grid>
 
-          <H3>Border</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['border-tokens']).map((token, i) =>
-                    this.renderToken(token, colorTokens['border-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Text</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['text-tokens']).map((token, i) =>
-                    this.renderToken(token, colorTokens['text-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Link</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['link-tokens']).map((token, i) =>
-                    this.renderToken(token, colorTokens['link-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
+            <H3>Border</H3>
+            <Grid condensed>
+              <Column sm={4} md={8} lg={16}>
+                <table className={tableStyles['page-table']}>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['border-tokens']).map((token, i) =>
+                      this.renderToken(token, colorTokens['border-tokens'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </Column>
+            </Grid>
+            <H3>Text</H3>
+            <Grid condensed>
+              <Column sm={4} md={8} lg={16}>
+                <table className={tableStyles['page-table']}>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['text-tokens']).map((token, i) =>
+                      this.renderToken(token, colorTokens['text-tokens'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </Column>
+            </Grid>
+            <H3>Link</H3>
+            <Grid condensed>
+              <Column sm={4} md={8} lg={16}>
+                <table className={tableStyles['page-table']}>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['link-tokens']).map((token, i) =>
+                      this.renderToken(token, colorTokens['link-tokens'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </Column>
+            </Grid>
 
-          <H3>Icon</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['icon-tokens']).map((token, i) =>
-                    this.renderToken(token, colorTokens['icon-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Button</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['button-tokens']).map((token, i) =>
-                    this.renderToken(token, colorTokens['button-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Support</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['support-tokens']).map((token, i) =>
-                    this.renderToken(token, colorTokens['support-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Focus</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['focus-tokens']).map((token, i) =>
-                    this.renderToken(token, colorTokens['focus-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Miscellaneous</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens.miscellaneous).map((token, i) =>
-                    this.renderToken(token, colorTokens.miscellaneous[token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-        </section>
-      </div>
+            <H3>Icon</H3>
+            <Grid condensed>
+              <Column sm={4} md={8} lg={16}>
+                <table className={tableStyles['page-table']}>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['icon-tokens']).map((token, i) =>
+                      this.renderToken(token, colorTokens['icon-tokens'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </Column>
+            </Grid>
+            <H3>Button</H3>
+            <Grid condensed>
+              <Column sm={4} md={8} lg={16}>
+                <table className={tableStyles['page-table']}>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['button-tokens']).map((token, i) =>
+                      this.renderToken(token, colorTokens['button-tokens'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </Column>
+            </Grid>
+            <H3>Support</H3>
+            <Grid condensed>
+              <Column sm={4} md={8} lg={16}>
+                <table className={tableStyles['page-table']}>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['support-tokens']).map((token, i) =>
+                      this.renderToken(token, colorTokens['support-tokens'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </Column>
+            </Grid>
+            <H3>Focus</H3>
+            <Grid condensed>
+              <Column sm={4} md={8} lg={16}>
+                <table className={tableStyles['page-table']}>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['focus-tokens']).map((token, i) =>
+                      this.renderToken(token, colorTokens['focus-tokens'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </Column>
+            </Grid>
+            <H3>Miscellaneous</H3>
+            <Grid condensed>
+              <Column sm={4} md={8} lg={16}>
+                <table className={tableStyles['page-table']}>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens.miscellaneous).map((token, i) =>
+                      this.renderToken(token, colorTokens.miscellaneous[token], i)
+                    )}
+                  </tbody>
+                </table>
+              </Column>
+            </Grid>
+          </section>
+        </Column>
+      </Grid>
     )
   }
 }

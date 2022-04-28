@@ -32,15 +32,12 @@ const Template = (args) => (
       <ResourceCard
         subTitle="With subtitle"
         title="Title"
-        aspectRatio="2:1"
-        actionIcon="arrowRight"
         href="https://www.carbondesignsystem.com"
         {...args}
       ></ResourceCard>
     </Column>
     <Column lg={4}>
       <ResourceCard
-        subTitle="With subtitle"
         title="Title"
         aspectRatio="2:1"
         actionIcon="arrowRight"
@@ -52,8 +49,6 @@ const Template = (args) => (
       <ResourceCard
         subTitle="With subtitle"
         title="Title"
-        aspectRatio="2:1"
-        actionIcon="arrowRight"
         href="https://www.carbondesignsystem.com"
         {...args}
       ></ResourceCard>

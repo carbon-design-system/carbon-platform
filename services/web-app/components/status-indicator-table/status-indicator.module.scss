@@ -102,7 +102,7 @@
 
 .status-indicator-table-wrapper {
   margin-top: spacing.$spacing-06;
-  //Needed for Safari
+  // Needed for Safari
   // override carbon col widths
   @include breakpoint.breakpoint('md') {
     :global(.cds--col-md-1) {

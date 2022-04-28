@@ -99,11 +99,10 @@ const prodLibraries = {
   },
   // 'carbon-components-angular': {
   //   host: 'github.com',
-  //   org: 'andreancardona',
+  //   org: 'carbon-design-system',
   //   repo: 'carbon-components-angular',
   //   path: '/src',
-  //   group: carbonComponentsGroup,
-  //   ref: '514-index-carbon-angular'
+  //   group: carbonComponentsGroup
   // },
   // 'carbon-angular': {
   //   host: 'github.ibm.com',

@@ -6,8 +6,9 @@
  */
 
 const path = require('path')
+const withYaml = require('next-plugin-yaml')
 
-module.exports = {
+module.exports = withYaml({
   stories: ['../stories/**/*.stories.@(js|jsx|ts|tsx)'],
   /** Expose public folder to Storybook as static */
   staticDirs: ['../public'],
@@ -57,4 +58,4 @@ module.exports = {
 
     return config
   }
-}
+})

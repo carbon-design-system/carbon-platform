@@ -68,18 +68,13 @@
 }
 
 .ul {
-  /* remove hanging bullet */
+  /* override carbon remove hanging bullet */
   margin-left: spacing.$spacing-05;
 }
 
 .ol {
-  /*  remove hanging bullet */
+  /*  override carbon remove hanging bullet */
   margin-left: spacing.$spacing-06;
-}
-
-/* TODO: pull in nested list prop diredtly from core Carbon issue #309 */
-.list-item .list {
-  margin-left: spacing.$spacing-07;
 }
 
 /* Headings */

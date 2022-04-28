@@ -5,20 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/* stylelint-disable no-descending-specificity */
-
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/colors' as colors;
 @use '@carbon/react/scss/motion' as motion;
-// @use '@carbon/type';
 
+//TODO: figure out why this isn't generating classes
 @include type.type-classes();
 
 .example-container {
   margin-top: spacing.$spacing-05;
+  color: theme.$text-primary;
 }
 
 .typeset-example {
@@ -54,9 +53,10 @@
 .example-specs {
   @include type.type-style('body-compact-01');
 
-  padding: spacing.$spacing-05 spacing.$spacing-06;
+  padding: spacing.$spacing-05 0;
 
   @include breakpoint.breakpoint('md') {
+    padding: spacing.$spacing-05 spacing.$spacing-06;
     border-left: 1px solid theme.$border-subtle;
   }
 }
@@ -91,6 +91,7 @@
   margin: 0;
   background-color: transparent;
   border-radius: 0;
+  color: theme.$text-primary;
   text-transform: capitalize;
 
   &:hover {
@@ -109,7 +110,7 @@
   &:focus {
     position: relative;
     outline: 2px solid theme.$focus;
-    outline-offset: 0;
+    outline-offset: -2px;
   }
 }
 
@@ -131,31 +132,21 @@
   width: auto;
   box-sizing: content-box;
   align-items: center;
-  background-color: colors.$white-0;
+  background-color: theme.$layer-01;
+  color: theme.$text-primary;
 }
 
 .controls-sticky-stuck {
   box-shadow: 0 2px 6px 0 rgba(colors.$black-100, 0.2);
 
-  &::before,
-  &::after {
-    position: absolute;
-    width: 1rem;
-    height: 6rem;
-    background: colors.$gray-10;
-    content: '';
-
-    @include breakpoint.breakpoint('md') {
-      height: 4rem;
-    }
-  }
-
   &::before {
-    left: -2rem;
-  }
-
-  &::after {
-    right: -2rem;
+    position: absolute;
+    top: -1rem;
+    display: block;
+    width: calc(100% + 2px);
+    height: 1rem;
+    background: theme.$background;
+    content: '';
   }
 }
 
@@ -397,12 +388,12 @@
   }
 }
 
-div[class*='PageHeader-module--page-header--shifted'] + div > div > .sticky-container-visible {
-  top: 3rem;
+.sticky-container-visible {
+  top: 4rem;
 }
 
-.sticky-container-visible {
-  top: 6rem;
+div[class*='PageHeader-module--page-header--shifted'] + div > div > .sticky-container-visible {
+  top: 3rem;
 }
 
 .sticky-container-hidden {

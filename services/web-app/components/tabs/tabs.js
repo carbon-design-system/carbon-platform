@@ -27,6 +27,7 @@ const Select = ({ children, _id }) => {
     label: child.props.label,
     index
   }))
+
   return (
     <Dropdown
       size="xl"

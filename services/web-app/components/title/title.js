@@ -22,6 +22,7 @@ const Title = ({ children, className }) => (
 )
 
 Title.propTypes = {
+  children: PropTypes.node.isRequired,
   className: PropTypes.string
 }
 export default Title

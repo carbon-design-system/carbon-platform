@@ -8,7 +8,7 @@
 import { Grid } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React, { Children } from 'react'
+import { Children } from 'react'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 

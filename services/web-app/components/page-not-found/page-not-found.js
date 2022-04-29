@@ -14,14 +14,13 @@ import { isValidIbmEmail } from '@/utils/string'
 import styles from './page-not-found.module.scss'
 
 export const PageNotFound = () => {
-  const [isAuthorized, setisAuthorized] = useState(false)
+  const [isAuthorized, setIsAuthorized] = useState(false)
   const { isAuthenticated, loading, user } = useAuth()
 
   useEffect(() => {
     if (!loading && isAuthenticated && isValidIbmEmail(user?.email ?? '')) {
-      setisAuthorized(true)
+      setIsAuthorized(true)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, isAuthenticated, user])
 
   return (

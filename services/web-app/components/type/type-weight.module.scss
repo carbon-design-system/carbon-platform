@@ -40,7 +40,7 @@
 }
 
 .serif {
-  @include type.type-style('fluid-quotation-01');
+  @include type.type-style('fluid-quotation-01', true);
 }
 
 .mono {

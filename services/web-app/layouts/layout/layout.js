@@ -56,25 +56,14 @@ const SECONDARY_NAV_SLIDE_PATHS = ['/libraries/[host]/[org]/[repo]/[library]/[re
 export const LayoutContext = createContext()
 
 export const LayoutProvider = ({ children }) => {
-  const router = useRouter()
   const [primaryNavData, setPrimaryNavData] = useState([])
   const [secondaryNavData, setSecondaryNavData] = useState([])
-  const [showSideNav, setShowSideNav] = useState(SIDE_NAV_PATHS.includes(router.pathname))
-
-  useEffect(() => {
-    setShowSideNav(
-      !isEmpty(primaryNavData) ||
-        !isEmpty(secondaryNavData) ||
-        SIDE_NAV_PATHS.includes(router.pathname)
-    )
-  }, [primaryNavData, router.pathname, secondaryNavData])
 
   const value = {
     primaryNavData,
     setPrimaryNavData,
     secondaryNavData,
-    setSecondaryNavData,
-    showSideNav
+    setSecondaryNavData
   }
 
   return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
@@ -128,9 +117,18 @@ const SideNav = () => {
 
 const Layout = ({ children }) => {
   const router = useRouter()
-  const { showSideNav } = useContext(LayoutContext)
+  const { primaryNavData, secondaryNavData } = useContext(LayoutContext)
   const isLg = useMatchMedia(mediaQueries.lg)
+  const [showSideNav, setShowSideNav] = useState(SIDE_NAV_PATHS.includes(router.pathname))
   const [isSideNavExpanded, toggleSideNavExpanded] = useState(false)
+
+  useEffect(() => {
+    setShowSideNav(
+      !isEmpty(primaryNavData) ||
+        !isEmpty(secondaryNavData) ||
+        SIDE_NAV_PATHS.includes(router.pathname)
+    )
+  }, [primaryNavData, router.pathname, secondaryNavData])
 
   // For use with 100vw widths to account for the scrollbar width, e.g. instead of `width: 100vw;`
   // use `width: calc(100vw - var(--scrollbar-width));`.

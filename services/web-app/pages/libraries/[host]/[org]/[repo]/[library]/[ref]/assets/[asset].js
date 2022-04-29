@@ -66,6 +66,10 @@ const Asset = ({ libraryData, params }) => {
   const breadcrumbItems = [
     {
       name: libraryData?.content?.name ?? 'Library',
+      path: libraryPath
+    },
+    {
+      name: 'Assets',
       path: libraryPath + '/assets'
     },
     {

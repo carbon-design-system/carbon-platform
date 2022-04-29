@@ -14,8 +14,10 @@
 }
 
 .sponsor-icon {
+  width: spacing.$spacing-10;
+  height: spacing.$spacing-10;
   @include breakpoint.breakpoint-down(md) {
-    right: spacing.$spacing-04;
+    right: spacing.$spacing-05;
     left: auto;
   }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>64-carbon</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+        <g id="64-carbon" transform="translate(8.000000, 2.000000)" stroke="#000000" stroke-width="1.44">
+            <polygon id="Path" points="20 14 0 25.5 0 48.5 20 60 40 48.5 40 25.5"></polygon>
+            <polyline id="Path" points="48 34 48 11.5 28 0 8.52 11.26"></polyline>
+        </g>
+    </g>
+</svg>

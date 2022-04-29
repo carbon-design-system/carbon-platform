@@ -21,7 +21,7 @@ const useSticky = () => {
 
   useEffect(() => {
     // Observe when ref enters or leaves sticky state
-    // eslint-disable-next-line max-len
+    // eslint-disable-next-line max-len -- do not split this url
     // rAF https://stackoverflow.com/questions/41740082/scroll-events-requestanimationframe-vs-requestidlecallback-vs-passive-event-lis
     function observe() {
       const refPageOffset = stickyRef.current.getBoundingClientRect().top

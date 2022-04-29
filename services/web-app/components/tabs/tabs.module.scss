@@ -70,6 +70,10 @@
   &:hover {
     background-color: theme.$background-hover;
   }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 .tab[aria-selected='true'] {

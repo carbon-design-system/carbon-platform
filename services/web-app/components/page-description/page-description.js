@@ -20,6 +20,7 @@ const PageDescription = ({ children, className, ...rest }) => (
 )
 
 PageDescription.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string
 }
 

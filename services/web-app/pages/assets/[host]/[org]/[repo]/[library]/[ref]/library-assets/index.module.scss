@@ -18,7 +18,7 @@
 
 .subheading {
   padding: (spacing.$spacing-11) spacing.$spacing-05 spacing.$spacing-11 0;
-  @include type.type-style('fluid-heading-03');
+  @include type.type-style('fluid-heading-03', true);
 
   @include breakpoint.breakpoint-down(md) {
     padding-bottom: (spacing.$spacing-08 + spacing.$spacing-05);

@@ -6,7 +6,7 @@
  */
 
 import PropTypes from 'prop-types'
-import React from 'react'
+import { Children } from 'react'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
@@ -14,7 +14,7 @@ const ArtDirection = ({ children }) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
 
-  const childrenArray = React.Children.toArray(children)
+  const childrenArray = Children.toArray(children)
 
   if ((!isMd && !isLg) || !childrenArray[1]) {
     return childrenArray[0]

@@ -247,7 +247,7 @@ class MessagingClient {
       Buffer.from(JSON.stringify(dataToSend)),
       {
         replyTo: this.replyQueue!.queue,
-        correlationId: correlationId
+        correlationId
       }
     )
 

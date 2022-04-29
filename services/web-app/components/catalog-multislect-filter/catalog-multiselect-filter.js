@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /*
  * Copyright IBM Corp. 2021, 2022
  *
@@ -105,7 +104,7 @@ const CatalogMultiselectFilter = ({
       </button>
       <PopoverContent className={styles.content} ref={contentRef}>
         {/* div wrapper addeed to receive focus */}
-        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- TODO: add role */}
         <div className={styles.wrapper} ref={popoverRef} tabIndex="0">
           <Column span={columns}>
             <Grid className={styles.grid} condensed>

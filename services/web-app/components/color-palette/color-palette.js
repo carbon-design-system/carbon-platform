@@ -7,7 +7,7 @@
 import { ContentSwitcher, Dropdown, Switch } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import {
   alertDark,

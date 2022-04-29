@@ -4,7 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-/* eslint-disable max-len */ // don't know what's up with this
 module.exports = {
   A: {
     'Action labels': {
@@ -401,7 +400,9 @@ module.exports = {
           'Not all actions, such as [Save](#save), can be undone. Compare [Redo](#redo), [Reset](#reset), and [Restore](#restore).'
       },
       Update: {
-        desc: 'Label for a button in a dialog or form for editing an object. The settings in the dialog are applied to the object when it is updated.',
+        desc:
+          'Label for a button in a dialog or form for editing an object. ' +
+          'The settings in the dialog are applied to the object when it is updated.',
         subtext: 'Compare [Edit](#edit).'
       },
       Upload: {

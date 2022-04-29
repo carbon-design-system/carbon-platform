@@ -27,6 +27,29 @@
 }
 
 // override carbon list item
+@media screen and (prefers-reduced-motion: reduce) {
+  .cds--list__item {
+    display: block;
+    width: 100%;
+    padding: 0;
+    list-style-type: none;
+    transition: none;
+
+    a {
+      @include type.type-style('body-compact-02');
+
+      display: block;
+
+      width: convert.rem(24px);
+      height: convert.rem(24px);
+      padding: convert.rem(1px) 0 0 0;
+      color: theme.$text-secondary;
+      text-align: center;
+      text-decoration: none;
+    }
+  }
+}
+
 .cds--list__item {
   display: block;
   width: 100%;

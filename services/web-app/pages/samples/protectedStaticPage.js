@@ -21,19 +21,20 @@ const ProtectedStaticPage = () => {
     }
   }, [loading, isAuthenticated])
 
-  // eslint-disable-next-line multiline-ternary
-  return loading ? null : (
-    // show page if user is authenticated and email is valid ibm email, else show 404 page
+  if (loading) {
+    return null
+  }
+
+  // show page if user is authenticated and email is valid ibm email, else show 404 page
+  return (
     <RequireAuth
       fallback={FourOhFour}
       isAuthorized={isAuthenticated && isValidIbmEmail(user?.email ?? '')}
     >
-      <>
-        Welcome to the Protected Page!
-        <div>User: {JSON.stringify(user ?? {})}</div>
-        <div>isAuthenticated: {isAuthenticated?.toString()}</div>
-        <div>isLoading: {loading?.toString()}</div>
-      </>
+      Welcome to the Protected Page!
+      <div>User: {JSON.stringify(user ?? {})}</div>
+      <div>isAuthenticated: {isAuthenticated?.toString()}</div>
+      <div>isLoading: {loading?.toString()}</div>
     </RequireAuth>
   )
 }

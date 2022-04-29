@@ -5,20 +5,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {
-  PauseOutline24,
-  PauseOutlineFilled24,
-  PlayOutline24,
-  PlayOutlineFilled24
+  PauseOutline,
+  PauseOutlineFilled,
+  PlayOutline,
+  PlayOutlineFilled
 } from '@carbon/icons-react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React, { useState } from 'react'
+import { Children, useState } from 'react'
 
 import * as styles from './gif-player.module.scss'
 
-const Pause = ({ hovering }) => (hovering ? <PauseOutlineFilled24 /> : <PauseOutline24 />)
+const Pause = ({ hovering }) =>
+  hovering ? <PauseOutlineFilled size={24} /> : <PauseOutline size={24} />
 
-const Play = ({ hovering }) => (hovering ? <PlayOutlineFilled24 /> : <PlayOutline24 />)
+const Play = ({ hovering }) =>
+  hovering ? <PlayOutlineFilled size={24} /> : <PlayOutline size={24} />
 
 const ToggleIcon = ({ paused, hovering }) =>
   paused ? <Play hovering={hovering} /> : <Pause hovering={hovering} />
@@ -48,7 +50,7 @@ const GifPlayer = ({ children, color, className, isInDialog }) => {
     [styles['gif-hidden']]: paused
   })
 
-  const childrenArray = React.Children.toArray(children)
+  const childrenArray = Children.toArray(children)
 
   const labelText = paused ? 'Toggleable animation paused' : 'Toggleable animation playing'
 

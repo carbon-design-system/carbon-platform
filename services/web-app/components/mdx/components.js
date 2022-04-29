@@ -11,6 +11,7 @@ import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
+import Code from '@/components/code'
 import ColorBlock from '@/components/color-block'
 import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
@@ -60,6 +61,7 @@ const components = {
   a: Link,
   blockquote: Blockquote,
   img: Image,
+  pre: Code,
   /* Gatsby theme components */
   Caption,
   PageDescription,

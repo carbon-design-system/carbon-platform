@@ -31,6 +31,10 @@
   svg {
     fill: theme.$link-primary;
   }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 .left-anchor {

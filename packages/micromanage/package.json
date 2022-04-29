@@ -26,6 +26,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "commander": "^9.1.0"
+    "commander": "^9.2.0"
   }
 }

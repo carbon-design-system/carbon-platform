@@ -4,15 +4,11 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const config = {
-  ...require('prettier-config-carbon'),
+module.exports = {
   bracketSameLine: false,
   printWidth: 100,
   semi: false,
-  trailingComma: 'none'
+  singleQuote: true,
+  trailingComma: 'none',
+  proseWrap: 'always'
 }
-
-// Delete deprecated option from upstream config
-delete config.jsxBracketSameLine
-
-module.exports = config

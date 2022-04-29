@@ -22,4 +22,7 @@ generated/
 .github/workflows/
 
 .history/
+
+# Web App
 services/web-app/public/data/
+!services/web-app/.storybook/

@@ -6,7 +6,7 @@
  */
 import metaData from '@carbon/icons/metadata.json'
 import { Column, Grid } from '@carbon/react'
-import { debounce, groupBy } from 'lodash-es'
+import { debounce, groupBy } from 'lodash'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 

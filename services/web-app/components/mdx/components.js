@@ -11,6 +11,7 @@ import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
+import Code from '@/components/code'
 import ColorPalette from '@/components/color-palette'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
@@ -59,6 +60,7 @@ const components = {
   a: Link,
   blockquote: Blockquote,
   img: Image,
+  pre: Code,
   /* Gatsby theme components */
   Caption,
   PageDescription,

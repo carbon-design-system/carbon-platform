@@ -18,6 +18,7 @@ const Preview = ({ title, ...props }) => (
 )
 
 Preview.propTypes = {
+  /** Provide the title for the iframe */
   title: Proptypes.string
 }
 

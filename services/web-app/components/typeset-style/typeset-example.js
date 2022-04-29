@@ -8,7 +8,6 @@ import { baseFontSize, breakpoints as carbonBreakpoints } from '@carbon/elements
 import { CodeSnippet, Column, Grid, Theme } from '@carbon/react'
 import classnames from 'classnames'
 import { findKey, values } from 'lodash'
-import React from 'react'
 
 import styles from './typeset-example.module.scss'
 

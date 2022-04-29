@@ -4,8 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React from 'react'
-
 import TypeSetStyle from '@/components/typeset-style'
 
 const stories = {
@@ -27,19 +25,19 @@ Body.args = {
   typesets: 'body'
 }
 
-export const fixedHeadings = Template.bind({})
-fixedHeadings.args = {
+export const FixedHeadings = Template.bind({})
+FixedHeadings.args = {
   typesets: 'fixedHeadings'
 }
 
-export const fluidHeadings = Template.bind({})
-fluidHeadings.args = {
+export const FluidHeadings = Template.bind({})
+FluidHeadings.args = {
   typesets: 'fluidHeadings',
   breakpointControls: true
 }
 
-export const fluidDisplay = Template.bind({})
-fluidDisplay.args = {
+export const FluidDisplay = Template.bind({})
+FluidDisplay.args = {
   typesets: 'fluidCallouts,fluidDisplay',
   breakpointControls: true
 }

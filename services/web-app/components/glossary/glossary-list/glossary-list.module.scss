@@ -9,7 +9,7 @@
 }
 
 .glossary-entry__main-heading {
-  @include type.type-style('fluid-display-02');
+  @include type.type-style('fluid-display-02', true);
 
   span {
     text-transform: lowercase;

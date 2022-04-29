@@ -38,7 +38,7 @@
 }
 
 .heading {
-  @include type.type-style('fluid-heading-04');
+  @include type.type-style('fluid-heading-04', true);
 }
 
 .paragraph {

@@ -17,6 +17,10 @@
   &:hover {
     background: theme.$layer-hover-01;
   }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 //overide carbon tile, custom styles for article card
@@ -51,7 +55,7 @@
   bottom: spacing.$spacing-05;
   left: spacing.$spacing-05;
   color: theme.$text-secondary;
-  @include type.type-style('caption-01');
+  @include type.type-style('label-01');
 }
 
 .icon-action {

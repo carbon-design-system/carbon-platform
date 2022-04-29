@@ -7,7 +7,7 @@
 import { ContentSwitcher, Dropdown, Switch } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import {
   alertDark,
@@ -29,17 +29,7 @@ import {
 } from '@/data/data-visualization/palettes'
 import { statusDark, statusExtendedColors, statusLight } from '@/data/status-indicators/palettes.js'
 
-import {
-  colorPaletteWrapper,
-  darkControls,
-  groupContainer,
-  groupControls,
-  groupOption,
-  paletteControls,
-  paletteSwitcher,
-  sequentialContainer,
-  sequentialControls
-} from './color-palette.module.scss'
+import styles from './color-palette.module.scss'
 import ColorPaletteColor from './color-palette-color'
 import PalettesContainer from './palettes-container'
 
@@ -179,18 +169,18 @@ const ColorPalette = ({ type, isMono, isDiverging, twoColumn, shouldShowControls
   const switcherTwo = type === 'sequential' ? 'Continuous' : 'Dark'
 
   return (
-    <div className={colorPaletteWrapper}>
+    <div className={styles['color-palette-wrapper']}>
       {shouldShowControls && (
         <div
-          className={clsx(paletteControls, {
-            [groupControls]: type === 'grouped',
-            [sequentialControls]: type === 'sequential',
-            [darkControls]: dark
+          className={clsx(styles['palette-controls'], {
+            [styles['group-controls']]: type === 'grouped',
+            [styles['sequential-controls']]: type === 'sequential',
+            [styles['dark-controls']]: dark
           })}
         >
           <ContentSwitcher
             onChange={handleKeyboard}
-            className={paletteSwitcher}
+            className={styles['palette-switcher']}
             selectionMode="automatic"
             selectedIndex={0}
           >
@@ -214,8 +204,8 @@ const ColorPalette = ({ type, isMono, isDiverging, twoColumn, shouldShowControls
       {type === 'grouped' && (
         <PalettesContainer dark={dark}>
           {colorGroup.map((i, index) => (
-            <div className={groupContainer} key={index}>
-              <div className={groupOption}>Option {index + 1}</div>
+            <div className={styles['group-container']} key={index}>
+              <div className={styles['group-option']}>Option {index + 1}</div>
               {i.map((j, jIndex) => (
                 <ColorPaletteColor
                   key={`${type}-${j.name}-${index}-${j.index}`}
@@ -246,7 +236,7 @@ const ColorPalette = ({ type, isMono, isDiverging, twoColumn, shouldShowControls
       )}
 
       {type === 'sequential' && (
-        <div className={sequentialContainer}>
+        <div className={styles['sequential-container']}>
           {colors.map((i, index) => (
             <PalettesContainer
               key={`${i.name}-${index}`}
@@ -254,7 +244,7 @@ const ColorPalette = ({ type, isMono, isDiverging, twoColumn, shouldShowControls
               index={index}
               continuous={continuous}
             >
-              <div className={groupOption}>Option {index + 1}</div>
+              <div className={styles['group-option']}>Option {index + 1}</div>
               {i.data.map((j, jIndex) => (
                 <ColorPaletteColor
                   key={`${type}-${i.color}-${index}-${jIndex}`}
@@ -272,7 +262,7 @@ const ColorPalette = ({ type, isMono, isDiverging, twoColumn, shouldShowControls
       )}
 
       {type === 'status-extended' && (
-        <div className={sequentialContainer}>
+        <div className={styles['sequential-container']}>
           {colors.map((i, index) => (
             <PalettesContainer key={`${i.color}-${index}`} color={i.color} index={index}>
               {i.data.map((j, jIndex) => (

@@ -8,35 +8,51 @@
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
+import { Children } from 'react'
 
 import styles from './anchor-links.module.scss'
 
-export default class AnchorLinks extends React.Component {
-  render() {
-    const { children, small, className } = this.props
-    const isColumn = React.Children.count(children) > 6
-    const classNames = clsx(className, {
-      [styles.listSmall]: small,
-      [styles.multipleColumns]: isColumn
-    })
+/**
+ * The `<AnchorLinks>` and `<AnchorLink>` components are used together to display a list of anchor
+ * links for navigation within the page. Use these to link to `<h2>` or `<h3>` anywhere within your
+ * page. As long as the anchor link text and header text matches the link will work.
+ *
+ * For most pages, we recommend starting with a `PageDescription` followed by `AnchorLinks` if the
+ * content is long enough.
+ */
+const AnchorLinks = ({ children, small, className }) => {
+  const isColumn = Children.count(children) > 6
+  const classNames = clsx(className, {
+    [styles['list--small']]: small,
+    [styles['multiple-columns']]: isColumn
+  })
 
-    return (
-      <Grid className={styles.list}>
-        <Column sm={4} md={8} lg={8}>
-          <ul className={classNames}>
-            {React.Children.map(children, (link, i) => (
-              <li key={i}>{link}</li>
-            ))}
-          </ul>
-        </Column>
-      </Grid>
-    )
-  }
+  return (
+    <Grid className={styles.list}>
+      <Column sm={4} md={8} lg={8}>
+        <ul className={classNames}>
+          {Children.map(children, (link, i) => (
+            <li key={i}>{link}</li>
+          ))}
+        </ul>
+      </Column>
+    </Grid>
+  )
 }
 
 AnchorLinks.propTypes = {
+  /**
+   * `<AnchorLink>` components.
+   */
   children: PropTypes.node.isRequired,
+  /**
+   * Optional class name on the `ul`.
+   */
   className: PropTypes.string,
+  /**
+   * Display small font size.
+   */
   small: PropTypes.bool
 }
+
+export default AnchorLinks

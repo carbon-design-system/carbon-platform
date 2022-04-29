@@ -8,18 +8,16 @@
 import { Grid } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
 
 import styles from './do-dont.module.scss'
 
-export default class DoDontRow extends React.Component {
-  render() {
-    const { children, className } = this.props
-
-    return <Grid className={clsx(className, styles.doDontRow)}>{children}</Grid>
-  }
+const DoDontRow = ({ children, className }) => {
+  return <Grid className={clsx(className, styles['do-dont-row'])}>{children}</Grid>
 }
 
 DoDontRow.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string.isRequired
 }
+
+export default DoDontRow

@@ -7,6 +7,7 @@
 'use strict'
 
 import nextMdx from '@next/mdx'
+import withYaml from 'next-plugin-yaml'
 import path from 'path'
 import remarkGfm from 'remark-gfm'
 import remarkUnwrapImages from 'remark-unwrap-images'
@@ -26,99 +27,100 @@ const withMDX = nextMdx({
   }
 })
 
-const nextConfig = withMDX({
-  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-  experimental: {
-    outputStandalone: true,
-    // this includes files from the monorepo base two directories up
-    outputFileTracingRoot: path.join(__dirname, '..', '..')
-  },
-  i18n: {
-    locales: ['en-US'],
-    defaultLocale: 'en-US'
-  },
-  images: {
-    domains: ['raw.githubusercontent.com']
-  },
-  swcMinify: true,
-  webpack(config) {
-    // silence cache warning notifications due to next.config.mjs imports for now, open issues:
-    // https://github.com/vercel/next.js/issues/33693
-    // https://github.com/webpack/webpack/issues/15574
-    config.infrastructureLogging = { level: 'error' }
+const nextConfig = withMDX(
+  withYaml({
+    pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+    experimental: {
+      outputStandalone: true,
+      // this includes files from the monorepo base two directories up
+      outputFileTracingRoot: path.join(__dirname, '..', '..')
+    },
+    i18n: {
+      locales: ['en-US'],
+      defaultLocale: 'en-US'
+    },
+    images: {
+      domains: ['raw.githubusercontent.com']
+    },
+    swcMinify: true,
+    webpack(config) {
+      // silence cache warning notifications due to next.config.mjs imports for now, open issues:
+      // https://github.com/vercel/next.js/issues/33693
+      // https://github.com/webpack/webpack/issues/15574
+      config.infrastructureLogging = { level: 'error' }
 
-    const rules = config.module.rules
-      .find((rule) => typeof rule.oneOf === 'object')
-      .oneOf.filter((rule) => Array.isArray(rule.use))
+      const rules = config.module.rules
+        .find((rule) => typeof rule.oneOf === 'object')
+        .oneOf.filter((rule) => Array.isArray(rule.use))
 
-    rules.forEach((rule) => {
-      rule.use.forEach((moduleLoader) => {
-        if (
-          moduleLoader.loader &&
-          moduleLoader.loader.includes('css-loader') &&
-          typeof moduleLoader.options.modules === 'object'
-        ) {
-          moduleLoader.options = {
-            ...moduleLoader.options,
-            modules: {
-              ...moduleLoader.options.modules,
-              exportLocalsConvention: 'camelCase', // https://github.com/webpack-contrib/css-loader#exportlocalsconvention
-              mode: 'local' // https://github.com/webpack-contrib/css-loader#mode
+      rules.forEach((rule) => {
+        rule.use.forEach((moduleLoader) => {
+          if (
+            moduleLoader.loader &&
+            moduleLoader.loader.includes('css-loader') &&
+            typeof moduleLoader.options.modules === 'object'
+          ) {
+            moduleLoader.options = {
+              ...moduleLoader.options,
+              modules: {
+                ...moduleLoader.options.modules,
+                mode: 'local' // https://github.com/webpack-contrib/css-loader#mode
+              }
             }
           }
+        })
+      })
+
+      config.module.rules.push({
+        test: /\.mp4$/,
+        use: 'file-loader?name=static/media/[name].[ext]'
+      })
+
+      return config
+    },
+    async redirects() {
+      return [
+        // temporarily redirect home page for the first release
+        {
+          source: '/',
+          destination: '/assets',
+          permanent: false
+        },
+        {
+          source: '/assets/:host/:org/:repo/:library',
+          destination: '/assets/:host/:org/:repo/:library/latest',
+          permanent: false
         }
-      })
-    })
+      ]
+    },
+    async rewrites() {
+      const rewrites = []
 
-    config.module.rules.push({
-      test: /\.mp4$/,
-      use: 'file-loader?name=static/media/[name].[ext]'
-    })
+      for (const [slug, library] of Object.entries(libraries)) {
+        rewrites.push({
+          source: `/assets/${slug}`,
+          destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest`
+        })
 
-    return config
-  },
-  async redirects() {
-    return [
-      // temporarily redirect home page for the first release
-      {
-        source: '/',
-        destination: '/assets',
-        permanent: false
-      },
-      {
-        source: '/assets/:host/:org/:repo/:library',
-        destination: '/assets/:host/:org/:repo/:library/latest',
-        permanent: false
+        rewrites.push({
+          source: `/assets/${slug}/library-assets`,
+          destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest/library-assets`
+        })
+
+        rewrites.push({
+          source: `/assets/${slug}/:ref*/library-assets`,
+          destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/library-assets`
+        })
+
+        rewrites.push({
+          source: `/assets/${slug}/:ref*`,
+          destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
+        })
       }
-    ]
-  },
-  async rewrites() {
-    const rewrites = []
 
-    for (const [slug, library] of Object.entries(libraries)) {
-      rewrites.push({
-        source: `/assets/${slug}`,
-        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest`
-      })
-
-      rewrites.push({
-        source: `/assets/${slug}/library-assets`,
-        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest/library-assets`
-      })
-
-      rewrites.push({
-        source: `/assets/${slug}/:ref*/library-assets`,
-        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/library-assets`
-      })
-
-      rewrites.push({
-        source: `/assets/${slug}/:ref*`,
-        destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
-      })
+      return rewrites
     }
-
-    return rewrites
-  }
-})
+  })
+)
 
 export default nextConfig

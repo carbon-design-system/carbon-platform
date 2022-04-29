@@ -6,7 +6,6 @@
  */
 import { Link } from '@carbon/react/icons'
 import clsx from 'clsx'
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
 import slugify from 'slugify'
 
@@ -16,8 +15,8 @@ import styles from './autolink-header.module.scss'
 
 const Anchor = ({ id, string, position }) => {
   const anchorClasses = clsx(styles.anchor, {
-    [styles.leftAnchor]: position === 'left',
-    [styles.rightAnchor]: position === 'right'
+    [styles['left-anchor']]: position === 'left',
+    [styles['right-anchor']]: position === 'right'
   })
 
   return (

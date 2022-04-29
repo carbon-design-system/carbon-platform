@@ -20,27 +20,27 @@
     "test": "jest --config=../../.jestrc.workspace.js"
   },
   "dependencies": {
-    "@nestjs/common": "^8.4.3",
-    "@nestjs/core": "^8.4.3",
-    "@nestjs/microservices": "^8.4.3",
-    "@nestjs/platform-express": "^8.4.3",
+    "@nestjs/common": "^8.4.4",
+    "@nestjs/core": "^8.4.4",
+    "@nestjs/microservices": "^8.4.4",
+    "@nestjs/platform-express": "^8.4.4",
     "@types/amqplib": "^0.8.2",
-    "@types/cookie-parser": "^1.4.2",
+    "@types/cookie-parser": "^1.4.3",
     "@types/express-session": "^1.17.4",
-    "@types/node": "^16.11.26",
+    "@types/node": "^16.11.31",
     "@types/passport": "^1.0.7",
     "@types/session-file-store": "^1.2.2",
     "@types/supertest": "^2.0.12",
     "@types/uuid": "^8.3.4",
-    "amqp-connection-manager": "^4.1.1",
+    "amqp-connection-manager": "^4.1.2",
     "amqplib": "^0.8.0",
     "chalk": "^4.1.2",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "cookie-signature": "^1.2.0",
     "express-session": "^1.17.2",
-    "mongodb": "^4.4.1",
-    "openid-client": "^5.1.4",
+    "mongodb": "^4.5.0",
+    "openid-client": "^5.1.5",
     "passport": "^0.5.2",
     "passport-custom": "^1.1.1",
     "session-file-store": "^1.5.0",
@@ -48,7 +48,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@nestjs/testing": "^8.4.3",
-    "supertest": "^6.2.2"
+    "@nestjs/testing": "^8.4.4",
+    "supertest": "^6.2.3"
   }
 }

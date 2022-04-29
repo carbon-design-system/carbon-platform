@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /*
  * Copyright IBM Corp. 2021, 2022
  *
@@ -59,7 +58,6 @@ const CatalogMultiselectFilter = ({
       className={clsx(styles.container, customClassName)}
       dropShadow={true}
       highContrast={false}
-      light={false}
       open={open}
     >
       <button
@@ -71,7 +69,7 @@ const CatalogMultiselectFilter = ({
         ref={triggerRef}
         type="button"
       >
-        <span className={styles.triggerInner}>
+        <span className={styles['trigger-inner']}>
           {isMd && (
             <>
               {count !== 0 && (
@@ -88,8 +86,11 @@ const CatalogMultiselectFilter = ({
                   {count}
                 </Tag>
               )}
-              <span className={styles.triggerText}>Filters</span>
-              <ChevronDown className={clsx(styles.icon, open && styles.iconRotate)} size={16} />
+              <span className={styles['trigger-text']}>Filters</span>
+              <ChevronDown
+                className={clsx(styles.icon, open && styles['icon--rotate'])}
+                size={16}
+              />
             </>
           )}
           {!isMd && open && <Close size={20} />}
@@ -103,7 +104,7 @@ const CatalogMultiselectFilter = ({
       </button>
       <PopoverContent className={styles.content} ref={contentRef}>
         {/* div wrapper addeed to receive focus */}
-        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- TODO: add role */}
         <div className={styles.wrapper} ref={popoverRef} tabIndex="0">
           <Column span={columns}>
             <Grid className={styles.grid} condensed>
@@ -112,7 +113,7 @@ const CatalogMultiselectFilter = ({
                   <h3 className={styles.heading}>{getFilters(initialFilter)[item].name}</h3>
                   <ul className={styles.list}>
                     {Object.keys(getFilters(initialFilter)[item].values).map((key, j) => (
-                      <li className={styles.listItem} key={j}>
+                      <li className={styles['list-item']} key={j}>
                         <Tag
                           onClick={() => {
                             onFilter(

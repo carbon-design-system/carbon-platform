@@ -8,10 +8,10 @@
 import { Link as CarbonLink } from '@carbon/react'
 import clsx from 'clsx'
 
-import { link } from './link.module.scss'
+import styles from './link.module.scss'
 
 const Link = ({ className, ...rest }) => (
-  <CarbonLink inline {...rest} className={clsx(className, link)} />
+  <CarbonLink inline {...rest} className={clsx(className, styles.link)} />
 )
 
 export default Link

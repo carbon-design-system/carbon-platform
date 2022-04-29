@@ -139,7 +139,9 @@ const PageNav = ({ contentRef, items = [] }) => {
                     data-id={item.id}
                     className={clsx(
                       styles.link,
-                      activeItem === item.id || (!activeItem && i === 0) ? styles.linkActive : ''
+                      activeItem === item.id || (!activeItem && i === 0)
+                        ? styles['link-active']
+                        : ''
                     )}
                     onClick={() => handleLinkClick(item.id)}
                     onKeyDown={() => handleLinkClick(item.id)}

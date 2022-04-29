@@ -48,6 +48,10 @@
   &:focus {
     outline: 2px solid theme.$link-primary;
   }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 .list--small .link {

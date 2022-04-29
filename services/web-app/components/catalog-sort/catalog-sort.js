@@ -35,7 +35,10 @@ const CatalogSort = ({ onSort, onView, sort, view }) => {
   }, [scrollHandler])
 
   return (
-    <div className={clsx(styles.container, isSticky && styles.containerSticky)} ref={containerRef}>
+    <div
+      className={clsx(styles.container, isSticky && styles['container--sticky'])}
+      ref={containerRef}
+    >
       <Grid className={styles.grid} narrow>
         <Column className={styles.column} sm={4} md={8} lg={4}>
           <Dropdown
@@ -53,7 +56,7 @@ const CatalogSort = ({ onSort, onView, sort, view }) => {
             size="lg"
           />
         </Column>
-        <Column className={`${styles.column} ${styles.columnSwitcher}`} lg={8}>
+        <Column className={`${styles.column} ${styles['column--switcher']}`} lg={8}>
           <div className={styles.switcher}>
             <IconButton
               className={clsx(styles.button, view === GRID_VIEW && styles.selected)}

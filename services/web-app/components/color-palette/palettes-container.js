@@ -6,32 +6,20 @@
  */
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
 
-import {
-  alertContainer,
-  darkMode,
-  gradientBlue,
-  gradientCyan,
-  gradientPurple,
-  gradientRed,
-  gradientTeal,
-  gradientTealOnly,
-  palettesContainer,
-  sequential
-} from './color-palette.module.scss'
+import styles from './color-palette.module.scss'
 
 const PalettesContainer = ({ children, color, continuous, dark, index, twoColumn = false }) => {
-  const paletteContainerClassNames = clsx(palettesContainer, {
-    [sequential]: color,
-    [darkMode]: dark,
-    [gradientBlue]: color === 'blue' && continuous,
-    [gradientPurple]: color === 'purple' && continuous,
-    [gradientRed]: color === 'red' && continuous,
-    [gradientTeal]: color === 'teal' && continuous,
-    [gradientCyan]: color === 'cyan' && continuous,
-    [gradientTealOnly]: color === 'teal-only' && continuous,
-    [alertContainer]: twoColumn
+  const paletteContainerClassNames = clsx(styles['palettes-container'], {
+    [styles.sequential]: color,
+    [styles['dark-mode']]: dark,
+    [styles['gradient-blue']]: color === 'blue' && continuous,
+    [styles['gradient-purple']]: color === 'purple' && continuous,
+    [styles['gradient-red']]: color === 'red' && continuous,
+    [styles['gradient-teal']]: color === 'teal' && continuous,
+    [styles['gradient-cyan']]: color === 'cyan' && continuous,
+    [styles['gradient-teal-only']]: color === 'teal-only' && continuous,
+    [styles['alert-container']]: twoColumn
   })
 
   return (

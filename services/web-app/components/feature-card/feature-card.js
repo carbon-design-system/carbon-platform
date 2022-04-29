@@ -19,7 +19,7 @@ export const FeatureCard = ({ href, children, description, title }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
 
   const imageAspectRatio = () => {
-    if (isLg) return ''
+    if (isLg) return null
     if (isMd) return '16x9'
     return '1x1'
   }
@@ -32,16 +32,16 @@ export const FeatureCard = ({ href, children, description, title }) => {
     <Grid>
       <Column sm={4} md={8} lg={12}>
         <Link href={href}>
-          <a className={styles.featureCard}>
+          <a className={styles['feature-card']}>
             <AspectRatio ratio={imageAspectRatio()} className={styles.image}>
               {children}
             </AspectRatio>
-            <Grid className={styles.gridTile}>
+            <Grid className={styles['grid-tile']}>
               <Column sm={4} md={{ offset: 4, span: 4 }} lg={{ offset: 8, span: 4 }}>
                 <AspectRatio ratio={tileAspectRatio()} className={styles.tile}>
                   <h5 className={styles.title}>{title}</h5>
                   <p className={styles.description}>{description}</p>
-                  <ArrowRight className={styles.arrowRight} size={20} />
+                  <ArrowRight className={styles['arrow-right']} size={20} />
                 </AspectRatio>
               </Column>
             </Grid>

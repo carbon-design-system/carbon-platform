@@ -51,8 +51,8 @@ export const DashboardItem = ({
     <Element
       className={clsx(
         styles.element,
-        showBorder && styles.elementBorder,
-        showSpacer && styles.elementSpacer
+        showBorder && styles['element--border'],
+        showSpacer && styles['element--spacer']
       )}
       {...props}
     >

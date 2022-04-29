@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Dropdown } from 'carbon-components-react'
+import { Dropdown } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
@@ -28,16 +28,14 @@ const Select = ({ children, _id }) => {
     index
   }))
   return (
-    <div className={styles.dropdownWrapper}>
-      <Dropdown
-        size="xl"
-        onChange={({ selectedItem }) => setActiveTab(selectedItem.index)}
-        initialSelectedItem={items[0]}
-        label="tab selection"
-        items={items}
-        id={_id}
-      />
-    </div>
+    <Dropdown
+      size="xl"
+      onChange={({ selectedItem }) => setActiveTab(selectedItem.index)}
+      initialSelectedItem={items[0]}
+      label="tab selection"
+      items={items}
+      id={_id}
+    />
   )
 }
 
@@ -49,7 +47,7 @@ Select.propTypes = {
 const TabList = ({ children, className, _id }) => {
   const { activeTab } = useContext(TabContext)
   return (
-    <ul className={clsx(className, styles.tabList)} role="tablist">
+    <ul className={clsx(className, styles['tab-list'])} role="tablist">
       {React.Children.map(children, (child, index) => {
         if (elementIsNullOrString(child)) return child
         return React.cloneElement(child, {

@@ -6,9 +6,8 @@
  */
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
 
-import { colorPaletteColor, textLight } from './color-palette.module.scss'
+import styles from './color-palette.module.scss'
 
 const ColorPaletteColor = ({
   index,
@@ -30,7 +29,7 @@ const ColorPaletteColor = ({
   return (
     <div
       key={index}
-      className={clsx(colorPaletteColor, { [textLight]: lightText })}
+      className={clsx(styles['color-palette-color'], { [styles['text-light']]: lightText })}
       style={isSequential ? sequentialStyle : defaultStyle}
     >
       <span>

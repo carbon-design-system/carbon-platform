@@ -4,19 +4,19 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Pause32, Play32 } from '@carbon/icons-react'
+import { Pause, Play } from '@carbon/react/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-import { video, videoButton, videoContainer, videoIsPlaying, vimeo } from './video.module.scss'
+import styles from './video.module.scss'
 
 const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const videoRef = useRef(null)
   const iframeRef = useRef(null)
-  const buttonClassName = clsx(videoButton, {
-    [videoIsPlaying]: isPlaying
+  const buttonClassName = clsx(styles['video-button'], {
+    [styles['video--is-playing']]: isPlaying
   })
 
   // React doesn't handle the muted attribute well
@@ -29,8 +29,8 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
 
   if (vimeoId) {
     return (
-      <div className={videoContainer}>
-        <div className={clsx(video, vimeo)}>
+      <div className={styles['video-container']}>
+        <div className={clsx(styles.video, styles.vimeo)}>
           <div className="embedVideo-container">
             <iframe
               allow="autoplay"
@@ -92,7 +92,7 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
   }
 
   return (
-    <div className={videoContainer}>
+    <div className={styles['video-container']}>
       <div
         className={buttonClassName}
         role="button"
@@ -100,13 +100,14 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
         onKeyDown={onKeyDown}
         tabIndex="0"
       >
-        {isPlaying ? <Pause32 /> : <Play32 />}
+        {isPlaying ? <Pause size={32} /> : <Play size={32} />}
         <span className="cds--assistive-text">{isPlaying ? 'Pause' : 'Play'}</span>
       </div>
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
+        muted // TODO: Do we want to allow a captions <track> to be provided? This is the only way
+        // to avoid having to mark the video as muted for a11y compliance.
         autoPlay={autoPlay}
-        className={video}
+        className={styles.video}
         type="video/mp4"
         ref={videoRef}
         onEnded={onEnded}
@@ -121,7 +122,8 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
 Video.propTypes = {
   autoPlay: PropTypes.bool,
   children: PropTypes.element,
-  poster: PropTypes.oneOf(PropTypes.string, PropTypes.object),
+  muted: PropTypes.bool,
+  poster: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   src: PropTypes.string,
   title: PropTypes.string,
   videoSourceValidator: (props) => {

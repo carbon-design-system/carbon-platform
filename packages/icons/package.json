@@ -16,7 +16,7 @@
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "scripts": {
     "build": "npm run clean && npm run build:svg && tsc",
-    "build:svg": "svgr --no-prettier --out-dir src/main/generated src/main/svg",
+    "build:svg": "svgr --no-dimensions --no-prettier --out-dir src/main/generated src/main/svg",
     "clean": "rimraf dist src/main/generated",
     "package:build": "npm run build",
     "test": "echo 'No js/ts code to test in icons package'"

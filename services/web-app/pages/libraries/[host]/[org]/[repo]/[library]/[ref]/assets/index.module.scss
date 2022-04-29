@@ -129,3 +129,8 @@
 .no-results-subheading {
   @include type.type-style('body-02');
 }
+
+.no-results-illo {
+  width: spacing.$spacing-10;
+  height: 77px;
+}

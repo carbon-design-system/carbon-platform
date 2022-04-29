@@ -109,7 +109,13 @@
   position: absolute;
   bottom: spacing.$spacing-05;
   left: spacing.$spacing-05;
+  width: spacing.$spacing-09;
+  height: spacing.$spacing-09;
   color: theme.$text-primary;
+  @include breakpoint.breakpoint(lg) {
+    width: spacing.$spacing-10;
+    height: spacing.$spacing-10;
+  }
 }
 
 /**

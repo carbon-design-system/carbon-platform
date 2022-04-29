@@ -18,7 +18,7 @@ import {
   TableRow
 } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
-import { FilingCabinet } from '@carbon-platform/icons'
+import { Svg64FilingCabinet } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -185,7 +185,7 @@ const Assets = ({ libraryData, navData, params }) => {
                           <TableRow>
                             <TableCell colSpan={5}>
                               <div className={styles['no-results-container']}>
-                                <FilingCabinet />
+                                <Svg64FilingCabinet className={styles['no-results-illo']} />
                                 <h2 className={styles['no-results-heading']}>
                                   No assets in library.
                                 </h2>

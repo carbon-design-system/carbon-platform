@@ -68,7 +68,7 @@ const Footer = ({ hasSideNav }) => {
             </p>
           </Column>
           <Column md={{ start: 1 }} lg={{ start: hasSideNav ? 5 : 1 }} className={styles.logo}>
-            <IbmLogo />
+            <IbmLogo className={styles['logo-svg']} />
           </Column>
         </Grid>
       </footer>

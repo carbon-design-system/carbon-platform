@@ -10,11 +10,7 @@ import {
   Svg48Components,
   Svg48Functions,
   Svg48Patterns,
-  Svg48Templates,
-  Svg64Components,
-  Svg64Functions,
-  Svg64Patterns,
-  Svg64Templates
+  Svg48Templates
 } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
@@ -241,8 +237,7 @@ const PageContent = () => {
                     and ready to use when creating new experiences.
                   </dd>
                 </dl>
-                {!isLg && <Svg48Components className={styles['dashboard-icon']} />}
-                {isLg && <Svg64Components className={styles['dashboard-icon']} />}
+                <Svg48Components className={styles['dashboard-icon']} />
                 <ArrowRight
                   className={clsx(
                     dashboardStyles['position-bottom-right'],
@@ -264,8 +259,7 @@ const PageContent = () => {
                     Reusable combinations of components and content with sequences and flows.
                   </dd>
                 </dl>
-                {!isLg && <Svg48Patterns className={styles['dashboard-icon']} />}
-                {isLg && <Svg64Patterns className={styles['dashboard-icon']} />}
+                <Svg48Patterns className={styles['dashboard-icon']} />
                 <ArrowRight
                   className={clsx(
                     dashboardStyles['position-bottom-right'],
@@ -287,8 +281,7 @@ const PageContent = () => {
                     Code that performs a single action and has no user interface.
                   </dd>
                 </dl>
-                {!isLg && <Svg48Functions className={styles['dashboard-icon']} />}
-                {isLg && <Svg64Functions className={styles['dashboard-icon']} />}
+                <Svg48Functions className={styles['dashboard-icon']} />
                 <ArrowRight
                   className={clsx(
                     dashboardStyles['position-bottom-right'],
@@ -311,8 +304,7 @@ const PageContent = () => {
                     scenario.
                   </dd>
                 </dl>
-                {!isLg && <Svg48Templates className={styles['dashboard-icon']} />}
-                {isLg && <Svg64Templates className={styles['dashboard-icon']} />}
+                <Svg48Templates className={styles['dashboard-icon']} />
                 <ArrowRight
                   className={clsx(
                     dashboardStyles['position-bottom-right'],

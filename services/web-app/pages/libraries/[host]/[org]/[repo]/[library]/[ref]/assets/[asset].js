@@ -255,7 +255,9 @@ const Asset = ({ libraryData, params }) => {
                       {assetData.content.issueCount || 0}
                     </dd>
                   </dl>
-                  <Svg32Github className={dashboardStyles['position-bottom-left']} />
+                  <Svg32Github
+                    className={clsx(styles['github-icon'], dashboardStyles['position-bottom-left'])}
+                  />
                   {isPathAbsolute(githubRepoUrl) && (
                     <Launch className={dashboardStyles['position-bottom-right']} size={20} />
                   )}
@@ -271,7 +273,9 @@ const Asset = ({ libraryData, params }) => {
                     <dt className={dashboardStyles.label}>Discussions</dt>
                     <dd className={dashboardStyles['label-large']}>–</dd>
                   </dl>
-                  <Svg32Github className={dashboardStyles['position-bottom-left']} />
+                  <Svg32Github
+                    className={clsx(styles['github-icon'], dashboardStyles['position-bottom-left'])}
+                  />
                   {isPathAbsolute(githubRepoUrl) && (
                     <Launch className={dashboardStyles['position-bottom-right']} size={20} />
                   )}

@@ -14,7 +14,6 @@ import {
   StructuredListWrapper
 } from '@carbon/react'
 import PropTypes from 'prop-types'
-import React from 'react'
 
 import yaml from '@/data/status-indicators/status-indicators.yaml'
 

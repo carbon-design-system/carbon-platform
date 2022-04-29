@@ -47,7 +47,7 @@ $page-header-height: spacing.$spacing-13 * 2;
   @include type.type-style('fluid-display-01', true);
   @include mixins.line-clamp(2);
   @include breakpoint.breakpoint-down(md) {
-    @include type.type-style('quotation-02');
+    @include type.type-style('quotation-02', true);
 
     font-family: type.font-family('sans');
   }

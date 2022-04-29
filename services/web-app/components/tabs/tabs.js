@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Dropdown } from 'carbon-components-react'
+import { Dropdown } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'

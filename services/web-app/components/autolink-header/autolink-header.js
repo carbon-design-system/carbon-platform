@@ -6,7 +6,6 @@
  */
 import { Link } from '@carbon/react/icons'
 import clsx from 'clsx'
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
 import slugify from 'slugify'
 

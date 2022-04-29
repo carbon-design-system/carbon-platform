@@ -8,7 +8,7 @@
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
+import { Children } from 'react'
 
 import styles from './anchor-links.module.scss'
 
@@ -20,27 +20,24 @@ import styles from './anchor-links.module.scss'
  * For most pages, we recommend starting with a `PageDescription` followed by `AnchorLinks` if the
  * content is long enough.
  */
-export default class AnchorLinks extends React.Component {
-  render() {
-    const { children, small, className } = this.props
-    const isColumn = React.Children.count(children) > 6
-    const classNames = clsx(className, {
-      [styles['list--small']]: small,
-      [styles['multiple-columns']]: isColumn
-    })
+const AnchorLinks = ({ children, small, className }) => {
+  const isColumn = Children.count(children) > 6
+  const classNames = clsx(className, {
+    [styles['list--small']]: small,
+    [styles['multiple-columns']]: isColumn
+  })
 
-    return (
-      <Grid className={styles.list}>
-        <Column sm={4} md={8} lg={8}>
-          <ul className={classNames}>
-            {React.Children.map(children, (link, i) => (
-              <li key={i}>{link}</li>
-            ))}
-          </ul>
-        </Column>
-      </Grid>
-    )
-  }
+  return (
+    <Grid className={styles.list}>
+      <Column sm={4} md={8} lg={8}>
+        <ul className={classNames}>
+          {Children.map(children, (link, i) => (
+            <li key={i}>{link}</li>
+          ))}
+        </ul>
+      </Column>
+    </Grid>
+  )
 }
 
 AnchorLinks.propTypes = {
@@ -57,3 +54,5 @@ AnchorLinks.propTypes = {
    */
   small: PropTypes.bool
 }
+
+export default AnchorLinks

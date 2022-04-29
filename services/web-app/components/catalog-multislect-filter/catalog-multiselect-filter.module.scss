@@ -41,6 +41,10 @@
   &:hover {
     background-color: theme.$layer-hover;
   }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 .trigger-inner {

@@ -3,6 +3,7 @@ node_modules/
 
 # Typescript output
 dist/
+*.tsbuildinfo
 
 # Generated stuff
 generated/

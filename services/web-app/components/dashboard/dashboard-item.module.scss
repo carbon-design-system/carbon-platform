@@ -42,4 +42,8 @@
       outline-offset: -3px;
     }
   }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }

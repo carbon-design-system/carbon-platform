@@ -26,6 +26,8 @@ import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import Video from '@/components/video'
 
+import StatusIndicatorTable from '../status-indicator-table'
+
 const Placeholder = ({ name, children }) => {
   return (
     <div
@@ -53,9 +55,6 @@ const components = {
   ol: OL,
   li: LI,
   ul: UL,
-  /* TODO: get nested lists working issue #309
-    'li.ul': (props) => <UnorderedList isExpressive nested {...props} /> ,
-    'li.ol': (props) => <OrderedList isExpressive nested {...props} />, */
   a: Link,
   blockquote: Blockquote,
   img: Image,
@@ -86,9 +85,7 @@ const components = {
   Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
   ColorPalette,
-  StatusIndicatorTable: ({ children }) => (
-    <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
-  ),
+  StatusIndicatorTable,
   /* Gatsby theme components, not used in Carbon website, out of scope v1 */
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
   ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,

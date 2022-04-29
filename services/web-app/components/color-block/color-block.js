@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react'
+import Proptypes from 'prop-types'
 
 import styles from './color-block.module.scss'
 
@@ -13,18 +13,25 @@ import styles from './color-block.module.scss'
  * The `<ColorBlock>` component displays the color of the hex value.
  * Designed to be used within a page table for documentation.
  */
-export default class ColorBlock extends React.Component {
-  render() {
-    const hex = this.props.children
+const ColorBlock = (props) => {
+  const { children } = props
 
-    const colorBlockStyles = {
-      backgroundColor: hex
-    }
+  const hex = children
 
-    return (
-      <div className={styles['color-block']}>
-        <span className={styles.color} style={colorBlockStyles} />
-      </div>
-    )
+  const colorBlockStyles = {
+    backgroundColor: hex
   }
+
+  return (
+    <div className={styles['color-block']}>
+      <span className={styles.color} style={colorBlockStyles} />
+    </div>
+  )
 }
+
+ColorBlock.propTypes = {
+  /** Provide the hex value for the ColorBlock */
+  children: Proptypes.node
+}
+
+export default ColorBlock

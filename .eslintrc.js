@@ -14,31 +14,31 @@ module.exports = {
     es2021: true,
     node: true
   },
-  extends: ['standard', 'carbon', 'next', 'plugin:jest/recommended', 'plugin:jest/style'],
+  extends: [
+    'eslint:recommended',
+    'standard',
+    'plugin:@next/next/recommended',
+    'plugin:eslint-comments/recommended',
+    path.join(__dirname, '.eslintrc.jest.js'),
+    path.join(__dirname, '.eslintrc.jsdoc.js'),
+    path.join(__dirname, '.eslintrc.react.js'),
+    path.join(__dirname, '.eslintrc.storybook.js')
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true
     },
-    ecmaVersion: 12,
-    sourceType: 'module'
+    ecmaVersion: 2021,
+    lib: ['es2021']
   },
-  plugins: ['@typescript-eslint', 'jest', 'notice', 'simple-import-sort'],
+  plugins: ['@typescript-eslint', 'notice', 'simple-import-sort'],
   rules: {
     '@typescript-eslint/no-use-before-define': [
       'error',
       { functions: false, classes: true, variables: false }
     ],
-    'jest/consistent-test-it': ['error', { fn: 'test', withinDescribe: 'it' }],
-    // Avoid false-positives on Next.js `Link`s that don't appear to satisfy a11y requirements
-    'jsx-a11y/anchor-is-valid': [
-      'error',
-      {
-        components: ['Link'],
-        specialLink: ['hrefLeft', 'hrefRight'],
-        aspects: ['invalidHref', 'preferButton']
-      }
-    ],
+    'eslint-comments/require-description': 'error',
     'max-len': [
       'error',
       {
@@ -46,6 +46,7 @@ module.exports = {
         comments: 100
       }
     ],
+    'no-implicit-globals': 'error',
     'no-use-before-define': 'off', // Disabled in favor of @typescript-eslint/no-use-before-define
     'no-unused-vars': ['error', noUnusedVarsOptions],
     'notice/notice': [

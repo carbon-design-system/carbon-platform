@@ -6,7 +6,6 @@
  */
 import { Column, Grid, UnorderedList } from '@carbon/react'
 import clsx from 'clsx'
-import React from 'react'
 
 import { LiConsumer } from './li'
 import styles from './markdown.module.scss'

@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
-import React from 'react'
 
 import ResourceCard from '@/components/resource-card'
 

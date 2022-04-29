@@ -51,6 +51,10 @@ const InlineNotification = ({ children, className, kind = 'info' }) => {
 
 InlineNotification.propTypes = {
   /**
+   * Provide the contents of the InlineNotification
+   */
+  children: PropTypes.node,
+  /**
    * Specify an optional className to be applied to the container node
    */
   className: PropTypes.string,

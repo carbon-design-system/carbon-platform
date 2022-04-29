@@ -87,10 +87,13 @@ To update the node modules across all workspaces, from the top-level in the repo
 ```
 npm update
 npx --workspaces --include-workspace-root ncu --upgrade --target=minor
-npm install --prefer-dedupe
+npm install && npm install
 ```
 
 > Note: An ncu target of `latest` or `patch` can also be used, depending on the objective.
+
+> Note: Running npm install twice during this helps to eliminate wildcard versions from showing up
+> in the package-lock.json file.
 
 To update the node modules only for a specific workspace, from the top-level in the repo, run:
 

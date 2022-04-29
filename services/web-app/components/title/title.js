@@ -28,6 +28,10 @@ const Title = ({ children, className }) => (
 
 Title.propTypes = {
   /**
+   * Provide the contents of Title
+   */
+  children: PropTypes.node.isRequired,
+  /**
    * Optional class name on the title.
    */
   className: PropTypes.string

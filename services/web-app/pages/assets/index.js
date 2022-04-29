@@ -46,15 +46,15 @@ const PageContent = () => {
       header: 'Better discoverability',
       title: 'For designers and developers:',
       description:
-        // eslint-disable-next-line max-len
-        'A unified discovery experience helps designers and developers find and access components, patterns, functions and templates across all IBM teams.'
+        'A unified discovery experience helps designers and developers find and access ' +
+        'components, patterns, functions and templates across all IBM teams.'
     },
     {
       header: 'Easier management',
       title: 'For contributors and maintainers:',
       description:
-        // eslint-disable-next-line max-len
-        'A common schema helps PAL maintainers more easily manage their assets, keep content fresh in a live index, and add version control to their libraries.'
+        'A common schema helps PAL maintainers more easily manage their assets, keep content ' +
+        'fresh in a live index, and add version control to their libraries.'
     }
   ]
 
@@ -65,12 +65,16 @@ const PageContent = () => {
       date: 'February 25',
       title: 'Standardize assets and libraries',
       description:
-        // eslint-disable-next-line max-len
-        'This private beta is the start to standardizing Carbon so we can bring everything together as one system. This release is focused on helping PAL maintainers classify libraries and assets through the application of a common schema. This release also prototypes asset discovery improvements as Carbon gets indexed through the application of the schema.',
+        'This private beta is the start to standardizing Carbon so we can bring everything ' +
+        'together as one system. This release is focused on helping PAL maintainers classify ' +
+        'libraries and assets through the application of a common schema. This release also ' +
+        'prototypes asset discovery improvements as Carbon gets indexed through the application ' +
+        'of the schema.',
       image: ReleaseOneImg,
       captionHeading: 'v0.1 User experience',
       caption:
-        'Catalog assets link directly out to Carbon Design System and PAL sites to access an asset’s usage documentation.'
+        'Catalog assets link directly out to Carbon Design System and PAL sites to access an ' +
+        'asset’s usage documentation.'
     },
     {
       version: 'v0.2',
@@ -78,20 +82,23 @@ const PageContent = () => {
       date: 'March 31',
       title: 'Asset catalog experience',
       description:
-        // eslint-disable-next-line max-len
-        'This release adds library and asset detail pages to surface the standardized content coming from the applied schema. All detail pages link out to the legacy Carbon and PAL websites for complete documentation while that additional content gets indexed into the system.',
+        'This release adds library and asset detail pages to surface the standardized content ' +
+        'coming from the applied schema. All detail pages link out to the legacy Carbon and PAL ' +
+        'websites for complete documentation while that additional content gets indexed into the ' +
+        'system.',
       bulletPoints: [
-        // eslint-disable-next-line max-len
-        'Indexed Carbon Charts, Carbon Charts Angular, Carbon Charts React, Carbon Charts Svelte, Carbon Charts Vue, IBM.com React, and IBM.com Web Components libraries that are included in the catalogs',
-        // eslint-disable-next-line max-len
-        'Indexed IBM.com Services, IBM.com Styles, and IBM.com Utilities libraries that are excluded from the catalogs and will be surfaced in a v2 release local system',
+        'Indexed Carbon Charts, Carbon Charts Angular, Carbon Charts React, Carbon Charts ' +
+          'Svelte, Carbon Charts Vue, IBM.com React, and IBM.com Web Components libraries that ' +
+          'are included in the catalogs',
+        'Indexed IBM.com Services, IBM.com Styles, and IBM.com Utilities libraries that are ' +
+          'excluded from the catalogs and will be surfaced in a v2 release local system',
         'New external docs and demo links, and open GitHub issue counts, in asset detail pages'
       ],
       image: ReleaseTwoImg,
       captionHeading: 'v0.2 User experience',
       caption:
-        // eslint-disable-next-line max-len
-        'Users can begin to access some library and asset docs without leaving the platform; however the user will still need to go offsite for more detailed usage documentation.'
+        'Users can begin to access some library and asset docs without leaving the platform; ' +
+        'however the user will still need to go offsite for more detailed usage documentation.'
     },
     {
       version: 'v1.0',
@@ -99,8 +106,10 @@ const PageContent = () => {
       date: 'June',
       title: 'General availability',
       description:
-        // eslint-disable-next-line max-len
-        'The platform’s first major release will help system users discover and learn about all the assets and libraries in the system with confidence in their completeness, who maintains them, and how to use them. System users can access documentation for all indexed assets and libraries without leaving the platform.',
+        'The platform’s first major release will help system users discover and learn about all ' +
+        'the assets and libraries in the system with confidence in their completeness, who ' +
+        'maintains them, and how to use them. System users can access documentation for all ' +
+        'indexed assets and libraries without leaving the platform.',
       bulletPoints: [
         'All legacy Carbon website content available in the site',
         'All open-source Carbon libraries indexed and available in the catalogs'
@@ -108,8 +117,8 @@ const PageContent = () => {
       image: ReleaseThreeImg,
       captionHeading: 'v1.0 User experience',
       caption:
-        // eslint-disable-next-line max-len
-        'This release replaces Carbon’s current website — all 32 “core” components will have complete asset detail pages.'
+        'This release replaces Carbon’s current website — all 32 “core” components will have ' +
+        'complete asset detail pages.'
     },
     {
       version: 'v1.1',
@@ -118,8 +127,9 @@ const PageContent = () => {
       title: 'Explore with confidence',
       subtitle: 'This release will fully take the following Hill 1A:',
       description:
-        // eslint-disable-next-line max-len
-        'An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can discover and learn about resources [standards and components/patterns] in the system with confidence in their completeness, who maintains them and where they’re used.',
+        'An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] ' +
+        'can discover and learn about resources [standards and components/patterns] in the ' +
+        'system with confidence in their completeness, who maintains them and where they’re used.',
       bulletPoints: [
         'New login capabilities to view IBM internal content',
         'New standards added to the site',
@@ -128,8 +138,8 @@ const PageContent = () => {
       image: ReleaseFourImg,
       captionHeading: 'v1.1 User experience',
       caption:
-        // eslint-disable-next-line max-len
-        'In this release standards content will be available on the platform and IBM internal libraries will be discoverable after logging in.'
+        'In this release standards content will be available on the platform and IBM internal ' +
+        'libraries will be discoverable after logging in.'
     },
     {
       version: 'v2.0',
@@ -142,14 +152,17 @@ const PageContent = () => {
         {
           title: 'Contribute with ease',
           description:
-            // eslint-disable-next-line max-len
-            'An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can create, document, share new resources [standards and components/patterns] to the system without Design Program Office (DPO) involvement or coding a documentation website.'
+            'An IBM Maker [designers, developers, product managers delivering to the IBM ' +
+            'ecosystem] can create, document, share new resources [standards and ' +
+            'components/patterns] to the system without Design Program Office (DPO) involvement ' +
+            'or coding a documentation website.'
         },
         {
           title: 'Team experience',
           description:
-            // eslint-disable-next-line max-len
-            'An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] can consume any applicable and versioned resources [standards and components/patterns] for their team, in a single, curated experience.'
+            'An IBM Maker [designers, developers, product managers delivering to the IBM ' +
+            'ecosystem] can consume any applicable and versioned resources [standards and ' +
+            'components/patterns] for their team, in a single, curated experience.'
         }
       ],
       bulletPointsHeader: 'This evolves the platform into a system of systems, with:',
@@ -163,8 +176,9 @@ const PageContent = () => {
       image: ReleaseFiveImg,
       captionHeading: 'v2.0 User experience',
       caption:
-        // eslint-disable-next-line max-len
-        'In this release, all external docs content has been fully migrated allowing the PALs to sunset. The team switcher will allow teams to view assets and documenation through the lens of their team.'
+        'In this release, all external docs content has been fully migrated allowing the PALs ' +
+        'to sunset. The team switcher will allow teams to view assets and documentation through ' +
+        'the lens of their team.'
     }
   ]
 

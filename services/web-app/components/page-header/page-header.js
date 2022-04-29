@@ -31,6 +31,7 @@ const PageHeader = ({ bgColor, pictogram: Pictogram, title }) => {
 }
 
 PageHeader.propTypes = {
+  bgColor: PropTypes.string,
   pictogram: PropTypes.object,
   title: PropTypes.string.isRequired
 }

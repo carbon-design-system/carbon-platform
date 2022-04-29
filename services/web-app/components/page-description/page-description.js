@@ -25,6 +25,10 @@ const PageDescription = ({ children, className, ...rest }) => (
 
 PageDescription.propTypes = {
   /**
+   * Provide the contents of PageDescription
+   */
+  children: PropTypes.node,
+  /**
    * Optional class name.
    */
   className: PropTypes.string

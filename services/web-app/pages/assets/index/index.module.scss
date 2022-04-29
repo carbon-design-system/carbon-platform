@@ -48,7 +48,7 @@
 
 .subheading {
   padding: spacing.$spacing-10 0;
-  @include type.type-style('fluid-heading-04');
+  @include type.type-style('fluid-heading-04', true);
   @include breakpoint.breakpoint(md) {
     padding-right: spacing.$spacing-06;
   }
@@ -63,12 +63,12 @@
 
 .subheading-medium {
   padding: spacing.$spacing-10 0;
-  @include type.type-style('fluid-heading-04');
+  @include type.type-style('fluid-heading-04', true);
 }
 
 .subheading-large {
   padding: spacing.$spacing-11 0 spacing.$spacing-05;
-  @include type.type-style('fluid-heading-04');
+  @include type.type-style('fluid-heading-04', true);
 }
 
 .subheading-content {
@@ -86,7 +86,7 @@
 }
 
 .dashboard-label {
-  @include type.type-style('expressive-heading-03');
+  @include type.type-style('expressive-heading-03', true);
 
   padding-bottom: spacing.$spacing-05;
 
@@ -165,7 +165,7 @@
 
 .highlight-heading {
   margin-top: spacing.$spacing-08;
-  @include type.type-style('fluid-heading-03');
+  @include type.type-style('fluid-heading-03', true);
   @include breakpoint.breakpoint(md) {
     margin-top: spacing.$spacing-10 + spacing.$spacing-02;
   }
@@ -175,7 +175,7 @@
 
   &--big {
     margin-top: spacing.$spacing-07;
-    @include type.type-style('fluid-heading-04');
+    @include type.type-style('fluid-heading-04', true);
   }
 }
 
@@ -193,7 +193,7 @@
   }
 
   &--big {
-    @include type.type-style('fluid-heading-04');
+    @include type.type-style('fluid-heading-04', true);
     @include breakpoint.breakpoint(md) {
       margin: spacing.$spacing-08 0;
     }
@@ -223,7 +223,7 @@
 
 .content-heading {
   margin-top: spacing.$spacing-11;
-  @include type.type-style('fluid-heading-04');
+  @include type.type-style('fluid-heading-04', true);
 }
 
 .content-copy {
@@ -249,7 +249,7 @@
 
 .release-heading {
   margin-top: spacing.$spacing-07;
-  @include type.type-style('fluid-heading-04');
+  @include type.type-style('fluid-heading-04', true);
 }
 
 .release-subheading {

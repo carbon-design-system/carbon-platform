@@ -106,6 +106,10 @@
     z-index: 3;
     animation: slide-left motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
     transform: translateX(0);
+
+    @media screen and (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
   }
 
   .library-nav-out {
@@ -113,6 +117,10 @@
     z-index: 3;
     animation: slide-right motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
     transform: translateX(-256px);
+
+    @media screen and (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
   }
 
   @keyframes slide-right {

@@ -5,10 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Code, Download } from '@carbon/icons-react'
-import { IconButton } from '@carbon/react'
+import { IconButton, Link, Tooltip } from '@carbon/react'
 import { pascalCase } from 'change-case'
 import clsx from 'clsx'
-import copy from 'copy-to-clipboard'
 import PropTypes from 'prop-types'
 import { useContext, useRef, useState } from 'react'
 
@@ -34,6 +33,7 @@ const ActionBar = ({
     suffix = '32'
   }
   const component = `<${pascalCase(friendlyName) + suffix} />`
+
   const [copyText, setCopyText] = useState(`Copy ${component}`)
   const actionBarRef = useRef()
 
@@ -47,14 +47,9 @@ const ActionBar = ({
 
   const tooltipAlignment = isLastCard ? 'top-right' : 'top'
 
-  const handleDownload = () => {
-    const a = document.body.appendChild(document.createElement('a'))
+  const getDownloadUrl = () => {
     const blob = new Blob([source], { type: 'image/svg+xml' })
-    const url = window.URL.createObjectURL(blob)
-    a.download = `${name}.svg`
-    a.href = url
-    a.click()
-    document.body.removeChild(a)
+    return window.URL.createObjectURL(blob)
   }
 
   const handleCopy = () => {
@@ -62,7 +57,7 @@ const ActionBar = ({
     setTimeout(() => {
       setCopyText(`Copy ${component}`)
     }, 2000)
-    copy(component, { format: 'text/plain' })
+    window.navigator.clipboard.writeText(component)
   }
 
   return (
@@ -74,26 +69,23 @@ const ActionBar = ({
         [styles.hidden]: !isActionBarVisible
       })}
     >
-      <IconButton
-        kind="ghost"
-        align={tooltipAlignment}
-        label="Download SVG"
-        size="sm"
-        onFocus={() => setIsActionBarVisible(true)}
-        onClick={handleDownload}
-        className={styles.tooltip}
-      >
-        <Download size={16} />
-      </IconButton>
+      <Tooltip label="Download SVG" align={tooltipAlignment}>
+        <Link
+          className={clsx(styles.link, styles.tooltip)}
+          href={getDownloadUrl()}
+          renderIcon={Download}
+          download={`${name}.svg`}
+        />
+      </Tooltip>
       {shouldShowCopyButton && (
         <IconButton
           kind="ghost"
-          align={tooltipAlignment}
           label={copyText}
           size="sm"
           onClick={handleCopy}
           onFocus={() => setIsActionBarVisible(true)}
           className={styles.tooltip}
+          align={tooltipAlignment}
         >
           <Code size={16} />
         </IconButton>

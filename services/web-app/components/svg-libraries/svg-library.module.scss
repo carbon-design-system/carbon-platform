@@ -3,6 +3,7 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
+@use '@carbon/react/scss/utilities/z-index' as z-index;
 
 .svg-page {
   // prevent jank while importing icons
@@ -10,12 +11,29 @@
   padding-top: spacing.$spacing-11 + spacing.$spacing-05;
 }
 
+@media screen and (prefers-reduced-motion: reduce) {
+  .filter-row {
+    position: sticky;
+    z-index: z-index.z('dropdown');
+    top: 7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid theme.$border-subtle-01;
+    transition: none;
+    @include breakpoint.breakpoint('md') {
+      flex-direction: row;
+      align-items: flex-end;
+    }
+  }
+}
+
 .filter-row {
   position: sticky;
   // TODO - use the z-index helper again once it's exported through
   // @carbon/react and included in gatsby-theme-carbon resources
   // z-index: z('dropdown');
-  z-index: 9100;
+  z-index: z-index.z('dropdown');
   top: 7rem;
   display: flex;
   flex-direction: column;
@@ -255,6 +273,13 @@ $svg-card-border: 1px solid theme.$border-subtle-01;
   height: 100%;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .flex-container svg {
+    animation: none;
+    fill: theme.$icon-primary;
+  }
 }
 
 .flex-container svg {

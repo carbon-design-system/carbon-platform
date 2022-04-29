@@ -8,7 +8,6 @@ import { LogoGithub32 } from '@carbon/icons-react'
 import { Svg32Illustrator } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
 
 import { Column, Row } from '@/components/grid-transform'
 import markdownStyles from '@/components/markdown/markdown.module.scss'

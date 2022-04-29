@@ -8,7 +8,7 @@ import metaData from '@carbon/icons/metadata.json'
 import { Column, Grid } from '@carbon/react'
 import { debounce, groupBy } from 'lodash-es'
 import dynamic from 'next/dynamic'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import FilterRow from '@/components/svg-libraries/filter-row'
 import useColumnCount from '@/utils/use-column-count'
@@ -35,12 +35,7 @@ const IconLibrary = () => {
         return accumulator
       }
 
-      let path
-      if (icon.sizes.length === 1 && icon.sizes[0] === 'glyph') {
-        path = icon.output.find((output) => output.size === 'glyph').filepath
-      } else {
-        path = icon.output.find((output) => output.size === 32).filepath
-      }
+      const path = icon.moduleInfo.filepath
 
       if (icon.sizes.length === 1 && icon.sizes[0] === 'glyph') {
         return [
@@ -75,19 +70,16 @@ const IconLibrary = () => {
     if (!searchInputValue) {
       return iconComponents
     }
-    return iconComponents.filter(
-      // eslint-disable-next-line camelcase
-      ({ friendlyName, category, subcategory, aliases = [], name }) => {
-        const searchValue = searchInputValue.toLowerCase()
-        return (
-          friendlyName.toLowerCase().includes(searchValue) ||
-          aliases.some((alias) => alias.toString().toLowerCase().includes(searchValue)) ||
-          subcategory.toLowerCase().includes(searchValue) ||
-          category.toLowerCase().includes(searchValue) ||
-          name.toLowerCase().includes(searchValue)
-        )
-      }
-    )
+    return iconComponents.filter(({ friendlyName, category, subcategory, aliases = [], name }) => {
+      const searchValue = searchInputValue.toLowerCase()
+      return (
+        friendlyName.toLowerCase().includes(searchValue) ||
+        aliases.some((alias) => alias.toString().toLowerCase().includes(searchValue)) ||
+        subcategory.toLowerCase().includes(searchValue) ||
+        category.toLowerCase().includes(searchValue) ||
+        name.toLowerCase().includes(searchValue)
+      )
+    })
   }
 
   const filteredIcons = getFilteredIcons()

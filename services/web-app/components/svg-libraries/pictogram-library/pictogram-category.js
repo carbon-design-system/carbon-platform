@@ -6,7 +6,6 @@
  */
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
 
 import { h2 } from '@/components/markdown/markdown.module.scss'
 import useIntersectionObserver from '@/utils/use-intersection-observer'
@@ -46,11 +45,11 @@ PictogramCategory.propTypes = {
   pictograms: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
-      Component: PropTypes.func,
+      Component: PropTypes.object,
       friendlyName: PropTypes.string,
       assets: PropTypes.arrayOf(
         PropTypes.shape({
-          size: PropTypes.number,
+          size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
           source: PropTypes.string
         })
       )

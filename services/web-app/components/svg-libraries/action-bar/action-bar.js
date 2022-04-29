@@ -4,13 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Code32, Download32 } from '@carbon/icons-react'
+import { Code, Download } from '@carbon/icons-react'
 import { IconButton } from '@carbon/react'
 import { pascalCase } from 'change-case'
 import clsx from 'clsx'
 import copy from 'copy-to-clipboard'
 import PropTypes from 'prop-types'
-import React, { useContext, useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 
 import { LibraryContext } from '../library-provider'
 import styles from './action-bar.module.scss'
@@ -83,7 +83,7 @@ const ActionBar = ({
         onClick={handleDownload}
         className={styles.tooltip}
       >
-        <Download32 />
+        <Download size={16} />
       </IconButton>
       {shouldShowCopyButton && (
         <IconButton
@@ -95,7 +95,7 @@ const ActionBar = ({
           onFocus={() => setIsActionBarVisible(true)}
           className={styles.tooltip}
         >
-          <Code32 />
+          <Code size={16} />
         </IconButton>
       )}
     </div>

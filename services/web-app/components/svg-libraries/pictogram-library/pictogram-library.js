@@ -8,7 +8,7 @@ import metaData from '@carbon/pictograms/metadata.json'
 import { Column, Grid } from '@carbon/react'
 import { debounce, groupBy } from 'lodash-es'
 import dynamic from 'next/dynamic'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import useColumnCount from '@/utils/use-column-count'
 

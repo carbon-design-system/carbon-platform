@@ -18,7 +18,7 @@ LibraryProvider.defaultProps = {
 }
 
 LibraryProvider.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node),
+  children: PropTypes.node,
   site: PropTypes.string,
   type: PropTypes.string
 }

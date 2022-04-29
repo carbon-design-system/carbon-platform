@@ -7,7 +7,6 @@
 import { Dropdown, Search } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
 
 import useSticky from '@/utils/use-sticky'
 
@@ -36,7 +35,7 @@ const FilterRow = ({
       <Search
         labelText={`filter ${type}s by searching for their name or category`}
         onChange={onSearchChange}
-        placeHolderText={placeHolderText}
+        placeholder={placeHolderText}
         size="lg"
       />
       <Dropdown

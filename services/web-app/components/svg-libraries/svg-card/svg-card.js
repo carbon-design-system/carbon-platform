@@ -4,10 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-/* eslint-disable camelcase */
 import { pascalCase } from 'change-case'
 import PropTypes from 'prop-types'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import ActionBar from '../action-bar'
 import styles from '../svg-library.module.scss'
@@ -65,11 +64,11 @@ SvgCard.propTypes = {
   containerIsVisible: PropTypes.bool,
   icon: PropTypes.shape({
     name: PropTypes.string,
-    Component: PropTypes.func,
+    Component: PropTypes.object,
     friendlyName: PropTypes.string,
     assets: PropTypes.arrayOf(
       PropTypes.shape({
-        size: PropTypes.number,
+        size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         source: PropTypes.string
       })
     )

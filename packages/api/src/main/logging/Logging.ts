@@ -6,7 +6,7 @@
  */
 import chalk from 'chalk'
 
-import { EventMessage, MessagingClient } from '../messaging'
+import { MessagingClient } from '../messaging'
 import { Environment, getEnvironment, getRunMode, isDebugEnabled, RunMode } from '../runtime'
 import { LogLevel, LogLoggedMessage } from './interfaces'
 
@@ -176,7 +176,7 @@ class Logging {
    * @param logEntry The log entry to log.
    */
   private async logRemote(logEntry: LogLoggedMessage) {
-    await this.messagingClient?.emit(EventMessage.LogLogged, logEntry)
+    await this.messagingClient?.emit('log_logged', logEntry)
   }
 }
 

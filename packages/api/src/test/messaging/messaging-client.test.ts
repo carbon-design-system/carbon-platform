@@ -7,7 +7,7 @@
 import amqp from 'amqplib'
 import { v4 as uuidv4 } from 'uuid'
 
-import { EventMessage, MessagingClient, QueryMessage } from '../../main/messaging'
+import { MessagingClient } from '../../main/messaging'
 import { __test__ } from '../../main/messaging/messaging-client'
 
 jest.mock('amqplib')
@@ -49,9 +49,9 @@ beforeEach(() => {
 
 test('emit', async () => {
   const client = MessagingClient.getInstance()
-  const eventType = EventMessage.LogLogged
+  const eventType = 'null'
 
-  const expectedMessage = { pattern: eventType, data: 'the message' }
+  const expectedMessage = { pattern: eventType, data: null }
   const expectedArgs = [eventType, '', Buffer.from(JSON.stringify(expectedMessage))]
 
   await client.emit(eventType, expectedMessage.data)
@@ -61,9 +61,9 @@ test('emit', async () => {
 
 test('query', async () => {
   const client = MessagingClient.getInstance()
-  const queryType = QueryMessage.Example
+  const queryType = 'ping'
 
-  const expectedMessage = { pattern: queryType, id: uuidv4(), data: 'the message' }
+  const expectedMessage = { pattern: queryType, id: uuidv4(), data: 'ping' }
   const expectedArgs = [
     queryType,
     '',
@@ -95,9 +95,9 @@ test('waits for confirms before resolving emit', async () => {
   mockedChannel.publish = jest.fn().mockReturnValue(false)
 
   const client = MessagingClient.getInstance()
-  const eventType = EventMessage.LogLogged
+  const eventType = 'null'
 
-  const expectedMessage = { pattern: eventType, data: 'the message' }
+  const expectedMessage = { pattern: eventType, data: null }
 
   await client.emit(eventType, expectedMessage.data)
 
@@ -109,9 +109,9 @@ test('waits for confirms before resolving query', async () => {
   mockedChannel.publish = jest.fn().mockReturnValue(false)
 
   const client = MessagingClient.getInstance()
-  const queryType = QueryMessage.Example
+  const queryType = 'ping'
 
-  const expectedMessage = { pattern: queryType, data: 'the message' }
+  const expectedMessage = { pattern: queryType, data: 'ping' }
 
   const promise = client.query(queryType, expectedMessage.data)
 

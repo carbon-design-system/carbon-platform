@@ -12,7 +12,6 @@ import {
   DEFAULT_EXCHANGE_OPTIONS,
   DEFAULT_EXCHANGE_TYPE,
   DEFAULT_QUEUE_OPTIONS,
-  EventMessage,
   Queue
 } from '../../main/messaging'
 import { PlatformMicroservice } from '../../main/microservice'
@@ -56,7 +55,7 @@ test('bind', async () => {
   const fullQueueName = `${getEnvironment()}_${Queue.Logging}`
   const microservice = new PlatformMicroserviceImpl(Queue.Logging, { myOption: 'test' })
 
-  await microservice.bind(EventMessage.LogLogged)
+  await microservice.bind('null', 'ping')
 
   expect(mockedAmqplib.connect).toHaveBeenCalled()
   expect(mockedConnection.createChannel).toHaveBeenCalled()
@@ -65,15 +64,17 @@ test('bind', async () => {
     myOption: 'test'
   })
   expect(mockedChannel.assertExchange).toHaveBeenCalledWith(
-    EventMessage.LogLogged,
+    'null',
     DEFAULT_EXCHANGE_TYPE,
     DEFAULT_EXCHANGE_OPTIONS
   )
-  expect(mockedChannel.bindQueue).toHaveBeenCalledWith(
-    fullQueueName,
-    EventMessage.LogLogged,
-    DEFAULT_BIND_PATTERN
+  expect(mockedChannel.assertExchange).toHaveBeenCalledWith(
+    'ping',
+    DEFAULT_EXCHANGE_TYPE,
+    DEFAULT_EXCHANGE_OPTIONS
   )
+  expect(mockedChannel.bindQueue).toHaveBeenCalledWith(fullQueueName, 'null', DEFAULT_BIND_PATTERN)
+  expect(mockedChannel.bindQueue).toHaveBeenCalledWith(fullQueueName, 'ping', DEFAULT_BIND_PATTERN)
 })
 
 test('start', async () => {

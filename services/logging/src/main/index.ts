@@ -11,7 +11,7 @@ import { LoggingModule } from './logging.module'
 async function start() {
   const service = new LoggingModule(Queue.Logging)
 
-  await service.bind(EventMessage.LogLogged)
+  await service.bind<EventMessage>('log_logged')
 
   await service.start()
 }

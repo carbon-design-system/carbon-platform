@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { LogLoggedMessage } from '@carbon-platform/api/logging'
-import { EventMessage } from '@carbon-platform/api/messaging'
 import { Nest, PlatformController, Validate } from '@carbon-platform/api/microservice'
 import { getEnvironment } from '@carbon-platform/api/runtime'
 
@@ -35,7 +34,7 @@ class LoggingController extends PlatformController {
    *
    * @param data The log message to log.
    */
-  @Nest.EventPattern(EventMessage.LogLogged)
+  @Nest.EventPattern('log_logged')
   @Validate(logMessageValidator)
   public async logLogged(@Nest.Payload() data: LogLoggedMessage) {
     this.nestLogger.log(`-> logLogged(${JSON.stringify(data)})`)

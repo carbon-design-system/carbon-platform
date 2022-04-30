@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Logging, LogLoggedMessage } from '../../main/logging'
-import { EventMessage, MessagingClient } from '../../main/messaging'
+import { MessagingClient } from '../../main/messaging'
 import { Environment } from '../../main/runtime'
 import { __test__ as RunModeTestUtils, RunMode } from '../../main/runtime/run-mode'
 
@@ -80,7 +80,7 @@ describe('message emission', () => {
 
       const logging = new Logging(message.service, message.component)
       await logging.info(message.message)
-      expect(mockedEmit).toHaveBeenCalledWith(EventMessage.LogLogged, message)
+      expect(mockedEmit).toHaveBeenCalledWith('log_logged', message)
     })
 
     afterEach(() => {

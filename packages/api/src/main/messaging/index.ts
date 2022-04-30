@@ -14,9 +14,7 @@ export {
   DEFAULT_EXCHANGE_TYPE,
   DEFAULT_QUEUE_OPTIONS,
   DEFAULT_SOCKET_OPTIONS,
-  EventMessage,
-  QueryMessage,
   Queue
 } from './constants'
-export { UnvalidatedMessage } from './interfaces'
+export { EventMessage, QueryMessage, UnvalidatedMessage } from './interfaces'
 export { MessagingClient } from './messaging-client'

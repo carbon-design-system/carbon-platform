@@ -7,16 +7,26 @@
 import { Controller, Injectable, Module } from '@nestjs/common'
 import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices'
 
+import { EventMessage, QueryMessage } from '../messaging'
+
+function PlatformMessagePattern<T extends keyof QueryMessage>(metadata: T): MethodDecorator {
+  return MessagePattern(metadata)
+}
+
+function PlatformEventPattern<T extends keyof EventMessage>(metadata: T): MethodDecorator {
+  return EventPattern(metadata)
+}
+
 /**
- * This export is a wrapper around NestJS objects and is used to keep all platform microservices on
- * the same version of NestJS. NestJS objects and constructs should only be accessed through this
- * export. More NestJS things can be added to this export as needed.
+ * This export is a wrapper around common NestJS objects and is used to keep all Platform
+ * microservices on the same version of NestJS. NestJS objects and constructs should only be
+ * accessed through this export. More NestJS things can be added to this export as needed.
  */
 const Nest = {
   Controller,
-  EventPattern,
+  EventPattern: PlatformEventPattern,
   Injectable,
-  MessagePattern,
+  MessagePattern: PlatformMessagePattern,
   Module,
   Payload
 }

@@ -23,6 +23,12 @@ import { getEnvironment } from '../runtime'
 import { CONNECT_RETRY_INTERVAL, PORT } from './constants'
 import { StatusModule } from './status-endpoint/status.module'
 
+type BindableMessage = EventMessage | QueryMessage
+
+type BindableMessageKey<T extends BindableMessage> = T extends EventMessage
+  ? keyof EventMessage
+  : keyof QueryMessage
+
 /**
  * An abstract class that wraps much of the boilerplate code needed to create, bind, and start a
  * Carbon Platform microservice.
@@ -95,22 +101,29 @@ abstract class PlatformMicroservice {
    * Binds a service to one or more message types, allowing it to listen for and receive messages of
    * those types.
    *
-   * This is accomplished by connecting to RabbitMQ, asserting a queue for the one specified in the
-   * constructor, asserting an exchange for each message type, binding the queue to the newly
-   * asserted exchanges, and then disconnecting from RabbitMQ.
+   * This is accomplished by connecting to RabbitMQ, asserting the constructor-specified queue,
+   * asserting an exchange for each message type, binding the queue to the newly asserted exchanges,
+   * and then disconnecting from RabbitMQ.
+   *
+   * This function is generic and can optionally take either EventMessage or QueryMessage as a type
+   * argument. This will narrow the scope of choices of message types for IDE auto-complete
+   * purposes.
    *
    * @param messageTypes The types of messages to which to bind.
    */
-  public async bind(...messageTypes: Array<EventMessage | QueryMessage>) {
+  public async bind<T extends BindableMessage>(
+    ...messageTypes: {
+      0: BindableMessageKey<T>
+    } & Array<BindableMessageKey<T>>
+  ) {
     const connection = await this.connect()
     const channel = await connection.createChannel()
 
     await channel.assertQueue(this.queueName, this.queueOptions)
 
     for (const messageType of messageTypes) {
-      const exchange = messageType as string
-      await channel.assertExchange(exchange, DEFAULT_EXCHANGE_TYPE, DEFAULT_EXCHANGE_OPTIONS)
-      await channel.bindQueue(this.queueName, exchange, DEFAULT_BIND_PATTERN)
+      await channel.assertExchange(messageType, DEFAULT_EXCHANGE_TYPE, DEFAULT_EXCHANGE_OPTIONS)
+      await channel.bindQueue(this.queueName, messageType, DEFAULT_BIND_PATTERN)
     }
 
     await channel.close()

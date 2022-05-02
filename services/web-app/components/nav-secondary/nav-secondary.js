@@ -21,7 +21,7 @@ import styles from './nav-secondary.module.scss'
 
 const NavSecondary = ({ className, onSlidePrimary }) => {
   const router = useRouter()
-  const { isSideNavExpanded, secondaryNavData = {} } = useContext(LayoutContext)
+  const { isSideNavExpanded, secondaryNavData = {}, setSideNavExpanded } = useContext(LayoutContext)
   const isLg = useMatchMedia(mediaQueries.lg)
 
   const { back, headings, items, path } = secondaryNavData
@@ -43,6 +43,7 @@ const NavSecondary = ({ className, onSlidePrimary }) => {
       expanded={isSideNavExpanded}
       className={clsx(className)}
       aria-hidden={showSecondaryNav ? 'false' : 'true'}
+      onOverlayClick={() => setSideNavExpanded(false)}
     >
       <Button kind="ghost" onClick={handleBack} className={styles.back}>
         <ArrowLeft className={styles['back-icon']} size={16} />

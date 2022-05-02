@@ -96,9 +96,13 @@
 }
 
 .side-nav-item {
+  // override carbon height
+  height: calc(100% - 48px);
+
   // override carbon side nav position fixed
   @include breakpoint.breakpoint(lg) {
     position: relative;
+    height: 100%;
     flex: 1;
   }
 }

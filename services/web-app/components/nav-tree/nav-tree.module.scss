@@ -11,6 +11,8 @@
 @use '@carbon/react/scss/type' as type;
 
 .container {
+  overflow-y: auto;
+
   // overide Carbon treeview
   :global(.cds--tree-node) {
     padding-left: spacing.$spacing-05;

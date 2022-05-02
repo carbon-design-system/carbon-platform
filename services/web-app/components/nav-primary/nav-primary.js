@@ -19,7 +19,12 @@ import styles from './nav-primary.module.scss'
 
 const NavPrimary = ({ className, globalItems = [] }) => {
   const router = useRouter()
-  const { isSideNavExpanded, primaryNavData = [], secondaryNavData } = useContext(LayoutContext)
+  const {
+    isSideNavExpanded,
+    primaryNavData = [],
+    secondaryNavData,
+    setSideNavExpanded
+  } = useContext(LayoutContext)
 
   const showSecondaryNav = !isEmpty(secondaryNavData)
 
@@ -29,6 +34,7 @@ const NavPrimary = ({ className, globalItems = [] }) => {
       expanded={isSideNavExpanded}
       className={clsx(className)}
       aria-hidden={showSecondaryNav ? 'true' : 'false'}
+      onOverlayClick={() => setSideNavExpanded(false)}
     >
       <SideNavItems>
         <HeaderSideNavItems>

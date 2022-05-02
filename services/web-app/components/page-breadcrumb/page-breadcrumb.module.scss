@@ -67,3 +67,11 @@ $breadcrumb-container-width: spacing.$spacing-10 * 4;
     margin-left: spacing.$spacing-05 * 4;
   }
 }
+
+.button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: underline;
+}

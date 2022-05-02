@@ -17,14 +17,10 @@ import { LayoutContext } from '@/layouts/layout'
 
 import styles from './nav-primary.module.scss'
 
-const NavPrimary = ({ className, globalItems = [] }) => {
+const NavPrimary = ({ className, globalItems }) => {
   const router = useRouter()
-  const {
-    isSideNavExpanded,
-    primaryNavData = [],
-    secondaryNavData,
-    setSideNavExpanded
-  } = useContext(LayoutContext)
+  const { isSideNavExpanded, primaryNavData, secondaryNavData, setSideNavExpanded } =
+    useContext(LayoutContext)
 
   const showSecondaryNav = !isEmpty(secondaryNavData)
 
@@ -50,40 +46,42 @@ const NavPrimary = ({ className, globalItems = [] }) => {
             </SideNavLink>
           ))}
         </HeaderSideNavItems>
-        {primaryNavData.map((data, i) => {
-          if (data.path && data.title) {
-            return (
-              <SideNavLink
-                element={NextLink}
-                href={data.path}
-                isActive={router.pathname === data.path}
-                key={i}
-                tabIndex={showSecondaryNav ? -1 : 0}
-              >
-                {data.title}
-              </SideNavLink>
-            )
-          }
-          if (!data.path && data.items) {
-            return (
-              <div key={i}>
-                <h2 className={styles.heading}>{data.title}</h2>
-                {data.items.map((item, j) => (
-                  <SideNavLink
-                    element={NextLink}
-                    href={item.path}
-                    isActive={router.pathname.startsWith(item.path)}
-                    key={j}
-                    tabIndex={showSecondaryNav ? -1 : 0}
-                  >
-                    {item.title}
-                  </SideNavLink>
-                ))}
-              </div>
-            )
-          }
-          return null
-        })}
+        {primaryNavData &&
+          primaryNavData.length > 0 &&
+          primaryNavData.map((data, i) => {
+            if (data.path && data.title) {
+              return (
+                <SideNavLink
+                  element={NextLink}
+                  href={data.path}
+                  isActive={router.pathname === data.path}
+                  key={i}
+                  tabIndex={showSecondaryNav ? -1 : 0}
+                >
+                  {data.title}
+                </SideNavLink>
+              )
+            }
+            if (!data.path && data.items) {
+              return (
+                <div key={i}>
+                  <h2 className={styles.heading}>{data.title}</h2>
+                  {data.items.map((item, j) => (
+                    <SideNavLink
+                      element={NextLink}
+                      href={item.path}
+                      isActive={router.pathname.startsWith(item.path)}
+                      key={j}
+                      tabIndex={showSecondaryNav ? -1 : 0}
+                    >
+                      {item.title}
+                    </SideNavLink>
+                  ))}
+                </div>
+              )
+            }
+            return null
+          })}
       </SideNavItems>
     </SideNav>
   )

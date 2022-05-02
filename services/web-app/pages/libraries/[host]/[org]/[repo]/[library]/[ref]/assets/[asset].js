@@ -13,7 +13,7 @@ import { get } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
-import { useContext, useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { libraryPropTypes } from 'types'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
@@ -24,6 +24,7 @@ import PageHeader from '@/components/page-header'
 import PageNav from '@/components/page-nav'
 import PageTabs from '@/components/page-tabs'
 import StatusIcon from '@/components/status-icon'
+import { RouteContext } from '@/contexts/route'
 import { framework } from '@/data/framework'
 import { homeNavData } from '@/data/nav-data'
 import { status } from '@/data/status'
@@ -39,14 +40,56 @@ import styles from './[asset].module.scss'
 
 const Asset = ({ libraryData, params }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
+  const { routeHistory } = useContext(RouteContext)
   const router = useRouter()
   const contentRef = useRef(null)
   const isLg = useMatchMedia(mediaQueries.lg)
+
+  const [assetData] = libraryData.assets
+  const { name, description } = assetData.content
+  const libraryPath = `/libraries/${params.library}/${params.ref}`
+  const designKitsPath = libraryPath + '/design-kits'
+
+  const [breadcrumbItems, setBreadcrumbItems] = useState([
+    {
+      name: libraryData?.content?.name ?? 'Library',
+      path: libraryPath
+    },
+    {
+      name: 'Assets',
+      path: libraryPath + '/assets'
+    },
+    {
+      name
+    }
+  ])
 
   useEffect(() => {
     setPrimaryNavData(!isLg && homeNavData)
     setSecondaryNavData()
   }, [isLg, setPrimaryNavData, setSecondaryNavData])
+
+  useEffect(() => {
+    if (Array.isArray(routeHistory)) {
+      const catalogIndex = routeHistory.findIndex((route) => route.startsWith('/catalogs'))
+
+      const collectionIndex = routeHistory.findIndex((route) => route.startsWith('/collections'))
+
+      const libraryIndex = routeHistory.findIndex((route) =>
+        route.startsWith('/libraries/[host]/[org]/[repo]/[library]/[ref]')
+      )
+
+      if (catalogIndex < libraryIndex || collectionIndex < libraryIndex) {
+        setBreadcrumbItems([
+          {
+            name: catalogIndex >= 0 && catalogIndex < collectionIndex ? 'Catalog' : 'Collection',
+            onClick: () => router.back()
+          },
+          { name }
+        ])
+      }
+    }
+  }, [assetData, name, routeHistory, router])
 
   if (router.isFallback) {
     return (
@@ -59,26 +102,6 @@ const Asset = ({ libraryData, params }) => {
       </Grid>
     )
   }
-
-  const [assetData] = libraryData.assets
-  const { name, description } = assetData.content
-
-  const libraryPath = `/libraries/${params.library}/${params.ref}`
-  const designKitsPath = libraryPath + '/design-kits'
-
-  const breadcrumbItems = [
-    {
-      name: libraryData?.content?.name ?? 'Library',
-      path: libraryPath
-    },
-    {
-      name: 'Assets',
-      path: libraryPath + '/assets'
-    },
-    {
-      name
-    }
-  ]
 
   const seo = {
     title: name,

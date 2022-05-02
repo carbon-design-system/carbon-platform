@@ -5,8 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/* eslint-disable max-len */
-
 /**
  * @typedef {object} Params
  * @property {string} asset - Asset slug
@@ -56,7 +54,8 @@
  * @typedef {object} AssetContent
  * @property {string} description - One-two sentence description
  * @property {string} externalDocsUrl - Absolute URL to externally-hosted documentation
- * @property {"angular" | "react" | "react-native" | "svelte" | "vue" | "web-component" | "design-only"} framework - Asset framework
+ * @property {"angular" | "react" | "react-native" | "svelte" | "vue" | "web-component" |
+ * "design-only"} framework - Asset framework
  * @property {string} id - Unique identifier within the asset's library
  * @property {string} name - Display name
  * @property {"cross-platform" | "web"} platform - Asset environment

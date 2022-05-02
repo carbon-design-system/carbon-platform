@@ -29,6 +29,10 @@ div.video-button {
   background-color: colors.$blue-60;
   border-radius: 50%;
   transition: all motion.$duration-moderate-01 motion(entrance, productive);
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 div.video-button:focus {

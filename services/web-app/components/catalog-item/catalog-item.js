@@ -30,7 +30,7 @@ const CatalogItemImage = ({ asset }) => {
     // The Next.js Image component isn't firing the onError callback for some reason, so for now,
     // use the unoptimized img element since we're just using SVGs for now. We'll eventually want
     // to use the Image component for placeholders.
-    // eslint-disable-next-line @next/next/no-img-element
+    // eslint-disable-next-line @next/next/no-img-element -- See previous line for rationale.
     <img
       alt={`${asset.content.name} thumbnail`}
       src={src}
@@ -107,6 +107,8 @@ const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false })
 
 CatalogItemContent.propTypes = {
   asset: assetPropTypes,
+  assetCounts: PropTypes.object,
+  filter: PropTypes.object,
   isGrid: PropTypes.bool
 }
 

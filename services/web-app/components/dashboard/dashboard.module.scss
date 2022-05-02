@@ -59,7 +59,7 @@
 
   &--large {
     color: theme.$text-primary;
-    @include type.type-style('fluid-heading-04');
+    @include type.type-style('fluid-heading-04', true);
   }
 }
 
@@ -70,5 +70,5 @@
 }
 
 .meta-link--large {
-  @include type.type-style('fluid-heading-04');
+  @include type.type-style('fluid-heading-04', true);
 }

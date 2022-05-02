@@ -17,6 +17,10 @@
   padding: spacing.$spacing-05 25% spacing.$spacing-05 spacing.$spacing-05;
   text-decoration: none;
   transition: background motion.$duration-fast-01;
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 //override carbon aspect ratio styles

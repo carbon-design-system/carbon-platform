@@ -5,16 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { RouterContext } from 'next/dist/shared/lib/router-context'
 import '../styles/styles.scss'
-import * as NextImage from 'next/image'
-import styles from './styles.module.scss'
-import clsx from 'clsx'
+
 import { breakpoints } from '@carbon/layout'
 import { Theme } from '@carbon/react'
+import clsx from 'clsx'
+import { RouterContext } from 'next/dist/shared/lib/router-context'
+import * as NextImage from 'next/image'
+
+import styles from './styles.module.scss'
 
 const OriginalNextImage = NextImage.default
 
+// eslint-disable-next-line no-import-assign -- Forcefully disable Next image optimization
 Object.defineProperty(NextImage, 'default', {
   configurable: true,
   value: (props) => {

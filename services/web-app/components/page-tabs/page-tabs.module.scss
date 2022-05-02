@@ -23,7 +23,7 @@
   }
 }
 
-// fix arrow right misalignment
+// override carbon, fix arrow right misalignment
 :global(.cds--tabs .cds--tab--overflow-nav-button--next) {
   right: -16px;
   bottom: 1px;

@@ -11,6 +11,7 @@ import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
+import Code from '@/components/code'
 import ColorPalette from '@/components/color-palette'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
@@ -25,6 +26,8 @@ import ResourceCard from '@/components/resource-card'
 import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import Video from '@/components/video'
+
+import StatusIndicatorTable from '../status-indicator-table'
 
 const Placeholder = ({ name, children }) => {
   return (
@@ -53,42 +56,38 @@ const components = {
   ol: OL,
   li: LI,
   ul: UL,
-  /* TODO: get nested lists working issue #309
-    'li.ul': (props) => <UnorderedList isExpressive nested {...props} /> ,
-    'li.ol': (props) => <OrderedList isExpressive nested {...props} />, */
   a: Link,
   blockquote: Blockquote,
   img: Image,
+  pre: Code,
   /* Gatsby theme components */
-  Caption: Caption,
-  PageDescription: PageDescription,
-  Title: Title,
-  Image: Image,
-  Accordion: Accordion,
-  AccordionItem: AccordionItem,
-  ArticleCard: ArticleCard,
-  Grid: Grid,
-  Row: Row,
-  Column: Column,
-  AnchorLink: AnchorLink,
-  AnchorLinks: AnchorLinks,
-  ArtDirection: ArtDirection,
-  DoDont: DoDont,
-  DoDontRow: DoDontRow,
-  GifPlayer: GifPlayer,
-  InlineNotification: InlineNotification,
-  Tabs: Tabs,
-  Tab: Tab,
-  Video: Video,
-  MdxWrapper: MdxWrapper,
-  ResourceCard: ResourceCard,
-  Aside: Aside,
-  Profile: Profile,
+  Caption,
+  PageDescription,
+  Title,
+  Image,
+  Accordion,
+  AccordionItem,
+  ArticleCard,
+  Grid,
+  Row,
+  Column,
+  AnchorLink,
+  AnchorLinks,
+  ArtDirection,
+  DoDont,
+  DoDontRow,
+  GifPlayer,
+  InlineNotification,
+  Tabs,
+  Tab,
+  Video,
+  MdxWrapper,
+  ResourceCard,
+  Aside,
+  Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
-  ColorPalette: ColorPalette,
-  StatusIndicatorTable: ({ children }) => (
-    <Placeholder name="StatusIndicatorTable">{children}</Placeholder>
-  ),
+  ColorPalette,
+  StatusIndicatorTable,
   /* Gatsby theme components, not used in Carbon website, out of scope v1 */
   FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
   ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,

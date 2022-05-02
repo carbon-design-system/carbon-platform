@@ -47,7 +47,7 @@
 
 .tabs-column {
   position: sticky;
-  z-index: 9000;
+  z-index: z-index.z('overlay');;
   top: 3rem;
 }
 

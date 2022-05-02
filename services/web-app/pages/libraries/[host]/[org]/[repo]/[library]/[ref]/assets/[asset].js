@@ -25,6 +25,7 @@ import PageNav from '@/components/page-nav'
 import PageTabs from '@/components/page-tabs'
 import StatusIcon from '@/components/status-icon'
 import { framework } from '@/data/framework'
+import { homeNavData } from '@/data/nav-data'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
 import { type } from '@/data/type'
@@ -32,6 +33,7 @@ import { LayoutContext } from '@/layouts/layout'
 import { getAssetIssueCount, getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { getTagsList } from '@/utils/schema'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './[asset].module.scss'
 
@@ -39,11 +41,12 @@ const Asset = ({ libraryData, params }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
   const router = useRouter()
   const contentRef = useRef(null)
+  const isLg = useMatchMedia(mediaQueries.lg)
 
   useEffect(() => {
-    setPrimaryNavData()
+    setPrimaryNavData(!isLg && homeNavData)
     setSecondaryNavData()
-  }, [setPrimaryNavData, setSecondaryNavData])
+  }, [isLg, setPrimaryNavData, setSecondaryNavData])
 
   if (router.isFallback) {
     return (

@@ -15,12 +15,14 @@ import { useContext } from 'react'
 
 import NavTree from '@/components/nav-tree'
 import { LayoutContext } from '@/layouts/layout'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './nav-secondary.module.scss'
 
 const NavSecondary = ({ className, onSlidePrimary }) => {
   const router = useRouter()
-  const { secondaryNavData = {} } = useContext(LayoutContext)
+  const { isSideNavExpanded, secondaryNavData = {} } = useContext(LayoutContext)
+  const isLg = useMatchMedia(mediaQueries.lg)
 
   const { back, headings, items, path } = secondaryNavData
 
@@ -33,10 +35,12 @@ const NavSecondary = ({ className, onSlidePrimary }) => {
 
   const showSecondaryNav = !isEmpty(secondaryNavData)
 
+  if (!isLg && !showSecondaryNav) return null
+
   return (
     <SideNav
       aria-label="Secondary side navigation"
-      expanded={showSecondaryNav}
+      expanded={isSideNavExpanded}
       className={clsx(className)}
       aria-hidden={showSecondaryNav ? 'false' : 'true'}
     >

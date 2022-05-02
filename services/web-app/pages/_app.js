@@ -14,6 +14,7 @@ import { useEffect } from 'react'
 import components from '@/components/mdx'
 import defaultSeo from '@/config/seo.json'
 import { AuthProvider } from '@/contexts/auth'
+import { RouteProvider } from '@/contexts/route'
 import Layout, { LayoutProvider } from '@/layouts/layout'
 
 function useNormalScrollRoutes() {
@@ -35,12 +36,14 @@ function App({ Component, pageProps }) {
   return (
     <AuthProvider>
       <LayoutProvider>
-        <Layout>
-          <DefaultSeo {...defaultSeo} />
-          <MDXProvider components={components}>
-            <Component {...pageProps} />
-          </MDXProvider>
-        </Layout>
+        <RouteProvider>
+          <Layout>
+            <DefaultSeo {...defaultSeo} />
+            <MDXProvider components={components}>
+              <Component {...pageProps} />
+            </MDXProvider>
+          </Layout>
+        </RouteProvider>
       </LayoutProvider>
     </AuthProvider>
   )

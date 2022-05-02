@@ -56,10 +56,13 @@ const SECONDARY_NAV_SLIDE_PATHS = ['/libraries/[host]/[org]/[repo]/[library]/[re
 export const LayoutContext = createContext()
 
 export const LayoutProvider = ({ children }) => {
+  const [isSideNavExpanded, setSideNavExpanded] = useState(false)
   const [primaryNavData, setPrimaryNavData] = useState([])
   const [secondaryNavData, setSecondaryNavData] = useState([])
 
   const value = {
+    isSideNavExpanded,
+    setSideNavExpanded,
     primaryNavData,
     setPrimaryNavData,
     secondaryNavData,
@@ -117,10 +120,10 @@ const SideNav = () => {
 
 const Layout = ({ children }) => {
   const router = useRouter()
-  const { primaryNavData, secondaryNavData } = useContext(LayoutContext)
+  const { isSideNavExpanded, setSideNavExpanded, primaryNavData, secondaryNavData } =
+    useContext(LayoutContext)
   const isLg = useMatchMedia(mediaQueries.lg)
   const [showSideNav, setShowSideNav] = useState(SIDE_NAV_PATHS.includes(router.pathname))
-  const [isSideNavExpanded, toggleSideNavExpanded] = useState(false)
 
   useEffect(() => {
     setShowSideNav(
@@ -142,7 +145,7 @@ const Layout = ({ children }) => {
   }, [])
 
   const onClickSideNavExpand = () => {
-    toggleSideNavExpanded(!isSideNavExpanded)
+    setSideNavExpanded(!isSideNavExpanded)
   }
 
   return (

@@ -74,27 +74,33 @@
 }
 
 .side-nav-inner {
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
+  @include breakpoint.breakpoint(lg) {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .side-nav-slide {
-  display: flex;
-  width: 32rem;
-  height: 100%;
-  transform: translateX(0);
-  transition: transform motion.$duration-moderate-01 motion.motion(entrance, productive);
+  @include breakpoint.breakpoint(lg) {
+    display: flex;
+    width: 32rem;
+    height: 100%;
+    transform: translateX(0);
+    transition: transform motion.$duration-moderate-01 motion.motion(entrance, productive);
 
-  &--secondary {
-    transform: translateX(-16rem);
+    &--secondary {
+      transform: translateX(-16rem);
+    }
   }
 }
 
 .side-nav-item {
   // override carbon side nav position fixed
-  position: relative;
-  flex: 1;
+  @include breakpoint.breakpoint(lg) {
+    position: relative;
+    flex: 1;
+  }
 }
 
 .column-content {

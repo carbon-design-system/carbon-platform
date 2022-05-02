@@ -19,15 +19,14 @@ import styles from './nav-primary.module.scss'
 
 const NavPrimary = ({ className, globalItems = [] }) => {
   const router = useRouter()
-  const { primaryNavData = [], secondaryNavData } = useContext(LayoutContext)
+  const { isSideNavExpanded, primaryNavData = [], secondaryNavData } = useContext(LayoutContext)
 
-  const showPrimaryNav = !isEmpty(primaryNavData)
   const showSecondaryNav = !isEmpty(secondaryNavData)
 
   return (
     <SideNav
       aria-label="Side navigation"
-      expanded={showPrimaryNav}
+      expanded={isSideNavExpanded}
       className={clsx(className)}
       aria-hidden={showSecondaryNav ? 'true' : 'false'}
     >

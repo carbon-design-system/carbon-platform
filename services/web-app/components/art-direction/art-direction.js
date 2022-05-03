@@ -10,6 +10,15 @@ import { Children } from 'react'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
+/**
+ * On the web, art direction refers to changing the image rendered at different
+ * display sizes. The `ArtDirection `component allows you to provide multiple images
+ * achieve this goal.
+ *
+ * You can place up to three images inside of the ArtDirection component. The first
+ * will be used for mobile, the second for tablet, and the third for desktop. If only
+ * two images are provided, the second image will be used for both tablet and desktop.
+ */
 const ArtDirection = ({ children }) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
@@ -28,6 +37,11 @@ const ArtDirection = ({ children }) => {
 }
 
 ArtDirection.propTypes = {
+  /**
+   * You can place up to three images inside of the ArtDirection component. The first
+   * will be used for mobile, the second for tablet, and the third for desktop. If only
+   * two images are provided, the second image will be used for both tablet and desktop.
+   */
   children: PropTypes.arrayOf(PropTypes.element).isRequired
 }
 

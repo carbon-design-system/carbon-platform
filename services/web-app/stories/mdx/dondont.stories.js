@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import Image from 'next/image'
 
 import { DoDont, DoDontRow } from '@/components/do-dont'
 
@@ -24,7 +25,11 @@ const Template = (args) => (
       {...args}
     ></DoDont>
     <DoDont aspectRatio="1:1" type="dont" {...args}>
-      <img alt="Use markdown in mdx files. ![](/mdx/dodont.png)" src="mdx/light-theme.jpg" />
+      <Image
+        alt="Use markdown in mdx files. ![](/mdx/dodont.png)"
+        src="/public/mdx/light-theme.jpg"
+        layout="fill"
+      />
     </DoDont>
   </DoDontRow>
 )

@@ -5,17 +5,7 @@
 
 @media screen and (prefers-reduced-motion: reduce) {
   .container {
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    opacity: 1;
     transition: none;
-
-    svg {
-      fill: theme.$icon-primary;
-    }
   }
 }
 
@@ -93,7 +83,6 @@
   @include type.type-style('body-compact-01');
 
   padding-top: spacing.$spacing-01;
-
   padding-bottom: spacing.$spacing-01;
 }
 

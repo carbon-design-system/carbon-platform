@@ -278,7 +278,6 @@ $svg-card-border: 1px solid theme.$border-subtle-01;
 @media screen and (prefers-reduced-motion: reduce) {
   .flex-container svg {
     animation: none;
-    fill: theme.$icon-primary;
   }
 }
 

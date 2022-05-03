@@ -19,6 +19,7 @@ import { Column, Grid, Row } from '@/components/grid-transform'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
+import MdxIcon from '@/components/mdx-icon'
 import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
 import Profile from '@/components/profile'
@@ -78,6 +79,7 @@ const components = {
   DoDontRow,
   GifPlayer,
   InlineNotification,
+  MdxIcon,
   Tabs,
   Tab,
   Video,
@@ -85,7 +87,6 @@ const components = {
   ResourceCard,
   Aside,
   Profile,
-  MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
   ColorPalette,
   StatusIndicatorTable,
   /* Gatsby theme components, not used in Carbon website, out of scope v1 */

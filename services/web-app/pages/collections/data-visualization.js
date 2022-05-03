@@ -18,7 +18,7 @@ const DataVisualization = ({ librariesData }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const seo = {
-    title: 'Data Visualization'
+    title: 'Data visualization'
   }
 
   useEffect(() => {

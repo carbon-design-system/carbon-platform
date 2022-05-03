@@ -22,7 +22,11 @@ const renderCaption = (caption, captionTitle) => {
     )
   }
 }
-
+/**
+ * The `<DoDont>` component includes built in columns and is used within
+ * the `<DoDontRow>` component. You can provide an image or video as children,
+ * or text using the `text` prop.
+ */
 const DoDont = (props) => {
   const {
     children,
@@ -90,30 +94,34 @@ const DoDont = (props) => {
 }
 
 DoDont.defaultProps = {
-  type: 'do'
+  aspectRatio: '1:1',
+  type: 'do',
+  colLg: 4,
+  colMd: 4,
+  color: 'light'
 }
 
 DoDont.propTypes = {
-  /** 1:1 to force square example */
-  aspectRatio: PropTypes.string,
-  /** title for the caption (optional) */
+  /** Set the aspect ratio */
+  aspectRatio: PropTypes.oneOf(['2:1', '1:1', '1:2', '16:9', '9:16', '4:3', '3:4']),
+  /** caption (optional) */
   caption: PropTypes.string,
-  /** description for the card caption (optional) */
+  /** title for the card caption (optional) */
   captionTitle: PropTypes.string,
-  /** Provide the contents of the DoDont */
+  /** Provide the contents of the DoDont, can be an image or video */
   children: PropTypes.node.isRequired,
-  /** Class name override */
+  /** set optional custom class */
   className: PropTypes.string,
   /** set how many columns wide at large breakpoint  */
   colLg: PropTypes.string,
   /** set how many columns wide at medium breakpoint  */
   colMd: PropTypes.string,
   /** set to "dark" for dark background card */
-  color: PropTypes.string,
+  color: PropTypes.oneOf(['light', 'dark']),
   /** text displayed in the example card */
   text: PropTypes.string,
-  /** set to "do" for do, and "dont" for dont */
-  type: PropTypes.string
+  /** set card type */
+  type: PropTypes.oneOf(['do', 'dont'])
 }
 
 export default DoDont

@@ -56,8 +56,8 @@ const ColorTokenTable = () => {
     resizeHandler()
   }, [resizeHandler])
 
-  const switchTheme = (theme) => {
-    setTheme(theme.name)
+  const switchTheme = (themeColor) => {
+    setTheme(themeColor.name)
   }
 
   const hexToRgb = (hex) => {

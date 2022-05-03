@@ -6,6 +6,7 @@
 
 .glossary-entry {
   padding-top: convert.rem(36px);
+  color: theme.$text-primary;
 }
 
 .glossary-entry__main-heading {
@@ -36,13 +37,6 @@
 }
 
 .page-h4 {
-  width: 100%;
   margin-top: spacing.$spacing-04;
   @include type.type-style('heading-02');
-  @include breakpoint.breakpoint('md') {
-    width: 75%;
-  }
-  @include breakpoint.breakpoint('lg') {
-    width: 66.667%;
-  }
 }

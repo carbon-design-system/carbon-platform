@@ -16,11 +16,7 @@ const stories = {
 export default stories
 
 const Template = (args) => (
-  <Grid>
-    <Column lg={7}>
-      <Glossary {...args} />
-    </Column>
-  </Grid>
+  <Glossary />
 )
 
 export const Default = Template.bind({})

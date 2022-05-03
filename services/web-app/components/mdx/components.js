@@ -25,6 +25,7 @@ import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
 import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
+import { TypeScaleTable, TypeWeight } from '@/components/type'
 import Video from '@/components/video'
 
 import StatusIndicatorTable from '../status-indicator-table'
@@ -86,6 +87,8 @@ const components = {
   Aside,
   Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
+  TypeScaleTable,
+  TypeWeight,
   ColorPalette,
   StatusIndicatorTable,
   /* Gatsby theme components, not used in Carbon website, out of scope v1 */

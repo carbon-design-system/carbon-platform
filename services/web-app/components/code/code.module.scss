@@ -1,0 +1,29 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/theme' as theme;
+
+// scoped to div code to override global reset styles
+:global(div) code {
+  padding: 0 spacing.$spacing-03;
+  background-color: theme.$layer-01;
+  border-radius: 4px;
+  font-size: 0.875em;
+}
+
+.code {
+  margin-top: spacing.$spacing-07;
+}
+
+.code code {
+  @include type.type-style('code-02');
+
+  padding: 0;
+  color: theme.$text-primary;
+}

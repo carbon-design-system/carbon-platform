@@ -6,6 +6,7 @@
  */
 
 import { CodeSnippet, Column, Grid, Theme } from '@carbon/react'
+import PropTypes from 'prop-types'
 
 import styles from './code.module.scss'
 
@@ -20,5 +21,10 @@ const Code = ({ children }) => (
     </Grid>
   </Theme>
 )
+
+Code.propTypes = {
+  /** Provide the contents of Code */
+  children: PropTypes.node.isRequired
+}
 
 export default Code

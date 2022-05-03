@@ -15,7 +15,6 @@ import {
 import clsx from 'clsx'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-// import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component'
 import { H3 } from '@/components/markdown'
 import tableStyles from '@/components/page-table/page-table.module.scss'
 import StickyContainer from '@/components/typeset-style/sticky-container'
@@ -80,6 +79,15 @@ const ColorTokenTable = () => {
       const hex = bgColor.substring(0, bgColor.length - 6)
       bgColor = `rgba(${hexToRgb(hex).r}, ${hexToRgb(hex).g}, ${hexToRgb(hex).b}, 0.5)`
     }
+
+    const copyToken = () => {
+      window.navigator.clipboard.writeText(token)
+    }
+
+    const copyHex = () => {
+      window.navigator.clipboard.writeText(value[currentTheme].hex)
+    }
+
     return (
       <div className={styles['color-token-value']}>
         <ul>
@@ -96,15 +104,8 @@ const ColorTokenTable = () => {
             }}
           />
           <OverflowMenu floatingMenu={false} flipped>
-            <OverflowMenuItem primaryFocus itemText="Copy hex" />
-            <OverflowMenuItem itemText="Copy token" />
-            {token}
-            {/* <CopyToClipboard text={value[currentTheme].hex}>
-              <OverflowMenuItem primaryFocus itemText="Copy hex" />
-            </CopyToClipboard>
-            <CopyToClipboard text={token}>
-              <OverflowMenuItem itemText="Copy token" />
-            </CopyToClipboard> */}
+            <OverflowMenuItem primaryFocus itemText="Copy hex" onClick={copyHex} />
+            <OverflowMenuItem itemText="Copy token" onClick={copyToken} />
           </OverflowMenu>
         </div>
       </div>
@@ -135,6 +136,33 @@ const ColorTokenTable = () => {
     [styles['theme-switcher--stuck']]: sticky
   })
 
+  const ColorCategory = ({ name }) => {
+    return (
+      <>
+        <H3>{name.charAt(0).toUpperCase() + name.slice(1).split('-').join(' ')}</H3>
+
+        <Grid condensed>
+          <Column sm={4} md={8} lg={16}>
+            <table className={tableStyles['page-table']}>
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Role</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(colorTokens[`${name}-tokens`]).map((token, i) =>
+                  renderToken(token, colorTokens[`${name}-tokens`][token], i)
+                )}
+              </tbody>
+            </table>
+          </Column>
+        </Grid>
+      </>
+    )
+  }
+
   return (
     <Grid condensed className={clsx(styles['color-token-table'])}>
       <Column sm={4} md={8} lg={16}>
@@ -150,241 +178,18 @@ const ColorTokenTable = () => {
         </StickyContainer>
 
         <section>
-          <H3>Background</H3>
-
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['background-tokens']).map((token, i) =>
-                    renderToken(token, colorTokens['background-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-
-          <H3>Layer</H3>
-
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['layer-tokens']).map((token, i) =>
-                    renderToken(token, colorTokens['layer-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Layer accent</H3>
-
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['layer-accent-tokens']).map((token, i) =>
-                    renderToken(token, colorTokens['layer-accent-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-
-          <H3>Field</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['field-tokens']).map((token, i) =>
-                    renderToken(token, colorTokens['field-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-
-          <H3>Border</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['border-tokens']).map((token, i) =>
-                    renderToken(token, colorTokens['border-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Text</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['text-tokens']).map((token, i) =>
-                    renderToken(token, colorTokens['text-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Link</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['link-tokens']).map((token, i) =>
-                    renderToken(token, colorTokens['link-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-
-          <H3>Icon</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['icon-tokens']).map((token, i) =>
-                    renderToken(token, colorTokens['icon-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Button</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['button-tokens']).map((token, i) =>
-                    renderToken(token, colorTokens['button-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Support</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['support-tokens']).map((token, i) =>
-                    renderToken(token, colorTokens['support-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Focus</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens['focus-tokens']).map((token, i) =>
-                    renderToken(token, colorTokens['focus-tokens'][token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
-          <H3>Miscellaneous</H3>
-          <Grid condensed>
-            <Column sm={4} md={8} lg={16}>
-              <table className={tableStyles['page-table']}>
-                <thead>
-                  <tr>
-                    <th>Token</th>
-                    <th>Role</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(colorTokens.miscellaneous).map((token, i) =>
-                    renderToken(token, colorTokens.miscellaneous[token], i)
-                  )}
-                </tbody>
-              </table>
-            </Column>
-          </Grid>
+          <ColorCategory name="background" />
+          <ColorCategory name="layer" />
+          <ColorCategory name="layer-accent" />
+          <ColorCategory name="field" />
+          <ColorCategory name="border" />
+          <ColorCategory name="text" />
+          <ColorCategory name="link" />
+          <ColorCategory name="icon" />
+          <ColorCategory name="button" />
+          <ColorCategory name="support" />
+          <ColorCategory name="focus" />
+          <ColorCategory name="miscellaneous" />
         </section>
       </Column>
     </Grid>

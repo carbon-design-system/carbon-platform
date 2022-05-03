@@ -2118,7 +2118,7 @@ const colorTokens = {
       }
     }
   },
-  miscellaneous: {
+  'miscellaneous-tokens': {
     $interactive: {
       role: ['3:1 AA contrast', 'Selected elements', 'Active elements', 'Accent icons'],
       value: {

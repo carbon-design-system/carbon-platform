@@ -6,7 +6,6 @@
  */
 
 import Glossary from '@/components/glossary'
-import { Column, Grid } from '@/components/grid-transform'
 
 const stories = {
   title: 'Platform/Components/Glossary',
@@ -15,8 +14,6 @@ const stories = {
 
 export default stories
 
-const Template = (args) => (
-  <Glossary />
-)
+const Template = () => <Glossary />
 
 export const Default = Template.bind({})

@@ -90,6 +90,8 @@ const PageNav = ({ contentRef, items = [] }) => {
   }
 
   const setSelectedItem = () => {
+    if (!contentRef.current) return null
+
     const navLinks = Array.from(contentRef.current.querySelectorAll('[class^="page-nav_link"]'))
     const sections = Array.from(contentRef.current.querySelectorAll('[id]'))?.filter((section) =>
       items.some((item) => item.id === section.id)

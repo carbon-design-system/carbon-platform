@@ -79,14 +79,40 @@ const Asset = ({ libraryData, params }) => {
         route.startsWith('/libraries/[host]/[org]/[repo]/[library]/[ref]')
       )
 
-      if (catalogIndex < libraryIndex || collectionIndex < libraryIndex) {
-        setBreadcrumbItems([
-          {
-            name: catalogIndex >= 0 && catalogIndex < collectionIndex ? 'Catalog' : 'Collection',
-            onClick: () => router.back()
-          },
-          { name }
-        ])
+      const firstIndex = Math.min(catalogIndex, collectionIndex, libraryIndex)
+
+      if (firstIndex > -1) {
+        if (firstIndex === catalogIndex) {
+          const historyItem = routeHistory[catalogIndex]
+          const catalog = Object.values(type).find((t) => t.path === historyItem)
+
+          setBreadcrumbItems([
+            {
+              name: catalog.namePlural,
+              onClick: () => {
+                document.documentElement.classList.add('normal-scroll')
+                router.back()
+              }
+            },
+            { name }
+          ])
+        } else if (firstIndex === collectionIndex) {
+          const historyItem = routeHistory[collectionIndex]
+          const collections = Object.values(homeNavData).find((n) => n.title === 'Collections')
+          const { items } = collections
+          const collection = items.find((i) => i.path === historyItem)
+
+          setBreadcrumbItems([
+            {
+              name: collection.title,
+              onClick: () => {
+                document.documentElement.classList.add('normal-scroll')
+                router.back()
+              }
+            },
+            { name }
+          ])
+        }
       }
     }
   }, [assetData, name, routeHistory, router])

@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { LogoGithub32 } from '@carbon/icons-react'
+import { LogoGithub } from '@carbon/icons-react'
 import { Svg32Illustrator } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
@@ -56,7 +56,7 @@ const NoResult = ({
                 subTitle={`Submit ${designType} design`}
                 href="https://github.ibm.com/brand/pictograms/issues/new"
               >
-                <LogoGithub32 className={styles.icon} />
+                <LogoGithub size={32} className={styles.icon} />
               </ResourceCard>
             </Column>
             <Column colMd={4} colLg={4} noGutterSm>

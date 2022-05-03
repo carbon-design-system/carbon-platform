@@ -30,9 +30,6 @@
 
 .filter-row {
   position: sticky;
-  // TODO - use the z-index helper again once it's exported through
-  // @carbon/react and included in gatsby-theme-carbon resources
-  // z-index: z('dropdown');
   z-index: z-index.z('dropdown');
   top: 7rem;
   display: flex;
@@ -101,10 +98,7 @@
 
 .filter-row::before {
   position: absolute;
-  // TODO - use the z-index helper again once it's exported through
-  // @carbon/react and included in gatsby-theme-carbon resources
-  // z-index: z('dropdown');
-  z-index: 9100;
+  z-index: z-index.z('dropdown');
   top: -1rem;
   width: 100%;
   height: 1rem;

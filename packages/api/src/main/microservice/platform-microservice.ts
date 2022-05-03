@@ -19,7 +19,7 @@ import {
   QueryMessage,
   Queue
 } from '../messaging'
-import { getEnvironment } from '../runtime'
+import { withEnvironment } from '../runtime'
 import { CONNECT_RETRY_INTERVAL, PORT } from './constants'
 import { StatusModule } from './status-endpoint/status.module'
 
@@ -46,7 +46,7 @@ abstract class PlatformMicroservice {
    */
   constructor(queueName: Queue, queueOptions?: any) {
     // Use a queue name that is environment-specific
-    this.queueName = `${getEnvironment()}_${queueName}`
+    this.queueName = withEnvironment(queueName)
     this.queueOptions = {
       ...DEFAULT_QUEUE_OPTIONS,
       ...queueOptions
@@ -122,8 +122,11 @@ abstract class PlatformMicroservice {
     await channel.assertQueue(this.queueName, this.queueOptions)
 
     for (const messageType of messageTypes) {
-      await channel.assertExchange(messageType, DEFAULT_EXCHANGE_TYPE, DEFAULT_EXCHANGE_OPTIONS)
-      await channel.bindQueue(this.queueName, messageType, DEFAULT_BIND_PATTERN)
+      // Use an exchange name that is environment-specific
+      const exchange = withEnvironment(messageType)
+
+      await channel.assertExchange(exchange, DEFAULT_EXCHANGE_TYPE, DEFAULT_EXCHANGE_OPTIONS)
+      await channel.bindQueue(this.queueName, exchange, DEFAULT_BIND_PATTERN)
     }
 
     await channel.close()

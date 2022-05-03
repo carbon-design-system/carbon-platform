@@ -15,7 +15,7 @@ import {
   Queue
 } from '../../main/messaging'
 import { PlatformMicroservice } from '../../main/microservice'
-import { getEnvironment } from '../../main/runtime'
+import { getEnvironment, withEnvironment } from '../../main/runtime'
 
 jest.mock('amqplib')
 jest.mock('@nestjs/core')
@@ -64,17 +64,25 @@ test('bind', async () => {
     myOption: 'test'
   })
   expect(mockedChannel.assertExchange).toHaveBeenCalledWith(
-    'null',
+    withEnvironment('null'),
     DEFAULT_EXCHANGE_TYPE,
     DEFAULT_EXCHANGE_OPTIONS
   )
   expect(mockedChannel.assertExchange).toHaveBeenCalledWith(
-    'ping',
+    withEnvironment('ping'),
     DEFAULT_EXCHANGE_TYPE,
     DEFAULT_EXCHANGE_OPTIONS
   )
-  expect(mockedChannel.bindQueue).toHaveBeenCalledWith(fullQueueName, 'null', DEFAULT_BIND_PATTERN)
-  expect(mockedChannel.bindQueue).toHaveBeenCalledWith(fullQueueName, 'ping', DEFAULT_BIND_PATTERN)
+  expect(mockedChannel.bindQueue).toHaveBeenCalledWith(
+    fullQueueName,
+    withEnvironment('null'),
+    DEFAULT_BIND_PATTERN
+  )
+  expect(mockedChannel.bindQueue).toHaveBeenCalledWith(
+    fullQueueName,
+    withEnvironment('ping'),
+    DEFAULT_BIND_PATTERN
+  )
 })
 
 test('start', async () => {

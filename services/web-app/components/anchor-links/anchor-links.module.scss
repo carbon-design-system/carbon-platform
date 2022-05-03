@@ -28,7 +28,7 @@
   display: inline-block;
   margin-bottom: spacing.$spacing-03;
   margin-left: spacing.$spacing-06;
-  color: currentColor;
+  color: theme.$text-primary;
   text-decoration: none;
   transition: color motion.$duration-fast-02;
 

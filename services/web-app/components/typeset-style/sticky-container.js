@@ -33,6 +33,15 @@ StickyContainer.propTypes = {
   banner: PropTypes.bool,
 
   /**
+   * Provide the contents of your `StickyContainer`.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Optional class name.
+   */
+  className: PropTypes.string,
+
+  /**
    * if page navBar is showing / hiding, toggle this on/off
    */
   navBar: PropTypes.bool,

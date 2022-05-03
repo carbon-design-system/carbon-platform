@@ -10,7 +10,8 @@ import { DoDont, DoDontRow } from '@/components/do-dont'
 
 const stories = {
   title: 'MDX/DoDont',
-  component: DoDont
+  component: DoDontRow,
+  subcomponents: { DoDont }
 }
 
 export default stories

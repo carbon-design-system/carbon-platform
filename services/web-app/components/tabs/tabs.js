@@ -131,14 +131,23 @@ export const Tab = ({ _id, label, active, index, tab, children }) => {
 }
 
 Tab.propTypes = {
+  /** tab id */
   _id: PropTypes.string,
+  /** Set active tab */
   active: PropTypes.bool,
+  /** Provide the contents of the tab */
   children: PropTypes.arrayOf(PropTypes.node),
+  /** tab index */
   index: PropTypes.number,
+  /** Set tab label */
   label: PropTypes.string,
+  /** tab */
   tab: PropTypes.bool
 }
 
+/**
+ * The `<Tabs>` and `<Tab>` components are used together to display and swap between content.
+ */
 export const Tabs = (props) => {
   const tabList = useRef([])
   const [activeTab, setActiveTab] = useState(0)
@@ -165,6 +174,7 @@ export const Tabs = (props) => {
 }
 
 Tabs.propTypes = {
+  /** Provide tab children */
   children: PropTypes.arrayOf(PropTypes.node)
 }
 

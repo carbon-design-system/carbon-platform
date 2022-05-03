@@ -11,12 +11,19 @@ import PropTypes from 'prop-types'
 
 import styles from './do-dont.module.scss'
 
+/**
+ * The `<DoDont>` component includes built in columns and is used within
+ * the `<DoDontRow>` component. You can provide an image or video as children,
+ * or text using the `text` prop.
+ */
 const DoDontRow = ({ children, className }) => {
   return <Grid className={clsx(className, styles['do-dont-row'])}>{children}</Grid>
 }
 
 DoDontRow.propTypes = {
+  /** set children */
   children: PropTypes.node.isRequired,
+  /** set optional custom class */
   className: PropTypes.string.isRequired
 }
 

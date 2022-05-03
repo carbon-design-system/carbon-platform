@@ -191,6 +191,14 @@ const Asset = ({ libraryData, params }) => {
   ]
   const githubRepoUrl = `https://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
 
+  const getVersion = () => {
+    if (params.ref === 'main' || params.ref === 'master' || params.ref === 'latest') {
+      return 'Latest version'
+    }
+
+    return `v${libraryData.content.version}`
+  }
+
   return (
     <div ref={contentRef}>
       <NextSeo {...seo} />
@@ -221,7 +229,7 @@ const Asset = ({ libraryData, params }) => {
                   </dl>
                   <Link href={libraryPath} passHref>
                     <CarbonLink className={dashboardStyles['meta-link--large']}>
-                      {`v${libraryData.content.version}`}
+                      {getVersion()}
                     </CarbonLink>
                   </Link>
                   {SponsorIcon && (

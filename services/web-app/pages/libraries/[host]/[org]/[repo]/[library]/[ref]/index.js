@@ -69,6 +69,14 @@ const Library = ({ libraryData, navData, params }) => {
     }
   }
 
+  const getVersion = () => {
+    if (params.ref === 'main' || params.ref === 'master' || params.ref === 'latest') {
+      return 'Latest'
+    }
+
+    return `v${libraryData.content.version}`
+  }
+
   return (
     <>
       <NextSeo {...seo} />
@@ -85,9 +93,7 @@ const Library = ({ libraryData, navData, params }) => {
               >
                 <dl>
                   <dt className={dashboardStyles.label}>Version</dt>
-                  <dd
-                    className={dashboardStyles['label--large']}
-                  >{`v${libraryData.content.version}`}</dd>
+                  <dd className={dashboardStyles['label--large']}>{getVersion()}</dd>
                 </dl>
                 {SponsorIcon && (
                   <SponsorIcon

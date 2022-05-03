@@ -212,13 +212,16 @@ export const getLibraryData = async (params = {}) => {
     return isValidAsset
   })
 
+  const releases = await getLibraryReleases(params, library)
+
   return {
     params: libraryParams,
     response,
     content: {
       ...packageJsonContent,
       ...library, // spread last to use schema description if set
-      noIndex: !!library.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
+      noIndex: !!library.noIndex && process.env.INDEX_ALL !== '1', // default to false if not specified
+      releases
     },
     assets: filteredAssets
   }
@@ -233,15 +236,20 @@ export const getLibraryData = async (params = {}) => {
 export const getLibraryNavData = (params, libraryData) => {
   if (isEmpty(libraryData)) return {}
 
+  const getVersion = () => {
+    if (params.ref === 'main' || params.ref === 'master' || params.ref === 'latest') {
+      return 'Latest'
+    }
+
+    return `v${libraryData.content.version}`
+  }
+
   return {
     back: {
       title: 'Libraries',
       path: '/libraries'
     },
-    headings: [
-      libraryData?.content?.name ?? 'Library',
-      `v${libraryData?.content?.version ?? 'Version'}`
-    ],
+    headings: [libraryData?.content?.name ?? 'Library', getVersion()],
     items: [
       {
         title: 'Assets',
@@ -276,6 +284,34 @@ export const getLibraryNavData = (params, libraryData) => {
     ],
     path: `/libraries/${params.library}/${params.ref}`
   }
+}
+
+/**
+ * Generate and return the nav data for a library.
+ * @param {import('../typedefs').Params} params
+ * @param {import('../typedefs').Library} libraryData
+ * @returns {import('../typedefs').LibraryVersion[]}
+ */
+export const getLibraryReleases = async (params = {}, libraryData) => {
+  const libraryParams = await validateLibraryParams(params)
+
+  if (isEmpty(libraryParams) || isEmpty(libraryData)) return []
+
+  /**
+   * @type {import('../typedefs').GitHubReleasesResponse}
+   */
+  let releasesResponse = {}
+
+  try {
+    releasesResponse = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/releases', {
+      owner: libraryParams.org,
+      repo: libraryParams.repo
+    })
+  } catch (err) {
+    return []
+  }
+
+  return releasesResponse
 }
 
 /**

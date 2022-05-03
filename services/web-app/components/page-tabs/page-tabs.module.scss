@@ -18,8 +18,15 @@
     width: 100vw;
     height: spacing.$spacing-09;
     border-bottom: 1px solid theme.$layer-active-01;
+    background: theme.$background;
     content: '';
   }
+}
+
+// override carbon, fix arrow right misalignment
+:global(.cds--tabs .cds--tab--overflow-nav-button--next) {
+  right: -16px;
+  bottom: 1px;
 }
 
 // override Carbon min height and border bottom styles

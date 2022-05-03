@@ -5,13 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { LogoGithub } from '@carbon/icons-react'
+import { Column, Grid } from '@carbon/react'
 import { Svg32Illustrator } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
-import { Column, Row } from '@/components/grid-transform'
 import markdownStyles from '@/components/markdown/markdown.module.scss'
 import ResourceCard from '@/components/resource-card'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from '../svg-library.module.scss'
 
@@ -24,6 +25,7 @@ const NoResult = ({
   pageUrl
 }) => {
   const designType = pageName === 'icon' ? 'an icon' : 'a pictogram'
+  const isSm = useMatchMedia(mediaQueries.sm)
   return (
     <div className={styles['no-result']}>
       {allIconResults > 0 && (
@@ -50,8 +52,8 @@ const NoResult = ({
             It appears we don’t have an icon that matches your search. Try different search terms or
             give us a hand—submit your own design to the library!
           </p>
-          <Row className="resource-card-group">
-            <Column colMd={4} colLg={4} noGutterSm>
+          <Grid className="resource-card-group" condensed={isSm}>
+            <Column sm={4} md={4} lg={6}>
               <ResourceCard
                 subTitle={`Submit ${designType} design`}
                 href="https://github.ibm.com/brand/pictograms/issues/new"
@@ -59,7 +61,7 @@ const NoResult = ({
                 <LogoGithub size={32} className={styles.icon} />
               </ResourceCard>
             </Column>
-            <Column colMd={4} colLg={4} noGutterSm>
+            <Column sm={4} md={4} lg={6}>
               <ResourceCard
                 actionIcon="download"
                 href={pageUrl}
@@ -68,7 +70,7 @@ const NoResult = ({
                 <Svg32Illustrator />
               </ResourceCard>
             </Column>
-          </Row>
+          </Grid>
         </>
       )}
     </div>

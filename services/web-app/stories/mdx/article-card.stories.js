@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
+import Image from 'next/image'
 
 import ArticleCard from '@/components/article-card'
 
@@ -27,7 +28,7 @@ const Template = (args) => (
         href="/"
         {...args}
       >
-        <img src="mdx/Article_06.png" alt="" />
+        <Image src="mdx/Article_06.png" alt="" />
       </ArticleCard>
     </Column>
   </Grid>

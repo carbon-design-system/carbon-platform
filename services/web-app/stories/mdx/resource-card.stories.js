@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
+import Image from 'next/image'
 
 import ResourceCard from '@/components/resource-card'
 
@@ -25,7 +26,9 @@ const Template = (args) => (
         actionIcon="arrowRight"
         href="https://www.carbondesignsystem.com"
         {...args}
-      ></ResourceCard>
+      >
+        <Image src="mdx/sketch-icon.png" alt="sketch" />
+      </ResourceCard>
     </Column>
     <Column lg={4}>
       <ResourceCard
@@ -33,7 +36,9 @@ const Template = (args) => (
         title="Title"
         href="https://www.carbondesignsystem.com"
         {...args}
-      ></ResourceCard>
+      >
+        <Image src="mdx/sketch-icon.png" alt="sketch" />
+      </ResourceCard>
     </Column>
     <Column lg={4}>
       <ResourceCard
@@ -42,7 +47,9 @@ const Template = (args) => (
         actionIcon="arrowRight"
         href="https://www.carbondesignsystem.com"
         {...args}
-      ></ResourceCard>
+      >
+        <Image src="mdx/sketch-icon.png" alt="sketch" />
+      </ResourceCard>
     </Column>
     <Column lg={4}>
       <ResourceCard
@@ -50,7 +57,9 @@ const Template = (args) => (
         title="Title"
         href="https://www.carbondesignsystem.com"
         {...args}
-      ></ResourceCard>
+      >
+        <Image src="mdx/sketch-icon.png" alt="sketch" />
+      </ResourceCard>
     </Column>
   </Grid>
 )

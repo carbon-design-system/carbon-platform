@@ -4,6 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import Image from 'next/image'
+
 import GifPlayer from '@/components/gif-player'
 
 const stories = {
@@ -15,8 +17,8 @@ export default stories
 
 const Template = (args) => (
   <GifPlayer {...args}>
-    <img alt="animated" src="mdx/cloud.gif" />
-    <img alt="static" src="mdx/cloud.jpg" />
+    <Image alt="animated" src="mdx/cloud.gif" />
+    <Image alt="static" src="mdx/cloud.jpg" />
   </GifPlayer>
 )
 

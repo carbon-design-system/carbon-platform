@@ -21,6 +21,7 @@ import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
+import PageTable from '@/components/page-table'
 import Preview from '@/components/preview'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
@@ -61,6 +62,7 @@ const components = {
   a: Link,
   blockquote: Blockquote,
   img: Image,
+  table: PageTable,
   pre: Code,
   /* Gatsby theme components */
   Caption,

@@ -9,30 +9,7 @@ import '../styles/styles.scss'
 
 import { breakpoints } from '@carbon/layout'
 import { Theme } from '@carbon/react'
-import clsx from 'clsx'
 import { RouterContext } from 'next/dist/shared/lib/router-context'
-import * as NextImage from 'next/image'
-
-import styles from './styles.module.scss'
-
-const OriginalNextImage = NextImage.default
-
-// eslint-disable-next-line no-import-assign -- Forcefully disable Next image optimization
-Object.defineProperty(NextImage, 'default', {
-  configurable: true,
-  value: (props) => {
-    const modifiedProps = { ...props, layout: 'fill' }
-
-    delete modifiedProps.className
-    delete modifiedProps.placeholder
-
-    return (
-      <div className={clsx(styles['image-container'], props.className)}>
-        <OriginalNextImage {...modifiedProps} className={styles.image} unoptimized />
-      </div>
-    )
-  }
-})
 
 export const decorators = [
   (Story, context) => {

@@ -56,6 +56,9 @@ module.exports = withYaml({
       include: path.resolve(__dirname, '..')
     })
 
+    // Use custom unoptimized image instead of Next.js Image
+    config.resolve.alias['next/image'] = require.resolve('./NextImage.js')
+
     return config
   }
 })

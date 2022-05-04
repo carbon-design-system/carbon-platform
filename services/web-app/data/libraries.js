@@ -97,13 +97,13 @@ const prodLibraries = {
     sponsor: 'carbon',
     group: carbonComponentsGroup
   },
-  // 'carbon-components-angular': {
-  //   host: 'github.com',
-  //   org: 'carbon-design-system',
-  //   repo: 'carbon-components-angular',
-  //   path: '/src',
-  //   group: carbonComponentsGroup
-  // },
+  'carbon-components-angular': {
+    host: 'github.com',
+    org: 'IBM',
+    repo: 'carbon-components-angular',
+    path: '/src',
+    group: carbonComponentsGroup
+  },
   // 'carbon-angular': {
   //   host: 'github.ibm.com',
   //   org: 'matt-rosno',
@@ -402,11 +402,10 @@ const devLibraries = {
   },
   'carbon-components-angular': {
     host: 'github.com',
-    org: 'andreancardona',
+    org: 'IBM',
     repo: 'carbon-components-angular',
     path: '/src',
-    group: carbonComponentsGroup,
-    ref: '514-index-carbon-angular'
+    group: carbonComponentsGroup
   },
   'carbon-components': {
     host: 'github.com',

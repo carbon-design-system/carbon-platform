@@ -30,6 +30,7 @@ import ResourceCard from '@/components/resource-card'
 import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
+import TypesetStyle from '@/components/typeset-style'
 import Video from '@/components/video'
 
 import StatusIndicatorTable from '../status-indicator-table'
@@ -93,6 +94,7 @@ const components = {
   Preview,
   Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
+  TypesetStyle,
   ColorBlock,
   ColorGrid,
   TypeScaleTable,

@@ -28,11 +28,6 @@ const ResourceCard = (props) => {
     ...rest
   } = props
 
-  let isLink
-  if (href !== undefined && !rest.download) {
-    isLink = href.charAt(0) === '/'
-  }
-
   const ResourceCardClassNames = clsx(
     className,
     styles['resource-card'],
@@ -68,19 +63,13 @@ const ResourceCard = (props) => {
   let cardContainer
   if (disabled === true || href === undefined) {
     cardContainer = <div className={carbonTileclassNames}>{cardContent}</div>
-  } else if (isLink === true) {
+  } else {
     cardContainer = (
       <Link href={href}>
         <a className={carbonTileclassNames} {...rest}>
           {cardContent}
         </a>
       </Link>
-    )
-  } else {
-    cardContainer = (
-      <a href={href} className={carbonTileclassNames} {...rest}>
-        {cardContent}
-      </a>
     )
   }
 

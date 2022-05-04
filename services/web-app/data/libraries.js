@@ -97,13 +97,13 @@ const prodLibraries = {
     sponsor: 'carbon',
     group: carbonComponentsGroup
   },
-  // 'carbon-components-svelte': {
-  //   host: 'github.com',
-  //   org: 'carbon-design-system',
-  //   repo: 'carbon-components-svelte',
-  //   path: '/',
-  //   group: carbonComponentsGroup,
-  // },
+  'carbon-components-svelte': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-components-svelte',
+    path: '/',
+    group: carbonComponentsGroup
+  },
   // 'carbon-angular': {
   //   host: 'github.ibm.com',
   //   org: 'matt-rosno',
@@ -418,11 +418,10 @@ const devLibraries = {
   },
   'carbon-components-svelte': {
     host: 'github.com',
-    org: 'andreancardona',
+    org: 'carbon-design-system',
     repo: 'carbon-components-svelte',
     path: '/',
-    group: carbonComponentsGroup,
-    ref: '516-index-carbon-svelte'
+    group: carbonComponentsGroup
   },
   'ibmdotcom-react': {
     host: 'github.com',

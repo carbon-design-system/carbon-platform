@@ -22,8 +22,6 @@ import styles from './anchor-links.module.scss'
  */
 const AnchorLinks = ({ children, small, className }) => {
   const isColumn = Children.count(children) > 9
-  console.log(' 🐬 👀 isColumn', isColumn)
-  console.log(Children.count(children))
   const classNames = clsx(className, {
     [styles['list--small']]: small,
     [styles['multiple-columns']]: isColumn

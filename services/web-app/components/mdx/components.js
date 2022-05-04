@@ -12,6 +12,8 @@ import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
 import Code from '@/components/code'
+import ColorBlock from '@/components/color-block'
+import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
@@ -91,6 +93,8 @@ const components = {
   Preview,
   Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
+  ColorBlock,
+  ColorGrid,
   TypeScaleTable,
   TypeWeight,
   ColorPalette,

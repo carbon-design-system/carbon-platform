@@ -12,6 +12,8 @@ import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
 import Code from '@/components/code'
+import ColorBlock from '@/components/color-block'
+import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
 import { DoDont, DoDontRow } from '@/components/do-dont'
@@ -23,6 +25,7 @@ import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/comp
 import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
 import PageTable from '@/components/page-table'
+import Preview from '@/components/preview'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
 import { Tab, Tabs } from '@/components/tabs'
@@ -88,9 +91,12 @@ const components = {
   MdxWrapper,
   ResourceCard,
   Aside,
+  Preview,
   Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
   ColorTokenTable,
+  ColorBlock,
+  ColorGrid,
   TypeScaleTable,
   TypeWeight,
   ColorPalette,

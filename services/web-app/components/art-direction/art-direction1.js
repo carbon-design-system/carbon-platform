@@ -26,14 +26,14 @@ const ArtDirection = ({ children }) => {
   const childrenArray = Children.toArray(children)
 
   if ((!isMd && !isLg) || !childrenArray[1]) {
-    return <div>{childrenArray[0]}</div>
+    return childrenArray[0]
   }
 
   if ((isMd && !isLg) || !childrenArray[2]) {
-    return <div>{childrenArray[1]}</div>
+    return childrenArray[1]
   }
 
-  return <div>{childrenArray[2]}</div>
+  return childrenArray[2]
 }
 
 ArtDirection.propTypes = {

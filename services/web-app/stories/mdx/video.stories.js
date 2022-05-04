@@ -15,7 +15,15 @@ const stories = {
 
 export default stories
 
-const Template = (args) => <Video src={localVideo} poster={localPoster} {...args} />
+const style = {
+  minHeight: '500px'
+}
+
+const Template = (args) => (
+  <div style={style}>
+    <Video src={localVideo} poster={localPoster} {...args} />
+  </div>
+)
 
 export const Default = Template.bind({})
 Default.args = {}

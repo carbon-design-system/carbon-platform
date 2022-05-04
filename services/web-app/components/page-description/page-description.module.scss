@@ -9,9 +9,7 @@
 @use '@carbon/react/scss/type' as type;
 
 .page-description {
-  --space: #{spacing.$spacing-06};
-
-  margin-top: var(--space);
+  margin-top: spacing.$spacing-11;
 }
 
 .page-description p {
@@ -19,7 +17,7 @@
 }
 
 .page-description > * + * {
-  margin-top: var(--space);
+  margin-top: spacing.$spacing-06;
 }
 
 .page-description code {

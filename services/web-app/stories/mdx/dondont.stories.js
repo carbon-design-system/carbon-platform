@@ -28,7 +28,7 @@ const Template = (args) => (
     <DoDont aspectRatio="1:1" type="dont" {...args}>
       <Image
         alt="Use markdown in mdx files. ![](/mdx/dodont.png)"
-        src="/public/mdx/light-theme.jpg"
+        src="mdx/light-theme.jpg"
         layout="fill"
       />
     </DoDont>

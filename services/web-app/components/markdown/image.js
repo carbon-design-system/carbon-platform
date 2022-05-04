@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
 import NextImage from 'next/image'
 import PropTypes from 'prop-types'
@@ -31,9 +32,13 @@ const Image = ({ alt, ...props }) => {
   const imageProps = getImageProps(props)
 
   return (
-    <div className={clsx(imageProps.layout === 'fill' && styles['image-container'])}>
-      <NextImage alt={alt} {...imageProps} />
-    </div>
+    <Grid>
+      <Column sm={4} md={8} lg={12}>
+        <div className={clsx(imageProps.layout === 'fill' && styles['image-container'])}>
+          <NextImage alt={alt} {...imageProps} />
+        </div>
+      </Column>
+    </Grid>
   )
 }
 

@@ -7,8 +7,11 @@
 
 /* stylelint-disable declaration-no-important */
 /* stylelint-disable declaration-property-value-disallowed-list */
+@use '@carbon/react/scss/theme' as theme;
+
 .image-container {
   width: 100%;
+  background: theme.$layer-01;
 
   > span {
     position: unset !important;

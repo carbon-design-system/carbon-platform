@@ -33,11 +33,6 @@ const ArticleCard = (props) => {
     ...rest
   } = props
 
-  let isLink
-  if (href !== undefined) {
-    isLink = href.charAt(0) === '/'
-  }
-
   const ArticleCardClassNames = clsx(className, styles['article-card'], {
     [styles.disabled]: disabled
   })
@@ -74,19 +69,13 @@ const ArticleCard = (props) => {
   let cardContainer
   if (disabled === true) {
     cardContainer = <div className={cardContentClassNames}>{cardContent}</div>
-  } else if (isLink === true) {
+  } else {
     cardContainer = (
       <Link href={href}>
         <a href={href} className={cardContentClassNames} {...rest}>
           {cardContent}
         </a>
       </Link>
-    )
-  } else {
-    cardContainer = (
-      <a href={href} className={cardContentClassNames} {...rest}>
-        {cardContent}
-      </a>
     )
   }
 

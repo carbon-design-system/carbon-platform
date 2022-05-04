@@ -24,14 +24,16 @@ const useSticky = () => {
     // eslint-disable-next-line max-len -- do not split this url
     // rAF https://stackoverflow.com/questions/41740082/scroll-events-requestanimationframe-vs-requestidlecallback-vs-passive-event-lis
     function observe() {
-      const refPageOffset = stickyRef.current.getBoundingClientRect().top
-      const stickyOffset = parseInt(getComputedStyle(stickyRef.current).top, 10)
-      const stickyActive = refPageOffset <= stickyOffset
+      if (stickyRef.current) {
+        const refPageOffset = stickyRef.current.getBoundingClientRect().top
+        const stickyOffset = parseInt(getComputedStyle(stickyRef.current).top, 10)
+        const stickyActive = refPageOffset <= stickyOffset
 
-      if (stickyActive && !sticky) {
-        setSticky(true)
-      } else if (!stickyActive && sticky) {
-        setSticky(false)
+        if (stickyActive && !sticky) {
+          setSticky(true)
+        } else if (!stickyActive && sticky) {
+          setSticky(false)
+        }
       }
     }
     observe()

@@ -12,6 +12,8 @@
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/colors' as colors;
 
+@include type.type-classes();
+
 // Typeset Style
 .container {
   position: relative;

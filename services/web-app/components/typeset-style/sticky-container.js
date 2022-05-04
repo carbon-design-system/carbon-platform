@@ -31,26 +31,22 @@ StickyContainer.propTypes = {
    * if site has banner at top ( ex. go to v1)
    */
   banner: PropTypes.bool,
-
   /**
-   * Provide the contents of your `StickyContainer`.
+   * contents of sticky-container
    */
   children: PropTypes.node.isRequired,
   /**
-   * Optional class name.
+   * optional classname
    */
   className: PropTypes.string,
-
   /**
    * if page navBar is showing / hiding, toggle this on/off
    */
   navBar: PropTypes.bool,
-
   /**
    * for items that are on pages that already have a sticky item
    */
   secondary: PropTypes.bool,
-
   /**
    * if custom top is necessary, must include units - (rem, px)
    */

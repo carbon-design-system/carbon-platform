@@ -13,7 +13,7 @@ const Glossary = () => {
   const glossary = require('@/data/glossary')
   return (
     <Grid>
-      <Column sm={4} md={8} lg={7}>
+      <Column sm={4} md={6} lg={7}>
         <div className="glossary">
           <GlossaryNav />
           <GlossaryList glossary={glossary} />

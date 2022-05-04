@@ -95,7 +95,7 @@ const IconLibrary = () => {
 
   return (
     <Grid condensed>
-      <Column sm={4} md={8} lg={16}>
+      <Column sm={4} md={8} lg={12}>
         <div className={styles['svg-page']}>
           <FilterRow
             categoryList={categoryList}

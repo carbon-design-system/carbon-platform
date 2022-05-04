@@ -53,7 +53,7 @@ const NoResult = ({
             give us a hand—submit your own design to the library!
           </p>
           <Grid className="resource-card-group" condensed={isSm}>
-            <Column sm={4} md={4} lg={6}>
+            <Column sm={4} md={4} lg={4}>
               <ResourceCard
                 subTitle={`Submit ${designType} design`}
                 href="https://github.ibm.com/brand/pictograms/issues/new"
@@ -61,7 +61,7 @@ const NoResult = ({
                 <LogoGithub size={32} className={styles.icon} />
               </ResourceCard>
             </Column>
-            <Column sm={4} md={4} lg={6}>
+            <Column sm={4} md={4} lg={4}>
               <ResourceCard
                 actionIcon="download"
                 href={pageUrl}

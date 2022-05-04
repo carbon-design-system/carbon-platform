@@ -37,6 +37,15 @@ export const assetsNavData = [
     title: 'Libraries'
   },
   {
+    title: 'Guidelines',
+    items: [
+      {
+        path: '/guidelines/2x-grid/overview',
+        title: '2x Grid'
+      }
+    ]
+  },
+  {
     title: 'Catalogs',
     items: [
       {

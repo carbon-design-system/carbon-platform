@@ -97,6 +97,13 @@ const prodLibraries = {
     sponsor: 'carbon',
     group: carbonComponentsGroup
   },
+  // 'carbon-components-vue': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-components-vue',
+  //   path: '/packages/core/src',
+  //   group: carbonComponentsGroup
+  // },
   // 'carbon-angular': {
   //   host: 'github.ibm.com',
   //   org: 'matt-rosno',
@@ -400,6 +407,14 @@ const devLibraries = {
     path: '/packages/components',
     group: carbonComponentsGroup,
     ref: 'v10'
+  },
+  'carbon-components-vue': {
+    host: 'github.com',
+    org: 'andreancardona',
+    repo: 'carbon-components-vue',
+    path: '/packages/core/src',
+    group: carbonComponentsGroup,
+    ref: '517-index-carbon-vue'
   },
   'carbon-react': {
     host: 'github.com',

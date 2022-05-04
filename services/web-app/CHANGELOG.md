@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.102](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.101...@carbon-platform/web-app@0.1.102) (2022-05-04)
+
+
+### Features 🌟
+
+* add typeweight and typescaletable components ([7cb0fbf](https://github.com/carbon-design-system/carbon-platform/commit/7cb0fbf65d50aab6f3cc266d7832006be93a5789))
+* add typeweight and typescaletable components ([44801c0](https://github.com/carbon-design-system/carbon-platform/commit/44801c0dd7f0c72cafbc0c06d7b21edc9e32e583))
+
+
+### Bug Fixes 🐛
+
+* color for theme switching ([6b1a9ae](https://github.com/carbon-design-system/carbon-platform/commit/6b1a9ae85860b1f605e3b22ac8077aefec3e3242))
+* eslint error ([949ec43](https://github.com/carbon-design-system/carbon-platform/commit/949ec4378c64347a334e4e8c4c267ec34a405edb))
+* fix tabs sticky and mobile bug ([edcc376](https://github.com/carbon-design-system/carbon-platform/commit/edcc3765f0f03a96974b3cb208c024d9fe1e13a1))
+* ignore lint ([57b91e2](https://github.com/carbon-design-system/carbon-platform/commit/57b91e2e7e0e18ff4e5c3a306c1e27a36dc57c38))
+* merge conflicts ([4d2fc61](https://github.com/carbon-design-system/carbon-platform/commit/4d2fc619bc5af5161d8c9e5d394a1224d5a5c53e))
+* move in storybook ([0954264](https://github.com/carbon-design-system/carbon-platform/commit/0954264a9cb9e010896663a0ab407effe026b48c))
+* **web-app:** horizontal line at max breakpoint ([d822dd1](https://github.com/carbon-design-system/carbon-platform/commit/d822dd100371d84c141c24cd9fb0ee3aaecc0b1f))
+
 ### [0.1.101](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.100...@carbon-platform/web-app@0.1.101) (2022-04-30)
 
 

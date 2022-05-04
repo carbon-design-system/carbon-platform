@@ -1,0 +1,57 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+.example-container {
+  margin-top: spacing.$spacing-05;
+  color: theme.$text-primary;
+}
+
+.typeset-example {
+  margin-top: spacing.$spacing-05;
+  margin-right: -(spacing.$spacing-03);
+  margin-left: -(spacing.$spacing-03);
+
+  @include breakpoint.breakpoint('md') {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+.example-row {
+  min-height: 216px;
+  background-color: theme.$layer-01;
+}
+
+.example-description {
+  overflow: hidden;
+  padding: spacing.$spacing-05 0;
+
+  @include breakpoint.breakpoint('md') {
+    padding-right: 15%;
+  }
+}
+
+.example-specs {
+  @include type.type-style('body-compact-01');
+
+  padding: spacing.$spacing-05 0;
+
+  @include breakpoint.breakpoint('md') {
+    padding: spacing.$spacing-05 spacing.$spacing-06;
+    border-left: 1px solid theme.$border-subtle;
+  }
+}
+
+.example-code-style {
+  display: block;
+  margin-top: spacing.$spacing-03;
+}

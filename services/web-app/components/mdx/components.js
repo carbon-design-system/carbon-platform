@@ -12,6 +12,8 @@ import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
 import Code from '@/components/code'
+import ColorBlock from '@/components/color-block'
+import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
@@ -21,12 +23,16 @@ import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
+import PageTable from '@/components/page-table'
+import Preview from '@/components/preview'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
+import { TypeScaleTable, TypeWeight } from '@/components/type'
+import TypesetStyle from '@/components/typeset-style'
 import Video from '@/components/video'
 
 import StatusIndicatorTable from '../status-indicator-table'
@@ -61,6 +67,7 @@ const components = {
   a: Link,
   blockquote: Blockquote,
   img: Image,
+  table: PageTable,
   pre: Code,
   /* Gatsby theme components */
   Caption,
@@ -88,8 +95,14 @@ const components = {
   MdxWrapper,
   ResourceCard,
   Aside,
+  Preview,
   Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
+  TypesetStyle,
+  ColorBlock,
+  ColorGrid,
+  TypeScaleTable,
+  TypeWeight,
   ColorPalette,
   StatusIndicatorTable,
   /* Gatsby theme components, not used in Carbon website, out of scope v1 */

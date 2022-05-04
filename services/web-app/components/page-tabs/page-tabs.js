@@ -5,13 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, Tab, TabList, Tabs } from '@carbon/react'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
 import styles from './page-tabs.module.scss'
 
-const PageTabs = ({ tabs = [] }) => {
+const PageTabs = ({ className, tabs = [] }) => {
   return (
-    <Grid className={styles.container} narrow>
+    <Grid className={clsx(styles.container, className)} narrow>
       <Column sm={4} md={8} lg={12}>
         <Tabs>
           <TabList aria-label="List of tabs" className={styles['tab-list']}>

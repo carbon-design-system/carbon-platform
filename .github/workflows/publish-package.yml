@@ -24,9 +24,6 @@ on:
         description: Git tag representing the version to publish
         required: true
         type: string
-    secrets:
-      CONTAINER_REGISTRY_API_KEY:
-        required: true
 
 jobs:
   publish:

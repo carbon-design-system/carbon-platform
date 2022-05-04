@@ -11,6 +11,7 @@ import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
+import Code from '@/components/code'
 import ColorPalette from '@/components/color-palette'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
@@ -20,10 +21,12 @@ import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
+import PageTable from '@/components/page-table'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
 import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
+import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
 import Video from '@/components/video'
 
@@ -59,6 +62,8 @@ const components = {
   a: Link,
   blockquote: Blockquote,
   img: Image,
+  table: PageTable,
+  pre: Code,
   /* Gatsby theme components */
   Caption,
   PageDescription,
@@ -86,6 +91,8 @@ const components = {
   Profile,
   MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
   TypesetStyle,
+  TypeScaleTable,
+  TypeWeight,
   ColorPalette,
   StatusIndicatorTable,
   /* Gatsby theme components, not used in Carbon website, out of scope v1 */

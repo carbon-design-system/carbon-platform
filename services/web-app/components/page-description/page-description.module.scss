@@ -16,6 +16,10 @@
   @include type.type-style('fluid-heading-03', true);
 }
 
+.page-description > * {
+  margin-top: 0;
+}
+
 .page-description > * + * {
   margin-top: spacing.$spacing-06;
 }

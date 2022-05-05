@@ -17,6 +17,7 @@ import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
+import Glossary from '@/components/glossary'
 import { Column, Grid, Row } from '@/components/grid-transform'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
@@ -84,6 +85,7 @@ const components = {
   DoDont,
   DoDontRow,
   GifPlayer,
+  Glossary,
   InlineNotification,
   Tabs,
   Tab,

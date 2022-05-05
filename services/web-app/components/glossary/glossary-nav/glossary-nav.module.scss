@@ -1,0 +1,84 @@
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/utilities/convert' as convert;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/motion' as motion;
+@use '@carbon/react/scss/type' as type;
+
+.glossary-nav {
+  position: absolute;
+  right: spacing.$spacing-06;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  padding-top: convert.rem(160px);
+  line-height: 1.5;
+
+  @include breakpoint.breakpoint('lg') {
+    display: flex;
+  }
+
+  &--fixed {
+    position: fixed;
+    top: 0;
+  }
+}
+
+// override carbon list item
+@media screen and (prefers-reduced-motion: reduce) {
+  .cds--list__item {
+    display: block;
+    width: 100%;
+    padding: 0;
+    list-style-type: none;
+    transition: none;
+
+    a {
+      @include type.type-style('body-compact-02');
+
+      display: block;
+
+      width: convert.rem(24px);
+      height: convert.rem(24px);
+      padding: convert.rem(1px) 0 0 0;
+      color: theme.$text-secondary;
+      text-align: center;
+      text-decoration: none;
+    }
+  }
+}
+
+.cds--list__item {
+  display: block;
+  width: 100%;
+  padding: 0;
+  list-style-type: none;
+  transition: all motion.$transition-base;
+
+  a {
+    @include type.type-style('body-compact-02');
+
+    display: block;
+
+    width: convert.rem(24px);
+    height: convert.rem(24px);
+    padding: convert.rem(1px) 0 0 0;
+    color: theme.$text-secondary;
+    text-align: center;
+    text-decoration: none;
+  }
+}
+
+// override carbon list
+.cds--list__item:hover a {
+  background: theme.$background-hover;
+  color: theme.$text-primary;
+}
+
+// override carbon list item
+.cds--list__item.glossary-nav__item--active a {
+  background: theme.$layer-accent-01;
+  color: theme.$text-primary;
+}

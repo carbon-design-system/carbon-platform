@@ -5,41 +5,46 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Bee, LogoGithub } from '@carbon/icons-react'
+import {
+  Codepen,
+  Codesandbox,
+  Figma,
+  Illustrator,
+  Medium,
+  Npm,
+  Sketch,
+  Storybook
+} from '@carbon-platform/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
 
 import angular from './icons/angular.png'
 import ase from './icons/ase.png'
-import codepen from './icons/codepen.svg'
-import codesandbox from './icons/codesandbox.svg'
-import figma from './icons/figma.svg'
-import illustrator from './icons/illustrator.svg'
-import medium from './icons/medium.svg'
-import npm from './icons/npm.svg'
 import react from './icons/react.png'
 import sass from './icons/sass.png'
-import sketch from './icons/sketch.svg'
-import storybook from './icons/storybook.svg'
 import vue from './icons/vue.png'
 import webcomponents from './icons/webcomponents.png'
 import styles from './mdx-icon.module.scss'
 
+const svgIcons = {
+  sketch: Sketch,
+  codesandbox: Codesandbox,
+  illustrator: Illustrator,
+  codepen: Codepen,
+  storybook: Storybook,
+  medium: Medium,
+  npm: Npm,
+  figma: Figma
+}
+
 const localIcons = {
-  sketch,
   ase,
-  codesandbox,
-  codepen,
-  illustrator,
   react,
   vue,
   angular,
   webcomponents,
-  npm,
-  storybook,
-  medium,
-  sass,
-  figma
+  sass
 }
 
 const carbonIcons = {
@@ -52,8 +57,21 @@ const iconColor = {
 }
 
 const MdxIcon = ({ name, color }) => {
+  if (svgIcons[name]) {
+    const SvgComponent = svgIcons[name]
+    return (
+      <div className={styles['mdx-icon']}>
+        <SvgComponent />
+      </div>
+    )
+  }
+
   if (localIcons[name]) {
-    return <Image className={styles['mdx-icon']} alt={`${name} icon`} src={localIcons[name]} />
+    return (
+      <div className={styles['mdx-icon']}>
+        <Image alt={`${name} icon`} src={localIcons[name]} />
+      </div>
+    )
   }
 
   if (carbonIcons[name]) {
@@ -64,9 +82,18 @@ const MdxIcon = ({ name, color }) => {
   return null
 }
 
+const acceptedCompNames = [
+  ...Object.keys(localIcons),
+  ...Object.keys(carbonIcons),
+  ...Object.keys(svgIcons)
+]
+
 MdxIcon.propTypes = {
   color: PropTypes.oneOf(Object.keys(iconColor)),
-  name: PropTypes.oneOf([...Object.keys(localIcons), ...Object.keys(carbonIcons)])
+  /**
+   * Name of Icon to render.
+   */
+  name: PropTypes.oneOf(acceptedCompNames)
 }
 
-export default MdxIcon
+export { acceptedCompNames, MdxIcon as default }

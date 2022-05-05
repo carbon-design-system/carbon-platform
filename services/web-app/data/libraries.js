@@ -101,7 +101,8 @@ const prodLibraries = {
     host: 'github.com',
     org: 'IBM',
     repo: 'carbon-components-angular',
-    path: '/src',
+    path: '/src'
+  },
   'carbon-components-svelte': {
     host: 'github.com',
     org: 'carbon-design-system',

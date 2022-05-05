@@ -8,6 +8,7 @@
 /* stylelint-disable declaration-no-important */
 /* stylelint-disable declaration-property-value-disallowed-list */
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/spacing' as spacing;
 
 .image-container {
   width: 100%;
@@ -23,4 +24,9 @@
     height: unset !important;
     object-fit: contain;
   }
+}
+
+// targets images on the page not nested inside other components
+:global([class*='layout_column-content']) > .image-container {
+  margin: spacing.$spacing-07 spacing.$spacing-05 0;
 }

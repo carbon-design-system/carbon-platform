@@ -33,15 +33,9 @@
     }
   }
 
-  :global([class*='cds--lg:col-span-4']:nth-child(odd)) .resource-card {
-    @include breakpoint.breakpoint('md') {
-      border-left: 1px solid transparent;
-    }
-  }
-
   :global([class*='cds--lg:col-span-4']:nth-child(even)) .resource-card {
     @include breakpoint.breakpoint('md') {
-      border-left: 1px solid theme.$border-subtle;
+      box-shadow: -1px 0 0 0 theme.$border-subtle;
     }
   }
 }

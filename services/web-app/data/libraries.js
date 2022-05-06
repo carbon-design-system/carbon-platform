@@ -102,6 +102,7 @@ const prodLibraries = {
     org: 'carbon-design-system',
     repo: 'carbon-components-vue',
     path: '/packages/core/src',
+    packageJsonPath: '/../package.json',
     group: carbonComponentsGroup
   },
   'carbon-components-svelte': {

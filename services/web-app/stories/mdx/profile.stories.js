@@ -11,7 +11,12 @@ import Profile from '@/components/profile'
 
 const stories = {
   title: 'MDX/Profile',
-  component: Profile
+  component: Profile,
+     argTypes: {
+    children: {
+      control: false
+    }
+    }
 }
 
 export default stories

@@ -11,6 +11,8 @@ import cookieParser from 'cookie-parser'
 import expressSession from 'express-session'
 import nextConnect from 'next-connect'
 
+const logging = new Logging('require-session')
+
 /**
  * Bootstraps session into request, returns 404 if user is required for resource
  *
@@ -18,7 +20,6 @@ import nextConnect from 'next-connect'
  * @returns {import('next-connect').NextConnect} NextConnect middleware with session configuration
  */
 export default function requireSession(needsUser = false) {
-  const logging = new Logging('web-app', 'require-session')
   return nextConnect({
     onError: (err, _req, res) => {
       logging.error(err.stack)

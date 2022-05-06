@@ -4,6 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export { Trace } from './decorators/trace'
-export { Validate } from './decorators/validate'
-export { PlatformMicroservice } from './platform-microservice'
+import { Module } from '@nestjs/common'
+
+@Module({})
+class RootApplicationModule {}
+
+export { RootApplicationModule }

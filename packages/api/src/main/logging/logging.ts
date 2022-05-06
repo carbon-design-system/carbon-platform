@@ -8,6 +8,7 @@ import chalk from 'chalk'
 
 import { MessagingClient } from '../messaging'
 import { Environment, getEnvironment, getRunMode, isDebugEnabled, RunMode } from '../runtime'
+import { CARBON_SERVICE_NAME } from './constants'
 import { LogLevel, LogLoggedMessage } from './interfaces'
 
 const logColors = {
@@ -18,6 +19,21 @@ const logColors = {
 }
 
 type Loggable = string | number | boolean | Array<any> | Object | Error
+
+interface LoggingOptions {
+  /**
+   * The name of the service under which this instance should create logs. If not specified, this
+   * will default to the value obtained from the CARBON_SERVICE_NAME envvar.
+   */
+  serviceName?: string
+
+  /**
+   * Explicitly turns on/off remote logging. Overrides all other environment-based configuration of
+   * this setting. Typically this is only used by thelogging service itself to prevent an infinite
+   * loop. All other services should let this value be set to its default.
+   */
+  isRemoteLoggingEnabled?: boolean
+}
 
 /**
  * An instantiatable class that provides API methods that can be used to log application data. In
@@ -35,18 +51,23 @@ class Logging {
   /**
    * Creates a Logging instance for the given service/component combo.
    *
-   * @param serviceName The name of the service under which this instance should create logs.
    * @param component A freeform string that allows a second layer of search/tagging on logs.
    * Typically this is something like a class name, file name, or other name describing a "chunk"
    * of code or logic.
+   * @param options Additional configuration options.
    */
-  constructor(serviceName: string, component: string) {
+  constructor(component: string, options?: LoggingOptions) {
     this.component = component
     this.environment = getEnvironment()
     this.isDebugLoggingEnabled = getRunMode() === RunMode.Dev || isDebugEnabled()
     this.isRemoteLoggingEnabled =
       getRunMode() === RunMode.Standard && getEnvironment() !== Environment.Build
-    this.service = serviceName
+    this.service = options?.serviceName || CARBON_SERVICE_NAME
+
+    // Explicitly turn on/off remote logging based on the supplied argument
+    if (options?.isRemoteLoggingEnabled !== undefined) {
+      this.isRemoteLoggingEnabled = options.isRemoteLoggingEnabled
+    }
 
     if (this.isRemoteLoggingEnabled) {
       this.messagingClient = MessagingClient.getInstance()

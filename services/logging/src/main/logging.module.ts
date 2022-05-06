@@ -4,12 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Nest, PlatformMicroservice } from '@carbon-platform/api/microservice'
+import { PlatformMicroservice } from '@carbon-platform/api/microservice'
+import { Module } from '@nestjs/common'
 
 import { LogDnaService } from './log-dna.service'
 import { LoggingController } from './logging.controller'
 
-@Nest.Module({
+@Module({
   controllers: [LoggingController],
   providers: [LogDnaService]
 })

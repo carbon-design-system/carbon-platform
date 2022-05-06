@@ -4,20 +4,24 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { LogLoggedMessage } from '@carbon-platform/api/logging'
-import { Nest, PlatformController, Validate } from '@carbon-platform/api/microservice'
+import { Logging, LogLoggedMessage } from '@carbon-platform/api/logging'
+import { Trace, Validate } from '@carbon-platform/api/microservice'
 import { getEnvironment } from '@carbon-platform/api/runtime'
+import { Controller } from '@nestjs/common'
+import { EventPattern, Payload } from '@nestjs/microservices'
 
 import { LogDnaService } from './log-dna.service'
 import { logMessageValidator } from './log-message-validator'
 
-@Nest.Controller()
-class LoggingController extends PlatformController {
+@Controller()
+class LoggingController {
   private readonly logDnaService: LogDnaService
+  private readonly logging: Logging
 
   constructor(logDnaService: LogDnaService) {
-    super()
     this.logDnaService = logDnaService
+    // Set up a logger, but turn off remote logging since this is the logging service itself
+    this.logging = new Logging('logging.controller', { isRemoteLoggingEnabled: false })
 
     this.logDnaService.log({
       service: 'logging',
@@ -34,11 +38,10 @@ class LoggingController extends PlatformController {
    *
    * @param data The log message to log.
    */
-  @Nest.EventPattern('log_logged')
+  @EventPattern('log_logged')
+  @Trace()
   @Validate(logMessageValidator)
-  public async logLogged(@Nest.Payload() data: LogLoggedMessage) {
-    this.nestLogger.log(`-> logLogged(${JSON.stringify(data)})`)
-
+  public async logLogged(@Payload() data: LogLoggedMessage) {
     this.logDnaService.log(data)
   }
 }

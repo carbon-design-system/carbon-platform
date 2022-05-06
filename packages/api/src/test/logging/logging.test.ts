@@ -25,13 +25,31 @@ describe('message emission', () => {
     })
 
     it('does not emit any messages', async () => {
-      const logging = new Logging('test-service', 'test-component')
+      const logging = new Logging('test-component', { serviceName: 'test-service' })
       await logging.debug('this is a test')
       await logging.info('this is a test')
       await logging.warn('this is a test')
       await logging.error('this is a test')
 
       expect(mockedEmit).not.toHaveBeenCalled()
+    })
+
+    it('emits a message when remote logging is explicitly overridden', async () => {
+      const logging = new Logging('test-component', {
+        serviceName: 'test-service',
+        isRemoteLoggingEnabled: true
+      })
+      await logging.info('test')
+      expect(mockedEmit).toHaveBeenCalledTimes(1)
+
+      await logging.warn('test')
+      expect(mockedEmit).toHaveBeenCalledTimes(2)
+
+      await logging.error('test')
+      expect(mockedEmit).toHaveBeenCalledTimes(3)
+
+      await logging.debug('test')
+      expect(mockedEmit).toHaveBeenCalledTimes(4)
     })
 
     afterAll(() => {
@@ -50,7 +68,7 @@ describe('message emission', () => {
     })
 
     it('emits one message per method call', async () => {
-      const logging = new Logging('test-service', 'test-component')
+      const logging = new Logging('test-component', { serviceName: 'test-service' })
 
       await logging.info('test')
       expect(mockedEmit).toHaveBeenCalledTimes(1)
@@ -62,10 +80,23 @@ describe('message emission', () => {
       expect(mockedEmit).toHaveBeenCalledTimes(3)
     })
 
+    it('does not emit any messages when remote logging is explicitly disabled', async () => {
+      const logging = new Logging('test-component', {
+        serviceName: 'test-service',
+        isRemoteLoggingEnabled: false
+      })
+      await logging.debug('this is a test')
+      await logging.info('this is a test')
+      await logging.warn('this is a test')
+      await logging.error('this is a test')
+
+      expect(mockedEmit).not.toHaveBeenCalled()
+    })
+
     it('does not emit a debug log', async () => {
-      const logging = new Logging('test-service', 'test-component')
+      const logging = new Logging('test-component', { serviceName: 'test-service' })
       await logging.debug('test')
-      expect(mockedEmit).toHaveBeenCalledTimes(0)
+      expect(mockedEmit).not.toHaveBeenCalled()
     })
 
     it('calls emit with a well-formed message', async () => {
@@ -78,9 +109,21 @@ describe('message emission', () => {
         timestamp: Date.now()
       }
 
-      const logging = new Logging(message.service, message.component)
+      const logging = new Logging(message.component, { serviceName: message.service })
       await logging.info(message.message)
       expect(mockedEmit).toHaveBeenCalledWith('log_logged', message)
+    })
+
+    it('uses the default service name when one is not provided', async () => {
+      const logging = new Logging('test-component')
+      await logging.info('test message')
+
+      expect(mockedEmit).toHaveBeenCalledWith(
+        'log_logged',
+        expect.objectContaining({
+          service: 'undefined'
+        })
+      )
     })
 
     afterEach(() => {
@@ -107,47 +150,59 @@ describe('console output', () => {
     console.error = jest.fn()
   })
 
-  it('calls console.debug', () => {
-    const logging = new Logging('test-service', 'test-component')
+  it('calls console.debug', async () => {
+    const logging = new Logging('test-component', { serviceName: 'test-service' })
 
-    logging.debug('test')
+    await logging.debug('test')
     expect(console.debug).toHaveBeenCalledTimes(1)
     expect(console.error).not.toHaveBeenCalled()
   })
 
-  it('calls console.info', () => {
-    const logging = new Logging('test-service', 'test-component')
+  it('calls console.info', async () => {
+    const logging = new Logging('test-component', { serviceName: 'test-service' })
 
-    logging.info('test')
+    await logging.info('test')
     expect(console.info).toHaveBeenCalledTimes(1)
     expect(console.error).not.toHaveBeenCalled()
   })
 
-  it('calls console.warn', () => {
-    const logging = new Logging('test-service', 'test-component')
+  it('calls console.warn', async () => {
+    const logging = new Logging('test-component', { serviceName: 'test-service' })
 
-    logging.warn('test')
+    await logging.warn('test')
     expect(console.warn).toHaveBeenCalledTimes(1)
     expect(console.error).not.toHaveBeenCalled()
   })
 
-  it('calls console.error', () => {
-    const logging = new Logging('test-service', 'test-component')
+  it('calls console.error', async () => {
+    const logging = new Logging('test-component', { serviceName: 'test-service' })
 
-    logging.error('test')
+    await logging.error('test')
     expect(console.error).toHaveBeenCalledTimes(1)
     expect(console.info).not.toHaveBeenCalled()
   })
 
-  it('accepts error objects', () => {
-    const logging = new Logging('test-service', 'test-component')
+  it('accepts error objects', async () => {
+    const logging = new Logging('test-component', { serviceName: 'test-service' })
+    const err = new Error('test error')
+    delete err.stack
 
-    logging.error(new Error('test error'))
+    await logging.error(err)
+    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('test error'))
+  })
+
+  it('uses the stack of an error object', async () => {
+    const logging = new Logging('test-component', { serviceName: 'test-service' })
+    const err = new Error('test error')
+    err.stack = 'test stack'
+
+    await logging.error(err)
     expect(console.error).toHaveBeenCalledTimes(1)
+    expect(console.error).toHaveBeenCalledWith(expect.stringContaining(err.stack))
   })
 
   it('accepts non-string, non-error objects when debug is called', () => {
-    const logging = new Logging('test-service', 'test-component')
+    const logging = new Logging('test-component', { serviceName: 'test-service' })
 
     logging.debug(['a', 'b', 'c'])
     expect(console.debug).toHaveBeenCalledTimes(1)

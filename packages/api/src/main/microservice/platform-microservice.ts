@@ -4,8 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { DynamicModule } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
-import { MicroserviceOptions, Transport } from '@nestjs/microservices'
+import { RmqOptions, Transport } from '@nestjs/microservices'
 import amqp from 'amqplib'
 
 import {
@@ -21,7 +22,8 @@ import {
 } from '../messaging'
 import { withEnvironment } from '../runtime'
 import { CONNECT_RETRY_INTERVAL, PORT } from './constants'
-import { StatusModule } from './status-endpoint/status.module'
+import { RootApplicationModule } from './root-application.module'
+import { StatusController } from './status-endpoint/status.controller'
 
 type BindableMessage = EventMessage | QueryMessage
 
@@ -29,28 +31,42 @@ type BindableMessageKey<T extends BindableMessage> = T extends EventMessage
   ? keyof EventMessage
   : keyof QueryMessage
 
+interface ServiceConfig {
+  queue: Queue
+  messagingOptions?: {
+    noAck?: boolean
+  }
+  restApiController?: any
+}
+
+interface MessagingOptions {
+  noAck?: boolean
+}
+
 /**
  * An abstract class that wraps much of the boilerplate code needed to create, bind, and start a
  * Carbon Platform microservice.
  */
 abstract class PlatformMicroservice {
   private readonly queueName: string
-  private readonly queueOptions: any
+  private readonly configOptions: MessagingOptions
+  private readonly restApiController?: any
 
   /**
    * Constructs a new microservice that consumes messages from the specified queue.
    *
-   * @param queueName The name of the queue from which to consume messages.
-   * @param queueOptions An optional set of options for the queue, such as explicit message
+   * @param params Configuration parameters for the microservice.
+   * @param params.queue The name of the queue from which to consume messages (from the Queue enum).
+   * @param params.messagingOptions An optional set of options for AMQP, such as explicit message
    * acknowledgement or queue durability.
+   * @param params.restApiController An optional NestJS Controller to act as a public-facing REST
+   * API handler for this microservice.
    */
-  constructor(queueName: Queue, queueOptions?: any) {
+  constructor({ queue, messagingOptions = {}, restApiController }: ServiceConfig) {
     // Use a queue name that is environment-specific
-    this.queueName = withEnvironment(queueName)
-    this.queueOptions = {
-      ...DEFAULT_QUEUE_OPTIONS,
-      ...queueOptions
-    }
+    this.queueName = withEnvironment(queue)
+    this.configOptions = messagingOptions
+    this.restApiController = restApiController
   }
 
   /**
@@ -79,22 +95,28 @@ abstract class PlatformMicroservice {
    * **NOTE:** This method does not return.
    */
   public async start(): Promise<any> {
-    const microservice = await NestFactory.createMicroservice<MicroserviceOptions>(
-      this.constructor,
-      {
-        transport: Transport.RMQ,
-        options: {
-          socketOptions: DEFAULT_SOCKET_OPTIONS,
-          queue: this.queueName,
-          queueOptions: this.queueOptions,
-          urls: [CARBON_MESSAGE_QUEUE_URL]
-        }
+    const microservice = await NestFactory.createMicroservice<RmqOptions>(this.constructor, {
+      transport: Transport.RMQ,
+      options: {
+        // Default to noAck=false (explicit acks required to remove entries from the queue)
+        noAck: this.configOptions.noAck,
+        socketOptions: DEFAULT_SOCKET_OPTIONS,
+        queue: this.queueName,
+        queueOptions: DEFAULT_QUEUE_OPTIONS,
+        urls: [CARBON_MESSAGE_QUEUE_URL]
       }
-    )
+    })
 
-    const statusEndpoint = await NestFactory.create(StatusModule)
+    const controllers = this.restApiController
+      ? [StatusController, this.restApiController]
+      : [StatusController]
 
-    return Promise.all([microservice.listen(), statusEndpoint.listen(PORT)])
+    const rootApplication = await NestFactory.create({
+      module: RootApplicationModule,
+      controllers
+    } as DynamicModule)
+
+    return Promise.all([microservice.listen(), rootApplication.listen(PORT)])
   }
 
   /**
@@ -112,14 +134,12 @@ abstract class PlatformMicroservice {
    * @param messageTypes The types of messages to which to bind.
    */
   public async bind<T extends BindableMessage>(
-    ...messageTypes: {
-      0: BindableMessageKey<T>
-    } & Array<BindableMessageKey<T>>
+    ...messageTypes: [BindableMessageKey<T>, ...Array<BindableMessageKey<T>>]
   ) {
     const connection = await this.connect()
     const channel = await connection.createChannel()
 
-    await channel.assertQueue(this.queueName, this.queueOptions)
+    await channel.assertQueue(this.queueName, DEFAULT_QUEUE_OPTIONS)
 
     for (const messageType of messageTypes) {
       // Use an exchange name that is environment-specific

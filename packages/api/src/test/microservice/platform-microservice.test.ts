@@ -15,6 +15,8 @@ import {
   Queue
 } from '../../main/messaging'
 import { PlatformMicroservice } from '../../main/microservice'
+import { RootApplicationModule } from '../../main/microservice/root-application.module'
+import { StatusController } from '../../main/microservice/status-endpoint/status.controller'
 import { getEnvironment, withEnvironment } from '../../main/runtime'
 
 jest.mock('amqplib')
@@ -27,7 +29,7 @@ class PlatformMicroserviceImpl extends PlatformMicroservice {}
 
 let mockedChannel: any = null
 let mockedConnection: any = null
-const mockedLivenessListen = jest.fn()
+const mockedNestAppListen = jest.fn()
 const mockedMicroserviceListen = jest.fn()
 
 beforeEach(() => {
@@ -44,7 +46,7 @@ beforeEach(() => {
   mockedAmqplib.connect.mockReturnValue(mockedConnection)
 
   mockedNestFactory.create.mockResolvedValue({
-    listen: mockedLivenessListen
+    listen: mockedNestAppListen
   } as any)
   mockedNestFactory.createMicroservice.mockResolvedValue({
     listen: mockedMicroserviceListen
@@ -53,16 +55,16 @@ beforeEach(() => {
 
 test('bind', async () => {
   const fullQueueName = `${getEnvironment()}_${Queue.Logging}`
-  const microservice = new PlatformMicroserviceImpl(Queue.Logging, { myOption: 'test' })
+  const microservice = new PlatformMicroserviceImpl({
+    queue: Queue.Logging,
+    messagingOptions: { noAck: true }
+  })
 
   await microservice.bind('null', 'ping')
 
   expect(mockedAmqplib.connect).toHaveBeenCalled()
   expect(mockedConnection.createChannel).toHaveBeenCalled()
-  expect(mockedChannel.assertQueue).toHaveBeenCalledWith(fullQueueName, {
-    ...DEFAULT_QUEUE_OPTIONS,
-    myOption: 'test'
-  })
+  expect(mockedChannel.assertQueue).toHaveBeenCalledWith(fullQueueName, DEFAULT_QUEUE_OPTIONS)
   expect(mockedChannel.assertExchange).toHaveBeenCalledWith(
     withEnvironment('null'),
     DEFAULT_EXCHANGE_TYPE,
@@ -86,10 +88,18 @@ test('bind', async () => {
 })
 
 test('start', async () => {
-  const microservice = new PlatformMicroserviceImpl(Queue.Logging)
+  const fakeController = () => null
+  const microservice = new PlatformMicroserviceImpl({
+    queue: Queue.Logging,
+    restApiController: fakeController
+  })
 
   await microservice.start()
 
-  expect(mockedLivenessListen).toHaveBeenCalled()
+  expect(mockedNestFactory.create).toHaveBeenCalledWith({
+    module: RootApplicationModule,
+    controllers: [StatusController, fakeController]
+  })
+  expect(mockedNestAppListen).toHaveBeenCalled()
   expect(mockedMicroserviceListen).toHaveBeenCalled()
 })

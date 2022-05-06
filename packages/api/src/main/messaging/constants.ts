@@ -62,9 +62,8 @@ const DEFAULT_EXCHANGE_TYPE = 'fanout'
  * explicit acknowledgement that a received message has been processed and should be removed from
  * the queue.
  */
-const DEFAULT_QUEUE_OPTIONS = {
-  durable: false,
-  noAck: true
+const DEFAULT_QUEUE_OPTIONS: Options.AssertQueue = {
+  durable: false
 }
 
 /**

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { PlatformController } from '../'
+import { Logging } from '../../logging'
 
 /**
  * A method decorator that calls the provided validator function against the input arguments to the
@@ -19,12 +19,30 @@ function Validate(validator: Function): MethodDecorator {
   return (_target: any, _propertyKey: string | symbol, descriptor: PropertyDescriptor) => {
     const original = descriptor.value
     descriptor.value = function (...args: any[]) {
-      const _this = this as PlatformController
+      const _this = this as {
+        logging?: Logging
+        constructor?: {
+          name: string
+        }
+      }
+
+      if (!_this.constructor) {
+        throw new Error(
+          'No constructor found on `this`. @Validate() can only be used on methods of a class'
+        )
+      }
+
+      if (!_this.logging) {
+        _this.logging = new Logging(_this.constructor.name)
+      }
+
       try {
         validator(...args)
         return original.apply(_this, args)
       } catch (e) {
-        _this.nestLogger.warn(e)
+        if (_this.logging) {
+          _this.logging.warn(e as Error)
+        }
       }
     }
     return descriptor

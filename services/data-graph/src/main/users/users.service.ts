@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { CreateUserInput, User } from '@carbon-platform/api/data-graph'
-import { Nest } from '@carbon-platform/api/microservice'
+import { Injectable } from '@nestjs/common'
 
-@Nest.Injectable()
+@Injectable()
 class UsersService {
   private users: User[] = [
     { id: '1', name: 'Jane Doe 1', email: 'jane.doe1@example.com' },

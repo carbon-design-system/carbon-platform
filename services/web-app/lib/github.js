@@ -15,7 +15,7 @@ import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
 
-const logging = new Logging('web-app', 'github.js')
+const logging = new Logging('github.js')
 
 /**
  * Validates the route's parameters and returns an object that also includes the library's slug as

@@ -5,8 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { getRunMode, RunMode } from '@carbon-platform/api/dist/main/runtime'
-import { Nest, PlatformMicroservice } from '@carbon-platform/api/microservice'
+import { PlatformMicroservice } from '@carbon-platform/api/microservice'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import path from 'path'
 
@@ -14,9 +15,8 @@ import { LibrariesResolver } from './libraries/libraries.resolver'
 import { LibrariesService } from './libraries/libraries.service'
 import { UsersResolver } from './users/users.resolver'
 import { UsersService } from './users/users.service'
-// TODO: ^ move these nestjs imports to the Nest api wrapper?
 
-@Nest.Module({
+@Module({
   providers: [
     // Services
     UsersService,

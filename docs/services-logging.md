@@ -22,11 +22,11 @@ In production mode, it broadcasts messages to the messaging service.
 
 In development mode, logs are written to stdout or stderr, depending on the log type.
 
-### `constructor(serviceName: string, component: string)`
+### `constructor(component: string, options?: LoggingOptions)`
 
 Instantiates a `Logging` object with a given service and component name. All log messages given to
-this logging instance will automatically include the service and component in the appropriate part
-of the resulting log entry.
+this logging instance will automatically include the component and optionally specified
+LoggingOptions in the appropriate part of the resulting log entry.
 
 Component strings can be anything that uniquely identifies an area of code, such as a class name,
 file name, etc.
@@ -34,8 +34,12 @@ file name, etc.
 **Example**
 
 ```ts
-const logging = new Logging('web-app', 'request cache')
+const logging = new Logging('request cache')
 ```
+
+**NOTE:** By default, the service name in the resulting logs will come from the
+`CARBON_SERVICE_NAME` environment variable. This can be overridden by specifying a `serviceName` in
+the `LoggingOptions` object.
 
 For all methods below, a "Loggable" object is defined as anything you'd typically expect to be able
 to provide to `console.log`.

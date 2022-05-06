@@ -9,7 +9,10 @@ import { EventMessage, Queue } from '@carbon-platform/api/messaging'
 import { LoggingModule } from './logging.module'
 
 async function start() {
-  const service = new LoggingModule(Queue.Logging)
+  const service = new LoggingModule({
+    queue: Queue.Logging,
+    messagingOptions: { noAck: true }
+  })
 
   await service.bind<EventMessage>('log_logged')
 

@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Library } from '@carbon-platform/api/data-graph'
-import { Nest } from '@carbon-platform/api/microservice'
+import { Injectable } from '@nestjs/common'
 
-@Nest.Injectable()
+@Injectable()
 class LibrariesService {
   private libraries: Library[] = [
     new Library({ id: 'lib1', description: 'asdf', name: 'asdf' }),

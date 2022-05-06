@@ -31,12 +31,15 @@ describe('message validation', () => {
   let logDnaService: LogDnaService
   let loggingController: LoggingController
   let data: LogLoggedMessage
+  const mockedWarn = jest.fn()
+  const mockedDebug = jest.fn()
 
   beforeEach(() => {
     logDnaService = new LogDnaService()
     loggingController = new LoggingController(logDnaService)
-    ;(loggingController as any).nestLogger = {
-      warn: jest.fn()
+    ;(loggingController as any).logging = {
+      debug: mockedDebug,
+      warn: mockedWarn
     }
 
     data = {
@@ -52,36 +55,36 @@ describe('message validation', () => {
   it('logs a warning when no component specified', async () => {
     delete (data as UnvalidatedMessage).component
     loggingController.logLogged(data)
-    expect(loggingController.nestLogger.warn).toHaveBeenCalled()
+    expect(mockedWarn).toHaveBeenCalled()
   })
 
   it('logs a warning when no environment specified', async () => {
     delete (data as UnvalidatedMessage).environment
     loggingController.logLogged(data)
-    expect(loggingController.nestLogger.warn).toHaveBeenCalled()
+    expect(mockedWarn).toHaveBeenCalled()
   })
 
   it('logs a warning when no level specified', async () => {
     delete (data as UnvalidatedMessage).level
     loggingController.logLogged(data)
-    expect(loggingController.nestLogger.warn).toHaveBeenCalled()
+    expect(mockedWarn).toHaveBeenCalled()
   })
 
   it('logs a warning when no message specified', async () => {
     delete (data as UnvalidatedMessage).message
     loggingController.logLogged(data)
-    expect(loggingController.nestLogger.warn).toHaveBeenCalled()
+    expect(mockedWarn).toHaveBeenCalled()
   })
 
   it('logs a warning when no service specified', async () => {
     delete (data as UnvalidatedMessage).service
     loggingController.logLogged(data)
-    expect(loggingController.nestLogger.warn).toHaveBeenCalled()
+    expect(mockedWarn).toHaveBeenCalled()
   })
 
   it('logs a warning when no timestamp specified', async () => {
     delete (data as UnvalidatedMessage).timestamp
     loggingController.logLogged(data)
-    expect(loggingController.nestLogger.warn).toHaveBeenCalled()
+    expect(mockedWarn).toHaveBeenCalled()
   })
 })

@@ -9,12 +9,12 @@ import { Tab, Tabs } from '@/components/tabs'
 const stories = {
   title: 'MDX/Tabs',
   component: Tabs,
-  subcomponents: { Tab },,
-     argTypes: {
+  subcomponents: { Tab },
+  argTypes: {
     children: {
       control: false
     }
-    }
+  }
 }
 
 export default stories

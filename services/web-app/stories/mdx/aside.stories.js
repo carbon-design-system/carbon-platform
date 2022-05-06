@@ -11,15 +11,14 @@ import Aside from '@/components/aside'
 const stories = {
   title: 'MDX/Aside',
   component: Aside,
-     argTypes: {
+  argTypes: {
     children: {
       control: false
     },
     className: {
-    control: false
-    
+      control: false
     }
-    }
+  }
 }
 
 export default stories

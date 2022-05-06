@@ -11,7 +11,15 @@ import { DoDont, DoDontRow } from '@/components/do-dont'
 const stories = {
   title: 'MDX/DoDont',
   component: DoDontRow,
-  subcomponents: { DoDont }
+  subcomponents: { DoDont },
+  argTypes: {
+    children: {
+      control: false
+    },
+    className: {
+      control: false
+    }
+  }
 }
 
 export default stories

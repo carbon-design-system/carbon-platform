@@ -12,15 +12,14 @@ import ResourceCard from '@/components/resource-card'
 const stories = {
   title: 'MDX/ResourceCard',
   component: ResourceCard,
-     argTypes: {
+  argTypes: {
     children: {
       control: false
     },
     className: {
-    control: false
-    
+      control: false
     }
-    }
+  }
 }
 
 export default stories

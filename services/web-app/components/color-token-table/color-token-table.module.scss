@@ -1,0 +1,185 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/colors' as colors;
+
+.color-token-table {
+  display: flex;
+  flex-direction: column;
+  margin-top: spacing.$spacing-07;
+  color: theme.$text-primary;
+}
+
+.theme-switcher {
+  position: relative;
+  width: 100%;
+  height: 3rem;
+  background: theme.$layer-01;
+
+  @include breakpoint.breakpoint-down('lg') {
+    margin-left: 0;
+  }
+  @include breakpoint.breakpoint-down('md') {
+    max-width: calc(100% - 16px);
+    margin-left: spacing.$spacing-03;
+  }
+}
+
+.theme-switcher::before {
+  position: absolute;
+  top: -(spacing.$spacing-05);
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 64px;
+  background: theme.$background;
+  content: '';
+}
+
+.theme-switcher--stuck {
+  // adds box shadow once it hits scrolling content
+  box-shadow: 0 2px 6px 0 rgba(colors.$gray-100, 0.2);
+}
+
+.color-token-value {
+  display: flex;
+  justify-content: space-between;
+}
+
+.color-token-value :global(.cds--overflow-menu) {
+  margin-top: -(spacing.$spacing-03);
+  margin-left: spacing.$spacing-03;
+}
+
+.color-token-value :global(.cds--overflow-menu-options) {
+  top: spacing.$spacing-07;
+  left: -9.25rem;
+}
+
+.color-token-value :global(.cds--overflow-menu__icon) {
+  width: 16px;
+  height: 16px;
+}
+
+.color-token-value > div {
+  display: flex;
+
+  @media all and (max-width: 580px) {
+    position: absolute;
+    top: spacing.$spacing-05;
+    right: spacing.$spacing-05;
+  }
+}
+
+.color-token-value__block {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+
+  @media all and (max-width: 672px) {
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+  }
+
+  @media all and (max-width: 580px) {
+    width: 48px;
+    height: 48px;
+    border-radius: 48px;
+  }
+}
+
+/* override carbon content switcher styles */
+.theme-switcher :global(.cds--content-switcher-btn) {
+  height: 3rem;
+  flex: 1;
+  padding: spacing.$spacing-03 spacing.$spacing-07 spacing.$spacing-03 spacing.$spacing-05;
+  border-radius: 0;
+
+  @include breakpoint.breakpoint('sm') {
+    padding-right: spacing.$spacing-05;
+  }
+
+  @include breakpoint.breakpoint('md') {
+    padding-right: spacing.$spacing-10;
+  }
+}
+
+.theme-switcher :global(.cds--content-switcher-btn:not(.cds--content-switcher--selected)) {
+  background-color: theme.$layer-01;
+  color: theme.$text-primary;
+
+  &:hover {
+    background-color: theme.$background-hover;
+  }
+}
+
+.theme-switcher :global(.cds--content-switcher-btn:not(:last-of-type))::after {
+  top: spacing.$spacing-04;
+  right: -1px;
+  height: 24px;
+}
+
+.color-token-table table {
+  width: calc(100%);
+  margin-top: spacing.$spacing-03;
+  background: theme.$layer-01;
+}
+
+.color-token-table table thead tr {
+  display: flex;
+  border-bottom: 1px solid theme.$border-subtle;
+
+  @media all and (max-width: 580px) {
+    display: none;
+  }
+}
+
+.color-token-table table thead tr th {
+  flex: 1;
+  flex-basis: calc(100% / 3);
+}
+
+.color-token-table table tbody tr {
+  display: flex;
+  min-height: 104px;
+  border-bottom: 1px solid theme.$border-subtle;
+
+  @media all and (max-width: 580px) {
+    position: relative;
+    height: auto;
+    flex-direction: column;
+  }
+}
+
+.color-token-table table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.color-token-table table tbody tr td {
+  flex: 1;
+  flex-basis: calc(100% / 3);
+
+  &:last-child {
+    padding-right: spacing.$spacing-03;
+  }
+}
+
+.color-token-table table tbody tr td:not(:last-child) {
+  border-right: 1px solid theme.$border-subtle;
+}
+
+.color-token-table code {
+  padding: 0 spacing.$spacing-03;
+  background: theme.$background;
+  border-radius: 4px;
+  font-size: 0.875em;
+}

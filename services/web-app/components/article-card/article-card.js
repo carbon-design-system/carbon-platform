@@ -13,6 +13,10 @@ import PropTypes from 'prop-types'
 
 import styles from './article-card.module.scss'
 
+/**
+ * The `<ArticleCard>` component should generally be used inside of `<Grid narrow>` and
+ * `<Column>` components.
+ */
 const ArticleCard = (props) => {
   const {
     children,
@@ -90,13 +94,17 @@ ArticleCard.defaultProps = {
 
 ArticleCard.propTypes = {
   /**
-   * Action icon, default is blank, options are Launch, ArrowRight, Download
+   * Action icon
    */
-  actionIcon: PropTypes.string,
+  actionIcon: PropTypes.oneOf(['launch', 'arrowRight', 'download', 'email']),
   /**
    * Author
    */
   author: PropTypes.string,
+
+  /**
+   * Provide an image to display above card
+   */
   children: PropTypes.node,
 
   /**
@@ -107,7 +115,7 @@ ArticleCard.propTypes = {
   /**
    * set to "dark" for dark background card
    */
-  color: PropTypes.string,
+  color: PropTypes.oneOf(['light', 'dark']),
 
   /**
    * date

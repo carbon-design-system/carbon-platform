@@ -1,0 +1,15 @@
+@use '@carbon/react/scss/theme' as theme;
+
+.mdx-icon {
+  position: relative;
+  display: inline-block;
+  width: 32px;
+  max-height: 32px;
+  object-fit: contain;
+  user-select: none;
+  vertical-align: text-bottom;
+}
+
+.icon-inverse {
+  fill: theme.$icon-inverse;
+}

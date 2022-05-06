@@ -10,6 +10,9 @@ import clsx from 'clsx'
 
 import styles from './caption.module.scss'
 
+/**
+ * The `<Caption>` component is typically used below images or videos.
+ */
 const Caption = ({ children, className }) => (
   <Grid className={clsx(className, styles.container)}>
     <Column sm={4} md={6} lg={6}>

@@ -12,6 +12,9 @@ import { useEffect, useRef, useState } from 'react'
 
 import styles from './video.module.scss'
 
+/**
+ * The `<Video>` component can render a Vimeo player or a html video player.
+ */
 const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const videoRef = useRef(null)
@@ -129,11 +132,30 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
 }
 
 Video.propTypes = {
+  /**
+   * Set video autoplay.
+   */
   autoPlay: PropTypes.bool,
+  /**
+   * Provide optional caption track.
+   * `<track kind="captions" default src="/videos/hero-video.vtt" srcLang="en" />`
+   */
   children: PropTypes.element,
+  /**
+   * Mute video by default.
+   */
   muted: PropTypes.bool,
+  /**
+   * Set poster image for local video.
+   */
   poster: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  /**
+   * set video source for local video.
+   */
   src: PropTypes.string,
+  /**
+   * Set video title.
+   */
   title: PropTypes.string,
   videoSourceValidator: (props) => {
     if (!props.vimeoId && !props.src) {
@@ -155,6 +177,9 @@ Video.propTypes = {
       )
     }
   },
+  /**
+   * Set Vimeo ID for Vimeo video.
+   */
   vimeoId: PropTypes.string
 }
 

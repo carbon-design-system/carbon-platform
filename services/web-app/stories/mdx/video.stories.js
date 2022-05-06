@@ -10,7 +10,18 @@ import localVideo from '@/pages/mdx/video/local-video.mp4'
 
 const stories = {
   title: 'MDX/Video',
-  component: Video
+  component: Video,
+     argTypes: {
+    children: {
+      control: false
+    },
+    src: {
+    control: false
+    },
+    poster: {
+    control: false
+    }
+    }
 }
 
 export default stories

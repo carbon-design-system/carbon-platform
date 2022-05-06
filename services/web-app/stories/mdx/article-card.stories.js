@@ -11,7 +11,16 @@ import ArticleCard from '@/components/article-card'
 
 const stories = {
   title: 'MDX/ArticleCard',
-  component: ArticleCard
+  component: ArticleCard,
+     argTypes: {
+    children: {
+      control: false
+    },
+    className: {
+    control: false
+    
+    }
+    }
 }
 
 export default stories

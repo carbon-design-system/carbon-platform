@@ -25,18 +25,18 @@ import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import MdxWrapper from '@/components/mdx-wrapper'
+import MediumPosts from '@/components/medium-posts/medium-posts'
 import PageDescription from '@/components/page-description'
 import PageTable from '@/components/page-table'
 import Preview from '@/components/preview'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
+import StatusIndicatorTable from '@/components/status-indicator-table'
 import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
 import Video from '@/components/video'
-
-import StatusIndicatorTable from '../status-indicator-table'
 
 const Placeholder = ({ name, children }) => {
   return (
@@ -90,6 +90,7 @@ const components = {
   Glossary,
   InlineNotification,
   MdxIcon,
+  MediumPosts,
   Tabs,
   Tab,
   Video,

@@ -97,6 +97,15 @@ export const getResponse = (host, route, options) => {
 }
 
 /**
+ * TODO: comments
+ */
+export const cacheResponse = (key, callback) => {
+  return diskCache.wrap(key, () => {
+    return callback()
+  })
+}
+
+/**
  * Deletes the cached entry from the file system cache.
  * @param {string} key - Cache key
  */

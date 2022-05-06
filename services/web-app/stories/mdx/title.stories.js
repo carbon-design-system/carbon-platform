@@ -8,16 +8,15 @@ import Title from '@/components/title'
 
 const stories = {
   title: 'MDX/Title',
-  component: Title,,
-     argTypes: {
+  component: Title,
+  argTypes: {
     children: {
       control: false
     },
     className: {
-    control: false
-    
+      control: false
     }
-    }
+  }
 }
 
 export default stories

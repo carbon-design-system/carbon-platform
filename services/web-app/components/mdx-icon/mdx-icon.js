@@ -89,11 +89,14 @@ const acceptedCompNames = [
 ]
 
 MdxIcon.propTypes = {
+  /**
+   * Optional: can supply color "icon-inverse" for carbonIcons.
+   */
   color: PropTypes.oneOf(Object.keys(iconColor)),
   /**
    * Name of Icon to render.
    */
-  name: PropTypes.oneOf(acceptedCompNames)
+  name: PropTypes.oneOf(acceptedCompNames).isRequired
 }
 
 export { acceptedCompNames, MdxIcon as default }

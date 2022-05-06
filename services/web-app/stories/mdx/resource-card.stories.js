@@ -11,7 +11,16 @@ import ResourceCard from '@/components/resource-card'
 
 const stories = {
   title: 'MDX/ResourceCard',
-  component: ResourceCard
+  component: ResourceCard,
+     argTypes: {
+    children: {
+      control: false
+    },
+    className: {
+    control: false
+    
+    }
+    }
 }
 
 export default stories

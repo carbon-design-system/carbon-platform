@@ -10,7 +10,12 @@ import ArtDirection from '@/components/art-direction'
 
 const stories = {
   title: 'MDX/ArtDirection',
-  component: ArtDirection
+  component: ArtDirection,
+    argTypes: {
+    children: {
+      control: false
+    }
+  }
 }
 
 export default stories

@@ -10,7 +10,16 @@ import GifPlayer from '@/components/gif-player'
 
 const stories = {
   title: 'MDX/GifPlayer',
-  component: GifPlayer
+  component: GifPlayer,
+     argTypes: {
+    children: {
+      control: false
+    },
+    className: {
+    control: false
+    
+    }
+    }
 }
 
 export default stories

@@ -9,6 +9,7 @@
 **/*.md
 **/Dockerfile
 sonar-project.properties
+.tsbuildinfo
 
 # Dirs
 **/dist/

@@ -1,0 +1,42 @@
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/utilities/convert' as convert;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+
+.glossary-entry {
+  padding-top: convert.rem(36px);
+  color: theme.$text-primary;
+}
+
+.glossary-entry__main-heading {
+  @include type.type-style('fluid-display-02', true);
+
+  span {
+    text-transform: lowercase;
+  }
+}
+
+.glossary-entry__word-heading {
+  padding-top: spacing.$spacing-04;
+}
+
+.glossary-entry__desc {
+  padding: 0;
+  margin-top: spacing.$spacing-02;
+}
+
+.glossary-entry__subtext {
+  @include type.type-style('body-compact-02');
+
+  padding: 0;
+  margin-top: spacing.$spacing-02;
+
+  color: theme.$text-secondary;
+  font-style: italic;
+}
+
+.page-h4 {
+  margin-top: spacing.$spacing-04;
+  @include type.type-style('heading-02');
+}

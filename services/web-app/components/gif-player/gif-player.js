@@ -14,7 +14,7 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { Children, useState } from 'react'
 
-import * as styles from './gif-player.module.scss'
+import styles from './gif-player.module.scss'
 
 const Pause = ({ hovering }) =>
   hovering ? <PauseOutlineFilled size={24} /> : <PauseOutline size={24} />
@@ -24,7 +24,10 @@ const Play = ({ hovering }) =>
 
 const ToggleIcon = ({ paused, hovering }) =>
   paused ? <Play hovering={hovering} /> : <Pause hovering={hovering} />
-
+/**
+ * The `<GifPlayer>` component is used to pause and play images that are gif’s.
+ * It works by replacing the gif with a static image on pause.
+ */
 const GifPlayer = ({ children, color, className, isInDialog }) => {
   const [paused, setPaused] = useState(false)
 
@@ -93,9 +96,9 @@ GifPlayer.propTypes = {
   /**
    * Specify if icon color should be "dark" or "light"
    */
-  color: PropTypes.string,
+  color: PropTypes.oneOf(['light', 'dark']),
   /**
-   * Specify if the gifPlayer is inside the expanded ImageGallery (see ImageGallery.js)
+   * Specify if the gifPlayer is inside the expanded ImageGallery
    */
   isInDialog: PropTypes.bool
 }

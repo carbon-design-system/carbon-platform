@@ -178,5 +178,8 @@
 }
 
 .color-token-table code {
+  padding: 0 spacing.$spacing-03;
   background: theme.$background;
+  border-radius: 4px;
+  font-size: 0.875em;
 }

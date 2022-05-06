@@ -10,7 +10,16 @@ import Aside from '@/components/aside'
 
 const stories = {
   title: 'MDX/Aside',
-  component: Aside
+  component: Aside,
+     argTypes: {
+    children: {
+      control: false
+    },
+    className: {
+    control: false
+    
+    }
+    }
 }
 
 export default stories

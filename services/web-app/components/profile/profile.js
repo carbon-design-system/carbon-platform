@@ -10,8 +10,12 @@ import PropTypes from 'prop-types'
 
 import styles from './profile.module.scss'
 
+/**
+ * The `<Profile>` component is used to display a name, title and photo. Should be
+ * placed inside of `<Grid condensed>` wrapper component.
+ */
 const Profile = ({ name, title, children }) => (
-  <Column sm={4} className={styles.profile}>
+  <Column sm={4} md={4} lg={4} className={styles.profile}>
     <AspectRatio ratio="2x1">
       <div className={styles.card}>
         <div className={styles.content}>
@@ -25,8 +29,17 @@ const Profile = ({ name, title, children }) => (
 )
 
 Profile.propTypes = {
+  /**
+   * Provide an image for the Profile component.
+   */
   children: PropTypes.node,
+  /**
+   * Name
+   */
   name: PropTypes.string,
+  /**
+   * Title
+   */
   title: PropTypes.string
 }
 

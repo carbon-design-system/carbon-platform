@@ -6,11 +6,9 @@
  */
 
 @use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
 
 .title {
   display: inline-block;
-}
-
-.title + * {
-  --space: #{spacing.$spacing-05};
+  color: theme.$text-primary;
 }

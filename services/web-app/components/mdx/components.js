@@ -23,6 +23,7 @@ import { Column, Grid, Row } from '@/components/grid-transform'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
+import MdxIcon from '@/components/mdx-icon'
 import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
 import PageTable from '@/components/page-table'
@@ -92,6 +93,7 @@ const components = {
   Glossary,
   InlineNotification,
   PictogramLibrary,
+  MdxIcon,
   Tabs,
   Tab,
   Video,
@@ -100,7 +102,6 @@ const components = {
   Aside,
   Preview,
   Profile,
-  MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
   ColorTokenTable,
   TypesetStyle,
   ColorBlock,

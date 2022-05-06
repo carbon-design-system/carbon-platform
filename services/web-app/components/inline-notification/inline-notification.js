@@ -19,6 +19,9 @@ const iconTypes = {
   info: InformationFilled
 }
 
+/**
+ * The `<InlineNotification>` component is used to communicate important information to a user.
+ */
 const InlineNotification = ({ children, className, kind = 'info' }) => {
   const containerClassName = clsx(className, {
     'cds--inline-notification': true,
@@ -47,8 +50,17 @@ const InlineNotification = ({ children, className, kind = 'info' }) => {
 }
 
 InlineNotification.propTypes = {
+  /**
+   * Provide the contents of the InlineNotification
+   */
   children: PropTypes.node,
+  /**
+   * Specify an optional className to be applied to the container node
+   */
   className: PropTypes.string,
+  /**
+   * Notification kind
+   */
   kind: PropTypes.oneOf(['error', 'info', 'success', 'warning'])
 }
 

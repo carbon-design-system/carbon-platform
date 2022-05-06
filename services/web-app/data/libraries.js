@@ -97,11 +97,20 @@ const prodLibraries = {
     sponsor: 'carbon',
     group: carbonComponentsGroup
   },
+  'carbon-components-vue': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-components-vue',
+    path: '/packages/core/src',
+    packageJsonPath: '/../package.json',
+    group: carbonComponentsGroup
+  },
   'carbon-components-angular': {
     host: 'github.com',
     org: 'IBM',
     repo: 'carbon-components-angular',
-    path: '/src'
+    path: '/src',
+    group: carbonComponentsGroup
   },
   'carbon-components-svelte': {
     host: 'github.com',
@@ -420,6 +429,14 @@ const devLibraries = {
     path: '/packages/components',
     group: carbonComponentsGroup,
     ref: 'v10'
+  },
+  'carbon-components-vue': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-components-vue',
+    path: '/packages/core/src',
+    packageJsonPath: '/../package.json',
+    group: carbonComponentsGroup
   },
   'carbon-react': {
     host: 'github.com',

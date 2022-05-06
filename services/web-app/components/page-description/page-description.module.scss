@@ -7,19 +7,20 @@
 
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/theme' as theme;
 
 .page-description {
-  --space: #{spacing.$spacing-06};
-
-  margin-top: var(--space);
+  margin-top: spacing.$spacing-06;
+  color: theme.$text-primary;
 }
 
+.page-description,
 .page-description p {
   @include type.type-style('fluid-heading-03', true);
 }
 
 .page-description > * + * {
-  margin-top: var(--space);
+  margin-top: spacing.$spacing-06;
 }
 
 .page-description code {

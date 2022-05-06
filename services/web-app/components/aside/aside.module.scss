@@ -11,10 +11,13 @@
 @use '@carbon/react/scss/type' as type;
 
 .aside {
+  @include type.type-style('body-01');
+
   position: relative;
   top: -(spacing.$spacing-04);
   display: none;
   padding-top: spacing.$spacing-04;
+  color: theme.$text-primary;
 
   @include breakpoint.breakpoint('md') {
     display: block;

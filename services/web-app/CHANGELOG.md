@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.105](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.104...@carbon-platform/web-app@0.1.105) (2022-05-07)
+
+
+### Features 🌟
+
+* add art-direction and gif-player stories ([0c883ce](https://github.com/carbon-design-system/carbon-platform/commit/0c883cef6a862ff69d0297d078ff980072486283))
+* add batch of mdx stories ([5de36bf](https://github.com/carbon-design-system/carbon-platform/commit/5de36bff3a24919e876d19818d15136d4f541a16))
+* add profile to storybook ([25e89ef](https://github.com/carbon-design-system/carbon-platform/commit/25e89ef09789e11fd5c82335a97a117d70201fb6))
+* add tab article card to storybook ([4ec82c5](https://github.com/carbon-design-system/carbon-platform/commit/4ec82c54507e6c21acfe3a8621e293de3cbe3a1d))
+* add tab tabs to storybook ([da1b7dc](https://github.com/carbon-design-system/carbon-platform/commit/da1b7dcf8307e010b693e2f0603f653916b4e008))
+* add toastnotification ([1745d1c](https://github.com/carbon-design-system/carbon-platform/commit/1745d1c97994a4d04941383ac85442d08274b495))
+* add video to storybook ([2675ce5](https://github.com/carbon-design-system/carbon-platform/commit/2675ce587edae78e789569eb1550735b6a1a4c96))
+* index carbon components vue test ([0e9d550](https://github.com/carbon-design-system/carbon-platform/commit/0e9d550e65408883bfef985d7d54a9fd37d10153))
+* ready for prod ([eab34d4](https://github.com/carbon-design-system/carbon-platform/commit/eab34d4ba6b5c65075f53789d300d3f794363b25))
+* **web-app:** mdx icon component ([8e64e70](https://github.com/carbon-design-system/carbon-platform/commit/8e64e701ca5cfac193ec28aafa2686682cdb0700))
+
+
+### Bug Fixes 🐛
+
+* add styles for code to work in storybook ([bf61eb4](https://github.com/carbon-design-system/carbon-platform/commit/bf61eb478c54b4b9e0d7ae5e74871cac6dfaab93))
+* add tokens for themeing ([f53a1e1](https://github.com/carbon-design-system/carbon-platform/commit/f53a1e136a87d1a922d59d2c084bd11fb1bcb4ca))
+* add tokens for themeing ([ee7d2fa](https://github.com/carbon-design-system/carbon-platform/commit/ee7d2face7cb94b1f5703a31697a5f85ae93f218))
+* address review comments ([8be46b5](https://github.com/carbon-design-system/carbon-platform/commit/8be46b5d3cc96dcbaaf2d986e823103a7540fd0d))
+* artdirection story comments ([fc25cce](https://github.com/carbon-design-system/carbon-platform/commit/fc25ccead137d8c080580003fcde855216a7b009))
+* dodont image ([d821d78](https://github.com/carbon-design-system/carbon-platform/commit/d821d78e2609dde77108a8377596d662549fae42))
+* eslint error ([e48d882](https://github.com/carbon-design-system/carbon-platform/commit/e48d882c99564e218132341c119f01f3f5b5a838))
+* extra comma ([5a2763b](https://github.com/carbon-design-system/carbon-platform/commit/5a2763be6dae2d7a83349ae480d6bf70c862be87))
+* fix merge ([275e31d](https://github.com/carbon-design-system/carbon-platform/commit/275e31d61a67687a5acae2e05a6ad7e25ca1fddb))
+* merge with main ([ed5e68a](https://github.com/carbon-design-system/carbon-platform/commit/ed5e68a095f4e64522a35c579f7e322c39236d66))
+* move scripts folder back ([e688fc2](https://github.com/carbon-design-system/carbon-platform/commit/e688fc22d55015539492b8540766b6ee28f62fce))
+* profile image ([e49db90](https://github.com/carbon-design-system/carbon-platform/commit/e49db90e44259efb143d23975c1637958a1822a3))
+* replace img with image component ([67f8440](https://github.com/carbon-design-system/carbon-platform/commit/67f8440f9465e9ad95d497dbd1f36230820d9e3f))
+* **web-app:** linter issues ([612accd](https://github.com/carbon-design-system/carbon-platform/commit/612accd75d55adf08ce6ffb6829fb7599f43286e))
+* **web-app:** mdx-icon add color proptype description ([3e27f02](https://github.com/carbon-design-system/carbon-platform/commit/3e27f026197452766b9b33abe47552d3c5e651e8))
+* **web-app:** move svgs into icons package, add mdx-icon storybook ([1acd65a](https://github.com/carbon-design-system/carbon-platform/commit/1acd65a71b578fd12ec80b15013353b396c65d32))
+
 ### [0.1.104](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.103...@carbon-platform/web-app@0.1.104) (2022-05-06)
 
 

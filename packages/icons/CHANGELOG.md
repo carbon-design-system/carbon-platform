@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.30](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.29...@carbon-platform/icons@0.0.30) (2022-05-07)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** move svgs into icons package, add mdx-icon storybook ([1acd65a](https://github.com/carbon-design-system/carbon-platform/commit/1acd65a71b578fd12ec80b15013353b396c65d32))
+
 ### [0.0.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.28...@carbon-platform/icons@0.0.29) (2022-05-06)
 
 

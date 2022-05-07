@@ -6,16 +6,20 @@
  */
 import { Controller, Get, HttpCode } from '@nestjs/common'
 
+import { Trace } from '../decorators/trace'
+
 @Controller()
 class StatusController {
   @Get('liveness')
   @HttpCode(204)
+  @Trace()
   public liveness() {
     return null
   }
 
   @Get('readiness')
   @HttpCode(204)
+  @Trace()
   public readiness() {
     return null
   }

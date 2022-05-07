@@ -5,9 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { NestFactory } from '@nestjs/core'
+import { Transport } from '@nestjs/microservices'
 import amqplib from 'amqplib'
 
 import {
+  CARBON_MESSAGE_QUEUE_URL,
   DEFAULT_BIND_PATTERN,
   DEFAULT_EXCHANGE_OPTIONS,
   DEFAULT_EXCHANGE_TYPE,
@@ -15,8 +17,7 @@ import {
   Queue
 } from '../../main/messaging'
 import { PlatformMicroservice } from '../../main/microservice'
-import { RootApplicationModule } from '../../main/microservice/root-application.module'
-import { StatusController } from '../../main/microservice/status-endpoint/status.controller'
+import { PORT } from '../../main/microservice/constants'
 import { getEnvironment, withEnvironment } from '../../main/runtime'
 
 jest.mock('amqplib')
@@ -25,12 +26,9 @@ jest.mock('@nestjs/core')
 const mockedAmqplib = amqplib as jest.Mocked<typeof amqplib>
 const mockedNestFactory = NestFactory as jest.Mocked<typeof NestFactory>
 
-class PlatformMicroserviceImpl extends PlatformMicroservice {}
-
 let mockedChannel: any = null
 let mockedConnection: any = null
-const mockedNestAppListen = jest.fn()
-const mockedMicroserviceListen = jest.fn()
+let mockedNestApplication: any = null
 
 beforeEach(() => {
   mockedChannel = {
@@ -45,19 +43,20 @@ beforeEach(() => {
   }
   mockedAmqplib.connect.mockReturnValue(mockedConnection)
 
-  mockedNestFactory.create.mockResolvedValue({
-    listen: mockedNestAppListen
-  } as any)
-  mockedNestFactory.createMicroservice.mockResolvedValue({
-    listen: mockedMicroserviceListen
-  } as any)
+  mockedNestApplication = {
+    connectMicroservice: jest.fn(),
+    listen: jest.fn(),
+    startAllMicroservices: jest.fn()
+  }
+
+  mockedNestFactory.create.mockResolvedValue(mockedNestApplication as any)
 })
 
 test('bind', async () => {
   const fullQueueName = `${getEnvironment()}_${Queue.Logging}`
-  const microservice = new PlatformMicroserviceImpl({
-    queue: Queue.Logging,
-    messagingOptions: { noAck: true }
+  const microservice = new PlatformMicroservice({
+    module: () => null,
+    queue: Queue.Logging
   })
 
   await microservice.bind('null', 'ping')
@@ -88,18 +87,30 @@ test('bind', async () => {
 })
 
 test('start', async () => {
-  const fakeController = () => null
-  const microservice = new PlatformMicroserviceImpl({
-    queue: Queue.Logging,
-    restApiController: fakeController
-  })
+  const fullQueueName = `${getEnvironment()}_${Queue.Logging}`
+  const mockedModule = jest.fn()
 
+  const microservice = new PlatformMicroservice({
+    module: mockedModule,
+    queue: Queue.Logging
+  })
   await microservice.start()
 
-  expect(mockedNestFactory.create).toHaveBeenCalledWith({
-    module: RootApplicationModule,
-    controllers: [StatusController, fakeController]
+  expect(mockedNestFactory.create).toHaveBeenCalledWith(mockedModule)
+  expect(mockedNestApplication.connectMicroservice).toHaveBeenCalledWith({
+    options: {
+      noAck: false,
+      queue: fullQueueName,
+      queueOptions: {
+        durable: false
+      },
+      socketOptions: {
+        ca: []
+      },
+      urls: [CARBON_MESSAGE_QUEUE_URL]
+    },
+    transport: Transport.RMQ
   })
-  expect(mockedNestAppListen).toHaveBeenCalled()
-  expect(mockedMicroserviceListen).toHaveBeenCalled()
+  expect(mockedNestApplication.startAllMicroservices).toHaveBeenCalled()
+  expect(mockedNestApplication.listen).toHaveBeenCalledWith(PORT)
 })

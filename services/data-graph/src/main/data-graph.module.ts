@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { getRunMode, RunMode } from '@carbon-platform/api/dist/main/runtime'
-import { PlatformMicroservice } from '@carbon-platform/api/microservice'
+import { StatusController } from '@carbon-platform/api/microservice'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
@@ -17,6 +17,7 @@ import { UsersResolver } from './users/users.resolver'
 import { UsersService } from './users/users.service'
 
 @Module({
+  controllers: [StatusController],
   providers: [
     // Services
     UsersService,
@@ -36,4 +37,4 @@ import { UsersService } from './users/users.service'
     })
   ]
 })
-export class DataGraphModule extends PlatformMicroservice {}
+export class DataGraphModule {}

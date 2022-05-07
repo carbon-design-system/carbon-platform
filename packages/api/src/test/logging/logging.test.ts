@@ -12,6 +12,8 @@ import { __test__ as RunModeTestUtils, RunMode } from '../../main/runtime/run-mo
 let mockedEmit: any
 
 beforeEach(() => {
+  Logging.setRemoteLoggingAllowed(true)
+
   mockedEmit = jest.fn()
   MessagingClient.getInstance = jest.fn().mockReturnValue({
     emit: mockedEmit
@@ -39,6 +41,7 @@ describe('message emission', () => {
         serviceName: 'test-service',
         isRemoteLoggingEnabled: true
       })
+
       await logging.info('test')
       expect(mockedEmit).toHaveBeenCalledTimes(1)
 
@@ -124,6 +127,21 @@ describe('message emission', () => {
           service: 'undefined'
         })
       )
+    })
+
+    it('respects the global remote logging allowed setting', async () => {
+      Logging.setRemoteLoggingAllowed(false)
+      const logging = new Logging('test-component', {
+        serviceName: 'test-service',
+        isRemoteLoggingEnabled: true
+      })
+
+      await logging.info('test')
+      await logging.warn('test')
+      await logging.error('test')
+      await logging.debug('test')
+
+      expect(mockedEmit).not.toHaveBeenCalled()
     })
 
     afterEach(() => {

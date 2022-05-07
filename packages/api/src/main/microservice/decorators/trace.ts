@@ -15,31 +15,25 @@ import { Logging } from '../../logging'
  * @returns A decorated method.
  */
 function Trace(): MethodDecorator {
-  return (_target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) => {
+  return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) => {
     const original = descriptor.value
     descriptor.value = function (...args: any[]) {
-      const _this = this as {
-        logging?: Logging
-        constructor?: {
-          name: string
-        }
-      }
-
-      if (!_this.constructor) {
+      if (!target.constructor) {
         throw new Error(
-          'No constructor found on `this`. @Trace() can only be used on methods of a class'
+          'No constructor found on decorator target. @Trace() can only be used on methods of a ' +
+            'class'
         )
       }
 
-      if (!_this.logging) {
-        _this.logging = new Logging(_this.constructor.name)
+      if (!target.logging) {
+        target.logging = new Logging(target.constructor.name)
       }
 
-      _this.logging.debug(`-> ${String(propertyKey)}(${JSON.stringify(args)})`)
+      target.logging.debug(`-> ${String(propertyKey)}(${JSON.stringify(args)})`)
 
-      const result = original.apply(_this, args)
+      const result = original.apply(target, args)
 
-      _this.logging.debug(`<- ${String(propertyKey)}: ${String(result)}`)
+      target.logging.debug(`<- ${String(propertyKey)}: ${String(result)}`)
 
       return result
     }

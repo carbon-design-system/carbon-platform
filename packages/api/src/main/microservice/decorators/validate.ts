@@ -16,6 +16,7 @@ import { Logging } from '../../logging'
  * @returns A method decorator that performs validation.
  */
 function Validate(validator: Function): MethodDecorator {
+  // TODO: use target instead
   return (_target: any, _propertyKey: string | symbol, descriptor: PropertyDescriptor) => {
     const original = descriptor.value
     descriptor.value = function (...args: any[]) {

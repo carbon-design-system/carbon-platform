@@ -12,10 +12,10 @@ import { CARBON_SERVICE_NAME } from './constants'
 import { LogLevel, LogLoggedMessage } from './interfaces'
 
 const logColors = {
-  debug: chalk.magenta,
-  info: chalk.blue,
-  warn: chalk.yellow,
-  error: chalk.red
+  debug: chalk.bgMagenta,
+  info: chalk.bgBlue,
+  warn: chalk.bgYellow,
+  error: chalk.bgRed
 }
 
 type Loggable = string | number | boolean | Array<any> | Object | Error
@@ -41,12 +41,24 @@ interface LoggingOptions {
  * to the logging service, which ultimately logs them in LogDNA.
  */
 class Logging {
+  private static isRemoteLoggingAllowed: boolean = true
+
   private readonly component: string
   private readonly environment: Environment
   private readonly isDebugLoggingEnabled: boolean
   private readonly isRemoteLoggingEnabled: boolean
   private readonly messagingClient?: MessagingClient
   private readonly service: string
+
+  /**
+   * Sets the global setting for whether or not remote logging is allowed to be enabled. This
+   * supersedes all environment-based switches and instance-based overrides.
+   *
+   * @param isAllowed Whether or not remote logging is allowed to be enabled.
+   */
+  public static setRemoteLoggingAllowed(isAllowed: boolean) {
+    Logging.isRemoteLoggingAllowed = isAllowed
+  }
 
   /**
    * Creates a Logging instance for the given service/component combo.
@@ -61,12 +73,14 @@ class Logging {
     this.environment = getEnvironment()
     this.isDebugLoggingEnabled = getRunMode() === RunMode.Dev || isDebugEnabled()
     this.isRemoteLoggingEnabled =
-      getRunMode() === RunMode.Standard && getEnvironment() !== Environment.Build
+      Logging.isRemoteLoggingAllowed &&
+      getRunMode() === RunMode.Standard &&
+      getEnvironment() !== Environment.Build
     this.service = options?.serviceName || CARBON_SERVICE_NAME
 
     // Explicitly turn on/off remote logging based on the supplied argument
     if (options?.isRemoteLoggingEnabled !== undefined) {
-      this.isRemoteLoggingEnabled = options.isRemoteLoggingEnabled
+      this.isRemoteLoggingEnabled = Logging.isRemoteLoggingAllowed && options.isRemoteLoggingEnabled
     }
 
     if (this.isRemoteLoggingEnabled) {
@@ -183,8 +197,8 @@ class Logging {
     // Using concatenation because it is slightly faster than template literals
     console[logEntry.level](
       date.toLocaleString() +
-        chalk.magenta(' service:' + logEntry.service) +
-        colorizer(' ' + logEntry.level) +
+        chalk.magenta(' service:' + logEntry.service + ' ') +
+        colorizer(logEntry.level) +
         chalk.green(' [' + logEntry.component + '] ') +
         logEntry.message
     )

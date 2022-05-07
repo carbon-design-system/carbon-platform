@@ -7,3 +7,4 @@
 export { Trace } from './decorators/trace'
 export { Validate } from './decorators/validate'
 export { PlatformMicroservice } from './platform-microservice'
+export { StatusController } from './status-endpoint/status.controller'

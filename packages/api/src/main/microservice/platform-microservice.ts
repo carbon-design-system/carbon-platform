@@ -4,7 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { DynamicModule } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import { RmqOptions, Transport } from '@nestjs/microservices'
 import amqp from 'amqplib'
@@ -22,8 +21,6 @@ import {
 } from '../messaging'
 import { withEnvironment } from '../runtime'
 import { CONNECT_RETRY_INTERVAL, PORT } from './constants'
-import { RootApplicationModule } from './root-application.module'
-import { StatusController } from './status-endpoint/status.controller'
 
 type BindableMessage = EventMessage | QueryMessage
 
@@ -31,42 +28,33 @@ type BindableMessageKey<T extends BindableMessage> = T extends EventMessage
   ? keyof EventMessage
   : keyof QueryMessage
 
-interface ServiceConfig {
-  queue: Queue
-  messagingOptions?: {
-    noAck?: boolean
-  }
-  restApiController?: any
-}
-
-interface MessagingOptions {
-  noAck?: boolean
-}
-
-/**
- * An abstract class that wraps much of the boilerplate code needed to create, bind, and start a
- * Carbon Platform microservice.
- */
-abstract class PlatformMicroservice {
-  private readonly queueName: string
-  private readonly configOptions: MessagingOptions
-  private readonly restApiController?: any
+interface MicroserviceConfig {
+  /**
+   * The NestJS module that defines all of the controller and providers for this microservice.
+   */
+  module: Function
 
   /**
-   * Constructs a new microservice that consumes messages from the specified queue.
-   *
-   * @param params Configuration parameters for the microservice.
-   * @param params.queue The name of the queue from which to consume messages (from the Queue enum).
-   * @param params.messagingOptions An optional set of options for AMQP, such as explicit message
-   * acknowledgement or queue durability.
-   * @param params.restApiController An optional NestJS Controller to act as a public-facing REST
-   * API handler for this microservice.
+   * Whether or not to enable automatic removal of messages from the associated queue.
    */
-  constructor({ queue, messagingOptions = {}, restApiController }: ServiceConfig) {
+  noAck?: boolean
+
+  /**
+   * The name of the queue from which to consume messages.
+   */
+  queue: Queue
+}
+
+class PlatformMicroservice {
+  private readonly module: Function
+  private readonly noAck: boolean
+  private readonly queueName: string
+
+  constructor(config: MicroserviceConfig) {
+    this.module = config.module
+    this.noAck = config.noAck || false
     // Use a queue name that is environment-specific
-    this.queueName = withEnvironment(queue)
-    this.configOptions = messagingOptions
-    this.restApiController = restApiController
+    this.queueName = withEnvironment(config.queue)
   }
 
   /**
@@ -90,37 +78,7 @@ abstract class PlatformMicroservice {
   }
 
   /**
-   * Starts the application listening for incoming messages.
-   *
-   * **NOTE:** This method does not return.
-   */
-  public async start(): Promise<any> {
-    const microservice = await NestFactory.createMicroservice<RmqOptions>(this.constructor, {
-      transport: Transport.RMQ,
-      options: {
-        // Default to noAck=false (explicit acks required to remove entries from the queue)
-        noAck: this.configOptions.noAck,
-        socketOptions: DEFAULT_SOCKET_OPTIONS,
-        queue: this.queueName,
-        queueOptions: DEFAULT_QUEUE_OPTIONS,
-        urls: [CARBON_MESSAGE_QUEUE_URL]
-      }
-    })
-
-    const controllers = this.restApiController
-      ? [StatusController, this.restApiController]
-      : [StatusController]
-
-    const rootApplication = await NestFactory.create({
-      module: RootApplicationModule,
-      controllers
-    } as DynamicModule)
-
-    return Promise.all([microservice.listen(), rootApplication.listen(PORT)])
-  }
-
-  /**
-   * Binds a service to one or more message types, allowing it to listen for and receive messages of
+   * Binds a queue to one or more message types, allowing it to listen for and receive messages of
    * those types.
    *
    * This is accomplished by connecting to RabbitMQ, asserting the constructor-specified queue,
@@ -151,6 +109,29 @@ abstract class PlatformMicroservice {
 
     await channel.close()
     await connection.close()
+  }
+
+  /**
+   * Starts the service listening for incoming messages and REST API requests.
+   *
+   * @returns A promise that never resolves.
+   */
+  public async start(): Promise<any> {
+    const application = await NestFactory.create(this.module)
+
+    application.connectMicroservice<RmqOptions>({
+      transport: Transport.RMQ,
+      options: {
+        noAck: this.noAck,
+        socketOptions: DEFAULT_SOCKET_OPTIONS,
+        queue: this.queueName,
+        queueOptions: DEFAULT_QUEUE_OPTIONS,
+        urls: [CARBON_MESSAGE_QUEUE_URL]
+      }
+    })
+
+    await application.startAllMicroservices()
+    return application.listen(PORT)
   }
 }
 

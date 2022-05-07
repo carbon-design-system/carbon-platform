@@ -79,7 +79,7 @@ const DEFAULT_SOCKET_OPTIONS = {
  * messages.
  */
 enum Queue {
-  Github = 'q_github_v1',
+  DataGraph = 'q_data_graph_v1',
   Logging = 'q_logging_v1',
   Search = 'q_search_v1'
 }

@@ -4,16 +4,27 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { NestFactory } from '@nestjs/core'
+import { QueryMessage, Queue } from '@carbon-platform/api/dist/main/messaging'
+import { PlatformMicroservice } from '@carbon-platform/api/microservice'
 
+// import { NestFactory } from '@nestjs/core'
 // import { GraphQLSchemaHost } from '@nestjs/graphql'
 // import { gql } from 'apollo-server-express'
 // import { execute, graphql } from 'graphql'
 import { DataGraphModule } from './data-graph.module'
 
 async function start() {
-  const app = await NestFactory.create(DataGraphModule)
-  await app.init() // Forces schema host initialization
+  const pm = new PlatformMicroservice({
+    queue: Queue.DataGraph,
+    module: DataGraphModule
+  })
+
+  pm.bind<QueryMessage>('data_graph')
+
+  await pm.start()
+
+  // const app = await NestFactory.create(DataGraphModule)
+  // await app.init() // Forces schema host initialization
 
   // const { schema } = app.get(GraphQLSchemaHost)
 
@@ -32,7 +43,7 @@ async function start() {
   // console.log('***', result.data?.asd)
   // console.log(JSON.stringify(result))
 
-  await app.listen(3000)
+  // await app.listen(3000)
   // ---- TESTING -----
   // console.log(`Application is running on: ${await app.getUrl()}`)
 

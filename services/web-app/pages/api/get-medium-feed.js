@@ -6,11 +6,15 @@
  */
 
 import Parser from 'rss-parser'
+
+import { cacheResponse } from '@/lib/file-cache'
 const parser = new Parser()
 
 // in the future we probably consume this out of one of the graphql endpoints?
 const getMediumFeed = async (_, res) => {
-  const mediumArticles = await parser.parseURL('https://medium.com/feed/carbondesign')
+  const mediumArticles = await cacheResponse('https://medium.com/feed/carbondesign', () =>
+    parser.parseURL('https://medium.com/feed/carbondesign')
+  )
   res.json(mediumArticles)
 }
 

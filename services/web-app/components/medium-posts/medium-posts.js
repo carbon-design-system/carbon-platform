@@ -47,7 +47,7 @@ const MediumPosts = ({ postLimit = 3, cardProps, dummy, ...rest }) => {
 
   useEffect(() => {
     async function getMediumArticles() {
-      const articlesRes = await fetch('http://localhost:3000/api/get-medium-feed') // TODO: this won't work on prod
+      const articlesRes = await fetch('http://localhost:3000/api/get-medium-feed') // TODO: this won't work on prod?
       if (articlesRes.ok) {
         const articles = await articlesRes.json()
         setAllPosts(

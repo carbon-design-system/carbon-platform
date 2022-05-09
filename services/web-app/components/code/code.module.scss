@@ -9,6 +9,8 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/theme' as theme;
 
+/* stylelint-disable declaration-no-important */
+
 // scoped to div code to override global reset styles
 :global(div) code {
   padding: 0 spacing.$spacing-03;
@@ -19,6 +21,16 @@
 
 .code {
   margin-top: spacing.$spacing-07;
+}
+
+// override carbon code styles
+.code :global(.cds--snippet-container) {
+  // override carbon inline style
+  min-height: 24px !important;
+
+  pre {
+    padding-bottom: 0;
+  }
 }
 
 .code code {

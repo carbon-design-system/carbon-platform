@@ -7,6 +7,7 @@
 
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
 
 .notification {
   margin-top: spacing.$spacing-05;
@@ -18,11 +19,10 @@
 }
 
 .content div {
-  --space: 0;
-
-  margin-top: var(--space);
+  margin-top: 0;
 }
 
+.content,
 .content p {
   @include type.type-style('body-compact-01');
 }

@@ -11,6 +11,10 @@ import PropTypes from 'prop-types'
 
 import styles from './page-description.module.scss'
 
+/**
+ * The `<PageDescription>` component is generally used for intro text at the top
+ * of the page using the type token `fluid-heading-03`.
+ */
 const PageDescription = ({ children, className, ...rest }) => (
   <Grid>
     <Column sm={4} md={6} lg={8} className={clsx(styles['page-description'], className)} {...rest}>
@@ -20,7 +24,13 @@ const PageDescription = ({ children, className, ...rest }) => (
 )
 
 PageDescription.propTypes = {
+  /**
+   * Provide the contents of PageDescription
+   */
   children: PropTypes.node,
+  /**
+   * Optional class name.
+   */
   className: PropTypes.string
 }
 

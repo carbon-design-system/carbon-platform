@@ -12,7 +12,6 @@
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/colors' as colors;
 
-//TODO: figure out why this isn't generating classes
 @include type.type-classes();
 
 // Typeset Style

@@ -27,6 +27,7 @@
 .caption {
   width: 100%;
   padding: spacing.$spacing-05 0 0 0;
+  color: theme.$text-primary;
 
   @include breakpoint.breakpoint('md') {
     width: 75%;
@@ -37,6 +38,7 @@
   @include type.type-style('body-compact-01');
 
   margin: 0;
+  color: theme.$text-primary;
   font-weight: 600;
 
   @media (orientation: landscape) {

@@ -2,6 +2,84 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.105](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.104...@carbon-platform/web-app@0.1.105) (2022-05-07)
+
+
+### Features 🌟
+
+* add art-direction and gif-player stories ([0c883ce](https://github.com/carbon-design-system/carbon-platform/commit/0c883cef6a862ff69d0297d078ff980072486283))
+* add batch of mdx stories ([5de36bf](https://github.com/carbon-design-system/carbon-platform/commit/5de36bff3a24919e876d19818d15136d4f541a16))
+* add profile to storybook ([25e89ef](https://github.com/carbon-design-system/carbon-platform/commit/25e89ef09789e11fd5c82335a97a117d70201fb6))
+* add tab article card to storybook ([4ec82c5](https://github.com/carbon-design-system/carbon-platform/commit/4ec82c54507e6c21acfe3a8621e293de3cbe3a1d))
+* add tab tabs to storybook ([da1b7dc](https://github.com/carbon-design-system/carbon-platform/commit/da1b7dcf8307e010b693e2f0603f653916b4e008))
+* add toastnotification ([1745d1c](https://github.com/carbon-design-system/carbon-platform/commit/1745d1c97994a4d04941383ac85442d08274b495))
+* add video to storybook ([2675ce5](https://github.com/carbon-design-system/carbon-platform/commit/2675ce587edae78e789569eb1550735b6a1a4c96))
+* index carbon components vue test ([0e9d550](https://github.com/carbon-design-system/carbon-platform/commit/0e9d550e65408883bfef985d7d54a9fd37d10153))
+* ready for prod ([eab34d4](https://github.com/carbon-design-system/carbon-platform/commit/eab34d4ba6b5c65075f53789d300d3f794363b25))
+* **web-app:** mdx icon component ([8e64e70](https://github.com/carbon-design-system/carbon-platform/commit/8e64e701ca5cfac193ec28aafa2686682cdb0700))
+
+
+### Bug Fixes 🐛
+
+* add styles for code to work in storybook ([bf61eb4](https://github.com/carbon-design-system/carbon-platform/commit/bf61eb478c54b4b9e0d7ae5e74871cac6dfaab93))
+* add tokens for themeing ([f53a1e1](https://github.com/carbon-design-system/carbon-platform/commit/f53a1e136a87d1a922d59d2c084bd11fb1bcb4ca))
+* add tokens for themeing ([ee7d2fa](https://github.com/carbon-design-system/carbon-platform/commit/ee7d2face7cb94b1f5703a31697a5f85ae93f218))
+* address review comments ([8be46b5](https://github.com/carbon-design-system/carbon-platform/commit/8be46b5d3cc96dcbaaf2d986e823103a7540fd0d))
+* artdirection story comments ([fc25cce](https://github.com/carbon-design-system/carbon-platform/commit/fc25ccead137d8c080580003fcde855216a7b009))
+* dodont image ([d821d78](https://github.com/carbon-design-system/carbon-platform/commit/d821d78e2609dde77108a8377596d662549fae42))
+* eslint error ([e48d882](https://github.com/carbon-design-system/carbon-platform/commit/e48d882c99564e218132341c119f01f3f5b5a838))
+* extra comma ([5a2763b](https://github.com/carbon-design-system/carbon-platform/commit/5a2763be6dae2d7a83349ae480d6bf70c862be87))
+* fix merge ([275e31d](https://github.com/carbon-design-system/carbon-platform/commit/275e31d61a67687a5acae2e05a6ad7e25ca1fddb))
+* merge with main ([ed5e68a](https://github.com/carbon-design-system/carbon-platform/commit/ed5e68a095f4e64522a35c579f7e322c39236d66))
+* move scripts folder back ([e688fc2](https://github.com/carbon-design-system/carbon-platform/commit/e688fc22d55015539492b8540766b6ee28f62fce))
+* profile image ([e49db90](https://github.com/carbon-design-system/carbon-platform/commit/e49db90e44259efb143d23975c1637958a1822a3))
+* replace img with image component ([67f8440](https://github.com/carbon-design-system/carbon-platform/commit/67f8440f9465e9ad95d497dbd1f36230820d9e3f))
+* **web-app:** linter issues ([612accd](https://github.com/carbon-design-system/carbon-platform/commit/612accd75d55adf08ce6ffb6829fb7599f43286e))
+* **web-app:** mdx-icon add color proptype description ([3e27f02](https://github.com/carbon-design-system/carbon-platform/commit/3e27f026197452766b9b33abe47552d3c5e651e8))
+* **web-app:** move svgs into icons package, add mdx-icon storybook ([1acd65a](https://github.com/carbon-design-system/carbon-platform/commit/1acd65a71b578fd12ec80b15013353b396c65d32))
+
+### [0.1.104](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.103...@carbon-platform/web-app@0.1.104) (2022-05-06)
+
+
+### Bug Fixes 🐛
+
+* grid modes ([c899b69](https://github.com/carbon-design-system/carbon-platform/commit/c899b696c33cda23a4222dedad1c086449b0f763))
+* lint ([6de51cd](https://github.com/carbon-design-system/carbon-platform/commit/6de51cd7ebf3833c4f8d48699b8fda6528c6a305))
+* lint issue ([b7f3419](https://github.com/carbon-design-system/carbon-platform/commit/b7f341980682aad098dea59719242985ad30dd08))
+* merge conflcits ([88b6e7c](https://github.com/carbon-design-system/carbon-platform/commit/88b6e7c4a3adb983062c00642b7753ad36899abc))
+* merge conflcits ([36aaf7f](https://github.com/carbon-design-system/carbon-platform/commit/36aaf7fbee4514e0bbd0357ffe0dcd3cdf1a4db1))
+* merge conflicts ([8100d96](https://github.com/carbon-design-system/carbon-platform/commit/8100d96f8cef080293b580821ae6c32ccef4c318))
+* merge with main ([0a8435f](https://github.com/carbon-design-system/carbon-platform/commit/0a8435f50535198b7982ed695b35af87c8dc43a9))
+* sonar cloud error ([d5a91de](https://github.com/carbon-design-system/carbon-platform/commit/d5a91de35626a31df656c9055ec364da5cd15cc9))
+* spacing ([f99226c](https://github.com/carbon-design-system/carbon-platform/commit/f99226cbe4e84cc29b524f9e3a7ebc93c97161b8))
+* **web-app:** linter issues ([129b338](https://github.com/carbon-design-system/carbon-platform/commit/129b3387243b6ba62718dbc239f71a3c980ce13f))
+* **web-app:** linter issues ([d36d30c](https://github.com/carbon-design-system/carbon-platform/commit/d36d30c9c648ab11860f69f405b5b7602527216f))
+* **web-app:** missing css prop ([1ca514f](https://github.com/carbon-design-system/carbon-platform/commit/1ca514f6688d7a694e7194cf7c35861223b0d58d))
+* **web-app:** prettier ([25724e7](https://github.com/carbon-design-system/carbon-platform/commit/25724e7ccb2d13e95aa54f3388b54d20b609e0d8))
+
+
+### Features 🌟
+
+* add testing carbon components svelte ([8a069a9](https://github.com/carbon-design-system/carbon-platform/commit/8a069a9096034abe19c70a92d7c4d61d1407cf02))
+* added svelte svg ([990385e](https://github.com/carbon-design-system/carbon-platform/commit/990385e5946402b37174dd9a0274ccbff69d1627))
+* added thumbnails ([c3807a6](https://github.com/carbon-design-system/carbon-platform/commit/c3807a63232219ed7e5adad27422b556dbbe92d5))
+* added thumbnails test missing 3 thumnails ([abf429f](https://github.com/carbon-design-system/carbon-platform/commit/abf429f78770a8a6289b840beffb7fc0627c7912))
+* carbon angular index test ([193db0f](https://github.com/carbon-design-system/carbon-platform/commit/193db0feef3ceb44196f51aec9de1d3d65a776ac))
+* fix merge conflicts ([9d7058b](https://github.com/carbon-design-system/carbon-platform/commit/9d7058b2d59de8fa1afd9d5f1e0457a797412ac7))
+* ready for prod ([fbf10d2](https://github.com/carbon-design-system/carbon-platform/commit/fbf10d2fcc3f7277b4addef908844a61524a3e9a))
+* remove react-copy-to-clipboard ([d5a3053](https://github.com/carbon-design-system/carbon-platform/commit/d5a30531b69c1aefc543466fc68980b5756566da))
+* update test ([344b4b6](https://github.com/carbon-design-system/carbon-platform/commit/344b4b6431a7c5bbb72f8ef02773721de2690ed8))
+* update thumbnails ([b37e18f](https://github.com/carbon-design-system/carbon-platform/commit/b37e18f72ece6f3c30abbfd54a7bddbba401c585))
+* updated for prod ([57ced66](https://github.com/carbon-design-system/carbon-platform/commit/57ced664e8257ce0bc3d808dc401a747f6b18d3e))
+* **web-app:** glossary component ([ed98ba1](https://github.com/carbon-design-system/carbon-platform/commit/ed98ba1adab4eb3afc65a0d172eb14c355de6d1f))
+
+
+### Misc. 🔮
+
+* color token table component ([415157c](https://github.com/carbon-design-system/carbon-platform/commit/415157cfaaede6b221f2acb9c9b0cef6d420e67c))
+* color token table component ([ec6156a](https://github.com/carbon-design-system/carbon-platform/commit/ec6156aea76109933a10ecb478e711fdb433ebd4))
+* update node modules (minor-only) ([f87a33b](https://github.com/carbon-design-system/carbon-platform/commit/f87a33bc6575b5c8acc4bee4f1abd0d917f3ad64))
+
 ### [0.1.103](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.102...@carbon-platform/web-app@0.1.103) (2022-05-05)
 
 

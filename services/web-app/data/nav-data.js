@@ -40,43 +40,43 @@ export const assetsNavData = [
     title: 'Guidelines',
     items: [
       {
-        path: '/guidelines/2x-grid/overview',
+        path: '/assets/guidelines/2x-grid/overview',
         title: '2x Grid'
       },
       {
-        path: '/guidelines/accessibility/overview',
+        path: '/assets/guidelines/accessibility/overview',
         title: ' Accessibility'
       },
       {
-        path: '/guidelines/content/overview',
+        path: '/assets/guidelines/content/overview',
         title: ' Content'
       },
       {
-        path: '/guidelines/color/overview',
+        path: '/assets/guidelines/color/overview',
         title: ' Color'
       },
       {
-        path: '/guidelines/icons/library',
+        path: '/assets/guidelines/icons/library',
         title: ' Icons'
       },
       {
-        path: '/guidelines/pictograms/library',
+        path: '/assets/guidelines/pictograms/library',
         title: ' Pictograms'
       },
       {
-        path: '/guidelines/motion/overview',
+        path: '/assets/guidelines/motion/overview',
         title: ' Motion'
       },
       {
-        path: '/guidelines/spacing/overview',
+        path: '/assets/guidelines/spacing/overview',
         title: ' Spacing'
       },
       {
-        path: '/guidelines/themes/overview',
+        path: '/assets/guidelines/themes/overview',
         title: ' Themes'
       },
       {
-        path: '/guidelines/typography/overview',
+        path: '/assets/guidelines/typography/overview',
         title: ' Typography'
       }
     ]

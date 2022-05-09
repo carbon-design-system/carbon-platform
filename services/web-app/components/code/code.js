@@ -12,7 +12,7 @@ import styles from './code.module.scss'
 
 const Code = ({ children }) => (
   <Theme theme={'g100'}>
-    <Grid>
+    <Grid condensed>
       <Column sm={4} md={6} lg={8}>
         <CodeSnippet type="multi" wrapText feedback="Copied!" className={styles.code}>
           {children}

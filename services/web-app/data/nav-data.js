@@ -42,6 +42,42 @@ export const assetsNavData = [
       {
         path: '/guidelines/2x-grid/overview',
         title: '2x Grid'
+      },
+      {
+        path: '/guidelines/accessibility/overview',
+        title: ' Accessibility'
+      },
+      {
+        path: '/guidelines/content/overview',
+        title: ' Content'
+      },
+      {
+        path: '/guidelines/color/overview',
+        title: ' Color'
+      },
+      {
+        path: '/guidelines/icons/library',
+        title: ' Icons'
+      },
+      {
+        path: '/guidelines/pictograms/library',
+        title: ' Pictograms'
+      },
+      {
+        path: '/guidelines/motion/overview',
+        title: ' Motion'
+      },
+      {
+        path: '/guidelines/spacing/overview',
+        title: ' Spacing'
+      },
+      {
+        path: '/guidelines/themes/overview',
+        title: ' Themes'
+      },
+      {
+        path: '/guidelines/typography/overview',
+        title: ' Typography'
       }
     ]
   },

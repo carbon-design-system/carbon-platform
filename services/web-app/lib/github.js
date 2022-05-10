@@ -24,25 +24,22 @@ const logging = new Logging('web-app', 'github.js')
 
 /**
  * Retrieves Mdx file from github repo and serializes it for rendering
- * @param {import('../typedefs').Params} libraryParams - Partially-complete parameters
+ * @param {import('../typedefs').Params} repoParams - Partially-complete parameters
  * @param {string} mdxPath - path to Mdx from repo source
  * @returns {Promise<import('../typedefs').RemoteMdxResponse>} Mdx Source Object
  */
-export const getRemoteMdxData = async (libraryParams, mdxPath) => {
-  // might want to validate library in the future?
-  // not doing now because I'm using carbon-website to test which is not a valid lib
-
+export const getRemoteMdxData = async (repoParams, mdxPath) => {
   /**
    * @type {import('../typedefs').GitHubContentResponse}
    */
   let response = {}
 
   try {
-    response = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
-      owner: libraryParams.org,
-      repo: libraryParams.repo,
+    response = await getResponse(repoParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: repoParams.org,
+      repo: repoParams.repo,
       path: removeLeadingSlash(mdxPath),
-      ref: libraryParams.ref
+      ref: repoParams.ref
     })
   } catch (err) {
     logging.error(err)
@@ -59,7 +56,7 @@ export const getRemoteMdxData = async (libraryParams, mdxPath) => {
 
   const usageFileSource = Buffer.from(response.content, response.encoding).toString()
 
-  const dirPath = response.path.split('/').slice(0, -1).join('/')
+  const dirPath = response._links.html.split('/').slice(0, -1).join('/')
 
   return serialize(usageFileSource, {
     mdxOptions: {

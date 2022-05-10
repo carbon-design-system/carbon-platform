@@ -51,7 +51,6 @@
     "gray-matter": "^4.0.3",
     "http-proxy-middleware": "^2.0.6",
     "image-extensions": "^1.1.0",
-    "image-size": "^1.0.1",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
     "markdown-it": "^13.0.1",

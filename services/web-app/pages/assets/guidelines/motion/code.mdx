@@ -1,24 +1,22 @@
 ---
 title: Motion
 description:
-  Motion can bring the screen to life, guide users through complex experiences,
-  and help move them forward—from here to there, now to next, start to
-  finish—and make progress.
+  Motion can bring the screen to life, guide users through complex experiences, and help move them
+  forward—from here to there, now to next, start to finish—and make progress.
 tabs: ['Overview', 'Choreography', 'Code']
 ---
 
 <PageDescription>
 
-The Carbon motion package empowers consistent cadence and movement of elements
-across digital experiences.
+The Carbon motion package empowers consistent cadence and movement of elements across digital
+experiences.
 
 </PageDescription>
 
 <InlineNotification>
 
-If you’re using `@carbon/react` there’s no reason to install the motion package
-separately. See our [get started](/get-started/develop/react) guide to start
-building.
+If you’re using `@carbon/react` there’s no reason to install the motion package separately. See our
+[get started](/get-started/develop/react) guide to start building.
 
 </InlineNotification>
 
@@ -32,15 +30,14 @@ building.
 
 ## Get started
 
-To install `@carbon/motion` in your project, you will need to run the following
-command using [npm](https://www.npmjs.com/):
+To install `@carbon/motion` in your project, you will need to run the following command using
+[npm](https://www.npmjs.com/):
 
 ```bash
 npm install -S @carbon/motion
 ```
 
-If you prefer [Yarn](https://yarnpkg.com/en/), use the following command
-instead:
+If you prefer [Yarn](https://yarnpkg.com/en/), use the following command instead:
 
 ```bash
 yarn add @carbon/motion
@@ -48,9 +45,9 @@ yarn add @carbon/motion
 
 ## Usage
 
-The `@carbon/motion` package enables you to access motion curves and durations
-built for the IBM Design Language in Sass. You can access these values directly
-from the package by writing the following:
+The `@carbon/motion` package enables you to access motion curves and durations built for the IBM
+Design Language in Sass. You can access these values directly from the package by writing the
+following:
 
 ```scss
 @use '@carbon/motion';
@@ -84,30 +81,32 @@ from the package by writing the following:
 
 ### JavaScript
 
-If you're using `@carbon/motion` as a JavaScript dependency, we export our
-easings and a function called `motion` that you can use. For example:
+If you're using `@carbon/motion` as a JavaScript dependency, we export our easings and a function
+called `motion` that you can use. For example:
 
 ```js
 // CommonJS
-const { easings, motion } = require('@carbon/motion');
+const { easings, motion } = require('@carbon/motion')
 ```
 
 You can also include this as a JavaScript module:
 
 ```js
 // ESM
-import { easings, motion } from '@carbon/motion';
+import { easings, motion } from '@carbon/motion'
 
-motion('standard', 'productive'); // Returns a string `cubic-bezier()` function
+motion('standard', 'productive') // Returns a string `cubic-bezier()` function
 ```
 
 ### Configuration
 
-You can configure parts of the `@carbon/motion` package with Sass Modules. For
-example, you can change the `$prefix` used by writing the following:
+You can configure parts of the `@carbon/motion` package with Sass Modules. For example, you can
+change the `$prefix` used by writing the following:
 
 ```scss
-@use '@carbon/motion' with ($prefix: 'custom-prefix');
+@use '@carbon/motion' with (
+  $prefix: 'custom-prefix'
+);
 ```
 
 For a full list of options that you can configure, check out the table below.

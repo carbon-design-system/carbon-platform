@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.106](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.105...@carbon-platform/web-app@0.1.106) (2022-05-10)
+
+
+### Tests 🧪
+
+* **web-app:** comment out libraries ([db4506b](https://github.com/carbon-design-system/carbon-platform/commit/db4506bf849da21968278b31e66d449bc260f49f))
+
+
+### Features 🌟
+
+* **web-app:** add icons and pictograms story ([2ece8da](https://github.com/carbon-design-system/carbon-platform/commit/2ece8da71b667a7ecade90d4cf6af79fab223647))
+* **web-app:** migrate icons and pictograms library ([6f84ecf](https://github.com/carbon-design-system/carbon-platform/commit/6f84ecfef293aabca6e977d0ff4454dce7b06e12))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add proptypes for svg libraries comps ([8569156](https://github.com/carbon-design-system/carbon-platform/commit/8569156721d1ce20cbcdf4872ab4cafad8affab0))
+* **web-app:** do not destructure styles ([348b454](https://github.com/carbon-design-system/carbon-platform/commit/348b4544c51c000b20b1f4a2b8f11cd2cb305c27))
+* **web-app:** firefox error issue ([946e2b4](https://github.com/carbon-design-system/carbon-platform/commit/946e2b49fa4f16227a960ead62f888afa1655bc2))
+* **web-app:** fix subgrid on svg libraries ([54c5714](https://github.com/carbon-design-system/carbon-platform/commit/54c5714ac82c38157f00bd3db2b18417188af5c6))
+* **web-app:** import illustrator icon from icons package ([03cd02e](https://github.com/carbon-design-system/carbon-platform/commit/03cd02edbfa446a334115e38b199709f94099473))
+* **web-app:** linter ([1c3fe35](https://github.com/carbon-design-system/carbon-platform/commit/1c3fe35ef40f0e3c66347824d96e05c027caf7ee))
+* **web-app:** linter issues ([37b5a40](https://github.com/carbon-design-system/carbon-platform/commit/37b5a403abcaa20aea1d8bb5c5d3f48070fd0adb))
+* **web-app:** mdx pages ([417a914](https://github.com/carbon-design-system/carbon-platform/commit/417a914de5192df1cd0c97c4181b2ae542978d23))
+* **web-app:** minor fixes ([0b741b1](https://github.com/carbon-design-system/carbon-platform/commit/0b741b1129757f82c319241ac75565564b97e78c))
+* **web-app:** new styles strategy ([bd09a2f](https://github.com/carbon-design-system/carbon-platform/commit/bd09a2fe6ef1990a1ae4f473fa416483fa8dc433))
+* **web-app:** no-results grid fix ([de10c25](https://github.com/carbon-design-system/carbon-platform/commit/de10c2567301d7ad6064f6e22a685f64dd469af8))
+* **web-app:** pr review comments ([c357d9c](https://github.com/carbon-design-system/carbon-platform/commit/c357d9ca28d0e52108b59f68eb00bf50bcc548eb))
+* **web-app:** pr review comments, linter ([78d17bd](https://github.com/carbon-design-system/carbon-platform/commit/78d17bdb1943ce95152e53d0354d91bd0f525a99))
+* **web-app:** remove lodash-es dependency ([92445f0](https://github.com/carbon-design-system/carbon-platform/commit/92445f08c76835b554e0066eac7d786376ecd615))
+* **web-app:** remove svg libraries .mdx files, rename pages ([0a5cede](https://github.com/carbon-design-system/carbon-platform/commit/0a5cedecad3535ec242603be2b3081a0750c5c3c))
+* **web-app:** svg libraries, use iconButton instead of hasIconOnly buttn ([6ba7d97](https://github.com/carbon-design-system/carbon-platform/commit/6ba7d976f5e6f21de352b9c909396e1e11e000ee))
+* **web-app:** svg-libraries: use js pages instead of mdx ([8ac5452](https://github.com/carbon-design-system/carbon-platform/commit/8ac5452d9931deb8afd0f110f1531f7ac2eef051))
+* **web-app:** use @loadable/component instead of next dynamic ([1b55ed3](https://github.com/carbon-design-system/carbon-platform/commit/1b55ed3af05b107302a47c119e93802a3324bce4))
+* **web-app:** use nextjs dynamic import instead of @loadable/component ([25a463c](https://github.com/carbon-design-system/carbon-platform/commit/25a463ca57450c37240278c6c90519cd4a6560b3))
+
 ### [0.1.105](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.104...@carbon-platform/web-app@0.1.105) (2022-05-07)
 
 

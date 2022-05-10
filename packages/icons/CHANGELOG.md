@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.31](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.30...@carbon-platform/icons@0.0.31) (2022-05-10)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** import illustrator icon from icons package ([03cd02e](https://github.com/carbon-design-system/carbon-platform/commit/03cd02edbfa446a334115e38b199709f94099473))
+* **web-app:** re-add 64-patterns svg ([60fa430](https://github.com/carbon-design-system/carbon-platform/commit/60fa430267f4098c00e4bc6ec2b6840d171e6865))
+
 ### [0.0.30](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.29...@carbon-platform/icons@0.0.30) (2022-05-07)
 
 

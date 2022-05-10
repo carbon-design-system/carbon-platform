@@ -24,10 +24,9 @@
 }
 
 .panel {
-  --space: 0;
-
   padding: spacing.$spacing-05;
   padding-bottom: spacing.$spacing-08;
+  margin-top: 0;
   background: theme.$layer-01;
 
   color: theme.$text-primary;

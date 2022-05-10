@@ -118,6 +118,25 @@
   }
 }
 
+//---------------------------------------
+// Aspect ratio
+//---------------------------------------
+.aspect-ratio-demo {
+  display: block;
+}
+
+.aspect-ratio-demo [class*='col'] {
+  padding-bottom: spacing.$spacing-05;
+}
+
+.aspect-ratio-demo [class*='grid_grid'] {
+  margin-top: spacing.$spacing-05;
+}
+
+.aspect-ratio-demo [class*='grid']:first-child {
+  margin-top: 0;
+}
+
 // override carbon muli line code snippet following grid demo
 .grid-demo + * :global([class*='cds--css-grid-column']) {
   margin-right: spacing.$spacing-05;

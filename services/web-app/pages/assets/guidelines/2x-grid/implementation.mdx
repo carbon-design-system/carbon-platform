@@ -776,7 +776,7 @@ action here in a product.
 </grid>
 ```
 
-<Title> Expanded state</Title>
+#### Expanded state
 
 <div className={styles['grid-demo']}>
   <div className={styles['grid-shell']}>
@@ -1018,6 +1018,147 @@ maintain consistency throughout our UI.
 We discuss aspect ratios and various grid behaviors more in depth on the 2x Grid Basics tab, both in
 the [Aspect ratios](/guidelines/2x-grid/overview/#aspect-ratio) section and in the
 [Grid behaviors](/guidelines/2x-grid/overview/#grid-behaviors) section.
+
+<div className={clsx(styles['grid-demo'], styles['aspect-ratio-demo'])}>
+  <Grid condensed>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--2x1">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>2:1</div>
+        </div>
+      </div>
+    </Column>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--2x1">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>2:1</div>
+        </div>
+      </div>
+    </Column>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--2x1">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>2:1</div>
+        </div>
+      </div>
+    </Column>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--2x1">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>2:1</div>
+        </div>
+      </div>
+    </Column>
+  </Grid>
+  <Grid condensed>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--16x9">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>16:9</div>
+        </div>
+      </div>
+    </Column>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--16x9">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>16:9</div>
+        </div>
+      </div>
+    </Column>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--16x9">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>16:9</div>
+        </div>
+      </div>
+    </Column>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--16x9">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>16:9</div>
+        </div>
+      </div>
+    </Column>
+  </Grid>
+  <Grid condensed>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--4x3">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>4:3</div>
+        </div>
+      </div>
+    </Column>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--4x3">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>4:3</div>
+        </div>
+      </div>
+    </Column>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--4x3">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>4:3</div>
+        </div>
+      </div>
+    </Column>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--4x3">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>4:3</div>
+        </div>
+      </div>
+    </Column>
+  </Grid>
+  <Grid condensed>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--1x1">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>1:1</div>
+        </div>
+      </div>
+    </Column>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--1x1">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>1:1</div>
+        </div>
+      </div>
+    </Column>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--1x1">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>1:1</div>
+        </div>
+      </div>
+    </Column>
+    <Column lg={4}>
+      <div class="cds--aspect-ratio cds--aspect-ratio--1x1">
+        <div class="cds--aspect-ratio--object">
+          <div class={styles['aspect-ratio-content']}>1:1</div>
+        </div>
+      </div>
+    </Column>
+  </Grid>
+</div>
+
+```html
+<div class="cds--aspect-ratio cds--aspect-ratio--2x1">
+  <div class="cds--aspect-ratio--object">2x1</div>
+</div>
+
+<div class="cds--aspect-ratio cds--aspect-ratio--16x9">
+  <div class="cds--aspect-ratio--object">16:19</div>
+</div>
+
+<div class="cds--aspect-ratio cds--aspect-ratio--4x3">
+  <div class="cds--aspect-ratio--object">4:3</div>
+</div>
+
+<div class="cds--aspect-ratio cds--aspect-ratio--1x1">
+  <div class="cds--aspect-ratio--object">1:1</div>
+</div>
+```
 
 <br />
 

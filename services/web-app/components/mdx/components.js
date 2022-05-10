@@ -71,7 +71,7 @@ const components = {
   blockquote: Blockquote,
   img: Image,
   table: PageTable,
-  pre: Code,
+  // pre: Code,
   /* Gatsby theme components */
   Code,
   Caption,

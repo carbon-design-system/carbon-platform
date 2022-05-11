@@ -51,7 +51,9 @@ const Code = ({ children }) => {
 Code.propTypes = {
   /** Provide the contents of Code */
   children: PropTypes.node.isRequired,
+  /** Provide path */
   path: PropTypes.string,
+  /** Provide src link */
   src: PropTypes.string
 }
 

@@ -10,10 +10,7 @@ import PropTypes from 'prop-types'
 import styles from './page-header.module.scss'
 
 const PageHeader = ({ bgColor, pictogram: Pictogram, title, withTabs }) => {
-  let headerHeight = '320px'
-  if (withTabs) {
-    headerHeight = '272px'
-  }
+ const headerHeight = withTabs ? '272px' : '320px'
 
   let containerStyle = {
     '--header-height': headerHeight

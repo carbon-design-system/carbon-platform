@@ -73,7 +73,6 @@ const components = {
   table: PageTable,
   pre: Code,
   /* Gatsby theme components */
-  Code,
   Caption,
   PageDescription,
   Title,

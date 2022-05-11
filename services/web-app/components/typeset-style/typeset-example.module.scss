@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .example-container {
   margin-top: spacing.$spacing-05;
@@ -27,7 +28,7 @@
 }
 
 .example-row {
-  min-height: 216px;
+  min-height: convert.rem(216px);
   background-color: theme.$layer-01;
 }
 

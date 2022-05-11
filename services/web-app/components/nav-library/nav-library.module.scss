@@ -10,10 +10,11 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .library-side-nav {
   @include breakpoint.breakpoint(lg) {
-    left: 256px;
+    left: convert.rem(256px);
     transform: translateX(0);
   }
 }
@@ -56,7 +57,7 @@
 .nav-heading {
   @include type.type-style('label-01');
 
-  height: spacing.$spacing-11;
+  height: convert.rem(80px);
   padding: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
   border-top: 1px solid theme.$border-subtle;
   border-bottom: 1px solid theme.$border-subtle;
@@ -73,7 +74,7 @@
     top: 0;
     left: 0;
     display: block;
-    width: spacing.$spacing-02;
+    width: convert.rem(4px);
     height: 100%;
     background-color: theme.$border-interactive;
     content: '';

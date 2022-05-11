@@ -11,6 +11,7 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/colors' as colors;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 @include type.type-classes();
 
@@ -215,20 +216,20 @@
   // Chaining the selectors doesn't work because browsers.
   // See https://css-tricks.com/sliding-nightmare-understanding-range-input/#structure
   &::-webkit-slider-runnable-track {
-    height: 1px;
+    height: convert.rem(1px);
     background: theme.$layer-selected-01;
   }
 
   &::-moz-range-track {
-    height: 1px;
+    height: convert.rem(1px);
     background: theme.$layer-selected-01;
   }
 
   &::-webkit-slider-thumb {
-    width: 14px;
-    height: 14px;
+    width: convert.rem(14px);
+    height: convert.rem(14px);
     border: 0;
-    margin-top: -7px;
+    margin-top: convert.rem(-7px);
     appearance: none;
     background: theme.$layer-selected-inverse;
     border-radius: 100%;
@@ -238,10 +239,10 @@
   }
 
   &::-moz-range-thumb {
-    width: 14px;
-    height: 14px;
+    width: convert.rem(14px);
+    height: convert.rem(14px);
     border: 0;
-    margin-top: -7px;
+    margin-top: convert.rem(-7px);
     appearance: none;
     background: theme.$layer-selected-inverse;
     border-radius: 100%;
@@ -251,8 +252,8 @@
   }
 
   &::-ms-track {
-    height: 1px;
-    border-width: 14px 0;
+    height: convert.rem(1px);
+    border-width: convert.rem(14px) 0;
     border-color: transparent;
     background: transparent;
     color: transparent;
@@ -267,10 +268,10 @@
   }
 
   &::-ms-thumb {
-    width: 14px;
-    height: 14px;
+    width: convert.rem(14px);
+    height: convert.rem(14px);
     border: 0;
-    margin-top: -1px;
+    margin-top: convert.rem(-1px);
     appearance: none;
     background: theme.$layer-selected-inverse;
     border-radius: 100%;
@@ -279,7 +280,7 @@
   &::after {
     position: absolute;
     width: var(--track-width);
-    height: 1px;
+    height: convert.rem(1px);
     background: theme.$layer-selected-inverse;
     content: '';
   }
@@ -287,21 +288,21 @@
   &:hover,
   &:active {
     &::-webkit-slider-thumb {
-      width: 18px;
-      height: 18px;
-      margin-top: -9px;
+      width: convert.rem(18px);
+      height: convert.rem(18px);
+      margin-top: convert.rem(-9px);
     }
 
     &::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
-      margin-top: -9px;
+      width: convert.rem(18px);
+      height: convert.rem(18px);
+      margin-top: convert.rem(-9px);
     }
 
     &::-ms-thumb {
-      width: 18px;
-      height: 18px;
-      margin-top: -2px;
+      width: convert.rem(18px);
+      height: convert.rem(18px);
+      margin-top: convert.rem(-2px);
     }
   }
 

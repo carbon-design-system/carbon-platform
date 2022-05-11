@@ -8,6 +8,7 @@
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .container {
   // position above CatalogSort
@@ -26,7 +27,7 @@
     right: 0;
     bottom: 100%;
     left: 0;
-    height: spacing.$spacing-05;
+    height: convert.rem(16px);
     background: theme.$background;
     content: '';
   }
@@ -38,14 +39,14 @@
 
   :global(.cds--search--lg .cds--search-input),
   :global(.cds--search--lg .cds--search-close) {
-    height: spacing.$spacing-09;
+    height: convert.rem(48px) 9;
   }
 }
 
 .column-search {
   @include breakpoint.breakpoint(lg) {
     // override carbon so we can have narrow grid but 1px gutter between columns (condensed)
-    margin-right: 1px;
+    margin-right: convert.rem(1px);
   }
   @include breakpoint.breakpoint-down(md) {
     display: flex;

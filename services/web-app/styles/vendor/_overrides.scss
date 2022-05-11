@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+@use '@carbon/react/scss/utilities/convert' as convert;
 @use '@carbon/react/scss/utilities/z-index' as z-index;
 
 .cds--content {
@@ -31,7 +31,7 @@
 // Make underline flush left with the column so it's not indented
 .cds--header__menu-item--current::after,
 a.cds--header__menu-item[aria-current='page']::after {
-  left: -2px;
+  left: convert.rem(-2px);
   width: calc(100% + 4px);
 }
 

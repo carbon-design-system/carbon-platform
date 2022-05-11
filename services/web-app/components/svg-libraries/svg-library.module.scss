@@ -4,6 +4,7 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/utilities/z-index' as z-index;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .svg-page {
   // prevent jank while importing icons
@@ -322,20 +323,20 @@ $svg-card-border: 1px solid theme.$border-subtle-01;
 }
 
 .no-result p {
-  max-width: 400px;
+  max-width: convert.rem(400px);
   margin: 0;
   margin-top: spacing.$spacing-06;
   margin-left: spacing.$spacing-05;
 }
 
 .no-result :global(.resource-card-group) img {
-  width: 32px;
+  width: convert.rem(32px);
 }
 
 .icon {
   position: relative;
   display: inline-block;
-  width: 32px;
+  width: convert.rem(32px);
   object-fit: contain;
   user-select: none;
   vertical-align: text-bottom;

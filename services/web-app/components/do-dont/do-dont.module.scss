@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 //---------------------------------------
 // Row
@@ -66,8 +67,8 @@
   top: calc(1rem - 1px);
   left: calc(1rem - 1px);
   display: block;
-  width: 24px;
-  height: 24px;
+  width: convert.rem(24px);
+  height: convert.rem(24px);
 }
 
 .icon-correct {
@@ -135,7 +136,7 @@
   top: -1px;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: convert.rem(3px);
   content: '';
 }
 

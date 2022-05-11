@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 @use '~styles/mixins' as mixins;
 
@@ -56,7 +57,7 @@
 
     display: flex;
     width: 100%;
-    height: spacing.$spacing-07;
+    height: convert.rem(32px);
     align-items: center;
     padding-left: calc(spacing.$spacing-06 - spacing.$spacing-02);
     border-left: spacing.$spacing-02 solid theme.$border-subtle;

@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/colors' as colors;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .color-token-table {
   display: flex;
@@ -38,7 +39,7 @@
   left: 0;
   display: block;
   width: 100%;
-  height: 64px;
+  height: convert.rem(64px);
   background: theme.$background;
   content: '';
 }
@@ -64,8 +65,8 @@
 }
 
 .color-token-value :global(.cds--overflow-menu__icon) {
-  width: 16px;
-  height: 16px;
+  width: convert.rem(16px);
+  height: convert.rem(16px);
 }
 
 .color-token-value > div {
@@ -80,20 +81,20 @@
 
 .color-token-value__block {
   display: block;
-  width: 48px;
-  height: 48px;
-  border-radius: 48px;
+  width: convert.rem(48px);
+  height: convert.rem(48px);
+  border-radius: convert.rem(48px);
 
   @media all and (max-width: 672px) {
-    width: 32px;
-    height: 32px;
-    border-radius: 32px;
+    width: convert.rem(32px);
+    height: convert.rem(32px);
+    border-radius: convert.rem(32px);
   }
 
   @media all and (max-width: 580px) {
-    width: 48px;
-    height: 48px;
-    border-radius: 48px;
+    width: convert.rem(48px);
+    height: convert.rem(48px);
+    border-radius: convert.rem(48px);
   }
 }
 
@@ -125,7 +126,7 @@
 .theme-switcher :global(.cds--content-switcher-btn:not(:last-of-type))::after {
   top: spacing.$spacing-04;
   right: -1px;
-  height: 24px;
+  height: convert.rem(24px);
 }
 
 .color-token-table table {
@@ -150,7 +151,7 @@
 
 .color-token-table table tbody tr {
   display: flex;
-  min-height: 104px;
+  min-height: convert.rem(104px);
   border-bottom: 1px solid theme.$border-subtle;
 
   @media all and (max-width: 580px) {
@@ -180,6 +181,6 @@
 .color-token-table code {
   padding: 0 spacing.$spacing-03;
   background: theme.$background;
-  border-radius: 4px;
+  border-radius: convert.rem(4px);
   font-size: 0.875em;
 }

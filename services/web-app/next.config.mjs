@@ -40,7 +40,7 @@ const nextConfig = withMDX(
       defaultLocale: 'en-US'
     },
     images: {
-      domains: ['raw.githubusercontent.com', 'cdn-images-1.medium.com']
+      domains: ['raw.githubusercontent.com', 'github.com', 'cdn-images-1.medium.com']
     },
     swcMinify: true,
     webpack(config) {

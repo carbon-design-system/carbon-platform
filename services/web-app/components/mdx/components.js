@@ -32,6 +32,8 @@ import Preview from '@/components/preview'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
 import StatusIndicatorTable from '@/components/status-indicator-table'
+import IconLibrary from '@/components/svg-libraries/icon-library'
+import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
@@ -87,8 +89,10 @@ const components = {
   DoDont,
   DoDontRow,
   GifPlayer,
+  IconLibrary,
   Glossary,
   InlineNotification,
+  PictogramLibrary,
   MdxIcon,
   MediumPosts,
   Tabs,

@@ -1,0 +1,98 @@
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/motion' as motion;
+@use '@carbon/react/scss/type' as type;
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .container {
+    transition: none;
+  }
+}
+
+.container {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  opacity: 1;
+  transition: opacity motion.$duration-fast-01 motion.motion(standard, productive);
+
+  svg {
+    fill: theme.$icon-primary;
+  }
+}
+
+.container.hidden {
+  opacity: 0;
+}
+
+.container a {
+  text-decoration: none;
+}
+
+.container button::-moz-focus-inner {
+  border: 0;
+}
+
+.container button,
+.container a {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  &:active {
+    background-color: theme.$background-active;
+  }
+
+  &:hover:not(:active) {
+    background-color: theme.$background-hover;
+  }
+}
+
+.container .tooltip svg {
+  overflow: visible;
+}
+
+.container .tooltip .trigger {
+  border-bottom: none;
+
+  &:focus {
+    outline: 2px solid theme.$focus;
+    outline-offset: -2px;
+  }
+
+  svg {
+    outline: none;
+  }
+}
+
+// override carbon link margin
+.link :global(.cds--link__icon) {
+  margin-left: 0;
+}
+
+// override carbon tooltip
+.container :global(.cds--tooltip-content) {
+  @include type.type-style('body-compact-01');
+
+  padding-top: spacing.$spacing-01;
+  padding-bottom: spacing.$spacing-01;
+}
+
+// override carbon tooltip
+.container :global(.cds--tooltip) {
+  --cds-popover-offset: 0.625rem;
+}
+
+// override carbon caret
+.container :global(.cds--popover-caret) {
+  width: var(--cds-popover-caret-width, 0.5rem);
+  height: var(--cds-popover-caret-height, 0.25rem);
+}

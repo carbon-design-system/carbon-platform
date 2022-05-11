@@ -93,4 +93,10 @@
  * @property {boolean} incomplete_results
  */
 
+/**
+ * @typedef {object} RemoteMdxResponse
+ * @property {object} frontmatter
+ * @property {string} compiledSource
+ */
+
 exports.unused = {}

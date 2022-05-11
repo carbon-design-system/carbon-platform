@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { ContentSwitcher, Dropdown, Switch } from '@carbon/react'
+import { Column, ContentSwitcher, Dropdown, Grid, Switch } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
@@ -169,118 +169,122 @@ const ColorPalette = ({ type, isMono, isDiverging, twoColumn, shouldShowControls
   const switcherTwo = type === 'sequential' ? 'Continuous' : 'Dark'
 
   return (
-    <div className={styles['color-palette-wrapper']}>
-      {shouldShowControls && (
-        <div
-          className={clsx(styles['palette-controls'], {
-            [styles['group-controls']]: type === 'grouped',
-            [styles['sequential-controls']]: type === 'sequential',
-            [styles['dark-controls']]: dark
-          })}
-        >
-          <ContentSwitcher
-            onChange={handleKeyboard}
-            className={styles['palette-switcher']}
-            selectionMode="automatic"
-            selectedIndex={0}
-          >
-            <Switch text={switcherOne} onClick={activateFirstSwitcher} />
-            <Switch text={switcherTwo} onClick={activateSecondSwitcher} />
-          </ContentSwitcher>
-          {type === 'grouped' && (
-            <Dropdown
-              label="Color group selection"
-              id="color-group-dropdown"
-              size="lg"
-              items={dropdownItems}
-              onChange={onDropdownChange}
-              selectedItem={dropdownItems[groupNumber - 1]}
-              initialSelectedItem={dropdownItems[0]}
-            />
-          )}
-        </div>
-      )}
-
-      {type === 'grouped' && (
-        <PalettesContainer dark={dark}>
-          {colorGroup.map((i, index) => (
-            <div className={styles['group-container']} key={index}>
-              <div className={styles['group-option']}>Option {index + 1}</div>
-              {i.map((j, jIndex) => (
-                <ColorPaletteColor
-                  key={`${type}-${j.name}-${index}-${j.index}`}
-                  index={jIndex}
-                  lightText={j.light}
-                  hex={j.hex}
-                  name={j.name}
+    <Grid condensed>
+      <Column sm={4} md={8} lg={12}>
+        <div className={styles['color-palette-wrapper']}>
+          {shouldShowControls && (
+            <div
+              className={clsx(styles['palette-controls'], {
+                [styles['group-controls']]: type === 'grouped',
+                [styles['sequential-controls']]: type === 'sequential',
+                [styles['dark-controls']]: dark
+              })}
+            >
+              <ContentSwitcher
+                onChange={handleKeyboard}
+                className={styles['palette-switcher']}
+                selectionMode="automatic"
+                selectedIndex={0}
+              >
+                <Switch text={switcherOne} onClick={activateFirstSwitcher} />
+                <Switch text={switcherTwo} onClick={activateSecondSwitcher} />
+              </ContentSwitcher>
+              {type === 'grouped' && (
+                <Dropdown
+                  label="Color group selection"
+                  id="color-group-dropdown"
+                  size="lg"
+                  items={dropdownItems}
+                  onChange={onDropdownChange}
+                  selectedItem={dropdownItems[groupNumber - 1]}
+                  initialSelectedItem={dropdownItems[0]}
                 />
+              )}
+            </div>
+          )}
+
+          {type === 'grouped' && (
+            <PalettesContainer dark={dark}>
+              {colorGroup.map((i, index) => (
+                <div className={styles['group-container']} key={index}>
+                  <div className={styles['group-option']}>Option {index + 1}</div>
+                  {i.map((j, jIndex) => (
+                    <ColorPaletteColor
+                      key={`${type}-${j.name}-${index}-${j.index}`}
+                      index={jIndex}
+                      lightText={j.light}
+                      hex={j.hex}
+                      name={j.name}
+                    />
+                  ))}
+                </div>
+              ))}
+            </PalettesContainer>
+          )}
+
+          {(type === 'categorical' || type === 'alert' || type === 'status') && (
+            <PalettesContainer dark={dark} type={type} twoColumn={twoColumn}>
+              {colors.map((i, index) => (
+                <ColorPaletteColor
+                  key={`${type}-${i.name}-${i.index}`}
+                  isNumbered
+                  index={index}
+                  lightText={i.light}
+                  hex={i.hex}
+                  name={i.name}
+                />
+              ))}
+            </PalettesContainer>
+          )}
+
+          {type === 'sequential' && (
+            <div className={styles['sequential-container']}>
+              {colors.map((i, index) => (
+                <PalettesContainer
+                  key={`${i.name}-${index}`}
+                  color={i.color}
+                  index={index}
+                  continuous={continuous}
+                >
+                  <div className={styles['group-option']}>Option {index + 1}</div>
+                  {i.data.map((j, jIndex) => (
+                    <ColorPaletteColor
+                      key={`${type}-${i.color}-${index}-${jIndex}`}
+                      index={jIndex}
+                      lightText={j.light}
+                      hex={j.hex}
+                      name={j.name}
+                      isSequential
+                      continuous={continuous}
+                    />
+                  ))}
+                </PalettesContainer>
               ))}
             </div>
-          ))}
-        </PalettesContainer>
-      )}
+          )}
 
-      {(type === 'categorical' || type === 'alert' || type === 'status') && (
-        <PalettesContainer dark={dark} type={type} twoColumn={twoColumn}>
-          {colors.map((i, index) => (
-            <ColorPaletteColor
-              key={`${type}-${i.name}-${i.index}`}
-              isNumbered
-              index={index}
-              lightText={i.light}
-              hex={i.hex}
-              name={i.name}
-            />
-          ))}
-        </PalettesContainer>
-      )}
-
-      {type === 'sequential' && (
-        <div className={styles['sequential-container']}>
-          {colors.map((i, index) => (
-            <PalettesContainer
-              key={`${i.name}-${index}`}
-              color={i.color}
-              index={index}
-              continuous={continuous}
-            >
-              <div className={styles['group-option']}>Option {index + 1}</div>
-              {i.data.map((j, jIndex) => (
-                <ColorPaletteColor
-                  key={`${type}-${i.color}-${index}-${jIndex}`}
-                  index={jIndex}
-                  lightText={j.light}
-                  hex={j.hex}
-                  name={j.name}
-                  isSequential
-                  continuous={continuous}
-                />
+          {type === 'status-extended' && (
+            <div className={styles['sequential-container']}>
+              {colors.map((i, index) => (
+                <PalettesContainer key={`${i.color}-${index}`} color={i.color} index={index}>
+                  {i.data.map((j, jIndex) => (
+                    <ColorPaletteColor
+                      key={`${j.name}-${jIndex}`}
+                      index={jIndex}
+                      lightText={j.light}
+                      hex={j.hex}
+                      name={j.name}
+                      isSequential
+                      continuous={continuous}
+                    />
+                  ))}
+                </PalettesContainer>
               ))}
-            </PalettesContainer>
-          ))}
+            </div>
+          )}
         </div>
-      )}
-
-      {type === 'status-extended' && (
-        <div className={styles['sequential-container']}>
-          {colors.map((i, index) => (
-            <PalettesContainer key={`${i.color}-${index}`} color={i.color} index={index}>
-              {i.data.map((j, jIndex) => (
-                <ColorPaletteColor
-                  key={`${j.name}-${jIndex}`}
-                  index={jIndex}
-                  lightText={j.light}
-                  hex={j.hex}
-                  name={j.name}
-                  isSequential
-                  continuous={continuous}
-                />
-              ))}
-            </PalettesContainer>
-          ))}
-        </div>
-      )}
-    </div>
+      </Column>
+    </Grid>
   )
 }
 

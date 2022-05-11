@@ -1,28 +1,25 @@
 /*
- * Copyright IBM Corp. 2021, 2022
+ * Copyright IBM Corp. 2022, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
 
+import { NextSeo } from 'next-seo'
 import { libraryPropTypes } from 'types'
 
 import AssetDetailPage from '@/components/asset-detail-page'
 import { getAssetIssueCount, getLibraryData } from '@/lib/github'
+import { getSlug } from '@/utils/slug'
 
 const Asset = ({ libraryData, params }) => {
   const [assetData] = libraryData.assets
   const { name } = assetData.content
-  const libraryPath = `/libraries/${params.library}/${params.ref}`
 
   const breadcrumbItems = [
     {
-      name: libraryData?.content?.name ?? 'Library',
-      path: libraryPath
-    },
-    {
-      name: 'Assets',
-      path: libraryPath + '/assets'
+      name: 'Components',
+      path: '/catalogs/components'
     },
     {
       name
@@ -30,7 +27,18 @@ const Asset = ({ libraryData, params }) => {
   ]
 
   return (
-    <AssetDetailPage breadcrumbItems={breadcrumbItems} libraryData={libraryData} params={params} />
+    <>
+      <AssetDetailPage
+        breadcrumbItems={breadcrumbItems}
+        libraryData={libraryData}
+        params={params}
+      />
+      <NextSeo
+        canonical={`https://next.carbondesignsystem.com/libraries/${
+          params.library
+        }/latest/assets/${getSlug(assetData.content)}`}
+      />
+    </>
   )
 }
 

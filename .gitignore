@@ -8,6 +8,7 @@ dist/
 generated/
 .test-coverage/
 .dev/
+.tsbuildinfo
 
 # OS stuff
 .DS_Store

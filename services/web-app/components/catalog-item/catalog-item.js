@@ -110,7 +110,7 @@ CatalogItemContent.propTypes = {
   isGrid: PropTypes.bool
 }
 
-const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
+const CatalogItem = ({ asset, assetCounts, filter, isGrid = false, collection, type }) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
   const isXlg = useMatchMedia(mediaQueries.xlg)
@@ -125,7 +125,15 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
     [styles['anchor--grid']]: isGrid
   })
 
-  const anchorHref = `/libraries/${asset.params.library}/latest/assets/${getSlug(asset.content)}`
+  let anchorHref = `/libraries/${asset.params.library}/latest/assets/${getSlug(asset.content)}`
+
+  if (type) {
+    anchorHref = `/catalogs/${type}s/${asset.params.library}/latest/${getSlug(asset.content)}`
+  } else if (collection) {
+    anchorHref = `/collections/${collection}/${asset.params.library}/latest/${getSlug(
+      asset.content
+    )}`
+  }
 
   const renderGrid = () => (
     <Column as="li" md={4}>

@@ -1,0 +1,52 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+
+.dashboard {
+  margin-top: spacing.$spacing-07;
+  margin-bottom: spacing.$spacing-07;
+
+  @include breakpoint.breakpoint(lg) {
+    margin-top: spacing.$spacing-11;
+  }
+}
+
+.sponsor-icon {
+  width: spacing.$spacing-10;
+  height: spacing.$spacing-10;
+  @include breakpoint.breakpoint-down(md) {
+    right: spacing.$spacing-05;
+    left: auto;
+  }
+}
+
+.status-icon {
+  position: relative;
+  top: 2px;
+  margin-right: spacing.$spacing-02;
+  margin-left: -1px;
+}
+
+// override carbon padding and max width
+.kits-button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: none;
+  padding-right: spacing.$spacing-05;
+  @include breakpoint.breakpoint(lg) {
+    width: 50%;
+  }
+}
+
+.github-icon {
+  width: spacing.$spacing-07;
+  height: spacing.$spacing-07;
+}

@@ -19,6 +19,8 @@ import { getAllLibraries } from '@/lib/github'
 const Elements = ({ librariesData }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
+  const { element } = type
+
   const seo = {
     title: 'Elements'
   }
@@ -31,7 +33,7 @@ const Elements = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} pictogram={type.element.icon} />
+      <PageHeader bgColor={element.bgColor} title={seo.title} pictogram={element.icon} />
       <Catalog data={librariesData} type="element" />
     </>
   )

@@ -16,17 +16,12 @@ const PageBreadcrumb = ({ className, items = [] }) => {
       <ol className={styles.list}>
         {items.map((item, i) => (
           <li className={styles.item} key={i}>
-            {item.path && !item.onClick && (
+            {item.path && (
               <Link href={item.path}>
                 <a className={styles.text}>{item.name}</a>
               </Link>
             )}
-            {item.onClick && !item.path && (
-              <button className={styles.button} type="button" onClick={item.onClick}>
-                <span>{item.name}</span>
-              </button>
-            )}
-            {!item.path && !item.onClick && <span className={styles.text}>{item.name}</span>}
+            {!item.path && <span className={styles.text}>{item.name}</span>}
           </li>
         ))}
       </ol>
@@ -39,8 +34,7 @@ PageBreadcrumb.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      path: PropTypes.string,
-      onClick: PropTypes.func
+      path: PropTypes.string
     })
   )
 }

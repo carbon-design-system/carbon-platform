@@ -4,14 +4,18 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { LogLoggedMessage } from '@carbon-platform/api/logging'
+import { Logging, LogLoggedMessage } from '@carbon-platform/api/logging'
 import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
 import { Environment } from '@carbon-platform/api/runtime'
 
 import { LogDnaService } from '../main/log-dna.service'
 import { LoggingController } from '../main/logging.controller'
 
-test('logLogged runs without crashing', async () => {
+beforeAll(() => {
+  Logging.setRemoteLoggingAllowed(false)
+})
+
+test('logLogged runs without crashing', () => {
   const logDnaService = new LogDnaService()
   const loggingController = new LoggingController(logDnaService)
 
@@ -24,24 +28,17 @@ test('logLogged runs without crashing', async () => {
     timestamp: Date.now()
   }
 
-  await expect(loggingController.logLogged(data)).resolves.not.toThrow()
+  expect(() => loggingController.logLogged(data)).not.toThrow()
 })
 
 describe('message validation', () => {
   let logDnaService: LogDnaService
   let loggingController: LoggingController
   let data: LogLoggedMessage
-  const mockedWarn = jest.fn()
-  const mockedDebug = jest.fn()
 
   beforeEach(() => {
     logDnaService = new LogDnaService()
     loggingController = new LoggingController(logDnaService)
-    ;(loggingController as any).logging = {
-      debug: mockedDebug,
-      warn: mockedWarn
-    }
-
     data = {
       component: 'test',
       environment: Environment.Test,
@@ -52,39 +49,39 @@ describe('message validation', () => {
     }
   })
 
-  it('logs a warning when no component specified', async () => {
+  it('throws an error when no component specified', () => {
     delete (data as UnvalidatedMessage).component
-    loggingController.logLogged(data)
-    expect(mockedWarn).toHaveBeenCalled()
+
+    expect(() => loggingController.logLogged(data)).toThrow('component not specified')
   })
 
-  it('logs a warning when no environment specified', async () => {
+  it('throws an error when no environment specified', () => {
     delete (data as UnvalidatedMessage).environment
-    loggingController.logLogged(data)
-    expect(mockedWarn).toHaveBeenCalled()
+
+    expect(() => loggingController.logLogged(data)).toThrow('environment not specified')
   })
 
-  it('logs a warning when no level specified', async () => {
+  it('throws an error when no level specified', () => {
     delete (data as UnvalidatedMessage).level
-    loggingController.logLogged(data)
-    expect(mockedWarn).toHaveBeenCalled()
+
+    expect(() => loggingController.logLogged(data)).toThrow('level not specified')
   })
 
-  it('logs a warning when no message specified', async () => {
+  it('throws an error when no message specified', () => {
     delete (data as UnvalidatedMessage).message
-    loggingController.logLogged(data)
-    expect(mockedWarn).toHaveBeenCalled()
+
+    expect(() => loggingController.logLogged(data)).toThrow('message not specified')
   })
 
-  it('logs a warning when no service specified', async () => {
+  it('throws an error when no service specified', () => {
     delete (data as UnvalidatedMessage).service
-    loggingController.logLogged(data)
-    expect(mockedWarn).toHaveBeenCalled()
+
+    expect(() => loggingController.logLogged(data)).toThrow('service not specified')
   })
 
-  it('logs a warning when no timestamp specified', async () => {
+  it('throws an error when no timestamp specified', () => {
     delete (data as UnvalidatedMessage).timestamp
-    loggingController.logLogged(data)
-    expect(mockedWarn).toHaveBeenCalled()
+
+    expect(() => loggingController.logLogged(data)).toThrow('timestamp not specified')
   })
 })

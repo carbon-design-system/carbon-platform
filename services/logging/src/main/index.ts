@@ -16,7 +16,8 @@ async function start() {
 
   const pm = new PlatformMicroservice({
     queue: Queue.Logging,
-    module: LoggingModule
+    module: LoggingModule,
+    noAck: true // Remove messages immediately from the queue without explicit ack
   })
 
   pm.bind<EventMessage>('log_logged')

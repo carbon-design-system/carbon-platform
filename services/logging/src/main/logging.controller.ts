@@ -4,15 +4,16 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { LogLoggedMessage } from '@carbon-platform/api/logging'
-import { Trace, Validate } from '@carbon-platform/api/microservice'
+import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
+import { RequestLogInterceptor, Trace } from '@carbon-platform/api/microservice'
 import { getEnvironment } from '@carbon-platform/api/runtime'
-import { Controller } from '@nestjs/common'
+import { Controller, UseInterceptors } from '@nestjs/common'
 import { EventPattern, Payload } from '@nestjs/microservices'
 
 import { LogDnaService } from './log-dna.service'
-import { logMessageValidator } from './log-message-validator'
+import { validateLogMessage } from './log-message-validator'
 
+@UseInterceptors(RequestLogInterceptor)
 @Controller()
 class LoggingController {
   private readonly logDnaService: LogDnaService
@@ -20,6 +21,8 @@ class LoggingController {
   constructor(logDnaService: LogDnaService) {
     this.logDnaService = logDnaService
 
+    // This is only needed since this is the logging service. Other services would just call
+    // `logging.info` directly.
     this.logDnaService.log({
       service: 'logging',
       component: 'logging.controller',
@@ -36,10 +39,11 @@ class LoggingController {
    * @param data The log message to log.
    */
   @EventPattern('log_logged')
-  @Trace() // TODO: make sure this still works
-  @Validate(logMessageValidator)
-  public async logLogged(@Payload() data: LogLoggedMessage) {
-    this.logDnaService.log(data)
+  @Trace()
+  public logLogged(@Payload() data: UnvalidatedMessage) {
+    const logMessage = validateLogMessage(data)
+
+    this.logDnaService.log(logMessage)
   }
 }
 

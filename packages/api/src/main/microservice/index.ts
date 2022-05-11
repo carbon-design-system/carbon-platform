@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 export { Trace } from './decorators/trace'
-export { Validate } from './decorators/validate'
+export { InvalidInputException } from './exceptions/invalid-input-exception'
+export { InvalidInputExceptionFilter } from './filters/invalid-input-exception.filter'
+export { RequestLogInterceptor } from './interceptors/request-log.interceptor'
 export { PlatformMicroservice } from './platform-microservice'
 export { StatusController } from './status-endpoint/status.controller'

@@ -4,10 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Controller, Get, HttpCode } from '@nestjs/common'
+import { Controller, Get, HttpCode, UseInterceptors } from '@nestjs/common'
 
+import { RequestLogInterceptor } from '../'
 import { Trace } from '../decorators/trace'
 
+@UseInterceptors(RequestLogInterceptor)
 @Controller()
 class StatusController {
   @Get('liveness')

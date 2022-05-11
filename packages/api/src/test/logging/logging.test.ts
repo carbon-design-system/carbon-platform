@@ -124,7 +124,7 @@ describe('message emission', () => {
       expect(mockedEmit).toHaveBeenCalledWith(
         'log_logged',
         expect.objectContaining({
-          service: 'undefined'
+          service: 'local-dev'
         })
       )
     })
@@ -142,6 +142,18 @@ describe('message emission', () => {
       await logging.debug('test')
 
       expect(mockedEmit).not.toHaveBeenCalled()
+    })
+
+    it('correctly re-sets the component', async () => {
+      const logging = new Logging('first')
+      logging.setComponent('second')
+
+      await logging.info('test')
+
+      expect(mockedEmit).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({ component: 'second' })
+      )
     })
 
     afterEach(() => {

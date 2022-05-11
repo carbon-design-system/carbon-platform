@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { MessagingClient } from '../../main/messaging'
 import { __test__ } from '../../main/messaging/messaging-client'
+import { withEnvironment } from '../../main/runtime'
 
 jest.mock('amqplib')
 const mockedAmqp = amqp as jest.Mocked<typeof amqp>
@@ -52,7 +53,11 @@ test('emit', async () => {
   const eventType = 'null'
 
   const expectedMessage = { pattern: eventType, data: null }
-  const expectedArgs = [eventType, '', Buffer.from(JSON.stringify(expectedMessage))]
+  const expectedArgs = [
+    withEnvironment(eventType),
+    '',
+    Buffer.from(JSON.stringify(expectedMessage))
+  ]
 
   await client.emit(eventType, expectedMessage.data)
 
@@ -65,7 +70,7 @@ test('query', async () => {
 
   const expectedMessage = { pattern: queryType, id: uuidv4(), data: 'ping' }
   const expectedArgs = [
-    queryType,
+    withEnvironment(queryType),
     '',
     Buffer.from(JSON.stringify(expectedMessage)),
     {

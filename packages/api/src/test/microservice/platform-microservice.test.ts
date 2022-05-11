@@ -46,7 +46,8 @@ beforeEach(() => {
   mockedNestApplication = {
     connectMicroservice: jest.fn(),
     listen: jest.fn(),
-    startAllMicroservices: jest.fn()
+    startAllMicroservices: jest.fn(),
+    useGlobalFilters: jest.fn()
   }
 
   mockedNestFactory.create.mockResolvedValue(mockedNestApplication as any)
@@ -97,20 +98,23 @@ test('start', async () => {
   await microservice.start()
 
   expect(mockedNestFactory.create).toHaveBeenCalledWith(mockedModule)
-  expect(mockedNestApplication.connectMicroservice).toHaveBeenCalledWith({
-    options: {
-      noAck: false,
-      queue: fullQueueName,
-      queueOptions: {
-        durable: false
-      },
-      socketOptions: {
-        ca: []
-      },
-      urls: [CARBON_MESSAGE_QUEUE_URL]
+  expect(mockedNestApplication.connectMicroservice).toHaveBeenCalledWith(
+    {
+      transport: Transport.RMQ,
+      options: {
+        noAck: false,
+        queue: fullQueueName,
+        queueOptions: {
+          durable: false
+        },
+        socketOptions: {
+          ca: []
+        },
+        urls: [CARBON_MESSAGE_QUEUE_URL]
+      }
     },
-    transport: Transport.RMQ
-  })
+    { inheritAppConfig: true }
+  )
   expect(mockedNestApplication.startAllMicroservices).toHaveBeenCalled()
   expect(mockedNestApplication.listen).toHaveBeenCalledWith(PORT)
 })

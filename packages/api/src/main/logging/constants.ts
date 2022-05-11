@@ -8,11 +8,11 @@ import { loadEnvVars } from '../runtime'
 
 const {
   /**
-   * The name of the service used during logging
+   * The name of the service used during logging.
    */
   CARBON_SERVICE_NAME
 } = loadEnvVars({
-  CARBON_SERVICE_NAME: 'undefined'
+  CARBON_SERVICE_NAME: 'local-dev'
 })
 
 export { CARBON_SERVICE_NAME }

@@ -43,7 +43,7 @@ interface LoggingOptions {
 class Logging {
   private static isRemoteLoggingAllowed: boolean = true
 
-  private readonly component: string
+  private component: string
   private readonly environment: Environment
   private readonly isDebugLoggingEnabled: boolean
   private readonly isRemoteLoggingEnabled: boolean
@@ -146,6 +146,16 @@ class Logging {
   public async error(message: string | Error) {
     const logEntry = this.createMessage(message, 'error')
     await this.log(logEntry)
+  }
+
+  /**
+   * Manually re-sets the component of this logging instance to a newly provided value. This is
+   * useful when wanting to reuse a single logging instance across multiple components.
+   *
+   * @param component The new component string to use.
+   */
+  public setComponent(component: string) {
+    this.component = component
   }
 
   /**

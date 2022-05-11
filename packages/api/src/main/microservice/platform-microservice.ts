@@ -21,6 +21,7 @@ import {
 } from '../messaging'
 import { withEnvironment } from '../runtime'
 import { CONNECT_RETRY_INTERVAL, PORT } from './constants'
+import { InvalidInputExceptionFilter } from './filters/invalid-input-exception.filter'
 
 type BindableMessage = EventMessage | QueryMessage
 
@@ -118,17 +119,21 @@ class PlatformMicroservice {
    */
   public async start(): Promise<any> {
     const application = await NestFactory.create(this.module)
+    application.useGlobalFilters(new InvalidInputExceptionFilter())
 
-    application.connectMicroservice<RmqOptions>({
-      transport: Transport.RMQ,
-      options: {
-        noAck: this.noAck,
-        socketOptions: DEFAULT_SOCKET_OPTIONS,
-        queue: this.queueName,
-        queueOptions: DEFAULT_QUEUE_OPTIONS,
-        urls: [CARBON_MESSAGE_QUEUE_URL]
-      }
-    })
+    application.connectMicroservice<RmqOptions>(
+      {
+        transport: Transport.RMQ,
+        options: {
+          noAck: this.noAck,
+          socketOptions: DEFAULT_SOCKET_OPTIONS,
+          queue: this.queueName,
+          queueOptions: DEFAULT_QUEUE_OPTIONS,
+          urls: [CARBON_MESSAGE_QUEUE_URL]
+        }
+      },
+      { inheritAppConfig: true }
+    )
 
     await application.startAllMicroservices()
     return application.listen(PORT)

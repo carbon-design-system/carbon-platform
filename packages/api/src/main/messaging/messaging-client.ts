@@ -7,6 +7,7 @@
 import amqp from 'amqplib'
 import { v4 as uuidv4 } from 'uuid'
 
+import { withEnvironment } from '../runtime'
 import { CARBON_MESSAGE_QUEUE_URL, DEFAULT_SOCKET_OPTIONS } from './constants'
 import { EventMessage, QueryMessage } from './interfaces'
 
@@ -194,7 +195,7 @@ class MessagingClient {
       // `publish` returns true if it is safe to continue sending messages; or false if pending
       // "confirms" should first be awaited
       const sendResult = messagingConnection.channel.publish(
-        eventType,
+        withEnvironment(eventType),
         DEFAULT_ROUTING_KEY,
         Buffer.from(JSON.stringify(dataToSend))
       )
@@ -242,7 +243,7 @@ class MessagingClient {
     // `publish` returns true if it is safe to continue sending messages; or false if pending
     // "confirms" should first be awaited
     const publishResult = messagingConnection.channel.publish(
-      queryType,
+      withEnvironment(queryType),
       DEFAULT_ROUTING_KEY,
       Buffer.from(JSON.stringify(dataToSend)),
       {

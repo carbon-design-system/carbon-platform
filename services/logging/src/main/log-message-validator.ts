@@ -6,6 +6,7 @@
  */
 import { LogLoggedMessage } from '@carbon-platform/api/logging'
 import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
+import { InvalidInputException } from '@carbon-platform/api/microservice'
 
 /**
  * Validates an incoming log message to ensure all required fields have been specified.
@@ -13,27 +14,27 @@ import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
  * @param data Incoming log message data.
  * @returns true if the mesage is a valid LogLoggedMessage. Throws an Error otherwise.
  */
-function logMessageValidator(data: UnvalidatedMessage): data is LogLoggedMessage {
+function validateLogMessage(data: UnvalidatedMessage): LogLoggedMessage {
   if (!data.component) {
-    throw new Error('component not specified')
+    throw new InvalidInputException('component not specified')
   }
   if (!data.environment) {
-    throw new Error('environment not specified')
+    throw new InvalidInputException('environment not specified')
   }
   if (!data.level) {
-    throw new Error('level not specified')
+    throw new InvalidInputException('level not specified')
   }
   if (!data.message) {
-    throw new Error('message not specified')
+    throw new InvalidInputException('message not specified')
   }
   if (!data.service) {
-    throw new Error('service not specified')
+    throw new InvalidInputException('service not specified')
   }
   if (!data.timestamp) {
-    throw new Error('timestamp not specified')
+    throw new InvalidInputException('timestamp not specified')
   }
 
-  return true
+  return data as LogLoggedMessage
 }
 
-export { logMessageValidator }
+export { validateLogMessage }

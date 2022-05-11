@@ -9,11 +9,19 @@ import PropTypes from 'prop-types'
 
 import styles from './page-header.module.scss'
 
-const PageHeader = ({ bgColor, pictogram: Pictogram, title }) => {
-  let containerStyle = {}
+const PageHeader = ({ bgColor, pictogram: Pictogram, title, withTabs }) => {
+  let headerHeight = '320px'
+  if (withTabs) {
+    headerHeight = '272px'
+  }
+
+  let containerStyle = {
+    '--header-height': headerHeight
+  }
 
   if (bgColor) {
     containerStyle = {
+      '--header-height': headerHeight,
       '--cds-background': bgColor
     }
   }
@@ -33,7 +41,8 @@ const PageHeader = ({ bgColor, pictogram: Pictogram, title }) => {
 PageHeader.propTypes = {
   bgColor: PropTypes.string,
   pictogram: PropTypes.object,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  withTabs: PropTypes.bool
 }
 
 export default PageHeader

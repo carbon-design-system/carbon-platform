@@ -140,6 +140,7 @@ const Asset = ({ libraryData }) => {
             bgColor={get(type, `[${assetData.content.type}].bgColor`)}
             title={seo.title}
             pictogram={get(type, `[${assetData.content.type}].icon`)}
+            withTabs
           />
           <PageBreadcrumb items={breadcrumbItems} />
         </Column>

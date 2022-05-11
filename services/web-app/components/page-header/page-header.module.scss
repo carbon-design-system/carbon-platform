@@ -56,7 +56,9 @@
 .pictogram {
   position: absolute;
   // header + page header - pictogram height - bottom space
-  top: variables.$header-height + var(--header-height) - spacing.$spacing-10 - spacing.$spacing-08;
+  top: calc(
+    variables.$header-height + (var(--header-height)) - spacing.$spacing-10 - spacing.$spacing-08
+  );
   right: 0;
   margin-right: spacing.$spacing-07;
   margin-bottom: spacing.$spacing-08;

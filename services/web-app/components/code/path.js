@@ -9,7 +9,7 @@ import { Launch } from '@carbon/react/icons'
 import styles from './code.module.scss'
 
 const Path = ({ src, path }) => {
-  // if (!path) return null
+  if (!path) return null
   return (
     <div className={styles['path-container']}>
       <span className={styles.path}>{path}</span>

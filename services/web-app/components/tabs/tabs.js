@@ -36,6 +36,7 @@ const Select = ({ children, _id }) => {
       label="tab selection"
       items={items}
       id={_id}
+      className={styles['tab-dropdown']}
     />
   )
 }
@@ -152,7 +153,7 @@ Tab.propTypes = {
 export const Tabs = (props) => {
   const tabList = useRef([])
   const [activeTab, setActiveTab] = useState(0)
-  const isLg = useMatchMedia(mediaQueries.lg)
+  const isMd = useMatchMedia(mediaQueries.md)
   const id = useId('tabs')
 
   // clear tablist when unmounted (switching between Select and TabList)
@@ -160,8 +161,8 @@ export const Tabs = (props) => {
 
   return (
     <TabContext.Provider value={{ setActiveTab, activeTab, tabList: tabList.current }}>
-      {isLg && <TabList _id={id}>{props.children}</TabList>}
-      {!isLg && <Select _id={id}>{props.children}</Select>}
+      {isMd && <TabList _id={id}>{props.children}</TabList>}
+      {!isMd && <Select _id={id}>{props.children}</Select>}
       {React.Children.map(props.children, (child, index) => {
         if (elementIsNullOrString(child)) return child
         return React.cloneElement(child, {

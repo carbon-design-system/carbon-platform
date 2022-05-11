@@ -22,7 +22,7 @@
   height: 100%;
 
   p {
-    @include type.type-style('body-short-01');
+    @include type.type-style('body-compact-01');
 
     padding-top: spacing.$spacing-05;
   }

@@ -125,7 +125,7 @@
 
 .theme-switcher :global(.cds--content-switcher-btn:not(:last-of-type))::after {
   top: spacing.$spacing-04;
-  right: -1px;
+  right: convert.rem(-1px);
   height: convert.rem(24px);
 }
 

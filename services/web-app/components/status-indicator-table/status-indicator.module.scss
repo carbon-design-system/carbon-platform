@@ -34,7 +34,7 @@
 // Covers the top border of the dark cells with appropriate border color
 .icon-group.is-dark::before {
   position: absolute;
-  top: -1px;
+  top: convert.rem(-1px);
   left: 0;
   display: block;
   width: 100%;

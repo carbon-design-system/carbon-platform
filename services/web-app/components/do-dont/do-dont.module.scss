@@ -133,7 +133,7 @@
 .card::before {
   position: absolute;
   z-index: 1;
-  top: -1px;
+  top: convert.rem(-1px);
   left: 0;
   width: 100%;
   height: convert.rem(3px);

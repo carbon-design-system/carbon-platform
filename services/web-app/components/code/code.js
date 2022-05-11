@@ -8,9 +8,9 @@ import { CodeSnippet, Column, Grid, Theme } from '@carbon/react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import PropTypes from 'prop-types'
 
+import carbonTheme from './carbon-theme.js'
 import styles from './code.module.scss'
 import Path from './path'
-import carbonTheme from './theme.js'
 
 const Code = ({ children }) => {
   const code = children.props.children

@@ -58,7 +58,7 @@ const MediumPosts = ({ postLimit = 3, cardProps, dummy, ...rest }) => {
               author: article.creator,
               link: article.link,
               date: moment(new Date(article.isoDate)).format('MMMM Do, YYYY'),
-              thumbnail: imgSrc ? imgSrc[1] : null // TODO: this is coming up as 503, I might need to use a middleware
+              thumbnail: imgSrc ? imgSrc[1] : null
             }
           })
         )
@@ -82,7 +82,12 @@ const MediumPosts = ({ postLimit = 3, cardProps, dummy, ...rest }) => {
             {...cardProps}
           >
             {latestPost.thumbnail && (
-              <Image alt={latestPost.title} src={latestPost.thumbnail} className={styles.image} />
+              <Image
+                alt={latestPost.title}
+                src={latestPost.thumbnail}
+                className={styles.image}
+                unoptimized
+              />
             )}
           </ArticleCard>
         </Column>

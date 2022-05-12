@@ -70,6 +70,7 @@
     "rimraf": "^3.0.2",
     "sass": "^1.51.0",
     "slugify": "^1.6.5",
+    "unist-util-remove": "^3.1.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

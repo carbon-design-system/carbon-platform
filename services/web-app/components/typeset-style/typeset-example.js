@@ -58,14 +58,14 @@ const TypesetExample = (props) => (
           return `${weight} / Italic`
         }
         switch (weight) {
-        case '300':
-          return '300 / Light'
-        case '400':
-          return '400 / Regular'
-        case '600':
-          return '600 / Semi-Bold'
-        default:
-          return weight
+          case '300':
+            return '300 / Light'
+          case '400':
+            return '400 / Regular'
+          case '600':
+            return '600 / Semi-Bold'
+          default:
+            return weight
         }
       }
 

@@ -75,25 +75,25 @@ export const Tab = ({ _id, label, active, index, tab, children }) => {
   const onKeyDown = (e) => {
     let nextButton
     switch (e.which) {
-    case 35: // end
-      e.preventDefault()
-      tabList[tabList.length - 1].focus()
-      break
-    case 36: // home
-      e.preventDefault()
-      tabList[0].focus()
-      break
-    case 37: // left
-      e.preventDefault()
-      nextButton = tabList[index - 1] || tabList[tabList.length - 1]
-      nextButton.focus()
-      break
-    case 39: // right
-      e.preventDefault()
-      nextButton = tabList[index + 1] || tabList[0]
-      nextButton.focus()
-      break
-    default:
+      case 35: // end
+        e.preventDefault()
+        tabList[tabList.length - 1].focus()
+        break
+      case 36: // home
+        e.preventDefault()
+        tabList[0].focus()
+        break
+      case 37: // left
+        e.preventDefault()
+        nextButton = tabList[index - 1] || tabList[tabList.length - 1]
+        nextButton.focus()
+        break
+      case 39: // right
+        e.preventDefault()
+        nextButton = tabList[index + 1] || tabList[0]
+        nextButton.focus()
+        break
+      default:
     }
   }
 

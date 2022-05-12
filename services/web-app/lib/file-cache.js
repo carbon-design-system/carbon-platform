@@ -97,7 +97,11 @@ export const getResponse = (host, route, options) => {
 }
 
 /**
- * TODO: comments
+ * Returns a cached object from a key and if it's a cache miss,
+ * calls supplied callback to retrieve info
+ * @param {string} key - Key to use to save/retrieve cached response
+ * @param {Function} callback - Function to call to get info in case of invalid cache
+ * @returns {Promise<object>} GitHub API response data
  */
 export const cacheResponse = (key, callback) => {
   return diskCache.wrap(key, () => {

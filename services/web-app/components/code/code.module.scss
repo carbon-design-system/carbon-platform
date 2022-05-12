@@ -44,6 +44,13 @@
   }
 }
 
+// override carbon tooltip colors
+.code :global(.cds--popover-content),
+.code :global(.cds--popover-caret) {
+  background: theme.$layer-accent-01;
+  color: theme.$text-primary;
+}
+
 .path-container {
   display: flex;
   width: 100%;

@@ -17,8 +17,10 @@ const PageTabs = ({ className, tabs = [] }) => {
         <Tabs>
           <TabList aria-label="List of tabs" className={styles['tab-list']}>
             {tabs.map((tab, i) => (
-              <Tab href={tab.path} key={i}>
-                {tab.name}
+              <Tab key={i}>
+                <a href={`${tab.name.toLowerCase()}`} className={styles.tab}>
+                  {tab.name}
+                </a>
               </Tab>
             ))}
           </TabList>

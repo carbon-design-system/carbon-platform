@@ -5,11 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Library } from '@carbon-platform/api/data-graph'
+import { Trace } from '@carbon-platform/api/microservice'
 import { Query, Resolver } from '@nestjs/graphql'
 
-import { LibrariesService } from './libraries.service'
+import { LibrariesService } from './libraries-service'
 
-@Resolver(Library)
+@Resolver()
 class LibrariesResolver {
   private readonly librariesService: LibrariesService
 
@@ -17,6 +18,7 @@ class LibrariesResolver {
     this.librariesService = librariesService
   }
 
+  @Trace()
   @Query(() => [Library])
   libraries(): Library[] {
     return this.librariesService.findAll()

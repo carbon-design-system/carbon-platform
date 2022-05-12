@@ -8,23 +8,6 @@ import { InputType, PickType } from '@nestjs/graphql'
 
 import { User } from '../models/user.model'
 
-// @InputType()
-// export class NewUserInput {
-//   @Field(() => String)
-//   name: string
-
-//   @Field(() => String)
-//   email: string
-
-//   constructor(email: string, name: string) {
-//     this.email = email
-//     this.name = name
-//   }
-// }
-
-// @InputType()
-// export class NewUserInput extends PartialType(User, InputType) {}
-
 /**
  * Defines the object structure that can be provided to the create user mutation. It is based on the
  * User class.

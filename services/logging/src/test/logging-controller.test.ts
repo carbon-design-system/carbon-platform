@@ -8,8 +8,8 @@ import { Logging, LogLoggedMessage } from '@carbon-platform/api/logging'
 import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
 import { Environment } from '@carbon-platform/api/runtime'
 
-import { LogDnaService } from '../main/log-dna.service'
-import { LoggingController } from '../main/logging.controller'
+import { LogDnaService } from '../main/log-dna-service'
+import { LoggingController } from '../main/logging-controller'
 
 beforeAll(() => {
   Logging.setRemoteLoggingAllowed(false)

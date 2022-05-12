@@ -6,7 +6,6 @@
  */
 export { Trace } from './decorators/trace'
 export { InvalidInputException } from './exceptions/invalid-input-exception'
-export { InvalidInputExceptionFilter } from './filters/invalid-input-exception.filter'
-export { RequestLogInterceptor } from './interceptors/request-log.interceptor'
+export { InvalidInputExceptionFilter } from './filters/invalid-input-exception-filter'
 export { PlatformMicroservice } from './platform-microservice'
-export { StatusController } from './status-endpoint/status.controller'
+export { StatusController } from './status-endpoint/status-controller'

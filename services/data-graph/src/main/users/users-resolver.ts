@@ -7,7 +7,7 @@
 import { CreateUserInput, User } from '@carbon-platform/api/data-graph'
 import { Args, ID, Int, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
 
-import { UsersService } from './users.service'
+import { UsersService } from './users-service'
 
 @Resolver(User)
 export class UsersResolver {
@@ -17,21 +17,19 @@ export class UsersResolver {
     this.userService = userService
   }
 
-  @Query(() => User, { nullable: true })
-  user(@Args({ name: 'id', type: () => ID }) id: string): User | undefined {
-    console.log('does it still have to call this?')
-    return this.userService.findUserById(id)
-  }
-
   @Query(() => [User])
-  users(): User[] {
-    return this.userService.findAll()
-  }
+  users(@Args('id', { type: () => ID, nullable: true }) id: string | undefined): User[] {
+    if (!id) {
+      return this.userService.findAll()
+    }
 
-  // This overrides the name field resolution
-  @ResolveField(() => String)
-  name(@Parent() user: User): string {
-    return 'Awesome Name' + user.name
+    const user = this.userService.findById(id)
+
+    if (!user) {
+      return []
+    }
+
+    return [user]
   }
 
   // This adds a field to the User type emitted in the gql schema
@@ -42,14 +40,6 @@ export class UsersResolver {
 
   @Mutation(() => User)
   async createUser(@Args('newUserData') newUserData: CreateUserInput) {
-    return this.userService.createUser(newUserData)
+    return this.userService.create(newUserData)
   }
-
-  // @Mutation((returns) => User)
-  // async updateUser(
-  //   @Args({ name: 'id', type: () => ID }) id: number,
-  //   @Args('partialUserData') partialUserData: UpdateUserInput
-  // ) {
-  //   return this.userService.updateUser(id, partialUserData)
-  // }
 }

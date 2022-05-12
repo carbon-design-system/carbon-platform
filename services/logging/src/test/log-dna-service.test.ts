@@ -7,7 +7,7 @@
 import * as runtime from '@carbon-platform/api/runtime'
 import logDna from '@logdna/logger'
 
-import { LogDnaService } from '../main/log-dna.service'
+import { LogDnaService } from '../main/log-dna-service'
 
 jest.mock('@logdna/logger')
 const mockedLogDna = logDna as jest.Mocked<typeof logDna>

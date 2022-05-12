@@ -15,7 +15,7 @@ class LibrariesService {
     new Library({ id: 'lib3', description: 'asdf', name: 'asdf' })
   ]
 
-  findLibraryById(libraryId: string): Library | undefined {
+  findById(libraryId: string): Library | undefined {
     return this.libraries.find((library) => library.id === libraryId)
   }
 

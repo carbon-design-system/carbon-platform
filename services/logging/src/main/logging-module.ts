@@ -7,8 +7,8 @@
 import { StatusController } from '@carbon-platform/api/microservice'
 import { Module } from '@nestjs/common'
 
-import { LogDnaService } from './log-dna.service'
-import { LoggingController } from './logging.controller'
+import { LogDnaService } from './log-dna-service'
+import { LoggingController } from './logging-controller'
 
 @Module({
   controllers: [LoggingController, StatusController],

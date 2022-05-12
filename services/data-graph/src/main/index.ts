@@ -11,7 +11,7 @@ import { PlatformMicroservice } from '@carbon-platform/api/microservice'
 // import { GraphQLSchemaHost } from '@nestjs/graphql'
 // import { gql } from 'apollo-server-express'
 // import { execute, graphql } from 'graphql'
-import { DataGraphModule } from './data-graph.module'
+import { DataGraphModule } from './data-graph-module'
 
 async function start() {
   const pm = new PlatformMicroservice({

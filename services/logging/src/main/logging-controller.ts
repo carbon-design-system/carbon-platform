@@ -5,15 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
-import { RequestLogInterceptor, Trace } from '@carbon-platform/api/microservice'
+import { Trace } from '@carbon-platform/api/microservice'
 import { getEnvironment } from '@carbon-platform/api/runtime'
-import { Controller, UseInterceptors } from '@nestjs/common'
+import { Controller } from '@nestjs/common'
 import { EventPattern, Payload } from '@nestjs/microservices'
 
-import { LogDnaService } from './log-dna.service'
+import { LogDnaService } from './log-dna-service'
 import { validateLogMessage } from './log-message-validator'
 
-@UseInterceptors(RequestLogInterceptor)
 @Controller()
 class LoggingController {
   private readonly logDnaService: LogDnaService

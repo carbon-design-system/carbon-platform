@@ -47,7 +47,8 @@ beforeEach(() => {
     connectMicroservice: jest.fn(),
     listen: jest.fn(),
     startAllMicroservices: jest.fn(),
-    useGlobalFilters: jest.fn()
+    useGlobalFilters: jest.fn(),
+    useGlobalInterceptors: jest.fn()
   }
 
   mockedNestFactory.create.mockResolvedValue(mockedNestApplication as any)

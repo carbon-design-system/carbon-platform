@@ -6,11 +6,10 @@
  */
 import { Module } from '@nestjs/common'
 
-import { StatusController } from './status.controller'
+import { UsersResolver } from './users-resolver'
+import { UsersService } from './users-service'
 
-@Module({
-  controllers: [StatusController]
-})
-class StatusModule {}
+@Module({ providers: [UsersResolver, UsersService] })
+class UsersModule {}
 
-export { StatusModule }
+export { UsersModule }

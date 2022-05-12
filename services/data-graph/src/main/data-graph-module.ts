@@ -11,23 +11,16 @@ import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import path from 'path'
 
-import { LibrariesResolver } from './libraries/libraries.resolver'
-import { LibrariesService } from './libraries/libraries.service'
-import { UsersResolver } from './users/users.resolver'
-import { UsersService } from './users/users.service'
+import { LibrariesModule } from './libraries/libraries-module'
+import { UsersModule } from './users/users-module'
 
 @Module({
   controllers: [StatusController],
-  providers: [
-    // Services
-    UsersService,
-    LibrariesService,
-
-    // Resolvers
-    LibrariesResolver,
-    UsersResolver
-  ],
   imports: [
+    // Resolver Modules
+    LibrariesModule,
+    UsersModule,
+
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       // Output the schema as a file in dev mode; or store it in memory otherwise

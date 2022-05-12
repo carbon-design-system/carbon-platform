@@ -7,7 +7,7 @@
 import { MonoTypeOperatorFunction, Observable } from 'rxjs'
 
 import { Logging } from '../../../main/logging'
-import { RequestLogInterceptor } from '../../../main/microservice/interceptors/request-log.interceptor'
+import { RequestLogInterceptor } from '../../../main/microservice/interceptors/request-log-interceptor'
 
 const infoSpy = jest.spyOn(Logging.prototype, 'info').mockImplementation(jest.fn())
 

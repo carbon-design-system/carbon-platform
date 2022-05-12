@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common'
+import { GqlExecutionContext } from '@nestjs/graphql'
 import { Request, Response } from 'express'
 import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
@@ -28,16 +29,27 @@ class RequestLogInterceptor implements NestInterceptor {
       tap(async (result) => {
         const responseTime = performance.measure(performanceId, performanceId)?.duration?.toFixed(4)
 
-        if (context.getType() === 'http') {
-          await this.logHttp(context, result, responseTime)
-        } else if (context.getType() === 'rpc') {
-          await this.logRpc(context, result, responseTime)
-        }
+        await this.getHandler(context.getType())?.call(this, context, result, responseTime)
 
         performance.clearMarks(performanceId)
         performance.clearMeasures(performanceId)
       })
     )
+  }
+
+  private getHandler(
+    handlerType: string
+  ): ((context: ExecutionContext, result: any, responseTime: string) => Promise<void>) | undefined {
+    switch (handlerType) {
+      case 'http':
+        return this.logHttp
+      case 'rpc':
+        return this.logRpc
+      case 'graphql':
+        return this.logGraphql
+      default:
+        return undefined
+    }
   }
 
   private async logRpc(context: ExecutionContext, result: any, responseTime: string) {
@@ -69,6 +81,21 @@ class RequestLogInterceptor implements NestInterceptor {
       '[' + remoteAddress + ']:' + remotePort,
       '"' + req.get('User-Agent') + '"',
       'out: ' + typeof result
+    ]
+
+    await this.logging.info(logParts.join(' '))
+  }
+
+  private async logGraphql(context: ExecutionContext, result: any, responseTime: string) {
+    const graphqlContext = GqlExecutionContext.create(context)
+
+    const query: string | undefined = graphqlContext.getArgByIndex(2).req.body.query
+
+    const logParts = [
+      context.getClass().name + '#' + context.getHandler().name,
+      'in: ' + query?.replace(/\s+/g, ' '),
+      'out: ' + typeof result,
+      responseTime + 'ms'
     ]
 
     await this.logging.info(logParts.join(' '))

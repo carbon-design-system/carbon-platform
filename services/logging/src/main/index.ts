@@ -8,7 +8,7 @@ import { Logging } from '@carbon-platform/api/logging'
 import { EventMessage, Queue } from '@carbon-platform/api/messaging'
 import { PlatformMicroservice } from '@carbon-platform/api/microservice'
 
-import { LoggingModule } from './logging.module'
+import { LoggingModule } from './logging-module'
 
 async function start() {
   // Disable remote logging entirely for the logging service

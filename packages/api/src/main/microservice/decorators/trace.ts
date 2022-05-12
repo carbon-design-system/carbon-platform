@@ -33,7 +33,7 @@ function Trace(): MethodDecorator {
         target.logging = new Logging(target.constructor.name)
       }
 
-      target.logging.debug(`-> ${String(propertyKey)}(${JSON.stringify(args)})`)
+      target.logging.debug(`-> ${String(propertyKey)}(${args})`)
 
       // Call the original method and capture the result
       const result = original.apply(this, args)

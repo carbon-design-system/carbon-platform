@@ -16,7 +16,7 @@ class UsersService {
     { id: '4', name: 'Jane Doe 4', email: 'jane.doe4@example.com' }
   ]
 
-  findUserById(userId: string): User | undefined {
+  findById(userId: string): User | undefined {
     return this.users.find((user) => user.id === userId)
   }
 
@@ -24,7 +24,7 @@ class UsersService {
     return this.users
   }
 
-  createUser(userInput: CreateUserInput): User {
+  create(userInput: CreateUserInput): User {
     const user: User = {
       id: String(Math.max(...this.users.map((u) => Number.parseInt(u.id))) + 1),
       name: userInput.name,
@@ -33,18 +33,6 @@ class UsersService {
     this.users.push(user)
     return user
   }
-
-  // updateUser(id: number, userInput: UpdateUserInput): User {
-  //   let user = this.findUserById(id)
-  //   if (!user) {
-  //     throw new Error('user with given id could not be found')
-  //   }
-  //   user = {
-  //     ...user,
-  //     ...userInput
-  //   }
-  //   return user
-  // }
 }
 
 export { UsersService }

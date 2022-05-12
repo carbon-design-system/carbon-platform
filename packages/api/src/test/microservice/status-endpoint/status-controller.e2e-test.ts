@@ -8,7 +8,7 @@ import { INestApplication } from '@nestjs/common'
 import { Test } from '@nestjs/testing'
 import request from 'supertest'
 
-import { StatusModule } from '../../../main/microservice/status-endpoint/status.module'
+import { StatusModule } from '../../../main/microservice/status-endpoint/status-module'
 
 describe('Status', () => {
   let app: INestApplication

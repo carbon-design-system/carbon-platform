@@ -39,7 +39,7 @@ module.exports = {
       { functions: false, classes: true, variables: false }
     ],
     'eslint-comments/require-description': 'error',
-    indent: ['error', 2, { ignoredNodes: ['PropertyDefinition[decorators]'] }],
+    indent: ['error', 2, { ignoredNodes: ['PropertyDefinition[decorators]'], SwitchCase: 1 }],
     'max-len': [
       'error',
       {

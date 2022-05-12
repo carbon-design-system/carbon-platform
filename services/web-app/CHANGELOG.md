@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.108](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.107...@carbon-platform/web-app@0.1.108) (2022-05-12)
+
+
+### Features 🌟
+
+* **web-app:** render remote mdx ([ff53ecf](https://github.com/carbon-design-system/carbon-platform/commit/ff53ecf9c4b8ff6d8cbfaebc24d210419ab74bee))
+
+
+### Bug Fixes 🐛
+
+* tab bugs ([9924229](https://github.com/carbon-design-system/carbon-platform/commit/992422943dea0260ace53e517c28023589cef128))
+* **web-app:** minor fixes, temporary img strategy ([8f0ac3b](https://github.com/carbon-design-system/carbon-platform/commit/8f0ac3b594c5ea1cd9ea63fbe929e7fc57a97dfc))
+
 ### [0.1.107](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.106...@carbon-platform/web-app@0.1.107) (2022-05-11)
 
 

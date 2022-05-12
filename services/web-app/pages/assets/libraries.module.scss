@@ -45,7 +45,7 @@
 .content {
   padding: spacing.$spacing-05 spacing.$spacing-05 spacing.$spacing-05 0;
   @include breakpoint.breakpoint(md) {
-    height: convert.rem(172px);
+    height: convert.rem(176px);
   }
   @include breakpoint.breakpoint(xlg) {
     padding-right: spacing.$spacing-05 + spacing.$spacing-06;

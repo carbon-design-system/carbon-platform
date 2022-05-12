@@ -14,7 +14,7 @@
 // scoped to div code to override global reset styles
 :global(div) code {
   padding: 0 spacing.$spacing-03;
-  background-color: theme.$layer-01;
+  background-color: theme.$layer-accent;
   border-radius: 4px;
   font-size: 0.875em;
 }
@@ -37,6 +37,10 @@
 
   pre {
     padding-bottom: 0;
+  }
+
+  code {
+    background-color: theme.$layer-01;
   }
 }
 

@@ -51,6 +51,13 @@ $page-header-height: spacing.$spacing-13 * 2;
 
     font-family: type.font-family('sans');
   }
+
+  // fix for title descender being clipped at xlg breakpoint
+  @include breakpoint.breakpoint(xlg) {
+    position: relative;
+    top: spacing.$spacing-01;
+    padding-bottom: spacing.$spacing-01;
+  }
 }
 
 .pictogram {

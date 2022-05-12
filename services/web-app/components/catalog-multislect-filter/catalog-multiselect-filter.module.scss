@@ -99,11 +99,11 @@
   max-width: none;
   @include breakpoint.breakpoint(md) {
     // span two columns, where each column has a 1px gutter
-    width: calc(200% + 2px);
+    width: calc(200% + convert.rem(2px));
   }
   // span three columns, plus an offset for gutters
   @include breakpoint.breakpoint(lg) {
-    width: calc(300% + #{spacing.$spacing-07});
+    width: calc(300% + convert.rem(32px));
   }
 
   &:focus,
@@ -139,7 +139,7 @@
     background: theme.$layer-01;
     content: '';
     @include breakpoint.breakpoint(lg) {
-      width: calc(100% - #{spacing.$spacing-05});
+      width: calc(100% - convert.rem(16px));
     }
   }
 

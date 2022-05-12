@@ -32,7 +32,7 @@
 .cds--header__menu-item--current::after,
 a.cds--header__menu-item[aria-current='page']::after {
   left: convert.rem(-2px);
-  width: calc(100% + 4px);
+  width: calc(100% + convert.rem(4px));
 }
 
 // Have carbon overlay use higher z-index than we're using on our custom components

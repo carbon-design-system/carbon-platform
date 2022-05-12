@@ -28,7 +28,7 @@
     margin-left: 0;
   }
   @include breakpoint.breakpoint-down('md') {
-    max-width: calc(100% - 16px);
+    max-width: calc(100% - 1rem);
     margin-left: spacing.$spacing-03;
   }
 }

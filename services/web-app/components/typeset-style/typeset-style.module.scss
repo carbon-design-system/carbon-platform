@@ -92,7 +92,7 @@
     position: absolute;
     top: -1rem;
     display: block;
-    width: calc(100% + 2px);
+    width: calc(100% + convert.rem(2px));
     height: 1rem;
     background: theme.$background;
     content: '';

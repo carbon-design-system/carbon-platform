@@ -9,7 +9,6 @@ import { User } from '../models/user.model'
 
 class QueryResult {
   public libraries?: Array<Library>
-  public user?: User
   public users?: Array<User>
 }
 

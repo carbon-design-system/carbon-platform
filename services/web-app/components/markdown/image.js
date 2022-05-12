@@ -15,7 +15,7 @@ const getImageProps = (props) => {
   const { height, width, blurDataURL } = props.src
 
   if (!(height && width)) {
-    props.className = styles.image
+    props.className = clsx(styles.image, props.className)
     props.layout = 'fill'
   }
 

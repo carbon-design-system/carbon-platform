@@ -80,7 +80,7 @@ const ArticleCard = (props) => {
   }
 
   return (
-    <Theme theme={color === 'dark' && 'g100'}>
+    <Theme theme={color === 'dark' ? 'g100' : 'g10'}>
       <div className={ArticleCardClassNames}>{cardContainer}</div>
     </Theme>
   )
@@ -88,8 +88,7 @@ const ArticleCard = (props) => {
 
 ArticleCard.defaultProps = {
   color: 'light',
-  disabled: false,
-  actionIcon: ''
+  disabled: false
 }
 
 ArticleCard.propTypes = {

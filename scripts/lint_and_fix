@@ -13,3 +13,6 @@ prettier --check --write .
 stylelint --fix '**/*.{css,scss}'
 
 eslint --fix --max-warnings=0 --ext .js,.jsx,.ts,.tsx .
+
+# Lint once more to ensure no thrashing occurred
+scripts/lint

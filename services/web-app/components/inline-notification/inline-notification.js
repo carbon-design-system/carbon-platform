@@ -7,7 +7,7 @@
 
 import { Column, Grid } from '@carbon/react'
 import { CheckmarkFilled, ErrorFilled, InformationFilled, WarningFilled } from '@carbon/react/icons'
-import cx from 'classnames'
+import clsx from 'classnames'
 import PropTypes from 'prop-types'
 
 import styles from './inline-notification.module.scss'
@@ -19,8 +19,11 @@ const iconTypes = {
   info: InformationFilled
 }
 
+/**
+ * The `<InlineNotification>` component is used to communicate important information to a user.
+ */
 const InlineNotification = ({ children, className, kind = 'info' }) => {
-  const containerClassName = cx(className, {
+  const containerClassName = clsx(className, {
     'cds--inline-notification': true,
     'cds--inline-notification--low-contrast': true,
     [`cds--inline-notification--${kind}`]: kind,
@@ -30,7 +33,7 @@ const InlineNotification = ({ children, className, kind = 'info' }) => {
 
   return (
     <Grid>
-      <Column sm={4} md={6} lg={8} className={cx(styles.notification, className)}>
+      <Column sm={4} md={6} lg={8} className={clsx(styles.notification, className)}>
         <div className={containerClassName}>
           <div className="cds--inline-notification__details">
             <IconForKind className="cds--inline-notification__icon" size={20}>
@@ -47,8 +50,17 @@ const InlineNotification = ({ children, className, kind = 'info' }) => {
 }
 
 InlineNotification.propTypes = {
+  /**
+   * Provide the contents of the InlineNotification
+   */
   children: PropTypes.node,
+  /**
+   * Specify an optional className to be applied to the container node
+   */
   className: PropTypes.string,
+  /**
+   * Notification kind
+   */
   kind: PropTypes.oneOf(['error', 'info', 'success', 'warning'])
 }
 

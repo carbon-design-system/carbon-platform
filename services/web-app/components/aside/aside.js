@@ -11,6 +11,11 @@ import PropTypes from 'prop-types'
 
 import styles from './aside.module.scss'
 
+/**
+ * The `<Aside>` component is a wrapper component that adds styling to make the text display
+ *  smaller than the default body text with a one column offset. It is designed to be used on
+ * the side of the page within grid components. Add an aria-label for a11y.
+ */
 const Aside = ({ children, className, hideRule, ...rest }) => {
   const asideClasses = clsx(styles.aside, className, {
     [styles['aside--no-rule']]: !!hideRule
@@ -30,15 +35,18 @@ const Aside = ({ children, className, hideRule, ...rest }) => {
 export default Aside
 
 Aside.propTypes = {
+  /**
+   * Child of the Aside.
+   */
   children: PropTypes.node,
 
   /**
-   * Specify a custom class
+   * Optional class name.
    */
   className: PropTypes.string,
 
   /**
-   * Hide the hanging rule
+   * Hide the rule above the text.
    */
   hideRule: PropTypes.bool
 }

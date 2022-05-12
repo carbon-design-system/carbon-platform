@@ -28,9 +28,9 @@
     "@nestjs/cli": "^8.2.5",
     "@nestjs/common": "^8.4.4",
     "@nestjs/graphql": "^10.0.11",
-    "@types/node": "^16.11.33",
+    "@types/node": "^16.11.34",
     "apollo-server-express": "^3.7.0",
-    "graphql": "^16.4.0",
+    "graphql": "^16.5.0",
     "typescript": "^4.6.4"
   }
 }

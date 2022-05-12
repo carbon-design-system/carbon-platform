@@ -23,12 +23,15 @@ import { Column, Grid, Row } from '@/components/grid-transform'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
+import MdxIcon from '@/components/mdx-icon'
 import MdxWrapper from '@/components/mdx-wrapper'
 import PageDescription from '@/components/page-description'
 import PageTable from '@/components/page-table'
 import Preview from '@/components/preview'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
+import IconLibrary from '@/components/svg-libraries/icon-library'
+import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
@@ -86,8 +89,11 @@ const components = {
   DoDont,
   DoDontRow,
   GifPlayer,
+  IconLibrary,
   Glossary,
   InlineNotification,
+  PictogramLibrary,
+  MdxIcon,
   Tabs,
   Tab,
   Video,
@@ -96,7 +102,6 @@ const components = {
   Aside,
   Preview,
   Profile,
-  MdxIcon: ({ children }) => <Placeholder name="MdxIcon">{children}</Placeholder>,
   ColorTokenTable,
   TypesetStyle,
   ColorBlock,

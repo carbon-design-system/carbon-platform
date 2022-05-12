@@ -13,10 +13,10 @@
 @use '~styles/mixins' as mixins;
 @use '~styles/variables' as variables;
 
-$page-header-height: spacing.$spacing-13 * 2;
-
 .container {
-  height: $page-header-height;
+  --header-height: 320px;
+
+  height: var(--header-height);
   background: theme.$background;
 
   &::before {
@@ -24,14 +24,14 @@ $page-header-height: spacing.$spacing-13 * 2;
     z-index: 0;
     left: 0;
     width: calc(100vw - var(--scrollbar-width));
-    height: $page-header-height;
+    height: var(--header-height);
     background: theme.$background;
     content: '';
   }
 }
 
 .grid {
-  height: $page-header-height;
+  height: var(--header-height);
 }
 
 .column {
@@ -56,7 +56,9 @@ $page-header-height: spacing.$spacing-13 * 2;
 .pictogram {
   position: absolute;
   // header + page header - pictogram height - bottom space
-  top: variables.$header-height + $page-header-height - spacing.$spacing-10 - spacing.$spacing-08;
+  top: calc(
+    variables.$header-height + (var(--header-height)) - spacing.$spacing-10 - spacing.$spacing-08
+  );
   right: 0;
   margin-right: spacing.$spacing-07;
   margin-bottom: spacing.$spacing-08;

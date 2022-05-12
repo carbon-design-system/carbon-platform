@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Launch } from '@carbon/react/icons'
+import PropTypes from 'prop-types'
 
 import styles from './code.module.scss'
 
@@ -28,6 +29,13 @@ const Path = ({ src, path }) => {
       )}
     </div>
   )
+}
+
+Path.propTypes = {
+  /** Provide path */
+  path: PropTypes.string,
+  /** Provide src link */
+  src: PropTypes.string
 }
 
 export default Path

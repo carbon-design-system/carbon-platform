@@ -21,23 +21,6 @@
   --space: 0;
 }
 
-// DROPDOWN
-.palette-controls {
-  display: grid;
-  width: 66.66%;
-  column-gap: 1px;
-  grid-template-columns: 1fr 1fr;
-  row-gap: 1px;
-
-  @include breakpoint.breakpoint-down('md') {
-    width: 100%;
-  }
-
-  @include breakpoint.breakpoint-down('sm') {
-    grid-template-columns: 1fr;
-  }
-}
-
 .color-palette-wrapper .palette-controls button {
   border: none;
 }

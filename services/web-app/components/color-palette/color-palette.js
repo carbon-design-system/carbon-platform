@@ -180,26 +180,32 @@ const ColorPalette = ({ type, isMono, isDiverging, twoColumn, shouldShowControls
                 [styles['dark-controls']]: dark
               })}
             >
-              <ContentSwitcher
-                onChange={handleKeyboard}
-                className={styles['palette-switcher']}
-                selectionMode="automatic"
-                selectedIndex={0}
-              >
-                <Switch text={switcherOne} onClick={activateFirstSwitcher} />
-                <Switch text={switcherTwo} onClick={activateSecondSwitcher} />
-              </ContentSwitcher>
-              {type === 'grouped' && (
-                <Dropdown
-                  label="Color group selection"
-                  id="color-group-dropdown"
-                  size="lg"
-                  items={dropdownItems}
-                  onChange={onDropdownChange}
-                  selectedItem={dropdownItems[groupNumber - 1]}
-                  initialSelectedItem={dropdownItems[0]}
-                />
-              )}
+              <Grid condensed>
+                <Column sm={2} md={4} lg={4}>
+                  <ContentSwitcher
+                    onChange={handleKeyboard}
+                    className={styles['palette-switcher']}
+                    selectionMode="automatic"
+                    selectedIndex={0}
+                  >
+                    <Switch text={switcherOne} onClick={activateFirstSwitcher} />
+                    <Switch text={switcherTwo} onClick={activateSecondSwitcher} />
+                  </ContentSwitcher>
+                </Column>
+                {type === 'grouped' && (
+                  <Column sm={2} md={4} lg={4}>
+                    <Dropdown
+                      label="Color group selection"
+                      id="color-group-dropdown"
+                      size="lg"
+                      items={dropdownItems}
+                      onChange={onDropdownChange}
+                      selectedItem={dropdownItems[groupNumber - 1]}
+                      initialSelectedItem={dropdownItems[0]}
+                    />
+                  </Column>
+                )}
+              </Grid>
             </div>
           )}
 

@@ -38,8 +38,8 @@ class LoggingController {
    *
    * @param data The log message to log.
    */
-  @EventPattern('log_logged')
   @Trace()
+  @EventPattern('log_logged')
   public logLogged(@Payload() data: UnvalidatedMessage) {
     const logMessage = validateLogMessage(data)
 

@@ -12,16 +12,16 @@ import { Trace } from '../decorators/trace'
 @UseInterceptors(RequestLogInterceptor)
 @Controller()
 class StatusController {
+  @Trace()
   @Get('liveness')
   @HttpCode(204)
-  @Trace()
   public liveness() {
     return null
   }
 
+  @Trace()
   @Get('readiness')
   @HttpCode(204)
-  @Trace()
   public readiness() {
     return null
   }

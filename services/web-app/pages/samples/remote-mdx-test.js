@@ -17,6 +17,7 @@ const RemoteMdxTest = ({ source }) => {
   return (
     <>
       <NextSeo {...seo} />
+
       <RemoteMdxLoader source={source} />
     </>
   )
@@ -31,7 +32,11 @@ export const getStaticProps = async () => {
       library: 'carbon-website',
       ref: 'main'
     },
-    '/src/pages/all-about-carbon/partners.mdx'
+    // '/src/pages/all-about-carbon/what-is-carbon.mdx'
+    // '/src/pages/all-about-carbon/partners.mdx'
+    '/src/pages/community/patterns/chatbot/overview.mdx'
+    // '/src/pages/community/component-index.mdx'
+    // '/src/pages/components/accordion/style.mdx'
   )
 
   return {

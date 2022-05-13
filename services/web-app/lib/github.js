@@ -15,6 +15,7 @@ import unwrapImages from 'remark-unwrap-images'
 import { libraryAllowList } from '@/data/libraries'
 import { getResponse } from '@/lib/file-cache'
 import { mdxImgResolver } from '@/utils/mdx-image-resolver'
+import mdxSanitizerPlugin from '@/utils/mdx-sanitizer-plugin.mjs'
 import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
@@ -60,7 +61,7 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
 
   return serialize(usageFileSource, {
     mdxOptions: {
-      remarkPlugins: [remarkGfm, unwrapImages],
+      remarkPlugins: [mdxSanitizerPlugin, remarkGfm, unwrapImages],
       rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
     },
     parseFrontmatter: true

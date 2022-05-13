@@ -104,9 +104,7 @@ export const getResponse = (host, route, options) => {
  * @returns {Promise<object>} GitHub API response data
  */
 export const cacheResponse = (key, callback) => {
-  return diskCache.wrap(key, () => {
-    return callback()
-  })
+  return diskCache.wrap(key, callback)
 }
 
 /**

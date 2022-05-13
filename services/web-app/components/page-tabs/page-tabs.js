@@ -6,21 +6,29 @@
  */
 import { Column, Grid, Tab, TabList, Tabs } from '@carbon/react'
 import clsx from 'clsx'
+import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
+import slugify from 'slugify'
 
 import styles from './page-tabs.module.scss'
 
 const PageTabs = ({ className, tabs = [] }) => {
+  const router = useRouter()
+
+  const currTabSlug = router.asPath.split('/').pop()
+
+  const currTabIndex = tabs.findIndex(
+    (tab) => slugify(tab.name, { strict: true, lower: true }) === currTabSlug
+  )
+
   return (
     <Grid className={clsx(styles.container, className)} narrow>
       <Column sm={4} md={8} lg={12}>
-        <Tabs>
-          <TabList aria-label="List of tabs" className={styles['tab-list']}>
+        <Tabs defaultSelectedIndex={currTabIndex > 0 ? currTabIndex : 0}>
+          <TabList aria-label="List of tabs" className={styles['tab-list']} selected>
             {tabs.map((tab, i) => (
-              <Tab key={i}>
-                <a href={`${tab.name.toLowerCase()}`} className={styles.tab}>
-                  {tab.name}
-                </a>
+              <Tab as="a" href={tab.path} key={i}>
+                {tab.name}
               </Tab>
             ))}
           </TabList>

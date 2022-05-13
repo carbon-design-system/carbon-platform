@@ -55,18 +55,3 @@
     color: theme.$text-primary;
   }
 }
-
-.tab {
-  color: theme.$text-primary;
-  text-decoration: none;
-
-  &:not(:hover) {
-    color: theme.$text-secondary;
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: theme.$text-primary;
-  }
-}

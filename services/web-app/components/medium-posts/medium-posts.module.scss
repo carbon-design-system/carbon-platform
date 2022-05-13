@@ -1,11 +1,8 @@
 @use '@carbon/react/scss/spacing' as spacing;
-@use '@carbon/react/scss/type' as type;
-@use '@carbon/react/scss/breakpoint' as breakpoint;
 
 .medium-posts-container {
   margin-top: spacing.$spacing-06;
 }
-
 
 // Images pulled from the Medium RSS feed are different sizes and aspect ratios. This will make the cards different sizes. The class below fixes that issue.
 .image {

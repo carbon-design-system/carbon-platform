@@ -57,11 +57,7 @@ const NavMain = ({ items = [] }) => {
             }
           })}
         </HeaderSideNavItems>
-        <NavTree
-          items={navData}
-          label="Main navigation"
-          activeItem={router.asPath.substring(router.asPath.lastIndexOf('/') + 1)}
-        />
+        <NavTree items={navData} label="Main navigation" activeItem={router.asPath} />
       </SideNavItems>
     </SideNav>
   )

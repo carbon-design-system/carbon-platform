@@ -31,26 +31,23 @@ const NavTree = ({ activeItem, items = [], label }) => {
     setItemNodes(newItemNodeArray)
   }, [items])
 
-  function renderTree(nodes, parentNodeId = 'left_nav_tree') {
+  const renderTree = (nodes) => {
     if (!nodes) {
       return
     }
 
     return nodes.map((node) => {
-      const nodeId = `${parentNodeId}_${slugify(node.title, { lower: true, strict: true })}`
-
       if (node.isSection) {
         return <h2 className={styles['section-heading']}>{node.title}</h2>
       } else {
         return (
           <TreeNode
             label={node.title}
-            value={slugify(node.title, { lower: true, strict: true })}
-            id={nodeId}
-            key={nodeId}
+            id={node.path || slugify(node.title, { lower: true, strict: true })}
+            key={node.title}
             onClick={() => node.path && router.push(node.path)}
           >
-            {renderTree(node.items, nodeId)}
+            {renderTree(node.items)}
           </TreeNode>
         )
       }

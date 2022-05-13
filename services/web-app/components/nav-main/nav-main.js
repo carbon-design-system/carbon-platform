@@ -15,6 +15,7 @@ import libraryStyles from '@/components/nav-library/nav-library.module.scss'
 import NextLink from '@/components/next-link'
 import { LayoutContext } from '@/layouts/layout'
 
+import NavTree from '../nav-tree'
 import styles from './nav-main.module.scss'
 
 const NavMain = ({ items = [] }) => {
@@ -56,40 +57,11 @@ const NavMain = ({ items = [] }) => {
             }
           })}
         </HeaderSideNavItems>
-        {navData.map((data, i) => {
-          if (data.path && data.title) {
-            return (
-              <SideNavLink
-                element={NextLink}
-                href={data.path}
-                isActive={router.pathname === data.path}
-                key={i}
-                tabIndex={librarySideNav ? '-1' : 0}
-              >
-                {data.title}
-              </SideNavLink>
-            )
-          }
-          if (!data.path && data.items) {
-            return (
-              <div key={i}>
-                <h2 className={styles['side-nav-heading']}>{data.title}</h2>
-                {data.items.map((item, j) => (
-                  <SideNavLink
-                    element={NextLink}
-                    href={item.path}
-                    isActive={router.pathname.startsWith(item.path)}
-                    key={j}
-                    tabIndex={librarySideNav ? '-1' : 0}
-                  >
-                    {item.title}
-                  </SideNavLink>
-                ))}
-              </div>
-            )
-          }
-          return null
-        })}
+        <NavTree
+          items={navData}
+          label="Main navigation"
+          activeItem={router.asPath.substring(router.asPath.lastIndexOf('/') + 1)}
+        />
       </SideNavItems>
     </SideNav>
   )

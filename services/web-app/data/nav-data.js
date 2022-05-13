@@ -38,6 +38,7 @@ export const assetsNavData = [
   },
   {
     title: 'Catalogs',
+    isSection: true,
     items: [
       {
         path: type.component.path,
@@ -64,6 +65,7 @@ export const assetsNavData = [
   },
   {
     title: 'Collections',
+    isSection: true,
     items: [
       {
         path: '/assets/data-visualization',

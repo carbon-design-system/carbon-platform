@@ -82,4 +82,11 @@
       > .cds--tree-node__label::before) {
     left: spacing.$spacing-06;
   }
+
+  .section-heading {
+    padding-bottom: spacing.$spacing-03;
+    border-bottom: 1px solid theme.$layer-accent;
+    margin: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
+    @include type.type-style('label-01');
+  }
 }

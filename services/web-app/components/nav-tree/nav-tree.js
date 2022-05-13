@@ -7,11 +7,29 @@
 import { unstable_TreeNode as TreeNode, unstable_TreeView as TreeView } from '@carbon/react'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react'
+import slugify from 'slugify'
 
 import styles from './nav-tree.module.scss'
 
 const NavTree = ({ activeItem, items = [], label }) => {
   const router = useRouter()
+  const [itemNodes, setItemNodes] = useState([])
+
+  useEffect(() => {
+    const newItemNodeArray = []
+    items.forEach((item) => {
+      newItemNodeArray.push(item)
+      if (item.isSection) {
+        // this is a hack so that we have two elements:
+        // one to render the section title and one to render the items
+        // doing this because for some reason the treeNode won't let me
+        // programatically render two components
+        newItemNodeArray.push({ ...item, isDummy: true })
+      }
+    })
+    setItemNodes(newItemNodeArray)
+  }, [items])
 
   function renderTree(nodes, parentNodeId = 'left_nav_tree') {
     if (!nodes) {
@@ -19,19 +37,23 @@ const NavTree = ({ activeItem, items = [], label }) => {
     }
 
     return nodes.map((node) => {
-      const nodeId = `${parentNodeId}_${node.title}`.toLowerCase().replace(/\s/g, '')
+      const nodeId = `${parentNodeId}_${slugify(node.title, { lower: true, strict: true })}`
 
-      return (
-        <TreeNode
-          label={node.title}
-          value={node.title}
-          id={nodeId}
-          key={nodeId}
-          onClick={() => node.path && router.push(node.path)}
-        >
-          {renderTree(node.items, nodeId)}
-        </TreeNode>
-      )
+      if (node.isSection) {
+        return <h2 className={styles['section-heading']}>{node.title}</h2>
+      } else {
+        return (
+          <TreeNode
+            label={node.title}
+            value={slugify(node.title, { lower: true, strict: true })}
+            id={nodeId}
+            key={nodeId}
+            onClick={() => node.path && router.push(node.path)}
+          >
+            {renderTree(node.items, nodeId)}
+          </TreeNode>
+        )
+      }
     })
   }
 
@@ -43,7 +65,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
       active={activeItem}
       selected={[activeItem]}
     >
-      {renderTree(items)}
+      {itemNodes.map((itemNode) => renderTree(itemNode.isDummy ? itemNode.items : [itemNode]))}
     </TreeView>
   )
 }

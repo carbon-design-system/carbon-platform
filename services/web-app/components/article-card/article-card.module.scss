@@ -59,7 +59,6 @@
   bottom: spacing.$spacing-05;
   left: spacing.$spacing-05;
   color: theme.$text-secondary;
-  @include type.type-style('label-01');
 }
 
 .info p {

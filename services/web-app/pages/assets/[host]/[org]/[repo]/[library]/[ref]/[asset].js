@@ -140,6 +140,7 @@ const Asset = ({ libraryData }) => {
             bgColor={get(type, `[${assetData.content.type}].bgColor`)}
             title={seo.title}
             pictogram={get(type, `[${assetData.content.type}].icon`)}
+            withTabs
           />
           <PageBreadcrumb items={breadcrumbItems} />
         </Column>
@@ -153,10 +154,7 @@ const Asset = ({ libraryData }) => {
           <section id="glance">
             <Dashboard className={styles.dashboard}>
               <Column className={dashboardStyles.column} sm={4}>
-                <DashboardItem
-                  aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
-                  border={['sm']}
-                >
+                <DashboardItem aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}>
                   <dl>
                     <dt className={dashboardStyles.label}>Library</dt>
                     <dd className={dashboardStyles['label--large']}>{libraryData.content.name}</dd>
@@ -178,7 +176,7 @@ const Asset = ({ libraryData }) => {
                 </DashboardItem>
               </Column>
               <Column className={dashboardStyles.column} sm={4} lg={8}>
-                <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
+                <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }}>
                   <Grid as="dl" className={dashboardStyles.subgrid}>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>Sponsor</dt>
@@ -239,7 +237,6 @@ const Asset = ({ libraryData }) => {
               <Column className={dashboardStyles.column} sm={0} md={4}>
                 <DashboardItem
                   aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-                  border={['sm', 'md', 'lg', 'xlg']}
                   href={`${githubRepoUrl}/issues/?q=is%3Aissue+is%3Aopen+in%3Atitle+${assetData.content.name}`}
                 >
                   <dl>
@@ -257,7 +254,6 @@ const Asset = ({ libraryData }) => {
               <Column className={dashboardStyles.column} sm={0} md={4}>
                 <DashboardItem
                   aspectRatio={{ md: '2x1', lg: '16x9', xlg: '2x1' }}
-                  border={['sm', 'md', 'lg', 'xlg']}
                   href={`${githubRepoUrl}/discussions/?discussions_q=in%3Atitle+${assetData.content.id}`}
                 >
                   <dl>

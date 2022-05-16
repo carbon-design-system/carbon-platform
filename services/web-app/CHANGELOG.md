@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.110](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.109...@carbon-platform/web-app@0.1.110) (2022-05-16)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** color palette grid alignment ([e5a8270](https://github.com/carbon-design-system/carbon-platform/commit/e5a827015258239ede864c5e81f0341623e1142c))
+* **web-app:** make color palette grid aware ([e3f008f](https://github.com/carbon-design-system/carbon-platform/commit/e3f008f8c560d24e1787571217b0161d9271f108))
+* **web-app:** page title descender clipped ([c169741](https://github.com/carbon-design-system/carbon-platform/commit/c1697418f0d0ea15dd5a2969863cbfba718430e9))
+
 ### [0.1.109](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.108...@carbon-platform/web-app@0.1.109) (2022-05-13)
 
 

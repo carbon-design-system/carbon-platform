@@ -8,6 +8,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .color-block {
   position: relative;
@@ -17,20 +18,20 @@
 .color {
   position: relative;
   display: block;
-  width: 14px;
-  height: 14px;
+  width: convert.rem(14px);
+  height: convert.rem(14px);
   margin-top: spacing.$spacing-01;
-  border-radius: 14px;
+  border-radius: convert.rem(14px);
 
   &::before {
     position: absolute;
     top: 0;
     left: 0;
     display: block;
-    width: 14px;
-    height: 14px;
+    width: convert.rem(14px);
+    height: convert.rem(14px);
     border: 1px solid theme.$border-subtle;
-    border-radius: 14px;
+    border-radius: convert.rem(14px);
     content: '';
   }
 }

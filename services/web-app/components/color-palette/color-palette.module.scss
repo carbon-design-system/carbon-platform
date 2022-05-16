@@ -10,6 +10,7 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/colors' as colors;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 // MAIN CONTAINER
 .color-palette-wrapper {
@@ -19,23 +20,6 @@
 //needed to override global spacing on columns
 .color-palette-wrapper * {
   --space: 0;
-}
-
-// DROPDOWN
-.palette-controls {
-  display: grid;
-  width: 66.66%;
-  column-gap: 1px;
-  grid-template-columns: 1fr 1fr;
-  row-gap: 1px;
-
-  @include breakpoint.breakpoint-down('md') {
-    width: 100%;
-  }
-
-  @include breakpoint.breakpoint-down('sm') {
-    grid-template-columns: 1fr;
-  }
 }
 
 .color-palette-wrapper .palette-controls button {
@@ -162,7 +146,7 @@
 .group-container + .group-container .group-option::before {
   position: absolute;
   top: 0;
-  left: -1px;
+  left: convert.rem(-1px);
   width: 1px;
   height: 100%;
   background-color: theme.$border-subtle-01;
@@ -251,7 +235,7 @@
 .sequential-container .palettes-container:nth-child(even) .group-option::before {
   position: absolute;
   top: 0;
-  left: -1px;
+  left: convert.rem(-1px);
   width: 1px;
   height: 100%;
   background-color: theme.$border-subtle-01;

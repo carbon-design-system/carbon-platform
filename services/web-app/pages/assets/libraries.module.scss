@@ -10,6 +10,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 @use '~styles/mixins' as mixins;
 
@@ -44,7 +45,7 @@
 .content {
   padding: spacing.$spacing-05 spacing.$spacing-05 spacing.$spacing-05 0;
   @include breakpoint.breakpoint(md) {
-    height: spacing.$spacing-13 + spacing.$spacing-05;
+    height: convert.rem(176px);
   }
   @include breakpoint.breakpoint(xlg) {
     padding-right: spacing.$spacing-05 + spacing.$spacing-06;
@@ -88,7 +89,7 @@
 
 .meta-icon {
   position: relative;
-  top: 3px;
+  top: convert.rem(3px);
   margin-right: spacing.$spacing-02;
 }
 
@@ -97,16 +98,16 @@
   right: spacing.$spacing-04;
   bottom: spacing.$spacing-04;
   display: block;
-  width: spacing.$spacing-09;
-  height: spacing.$spacing-09;
+  width: convert.rem(48px);
+  height: convert.rem(48px);
   border: 1px solid theme.$border-subtle;
   background: theme.$layer-01;
   border-radius: 100%;
   color: theme.$icon-primary;
   transition: all motion.$duration-fast-02 motion.motion(standard, productive);
   @include breakpoint.breakpoint(xlg) {
-    width: spacing.$spacing-09 + spacing.$spacing-03;
-    height: spacing.$spacing-09 + spacing.$spacing-03;
+    width: convert.rem(56px);
+    height: convert.rem(56px);
   }
 
   .anchor:hover &,

@@ -9,12 +9,12 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
-
+@use '@carbon/react/scss/utilities/convert' as convert;
 @use '~styles/mixins' as mixins;
 @use '~styles/variables' as variables;
 
-// 256px to match width of side nav
-$breadcrumb-container-width: spacing.$spacing-10 * 4;
+// match width of side nav
+$breadcrumb-container-width: convert.rem(256px);
 
 .container {
   position: absolute;

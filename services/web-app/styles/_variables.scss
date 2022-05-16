@@ -6,5 +6,6 @@
  */
 
 @use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
-$header-height: spacing.$spacing-09;
+$header-height: convert.rem(48px);

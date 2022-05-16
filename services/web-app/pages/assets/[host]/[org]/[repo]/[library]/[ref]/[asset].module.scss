@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/utilities/z-index' as z-index;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .dashboard {
   margin-top: spacing.$spacing-07;
@@ -28,9 +29,9 @@
 
 .status-icon {
   position: relative;
-  top: 2px;
+  top: convert.rem(2px);
   margin-right: spacing.$spacing-02;
-  margin-left: -1px;
+  margin-left: convert.rem(-1px);
 }
 
 // override carbon padding and max width
@@ -59,7 +60,7 @@
     // manually shift the horizontal line from the tabs to span full width
     left: -1rem;
     width: 100vw;
-    height: spacing.$spacing-09;
+    height: convert.rem(48px);
     border-bottom: 1px solid theme.$layer-active-01;
     background: theme.$background;
     content: '';

@@ -1,10 +1,18 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .mdx-icon {
   position: relative;
   display: inline-block;
-  width: 32px;
-  max-height: 32px;
+  width: convert.rem(32px);
+  max-height: convert.rem(32px);
   object-fit: contain;
   user-select: none;
   vertical-align: text-bottom;

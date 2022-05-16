@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 @use '~styles/mixins' as mixins;
 
@@ -119,8 +120,8 @@
 
 .arrow-icon {
   position: absolute;
-  top: 18px;
-  right: 20px;
+  top: convert.rem(18px);
+  right: convert.rem(20px);
   color: theme.$interactive;
 }
 

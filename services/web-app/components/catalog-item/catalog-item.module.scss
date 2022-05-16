@@ -11,6 +11,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 @use '~styles/mixins' as mixins;
 
@@ -117,8 +118,8 @@
   right: 0;
   bottom: spacing.$spacing-04;
   display: block;
-  width: spacing.$spacing-09;
-  height: spacing.$spacing-09;
+  width: convert.rem(48px);
+  height: convert.rem(48px);
   border: 1px solid theme.$border-subtle;
   background: theme.$layer-01;
   border-radius: 100%;
@@ -128,15 +129,15 @@
     right: spacing.$spacing-04;
   }
   @include breakpoint.breakpoint(xlg) {
-    width: spacing.$spacing-09 + spacing.$spacing-03;
-    height: spacing.$spacing-09 + spacing.$spacing-03;
+    width: convert.rem(56px);
+    height: convert.rem(56px);
   }
 
   .anchor--grid & {
-    top: math.div(-(spacing.$spacing-09), 2);
+    top: convert.rem(-24px);
     bottom: auto;
     @include breakpoint.breakpoint(xlg) {
-      top: math.div(-(spacing.$spacing-09) - spacing.$spacing-03, 2);
+      top: convert.rem(-28px);
     }
   }
 

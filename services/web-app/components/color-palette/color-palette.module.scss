@@ -10,6 +10,7 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/colors' as colors;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 // MAIN CONTAINER
 .color-palette-wrapper {
@@ -145,7 +146,7 @@
 .group-container + .group-container .group-option::before {
   position: absolute;
   top: 0;
-  left: -1px;
+  left: convert.rem(-1px);
   width: 1px;
   height: 100%;
   background-color: theme.$border-subtle-01;
@@ -234,7 +235,7 @@
 .sequential-container .palettes-container:nth-child(even) .group-option::before {
   position: absolute;
   top: 0;
-  left: -1px;
+  left: convert.rem(-1px);
   width: 1px;
   height: 100%;
   background-color: theme.$border-subtle-01;

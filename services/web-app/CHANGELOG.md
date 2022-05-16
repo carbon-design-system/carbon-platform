@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.110](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.109...@carbon-platform/web-app@0.1.110) (2022-05-16)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** color palette grid alignment ([e5a8270](https://github.com/carbon-design-system/carbon-platform/commit/e5a827015258239ede864c5e81f0341623e1142c))
+* **web-app:** make color palette grid aware ([e3f008f](https://github.com/carbon-design-system/carbon-platform/commit/e3f008f8c560d24e1787571217b0161d9271f108))
+* **web-app:** page title descender clipped ([c169741](https://github.com/carbon-design-system/carbon-platform/commit/c1697418f0d0ea15dd5a2969863cbfba718430e9))
+
+### [0.1.109](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.108...@carbon-platform/web-app@0.1.109) (2022-05-13)
+
+
+### Features 🌟
+
+* set page header height if tabs ([0d740e9](https://github.com/carbon-design-system/carbon-platform/commit/0d740e9fd342e00ac4a5e4e7bf8bf47ab3685ca1))
+
+
+### Bug Fixes 🐛
+
+* linting ([3ddb108](https://github.com/carbon-design-system/carbon-platform/commit/3ddb1088a098284480c33c90a63e11fc074f65f0))
+* pictogram top value ([3a37877](https://github.com/carbon-design-system/carbon-platform/commit/3a378772ef98b3dc9033a663fe8834ce039c0d8f))
+* **web-app:** update card border ([0f4b40a](https://github.com/carbon-design-system/carbon-platform/commit/0f4b40a48f483b5b5dfb8e6a04056442e8b01f0f))
+
+### [0.1.108](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.107...@carbon-platform/web-app@0.1.108) (2022-05-12)
+
+
+### Features 🌟
+
+* **web-app:** render remote mdx ([ff53ecf](https://github.com/carbon-design-system/carbon-platform/commit/ff53ecf9c4b8ff6d8cbfaebc24d210419ab74bee))
+
+
+### Bug Fixes 🐛
+
+* tab bugs ([9924229](https://github.com/carbon-design-system/carbon-platform/commit/992422943dea0260ace53e517c28023589cef128))
+* **web-app:** minor fixes, temporary img strategy ([8f0ac3b](https://github.com/carbon-design-system/carbon-platform/commit/8f0ac3b594c5ea1cd9ea63fbe929e7fc57a97dfc))
+
 ### [0.1.107](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.106...@carbon-platform/web-app@0.1.107) (2022-05-11)
 
 

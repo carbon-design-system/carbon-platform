@@ -22,7 +22,6 @@ const Path = ({ src, path }) => {
           title="View source"
           className={styles.icon}
           href={src}
-          style={{ position: 'relative', zIndex: 200 }}
         >
           <Launch alt="View source" />
         </a>

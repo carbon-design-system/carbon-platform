@@ -33,7 +33,10 @@ const MdxWrapper = ({ children, ...props }) => {
         <PageTabs
           title={title}
           tabs={tabs.map((tab) => {
-            return { name: tab, path: `/${baseSegment}/${slugify(tab, { strict: true })}` }
+            return {
+              name: tab,
+              path: `/${baseSegment}/${slugify(tab, { strict: true, lower: true })}`
+            }
           })}
         />
       )}

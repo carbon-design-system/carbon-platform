@@ -52,7 +52,14 @@
   :global(.cds--tabs__nav-item--selected) {
     border-bottom: spacing.$spacing-02 solid theme.$border-interactive;
     @include type.type-style('heading-02');
-
-    color: theme.$text-primary;
   }
+}
+
+.tab-link {
+  color: theme.$text-secondary;
+  text-decoration: none;
+}
+
+.tab-list :global(.cds--tabs__nav-link[aria-selected='true']) .tab-link {
+  color: theme.$text-primary;
 }

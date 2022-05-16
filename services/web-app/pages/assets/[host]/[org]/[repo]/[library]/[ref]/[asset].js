@@ -90,19 +90,19 @@ const Asset = ({ libraryData }) => {
   const pageTabs = [
     {
       name: 'Usage',
-      path: ''
+      path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}/usage`
     },
     {
       name: 'Design',
-      path: ''
+      path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}/design`
     },
     {
       name: 'Code',
-      path: ''
+      path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}/code`
     },
     {
       name: 'Accessibility',
-      path: ''
+      path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}/accessibility`
     }
   ]
 

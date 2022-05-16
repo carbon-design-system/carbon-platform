@@ -8,6 +8,7 @@
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .container {
   @include breakpoint.breakpoint(md) {
@@ -78,13 +79,13 @@
 
 .button {
   // override carbon because `lg` isn't supported
-  width: spacing.$spacing-09;
-  height: spacing.$spacing-09;
+  width: convert.rem(48px);
+  height: convert.rem(48px);
 
   // override icon alignment because the IconButton only supports `sm` size currently
   &:global(.cds--btn--sm) {
-    padding-right: 14px;
-    padding-left: 14px;
+    padding-right: convert.rem(14px);
+    padding-left: convert.rem(14px);
   }
 }
 

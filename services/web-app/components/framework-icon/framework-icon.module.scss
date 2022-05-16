@@ -8,11 +8,12 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .container {
   display: inline-flex;
-  min-width: spacing.$spacing-06;
-  height: spacing.$spacing-06;
+  min-width: convert.rem(24px);
+  height: convert.rem(24px);
   align-items: center;
   justify-content: center;
   padding: spacing.$spacing-02;
@@ -22,8 +23,8 @@
 }
 
 .icon {
-  width: spacing.$spacing-05;
-  height: spacing.$spacing-05;
+  width: convert.rem(16px);
+  height: convert.rem(16px);
 }
 
 .text {

@@ -4,6 +4,7 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/utilities/z-index' as z-index;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .svg-page {
   // prevent jank while importing icons
@@ -50,11 +51,11 @@
 // override carbon, search styling
 .filter-row :global(.cds--search) {
   @include breakpoint.breakpoint('md') {
-    width: calc(50% + 1px);
+    width: calc(50% + convert.rem(1px));
     border-right: 1px solid theme.$border-subtle-01;
   }
   @include breakpoint.breakpoint('lg') {
-    width: calc(66.666% + 1px);
+    width: calc(66.666% + convert.rem(1px));
     border-right: 1px solid theme.$border-subtle-01;
   }
 }
@@ -92,7 +93,7 @@
 // override carbon, search width
 .filter-row.pictograms :global(.cds--search) {
   @include breakpoint.breakpoint('lg') {
-    width: calc(75% + 1px);
+    width: calc(75% + convert.rem(1px));
   }
 }
 
@@ -298,7 +299,7 @@ $svg-card-border: 1px solid theme.$border-subtle-01;
   top: spacing.$spacing-04;
   left: spacing.$spacing-05;
   width: 100%;
-  max-width: calc(100% - #{spacing.$spacing-07});
+  max-width: calc(100% - convert.rem(32px));
 
   color: theme.$text-primary;
 }
@@ -322,20 +323,20 @@ $svg-card-border: 1px solid theme.$border-subtle-01;
 }
 
 .no-result p {
-  max-width: 400px;
+  max-width: convert.rem(400px);
   margin: 0;
   margin-top: spacing.$spacing-06;
   margin-left: spacing.$spacing-05;
 }
 
 .no-result :global(.resource-card-group) img {
-  width: 32px;
+  width: convert.rem(32px);
 }
 
 .icon {
   position: relative;
   display: inline-block;
-  width: 32px;
+  width: convert.rem(32px);
   object-fit: contain;
   user-select: none;
   vertical-align: text-bottom;

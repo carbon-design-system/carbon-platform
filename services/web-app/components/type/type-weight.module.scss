@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .type-weight {
   padding: spacing.$spacing-05;
@@ -18,7 +19,7 @@
   p {
     padding: 0;
     color: theme.$text-primary;
-    font-size: 48px;
+    font-size: convert.rem(48px);
     line-height: 1.25;
   }
 }

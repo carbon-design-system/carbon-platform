@@ -51,6 +51,7 @@ describe('intercept', () => {
 
   it('handles http interceptions', async () => {
     const mockedExecutionContext = {
+      getArgs: () => [],
       getType: () => 'http',
       getClass: () => ({ name: 'MyClass' }),
       getHandler: () => ({ name: 'myHandler' }),

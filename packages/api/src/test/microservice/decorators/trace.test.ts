@@ -7,6 +7,10 @@
 import 'reflect-metadata'
 
 import { Trace } from '../../../main/microservice/decorators/trace'
+import * as Runtime from '../../../main/runtime'
+
+const getRunModeSpy = jest.spyOn(Runtime, 'getRunMode')
+const isDebugEnabledSpy = jest.spyOn(Runtime, 'isDebugEnabled')
 
 test('it instantiates a logger', () => {
   const target = {}
@@ -19,6 +23,62 @@ test('it instantiates a logger', () => {
   descriptor.value('its an arg!')
 
   expect(target).toHaveProperty('logging')
+})
+
+describe('when modifying the runtime', () => {
+  it('honors debug mode', () => {
+    getRunModeSpy.mockReturnValueOnce(Runtime.RunMode.Standard)
+    isDebugEnabledSpy.mockReturnValueOnce(true)
+
+    const target = {
+      logging: undefined
+    }
+    const inputFn = (arg: string) => arg + 'hello'
+    const descriptor = { value: inputFn }
+
+    // Decorate the function
+    Trace()(target, 'propertyKey', descriptor)
+
+    descriptor.value('its an arg!')
+
+    expect(target.logging).toBeDefined()
+  })
+
+  it('honors dev run mode mode', () => {
+    getRunModeSpy.mockReturnValueOnce(Runtime.RunMode.Dev)
+    isDebugEnabledSpy.mockReturnValueOnce(false)
+
+    const target = {
+      logging: undefined
+    }
+    const inputFn = (arg: string) => arg + 'hello'
+    const descriptor = { value: inputFn }
+
+    // Decorate the function
+    Trace()(target, 'propertyKey', descriptor)
+
+    descriptor.value('its an arg!')
+
+    expect(target.logging).toBeDefined()
+  })
+
+  it('can be shut off', () => {
+    getRunModeSpy.mockReturnValueOnce(Runtime.RunMode.Standard)
+    isDebugEnabledSpy.mockReturnValueOnce(false)
+
+    const target = {
+      logging: undefined
+    }
+    const inputFn = (arg: string) => arg + 'hello'
+    const descriptor = { value: inputFn }
+
+    // Decorate the function
+    Trace()(target, 'propertyKey', descriptor)
+
+    descriptor.value('its an arg!')
+
+    expect(target.logging).toBeUndefined()
+  })
 })
 
 test('it works with a non-promise', () => {
@@ -54,6 +114,56 @@ test('it works with a promise', async () => {
   // Invoke the function
   await descriptor.value('its an arg!')
 
+  expect(target.logging.debug).toHaveBeenCalledTimes(2)
+})
+
+test('it works with an exception', () => {
+  const target = {
+    logging: {
+      debug: jest.fn()
+    }
+  }
+  const inputFn = (arg: string) => {
+    throw new Error(arg)
+  }
+  const descriptor = { value: inputFn }
+
+  // Decorate the function
+  Trace()(target, 'propertyKey', descriptor)
+
+  // Invoke the function
+  let result: any
+  try {
+    descriptor.value('its an arg!')
+  } catch (err) {
+    result = err
+  }
+
+  expect(result).toBeInstanceOf(Error)
+  expect(target.logging.debug).toHaveBeenCalledTimes(2)
+})
+
+test('it works with a promise that throws an exception', async () => {
+  const target = {
+    logging: {
+      debug: jest.fn()
+    }
+  }
+  const inputFn = (arg: string) => Promise.reject(new Error(arg))
+  const descriptor = { value: inputFn }
+
+  // Decorate the function
+  Trace()(target, 'propertyKey', descriptor)
+
+  // Invoke the function
+  let result: any
+  try {
+    await descriptor.value('its an arg!')
+  } catch (err) {
+    result = err
+  }
+
+  expect(result).toBeInstanceOf(Error)
   expect(target.logging.debug).toHaveBeenCalledTimes(2)
 })
 

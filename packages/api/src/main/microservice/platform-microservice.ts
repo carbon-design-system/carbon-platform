@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { NestFactory } from '@nestjs/core'
+import { HttpAdapterHost, NestFactory } from '@nestjs/core'
 import { RmqOptions, Transport } from '@nestjs/microservices'
 import amqp from 'amqplib'
 
@@ -22,6 +22,7 @@ import {
 import { withEnvironment } from '../runtime'
 import { CONNECT_RETRY_INTERVAL, PORT } from './constants'
 import { InvalidInputExceptionFilter } from './filters/invalid-input-exception-filter'
+import { UncaughtExceptionFilter } from './filters/uncaught-exception-filter'
 import { RequestLogInterceptor } from './interceptors/request-log-interceptor'
 
 type BindableMessage = EventMessage | QueryMessage
@@ -120,7 +121,14 @@ class PlatformMicroservice {
    */
   public async start(): Promise<any> {
     const application = await NestFactory.create(this.module)
-    application.useGlobalFilters(new InvalidInputExceptionFilter())
+
+    const { httpAdapter } = application.get(HttpAdapterHost)
+
+    application.useGlobalFilters(
+      new InvalidInputExceptionFilter(),
+      new UncaughtExceptionFilter(httpAdapter)
+    )
+
     application.useGlobalInterceptors(new RequestLogInterceptor())
 
     application.connectMicroservice<RmqOptions>(

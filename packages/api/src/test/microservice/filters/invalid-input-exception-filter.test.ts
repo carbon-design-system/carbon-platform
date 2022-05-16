@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Logging } from '../../../main/logging'
-import { InvalidInputException, InvalidInputExceptionFilter } from '../../../main/microservice'
+import { InvalidInputException } from '../../../main/microservice/exceptions/invalid-input-exception'
+import { InvalidInputExceptionFilter } from '../../../main/microservice/filters/invalid-input-exception-filter'
 
 const warnSpy = jest.spyOn(Logging.prototype, 'warn').mockImplementation(jest.fn())
 

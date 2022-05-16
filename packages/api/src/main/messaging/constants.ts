@@ -74,16 +74,6 @@ const DEFAULT_SOCKET_OPTIONS = {
   ca: CARBON_MESSAGE_QUEUE_CERTIFICATE ? [CARBON_MESSAGE_QUEUE_CERTIFICATE] : []
 }
 
-/**
- * Each service gets a queue. Services bind their queue to one or more exchanges to receive
- * messages.
- */
-enum Queue {
-  DataGraph = 'q_data_graph_v1',
-  Logging = 'q_logging_v1',
-  Search = 'q_search_v1'
-}
-
 // Message queue URL checking
 if (CARBON_MESSAGE_QUEUE_URL === LOCAL_MESSAGE_QUEUE_URL) {
   console.warn(`${chalk.bgYellowBright.black('WARN')} Using localhost message queue url`)
@@ -104,6 +94,5 @@ export {
   DEFAULT_EXCHANGE_OPTIONS,
   DEFAULT_EXCHANGE_TYPE,
   DEFAULT_QUEUE_OPTIONS,
-  DEFAULT_SOCKET_OPTIONS,
-  Queue
+  DEFAULT_SOCKET_OPTIONS
 }

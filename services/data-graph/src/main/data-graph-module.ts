@@ -12,12 +12,13 @@ import { GraphQLModule } from '@nestjs/graphql'
 import path from 'path'
 
 import { LibrariesModule } from './libraries/libraries-module'
+import { RequestLogPlugin } from './request-log-plugin'
 import { UsersModule } from './users/users-module'
 
 @Module({
   controllers: [StatusController],
   imports: [
-    // Resolver Modules
+    // Resolver modules
     LibrariesModule,
     UsersModule,
 
@@ -28,6 +29,7 @@ import { UsersModule } from './users/users-module'
         getRunMode() === RunMode.Dev ? path.join('dist', 'data-graph.schema.gql') : true,
       playground: getRunMode() === RunMode.Dev
     })
-  ]
+  ],
+  providers: [RequestLogPlugin]
 })
 export class DataGraphModule {}

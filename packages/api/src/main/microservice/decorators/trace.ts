@@ -6,7 +6,10 @@
  */
 import 'reflect-metadata'
 
+import { v4 as uuidv4 } from 'uuid'
+
 import { Logging } from '../../logging'
+import { getRunMode, isDebugEnabled, RunMode } from '../../runtime'
 
 /**
  * Returns a decorated version of a method that automatically uses the Platform logging
@@ -26,6 +29,11 @@ function Trace(): MethodDecorator {
     propertyKey: string | symbol,
     descriptor: PropertyDescriptor
   ) {
+    const shouldTrace = isDebugEnabled() || getRunMode() === RunMode.Dev
+    if (!shouldTrace) {
+      return
+    }
+
     const original = descriptor.value
 
     descriptor.value = function traced(...args: any[]) {
@@ -35,18 +43,42 @@ function Trace(): MethodDecorator {
 
       target.logging.debug(`-> ${String(propertyKey)}(${args})`)
 
-      // Call the original method and capture the result
-      const result = original.apply(this, args)
+      const performanceId = uuidv4()
+      let result: any
 
-      if (result instanceof Promise) {
-        result.then((value: any) =>
-          target.logging.debug(`<- ${String(propertyKey)}: ${JSON.stringify(value)}`)
-        )
-      } else {
-        target.logging.debug(`<- ${String(propertyKey)}: ${JSON.stringify(result)}`)
+      try {
+        performance.mark(performanceId)
+
+        // Call the original method and capture the result
+        result = original.apply(this, args)
+
+        return result
+      } catch (err) {
+        result = err
+        throw err
+      } finally {
+        const responseTime = performance.measure(performanceId, performanceId)?.duration?.toFixed(4)
+
+        if (result instanceof Promise) {
+          result.then(
+            (value: any) =>
+              target.logging.debug(
+                `<- ${String(propertyKey)}: ${JSON.stringify(value)} ${responseTime}ms`
+              ),
+            (err: any) =>
+              target.logging.debug(`<-x- ${String(propertyKey)}: ${err} ${responseTime}ms`)
+          )
+        } else {
+          target.logging.debug(
+            `${result instanceof Error ? '<-x-' : '<-'} ${String(propertyKey)}: ${
+              result instanceof Error ? result : JSON.stringify(result)
+            } ${responseTime}ms`
+          )
+        }
+
+        performance.clearMarks(performanceId)
+        performance.clearMeasures(performanceId)
       }
-
-      return result
     }
 
     // Preserve the original method name

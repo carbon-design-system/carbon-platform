@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { DataGraphMessage, DataGraphResponse } from '../data-graph/interfaces'
 import { LogLoggedMessage } from '../logging'
 
 /**
@@ -12,16 +13,6 @@ import { LogLoggedMessage } from '../logging'
  */
 interface UnvalidatedMessage {
   [key: string]: any
-}
-
-// TODO: move this
-interface DataGraphMessage {
-  query: string
-}
-
-// TODO: move this
-interface DataGraphResponse {
-  stuff: string
 }
 
 /**
@@ -49,4 +40,14 @@ interface QueryMessage {
   ping: { payload: string; response: string }
 }
 
-export { EventMessage, QueryMessage, UnvalidatedMessage }
+/**
+ * Each service gets a queue. Services bind their queue to one or more exchanges to receive
+ * messages.
+ */
+enum Queue {
+  DataGraph = 'q_data_graph_v1',
+  Logging = 'q_logging_v1',
+  Search = 'q_search_v1'
+}
+
+export { EventMessage, QueryMessage, Queue, UnvalidatedMessage }

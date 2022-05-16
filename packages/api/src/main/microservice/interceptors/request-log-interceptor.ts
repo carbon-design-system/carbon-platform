@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common'
-import { GqlExecutionContext } from '@nestjs/graphql'
 import { Request, Response } from 'express'
 import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
@@ -45,8 +44,6 @@ class RequestLogInterceptor implements NestInterceptor {
         return this.logHttp
       case 'rpc':
         return this.logRpc
-      case 'graphql':
-        return this.logGraphql
       default:
         return undefined
     }
@@ -81,21 +78,6 @@ class RequestLogInterceptor implements NestInterceptor {
       '[' + remoteAddress + ']:' + remotePort,
       '"' + req.get('User-Agent') + '"',
       'out: ' + typeof result
-    ]
-
-    await this.logging.info(logParts.join(' '))
-  }
-
-  private async logGraphql(context: ExecutionContext, result: any, responseTime: string) {
-    const graphqlContext = GqlExecutionContext.create(context)
-
-    const query: string | undefined = graphqlContext.getArgByIndex(2).req.body.query
-
-    const logParts = [
-      context.getClass().name + '#' + context.getHandler().name,
-      'in: ' + query?.replace(/\s+/g, ' '),
-      'out: ' + typeof result,
-      responseTime + 'ms'
     ]
 
     await this.logging.info(logParts.join(' '))

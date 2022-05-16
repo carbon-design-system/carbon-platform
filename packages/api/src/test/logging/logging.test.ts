@@ -7,9 +7,11 @@
 import { Logging, LogLoggedMessage } from '../../main/logging'
 import { MessagingClient } from '../../main/messaging'
 import { Environment } from '../../main/runtime'
-import { __test__ as RunModeTestUtils, RunMode } from '../../main/runtime/run-mode'
+import * as Runtime from '../../main/runtime'
 
 let mockedEmit: any
+
+const getRunModeSpy = jest.spyOn(Runtime, 'getRunMode')
 
 beforeEach(() => {
   Logging.setRemoteLoggingAllowed(true)
@@ -23,7 +25,7 @@ beforeEach(() => {
 describe('message emission', () => {
   describe('"Dev" mode', () => {
     beforeAll(() => {
-      RunModeTestUtils.mockRunMode(RunMode.Dev)
+      getRunModeSpy.mockReturnValue(Runtime.RunMode.Dev)
     })
 
     it('does not emit any messages', async () => {
@@ -54,17 +56,13 @@ describe('message emission', () => {
       await logging.debug('test')
       expect(mockedEmit).toHaveBeenCalledTimes(4)
     })
-
-    afterAll(() => {
-      RunModeTestUtils.resetRunMode()
-    })
   })
 
   describe('"Standard" mode', () => {
     let dateNow: any
 
     beforeEach(() => {
-      RunModeTestUtils.mockRunMode(RunMode.Standard)
+      getRunModeSpy.mockReturnValue(Runtime.RunMode.Standard)
 
       dateNow = Date.now
       Date.now = jest.fn().mockReturnValue(1234)
@@ -158,7 +156,6 @@ describe('message emission', () => {
 
     afterEach(() => {
       Date.now = dateNow
-      RunModeTestUtils.resetRunMode()
     })
   })
 })
@@ -167,7 +164,7 @@ describe('console output', () => {
   let consoleDebug: any, consoleInfo: any, consoleWarn: any, consoleError: any
 
   beforeEach(() => {
-    RunModeTestUtils.mockRunMode(RunMode.Dev)
+    getRunModeSpy.mockReturnValue(Runtime.RunMode.Dev)
 
     consoleDebug = console.debug
     consoleInfo = console.info
@@ -239,8 +236,6 @@ describe('console output', () => {
   })
 
   afterEach(() => {
-    RunModeTestUtils.resetRunMode()
-
     console.debug = consoleDebug
     console.info = consoleInfo
     console.warn = consoleWarn

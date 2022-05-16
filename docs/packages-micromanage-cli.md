@@ -1,4 +1,4 @@
-# Micromanage
+# Micromanage CLI Package
 
 Micromanage is a monorepo microservice orchestration utility. It uses npm workspaces as the
 foundation for individual packages and services which contribute to a base Docker image and
@@ -19,8 +19,8 @@ Once done, the deploy script can be used to deploy new versions of the various s
 
 ### Re-deploying services automatically
 
-Succesfully merged changes to the service-config files to `deployed-services/test` and
-`deployes-services/production` branches will trigger service deployments via the "Deploy Services
+Successfully merged changes to the service-config files to `deployed-services/test` and
+`deployed-services/production` branches will trigger service deployments via the "Deploy Services
 (Test)" or "Deploy Services (Production)" Github Action, no further user action is required.
 
 Please note there must be an existing application deployed on IBM Cloud Code Engine in order to
@@ -42,7 +42,7 @@ enable automatic deployments on a service.
 4. A Github Deploy Action will be triggered. Output can be seen on "Actions" tab of Github
    Repository
 
-5. Upon succesful completion of the Github Action the _changed_ service(s) deployment(s) should be
+5. Upon successful completion of the Github Action the _changed_ service(s) deployment(s) should be
    available at it's corresponding route(s)
 
 ### Re-Deploying Manually

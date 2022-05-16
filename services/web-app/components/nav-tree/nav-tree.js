@@ -31,6 +31,10 @@ const NavTree = ({ activeItem, items = [], label }) => {
     setItemNodes(newItemNodeArray)
   }, [items])
 
+  const getItemId = (item) => {
+    return item.path || slugify(item.title, { lower: true, strict: true })
+  }
+
   const renderTree = (nodes) => {
     if (!nodes) {
       return
@@ -43,9 +47,10 @@ const NavTree = ({ activeItem, items = [], label }) => {
         return (
           <TreeNode
             label={node.title}
-            id={node.path || slugify(node.title, { lower: true, strict: true })}
+            id={getItemId(node)}
             key={node.title}
             onClick={() => node.path && router.push(node.path)}
+            isExpanded={node.items?.some((item) => getItemId(item) === activeItem)}
           >
             {renderTree(node.items)}
           </TreeNode>

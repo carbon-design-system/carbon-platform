@@ -57,6 +57,10 @@
 }
 
 .tab-link {
-  color: theme.$text-primary;
+  color: theme.$text-secondary;
   text-decoration: none;
+}
+
+.tab-list :global(.cds--tabs__nav-link[aria-selected='true']) .tab-link {
+  color: theme.$text-primary;
 }

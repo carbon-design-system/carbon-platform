@@ -6,6 +6,7 @@
  */
 import { Column, Grid, Tab, TabList, Tabs } from '@carbon/react'
 import clsx from 'clsx'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import slugify from 'slugify'
@@ -27,8 +28,12 @@ const PageTabs = ({ className, tabs = [] }) => {
         <Tabs defaultSelectedIndex={currTabIndex > 0 ? currTabIndex : 0}>
           <TabList aria-label="List of tabs" className={styles['tab-list']} selected>
             {tabs.map((tab, i) => (
-              <Tab as="a" href={tab.path} key={i}>
-                {tab.name}
+              <Tab as="span" key={i}>
+                <Link href={tab.path}>
+                  <a href={tab.path} className={styles['tab-link']}>
+                    {tab.name}
+                  </a>
+                </Link>
               </Tab>
             ))}
           </TabList>

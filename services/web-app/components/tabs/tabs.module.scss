@@ -11,11 +11,15 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/theme' as theme;
 
+.tab-dropdown,
+.tab-list {
+  margin-top: spacing.$spacing-06;
+}
+
 .tab-list {
   display: flex;
   max-width: min-content;
   border-bottom: 1px solid theme.$border-subtle-01;
-  margin-top: spacing.$spacing-06;
   overflow-x: auto;
   scrollbar-width: none;
   @include breakpoint.breakpoint('md') {

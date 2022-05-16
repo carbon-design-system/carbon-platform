@@ -26,11 +26,12 @@ const MdxWrapper = ({ children, ...props }) => {
   useEffect(() => {
     setNavData(assetsNavData)
   }, [setNavData])
+  const withTabs = tabs != null
 
   return (
     <>
       <NextSeo title={title} description={description} keywords={keywords} />
-      {title && <PageHeader title={title} />}
+      {title && <PageHeader title={title} withTabs={withTabs} />}
       {keywords && (
         <Head>
           <meta name="keywords" content={keywords} />

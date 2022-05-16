@@ -245,7 +245,6 @@ const PageContent = () => {
               <DashboardItem
                 href="/assets/components"
                 aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
-                border={['sm', 'md', 'lg', 'xlg']}
               >
                 <dl>
                   <dt className={styles['dashboard-label']}>Components</dt>
@@ -268,7 +267,6 @@ const PageContent = () => {
             <Column className={dashboardStyles.column} sm={4} lg={6}>
               <DashboardItem
                 aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
-                border={['sm', 'md', 'lg', 'xlg']}
                 href="/assets/patterns"
               >
                 <dl>
@@ -291,7 +289,6 @@ const PageContent = () => {
             <Column className={dashboardStyles.column} sm={4} lg={6}>
               <DashboardItem
                 aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
-                border={['sm', 'md', 'lg', 'xlg']}
                 href="/assets/functions"
               >
                 <dl>

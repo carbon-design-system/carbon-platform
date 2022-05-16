@@ -7,7 +7,7 @@
 import { unstable_TreeNode as TreeNode, unstable_TreeView as TreeView } from '@carbon/react'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import slugify from 'slugify'
 
 import styles from './nav-tree.module.scss'
@@ -15,6 +15,7 @@ import styles from './nav-tree.module.scss'
 const NavTree = ({ activeItem, items = [], label }) => {
   const router = useRouter()
   const [itemNodes, setItemNodes] = useState([])
+  const [treeActiveItem, setTreeActiveitem] = useState('')
 
   useEffect(() => {
     const newItemNodeArray = []
@@ -31,9 +32,45 @@ const NavTree = ({ activeItem, items = [], label }) => {
     setItemNodes(newItemNodeArray)
   }, [items])
 
+  const dfs = (nodes, returnFunction) => {
+    let node
+    const stack = []
+    stack.push(...nodes)
+    while (stack.length > 0) {
+      node = stack.pop()
+      if (returnFunction(node)) {
+        return node
+      } else {
+        node.items?.forEach((item) => {
+          stack.push(item)
+        })
+      }
+    }
+  }
+
   const getItemId = (item) => {
     return item.path || slugify(item.title, { lower: true, strict: true })
   }
+
+  const popPathName = (path) => path?.split('/')?.slice(0, -1)?.join('/')
+
+  const isTreeNodeActive = useCallback(
+    (node) => {
+      return node.hasTabs
+        ? popPathName(node.path) === popPathName(activeItem)
+        : getItemId(node) === activeItem
+    },
+    [activeItem]
+  )
+
+  const isTreeNodeExpanded = (node) => {
+    return node.items?.some((item) => isTreeNodeActive(item))
+  }
+
+  useEffect(() => {
+    const activeNode = dfs(items, isTreeNodeActive)
+    setTreeActiveitem(activeNode?.path ?? activeItem)
+  }, [activeItem, isTreeNodeActive, items])
 
   const renderTree = (nodes) => {
     if (!nodes) {
@@ -50,7 +87,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
             id={getItemId(node)}
             key={node.title}
             onClick={() => node.path && router.push(node.path)}
-            isExpanded={node.items?.some((item) => getItemId(item) === activeItem)}
+            isExpanded={isTreeNodeExpanded(node)}
           >
             {renderTree(node.items)}
           </TreeNode>
@@ -64,8 +101,8 @@ const NavTree = ({ activeItem, items = [], label }) => {
       className={styles.container}
       label={label}
       hideLabel
-      active={activeItem}
-      selected={[activeItem]}
+      active={treeActiveItem}
+      selected={[treeActiveItem]}
     >
       {itemNodes.map((itemNode) => renderTree(itemNode.isDummy ? itemNode.items : [itemNode]))}
     </TreeView>

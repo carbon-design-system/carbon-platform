@@ -29,6 +29,7 @@ const getImageProps = (props) => {
 
 const Image = ({ alt, ...props }) => {
   const { height, width, blurDataURL, src } = props
+  // when dynamically set, src properties come spread out and we have to manually construct object
   const imageProps = getImageProps({
     src: typeof src === 'string' ? { height, width, blurDataURL, src } : src
   })

@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 /**
  * Global
@@ -155,10 +156,10 @@
 
   &--height {
     @include breakpoint.breakpoint(md) {
-      min-height: spacing.$spacing-13 + spacing.$spacing-09;
+      min-height: rem(208px);
     }
     @include breakpoint.breakpoint(lg) {
-      min-height: spacing.$spacing-13 + spacing.$spacing-06;
+      min-height: convert.rem(184px);
     }
   }
 }

@@ -16,6 +16,7 @@ import { fileURLToPath } from 'url'
 import { libraryAllowList as libraries } from './data/libraries.js'
 
 import { mdxWrapperPlugin } from './utils/mdx-wrapper-plugin.js'
+import rehypeMetaAsAttributes from './utils/rehype-meta-as-attributes.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -24,6 +25,7 @@ const withMDX = nextMdx({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [mdxWrapperPlugin, remarkGfm, remarkUnwrapImages],
+    rehypePlugins: [rehypeMetaAsAttributes],
     providerImportSource: '@mdx-js/react'
   }
 })

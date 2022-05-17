@@ -18,7 +18,6 @@ import styles from './dashboard-item.module.scss'
 export const DashboardItem = ({
   as: element = 'span',
   aspectRatio = {},
-  border = [],
   children,
   href,
   spacer: showSpacer
@@ -32,10 +31,6 @@ export const DashboardItem = ({
   if (isLg) ratio = aspectRatio.lg
   if (isXlg) ratio = aspectRatio.xlg
 
-  let showBorder = !isMd ? border.includes('sm') : border.includes('md')
-  if (isLg) showBorder = border.includes('lg')
-  if (isXlg) showBorder = border.includes('xlg')
-
   const Element = isEmpty(aspectRatio) || ratio === 'none' ? element : AspectRatio
   const props = {}
 
@@ -48,14 +43,7 @@ export const DashboardItem = ({
   }
 
   const renderElement = () => (
-    <Element
-      className={clsx(
-        styles.element,
-        showBorder && styles['element--border'],
-        showSpacer && styles['element--spacer']
-      )}
-      {...props}
-    >
+    <Element className={clsx(styles.element, showSpacer && styles['element--spacer'])} {...props}>
       {children}
     </Element>
   )
@@ -74,7 +62,6 @@ export const DashboardItem = ({
 DashboardItem.propTypes = {
   as: PropTypes.string,
   aspectRatio: PropTypes.object,
-  border: PropTypes.array,
   children: PropTypes.node,
   href: PropTypes.string,
   spacer: PropTypes.any

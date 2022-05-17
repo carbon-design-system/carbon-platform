@@ -8,6 +8,7 @@
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .body {
   flex-grow: 1;
@@ -57,7 +58,7 @@
     top: 0;
     left: 0;
     overflow: hidden;
-    width: 256px;
+    width: convert.rem(256px);
     height: 100%;
   }
 }

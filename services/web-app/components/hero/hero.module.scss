@@ -9,8 +9,9 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
-$hero-height: 560px;
+$hero-height: convert.rem(560px);
 
 .container {
   height: $hero-height;

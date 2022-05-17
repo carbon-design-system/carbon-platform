@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
 @use 'sass:list' as list;
 
 $type-scale: 0.75rem, 0.875rem, 1rem, 1.125rem, 1.25rem, 1.5rem, 1.75rem, 2rem, 2.25rem, 2.625rem,
@@ -56,7 +57,7 @@ $type-scale: 0.75rem, 0.875rem, 1rem, 1.125rem, 1.25rem, 1.5rem, 1.75rem, 2rem, 
     font-size: 0.75rem;
 
     @include breakpoint.breakpoint('md') {
-      padding-right: 112px;
+      padding-right: convert.rem(112px);
     }
 
     @include breakpoint.breakpoint('lg') {

@@ -18,10 +18,12 @@ const MdxWrapper = ({ children, ...props }) => {
   const pathSegments = router.pathname.split('/').filter(Boolean)
   pathSegments.pop()
   const baseSegment = pathSegments.join('/')
+  const withTabs = tabs != null
+
   return (
     <>
       <NextSeo title={title} description={description} keywords={keywords} />
-      {title && <PageHeader title={title} />}
+      {title && <PageHeader title={title} withTabs={withTabs} />}
       {keywords && (
         <Head>
           <meta name="keywords" content={keywords} />
@@ -31,7 +33,10 @@ const MdxWrapper = ({ children, ...props }) => {
         <PageTabs
           title={title}
           tabs={tabs.map((tab) => {
-            return { name: tab, path: `/${baseSegment}/${slugify(tab, { strict: true })}` }
+            return {
+              name: tab,
+              path: `/${baseSegment}/${slugify(tab, { strict: true, lower: true })}`
+            }
           })}
         />
       )}

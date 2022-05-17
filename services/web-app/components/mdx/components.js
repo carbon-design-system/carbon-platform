@@ -16,7 +16,6 @@ import {
   Tag,
   UnorderedList
 } from '@carbon/react'
-import StatusIndicatorTable from '@components/status-indicator-table'
 
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
@@ -43,6 +42,7 @@ import PageTable from '@/components/page-table'
 import Preview from '@/components/preview'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
+import StatusIndicatorTable from '@/components/status-indicator-table'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'

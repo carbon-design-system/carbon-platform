@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.111](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.110...@carbon-platform/web-app@0.1.111) (2022-05-17)
+
+
+### Misc. 🔮
+
+* **web-app:** replace spacing tokens with rem function ([b5eaa3a](https://github.com/carbon-design-system/carbon-platform/commit/b5eaa3affa6a896483278a9e05c477a2c051de4c))
+* **web-app:** replace spacing tokens with rem function ([33decf5](https://github.com/carbon-design-system/carbon-platform/commit/33decf5cdcf1143763669adc8a218d05cc634605))
+* **web-app:** replace spacing tokens with rem function ([482c17d](https://github.com/carbon-design-system/carbon-platform/commit/482c17d998c6bd6ebf1e541f6bd91de931a83552))
+
+
+### Features 🌟
+
+* add code snippet functionality ([4285566](https://github.com/carbon-design-system/carbon-platform/commit/42855662bb9387a67f77d884713b8386539906a1))
+* add prism ([a395499](https://github.com/carbon-design-system/carbon-platform/commit/a395499a5cbc608fe6b0ddc115e5ed544b38d43d))
+* add prism ([feccb78](https://github.com/carbon-design-system/carbon-platform/commit/feccb78486b65e95cdd842856cfccc3ab782b73b))
+* update page tabs ([efa1546](https://github.com/carbon-design-system/carbon-platform/commit/efa154616db398db6d3707df729e78aa493e1e1a))
+
+
+### Bug Fixes 🐛
+
+* add comments ([fc505d2](https://github.com/carbon-design-system/carbon-platform/commit/fc505d206c3d967d5d7b1f1eb260e4eb2562483b))
+* add proptypes ([ddfe247](https://github.com/carbon-design-system/carbon-platform/commit/ddfe247843c314b31a7b3b10df9b9cfef5bd8657))
+* add proptypes ([0c15c5b](https://github.com/carbon-design-system/carbon-platform/commit/0c15c5b183400e7d87326aac51ab5636ba0463a2))
+* change tabs to links ([46de383](https://github.com/carbon-design-system/carbon-platform/commit/46de383cf4c814f963004137288437740f9b457f))
+* change tabs to links ([f1eae3b](https://github.com/carbon-design-system/carbon-platform/commit/f1eae3b75e79ca9cc28e107002ab9359baaff3cc))
+* file name ([d5fd3e8](https://github.com/carbon-design-system/carbon-platform/commit/d5fd3e8416aa964ea43bc455034b7a4640eb0720))
+* merge conflicts ([78e8d3c](https://github.com/carbon-design-system/carbon-platform/commit/78e8d3cba00d7142cc3afd3b4ee2787dacba7944))
+* missing values ([810359e](https://github.com/carbon-design-system/carbon-platform/commit/810359ea52500ca65ca17fb388471a3f75a8822f))
+* page tabs ([cbe0193](https://github.com/carbon-design-system/carbon-platform/commit/cbe019358f4f6cf392d9fddfc84d7fdcbdf3cfe5))
+* page tabs ([69f1251](https://github.com/carbon-design-system/carbon-platform/commit/69f1251b29abfc028c2e8c2b2ce6b3b2406701a1))
+* remove inline style ([c2e0663](https://github.com/carbon-design-system/carbon-platform/commit/c2e0663c290a4938caa6bcb4c8498864e9aff4dc))
+* tooltip colors ([97edc2a](https://github.com/carbon-design-system/carbon-platform/commit/97edc2a903f8e7e41efdf6a5575d109c9b420622))
+* update inline code  background color to layer-accent color ([4422209](https://github.com/carbon-design-system/carbon-platform/commit/4422209c6b693eb6d883207369ebcb52cb3d06ab))
+
 ### [0.1.110](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.109...@carbon-platform/web-app@0.1.110) (2022-05-16)
 
 

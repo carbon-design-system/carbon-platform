@@ -14,7 +14,6 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 import { fileURLToPath } from 'url'
 
 import { libraryAllowList as libraries } from './data/libraries.js'
-import mdxSanitizerPlugin from './utils/mdx-sanitizer-plugin.mjs'
 import { mdxWrapperPlugin } from './utils/mdx-wrapper-plugin.js'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -23,7 +22,7 @@ const __dirname = path.dirname(__filename)
 const withMDX = nextMdx({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [mdxSanitizerPlugin, mdxWrapperPlugin, remarkGfm, remarkUnwrapImages],
+    remarkPlugins: [mdxWrapperPlugin, remarkGfm, remarkUnwrapImages],
     providerImportSource: '@mdx-js/react'
   }
 })

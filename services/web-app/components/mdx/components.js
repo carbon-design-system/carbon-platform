@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { ErrorBoundary } from 'react-error-boundary'
 
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
@@ -56,6 +57,15 @@ const Placeholder = ({ name, children }) => {
   )
 }
 
+function ErrorFallback({ error }) {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+    </div>
+  )
+}
+
 const components = {
   h1: H1,
   h2: H2,
@@ -81,7 +91,12 @@ const components = {
   AccordionItem,
   ArticleCard,
   Grid,
-  Row,
+  Row: ({ children }) => (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <Row>{children}</Row>
+    </ErrorBoundary>
+  ),
+
   Column,
   AnchorLink,
   AnchorLinks,

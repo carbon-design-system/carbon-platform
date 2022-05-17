@@ -33,10 +33,12 @@ export const getStaticProps = async () => {
       ref: 'main'
     },
     // '/src/pages/all-about-carbon/what-is-carbon.mdx'
-    // '/src/pages/all-about-carbon/partners.mdx'
-    '/src/pages/community/patterns/chatbot/overview.mdx'
-    // '/src/pages/community/component-index.mdx'
     // '/src/pages/components/accordion/style.mdx'
+    '/src/pages/community/component-index.mdx' // this works with ComponentIndexPage removed from tree
+
+    // '/src/pages/all-about-carbon/partners.mdx' // ReferenceError: dividedSection is not defined
+
+    // '/src/pages/community/patterns/chatbot/overview.mdx' // has nested <Tag> components
   )
 
   return {

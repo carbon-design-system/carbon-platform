@@ -6,18 +6,17 @@
  */
 
 import { remove } from 'unist-util-remove'
+import components from '@/components/mdx/components'
 
 const mdxSanitizerPlugin = () => (tree) => {
-  console.log(tree) // <- this is an AST
-
   // remove all import statements
   remove(tree, (node) => node.type === 'mdxjsEsm' && node.value?.startsWith('import '))
 
-  // remove all "UnknownComponent" from tree,
-  // can turn this into a function that checks against our list of mdxComponents
-  remove(tree, { type: 'mdxJsxFlowElement', name: 'UnknownComponent' })
-  remove(tree, { type: 'mdxJsxFlowElement', name: 'Tag' })
+  // remove all export statements
+  remove(tree, (node) => node.type === 'mdxjsEsm' && node.value?.startsWith('export '))
 
-  console.log(tree)
+  // remove all "UnknownComponent" from tree
+  const availableKeys = Object.keys(components)
+  remove(tree, (node) => node.name && !availableKeys.includes(node.name))
 }
 export default mdxSanitizerPlugin

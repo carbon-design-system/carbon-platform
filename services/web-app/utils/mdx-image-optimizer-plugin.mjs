@@ -9,7 +9,7 @@ import { visit } from 'unist-util-visit'
 
 const mdxImageOptimizerPlugin = (dirPath) => async (tree) => {
   const matches = []
-  visit(tree, { type: 'image' }, node => matches.push(node))
+  visit(tree, { type: 'image' }, (node) => matches.push(node))
 
   const promises = matches.map(async (node) => {
     // construct full image path (with repo url)
@@ -27,7 +27,8 @@ const mdxImageOptimizerPlugin = (dirPath) => async (tree) => {
       { type: 'mdxJsxAttribute', name: 'height', value: img?.height },
       { type: 'mdxJsxAttribute', name: 'width', value: img?.width },
       { type: 'mdxJsxAttribute', name: 'src', value: fullPath },
-      { type: 'mdxJsxAttribute', name: 'alt', value: node.alt }]
+      { type: 'mdxJsxAttribute', name: 'alt', value: node.alt }
+    ]
     if (node.attributes && node.attributes.length) {
       node.attributes.push(...nextImageAttributes)
     } else {

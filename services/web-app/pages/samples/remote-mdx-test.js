@@ -34,11 +34,16 @@ export const getStaticProps = async () => {
     },
     // '/src/pages/all-about-carbon/what-is-carbon.mdx'
     // '/src/pages/components/accordion/style.mdx'
-    '/src/pages/community/component-index.mdx' // this works with ComponentIndexPage removed from tree
+    // '/src/pages/community/component-index.mdx' // this works with ComponentIndexPage removed
 
     // '/src/pages/all-about-carbon/partners.mdx' // ReferenceError: dividedSection is not defined
 
     // '/src/pages/community/patterns/chatbot/overview.mdx' // has nested <Tag> components
+
+    // '/src/pages/components/dropdown/code.mdx'
+    // '/src/pages/components/code-snippet/code.mdx'
+
+    '/src/pages/data-visualization/complex-charts/index.mdx'
   )
 
   return {

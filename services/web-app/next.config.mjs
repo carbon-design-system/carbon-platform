@@ -14,6 +14,7 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 import { fileURLToPath } from 'url'
 
 import { libraryAllowList as libraries } from './data/libraries.js'
+
 import { mdxWrapperPlugin } from './utils/mdx-wrapper-plugin.js'
 
 const __filename = fileURLToPath(import.meta.url)

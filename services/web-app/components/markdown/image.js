@@ -28,7 +28,10 @@ const getImageProps = (props) => {
 }
 
 const Image = ({ alt, ...props }) => {
-  const imageProps = getImageProps(props)
+  const { height, width, blurDataURL, src } = props
+  const imageProps = getImageProps({
+    src: typeof src === 'string' ? { height, width, blurDataURL, src } : src
+  })
 
   return (
     <div className={clsx(imageProps.layout === 'fill' && styles['image-container'])}>
@@ -38,7 +41,19 @@ const Image = ({ alt, ...props }) => {
 }
 
 Image.propTypes = {
-  alt: PropTypes.string
+  alt: PropTypes.string,
+  blurDataURL: PropTypes.string,
+  height: PropTypes.number,
+  src: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      blurDataURL: PropTypes.string,
+      height: PropTypes.number,
+      width: PropTypes.number,
+      src: PropTypes.string
+    })
+  ]),
+  width: PropTypes.number
 }
 
 export default Image

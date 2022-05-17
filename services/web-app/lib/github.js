@@ -8,13 +8,13 @@ import { Logging } from '@carbon-platform/api/logging'
 import yaml from 'js-yaml'
 import { get, isEmpty, set } from 'lodash'
 import { serialize } from 'next-mdx-remote/serialize'
-import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
 import unwrapImages from 'remark-unwrap-images'
 
 import { libraryAllowList } from '@/data/libraries'
 import { getResponse } from '@/lib/file-cache'
-import { mdxImgResolver } from '@/utils/mdx-image-resolver'
+import mdxImageOptimizerPlugin from '@/utils/mdx-image-optimizer-plugin.mjs'
+import rehypeMetaAsAttributes from '@/utils/rehype-meta-as-attributes.mjs'
 import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
@@ -60,8 +60,8 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
 
   return serialize(usageFileSource, {
     mdxOptions: {
-      remarkPlugins: [remarkGfm, unwrapImages],
-      rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
+      remarkPlugins: [remarkGfm, unwrapImages, mdxImageOptimizerPlugin.bind(null, dirPath)],
+      rehypePlugins: [rehypeMetaAsAttributes]
     },
     parseFrontmatter: true
   })

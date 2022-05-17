@@ -19,8 +19,8 @@ const mdxImageOptimizerPlugin = (dirPath) => async (tree) => {
     const { base64, img } = await getPlaiceholder(fullPath)
 
     // convert image into custom Image component
-    // node.type = 'mdxJsxFlowElement'
-    // node.name = 'Image'
+    node.type = 'mdxJsxFlowElement'
+    node.name = 'Image'
     node.url = fullPath
     const nextImageAttributes = [
       { type: 'mdxJsxAttribute', name: 'blurDataURL', value: base64 },
@@ -33,8 +33,6 @@ const mdxImageOptimizerPlugin = (dirPath) => async (tree) => {
     } else {
       node.attributes = nextImageAttributes
     }
-
-    console.log(node)
   })
 
   await Promise.all(promises)

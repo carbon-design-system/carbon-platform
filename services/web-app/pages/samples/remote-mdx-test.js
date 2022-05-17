@@ -17,7 +17,6 @@ const RemoteMdxTest = ({ source }) => {
   return (
     <>
       <NextSeo {...seo} />
-
       <RemoteMdxLoader source={source} />
     </>
   )

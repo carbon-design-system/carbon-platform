@@ -5,6 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {
+  Button,
+  ListItem,
+  StructuredListBody,
+  StructuredListCell,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListWrapper,
+  Tag,
+  UnorderedList
+} from '@carbon/react'
+import StatusIndicatorTable from '@components/status-indicator-table'
+
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
@@ -38,24 +51,6 @@ import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
 import Video from '@/components/video'
 
-import StatusIndicatorTable from '../status-indicator-table'
-
-const Placeholder = ({ name, children }) => {
-  return (
-    <div
-      style={{
-        background: 'white',
-        border: '1px dotted #8d8d8d',
-        margin: '16px',
-        padding: '16px'
-      }}
-    >
-      <strong>{name}</strong>
-      <div>{children}</div>
-    </div>
-  )
-}
-
 const components = {
   h1: H1,
   h2: H2,
@@ -72,6 +67,16 @@ const components = {
   img: Image,
   table: PageTable,
   pre: Code,
+  /* Core Carbon components */
+  Button,
+  StructuredListWrapper,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListCell,
+  StructuredListBody,
+  UnorderedList,
+  ListItem,
+  Tag,
   /* Gatsby theme components */
   Caption,
   PageDescription,
@@ -109,19 +114,7 @@ const components = {
   TypeScaleTable,
   TypeWeight,
   ColorPalette,
-  StatusIndicatorTable,
-  /* Gatsby theme components, not used in Carbon website, out of scope v1 */
-  FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
-  ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,
-  SquareCard: ({ children }) => <Placeholder name="SquareCard">{children}</Placeholder>,
-  ExpressiveListContainer: ({ children }) => (
-    <Placeholder name="ExpressiveListContainer">{children}</Placeholder>
-  ),
-  DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
-  ExpressiveList: ({ children }) => <Placeholder name="ExpressiveList">{children}</Placeholder>,
-  /* component demo */
-  ComponentDemo: () => <span />,
-  ComponentVariant: () => <span />
+  StatusIndicatorTable
 }
 
 export default components

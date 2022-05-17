@@ -43,7 +43,7 @@ export const getStaticProps = async () => {
     // '/src/pages/components/dropdown/code.mdx'
     // '/src/pages/components/code-snippet/code.mdx'
 
-    '/src/pages/data-visualization/complex-charts/index.mdx'
+    '/src/pages/components/date-picker/accessibility.mdx'
   )
 
   return {

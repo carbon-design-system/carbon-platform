@@ -51,6 +51,21 @@ import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
 import Video from '@/components/video'
 
+const UnknownComponent = ({ name }) => {
+  return (
+    <div
+      style={{
+        background: 'white',
+        border: '1px dotted #8d8d8d',
+        margin: '16px',
+        padding: '16px'
+      }}
+    >
+      <strong>Warning: </strong> {name} is not supported
+    </div>
+  )
+}
+
 const components = {
   h1: H1,
   h2: H2,
@@ -114,7 +129,8 @@ const components = {
   TypeScaleTable,
   TypeWeight,
   ColorPalette,
-  StatusIndicatorTable
+  StatusIndicatorTable,
+  UnknownComponent
 }
 
 export default components

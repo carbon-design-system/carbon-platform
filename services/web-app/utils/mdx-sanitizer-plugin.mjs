@@ -32,9 +32,15 @@ const mdxSanitizerPlugin = () => (tree) => {
   // remove all export statements
   remove(tree, (node) => node.type === 'mdxjsEsm' && node.value?.startsWith('export '))
 
-  // remove all "UnknownComponent" from tree
+  // convert all invalid components into "UnknownComponent"
   const availableKeys = Object.keys(components)
-  remove(tree, (node) => node.name && !availableKeys.includes(node.name))
+  visit(tree, (node) => node.name && !availableKeys.includes(node.name), node => {
+    node.attributes = [
+      { type: 'mdxJsxAttribute', name: 'name', value: node.name }
+    ]
+    node.name = 'UnknownComponent'
+    node.type = 'mdxJsxFlowElement'
+  })
 
   // find all components that are using any of the previously imported variables
   visit(

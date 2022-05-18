@@ -33,10 +33,6 @@ export const assetsNavData = [
     title: 'About Assets'
   },
   {
-    path: '/assets/libraries',
-    title: 'Libraries'
-  },
-  {
     title: 'Guidelines',
     items: [
       {
@@ -90,6 +86,10 @@ export const assetsNavData = [
         hasTabs: true
       }
     ]
+  },
+  {
+    path: '/assets/libraries',
+    title: 'Libraries'
   },
   {
     title: 'Catalogs',

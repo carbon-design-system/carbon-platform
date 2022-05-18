@@ -24,13 +24,6 @@ const RemoteMdxTest = ({ source }) => {
 
 export const getStaticProps = async () => {
   const mdxSource = await getRemoteMdxData(
-    // {
-    //   host: 'github.com',
-    //   org: 'alisonjoseph',
-    //   repo: 'carbon-website',
-    //   library: 'carbon-website',
-    //   ref: 'platform'
-    // },
     {
       host: 'github.com',
       org: 'carbon-design-system',
@@ -46,8 +39,8 @@ export const getStaticProps = async () => {
 
     // '/src/pages/community/patterns/chatbot/overview.mdx' // has nested <Tag> components
 
-    '/src/pages/components/dropdown/code.mdx'
-    // /src/pages/data-visualization/complex-charts/index.mdx'
+    // '/src/pages/components/dropdown/code.mdx'
+    '/src/pages/data-visualization/complex-charts/index.mdx'
 
     // '/src/pages/components/date-picker/accessibility.mdx'
   )

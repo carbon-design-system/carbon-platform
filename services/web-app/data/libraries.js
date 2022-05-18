@@ -89,14 +89,14 @@ const prodLibraries = {
     sponsor: 'carbon',
     group: carbonComponentsGroup
   },
-  'carbon-react': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon',
-    path: '/packages/react',
-    sponsor: 'carbon',
-    group: carbonComponentsGroup
-  },
+  // 'carbon-react': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon',
+  //   path: '/packages/react',
+  //   sponsor: 'carbon',
+  //   group: carbonComponentsGroup
+  // },
   'carbon-components-vue': {
     host: 'github.com',
     org: 'carbon-design-system',
@@ -105,20 +105,20 @@ const prodLibraries = {
     packageJsonPath: '/../package.json',
     group: carbonComponentsGroup
   },
-  'carbon-components-angular': {
-    host: 'github.com',
-    org: 'IBM',
-    repo: 'carbon-components-angular',
-    path: '/src',
-    group: carbonComponentsGroup
-  },
-  'carbon-components-svelte': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon-components-svelte',
-    path: '/',
-    group: carbonComponentsGroup
-  },
+  // 'carbon-components-angular': {
+  //   host: 'github.com',
+  //   org: 'IBM',
+  //   repo: 'carbon-components-angular',
+  //   path: '/src',
+  //   group: carbonComponentsGroup
+  // },
+  // 'carbon-components-svelte': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-components-svelte',
+  //   path: '/',
+  //   group: carbonComponentsGroup
+  // },
   // 'carbon-angular': {
   //   host: 'github.ibm.com',
   //   org: 'matt-rosno',
@@ -417,10 +417,11 @@ const devLibraries = {
   },
   'carbon-components-angular': {
     host: 'github.com',
-    org: 'IBM',
+    org: 'andreancardona',
     repo: 'carbon-components-angular',
     path: '/src',
-    group: carbonComponentsGroup
+    group: carbonComponentsGroup,
+    ref: 'update-thumbnail-angular'
   },
   'carbon-components': {
     host: 'github.com',
@@ -444,14 +445,16 @@ const devLibraries = {
     repo: 'carbon',
     path: '/packages/react',
     sponsor: 'carbon',
-    group: carbonComponentsGroup
+    group: carbonComponentsGroup,
+    ref: 'update-thumbnails-carbon-react'
   },
   'carbon-components-svelte': {
     host: 'github.com',
-    org: 'carbon-design-system',
+    org: 'andreancardona',
     repo: 'carbon-components-svelte',
     path: '/',
-    group: carbonComponentsGroup
+    group: carbonComponentsGroup,
+    ref: 'update-thumbnail-svelte'
   },
   'ibmdotcom-react': {
     host: 'github.com',

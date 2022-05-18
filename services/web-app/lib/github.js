@@ -61,8 +61,12 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
   const dirPath = response._links.html.split('/').slice(0, -1).join('/')
 
   let serializedContent = null
+
+  // remove HTML comments
+  const sanitizedUsageFileSource = usageFileSource.replace(/<!--.*?-->/g, '')
+
   try {
-    serializedContent = await serialize(usageFileSource, {
+    serializedContent = await serialize(sanitizedUsageFileSource, {
       mdxOptions: {
         remarkPlugins: [mdxSanitizerPlugin, remarkGfm, unwrapImages],
         rehypePlugins: [rehypeMetaAsAttributes, [rehypeUrls, mdxImgResolver.bind(null, dirPath)]]

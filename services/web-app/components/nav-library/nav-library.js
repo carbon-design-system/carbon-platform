@@ -39,8 +39,7 @@ const NavLibrary = () => {
     }, slideDelay)
   }
 
-  // TODO issue #523 (set to false when on child pages)
-  const libraryActive = true
+  const libraryActive = router.pathname === '/assets/[host]/[org]/[repo]/[library]/[ref]'
 
   return (
     <SideNav
@@ -63,11 +62,7 @@ const NavLibrary = () => {
         <br />
         v1.0.0
       </h2>
-      <NavTree
-        items={libraryNavData}
-        label="Library navigation"
-        activeItem={router.asPath.substring(router.asPath.lastIndexOf('/') + 1)}
-      />
+      <NavTree items={libraryNavData} label="Library navigation" activeItem={router.asPath} />
     </SideNav>
   )
 }

@@ -29,8 +29,76 @@ export const standardsNavData = [
 
 export const assetsNavData = [
   {
-    path: '/assets',
-    title: 'About Assets'
+    title: 'About Carbon',
+    items: [
+      {
+        path: '/assets/about-carbon/how-carbon-works',
+        title: 'How Carbon works'
+      },
+      {
+        path: '/assets/about-carbon/platform-roadmap',
+        title: 'Platform roadmap'
+      },
+      {
+        path: '/assets/about-carbon/releases',
+        title: 'Releases'
+      },
+      {
+        path: '/assets/about-carbon/articles',
+        title: 'Articles'
+      },
+      {
+        path: '/assets/about-carbon/case-studies',
+        title: 'Case studies'
+      },
+      {
+        path: '/assets/about-carbon/meetups',
+        title: 'Meetups'
+      }
+    ]
+  },
+  {
+    title: 'Designing'
+  },
+  {
+    title: 'Developing'
+  },
+  {
+    title: 'Contribute',
+    items: [
+      {
+        path: '/assets/contribute/overview',
+        title: 'Overview'
+      },
+      {
+        path: '/assets/contribute/bugs-and-requests',
+        title: 'Bugs and requests'
+      },
+      {
+        path: '/assets/contribute/documentation',
+        title: 'Documentation (schema)'
+      },
+      {
+        path: '/assets/contribute/components',
+        title: 'Components'
+      },
+      {
+        path: '/assets/contribute/icons',
+        title: 'Icons'
+      },
+      {
+        path: '/assets/contribute/patterns',
+        title: 'Patterns'
+      },
+      {
+        path: '/assets/contribute/pictograms',
+        title: 'Pictograms'
+      },
+      {
+        path: '/assets/contribute/add-ons',
+        title: 'Add-ons'
+      }
+    ]
   },
   {
     title: 'Guidelines',

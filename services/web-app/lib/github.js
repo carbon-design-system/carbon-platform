@@ -48,7 +48,7 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
 
   if (!response.content) {
     return {
-      compiledSource: await (await serialize('<p>Component not found.</p>')).compiledSource,
+      compiledSource: (await serialize('<p>Component not found.</p>')).compiledSource,
       frontmatter: {
         title: 'Not found'
       }
@@ -59,13 +59,28 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
 
   const dirPath = response._links.html.split('/').slice(0, -1).join('/')
 
-  return serialize(usageFileSource, {
-    mdxOptions: {
-      remarkPlugins: [mdxSanitizerPlugin, remarkGfm, unwrapImages],
-      rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
-    },
-    parseFrontmatter: true
-  })
+  let serializedContent = null
+  try {
+    serializedContent = await serialize(usageFileSource, {
+      mdxOptions: {
+        remarkPlugins: [mdxSanitizerPlugin, remarkGfm, unwrapImages],
+        rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
+      },
+      parseFrontmatter: true
+    })
+    return serializedContent
+  } catch (e) {
+    serializedContent = {
+      compiledSource: (
+        await serialize('<p>There was an error reading MDX data, please check format.</p>')
+      ).compiledSource,
+      frontmatter: {
+        title: 'Read Error'
+      }
+    }
+  }
+
+  return serializedContent
 }
 
 /**

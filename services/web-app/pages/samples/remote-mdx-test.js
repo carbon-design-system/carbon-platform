@@ -31,18 +31,7 @@ export const getStaticProps = async () => {
       library: 'carbon-website',
       ref: 'main'
     },
-    // '/src/pages/all-about-carbon/what-is-carbon.mdx'
-    // '/src/pages/components/accordion/style.mdx'
-    // '/src/pages/community/component-index.mdx' // this works with ComponentIndexPage removed
-
-    // '/src/pages/all-about-carbon/partners.mdx' // ReferenceError: dividedSection is not defined
-
-    // '/src/pages/community/patterns/chatbot/overview.mdx' // has nested <Tag> components
-
-    // '/src/pages/components/dropdown/code.mdx'
-    '/src/pages/data-visualization/complex-charts/index.mdx'
-
-    // '/src/pages/components/date-picker/accessibility.mdx'
+    '/src/pages/all-about-carbon/what-is-carbon.mdx'
   )
 
   return {

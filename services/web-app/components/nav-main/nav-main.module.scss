@@ -16,6 +16,10 @@
     border-right: 1px solid theme.$border-subtle-00;
   }
 
+  :global(.cds--side-nav__items) {
+    padding-bottom: 5rem;
+  }
+
   // override nav tree styles
   :global(.cds--tree-node__children .cds--tree-node__label) {
     @include type.type-style('body-compact-01');

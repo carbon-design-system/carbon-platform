@@ -41,10 +41,10 @@ export const LayoutProvider = ({ children }) => {
     navData,
     setNavData,
     showSideNav,
+    isSideNavExpanded,
     setShowSideNav,
     librarySideNav,
     setLibrarySideNav,
-    isSideNavExpanded,
     toggleSideNavExpanded,
     libraryNavSlideOut,
     setLibraryNavSlideOut

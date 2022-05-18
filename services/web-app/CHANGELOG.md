@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.112](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.111...@carbon-platform/web-app@0.1.112) (2022-05-18)
+
+
+### Features 🌟
+
+* **web-app:** treeview integration with sidenav ([0b365bb](https://github.com/carbon-design-system/carbon-platform/commit/0b365bb2d475918af0d76a8e7bfc986b0f3304ae))
+
+
+### Bug Fixes 🐛
+
+* sticky tabs mdx ([1488604](https://github.com/carbon-design-system/carbon-platform/commit/1488604e4bcc8ecc2b353ae836afc4ea498045d8))
+* **web-app:** active item :tada ([167bf29](https://github.com/carbon-design-system/carbon-platform/commit/167bf299838650d332467792599a5a5d8e4193d4))
+* **web-app:** delete unnecessary file ([120b791](https://github.com/carbon-design-system/carbon-platform/commit/120b791bcedc5e4e2065607949b5a5f63ed64589))
+* **web-app:** nav-tree, minor css fixes ([7e0e1a0](https://github.com/carbon-design-system/carbon-platform/commit/7e0e1a00e803df7d066c13435c2b0be35081b3e2))
+* **web-app:** open treenode when inner element is active ([efbe964](https://github.com/carbon-design-system/carbon-platform/commit/efbe964ac4039fb0d35b1a270f96ac125b3b2a62))
+* **web-app:** support tabs, activeItem ([2cececd](https://github.com/carbon-design-system/carbon-platform/commit/2cececde709bc767236d3efa643e1a8015a9c20b))
+
 ### [0.1.111](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.110...@carbon-platform/web-app@0.1.111) (2022-05-17)
 
 

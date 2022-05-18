@@ -16,6 +16,7 @@ import { libraryAllowList } from '@/data/libraries'
 import { getResponse } from '@/lib/file-cache'
 import { mdxImgResolver } from '@/utils/mdx-image-resolver'
 import mdxSanitizerPlugin from '@/utils/mdx-sanitizer-plugin.mjs'
+import rehypeMetaAsAttributes from '@/utils/rehype-meta-as-attributes.mjs'
 import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
@@ -64,7 +65,7 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
     serializedContent = await serialize(usageFileSource, {
       mdxOptions: {
         remarkPlugins: [mdxSanitizerPlugin, remarkGfm, unwrapImages],
-        rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
+        rehypePlugins: [rehypeMetaAsAttributes, [rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
       },
       parseFrontmatter: true
     })

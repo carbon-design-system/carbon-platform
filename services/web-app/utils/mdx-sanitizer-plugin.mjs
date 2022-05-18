@@ -8,6 +8,7 @@ import { remove } from 'unist-util-remove'
 import { visit } from 'unist-util-visit'
 
 import components from '@/components/mdx/components'
+import { HTMLTags } from '@/data/HTML-tags'
 
 const mdxSanitizerPlugin = () => (tree) => {
   // remove all import statements
@@ -33,7 +34,7 @@ const mdxSanitizerPlugin = () => (tree) => {
   remove(tree, (node) => node.type === 'mdxjsEsm' && node.value?.startsWith('export '))
 
   // convert all invalid components into "UnknownComponent"
-  const availableKeys = Object.keys(components)
+  const availableKeys = [...Object.keys(components), ...HTMLTags]
   visit(tree, (node) => node.name && !availableKeys.includes(node.name), node => {
     node.attributes = [
       { type: 'mdxJsxAttribute', name: 'name', value: node.name }

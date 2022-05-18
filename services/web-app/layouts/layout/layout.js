@@ -101,7 +101,6 @@ const Layout = ({ children }) => {
                 onClick={onClickSideNavExpand}
                 isActive={isSideNavExpanded}
               />
-
               <div className={styles['header-name']}>
                 <Link href="/assets">
                   <a className="cds--header__name">Carbon Design System</a>

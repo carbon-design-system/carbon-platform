@@ -19,7 +19,7 @@
 
 //needed to override global spacing on columns
 .color-palette-wrapper * {
-  --space: 0;
+  margin-top: 0;
 }
 
 .color-palette-wrapper .palette-controls button {

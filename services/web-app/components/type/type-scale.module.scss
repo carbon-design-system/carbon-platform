@@ -25,6 +25,11 @@ $type-scale: 0.75rem, 0.875rem, 1rem, 1.125rem, 1.25rem, 1.5rem, 1.75rem, 2rem, 
   margin-top: spacing.$spacing-07;
   overflow-x: auto;
 
+  // removes top margin for code snippet after type scale component
+  + * :global([class*='code']) {
+    margin-top: 0;
+  }
+
   table {
     background: theme.$layer-01;
   }

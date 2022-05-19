@@ -54,7 +54,7 @@
 
   :global(.cds--tabs__nav-link) {
     max-width: fit-content;
-
+    padding: 0;
     border-bottom: spacing.$spacing-02 solid transparent;
     color: theme.$text-secondary;
     @include type.type-style('body-short-02', true);
@@ -74,6 +74,8 @@
 }
 
 .tab-link {
+  display: block;
+  padding: spacing.$spacing-04 spacing.$spacing-05 spacing.$spacing-03;
   color: theme.$text-secondary;
   text-decoration: none;
 }

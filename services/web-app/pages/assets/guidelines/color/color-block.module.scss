@@ -1,0 +1,61 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/colors' as colors;
+@use '@carbon/react/scss/theme' as theme;
+
+.color-block {
+  position: relative;
+}
+
+.color-square {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  p {
+    @include type.type-style('body-compact-01');
+
+    padding-top: spacing.$spacing-05;
+  }
+
+  div {
+    margin-top: 0;
+  }
+}
+
+.color-square--white {
+  background: colors.$white-0;
+}
+
+.color-square--gray-10 {
+  background: colors.$gray-10;
+  outline: 1px solid theme.$border-subtle;
+  outline-offset: -1px;
+}
+
+.color-square--gray-100 {
+  background: colors.$gray-100;
+}
+
+.color-square--gray-90 {
+  background: colors.$gray-90;
+}
+
+.color-square--gray-80 {
+  background: colors.$gray-80;
+}
+
+.color-square--gray-100,
+.color-square--gray-90,
+.color-square--gray-80 {
+  color: theme.$text-inverse;
+}

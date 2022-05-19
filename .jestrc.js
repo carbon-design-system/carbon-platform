@@ -33,7 +33,7 @@ module.exports = {
     '!**/index.ts',
     '!**/interfaces.ts',
     '!**/esbuild.js',
-    '!**/data-graph/models/**/*.ts'
+    '!**/data-graph/(models|inputs|outputs)/**/*.ts'
   ],
 
   // The directory where Jest should output its coverage files

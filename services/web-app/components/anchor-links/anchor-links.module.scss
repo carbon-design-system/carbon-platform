@@ -12,13 +12,11 @@
 @use '@carbon/react/scss/motion' as motion;
 
 .list {
-  --space: #{spacing.$spacing-07};
-
-  margin-top: var(--space);
+  margin-top: spacing.$spacing-07;
 }
 
 .list + * {
-  --space: #{spacing.$spacing-11 - spacing.$spacing-03};
+  margin-top: calc(spacing.$spacing-11 - spacing.$spacing-03);
 }
 
 .link {

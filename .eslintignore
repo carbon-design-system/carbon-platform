@@ -29,3 +29,4 @@ services/web-app/public/data/
 
 # Enable config file linting
 !.*.js
+.copyright.js

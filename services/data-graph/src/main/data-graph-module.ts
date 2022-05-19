@@ -9,8 +9,8 @@ import { StatusController } from '@carbon-platform/api/microservice'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
-import path from 'path'
 
+import { SCHEMA_OUTPUT_FILE } from './constants'
 import { LibrariesModule } from './libraries/libraries-module'
 import { RequestLogPlugin } from './request-log-plugin'
 import { UsersModule } from './users/users-module'
@@ -25,8 +25,7 @@ import { UsersModule } from './users/users-module'
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       // Output the schema as a file in dev mode; or store it in memory otherwise
-      autoSchemaFile:
-        getRunMode() === RunMode.Dev ? path.join('dist', 'data-graph.schema.gql') : true,
+      autoSchemaFile: getRunMode() === RunMode.Dev ? SCHEMA_OUTPUT_FILE : true,
       playground: getRunMode() === RunMode.Dev
     })
   ],

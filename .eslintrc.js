@@ -99,6 +99,15 @@ module.exports = {
         'no-unused-vars': 'off', // Disabled in favor of @typescript-eslint/no-unused-vars
         '@typescript-eslint/no-unused-vars': ['error', noUnusedVarsOptions]
       }
+    },
+    {
+      files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
+      processor: '@graphql-eslint/graphql'
+    },
+    {
+      files: ['*.graphql'],
+      // graphql-eslint doesn't work as a top-level extension/plugin, so include it here instead
+      extends: [path.join(__dirname, '.eslintrc.graphql.js')]
     }
   ],
   settings: {

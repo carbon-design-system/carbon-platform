@@ -104,9 +104,17 @@ export const assetsNavData = [
     title: 'Guidelines',
     items: [
       {
-        path: '/assets/guidelines/2x-grid/overview',
         title: '2x Grid',
-        hasTabs: true
+        items: [
+          {
+            path: '/assets/guidelines/2x-grid/overview',
+            title: 'Overview'
+          },
+          {
+            path: '/assets/guidelines/2x-grid/implementation',
+            title: 'Implementation'
+          }
+        ]
       },
       {
         path: '/assets/guidelines/accessibility/overview',

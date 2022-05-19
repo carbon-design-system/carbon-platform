@@ -31,7 +31,7 @@ export const getStaticProps = async () => {
       library: 'carbon-website',
       ref: 'main'
     },
-    '/src/pages/all-about-carbon/what-is-carbon.mdx'
+    '/src/pages/components/UI-shell-header/usage.mdx'
   )
 
   return {

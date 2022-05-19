@@ -6,8 +6,8 @@
  */
 
 import { Button, Column, Grid, Link as CarbonLink } from '@carbon/react'
-import { ArrowRight, Events, Launch } from '@carbon/react/icons'
-import { Svg32Github } from '@carbon-platform/icons'
+import { ArrowRight, Launch } from '@carbon/react/icons'
+import { Svg32Github, Svg64Community } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
 import Link from 'next/link'
@@ -79,7 +79,7 @@ const Asset = ({ libraryData }) => {
   }
 
   const { sponsor } = assetData.params
-  const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
+  const SponsorIcon = teams[sponsor] ? teams[sponsor].pictogram : Svg64Community
 
   const isPathAbsolute = (path) => {
     const testPath = /^https?:\/\//i

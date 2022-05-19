@@ -6,10 +6,35 @@
  */
 import { Field, ID, ObjectType } from '@nestjs/graphql'
 
+type DemoLinkType = 'codesandbox' | 'github' | 'storybook'
+type DemoLinkAction = 'download' | 'link'
+
 const defaultValues = {
   demoLinks: [],
+  demoLinkAction: 'link' as DemoLinkAction,
   noIndex: false,
   packageJsonPath: '/package.json'
+}
+
+@ObjectType()
+class DemoLink {
+  @Field(() => String)
+  type: DemoLinkType
+
+  @Field(() => String)
+  name: string
+
+  @Field(() => String)
+  action: DemoLinkAction = defaultValues.demoLinkAction
+
+  @Field(() => String)
+  url: string
+
+  constructor(type: DemoLinkType, name: string, url: string) {
+    this.type = type
+    this.name = name
+    this.url = url
+  }
 }
 
 @ObjectType({
@@ -36,8 +61,8 @@ class Library {
   @Field(() => String, { nullable: true })
   externalDocsUrl?: string
 
-  @Field(() => [String], { defaultValue: defaultValues.demoLinks })
-  demoLinks: string[] = defaultValues.demoLinks
+  @Field(() => [DemoLink], { defaultValue: defaultValues.demoLinks })
+  demoLinks: Array<DemoLink> = defaultValues.demoLinks
 
   @Field(() => Boolean, { defaultValue: defaultValues.noIndex })
   noIndex: boolean = defaultValues.noIndex

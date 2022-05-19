@@ -417,7 +417,7 @@ const devLibraries = {
   },
   'carbon-components-angular': {
     host: 'github.com',
-    org:  'IBM',
+    org: 'IBM',
     repo: 'carbon-components-angular',
     path: '/src',
     group: carbonComponentsGroup

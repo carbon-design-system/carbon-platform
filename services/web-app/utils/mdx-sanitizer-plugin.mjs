@@ -35,13 +35,15 @@ const mdxSanitizerPlugin = () => (tree) => {
 
   // convert all invalid components into "UnknownComponent"
   const availableKeys = [...Object.keys(components), ...HTMLTags]
-  visit(tree, (node) => node.name && !availableKeys.includes(node.name), node => {
-    node.attributes = [
-      { type: 'mdxJsxAttribute', name: 'name', value: node.name }
-    ]
-    node.name = 'UnknownComponent'
-    node.type = 'mdxJsxFlowElement'
-  })
+  visit(
+    tree,
+    (node) => node.name && !availableKeys.includes(node.name),
+    (node) => {
+      node.attributes = [{ type: 'mdxJsxAttribute', name: 'name', value: node.name }]
+      node.name = 'UnknownComponent'
+      node.type = 'mdxJsxFlowElement'
+    }
+  )
 
   // find all components that are using any of the previously imported variables
   visit(

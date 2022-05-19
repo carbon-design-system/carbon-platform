@@ -12,7 +12,20 @@ import { visit } from 'unist-util-visit'
 const urlsBelongToTheSameRepo = (url1, url2) => {
   // first four chunks of urls must be equal:
   // https://github.com/org/repo/*
-  return JSON.stringify(url1.split('/').filter(chunk => !!chunk).slice(0, 4)) === JSON.stringify(url2.split('/').filter(chunk => !!chunk).slice(0, 4))
+  return (
+    JSON.stringify(
+      url1
+        .split('/')
+        .filter((chunk) => !!chunk)
+        .slice(0, 4)
+    ) ===
+    JSON.stringify(
+      url2
+        .split('/')
+        .filter((chunk) => !!chunk)
+        .slice(0, 4)
+    )
+  )
 }
 
 // finds all image nodes in tree and:

@@ -63,7 +63,7 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
   let serializedContent = null
 
   // remove HTML comments
-  const sanitizedUsageFileSource = usageFileSource.replace(/<!--.*?-->/g, '')
+  const sanitizedUsageFileSource = usageFileSource.replace(/<!--(.|\n)*?-->/g, '')
 
   try {
     serializedContent = await serialize(sanitizedUsageFileSource, {

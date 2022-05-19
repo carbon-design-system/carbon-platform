@@ -9,7 +9,7 @@ import { NextSeo } from 'next-seo'
 import RemoteMdxLoader from '@/components/remote-mdx-loader'
 import { getRemoteMdxData } from '@/lib/github'
 
-const RemoteMdxTest = ({ source }) => {
+const RemoteMdxPage = ({ source }) => {
   const seo = {
     title: 'Overview'
   }
@@ -41,4 +41,4 @@ export const getStaticProps = async () => {
   }
 }
 
-export default RemoteMdxTest
+export default RemoteMdxPage

@@ -85,6 +85,19 @@ const Layout = ({ children }) => {
     setLibrarySideNav(router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
   }, [setShowSideNav, setLibrarySideNav, router.pathname])
 
+  useEffect(() => {
+    const handleRouteChange = () => {
+      // Collapse the side nav for small and medium breakpoint when navigating to a new page.
+      toggleSideNavExpanded(false)
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [router.events, toggleSideNavExpanded])
+
   const onClickSideNavExpand = () => {
     toggleSideNavExpanded(!isSideNavExpanded)
   }

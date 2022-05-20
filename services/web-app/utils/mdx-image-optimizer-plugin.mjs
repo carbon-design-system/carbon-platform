@@ -49,13 +49,16 @@ const urlsBelongToTheSameRepo = (url1, url2) => {
  */
 const optimizeTreeImages = async (dirPath, tree) => {
   const matches = []
-  visit(tree, { type: 'image' }, (node) => matches.push(node))
+  visit(tree, node => node.type === 'image' || (node.type === 'mdxJsxFlowElement' && node.name === 'Image'), (node) => matches.push(node))
 
   const promises = matches.map(async (node) => {
-    const isAbsolutePath = node.url.startsWith('http') || node.url.startsWith('https')
+    // node can be mdx image or <Image /> component
+    const nodeUrl = node.type === 'image' ? node.url : node.attributes.find(attr => attr.name === 'src').value
+
+    const isAbsolutePath = nodeUrl.startsWith('http') || nodeUrl.startsWith('https')
 
     // construct full image path (with repo url)
-    const fullPath = isAbsolutePath ? node.url : path.join(dirPath, node.url, '?raw=true')
+    const fullPath = isAbsolutePath ? nodeUrl : path.join(dirPath, nodeUrl, '?raw=true')
 
     // image is not being read from the repo, remove node
     if (!isAbsolutePath && !urlsBelongToTheSameRepo(dirPath, fullPath)) {

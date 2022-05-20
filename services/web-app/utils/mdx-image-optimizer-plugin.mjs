@@ -9,6 +9,13 @@ import { getPlaiceholder } from 'plaiceholder'
 import { remove } from 'unist-util-remove'
 import { visit } from 'unist-util-visit'
 
+/**
+ * Determines if two urls belong to the same github repo
+ *
+ * @param {string} url1 first repo to compare
+ * @param {stirng} url2 second repo to compare
+ * @returns {boolean} whether the two urls belong to the same github repo or not
+ */
 const urlsBelongToTheSameRepo = (url1, url2) => {
   // first four chunks of urls must be equal:
   // https://github.com/org/repo/*
@@ -28,13 +35,19 @@ const urlsBelongToTheSameRepo = (url1, url2) => {
   )
 }
 
-// finds all image nodes in tree and:
-// 1 - appends dirPath to image url if url is relative path
-// (assumes dirPath is url of base of a github repo in which the image lives)
-// 2 - Removes image nodes if relative url attempts to modify base url
-// 3 - converts image node to next/Image component
-// 4 - Adds height, width and placeholder properties to image
-const mdxImageOptimizerPlugin = (dirPath) => async (tree) => {
+/**
+ * finds all image nodes in tree and:
+ * 1 - appends dirPath to image url if url is relative path
+ * (assumes dirPath is url of base of a github repo in which the image lives)
+ * 2 - Removes image nodes if relative url attempts to modify base url
+ * 3 - converts image node to next/Image component
+ * 4 - Adds height, width and placeholder properties to image
+ *
+ * @param {string} dirPath path where mdx source comes from (expected to be github repo url)
+ * @param {object} tree AST: mdx source
+ * @returns undefined
+ */
+const optimizeTreeImages = async (dirPath, tree) => {
   const matches = []
   visit(tree, { type: 'image' }, (node) => matches.push(node))
 
@@ -72,5 +85,13 @@ const mdxImageOptimizerPlugin = (dirPath) => async (tree) => {
 
   await Promise.all(promises)
 }
+
+/**
+ * Constructs image optimizer plugin
+ *
+ * @param {string} dirPath path where mdx source comes from (expected to be github repo url)
+ * @returns {Function} the image optimizer function
+ */
+const mdxImageOptimizerPlugin = (dirPath) => optimizeTreeImages.bind(null, dirPath)
 
 export default mdxImageOptimizerPlugin

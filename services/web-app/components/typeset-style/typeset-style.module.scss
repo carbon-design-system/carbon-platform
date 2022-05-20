@@ -318,6 +318,7 @@
   position: sticky;
   z-index: 5;
   top: 0;
+  margin-top: spacing.$spacing-09;
   margin-right: -(spacing.$spacing-03);
   margin-left: -(spacing.$spacing-03);
   transition-duration: motion.$transition-expansion;
@@ -331,7 +332,7 @@
 }
 
 .sticky-container-visible {
-  top: 4rem;
+  top: 7rem;
 }
 
 .sticky-container-hidden {

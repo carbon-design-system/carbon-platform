@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Environment, getEnvironment } from '../../main/runtime'
+import { Environment, getEnvironment, withEnvironment } from '../../main/runtime'
 
 describe('getEnvironment', () => {
   it('returns test when the envvar is not set', () => {
@@ -57,6 +57,20 @@ describe('getEnvironment', () => {
     process.env.CARBON_ENVIRONMENT = 'bad'
 
     expect(getEnvironment).toThrow()
+
+    process.env.CARBON_ENVIRONMENT = old
+  })
+})
+
+describe('withEnvironment', () => {
+  it('correctly returns a prefixed string', () => {
+    const old = process.env.CARBON_ENVIRONMENT
+    delete process.env.CARBON_ENVIRONMENT
+
+    const input = 'hello world'
+    const expected = `TEST_${input}`
+
+    expect(withEnvironment(input)).toBe(expected)
 
     process.env.CARBON_ENVIRONMENT = old
   })

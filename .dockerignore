@@ -13,6 +13,7 @@ sonar-project.properties
 
 # Dirs
 **/dist/
+**/generated/
 **/node_modules/
 **/src/test/
 .github/

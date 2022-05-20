@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Button, Column, Grid } from '@carbon/react'
-import { ArrowRight, Events } from '@carbon/react/icons'
+import { ArrowRight } from '@carbon/react/icons'
+import { Svg64Community } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
 import Link from 'next/link'
@@ -59,7 +60,7 @@ const Library = ({ libraryData, params }) => {
   const assets = libraryData.assets.sort(assetSortComparator)
 
   const { sponsor } = libraryData.params
-  const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
+  const SponsorIcon = teams[sponsor] ? teams[sponsor].pictogram : Svg64Community
 
   let externalDocsLink
   if (libraryData.content.externalDocsUrl) {
@@ -79,10 +80,7 @@ const Library = ({ libraryData, params }) => {
         <Column sm={4} md={8} lg={12}>
           <Dashboard className={styles.dashboard}>
             <Column className={dashboardStyles.column} sm={4}>
-              <DashboardItem
-                aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}
-                border={['sm']}
-              >
+              <DashboardItem aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}>
                 <dl>
                   <dt className={dashboardStyles.label}>Version</dt>
                   <dd
@@ -101,7 +99,7 @@ const Library = ({ libraryData, params }) => {
               </DashboardItem>
             </Column>
             <Column className={dashboardStyles.column} sm={4} lg={8}>
-              <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }} border={['sm']}>
+              <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }}>
                 <Grid as="dl" className={dashboardStyles.subgrid}>
                   <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Sponsor</dt>

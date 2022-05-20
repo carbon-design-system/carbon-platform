@@ -11,60 +11,47 @@
 
 /*  Spacing */
 .h1-container.h1-container {
-  --space: #{spacing.$spacing-12};
-
-  margin-top: var(--space);
+  margin-top: spacing.$spacing-12;
 }
 
 .h2-container.h2-container {
-  --space: #{spacing.$spacing-11};
-
-  margin-top: var(--space);
+  margin-top: spacing.$spacing-11;
 }
 
 .h3-container.h3-container {
-  --space: #{spacing.$spacing-10};
-
-  margin-top: var(--space);
+  margin-top: spacing.$spacing-10;
 }
 
 .h4-container.h4-container {
-  --space: #{spacing.$spacing-07};
-
-  margin-top: var(--space);
+  margin-top: spacing.$spacing-07;
 }
 
 .h5-container,
 .h6-container {
-  --space: 0;
+  margin-top: 0;
 }
 
 .paragraph-container {
-  --space: #{spacing.$spacing-06};
-
-  margin-top: var(--space);
+  margin-top: spacing.$spacing-06;
 }
 
 .h1-container + *,
 .h2-container + *,
 .h3-container + *,
 .paragraph-container + * {
-  --space: #{spacing.$spacing-06};
+  margin-top: spacing.$spacing-06;
 }
 
 .h4-container + * {
-  --space: 0;
+  margin-top: 0;
 }
-
 /* Spacing List */
 .list {
-  --space: #{spacing.$spacing-06};
-
-  margin-top: var(--space);
+  margin-top: spacing.$spacing-06;
 }
 
 .list .list {
-  --space: 0;
+  margin-top: 0;
 }
 
 .ul {

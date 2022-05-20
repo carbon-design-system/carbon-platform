@@ -10,6 +10,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .container {
   width: 100%;
@@ -19,7 +20,7 @@
 .trigger {
   position: relative;
   width: 100%;
-  height: spacing.$spacing-09;
+  height: convert.rem(48px);
   padding: 0 spacing.$spacing-05;
   border-top: 0;
   border-right: 0;
@@ -80,7 +81,7 @@
   top: spacing.$spacing-01;
   right: spacing.$spacing-01;
   display: inline-block;
-  min-width: spacing.$spacing-05 + spacing.$spacing-02;
+  min-width: convert.rem(20px);
   padding-right: spacing.$spacing-02;
   padding-left: spacing.$spacing-02;
   border: spacing.$spacing-01 solid theme.$text-inverse;
@@ -90,7 +91,7 @@
   @include type.type-style('label-01');
 
   // override type scale
-  line-height: spacing.$spacing-05;
+  line-height: 1rem;
 }
 
 .content {
@@ -98,11 +99,11 @@
   max-width: none;
   @include breakpoint.breakpoint(md) {
     // span two columns, where each column has a 1px gutter
-    width: calc(200% + 2px);
+    width: calc(200% + convert.rem(2px));
   }
   // span three columns, plus an offset for gutters
   @include breakpoint.breakpoint(lg) {
-    width: calc(300% + #{spacing.$spacing-07});
+    width: calc(300% + convert.rem(32px));
   }
 
   &:focus,
@@ -118,7 +119,7 @@
   &:focus,
   &:active {
     border: 1px solid theme.$focus;
-    margin: -1px;
+    margin: convert.rem(-1px);
   }
 }
 
@@ -134,11 +135,11 @@
   &::after {
     position: absolute;
     width: 100%;
-    height: spacing.$spacing-06;
+    height: convert.rem(24px);
     background: theme.$layer-01;
     content: '';
     @include breakpoint.breakpoint(lg) {
-      width: calc(100% - #{spacing.$spacing-05});
+      width: calc(100% - convert.rem(16px));
     }
   }
 

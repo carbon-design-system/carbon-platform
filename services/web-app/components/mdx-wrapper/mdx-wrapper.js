@@ -7,17 +7,25 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
+import { useContext, useEffect } from 'react'
 import slugify from 'slugify'
 
 import PageHeader from '@/components/page-header'
 import PageTabs from '@/components/page-tabs'
+import { assetsNavData } from '@/data/nav-data'
+import { LayoutContext } from '@/layouts/layout'
 
 const MdxWrapper = ({ children, ...props }) => {
+  const { setNavData } = useContext(LayoutContext)
   const router = useRouter()
   const { title, description, tabs, keywords } = JSON.parse(props.frontmatter)
   const pathSegments = router.pathname.split('/').filter(Boolean)
   pathSegments.pop()
   const baseSegment = pathSegments.join('/')
+
+  useEffect(() => {
+    setNavData(assetsNavData)
+  }, [setNavData])
   const withTabs = tabs != null
 
   return (
@@ -33,7 +41,10 @@ const MdxWrapper = ({ children, ...props }) => {
         <PageTabs
           title={title}
           tabs={tabs.map((tab) => {
-            return { name: tab, path: `/${baseSegment}/${slugify(tab, { strict: true })}` }
+            return {
+              name: tab,
+              path: `/${baseSegment}/${slugify(tab, { strict: true, lower: true })}`
+            }
           })}
         />
       )}

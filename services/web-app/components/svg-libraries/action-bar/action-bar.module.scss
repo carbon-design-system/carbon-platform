@@ -2,6 +2,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 @media screen and (prefers-reduced-motion: reduce) {
   .container {
@@ -38,8 +39,8 @@
 .container button,
 .container a {
   display: inline-flex;
-  width: 32px;
-  height: 32px;
+  width: convert.rem(32px);
+  height: convert.rem(32px);
   align-items: center;
   justify-content: center;
   padding: 0;

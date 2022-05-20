@@ -23,6 +23,24 @@
   margin-left: -(spacing.$spacing-05);
 }
 
+.column {
+  border-top: 1px solid theme.$border-subtle;
+
+  &:first-child {
+    border-top: none;
+  }
+
+  @include breakpoint.breakpoint('md') {
+    &:nth-child(2) {
+      border-top: none;
+    }
+
+    &:nth-child(even) {
+      box-shadow: -1px 0 0 0 theme.$border-subtle;
+    }
+  }
+}
+
 .subcolumn {
   &--links {
     display: flex;

@@ -5,7 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Carbon, IbmCloud, IbmSecurity, Watson } from '@carbon/react/icons'
-import { Svg32CarbonForIbmDotcom, Svg32CarbonForIbmProducts } from '@carbon-platform/icons'
+import {
+  Svg32CarbonForIbmDotcom,
+  Svg32CarbonForIbmProducts,
+  Svg64Carbon,
+  Svg64CarbonForIbmDotcom,
+  Svg64CarbonForIbmProducts,
+  Svg64Cloud,
+  Svg64Security,
+  Svg64Watson
+} from '@carbon-platform/icons'
 
 /**
  * Teams are defined here for now, but in the future we will probably want these stored in our data-
@@ -15,30 +24,37 @@ import { Svg32CarbonForIbmDotcom, Svg32CarbonForIbmProducts } from '@carbon-plat
 export const teams = {
   carbon: {
     icon: Carbon,
-    name: 'Carbon'
+    name: 'Carbon',
+    pictogram: Svg64Carbon
   },
   'ibm-dotcom': {
     icon: Svg32CarbonForIbmDotcom,
-    name: 'IBM.com'
+    name: 'IBM.com',
+    pictogram: Svg64CarbonForIbmDotcom
   },
   'ibm-cloud': {
     icon: IbmCloud,
-    name: 'IBM Cloud'
+    name: 'IBM Cloud',
+    pictogram: Svg64Cloud
   },
   'ibm-security': {
     icon: IbmSecurity,
-    name: 'IBM Security'
+    name: 'IBM Security',
+    pictogram: Svg64Security
   },
   'ai-apps': {
     icon: Watson,
-    name: 'IBM AI Apps'
+    name: 'IBM AI Apps',
+    pictogram: Svg64Watson
   },
   watson: {
     icon: Watson,
-    name: 'IBM Watson'
+    name: 'IBM Watson',
+    pictogram: Svg64Watson
   },
   'ibm-products': {
     icon: Svg32CarbonForIbmProducts,
-    name: 'IBM Products'
+    name: 'IBM Products',
+    pictogram: Svg64CarbonForIbmProducts
   }
 }

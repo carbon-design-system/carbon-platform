@@ -49,11 +49,16 @@ const urlsBelongToTheSameRepo = (url1, url2) => {
  */
 const optimizeTreeImages = async (dirPath, tree) => {
   const matches = []
-  visit(tree, node => node.type === 'image' || (node.type === 'mdxJsxFlowElement' && node.name === 'Image'), (node) => matches.push(node))
+  visit(
+    tree,
+    (node) => node.type === 'image' || (node.type === 'mdxJsxFlowElement' && node.name === 'Image'),
+    (node) => matches.push(node)
+  )
 
   const promises = matches.map(async (node) => {
     // node can be mdx image or <Image /> component
-    const nodeUrl = node.type === 'image' ? node.url : node.attributes.find(attr => attr.name === 'src').value
+    const nodeUrl =
+      node.type === 'image' ? node.url : node.attributes.find((attr) => attr.name === 'src').value
 
     const isAbsolutePath = nodeUrl.startsWith('http') || nodeUrl.startsWith('https')
 

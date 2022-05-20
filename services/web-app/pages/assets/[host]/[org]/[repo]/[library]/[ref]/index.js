@@ -76,6 +76,9 @@ const Library = ({ libraryData, params }) => {
         <Column sm={4} md={8} lg={12}>
           <PageHeader title={seo.title} />
         </Column>
+        <Column sm={4} md={8}>
+          <p className={styles.description}>{seo.description}</p>
+        </Column>
         <Column sm={4} md={8} lg={12}>
           <Dashboard className={styles.dashboard}>
             <Column className={dashboardStyles.column} sm={4}>

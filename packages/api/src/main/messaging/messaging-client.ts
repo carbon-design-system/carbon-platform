@@ -125,7 +125,8 @@ class MessagingClient {
       return
     }
 
-    resolve(reply?.content.toString())
+    resolve(reply?.content ? JSON.parse(reply.content.toString())?.response : undefined)
+
     this.replyCallbacks.delete(correlationId)
   }
 

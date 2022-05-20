@@ -46,6 +46,7 @@ beforeEach(() => {
   mockedNestApplication = {
     connectMicroservice: jest.fn(),
     get: jest.fn(() => ({ httpAdapter: {} })),
+    init: jest.fn(),
     listen: jest.fn(),
     startAllMicroservices: jest.fn(),
     useGlobalFilters: jest.fn(),

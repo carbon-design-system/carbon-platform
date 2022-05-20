@@ -38,10 +38,12 @@ function Trace(): MethodDecorator {
 
     descriptor.value = function traced(...args: any[]) {
       if (!target.logging) {
-        target.logging = new Logging(target.constructor.name)
+        target.logging = new Logging(target.name || target.constructor.name)
       }
 
-      target.logging.debug(`-> ${String(propertyKey)}(${args})`)
+      const methodName = String(propertyKey)
+
+      traceEnter(target.logging, methodName, args)
 
       const performanceId = uuidv4()
       let result: any
@@ -59,22 +61,7 @@ function Trace(): MethodDecorator {
       } finally {
         const responseTime = performance.measure(performanceId, performanceId)?.duration?.toFixed(4)
 
-        if (result instanceof Promise) {
-          result.then(
-            (value: any) =>
-              target.logging.debug(
-                `<- ${String(propertyKey)}: ${JSON.stringify(value)} ${responseTime}ms`
-              ),
-            (err: any) =>
-              target.logging.debug(`<-x- ${String(propertyKey)}: ${err} ${responseTime}ms`)
-          )
-        } else {
-          target.logging.debug(
-            `${result instanceof Error ? '<-x-' : '<-'} ${String(propertyKey)}: ${
-              result instanceof Error ? result : JSON.stringify(result)
-            } ${responseTime}ms`
-          )
-        }
+        traceExit(target.logging, methodName, result, responseTime)
 
         performance.clearMarks(performanceId)
         performance.clearMeasures(performanceId)
@@ -90,4 +77,39 @@ function Trace(): MethodDecorator {
     })
   }
 }
+
+function safeStringify(arg: any) {
+  try {
+    return JSON.stringify(arg)
+  } catch {}
+
+  try {
+    return String(arg)
+  } catch {}
+
+  return typeof arg
+}
+
+function traceEnter(logging: Logging, methodName: string, args: any[]) {
+  const stringArgs = args.map(safeStringify)
+
+  logging.debug(`-> ${methodName}(${stringArgs})`)
+}
+
+function traceExit(logging: Logging, methodName: string, result: any, responseTime: string) {
+  if (result instanceof Promise) {
+    result.then(
+      (value: any) =>
+        logging.debug(`<- ${methodName} <- ${safeStringify(value)} ${responseTime}ms`),
+      (err: any) => logging.debug(`-x- ${methodName} <- ${err} ${responseTime}ms`)
+    )
+  } else {
+    logging.debug(
+      `${result instanceof Error ? '-x-' : '<-'} ${methodName} <- ${
+        result instanceof Error ? result : safeStringify(result)
+      } ${responseTime}ms`
+    )
+  }
+}
+
 export { Trace }

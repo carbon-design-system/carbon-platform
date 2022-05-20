@@ -4,19 +4,20 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { getRunMode, RunMode } from '@carbon-platform/api/dist/main/runtime'
 import { StatusController } from '@carbon-platform/api/microservice'
+import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 
 import { SCHEMA_OUTPUT_FILE } from './constants'
+import { DataGraphController } from './data-graph-controller'
 import { LibrariesModule } from './libraries/libraries-module'
 import { RequestLogPlugin } from './request-log-plugin'
 import { UsersModule } from './users/users-module'
 
 @Module({
-  controllers: [StatusController],
+  controllers: [StatusController, DataGraphController],
   imports: [
     // Resolver modules
     LibrariesModule,

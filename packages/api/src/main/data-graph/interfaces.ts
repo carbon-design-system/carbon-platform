@@ -4,14 +4,16 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { QueryResult } from './outputs/query-result'
-
 interface DataGraphMessage {
   query: string
+  variables?: {
+    [key: string]: string
+  }
 }
 
-interface DataGraphResponse {
-  data: QueryResult
+interface DataGraphResponse<T = { [key: string]: any }> {
+  data: T
+  errors?: Readonly<Array<any>>
 }
 
 export { DataGraphMessage, DataGraphResponse }

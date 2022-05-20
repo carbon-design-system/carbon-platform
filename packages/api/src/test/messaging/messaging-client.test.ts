@@ -86,7 +86,9 @@ test('query', async () => {
       properties: {
         correlationId: uuidv4()
       },
-      content: 'the response'
+      content: JSON.stringify({
+        response: 'the response'
+      })
     })
   })
 
@@ -125,7 +127,9 @@ test('waits for confirms before resolving query', async () => {
       properties: {
         correlationId: uuidv4()
       },
-      content: 'the response'
+      content: JSON.stringify({
+        response: 'the response'
+      })
     })
   })
 
@@ -181,7 +185,9 @@ describe('error paths', () => {
         properties: {
           correlationId: 'not found'
         },
-        content: 'the response'
+        content: JSON.stringify({
+          response: 'the response'
+        })
       })
     }).not.toThrow()
   })

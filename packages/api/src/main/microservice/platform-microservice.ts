@@ -40,7 +40,7 @@ interface MicroserviceConfig {
   /**
    * Whether or not to enable automatic removal of messages from the associated queue.
    */
-  noAck?: boolean
+  autoAck?: boolean
 
   /**
    * The name of the queue from which to consume messages.
@@ -50,12 +50,12 @@ interface MicroserviceConfig {
 
 class PlatformMicroservice {
   private readonly module: Function
-  private readonly noAck: boolean
+  private readonly autoAck: boolean
   private readonly queueName: string
 
   constructor(config: MicroserviceConfig) {
     this.module = config.module
-    this.noAck = config.noAck || false
+    this.autoAck = config.autoAck || false
     // Use a queue name that is environment-specific
     this.queueName = withEnvironment(config.queue)
   }
@@ -135,7 +135,7 @@ class PlatformMicroservice {
       {
         transport: Transport.RMQ,
         options: {
-          noAck: this.noAck,
+          noAck: this.autoAck,
           socketOptions: DEFAULT_SOCKET_OPTIONS,
           queue: this.queueName,
           queueOptions: DEFAULT_QUEUE_OPTIONS,
@@ -144,6 +144,9 @@ class PlatformMicroservice {
       },
       { inheritAppConfig: true }
     )
+
+    // Invoke all initialization side effects before listening for incoming requests
+    await application.init()
 
     await application.startAllMicroservices()
     return application.listen(PORT)

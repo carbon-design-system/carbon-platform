@@ -6,6 +6,6 @@
  */
 export { gql } from './gql'
 export { CreateUserInput } from './inputs/create-user-input'
+export { DataGraphMessage, DataGraphResponse } from './interfaces'
 export { Library } from './models/library.model'
 export { User } from './models/user.model'
-export { QueryResult } from './outputs/query-result'

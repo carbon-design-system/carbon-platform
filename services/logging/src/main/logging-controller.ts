@@ -11,7 +11,7 @@ import { Controller } from '@nestjs/common'
 import { EventPattern, Payload } from '@nestjs/microservices'
 
 import { LogDnaService } from './log-dna-service'
-import { validateLogMessage } from './log-message-validator'
+import { validateLogMessage } from './validate-log-message'
 
 @Controller()
 class LoggingController {

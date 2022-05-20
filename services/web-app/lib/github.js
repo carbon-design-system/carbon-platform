@@ -69,7 +69,7 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
 
   // convert inline string styles to objects
   sanitizedUsageFileSource = sanitizedUsageFileSource.replace(
-    /style=["'](?:[^"'/]*\/)*([^'"]+)["']/g,
+    /style=["']([^'"]+)["']/g,
     (inlineStyle) => `style={${JSON.stringify(getStyleObjectFromString(inlineStyle))}}`
   )
 

@@ -332,7 +332,8 @@
 }
 
 .sticky-container-visible {
-  top: 7rem;
+  // Header (48) + spacer (16) + tabs(48)  = 112.
+  top: convert.rem(112px);
 }
 
 .sticky-container-hidden {

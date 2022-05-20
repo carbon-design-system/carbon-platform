@@ -10,13 +10,17 @@
 @use '@carbon/react/scss/theme' as theme;
 
 .page-description {
-  margin-top: spacing.$spacing-06;
+  margin-top: spacing.$spacing-11;
   color: theme.$text-primary;
 }
 
 .page-description,
 .page-description p {
   @include type.type-style('fluid-heading-03', true);
+}
+
+.page-description > * {
+  margin-top: 0;
 }
 
 .page-description > * + * {

@@ -94,7 +94,6 @@ const DoDont = (props) => {
 }
 
 DoDont.defaultProps = {
-  aspectRatio: '1:1',
   type: 'do',
   colLg: 4,
   colMd: 4,

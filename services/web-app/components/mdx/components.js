@@ -40,22 +40,6 @@ import Video from '@/components/video'
 
 import StatusIndicatorTable from '../status-indicator-table'
 
-const Placeholder = ({ name, children }) => {
-  return (
-    <div
-      style={{
-        background: 'white',
-        border: '1px dotted #8d8d8d',
-        margin: '16px',
-        padding: '16px'
-      }}
-    >
-      <strong>{name}</strong>
-      <div>{children}</div>
-    </div>
-  )
-}
-
 const components = {
   h1: H1,
   h2: H2,
@@ -109,16 +93,7 @@ const components = {
   TypeScaleTable,
   TypeWeight,
   ColorPalette,
-  StatusIndicatorTable,
-  /* Gatsby theme components, not used in Carbon website, out of scope v1 */
-  FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
-  ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,
-  SquareCard: ({ children }) => <Placeholder name="SquareCard">{children}</Placeholder>,
-  ExpressiveListContainer: ({ children }) => (
-    <Placeholder name="ExpressiveListContainer">{children}</Placeholder>
-  ),
-  DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
-  ExpressiveList: ({ children }) => <Placeholder name="ExpressiveList">{children}</Placeholder>
+  StatusIndicatorTable
 }
 
 export default components

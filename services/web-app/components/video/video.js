@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Column, Grid } from '@carbon/react'
 import { Pause, Play } from '@carbon/react/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
@@ -32,24 +33,28 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
 
   if (vimeoId) {
     return (
-      <div className={styles['video-container']}>
-        <div className={clsx(styles.video, styles.vimeo)}>
-          <div className="embedVideo-container">
-            <iframe
-              allow="autoplay"
-              title={title}
-              src={`https://player.vimeo.com/video/${vimeoId}`}
-              ref={iframeRef}
-              width="640"
-              height="360"
-              frameBorder="0"
-              webkitallowfullscreen="true"
-              mozallowfullscreen="true"
-              allowFullScreen
-            />
+      <Grid>
+        <Column sm={4} md={8} lg={12}>
+          <div className={styles['video-container']}>
+            <div className={clsx(styles.video, styles.vimeo)}>
+              <div className="embedVideo-container">
+                <iframe
+                  allow="autoplay"
+                  title={title}
+                  src={`https://player.vimeo.com/video/${vimeoId}`}
+                  ref={iframeRef}
+                  width="640"
+                  height="360"
+                  frameBorder="0"
+                  webkitallowfullscreen="true"
+                  mozallowfullscreen="true"
+                  allowFullScreen
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </Column>
+      </Grid>
     )
   }
 
@@ -95,30 +100,34 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
   }
 
   return (
-    <div className={styles['video-container']}>
-      <div
-        className={buttonClassName}
-        role="button"
-        onClick={onClick}
-        onKeyDown={onKeyDown}
-        tabIndex="0"
-      >
-        {isPlaying ? <Pause size={32} /> : <Play size={32} />}
-        <span className="cds--assistive-text">{isPlaying ? 'Pause' : 'Play'}</span>
-      </div>
-      <video
-        muted // TODO: Do we want to allow a captions <track> to be provided? This is the only way
-        // to avoid having to mark the video as muted for a11y compliance.
-        autoPlay={autoPlay}
-        className={styles.video}
-        type="video/mp4"
-        ref={videoRef}
-        onEnded={onEnded}
-        src={src}
-        poster={typeof poster === 'object' ? poster.src : poster}
-        {...props}
-      />
-    </div>
+    <Grid>
+      <Column sm={4} md={8} lg={12}>
+        <div className={styles['video-container']}>
+          <div
+            className={buttonClassName}
+            role="button"
+            onClick={onClick}
+            onKeyDown={onKeyDown}
+            tabIndex="0"
+          >
+            {isPlaying ? <Pause size={32} /> : <Play size={32} />}
+            <span className="cds--assistive-text">{isPlaying ? 'Pause' : 'Play'}</span>
+          </div>
+          <video
+            muted // TODO: Do we want to allow a captions <track> to be provided? This is the only way
+            // to avoid having to mark the video as muted for a11y compliance.
+            autoPlay={autoPlay}
+            className={styles.video}
+            type="video/mp4"
+            ref={videoRef}
+            onEnded={onEnded}
+            src={src}
+            poster={typeof poster === 'object' ? poster.src : poster}
+            {...props}
+          />
+        </div>
+      </Column>
+    </Grid>
   )
 }
 

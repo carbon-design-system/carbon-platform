@@ -7,6 +7,10 @@
 
 /* stylelint-disable declaration-no-important */
 /* stylelint-disable declaration-property-value-disallowed-list */
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+
 .image-container {
   width: 100%;
 
@@ -18,6 +22,21 @@
     position: relative !important;
     width: 100% !important;
     height: unset !important;
+    background: theme.$layer-01;
     object-fit: contain;
+  }
+}
+
+// targets images on the page not nested inside other components
+// images should sit inside the grid at md and above
+:global([class*='layout_column-content']) > .image-container {
+  margin-top: spacing.$spacing-07;
+
+  @include breakpoint.breakpoint('md') {
+    padding: 0 spacing.$spacing-05;
+  }
+
+  @include breakpoint.breakpoint('lg') {
+    padding-right: 0;
   }
 }

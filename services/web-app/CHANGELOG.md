@@ -2,6 +2,109 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.113](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.112...@carbon-platform/web-app@0.1.113) (2022-05-20)
+
+
+### Features 🌟
+
+* add aspect ratio demo ([a735ed2](https://github.com/carbon-design-system/carbon-platform/commit/a735ed2005b85c8fac1a48a4295bb8523ca4c7a3))
+* add content and motion paoges ([7c29e6a](https://github.com/carbon-design-system/carbon-platform/commit/7c29e6a929b9d2bdc00f43f85b3017982abec8c4))
+* add icons and pictograms pages ([9470c38](https://github.com/carbon-design-system/carbon-platform/commit/9470c38e1f237f8379a2d560cfb3c6942877e860))
+* add pages ([74fd261](https://github.com/carbon-design-system/carbon-platform/commit/74fd261caa25d3de3e7e8ada4bb60164b8f41873))
+* add spacing pages ([90cdc81](https://github.com/carbon-design-system/carbon-platform/commit/90cdc81a23565e6bc2e106d03b4b4092c943aac0))
+* add themes pages ([32a0140](https://github.com/carbon-design-system/carbon-platform/commit/32a0140845c2590c0a18214d5cbae306fc481e43))
+
+
+### Bug Fixes 🐛
+
+* add mdx image spacing ([cf0f870](https://github.com/carbon-design-system/carbon-platform/commit/cf0f870564d641659a336ba81182c54346dff657))
+* add mdx image spacing ([fa8d91a](https://github.com/carbon-design-system/carbon-platform/commit/fa8d91a26434b6e14d196a5b11a534a382add0a1))
+* anchorlink cols ([9002edd](https://github.com/carbon-design-system/carbon-platform/commit/9002eddb01fc524edf023df6b5356614be627318))
+* anchorlinks ([d9140fa](https://github.com/carbon-design-system/carbon-platform/commit/d9140fab5cc2e5ca5d608827527e55ef1ee2b7df))
+* cleanup component.js ([c8cd922](https://github.com/carbon-design-system/carbon-platform/commit/c8cd9226ce502c27f8c725bc2a0f682b8ad9f7c9))
+* grid implemenation page ([ffb5163](https://github.com/carbon-design-system/carbon-platform/commit/ffb516313842839705f1eef4e8942b3911105993))
+* grid implementation page ([cc92a7e](https://github.com/carbon-design-system/carbon-platform/commit/cc92a7ee3a949731229e4aee55c1d86a2bec9c27))
+* image inside grid ([d160490](https://github.com/carbon-design-system/carbon-platform/commit/d16049086fe9b1a8c0efccbd7ab67baff4f32c5d))
+* images ([077fb87](https://github.com/carbon-design-system/carbon-platform/commit/077fb87eed399998c9fb082a365207632faa94bf))
+* images ([0f4e24c](https://github.com/carbon-design-system/carbon-platform/commit/0f4e24c64d21baece0a9a1c0e99a97cbb83b7033))
+* images on grid ([0bb4390](https://github.com/carbon-design-system/carbon-platform/commit/0bb43907dbba78864f243a2f7f6e9789198aaff3))
+* inline code styles ([884faef](https://github.com/carbon-design-system/carbon-platform/commit/884faef0dabf208353c05e06a5aca00ef5747b93))
+* lint errors ([6bc4bf2](https://github.com/carbon-design-system/carbon-platform/commit/6bc4bf26378ee6f7e86b59a8634b9adcc819eeae))
+* merge conflict ([0c25db9](https://github.com/carbon-design-system/carbon-platform/commit/0c25db90dd544894eb2fc50c74f01caac8062d3d))
+* merge main ([1f46a81](https://github.com/carbon-design-system/carbon-platform/commit/1f46a81e1f5fd09fc1b4dcc257e52cf9e537bfc6))
+* merge main ([c9ede5f](https://github.com/carbon-design-system/carbon-platform/commit/c9ede5f3e8e12cb1f8274ec4fd1a25845584eaa3))
+* merge main ([426ecb2](https://github.com/carbon-design-system/carbon-platform/commit/426ecb2c1625c1dc2473b301ca422266e65e8669))
+* merge upstream ([33c4a84](https://github.com/carbon-design-system/carbon-platform/commit/33c4a842a20e065584f77dc46cac2a4b362b36e7))
+* move pages into assets folder ([78fb6cb](https://github.com/carbon-design-system/carbon-platform/commit/78fb6cbc823d4538c017df8c6f6289dfaf5b6608))
+* order of nav ([324d2c6](https://github.com/carbon-design-system/carbon-platform/commit/324d2c6a110dc96ffea752e62296d079dce856c6))
+* remove content apge ([546eb6e](https://github.com/carbon-design-system/carbon-platform/commit/546eb6ec19df4e82952f0e9686cfe761fe707dd6))
+* remove default aspect ratiododont ([cf47e50](https://github.com/carbon-design-system/carbon-platform/commit/cf47e50e7f7558a553ae0dde17bc5872bc2e9058))
+* resource-card border ([bc2ef74](https://github.com/carbon-design-system/carbon-platform/commit/bc2ef742e945fa92c231e54e565fb8257b61f859))
+* spacing ([5b62a46](https://github.com/carbon-design-system/carbon-platform/commit/5b62a466de9011693707bf78e603e1144d515a4f))
+* spacing around video and page description ([e4e117a](https://github.com/carbon-design-system/carbon-platform/commit/e4e117a38d855305dbca3e91a1f8e3f44b6864b4))
+* style fixes ([0da0dbc](https://github.com/carbon-design-system/carbon-platform/commit/0da0dbc3af5bc9dc2e7f02225ae2d162891ccede))
+* styling fixes ([da2ec3d](https://github.com/carbon-design-system/carbon-platform/commit/da2ec3df8fb1cbc42950c0df029c52514c5356ef))
+* tabs clickable area ([64e9e60](https://github.com/carbon-design-system/carbon-platform/commit/64e9e60258b2670527719cbb9cf954df6c48f3c6))
+* typeset style causing horz scroll ([ed5de5b](https://github.com/carbon-design-system/carbon-platform/commit/ed5de5b54e65ee5fd3165e88449f38b4902e7c5a))
+* update for prod ([502b733](https://github.com/carbon-design-system/carbon-platform/commit/502b7339f72920dca9f8b1f3224309d9bfd94fdc))
+* update thumbnails ([0b98ed8](https://github.com/carbon-design-system/carbon-platform/commit/0b98ed85fee53553ba94a35376606fa7dbfe634c))
+* **web-app:** add teams pictograms and use in detail pages ([e8c0505](https://github.com/carbon-design-system/carbon-platform/commit/e8c0505959509a690bdad9e299d52debdd1a1a1e))
+* **web-app:** correct carbon react link in assets page ([7df72e8](https://github.com/carbon-design-system/carbon-platform/commit/7df72e8c36a820885580064abcbd725ae6f5a14f))
+* **web-app:** guidelines links ([cfcd89a](https://github.com/carbon-design-system/carbon-platform/commit/cfcd89a7e438b53813fbcc2091d966a796d83fc6))
+* **web-app:** mdx styling bugs ([8d44f76](https://github.com/carbon-design-system/carbon-platform/commit/8d44f76d28b13eaaced4a460a3f1b2e34cb6bb24))
+* **web-app:** prettier ([ac0f396](https://github.com/carbon-design-system/carbon-platform/commit/ac0f396bfc24e515d708039f888a7e628c8667c7))
+
+### [0.1.112](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.111...@carbon-platform/web-app@0.1.112) (2022-05-18)
+
+
+### Features 🌟
+
+* **web-app:** treeview integration with sidenav ([0b365bb](https://github.com/carbon-design-system/carbon-platform/commit/0b365bb2d475918af0d76a8e7bfc986b0f3304ae))
+
+
+### Bug Fixes 🐛
+
+* sticky tabs mdx ([1488604](https://github.com/carbon-design-system/carbon-platform/commit/1488604e4bcc8ecc2b353ae836afc4ea498045d8))
+* **web-app:** active item :tada ([167bf29](https://github.com/carbon-design-system/carbon-platform/commit/167bf299838650d332467792599a5a5d8e4193d4))
+* **web-app:** delete unnecessary file ([120b791](https://github.com/carbon-design-system/carbon-platform/commit/120b791bcedc5e4e2065607949b5a5f63ed64589))
+* **web-app:** nav-tree, minor css fixes ([7e0e1a0](https://github.com/carbon-design-system/carbon-platform/commit/7e0e1a00e803df7d066c13435c2b0be35081b3e2))
+* **web-app:** open treenode when inner element is active ([efbe964](https://github.com/carbon-design-system/carbon-platform/commit/efbe964ac4039fb0d35b1a270f96ac125b3b2a62))
+* **web-app:** support tabs, activeItem ([2cececd](https://github.com/carbon-design-system/carbon-platform/commit/2cececde709bc767236d3efa643e1a8015a9c20b))
+
+### [0.1.111](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.110...@carbon-platform/web-app@0.1.111) (2022-05-17)
+
+
+### Misc. 🔮
+
+* **web-app:** replace spacing tokens with rem function ([b5eaa3a](https://github.com/carbon-design-system/carbon-platform/commit/b5eaa3affa6a896483278a9e05c477a2c051de4c))
+* **web-app:** replace spacing tokens with rem function ([33decf5](https://github.com/carbon-design-system/carbon-platform/commit/33decf5cdcf1143763669adc8a218d05cc634605))
+* **web-app:** replace spacing tokens with rem function ([482c17d](https://github.com/carbon-design-system/carbon-platform/commit/482c17d998c6bd6ebf1e541f6bd91de931a83552))
+
+
+### Features 🌟
+
+* add code snippet functionality ([4285566](https://github.com/carbon-design-system/carbon-platform/commit/42855662bb9387a67f77d884713b8386539906a1))
+* add prism ([a395499](https://github.com/carbon-design-system/carbon-platform/commit/a395499a5cbc608fe6b0ddc115e5ed544b38d43d))
+* add prism ([feccb78](https://github.com/carbon-design-system/carbon-platform/commit/feccb78486b65e95cdd842856cfccc3ab782b73b))
+* update page tabs ([efa1546](https://github.com/carbon-design-system/carbon-platform/commit/efa154616db398db6d3707df729e78aa493e1e1a))
+
+
+### Bug Fixes 🐛
+
+* add comments ([fc505d2](https://github.com/carbon-design-system/carbon-platform/commit/fc505d206c3d967d5d7b1f1eb260e4eb2562483b))
+* add proptypes ([ddfe247](https://github.com/carbon-design-system/carbon-platform/commit/ddfe247843c314b31a7b3b10df9b9cfef5bd8657))
+* add proptypes ([0c15c5b](https://github.com/carbon-design-system/carbon-platform/commit/0c15c5b183400e7d87326aac51ab5636ba0463a2))
+* change tabs to links ([46de383](https://github.com/carbon-design-system/carbon-platform/commit/46de383cf4c814f963004137288437740f9b457f))
+* change tabs to links ([f1eae3b](https://github.com/carbon-design-system/carbon-platform/commit/f1eae3b75e79ca9cc28e107002ab9359baaff3cc))
+* file name ([d5fd3e8](https://github.com/carbon-design-system/carbon-platform/commit/d5fd3e8416aa964ea43bc455034b7a4640eb0720))
+* merge conflicts ([78e8d3c](https://github.com/carbon-design-system/carbon-platform/commit/78e8d3cba00d7142cc3afd3b4ee2787dacba7944))
+* missing values ([810359e](https://github.com/carbon-design-system/carbon-platform/commit/810359ea52500ca65ca17fb388471a3f75a8822f))
+* page tabs ([cbe0193](https://github.com/carbon-design-system/carbon-platform/commit/cbe019358f4f6cf392d9fddfc84d7fdcbdf3cfe5))
+* page tabs ([69f1251](https://github.com/carbon-design-system/carbon-platform/commit/69f1251b29abfc028c2e8c2b2ce6b3b2406701a1))
+* remove inline style ([c2e0663](https://github.com/carbon-design-system/carbon-platform/commit/c2e0663c290a4938caa6bcb4c8498864e9aff4dc))
+* tooltip colors ([97edc2a](https://github.com/carbon-design-system/carbon-platform/commit/97edc2a903f8e7e41efdf6a5575d109c9b420622))
+* update inline code  background color to layer-accent color ([4422209](https://github.com/carbon-design-system/carbon-platform/commit/4422209c6b693eb6d883207369ebcb52cb3d06ab))
+
 ### [0.1.110](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.109...@carbon-platform/web-app@0.1.110) (2022-05-16)
 
 

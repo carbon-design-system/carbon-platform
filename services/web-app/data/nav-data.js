@@ -33,11 +33,67 @@ export const assetsNavData = [
     title: 'About Assets'
   },
   {
+    title: 'Guidelines',
+    items: [
+      {
+        path: '/assets/guidelines/2x-grid/overview',
+        title: '2x Grid',
+        hasTabs: true
+      },
+      {
+        path: '/assets/guidelines/accessibility/overview',
+        title: ' Accessibility',
+        hasTabs: true
+      },
+      {
+        path: '/assets/guidelines/content/overview',
+        title: ' Content',
+        hasTabs: true
+      },
+      {
+        path: '/assets/guidelines/color/overview',
+        title: ' Color',
+        hasTabs: true
+      },
+      {
+        path: '/assets/guidelines/icons/library',
+        title: ' Icons',
+        hasTabs: true
+      },
+      {
+        path: '/assets/guidelines/pictograms/library',
+        title: ' Pictograms',
+        hasTabs: true
+      },
+      {
+        path: '/assets/guidelines/motion/overview',
+        title: ' Motion',
+        hasTabs: true
+      },
+      {
+        path: '/assets/guidelines/spacing/overview',
+        title: ' Spacing',
+        hasTabs: true
+      },
+      {
+        path: '/assets/guidelines/themes/overview',
+        title: ' Themes',
+        hasTabs: true
+      },
+      {
+        path: '/assets/guidelines/typography/overview',
+        title: ' Typography',
+        hasTabs: true
+      }
+    ]
+  },
+  {
     path: '/assets/libraries',
     title: 'Libraries'
   },
   {
     title: 'Catalogs',
+    isSection: true,
     items: [
       {
         path: type.component.path,
@@ -64,6 +120,7 @@ export const assetsNavData = [
   },
   {
     title: 'Collections',
+    isSection: true,
     items: [
       {
         path: '/assets/data-visualization',

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.32](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.31...@carbon-platform/icons@0.0.32) (2022-05-20)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add teams pictograms and use in detail pages ([e8c0505](https://github.com/carbon-design-system/carbon-platform/commit/e8c0505959509a690bdad9e299d52debdd1a1a1e))
+
 ### [0.0.31](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.30...@carbon-platform/icons@0.0.31) (2022-05-10)
 
 

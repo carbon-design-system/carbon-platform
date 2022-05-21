@@ -13,6 +13,13 @@ on:
 
   # Enable running this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      republish:
+        type: boolean
+        required: false
+        description: |
+          Force republish of packages even if versions weren't updated
+        default: false
 
 jobs:
   update-versions:
@@ -50,7 +57,7 @@ jobs:
   data-graph:
     name: Publish Data-Graph Service
     needs: update-versions
-    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/data-graph']
+    if: inputs.republish || fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/data-graph']
     uses: ./.github/workflows/publish-service.yml
     with:
       service_name: '@carbon-platform/data-graph'
@@ -61,7 +68,7 @@ jobs:
   logging:
     name: Publish Logging Service
     needs: update-versions
-    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/logging']
+    if: inputs.republish || fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/logging']
     uses: ./.github/workflows/publish-service.yml
     with:
       service_name: '@carbon-platform/logging'
@@ -72,7 +79,7 @@ jobs:
   web-app:
     name: Publish Web-App Service
     needs: update-versions
-    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/web-app']
+    if: inputs.republish || fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/web-app']
     uses: ./.github/workflows/publish-service.yml
     with:
       service_name: '@carbon-platform/web-app'
@@ -83,7 +90,7 @@ jobs:
   micromanage-cli:
     name: Publish Micromanage CLI Package
     needs: update-versions
-    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/micromanage-cli']
+    if: inputs.republish || fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/micromanage-cli']
     uses: ./.github/workflows/publish-package.yml
     with:
       package_name: '@carbon-platform/micromanage-cli'
@@ -94,7 +101,7 @@ jobs:
   schemas:
     name: Publish Schemas Package
     needs: update-versions
-    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/schemas']
+    if: inputs.republish || fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/schemas']
     uses: ./.github/workflows/publish-package.yml
     with:
       package_name: '@carbon-platform/schemas'

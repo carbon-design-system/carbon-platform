@@ -18,10 +18,10 @@ sonar-project.properties
 **/src/test/
 .github/
 .husky/
+**/.next/
 .test-coverage/
 .vscode/
 docs/
-scripts/
 
 #
 # Service-Specific
@@ -29,6 +29,5 @@ scripts/
 
 # web-app
 services/web-app/.carbon/
-services/web-app/.next/
 services/web-app/pages/samples/
 services/web-app/public/data/

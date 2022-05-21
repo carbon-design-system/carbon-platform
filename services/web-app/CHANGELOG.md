@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.114](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.113...@carbon-platform/web-app@0.1.114) (2022-05-21)
+
+
+### Features 🌟
+
+* **api:** allow dynamic loading of rest api modules ([37d7835](https://github.com/carbon-design-system/carbon-platform/commit/37d783561154c9aa67846309a36d9d3738a572f3))
+* wrong queue name in emit and query ([73844db](https://github.com/carbon-design-system/carbon-platform/commit/73844dbde3a2ee8a404b668a9a4015e4f5cc9204))
+
+
+### Bug Fixes 🐛
+
+* add comments ([81792bd](https://github.com/carbon-design-system/carbon-platform/commit/81792bd7981daab0cfe58c06ebe8003ddaf705ba))
+* code review updates ([2da921f](https://github.com/carbon-design-system/carbon-platform/commit/2da921faa5c00cb15cbbc70f9cd416b6f6c9216c))
+* **web-app:** fix linter issues ([e138365](https://github.com/carbon-design-system/carbon-platform/commit/e13836594f5217550b990830725dd38e10691c79))
+* **web-app:** linter styling issue ([95ed5b0](https://github.com/carbon-design-system/carbon-platform/commit/95ed5b01924a2c83334754e889a8b71ed9ed3150))
+* **web-app:** sticky position ([a4d81c4](https://github.com/carbon-design-system/carbon-platform/commit/a4d81c4b0a1eeb6b633ac5337ba409f28cb0ff03))
+
 ### [0.1.113](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.112...@carbon-platform/web-app@0.1.113) (2022-05-20)
 
 

@@ -6,11 +6,11 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-git diff --staged --name-only --diff-filter=d | egrep "/package-lock.json"
+git diff --staged --name-only --diff-filter=d | egrep '/package-lock.json'
 rc=$?
 
 if [ $rc -eq 0 ]; then
-  echo "Found duplicate package-lock.json file. Remove and install deps from the top-level"
+  echo 'Found duplicate package-lock.json file. Remove and install deps from the top-level'
   exit 1
 else
   exit 0

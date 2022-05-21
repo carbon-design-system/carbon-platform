@@ -21,6 +21,9 @@ on:
           Force republish of packages and services even if versions weren't updated
         default: false
 
+env:
+  CI: 'true'
+
 jobs:
   update-versions:
     name: Update Versions
@@ -48,7 +51,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Modules 🔧
-        run: CI=true npm install
+        run: npm install
 
       - id: version
         name: Version 📆

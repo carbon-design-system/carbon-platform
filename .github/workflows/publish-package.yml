@@ -25,6 +25,9 @@ on:
         required: true
         type: string
 
+env:
+  CI: 'true'
+
 jobs:
   publish:
     name: Publish

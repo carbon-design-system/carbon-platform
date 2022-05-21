@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.8...@carbon-platform/api@0.3.10) (2022-05-21)
+
+
+### Misc. 🔮
+
+* **api:** bump api package version ([c8293de](https://github.com/carbon-design-system/carbon-platform/commit/c8293def230f23692000ee06d65a3f43e84c377e))
+
 ### [0.3.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.7...@carbon-platform/api@0.3.8) (2022-05-21)
 
 

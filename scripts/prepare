@@ -8,7 +8,7 @@
 
 set -e
 
-if [ "$CI" == "true" ]; then
+if [ "$CI" = "true" ]; then
   exit 0
 fi
 

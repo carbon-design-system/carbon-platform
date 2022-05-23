@@ -29,14 +29,8 @@ const urlsBelongToTheSameRepo = (url1, url2) => {
 
   // check that org and repo match
   return (
-    JSON.stringify(
-      urlObj1.pathname
-        .split('/', 3)
-    ) ===
-    JSON.stringify(
-      urlObj2.pathname
-        .split('/', 3)
-    )
+    JSON.stringify(urlObj1.pathname.split('/', 3)) ===
+    JSON.stringify(urlObj2.pathname.split('/', 3))
   )
 }
 

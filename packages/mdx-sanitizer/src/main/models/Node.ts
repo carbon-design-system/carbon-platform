@@ -6,10 +6,10 @@
  */
 export interface Node {
   type: string
-  name: string
+  name?: string
   value?: string | object
-  children: Node[]
-  attributes: {
+  children?: Node[]
+  attributes?: {
     name: string
     type: string
     value?: string | { value?: string | object }
@@ -26,5 +26,6 @@ export interface Node {
         }[]
       }[]
     }
+    [key: string]: any
   }
 }

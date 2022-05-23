@@ -17,7 +17,7 @@ import { Node } from './models/Node'
  *
  * @param {string[]} customComponentKeys list of valid custom component keys
  * @param {object} tree AST: mdx source
- * @returns undefined
+ * @returns {object} modified tree
  */
 const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
   // remove all import statements
@@ -52,10 +52,10 @@ const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
   )
 
   // convert all invalid components into "UnknownComponent"
-  const availableKeys = [...Object.keys(customComponentKeys), ...HTMLTags]
+  const availableKeys = [...customComponentKeys, ...HTMLTags]
   visit(
     tree,
-    (node) => !!(node as Node).name && !availableKeys.includes((node as Node).name),
+    (node) => !!(node as Node).name && !availableKeys.includes((node as Node).name!),
     (node) => {
       node.attributes = [{ type: 'mdxJsxAttribute', name: 'name', value: node.name }]
       node.name = 'UnknownComponent'
@@ -74,7 +74,7 @@ const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
       ),
     // remove invalid attributes from node attributes
     (node) => {
-      node.attributes = node.attributes.filter(
+      node.attributes = node.attributes?.filter(
         (attr) =>
           !(
             attr.type === 'mdxJsxAttribute' &&
@@ -83,6 +83,7 @@ const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
       )
     }
   )
+  return tree
 }
 
 /**
@@ -92,6 +93,6 @@ const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
  * @returns {Function} the ast sanitized function
  */
 const mdxSanitizerPlugin = (customComponentKeys: string[]) =>
-  sanitizeASTTree.bind(customComponentKeys)
+  sanitizeASTTree.bind(null, customComponentKeys)
 
 export default mdxSanitizerPlugin

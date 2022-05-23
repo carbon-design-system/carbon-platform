@@ -1,0 +1,41 @@
+{
+  "name": "@carbon-platform/data-graph",
+  "description": "Carbon Platform Data Graph service",
+  "version": "0.1.2",
+  "main": "dist/main/index.js",
+  "license": "Apache-2.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+  },
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "scripts": {
+    "build": "nest build",
+    "build:schema": "npm run build && node dist/main/generate-schema.js",
+    "bundle": "node esbuild.js",
+    "clean": "rimraf dist",
+    "service:build": "npm run build",
+    "start": "node dist/main/index.js",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "test": "jest --config=../../.jestrc.workspace.js"
+  },
+  "dependencies": {
+    "@nestjs/apollo": "^10.0.11",
+    "@nestjs/cli": "^8.2.5",
+    "@nestjs/common": "^8.4.4",
+    "@nestjs/core": "^8.4.5",
+    "@nestjs/graphql": "^10.0.11",
+    "@nestjs/microservices": "^8.4.5",
+    "@types/node": "^16.11.34",
+    "apollo-server-express": "^3.7.0",
+    "apollo-server-plugin-base": "^3.5.3",
+    "express": "^4.18.1",
+    "graphql": "^16.5.0",
+    "typescript": "^4.6.4"
+  }
+}

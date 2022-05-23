@@ -62,10 +62,11 @@ const TypesetStyle = ({
   })
 
   // Conditionally add a drop shadow through JavaScript because `position:sticky` doesn't support a
-  // `::stuck` pseudo-class to trigger the drop shadow. Header (48) + spacer (16)  = 64.
+  // `::stuck` pseudo-class to trigger the drop shadow.
+  // Header (48) + spacer (16) + tabs(48)  = 112.
   const scrollHandler = useCallback(() => {
     if (containerRef.current && typeof window !== 'undefined') {
-      setSticky(containerRef.current.getBoundingClientRect().top === 64)
+      setSticky(containerRef.current.getBoundingClientRect().top === 112)
     }
   }, [])
 

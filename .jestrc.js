@@ -4,6 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+const path = require('path')
+
 /*
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
@@ -26,10 +28,16 @@ module.exports = {
 
   // An array of glob patterns indicating a set of files for which coverage information should be
   // collected
-  collectCoverageFrom: ['**/src/main/**/*.{ts,tsx,js,jsx}', '!**/interfaces.ts', '!**/esbuild.js'],
+  collectCoverageFrom: [
+    '**/src/main/**/*.{ts,tsx,js,jsx}',
+    '!**/index.ts',
+    '!**/interfaces.ts',
+    '!**/esbuild.js',
+    '!**/data-graph/(models|inputs|outputs)/**/*.ts'
+  ],
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: `${__dirname}/.test-coverage`,
+  coverageDirectory: path.join(__dirname, '.test-coverage'),
 
   // An array of regexp pattern strings used to skip coverage collection
   coveragePathIgnorePatterns: ['/node_modules/', '/generated/'],

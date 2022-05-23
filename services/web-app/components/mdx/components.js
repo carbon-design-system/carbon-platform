@@ -5,6 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {
+  Button,
+  ListItem,
+  StructuredListBody,
+  StructuredListCell,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListWrapper,
+  Tag,
+  UnorderedList
+} from '@carbon/react'
+
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
@@ -30,15 +42,15 @@ import PageTable from '@/components/page-table'
 import Preview from '@/components/preview'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
+import StatusIndicatorTable from '@/components/status-indicator-table'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
+import UnknownComponent from '@/components/unknown-component'
 import Video from '@/components/video'
-
-import StatusIndicatorTable from '../status-indicator-table'
 
 const components = {
   h1: H1,
@@ -56,6 +68,16 @@ const components = {
   img: Image,
   table: PageTable,
   pre: Code,
+  /* Core Carbon components */
+  Button,
+  StructuredListWrapper,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListCell,
+  StructuredListBody,
+  UnorderedList,
+  ListItem,
+  Tag,
   /* Gatsby theme components */
   Caption,
   PageDescription,
@@ -93,7 +115,8 @@ const components = {
   TypeScaleTable,
   TypeWeight,
   ColorPalette,
-  StatusIndicatorTable
+  StatusIndicatorTable,
+  UnknownComponent
 }
 
 export default components

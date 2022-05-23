@@ -31,7 +31,7 @@ export const getStaticProps = async () => {
       library: 'carbon-website',
       ref: 'main'
     },
-    '/src/pages/components/accordion/style.mdx'
+    '/src/pages/components/UI-shell-header/usage.mdx'
   )
 
   return {

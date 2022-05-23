@@ -1,0 +1,36 @@
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+
+//---------------------------------------
+// meetups page
+//---------------------------------------
+.meetups-list {
+  position: relative;
+  padding-top: spacing.$spacing-10;
+}
+
+.meetups-list::before {
+  position: absolute;
+  top: 4rem;
+  display: block;
+  width: calc(100% - 2rem);
+  height: 1px;
+  margin: -(spacing.$spacing-07) 0 0 spacing.$spacing-05;
+  background: theme.$border-strong-01;
+  content: '';
+}
+
+.meetups-list :global([class*='markdown_h2-container']) {
+  margin-top: 0;
+}
+
+.meetups-list h2 {
+  width: 100%;
+
+  font-weight: 600;
+}
+
+.meetups-list h2 span {
+  display: block;
+  font-weight: 400;
+}

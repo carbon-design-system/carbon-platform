@@ -17,7 +17,6 @@
   --header-height: 320px;
 
   height: var(--header-height);
-  margin-bottom: spacing.$spacing-10;
   background: theme.$background;
 
   &::before {

@@ -48,7 +48,8 @@ const MdxWrapper = ({ children, ...props }) => {
           })}
         />
       )}
-      {children}
+      {/* TODO: move to component / scss file */}
+      <div style={{ paddingTop: '64px' }}>{children}</div>
     </>
   )
 }

@@ -58,10 +58,38 @@ export const assetsNavData = [
     ]
   },
   {
-    title: 'Designing'
+    title: 'Designing',
+    items: [
+      {
+        path: '/assets/designing/get-started',
+        title: 'Get started'
+      },
+      {
+        path: '/assets/designing/figma',
+        title: 'Figma'
+      },
+      {
+        path: '/assets/designing/sketch',
+        title: 'Sketch'
+      },
+      {
+        path: '/assets/designing/axure',
+        title: 'Axure'
+      },
+      {
+        path: '/assets/designing/adobe-xd',
+        title: 'Adobe XD'
+      }
+    ]
   },
   {
-    title: 'Developing'
+    title: 'Developing',
+    items: [
+      {
+        path: '/assets/developing/get-started',
+        title: 'Get started'
+      }
+    ]
   },
   {
     title: 'Contribute',
@@ -195,6 +223,14 @@ export const assetsNavData = [
         title: 'Data visualization'
       }
     ]
+  },
+  {
+    path: '/assets/faq',
+    title: 'FAQ'
+  },
+  {
+    path: '/assets/contact',
+    title: 'Contact'
   }
 ]
 

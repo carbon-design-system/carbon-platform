@@ -97,6 +97,7 @@ const components = {
   GifPlayer,
   IconLibrary,
   Glossary,
+  GlossaryComponent: Glossary,
   InlineNotification,
   PictogramLibrary,
   MdxIcon,

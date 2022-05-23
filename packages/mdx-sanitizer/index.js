@@ -7,22 +7,30 @@
 import { remove } from 'unist-util-remove'
 import { visit } from 'unist-util-visit'
 
-import components from '@/components/mdx/components'
-import { HTMLTags } from '@/data/HTML-tags'
+import { HTMLTags } from './HTML-tags'
 
-const mdxSanitizerPlugin = () => (tree) => {
+/**
+ * Sanitizes MDX Ast tree:
+ * - Removes import/export statements and their usage
+ * - Converts unknown component to instance of `UnnknownComponent`
+ *
+ * @param {string[]} customComponentKeys list of valid custom component keys
+ * @param {object} tree AST: mdx source
+ * @returns undefined
+ */
+const sanitizeASTTree = (customComponentKeys, tree) => {
   // remove all import statements
   const importedVars = []
   remove(tree, (node) => {
-    if (node.type === 'mdxjsEsm' && node.value?.startsWith('import ')) {
+    if (node.type === 'mdxjsEsm' && node.value && node.value.startsWith('import ')) {
       // find the names of imported variables and save to "importedVars" array
       const varDeclarations = node.data?.estree?.body.filter(
         (bodyItem) => bodyItem.type === 'ImportDeclaration'
       )
-      const variableSpecifiers = varDeclarations.map((declaration) =>
+      const variableSpecifiers = varDeclarations?.map((declaration) =>
         declaration.specifiers.filter((specificer) => specificer.type === 'ImportSpecifier')
       )
-      const variableKeys = variableSpecifiers.flat().map((specificer) => specificer.imported?.name)
+      const variableKeys = variableSpecifiers.flat().map((specificer) => specificer?.imported.name)
       importedVars.push(...variableKeys)
 
       // return true so that this import is removed
@@ -31,10 +39,10 @@ const mdxSanitizerPlugin = () => (tree) => {
   })
 
   // remove all export statements
-  remove(tree, (node) => node.type === 'mdxjsEsm' && node.value?.startsWith('export '))
+  remove(tree, (node) => node.type === 'mdxjsEsm' && node.value && node.value.startsWith('export '))
 
   // convert all invalid components into "UnknownComponent"
-  const availableKeys = [...Object.keys(components), ...HTMLTags]
+  const availableKeys = [...customComponentKeys, ...HTMLTags]
   visit(
     tree,
     (node) => node.name && !availableKeys.includes(node.name),
@@ -50,14 +58,29 @@ const mdxSanitizerPlugin = () => (tree) => {
     tree,
     (node) =>
       node.attributes?.some(
-        (attr) => attr.type === 'mdxJsxAttribute' && importedVars.includes(attr.value?.value)
+        (attr) =>
+          attr.type === 'mdxJsxAttribute' && attr.value && importedVars.includes(attr.value.value)
       ),
     // remove invalid attributes from node attributes
     (node) => {
       node.attributes = node.attributes.filter(
-        (attr) => !(attr.type === 'mdxJsxAttribute' && importedVars.includes(attr.value?.value))
+        (attr) =>
+          !(
+            attr.type === 'mdxJsxAttribute' &&
+            attr.value &&
+            importedVars.includes(attr.value.value)
+          )
       )
     }
   )
 }
+
+/**
+ * Constructs sanitized plugin
+ *
+ * @param {string[]} customComponentKeys list of valid custom component keys
+ * @returns {Function} the ast sanitized function
+ */
+const mdxSanitizerPlugin = (customComponentKeys) => sanitizeASTTree.bind(null, customComponentKeys)
+
 export default mdxSanitizerPlugin

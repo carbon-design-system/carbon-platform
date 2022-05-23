@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Logging } from '@carbon-platform/api/logging'
+import mdxSanitizer from '@carbon-platform/mdx-sanitizer'
 import yaml from 'js-yaml'
 import { get, isEmpty, set } from 'lodash'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -12,11 +13,11 @@ import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
 import unwrapImages from 'remark-unwrap-images'
 
+import components from '@/components/mdx/components'
 import { libraryAllowList } from '@/data/libraries'
 import { getResponse } from '@/lib/file-cache'
 import getStyleObjectFromString from '@/utils/get-style-object-from-string'
 import { mdxImgResolver } from '@/utils/mdx-image-resolver'
-import mdxSanitizerPlugin from '@/utils/mdx-sanitizer-plugin.mjs'
 import rehypeMetaAsAttributes from '@/utils/rehype-meta-as-attributes.mjs'
 import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
@@ -76,7 +77,7 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
   try {
     serializedContent = await serialize(sanitizedUsageFileSource, {
       mdxOptions: {
-        remarkPlugins: [mdxSanitizerPlugin, remarkGfm, unwrapImages],
+        remarkPlugins: [mdxSanitizer.bind(null, Object.keys(components)), remarkGfm, unwrapImages],
         rehypePlugins: [rehypeMetaAsAttributes, [rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
       },
       parseFrontmatter: true

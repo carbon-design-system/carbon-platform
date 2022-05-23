@@ -1,0 +1,22 @@
+{
+  "name": "@carbon-platform/mdx-sanitizer",
+  "version": "1.0.0",
+  "description": "Mdx Sanitizer Plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+  },
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "dependencies": {
+    "unist-util-remove": "^3.1.0",
+    "unist-util-visit": "^4.1.0"
+  }
+}

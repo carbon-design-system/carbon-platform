@@ -19,6 +19,7 @@
   "workspaces": [
     "packages/api",
     "packages/icons",
+    "packages/mdx-sanitizer",
     "packages/micromanage",
     "packages/schemas",
     "services/logging",

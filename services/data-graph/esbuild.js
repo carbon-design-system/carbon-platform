@@ -11,5 +11,12 @@ const base = require('../../esbuild.base')
 build({
   ...base,
   entryPoints: [path.resolve(__dirname, 'dist', 'main', 'index.js')],
-  outfile: path.resolve(__dirname, 'dist', 'out.js')
+  outfile: path.resolve(__dirname, 'dist', 'out.js'),
+  external: [
+    ...base.external,
+    '@apollo/gateway',
+    '@apollo/subgraph',
+    'apollo-server-fastify',
+    'ts-morph'
+  ]
 }).catch(() => process.exit(1))

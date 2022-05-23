@@ -7,12 +7,6 @@
 
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
-@use '@carbon/react/scss/type' as type;
-
-.description {
-  margin-top: spacing.$spacing-11;
-  @include type.type-style('fluid-heading-03', true);
-}
 
 .dashboard {
   margin-top: spacing.$spacing-11;

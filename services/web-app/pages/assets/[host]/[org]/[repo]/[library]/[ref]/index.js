@@ -17,6 +17,7 @@ import { libraryPropTypes, paramsPropTypes } from 'types'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import ExternalLinks from '@/components/external-links'
+import PageDescription from '@/components/page-description'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
@@ -76,8 +77,8 @@ const Library = ({ libraryData, params }) => {
         <Column sm={4} md={8} lg={12}>
           <PageHeader title={seo.title} />
         </Column>
-        <Column sm={4} md={8}>
-          <p className={styles.description}>{seo.description}</p>
+        <Column sm={4} md={6} lg={8}>
+          <PageDescription className={styles.description}>{seo.description}</PageDescription>
         </Column>
         <Column sm={4} md={8} lg={12}>
           <Dashboard className={styles.dashboard}>

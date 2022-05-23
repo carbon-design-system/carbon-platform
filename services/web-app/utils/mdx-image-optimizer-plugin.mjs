@@ -19,18 +19,23 @@ import { visit } from 'unist-util-visit'
 const urlsBelongToTheSameRepo = (url1, url2) => {
   // first four chunks of urls must be equal:
   // https://github.com/org/repo/*
+  const urlObj1 = new URL(url1)
+  const urlObj2 = new URL(url2)
+
+  // check that hostname matches
+  if (urlObj1.hostname !== urlObj2.hostname) {
+    return false
+  }
+
+  // check that org and repo match
   return (
     JSON.stringify(
-      url1
-        .split('/')
-        .filter((chunk) => !!chunk)
-        .slice(0, 4)
+      urlObj1.pathname
+        .split('/', 3)
     ) ===
     JSON.stringify(
-      url2
-        .split('/')
-        .filter((chunk) => !!chunk)
-        .slice(0, 4)
+      urlObj2.pathname
+        .split('/', 3)
     )
   )
 }

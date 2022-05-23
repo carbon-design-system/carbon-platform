@@ -2,8 +2,13 @@
   "name": "@carbon-platform/mdx-sanitizer",
   "version": "1.0.0",
   "description": "Mdx Sanitizer Plugin",
+
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "clean": "rimraf dist",
+    "package:build": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

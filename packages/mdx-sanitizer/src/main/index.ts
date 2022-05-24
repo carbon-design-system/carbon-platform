@@ -8,7 +8,7 @@ import remove from 'unist-util-remove'
 import visit from 'unist-util-visit'
 
 import { HTMLTags } from './HTML-tags'
-import { Node } from './models/Node'
+import { Node } from './models/interfaces'
 
 /**
  * Sanitizes MDX Ast tree:
@@ -22,10 +22,15 @@ import { Node } from './models/Node'
 const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
   // remove all import statements
   const importedVars: string[] = []
-  remove(tree, ((node: Node) => {
-    if (node.type === 'mdxjsEsm' && node.value && (node.value as string).startsWith('import ')) {
+  remove(tree, (node: unknown): node is Node => {
+    const remarkNode = node as Node
+    if (
+      remarkNode.type === 'mdxjsEsm' &&
+      remarkNode.value &&
+      (remarkNode.value as string).startsWith('import ')
+    ) {
       // find the names of imported variables and save to "importedVars" array
-      const varDeclarations = node.data?.estree?.body.filter(
+      const varDeclarations = remarkNode.data?.estree?.body.filter(
         (bodyItem) => bodyItem.type === 'ImportDeclaration'
       )
       const variableSpecifiers = varDeclarations?.map((declaration) =>
@@ -42,22 +47,23 @@ const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
       return true
     }
     return false
-  }) as any)
+  })
 
   // remove all export statements
-  remove(
-    tree,
-    ((node: Node) =>
-      node.type === 'mdxjsEsm' &&
-      !!node.value &&
-      (node.value as string).startsWith('export ')) as any
-  )
+  remove(tree, (node: unknown): node is Node => {
+    const remarkNode = node as Node
+    return (
+      remarkNode.type === 'mdxjsEsm' &&
+      !!remarkNode.value &&
+      (remarkNode.value as string).startsWith('export ')
+    )
+  })
 
   // convert all invalid components into "UnknownComponent"
   const availableKeys = [...customComponentKeys, ...HTMLTags]
   visit(
     tree,
-    ((node: Node) => !!node.name && !availableKeys.includes(node.name!)) as any,
+    ((node: Node) => !!node.name && !availableKeys.includes(node.name)) as any,
     (node: Node) => {
       node.attributes = [{ type: 'mdxJsxAttribute', name: 'name', value: node.name }]
       node.name = 'UnknownComponent'

@@ -4,7 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export interface Node {
+import { Node as UnistNode } from 'unist'
+interface Node extends UnistNode {
   type: string
   name?: string
   value?: string | object
@@ -14,6 +15,7 @@ export interface Node {
     type: string
     value?: string | { value?: string | object }
   }[]
+
   data?: {
     estree?: {
       body: {
@@ -29,3 +31,5 @@ export interface Node {
     [key: string]: any
   }
 }
+
+export { Node }

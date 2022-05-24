@@ -24,7 +24,7 @@ import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
 
-const logging = new Logging('web-app', 'github.js')
+const logging = new Logging('github.js')
 
 /**
  * Retrieves Mdx file from github repo and serializes it for rendering

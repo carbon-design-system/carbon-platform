@@ -10,6 +10,12 @@ enum Environment {
   Production = 'PRODUCTION'
 }
 
+/**
+ * Gets the current environment in which the code is running. This is based on the
+ * CARBON_ENVIRONMENT environment variable and defaults to "Test".
+ *
+ * @returns The current environment enum value.
+ */
 function getEnvironment(): Environment {
   const environment = process.env.CARBON_ENVIRONMENT?.toUpperCase()
 
@@ -28,4 +34,17 @@ function getEnvironment(): Environment {
   }
 }
 
-export { Environment, getEnvironment }
+/**
+ * Returns a string that is a combination of the current environment enum and the provided input
+ * string. The string is of the form "[Environment]_[input string]".
+ *
+ * For example: input: `hello world`; output: `PRODUCTION_hello world`
+ *
+ * @param input The string off of which the return value is based.
+ * @returns A string that includes environment enum information.
+ */
+function withEnvironment(input: string): string {
+  return `${getEnvironment()}_${input}`
+}
+
+export { Environment, getEnvironment, withEnvironment }

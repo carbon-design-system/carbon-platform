@@ -22,6 +22,7 @@
     "packages/mdx-sanitizer",
     "packages/micromanage",
     "packages/schemas",
+    "services/data-graph",
     "services/logging",
     "services/web-app"
   ],
@@ -33,19 +34,20 @@
     "lint:fix": "scripts/lint_and_fix",
     "micromanage:bootstrap": "node packages/micromanage/scripts/bootstrap.js",
     "packages:build": "npm --workspaces --if-present run package:build",
-    "prepare": "if [ \"$CI\" != 'true' ]; then scripts/prepare; fi",
+    "prepare": "scripts/prepare",
     "services:build": "npm --workspaces --if-present run service:build",
     "test": "jest --config=./.jestrc.js"
   },
   "dependencies": {
-    "esbuild": "~0.14.38",
+    "esbuild": "~0.14.39",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.4",
     "@commitlint/config-conventional": "^16.2.4",
+    "@graphql-eslint/eslint-plugin": "^3.10.3",
     "@next/eslint-plugin-next": "^12.1.6",
-    "@types/jest": "^27.5.0",
+    "@types/jest": "^27.5.1",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "eslint": "^8.15.0",
     "eslint-config-standard": "^17.0.0",
@@ -60,6 +62,7 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-storybook": "^0.5.11",
+    "graphql-config": "^4.3.0",
     "husky": "^8.0.1",
     "jest": "^27.5.1",
     "lint-staged": "^12.4.1",

@@ -1,7 +1,3 @@
----
-title: Resource schemas
----
-
 # Resource schemas
 
 Carbon Design System resources (e.g. standards, libraries, assets) follow a schema to document each

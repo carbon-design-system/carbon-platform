@@ -12,6 +12,7 @@
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
+// add scroll ability within short viewport
 :global(.cds--side-nav__navigation) {
   overflow: hidden;
   height: auto;
@@ -24,6 +25,7 @@
     transform: translateX(0);
   }
 
+  // override carbon style to allow scroll abillty
   :global(.cds--tree--sm) {
     overflow: scroll;
   }

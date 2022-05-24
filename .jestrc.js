@@ -39,8 +39,9 @@ module.exports = {
   // The directory where Jest should output its coverage files
   coverageDirectory: path.join(__dirname, '.test-coverage'),
 
+  // TODO: where to put this
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: ['/node_modules/', '/generated/'],
+  coveragePathIgnorePatterns: ['/node_modules/', '/generated/', '/Node.ts'],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: 'v8',

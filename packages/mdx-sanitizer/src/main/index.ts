@@ -4,8 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { remove } from 'unist-util-remove'
-import { visit } from 'unist-util-visit'
+import remove from 'unist-util-remove'
+import visit from 'unist-util-visit'
 
 import { HTMLTags } from './HTML-tags'
 import { Node } from './models/Node'
@@ -22,7 +22,7 @@ import { Node } from './models/Node'
 const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
   // remove all import statements
   const importedVars: string[] = []
-  remove(tree, (node) => {
+  remove(tree, ((node: Node) => {
     if (node.type === 'mdxjsEsm' && node.value && (node.value as string).startsWith('import ')) {
       // find the names of imported variables and save to "importedVars" array
       const varDeclarations = node.data?.estree?.body.filter(
@@ -42,21 +42,23 @@ const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
       return true
     }
     return false
-  })
+  }) as any)
 
   // remove all export statements
   remove(
     tree,
-    (node) =>
-      node.type === 'mdxjsEsm' && !!node.value && (node.value as string).startsWith('export ')
+    ((node: Node) =>
+      node.type === 'mdxjsEsm' &&
+      !!node.value &&
+      (node.value as string).startsWith('export ')) as any
   )
 
   // convert all invalid components into "UnknownComponent"
   const availableKeys = [...customComponentKeys, ...HTMLTags]
   visit(
     tree,
-    (node) => !!(node as Node).name && !availableKeys.includes((node as Node).name!),
-    (node) => {
+    ((node: Node) => !!node.name && !availableKeys.includes(node.name!)) as any,
+    (node: Node) => {
       node.attributes = [{ type: 'mdxJsxAttribute', name: 'name', value: node.name }]
       node.name = 'UnknownComponent'
       node.type = 'mdxJsxFlowElement'
@@ -66,14 +68,14 @@ const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
   // find all components that are using any of the previously imported variables
   visit(
     tree,
-    (node) =>
-      (node as Node).attributes?.some(
+    ((node: Node) =>
+      node.attributes?.some(
         (attr) =>
           attr.type === 'mdxJsxAttribute' &&
           importedVars.includes((attr.value as { value: string }).value)
-      ),
+      )) as any,
     // remove invalid attributes from node attributes
-    (node) => {
+    (node: Node) => {
       node.attributes = node.attributes?.filter(
         (attr) =>
           !(

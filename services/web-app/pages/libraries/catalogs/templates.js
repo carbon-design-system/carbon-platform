@@ -1,48 +1,40 @@
 /*
- * Copyright IBM Corp. 2021, 2022
+ * Copyright IBM Corp. 2022, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
 import { NextSeo } from 'next-seo'
-import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
-import { libraryPropTypes } from 'types'
 
 import Catalog from '@/components/catalog'
 import PageHeader from '@/components/page-header'
-import { homeNavData } from '@/data/nav-data'
+import { librariesNavData } from '@/data/nav-data'
 import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 
-const Components = ({ librariesData }) => {
+const Templates = ({ librariesData }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
-  const { component } = type
+  const { template } = type
 
   const seo = {
-    title: 'Components'
+    title: 'Templates'
   }
 
   useEffect(() => {
-    setPrimaryNavData(homeNavData)
+    setPrimaryNavData(librariesNavData)
     setSecondaryNavData()
   }, [setPrimaryNavData, setSecondaryNavData])
 
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader bgColor={component.bgColor} title={seo.title} pictogram={component.icon} />
-      <Catalog data={librariesData} type="component" />
+      <PageHeader bgColor={template.bgColor} title={seo.title} pictogram={template.icon} />
+      <Catalog data={librariesData} type="template" />
     </>
   )
-}
-
-Components.propTypes = {
-  librariesData: PropTypes.shape({
-    libraries: PropTypes.arrayOf(libraryPropTypes)
-  })
 }
 
 export const getStaticProps = async () => {
@@ -55,4 +47,4 @@ export const getStaticProps = async () => {
   }
 }
 
-export default Components
+export default Templates

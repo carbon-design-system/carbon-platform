@@ -18,7 +18,7 @@ import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import ExternalLinks from '@/components/external-links'
 import PageHeader from '@/components/page-header'
-import { homeNavData } from '@/data/nav-data'
+import { librariesNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData, getLibraryNavData } from '@/lib/github'
@@ -33,7 +33,7 @@ const Library = ({ libraryData, navData, params }) => {
   const router = useRouter()
 
   useEffect(() => {
-    setPrimaryNavData(homeNavData)
+    setPrimaryNavData(librariesNavData)
     setSecondaryNavData(navData)
   }, [navData, setPrimaryNavData, setSecondaryNavData])
 

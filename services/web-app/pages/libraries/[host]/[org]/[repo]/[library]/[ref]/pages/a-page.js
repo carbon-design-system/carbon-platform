@@ -8,7 +8,7 @@ import { Column, Grid } from '@carbon/react'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import { homeNavData } from '@/data/nav-data'
+import { librariesNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData, getLibraryNavData } from '@/lib/github'
 
@@ -22,7 +22,7 @@ const APage = ({ libraryData, navData }) => {
   }
 
   useEffect(() => {
-    setPrimaryNavData(homeNavData)
+    setPrimaryNavData(librariesNavData)
     setSecondaryNavData(navData)
   }, [navData, setPrimaryNavData, setSecondaryNavData])
 

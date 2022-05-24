@@ -14,7 +14,7 @@ import { useContext, useEffect } from 'react'
 import { libraryPropTypes } from 'types'
 
 import PageHeader from '@/components/page-header'
-import { homeNavData } from '@/data/nav-data'
+import { librariesNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
@@ -91,7 +91,7 @@ const Libraries = ({ librariesData }) => {
   }
 
   useEffect(() => {
-    setPrimaryNavData(homeNavData)
+    setPrimaryNavData(librariesNavData)
     setSecondaryNavData()
   }, [setPrimaryNavData, setSecondaryNavData])
 

@@ -1,42 +1,48 @@
 /*
- * Copyright IBM Corp. 2022, 2022
+ * Copyright IBM Corp. 2021, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { ChartBar } from '@carbon/pictograms-react'
 import { NextSeo } from 'next-seo'
+import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
+import { libraryPropTypes } from 'types'
 
 import Catalog from '@/components/catalog'
 import PageHeader from '@/components/page-header'
-import { homeNavData } from '@/data/nav-data'
+import { librariesNavData } from '@/data/nav-data'
+import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 
-const DataVisualization = ({ librariesData }) => {
+const Patterns = ({ librariesData }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
+  const { pattern } = type
+
   const seo = {
-    title: 'Data visualization'
+    title: 'Patterns'
   }
 
   useEffect(() => {
-    setPrimaryNavData(homeNavData)
+    setPrimaryNavData(librariesNavData)
     setSecondaryNavData()
   }, [setPrimaryNavData, setSecondaryNavData])
 
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} pictogram={ChartBar} />
-      <Catalog
-        collection="data-visualization"
-        data={librariesData}
-        glob={{ data: 'params.library', pattern: 'carbon-charts*' }}
-      />
+      <PageHeader bgColor={pattern.bgColor} title={seo.title} pictogram={pattern.icon} />
+      <Catalog data={librariesData} type="pattern" />
     </>
   )
+}
+
+Patterns.propTypes = {
+  librariesData: PropTypes.shape({
+    libraries: PropTypes.arrayOf(libraryPropTypes)
+  })
 }
 
 export const getStaticProps = async () => {
@@ -49,4 +55,4 @@ export const getStaticProps = async () => {
   }
 }
 
-export default DataVisualization
+export default Patterns

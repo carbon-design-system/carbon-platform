@@ -9,8 +9,113 @@ import { type } from '@/data/type'
 
 export const globalNavData = [
   {
+    path: '/libraries',
+    title: 'Libraries'
+  },
+  {
     path: '/standards',
     title: 'Standards'
+  }
+]
+
+export const homeNavData = [
+  {
+    path: '/about',
+    title: 'About Carbon'
+  },
+  {
+    path: '/todo',
+    title: 'Designing'
+  },
+  {
+    path: '/todo',
+    title: 'Developing'
+  },
+  {
+    path: '/todo',
+    title: 'Contributing'
+  },
+  {
+    path: '/todo',
+    title: 'Migrating'
+  },
+  {
+    title: 'Guidelines',
+    items: [
+      {
+        path: '/todo',
+        title: '2x Grid'
+      },
+      {
+        path: '/todo',
+        title: 'Color'
+      },
+      {
+        path: '/todo',
+        title: 'Icons'
+      },
+      {
+        path: '/todo',
+        title: 'Pictograms'
+      },
+      {
+        path: '/todo',
+        title: 'Motion'
+      },
+      {
+        path: '/todo',
+        title: 'Spacing'
+      },
+      {
+        path: '/todo',
+        title: 'Themes'
+      },
+      {
+        path: '/todo',
+        title: 'Typography'
+      }
+    ]
+  }
+]
+
+export const librariesNavData = [
+  {
+    path: '/libraries',
+    title: 'About Libraries'
+  },
+  // {
+  //   path: '/libraries/design-kits',
+  //   title: 'Design kits'
+  // },
+  {
+    title: 'Asset catalogs',
+    items: [
+      {
+        path: '/libraries' + type.component.path,
+        title: type.component.namePlural
+      },
+      {
+        path: '/libraries' + type.function.path,
+        title: type.function.namePlural
+      },
+      {
+        path: '/libraries' + type.pattern.path,
+        title: type.pattern.namePlural
+      },
+      {
+        path: '/libraries' + type.template.path,
+        title: type.template.namePlural
+      }
+    ]
+  },
+  {
+    title: 'Asset collections',
+    items: [
+      {
+        path: '/libraries' + '/collections/data-visualization',
+        title: 'Data visualization'
+      }
+    ]
   }
 ]
 
@@ -18,50 +123,5 @@ export const standardsNavData = [
   {
     path: '/standards',
     title: 'About Standards'
-  }
-]
-
-export const homeNavData = [
-  {
-    path: '/about',
-    title: 'About'
-  },
-  {
-    path: '/libraries',
-    title: 'Libraries'
-  },
-  {
-    path: '/design-kits',
-    title: 'Design kits'
-  },
-  {
-    title: 'Catalogs',
-    items: [
-      {
-        path: type.component.path,
-        title: type.component.namePlural
-      },
-      {
-        path: type.function.path,
-        title: type.function.namePlural
-      },
-      {
-        path: type.pattern.path,
-        title: type.pattern.namePlural
-      },
-      {
-        path: type.template.path,
-        title: type.template.namePlural
-      }
-    ]
-  },
-  {
-    title: 'Collections',
-    items: [
-      {
-        path: '/collections/data-visualization',
-        title: 'Data visualization'
-      }
-    ]
   }
 ]

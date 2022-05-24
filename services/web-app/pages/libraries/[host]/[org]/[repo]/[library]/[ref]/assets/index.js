@@ -30,7 +30,7 @@ import CatalogItemMeta from '@/components/catalog-item/catalog-item-meta'
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
 import { framework } from '@/data/framework'
-import { homeNavData } from '@/data/nav-data'
+import { librariesNavData } from '@/data/nav-data'
 import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData, getLibraryNavData } from '@/lib/github'
@@ -71,7 +71,7 @@ const Assets = ({ libraryData, navData, params }) => {
   const router = useRouter()
 
   useEffect(() => {
-    setPrimaryNavData(homeNavData)
+    setPrimaryNavData(librariesNavData)
     setSecondaryNavData(navData)
   }, [navData, setPrimaryNavData, setSecondaryNavData])
 

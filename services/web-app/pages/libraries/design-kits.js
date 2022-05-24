@@ -8,10 +8,10 @@ import { Column, Grid } from '@carbon/react'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import { homeNavData } from '@/data/nav-data'
+import { librariesNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
-import styles from './pages.module.scss'
+import styles from '../pages.module.scss'
 
 const DesignKits = () => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
@@ -21,7 +21,7 @@ const DesignKits = () => {
   }
 
   useEffect(() => {
-    setPrimaryNavData(homeNavData)
+    setPrimaryNavData(librariesNavData)
     setSecondaryNavData()
   }, [setPrimaryNavData, setSecondaryNavData])
 

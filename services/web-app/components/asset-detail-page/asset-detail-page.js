@@ -26,7 +26,7 @@ import PageNav from '@/components/page-nav'
 import PageTabs from '@/components/page-tabs'
 import StatusIcon from '@/components/status-icon'
 import { framework } from '@/data/framework'
-import { homeNavData } from '@/data/nav-data'
+import { librariesNavData } from '@/data/nav-data'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
 import { type } from '@/data/type'
@@ -49,7 +49,7 @@ const AssetDetailPage = ({ breadcrumbItems = [], libraryData, params }) => {
   const designKitsPath = libraryPath + '/design-kits'
 
   useEffect(() => {
-    setPrimaryNavData(!isLg && homeNavData)
+    setPrimaryNavData(!isLg && librariesNavData)
     setSecondaryNavData()
   }, [isLg, setPrimaryNavData, setSecondaryNavData])
 

@@ -187,6 +187,16 @@ assets:
         name: Storybook
         action: link
         url: https://react.carbondesignsystem.com/?path=/story/components-accordion--accordion
+    navData:
+      - title: A page
+        path: '/a-page'
+      - title: Another page
+        items:
+          - title: Sub page
+            path: '/another-page/sub-page'
+            hidden: true
+          - title: Another sub page
+            path: '/another-page/another-sub-page'
 ```
 
 ### Asset keys
@@ -205,6 +215,7 @@ assets:
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                         | Optional | String           | No          | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `demoLinks`       | Links to demo sites. See [demo links](#demos-links).                                                                                                     | Optional | Array            | No          | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `noIndex`         | If set to `true`, the global catalogs will exclude the asset.                                                                                            | Optional | Boolean          | No          | `false`       | –                                                                                                                                                                                                                                                                                                                                          |
+| `navData`         | Links to documentation pages. See [nav data](#nav-data)                                                                                                  | Optional | Array            | -           | –             |
 
 #### Asset status
 

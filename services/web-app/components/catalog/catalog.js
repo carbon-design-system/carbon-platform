@@ -412,8 +412,6 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
         filter={filter}
         page={page}
         pageSize={pageSize}
-        type={type}
-        collection={collection}
       />
       <CatalogPagination
         assets={filteredAssets}

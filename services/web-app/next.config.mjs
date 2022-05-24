@@ -89,31 +89,6 @@ const nextConfig = withMDX({
         source: `/libraries/${slug}/:ref*`,
         destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
       })
-
-      rewrites.push({
-        source: `/catalogs/components/${slug}/:ref*`,
-        destination: `/catalogs/components/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
-      })
-
-      rewrites.push({
-        source: `/catalogs/functions/${slug}/:ref*`,
-        destination: `/catalogs/functions/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
-      })
-
-      rewrites.push({
-        source: `/catalogs/patterns/${slug}/:ref*`,
-        destination: `/catalogs/patterns/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
-      })
-
-      rewrites.push({
-        source: `/catalogs/templates/${slug}/:ref*`,
-        destination: `/catalogs/templates/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
-      })
-
-      rewrites.push({
-        source: `/collections/data-visualization/${slug}/:ref*`,
-        destination: `/collections/data-visualization/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
-      })
     }
 
     return rewrites

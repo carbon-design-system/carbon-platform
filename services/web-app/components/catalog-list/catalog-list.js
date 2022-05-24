@@ -21,9 +21,7 @@ const CatalogList = ({
   filter = {},
   isGrid = false,
   page = 1,
-  pageSize = 10,
-  type,
-  collection
+  pageSize = 10
 }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
   const isLgGrid = isGrid && isLg
@@ -47,8 +45,6 @@ const CatalogList = ({
           filter={filter}
           key={`${i}-${getSlug(asset.content)}`}
           isGrid={isGrid && isLg}
-          type={type}
-          collection={collection}
         />
       ))}
       {(!renderAssets || renderAssets.length === 0) && (

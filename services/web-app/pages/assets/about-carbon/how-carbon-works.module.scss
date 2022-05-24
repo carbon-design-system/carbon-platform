@@ -4,18 +4,16 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 
-//---------------------------------------
-// meetups page
-//---------------------------------------
-.meetups-list {
+.section {
   position: relative;
-  padding-top: spacing.$spacing-10;
+  padding-top: spacing.$spacing-07;
 }
 
-.meetups-list::before {
+.section::before {
   position: absolute;
   top: 4rem;
   display: block;
@@ -26,17 +24,11 @@
   content: '';
 }
 
-.meetups-list :global([class*='markdown_h2-container']) {
-  margin-top: 0;
+.section h4 {
+  width: 66%;
+  padding-right: spacing.$spacing-07;
 }
 
-.meetups-list h2 {
-  width: 100%;
-
-  font-weight: 600;
-}
-
-.meetups-list h2 span {
-  display: block;
-  font-weight: 400;
+.section p {
+  padding-right: spacing.$spacing-09;
 }

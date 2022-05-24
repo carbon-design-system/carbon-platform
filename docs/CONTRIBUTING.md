@@ -1,7 +1,3 @@
----
-title: Contributing
----
-
 # Contributing
 
 ## Day-to-day development tasks

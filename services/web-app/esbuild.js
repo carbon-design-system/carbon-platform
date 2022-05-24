@@ -6,11 +6,10 @@
  */
 const { build } = require('esbuild')
 const path = require('path')
+const base = require('../../esbuild.base')
 
 build({
+  ...base,
   entryPoints: [path.resolve(__dirname, 'proxy-server.js')],
-  outfile: path.resolve(__dirname, 'dist', 'out.js'),
-  platform: 'node',
-  target: 'es2020',
-  bundle: true
+  outfile: path.resolve(__dirname, 'dist', 'out.js')
 }).catch(() => process.exit(1))

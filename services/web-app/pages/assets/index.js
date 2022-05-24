@@ -370,7 +370,7 @@ const PageContent = () => {
         </Column>
       </Grid>
       <FeatureCard
-        href="/assets/libraries"
+        href="/assets/carbon-react"
         title="Carbon React library"
         description="A library of reusable React components to build websites and user interfaces."
       >

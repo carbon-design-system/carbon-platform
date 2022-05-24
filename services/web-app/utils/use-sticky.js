@@ -6,14 +6,10 @@
  */
 import { useEffect, useRef, useState } from 'react'
 
-const eventsToBind =
-  typeof window !== 'undefined'
-    ? [
-        [document, 'scroll'],
-        [window, 'resize'],
-        [window, 'orientationchange']
-      ]
-    : []
+const eventsToBind = []
+if (typeof window !== 'undefined') {
+  eventsToBind.push([document, 'scroll'], [window, 'resize'], [window, 'orientationchange'])
+}
 
 const useSticky = () => {
   const stickyRef = useRef(null)

@@ -10,7 +10,7 @@ import { NextResponse } from 'next/server'
 import sendLocalRequest from '@/utils/sendLocalRequest'
 import { isValidIbmEmail } from '@/utils/string'
 
-class NotAuthorizedError extends Error {}
+class NotAuthorizedException extends Error {}
 
 function exitWith404(req) {
   const url = req.nextUrl.clone()
@@ -27,19 +27,19 @@ async function applyAuthMiddleware(req) {
 
   // Guard - non-200 user api response
   if (!userResponse.ok) {
-    throw new NotAuthorizedError()
+    throw new NotAuthorizedException()
   }
 
   const user = await userResponse.json()
 
   // Guard - no valid user
   if (!user?.email) {
-    throw new NotAuthorizedError()
+    throw new NotAuthorizedException()
   }
 
   // Guard - not a valid IBMer
   if (!isValidIbmEmail(user.email)) {
-    throw new NotAuthorizedError()
+    throw new NotAuthorizedException()
   }
 
   return NextResponse.next()
@@ -49,7 +49,7 @@ export async function middleware(req) {
   try {
     await applyAuthMiddleware(req)
   } catch (err) {
-    if (err instanceof NotAuthorizedError) {
+    if (err instanceof NotAuthorizedException) {
       return exitWith404(req)
     }
     throw err

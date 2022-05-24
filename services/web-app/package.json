@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.1.112",
+  "version": "0.1.115",
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
@@ -45,7 +45,7 @@
     "cookie-parser": "^1.4.6",
     "css-loader": "^6.7.1",
     "express": "^4.18.1",
-    "express-session": "^1.17.2",
+    "express-session": "^1.17.3",
     "file-loader": "^6.2.0",
     "fs-extra": "^10.1.0",
     "gray-matter": "^4.0.3",

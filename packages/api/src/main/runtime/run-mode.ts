@@ -26,13 +26,4 @@ function getRunMode(): RunMode {
   }
 }
 
-const __test__ = {
-  mockRunMode: (runMode: RunMode) => {
-    process.env.CARBON_RUN_MODE = runMode
-  },
-  resetRunMode: () => {
-    delete process.env.CARBON_RUN_MODE
-  }
-}
-
-export { __test__, getRunMode, RunMode }
+export { getRunMode, RunMode }

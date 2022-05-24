@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Button, Column, Grid } from '@carbon/react'
-import { ArrowRight, Events } from '@carbon/react/icons'
+import { ArrowRight } from '@carbon/react/icons'
+import { Svg64Community } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
 import Link from 'next/link'
@@ -59,7 +60,7 @@ const Library = ({ libraryData, params }) => {
   const assets = libraryData.assets.sort(assetSortComparator)
 
   const { sponsor } = libraryData.params
-  const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
+  const SponsorIcon = teams[sponsor] ? teams[sponsor].pictogram : Svg64Community
 
   let externalDocsLink
   if (libraryData.content.externalDocsUrl) {

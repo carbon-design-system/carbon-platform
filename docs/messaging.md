@@ -30,7 +30,7 @@ communication are abstracted away into a class called the `MessagingClient`. The
 provides an `emit` method as a one-to-many communication mechanism and a `query` method as a
 one-to-one communication mechanism.
 
-## `emit(eventType: EventMessage, message: any): Promise<void>`
+## `emit<EventType extends keyof EventMessage>(eventType: EventType, payload: EventMessage[EventType]['payload']): Promise<void>`
 
 The `emit` method is basically a "broadcast" of the message to all other services connected to the
 message broker. Though emitted messages are available to all other services, only ones that have
@@ -47,7 +47,7 @@ Most of the time, there is no need to wait for `emit` calls to resolve, since th
 response coming back, but if you want to guarantee that the message was accepted by the message
 broker, you can `await` the `emit` call and get confirmation.
 
-## `query<T>(queryType: QueryMessage, message: any): Promise<T>`
+## `query<Type extends keyof QueryMessage>(queryType: Type, payload: QueryMessage[Type]['payload']): Promise<QueryMessage[Type]['response']>`
 
 The `query` method is similar to a traditional REST API request such as a `GET` or `POST`, except
 that it is fully asynchronous. Just like `emit`, all services get a copy of the message, but the
@@ -66,23 +66,28 @@ available at first render.
 
 Microservices in the Carbon Platform project that listen for incoming messages of particular types
 from the message broker use the server-side framework [NestJS](https://nestjs.com/). The base
-functionality needed to listen for messages is wrapped up in a class called `PlatformMicroservice`.
-This is a wrapper around some boilerplate NestJS calls that have the net result of set up a
-microservice server to listen for RabbitMQ messages. A basic setup looks like this:
+functionality needed to listen for messages is wrapped up in a class called
+[PlatformMicroservice](/packages/api/src/main/microservice/platform-microservice.ts). This is a
+wrapper around some boilerplate NestJS calls that have the net result of set up a microservice
+server to listen for RabbitMQ messages. A basic setup looks like this:
 
 ```ts
 // index.ts
 
 import { EventMessage, Queue } from '@carbon-platform/api/messaging'
+import { PlatformMicroservice } from '@carbon-platform/api/microservice'
 
-import { MyServiceModule } from './my-service.module'
+import { MyServiceModule } from './my-service-module'
 
 async function start() {
-  const service = new MyServiceModule(Queue.MyService)
+  const pm = new PlatformMicroservice({
+    queue: Queue.MyService,
+    module: MyServiceModule
+  })
 
-  await service.bind(EventMessage.LogLogged, QueryMessage.Search, ...)
+  pm.bind<EventMessage>('log_logged', 'some_other_event', ...)
 
-  await service.start()
+  await pm.start()
 }
 
 start()
@@ -92,20 +97,23 @@ Here's a brief breakdown of the pieces:
 
 ### `MyServiceModule`
 
-A [NestJS module](https://docs.nestjs.com/modules) that extends `PlatformMicroservice`. A platform
-microservice takes a queue name as an argument and an optional set of options for configuring the
-queue on the message broker. The queue name comes from the global registry defined in the API
-package's `messaging` export. The module also internally defines the set of
+A [NestJS module](https://docs.nestjs.com/modules). The module also internally defines the set of
 [controllers](https://docs.nestjs.com/controllers) and
 [services/providers](https://docs.nestjs.com/providers).
 
-### `service.bind(...)`
+### `new PlatformMicroservice({...`
+
+A platform microservice takes a queue name and a NestJS module as required arguments, along with
+some optional configuration settings. The queue name comes from the global registry defined in the
+API package's `messaging` export.
+
+### `pm.bind(...)`
 
 This tells the message broker that you'd like your service to receive messages of the given type.
 Once bound and the service started, the app's "controllers" will begin getting messages of these
 types from the broker.
 
-### `service.start()`
+### `pm.start()`
 
 This is a wrapper around some NestJS calls that start up the microservice and begin listening for
 incoming messages. This will also handle reconnecting to the message broker in the event of an

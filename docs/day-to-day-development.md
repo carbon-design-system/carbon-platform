@@ -1,7 +1,3 @@
----
-title: Day to day development
----
-
 # Day to day development
 
 Here are some of the normal tasks a developer would expect to run on a day-to-day basis while

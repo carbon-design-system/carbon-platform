@@ -14,6 +14,9 @@ on:
   # Enable running this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  CI: 'true'
+
 jobs:
   update-versions:
     name: Update Versions
@@ -41,11 +44,23 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Modules 🔧
-        run: CI=true npm install
+        run: npm install
 
       - id: version
         name: Version 📆
         run: node packages/micromanage version
+
+
+  data-graph:
+    name: Publish Data-Graph Service
+    needs: update-versions
+    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/data-graph']
+    uses: ./.github/workflows/publish-service.yml
+    with:
+      service_name: '@carbon-platform/data-graph'
+      service_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/data-graph'] }}
+    secrets:
+      CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
 
   logging:
     name: Publish Logging Service
@@ -59,7 +74,7 @@ jobs:
       CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
 
   web-app:
-    name: Publish Web App Service
+    name: Publish Web-App Service
     needs: update-versions
     if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/web-app']
     uses: ./.github/workflows/publish-service.yml

@@ -221,7 +221,7 @@
           }
         },
         "navData": {
-          "description": "Libraries have documentation pages that are specific to their library.",
+          "description": "Libraries and assets have documentation pages that are specific to their library.",
           "minItems": 1,
           "type": "array",
           "items": {

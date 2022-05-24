@@ -85,7 +85,7 @@
             "description": "If set to true, the item will be hidden from the navigation."
           },
           "items": {
-            "description": "Libraries have documentation pages that are specific to their library.",
+            "description": "Libraries and assets have documentation pages that are specific to their library.",
             "minItems": 1,
             "type": "array",
             "items": {

@@ -359,8 +359,8 @@ between resources. More guidance around format and absolute identifiers coming h
 
 ### Nav data
 
-Libraries have documentation pages that are specific to their library. The `navData` array
-determines what MDX pages get rendered in the web app, as well as the link order in the side nav.
+Libraries and assets have documentation pages that are specific to their library. The `navData`
+array determines what MDX pages get rendered in the web app, as well as the link order in the nav.
 
 **Example**
 

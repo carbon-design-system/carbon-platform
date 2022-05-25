@@ -8,7 +8,7 @@
     "build:watch": "tsc --watch",
     "clean": "rimraf dist",
     "package:build": "npm run build",
-    "test": "jest --config=../../.jestrc.workspace.js"
+    "test": " NODE_OPTIONS=--experimental-vm-modules jest --config=./.jestrc.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,12 @@
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "dependencies": {
+    "@mdx-js/mdx": "^2.1.1",
+    "mdast-util-mdx-jsx": "^2.0.1",
+    "mdast-util-mdxjs-esm": "^1.2.0",
+    "remark-mdx": "^2.0.0",
+    "remark-parse": "^10.0.0",
+    "unified": "^10.0.0",
     "unist-util-remove": "^2.1.0",
     "unist-util-visit": "^2.0.3"
   }

@@ -4,11 +4,15 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { ImportSpecifier } from '@mdx-js/mdx/lib/plugin/recma-jsx-rewrite'
+import { ImportDeclaration } from 'estree-jsx'
+import { Literal, Root } from 'mdast'
+import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx'
+import { MdxjsEsm } from 'mdast-util-mdxjs-esm'
 import remove from 'unist-util-remove'
 import visit from 'unist-util-visit'
 
 import { HTMLTags } from './HTML-tags'
-import { Node } from './models/interfaces'
 
 /**
  * Sanitizes MDX Ast tree:
@@ -19,26 +23,28 @@ import { Node } from './models/interfaces'
  * @param {object} tree AST: mdx source
  * @returns {object} modified tree
  */
-const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
+const sanitizeASTTree = (customComponentKeys: string[], tree: Root) => {
   // remove all import statements
   const importedVars: string[] = []
-  remove(tree, (node: unknown): node is Node => {
-    const remarkNode = node as Node
+  remove(tree, (node: unknown): node is Literal => {
+    const remarkNode = node as MdxjsEsm
     if (
       remarkNode.type === 'mdxjsEsm' &&
       remarkNode.value &&
-      (remarkNode.value as string).startsWith('import ')
+      remarkNode.value.startsWith('import ')
     ) {
       // find the names of imported variables and save to "importedVars" array
       const varDeclarations = remarkNode.data?.estree?.body.filter(
         (bodyItem) => bodyItem.type === 'ImportDeclaration'
       )
       const variableSpecifiers = varDeclarations?.map((declaration) =>
-        declaration.specifiers.filter((specificer) => specificer.type === 'ImportSpecifier')
+        (declaration as ImportDeclaration).specifiers.filter(
+          (specificer) => specificer.type === 'ImportSpecifier'
+        )
       )
       const variableKeys = variableSpecifiers
         ?.flat()
-        ?.map((specificer) => specificer.imported?.name)
+        ?.map((specificer) => (specificer as ImportSpecifier).imported?.name)
       if (variableKeys && variableKeys.length) {
         importedVars.push(...variableKeys.map((val) => val!))
       }
@@ -50,12 +56,10 @@ const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
   })
 
   // remove all export statements
-  remove(tree, (node: unknown): node is Node => {
-    const remarkNode = node as Node
+  remove(tree, (node: unknown): node is Literal => {
+    const remarkNode = node as Literal
     return (
-      remarkNode.type === 'mdxjsEsm' &&
-      !!remarkNode.value &&
-      (remarkNode.value as string).startsWith('export ')
+      remarkNode.type === 'mdxjsEsm' && !!remarkNode.value && remarkNode.value.startsWith('export ')
     )
   })
 
@@ -63,8 +67,8 @@ const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
   const availableKeys = [...customComponentKeys, ...HTMLTags]
   visit(
     tree,
-    ((node: Node) => !!node.name && !availableKeys.includes(node.name)) as any,
-    (node: Node) => {
+    ((node: MdxJsxFlowElement) => !!node.name && !availableKeys.includes(node.name)) as any,
+    (node: MdxJsxFlowElement) => {
       node.attributes = [{ type: 'mdxJsxAttribute', name: 'name', value: node.name }]
       node.name = 'UnknownComponent'
       node.type = 'mdxJsxFlowElement'
@@ -74,14 +78,14 @@ const sanitizeASTTree = (customComponentKeys: string[], tree: Node) => {
   // find all components that are using any of the previously imported variables
   visit(
     tree,
-    ((node: Node) =>
+    ((node: MdxJsxFlowElement) =>
       node.attributes?.some(
         (attr) =>
           attr.type === 'mdxJsxAttribute' &&
           importedVars.includes((attr.value as { value: string }).value)
       )) as any,
     // remove invalid attributes from node attributes
-    (node: Node) => {
+    (node: MdxJsxFlowElement) => {
       node.attributes = node.attributes?.filter(
         (attr) =>
           !(

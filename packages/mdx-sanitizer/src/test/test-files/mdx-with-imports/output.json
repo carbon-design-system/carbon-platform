@@ -9,14 +9,14 @@
           "type": "text",
           "value": "This is a Sample mdx file",
           "position": {
-            "start": { "line": 3, "column": 3, "offset": 39 },
-            "end": { "line": 3, "column": 28, "offset": 64 }
+            "start": { "line": 3, "column": 3, "offset": 40 },
+            "end": { "line": 3, "column": 28, "offset": 65 }
           }
         }
       ],
       "position": {
-        "start": { "line": 3, "column": 1, "offset": 37 },
-        "end": { "line": 3, "column": 28, "offset": 64 }
+        "start": { "line": 3, "column": 1, "offset": 38 },
+        "end": { "line": 3, "column": 28, "offset": 65 }
       }
     },
     {
@@ -27,14 +27,14 @@
           "type": "text",
           "value": "h2",
           "position": {
-            "start": { "line": 5, "column": 4, "offset": 69 },
-            "end": { "line": 5, "column": 6, "offset": 71 }
+            "start": { "line": 5, "column": 4, "offset": 70 },
+            "end": { "line": 5, "column": 6, "offset": 72 }
           }
         }
       ],
       "position": {
-        "start": { "line": 5, "column": 1, "offset": 66 },
-        "end": { "line": 5, "column": 6, "offset": 71 }
+        "start": { "line": 5, "column": 1, "offset": 67 },
+        "end": { "line": 5, "column": 6, "offset": 72 }
       }
     },
     {
@@ -45,14 +45,14 @@
           "type": "text",
           "value": "h3",
           "position": {
-            "start": { "line": 7, "column": 5, "offset": 77 },
-            "end": { "line": 7, "column": 7, "offset": 79 }
+            "start": { "line": 7, "column": 5, "offset": 78 },
+            "end": { "line": 7, "column": 7, "offset": 80 }
           }
         }
       ],
       "position": {
-        "start": { "line": 7, "column": 1, "offset": 73 },
-        "end": { "line": 7, "column": 7, "offset": 79 }
+        "start": { "line": 7, "column": 1, "offset": 74 },
+        "end": { "line": 7, "column": 7, "offset": 80 }
       }
     },
     {
@@ -64,20 +64,20 @@
           "type": "text",
           "value": " content content content ",
           "position": {
-            "start": { "line": 9, "column": 26, "offset": 106 },
-            "end": { "line": 9, "column": 51, "offset": 131 }
+            "start": { "line": 9, "column": 26, "offset": 107 },
+            "end": { "line": 9, "column": 51, "offset": 132 }
           }
         }
       ],
       "position": {
-        "start": { "line": 9, "column": 1, "offset": 81 },
-        "end": { "line": 9, "column": 57, "offset": 137 }
+        "start": { "line": 9, "column": 1, "offset": 82 },
+        "end": { "line": 9, "column": 57, "offset": 138 }
       },
       "data": { "_mdxExplicitJsx": true }
     }
   ],
   "position": {
     "start": { "line": 1, "column": 1, "offset": 0 },
-    "end": { "line": 10, "column": 1, "offset": 138 }
+    "end": { "line": 10, "column": 1, "offset": 139 }
   }
 }

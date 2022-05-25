@@ -1,0 +1,77 @@
+---
+title: Meetups
+description:
+  The Carbon team is committed to making members of the IBM community successful. Find meetups for
+  learning what’s new, tips and tricks, and leveling up your skills.
+---
+
+import styles from './meetups.module.scss'
+
+import { Button } from '@carbon/react'
+import { ArrowRight } from '@carbon/icons-react'
+
+<PageDescription>
+
+The Carbon team is committed to helping members of the IBM community be successful. Find meetups for
+leveling up your skills, connecting with your peers, and getting reviews on work in progress.
+
+</PageDescription>
+
+<Grid className={styles['meetups-list']}>
+<Column lg={4} md={2}>
+
+![](/about-carbon/meetups/events_design_playback.png)
+
+</Column>
+<Column lg={7} md={5}>
+
+## Carbon and IDL bi-weekly design playbacks <span>Fridays, 12pm–1pm Central</span>
+
+_For IBMers only:_ You’ve got some work in progress and you’re ready to open it up and share it with
+a broader audience for honest (and caring!) feedback. Verify that you’re working with the grid
+correctly, that you’re using the right components, that you’re using the correct language. Sign up
+to share, or come along to see other work in progress and learn that way.
+
+<Button kind="tertiary" renderIcon={ArrowRight} href="https://ec.yourlearning.ibm.com/w3/series/10163237">Subscribe</Button>
+
+</Column>
+</Grid>
+<Grid className={styles['meetups-list']}>
+<Column lg={4} md={2}>
+
+![](/about-carbon/meetups/meetups_data_viz.png)
+
+</Column>
+<Column lg={7} md={5}>
+
+## Data visualization weekly playbacks<span>Wednesdays, 10am–11am Central</span>
+
+_For IBMers only:_ Are you designing a product with data visualization needs? These weekly playback
+calls are a chance for us to have dataviz stakeholders present, discuss design explorations, gather
+feedback and business unit requirements, and determine next steps on requested components or
+functionality.
+
+<Button kind="tertiary" renderIcon={ArrowRight} onClick={() => (window.location.href = 'mailto:iliadm@ca.ibm.com')}>Email us</Button>
+
+</Column>
+</Grid>
+<Grid className={styles['meetups-list']}>
+<Column lg={4} md={2}>
+
+![](/about-carbon/meetups/events_pinup.jpg)
+
+</Column>
+<Column lg={7} md={5}>
+
+## Design pin-ups <span>Contact us to schedule</span>
+
+_For IBMers only:_ Put your screens up in MURAL and step through the flow and page designs with the
+Carbon designers. Great for assessing the overall flow, page layouts, the best choices and use of
+components, content—everything from the big picture to the smallest detail! Usually two or more
+hours.
+
+<Button kind="tertiary" renderIcon={ArrowRight} onClick={() => (window.location.href = 'mailto:carbon@us.ibm.com')}
+>Email us</Button>
+
+</Column>
+</Grid>

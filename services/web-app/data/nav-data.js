@@ -32,27 +32,40 @@ export const assetsNavData = [
     title: 'About Carbon',
     items: [
       {
-        path: '/assets/about-carbon/how-carbon-works',
+        path: '/about-carbon/how-carbon-works',
         title: 'How Carbon works'
       },
       {
-        path: '/assets/about-carbon/platform-roadmap',
+        path: '/about-carbon/platform-roadmap',
         title: 'Platform roadmap'
       },
       {
-        path: '/assets/about-carbon/releases',
+        path: '/about-carbon/releases',
         title: 'Releases'
       },
       {
-        path: '/assets/about-carbon/articles',
+        path: '/about-carbon/articles',
         title: 'Articles'
       },
       {
-        path: '/assets/about-carbon/case-studies',
-        title: 'Case studies'
+        title: 'Case studies',
+        items: [
+          {
+            path: '/about-carbon/case-studies/overview',
+            title: 'Overview'
+          },
+          {
+            path: '/about-carbon/case-studies/consistency-in-the-cloud',
+            title: 'Consistency in the Cloud'
+          },
+          {
+            path: '/about-carbon/case-studies/ibm-commerce-platform',
+            title: 'IBM Commerce Platform'
+          }
+        ]
       },
       {
-        path: '/assets/about-carbon/meetups',
+        path: '/about-carbon/meetups',
         title: 'Meetups'
       }
     ]
@@ -61,23 +74,23 @@ export const assetsNavData = [
     title: 'Designing',
     items: [
       {
-        path: '/assets/designing/get-started',
+        path: '/designing/get-started',
         title: 'Get started'
       },
       {
-        path: '/assets/designing/figma',
+        path: '/designing/figma',
         title: 'Figma'
       },
       {
-        path: '/assets/designing/sketch',
+        path: '/designing/sketch',
         title: 'Sketch'
       },
       {
-        path: '/assets/designing/axure',
+        path: '/designing/axure',
         title: 'Axure'
       },
       {
-        path: '/assets/designing/adobe-xd',
+        path: '/designing/adobe-xd',
         title: 'Adobe XD'
       }
     ]
@@ -86,7 +99,7 @@ export const assetsNavData = [
     title: 'Developing',
     items: [
       {
-        path: '/assets/developing/get-started',
+        path: '/developing/get-started',
         title: 'Get started'
       }
     ]
@@ -95,96 +108,96 @@ export const assetsNavData = [
     title: 'Contribute',
     items: [
       {
-        path: '/assets/contribute/overview',
+        path: '/contribute/overview',
         title: 'Overview'
       },
       {
-        path: '/assets/contribute/bugs-and-requests',
+        path: '/contribute/bugs-and-requests',
         title: 'Bugs and requests'
       },
       {
-        path: '/assets/contribute/documentation',
+        path: '/contribute/documentation',
         title: 'Documentation (schema)'
       },
       {
-        path: '/assets/contribute/components',
+        path: '/contribute/components',
         title: 'Components'
       },
       {
-        path: '/assets/contribute/icons',
+        path: '/contribute/icons',
         title: 'Icons'
       },
       {
-        path: '/assets/contribute/patterns',
+        path: '/contribute/patterns',
         title: 'Patterns'
       },
       {
-        path: '/assets/contribute/pictograms',
+        path: '/contribute/pictograms',
         title: 'Pictograms'
       },
       {
-        path: '/assets/contribute/add-ons',
+        path: '/contribute/add-ons',
         title: 'Add-ons'
       }
     ]
   },
   {
-    title: 'Guidelines',
+    title: 'Elements',
     items: [
       {
-        path: '/assets/guidelines/2x-grid/overview',
+        path: '/elements/2x-grid/overview',
         title: '2x Grid',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/accessibility/overview',
+        path: '/elements/accessibility/overview',
         title: ' Accessibility',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/content/overview',
+        path: '/elements/content/overview',
         title: ' Content',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/color/overview',
+        path: '/elements/color/overview',
         title: ' Color',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/icons/library',
+        path: '/elements/icons/library',
         title: ' Icons',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/pictograms/library',
+        path: '/elements/pictograms/library',
         title: ' Pictograms',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/motion/overview',
+        path: '/elements/motion/overview',
         title: ' Motion',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/spacing/overview',
+        path: '/elements/spacing/overview',
         title: ' Spacing',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/themes/overview',
+        path: '/elements/themes/overview',
         title: ' Themes',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/typography/overview',
+        path: '/elements/typography/overview',
         title: ' Typography',
         hasTabs: true
       }
     ]
   },
   {
-    path: '/assets/libraries',
+    path: '/libraries',
     title: 'Libraries'
   },
   {
@@ -225,11 +238,11 @@ export const assetsNavData = [
     ]
   },
   {
-    path: '/assets/faq',
+    path: '/faq',
     title: 'FAQ'
   },
   {
-    path: '/assets/contact',
+    path: '/contact',
     title: 'Contact'
   }
 ]

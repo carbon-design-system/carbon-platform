@@ -96,13 +96,8 @@ export const assetsNavData = [
     ]
   },
   {
-    title: 'Developing',
-    items: [
-      {
-        path: '/developing/get-started',
-        title: 'Get started'
-      }
-    ]
+    path: '/developing',
+    title: 'Developing'
   },
   {
     title: 'Contribute',

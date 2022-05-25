@@ -50,7 +50,6 @@ const MdxWrapper = ({ children, ...props }) => {
           })}
         />
       )}
-      {/* TODO: move to component / scss file */}
       <div className={styles['page-content']}>{children}</div>
     </>
   )

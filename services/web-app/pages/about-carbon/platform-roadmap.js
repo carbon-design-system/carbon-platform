@@ -219,7 +219,7 @@ const PageContent = () => {
   )
 }
 
-const Index = () => {
+const PlatformRoadmap = () => {
   const { setNavData } = useContext(LayoutContext)
 
   const seo = {
@@ -239,4 +239,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default PlatformRoadmap

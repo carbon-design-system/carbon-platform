@@ -282,22 +282,6 @@ const PageContent = () => {
               Get started
             </Link>
           </div>
-          <h2 className={styles['content-heading']}>Platform roadmap</h2>
-          <p className={styles['content-copy']}>
-            Progress on the following releases are documented in{' '}
-            <Link
-              className={styles.link}
-              href="https://github.com/carbon-design-system/carbon-platform"
-            >
-              GitHub
-            </Link>
-            , along with milestones, estimated dates, and descriptions of high level outcomes. For a
-            visual overview of the following releases and their epics, view our roadmap in{' '}
-            <Link className={styles.link} href="https://airtable.com/shrshl3XOeeT4Uxq0">
-              Airtable
-            </Link>
-            .
-          </p>
         </Column>
       </Grid>
     </div>

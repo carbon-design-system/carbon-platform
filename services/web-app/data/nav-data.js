@@ -88,6 +88,16 @@ export const assetsNavData = [
     ]
   },
   {
+    title: 'Designing',
+    items: [
+      {
+        path: '/assets/designing/get-started',
+        title: 'Get started',
+        hasTabs: false
+      }
+    ]
+  },
+  {
     path: '/assets/libraries',
     title: 'Libraries'
   },

@@ -19,6 +19,6 @@
 
 .card-group [class*='column']:nth-child(even) {
   @include breakpoint.breakpoint('md') {
-    border-left: 1px solid theme.$border-subtle-01;
+    box-shadow: -1px 0 0 0 theme.$border-subtle;
   }
 }

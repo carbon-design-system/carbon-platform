@@ -2,7 +2,7 @@
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 // Sets gray border on the top of cards at the smallest breakpoint and removes the margin set by the <Column> in the Grid component.
 .card-group [class*='column'] {
-  border-top: 1px solid theme.$border-subtle-01;
+  border-top: 1px solid theme.$border-subtle;
   margin-bottom: 0;
 }
 

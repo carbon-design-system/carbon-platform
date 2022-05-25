@@ -8,16 +8,17 @@
 import { type } from '@/data/type'
 
 export const globalNavData = [
-  {
-    title: 'About'
-  },
-  {
-    title: 'Standards'
-  },
-  {
-    path: '/assets',
-    title: 'Assets'
-  }
+  // remove L0 for the first release
+  // {
+  //   title: 'About'
+  // },
+  // {
+  //   title: 'Standards'
+  // },
+  // {
+  //   path: '/assets',
+  //   title: 'Assets'
+  // }
 ]
 
 export const standardsNavData = [

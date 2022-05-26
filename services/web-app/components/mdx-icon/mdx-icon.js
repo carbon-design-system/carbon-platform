@@ -13,7 +13,8 @@ import {
   Medium,
   Npm,
   Sketch,
-  Storybook
+  Storybook,
+  Zenhub
 } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
@@ -35,7 +36,8 @@ const svgIcons = {
   storybook: Storybook,
   medium: Medium,
   npm: Npm,
-  figma: Figma
+  figma: Figma,
+  zenhub: Zenhub
 }
 
 const localIcons = {

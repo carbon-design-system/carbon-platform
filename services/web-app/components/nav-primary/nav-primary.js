@@ -11,39 +11,35 @@ import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import { useContext } from 'react'
 
-import libraryStyles from '@/components/nav-library/nav-library.module.scss'
 import NextLink from '@/components/next-link'
 import { LayoutContext } from '@/layouts/layout'
 
 import NavTree from '../nav-tree'
-import styles from './nav-main.module.scss'
+import styles from './nav-primary.module.scss'
 
-const NavMain = ({ items = [] }) => {
+const NavPrimary = ({ className, globalItems }) => {
   const router = useRouter()
-  const { librarySideNav, isSideNavExpanded, libraryNavSlideOut, navData } =
+  const { isSideNavExpanded, primaryNavData, isSecondaryNav, setSideNavExpanded } =
     useContext(LayoutContext)
 
   return (
     <SideNav
       aria-label="Side navigation"
       expanded={isSideNavExpanded}
-      className={clsx(
-        styles['side-nav'],
-        librarySideNav && libraryStyles['library-nav-in'],
-        libraryNavSlideOut && libraryStyles['library-nav-out']
-      )}
-      aria-hidden={librarySideNav ? 'true' : 'false'}
+      className={clsx(className, styles['side-nav'])}
+      aria-hidden={isSecondaryNav ? 'true' : 'false'}
+      onOverlayClick={() => setSideNavExpanded(false)}
     >
       <SideNavItems>
         <HeaderSideNavItems>
-          {items.map((data, i) => {
+          {globalItems.map((data, i) => {
             if (data.path) {
               return (
                 <SideNavLink
                   element={NextLink}
                   href={data.path}
                   key={i}
-                  tabIndex={librarySideNav ? '-1' : 0}
+                  tabIndex={isSecondaryNav ? '-1' : 0}
                 >
                   {data.title}
                 </SideNavLink>
@@ -57,14 +53,17 @@ const NavMain = ({ items = [] }) => {
             }
           })}
         </HeaderSideNavItems>
-        <NavTree items={navData} label="Main navigation" activeItem={router.asPath} />
+        {primaryNavData && primaryNavData.length > 0 && (
+          <NavTree items={primaryNavData} label="Main navigation" activeItem={router.asPath} />
+        )}
       </SideNavItems>
     </SideNav>
   )
 }
 
-NavMain.propTypes = {
-  items: PropTypes.arrayOf(
+NavPrimary.propTypes = {
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  globalItems: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       path: PropTypes.string
@@ -72,4 +71,4 @@ NavMain.propTypes = {
   )
 }
 
-export default NavMain
+export default NavPrimary

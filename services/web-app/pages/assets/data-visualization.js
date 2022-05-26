@@ -15,15 +15,15 @@ import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 
 const DataVisualization = ({ librariesData }) => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData } = useContext(LayoutContext)
 
   const seo = {
     title: 'Data Visualization'
   }
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+  }, [setPrimaryNavData])
 
   return (
     <>

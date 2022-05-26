@@ -15,57 +15,86 @@ import {
   SkipToContent,
   Theme
 } from '@carbon/react'
+import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import Footer from '@/components/footer'
-import NavLibrary from '@/components/nav-library'
-import NavMain from '@/components/nav-main'
+import NavPrimary from '@/components/nav-primary'
+import NavSecondary from '@/components/nav-secondary'
 import NextLink from '@/components/next-link'
 import { globalNavData } from '@/data/nav-data'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './layout.module.scss'
 
+// Only slide to the secondary navigation on page load for these paths.
+const SECONDARY_NAV_SLIDE_PATHS = [
+  '/assets/[host]/[org]/[repo]/[library]/[ref]',
+  '/assets/[host]/[org]/[repo]/[library]/[ref]/library-assets',
+  '/assets/[host]/[org]/[repo]/[library]/[ref]/design-kits',
+  '/assets/[host]/[org]/[repo]/[library]/[ref]/versions'
+]
+
 export const LayoutContext = createContext()
 
 export const LayoutProvider = ({ children }) => {
-  const [navData, setNavData] = useState([])
-  const [showSideNav, setShowSideNav] = useState(true)
-  const [librarySideNav, setLibrarySideNav] = useState(false)
-  const [isSideNavExpanded, toggleSideNavExpanded] = useState(false)
-  const [libraryNavSlideOut, setLibraryNavSlideOut] = useState(false)
+  const [isSideNavExpanded, setSideNavExpanded] = useState(false)
+  const [primaryNavData, setPrimaryNavData] = useState([])
+  const [secondaryNavData, setSecondaryNavData] = useState([])
+  const [isSecondaryNav, setIsSecondaryNav] = useState(false)
 
   const value = {
-    navData,
-    setNavData,
-    showSideNav,
-    setShowSideNav,
-    librarySideNav,
-    setLibrarySideNav,
     isSideNavExpanded,
-    toggleSideNavExpanded,
-    libraryNavSlideOut,
-    setLibraryNavSlideOut
+    setSideNavExpanded,
+    primaryNavData,
+    setPrimaryNavData,
+    secondaryNavData,
+    setSecondaryNavData,
+    isSecondaryNav,
+    setIsSecondaryNav
   }
 
   return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
 }
 
+const SideNav = () => {
+  const { isSecondaryNav } = useContext(LayoutContext)
+
+  const cnSlide = clsx(styles['side-nav-slide'], {
+    [styles['side-nav-slide--secondary']]: isSecondaryNav
+  })
+  return (
+    <Column sm={4} md={8} lg={4}>
+      <Theme theme="white">
+        <section className={styles['side-nav']}>
+          <div className={styles['side-nav-inner']}>
+            <div className={cnSlide}>
+              <NavPrimary className={styles['side-nav-item']} globalItems={globalNavData} />
+              <NavSecondary className={styles['side-nav-item']} />
+            </div>
+          </div>
+        </section>
+      </Theme>
+    </Column>
+  )
+}
+
 const Layout = ({ children }) => {
   const router = useRouter()
-
   const {
-    setShowSideNav,
-    showSideNav,
-    librarySideNav,
-    setLibrarySideNav,
     isSideNavExpanded,
-    toggleSideNavExpanded
+    setSideNavExpanded,
+    primaryNavData,
+    secondaryNavData,
+    setIsSecondaryNav
   } = useContext(LayoutContext)
-
   const isLg = useMatchMedia(mediaQueries.lg)
+
+  useEffect(() => {
+    setIsSecondaryNav(SECONDARY_NAV_SLIDE_PATHS.includes(router.pathname))
+  }, [primaryNavData, router.pathname, secondaryNavData, setIsSecondaryNav])
 
   // For use with 100vw widths to account for the scrollbar width, e.g. instead of `width: 100vw;`
   // use `width: calc(100vw - var(--scrollbar-width));`.
@@ -78,15 +107,8 @@ const Layout = ({ children }) => {
     }
   }, [])
 
-  useEffect(() => {
-    setShowSideNav(
-      !router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]')
-    )
-    setLibrarySideNav(router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
-  }, [setShowSideNav, setLibrarySideNav, router.pathname])
-
   const onClickSideNavExpand = () => {
-    toggleSideNavExpanded(!isSideNavExpanded)
+    setSideNavExpanded(!isSideNavExpanded)
   }
 
   return (
@@ -101,7 +123,6 @@ const Layout = ({ children }) => {
                 onClick={onClickSideNavExpand}
                 isActive={isSideNavExpanded}
               />
-
               <div className={styles['header-name']}>
                 <Link href="/assets">
                   <a className="cds--header__name">Carbon Design System</a>
@@ -141,31 +162,17 @@ const Layout = ({ children }) => {
           </Theme>
           <Theme className={styles.body} theme="g10">
             <Grid as="main" className={styles.main} id="main-content">
-              {showSideNav && (
-                <Column sm={4} md={8} lg={4}>
-                  <section className={styles['side-nav-container']}>
-                    <Theme theme="white">
-                      <NavMain items={globalNavData} />
-                      {librarySideNav && <NavLibrary />}
-                    </Theme>
-                  </section>
-                </Column>
-              )}
-              <Column sm={4} md={8} lg={showSideNav ? 12 : 16}>
+              <SideNav />
+              <Column sm={4} md={8} lg={12}>
                 <Grid condensed={!isLg} narrow={isLg}>
-                  <Column
-                    className={styles['column-content']}
-                    sm={4}
-                    md={8}
-                    lg={showSideNav ? 12 : 16}
-                  >
+                  <Column className={styles['column-content']} sm={4} md={8} lg={12}>
                     {children}
                   </Column>
                 </Grid>
               </Column>
             </Grid>
           </Theme>
-          <Footer hasSideNav={showSideNav} />
+          <Footer hasSideNav />
         </>
       )}
     />

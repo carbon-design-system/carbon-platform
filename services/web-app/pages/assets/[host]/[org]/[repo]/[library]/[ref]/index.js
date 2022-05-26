@@ -9,11 +9,10 @@ import { ArrowRight } from '@carbon/react/icons'
 import { Svg64Community } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
-import { libraryPropTypes, paramsPropTypes } from 'types'
+import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'types'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
@@ -23,21 +22,21 @@ import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
-import { getLibraryData } from '@/lib/github'
+import { getLibraryData, getLibraryNavData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
-import { assetSortComparator, getLicense } from '@/utils/schema'
-import { getSlug } from '@/utils/slug'
+import { getLicense } from '@/utils/schema'
 
 import styles from './index.module.scss'
 
-const Library = ({ libraryData, params }) => {
-  const { setNavData } = useContext(LayoutContext)
+const Library = ({ libraryData, params, navData }) => {
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const router = useRouter()
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+    setSecondaryNavData(navData)
+  }, [setPrimaryNavData, navData, setSecondaryNavData])
 
   if (router.isFallback) {
     return (
@@ -58,10 +57,10 @@ const Library = ({ libraryData, params }) => {
     description
   }
 
-  const assets = libraryData.assets.sort(assetSortComparator)
-
   const { sponsor } = libraryData.params
   const SponsorIcon = teams[sponsor] ? teams[sponsor].pictogram : Svg64Community
+
+  const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
 
   let externalDocsLink
   if (libraryData.content.externalDocsUrl) {
@@ -69,6 +68,14 @@ const Library = ({ libraryData, params }) => {
       name: 'External docs',
       url: libraryData.content.externalDocsUrl
     }
+  }
+
+  const getVersion = () => {
+    if (params.ref === 'main' || params.ref === 'master' || params.ref === 'latest') {
+      return 'Latest'
+    }
+
+    return `v${libraryData.content.version}`
   }
 
   return (
@@ -87,9 +94,7 @@ const Library = ({ libraryData, params }) => {
               <DashboardItem aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}>
                 <dl>
                   <dt className={dashboardStyles.label}>Version</dt>
-                  <dd
-                    className={dashboardStyles['label--large']}
-                  >{`v${libraryData.content.version}`}</dd>
+                  <dd className={dashboardStyles['label--large']}>{getVersion()}</dd>
                 </dl>
                 {SponsorIcon && (
                   <SponsorIcon
@@ -126,27 +131,19 @@ const Library = ({ libraryData, params }) => {
                       />
                     </dd>
                   </Column>
-                  <Button className={styles['versions-button']}>
-                    Coming soon...
+                  <Button
+                    className={styles['versions-button']}
+                    onClick={() => {
+                      router.push(assetsPath)
+                    }}
+                  >
+                    View assets
                     <ArrowRight size={16} />
                   </Button>
                 </Grid>
               </DashboardItem>
             </Column>
           </Dashboard>
-          <div className={pageStyles.content}>
-            <ul>
-              {assets.map((asset, i) => (
-                <li key={i}>
-                  <Link
-                    href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}
-                  >
-                    <a>{asset.content.name || 'Asset'}</a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
         </Column>
       </Grid>
     </>
@@ -155,6 +152,7 @@ const Library = ({ libraryData, params }) => {
 
 Library.propTypes = {
   libraryData: libraryPropTypes,
+  navData: secondaryNavDataPropTypes,
   params: paramsPropTypes
 }
 
@@ -167,9 +165,12 @@ export const getServerSideProps = async ({ params }) => {
     }
   }
 
+  const navData = getLibraryNavData(params, libraryData)
+
   return {
     props: {
       libraryData,
+      navData,
       params
     }
   }

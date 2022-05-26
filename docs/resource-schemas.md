@@ -106,14 +106,14 @@ library:
       url: https://react.carbondesignsystem.com
   navData:
     - title: A page
-      path: '/a-page'
+      path: '/a-page.mdx'
     - title: Another page
       items:
         - title: Sub page
-          path: '/another-page/sub-page'
+          path: '/another-page/sub-page.mdx'
           hidden: true
         - title: Another sub page
-          path: '/another-page/another-sub-page'
+          path: '/another-page/another-sub-page.mdx'
 ```
 
 ### Library keys
@@ -189,14 +189,14 @@ assets:
         url: https://react.carbondesignsystem.com/?path=/story/components-accordion--accordion
     navData:
       - title: A page
-        path: '/a-page'
+        path: '/a-page.mdx'
       - title: Another page
         items:
           - title: Sub page
-            path: '/another-page/sub-page'
+            path: '/another-page/sub-page.mdx'
             hidden: true
           - title: Another sub page
-            path: '/another-page/another-sub-page'
+            path: '/another-page/another-sub-page.mdx'
 ```
 
 ### Asset keys
@@ -381,14 +381,14 @@ carbon.yml
 ---
 navData:
   - title: A page
-    path: '/a-page'
+    path: '/a-page.mdx'
   - title: Another page
     items:
       - title: Sub page
-        path: '/another-page/sub-page'
+        path: '/another-page/sub-page.mdx'
         hidden: true
       - title: Another sub page
-        path: '/another-page/another-sub-page'
+        path: '/another-page/another-sub-page.mdx'
 ```
 
 For the value of the `navData` array, you can set the following keys.
@@ -396,6 +396,6 @@ For the value of the `navData` array, you can set the following keys.
 | Nav data | Description                                                  | Required | Type    | Default |
 | -------- | ------------------------------------------------------------ | -------- | ------- | ------- |
 | `title`  | Navigation title.                                            | Required | String  | –       |
-| `path`   | Relative path to the file.                                   | Required | String  | –       |
+| `path`   | Path to the file, relative to carbon.yml.                    | Required | String  | –       |
 | `items`  | Second level of navigation.                                  | Optional | Array   | –       |
 | `hidden` | If set to true, the item will be hidden from the navigation. | Optional | Boolean | `false` |

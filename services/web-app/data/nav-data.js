@@ -193,7 +193,7 @@ export const assetsNavData = [
     ]
   },
   {
-    path: '/libraries',
+    path: '/assets/libraries',
     title: 'Libraries'
   },
   {

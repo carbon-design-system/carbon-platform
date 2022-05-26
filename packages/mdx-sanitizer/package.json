@@ -8,7 +8,7 @@
     "build:watch": "tsc --watch",
     "clean": "rimraf dist",
     "package:build": "npm run build",
-    "test": " NODE_OPTIONS=--experimental-vm-modules jest --config=./.jestrc.js"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --config=./.jestrc.js"
   },
   "repository": {
     "type": "git",

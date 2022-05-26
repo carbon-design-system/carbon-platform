@@ -5,8 +5,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "rootDir": "./src",
-    "outDir": "./dist",
-    "resolveJsonModule": true
+    "outDir": "./dist"
   },
   "include": ["./src/main"]
 }

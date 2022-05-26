@@ -16,11 +16,6 @@ import remarkParse from 'remark-parse'
 import { Plugin, unified } from 'unified'
 
 import mdxSanitizerPlugin from '../main/index'
-import mdxWithCustomComponentsOutput from './test-files/mdx-with-custom-components/output.json'
-import mdxWithExportOutput from './test-files/mdx-with-exports/output.json'
-import mdxWithImportOutput from './test-files/mdx-with-imports/output.json'
-import mdxWithUnknownComponentOutput from './test-files/mdx-with-unknown-component/output.json'
-import simpleMdxOutput from './test-files/simple-mdx/output.json'
 const sanitizer = mdxSanitizerPlugin(['customComponent1', 'customComponent2'])
 
 const processor = unified()
@@ -36,8 +31,15 @@ test('Keeps tree as is for correct file', () => {
     'utf8'
   )
 
+  const outputTreeData = fs.readFileSync(
+    path.resolve(__dirname, './src/test/test-files/simple-mdx/output.json'),
+    'utf8'
+  )
+
+  const outputTree = JSON.parse(outputTreeData)
+
   processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-    expect(sanitizer(tree as Root)).toEqual(simpleMdxOutput)
+    expect(sanitizer(tree as Root)).toEqual(outputTree)
   })
 })
 
@@ -48,8 +50,15 @@ describe('Import/Export statements', () => {
       'utf8'
     )
 
+    const outputTreeData = fs.readFileSync(
+      path.resolve(__dirname, './src/test/test-files/mdx-with-imports/output.json'),
+      'utf8'
+    )
+
+    const outputTree = JSON.parse(outputTreeData)
+
     processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-      expect(sanitizer(tree as Root)).toEqual(mdxWithImportOutput)
+      expect(sanitizer(tree as Root)).toEqual(outputTree)
     })
   })
   it('Removes export statements from file', async () => {
@@ -58,8 +67,14 @@ describe('Import/Export statements', () => {
       'utf8'
     )
 
+    const outputTreeData = fs.readFileSync(
+      path.resolve(__dirname, './src/test/test-files/mdx-with-exports/output.json'),
+      'utf8'
+    )
+
+    const outputTree = JSON.parse(outputTreeData)
     processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-      expect(sanitizer(tree as Root)).toEqual(mdxWithExportOutput)
+      expect(sanitizer(tree as Root)).toEqual(outputTree)
     })
   })
 })
@@ -70,8 +85,14 @@ test('Does not alter custom component', async () => {
     'utf8'
   )
 
+  const outputTreeData = fs.readFileSync(
+    path.resolve(__dirname, './src/test/test-files/mdx-with-custom-components/output.json'),
+    'utf8'
+  )
+
+  const outputTree = JSON.parse(outputTreeData)
   processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-    expect(sanitizer(tree as Root)).toEqual(mdxWithCustomComponentsOutput)
+    expect(sanitizer(tree as Root)).toEqual(outputTree)
   })
 })
 
@@ -81,7 +102,13 @@ test('Substitutes unknown components with UnknownComponent', () => {
     'utf8'
   )
 
+  const outputTreeData = fs.readFileSync(
+    path.resolve(__dirname, './src/test/test-files/mdx-with-unknown-component/output.json'),
+    'utf8'
+  )
+
+  const outputTree = JSON.parse(outputTreeData)
   processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-    expect(sanitizer(tree as Root)).toEqual(mdxWithUnknownComponentOutput)
+    expect(sanitizer(tree as Root)).toEqual(outputTree)
   })
 })

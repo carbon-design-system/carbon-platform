@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.116](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.115...@carbon-platform/web-app@0.1.116) (2022-05-26)
+
+
+### Features 🌟
+
+* add page description ([7e62872](https://github.com/carbon-design-system/carbon-platform/commit/7e62872f3bc80372f1c4d8311dbaff5993ad7825))
+* added description to libraries ([f084cec](https://github.com/carbon-design-system/carbon-platform/commit/f084cecbb1ba10a212811e5fa72624cd14d47020))
+
+
+### Bug Fixes 🐛
+
+* remove scroll when routing to pages ([41284f0](https://github.com/carbon-design-system/carbon-platform/commit/41284f04d3300a980a6be9bd42e89cda8a1741cb))
+
 ### [0.1.115](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.114...@carbon-platform/web-app@0.1.115) (2022-05-21)
 
 ### [0.1.114](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.113...@carbon-platform/web-app@0.1.114) (2022-05-21)

@@ -187,16 +187,6 @@ assets:
         name: Storybook
         action: link
         url: https://react.carbondesignsystem.com/?path=/story/components-accordion--accordion
-    navData:
-      - title: A page
-        path: '/a-page.mdx'
-      - title: Another page
-        items:
-          - title: Sub page
-            path: '/another-page/sub-page.mdx'
-            hidden: true
-          - title: Another sub page
-            path: '/another-page/another-sub-page.mdx'
 ```
 
 ### Asset keys

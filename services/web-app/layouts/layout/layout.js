@@ -29,13 +29,11 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './layout.module.scss'
 
+// do not show side nav for these paths
+const NO_SIDE_NAV_PATHS = ['/404']
+
 // Only slide to the secondary navigation on page load for these paths.
-const SECONDARY_NAV_SLIDE_PATHS = [
-  '/assets/[host]/[org]/[repo]/[library]/[ref]',
-  '/assets/[host]/[org]/[repo]/[library]/[ref]/library-assets',
-  '/assets/[host]/[org]/[repo]/[library]/[ref]/design-kits',
-  '/assets/[host]/[org]/[repo]/[library]/[ref]/versions'
-]
+const SECONDARY_NAV_SLIDE_PATHS = ['/assets/[host]/[org]/[repo]/[library]/[ref]']
 
 export const LayoutContext = createContext()
 
@@ -43,7 +41,7 @@ export const LayoutProvider = ({ children }) => {
   const [isSideNavExpanded, setSideNavExpanded] = useState(false)
   const [primaryNavData, setPrimaryNavData] = useState([])
   const [secondaryNavData, setSecondaryNavData] = useState([])
-  const [isSecondaryNav, setIsSecondaryNav] = useState(false)
+  const [skipNextSlide, setSkipNextSlide] = useState(false)
 
   const value = {
     isSideNavExpanded,
@@ -52,19 +50,44 @@ export const LayoutProvider = ({ children }) => {
     setPrimaryNavData,
     secondaryNavData,
     setSecondaryNavData,
-    isSecondaryNav,
-    setIsSecondaryNav
+    skipNextSlide,
+    setSkipNextSlide
   }
 
   return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
 }
 
 const SideNav = () => {
-  const { isSecondaryNav } = useContext(LayoutContext)
+  const router = useRouter()
+  const isSecondarySlidePath = SECONDARY_NAV_SLIDE_PATHS.includes(router.pathname)
+  const [shouldSlide, setShouldSlide] = useState(isSecondarySlidePath)
+  const [isSecondaryNav, setIsSecondaryNav] = useState(
+    router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]')
+  )
+
+  // const {
+  //   skipNextSlide,
+  //   setSkipNextSlide
+  // } = useContext(LayoutContext)
+
+  // Wait a render cycle before adding the class name to slide to the secondary nav
+  useEffect(() => {
+    setTimeout(() => {
+      if (shouldSlide) {
+        setShouldSlide(false)
+      }
+    }, 0)
+  }, [shouldSlide, setShouldSlide])
+
+  const handleSlidePrimary = () => {
+    setIsSecondaryNav(false)
+  }
 
   const cnSlide = clsx(styles['side-nav-slide'], {
-    [styles['side-nav-slide--secondary']]: isSecondaryNav
+    [styles['side-nav-slide--secondary']]: isSecondaryNav && !(isSecondarySlidePath && shouldSlide)
+    // [styles['prevent-animation']]: skipNextSlide
   })
+
   return (
     <Column sm={4} md={8} lg={4}>
       <Theme theme="white">
@@ -72,7 +95,11 @@ const SideNav = () => {
           <div className={styles['side-nav-inner']}>
             <div className={cnSlide}>
               <NavPrimary className={styles['side-nav-item']} globalItems={globalNavData} />
-              <NavSecondary className={styles['side-nav-item']} />
+              <NavSecondary
+                className={styles['side-nav-item']}
+                visible={isSecondaryNav}
+                onSlidePrimary={handleSlidePrimary}
+              />
             </div>
           </div>
         </section>
@@ -83,18 +110,13 @@ const SideNav = () => {
 
 const Layout = ({ children }) => {
   const router = useRouter()
-  const {
-    isSideNavExpanded,
-    setSideNavExpanded,
-    primaryNavData,
-    secondaryNavData,
-    setIsSecondaryNav
-  } = useContext(LayoutContext)
+  const { isSideNavExpanded, setSideNavExpanded, primaryNavData } = useContext(LayoutContext)
   const isLg = useMatchMedia(mediaQueries.lg)
+  const [showSideNav, setShowSideNav] = useState(true)
 
   useEffect(() => {
-    setIsSecondaryNav(SECONDARY_NAV_SLIDE_PATHS.includes(router.pathname))
-  }, [primaryNavData, router.pathname, secondaryNavData, setIsSecondaryNav])
+    setShowSideNav(!NO_SIDE_NAV_PATHS.includes(router.pathname))
+  }, [primaryNavData, router.pathname])
 
   // For use with 100vw widths to account for the scrollbar width, e.g. instead of `width: 100vw;`
   // use `width: calc(100vw - var(--scrollbar-width));`.
@@ -162,17 +184,22 @@ const Layout = ({ children }) => {
           </Theme>
           <Theme className={styles.body} theme="g10">
             <Grid as="main" className={styles.main} id="main-content">
-              <SideNav />
-              <Column sm={4} md={8} lg={12}>
+              {showSideNav && <SideNav />}
+              <Column sm={4} md={8} lg={showSideNav ? 12 : 16}>
                 <Grid condensed={!isLg} narrow={isLg}>
-                  <Column className={styles['column-content']} sm={4} md={8} lg={12}>
+                  <Column
+                    className={styles['column-content']}
+                    sm={4}
+                    md={8}
+                    lg={showSideNav ? 12 : 16}
+                  >
                     {children}
                   </Column>
                 </Grid>
               </Column>
             </Grid>
           </Theme>
-          <Footer hasSideNav />
+          <Footer hasSideNav={showSideNav} />
         </>
       )}
     />

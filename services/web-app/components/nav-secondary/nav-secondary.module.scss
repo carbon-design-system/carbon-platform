@@ -28,6 +28,7 @@
   color: theme.$link-primary;
   cursor: pointer;
   text-align: left;
+  transition: background motion.$duration-fast-02 motion.motion(standard, productive);
 
   &:hover {
     background: theme.$layer-hover;
@@ -97,41 +98,4 @@
   @include type.type-style('label-01');
 
   display: block;
-}
-
-// slide in/out animation
-@include breakpoint.breakpoint(lg) {
-  .side-nav-in {
-    position: absolute;
-    z-index: 3;
-    animation: slide-left motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
-    transform: translateX(256px);
-
-    @media screen and (prefers-reduced-motion: reduce) {
-      animation: none;
-    }
-  }
-
-  .side-nav-out {
-    position: absolute;
-    z-index: 3;
-    animation: slide-right motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
-    transform: translateX(0);
-
-    @media screen and (prefers-reduced-motion: reduce) {
-      animation: none;
-    }
-  }
-
-  @keyframes slide-right {
-    100% {
-      transform: translateX(256);
-    }
-  }
-
-  @keyframes slide-left {
-    100% {
-      transform: translateX(0);
-    }
-  }
 }

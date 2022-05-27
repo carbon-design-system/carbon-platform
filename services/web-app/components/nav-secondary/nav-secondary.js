@@ -10,7 +10,7 @@ import { ArrowLeft } from '@carbon/react/icons'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 
 import NavTree from '@/components/nav-tree'
 import { LayoutContext } from '@/layouts/layout'
@@ -18,16 +18,9 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './nav-secondary.module.scss'
 
-const NavSecondary = ({ className }) => {
+const NavSecondary = ({ className, visible, onSlidePrimary }) => {
   const router = useRouter()
-  const {
-    isSideNavExpanded,
-    secondaryNavData = {},
-    setSideNavExpanded,
-    isSecondaryNav,
-    setIsSecondaryNav
-  } = useContext(LayoutContext)
-  const [secondaryNavSlideOut, setSecondaryNavSlideOut] = useState(false)
+  const { isSideNavExpanded, secondaryNavData = {}, setSideNavExpanded } = useContext(LayoutContext)
   const isLg = useMatchMedia(mediaQueries.lg)
 
   const { back, headings, items, path } = secondaryNavData
@@ -36,33 +29,27 @@ const NavSecondary = ({ className }) => {
   const slideDelay = 150
 
   const handleBack = () => {
-    setSecondaryNavSlideOut(true)
+    onSlidePrimary()
     setTimeout(() => {
-      setSecondaryNavSlideOut(true)
-      setIsSecondaryNav(false)
-      router.push((back && back.path) || '/', undefined, { shallow: true })
+      router.push((back && back.path) || '/')
     }, slideDelay)
   }
 
-  if (!isLg && !isSecondaryNav) return null
+  if (!isLg && !visible) return null
 
   return (
     <SideNav
       aria-label="Secondary side navigation"
       expanded={isSideNavExpanded}
-      className={clsx(
-        className,
-        isSecondaryNav && styles['side-nav-in'],
-        secondaryNavSlideOut && styles['side-nav-out']
-      )}
-      aria-hidden={isSecondaryNav ? 'false' : 'true'}
+      className={clsx(className)}
+      aria-hidden={visible ? 'false' : 'true'}
       onOverlayClick={() => setSideNavExpanded(false)}
     >
       <Button
         kind="ghost"
         onClick={handleBack}
         className={styles.back}
-        tabIndex={isSecondaryNav ? 0 : '-1'}
+        tabIndex={visible ? 0 : '-1'}
       >
         <ArrowLeft className={styles['back-icon']} size={16} />
         {back?.title ?? 'Back'}

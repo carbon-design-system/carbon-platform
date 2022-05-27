@@ -4,60 +4,56 @@ title: Resource card
 
 ## ResourceCard
 
-<CardGroup>
-  <Column md={4} lg={4}>
-      <ResourceCard
-        subTitle="With subtitle"
-        title="Title"
-        aspectRatio="2:1"
-        actionIcon="arrowRight"
-        href="https://gatsby.carbondesignsystem.com"
-        >
+<Row className="resource-card-group">
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="With subtitle"
+      title="Title"
+      aspectRatio="2:1"
+      actionIcon="arrowRight"
+      href="https://gatsby.carbondesignsystem.com"
+      >
 
 ![Sketch icon](/mdx/sketch-icon.png)
 
-    </ResourceCard>
-
-  </Column>
-  <Column md={4} lg={4}>
-      <ResourceCard
-        subTitle="Only subtitle"
-        actionIcon="download"
-        aspectRatio="2:1"
-        href="https://gatsby.carbondesignsystem.com"
-        >
-
-![Sketch icon](/mdx/sketch-icon.png)
-
-    </ResourceCard>
-
-  </Column>
-  <Column md={4} lg={4}>
-      <ResourceCard
-        subTitle="Alternate color"
-        title="Dark"
-        aspectRatio="2:1"
-        color="dark"
-        actionIcon="email"
-        href="https://gatsby.carbondesignsystem.com"
-        >
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Only subtitle"
+      actionIcon="download"
+      aspectRatio="2:1"
+      href="https://gatsby.carbondesignsystem.com"
+      >
 
 ![Sketch icon](/mdx/sketch-icon.png)
 
-    </ResourceCard>
-
-  </Column>
-  <Column md={4} lg={4}>
-      <ResourceCard
-        title="Disabled card"
-        aspectRatio="2:1"
-        disabled
-        href="https://gatsby.carbondesignsystem.com"
-        >
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Alternate color"
+      title="Dark"
+      aspectRatio="2:1"
+      color="dark"
+      actionIcon="email"
+      href="https://gatsby.carbondesignsystem.com"
+      >
 
 ![Sketch icon](/mdx/sketch-icon.png)
 
-    </ResourceCard>
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      title="Disabled card"
+      aspectRatio="2:1"
+      disabled
+      href="https://gatsby.carbondesignsystem.com"
+      >
 
-  </Column>
-</CardGroup>
+![Sketch icon](/mdx/sketch-icon.png)
+
+  </ResourceCard>
+</Column>
+</Row>

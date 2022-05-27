@@ -283,7 +283,7 @@
               },
               "path": {
                 "type": "string",
-                "description": "Relative path to the file."
+                "description": "Path to the file, relative to carbon.yml."
               },
               "hidden": {
                 "type": "boolean",

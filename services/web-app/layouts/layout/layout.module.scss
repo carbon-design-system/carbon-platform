@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/motion' as motion;
+@use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
 .body {
@@ -26,6 +27,16 @@
   @include breakpoint.breakpoint(lg) {
     position: absolute;
   }
+}
+
+//carbon override, increase font size header text
+.header-name :global(.cds--header__name) {
+  @include type.type-style('heading-02');
+}
+
+//carbon override, increase font size top nav
+.header-grid :global(.cds--header__menu-item) {
+  @include type.type-style('body-02');
 }
 
 // carbon override, disabled header nav item

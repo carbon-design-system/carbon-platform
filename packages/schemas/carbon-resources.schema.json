@@ -148,7 +148,6 @@
                 "required": ["type", "name", "url"]
               }
             }
-            }
           },
           "additionalProperties": false,
           "required": ["status"]

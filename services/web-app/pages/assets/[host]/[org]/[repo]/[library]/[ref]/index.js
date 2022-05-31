@@ -60,7 +60,7 @@ const Library = ({ libraryData, params, navData }) => {
   const { sponsor } = libraryData.params
   const SponsorIcon = teams[sponsor] ? teams[sponsor].pictogram : Svg64Community
 
-  const assetsPath = `/libraries/${params.library}/${params.ref}/library-assets`
+  const assetsPath = `/assets/${params.library}/${params.ref}/library-assets`
 
   let externalDocsLink
   if (libraryData.content.externalDocsUrl) {

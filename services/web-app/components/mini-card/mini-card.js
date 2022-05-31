@@ -47,9 +47,9 @@ const MiniCard = ({ children, href, title, actionIcon, className, linkProps, ...
     <Column md={4} lg={4} sm={4} {...rest}>
       {isLink && (
         <Link href={href} passHref>
-          <CarbonLink to={href} className={'cds--tile--clickable'} {...linkProps}>
+          <a to={href} className={'cds--tile--clickable'} {...linkProps}>
             {cardContent}
-          </CarbonLink>
+          </a>
         </Link>
       )}
       {!isLink && (

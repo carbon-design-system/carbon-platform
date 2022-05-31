@@ -8,107 +8,106 @@
 // is there a way to import the mdx without using fs?
 import { remarkMarkAndUnravel } from '@mdx-js/mdx/lib/plugin/remark-mark-and-unravel'
 import fs from 'fs'
-import { Root } from 'mdast'
+// import { Root } from 'mdast'
 import path from 'path'
 import remarkMdx from 'remark-mdx'
-// @ts-ignore
 import remarkParse from 'remark-parse'
-import { Plugin, unified } from 'unified'
+import { unified } from 'unified'
+import { fileURLToPath } from 'url'
 
-import mdxSanitizerPlugin from '../main/index'
+import mdxSanitizerPlugin from '../main/mdx-sanitizer-plugin.mjs'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 const sanitizer = mdxSanitizerPlugin(['customComponent1', 'customComponent2'])
 
-const processor = unified()
-  .use(remarkParse as Plugin)
-  .use(remarkMdx)
-  .use(remarkMarkAndUnravel as Plugin)
-
-const __dirname = path.resolve()
+const processor = unified().use(remarkParse).use(remarkMdx).use(remarkMarkAndUnravel)
 
 test('Keeps tree as is for correct file', () => {
   const mdxData = fs.readFileSync(
-    path.resolve(__dirname, './src/test/test-files/simple-mdx/sample.mdx'),
+    path.resolve(__dirname, './test-files/simple-mdx/sample.mdx'),
     'utf8'
   )
 
   const outputTreeData = fs.readFileSync(
-    path.resolve(__dirname, './src/test/test-files/simple-mdx/output.json'),
+    path.resolve(__dirname, './test-files/simple-mdx/output.json'),
     'utf8'
   )
 
   const outputTree = JSON.parse(outputTreeData)
 
   processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-    expect(sanitizer(tree as Root)).toEqual(outputTree)
+    expect(sanitizer(tree)).toEqual(outputTree)
   })
 })
 
 describe('Import/Export statements', () => {
   it('Removes import statements from file and used variables', () => {
     const mdxData = fs.readFileSync(
-      path.resolve(__dirname, './src/test/test-files/mdx-with-imports/sample.mdx'),
+      path.resolve(__dirname, './test-files/mdx-with-imports/sample.mdx'),
       'utf8'
     )
 
     const outputTreeData = fs.readFileSync(
-      path.resolve(__dirname, './src/test/test-files/mdx-with-imports/output.json'),
+      path.resolve(__dirname, './test-files/mdx-with-imports/output.json'),
       'utf8'
     )
 
     const outputTree = JSON.parse(outputTreeData)
 
     processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-      expect(sanitizer(tree as Root)).toEqual(outputTree)
+      expect(sanitizer(tree)).toEqual(outputTree)
     })
   })
   it('Removes export statements from file', async () => {
     const mdxData = fs.readFileSync(
-      path.resolve(__dirname, './src/test/test-files/mdx-with-exports/sample.mdx'),
+      path.resolve(__dirname, './test-files/mdx-with-exports/sample.mdx'),
       'utf8'
     )
 
     const outputTreeData = fs.readFileSync(
-      path.resolve(__dirname, './src/test/test-files/mdx-with-exports/output.json'),
+      path.resolve(__dirname, './test-files/mdx-with-exports/output.json'),
       'utf8'
     )
 
     const outputTree = JSON.parse(outputTreeData)
     processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-      expect(sanitizer(tree as Root)).toEqual(outputTree)
+      expect(sanitizer(tree)).toEqual(outputTree)
     })
   })
 })
 
 test('Does not alter custom component', async () => {
   const mdxData = fs.readFileSync(
-    path.resolve(__dirname, './src/test/test-files/mdx-with-custom-components/sample.mdx'),
+    path.resolve(__dirname, './test-files/mdx-with-custom-components/sample.mdx'),
     'utf8'
   )
 
   const outputTreeData = fs.readFileSync(
-    path.resolve(__dirname, './src/test/test-files/mdx-with-custom-components/output.json'),
+    path.resolve(__dirname, './test-files/mdx-with-custom-components/output.json'),
     'utf8'
   )
 
   const outputTree = JSON.parse(outputTreeData)
   processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-    expect(sanitizer(tree as Root)).toEqual(outputTree)
+    expect(sanitizer(tree)).toEqual(outputTree)
   })
 })
 
 test('Substitutes unknown components with UnknownComponent', () => {
   const mdxData = fs.readFileSync(
-    path.resolve(__dirname, './src/test/test-files/mdx-with-unknown-component/sample.mdx'),
+    path.resolve(__dirname, './test-files/mdx-with-unknown-component/sample.mdx'),
     'utf8'
   )
 
   const outputTreeData = fs.readFileSync(
-    path.resolve(__dirname, './src/test/test-files/mdx-with-unknown-component/output.json'),
+    path.resolve(__dirname, './test-files/mdx-with-unknown-component/output.json'),
     'utf8'
   )
 
   const outputTree = JSON.parse(outputTreeData)
   processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-    expect(sanitizer(tree as Root)).toEqual(outputTree)
+    expect(sanitizer(tree)).toEqual(outputTree)
   })
 })

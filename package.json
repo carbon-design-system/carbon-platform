@@ -36,7 +36,7 @@
     "packages:build": "npm --workspaces --if-present run package:build",
     "prepare": "scripts/prepare",
     "services:build": "npm --workspaces --if-present run service:build",
-    "test": "jest --config=./.jestrc.js"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --config=./.jestrc.js"
   },
   "dependencies": {
     "esbuild": "~0.14.39",

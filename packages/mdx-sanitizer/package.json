@@ -2,14 +2,6 @@
   "name": "@carbon-platform/mdx-sanitizer",
   "version": "1.0.0",
   "description": "Mdx Sanitizer Plugin",
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "clean": "rimraf dist",
-    "package:build": "npm run build",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --config=./.jestrc.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
@@ -19,10 +11,19 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "main": "src/main/mdx-sanitizer-plugin.mjs",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "clean": "rimraf dist",
+    "package:build": "npm run build",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --config=../../.jestrc.workspace.js"
+  },
   "dependencies": {
     "@mdx-js/mdx": "^2.1.1",
     "mdast-util-mdx-jsx": "^2.0.1",
     "mdast-util-mdxjs-esm": "^1.2.0",
+    "remark": "^14.0.2",
     "remark-mdx": "^2.0.0",
     "remark-parse": "^10.0.0",
     "unified": "^10.0.0",

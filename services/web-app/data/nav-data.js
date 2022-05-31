@@ -33,6 +33,10 @@ export const assetsNavData = [
     title: 'About Assets'
   },
   {
+    path: '/filter-table',
+    title: 'Filter table'
+  },
+  {
     title: 'Guidelines',
     items: [
       {

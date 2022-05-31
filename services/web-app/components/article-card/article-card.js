@@ -113,12 +113,12 @@ ArticleCard.propTypes = {
   className: PropTypes.string,
 
   /**
-   * set to "dark" for dark background card
+   * Set to "dark" for dark background card
    */
   color: PropTypes.oneOf(['light', 'dark']),
 
   /**
-   * date
+   * Date
    */
   date: PropTypes.string,
 
@@ -133,12 +133,12 @@ ArticleCard.propTypes = {
   href: PropTypes.string,
 
   /**
-   * Reat time of article
+   * Read time of article
    */
   readTime: PropTypes.string,
 
   /**
-   * sub title
+   * Subtitle
    */
   subTitle: PropTypes.string,
 

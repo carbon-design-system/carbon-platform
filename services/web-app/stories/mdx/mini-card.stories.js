@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import CardGroup from '@/components/card-group'
+import MdxIcon from '@/components/mdx-icon'
 import MiniCard from '@/components/mini-card'
 
 const stories = {
@@ -42,21 +43,17 @@ const Template = (args) => (
       href="https://carbon-website-git-fork-designertyler-treeview03092020.carbon-design-system.now.sh/components/tree-view/usage"
       actionIcon="arrowRight"
     />
-    <MiniCard
-      title="Tree view component"
-      href="https://carbon-website-git-fork-designertyler-treeview03092020.carbon-design-system.now.sh/components/tree-view/usage"
-      actionIcon="email"
-    />
+    <MiniCard title="Angular tutorial" href="">
+      <MdxIcon name="angular" />
+    </MiniCard>
     <MiniCard
       title="Tree view component"
       href="https://carbon-website-git-fork-designertyler-treeview03092020.carbon-design-system.now.sh/components/tree-view/usage"
       actionIcon="launch"
     />
-    <MiniCard
-      title="Tree view component"
-      href="https://carbon-website-git-fork-designertyler-treeview03092020.carbon-design-system.now.sh/components/tree-view/usage"
-      actionIcon="download"
-    />
+    <MiniCard title="React tutorial" href="">
+      <MdxIcon name="react" />
+    </MiniCard>
   </CardGroup>
 )
 

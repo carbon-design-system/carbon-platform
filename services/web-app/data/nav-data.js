@@ -84,6 +84,19 @@ export const assetsNavData = [
         path: '/assets/guidelines/typography/overview',
         title: ' Typography',
         hasTabs: true
+      },
+      {
+        title: 'Test',
+        items: [
+          {
+            path: '/test/test1',
+            title: 'Test 1'
+          },
+          {
+            path: '/test/test2',
+            title: 'Test 2'
+          }
+        ]
       }
     ]
   },

@@ -8,7 +8,6 @@
 // is there a way to import the mdx without using fs?
 import { remarkMarkAndUnravel } from '@mdx-js/mdx/lib/plugin/remark-mark-and-unravel'
 import fs from 'fs'
-// import { Root } from 'mdast'
 import path from 'path'
 import remarkMdx from 'remark-mdx'
 import remarkParse from 'remark-parse'

@@ -7,14 +7,31 @@
 import '@/styles/styles.scss'
 
 import { MDXProvider } from '@mdx-js/react'
+import { useRouter } from 'next/router'
 import { DefaultSeo } from 'next-seo'
+import { useEffect } from 'react'
 
 import components from '@/components/mdx'
 import defaultSeo from '@/config/seo.json'
 import { AuthProvider } from '@/contexts/auth'
 import Layout, { LayoutProvider } from '@/layouts/layout'
 
+function useNormalScrollRoutes() {
+  const router = useRouter()
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', () => {
+      document.documentElement.classList.add('normal-scroll')
+    })
+    router.events.on('routeChangeComplete', () => {
+      document.documentElement.classList.remove('normal-scroll')
+    })
+  }, [router.events])
+}
+
 function App({ Component, pageProps }) {
+  useNormalScrollRoutes()
+
   return (
     <AuthProvider>
       <LayoutProvider>

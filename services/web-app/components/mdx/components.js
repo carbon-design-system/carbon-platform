@@ -23,6 +23,7 @@ import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
+import CardGroup from '@/components/card-group'
 import Code from '@/components/code'
 import ColorBlock from '@/components/color-block'
 import ColorGrid from '@/components/color-grid'
@@ -37,6 +38,7 @@ import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import MdxWrapper from '@/components/mdx-wrapper'
+import MiniCard from '@/components/mini-card'
 import PageDescription from '@/components/page-description'
 import PageTable from '@/components/page-table'
 import Preview from '@/components/preview'
@@ -79,44 +81,45 @@ const components = {
   ListItem,
   Tag,
   /* Gatsby theme components */
-  Caption,
-  PageDescription,
-  Title,
-  Image,
   Accordion,
   AccordionItem,
-  ArticleCard,
-  Grid,
-  Row,
-  Column,
   AnchorLink,
   AnchorLinks,
   ArtDirection,
+  ArticleCard,
+  Aside,
+  Caption,
+  CardGroup,
+  ColorBlock,
+  ColorGrid,
+  ColorPalette,
+  Column,
+  ColorTokenTable,
   DoDont,
   DoDontRow,
   GifPlayer,
-  IconLibrary,
   Glossary,
-  GlossaryComponent: Glossary,
+  Grid,
+  IconLibrary,
+  Image,
   InlineNotification,
-  PictogramLibrary,
   MdxIcon,
-  Tabs,
-  Tab,
-  Video,
   MdxWrapper,
-  ResourceCard,
-  Aside,
+  MiniCard,
+  PageDescription,
+  PictogramLibrary,
   Preview,
   Profile,
-  ColorTokenTable,
-  TypesetStyle,
-  ColorBlock,
-  ColorGrid,
-  TypeScaleTable,
-  TypeWeight,
-  ColorPalette,
+  ResourceCard,
+  Row,
   StatusIndicatorTable,
+  Tab,
+  Tabs,
+  Title,
+  TypeScaleTable,
+  TypesetStyle,
+  TypeWeight,
+  Video,
   UnknownComponent
 }
 

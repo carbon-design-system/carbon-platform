@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.117](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.116...@carbon-platform/web-app@0.1.117) (2022-05-28)
+
+
+### Bug Fixes 🐛
+
+* nav close on page change ([22c3be5](https://github.com/carbon-design-system/carbon-platform/commit/22c3be5667994782e91d890ad711c49bf9846fa5))
+* need to fix side nav on render ([cea6222](https://github.com/carbon-design-system/carbon-platform/commit/cea6222e952facbb66af75a7fa4c88671b9e749d))
+* update scroll ([a3a5a3d](https://github.com/carbon-design-system/carbon-platform/commit/a3a5a3de7c55bb4c602f5aca4c5447252e3d23bf))
+* update scroll ([b0b02c2](https://github.com/carbon-design-system/carbon-platform/commit/b0b02c277df064d9832d49aef335532942afb632))
+* updatee library nav ([c130344](https://github.com/carbon-design-system/carbon-platform/commit/c1303449d55194f9427cd4ad58554ce8a9728b76))
+
+### [0.1.116](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.115...@carbon-platform/web-app@0.1.116) (2022-05-26)
+
+
+### Features 🌟
+
+* add page description ([7e62872](https://github.com/carbon-design-system/carbon-platform/commit/7e62872f3bc80372f1c4d8311dbaff5993ad7825))
+* added description to libraries ([f084cec](https://github.com/carbon-design-system/carbon-platform/commit/f084cecbb1ba10a212811e5fa72624cd14d47020))
+
+
+### Bug Fixes 🐛
+
+* remove scroll when routing to pages ([41284f0](https://github.com/carbon-design-system/carbon-platform/commit/41284f04d3300a980a6be9bd42e89cda8a1741cb))
+
 ### [0.1.115](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.114...@carbon-platform/web-app@0.1.115) (2022-05-21)
 
 ### [0.1.114](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.113...@carbon-platform/web-app@0.1.114) (2022-05-21)

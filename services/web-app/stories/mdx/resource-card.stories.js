@@ -4,9 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Grid } from '@carbon/react'
+import { Column } from '@carbon/react'
 import Image from 'next/image'
 
+import CardGroup from '@/components/card-group'
 import ResourceCard from '@/components/resource-card'
 
 const stories = {
@@ -25,7 +26,7 @@ const stories = {
 export default stories
 
 const Template = (args) => (
-  <Grid condensed className="resource-card-group">
+  <CardGroup>
     <Column lg={4}>
       <ResourceCard
         subTitle="With subtitle"
@@ -69,7 +70,7 @@ const Template = (args) => (
         <Image src="mdx/sketch-icon.png" alt="sketch" />
       </ResourceCard>
     </Column>
-  </Grid>
+  </CardGroup>
 )
 
 export const Default = Template.bind({})

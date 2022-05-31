@@ -41,10 +41,10 @@ export const LayoutProvider = ({ children }) => {
     navData,
     setNavData,
     showSideNav,
+    isSideNavExpanded,
     setShowSideNav,
     librarySideNav,
     setLibrarySideNav,
-    isSideNavExpanded,
     toggleSideNavExpanded,
     libraryNavSlideOut,
     setLibraryNavSlideOut
@@ -85,6 +85,19 @@ const Layout = ({ children }) => {
     setLibrarySideNav(router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
   }, [setShowSideNav, setLibrarySideNav, router.pathname])
 
+  useEffect(() => {
+    const handleRouteChange = () => {
+      // Collapse the side nav for small and medium breakpoint when navigating to a new page.
+      toggleSideNavExpanded(false)
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [router.events, toggleSideNavExpanded])
+
   const onClickSideNavExpand = () => {
     toggleSideNavExpanded(!isSideNavExpanded)
   }
@@ -101,7 +114,6 @@ const Layout = ({ children }) => {
                 onClick={onClickSideNavExpand}
                 isActive={isSideNavExpanded}
               />
-
               <div className={styles['header-name']}>
                 <Link href="/assets">
                   <a className="cds--header__name">Carbon Design System</a>

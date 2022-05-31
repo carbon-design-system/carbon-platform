@@ -11,6 +11,7 @@ import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
+import CardGroup from '@/components/card-group'
 import Code from '@/components/code'
 import ColorBlock from '@/components/color-block'
 import ColorGrid from '@/components/color-grid'
@@ -26,11 +27,13 @@ import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import MdxWrapper from '@/components/mdx-wrapper'
+import MiniCard from '@/components/mini-card'
 import PageDescription from '@/components/page-description'
 import PageTable from '@/components/page-table'
 import Preview from '@/components/preview'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
+import StatusIndicatorTable from '@/components/status-indicator-table'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'
@@ -38,8 +41,6 @@ import Title from '@/components/title'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
 import Video from '@/components/video'
-
-import StatusIndicatorTable from '../status-indicator-table'
 
 const components = {
   h1: H1,
@@ -58,44 +59,46 @@ const components = {
   table: PageTable,
   pre: Code,
   /* Gatsby theme components */
-  Caption,
-  PageDescription,
-  Title,
-  Image,
-  ImageWrapper,
   Accordion,
   AccordionItem,
-  ArticleCard,
-  Grid,
-  Row,
-  Column,
   AnchorLink,
   AnchorLinks,
   ArtDirection,
+  ArticleCard,
+  Aside,
+  Caption,
+  CardGroup,
+  ColorBlock,
+  ColorGrid,
+  ColorPalette,
+  Column,
+  ColorTokenTable,
   DoDont,
   DoDontRow,
   GifPlayer,
-  IconLibrary,
   Glossary,
+  Grid,
+  IconLibrary,
+  Image,
+  ImageWrapper,
   InlineNotification,
-  PictogramLibrary,
   MdxIcon,
-  Tabs,
-  Tab,
-  Video,
   MdxWrapper,
-  ResourceCard,
-  Aside,
+  MiniCard,
+  PageDescription,
+  PictogramLibrary,
   Preview,
   Profile,
-  ColorTokenTable,
-  TypesetStyle,
-  ColorBlock,
-  ColorGrid,
+  ResourceCard,
+  Row,
+  StatusIndicatorTable,
+  Tab,
+  Tabs,
+  Title,
   TypeScaleTable,
+  TypesetStyle,
   TypeWeight,
-  ColorPalette,
-  StatusIndicatorTable
+  Video
 }
 
 export default components

@@ -35,7 +35,6 @@
     "apollo-server-express": "^3.7.0",
     "apollo-server-plugin-base": "^3.5.3",
     "express": "^4.18.1",
-    "graphql": "^16.5.0",
-    "typescript": "^4.6.4"
+    "graphql": "^16.5.0"
   }
 }

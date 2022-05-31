@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/motion' as motion;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .body {
   flex-grow: 1;
@@ -112,7 +113,7 @@
 
 .side-nav-item {
   // override carbon height
-  height: calc(100% - 48px);
+  height: calc(100% - convert.rem(48px));
 
   // override carbon side nav position fixed
   @include breakpoint.breakpoint(lg) {

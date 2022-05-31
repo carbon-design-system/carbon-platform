@@ -87,14 +87,25 @@
     width: 32rem;
     height: 100%;
     transform: translateX(0);
-    transition: transform motion.$duration-moderate-01 motion.motion(entrance, productive);
+
+    /* I don't know why it's complaining if I remove these two disable lines */
+
+    @media screen and (prefers-reduced-motion: reduce) {
+      &.slide-in,
+    /* stylelint-disable-next-line a11y/media-prefers-reduced-motion */
+    &.slide-out {
+        transition: none;
+      }
+    }
+
+    &.slide-in,
+    /* stylelint-disable-next-line a11y/media-prefers-reduced-motion */
+    &.slide-out {
+      transition: transform motion.$duration-moderate-01 motion.motion(entrance, productive);
+    }
 
     &--secondary {
       transform: translateX(-16rem);
-
-      &.prevent-animation {
-        transition: none;
-      }
     }
   }
 }

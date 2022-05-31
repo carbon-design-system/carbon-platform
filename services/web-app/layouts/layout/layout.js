@@ -60,32 +60,44 @@ export const LayoutProvider = ({ children }) => {
 const SideNav = () => {
   const router = useRouter()
   const isSecondarySlidePath = SECONDARY_NAV_SLIDE_PATHS.includes(router.pathname)
-  const [shouldSlide, setShouldSlide] = useState(isSecondarySlidePath)
+  const [shouldSlideIn, setShouldSlideIn] = useState(isSecondarySlidePath)
+  const [shouldSlideOut, setShouldSlideOut] = useState(false)
   const [isSecondaryNav, setIsSecondaryNav] = useState(
     router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]')
   )
 
-  // const {
-  //   skipNextSlide,
-  //   setSkipNextSlide
-  // } = useContext(LayoutContext)
+  // $duration-moderate-01 = 150ms
+  const slideDelay = 150
+
+  const { skipNextSlide, setSkipNextSlide } = useContext(LayoutContext)
 
   // Wait a render cycle before adding the class name to slide to the secondary nav
   useEffect(() => {
-    setTimeout(() => {
-      if (shouldSlide) {
-        setShouldSlide(false)
+    requestAnimationFrame(() => {
+      if (shouldSlideIn) {
+        setShouldSlideIn(false)
       }
-    }, 0)
-  }, [shouldSlide, setShouldSlide])
+    })
+  }, [shouldSlideIn, setShouldSlideIn])
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSkipNextSlide(isSecondaryNav)
+    }, slideDelay)
+    // we do not want to update every time isSecondaryNav changes, it messes up the whole behavior
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- see above
+  }, [setSkipNextSlide])
 
   const handleSlidePrimary = () => {
+    setShouldSlideOut(true)
     setIsSecondaryNav(false)
   }
 
   const cnSlide = clsx(styles['side-nav-slide'], {
-    [styles['side-nav-slide--secondary']]: isSecondaryNav && !(isSecondarySlidePath && shouldSlide)
-    // [styles['prevent-animation']]: skipNextSlide
+    [styles['side-nav-slide--secondary']]:
+      isSecondaryNav && !(isSecondarySlidePath && shouldSlideIn),
+    [styles['slide-in']]: !skipNextSlide,
+    [styles['slide-out']]: shouldSlideOut
   })
 
   return (

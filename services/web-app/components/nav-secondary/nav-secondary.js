@@ -41,7 +41,7 @@ const NavSecondary = ({ className, visible, onSlidePrimary }) => {
     <SideNav
       aria-label="Secondary side navigation"
       expanded={isSideNavExpanded}
-      className={clsx(className)}
+      className={clsx(styles['secondary-nav'], className)}
       aria-hidden={visible ? 'false' : 'true'}
       onOverlayClick={() => setSideNavExpanded(false)}
     >

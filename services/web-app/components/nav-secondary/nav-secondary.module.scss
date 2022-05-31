@@ -11,6 +11,20 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
 
+// override carbon, add scroll ability within short viewport
+:global(.cds--side-nav__navigation) {
+  overflow: hidden;
+  height: auto;
+  overflow-y: auto;
+}
+
+.secondary-nav {
+  // override carbon style to allow scroll abillty
+  :global(.cds--tree--sm) {
+    overflow: scroll;
+  }
+}
+
 // override carbon ghost button styles
 @media screen and (prefers-reduced-motion: reduce) {
   .back {
@@ -18,7 +32,6 @@
   }
 }
 
-// override carbon ghost button styles
 .back {
   display: block;
   width: 100%;

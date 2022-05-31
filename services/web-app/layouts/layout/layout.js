@@ -129,6 +129,19 @@ const Layout = ({ children }) => {
     }
   }, [])
 
+  useEffect(() => {
+    const handleRouteChange = () => {
+      // Collapse the side nav for small and medium breakpoint when navigating to a new page.
+      setSideNavExpanded(false)
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [router.events, setSideNavExpanded])
+
   const onClickSideNavExpand = () => {
     setSideNavExpanded(!isSideNavExpanded)
   }

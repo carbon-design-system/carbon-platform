@@ -23,18 +23,20 @@ const sanitizeASTTree = (customComponentKeys, tree) => {
     if (node.type === 'mdxjsEsm') {
       // find the names of imported variables and save to "importedVars" array
       const varDeclarations = node.data?.estree?.body.filter(
-        (bodyItem) => /** @type { import('estree').ModuleDeclaration } */ (bodyItem).type === 'ImportDeclaration'
+        (bodyItem) =>
+          /** @type { import('estree').ModuleDeclaration } */ (bodyItem).type ===
+          'ImportDeclaration'
       )
-      const variableSpecifiers = varDeclarations?.map(
-        (declaration) =>
-          /** @type { import('estree').ImportDeclaration } */ (declaration).specifiers.filter(
-            (specificer) => specificer.type === 'ImportSpecifier'
-          )
+      const variableSpecifiers = varDeclarations?.map((declaration) =>
+        /** @type { import('estree').ImportDeclaration } */ (declaration).specifiers.filter(
+          (specificer) => specificer.type === 'ImportSpecifier'
+        )
       )
       const variableKeys = variableSpecifiers
         ?.flat()
         ?.map(
-          (specificer) => /** @type {import('estree').ImportSpecifier } */ (specificer).imported?.name
+          (specificer) =>
+            /** @type {import('estree').ImportSpecifier } */ (specificer).imported?.name
         )
       if (variableKeys && variableKeys.length) {
         importedVars.push(...variableKeys)
@@ -51,7 +53,12 @@ const sanitizeASTTree = (customComponentKeys, tree) => {
    */
   const importedVars = []
 
-  remove(tree, /** @type {import('unist-util-remove/node_modules/unist-util-is').Test<import('mdast').Root>} */ (fn))
+  remove(
+    tree,
+    /** @type {import('unist-util-remove/node_modules/unist-util-is').Test<import('mdast').Root>} */ (
+      fn
+    )
+  )
 
   // convert all invalid components into "UnknownComponent"
   const availableKeys = [...customComponentKeys, ...HTMLTags]
@@ -60,8 +67,10 @@ const sanitizeASTTree = (customComponentKeys, tree) => {
     // eslint-disable-next-line max-len -- can't split this
     /** @type {import('unist-util-visit/node_modules/unist-util-is').Test<import('mdast-util-mdx-jsx').MdxJsxFlowElement>} */
     // eslint-disable-next-line no-extra-parens -- need this for types to work
-    ((/** @type { import('mdast-util-mdx-jsx').MdxJsxFlowElement } */ node) =>
-      !!node.name && !availableKeys.includes(node.name)),
+    (
+      (/** @type { import('mdast-util-mdx-jsx').MdxJsxFlowElement } */ node) =>
+        !!node.name && !availableKeys.includes(node.name)
+    ),
     (/** @type {import('mdast-util-mdx-jsx').MdxJsxFlowElement } */ node) => {
       node.attributes = [{ type: 'mdxJsxAttribute', name: 'name', value: node.name }]
       node.name = 'UnknownComponent'
@@ -75,18 +84,30 @@ const sanitizeASTTree = (customComponentKeys, tree) => {
     // eslint-disable-next-line max-len -- can't split this
     /** @type {import('unist-util-visit/node_modules/unist-util-is').Test<import('mdast-util-mdx-jsx').MdxJsxFlowElement>} */
     // eslint-disable-next-line no-extra-parens -- need this for types to work
-    ((/** @type { import('mdast-util-mdx-jsx').MdxJsxFlowElement } */ node) =>
-      node.attributes?.some(
-        (attr) =>
-          (attr.type === 'mdxJsxAttribute' &&
-          importedVars.includes(/** @type { import('mdast-util-mdx-jsx').MdxJsxAttributeValueExpression } */ (attr.value)?.value))
-      )),
+    (
+      (/** @type { import('mdast-util-mdx-jsx').MdxJsxFlowElement } */ node) =>
+        node.attributes?.some(
+          (attr) =>
+            attr.type === 'mdxJsxAttribute' &&
+            importedVars.includes(
+              /** @type { import('mdast-util-mdx-jsx').MdxJsxAttributeValueExpression } */ (
+                attr.value
+              )?.value
+            )
+        )
+    ),
     // remove invalid attributes from node attributes
     (/** @type {import('mdast-util-mdx-jsx').MdxJsxFlowElement } */ node) => {
       node.attributes = node.attributes?.filter(
         (attr) =>
-          !(attr.type === 'mdxJsxAttribute' &&
-          importedVars.includes(/** @type { import('mdast-util-mdx-jsx').MdxJsxAttributeValueExpression } */ (attr.value)?.value))
+          !(
+            attr.type === 'mdxJsxAttribute' &&
+            importedVars.includes(
+              /** @type { import('mdast-util-mdx-jsx').MdxJsxAttributeValueExpression } */ (
+                attr.value
+              )?.value
+            )
+          )
       )
     }
   )

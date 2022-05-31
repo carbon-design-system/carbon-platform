@@ -20,13 +20,14 @@ import styles from './nav-main.module.scss'
 
 const NavMain = ({ items = [] }) => {
   const router = useRouter()
-  const { librarySideNav, isSideNavExpanded, libraryNavSlideOut, navData } =
+  const { librarySideNav, toggleSideNavExpanded, isSideNavExpanded, libraryNavSlideOut, navData } =
     useContext(LayoutContext)
 
   return (
     <SideNav
       aria-label="Side navigation"
       expanded={isSideNavExpanded}
+      onOverlayClick={() => toggleSideNavExpanded(false)}
       className={clsx(
         styles['side-nav'],
         librarySideNav && libraryStyles['library-nav-in'],

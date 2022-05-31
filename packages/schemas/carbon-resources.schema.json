@@ -219,6 +219,56 @@
             "additionalProperties": false,
             "required": ["type", "name", "url"]
           }
+        },
+        "navData": {
+          "description": "Libraries have documentation pages that are specific to their library.",
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Navigation title."
+              },
+              "path": {
+                "type": "string",
+                "description": "Path to the file, relative to carbon.yml."
+              },
+              "hidden": {
+                "type": "boolean",
+                "default": false,
+                "description": "If set to true, the item will be hidden from the navigation."
+              },
+              "items": {
+                "description": "Libraries have documentation pages that are specific to their library.",
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Navigation title."
+                    },
+                    "path": {
+                      "type": "string",
+                      "description": "Path to the file, relative to carbon.yml."
+                    },
+                    "hidden": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "If set to true, the item will be hidden from the navigation."
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": ["title", "path"]
+                }
+              }
+            },
+            "additionalProperties": false,
+            "required": ["title", "path"]
+          }
         }
       },
       "additionalProperties": false,

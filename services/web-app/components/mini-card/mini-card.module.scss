@@ -35,7 +35,9 @@
   @include type.type-style('body-short-01');
 }
 
-.image {
+.image,
+.image :global([class*='mdx-icon']),
+.image :global([class*='mdx-icon'] svg) {
   width: convert.rem(20px);
   height: convert.rem(20px);
 }

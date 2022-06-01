@@ -1,7 +1,7 @@
 blank_issues_enabled: true
 contact_links:
   - name: Carbon Platform roadmap
-    url: https://github.com/orgs/carbon-design-system/projects/36
+    url: https://app.zenhub.com/workspaces/platform-product-management-624ca9397d28730018df40c2/roadmap
     about: Learn what we're working on and what we have planned for the future.
   - name: Carbon feedback
     url: https://github.com/carbon-design-system/carbon/discussions

@@ -157,7 +157,7 @@
                   "description": "[TODO]",
                   "type": "string"
                 },
-                "stylePath":{
+                "stylePath": {
                   "description": "[TODO]",
                   "type": "string"
                 },

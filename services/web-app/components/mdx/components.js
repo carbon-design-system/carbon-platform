@@ -33,6 +33,7 @@ import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
 import Glossary from '@/components/glossary'
 import { Column, Grid, Row } from '@/components/grid-transform'
+import ImageWrapper from '@/components/image-wrapper'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
@@ -102,6 +103,7 @@ const components = {
   Grid,
   IconLibrary,
   Image,
+  ImageWrapper,
   InlineNotification,
   MdxIcon,
   MdxWrapper,

@@ -126,8 +126,11 @@ const Library = ({ libraryData, params }) => {
                       />
                     </dd>
                   </Column>
-                  <Button className={styles['versions-button']}>
-                    Coming soon...
+                  <Button
+                    href={`/assets/${libraryData.params.library}/library-assets`}
+                    className={styles['versions-button']}
+                  >
+                    View assets
                     <ArrowRight size={16} />
                   </Button>
                 </Grid>

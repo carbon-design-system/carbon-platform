@@ -139,6 +139,29 @@
         "required": ["type", "name", "url"]
       }
     },
+    "docs": {
+      "description": "determines which supporting documentation is available to fetch and render as page tabs in asset details",
+      "type": "object",
+      "minProperties": 1,
+      "properties": {
+        "usagePath": {
+          "description": "[TODO]",
+          "type": "string"
+        },
+        "stylePath": {
+          "description": "[TODO]",
+          "type": "string"
+        },
+        "codePath": {
+          "description": "[TODO]",
+          "type": "string"
+        },
+        "accessibilityPath": {
+          "description": "[TODO]",
+          "type": "string"
+        }
+      }
+    },
     "issueCount": {
       "type": "number",
       "default": false,

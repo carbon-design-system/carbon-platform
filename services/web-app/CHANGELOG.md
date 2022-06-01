@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.118](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.117...@carbon-platform/web-app@0.1.118) (2022-06-01)
+
+
+### Features 🌟
+
+* **web-app:** mini card component ([8da7216](https://github.com/carbon-design-system/carbon-platform/commit/8da7216cfb61a412e4a31d448fc633cb00cec924))
+
+
+### Bug Fixes 🐛
+
+* increase header font size ([2ab95ea](https://github.com/carbon-design-system/carbon-platform/commit/2ab95eac2bcce05ab70688350f4f754c07f811fa))
+* **web-app:** add mini card to mdx index ([7166c08](https://github.com/carbon-design-system/carbon-platform/commit/7166c080c14445f2920f0397a716e6d3050ac28f))
+* **web-app:** linter ([84bacb8](https://github.com/carbon-design-system/carbon-platform/commit/84bacb88a9b41c4ee3d75e2e15cccf22353fd482))
+* **web-app:** mini card extend example ([faee517](https://github.com/carbon-design-system/carbon-platform/commit/faee5173ef8fa686777fda669880f30825ed6636))
+* **web-app:** wrap resource card around cardgroup ([abcfcb8](https://github.com/carbon-design-system/carbon-platform/commit/abcfcb8238cc099ee1f0fdcc5dd9e1f3285c390b))
+
 ### [0.1.117](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.116...@carbon-platform/web-app@0.1.117) (2022-05-28)
 
 

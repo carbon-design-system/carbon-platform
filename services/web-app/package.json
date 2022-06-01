@@ -37,7 +37,7 @@
     "@next/mdx": "^12.1.6",
     "@octokit/core": "^3.6.0",
     "ajv": "^8.11.0",
-    "cache-manager": "^3.6.1",
+    "cache-manager": "^3.6.3",
     "cache-manager-fs-hash": "^1.0.0",
     "change-case": "^4.1.2",
     "clsx": "^1.1.1",

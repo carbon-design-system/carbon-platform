@@ -12,10 +12,22 @@
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
+// override carbon, add scroll ability within short viewport
+:global(.cds--side-nav__navigation) {
+  overflow: hidden;
+  height: auto;
+  overflow-y: auto;
+}
+
 .library-side-nav {
   @include breakpoint.breakpoint(lg) {
     left: convert.rem(256px);
     transform: translateX(0);
+  }
+
+  // override carbon style to allow scroll abillty
+  :global(.cds--tree--sm) {
+    overflow: scroll;
   }
 }
 

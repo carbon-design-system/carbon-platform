@@ -6,7 +6,7 @@
  */
 import { authenticateWithPassport } from '@carbon-platform/api/auth'
 
-import requireSession from '../../middleware/requireSession'
+import requireSession from '../../middleware/require-session'
 
 const authCallback = requireSession().get(
   async (...args) => (await authenticateWithPassport())(...args),

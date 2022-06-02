@@ -111,20 +111,18 @@ const filterAssetsBysearch = (assets, search) => {
  */
 const getFilteredAssets = (assets, filter, sort, search) => {
   const skippedAssets = []
-  const assetsWithAppliedFilter = assets
-    ? [...assets].filter((asset) => {
-        if (assetIsInFilter(asset, filter)) {
-          if (collapseAssetGroups(asset, filter)) {
-            const isCanonicalAsset = isCanonicalLibAsset(asset)
-            if (!isCanonicalAsset) skippedAssets.push(asset)
-            return isCanonicalAsset
-          }
-          return true
-        } else {
-          return false
-        }
-      })
-    : []
+  const assetsWithAppliedFilter = (assets || []).filter((asset) => {
+    if (assetIsInFilter(asset, filter)) {
+      if (collapseAssetGroups(asset, filter)) {
+        const isCanonicalAsset = isCanonicalLibAsset(asset)
+        if (!isCanonicalAsset) skippedAssets.push(asset)
+        return isCanonicalAsset
+      }
+      return true
+    } else {
+      return false
+    }
+  })
 
   const assetsNotInCanonical = skippedAssets.filter(
     (asset) =>

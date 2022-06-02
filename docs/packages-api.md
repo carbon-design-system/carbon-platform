@@ -1,4 +1,4 @@
-# Packages - api
+# API package
 
 A package that exports common API utilities used across various other packages and services. These
 utilities are the interfaces by which services communicate amongst each other.
@@ -14,20 +14,36 @@ import { getPassportInstance, store } from '@carbon-platform/api/auth'
 
 ## auth
 
-The auth package provides common authentication assets and centralized user session management for
-necessary services to consume.
+Provides common authentication assets and centralized user session management for necessary services
+to consume.
 
-See [Authentication](./authentication.md)
+See [Authentication](./authentication.md).
+
+## data-graph
+
+Provides APIs used to interact with the data graph service.
+
+See [Data-Graph service](./services-data-graph.md).
 
 ## logging
 
 APIs used by services to interact with the logging service allowing error, warning, info, and debug
 messages to be logged.
 
+See [Logging service](./services-logging.md).
+
 ## messaging
 
 APIs used by services to notify each other of requests for data or events that happen across the
-platform. See [messaging](./messaging.md) for more details.
+platform.
+
+See [Messaging](./messaging.md).
+
+## microservice
+
+APIs and utilities used to build and manage Platform Microservices.
+
+See [Platform microservices](./platform-microservices.md).
 
 ## runtime
 
@@ -46,12 +62,14 @@ different run modes.
 ### environment
 
 A module that indicates the type of runtime environment in which the service/process is running.
-This corresponds to the cloud environment and in typically only used for logging purposes. The
-module that exports two things:
+This is mostly used by deployments as a switch for service endpoint URLs or other configuration-type
+data. It contains the following:
 
 1. An enum called `Environment` containing the values `Build`, `Test`, and `Production`.
 2. A function valled `getEnvironment()`, which returns one of the three enum values, depending on
    the value of the `CARBON_ENVIRONMENT` environment variable.
+3. A function called `withEnvironment()`, which takes a string as input and returns a version of
+   that string with the environment incorporated in a deterministic way.
 
 `CARBON_ENVIRONMENT` can be set to the following values:
 
@@ -68,8 +86,8 @@ Setting this env var to any other value will result in an error being thrown.
 
 ### run-mode
 
-A module that provides a runtime switch between hooks and standard code and development hooks to
-make local development easier. The module that exports two things:
+A module that provides a runtime switch between standard code and development hooks to make local
+development easier. The module exports two things:
 
 1. An enum called `RunMode` containing the values `Dev` and `Standard`.
 2. A function called `getRunMode()`, which returns one of two enum values, depending on the value of

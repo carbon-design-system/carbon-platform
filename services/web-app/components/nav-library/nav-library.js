@@ -24,7 +24,8 @@ const NavLibrary = () => {
     isSideNavExpanded,
     libraryNavSlideOut,
     setLibraryNavSlideOut,
-    setLibrarySideNav
+    setLibrarySideNav,
+    toggleSideNavExpanded
   } = useContext(LayoutContext)
 
   // $duration-moderate-01 = 150ms
@@ -45,6 +46,7 @@ const NavLibrary = () => {
     <SideNav
       aria-label="Library side navigation"
       expanded={isSideNavExpanded}
+      onOverlayClick={() => toggleSideNavExpanded(false)}
       className={clsx(
         styles['library-side-nav'],
         librarySideNav && styles['library-nav-in'],

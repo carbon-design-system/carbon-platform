@@ -15,6 +15,7 @@ module.exports = {
       [
         '',
         'api',
+        'data-graph',
         'database',
         'object-storage',
         'icons',

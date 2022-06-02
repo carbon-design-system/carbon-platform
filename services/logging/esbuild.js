@@ -6,21 +6,10 @@
  */
 const { build } = require('esbuild')
 const path = require('path')
+const base = require('../../esbuild.base')
 
 build({
+  ...base,
   entryPoints: [path.resolve(__dirname, 'dist', 'main', 'index.js')],
-  outfile: path.resolve(__dirname, 'dist', 'out.js'),
-  platform: 'node',
-  target: 'es2020',
-  bundle: true,
-  external: [
-    '@grpc/*',
-    '@nestjs/websockets/*',
-    'class-transformer',
-    'class-validator',
-    'kafkajs',
-    'mqtt',
-    'nats',
-    'redis'
-  ]
+  outfile: path.resolve(__dirname, 'dist', 'out.js')
 }).catch(() => process.exit(1))

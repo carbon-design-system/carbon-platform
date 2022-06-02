@@ -8,6 +8,7 @@ import { Logging } from '@carbon-platform/api/logging'
 import yaml from 'js-yaml'
 import { get, isEmpty, set } from 'lodash'
 import { serialize } from 'next-mdx-remote/serialize'
+import path from 'path'
 import remarkGfm from 'remark-gfm'
 import unwrapImages from 'remark-unwrap-images'
 
@@ -19,8 +20,9 @@ import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
+import { urlsMatch } from '@/utils/url'
 
-const logging = new Logging('web-app', 'github.js')
+const logging = new Logging('github.js')
 
 /**
  * Retrieves Mdx file from github repo and serializes it for rendering
@@ -428,11 +430,26 @@ const getPackageJsonContent = async (params = {}, packageJsonPath = '/package.js
    */
   let response = {}
 
+  const packageJsonPathFromRoot = path.join(libraryParams.path, packageJsonPath)
+  const fullContentsPath = path.join(
+    'https://',
+    libraryParams.host,
+    '/repos',
+    libraryParams.org,
+    libraryParams.repo,
+    '/contents'
+  )
+
+  if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, packageJsonPathFromRoot), 5)) {
+    // packageJsonPath doesn't belong to this repo and doesn't pass security check
+    return {}
+  }
+
   try {
     response = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
       owner: libraryParams.org,
       repo: libraryParams.repo,
-      path: removeLeadingSlash(`${libraryParams.path}${packageJsonPath}`),
+      path: removeLeadingSlash(packageJsonPathFromRoot),
       ref: libraryParams.ref
     })
   } catch (err) {

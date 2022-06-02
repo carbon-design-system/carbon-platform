@@ -1,0 +1,152 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* stylelint-disable declaration-no-important */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/colors' as colors;
+@use '@carbon/react/scss/theme' as theme;
+
+//---------------------------------------
+// Grid demo
+//---------------------------------------
+.grid-demo {
+  position: relative;
+  padding: spacing.$spacing-05;
+  margin-top: spacing.$spacing-07;
+  background: theme.$layer-01;
+}
+
+// set demo sub grid to 16 col
+.grid-demo [class*='subgrid'] {
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+}
+
+.grid-demo [class*='grid'] {
+  margin: 0;
+}
+
+.grid-demo [class*='col'] {
+  @include type.type-style('label-01');
+
+  min-height: 4rem;
+  padding: spacing.$spacing-05;
+  background-color: colors.$blue-10;
+  outline: 1px solid colors.$blue-30;
+}
+
+.grid-demo--wide [class*='col'] {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: colors.$blue-20;
+}
+
+.grid-demo--narrow [class*='col'] {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  background-color: colors.$teal-20;
+  outline: 1px solid colors.$teal-30;
+}
+
+.grid-demo--condensed [class*='col'] {
+  padding: 0 1px 0 0;
+  background-color: colors.$purple-30;
+  outline: 1px solid colors.$purple-30;
+}
+
+.grid-demo-content {
+  height: 100%;
+}
+
+.grid-demo--wide .grid-demo-content {
+  background-color: colors.$blue-10;
+}
+
+.grid-demo--narrow .grid-demo-content {
+  background-color: colors.$teal-10;
+}
+
+.grid-demo--condensed .grid-demo-content {
+  background-color: colors.$purple-10;
+}
+
+// Full bleed
+.grid-demo--bleed {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background-color: colors.$blue-30;
+}
+
+//---------------------------------------
+// Shell collapsed/expanded
+//---------------------------------------
+.grid-shell {
+  display: flex;
+}
+
+.grid-wrapper {
+  width: 100%;
+}
+
+.side-nav {
+  display: none;
+  width: 3rem;
+  height: 16rem;
+  background-color: colors.$blue-20;
+  outline: 1px solid colors.$blue-30;
+
+  @include breakpoint.breakpoint('md') {
+    display: block;
+  }
+}
+
+.side-nav--expanded {
+  position: absolute;
+  display: block;
+  width: 16rem;
+  height: 12rem;
+
+  @include breakpoint.breakpoint('md') {
+    position: static;
+    height: auto;
+  }
+}
+
+//---------------------------------------
+// Aspect ratio
+//---------------------------------------
+.aspect-ratio-demo {
+  display: block;
+}
+
+.aspect-ratio-demo [class*='col'] {
+  padding-bottom: spacing.$spacing-05;
+}
+
+.aspect-ratio-demo [class*='grid_grid'] {
+  margin-top: spacing.$spacing-05;
+}
+
+.aspect-ratio-demo [class*='grid']:first-child {
+  margin-top: 0;
+}
+
+// override carbon muli line code snippet following grid demo
+.grid-demo + * :global([class*='cds--css-grid-column']) {
+  margin-right: spacing.$spacing-05;
+  grid-column: span 12 / span 12 !important;
+}
+
+.grid-demo + * :global(.cds--snippet--multi) {
+  max-width: 100%;
+}
+
+.grid-demo + * :global([class*='code']) {
+  margin-top: 0;
+}

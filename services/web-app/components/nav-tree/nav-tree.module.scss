@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .container {
   // overide Carbon treeview
@@ -41,11 +42,15 @@
     top: spacing.$spacing-03;
     right: spacing.$spacing-05;
     display: block;
-    width: spacing.$spacing-05;
-    height: spacing.$spacing-05;
+    width: convert.rem(16px);
+    height: convert.rem(16px);
     // override carbon icon and add chevron icon
     background-image: url("data:image/svg+xml,%3Csvg focusable='false' preserveAspectRatio='xMidYMid meet' xmlns='http://www.w3.org/2000/svg' fill='currentColor' width='16' height='16' viewBox='0 0 16 16' aria-hidden='true' class='cds--tree-node__icon'%3E%3Cpath d='M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z'%3E%3C/path%3E%3C/svg%3E%0A");
     content: '';
+  }
+
+  :global(.cds--tree-node[aria-expanded='true']) {
+    color: theme.$text-primary;
   }
 
   :global(.cds--tree-node__label:hover) {
@@ -62,6 +67,12 @@
 
   :global(.cds--tree-node--selected > .cds--tree-node__label:hover) {
     background-color: theme.$background-selected;
+  }
+
+  :global(.cds--tree-node--selected.cds--tree-node--active > .cds--tree-node__label) {
+    background-color: theme.$background-selected;
+    color: theme.$text-primary;
+    font-weight: bold;
   }
 
   :global(.cds--tree-node__children .cds--tree-node__children .cds--tree-node__label) {
@@ -81,5 +92,12 @@
       .cds--tree-node--selected
       > .cds--tree-node__label::before) {
     left: spacing.$spacing-06;
+  }
+
+  .section-heading {
+    padding-bottom: spacing.$spacing-03;
+    border-bottom: 1px solid theme.$layer-accent;
+    margin: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
+    @include type.type-style('label-01');
   }
 }

@@ -8,11 +8,13 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/motion' as motion;
+/* stylelint-disable declaration-no-important */
 
 // scoped to div code to override global reset styles
 :global(div) code {
   padding: 0 spacing.$spacing-03;
-  background-color: theme.$layer-01;
+  background-color: theme.$layer-accent;
   border-radius: 4px;
   font-size: 0.875em;
 }
@@ -26,4 +28,76 @@
 
   padding: 0;
   color: theme.$text-primary;
+}
+
+// override carbon code styles
+.code :global(.cds--snippet-container) {
+  // override carbon inline style
+  min-height: 24px !important;
+
+  pre {
+    padding-bottom: 0;
+  }
+
+  code {
+    background-color: theme.$layer-01;
+  }
+}
+
+// override carbon tooltip colors
+.code :global(.cds--popover-content),
+.code :global(.cds--popover-caret) {
+  background: theme.$layer-accent-01;
+  color: theme.$text-primary;
+}
+
+.path-container {
+  display: flex;
+  width: 100%;
+  height: 3rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: spacing.$spacing-03;
+  padding-left: spacing.$spacing-05;
+  border-bottom: 1px solid theme.$border-subtle;
+  margin-top: spacing.$spacing-07;
+  background: theme.$layer-01;
+}
+
+.path-container + .code {
+  margin-top: 0;
+}
+
+.path {
+  @include type.type-style('code-02');
+
+  overflow: hidden;
+  color: theme.$text-primary;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.icon {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0;
+  outline-offset: -2px;
+  transition: background motion.$duration-fast-02;
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  &:hover {
+    background-color: theme.$layer-hover-01;
+  }
+
+  svg {
+    fill: theme.$icon-primary;
+  }
 }

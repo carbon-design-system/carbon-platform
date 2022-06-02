@@ -11,6 +11,7 @@ import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
+import CardGroup from '@/components/card-group'
 import Code from '@/components/code'
 import ColorBlock from '@/components/color-block'
 import ColorGrid from '@/components/color-grid'
@@ -20,12 +21,14 @@ import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
 import Glossary from '@/components/glossary'
 import { Column, Grid, Row } from '@/components/grid-transform'
+import ImageWrapper from '@/components/image-wrapper'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import MdxWrapper from '@/components/mdx-wrapper'
 import MediumPosts from '@/components/medium-posts/medium-posts'
+import MiniCard from '@/components/mini-card'
 import PageDescription from '@/components/page-description'
 import PageTable from '@/components/page-table'
 import Preview from '@/components/preview'
@@ -39,22 +42,6 @@ import Title from '@/components/title'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
 import Video from '@/components/video'
-
-const Placeholder = ({ name, children }) => {
-  return (
-    <div
-      style={{
-        background: 'white',
-        border: '1px dotted #8d8d8d',
-        margin: '16px',
-        padding: '16px'
-      }}
-    >
-      <strong>{name}</strong>
-      <div>{children}</div>
-    </div>
-  )
-}
 
 const components = {
   h1: H1,
@@ -73,53 +60,47 @@ const components = {
   table: PageTable,
   pre: Code,
   /* Gatsby theme components */
-  Caption,
-  PageDescription,
-  Title,
-  Image,
   Accordion,
   AccordionItem,
-  ArticleCard,
-  Grid,
-  Row,
-  Column,
   AnchorLink,
   AnchorLinks,
   ArtDirection,
+  ArticleCard,
+  Aside,
+  Caption,
+  CardGroup,
+  ColorBlock,
+  ColorGrid,
+  ColorPalette,
+  Column,
+  ColorTokenTable,
   DoDont,
   DoDontRow,
   GifPlayer,
-  IconLibrary,
   Glossary,
+  Grid,
+  IconLibrary,
+  Image,
+  ImageWrapper,
   InlineNotification,
-  PictogramLibrary,
   MdxIcon,
   MediumPosts,
-  Tabs,
-  Tab,
-  Video,
   MdxWrapper,
-  ResourceCard,
-  Aside,
+  MiniCard,
+  PageDescription,
+  PictogramLibrary,
   Preview,
   Profile,
-  ColorTokenTable,
-  TypesetStyle,
-  ColorBlock,
-  ColorGrid,
-  TypeScaleTable,
-  TypeWeight,
-  ColorPalette,
+  ResourceCard,
+  Row,
   StatusIndicatorTable,
-  /* Gatsby theme components, not used in Carbon website, out of scope v1 */
-  FeatureCard: ({ children }) => <Placeholder name="FeatureCard">{children}</Placeholder>,
-  ImageCard: ({ children }) => <Placeholder name="ImageCard">{children}</Placeholder>,
-  SquareCard: ({ children }) => <Placeholder name="SquareCard">{children}</Placeholder>,
-  ExpressiveListContainer: ({ children }) => (
-    <Placeholder name="ExpressiveListContainer">{children}</Placeholder>
-  ),
-  DoDontExample: ({ children }) => <Placeholder name="DoDontExample">{children}</Placeholder>,
-  ExpressiveList: ({ children }) => <Placeholder name="ExpressiveList">{children}</Placeholder>
+  Tab,
+  Tabs,
+  Title,
+  TypeScaleTable,
+  TypesetStyle,
+  TypeWeight,
+  Video
 }
 
 export default components

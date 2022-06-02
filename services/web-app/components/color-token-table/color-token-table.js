@@ -31,10 +31,11 @@ const ColorTokenTable = () => {
   const [mobile, setMobile] = useState(false)
 
   // Conditionally add a drop shadow through JavaScript because `position:sticky` doesn't support a
-  // `::stuck` pseudo-class to trigger the drop shadow. Header (48) + spacer (16)  = 64.
+  // `::stuck` pseudo-class to trigger the drop shadow.
+  // Header (48) + spacer (16) ) + tabs(48)  = 112.
   const scrollHandler = useCallback(() => {
     if (containerRef.current && typeof window !== 'undefined') {
-      setIsSticky(containerRef.current.getBoundingClientRect().top === 64)
+      setIsSticky(containerRef.current.getBoundingClientRect().top === 112)
     }
   }, [])
 
@@ -62,13 +63,16 @@ const ColorTokenTable = () => {
 
   const hexToRgb = (hex) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-    return result
-      ? {
-          r: parseInt(result[1], 16),
-          g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16)
-        }
-      : null
+
+    if (!result) {
+      return null
+    }
+
+    return {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    }
   }
 
   const renderValue = (token, tokenInfo) => {

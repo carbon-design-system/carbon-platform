@@ -7,11 +7,12 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 .container {
   display: flex;
-  min-width: spacing.$spacing-06;
-  height: spacing.$spacing-06;
+  min-width: convert.rem(24px);
+  height: convert.rem(24px);
   padding: spacing.$spacing-02 spacing.$spacing-03;
   background: theme.$background;
   border-radius: spacing.$spacing-06;

@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.1...@carbon-platform/logging@1.1.2) (2022-06-01)
+
+### [1.1.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.0...@carbon-platform/logging@1.1.1) (2022-05-21)
+
+## [1.1.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.0.34...@carbon-platform/logging@1.1.0) (2022-05-21)
+
+
+### Features 🌟
+
+* **api:** allow dynamic loading of rest api modules ([37d7835](https://github.com/carbon-design-system/carbon-platform/commit/37d783561154c9aa67846309a36d9d3738a572f3))
+* **api:** platform microservice ([72515be](https://github.com/carbon-design-system/carbon-platform/commit/72515be7670746fc2d65f7511e1bf20666a45829))
+* **data-graph:** finalize directory structure and layout ([e8b0c41](https://github.com/carbon-design-system/carbon-platform/commit/e8b0c410c1fb017c8398bb52b53de7668ec6aeb6))
+* **data-graph:** hook up to messaging ([4ca8f3b](https://github.com/carbon-design-system/carbon-platform/commit/4ca8f3b5935eef856fb8f4f089c68a0b8f5b0caa))
+* **messaging:** improve typing on messaging and microservices ([361cbd2](https://github.com/carbon-design-system/carbon-platform/commit/361cbd2323d3039a08affe6b1becf76e9830c058))
+* wrong queue name in emit and query ([73844db](https://github.com/carbon-design-system/carbon-platform/commit/73844dbde3a2ee8a404b668a9a4015e4f5cc9204))
+
+
+### Bug Fixes 🐛
+
+* **api:** trace no longer loses method metadata ([9f7e09f](https://github.com/carbon-design-system/carbon-platform/commit/9f7e09f34d6b7385cd9097c8f75ec5e50d4fd4cb))
+* code review updates ([2da921f](https://github.com/carbon-design-system/carbon-platform/commit/2da921faa5c00cb15cbbc70f9cd416b6f6c9216c))
+* **logging:** update noAck to autoAck ([b662578](https://github.com/carbon-design-system/carbon-platform/commit/b6625788304b7b1033278a321ad18eb24bd3e058))
+
+### [1.0.34](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.0.33...@carbon-platform/logging@1.0.34) (2022-05-20)
+
 ### [1.0.33](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.0.32...@carbon-platform/logging@1.0.33) (2022-05-11)
 
 ### [1.0.32](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.0.31...@carbon-platform/logging@1.0.32) (2022-05-10)

@@ -7,12 +7,9 @@
 import amqp from 'amqplib'
 import { v4 as uuidv4 } from 'uuid'
 
-import {
-  CARBON_MESSAGE_QUEUE_URL,
-  DEFAULT_SOCKET_OPTIONS,
-  EventMessage,
-  QueryMessage
-} from './constants'
+import { withEnvironment } from '../runtime'
+import { CARBON_MESSAGE_QUEUE_URL, DEFAULT_SOCKET_OPTIONS } from './constants'
+import { EventMessage, QueryMessage } from './interfaces'
 
 const RANDOM_QUEUE_NAME = ''
 const DEFAULT_ROUTING_KEY = ''
@@ -128,7 +125,8 @@ class MessagingClient {
       return
     }
 
-    resolve(reply?.content.toString())
+    resolve(reply?.content ? JSON.parse(reply.content.toString())?.response : undefined)
+
     this.replyCallbacks.delete(correlationId)
   }
 
@@ -174,28 +172,31 @@ class MessagingClient {
   }
 
   /**
-   * Asynchronously broadcasts a message to all services that are listening for the specified
-   * message type. Use this method to broadcast that "something happened" and when no response is
-   * expected in return.
+   * Asynchronously broadcasts a message to all services that are listening for messages of the
+   * specified event type. Use this method to broadcast that "something happened" and when no
+   * response is expected in return.
    *
    * @param eventType The type of message being broadcast.
-   * @param message The body of the message.
+   * @param payload The body of the message.
    * @returns A promise that resolves when the message has been confirmed by the message broker.
    */
-  public async emit(eventType: EventMessage, message: any): Promise<void> {
+  public async emit<EventType extends keyof EventMessage>(
+    eventType: EventType,
+    payload: EventMessage[EventType]['payload']
+  ): Promise<void> {
     const messagingConnection = await this.connect()
 
     // Entire method invocation is deferred and returned as a promise
     return new Promise((resolve) => {
       const dataToSend = {
         pattern: eventType,
-        data: message
+        data: payload
       }
 
-      // Send to queue returns true if it is safe to continue sending messages; or false if pending
+      // `publish` returns true if it is safe to continue sending messages; or false if pending
       // "confirms" should first be awaited
       const sendResult = messagingConnection.channel.publish(
-        eventType,
+        withEnvironment(eventType),
         DEFAULT_ROUTING_KEY,
         Buffer.from(JSON.stringify(dataToSend))
       )
@@ -215,14 +216,15 @@ class MessagingClient {
    * handling the specified type of query. Use this method for point-to-point communication between
    * services when it is expected that the remote service should respond to the specified query.
    *
-   * This method is generic and accepts a type indicating the type of the returned message.
-   *
-   * @param queryType The type of message being broadcast.
-   * @param message The body of the message.
-   * @returns A promise that resolves to an object of the specified type. The object represents a
-   * de-serialized version of the correlated reply received from the remote service.
+   * @param queryType The type of the query message to send.
+   * @param payload The body of the message.
+   * @returns A promise that resolves to a response object for the specified queryType. The object
+   * represents a de-serialized version of the correlated reply received from the remote service.
    */
-  public async query<T>(queryType: QueryMessage, message: any): Promise<T> {
+  public async query<Type extends keyof QueryMessage>(
+    queryType: Type,
+    payload: QueryMessage[Type]['payload']
+  ): Promise<QueryMessage[Type]['response']> {
     // Connect and ensure channel and reply queue are established
     const messagingConnection = await this.connect()
 
@@ -230,19 +232,19 @@ class MessagingClient {
     const dataToSend = {
       pattern: queryType,
       id: correlationId,
-      data: message
+      data: payload
     }
 
     // Create a new promise and store its resolve callback in the registry. Resolve is called later
     // on when a correlated response is received from the reply queue
-    const replyPromise = new Promise<T>((resolve) => {
+    const replyPromise = new Promise<QueryMessage[Type]['response']>((resolve) => {
       this.replyCallbacks.set(correlationId, resolve)
     })
 
-    // Publish returns true if it is safe to continue sending messages; or false if pending
+    // `publish` returns true if it is safe to continue sending messages; or false if pending
     // "confirms" should first be awaited
     const publishResult = messagingConnection.channel.publish(
-      queryType,
+      withEnvironment(queryType),
       DEFAULT_ROUTING_KEY,
       Buffer.from(JSON.stringify(dataToSend)),
       {

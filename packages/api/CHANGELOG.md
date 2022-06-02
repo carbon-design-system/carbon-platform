@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.8...@carbon-platform/api@0.3.10) (2022-05-21)
+
+
+### Misc. 🔮
+
+* **api:** bump api package version ([c8293de](https://github.com/carbon-design-system/carbon-platform/commit/c8293def230f23692000ee06d65a3f43e84c377e))
+
+### [0.3.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.7...@carbon-platform/api@0.3.8) (2022-05-21)
+
+
+### Tests 🧪
+
+* **api:** add gql unit tests ([112694f](https://github.com/carbon-design-system/carbon-platform/commit/112694f7846460bcbf24501ae273d131fd5937cc))
+
+
+### Bug Fixes 🐛
+
+* **api:** correct demo links object in libraries model ([3226541](https://github.com/carbon-design-system/carbon-platform/commit/3226541a189fd076533bd6db891c36375d12db31))
+* **api:** removing unused query result field ([3ed347f](https://github.com/carbon-design-system/carbon-platform/commit/3ed347fe51f29255d0b28ce1a1b5e3d5ec0f430b))
+* **api:** trace no longer loses method metadata ([9f7e09f](https://github.com/carbon-design-system/carbon-platform/commit/9f7e09f34d6b7385cd9097c8f75ec5e50d4fd4cb))
+* code review updates ([2da921f](https://github.com/carbon-design-system/carbon-platform/commit/2da921faa5c00cb15cbbc70f9cd416b6f6c9216c))
+* **logging:** double logging ([5eb660b](https://github.com/carbon-design-system/carbon-platform/commit/5eb660b0c80fc95b66d16150f42bd398d64b8e9d)), closes [#593](https://github.com/carbon-design-system/carbon-platform/issues/593)
+
+
+### Features 🌟
+
+* **api:** allow dynamic loading of rest api modules ([37d7835](https://github.com/carbon-design-system/carbon-platform/commit/37d783561154c9aa67846309a36d9d3738a572f3))
+* **api:** platform microservice ([72515be](https://github.com/carbon-design-system/carbon-platform/commit/72515be7670746fc2d65f7511e1bf20666a45829))
+* **data-graph:** finalize directory structure and layout ([e8b0c41](https://github.com/carbon-design-system/carbon-platform/commit/e8b0c410c1fb017c8398bb52b53de7668ec6aeb6))
+* **data-graph:** finish port of PoC code ([18895af](https://github.com/carbon-design-system/carbon-platform/commit/18895af536abe1130eec64b1454f703e171abc07)), closes [#631](https://github.com/carbon-design-system/carbon-platform/issues/631) [#632](https://github.com/carbon-design-system/carbon-platform/issues/632) [#633](https://github.com/carbon-design-system/carbon-platform/issues/633)
+* **data-graph:** hook up to messaging ([4ca8f3b](https://github.com/carbon-design-system/carbon-platform/commit/4ca8f3b5935eef856fb8f4f089c68a0b8f5b0caa))
+* **data-graph:** massive schema improvements ([eb19bb2](https://github.com/carbon-design-system/carbon-platform/commit/eb19bb22c5e58504a128ebd74478d2c0f73eade9))
+* **messaging:** improve typing on messaging and microservices ([361cbd2](https://github.com/carbon-design-system/carbon-platform/commit/361cbd2323d3039a08affe6b1becf76e9830c058))
+* wrong queue name in emit and query ([73844db](https://github.com/carbon-design-system/carbon-platform/commit/73844dbde3a2ee8a404b668a9a4015e4f5cc9204))
+
 ### [0.3.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.6...@carbon-platform/api@0.3.7) (2022-05-11)
 
 

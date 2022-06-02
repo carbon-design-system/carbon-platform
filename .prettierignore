@@ -12,6 +12,7 @@ CHANGELOG.md
 
 # IDE-specific
 .vscode/
+.history/
 
 # Generated
 generated/
@@ -21,5 +22,9 @@ generated/
 # Github workflows
 .github/workflows/
 
-.history/
+# Web App
 services/web-app/public/data/
+!services/web-app/.storybook/
+
+# Enable config file linting
+!.*rc.js

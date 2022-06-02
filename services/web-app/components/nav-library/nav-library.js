@@ -24,7 +24,8 @@ const NavLibrary = () => {
     isSideNavExpanded,
     libraryNavSlideOut,
     setLibraryNavSlideOut,
-    setLibrarySideNav
+    setLibrarySideNav,
+    toggleSideNavExpanded
   } = useContext(LayoutContext)
 
   // $duration-moderate-01 = 150ms
@@ -39,13 +40,13 @@ const NavLibrary = () => {
     }, slideDelay)
   }
 
-  // TODO issue #523 (set to false when on child pages)
-  const libraryActive = true
+  const libraryActive = router.pathname === '/assets/[host]/[org]/[repo]/[library]/[ref]'
 
   return (
     <SideNav
       aria-label="Library side navigation"
       expanded={isSideNavExpanded}
+      onOverlayClick={() => toggleSideNavExpanded(false)}
       className={clsx(
         styles['library-side-nav'],
         librarySideNav && styles['library-nav-in'],
@@ -63,11 +64,7 @@ const NavLibrary = () => {
         <br />
         v1.0.0
       </h2>
-      <NavTree
-        items={libraryNavData}
-        label="Library navigation"
-        activeItem={router.asPath.substring(router.asPath.lastIndexOf('/') + 1)}
-      />
+      <NavTree items={libraryNavData} label="Library navigation" activeItem={router.asPath} />
     </SideNav>
   )
 }

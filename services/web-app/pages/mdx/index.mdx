@@ -11,6 +11,26 @@ Emphasis, aka italics, with _asterisks_ or _underscores_. Strong emphasis, aka b
 **asterisks** or **underscores**. Combined emphasis with **asterisks and _underscores_**.
 Strikethrough uses two tildes. ~~Scratch this.~~
 
+## images
+
+![Desktop image](/mdx/desktop.jpg)
+
+<Caption>jpg image</Caption>
+
+![Desktop image](/mdx/transparent-image.svg)
+
+<Caption>Transparent svg image</Caption>
+
+## ImageWrapper
+
+Fixed image demo.
+
+<ImageWrapper type="fixed">
+
+![demo fixed image](/mdx/accordion-style-3.png)
+
+</ImageWrapper>
+
 ## Code
 
 <PageDescription>
@@ -23,33 +43,46 @@ adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum tempor in.
 This is an example of `inline code` inside of a paragraph. Etiam nisi sem, malesuada auctor pretium
 vel, ullamcorper sed mi. In hac habitasse platea dictumst.
 
+```js path=/directory/file.mdx src=https://gatsby.carbondesignsystem.com
+// This has path and src
+
+const codeBlock = () => {
+  // does something
+}
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
-tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium.
-Duis turpis elit, facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus.
-Cras euismod facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In
+
+```jsx
+const FeedbackDialog = ({ props }) => {
+  const onSubmit = data => {
+    fetch(process.env.API_ENDPOINT, {
+      method: 'POST',
+      body: JSON.stringify(data),
+  });
+
+  return <ThemeFeedbackDialog {...props} onSubmit={onSubmit} />;
+};
 ```
 
-```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
-tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium.
-Duis turpis elit, facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus.
-Cras euismod facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In
-hac habitasse platea dictumst.
-
+```markdown
+# Code snippet with show more button. No src or path.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
-tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium.
-Duis turpis elit, facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus.
-Cras euismod facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In
-hac habitasse platea dictumst.
-
+tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
+facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras euismod
+facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In hac habitasse
+platea dictumst.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
-tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium.
-Duis turpis elit, facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus.
-Cras euismod facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In
-hac habitasse platea dictumst.
+tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
+facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras euismod
+facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In hac habitasse
+platea dictumst.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
+tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
+facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras euismod
+facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In hac habitasse
+platea dictumst.
 ```
 
 ## Accordion
@@ -737,6 +770,31 @@ hac habitasse platea dictumst.
     <MdxIcon name="bee" color="inverse" />
   </Column>
 </Grid>
+
+### Mini Card
+
+<CardGroup>
+  <MiniCard
+    title="Tree view component"
+    href="https://carbon-website-git-fork-designertyler-treeview03092020.carbon-design-system.now.sh/components/tree-view/usage"
+    actionIcon="arrowRight"
+  />
+  <MiniCard
+    title="Tree view component"
+    href="https://carbon-website-git-fork-designertyler-treeview03092020.carbon-design-system.now.sh/components/tree-view/usage"
+    actionIcon="email"
+  />
+  <MiniCard
+    title="Tree view component"
+    href="https://carbon-website-git-fork-designertyler-treeview03092020.carbon-design-system.now.sh/components/tree-view/usage"
+    actionIcon="launch"
+  />
+  <MiniCard
+    title="Tree view component"
+    href="https://carbon-website-git-fork-designertyler-treeview03092020.carbon-design-system.now.sh/components/tree-view/usage"
+    actionIcon="download"
+  />
+</CardGroup>
 
 ### Medium Posts
 

@@ -25,6 +25,9 @@ on:
         required: true
         type: string
 
+env:
+  CI: 'true'
+
 jobs:
   build-service-image:
     name: Build Service Image

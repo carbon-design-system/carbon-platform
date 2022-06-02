@@ -8,6 +8,17 @@
 
 set -e
 
+if [ "$CI" = "true" ]; then
+  echo '🤖 Running in a CI environment. Skipping prepare steps.'
+  exit 0
+fi
+
 npx husky install
 
+echo '🏗️ Building packages and APIs...'
 npm run packages:build
+echo '✅ Done!\n'
+
+echo '🏗️ Generating data-graph schema...'
+npm -w services/data-graph run build:schema
+echo '✅ Done!\n'

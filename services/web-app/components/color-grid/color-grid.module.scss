@@ -6,9 +6,11 @@
  */
 
 @use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
 
 .color-grid {
   display: grid;
+  margin: 0 spacing.$spacing-05;
   grid-template-columns: repeat(6, 1fr);
 
   @include breakpoint.breakpoint('md') {

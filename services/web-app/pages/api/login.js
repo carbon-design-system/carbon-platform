@@ -8,7 +8,7 @@ import { authenticateWithPassport, shouldUseOpenIdStrategy } from '@carbon-platf
 
 import { ALLOWED_REFERERS } from '@/config/constants'
 
-import requireSession from '../../middleware/requireSession'
+import requireSession from '../../middleware/require-session'
 
 const login = requireSession().get(
   async (req, res, next) => {

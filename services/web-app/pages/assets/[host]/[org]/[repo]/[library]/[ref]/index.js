@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Button, Column, Grid } from '@carbon/react'
-import { ArrowRight, Events } from '@carbon/react/icons'
+import { ArrowRight } from '@carbon/react/icons'
+import { Svg64Community } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
 import Link from 'next/link'
@@ -17,6 +18,7 @@ import { libraryPropTypes, paramsPropTypes } from 'types'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import ExternalLinks from '@/components/external-links'
+import PageDescription from '@/components/page-description'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
@@ -59,7 +61,7 @@ const Library = ({ libraryData, params }) => {
   const assets = libraryData.assets.sort(assetSortComparator)
 
   const { sponsor } = libraryData.params
-  const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
+  const SponsorIcon = teams[sponsor] ? teams[sponsor].pictogram : Svg64Community
 
   let externalDocsLink
   if (libraryData.content.externalDocsUrl) {
@@ -75,6 +77,9 @@ const Library = ({ libraryData, params }) => {
       <Grid>
         <Column sm={4} md={8} lg={12}>
           <PageHeader title={seo.title} />
+        </Column>
+        <Column sm={4} md={6} lg={8}>
+          <PageDescription>{seo.description}</PageDescription>
         </Column>
         <Column sm={4} md={8} lg={12}>
           <Dashboard className={styles.dashboard}>

@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 //override carbon tile
 .resource-card :global(.cds--tile) {
@@ -50,8 +51,8 @@
   bottom: spacing.$spacing-05;
   left: spacing.$spacing-05;
   display: flex;
-  max-width: 32px;
-  max-height: 32px;
+  max-width: convert.rem(32px);
+  max-height: convert.rem(32px);
   align-items: flex-end;
 }
 
@@ -59,8 +60,8 @@
   position: absolute;
   right: spacing.$spacing-05;
   bottom: spacing.$spacing-05;
-  width: 20px;
-  height: 20px;
+  width: convert.rem(20px);
+  height: convert.rem(20px);
 }
 
 .icon-action svg {

@@ -154,19 +154,19 @@
               "minProperties": 1,
               "properties": {
                 "usagePath": {
-                  "description": "Path to the file, relative to carbon.yml.",
+                  "description": "Path to the file, Github url or path relative to carbon.yml.",
                   "type": "string"
                 },
                 "stylePath": {
-                  "description": "Path to the file, relative to carbon.yml.",
+                  "description": "Path to the file, Github url or path relative to carbon.yml.",
                   "type": "string"
                 },
                 "codePath": {
-                  "description": "Path to the file, relative to carbon.yml.",
+                  "description": "Path to the file, Github url or path relative to carbon.yml.",
                   "type": "string"
                 },
                 "accessibilityPath": {
-                  "description": "Path to the file, relative to carbon.yml.",
+                  "description": "Path to the file, Github url or path relative to carbon.yml.",
                   "type": "string"
                 }
               }

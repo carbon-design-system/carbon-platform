@@ -46,7 +46,7 @@ assets:
     framework: react
     platform: web
     docs:
-      usagePath: './components/accordion/usage.mdx'
+      usagePath: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/components/accordion/usage.mdx'
       stylePath: './components/accordion/styles.mdx'
       codePath: './components/accordion/code.mdx'
       accessibilityPath: './components/accordion/accessibility.mdx'
@@ -193,7 +193,7 @@ assets:
         action: link
         url: https://react.carbondesignsystem.com/?path=/story/components-accordion--accordion
     docs:
-      usagePath: './components/accordion/usage.mdx'
+      usagePath: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/components/accordion/usage.mdx'
       stylePath: './components/accordion/styles.mdx'
       codePath: './components/accordion/code.mdx'
       accessibilityPath: './components/accordion/accessibility.mdx'
@@ -215,7 +215,7 @@ assets:
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                         | Optional | String           | No          | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `demoLinks`       | Links to demo sites. See [demo links](#demos-links).                                                                                                     | Optional | Array            | No          | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `noIndex`         | If set to `true`, the global catalogs will exclude the asset.                                                                                            | Optional | Boolean          | No          | `false`       | –                                                                                                                                                                                                                                                                                                                                          |
-| `docs`            | Contains relative links to supporting documentation for the asset. See [asset docs](#asset-docs).                                                        | Optional | Object           | No          | -             | –                                                                                                                                                                                                                                                                                                                                          |
+| `docs`            | Contains information on where to find supporting documentation for the asset. See [asset docs](#asset-docs).                                             | Optional | Object           | No          | -             | –                                                                                                                                                                                                                                                                                                                                          |
 
 #### Asset status
 
@@ -335,8 +335,12 @@ have the following values:
 #### Asset docs
 
 Asset docs is used to determine which supporting documentation is available to fetch and render as
-page tabs in the asset details for the asset. For each optional document key, a path should be
-included (relative to the carbon.yml). Currently supported document keys are:
+page tabs in the asset details for the asset as well as it's location. For each optional document
+key, a path should be included; The path **must** be either a Github url according to the
+`https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format, or a path relative to the
+carbon.yml file location.
+
+Currently supported document keys are:
 
 | docKey              | Description                                                                                                                                                                                       |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

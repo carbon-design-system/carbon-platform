@@ -2,6 +2,7 @@
   "name": "@carbon-platform/mdx-sanitizer",
   "version": "1.0.0",
   "description": "Mdx Sanitizer Plugin",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/carbon-design-system/carbon-platform.git"

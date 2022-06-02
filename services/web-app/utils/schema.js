@@ -182,3 +182,23 @@ export const getTagsList = (asset) => {
   // return array of tag names
   return tags.map((tag) => allPossibleTags[tag]?.name).filter((val) => !!val)
 }
+
+/**
+ * Compiles an object list of all known tags
+ * @returns {object} Key/Value of all known tags
+ */
+export const getAllTags = () => {
+  const tags = {}
+
+  const allTypeTags = Object.keys(tagsForType).reduce((prev, currKey) => {
+    return Object.assign(prev, tagsForType[currKey])
+  }, {})
+
+  const allCollectionTags = Object.keys(tagsForCollection).reduce((prev, currKey) => {
+    return Object.assign(prev, tagsForCollection[currKey])
+  }, {})
+  Object.assign(tags, allCollectionTags)
+  Object.assign(tags, allTypeTags)
+
+  return tags
+}

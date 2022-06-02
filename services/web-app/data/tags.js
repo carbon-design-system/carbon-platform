@@ -14,13 +14,13 @@ export const tagsForType = {
       name: 'Content element'
     },
     'contextual-navigation': {
-      name: 'Contextual navigation'
+      name: 'Contextual nav'
     },
     'data-display': {
       name: 'Data display'
     },
     'data-visualization': {
-      name: 'Data visualization'
+      name: 'Data viz'
     },
     form: {
       name: 'Form'
@@ -35,7 +35,7 @@ export const tagsForType = {
       name: 'Shell'
     },
     'structural-navigation': {
-      name: 'Structural navigation'
+      name: 'Structural nav'
     },
     'system-feedback': {
       name: 'System feedback'
@@ -67,10 +67,10 @@ export const tagsForCollection = {
       name: 'Correlation'
     },
     'geographic-overlay': {
-      name: 'Geographic overlay'
+      name: 'Geo overlay'
     },
     'geospatial-distortion': {
-      name: 'Geospatial distortion'
+      name: 'Geo distortion'
     },
     'part-to-whole': {
       name: 'Part-to-whole'

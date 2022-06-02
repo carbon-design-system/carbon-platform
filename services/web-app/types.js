@@ -61,3 +61,19 @@ export const libraryPropTypes = PropTypes.shape({
   params: PropTypes.object.isRequired,
   response: PropTypes.object.isRequired
 })
+
+export const secondaryNavDataPropTypes = PropTypes.shape({
+  back: PropTypes.shape({
+    path: PropTypes.string,
+    title: PropTypes.string
+  }),
+  headings: PropTypes.arrayOf(PropTypes.string),
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      items: PropTypes.arrayOf(PropTypes.object),
+      path: PropTypes.string,
+      title: PropTypes.string
+    })
+  ),
+  path: PropTypes.string
+})

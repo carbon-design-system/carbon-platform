@@ -8,6 +8,7 @@ import { Logging } from '@carbon-platform/api/logging'
 import yaml from 'js-yaml'
 import { get, isEmpty, set } from 'lodash'
 import { serialize } from 'next-mdx-remote/serialize'
+import path from 'path'
 import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
 import unwrapImages from 'remark-unwrap-images'
@@ -19,8 +20,50 @@ import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
+import { urlsMatch } from '@/utils/url'
 
 const logging = new Logging('github.js')
+
+/**
+ * Generate and return the nav data for a library.
+ * @param {import('../typedefs').Params} params
+ * @param {import('../typedefs').Library} libraryData
+ * @returns {import('../typedefs').LibraryNavData}
+ */
+export const getLibraryNavData = (params, libraryData) => {
+  if (isEmpty(libraryData)) return {}
+
+  const getVersion = () => {
+    if (params.ref === 'main' || params.ref === 'master' || params.ref === 'latest') {
+      return 'Latest'
+    }
+
+    return `v${libraryData.content.version}`
+  }
+
+  return {
+    back: {
+      title: 'Back to all Libraries',
+      path: '/assets/libraries'
+    },
+    headings: [libraryData?.content?.name ?? 'Library', getVersion()],
+    items: [
+      {
+        title: 'Assets',
+        path: `/assets/${params.library}/${params.ref}/library-assets`
+      },
+      {
+        title: 'Design kits',
+        path: `/assets/${params.library}/${params.ref}/design-kits`
+      },
+      {
+        title: 'Versions',
+        path: `/assets/${params.library}/${params.ref}/versions`
+      }
+    ],
+    path: `/assets/${params.library}/${params.ref}`
+  }
+}
 
 /**
  * Retrieves Mdx file from github repo and serializes it for rendering
@@ -428,11 +471,26 @@ const getPackageJsonContent = async (params = {}, packageJsonPath = '/package.js
    */
   let response = {}
 
+  const packageJsonPathFromRoot = path.join(libraryParams.path, packageJsonPath)
+  const fullContentsPath = path.join(
+    'https://',
+    libraryParams.host,
+    '/repos',
+    libraryParams.org,
+    libraryParams.repo,
+    '/contents'
+  )
+
+  if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, packageJsonPathFromRoot), 5)) {
+    // packageJsonPath doesn't belong to this repo and doesn't pass security check
+    return {}
+  }
+
   try {
     response = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
       owner: libraryParams.org,
       repo: libraryParams.repo,
-      path: removeLeadingSlash(`${libraryParams.path}${packageJsonPath}`),
+      path: removeLeadingSlash(packageJsonPathFromRoot),
       ref: libraryParams.ref
     })
   } catch (err) {

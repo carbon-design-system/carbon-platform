@@ -12,11 +12,11 @@ import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
 const FourOhFour = () => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData } = useContext(LayoutContext)
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+  }, [setPrimaryNavData])
 
   const seo = {
     title: 'Page not found'

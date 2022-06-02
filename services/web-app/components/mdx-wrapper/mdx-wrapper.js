@@ -16,7 +16,7 @@ import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
 const MdxWrapper = ({ children, ...props }) => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
   const { title, description, tabs, keywords } = JSON.parse(props.frontmatter)
   const pathSegments = router.pathname.split('/').filter(Boolean)
@@ -24,8 +24,8 @@ const MdxWrapper = ({ children, ...props }) => {
   const baseSegment = pathSegments.join('/')
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+  }, [setPrimaryNavData])
   const withTabs = tabs != null
 
   return (

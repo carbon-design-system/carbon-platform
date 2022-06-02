@@ -22,6 +22,16 @@ library:
       name: Storybook
       action: link
       url: https://react.carbondesignsystem.com
+  navData:
+    - title: A page
+      path: '/a-page.mdx'
+    - title: Another page
+      items:
+        - title: Sub page
+          path: '/another-page/sub-page.mdx'
+          hidden: true
+        - title: Another sub page
+          path: '/another-page/another-sub-page.mdx'
 assets:
   accordion:
     name: Accordion
@@ -94,6 +104,16 @@ library:
       name: Storybook
       action: link
       url: https://react.carbondesignsystem.com
+  navData:
+    - title: A page
+      path: '/a-page.mdx'
+    - title: Another page
+      items:
+        - title: Sub page
+          path: '/another-page/sub-page.mdx'
+          hidden: true
+        - title: Another sub page
+          path: '/another-page/another-sub-page.mdx'
 ```
 
 ### Library keys
@@ -108,6 +128,7 @@ library:
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                                                                                                                                        | Optional | String  | –                         | –            |
 | `demoLinks`       | Links to demo sites. See [demo links](#demo-links).                                                                                                                                                                                                                     | Optional | Array   | –                         | –            |
 | `noIndex`         | If set to `true`, the global catalogs will exclude the library.                                                                                                                                                                                                         | Optional | Boolean | `false`                   | –            |
+| `navData`         | Links to documentation pages. See [nav data](#nav-data).                                                                                                                                                                                                                | Optional | Array   | -                         | –            |
 
 #### Library inheritance
 
@@ -304,7 +325,7 @@ have the following values:
 
 The following properties are used in multiple schemas.
 
-#### Demo links
+### Demo links
 
 Libraries and assets can specify links to demo sites.
 
@@ -331,7 +352,40 @@ For the value of the `demoLinks` array, you can set the following keys.
 | `action`  | Determines the action icon.  | Optional | String | `link`  | `download`, `link`                   |
 | `url`     | Link to the resource.        | Required | String | –       | –                                    |
 
-#### Identifiers
+### Identifiers
 
 Libraries and assets have `id`s to uniquely identify each resource and establish relationships
 between resources. More guidance around format and absolute identifiers coming here soon!
+
+### Nav data
+
+Libraries have documentation pages that are specific to their library. The `navData` array
+determines what MDX pages get rendered in the web app, as well as the link order in the nav.
+
+**Example**
+
+carbon.yml
+
+```yml
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
+---
+navData:
+  - title: A page
+    path: '/a-page.mdx'
+  - title: Another page
+    items:
+      - title: Sub page
+        path: '/another-page/sub-page.mdx'
+        hidden: true
+      - title: Another sub page
+        path: '/another-page/another-sub-page.mdx'
+```
+
+For the value of the `navData` array, you can set the following keys.
+
+| Nav data | Description                                                  | Required | Type    | Default |
+| -------- | ------------------------------------------------------------ | -------- | ------- | ------- |
+| `title`  | Navigation title.                                            | Required | String  | –       |
+| `path`   | Path to the file, relative to carbon.yml.                    | Required | String  | –       |
+| `items`  | Second level of navigation.                                  | Optional | Array   | –       |
+| `hidden` | If set to true, the item will be hidden from the navigation. | Optional | Boolean | `false` |

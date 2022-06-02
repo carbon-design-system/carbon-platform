@@ -338,12 +338,12 @@ Asset docs is used to determine which supporting documentation is available to f
 page tabs in the asset details for the asset. For each optional document key, a path should be
 included (relative to the carbon.yml). Currently supported document keys are:
 
-| docKey              | Description |
-| ------------------- | ----------- |
-| `usagePath`         | [TODO]      |
-| `stylePath`         | [TODO]      |
-| `codePath`          | [TODO]      |
-| `accessibilityPath` | [TODO]      |
+| docKey              | Description                                                                                                                                                                                       |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `usagePath`         | Includes directives on when and how the asset should be used: <br/>- When to use, when not to use it <br/>- How should the asset behave (states, modifiers, variants, etc.)                       |
+| `stylePath`         | Information on asset's design spec                                                                                                                                                                |
+| `codePath`          | Instructions on how to use the coded implementation of this asset and where additional API info can be found                                                                                      |
+| `accessibilityPath` | Additional considerations and guidelines regarding accessibility as it pertains to this asset: <br/> - What does Carbon provide? <br/>- Design recommendations <br/> - Development considerations |
 
 **Example**
 

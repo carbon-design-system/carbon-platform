@@ -145,19 +145,19 @@
       "minProperties": 1,
       "properties": {
         "usagePath": {
-          "description": "[TODO]",
+          "description": "Path to the file, relative to carbon.yml.",
           "type": "string"
         },
         "stylePath": {
-          "description": "[TODO]",
+          "description": "Path to the file, relative to carbon.yml.",
           "type": "string"
         },
         "codePath": {
-          "description": "[TODO]",
+          "description": "Path to the file, relative to carbon.yml.",
           "type": "string"
         },
         "accessibilityPath": {
-          "description": "[TODO]",
+          "description": "Path to the file, relative to carbon.yml.",
           "type": "string"
         }
       }

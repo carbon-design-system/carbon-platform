@@ -33,6 +33,10 @@ export const assetsNavData = [
     title: 'About Assets'
   },
   {
+    path: '/developing',
+    title: 'Developing'
+  },
+  {
     title: 'Guidelines',
     items: [
       {

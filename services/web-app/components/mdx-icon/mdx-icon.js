@@ -10,10 +10,13 @@ import {
   Codesandbox,
   Figma,
   Illustrator,
+  Js,
   Medium,
   Npm,
   Sketch,
   Storybook,
+  Svelte,
+  Vue,
   Zenhub
 } from '@carbon-platform/icons'
 import clsx from 'clsx'
@@ -22,6 +25,7 @@ import PropTypes from 'prop-types'
 
 import angular from './icons/angular.png'
 import ase from './icons/ase.png'
+import codepen from './icons/codepen.png'
 import react from './icons/react.png'
 import sass from './icons/sass.png'
 import vue from './icons/vue.png'
@@ -37,7 +41,10 @@ const svgIcons = {
   medium: Medium,
   npm: Npm,
   figma: Figma,
-  zenhub: Zenhub
+  zenhub: Zenhub,
+  vue: Vue,
+  svelte: Svelte,
+  js: Js
 }
 
 const localIcons = {
@@ -46,7 +53,8 @@ const localIcons = {
   vue,
   angular,
   webcomponents,
-  sass
+  sass,
+  codepen
 }
 
 const carbonIcons = {

@@ -158,6 +158,8 @@
 }
 
 .icon-sponsor {
+  width: convert.rem(24px);
+  height: convert.rem(24px);
   opacity: 1;
 
   .anchor--external:hover &,

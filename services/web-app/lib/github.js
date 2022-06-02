@@ -25,6 +25,47 @@ import { urlsMatch } from '@/utils/url'
 const logging = new Logging('github.js')
 
 /**
+ * Generate and return the nav data for a library.
+ * @param {import('../typedefs').Params} params
+ * @param {import('../typedefs').Library} libraryData
+ * @returns {import('../typedefs').LibraryNavData}
+ */
+export const getLibraryNavData = (params, libraryData) => {
+  if (isEmpty(libraryData)) return {}
+
+  const getVersion = () => {
+    if (params.ref === 'main' || params.ref === 'master' || params.ref === 'latest') {
+      return 'Latest'
+    }
+
+    return `v${libraryData.content.version}`
+  }
+
+  return {
+    back: {
+      title: 'Back to all Libraries',
+      path: '/assets/libraries'
+    },
+    headings: [libraryData?.content?.name ?? 'Library', getVersion()],
+    items: [
+      {
+        title: 'Assets',
+        path: `/assets/${params.library}/${params.ref}/library-assets`
+      },
+      {
+        title: 'Design kits',
+        path: `/assets/${params.library}/${params.ref}/design-kits`
+      },
+      {
+        title: 'Versions',
+        path: `/assets/${params.library}/${params.ref}/versions`
+      }
+    ],
+    path: `/assets/${params.library}/${params.ref}`
+  }
+}
+
+/**
  * Retrieves Mdx file from github repo and serializes it for rendering
  * @param {import('../typedefs').Params} repoParams - Partially-complete parameters
  * @param {string} mdxPath - path to Mdx from repo source

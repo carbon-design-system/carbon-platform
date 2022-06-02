@@ -20,7 +20,7 @@ const navData = [
 ]
 
 const Index = () => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData } = useContext(LayoutContext)
 
   const seo = {
     title: defaultSeo.title,
@@ -28,8 +28,8 @@ const Index = () => {
   }
 
   useEffect(() => {
-    setNavData(navData)
-  }, [setNavData])
+    setPrimaryNavData(navData)
+  }, [setPrimaryNavData])
 
   return (
     <>

@@ -56,6 +56,7 @@ export const getLibraryNavData = (params, libraryData) => {
         title: 'Design kits',
         path: `/assets/${params.library}/${params.ref}/design-kits`
       },
+      ...(libraryData.content?.navData ?? []),
       {
         title: 'Versions',
         path: `/assets/${params.library}/${params.ref}/versions`

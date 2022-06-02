@@ -357,7 +357,7 @@ carbon.yml
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 ---
 docs:
-  usagePath: './components/accordion/usage.mdx'
+  usagePath: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/components/accordion/usage.mdx'
   stylePath: './components/accordion/styles.mdx'
   codePath: './components/accordion/code.mdx'
   accessibilityPath: './components/accordion/accessibility.mdx'

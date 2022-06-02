@@ -106,14 +106,15 @@
                 }
               },
               "additionalProperties": false,
-              "oneOf": [
-                {"required": ["title", "path"]},
-                {"required": ["title","items"]}
-              ]
+              "required": ["title","path"]
             }
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "oneOf": [
+          {"required": ["title", "path"]},
+          {"required": ["title","items"]}
+        ]
       }
     }
   },

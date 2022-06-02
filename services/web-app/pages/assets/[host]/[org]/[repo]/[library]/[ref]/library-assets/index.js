@@ -34,6 +34,7 @@ import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
 import { getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { assetSortComparator } from '@/utils/schema'
+import { getAllTags } from '@/utils/schema.js'
 import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
@@ -87,6 +88,8 @@ const LibrayAssets = ({ libraryData, params }) => {
     description
   }
 
+  const allTags = getAllTags()
+
   const assets =
     libraryData.assets?.sort(assetSortComparator(sort)).map((asset) => {
       const assetRow = {
@@ -96,7 +99,10 @@ const LibrayAssets = ({ libraryData, params }) => {
         status: <CatalogItemMeta asset={asset} properties={['status']} />,
         tags: (
           <span className={styles['truncated-text']}>
-            {asset.content.tags.join('; ').replaceAll('-', '‑')}
+            {asset.content.tags
+              .map((tag) => allTags[tag]?.name)
+              .join('; ')
+              .replaceAll('-', '‑')}
           </span>
         ),
         link: (

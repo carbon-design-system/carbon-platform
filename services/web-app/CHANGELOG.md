@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.119](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.118...@carbon-platform/web-app@0.1.119) (2022-06-02)
+
+
+### Bug Fixes 🐛
+
+* merge conflicts ([6f59816](https://github.com/carbon-design-system/carbon-platform/commit/6f5981675231b3ff47042388cc8cc474d5e2c61f))
+* **web-app:** shorten tag display names ([be3b935](https://github.com/carbon-design-system/carbon-platform/commit/be3b935580de491d1c7561e15c62bd9b810864c4))
+
+
+### Features 🌟
+
+* convert width to rem ([a9a0ee1](https://github.com/carbon-design-system/carbon-platform/commit/a9a0ee1f1d76d056387ad532bf4ab9aad32da431))
+* get key value of all tags ([4ec4120](https://github.com/carbon-design-system/carbon-platform/commit/4ec4120864749fbf23604d467c9672b383838eef))
+* **web-app:** add image wrapper component for fixed images ([57dc41d](https://github.com/carbon-design-system/carbon-platform/commit/57dc41d3b97bc807f61f7be4eda323ea95fa81bb))
+* **web-app:** update collection page header ([b30ccb1](https://github.com/carbon-design-system/carbon-platform/commit/b30ccb16aa21f0f4eb366296245999f942ed0128))
+
 ### [0.1.118](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.117...@carbon-platform/web-app@0.1.118) (2022-06-01)
 
 

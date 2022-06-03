@@ -14,12 +14,12 @@ import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
-import styles from '../assets/index/index.module.scss'
 import ReleaseOneImg from './images/roadmap-v0.1.png'
 import ReleaseTwoImg from './images/roadmap-v0.2.png'
 import ReleaseThreeImg from './images/roadmap-v1.0.png'
 import ReleaseFourImg from './images/roadmap-v1.1.png'
 import ReleaseFiveImg from './images/roadmap-v2.0.png'
+import styles from './platform-roadmap.module.scss'
 
 const PageContent = () => {
   const releases = [
@@ -147,23 +147,15 @@ const PageContent = () => {
   ]
 
   return (
-    <div className={styles.container}>
+    <div>
       <Grid>
         <Column sm={4} md={8}>
           <p className={styles['intro-copy']}>
             Progress on the following releases are documented in{' '}
-            <Link
-              className={styles.link}
-              href="https://github.com/carbon-design-system/carbon-platform"
-            >
-              GitHub
-            </Link>
-            , along with milestones, estimated dates, and descriptions of high level outcomes. For a
+            <Link href="https://github.com/carbon-design-system/carbon-platform">GitHub</Link>,
+            along with milestones, estimated dates, and descriptions of high level outcomes. For a
             visual overview of the following releases and their epics, view our roadmap in{' '}
-            <Link className={styles.link} href="https://airtable.com/shrshl3XOeeT4Uxq0">
-              Airtable
-            </Link>
-            .
+            <Link href="https://airtable.com/shrshl3XOeeT4Uxq0">Airtable</Link>.
           </p>
         </Column>
       </Grid>
@@ -171,7 +163,9 @@ const PageContent = () => {
         <Grid className={clsx(styles.release, styles.border)} key={i}>
           <Column sm={4} md={8} lg={4}>
             <h2 className={styles['release-heading']}>
-              <div className={styles.bold}>{release.version}</div>
+              <div>
+                <strong>{release.version}</strong>
+              </div>
               <div>{release.release}</div>
               <div>{release.date}</div>
             </h2>
@@ -209,7 +203,7 @@ const PageContent = () => {
                 placeholder="blur"
               />
               <p className={styles['release-image-caption']}>
-                <span className={styles.bold}>{release.captionHeading}:</span> {release.caption}
+                <strong>{release.captionHeading}:</strong> {release.caption}
               </p>
             </div>
           </Column>

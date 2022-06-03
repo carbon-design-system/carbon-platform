@@ -335,7 +335,7 @@ have the following values:
 #### Asset docs
 
 Asset docs is used to determine which supporting documentation is available to fetch and render as
-page tabs in the asset details for the asset as well as it's location. For each optional document
+page tabs in the asset details for the asset as well as its location. For each optional document
 key, a path should be included; The path **must** be either a Github url according to the
 `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format, or a path relative to the
 carbon.yml file location.

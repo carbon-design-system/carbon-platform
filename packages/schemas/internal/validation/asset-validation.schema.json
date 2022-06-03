@@ -140,7 +140,7 @@
       }
     },
     "docs": {
-      "description": "determines which supporting documentation is available to fetch and render as page tabs in asset details",
+      "description": "Determines which supporting documentation is available to fetch and render as page tabs in asset details.",
       "type": "object",
       "minProperties": 1,
       "properties": {

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.121](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.120...@carbon-platform/web-app@0.1.121) (2022-06-03)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** adjust listening ports ([ec8ebc6](https://github.com/carbon-design-system/carbon-platform/commit/ec8ebc66d0b9e56ff80f25420e57ef374515eb7e))
+* **web-app:** remove console log statement ([602a401](https://github.com/carbon-design-system/carbon-platform/commit/602a401d073931c3fdd58e89d0f83ef7beca627d))
+
 ### [0.1.120](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.119...@carbon-platform/web-app@0.1.120) (2022-06-03)
 
 

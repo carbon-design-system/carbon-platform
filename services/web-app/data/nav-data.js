@@ -38,7 +38,6 @@ export const assetsNavData = [
       }
     ]
   },
-
   {
     path: '/developing',
     title: 'Developing'
@@ -47,52 +46,52 @@ export const assetsNavData = [
     title: 'Elements',
     items: [
       {
-        path: '/elements//2x-grid/overview',
+        path: '/elements/2x-grid/overview',
         title: '2x Grid',
         hasTabs: true
       },
       {
-        path: '/elements//accessibility/overview',
+        path: '/elements/accessibility/overview',
         title: ' Accessibility',
         hasTabs: true
       },
       {
-        path: '/elements//content/overview',
+        path: '/elements/content/overview',
         title: ' Content',
         hasTabs: true
       },
       {
-        path: '/elements//color/overview',
+        path: '/elements/color/overview',
         title: ' Color',
         hasTabs: true
       },
       {
-        path: '/elements//icons/library',
+        path: '/elements/icons/library',
         title: ' Icons',
         hasTabs: true
       },
       {
-        path: '/elements//pictograms/library',
+        path: '/elements/pictograms/library',
         title: ' Pictograms',
         hasTabs: true
       },
       {
-        path: '/elements//motion/overview',
+        path: '/elements/motion/overview',
         title: ' Motion',
         hasTabs: true
       },
       {
-        path: '/elements//spacing/overview',
+        path: '/elements/spacing/overview',
         title: ' Spacing',
         hasTabs: true
       },
       {
-        path: '/elements//themes/overview',
+        path: '/elements/themes/overview',
         title: ' Themes',
         hasTabs: true
       },
       {
-        path: '/elements//typography/overview',
+        path: '/elements/typography/overview',
         title: ' Typography',
         hasTabs: true
       }

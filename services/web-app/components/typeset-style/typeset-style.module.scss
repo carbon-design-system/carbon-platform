@@ -13,8 +13,6 @@
 @use '@carbon/react/scss/colors' as colors;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
-@include type.type-classes();
-
 // Typeset Style
 .container {
   position: relative;

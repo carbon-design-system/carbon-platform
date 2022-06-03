@@ -236,6 +236,15 @@
   }
 }
 
+.intro-copy {
+  margin-top: spacing.$spacing-11;
+  @include type.type-style('fluid-heading-03', true);
+
+  &:last-child {
+    margin-bottom: spacing.$spacing-10;
+  }
+}
+
 /**
  * Release
  */

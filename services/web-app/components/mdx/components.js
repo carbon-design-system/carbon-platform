@@ -5,6 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {
+  Button,
+  ListItem,
+  StructuredListBody,
+  StructuredListCell,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListWrapper,
+  Tag,
+  UnorderedList
+} from '@carbon/react'
+
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
@@ -58,6 +70,16 @@ const components = {
   img: Image,
   table: PageTable,
   pre: Code,
+  /* Core Carbon components */
+  Button,
+  StructuredListWrapper,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListCell,
+  StructuredListBody,
+  UnorderedList,
+  ListItem,
+  Tag,
   /* Gatsby theme components */
   Accordion,
   AccordionItem,

@@ -16,7 +16,8 @@ import {
   Sketch,
   Storybook,
   Svelte,
-  Vue
+  Vue,
+  Zenhub
 } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
@@ -40,6 +41,7 @@ const svgIcons = {
   medium: Medium,
   npm: Npm,
   figma: Figma,
+  zenhub: Zenhub,
   vue: Vue,
   svelte: Svelte,
   js: Js

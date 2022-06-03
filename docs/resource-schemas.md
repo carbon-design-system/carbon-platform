@@ -342,12 +342,12 @@ carbon.yml file location.
 
 Currently supported document keys are:
 
-| Document            | Description                                                                                                                                                                                       |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `usagePath`         | Includes directives on when and how the asset should be used: <br/>- When to use, when not to use it <br/>- How should the asset behave (states, modifiers, variants, etc.)                       |
-| `stylePath`         | Information on asset's design spec                                                                                                                                                                |
-| `codePath`          | Instructions on how to use the coded implementation of this asset and where additional API info can be found                                                                                      |
-| `accessibilityPath` | Additional considerations and guidelines regarding accessibility as it pertains to this asset: <br/> - What does Carbon provide? <br/>- Design recommendations <br/> - Development considerations |
+| Document            | Description                                                       |
+| ------------------- | ----------------------------------------------------------------- |
+| `usagePath`         | When to use the asset and how it behaves.                         |
+| `stylePath`         | Asset anatomy and design specifications.                          |
+| `codePath`          | Asset API documentation (or where to find it).                    |
+| `accessibilityPath` | Asset accessibility considerations when designing and developing. |
 
 **Example**
 

@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// eslint-disable-next-line @next/next/no-server-import-in-page -- disabling auth middleware for now
 import { NextResponse } from 'next/server'
 
 import sendLocalRequest from '@/utils/sendLocalRequest'

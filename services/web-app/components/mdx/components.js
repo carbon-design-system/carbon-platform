@@ -52,7 +52,6 @@ import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
-import UnknownComponent from '@/components/unknown-component'
 import Video from '@/components/video'
 
 const components = {
@@ -121,8 +120,7 @@ const components = {
   TypeScaleTable,
   TypesetStyle,
   TypeWeight,
-  Video,
-  UnknownComponent
+  Video
 }
 
 export default components

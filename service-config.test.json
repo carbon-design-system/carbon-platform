@@ -4,7 +4,7 @@
       "deployedVersion": "0.1.120"
     },
     "@carbon-platform/logging": {
-      "deployedVersion": "1.0.24"
+      "deployedVersion": "1.1.3"
     }
   }
 }

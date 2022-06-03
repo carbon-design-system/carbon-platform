@@ -15,10 +15,7 @@ import unwrapImages from 'remark-unwrap-images'
 
 import { libraryAllowList } from '@/data/libraries'
 import { getResponse } from '@/lib/file-cache'
-import getStyleObjectFromString from '@/utils/get-style-object-from-string'
 import { mdxImgResolver } from '@/utils/mdx-image-resolver'
-import mdxSanitizerPlugin from '@/utils/mdx-sanitizer-plugin.mjs'
-import rehypeMetaAsAttributes from '@/utils/rehype-meta-as-attributes.mjs'
 import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
@@ -93,7 +90,7 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
 
   if (!response.content) {
     return {
-      compiledSource: (await serialize('<p>Component not found.</p>')).compiledSource,
+      compiledSource: await (await serialize('<p>Component not found.</p>')).compiledSource,
       frontmatter: {
         title: 'Not found'
       }
@@ -104,39 +101,13 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
 
   const dirPath = response._links.html.split('/').slice(0, -1).join('/')
 
-  let serializedContent = null
-  let sanitizedUsageFileSource = null
-
-  // remove HTML comments
-  sanitizedUsageFileSource = usageFileSource.replace(/<!--(.|\n)*?-->/g, '')
-
-  // convert inline string styles to objects
-  sanitizedUsageFileSource = sanitizedUsageFileSource.replace(
-    /style=["']([^'"]+)["']/g,
-    (inlineStyle) => `style={${JSON.stringify(getStyleObjectFromString(inlineStyle))}}`
-  )
-
-  try {
-    serializedContent = await serialize(sanitizedUsageFileSource, {
-      mdxOptions: {
-        remarkPlugins: [mdxSanitizerPlugin, remarkGfm, unwrapImages],
-        rehypePlugins: [rehypeMetaAsAttributes, [rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
-      },
-      parseFrontmatter: true
-    })
-    return serializedContent
-  } catch (e) {
-    serializedContent = {
-      compiledSource: (
-        await serialize('<p>There was an error reading MDX data, please check format.</p>')
-      ).compiledSource,
-      frontmatter: {
-        title: 'Read Error'
-      }
-    }
-  }
-
-  return serializedContent
+  return serialize(usageFileSource, {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm, unwrapImages],
+      rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
+    },
+    parseFrontmatter: true
+  })
 }
 
 /**

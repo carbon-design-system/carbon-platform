@@ -39,6 +39,31 @@ export const assetsNavData = [
     ]
   },
   {
+    title: 'Designing',
+    items: [
+      {
+        path: '/designing/get-started',
+        title: 'Get started'
+      },
+      {
+        path: '/designing/figma',
+        title: 'Figma'
+      },
+      {
+        path: '/designing/sketch',
+        title: 'Sketch'
+      },
+      {
+        path: '/designing/axure',
+        title: 'Axure'
+      },
+      {
+        path: '/designing/adobe-xd',
+        title: 'Adobe XD'
+      }
+    ]
+  },
+  {
     path: '/developing',
     title: 'Developing'
   },

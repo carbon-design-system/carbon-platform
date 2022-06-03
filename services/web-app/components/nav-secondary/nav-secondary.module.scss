@@ -10,7 +10,6 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
-@use '@carbon/react/scss/utilities/convert' as convert;
 
 // override carbon, add scroll ability within short viewport
 :global(.cds--side-nav__navigation) {
@@ -19,12 +18,7 @@
   overflow-y: auto;
 }
 
-.library-side-nav {
-  @include breakpoint.breakpoint(lg) {
-    left: convert.rem(256px);
-    transform: translateX(0);
-  }
-
+.secondary-nav {
   // override carbon style to allow scroll abillty
   :global(.cds--tree--sm) {
     overflow: scroll;
@@ -32,6 +26,12 @@
 }
 
 // override carbon ghost button styles
+@media screen and (prefers-reduced-motion: reduce) {
+  .back {
+    transition: none;
+  }
+}
+
 .back {
   display: block;
   width: 100%;
@@ -41,9 +41,10 @@
   color: theme.$link-primary;
   cursor: pointer;
   text-align: left;
+  transition: background motion.$duration-fast-02 motion.motion(standard, productive);
 
   &:hover {
-    background: transparent;
+    background: theme.$layer-hover;
     text-decoration: none;
   }
 
@@ -57,7 +58,7 @@
   }
 }
 
-// Specificity needed to overide Carbon button styles
+// specificity needed to overide carbon button styles
 .back:not([disabled]) .back-icon {
   position: relative;
   // visually center align icon with text
@@ -66,35 +67,12 @@
   fill: currentColor;
 }
 
-.nav-heading {
-  @include type.type-style('label-01');
-
-  height: convert.rem(80px);
+.heading {
+  height: spacing.$spacing-11;
   padding: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
   border-top: 1px solid theme.$border-subtle;
   border-bottom: 1px solid theme.$border-subtle;
   color: theme.$text-secondary;
-}
-
-.nav-heading-selected {
-  position: relative;
-  background-color: theme.$background-selected;
-  color: theme.$text-primary;
-
-  &::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: convert.rem(4px);
-    height: 100%;
-    background-color: theme.$border-interactive;
-    content: '';
-  }
-}
-
-// future styles when we add heading link
-.nav-heading-link {
   text-decoration: none;
 
   &:hover {
@@ -112,39 +90,25 @@
   }
 }
 
-// slide in/out animation
-@include breakpoint.breakpoint(lg) {
-  .library-nav-in {
+.heading--active {
+  position: relative;
+  background-color: theme.$background-selected;
+  color: theme.$text-primary;
+
+  &::after {
     position: absolute;
-    z-index: 3;
-    animation: slide-left motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
-    transform: translateX(0);
-
-    @media screen and (prefers-reduced-motion: reduce) {
-      animation: none;
-    }
+    top: -1px;
+    left: 0;
+    display: block;
+    width: spacing.$spacing-02;
+    height: calc(100% + 2px);
+    background-color: theme.$border-interactive;
+    content: '';
   }
+}
 
-  .library-nav-out {
-    position: absolute;
-    z-index: 3;
-    animation: slide-right motion.$duration-moderate-01 motion.motion(entrance, productive) forwards;
-    transform: translateX(-256px);
+.heading-item {
+  @include type.type-style('label-01');
 
-    @media screen and (prefers-reduced-motion: reduce) {
-      animation: none;
-    }
-  }
-
-  @keyframes slide-right {
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slide-left {
-    100% {
-      transform: translateX(-256px);
-    }
-  }
+  display: block;
 }

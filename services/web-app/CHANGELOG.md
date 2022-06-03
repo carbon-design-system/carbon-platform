@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.120](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.119...@carbon-platform/web-app@0.1.120) (2022-06-03)
+
+
+### Features 🌟
+
+* add developing page ([a23ef62](https://github.com/carbon-design-system/carbon-platform/commit/a23ef6255d6180d9b95c7a50fbe84059fe04f488))
+
+
+### Bug Fixes 🐛
+
+* clean up pr ([63e77ab](https://github.com/carbon-design-system/carbon-platform/commit/63e77ab019d93e1d20240cddcbceb9727aa863d5))
+* fix filter font and tags ([30dd67a](https://github.com/carbon-design-system/carbon-platform/commit/30dd67aae638b5e5001f407ec7f2f8ffb5e3d41e))
+* linting ([7c73a35](https://github.com/carbon-design-system/carbon-platform/commit/7c73a3505cc43024237ebc9f4920870a9da55194))
+* merge issues ([1218c1b](https://github.com/carbon-design-system/carbon-platform/commit/1218c1bd503ed576de840fc0208f8e166de769d4))
+* merge main ([ba404d2](https://github.com/carbon-design-system/carbon-platform/commit/ba404d2d121db53512d73ba9dbe8064eaa930be1))
+* missing image ([ac6482d](https://github.com/carbon-design-system/carbon-platform/commit/ac6482d4b37887a2cac864936b6e398190df4b31))
+* sponsor icons ([b185bd9](https://github.com/carbon-design-system/carbon-platform/commit/b185bd9ef1aedf12355af6e7bcc736b88ced19c0))
+* **web-app:** broken link and remove side nav on asset detail ([8ce8f67](https://github.com/carbon-design-system/carbon-platform/commit/8ce8f67639a70d269ccd54d5ff9d8a712ab5d26f))
+* **web-app:** convert px to rem and correct assets link ([338264d](https://github.com/carbon-design-system/carbon-platform/commit/338264da96a120b972d84a4fdae45b047954017e))
+* **web-app:** correct packageJsonPath when not in library location ([8a16fa4](https://github.com/carbon-design-system/carbon-platform/commit/8a16fa496a5617ce6c2701683554bd644cc3255e))
+* **web-app:** fix double animation on secondary nav slide-in ([35999fd](https://github.com/carbon-design-system/carbon-platform/commit/35999fdc15f69744cf5e138ba55b0bd4e0d3fa91))
+* **web-app:** show library name/version inside nav, sidenav refactor ([c45a7ec](https://github.com/carbon-design-system/carbon-platform/commit/c45a7ec9fb041ac46d2bf55d371ba1b81f6ffbbd))
+* **web-app:** slide animations ([a1ccfe2](https://github.com/carbon-design-system/carbon-platform/commit/a1ccfe2aa25f7d6fabcb9514dc0b1ded5c20c715))
+* **web-app:** style comments ([99be1df](https://github.com/carbon-design-system/carbon-platform/commit/99be1dfb70b4bc2c81266b572b34135a84a87a47))
+
 ### [0.1.119](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.118...@carbon-platform/web-app@0.1.119) (2022-06-02)
 
 

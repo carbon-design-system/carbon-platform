@@ -23,15 +23,17 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
-import { useState } from 'react'
-import { libraryPropTypes, paramsPropTypes } from 'types'
+import { useContext, useEffect, useState } from 'react'
+import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'types'
 
 import CatalogItemMeta from '@/components/catalog-item/catalog-item-meta'
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
 import { framework } from '@/data/framework'
+import { assetsNavData } from '@/data/nav-data'
 import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
-import { getLibraryData } from '@/lib/github'
+import { LayoutContext } from '@/layouts/layout'
+import { getLibraryData, getLibraryNavData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { assetSortComparator } from '@/utils/schema'
 import { getAllTags } from '@/utils/schema.js'
@@ -63,11 +65,17 @@ const headerData = [
   }
 ]
 
-const LibrayAssets = ({ libraryData, params }) => {
+const LibrayAssets = ({ libraryData, params, navData }) => {
+  const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
   const isLg = useMatchMedia(mediaQueries.lg)
 
   const [sort, setSort] = useState(ALPHABETICAL_ORDER)
   const router = useRouter()
+
+  useEffect(() => {
+    setPrimaryNavData(assetsNavData)
+    setSecondaryNavData(navData)
+  }, [setPrimaryNavData, navData, setSecondaryNavData])
 
   if (router.isFallback) {
     return (
@@ -216,6 +224,7 @@ const LibrayAssets = ({ libraryData, params }) => {
 
 LibrayAssets.propTypes = {
   libraryData: libraryPropTypes,
+  navData: secondaryNavDataPropTypes,
   params: paramsPropTypes
 }
 
@@ -228,9 +237,12 @@ export const getServerSideProps = async ({ params }) => {
     }
   }
 
+  const navData = getLibraryNavData(params, libraryData)
+
   return {
     props: {
       libraryData,
+      navData,
       params
     }
   }

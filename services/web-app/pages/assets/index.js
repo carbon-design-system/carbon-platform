@@ -289,15 +289,15 @@ const PageContent = () => {
 }
 
 const Index = () => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData } = useContext(LayoutContext)
 
   const seo = {
     title: 'Assets'
   }
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+  }, [setPrimaryNavData])
 
   return (
     <>

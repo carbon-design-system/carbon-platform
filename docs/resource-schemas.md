@@ -215,7 +215,7 @@ assets:
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                         | Optional | String           | No          | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `demoLinks`       | Links to demo sites. See [demo links](#demos-links).                                                                                                     | Optional | Array            | No          | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `noIndex`         | If set to `true`, the global catalogs will exclude the asset.                                                                                            | Optional | Boolean          | No          | `false`       | –                                                                                                                                                                                                                                                                                                                                          |
-| `docs`            | Contains information on where to find supporting documentation for the asset. See [asset docs](#asset-docs).                                             | Optional | Object           | Yes          | -             | –                                                                                                                                                                                                                                                                                                                                          |
+| `docs`            | Contains information on where to find supporting documentation for the asset. See [asset docs](#asset-docs).                                             | Optional | Object           | Yes         | -             | –                                                                                                                                                                                                                                                                                                                                          |
 
 #### Asset status
 
@@ -336,13 +336,13 @@ have the following values:
 
 Asset docs is used to determine which supporting documentation is available to fetch and render as
 page tabs in the asset details for the asset as well as its location. For each optional document
-key, a path should be included; The path **must** be either a Github url according to the
+key, a path should be included; The path **must** be either a Github URL according to the
 `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format, or a path relative to the
 carbon.yml file location.
 
 Currently supported document keys are:
 
-| docKey              | Description                                                                                                                                                                                       |
+| Document            | Description                                                                                                                                                                                       |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `usagePath`         | Includes directives on when and how the asset should be used: <br/>- When to use, when not to use it <br/>- How should the asset behave (states, modifiers, variants, etc.)                       |
 | `stylePath`         | Information on asset's design spec                                                                                                                                                                |

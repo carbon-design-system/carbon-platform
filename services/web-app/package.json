@@ -28,7 +28,7 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "dependencies": {
-    "@carbon/elements": "^11.2.0",
+    "@carbon/elements": "^11.4.0",
     "@carbon/icons": "^11.2.0",
     "@carbon/pictograms": "^12.0.2",
     "@carbon/pictograms-react": "^11.26.2",

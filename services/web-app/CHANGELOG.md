@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.122](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.121...@carbon-platform/web-app@0.1.122) (2022-06-04)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** remove auth for v1 ([63e9362](https://github.com/carbon-design-system/carbon-platform/commit/63e9362eb30022ef88bf6d0e97e0c83a6084cf21))
+* **web-app:** remove auth middleware ([662212e](https://github.com/carbon-design-system/carbon-platform/commit/662212e208dc1d1f2b25312e7a9902920b62c22e))
+
 ### [0.1.121](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.120...@carbon-platform/web-app@0.1.121) (2022-06-03)
 
 

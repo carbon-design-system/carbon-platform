@@ -24,6 +24,8 @@ function useNormalScrollRoutes() {
     })
     router.events.on('routeChangeComplete', () => {
       document.documentElement.classList.remove('normal-scroll')
+      // collect analytics data
+      window?.ibmStats?.pageview()
     })
   }, [router.events])
 }

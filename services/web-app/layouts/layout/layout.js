@@ -15,57 +15,120 @@ import {
   SkipToContent,
   Theme
 } from '@carbon/react'
+import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import Footer from '@/components/footer'
-import NavLibrary from '@/components/nav-library'
-import NavMain from '@/components/nav-main'
+import NavPrimary from '@/components/nav-primary'
+import NavSecondary from '@/components/nav-secondary'
 import NextLink from '@/components/next-link'
 import { globalNavData } from '@/data/nav-data'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './layout.module.scss'
 
+// do not show side nav for these paths
+const NO_SIDE_NAV_PATHS = ['/404', '/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]']
+
+// Only slide to the secondary navigation on page load for these paths.
+const SECONDARY_NAV_SLIDE_PATHS = ['/assets/[host]/[org]/[repo]/[library]/[ref]']
+
 export const LayoutContext = createContext()
 
 export const LayoutProvider = ({ children }) => {
-  const [navData, setNavData] = useState([])
-  const [showSideNav, setShowSideNav] = useState(true)
-  const [librarySideNav, setLibrarySideNav] = useState(false)
-  const [isSideNavExpanded, toggleSideNavExpanded] = useState(false)
-  const [libraryNavSlideOut, setLibraryNavSlideOut] = useState(false)
+  const [isSideNavExpanded, setSideNavExpanded] = useState(false)
+  const [primaryNavData, setPrimaryNavData] = useState([])
+  const [secondaryNavData, setSecondaryNavData] = useState([])
+  const [skipNextSlide, setSkipNextSlide] = useState(false)
 
   const value = {
-    navData,
-    setNavData,
-    showSideNav,
     isSideNavExpanded,
-    setShowSideNav,
-    librarySideNav,
-    setLibrarySideNav,
-    toggleSideNavExpanded,
-    libraryNavSlideOut,
-    setLibraryNavSlideOut
+    setSideNavExpanded,
+    primaryNavData,
+    setPrimaryNavData,
+    secondaryNavData,
+    setSecondaryNavData,
+    skipNextSlide,
+    setSkipNextSlide
   }
 
   return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
 }
 
+const SideNav = () => {
+  const router = useRouter()
+  const isSecondarySlidePath = SECONDARY_NAV_SLIDE_PATHS.includes(router.pathname)
+  const [shouldSlideIn, setShouldSlideIn] = useState(isSecondarySlidePath)
+  const [shouldSlideOut, setShouldSlideOut] = useState(false)
+  const [isSecondaryNav, setIsSecondaryNav] = useState(
+    router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]')
+  )
+
+  // $duration-moderate-01 = 150ms
+  const slideDelay = 150
+
+  const { skipNextSlide, setSkipNextSlide } = useContext(LayoutContext)
+
+  // Wait a render cycle before adding the class name to slide to the secondary nav
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      if (shouldSlideIn) {
+        setShouldSlideIn(false)
+      }
+    })
+  }, [shouldSlideIn, setShouldSlideIn])
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSkipNextSlide(isSecondaryNav)
+    }, slideDelay)
+    // we do not want to update every time isSecondaryNav changes, it messes up the whole behavior
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- see above
+  }, [setSkipNextSlide])
+
+  const handleSlidePrimary = () => {
+    setShouldSlideOut(true)
+    setIsSecondaryNav(false)
+  }
+
+  const cnSlide = clsx(styles['side-nav-slide'], {
+    [styles['side-nav-slide--secondary']]:
+      isSecondaryNav && !(isSecondarySlidePath && shouldSlideIn),
+    [styles['slide-in']]: !skipNextSlide,
+    [styles['slide-out']]: shouldSlideOut
+  })
+
+  return (
+    <Column sm={4} md={8} lg={4}>
+      <Theme theme="white">
+        <section className={styles['side-nav']}>
+          <div className={styles['side-nav-inner']}>
+            <div className={cnSlide}>
+              <NavPrimary className={styles['side-nav-item']} globalItems={globalNavData} />
+              <NavSecondary
+                className={styles['side-nav-item']}
+                visible={isSecondaryNav}
+                onSlidePrimary={handleSlidePrimary}
+              />
+            </div>
+          </div>
+        </section>
+      </Theme>
+    </Column>
+  )
+}
+
 const Layout = ({ children }) => {
   const router = useRouter()
-
-  const {
-    setShowSideNav,
-    showSideNav,
-    librarySideNav,
-    setLibrarySideNav,
-    isSideNavExpanded,
-    toggleSideNavExpanded
-  } = useContext(LayoutContext)
-
+  const { isSideNavExpanded, setSideNavExpanded, primaryNavData } = useContext(LayoutContext)
   const isLg = useMatchMedia(mediaQueries.lg)
+  const [showSideNav, setShowSideNav] = useState(true)
+
+  useEffect(() => {
+    setShowSideNav(!NO_SIDE_NAV_PATHS.includes(router.pathname))
+  }, [primaryNavData, router.pathname])
 
   // For use with 100vw widths to account for the scrollbar width, e.g. instead of `width: 100vw;`
   // use `width: calc(100vw - var(--scrollbar-width));`.
@@ -79,16 +142,9 @@ const Layout = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    setShowSideNav(
-      !router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]')
-    )
-    setLibrarySideNav(router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]'))
-  }, [setShowSideNav, setLibrarySideNav, router.pathname])
-
-  useEffect(() => {
     const handleRouteChange = () => {
       // Collapse the side nav for small and medium breakpoint when navigating to a new page.
-      toggleSideNavExpanded(false)
+      setSideNavExpanded(false)
     }
 
     router.events.on('routeChangeStart', handleRouteChange)
@@ -96,10 +152,10 @@ const Layout = ({ children }) => {
     return () => {
       router.events.off('routeChangeStart', handleRouteChange)
     }
-  }, [router.events, toggleSideNavExpanded])
+  }, [router.events, setSideNavExpanded])
 
   const onClickSideNavExpand = () => {
-    toggleSideNavExpanded(!isSideNavExpanded)
+    setSideNavExpanded(!isSideNavExpanded)
   }
 
   return (
@@ -153,16 +209,7 @@ const Layout = ({ children }) => {
           </Theme>
           <Theme className={styles.body} theme="g10">
             <Grid as="main" className={styles.main} id="main-content">
-              {showSideNav && (
-                <Column sm={4} md={8} lg={4}>
-                  <section className={styles['side-nav-container']}>
-                    <Theme theme="white">
-                      <NavMain items={globalNavData} />
-                      {librarySideNav && <NavLibrary />}
-                    </Theme>
-                  </section>
-                </Column>
-              )}
+              {showSideNav && <SideNav />}
               <Column sm={4} md={8} lg={showSideNav ? 12 : 16}>
                 <Grid condensed={!isLg} narrow={isLg}>
                   <Column

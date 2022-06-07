@@ -38,13 +38,13 @@ import { getSlug } from '@/utils/slug'
 import styles from './[asset].module.scss'
 
 const Asset = ({ libraryData }) => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
   const contentRef = useRef(null)
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+  }, [setPrimaryNavData])
 
   if (router.isFallback) {
     return (

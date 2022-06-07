@@ -6,8 +6,8 @@
  */
 import { Carbon, IbmCloud, IbmSecurity, Watson } from '@carbon/react/icons'
 import {
-  Svg32CarbonForIbmDotcom,
-  Svg32CarbonForIbmProducts,
+  Svg24CarbonForIbmDotcom,
+  Svg24CarbonForIbmProducts,
   Svg64Carbon,
   Svg64CarbonForIbmDotcom,
   Svg64CarbonForIbmProducts,
@@ -28,7 +28,7 @@ export const teams = {
     pictogram: Svg64Carbon
   },
   'ibm-dotcom': {
-    icon: Svg32CarbonForIbmDotcom,
+    icon: Svg24CarbonForIbmDotcom,
     name: 'IBM.com',
     pictogram: Svg64CarbonForIbmDotcom
   },
@@ -53,7 +53,7 @@ export const teams = {
     pictogram: Svg64Watson
   },
   'ibm-products': {
-    icon: Svg32CarbonForIbmProducts,
+    icon: Svg24CarbonForIbmProducts,
     name: 'IBM Products',
     pictogram: Svg64CarbonForIbmProducts
   }

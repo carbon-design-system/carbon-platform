@@ -15,8 +15,10 @@ import PageTabs from '@/components/page-tabs'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
+import styles from './mdx-wrapper.module.scss'
+
 const MdxWrapper = ({ children, ...props }) => {
-  const { setNavData } = useContext(LayoutContext)
+  const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
   const { title, description, tabs, keywords } = JSON.parse(props.frontmatter)
   const pathSegments = router.pathname.split('/').filter(Boolean)
@@ -24,8 +26,8 @@ const MdxWrapper = ({ children, ...props }) => {
   const baseSegment = pathSegments.join('/')
 
   useEffect(() => {
-    setNavData(assetsNavData)
-  }, [setNavData])
+    setPrimaryNavData(assetsNavData)
+  }, [setPrimaryNavData])
   const withTabs = tabs != null
 
   return (
@@ -48,7 +50,7 @@ const MdxWrapper = ({ children, ...props }) => {
           })}
         />
       )}
-      {children}
+      <div className={styles['page-content']}>{children}</div>
     </>
   )
 }

@@ -1,0 +1,114 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/motion' as motion;
+
+// override carbon, add scroll ability within short viewport
+:global(.cds--side-nav__navigation) {
+  overflow: hidden;
+  height: auto;
+  overflow-y: auto;
+}
+
+.secondary-nav {
+  // override carbon style to allow scroll abillty
+  :global(.cds--tree--sm) {
+    overflow: scroll;
+  }
+}
+
+// override carbon ghost button styles
+@media screen and (prefers-reduced-motion: reduce) {
+  .back {
+    transition: none;
+  }
+}
+
+.back {
+  display: block;
+  width: 100%;
+  padding: spacing.$spacing-05;
+  border: 0;
+  background: transparent;
+  color: theme.$link-primary;
+  cursor: pointer;
+  text-align: left;
+  transition: background motion.$duration-fast-02 motion.motion(standard, productive);
+
+  &:hover {
+    background: theme.$layer-hover;
+    text-decoration: none;
+  }
+
+  &:active {
+    color: theme.$text-primary;
+  }
+
+  &:focus {
+    outline: 2px solid theme.$focus;
+    outline-offset: -2px;
+  }
+}
+
+// specificity needed to overide carbon button styles
+.back:not([disabled]) .back-icon {
+  position: relative;
+  // visually center align icon with text
+  top: spacing.$spacing-02;
+  margin-right: spacing.$spacing-03;
+  fill: currentColor;
+}
+
+.heading {
+  height: spacing.$spacing-11;
+  padding: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
+  border-top: 1px solid theme.$border-subtle;
+  border-bottom: 1px solid theme.$border-subtle;
+  color: theme.$text-secondary;
+  text-decoration: none;
+
+  &:hover {
+    background: theme.$background-hover;
+    color: theme.$text-primary;
+  }
+
+  &:active {
+    background: theme.$background-selected;
+  }
+
+  &:focus {
+    outline: 2px solid theme.$focus;
+    outline-offset: -2px;
+  }
+}
+
+.heading--active {
+  position: relative;
+  background-color: theme.$background-selected;
+  color: theme.$text-primary;
+
+  &::after {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    display: block;
+    width: spacing.$spacing-02;
+    height: calc(100% + 2px);
+    background-color: theme.$border-interactive;
+    content: '';
+  }
+}
+
+.heading-item {
+  @include type.type-style('label-01');
+
+  display: block;
+}

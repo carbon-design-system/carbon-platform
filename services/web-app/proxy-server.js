@@ -12,7 +12,7 @@ const fs = require('fs')
 const http = require('http')
 const https = require('https')
 
-const port = process.env.PORT ?? process.env.RUNNING_SECURELY === '1' ? 8443 : 8080
+const port = process.env.PORT ?? (process.env.RUNNING_SECURELY === '1' ? 8443 : 8080)
 const logging = new Logging('express-proxy')
 
 function getCredentials() {

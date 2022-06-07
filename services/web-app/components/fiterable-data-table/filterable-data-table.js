@@ -4,8 +4,19 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, DataTable, Dropdown, Grid, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react'
-import { useEffect, useState } from 'react'
+import {
+  Column,
+  DataTable,
+  Dropdown,
+  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '@carbon/react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { headerData, rowData } from '@/data/data-table-content'
 import { designTools } from '@/data/design-tools'
@@ -14,17 +25,18 @@ import styles from './filterable-data-table.module.scss'
 
 const FilterableDataTable = () => {
   const [filteredData, setFilteredData] = useState(rowData)
-  const [currentItem, setCurrentItem] = useState('')
+  const [currentItem, setCurrentItem] = useState('Figma')
 
-  const filterByDesignTool = (filteredData) => {
-    if (!currentItem) {
-      return filteredData
-    }
+  const filterByDesignTool = useCallback(
+    (filteredData) => {
+      if (!currentItem) {
+        return filteredData
+      }
 
-    return filteredData.filter(
-      (item) => item.design_tool === currentItem
-    )
-  }
+      return filteredData.filter((item) => item.design_tool === currentItem)
+    },
+    [currentItem]
+  )
 
   const handleFilterChange = ({ selectedItem }) => {
     setCurrentItem(selectedItem)
@@ -33,7 +45,7 @@ const FilterableDataTable = () => {
   useEffect(() => {
     const filteredData = filterByDesignTool(rowData)
     setFilteredData(filteredData)
-  }, [currentItem])
+  }, [currentItem, filterByDesignTool])
 
   return (
     <>

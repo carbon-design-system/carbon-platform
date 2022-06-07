@@ -1,0 +1,41 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* stylelint-disable declaration-no-important */
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+.side-nav {
+  // carbon override nav tree styles
+  :global(.cds--tree-node__children .cds--tree-node__label) {
+    @include type.type-style('body-compact-01');
+  }
+}
+
+.heading {
+  padding-bottom: spacing.$spacing-03;
+  border-bottom: 1px solid theme.$layer-accent;
+  margin: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
+  @include type.type-style('label-01');
+}
+
+// carbon override, disabled side nav item
+// !important needed to override carbon specificty
+.link--disabled {
+  span {
+    color: theme.$text-disabled !important;
+  }
+
+  &:hover {
+    background-color: transparent !important;
+  }
+
+  &:focus {
+    outline: none !important;
+  }
+}

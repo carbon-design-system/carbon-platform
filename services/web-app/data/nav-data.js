@@ -8,16 +8,17 @@
 import { type } from '@/data/type'
 
 export const globalNavData = [
-  {
-    title: 'About'
-  },
-  {
-    title: 'Standards'
-  },
-  {
-    path: '/assets',
-    title: 'Assets'
-  }
+  // remove L0 for the first release
+  // {
+  //   title: 'About'
+  // },
+  // {
+  //   title: 'Standards'
+  // },
+  // {
+  //   path: '/assets',
+  //   title: 'Assets'
+  // }
 ]
 
 export const standardsNavData = [
@@ -29,63 +30,97 @@ export const standardsNavData = [
 
 export const assetsNavData = [
   {
-    path: '/assets',
-    title: 'About Assets'
-  },
-  {
     path: '/filter-table',
     title: 'Filter table'
   },
   {
-    title: 'Guidelines',
+    title: 'About Carbon',
     items: [
       {
-        path: '/assets/guidelines/2x-grid/overview',
+        path: '/about-carbon/platform-roadmap',
+        title: 'Platform roadmap'
+      }
+    ]
+  },
+  {
+    title: 'Designing',
+    items: [
+      {
+        path: '/designing/get-started',
+        title: 'Get started'
+      },
+      {
+        path: '/designing/figma',
+        title: 'Figma'
+      },
+      {
+        path: '/designing/sketch',
+        title: 'Sketch'
+      },
+      {
+        path: '/designing/axure',
+        title: 'Axure'
+      },
+      {
+        path: '/designing/adobe-xd',
+        title: 'Adobe XD'
+      }
+    ]
+  },
+  {
+    path: '/developing',
+    title: 'Developing'
+  },
+  {
+    title: 'Elements',
+    items: [
+      {
+        path: '/elements/2x-grid/overview',
         title: '2x Grid',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/accessibility/overview',
+        path: '/elements/accessibility/overview',
         title: ' Accessibility',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/content/overview',
+        path: '/elements/content/overview',
         title: ' Content',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/color/overview',
+        path: '/elements/color/overview',
         title: ' Color',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/icons/library',
+        path: '/elements/icons/library',
         title: ' Icons',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/pictograms/library',
+        path: '/elements/pictograms/library',
         title: ' Pictograms',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/motion/overview',
+        path: '/elements/motion/overview',
         title: ' Motion',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/spacing/overview',
+        path: '/elements/spacing/overview',
         title: ' Spacing',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/themes/overview',
+        path: '/elements/themes/overview',
         title: ' Themes',
         hasTabs: true
       },
       {
-        path: '/assets/guidelines/typography/overview',
+        path: '/elements/typography/overview',
         title: ' Typography',
         hasTabs: true
       }
@@ -131,66 +166,5 @@ export const assetsNavData = [
         title: 'Data visualization'
       }
     ]
-  }
-]
-
-export const libraryNavData = [
-  {
-    title: 'Assets',
-    path: '/assets/carbon-charts/library-assets'
-  },
-  {
-    title: 'Design kits',
-    path: ''
-  },
-  {
-    title: 'Tutorials',
-    items: [
-      {
-        title: 'Tutorial 1',
-        items: [
-          {
-            title: 'Overview',
-            path: ''
-          },
-          {
-            title: '1. Installing Carbon',
-            path: ''
-          },
-          {
-            title: '2. Building pages',
-            path: ''
-          },
-          {
-            title: '3. Using APIs',
-            path: ''
-          },
-          {
-            title: '4. Creating components',
-            path: ''
-          },
-          {
-            title: '5. Deploying to cloud',
-            path: ''
-          },
-          {
-            title: 'Conclusion',
-            path: ''
-          }
-        ]
-      },
-      {
-        title: 'Tutorial 2',
-        path: ''
-      }
-    ]
-  },
-  {
-    title: 'Versions',
-    path: ''
-  },
-
-  {
-    title: 'Catalogs'
   }
 ]

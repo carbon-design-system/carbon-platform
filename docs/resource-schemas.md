@@ -345,7 +345,7 @@ Currently supported document keys are:
 | Document            | Description                                                       |
 | ------------------- | ----------------------------------------------------------------- |
 | `usagePath`         | When to use the asset and how it behaves.                         |
-| `stylePath`         | Asset anatomy and design specifications.                          |
+| `stylePath`         | Asset structure and design specifications.                        |
 | `codePath`          | Asset API documentation (or where to find it).                    |
 | `accessibilityPath` | Asset accessibility considerations when designing and developing. |
 

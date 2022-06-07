@@ -11,7 +11,7 @@ import FilterDataTable from '@/components/filter-data-table'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
-const FilerDataTableTest = () => {
+const FilterDataTableTest = () => {
   const { setPrimaryNavData } = useContext(LayoutContext)
 
   useEffect(() => {
@@ -30,4 +30,4 @@ const FilerDataTableTest = () => {
   )
 }
 
-export default FilerDataTableTest
+export default FilterDataTableTest

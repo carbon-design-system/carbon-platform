@@ -9,7 +9,9 @@ import Preview from '@/components/preview'
 const stories = {
   title: 'MDX/Preview',
   component: Preview,
-  parameters: {},
+  parameters: {
+    viewMode: 'canvas'
+  },
   argTypes: {
     title: {
       control: false

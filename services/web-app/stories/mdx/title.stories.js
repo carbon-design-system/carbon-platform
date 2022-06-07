@@ -16,6 +16,9 @@ const stories = {
     className: {
       control: false
     }
+  },
+  parameters: {
+    viewMode: 'canvas'
   }
 }
 

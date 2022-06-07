@@ -14,6 +14,9 @@ const stories = {
     small: {
       control: 'boolean'
     }
+  },
+  parameters: {
+    viewMode: 'canvas'
   }
 }
 

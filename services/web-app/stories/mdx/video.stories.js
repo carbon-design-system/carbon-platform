@@ -21,6 +21,9 @@ const stories = {
     poster: {
       control: false
     }
+  },
+  parameters: {
+    viewMode: 'canvas'
   }
 }
 

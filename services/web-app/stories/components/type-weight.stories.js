@@ -10,7 +10,9 @@ const stories = {
   title: 'Platform/Components/TypeWeight',
   component: TypeWeight,
   argTypes: {},
-  parameters: {}
+  parameters: {
+    viewMode: 'canvas'
+  }
 }
 
 export default stories

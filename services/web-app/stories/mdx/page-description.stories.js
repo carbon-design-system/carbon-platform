@@ -8,7 +8,10 @@ import PageDescription from '@/components/page-description'
 
 const stories = {
   title: 'MDX/PageDescription',
-  component: PageDescription
+  component: PageDescription,
+  parameters: {
+    viewMode: 'canvas'
+  }
 }
 
 export default stories

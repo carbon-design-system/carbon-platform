@@ -10,7 +10,9 @@ const stories = {
   title: 'Platform/Components/TypeScaleTable',
   component: TypeScaleTable,
   argTypes: {},
-  parameters: {}
+  parameters: {
+    viewMode: 'canvas'
+  }
 }
 
 export default stories

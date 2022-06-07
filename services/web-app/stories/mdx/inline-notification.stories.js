@@ -8,7 +8,10 @@ import InlineNotification from '@/components/inline-notification'
 
 const stories = {
   title: 'MDX/InlineNotification',
-  component: InlineNotification
+  component: InlineNotification,
+  parameters: {
+    viewMode: 'canvas'
+  }
 }
 
 export default stories

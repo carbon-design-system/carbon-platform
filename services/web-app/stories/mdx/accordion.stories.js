@@ -9,7 +9,10 @@ import { Accordion, AccordionItem } from '@/components/accordion'
 const stories = {
   title: 'MDX/Accordion',
   component: Accordion,
-  subcomponents: { AccordionItem }
+  subcomponents: { AccordionItem },
+  parameters: {
+    viewMode: 'canvas'
+  }
 }
 
 export default stories

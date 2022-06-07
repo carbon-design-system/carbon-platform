@@ -12,7 +12,9 @@ const stories = {
   argTypes: {
     name: { control: { type: 'select', options: acceptedCompNames.sort() } }
   },
-  parameters: {}
+  parameters: {
+    viewMode: 'canvas'
+  }
 }
 
 export default stories

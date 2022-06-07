@@ -9,7 +9,10 @@ import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 
 const stories = {
   title: 'Platform/Components/PictogramLibrary',
-  component: PictogramLibrary
+  component: PictogramLibrary,
+  parameters: {
+    viewMode: 'canvas'
+  }
 }
 
 export default stories

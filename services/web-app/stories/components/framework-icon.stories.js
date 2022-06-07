@@ -10,6 +10,9 @@ import { framework as frameworkMap } from '@/data/framework'
 const stories = {
   title: 'Platform/Components/FrameworkIcon',
   component: FrameworkIcon,
+  parameters: {
+    viewMode: 'canvas'
+  },
   argTypes: {
     framework: {
       options: Object.keys(frameworkMap)

@@ -9,7 +9,10 @@ import Glossary from '@/components/glossary'
 
 const stories = {
   title: 'Platform/Components/Glossary',
-  component: Glossary
+  component: Glossary,
+  parameters: {
+    viewMode: 'canvas'
+  }
 }
 
 export default stories

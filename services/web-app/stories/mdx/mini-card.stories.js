@@ -11,7 +11,9 @@ import MiniCard from '@/components/mini-card'
 const stories = {
   title: 'MDX/MiniCard',
   component: MiniCard,
-  parameters: {},
+  parameters: {
+    viewMode: 'canvas'
+  },
   argTypes: {
     children: {
       control: false

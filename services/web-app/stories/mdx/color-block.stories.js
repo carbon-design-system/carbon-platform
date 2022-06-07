@@ -10,7 +10,9 @@ const stories = {
   title: 'MDX/ColorBlock',
   component: ColorBlock,
   argTypes: {},
-  parameters: {}
+  parameters: {
+    viewMode: 'canvas'
+  }
 }
 
 export default stories

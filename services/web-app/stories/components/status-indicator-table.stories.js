@@ -13,6 +13,9 @@ const stories = {
     attention: {
       options: ['high', 'medium', 'low', 'glyph']
     }
+  },
+  parameters: {
+    viewMode: 'canvas'
   }
 }
 

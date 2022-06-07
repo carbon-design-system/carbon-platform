@@ -8,7 +8,10 @@ import Caption from '@/components/caption'
 
 const stories = {
   title: 'MDX/Caption',
-  component: Caption
+  component: Caption,
+  parameters: {
+    viewMode: 'canvas'
+  }
 }
 
 export default stories

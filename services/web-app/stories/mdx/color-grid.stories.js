@@ -10,7 +10,9 @@ const stories = {
   title: 'MDX/ColorGrid',
   component: ColorGrid,
   argTypes: {},
-  parameters: {}
+  parameters: {
+    viewMode: 'canvas'
+  }
 }
 
 export default stories

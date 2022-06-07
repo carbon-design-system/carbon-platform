@@ -10,7 +10,9 @@ const stories = {
   title: 'Platform/Components/ColorTokenTable',
   component: ColorTokenTable,
   argTypes: {},
-  parameters: {}
+  parameters: {
+    viewMode: 'canvas'
+  }
 }
 
 export default stories

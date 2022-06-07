@@ -44,10 +44,10 @@ export const assetsNavData = [
         path: '/about-carbon/releases',
         title: 'Releases'
       },
-      {
-        path: '/about-carbon/articles',
-        title: 'Articles'
-      },
+      // {
+      //   path: '/about-carbon/articles',
+      //   title: 'Articles'
+      // },
       {
         title: 'Case studies',
         items: [

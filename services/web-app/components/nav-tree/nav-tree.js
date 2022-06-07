@@ -10,6 +10,8 @@ import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 import slugify from 'slugify'
 
+import { dfs } from '@/utils/tree'
+
 import styles from './nav-tree.module.scss'
 
 const NavTree = ({ activeItem, items = [], label }) => {
@@ -31,22 +33,6 @@ const NavTree = ({ activeItem, items = [], label }) => {
     })
     setItemNodes(newItemNodeArray)
   }, [items])
-
-  const dfs = (nodes, returnFunction) => {
-    let node
-    const stack = []
-    stack.push(...nodes)
-    while (stack.length > 0) {
-      node = stack.pop()
-      if (returnFunction(node)) {
-        return node
-      } else {
-        node.items?.forEach((item) => {
-          stack.push(item)
-        })
-      }
-    }
-  }
 
   const getItemId = (item) => {
     return item.path || slugify(item.title, { lower: true, strict: true })

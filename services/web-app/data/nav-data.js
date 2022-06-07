@@ -30,6 +30,10 @@ export const standardsNavData = [
 
 export const assetsNavData = [
   {
+    path: '/filter-data-table',
+    title: 'Filter Datatable'
+  },
+  {
     title: 'About Carbon',
     items: [
       {

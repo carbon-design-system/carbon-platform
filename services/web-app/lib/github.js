@@ -20,6 +20,7 @@ import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
+import { dfs } from '@/utils/tree'
 import { urlsMatch } from '@/utils/url'
 
 const logging = new Logging('github.js')
@@ -41,6 +42,15 @@ export const getLibraryNavData = (params, libraryData) => {
     return `v${libraryData.content.version}`
   }
 
+  const libraryNavData = get(libraryData, ['content', 'navData'], [])
+
+  // traverse items subtree and remove hidden nodes
+  dfs(libraryNavData, (item) => {
+    if (item.items) {
+      item.items = item.items?.filter((childItem) => !childItem.hidden)
+    }
+  })
+
   return {
     back: {
       title: 'Back to all Libraries',
@@ -56,6 +66,7 @@ export const getLibraryNavData = (params, libraryData) => {
         title: 'Design kits',
         path: `/assets/${params.library}/${params.ref}/design-kits`
       },
+      ...libraryNavData.filter((item) => !item.hidden),
       {
         title: 'Versions',
         path: `/assets/${params.library}/${params.ref}/versions`

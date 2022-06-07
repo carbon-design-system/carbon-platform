@@ -267,7 +267,7 @@
               }
             },
             "additionalProperties": false,
-            "required": ["title", "path"]
+            "oneOf": [{ "required": ["title", "path"] }, { "required": ["title", "items"] }]
           }
         }
       },

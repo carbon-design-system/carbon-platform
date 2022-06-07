@@ -43,8 +43,7 @@ const FilterDataTable = () => {
   }
 
   useEffect(() => {
-    const filteredData = filterByDesignTool(rowData)
-    setFilteredData(filteredData)
+    setFilteredData(filterByDesignTool(rowData))
   }, [currentItem, filterByDesignTool])
 
   return (

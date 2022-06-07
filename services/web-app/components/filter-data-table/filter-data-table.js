@@ -24,7 +24,7 @@ import { designTools } from '@/data/filter-data-table-tools'
 import styles from './filter-data-table.module.scss'
 
 const FilterDataTable = () => {
-  const [filteredData, setFilteredData] = useState(rowData)
+  const [filteredRows, setFilteredRows] = useState(rowData)
   const [currentItem, setCurrentItem] = useState('Figma')
 
   const filterByDesignTool = useCallback(
@@ -43,7 +43,7 @@ const FilterDataTable = () => {
   }
 
   useEffect(() => {
-    setFilteredData(filterByDesignTool(rowData))
+    setFilteredRows(filterByDesignTool(rowData))
   }, [currentItem, filterByDesignTool])
 
   return (
@@ -62,7 +62,7 @@ const FilterDataTable = () => {
           />
         </Column>
       </Grid>
-      <DataTable rows={filteredData} headers={headerData}>
+      <DataTable rows={filteredRows} headers={headerData}>
         {({ rows, headers, getHeaderProps, getTableProps, i }) => (
           <Table {...getTableProps()}>
             <TableHead>

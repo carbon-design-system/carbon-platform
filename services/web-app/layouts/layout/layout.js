@@ -127,7 +127,6 @@ const Layout = ({ children }) => {
   const [showSideNav, setShowSideNav] = useState(true)
 
   useEffect(() => {
-    console.log(router.pathname)
     setShowSideNav(!NO_SIDE_NAV_PATHS.includes(router.pathname))
   }, [primaryNavData, router.pathname])
 

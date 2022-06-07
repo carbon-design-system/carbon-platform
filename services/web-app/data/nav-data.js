@@ -131,5 +131,9 @@ export const assetsNavData = [
         title: 'Data visualization'
       }
     ]
+  },
+  {
+    path: '/assets',
+    title: 'About Assets'
   }
 ]

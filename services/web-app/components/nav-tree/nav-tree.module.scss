@@ -100,4 +100,8 @@
     margin: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
     @include type.type-style('label-01');
   }
+
+  .margin-top {
+    margin-top: spacing.$spacing-08;
+  }
 }

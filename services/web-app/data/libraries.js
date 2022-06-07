@@ -490,12 +490,6 @@ const devLibraries = {
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/utilities',
     sponsor: 'ibm-dotcom'
-  },
-  'francine-test': {
-    host: 'github.com',
-    org: 'francinelucca',
-    repo: 'francine-test-library',
-    path: '/'
   }
 }
 

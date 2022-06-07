@@ -299,8 +299,8 @@ In some cases, it is helpful to apply light components to dark backgrounds or da
 light backgrounds. This technique is useful to focus attention or create visual tension. Some high
 contrast moments are baked into the themes by using the `inverse` tokens, like the tooltip
 component. Other times high contrast moments can be achieved through applying
-[inline theming](/elements/color/implementation#inline-theming) for instances like a dark UI Shell
-Header with a light theme page.
+[inline theming](/assets/elements/color/implementation#inline-theming) for instances like a dark UI
+Shell Header with a light theme page.
 
 <DoDontRow>
   <DoDont colLg={6}>
@@ -331,7 +331,7 @@ roles are the same across themes, only the assigned value will change with the t
 under the hood the `$text-secondary` token can dynamically map to `Gray 70` or `Gray 30` depending
 on the theme.
 
-See the [color usage](/elements/color/usage) tab for the full list of color tokens.
+See the [color usage](/assets/elements/color/usage) tab for the full list of color tokens.
 
 ### Token names
 
@@ -366,7 +366,7 @@ to the a group and stand as individual tokens like `$overlay`, `$highlight`, a
 
 Some core tokens are part of an additional token group called _layering tokens_. These tokens are
 used to implement the layering model onto components. For more information, see the
-[Implementation tab](/elements/color/implementation#layer-tokens).
+[Implementation tab](/assets/elements/color/implementation#layer-tokens).
 
 | Token group | Applied to                                                                          |
 | ----------- | ----------------------------------------------------------------------------------- |
@@ -388,7 +388,7 @@ used to implement the layering model onto components. For more information, see 
 Some components have their own specific color tokens, known as _component tokens_. They represent
 the properties associated with a particular component. They are not global tokens like the core
 tokens and should never be used for anything other than their own component. For a full list for
-component tokens see the [color usage](/elements/color/usage) tab.
+component tokens see the [color usage](/assets/elements/color/usage) tab.
 
 To see how the tokens are applied in the components themselves, visit the component’s style page.
 

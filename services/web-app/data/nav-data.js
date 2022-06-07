@@ -133,7 +133,7 @@ export const assetsNavData = [
     ]
   },
   {
-    path: '/assets',
-    title: 'About Assets'
+    path: '/test',
+    title: 'TEST NAV'
   }
 ]

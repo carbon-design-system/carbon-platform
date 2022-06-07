@@ -8,6 +8,7 @@ import '@/styles/styles.scss'
 
 import { MDXProvider } from '@mdx-js/react'
 import { useRouter } from 'next/router'
+import Script from 'next/script'
 import { DefaultSeo } from 'next-seo'
 import { useEffect } from 'react'
 
@@ -34,14 +35,53 @@ function App({ Component, pageProps }) {
   useNormalScrollRoutes()
 
   return (
-    <LayoutProvider>
-      <Layout>
-        <DefaultSeo {...defaultSeo} />
-        <MDXProvider components={components}>
-          <Component {...pageProps} />
-        </MDXProvider>
-      </Layout>
-    </LayoutProvider>
+    <>
+      <Script id="ibm-analytics" type="text/javascript">
+        {`window._ibmAnalytics = {
+              settings: {
+                /* Need to double check on this */
+                name: 'CARBON_NEXT',
+
+                isSpa: true,
+
+                tealiumProfileName: 'ibm-web-app'
+              },
+              onLoad: [
+                ['ibmStats.pageview', []]
+              ]
+            };
+            window.digitalData = {
+              "page": {
+                 "pageInfo": {
+                    "language": 'en-US',
+                    "ibm": {
+                       /* siteId: need to double check on this */
+                       "siteId": "IBM_" + _ibmAnalytics.settings.name,
+                       "country": "US",
+                       "industry": "design",
+                       "owner": "carbon@us.ibm.com"
+                    }
+                 },
+                 "category": {
+                    "primaryCategory": "PC010"
+                 }
+              }
+           };`}
+      </Script>
+      <Script
+        src="//1.www.s81c.com/common/stats/ibm-common.js"
+        type="text/javascript"
+        async="async"
+      ></Script>
+      <LayoutProvider>
+        <Layout>
+          <DefaultSeo {...defaultSeo} />
+          <MDXProvider components={components}>
+            <Component {...pageProps} />
+          </MDXProvider>
+        </Layout>
+      </LayoutProvider>
+    </>
   )
 }
 

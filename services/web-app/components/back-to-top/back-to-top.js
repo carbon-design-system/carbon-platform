@@ -21,12 +21,7 @@ const BackToTop = () => {
   const [hidden, setHidden] = useState(true)
 
   const scrollHandler = useCallback(() => {
-    if (window.scrollY >= 300) {
-      setHidden(false)
-    }
-    if (window.scrollY < 300) {
-      setHidden(true)
-    }
+    setHidden(window.scrollY < 300)
   }, [])
 
   useEventListener('scroll', scrollHandler)

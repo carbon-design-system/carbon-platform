@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/components/button/tokens' as button;
 
 .button {
   position: fixed;
@@ -19,9 +20,9 @@
   height: spacing.$spacing-09;
   padding-top: 0.325rem;
   border-color: transparent;
-  //background: theme.$button-secondary;
-  background: theme.$background-inverse;
+  background: button.$button-secondary;
   border-radius: 50%;
+
   cursor: pointer;
   opacity: 1;
   transition: all motion.$duration-fast-02;
@@ -42,8 +43,7 @@
 }
 
 .button:hover {
-  //background: theme.$button-secondary-hover;
-  background: theme.$background-inverse-hover;
+  background: button.$button-secondary-hover;
 }
 
 .button:focus {

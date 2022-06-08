@@ -336,18 +336,16 @@ have the following values:
 
 Asset docs is used to determine which supporting documentation is available to fetch and render as
 page tabs in the asset details for the asset as well as its location. For each optional document
-key, a path should be included; The path **must** be either a Github URL according to the
-`https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format, or a path relative to the
-carbon.yml file location.
+key, a path should be included.
 
 Currently supported document keys are:
 
-| Document            | Description                                                       |
-| ------------------- | ----------------------------------------------------------------- |
-| `usagePath`         | When to use the asset and how it behaves.                         |
-| `stylePath`         | Asset structure and design specifications.                        |
-| `codePath`          | Asset API documentation (or where to find it).                    |
-| `accessibilityPath` | Asset accessibility considerations when designing and developing. |
+| Document            | Description                                                       | Required | Type   | Inheritable | Default | Valid values                                                                                                                                                            |
+| ------------------- | ----------------------------------------------------------------- | -------- | ------ | ----------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `usagePath`         | When to use the asset and how it behaves.                         | Optional | String | Yes         | -       | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| `stylePath`         | Asset structure and design specifications.                        | Optional | String | Yes         | -       | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| `codePath`          | Asset API documentation (or where to find it).                    | Optional | String | Yes         | -       | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| `accessibilityPath` | Asset accessibility considerations when designing and developing. | Optional | String | Yes         | -       | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
 
 **Example**
 

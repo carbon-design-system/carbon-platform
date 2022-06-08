@@ -170,8 +170,7 @@ const Library = ({ libraryData, params, navData }) => {
         </Column>
         <Column sm={4} md={8} lg={8}>
           <section>
-            {/* TODO: fix styling here */}
-            <h2 style={{ marginBottom: '2rem' }}>Resources</h2>
+            <h2 className={styles['resources-heading']}>Resources</h2>
 
             <CardGroup>
               {libraryData.content.inherits && libraryInheritanceCard()}

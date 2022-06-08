@@ -18,6 +18,11 @@
   vertical-align: text-bottom;
 }
 
+.mdx-icon svg {
+  width: convert.rem(32px);
+  max-height: convert.rem(32px);
+}
+
 .icon-inverse {
   fill: theme.$icon-inverse;
 }

@@ -5,12 +5,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {
+  Button,
+  ListItem,
+  StructuredListBody,
+  StructuredListCell,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListWrapper,
+  Tag,
+  UnorderedList
+} from '@carbon/react'
+
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
+import CardGroup from '@/components/card-group'
 import Code from '@/components/code'
 import ColorBlock from '@/components/color-block'
 import ColorGrid from '@/components/color-grid'
@@ -20,16 +33,19 @@ import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
 import Glossary from '@/components/glossary'
 import { Column, Grid, Row } from '@/components/grid-transform'
+import ImageWrapper from '@/components/image-wrapper'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import MdxWrapper from '@/components/mdx-wrapper'
+import MiniCard from '@/components/mini-card'
 import PageDescription from '@/components/page-description'
 import PageTable from '@/components/page-table'
 import Preview from '@/components/preview'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
+import StatusIndicatorTable from '@/components/status-indicator-table'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'
@@ -37,8 +53,6 @@ import Title from '@/components/title'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
 import Video from '@/components/video'
-
-import StatusIndicatorTable from '../status-indicator-table'
 
 const components = {
   h1: H1,
@@ -56,44 +70,57 @@ const components = {
   img: Image,
   table: PageTable,
   pre: Code,
+  /* Core Carbon components */
+  Button,
+  StructuredListWrapper,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListCell,
+  StructuredListBody,
+  UnorderedList,
+  ListItem,
+  Tag,
   /* Gatsby theme components */
-  Caption,
-  PageDescription,
-  Title,
-  Image,
   Accordion,
   AccordionItem,
-  ArticleCard,
-  Grid,
-  Row,
-  Column,
   AnchorLink,
   AnchorLinks,
   ArtDirection,
+  ArticleCard,
+  Aside,
+  Caption,
+  CardGroup,
+  ColorBlock,
+  ColorGrid,
+  ColorPalette,
+  Column,
+  ColorTokenTable,
   DoDont,
   DoDontRow,
   GifPlayer,
-  IconLibrary,
   Glossary,
+  Grid,
+  IconLibrary,
+  Image,
+  ImageWrapper,
   InlineNotification,
-  PictogramLibrary,
   MdxIcon,
-  Tabs,
-  Tab,
-  Video,
   MdxWrapper,
-  ResourceCard,
-  Aside,
+  MiniCard,
+  PageDescription,
+  PictogramLibrary,
   Preview,
   Profile,
-  ColorTokenTable,
-  TypesetStyle,
-  ColorBlock,
-  ColorGrid,
+  ResourceCard,
+  Row,
+  StatusIndicatorTable,
+  Tab,
+  Tabs,
+  Title,
   TypeScaleTable,
+  TypesetStyle,
   TypeWeight,
-  ColorPalette,
-  StatusIndicatorTable
+  Video
 }
 
 export default components

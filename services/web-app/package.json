@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.1.115",
+  "version": "0.1.123",
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
@@ -14,12 +14,12 @@
     "build:storybook": "build-storybook -o .storybook-static",
     "bundle": "node esbuild.js",
     "clean": "rimraf .carbon public/.carbon .next .dev",
-    "dev": "next dev",
-    "dev:all": "concurrently 'open http://localhost:3000 && next dev' 'npm run storybook'",
+    "dev": "next dev -p 3000",
+    "dev:all": "concurrently 'open http://localhost:3000 && next dev -p 3000' 'npm run storybook'",
     "dev:clean": "npm run clean && npm run dev",
     "dev:secure": "sh scripts/create-local-certificates.sh && concurrently 'npm run dev' 'RUNNING_SECURELY=1 npm run start:proxy'",
     "service:build": "npm run build",
-    "start": "concurrently 'npm run start:proxy' 'next start'",
+    "start": "concurrently 'npm run start:proxy' 'next start -p 3000'",
     "start:proxy": "node proxy-server.js",
     "storybook": "start-storybook -p 6006",
     "test": "echo 'No tests defined yet!'"
@@ -28,7 +28,7 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "dependencies": {
-    "@carbon/elements": "^11.2.0",
+    "@carbon/elements": "^11.4.0",
     "@carbon/icons": "^11.2.0",
     "@carbon/pictograms": "^12.0.2",
     "@carbon/pictograms-react": "^11.26.2",

@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.3.0...@carbon-platform/schemas@1.4.0) (2022-06-08)
+
+
+### Features 🌟
+
+* **web-app:** add library nav data to side nav ([12b7f97](https://github.com/carbon-design-system/carbon-platform/commit/12b7f97a545dc436fb63b2eecd09e6f8d06e5042))
+
+
+### Bug Fixes 🐛
+
+* **schemas:** do not require path if items present on navData item ([1909006](https://github.com/carbon-design-system/carbon-platform/commit/1909006fbfa266d77f0d8980c61b8787116eacef))
+* **schemas:** run prettier ([e3693ef](https://github.com/carbon-design-system/carbon-platform/commit/e3693efcbd2a020c1706a5891d95872f8b3d5003))
+
+## [1.3.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.2.0...@carbon-platform/schemas@1.3.0) (2022-06-01)
+
+
+### Features 🌟
+
+* add nav data to library schema ([ab5bbae](https://github.com/carbon-design-system/carbon-platform/commit/ab5bbae849f049562df1093bcc710e42259489a7))
+* add nav data to library schema ([2769516](https://github.com/carbon-design-system/carbon-platform/commit/276951605b7068ab0cfdc688bef5604bd1bd5a1e))
+* add nav data to schema ([322ae03](https://github.com/carbon-design-system/carbon-platform/commit/322ae033f9d6dff756154e9459db31452a4d6c1d))
+* add nav data to schema ([36c90e7](https://github.com/carbon-design-system/carbon-platform/commit/36c90e71df72fc613d37251eb6fed9b644348f9e))
+
+
+### Bug Fixes 🐛
+
+* linting error ([d7c81c1](https://github.com/carbon-design-system/carbon-platform/commit/d7c81c1e85f7f9e318ade132af129af061ab5bf7))
+* linting error ([edeca5e](https://github.com/carbon-design-system/carbon-platform/commit/edeca5e0034602bbf199f8a7ff9ee71191fd9d2a))
+* linting error ([f82fa70](https://github.com/carbon-design-system/carbon-platform/commit/f82fa70a89f66a52d79d79645105303da19174f3))
+* remove from asset validation schema ([6099749](https://github.com/carbon-design-system/carbon-platform/commit/60997496463c54a54fdb712171d2dc75c5e9b1aa))
+
 ## [1.2.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.1.6...@carbon-platform/schemas@1.2.0) (2022-03-31)
 
 

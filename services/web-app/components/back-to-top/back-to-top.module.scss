@@ -57,3 +57,8 @@
   transition-property: opacity, visibility;
   visibility: hidden;
 }
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+}

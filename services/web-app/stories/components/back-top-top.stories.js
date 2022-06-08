@@ -8,11 +8,18 @@ import BackToTop from '@/components/back-to-top'
 
 const stories = {
   title: 'Platform/Components/BackToTop',
-  component: BackToTop
+  component: BackToTop,
+  argTypes: {
+    alwaysVisible: {
+      control: false
+    }
+  },
+  parameters: {}
 }
 
 export default stories
 
-const Template = () => <BackToTop />
+const Template = (args) => <BackToTop alwaysVisible {...args} />
 
 export const Default = Template.bind({})
+Default.args = {}

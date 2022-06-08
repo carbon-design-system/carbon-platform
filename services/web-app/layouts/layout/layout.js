@@ -20,6 +20,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
 
+import BackToTop from '@/components/back-to-top'
 import Footer from '@/components/footer'
 import NavPrimary from '@/components/nav-primary'
 import NavSecondary from '@/components/nav-secondary'
@@ -224,6 +225,7 @@ const Layout = ({ children }) => {
               </Column>
             </Grid>
           </Theme>
+          <BackToTop />
           <Footer hasSideNav={showSideNav} />
         </>
       )}

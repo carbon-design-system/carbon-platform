@@ -66,12 +66,12 @@ const iconColor = {
   inverse: 'icon-inverse'
 }
 
-const MdxIcon = ({ name, color }) => {
+const MdxIcon = ({ name, color, fill }) => {
   if (svgIcons[name]) {
     const SvgComponent = svgIcons[name]
     return (
       <div className={styles['mdx-icon']}>
-        <SvgComponent />
+        <SvgComponent style={{ fill }} />
       </div>
     )
   }
@@ -86,7 +86,13 @@ const MdxIcon = ({ name, color }) => {
 
   if (carbonIcons[name]) {
     const Icon = carbonIcons[name]
-    return <Icon className={clsx(styles['mdx-icon'], styles[iconColor[color]])} size={32} />
+    return (
+      <Icon
+        className={clsx(styles['mdx-icon'], styles[iconColor[color]])}
+        size={32}
+        style={{ fill }}
+      />
+    )
   }
 
   return null
@@ -103,6 +109,10 @@ MdxIcon.propTypes = {
    * Optional: can supply color "icon-inverse" for carbonIcons.
    */
   color: PropTypes.oneOf(Object.keys(iconColor)),
+  /**
+   * Optional: color to fill icon.
+   */
+  fill: PropTypes.string,
   /**
    * Name of Icon to render.
    */

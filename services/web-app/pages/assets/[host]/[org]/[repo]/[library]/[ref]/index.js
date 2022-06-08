@@ -6,7 +6,7 @@
  */
 import { Button, Column, Grid } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
-import { Svg64Community } from '@carbon-platform/icons'
+import { Svg32Github, Svg32Library, Svg64Community } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
 import { useRouter } from 'next/router'
@@ -14,11 +14,14 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'types'
 
+import CardGroup from '@/components/card-group'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import ExternalLinks from '@/components/external-links'
+import MdxIcon from '@/components/mdx-icon'
 import PageDescription from '@/components/page-description'
 import PageHeader from '@/components/page-header'
+import ResourceCard from '@/components/resource-card'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
@@ -76,6 +79,26 @@ const Library = ({ libraryData, params, navData }) => {
     }
 
     return `v${libraryData.content.version}`
+  }
+
+  const libraryInheritanceCard = () => {
+    const [library, version] = libraryData.content.inherits.split('@')
+    return (
+      <Column sm={4} md={4} lg={4}>
+        <ResourceCard
+          title={
+            <div>
+              {library} <br /> {version}
+            </div>
+          }
+          subTitle="Inherits"
+          href={`/assets/${library}/${version ?? ''}`}
+          actionIcon="arrowRight"
+        >
+          <Svg32Library />
+        </ResourceCard>
+      </Column>
+    )
   }
 
   return (
@@ -144,6 +167,36 @@ const Library = ({ libraryData, params, navData }) => {
               </DashboardItem>
             </Column>
           </Dashboard>
+        </Column>
+        <Column sm={4} md={8} lg={8}>
+          <section>
+            {/* TODO: fix styling here */}
+            <h2 style={{ marginBottom: '2rem' }}>Resources</h2>
+
+            <CardGroup>
+              {libraryData.content.inherits && libraryInheritanceCard()}
+              <Column sm={4} md={4} lg={4}>
+                <ResourceCard
+                  title={`${libraryData.params.org}/${libraryData.params.repo}`}
+                  subTitle={libraryData.params.host === 'github.com' ? 'GitHub' : 'IBM GitHub'}
+                  href={`https://${libraryData.params.host}/${libraryData.params.org}/${libraryData.params.repo}`}
+                >
+                  <Svg32Github />
+                </ResourceCard>
+              </Column>
+              {!libraryData.content.private && (
+                <Column sm={4} md={4} lg={4}>
+                  <ResourceCard
+                    title={libraryData.content.package}
+                    subTitle="Package"
+                    href={`https://npmjs.com/package/${libraryData.content.package}/v/${libraryData.content.version}`}
+                  >
+                    <MdxIcon name="npm" />
+                  </ResourceCard>
+                </Column>
+              )}
+            </CardGroup>
+          </section>
         </Column>
       </Grid>
     </>

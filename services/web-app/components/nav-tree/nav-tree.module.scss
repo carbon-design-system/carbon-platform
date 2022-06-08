@@ -97,11 +97,15 @@
   .section-heading {
     padding-bottom: spacing.$spacing-03;
     border-bottom: 1px solid theme.$layer-accent;
-    margin: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
+    margin: 0 spacing.$spacing-05 spacing.$spacing-03;
     @include type.type-style('label-01');
   }
 
-  .margin-top {
+  .section {
     margin-top: spacing.$spacing-08;
+  }
+
+  li:last-child {
+    margin-bottom: spacing.$spacing-10;
   }
 }

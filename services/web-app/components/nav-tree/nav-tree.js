@@ -70,7 +70,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
 
     return nodes.map((node) => {
       if (node.isSection) {
-        return <h2 className={styles['section-heading']}>{node.title}</h2>
+        return <h2 className={clsx(styles['section-heading'], styles.section)}>{node.title}</h2>
       } else {
         return (
           <TreeNode
@@ -79,7 +79,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
             key={node.title}
             onClick={() => node.path && router.push(node.path)}
             isExpanded={isTreeNodeExpanded(node)}
-            className={clsx({ [styles['margin-top']]: node.addMarginTop })}
+            className={clsx({ [styles.section]: node.addMarginTop })}
           >
             {renderTree(node.items)}
           </TreeNode>

@@ -13,6 +13,10 @@ import useEventListener from '@/utils/use-event-listener'
 
 import styles from './back-to-top.module.scss'
 
+/**
+ * The `<BackToTop />` component displays in the lower right corner
+ * when the user scrolls past 300px
+ */
 const BackToTop = () => {
   const [hidden, setHidden] = useState(true)
 

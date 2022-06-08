@@ -99,7 +99,6 @@ const components = {
   DoDontRow,
   GifPlayer,
   Glossary,
-  GlossaryComponent: Glossary,
   Grid,
   IconLibrary,
   Image,

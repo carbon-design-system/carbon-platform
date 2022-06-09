@@ -33,8 +33,41 @@ export const assetsNavData = [
     title: 'About Carbon',
     items: [
       {
+        path: '/about-carbon/how-carbon-works',
+        title: 'How Carbon works'
+      },
+      {
         path: '/about-carbon/platform-roadmap',
         title: 'Platform roadmap'
+      },
+      {
+        path: '/about-carbon/releases',
+        title: 'Releases'
+      },
+      {
+        path: '/about-carbon/articles',
+        title: 'Articles'
+      },
+      {
+        title: 'Case studies',
+        items: [
+          {
+            path: '/about-carbon/case-studies/overview',
+            title: 'Overview'
+          },
+          {
+            path: '/about-carbon/case-studies/consistency-in-the-cloud',
+            title: 'Consistency in the Cloud'
+          },
+          {
+            path: '/about-carbon/case-studies/ibm-commerce-platform',
+            title: 'IBM Commerce Platform'
+          }
+        ]
+      },
+      {
+        path: '/about-carbon/meetups',
+        title: 'Meetups'
       }
     ]
   },
@@ -66,6 +99,43 @@ export const assetsNavData = [
   {
     path: '/developing',
     title: 'Developing'
+  },
+  {
+    title: 'Contribute',
+    items: [
+      {
+        path: '/contribute/overview',
+        title: 'Overview'
+      },
+      {
+        path: '/contribute/bugs-and-requests',
+        title: 'Bugs and requests'
+      },
+      {
+        path: '/contribute/documentation',
+        title: 'Documentation (schema)'
+      },
+      {
+        path: '/contribute/components',
+        title: 'Components'
+      },
+      {
+        path: '/contribute/icons',
+        title: 'Icons'
+      },
+      {
+        path: '/contribute/patterns',
+        title: 'Patterns'
+      },
+      {
+        path: '/contribute/pictograms',
+        title: 'Pictograms'
+      },
+      {
+        path: '/contribute/add-ons',
+        title: 'Add-ons'
+      }
+    ]
   },
   {
     title: 'Elements',
@@ -162,5 +232,13 @@ export const assetsNavData = [
         title: 'Data visualization'
       }
     ]
+  },
+  {
+    path: '/faq',
+    title: 'FAQ'
+  },
+  {
+    path: '/contact',
+    title: 'Contact'
   }
 ]

@@ -147,6 +147,33 @@
                 "additionalProperties": false,
                 "required": ["type", "name", "url"]
               }
+            },
+            "docs": {
+              "description": "Determines which supporting documentation is available to fetch and render as page tabs in asset details.",
+              "type": "object",
+              "minProperties": 1,
+              "properties": {
+                "usagePath": {
+                  "description": "Path to the file, Github URL or path relative to carbon.yml.",
+                  "default": "./usage.mdx",
+                  "type": "string"
+                },
+                "stylePath": {
+                  "description": "Path to the file, Github URL or path relative to carbon.yml.",
+                  "default": "./style.mdx",
+                  "type": "string"
+                },
+                "codePath": {
+                  "description": "Path to the file, Github URL or path relative to carbon.yml.",
+                  "default": "./code.mdx",
+                  "type": "string"
+                },
+                "accessibilityPath": {
+                  "description": "Path to the file, Github URL or path relative to carbon.yml.",
+                  "default": "./accessibility.mdx",
+                  "type": "string"
+                }
+              }
             }
           },
           "additionalProperties": false,

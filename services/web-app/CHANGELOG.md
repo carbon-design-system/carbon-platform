@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.124](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.123...@carbon-platform/web-app@0.1.124) (2022-06-09)
+
+
+### Features 🌟
+
+* add alwaysvisible prop ([dfab108](https://github.com/carbon-design-system/carbon-platform/commit/dfab1085e263777d785e2aec93062bb839834b40))
+* add back to top btn ([9257a8d](https://github.com/carbon-design-system/carbon-platform/commit/9257a8da60844ad5fdd6ef619e5b3c4168e1c08e))
+* add correct tokens ([fb87925](https://github.com/carbon-design-system/carbon-platform/commit/fb879251d9c978a77b2c72617158f309540e62fa))
+* add story ([b7b0de8](https://github.com/carbon-design-system/carbon-platform/commit/b7b0de8e365368b5c3df139ae21bd934a98b28b4))
+
 ### [0.1.123](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.122...@carbon-platform/web-app@0.1.123) (2022-06-08)
 
 

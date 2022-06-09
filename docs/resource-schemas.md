@@ -45,6 +45,11 @@ assets:
       - data-display
     framework: react
     platform: web
+    docs:
+      usagePath: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/components/accordion/usage.mdx'
+      stylePath: './components/accordion/styles.mdx'
+      codePath: './components/accordion/code.mdx'
+      accessibilityPath: './components/accordion/accessibility.mdx'
   card:
     name: Card
     type: component
@@ -187,6 +192,11 @@ assets:
         name: Storybook
         action: link
         url: https://react.carbondesignsystem.com/?path=/story/components-accordion--accordion
+    docs:
+      usagePath: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/components/accordion/usage.mdx'
+      stylePath: './components/accordion/styles.mdx'
+      codePath: './components/accordion/code.mdx'
+      accessibilityPath: './components/accordion/accessibility.mdx'
 ```
 
 ### Asset keys
@@ -205,6 +215,7 @@ assets:
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                         | Optional | String           | No          | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `demoLinks`       | Links to demo sites. See [demo links](#demos-links).                                                                                                     | Optional | Array            | No          | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `noIndex`         | If set to `true`, the global catalogs will exclude the asset.                                                                                            | Optional | Boolean          | No          | `false`       | –                                                                                                                                                                                                                                                                                                                                          |
+| `docs`            | Contains information on where to find supporting documentation for the asset. See [asset docs](#asset-docs).                                             | Optional | Object           | Yes         | -             | –                                                                                                                                                                                                                                                                                                                                          |
 
 #### Asset status
 
@@ -320,6 +331,35 @@ have the following values:
 | ---------------- | ---------------------------------------------- |
 | `cross-platform` | Runs natively on iOS, Android, and/or desktop. |
 | `web`            | Runs on the web.                               |
+
+#### Asset docs
+
+Asset docs is used to determine which supporting documentation is available to fetch and render as
+page tabs in the asset details for the asset as well as its location. For each optional document
+key, a path should be included.
+
+Currently supported document keys are:
+
+| Document            | Description                                                       | Required | Type   | Inheritable | Default             | Valid values                                                                                                                                                            |
+| ------------------- | ----------------------------------------------------------------- | -------- | ------ | ----------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `usagePath`         | When to use the asset and how it behaves.                         | Optional | String | Yes         | ./usage.mdx         | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| `stylePath`         | Asset structure and design specifications.                        | Optional | String | Yes         | ./style.mdx         | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| `codePath`          | Asset API documentation (or where to find it).                    | Optional | String | Yes         | ./code.mdx          | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| `accessibilityPath` | Asset accessibility considerations when designing and developing. | Optional | String | Yes         | ./accessibility.mdx | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+
+**Example**
+
+carbon.yml
+
+```yml
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
+---
+docs:
+  usagePath: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/components/accordion/usage.mdx'
+  stylePath: './components/accordion/styles.mdx'
+  codePath: './components/accordion/code.mdx'
+  accessibilityPath: './components/accordion/accessibility.mdx'
+```
 
 ## Shared schemas
 

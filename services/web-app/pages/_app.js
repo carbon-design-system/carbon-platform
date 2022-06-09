@@ -39,8 +39,6 @@ function App({ Component, pageProps }) {
       <Script id="ibm-analytics" type="text/javascript">
         {`window._ibmAnalytics = {
               settings: {
-                /* Need to double check on this */
-                name: 'CARBON_NEXT',
 
                 isSpa: true,
 
@@ -55,8 +53,7 @@ function App({ Component, pageProps }) {
                  "pageInfo": {
                     "language": 'en-US',
                     "ibm": {
-                       /* siteId: need to double check on this */
-                       "siteId": "IBM_" + _ibmAnalytics.settings.name,
+                       "siteId": "CARBON_DESIGN_SYSTEM",
                        "country": "US",
                        "industry": "design",
                        "owner": "carbon@us.ibm.com"

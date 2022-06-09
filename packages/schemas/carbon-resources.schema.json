@@ -155,18 +155,22 @@
               "properties": {
                 "usagePath": {
                   "description": "Path to the file, Github URL or path relative to carbon.yml.",
+                  "default": "./usage.mdx",
                   "type": "string"
                 },
                 "stylePath": {
                   "description": "Path to the file, Github URL or path relative to carbon.yml.",
+                  "default": "./style.mdx",
                   "type": "string"
                 },
                 "codePath": {
                   "description": "Path to the file, Github URL or path relative to carbon.yml.",
+                  "default": "./code.mdx",
                   "type": "string"
                 },
                 "accessibilityPath": {
                   "description": "Path to the file, Github URL or path relative to carbon.yml.",
+                  "default": "./accessibility.mdx",
                   "type": "string"
                 }
               }

@@ -15,6 +15,8 @@ import PageTabs from '@/components/page-tabs'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
+import styles from './mdx-wrapper.module.scss'
+
 const MdxWrapper = ({ children, ...props }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
@@ -48,7 +50,7 @@ const MdxWrapper = ({ children, ...props }) => {
           })}
         />
       )}
-      {children}
+      <div className={styles['page-content']}>{children}</div>
     </>
   )
 }

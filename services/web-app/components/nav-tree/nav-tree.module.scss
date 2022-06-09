@@ -87,11 +87,26 @@
     left: 0;
   }
 
+  :global(.cds--tree-node[aria-expanded='true']
+      .cds--tree-node__label
+      .cds--tree-node__label__details) {
+    @include type.type-style('heading-compact-01');
+  }
+
   :global(.cds--tree-node__children
       .cds--tree-node__children
       .cds--tree-node--selected
       > .cds--tree-node__label::before) {
     left: spacing.$spacing-06;
+  }
+
+  :global(.cds--tree-node__children
+      .cds--tree-node__children
+      .cds--tree-node--selected.cds--tree-node--active
+      .cds--tree-node__label) {
+    background-color: theme.$background-selected;
+    color: theme.$text-primary;
+    font-weight: bold;
   }
 
   .section-heading {

@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.3.0...@carbon-platform/schemas@1.4.0) (2022-06-08)
+
+
+### Features 🌟
+
+* **web-app:** add library nav data to side nav ([12b7f97](https://github.com/carbon-design-system/carbon-platform/commit/12b7f97a545dc436fb63b2eecd09e6f8d06e5042))
+
+
+### Bug Fixes 🐛
+
+* **schemas:** do not require path if items present on navData item ([1909006](https://github.com/carbon-design-system/carbon-platform/commit/1909006fbfa266d77f0d8980c61b8787116eacef))
+* **schemas:** run prettier ([e3693ef](https://github.com/carbon-design-system/carbon-platform/commit/e3693efcbd2a020c1706a5891d95872f8b3d5003))
+
 ## [1.3.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.2.0...@carbon-platform/schemas@1.3.0) (2022-06-01)
 
 

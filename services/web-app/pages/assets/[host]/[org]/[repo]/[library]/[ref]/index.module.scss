@@ -10,7 +10,6 @@
 
 .dashboard {
   margin-top: spacing.$spacing-11;
-  margin-bottom: spacing.$spacing-07;
 }
 
 .sponsor-icon {
@@ -31,4 +30,9 @@
   @include breakpoint.breakpoint(lg) {
     width: 50%;
   }
+}
+
+.resources-heading {
+  margin-top: spacing.$spacing-11;
+  margin-bottom: spacing.$spacing-07;
 }

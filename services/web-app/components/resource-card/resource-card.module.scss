@@ -51,9 +51,13 @@
   bottom: spacing.$spacing-05;
   left: spacing.$spacing-05;
   display: flex;
-  max-width: convert.rem(32px);
+  width: convert.rem(32px);
   max-height: convert.rem(32px);
   align-items: flex-end;
+
+  img[class*='image'] {
+    background: transparent;
+  }
 }
 
 .icon-action {

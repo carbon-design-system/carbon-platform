@@ -12,10 +12,10 @@ import {
   Illustrator,
   Js,
   Medium,
-  Npm,
   Sketch,
   Storybook,
   Svelte,
+  Svg32Npm,
   Vue,
   Zenhub
 } from '@carbon-platform/icons'
@@ -39,7 +39,7 @@ const svgIcons = {
   codepen: Codepen,
   storybook: Storybook,
   medium: Medium,
-  npm: Npm,
+  npm: Svg32Npm,
   figma: Figma,
   zenhub: Zenhub,
   vue: Vue,
@@ -66,12 +66,12 @@ const iconColor = {
   inverse: 'icon-inverse'
 }
 
-const MdxIcon = ({ name, color, fill }) => {
+const MdxIcon = ({ name, color }) => {
   if (svgIcons[name]) {
     const SvgComponent = svgIcons[name]
     return (
       <div className={styles['mdx-icon']}>
-        <SvgComponent style={{ fill }} />
+        <SvgComponent />
       </div>
     )
   }
@@ -86,13 +86,7 @@ const MdxIcon = ({ name, color, fill }) => {
 
   if (carbonIcons[name]) {
     const Icon = carbonIcons[name]
-    return (
-      <Icon
-        className={clsx(styles['mdx-icon'], styles[iconColor[color]])}
-        size={32}
-        style={{ fill }}
-      />
-    )
+    return <Icon className={clsx(styles['mdx-icon'], styles[iconColor[color]])} size={32} />
   }
 
   return null
@@ -109,10 +103,6 @@ MdxIcon.propTypes = {
    * Optional: can supply color "icon-inverse" for carbonIcons.
    */
   color: PropTypes.oneOf(Object.keys(iconColor)),
-  /**
-   * Optional: color to fill icon.
-   */
-  fill: PropTypes.string,
   /**
    * Name of Icon to render.
    */

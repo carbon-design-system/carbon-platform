@@ -32,7 +32,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
         newItemNodeArray.push({ ...item, isDummy: true })
       } else {
         if (index > 0 && items[index - 1].isSection) {
-          item.addMarginTop = true
+          item.sectionGroup = true
         }
       }
     })
@@ -70,7 +70,9 @@ const NavTree = ({ activeItem, items = [], label }) => {
 
     return nodes.map((node) => {
       if (node.isSection) {
-        return <h2 className={clsx(styles['section-heading'], styles.section)}>{node.title}</h2>
+        return (
+          <h2 className={clsx(styles['section-heading'], styles['section-group'])}>{node.title}</h2>
+        )
       } else {
         return (
           <TreeNode
@@ -79,7 +81,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
             key={node.title}
             onClick={() => node.path && router.push(node.path)}
             isExpanded={isTreeNodeExpanded(node)}
-            className={clsx({ [styles.section]: node.addMarginTop })}
+            className={clsx({ [styles['section-group']]: node.sectionGroup })}
           >
             {renderTree(node.items)}
           </TreeNode>

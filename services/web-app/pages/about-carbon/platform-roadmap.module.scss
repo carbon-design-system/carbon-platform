@@ -1,0 +1,98 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+.border {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: spacing.$spacing-05;
+    left: spacing.$spacing-05;
+    height: 1px;
+    background-color: theme.$border-strong-01;
+    content: '';
+    @include breakpoint.breakpoint(md) {
+      margin-right: -(spacing.$spacing-05);
+      margin-left: -(spacing.$spacing-05);
+    }
+  }
+}
+
+.intro-copy {
+  margin-top: spacing.$spacing-11;
+  @include type.type-style('fluid-heading-03', true);
+
+  &:last-child {
+    margin-bottom: spacing.$spacing-10;
+  }
+
+  a {
+    font-size: inherit;
+    line-height: inherit;
+  }
+}
+
+/**
+ * Release
+ */
+
+.release {
+  padding-bottom: spacing.$spacing-09 + spacing.$spacing-03;
+  @include breakpoint.breakpoint(md) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.release-heading {
+  margin-top: spacing.$spacing-07;
+  @include type.type-style('fluid-heading-04', true);
+}
+
+.release-subheading {
+  @include type.type-style('heading-02');
+}
+
+.release-copy {
+  @include type.type-style('body-long-02');
+
+  & + & {
+    margin-top: spacing.$spacing-06;
+  }
+}
+
+.release-content {
+  margin-top: spacing.$spacing-06;
+  @include breakpoint.breakpoint(md) {
+    padding-right: spacing.$spacing-06;
+  }
+  @include breakpoint.breakpoint(lg) {
+    padding-right: spacing.$spacing-05;
+    margin-top: spacing.$spacing-07;
+  }
+  @include breakpoint.breakpoint(xlg) {
+    padding-right: spacing.$spacing-06;
+  }
+}
+
+.release-image {
+  margin-top: spacing.$spacing-06;
+  @include breakpoint.breakpoint-down(md) {
+    display: none;
+  }
+}
+
+.release-image-caption {
+  margin-top: spacing.$spacing-05;
+  @include type.type-style('label-01');
+}

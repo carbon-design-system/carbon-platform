@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.124](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.123...@carbon-platform/web-app@0.1.124) (2022-06-09)
+
+
+### Features 🌟
+
+* add alwaysvisible prop ([dfab108](https://github.com/carbon-design-system/carbon-platform/commit/dfab1085e263777d785e2aec93062bb839834b40))
+* add back to top btn ([9257a8d](https://github.com/carbon-design-system/carbon-platform/commit/9257a8da60844ad5fdd6ef619e5b3c4168e1c08e))
+* add correct tokens ([fb87925](https://github.com/carbon-design-system/carbon-platform/commit/fb879251d9c978a77b2c72617158f309540e62fa))
+* add story ([b7b0de8](https://github.com/carbon-design-system/carbon-platform/commit/b7b0de8e365368b5c3df139ae21bd934a98b28b4))
+
+### [0.1.123](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.122...@carbon-platform/web-app@0.1.123) (2022-06-08)
+
+
+### Features 🌟
+
+* add designing pages ([61f570b](https://github.com/carbon-design-system/carbon-platform/commit/61f570b6eeed1f2348c677a03e5e0bd52ebe9424))
+* add roadmap style sheet ([5c4755f](https://github.com/carbon-design-system/carbon-platform/commit/5c4755fe9fa08ff2e27a2cde596762d0a9ea957f))
+* content updates ([4801c83](https://github.com/carbon-design-system/carbon-platform/commit/4801c83d6b12556b3b259508de76d982627a81b2))
+* **web-app:** add library nav data to side nav ([12b7f97](https://github.com/carbon-design-system/carbon-platform/commit/12b7f97a545dc436fb63b2eecd09e6f8d06e5042))
+
+
+### Misc. 🔮
+
+* bump @carbon/elements from 11.2.0 to 11.4.0 ([a5fcc03](https://github.com/carbon-design-system/carbon-platform/commit/a5fcc03caacd47baa80114b32496bade76060968))
+
+
+### Bug Fixes 🐛
+
+* page top spacing ([641870b](https://github.com/carbon-design-system/carbon-platform/commit/641870b6e0a6115e68e1b04f360bfcb6a99b51a6))
+* typo ([d9176dc](https://github.com/carbon-design-system/carbon-platform/commit/d9176dc63d4e48479dbfd369a2c1cfa908bbecf5))
+* **web-app:** allow deep nesting in tree nav (styling) ([fbf0fff](https://github.com/carbon-design-system/carbon-platform/commit/fbf0fff1748d583373de445cbf101ee00a7cbd01))
+* **web-app:** do not display hidden library nav  items in side nav ([2b6ed44](https://github.com/carbon-design-system/carbon-platform/commit/2b6ed446a52b8e8d242360543328c001d7270ec3))
+* **web-app:** remove testing library ([99c9e63](https://github.com/carbon-design-system/carbon-platform/commit/99c9e637e9b9d63bc2b89e977d6a1ac82572c71e))
+* **web-app:** sidenav deep nesting, remove test data ([c4963c5](https://github.com/carbon-design-system/carbon-platform/commit/c4963c5d5527bbf89fdfbf8659011e98623143c8))
+* **web-app:** sidenav, deep nesting styles ([c5aac6c](https://github.com/carbon-design-system/carbon-platform/commit/c5aac6cf329dbd4113010b05ccbe62c08138bcf7))
+
 ### [0.1.122](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.121...@carbon-platform/web-app@0.1.122) (2022-06-04)
 
 

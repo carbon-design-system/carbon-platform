@@ -1,0 +1,34 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+
+.section {
+  position: relative;
+  padding-top: spacing.$spacing-07;
+}
+
+.section::before {
+  position: absolute;
+  top: 4rem;
+  display: block;
+  width: calc(100% - 2rem);
+  height: 1px;
+  margin: -(spacing.$spacing-07) 0 0 spacing.$spacing-05;
+  background: theme.$border-strong-01;
+  content: '';
+}
+
+.section h4 {
+  width: 66%;
+  padding-right: spacing.$spacing-07;
+}
+
+.section p {
+  padding-right: spacing.$spacing-09;
+}

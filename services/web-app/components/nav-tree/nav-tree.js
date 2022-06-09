@@ -55,7 +55,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
   )
 
   const isTreeNodeExpanded = (node) => {
-    return node.items?.some((item) => isTreeNodeActive(item))
+    return !!dfs([node], (evalNode) => evalNode.items?.some((item) => isTreeNodeActive(item)))
   }
 
   useEffect(() => {

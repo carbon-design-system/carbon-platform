@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.127](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.126...@carbon-platform/web-app@0.1.127) (2022-06-10)
+
+
+### Misc. 🔮
+
+* convert esbuild to work with esm ([b494d93](https://github.com/carbon-design-system/carbon-platform/commit/b494d9373c36c45b316d51af2d1eb0dbc881a4a5))
+
 ### [0.1.126](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.125...@carbon-platform/web-app@0.1.126) (2022-06-10)
 
 

@@ -201,9 +201,9 @@ const Asset = ({ libraryData }) => {
                       <dd className={dashboardStyles.meta}>
                         <StatusIcon
                           className={styles['status-icon']}
-                          status={assetData.content.status}
+                          status={assetData.statusKey}
                         />
-                        {get(status, `[${assetData.content.status}].name`, '–')}
+                        {get(status, `[${assetData.statusKey}].name`, '–')}
                       </dd>
                     </Column>
                     <Column

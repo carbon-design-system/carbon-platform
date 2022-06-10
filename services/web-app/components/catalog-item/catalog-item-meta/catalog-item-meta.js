@@ -17,14 +17,13 @@ import styles from './catalog-item-meta.module.scss'
 
 const CatalogItemMeta = ({ asset, className, properties }) => {
   const renderStatus = () => {
-    const statusKey = asset?.content.status?.key ?? asset?.content.status ?? 'draft'
-    const { name } = status[statusKey]
+    const { name } = status[asset?.statusKey]
 
     if (!name) return null
 
     return (
       <span className={styles.container}>
-        <StatusIcon className={styles['meta-icon']} status={statusKey} />
+        <StatusIcon className={styles['meta-icon']} status={asset?.statusKey} />
         <span>{name}</span>
       </span>
     )

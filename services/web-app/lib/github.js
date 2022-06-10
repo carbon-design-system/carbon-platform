@@ -17,7 +17,7 @@ import { libraryAllowList } from '@/data/libraries.mjs'
 import { getResponse } from '@/lib/file-cache'
 import { mdxImgResolver } from '@/utils/mdx-image-resolver'
 import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
-import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
+import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
 import { dfs } from '@/utils/tree'
@@ -324,7 +324,9 @@ export const getLibraryData = async (params = {}) => {
       ...library, // spread last to use schema description if set
       noIndex: !!library.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
     },
-    assets: filteredAssets
+    assets: filteredAssets.map((asset) => {
+      return { ...asset, statusKey: getAssetStatus(asset) }
+    })
   }
 }
 

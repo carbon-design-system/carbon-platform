@@ -6,7 +6,9 @@
  */
 import amqp from 'amqplib'
 
-const CONNECT_RETRY_INTERVAL = 5000
+import { Logging } from '../logging/logging.js'
+
+const CONNECT_RETRY_INTERVAL = 3000
 
 interface MessagingConnectionConfig {
   callback?: () => void | Promise<void>
@@ -20,16 +22,23 @@ interface MessagingConnectionConfig {
  */
 class MessagingConnection {
   private readonly config: MessagingConnectionConfig
+  private readonly logging: Logging
   private actualConnection?: amqp.Connection
   private actualChannel?: amqp.ConfirmChannel
   private channelPromise?: Promise<amqp.ConfirmChannel>
 
   public constructor(config: MessagingConnectionConfig) {
     this.config = config
+    this.logging = new Logging({
+      component: 'messaging-connection',
+      isRemoteLoggingEnabled: false
+    })
   }
 
   /**
-   * TODO: docs
+   * The underlying channel of the messaging connection. This lazily establishes the connection to
+   * the message broker. Once the connection is established, the callback provided in the config
+   * object to the constructor will be invoked prior to the channel being returned to the caller.
    *
    * **NOTE:** This can throw if there is an issue either connecting or running the provided
    * callback.
@@ -44,13 +53,19 @@ class MessagingConnection {
     this.channelPromise = (async () => {
       while (!this.actualConnection || !this.actualChannel) {
         try {
+          this.logging.debug('Connecting to message broker at ' + this.config.url)
+
           this.actualConnection = await amqp.connect(
             this.config.url,
             this.config.socketOptions ?? {}
           )
+
           this.actualChannel = await this.actualConnection.createConfirmChannel()
         } catch (e) {
-          console.error('Could not connect to messaging service', e)
+          this.logging.error('Could not connect to messaging service')
+          if (e instanceof Error) {
+            this.logging.error(e)
+          }
 
           await this.close()
 
@@ -65,7 +80,7 @@ class MessagingConnection {
         }
       }
 
-      this.config.callback?.bind(this)()
+      this.config.callback?.()
 
       return this.actualChannel
     })()
@@ -74,13 +89,16 @@ class MessagingConnection {
   }
 
   public async close() {
-    console.warn('Closing messaging connection')
+    this.logging.debug('Closing messaging connection')
 
     try {
       await this.actualChannel?.close()
       await this.actualConnection?.close()
     } catch (e) {
-      console.warn('Exception caught while trying to close an existing messaging connection', e)
+      this.logging.warn('Exception caught while trying to close an existing messaging connection')
+      if (e instanceof Error) {
+        this.logging.warn(e)
+      }
     }
 
     // Future uses of this connection will trigger a reconnect

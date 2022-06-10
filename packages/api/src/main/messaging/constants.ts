@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Options } from 'amqplib'
-import chalk from 'chalk'
 
 import { getEnvVar, Runtime } from '../runtime/index.js'
 
@@ -71,11 +70,6 @@ const DEFAULT_QUEUE_OPTIONS: Options.AssertQueue = {
  */
 const DEFAULT_SOCKET_OPTIONS = {
   ca: CARBON_MESSAGE_QUEUE_CERTIFICATE ? [CARBON_MESSAGE_QUEUE_CERTIFICATE] : []
-}
-
-// Message queue URL checking
-if (CARBON_MESSAGE_QUEUE_URL === LOCAL_MESSAGE_QUEUE_URL) {
-  console.warn(`${chalk.bgYellowBright.black('WARN')} Using localhost message queue url`)
 }
 
 // Add auth to message queue URL, if present

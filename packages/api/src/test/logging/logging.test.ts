@@ -40,7 +40,7 @@ test.serial('it does not emit log messages in dev mode', async (t) => {
 
 test.serial('it does not emit a debug log message in standard mode', async (t) => {
   let hasEmitBeenCalled = false
-  const runtime = new Runtime({ runMode: RunMode.Dev })
+  const runtime = new Runtime({ runMode: RunMode.Standard })
 
   const messagingClient: any = {
     emit: (): Promise<void> => {

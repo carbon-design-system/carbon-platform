@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.7...@carbon-platform/data-graph@0.1.8) (2022-06-10)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** app hangs when disconencting from message broker ([bfe11fa](https://github.com/carbon-design-system/carbon-platform/commit/bfe11fa053859ce41c411e68071df433901f4499))
+
 ### [0.1.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.6...@carbon-platform/data-graph@0.1.7) (2022-06-10)
 
 ### [0.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.5...@carbon-platform/data-graph@0.1.6) (2022-06-08)

@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.126](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.125...@carbon-platform/web-app@0.1.126) (2022-06-10)
+
+
+### Features 🌟
+
+* disallow indexing ([a16dd1f](https://github.com/carbon-design-system/carbon-platform/commit/a16dd1f5980c49bd4c77d2d87b53141ceffaba50))
+* remove date from footer ([80440f9](https://github.com/carbon-design-system/carbon-platform/commit/80440f913c20bab7ef1c70d60d69a9149f2fd80d))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** app hangs when disconencting from message broker ([bfe11fa](https://github.com/carbon-design-system/carbon-platform/commit/bfe11fa053859ce41c411e68071df433901f4499))
+
 ### [0.1.125](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.124...@carbon-platform/web-app@0.1.125) (2022-06-10)
 
 

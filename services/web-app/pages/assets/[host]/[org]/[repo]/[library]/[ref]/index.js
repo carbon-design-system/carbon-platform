@@ -14,6 +14,7 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'types'
 
+import { H2 } from '@/components/markdown'
 import CardGroup from '@/components/card-group'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'

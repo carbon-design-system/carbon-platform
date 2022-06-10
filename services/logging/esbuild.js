@@ -4,9 +4,14 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const { build } = require('esbuild')
-const path = require('path')
-const base = require('../../esbuild.base')
+import { build } from 'esbuild'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+import base from '../../esbuild.base.mjs'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 build({
   ...base,

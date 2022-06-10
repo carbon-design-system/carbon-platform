@@ -8,7 +8,7 @@
 import { get } from 'lodash'
 
 import { ORDER_BY_STATUS } from '@/data/sort'
-import { status } from '@/data/status'
+import { assetStatusLifecycle } from '@/data/status'
 import { tagsForCollection, tagsForType } from '@/data/tags'
 import { type } from '@/data/type'
 /**
@@ -17,11 +17,11 @@ import { type } from '@/data/type'
  * @param {import('../typedefs').Asset} assetB
  * @returns {number} Sort order
  */
-export const statusSortComparator = (assetA, assetB) => {
-  const statusKeys = Object.keys(status)
+export const statusSortComparator = (assetA, assetB) =>
+  assetStatusLifecycle.indexOf(assetA.statusKey) > assetStatusLifecycle.indexOf(assetB.statusKey)
+    ? 1
+    : -1
 
-  return statusKeys.indexOf(assetA.statusKey) > statusKeys.indexOf(assetB.statusKey) ? 1 : -1
-}
 /**
  * Defines the sort order of assets by a key
  * @param {string} key

@@ -1,0 +1,18 @@
+{
+  "check-coverage": true,
+
+  "include": [
+    "**/src/main/**/*.{ts,tsx,js,jsx}",
+    "!**/index.ts",
+    "!**/interfaces.ts",
+    "!**/esbuild.js",
+    "!**/data-graph/(models|inputs|outputs)/**/*.ts"
+  ],
+
+  "lines": 76,
+  "branches": 76,
+
+  "reporter": ["text", "lcov"],
+
+  "reports-dir": "./.test-coverage"
+}

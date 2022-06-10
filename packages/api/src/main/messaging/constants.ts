@@ -7,36 +7,35 @@
 import { Options } from 'amqplib'
 import chalk from 'chalk'
 
-import { loadEnvVars } from '../runtime'
+import { getEnvVar, Runtime } from '../runtime/index.js'
+
+const runtime = new Runtime()
 
 /**
  * Fallback URL to use when no message queue URL is provided.
  */
 const LOCAL_MESSAGE_QUEUE_URL = 'amqp://localhost:5672'
 
-const {
-  /**
-   * The self-signed cert presented by the message queue.
-   */
-  CARBON_MESSAGE_QUEUE_CERTIFICATE,
-  /**
-   * Message queue to which to connect.
-   */
-  CARBON_MESSAGE_QUEUE_URL,
-  /**
-   * Username to use during message queue authentication.
-   */
-  CARBON_MESSAGE_QUEUE_USERNAME,
-  /**
-   * Password to use during message queue authentication.
-   */
-  CARBON_MESSAGE_QUEUE_PASSWORD
-} = loadEnvVars({
-  CARBON_MESSAGE_QUEUE_CERTIFICATE: '',
-  CARBON_MESSAGE_QUEUE_URL: LOCAL_MESSAGE_QUEUE_URL,
-  CARBON_MESSAGE_QUEUE_USERNAME: '',
-  CARBON_MESSAGE_QUEUE_PASSWORD: ''
-})
+/**
+ * The self-signed cert presented by the message queue.
+ */
+const CARBON_MESSAGE_QUEUE_CERTIFICATE = getEnvVar('CARBON_MESSAGE_QUEUE_CERTIFICATE', '', runtime)
+/**
+ * Message queue to which to connect.
+ */
+const CARBON_MESSAGE_QUEUE_URL = getEnvVar(
+  'CARBON_MESSAGE_QUEUE_URL',
+  LOCAL_MESSAGE_QUEUE_URL,
+  runtime
+)
+/**
+ * Username to use during message queue authentication.
+ */
+const CARBON_MESSAGE_QUEUE_USERNAME = getEnvVar('CARBON_MESSAGE_QUEUE_USERNAME', '', runtime)
+/**
+ * Password to use during message queue authentication.
+ */
+const CARBON_MESSAGE_QUEUE_PASSWORD = getEnvVar('CARBON_MESSAGE_QUEUE_PASSWORD', '', runtime)
 
 /**
  * Default pattern used when binding a queue to an exchange. Blank indicates that there are no

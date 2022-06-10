@@ -22,19 +22,19 @@ In Standard run mode, it broadcasts messages to the messaging service.
 
 In Dev mode, logs are written to stdout or stderr, depending on the log type.
 
-### `Logging.setRemoteLoggingAllowed(isAllowed: boolean)`
+### `Logging.isRemoteLoggingAllowed: boolean`
 
 Sets the global setting for whether or not remote logging is allowed to be enabled. This supersedes
 all environment-based switches and instance-based overrides. This is only really useful for testing
 purpose and for the logging service itself, which uses Logger objects, but does not bother writing
 them to the messaging infrastructure.
 
-### `constructor(component: string, options?: LoggingOptions)`
+### `constructor(config: LoggingConfig)`
 
 Instantiates a `Logging` object with a given service and component name. All log messages given to
 this logging instance will automatically include the component and optionally specified
-[LoggingOptions](/packages/api/src/main/logging/interfaces.ts) in the appropriate part of the
-resulting log entry.
+[LoggingOptions](/packages/api/src/main/logging/logging.ts) in the appropriate part of the resulting
+log entry.
 
 Component strings can be anything that uniquely identifies an area of code, such as a class name,
 file name, etc.
@@ -42,17 +42,17 @@ file name, etc.
 **Example**
 
 ```ts
-const logging = new Logging('request cache')
+const logging = new Logging({ component: 'request cache' })
 ```
 
 **NOTE:** By default, the service name in the resulting logs will come from the
-`CARBON_SERVICE_NAME` environment variable. This can be overridden by specifying a `serviceName` in
-the `LoggingOptions` object.
+`CARBON_SERVICE_NAME` environment variable. This can be overridden by specifying a `service` in the
+`LoggingConfig` object.
 
 For all methods below, a "Loggable" object is defined as anything you'd typically expect to be able
 to provide to `console.log`.
 
-### `Logging#debug(message: Loggable)`
+### `Logging#debug(message: Loggable): Promise<void>`
 
 Logs a debugging message. This includes things like important function entry/exit, the size of a
 list obtained from a remote source, the results after filtering an input set, etc.
@@ -73,16 +73,16 @@ logging.debug(`Pre-filter list size: ${orig.length}, Post-filter list size: ${fi
 
 ```ts
 function someImportantOperation(inputValue: string): boolean {
-  logging.debug(`-> someImportantOperation args: ${inputValue}`)
+  await logging.debug(`-> someImportantOperation args: ${inputValue}`)
 
   // ...
 
-  logging.debug(`<- someImportantOperation returns: ${result}`)
+  await logging.debug(`<- someImportantOperation returns: ${result}`)
   return result
 }
 ```
 
-### `Logging#info(message: Loggable)`
+### `Logging#info(message: Loggable): Promise<void>`
 
 Logs an informational message. This is useful for point-in-time events, such as a service becoming
 ready, a user account being created, a configuration setting being updated, a new data ingestion
@@ -91,10 +91,10 @@ endpoint becoming available, etc.
 **Examples**
 
 ```ts
-logging.info(`Web server now listening on port ${port}`)
+await logging.info(`Web server now listening on port ${port}`)
 ```
 
-### `Logging#warn(message: string | Error)`
+### `Logging#warn(message: string | Error): Promise<void>`
 
 Logs a warning message. Warnings are typically unexpected situations, but do not represent a
 breakdown of the core application logic. Examples include a user account becoming locked due to
@@ -104,10 +104,10 @@ deprecated APIs, an operation taking longer than expected, etc.
 **Examples**
 
 ```ts
-logging.warn(`Database collection ${collection.name} was empty. Recreating`)
+await logging.warn(`Database collection ${collection.name} was empty. Recreating`)
 ```
 
-### `Logging#error(message: string | Error)`
+### `Logging#error(message: string | Error): Promise<void>`
 
 Logs an error message. Errors are unexpected situations and often represent a breakdown in core
 logic. This often means entering the `catch` block of a `try/catch` statement. It can also mean
@@ -120,8 +120,8 @@ try {
   const dbConnection = db.connect()
   dbConnection.query('stuff')
 } catch (err) {
-  logging.error('Could not connect to database')
-  logging.error(err)
+  await logging.error('Could not connect to database')
+  await logging.error(err)
 }
 ```
 

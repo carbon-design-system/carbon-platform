@@ -6,8 +6,8 @@
  */
 import { Module } from '@nestjs/common'
 
-import { LibrariesResolver } from './libraries-resolver'
-import { LibrariesService } from './libraries-service'
+import { LibrariesResolver } from './libraries-resolver.js'
+import { LibrariesService } from './libraries-service.js'
 
 @Module({ providers: [LibrariesResolver, LibrariesService] })
 class LibrariesModule {}

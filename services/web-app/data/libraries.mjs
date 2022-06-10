@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const { RunMode, getRunMode } = require('@carbon-platform/api/runtime')
+import { RunMode, Runtime } from '@carbon-platform/api/runtime'
 
 /**
  * Library groups are defined when a group of libraries all inherit the same base library, and when
@@ -493,8 +493,7 @@ const devLibraries = {
   }
 }
 
-const libraryAllowList = getRunMode() === RunMode.Standard ? prodLibraries : devLibraries
+const runtime = new Runtime()
+const libraryAllowList = runtime.runMode === RunMode.Standard ? prodLibraries : devLibraries
 
-module.exports = {
-  libraryAllowList
-}
+export { libraryAllowList }

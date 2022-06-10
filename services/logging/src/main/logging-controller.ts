@@ -6,12 +6,12 @@
  */
 import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
 import { Trace } from '@carbon-platform/api/microservice'
-import { getEnvironment } from '@carbon-platform/api/runtime'
+import { Runtime } from '@carbon-platform/api/runtime'
 import { Controller } from '@nestjs/common'
 import { EventPattern, Payload } from '@nestjs/microservices'
 
-import { LogDnaService } from './log-dna-service'
-import { validateLogMessage } from './validate-log-message'
+import { LogDnaService } from './log-dna-service.js'
+import { validateLogMessage } from './validate-log-message.js'
 
 @Controller()
 class LoggingController {
@@ -25,7 +25,9 @@ class LoggingController {
     this.logDnaService.log({
       service: 'logging',
       component: 'logging.controller',
-      environment: getEnvironment(),
+      // TODO: This is bad and should be injected at a higher level or obtained from a config
+      // service
+      environment: new Runtime().environment,
       level: 'info',
       timestamp: Date.now(),
       message: 'Logging controller successfully instantiated'

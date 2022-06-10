@@ -13,6 +13,7 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "type": "module",
   "scripts": {
     "build": "nest build",
     "bundle": "node esbuild.js",
@@ -21,7 +22,7 @@
     "start": "node dist/main/index.js",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "test": "jest --config=../../.jestrc.workspace.js"
+    "newtest": "ava --config ../../ava.config.mjs"
   },
   "dependencies": {
     "@logdna/logger": "^2.6.4",
@@ -30,7 +31,6 @@
     "@nestjs/microservices": "^8.4.4",
     "@types/amqplib": "^0.8.2",
     "@types/node": "^16.11.34",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.6.4"
+    "rimraf": "^3.0.2"
   }
 }

@@ -8,7 +8,7 @@ import { CreateUserInput, User } from '@carbon-platform/api/data-graph'
 import { Trace } from '@carbon-platform/api/microservice'
 import { Args, ID, Int, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
 
-import { UsersService } from './users-service'
+import { UsersService } from './users-service.js'
 
 @Resolver(User)
 export class UsersResolver {

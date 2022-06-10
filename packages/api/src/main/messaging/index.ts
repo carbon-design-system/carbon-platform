@@ -14,6 +14,7 @@ export {
   DEFAULT_EXCHANGE_TYPE,
   DEFAULT_QUEUE_OPTIONS,
   DEFAULT_SOCKET_OPTIONS
-} from './constants'
-export { EventMessage, QueryMessage, Queue, UnvalidatedMessage } from './interfaces'
-export { MessagingClient } from './messaging-client'
+} from './constants.js'
+export { EventMessage, QueryMessage, Queue, UnvalidatedMessage } from './interfaces.js'
+export { MessagingClient } from './messaging-client.js'
+export { MessagingConnection } from './messaging-connection.js'

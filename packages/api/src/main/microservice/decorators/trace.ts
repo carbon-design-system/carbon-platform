@@ -8,8 +8,8 @@ import 'reflect-metadata'
 
 import { v4 as uuidv4 } from 'uuid'
 
-import { Logging } from '../../logging'
-import { getRunMode, isDebugEnabled, RunMode } from '../../runtime'
+import { Logging } from '../../logging/index.js'
+import { RunMode, Runtime } from '../../runtime/index.js'
 
 /**
  * Returns a decorated version of a method that automatically uses the Platform logging
@@ -23,24 +23,26 @@ import { getRunMode, isDebugEnabled, RunMode } from '../../runtime'
  *
  * @returns A decorated method.
  */
-function Trace(): MethodDecorator {
+function Trace(config?: { runtime?: Runtime; logging?: Logging }): MethodDecorator {
   return function methodDecorator(
     target: any,
     propertyKey: string | symbol,
     descriptor: PropertyDescriptor
   ) {
-    const shouldTrace = isDebugEnabled() || getRunMode() === RunMode.Dev
+    const runtime = config?.runtime || new Runtime()
+    const shouldTrace = runtime.isDebugEnabled || runtime.runMode === RunMode.Dev
     if (!shouldTrace) {
       return
+    }
+
+    if (!target.logging) {
+      target.logging =
+        config?.logging || new Logging({ component: target.name || target.constructor.name })
     }
 
     const original = descriptor.value
 
     descriptor.value = function traced(...args: any[]) {
-      if (!target.logging) {
-        target.logging = new Logging(target.name || target.constructor.name)
-      }
-
       const methodName = String(propertyKey)
 
       traceEnter(target.logging, methodName, args)
@@ -90,21 +92,21 @@ function safeStringify(arg: any) {
   return typeof arg
 }
 
-function traceEnter(logging: Logging, methodName: string, args: any[]) {
+async function traceEnter(logging: Logging, methodName: string, args: any[]) {
   const stringArgs = args.map(safeStringify)
 
-  logging.debug(`-> ${methodName}(${stringArgs})`)
+  await logging.debug(`-> ${methodName}(${stringArgs})`)
 }
 
-function traceExit(logging: Logging, methodName: string, result: any, responseTime: string) {
+async function traceExit(logging: Logging, methodName: string, result: any, responseTime: string) {
   if (result instanceof Promise) {
     result.then(
-      (value: any) =>
-        logging.debug(`<- ${methodName} <- ${safeStringify(value)} ${responseTime}ms`),
+      async (value: any) =>
+        await logging.debug(`<- ${methodName} <- ${safeStringify(value)} ${responseTime}ms`),
       (err: any) => logging.debug(`-x- ${methodName} <- ${err} ${responseTime}ms`)
     )
   } else {
-    logging.debug(
+    await logging.debug(
       `${result instanceof Error ? '-x-' : '<-'} ${methodName} <- ${
         result instanceof Error ? result : safeStringify(result)
       } ${responseTime}ms`

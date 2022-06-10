@@ -13,7 +13,7 @@ import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
 import unwrapImages from 'remark-unwrap-images'
 
-import { libraryAllowList } from '@/data/libraries'
+import { libraryAllowList } from '@/data/libraries.mjs'
 import { getResponse } from '@/lib/file-cache'
 import { mdxImgResolver } from '@/utils/mdx-image-resolver'
 import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
@@ -23,7 +23,7 @@ import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 import { urlsMatch } from '@/utils/url'
 
-const logging = new Logging('github.js')
+const logging = new Logging({ component: 'github.js' })
 
 /**
  * Generate and return the nav data for a library.

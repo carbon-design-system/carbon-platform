@@ -6,13 +6,16 @@
  */
 import { QueryMessage, Queue } from '@carbon-platform/api/messaging'
 import { PlatformMicroservice } from '@carbon-platform/api/microservice'
+import { Runtime } from '@carbon-platform/api/runtime'
 
-import { DataGraphModule } from './data-graph-module'
+import { DataGraphModule } from './data-graph-module.js'
 
 async function start() {
+  const runtime = new Runtime()
+
   const pm = new PlatformMicroservice({
     queue: Queue.DataGraph,
-    module: DataGraphModule
+    module: DataGraphModule.register(runtime)
   })
 
   pm.bind<QueryMessage>('data_graph')

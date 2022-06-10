@@ -22,7 +22,7 @@ function getCredentials() {
   }
 }
 
-function logRequest(proxyRes, req) {
+async function logRequest(proxyRes, req) {
   const { httpVersion, method, socket, url, hostname } = req
   const { remoteAddress, remotePort } = socket
   const { statusCode } = proxyRes
@@ -37,7 +37,7 @@ function logRequest(proxyRes, req) {
     '"' + req.get('User-Agent') + '"'
   ]
 
-  logging.info(logParts.join(' '))
+  await logging.info(logParts.join(' '))
 }
 
 function startBenchmark(req) {

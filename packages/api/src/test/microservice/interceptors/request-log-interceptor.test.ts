@@ -4,88 +4,162 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { MonoTypeOperatorFunction, Observable } from 'rxjs'
+import test from 'ava'
+import { of as observableOf } from 'rxjs'
 
-import { Logging } from '../../../main/logging'
-import { RequestLogInterceptor } from '../../../main/microservice/interceptors/request-log-interceptor'
+import { Logging } from '../../../main/logging/index.js'
+import { RequestLogInterceptor } from '../../../main/microservice/interceptors/request-log-interceptor.js'
 
-const infoSpy = jest.spyOn(Logging.prototype, 'info').mockImplementation(jest.fn())
+const logging = new Logging({ component: 'test-component' })
 
-describe('intercept', () => {
-  const mockedNext = {
-    handle: jest.fn().mockReturnValue({
-      pipe: jest.fn((operatorFunction: MonoTypeOperatorFunction<any>) => {
-        return operatorFunction(
-          new Observable((subscriber) => {
-            subscriber.next('hello test!')
-            subscriber.complete()
-          })
-        )
+test('it handles rpc interceptions', (t) => {
+  t.plan(1)
+
+  const next = {
+    handle: () => {
+      return {
+        pipe: () => {
+          return observableOf('hello test!')
+        }
+      }
+    }
+  }
+
+  const executionContext = {
+    getType: () => 'rpc',
+    getClass: () => ({ name: 'MyClass' }),
+    getHandler: () => ({ name: 'myHandler' }),
+    switchToRpc: () => ({ getData: () => 'asdf' })
+  }
+
+  const interceptor = new RequestLogInterceptor({ logging })
+
+  interceptor.intercept(executionContext as any, next as any)
+
+  return interceptor.intercept(executionContext as any, next as any).forEach(() => {
+    t.pass()
+  })
+})
+
+test('it handles http interceptions', (t) => {
+  t.plan(1)
+
+  const next = {
+    handle: () => {
+      return {
+        pipe: () => {
+          return observableOf('hello test!')
+        }
+      }
+    }
+  }
+
+  const executionContext = {
+    getArgs: () => [],
+    getType: () => 'http',
+    getClass: () => ({ name: 'MyClass' }),
+    getHandler: () => ({ name: 'myHandler' }),
+    switchToHttp: () => ({
+      getRequest: () => ({
+        httpVersion: '1.1',
+        method: 'GET',
+        socket: {
+          remoteAddress: 'localhost',
+          remotePort: 12345
+        },
+        url: '/some/cool/url',
+        hostname: 'example.com',
+        get: () => 'wow'
+      }),
+      getResponse: () => ({
+        statusCode: 200
       })
     })
   }
 
-  it('handles rpc interceptions', async () => {
-    const mockedExecutionContext = {
-      getType: () => 'rpc',
-      getClass: () => ({ name: 'MyClass' }),
-      getHandler: () => ({ name: 'myHandler' }),
-      switchToRpc: jest.fn().mockReturnValue({
-        getData: () => 'asdf'
-      })
-    }
-    const interceptor = new RequestLogInterceptor()
+  const interceptor = new RequestLogInterceptor({ logging })
 
-    const thing = interceptor.intercept(mockedExecutionContext as any, mockedNext as any)
-
-    thing.forEach((val) => {
-      // Create a dummy assertion to ensure we get the val
-      expect(val).toBe('hello test!')
-    })
-
-    expect(infoSpy).toHaveBeenCalledWith(
-      expect.stringContaining('MyClass#myHandler in: "asdf" out: string')
-    )
-    expect.assertions(2)
+  return interceptor.intercept(executionContext as any, next as any).forEach(() => {
+    t.pass()
   })
+})
 
-  it('handles http interceptions', async () => {
-    const mockedExecutionContext = {
-      getArgs: () => [],
-      getType: () => 'http',
-      getClass: () => ({ name: 'MyClass' }),
-      getHandler: () => ({ name: 'myHandler' }),
-      switchToHttp: jest.fn().mockReturnValue({
+test("it doesn't break when given an unknown type", (t) => {
+  t.plan(1)
+
+  const next = {
+    handle: () => {
+      return {
+        pipe: () => {
+          return observableOf('hello test!')
+        }
+      }
+    }
+  }
+
+  const executionContext = {
+    getType: () => 'not_real'
+  }
+
+  const interceptor = new RequestLogInterceptor({ logging })
+
+  return interceptor.intercept(executionContext as any, next as any).forEach(() => {
+    t.pass()
+  })
+})
+
+test('it returns the correct log text builder', (t) => {
+  let builder = RequestLogInterceptor.getLogTextBuilder('http')
+  t.is(builder?.name, 'buildHttpLogText')
+
+  builder = RequestLogInterceptor.getLogTextBuilder('rpc')
+  t.is(builder?.name, 'buildRpcLogText')
+})
+
+test('it returns a well-formed http log message', (t) => {
+  const logText = RequestLogInterceptor.buildHttpLogText(
+    {
+      switchToHttp: () => ({
         getRequest: () => ({
           httpVersion: '1.1',
           method: 'GET',
           socket: {
             remoteAddress: 'localhost',
-            remotePort: 12345
+            remotePort: '8080'
           },
-          url: '/some/cool/url',
+          url: '/some/thing',
           hostname: 'example.com',
-          get: () => 'wow'
+          headers: {
+            'user-agent': 'edge'
+          }
         }),
         getResponse: () => ({
-          statusCode: 200
+          statusCode: 'h'
         })
       })
-    }
-    const interceptor = new RequestLogInterceptor()
+    } as any,
+    'result is a string',
+    '123'
+  )
 
-    const thing = interceptor.intercept(mockedExecutionContext as any, mockedNext as any)
+  t.is(
+    logText,
+    'example.com "GET /some/thing HTTP/1.1" h 123ms [localhost]:8080 "edge" out: string'
+  )
+})
 
-    thing.forEach((val) => {
-      // Create a dummy assertion to ensure we get the val
-      expect(val).toBe('hello test!')
-    })
+test('it returns a well-formed rpc log message', (t) => {
+  const logText = RequestLogInterceptor.buildRpcLogText(
+    {
+      switchToRpc: () => ({
+        getData: () => ({ it: 'is some data' })
+      }),
+      getClass: () => ({ name: 'MyClass' }),
+      getHandler: () => ({ name: 'handlerMethod' })
+    } as any,
+    'result is a string',
+    '123'
+  )
 
-    expect(infoSpy).toHaveBeenCalledWith(
-      expect.stringMatching(
-        /example\.com "GET \/some\/cool\/url HTTP\/1\.1" 200 [0-9.]+ms \[localhost\]:12345 "wow" out: string/
-      )
-    )
-    expect.assertions(2)
-  })
+  t.is(logText, 'MyClass#handlerMethod in: {"it":"is some data"} out: string 123ms')
 })

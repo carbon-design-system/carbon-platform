@@ -5,11 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { LogLoggedMessage } from '@carbon-platform/api/logging'
-import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
-import LogDna, { Logger } from '@logdna/logger'
+import { Logger } from '@logdna/logger'
 import { Injectable } from '@nestjs/common'
 
-import { CARBON_LOGDNA_ENDPOINT, CARBON_LOGDNA_KEY } from './constants'
+interface LogDnaServiceConfig {
+  logDnaLogger?: Logger
+}
 
 /**
  * An injectable service that talks directly to the LogDNA ingestion endpoint and can transmit log
@@ -17,16 +18,10 @@ import { CARBON_LOGDNA_ENDPOINT, CARBON_LOGDNA_KEY } from './constants'
  */
 @Injectable()
 class LogDnaService {
-  private readonly logDna?: Logger
+  public readonly logDnaLogger?: Logger
 
-  constructor() {
-    // In "Dev" mode, the service is a no-op
-    if (getRunMode() === RunMode.Standard) {
-      this.logDna = LogDna.createLogger(CARBON_LOGDNA_KEY, {
-        url: CARBON_LOGDNA_ENDPOINT,
-        env: getRunMode()
-      })
-    }
+  constructor(config: LogDnaServiceConfig) {
+    this.logDnaLogger = config.logDnaLogger
   }
 
   /**
@@ -37,7 +32,7 @@ class LogDnaService {
    * @param logEntry The log to send to LogDNA.
    */
   public log(logEntry: LogLoggedMessage) {
-    this.logDna?.log(logEntry.message, {
+    this.logDnaLogger?.log(logEntry.message, {
       app: 'service:' + logEntry.service,
       env: logEntry.environment,
       indexMeta: true,

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.7...@carbon-platform/logging@1.1.8) (2022-06-10)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** incorrect instantiation of Logging class in proxy-server ([ab7edf0](https://github.com/carbon-design-system/carbon-platform/commit/ab7edf0c0ca9ec253c8a65cef44a29ccf6dba56c))
+
 ### [1.1.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.6...@carbon-platform/logging@1.1.7) (2022-06-10)
 
 

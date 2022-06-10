@@ -2,6 +2,59 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.125](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.124...@carbon-platform/web-app@0.1.125) (2022-06-10)
+
+
+### Features 🌟
+
+* add artilces page ([b24886c](https://github.com/carbon-design-system/carbon-platform/commit/b24886c2a9fd492f08d13743a55100e9fb30df74))
+* add how carbon works ([4d48571](https://github.com/carbon-design-system/carbon-platform/commit/4d4857129e1bc0c5432dd666ddb6e0dfc98209e1))
+* page names ([1b00c13](https://github.com/carbon-design-system/carbon-platform/commit/1b00c13aafc72bcac7af81f3da416ad757060321))
+* remove l0 ([8f3aed9](https://github.com/carbon-design-system/carbon-platform/commit/8f3aed98296f976bf28c7d6ef54c22e9bfaf81be))
+* stub out side nav ([71c6d5f](https://github.com/carbon-design-system/carbon-platform/commit/71c6d5f85be095f5f6bdede18b42d09c42bc17ee))
+* unknown component ([7f15a86](https://github.com/carbon-design-system/carbon-platform/commit/7f15a8677ced5e3f686bab386f64a4dbed794a1c))
+* update content ([12eec1f](https://github.com/carbon-design-system/carbon-platform/commit/12eec1f0f338459db5a5a7b29c80762202c50790))
+* update content ([eebead8](https://github.com/carbon-design-system/carbon-platform/commit/eebead8ede1de9aa7069436303b553f12fa83c9e))
+* update content ([bb9ebfa](https://github.com/carbon-design-system/carbon-platform/commit/bb9ebfac56781e64eb88ce8caa17755032a8d2cc))
+* update guidelines to pull remote content ([9bac6fe](https://github.com/carbon-design-system/carbon-platform/commit/9bac6febfabba6b50afba20146e1fdc20fd7e782))
+* update releases page content ([0bf656e](https://github.com/carbon-design-system/carbon-platform/commit/0bf656e236aea616e02f18b5067b3d0e8ea24bbb))
+* **web-app:** add Google Analytics ([06c612f](https://github.com/carbon-design-system/carbon-platform/commit/06c612f466ec891e9bf5191eb640afe0e2cc7a67))
+
+
+### Bug Fixes 🐛
+
+* broken links faq page ([8ae3093](https://github.com/carbon-design-system/carbon-platform/commit/8ae309345065f2ea561a6a03852c6ccdcc9f911e))
+* broken pages ([5d33ef1](https://github.com/carbon-design-system/carbon-platform/commit/5d33ef12f86fe05d4c9ce7c6a2b4b743af7a5bb5))
+* cleanup sample page ([51dce1e](https://github.com/carbon-design-system/carbon-platform/commit/51dce1ecee44ec7fa8c9d595a88fa0d3fe772c3b))
+* fix left nav margin bug ([6467147](https://github.com/carbon-design-system/carbon-platform/commit/6467147153f4673bcedb3d5073eb5fe10a037a37))
+* fix left nav margin bugv2 ([207d8cd](https://github.com/carbon-design-system/carbon-platform/commit/207d8cd38f0716863cdeecf588939eccd3e0dfe2))
+* glossary component name ([49c620b](https://github.com/carbon-design-system/carbon-platform/commit/49c620bbee9dc58453d352d050b348956b3c7330))
+* images ([1a0e568](https://github.com/carbon-design-system/carbon-platform/commit/1a0e56883049bcb38deb1c370f94275981fa4fac))
+* links and glossary ([2fa504e](https://github.com/carbon-design-system/carbon-platform/commit/2fa504efe5b5c979bc75947c71bf2a1bab452d56))
+* linting ([abb55b3](https://github.com/carbon-design-system/carbon-platform/commit/abb55b383cac4c39eefc79e1abac940b93b74322))
+* linting ([b8bd18c](https://github.com/carbon-design-system/carbon-platform/commit/b8bd18c0c3eacee26408d94f60c0f6c9f2f97e9b))
+* linting error ([550efd8](https://github.com/carbon-design-system/carbon-platform/commit/550efd894fb07d9cb1f59115318d481b1bc00a99))
+* margin bug and small screen ([ff1bf57](https://github.com/carbon-design-system/carbon-platform/commit/ff1bf5742d530973a3c0ac0e5ede9d3d18d538f5))
+* merge conflicts ([f608844](https://github.com/carbon-design-system/carbon-platform/commit/f608844523e55c82c33f84f6de636a48ea9c181b))
+* merge conflicts ([3ea7e7f](https://github.com/carbon-design-system/carbon-platform/commit/3ea7e7fd3c41109a037431de5ba01b098e2865c2))
+* merge conflicts ([3bd8ded](https://github.com/carbon-design-system/carbon-platform/commit/3bd8dedb32787ccbe0076b8fa381bdc00fc471dc))
+* merge main ([56c577f](https://github.com/carbon-design-system/carbon-platform/commit/56c577f2cee9aa1cfa0f9c324f94a890e7243207))
+* naming issue ([c366a71](https://github.com/carbon-design-system/carbon-platform/commit/c366a7179aa6b2009985a607c65453793850fe95))
+* remove unknown component from this PR ([f591acc](https://github.com/carbon-design-system/carbon-platform/commit/f591acc2f4791b11e2e5656c81cfd59993f1dba5))
+* update content ([d110e56](https://github.com/carbon-design-system/carbon-platform/commit/d110e5628e1e48f1ee0e8804746b5522a294d940))
+* update margin ([9472359](https://github.com/carbon-design-system/carbon-platform/commit/9472359eda911fb81e831b16cad7ab0b1ed7a64b))
+* update nav ([8971e8d](https://github.com/carbon-design-system/carbon-platform/commit/8971e8dec42517cb6a8f6d6da752e5b7c441f90e))
+* usage picto page ([5253f31](https://github.com/carbon-design-system/carbon-platform/commit/5253f31d2053a2b6e6080eab35ea6ad231f81739))
+* **web-app:** correct siteId ([11fb7e1](https://github.com/carbon-design-system/carbon-platform/commit/11fb7e1aec4f84a4773e869936838c81fb21b458))
+* **web-app:** default mdx content on compile error ([773368a](https://github.com/carbon-design-system/carbon-platform/commit/773368a10f3e94d67eb8f65caa837dec6d095fb2))
+* **web-app:** display unknown component warning in remote mdx ([4529002](https://github.com/carbon-design-system/carbon-platform/commit/452900248ded81d9911ae0dbc027da15a9b51d0a))
+* **web-app:** do not scrap valid html tag ([0cff019](https://github.com/carbon-design-system/carbon-platform/commit/0cff019b5f2f0145b39f3f50165190d38cef226d))
+* **web-app:** remote mdx, convert string style to object ([2d52aa5](https://github.com/carbon-design-system/carbon-platform/commit/2d52aa505193ce12907f7764fc45de43f6ef414d))
+* **web-app:** remove html comments on mdx remote ([0f0fc3b](https://github.com/carbon-design-system/carbon-platform/commit/0f0fc3bd300a54769833c16512ea6c3558b2fee3))
+* **web-app:** remove html multiline comments ([30f2196](https://github.com/carbon-design-system/carbon-platform/commit/30f21963ba7f03e36aaebb1e7f4a4bb7156184fb))
+* **web-app:** simplify style regex ([df129a2](https://github.com/carbon-design-system/carbon-platform/commit/df129a27216c0edfb6dd14c072032c856d8fb892))
+* **web-app:** use next/Script in _app.js temporarily ([54700f5](https://github.com/carbon-design-system/carbon-platform/commit/54700f591523f369ae235f8a906a89823945193f))
+
 ### [0.1.124](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.123...@carbon-platform/web-app@0.1.124) (2022-06-09)
 
 

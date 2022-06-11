@@ -69,7 +69,9 @@ class MessagingConnection {
     this.channelPromise = (async () => {
       while (!this.connection || !this._channel) {
         try {
-          this.logging.info('Connecting to message broker at ' + this.config.url)
+          // Use a URL object to avoid logging usernames and passwords included in the url
+          const url = new URL(this.config.url.replace(/^amqp/, 'http'))
+          this.logging.info('Connecting to message broker at ' + url.host)
 
           this.connection = await amqp.connect(this.config.url, this.config.socketOptions ?? {})
 

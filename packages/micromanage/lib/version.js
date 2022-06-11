@@ -60,6 +60,8 @@ function handleVersionCommand(opts) {
       console.error(`tagged HEAD as ${newVersionObj.tag}`)
     })
 
+    // Pull first in case there are more commits we don't yet have
+    exec('git pull')
     exec('git push')
     exec('git push --tags origin')
 
@@ -130,7 +132,7 @@ function versionWorkspaces(updatedWorkspaces, isDryRun) {
     const newVersion = versionOutput.split('\n')[0].split(' ').pop()
     const newTag = `${ws.name}@${newVersion}`
 
-    console.error(`new version created: ${newTag}`)
+    console.error(`🌟 new version created: ${newTag}`)
 
     return {
       name: ws.name,

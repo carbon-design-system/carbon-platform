@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.13](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.2.12...@carbon-platform/micromanage-cli@1.2.13) (2022-06-11)
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** version push failure when upstream has newer commits ([4a14473](https://github.com/carbon-design-system/carbon-platform/commit/4a14473aafd50ed4297881462981dd105229c5b6))
+
 ### [1.2.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.2.11...@carbon-platform/micromanage-cli@1.2.12) (2022-06-10)
 
 

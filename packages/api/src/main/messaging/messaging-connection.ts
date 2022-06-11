@@ -23,8 +23,8 @@ interface MessagingConnectionConfig {
 class MessagingConnection {
   private readonly config: MessagingConnectionConfig
   private readonly logging: Logging
-  private actualConnection?: amqp.Connection
-  private actualChannel?: amqp.ConfirmChannel
+  private connection?: amqp.Connection
+  private _channel?: amqp.ConfirmChannel
   private channelPromise?: Promise<amqp.ConfirmChannel>
 
   public constructor(config: MessagingConnectionConfig) {
@@ -32,6 +32,22 @@ class MessagingConnection {
     this.logging = new Logging({
       component: 'messaging-connection',
       isRemoteLoggingEnabled: false
+    })
+  }
+
+  private setUpErrorHandlers() {
+    this.connection?.once('error', (err) => {
+      this.logging.error('Messaging connection emitted an error')
+      this.logging.error(err)
+
+      this.close()
+    })
+
+    this._channel?.once('error', (err) => {
+      this.logging.error('Messaging channel emitted an error')
+      this.logging.error(err)
+
+      this.close()
     })
   }
 
@@ -51,16 +67,15 @@ class MessagingConnection {
 
     // No existing connection. Set up a promise of a new one
     this.channelPromise = (async () => {
-      while (!this.actualConnection || !this.actualChannel) {
+      while (!this.connection || !this._channel) {
         try {
-          this.logging.debug('Connecting to message broker at ' + this.config.url)
+          this.logging.info('Connecting to message broker at ' + this.config.url)
 
-          this.actualConnection = await amqp.connect(
-            this.config.url,
-            this.config.socketOptions ?? {}
-          )
+          this.connection = await amqp.connect(this.config.url, this.config.socketOptions ?? {})
 
-          this.actualChannel = await this.actualConnection.createConfirmChannel()
+          this.setUpErrorHandlers()
+
+          this._channel = await this.connection.createConfirmChannel()
         } catch (e) {
           this.logging.error('Could not connect to messaging service')
           if (e instanceof Error) {
@@ -82,7 +97,7 @@ class MessagingConnection {
 
       this.config.callback?.()
 
-      return this.actualChannel
+      return this._channel
     })()
 
     return this.channelPromise
@@ -92,8 +107,8 @@ class MessagingConnection {
     this.logging.debug('Closing messaging connection')
 
     try {
-      await this.actualChannel?.close()
-      await this.actualConnection?.close()
+      await this._channel?.close()
+      await this.connection?.close()
     } catch (e) {
       this.logging.warn('Exception caught while trying to close an existing messaging connection')
       if (e instanceof Error) {
@@ -102,8 +117,8 @@ class MessagingConnection {
     }
 
     // Future uses of this connection will trigger a reconnect
-    delete this.actualChannel
-    delete this.actualConnection
+    delete this._channel
+    delete this.connection
     delete this.channelPromise
   }
 }

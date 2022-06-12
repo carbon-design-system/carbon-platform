@@ -7,6 +7,7 @@
 import amqp from 'amqplib'
 import { v4 as uuidv4 } from 'uuid'
 
+import { Logging } from '../logging/logging.js'
 import { Runtime } from '../runtime/index.js'
 import { CARBON_MESSAGE_QUEUE_URL, DEFAULT_SOCKET_OPTIONS } from './constants.js'
 import { EventMessage, QueryMessage } from './interfaces.js'
@@ -45,6 +46,7 @@ class MessagingClient {
     return MessagingClient.instance
   }
 
+  private readonly logging: Logging
   private messagingConnection: MessagingConnection
   private replyQueue?: amqp.Replies.AssertQueue
   private replyCallbacks: ReplyCallbacks
@@ -52,16 +54,23 @@ class MessagingClient {
 
   private constructor(config?: MessagingClientConfig) {
     this.runtime = config?.runtime || new Runtime()
+
+    this.logging = new Logging({
+      component: 'messaging-connection',
+      isRemoteLoggingEnabled: false
+    })
+
     this.replyCallbacks = new Map()
+
     this.messagingConnection = new MessagingConnection({
       url: CARBON_MESSAGE_QUEUE_URL,
       socketOptions: DEFAULT_SOCKET_OPTIONS,
       retry: true,
-      callback: this.handleConnectionReady.bind(this)
+      onChannelReady: this.handleChannelReady.bind(this)
     })
   }
 
-  private async handleConnectionReady(_connection: amqp.Connection, channel: amqp.ConfirmChannel) {
+  private async handleChannelReady(channel: amqp.ConfirmChannel) {
     this.replyQueue = await channel.assertQueue(RANDOM_QUEUE_NAME, {
       exclusive: true
     })
@@ -98,12 +107,7 @@ class MessagingClient {
    * Safely publishes a message such that no exceptions are thrown to the caller and the method does
    * not exit until the publish has happened.
    */
-  private async safePublish(
-    exchange: string,
-    routingKey: string,
-    content: Buffer,
-    options?: amqp.Options.Publish
-  ) {
+  private async safePublish(exchange: string, content: Buffer, options?: amqp.Options.Publish) {
     let publishResult: boolean | undefined
     let channel
 
@@ -112,12 +116,12 @@ class MessagingClient {
         channel = await this.messagingConnection.channel
         // `publish` returns true if it is safe to continue sending messages; or false if pending
         // "confirms" should first be awaited
-        publishResult = channel.publish(exchange, routingKey, content, options)
+        publishResult = channel.publish(exchange, DEFAULT_ROUTING_KEY, content, options)
       } catch (e) {
-        console.error('Unexpected exception thrown while publishing a message', e)
-
-        // Close the connection to prevent future use since it is likely in a bad state
-        this.messagingConnection.close()
+        this.logging.error('Unexpected exception thrown while publishing a message')
+        if (e instanceof Error) {
+          this.logging.error(e)
+        }
 
         // Try again after a few seconds
         await new Promise((resolve) => {
@@ -133,10 +137,10 @@ class MessagingClient {
         await channel.waitForConfirms()
       }
     } catch (e) {
-      console.error('Unexpected exception thrown while waiting for confirms', e)
-
-      // Close the connection since it is likely in a bad state
-      this.messagingConnection.close()
+      this.logging.error('Unexpected exception thrown while waiting for confirms')
+      if (e instanceof Error) {
+        this.logging.error(e)
+      }
     }
   }
 
@@ -169,7 +173,6 @@ class MessagingClient {
 
     await this.safePublish(
       this.runtime.withEnvironment(eventType),
-      DEFAULT_ROUTING_KEY,
       Buffer.from(JSON.stringify(dataToSend))
     )
   }
@@ -203,7 +206,6 @@ class MessagingClient {
 
     await this.safePublish(
       this.runtime.withEnvironment(queryType),
-      DEFAULT_ROUTING_KEY,
       Buffer.from(JSON.stringify(dataToSend)),
       {
         replyTo: this.replyQueue!.queue,

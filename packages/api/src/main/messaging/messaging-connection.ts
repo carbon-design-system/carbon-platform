@@ -12,7 +12,7 @@ import { CONNECT_RETRY_INTERVAL } from './constants.js'
 const WAIT_FOR_CONFIRMS_TIMEOUT = 3000
 
 interface MessagingConnectionConfig {
-  callback?: (connection: amqp.Connection, channel: amqp.ConfirmChannel) => void | Promise<void>
+  onChannelReady?: (channel: amqp.ConfirmChannel) => void | Promise<void>
   url: string
   retry: boolean
   socketOptions: {
@@ -111,9 +111,11 @@ class MessagingConnection {
 
       this.logging.info('Successfully connected to message broker')
 
-      this.config.callback && this.logging.debug(`-> callback: ${this.config.callback.name}()`)
-      this.config.callback?.(this.connection, this._channel)
-      this.config.callback && this.logging.debug(`<- callback: ${this.config.callback.name}()`)
+      if (this.config.onChannelReady) {
+        this.logging.debug(`-> callback: ${this.config.onChannelReady.name}()`)
+        this.config.onChannelReady(this._channel)
+        this.logging.debug(`<- callback: ${this.config.onChannelReady.name}()`)
+      }
 
       return this._channel
     })()

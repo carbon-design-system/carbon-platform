@@ -7,14 +7,17 @@
 import amqp from 'amqplib'
 
 import { Logging } from '../logging/logging.js'
+import { CONNECT_RETRY_INTERVAL } from './constants.js'
 
-const CONNECT_RETRY_INTERVAL = 3000
+const WAIT_FOR_CONFIRMS_TIMEOUT = 3000
 
 interface MessagingConnectionConfig {
-  callback?: () => void | Promise<void>
+  callback?: (connection: amqp.Connection, channel: amqp.ConfirmChannel) => void | Promise<void>
   url: string
   retry: boolean
-  socketOptions: any
+  socketOptions: {
+    [key: string]: any
+  }
 }
 
 /**
@@ -67,24 +70,31 @@ class MessagingConnection {
 
     // No existing connection. Set up a promise of a new one
     this.channelPromise = (async () => {
+      let isFirstTry = true
+
       while (!this.connection || !this._channel) {
         try {
-          // Use a URL object to avoid logging usernames and passwords included in the url
-          const url = new URL(this.config.url.replace(/^amqp/, 'http'))
-          this.logging.info('Connecting to message broker at ' + url.host)
+          if (isFirstTry) {
+            // Use a URL object to avoid logging usernames and passwords included in the url
+            const url = new URL(this.config.url.replace(/^amqp/, 'http'))
+            this.logging.info('Connecting to message broker at ' + url.host)
+          }
 
-          this.connection = await amqp.connect(this.config.url, this.config.socketOptions ?? {})
+          this.connection = await amqp.connect(this.config.url, this.config.socketOptions)
 
           this.setUpErrorHandlers()
 
           this._channel = await this.connection.createConfirmChannel()
         } catch (e) {
-          this.logging.error('Could not connect to messaging service')
-          if (e instanceof Error) {
-            this.logging.error(e)
+          if (isFirstTry) {
+            this.logging.error('Could not connect to messaging service')
+            if (e instanceof Error) {
+              this.logging.error(e)
+            }
           }
 
-          await this.close()
+          // Cleanup, but don't destory the promise we're currently inside
+          await this.close(isFirstTry, false)
 
           if (this.config.retry) {
             // Retry again after a few seconds
@@ -95,9 +105,15 @@ class MessagingConnection {
             throw e
           }
         }
+
+        isFirstTry = false
       }
 
-      this.config.callback?.()
+      this.logging.info('Successfully connected to message broker')
+
+      this.config.callback && this.logging.debug(`-> callback: ${this.config.callback.name}()`)
+      this.config.callback?.(this.connection, this._channel)
+      this.config.callback && this.logging.debug(`<- callback: ${this.config.callback.name}()`)
 
       return this._channel
     })()
@@ -105,23 +121,58 @@ class MessagingConnection {
     return this.channelPromise
   }
 
-  public async close() {
-    this.logging.debug('Closing messaging connection')
+  public async close(logStatus = true, destroyPromise = true) {
+    logStatus && this.logging.debug('Closing messaging connection')
+
+    try {
+      await Promise.race([
+        this._channel?.waitForConfirms(),
+        new Promise((_resolve, reject) => {
+          setTimeout(
+            () => reject(new Error('Timed out waiting for confirms')),
+            WAIT_FOR_CONFIRMS_TIMEOUT
+          )
+        })
+      ])
+    } catch (e) {
+      if (logStatus) {
+        this.logging.warn(
+          'Exception caught waiting for confirms while trying to close messaging connection'
+        )
+        if (e instanceof Error) {
+          this.logging.warn(e)
+        }
+      }
+    }
 
     try {
       await this._channel?.close()
+    } catch (e) {
+      if (logStatus) {
+        this.logging.warn(
+          'Exception caught closing channel while trying to close messaging connection'
+        )
+        if (e instanceof Error) {
+          this.logging.warn(e)
+        }
+      }
+    }
+
+    try {
       await this.connection?.close()
     } catch (e) {
-      this.logging.warn('Exception caught while trying to close an existing messaging connection')
-      if (e instanceof Error) {
-        this.logging.warn(e)
+      if (logStatus) {
+        this.logging.warn('Exception caught while trying to close messaging connection')
+        if (e instanceof Error) {
+          this.logging.warn(e)
+        }
       }
     }
 
     // Future uses of this connection will trigger a reconnect
     delete this._channel
     delete this.connection
-    delete this.channelPromise
+    destroyPromise && delete this.channelPromise
   }
 }
 

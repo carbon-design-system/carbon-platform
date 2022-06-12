@@ -57,13 +57,11 @@ class MessagingClient {
       url: CARBON_MESSAGE_QUEUE_URL,
       socketOptions: DEFAULT_SOCKET_OPTIONS,
       retry: true,
-      callback: () => this.handleConnectionReady()
+      callback: this.handleConnectionReady.bind(this)
     })
   }
 
-  private async handleConnectionReady() {
-    const channel = await this.messagingConnection.channel
-
+  private async handleConnectionReady(_connection: amqp.Connection, channel: amqp.ConfirmChannel) {
     this.replyQueue = await channel.assertQueue(RANDOM_QUEUE_NAME, {
       exclusive: true
     })
@@ -71,7 +69,7 @@ class MessagingClient {
     // Listen for responses on the reply queue
     await channel.consume(
       this.replyQueue.queue,
-      this.replyReceived.bind(this),
+      this.handleReply.bind(this),
       // No explicit acks needed, since this is the service's personal reply queue
       { noAck: true }
     )
@@ -83,7 +81,7 @@ class MessagingClient {
    *
    * @param reply The message received from the broker.
    */
-  private replyReceived(reply: amqp.ConsumeMessage | null) {
+  private handleReply(reply: amqp.ConsumeMessage | null) {
     const correlationId = reply?.properties.correlationId as string
     const resolve = this.replyCallbacks.get(correlationId)
 
@@ -131,8 +129,6 @@ class MessagingClient {
     // At this point, the message is guaranteed to have been published to the message broker
 
     try {
-      // Typically an emit would not be awaited, but awaiting confirms here after a successful
-      // publish ensures that it can be
       if (publishResult === false && channel) {
         await channel.waitForConfirms()
       }

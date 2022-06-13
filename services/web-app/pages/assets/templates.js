@@ -7,7 +7,7 @@
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import Catalog from '@/components/catalog'
+import AssetsCatalog from '@/components/assets-catalog'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { type } from '@/data/type'
@@ -31,7 +31,7 @@ const Templates = ({ librariesData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader bgColor={template.bgColor} title={seo.title} pictogram={template.icon} />
-      <Catalog data={librariesData} type="template" />
+      <AssetsCatalog libraries={librariesData.libraries} type="template" />
     </>
   )
 }

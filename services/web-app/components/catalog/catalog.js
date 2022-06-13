@@ -8,7 +8,6 @@ import { cloneDeep, get, isArray, isEqual, remove, set, union } from 'lodash'
 import minimatch from 'minimatch'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
-import { libraryPropTypes } from 'types'
 
 import CatalogFilters from '@/components/catalog-filters'
 import CatalogList from '@/components/catalog-list'
@@ -160,7 +159,15 @@ const filterPropertyHasValidValue = (filter, key, value) => {
 const isCanonicalLibAsset = (asset) =>
   get(asset, 'library.content.id') === getCanonicalLibraryId(asset)
 
-function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {} }) {
+function Catalog({
+  collection,
+  items,
+  type,
+  filter: defaultFilter = {},
+  glob = {},
+  itemPluralName,
+  renderItem
+}) {
   const [possibleFilterValues, setPossibleFilterValues] = useState(getFilters({ collection, type }))
 
   const [query, setQuery] = useQueryState(
@@ -269,7 +276,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   )
 
   const [libraries] = useState(
-    data.libraries.filter((library) => library.assets.length).sort(librarySortComparator)
+    items.filter((library) => library.assets.length).sort(librarySortComparator)
   )
 
   const [assets] = useState(() => {
@@ -299,11 +306,11 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
       })
   })
 
-  const [filteredAssets, setFilteredAssets] = useState(
+  const [filteredItems, setFilteredItems] = useState(
     getFilteredAssets(assets, filter, sort, search)
   )
 
-  const [assetCounts] = useState(() => {
+  const [itemsCounts] = useState(() => {
     const totals = {}
 
     assets.forEach((asset) => {
@@ -326,7 +333,7 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
       prevValues?.search !== search ||
       !isEqual(prevValues?.filter, filter)
     ) {
-      setFilteredAssets(getFilteredAssets(assets, filter, sort, search))
+      setFilteredItems(getFilteredAssets(assets, filter, sort, search))
     }
   }, [assets, filter, sort, search, prevValues])
 
@@ -347,12 +354,12 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
   }, [collection, type])
 
   useEffect(() => {
-    const resultsCount = filteredAssets.length
+    const resultsCount = filteredItems.length
     const maxPageNumber = Math.max(Math.ceil(resultsCount / pageSize), 1)
     if (page > maxPageNumber) {
       setPage(1)
     }
-  }, [filteredAssets, page, pageSize, setPage])
+  }, [filteredItems, page, pageSize, setPage])
 
   const handleFilter = (item, key, action = 'add') => {
     let updatedFilter = cloneDeep(filter)
@@ -401,18 +408,20 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
         initialFilter={{ collection, type }}
         onFilter={handleFilter}
       />
-      <CatalogResults assets={filteredAssets} />
+      <CatalogResults assets={filteredItems} />
       <CatalogSort onSort={setSort} onView={setView} sort={sort} view={view} />
       <CatalogList
-        assetCounts={assetCounts}
-        assets={filteredAssets}
+        itemsCounts={itemsCounts}
+        items={filteredItems}
+        itemPluralName={itemPluralName}
         isGrid={view === GRID_VIEW}
         filter={filter}
         page={page}
         pageSize={pageSize}
+        renderItem={renderItem}
       />
       <CatalogPagination
-        assets={filteredAssets}
+        assets={filteredItems}
         page={page}
         pageSize={pageSize}
         setPage={setPage}
@@ -424,11 +433,11 @@ function Catalog({ collection, data, type, filter: defaultFilter = {}, glob = {}
 
 Catalog.propTypes = {
   collection: PropTypes.string,
-  data: PropTypes.shape({
-    libraries: PropTypes.arrayOf(libraryPropTypes)
-  }),
   filter: PropTypes.object,
   glob: PropTypes.object,
+  itemPluralName: PropTypes.string.isRequired,
+  items: PropTypes.array.isRequired,
+  renderItem: PropTypes.func,
   type: PropTypes.string
 }
 

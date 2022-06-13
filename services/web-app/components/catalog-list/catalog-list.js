@@ -7,21 +7,20 @@
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { assetPropTypes } from 'types'
 
-import CatalogItem from '@/components/catalog-item'
-import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-list.module.scss'
 
 const CatalogList = ({
-  assetCounts,
-  assets,
+  itemsCounts,
+  items,
+  itemPluralName,
   filter = {},
   isGrid = false,
   page = 1,
-  pageSize = 10
+  pageSize = 10,
+  renderItem
 }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
   const isLgGrid = isGrid && isLg
@@ -29,7 +28,7 @@ const CatalogList = ({
   const start = (page - 1) * pageSize
   const end = start + pageSize
 
-  const renderAssets = assets.slice(start, end)
+  const itemsToRender = items.slice(start, end)
 
   return (
     <Grid
@@ -38,16 +37,8 @@ const CatalogList = ({
       condensed={!isLg}
       narrow={isLg}
     >
-      {renderAssets.map((asset, i) => (
-        <CatalogItem
-          assetCounts={assetCounts}
-          asset={asset}
-          filter={filter}
-          key={`${i}-${getSlug(asset.content)}`}
-          isGrid={isGrid && isLg}
-        />
-      ))}
-      {(!renderAssets || renderAssets.length === 0) && (
+      {itemsToRender.map((item, i) => renderItem(item, i, itemsCounts, filter, isGrid && isLg))}
+      {(!itemsToRender || itemsToRender.length === 0) && (
         <Column
           className={clsx(styles.copy, isLgGrid && styles['copy--grid'])}
           sm={4}
@@ -56,9 +47,7 @@ const CatalogList = ({
         >
           <h2 className={styles.heading}>No results found</h2>
           <p className={styles.paragraph}>
-            {
-              "It appears we don't have any assets that match your search. Try different search terms."
-            }
+            {`It appears we don't have any ${itemPluralName} that match your search. Try different search terms.`}
           </p>
         </Column>
       )}
@@ -67,12 +56,14 @@ const CatalogList = ({
 }
 
 CatalogList.propTypes = {
-  assetCounts: PropTypes.object,
-  assets: PropTypes.arrayOf(assetPropTypes),
   filter: PropTypes.object,
   isGrid: PropTypes.bool,
+  itemPluralName: PropTypes.string.isRequired,
+  items: PropTypes.array.isRequired,
+  itemsCounts: PropTypes.object.isRequired,
   page: PropTypes.number,
-  pageSize: PropTypes.number
+  pageSize: PropTypes.number,
+  renderItem: PropTypes.func
 }
 
 export default CatalogList

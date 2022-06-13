@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.14...@carbon-platform/api@0.3.15) (2022-06-13)
+
+
+### Misc. 🔮
+
+* **api:** logging consistency in messaging classes ([ae75426](https://github.com/carbon-design-system/carbon-platform/commit/ae75426fb87254e1f8305e2bcf9f07dfb1a442d0))
+
 ### [0.3.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.13...@carbon-platform/api@0.3.14) (2022-06-12)
 
 

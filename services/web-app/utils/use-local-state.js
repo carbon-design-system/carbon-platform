@@ -5,27 +5,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { useRouter } from 'next/router'
 import queryString from 'query-string'
 import { useCallback, useState } from 'react'
 
-// see "bracket-separator" entry on https://www.npmjs.com/package/query-string
-const queryStringConfig = {
-  arrayFormat: 'bracket-separator',
-  arrayFormatSeparator: '|'
-}
+import { isJsonString } from './string'
 
 /**
- * Write to query state and get updates on query state change
+ * Write and read to/from local storage
  *
- * This hook allows to manage the state of a key/value in the browser query,
+ * This hook allows to manage the state of a key/value in the local storage,
  *  with the following considerations:
- * 1- the value contained in `value` will automatically be updated when the browser query changes
- * 2- subscribing components can manipulate the query value by calling the `update`
+ * 1 - subscribing components can manipulate the value by calling the `update`
  * function with a desired value
+ * 2 - All state key/values will be saved to localStorage
  * 3 - The `validateValue` function receives the current query string value
  * and should return true if the value is valid or false otherwise. If the value is invalid,
  * the hook will return the defaultValue ('' if not set)
- * 4- Supplying options `parseNumbers` or `parseBoolean` = `true` will cause the type of value
+ * 4 - Supplying options `parseNumbers` or `parseBoolean` = `true` will cause the type of value
  * to be cast to desired type if possible, otherwise type will be string
  * @param {string} key Key to use in the query string
  * @param {{defaultValue: string, parseNumbers: boolean,
@@ -33,30 +30,36 @@ const queryStringConfig = {
  *
  * @returns {{value, update}} Current value and update function
  */
-const useQueryState = (
+const useLocalState = (
   key,
   { defaultValue = '', parseNumbers = false, parseBooleans = false },
   validateValue = () => true
 ) => {
+  const router = useRouter()
+
   const getValue = useCallback(() => {
     if (typeof window === 'undefined') {
+      // localStorage is not available at this point
       return null
     }
+    let val
+    const storageValue = localStorage.getItem(`${router.pathname}:${key}`)
+    const parsedValue = isJsonString(storageValue) ? JSON.parse(storageValue) : storageValue
+    if (parsedValue !== undefined) {
+      const queryStringFromStorage = queryString.stringify({ key: parsedValue })
 
-    const query = queryString.parseUrl(window.location.search, {
-      ...queryStringConfig,
-      parseNumbers,
-      parseBooleans
-    }).query
-
-    const val = query[key]
+      val = queryString.parseUrl(`?${queryStringFromStorage}`, {
+        parseNumbers,
+        parseBooleans
+      }).query.key
+    }
 
     if (typeof validateValue === 'function' && !validateValue(val)) {
-      // invalid val , returning null
+      // invalid val, returning null
       return null
     }
     return val
-  }, [key, parseBooleans, parseNumbers, validateValue])
+  }, [key, parseBooleans, parseNumbers, router.pathname, validateValue])
 
   const [value, setValue] = useState(getValue())
 
@@ -66,25 +69,18 @@ const useQueryState = (
       const oldValue = getValue()
       const newValue = typeof stateUpdater === 'function' ? stateUpdater(oldValue) : stateUpdater
 
-      // Don't rely on router.query here because that would cause unnecessary renders when other
-      // query parameters change
-      const query = queryString.parseUrl(window.location.search, {
-        ...queryStringConfig,
-        parseNumbers,
-        parseBooleans
-      }).query
+      if (typeof validateValue === 'function' && !validateValue(newValue)) {
+        // invalid val, aborting update
+        return
+      }
 
-      query[key] = newValue
-
-      // Change query state without rerendering page
-      history.pushState(null, null, `?${queryString.stringify(query, queryStringConfig)}`)
-
-      setValue(getValue())
+      localStorage.setItem(`${router.pathname}:${key}`, JSON.stringify(newValue))
+      setValue(newValue)
     },
-    [getValue, key, parseBooleans, parseNumbers]
+    [getValue, key, router.pathname, validateValue]
   )
 
   return [value ?? defaultValue ?? null, update]
 }
 
-export default useQueryState
+export default useLocalState

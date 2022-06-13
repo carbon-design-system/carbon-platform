@@ -23,7 +23,7 @@
     "start": "node dist/main/index.js",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "newtest": "ava --config ../../ava.config.mjs"
+    "test": "ava --config ../../ava.config.mjs"
   },
   "dependencies": {
     "@nestjs/apollo": "^10.0.11",

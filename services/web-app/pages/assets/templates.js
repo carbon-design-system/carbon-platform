@@ -31,6 +31,7 @@ const Templates = ({ librariesData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader bgColor={template.bgColor} title={seo.title} pictogram={template.icon} />
+      {/* this probably eventually gets replaced  by a parentsCatalog */}
       <AssetsCatalog libraries={librariesData.libraries} type="template" />
     </>
   )

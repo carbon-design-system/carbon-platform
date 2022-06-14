@@ -6,26 +6,25 @@
  */
 import { Column, Grid } from '@carbon/react'
 import PropTypes from 'prop-types'
-import { assetPropTypes } from 'types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-results.module.scss'
 
-const CatalogResults = ({ assets = [] }) => {
+const CatalogResults = ({ items = [] }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
 
   return (
     <Grid className={styles.grid} condensed={!isLg} narrow={isLg}>
       <Column sm={4} md={8} lg={12}>
-        <div className={styles.results}>{assets.length} results</div>
+        <div className={styles.results}>{items.length} results</div>
       </Column>
     </Grid>
   )
 }
 
 CatalogResults.propTypes = {
-  assets: PropTypes.arrayOf(assetPropTypes)
+  items: PropTypes.array
 }
 
 export default CatalogResults

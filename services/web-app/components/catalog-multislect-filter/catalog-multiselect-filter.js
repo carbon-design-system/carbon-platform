@@ -10,7 +10,6 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { useRef, useState } from 'react'
 
-import { getFilters } from '@/data/filters'
 import useFocus from '@/utils/use-focus'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import useOnKey from '@/utils/use-on-key'
@@ -20,7 +19,7 @@ import styles from './catalog-multiselect-filter.module.scss'
 
 const CatalogMultiselectFilter = ({
   filter,
-  initialFilter,
+  availableFilters,
   className: customClassName,
   onFilter
 }) => {
@@ -108,11 +107,11 @@ const CatalogMultiselectFilter = ({
         <div className={styles.wrapper} ref={popoverRef} tabIndex="0">
           <Column span={columns}>
             <Grid className={styles.grid} condensed>
-              {Object.keys(getFilters(initialFilter)).map((item, i) => (
+              {Object.keys(availableFilters).map((item, i) => (
                 <Column className={styles.column} key={i} sm={1}>
-                  <h3 className={styles.heading}>{getFilters(initialFilter)[item].name}</h3>
+                  <h3 className={styles.heading}>{availableFilters[item].name}</h3>
                   <ul className={styles.list}>
-                    {Object.keys(getFilters(initialFilter)[item].values).map((key, j) => (
+                    {Object.keys(availableFilters[item].values).map((key, j) => (
                       <li className={styles['list-item']} key={j}>
                         <Tag
                           onClick={() => {
@@ -126,7 +125,7 @@ const CatalogMultiselectFilter = ({
                             filter[item] && filter[item].includes(key) ? 'high-contrast' : 'gray'
                           }
                         >
-                          {getFilters(initialFilter)[item].values[key].name}
+                          {availableFilters[item].values[key].name}
                         </Tag>
                       </li>
                     ))}
@@ -142,9 +141,9 @@ const CatalogMultiselectFilter = ({
 }
 
 CatalogMultiselectFilter.propTypes = {
+  availableFilters: PropTypes.object,
   className: PropTypes.string,
   filter: PropTypes.object,
-  initialFilter: PropTypes.object,
   onFilter: PropTypes.func
 }
 

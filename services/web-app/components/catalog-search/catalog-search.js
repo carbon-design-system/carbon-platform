@@ -6,6 +6,7 @@
  */
 
 import { Column, Grid, Search } from '@carbon/react'
+import { capitalCase } from 'change-case'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
@@ -14,7 +15,15 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-search.module.scss'
 
-const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, search = '' }) => {
+const CatalogSearch = ({
+  className,
+  filter,
+  availableFilters,
+  onFilter,
+  onSearch,
+  search = '',
+  itemName
+}) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
 
@@ -35,8 +44,8 @@ const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, s
       <Column className={clsx(styles.column, styles['column-search'])} sm={4} md={4} lg={8}>
         <Search
           id="catalog-search"
-          labelText="Search component index by name, keyword, or domain"
-          placeholder="Component name, keyword, domain"
+          labelText={`Search ${itemName} index by name, keyword, or domain`}
+          placeholder={`${capitalCase(itemName)} name, keyword, domain`}
           value={search}
           onBlur={handleOnBlur}
           onChange={handleOnChange}
@@ -47,7 +56,7 @@ const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, s
           <CatalogMultiselectFilter
             className={styles.filter}
             filter={filter}
-            initialFilter={initialFilter}
+            availableFilters={availableFilters}
             onFilter={onFilter}
           />
         )}
@@ -56,7 +65,7 @@ const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, s
         <Column className={styles.column} md={4} lg={4}>
           <CatalogMultiselectFilter
             filter={filter}
-            initialFilter={initialFilter}
+            availableFilters={availableFilters}
             onFilter={onFilter}
           />
         </Column>
@@ -66,9 +75,10 @@ const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, s
 }
 
 CatalogSearch.propTypes = {
+  availableFilters: PropTypes.object,
   className: PropTypes.string,
   filter: PropTypes.object,
-  initialFilter: PropTypes.object,
+  itemName: PropTypes.string.isRequired,
   onFilter: PropTypes.func,
   onSearch: PropTypes.func,
   search: PropTypes.string

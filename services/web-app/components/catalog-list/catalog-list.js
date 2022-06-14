@@ -13,7 +13,6 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import styles from './catalog-list.module.scss'
 
 const CatalogList = ({
-  itemsCounts,
   items,
   itemPluralName,
   filter = {},
@@ -37,7 +36,7 @@ const CatalogList = ({
       condensed={!isLg}
       narrow={isLg}
     >
-      {itemsToRender.map((item, i) => renderItem(item, i, itemsCounts, filter, isGrid && isLg))}
+      {itemsToRender.map((item, i) => renderItem(item, i, filter, isGrid && isLg))}
       {(!itemsToRender || itemsToRender.length === 0) && (
         <Column
           className={clsx(styles.copy, isLgGrid && styles['copy--grid'])}

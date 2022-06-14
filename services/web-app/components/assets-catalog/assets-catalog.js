@@ -5,15 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { get, set } from 'lodash'
+import { get, isEqual, set } from 'lodash'
 import minimatch from 'minimatch'
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { libraryPropTypes } from 'types'
 
+import AssetCatalogItem from '@/components/asset-catalog-item'
 import Catalog from '@/components/catalog'
-import CatalogItem from '@/components/catalog-item'
 import { getFilters } from '@/data/filters'
+import { sortItems } from '@/data/sort'
 import { valuesIntersect } from '@/utils/array'
 import {
   assetSortComparator,
@@ -23,6 +24,7 @@ import {
   librarySortComparator
 } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
+import useQueryState from '@/utils/use-query-state'
 
 /**
  * Returns true if an asset should be included in the catalog results given the filter.
@@ -119,20 +121,43 @@ const getFilteredAssets = (assets, filter, sort, search) => {
 }
 
 /**
+ * Checks if the value of a filter property is valid. Acceptance criteria:
+ * - Has a value
+ * - Value is of Array type
+ * - The property key is defined in `filters` object and its values are defined
+ * - Each entry in the parametered `value` is contained in the list of acceptable values for the
+ * key as defined in `filter`
+ * @param {object} filter
+ * @param {string} key
+ * @param {string[]} value
+ * @returns {boolean} True if value is valid
+ */
+const filterPropertyHasValidValue = (filter, key, value) => {
+  return (
+    value &&
+    value.constructor === Array &&
+    !!filter?.[key]?.values &&
+    !value.some((val) => !Object.keys(filter[key].values).includes(val))
+  )
+}
+
+/**
  * The `<Aside>` component is a wrapper component that adds styling to make the text display
  *  smaller than the default body text with a one column offset. It is designed to be used on
  * the side of the page within grid components. Add an aria-label for a11y.
  */
 const AssetsCatalog = ({ libraries, type, collection, glob = {} }) => {
-  const [availableFilters, setAvailableFilters] = useState(getFilters({ collection, type }))
+  const defaultFilter = {}
+
+  const [availableFilters] = useState(getFilters({ collection, type }))
   const [filteredAssets, setFilteredAssets] = useState([])
 
-  const [filteredLibraries] = useState(
+  const [librariesWithAssets] = useState(
     libraries.filter((library) => library.assets.length).sort(librarySortComparator)
   )
 
   const [assets] = useState(() => {
-    return filteredLibraries
+    return librariesWithAssets
       .reduce((assetsArray, library) => {
         // Flatten all asset into a single array and save library data per asset
         return assetsArray.concat(
@@ -158,7 +183,7 @@ const AssetsCatalog = ({ libraries, type, collection, glob = {} }) => {
       })
   })
 
-  const [assetCounts] = useState(() => {
+  const [groupedAssets] = useState(() => {
     const totals = {}
 
     assets.forEach((asset) => {
@@ -172,20 +197,86 @@ const AssetsCatalog = ({ libraries, type, collection, glob = {} }) => {
     return totals
   })
 
-  useEffect(() => {
-    setAvailableFilters(getFilters({ collection, type }))
-  }, [collection, type])
+  // filter keys used by the asset catalog
+  const [framework, setFramework] = useQueryState(
+    'framework',
+    {
+      defaultValue: defaultFilter.framework
+    },
+    (value) =>
+      value === undefined || filterPropertyHasValidValue(availableFilters, 'framework', value)
+  )
 
-  const handleFilterChange = (filter, sort, search) => {
+  const [platform, setPlatform] = useQueryState(
+    'platform',
+    {
+      defaultValue: defaultFilter.platform
+    },
+    (value) =>
+      value === undefined || filterPropertyHasValidValue(availableFilters, 'platform', value)
+  )
+
+  const [tags, setTags] = useQueryState(
+    'tags',
+    {
+      defaultValue: defaultFilter.tags
+    },
+    (value) => value === undefined || filterPropertyHasValidValue(availableFilters, 'tags', value)
+  )
+
+  const [status, setStatus] = useQueryState(
+    'status',
+    {
+      defaultValue: defaultFilter.status
+    },
+    (value) => value === undefined || filterPropertyHasValidValue(availableFilters, 'status', value)
+  )
+
+  const [sponsor, setSponsor] = useQueryState(
+    'sponsor',
+    {
+      defaultValue: defaultFilter.sponsor
+    },
+    (value) =>
+      value === undefined || filterPropertyHasValidValue(availableFilters, 'sponsor', value)
+  )
+
+  const [filter, setFilter] = useState(
+    Object.fromEntries(
+      Object.entries({ framework, sponsor, platform, tags, status }).filter(([_, v]) => !!v)
+    )
+  )
+
+  const filterAssets = (sort, search) => {
     setFilteredAssets(getFilteredAssets(assets, filter, sort, search))
   }
 
-  const renderAsset = (asset, i, filter, isGrid) => (
-    <CatalogItem
-      assetCounts={assetCounts}
+  const updateFilter = (updatedFilterVals) => {
+    if (!isEqual(updatedFilterVals.sponsor, filter.sponsor)) setSponsor(updatedFilterVals.sponsor)
+    if (!isEqual(updatedFilterVals.platform, filter.platform)) {
+      setPlatform(updatedFilterVals.platform)
+    }
+    if (!isEqual(updatedFilterVals.status, filter.status)) setStatus(updatedFilterVals.status)
+    if (!isEqual(updatedFilterVals.tags, filter.tags)) setTags(updatedFilterVals.tags)
+    if (!isEqual(updatedFilterVals.framework, filter.framework)) {
+      setFramework(updatedFilterVals.framework)
+    }
+
+    const cleanFilter = Object.fromEntries(
+      Object.entries(updatedFilterVals).filter(([_, v]) => !!v)
+    )
+
+    if (!isEqual(cleanFilter, filter)) {
+      setFilter(cleanFilter)
+    }
+  }
+
+  const renderAsset = (asset, index, isGrid) => (
+    <AssetCatalogItem
+      groupedAssets={groupedAssets}
       asset={asset}
       filter={filter}
-      key={`${i}-${getSlug(asset.content)}`}
+      key={`${index}-${getSlug(asset.content)}`}
       isGrid={isGrid}
     />
   )
@@ -193,12 +284,14 @@ const AssetsCatalog = ({ libraries, type, collection, glob = {} }) => {
   return (
     <Catalog
       items={filteredAssets}
+      filter={filter}
       renderItem={renderAsset}
       itemPluralName="assets"
       itemName={type ?? 'component'}
       availableFilters={availableFilters}
-      allowMultiView={false}
-      onFilter={handleFilterChange}
+      onFilter={filterAssets}
+      onUpdateFilter={updateFilter}
+      sortOptions={sortItems}
     />
   )
 }

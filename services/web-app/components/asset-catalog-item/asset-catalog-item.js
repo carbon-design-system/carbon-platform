@@ -20,10 +20,10 @@ import { collapseAssetGroups, getBaseIdentifier } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
-import styles from './catalog-item.module.scss'
-import CatalogItemMeta from './catalog-item-meta'
+import styles from './asset-catalog-item.module.scss'
+import AssetCatalogItemMeta from './asset-catalog-item-meta'
 
-const CatalogItemImage = ({ asset }) => {
+const AssetCatalogItemImage = ({ asset }) => {
   const [src, setSrc] = useState(`/assets/thumbnails/${getSlug(asset.content)}.svg`)
 
   return (
@@ -40,11 +40,11 @@ const CatalogItemImage = ({ asset }) => {
   )
 }
 
-CatalogItemImage.propTypes = {
+AssetCatalogItemImage.propTypes = {
   asset: assetPropTypes
 }
 
-const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false }) => {
+const AssetCatalogItemContent = ({ asset, groupedAssets, filter = {}, isGrid = false }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
 
   const { name, description } = asset.content
@@ -61,7 +61,7 @@ const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false })
   const otherFrameworkCount = () => {
     const baseIdentifier = getBaseIdentifier(asset)
 
-    return collapseAssetGroups(asset, filter) ? get(assetCounts, baseIdentifier, 0) - 1 : 0
+    return collapseAssetGroups(asset, filter) ? get(groupedAssets, baseIdentifier, 0) - 1 : 0
   }
 
   return (
@@ -77,8 +77,8 @@ const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false })
         </div>
         {isSeparatedMeta && (
           <>
-            <CatalogItemMeta asset={asset} properties={['license']} />
-            <CatalogItemMeta
+            <AssetCatalogItemMeta asset={asset} properties={['license']} />
+            <AssetCatalogItemMeta
               asset={asset}
               className={styles['meta--absolute']}
               properties={['status']}
@@ -86,7 +86,7 @@ const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false })
           </>
         )}
         {!isSeparatedMeta && (
-          <CatalogItemMeta
+          <AssetCatalogItemMeta
             asset={asset}
             className={styles['meta--absolute']}
             properties={['status', 'license']}
@@ -105,14 +105,14 @@ const CatalogItemContent = ({ asset, assetCounts, filter = {}, isGrid = false })
   )
 }
 
-CatalogItemContent.propTypes = {
+AssetCatalogItemContent.propTypes = {
   asset: assetPropTypes,
-  assetCounts: PropTypes.object,
   filter: PropTypes.object,
+  groupedAssets: PropTypes.object,
   isGrid: PropTypes.bool
 }
 
-const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
+const AssetCatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
   const isXlg = useMatchMedia(mediaQueries.xlg)
@@ -134,10 +134,10 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
       <Link href={anchorHref}>
         <a className={anchorStyles}>
           <AspectRatio ratio="3x2">
-            <CatalogItemImage asset={asset} />
+            <AssetCatalogItemImage asset={asset} />
           </AspectRatio>
           <AspectRatio ratio="16x9">
-            <CatalogItemContent
+            <AssetCatalogItemImage
               asset={asset}
               assetCounts={assetCounts}
               filter={filter}
@@ -156,13 +156,13 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
           <Grid narrow>
             <Column className={clsx(styles.column, styles['column--image'])} md={4}>
               <AspectRatio ratio={imageAspectRatio()}>
-                <CatalogItemImage asset={asset} />
+                <AssetCatalogItemImage asset={asset} />
               </AspectRatio>
             </Column>
             <Column className={clsx(styles.column, styles['column--content'])} sm={4} md={4} lg={8}>
               {!isMd && (
                 <AspectRatio ratio="3x2">
-                  <CatalogItemContent
+                  <AssetCatalogItemContent
                     asset={asset}
                     assetCounts={assetCounts}
                     filter={filter}
@@ -171,7 +171,7 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
                 </AspectRatio>
               )}
               {isMd && (
-                <CatalogItemContent
+                <AssetCatalogItemContent
                   asset={asset}
                   assetCounts={assetCounts}
                   filter={filter}
@@ -188,11 +188,11 @@ const CatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
   return isGrid ? renderGrid() : renderList()
 }
 
-CatalogItem.propTypes = {
+AssetCatalogItem.propTypes = {
   asset: assetPropTypes,
   assetCounts: PropTypes.object,
   filter: PropTypes.object,
   isGrid: PropTypes.bool
 }
 
-export default CatalogItem
+export default AssetCatalogItem

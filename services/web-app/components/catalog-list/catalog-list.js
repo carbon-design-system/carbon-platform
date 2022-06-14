@@ -15,7 +15,6 @@ import styles from './catalog-list.module.scss'
 const CatalogList = ({
   items,
   itemPluralName,
-  filter = {},
   isGrid = false,
   page = 1,
   pageSize = 10,
@@ -36,7 +35,7 @@ const CatalogList = ({
       condensed={!isLg}
       narrow={isLg}
     >
-      {itemsToRender.map((item, i) => renderItem(item, i, filter, isGrid && isLg))}
+      {itemsToRender.map((item, i) => renderItem(item, i, isGrid && isLg))}
       {(!itemsToRender || itemsToRender.length === 0) && (
         <Column
           className={clsx(styles.copy, isLgGrid && styles['copy--grid'])}
@@ -55,7 +54,6 @@ const CatalogList = ({
 }
 
 CatalogList.propTypes = {
-  filter: PropTypes.object,
   isGrid: PropTypes.bool,
   itemPluralName: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,

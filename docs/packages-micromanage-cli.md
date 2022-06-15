@@ -4,18 +4,16 @@ Micromanage is a monorepo microservice orchestration utility. It uses npm worksp
 foundation for individual packages and services which contribute to a base Docker image and
 cloud-deployed microservices, respectively.
 
-# Scripts
-
-The various scripts can be found in: [scripts/micromanage](../scripts/micromanage)
+# Commands
 
 ## `deploy`
 
-Use this script to deploy to _test_ and _production_ environments
+Use this command to deploy to _test_ and _production_ environments
 
 The first deployment of a service is required to be done manually. This should be done through the
 IBM Cloud Code Engine UI so that appropriate variables/secrets/routes can be created.
 
-Once done, the deploy script can be used to deploy new versions of the various services.
+Once done, the deploy command can be used to deploy new versions of the various services.
 
 ### Re-deploying services automatically
 
@@ -47,8 +45,10 @@ enable automatic deployments on a service.
 
 ### Re-Deploying Manually
 
-The deploy script can be run manually from a local clone of the repo. Please note there must be an
-existing application deployed on IBM cloud in order to enable automatic deployments on a service.
+Thought it is typically not needed, the deploy command can be run manually from a local clone of the
+repo. Please note that there must be an existing application deployed on IBM cloud in order to
+enable automatic deployments of a service and that you must have the values for the environment
+variables specified below in order to perform a service deploy.
 
 1. Checkout to the desired deploy environment branch
 
@@ -56,23 +56,41 @@ existing application deployed on IBM cloud in order to enable automatic deployme
    - for Production: `deployed-services/production`
 
 2. Alter the service-config file with the correct service versions you need deployed (keep intact
-   the services you don't want to change, these will be disregarded by the script)
+   the services you don't want to change, these will be disregarded by the command)
 
-3. Make sure you're logged in to IBM Cloud (`ibmcloud login --sso -r 'us-south'` OR
-   `ibmcloud login --apikey [APIKEY] -r 'us-south'`)
+3. Make sure you're logged in to IBM Cloud:
+
+   ```
+   ibmcloud plugin install code-engine
+   ibmcloud login --apikey <API_KEY> -r 'us-south'
+   ```
 
 4. From the root of the project run
-   `CONTAINER_REGISTRY=[TARGET_CONTAINER_REGISTRY_URL] CONTAINER_REGISTRY_NAMESPACE=[TARGET_CONTAINER_REGISTRY_NAMESPACE] CODE_ENGINE_PROJECT=[TARGET_CODE_ENGINE_PROJECT] node scripts/micromanage deploy --target=[test | production]`
 
-5. Upon succesful completion of the script the _changed_ service(s) deployment(s) should be
-   available at it's corresponding route(s)
+   ```
+   export CONTAINER_REGISTRY=...
+   export CONTAINER_REGISTRY_NAMESPACE=...
+   export CODE_ENGINE_PROJECT=...
+   npx micromanage deploy --target=[test|prod]
+   ```
+
+5. Upon successful completion of the script the _changed_ services will be deployed to the cloud
+   provider.
 
 6. Make sure to push your service config file changes so the upstream is properly updated!
 
 ## `docker`
 
-TODO
+This command is used to build a base docker image for all services, as well as individual images for
+each service in the monorepo. It can also optionally push the built image directly to a container
+registry, but you must be logged into the registry prior to running the command to have the push
+work.
+
+## `publish`
+
+This command builds and publishes a specified non-private package via `npm publish`.
 
 ## `version`
 
-TODO
+This command updates the versions of all workspaces in the monorepo based on a generated changelog.
+It detects which workspaces have changed and only re-versions the ones that have.

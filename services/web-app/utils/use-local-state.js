@@ -21,18 +21,18 @@ import { isJsonString } from './string'
  * 2 - All state key/values will be saved to localStorage
  * 3 - The `validateValue` function receives the current query string value
  * and should return true if the value is valid or false otherwise. If the value is invalid,
- * the hook will return the defaultValue ('' if not set)
+ * the hook will return the defaultValue or undefined if defaultValue hasn't been provided
  * 4 - Supplying options `parseNumbers` or `parseBoolean` = `true` will cause the type of value
  * to be cast to desired type if possible, otherwise type will be string
  * @param {string} key Key to use in the query string
  * @param {{defaultValue: string, parseNumbers: boolean,
  * parseBooleans: boolean}} options Extra config options
  *
- * @returns {{value, update}} Current value and update function
+ * @returns {[localState, setLocalState]} Current value and update function
  */
 const useLocalState = (
   key,
-  { defaultValue = '', parseNumbers = false, parseBooleans = false },
+  { defaultValue, parseNumbers = false, parseBooleans = false },
   validateValue = () => true
 ) => {
   const router = useRouter()
@@ -64,7 +64,7 @@ const useLocalState = (
   const [value, setValue] = useState(getValue())
 
   // Replace the route to then update the "state"
-  const update = useCallback(
+  const setLocalState = useCallback(
     (stateUpdater) => {
       const oldValue = getValue()
       const newValue = typeof stateUpdater === 'function' ? stateUpdater(oldValue) : stateUpdater
@@ -80,7 +80,7 @@ const useLocalState = (
     [getValue, key, router.pathname, validateValue]
   )
 
-  return [value ?? defaultValue ?? null, update]
+  return [value ?? defaultValue ?? undefined, setLocalState]
 }
 
 export default useLocalState

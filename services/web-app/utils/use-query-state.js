@@ -24,18 +24,18 @@ const queryStringConfig = {
  * function with a desired value
  * 3 - The `validateValue` function receives the current query string value
  * and should return true if the value is valid or false otherwise. If the value is invalid,
- * the hook will return the defaultValue ('' if not set)
+ * the hook will return the defaultValue or undefinded if the defaultValue hasn't been provided
  * 4- Supplying options `parseNumbers` or `parseBoolean` = `true` will cause the type of value
  * to be cast to desired type if possible, otherwise type will be string
  * @param {string} key Key to use in the query string
  * @param {{defaultValue: string, parseNumbers: boolean,
  * parseBooleans: boolean}} options Extra config options
  *
- * @returns {{value, update}} Current value and update function
+ * @returns {[queryState, setQueryState]} Current value and update function
  */
 const useQueryState = (
   key,
-  { defaultValue = '', parseNumbers = false, parseBooleans = false },
+  { defaultValue, parseNumbers = false, parseBooleans = false },
   validateValue = () => true
 ) => {
   const getValue = useCallback(() => {
@@ -61,7 +61,7 @@ const useQueryState = (
   const [value, setValue] = useState(getValue())
 
   // Replace the route to then update the "state"
-  const update = useCallback(
+  const setQueryState = useCallback(
     (stateUpdater) => {
       const oldValue = getValue()
       const newValue = typeof stateUpdater === 'function' ? stateUpdater(oldValue) : stateUpdater
@@ -84,7 +84,7 @@ const useQueryState = (
     [getValue, key, parseBooleans, parseNumbers]
   )
 
-  return [value ?? defaultValue ?? null, update]
+  return [value ?? defaultValue ?? undefined, setQueryState]
 }
 
 export default useQueryState

@@ -14,7 +14,7 @@
   padding: spacing.$spacing-07 0 calc(spacing.$spacing-09 + spacing.$spacing-03);
   border-bottom: 1px solid theme.$border-strong-01;
 }
-
+// override carbon grid
 :global(.cds--subgrid--wide) {
   margin-top: 0;
 }

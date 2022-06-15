@@ -4,67 +4,98 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { InvalidInputException } from '@carbon-platform/api/microservice'
 import test from 'ava'
+import { GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql'
 
-test('TODO: uncomment tests after conversion', (t) => {
-  t.pass()
+import { DataGraphController } from '../main/data-graph-controller.js'
+
+const mockChannelRef = {
+  ack: () => {},
+  nack: () => {}
+}
+const mockContext = {
+  getChannelRef: () => mockChannelRef,
+  getMessage: () => {}
+}
+const mockModuleRef = {
+  schema: new GraphQLSchema({
+    query: new GraphQLObjectType({
+      name: 'RootQueryType',
+      fields: {
+        hello: {
+          type: GraphQLString,
+          resolve() {
+            return 'world'
+          }
+        }
+      }
+    })
+  })
+}
+
+test('it throws when query is not specified', async (t) => {
+  const controller = new DataGraphController({ get: () => mockModuleRef } as any)
+
+  const err = await t.throwsAsync(() => controller.dataGraph({}, mockContext as any))
+
+  t.true(err instanceof InvalidInputException)
 })
 
-// const mockedChannelRef = {
-//   ack: jest.fn(),
-//   nack: jest.fn()
-// }
-// const mockedContext = {
-//   getChannelRef: () => mockedChannelRef,
-//   getMessage: jest.fn()
-// }
-// const mockedModuleRef = {
-//   schema: {}
-// }
+test('it throws when query is not a string', async (t) => {
+  const controller = new DataGraphController({ get: () => mockModuleRef } as any)
 
-// describe('validation', () => {
-//   it('throws when query is not specified', async () => {
-//     const controller = new DataGraphController({ get: jest.fn(() => mockedModuleRef) } as any)
+  const err = await t.throwsAsync(() => controller.dataGraph({ query: 123 }, mockContext as any))
 
-//     const resultPromise = controller.dataGraph({}, mockedContext as any)
+  t.true(err instanceof InvalidInputException)
+})
 
-//     await expect(resultPromise).rejects.toThrow(InvalidInputException)
-//     expect(mockedChannelRef.nack).toHaveBeenCalled()
-//   })
+test('throws when variables is not an object', async (t) => {
+  const controller = new DataGraphController({ get: () => mockModuleRef } as any)
 
-//   it('throws when query is not a string', async () => {
-//     const controller = new DataGraphController({ get: jest.fn(() => mockedModuleRef) } as any)
+  const err = await t.throwsAsync(() =>
+    controller.dataGraph({ query: 'asdf', variables: 'asdf' }, mockContext as any)
+  )
 
-//     const resultPromise = controller.dataGraph({ query: 123 }, mockedContext as any)
+  t.true(err instanceof InvalidInputException)
+})
 
-//     await expect(resultPromise).rejects.toThrow(InvalidInputException)
-//     expect(mockedChannelRef.nack).toHaveBeenCalled()
-//   })
+test('it calls ack on the success path', async (t) => {
+  t.plan(1)
 
-//   it('throws when variables is not an object', async () => {
-//     const controller = new DataGraphController({ get: jest.fn(() => mockedModuleRef) } as any)
+  const myMockChannelRef = {
+    ack: () => {
+      t.pass()
+    },
+    nack: () => {}
+  }
+  const myMockContext = {
+    getChannelRef: () => myMockChannelRef,
+    getMessage: () => {}
+  }
 
-//     const resultPromise = controller.dataGraph(
-//       { query: 'asdf', variables: 'asdf' },
-//       mockedContext as any
-//     )
+  const controller = new DataGraphController({ get: () => mockModuleRef } as any)
 
-//     await expect(resultPromise).rejects.toThrow(InvalidInputException)
-//     expect(mockedChannelRef.nack).toHaveBeenCalled()
-//   })
-// })
+  await controller.dataGraph({ query: '{}' }, myMockContext as any)
+})
 
-// test('it calls ack on the success path', async () => {
-//   const controller = new DataGraphController({ get: jest.fn(() => mockedModuleRef) } as any)
+test('it calls nack on the validation error path', async (t) => {
+  t.plan(1)
 
-//   const resultPromise = controller.dataGraph(
-//     { query: 'query { libraries { id } }' },
-//     mockedContext as any
-//   )
+  const myMockChannelRef = {
+    ack: () => {},
+    nack: () => {
+      t.pass()
+    }
+  }
+  const myMockContext = {
+    getChannelRef: () => myMockChannelRef,
+    getMessage: () => {}
+  }
 
-//   const result = await resultPromise
+  const controller = new DataGraphController({ get: () => mockModuleRef } as any)
 
-//   expect(result.data).toEqual({})
-//   expect(result.errors).toBeUndefined()
-//   expect(mockedChannelRef.ack).toHaveBeenCalled()
-// })
+  try {
+    await controller.dataGraph({}, myMockContext as any)
+  } catch (e) {}
+})

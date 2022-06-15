@@ -97,10 +97,6 @@ To update the node modules only for a specific workspace, from the top-level in 
 $ npm --workspace <workspace_path> update
 ```
 
-> Note: This is currently not working correctly (https://github.com/npm/cli/issues/3960). As a
-> workaround, you can pass each package's name to the update command that you want to update and it
-> will be properly scoped to only the workspace in question.
-
 ## Running npm scripts for packages and services
 
 There are two ways to run npm scripts for a package.

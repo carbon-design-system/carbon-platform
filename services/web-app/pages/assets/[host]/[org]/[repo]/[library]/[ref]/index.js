@@ -86,7 +86,9 @@ const Library = ({ libraryData, params, navData }) => {
           <PageHeader title={seo.title} />
         </Column>
         <Column sm={4} md={6} lg={8}>
-          <PageDescription>{seo.description}</PageDescription>
+          <PageDescription className={styles['page-description']}>
+            {seo.description}
+          </PageDescription>
         </Column>
         <Column sm={4} md={8} lg={12}>
           <Dashboard className={styles.dashboard}>

@@ -4,7 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import Image from 'next/image'
+
+import { Column, Grid } from '@carbon/react'
 
 import Divider from '@/components/divider'
 
@@ -16,31 +17,27 @@ const stories = {
 export default stories
 
 const Template = (args) => (
-  <>
-    <Divider {...args}>
-      <div>Left Side Column</div>
-      <div>
-        Right Side Column:
-        <p>
-          ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt
-          ipsum tempor in. Maecenas ultrices sem nec blandit dictum. Fermentum ullamcorper pretium.
-          Duis turpis elit.
-        </p>
-      </div>
-    </Divider>
-    <Divider {...args}>
-      <div>Left Side Column</div>
-      <div>
-        Right Side Column:
-        <p>
-          ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt
-          ipsum tempor in. Maecenas ultrices sem nec blandit dictum. Fermentum ullamcorper pretium.
-          Duis turpis elit.
-        </p>
-        <Image src="mdx/Article_06.png" alt="" />
-      </div>
-    </Divider>
-  </>
+  <Divider {...args}>
+    <Grid>
+      <Column sm={4} md={2} lg={4}>
+        <h3>
+          <strong>v1.0</strong>
+        </h3>
+        <h2>
+          Target release:<div>June</div>
+        </h2>
+      </Column>
+      <Column sm={4} md={6} lg={8}>
+        The sites first major release will help system users discover and learn about all the assets
+        and libraries in the system with confidence in their completeness, who maintains them, and
+        how to use them. System users can access documentation for all indexed assets and libraries
+        without leaving the platform. The sites first major release will help system users discover
+        and learn about all the assets and libraries in the system with confidence in their
+        completeness, who maintains them, and how to use them. System users can access documentation
+        for all indexed assets and libraries without leaving the platform.
+      </Column>
+    </Grid>
+  </Divider>
 )
 
 export const Default = Template.bind({})

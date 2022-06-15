@@ -5,26 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Column, Grid } from '@carbon/react'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
 import * as styles from './divider.module.scss'
 
-const Divider = ({ children }) => {
-  return (
-    <Grid className={styles['list-row']}>
-      <Column sm={4} md={2} lg={4}>
-        <div>{children[0]}</div>
-      </Column>
-      <Column sm={4} md={6} lg={8}>
-        <div>{children.slice(1, children.length)}</div>
-      </Column>
-    </Grid>
-  )
+const Divider = ({ children, className }) => {
+  return <div className={clsx(className, styles.divider)}>{children}</div>
 }
 
 Divider.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  className: PropTypes.string
 }
 
 export default Divider

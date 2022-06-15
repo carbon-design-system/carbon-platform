@@ -10,19 +10,11 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 
-.list-row {
+.divider {
   padding: spacing.$spacing-07 0 calc(spacing.$spacing-09 + spacing.$spacing-03);
-  border-bottom: 1px solid theme.$border-strong-01;
+  border-top: 1px solid theme.$border-strong;
 }
 
-:global(.cds--subgrid--wide) {
+.divider [class*='column'] > *:first-child {
   margin-top: 0;
-}
-
-.markdown_h2-container {
-  margin-top: 0;
-}
-
-.list-row:last-child {
-  border-bottom: none;
 }

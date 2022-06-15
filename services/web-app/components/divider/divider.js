@@ -15,7 +15,13 @@ const Divider = ({ children, className }) => {
 }
 
 Divider.propTypes = {
+  /**
+   * Pass in the children that will be rendered within the Divider
+   */
   children: PropTypes.node,
+  /**
+   * Optional class name on the accordion.
+   */
   className: PropTypes.string
 }
 

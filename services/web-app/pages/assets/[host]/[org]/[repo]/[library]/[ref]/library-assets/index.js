@@ -26,7 +26,7 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect, useState } from 'react'
 import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'types'
 
-import AssetCatalogItemMeta from '@/components/catalog-item/asset-catalog-item-meta'
+import AssetCatalogItemMeta from '@/components/asset-catalog-item/asset-catalog-item-meta'
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
 import { framework } from '@/data/framework'

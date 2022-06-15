@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+export { DataGraph } from './data-graph.js'
 export { gql } from './gql.js'
 export { CreateUserInput } from './inputs/create-user-input.js'
 export { DataGraphMessage, DataGraphResponse } from './interfaces.js'

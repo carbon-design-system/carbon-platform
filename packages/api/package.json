@@ -49,6 +49,7 @@
     "cookie-parser": "^1.4.6",
     "cookie-signature": "^1.2.0",
     "express-session": "^1.17.3",
+    "graphql": "^16.5.0",
     "mongodb": "^4.7.0",
     "openid-client": "^5.1.6",
     "passport": "^0.6.0",

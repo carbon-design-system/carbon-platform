@@ -16,13 +16,13 @@ import useEventListener from '@/utils/use-event-listener'
 import styles from './catalog-sort.module.scss'
 
 const CatalogSort = ({
+  allowMultiView = true,
+  defaultSortIndex = 0,
   onSort,
   onView,
-  sort,
-  view,
-  sortOptions,
-  defaultSortIndex = 0,
-  allowMultiView = true
+  sortId,
+  sortOptions = [],
+  view = LIST_VIEW
 }) => {
   const containerRef = useRef(null)
   const [isSticky, setIsSticky] = useState(false)
@@ -51,7 +51,7 @@ const CatalogSort = ({
           <Dropdown
             id="catalog-sort"
             className={styles.dropdown}
-            initialSelectedItem={sortOptions.find((item) => item.id === sort)}
+            initialSelectedItem={sortOptions.find((item) => item.id === sortId)}
             items={sortOptions}
             itemToString={(item) => (item ? item.text : '')}
             onChange={({ selectedItem }) => {
@@ -97,23 +97,50 @@ const CatalogSort = ({
 }
 
 CatalogSort.defaultProps = {
+  allowMultiView: true,
   defaultSortIndex: 0,
-  allowMultiView: true
+  sortOptions: [],
+  view: LIST_VIEW
 }
 
 CatalogSort.propTypes = {
+  /**
+   * True if catalog elements can be rendered both as grid or list, false otherwise
+   */
   allowMultiView: PropTypes.bool,
+  /**
+   * Indicates array position of default sort strategy in sortOptions array
+   */
   defaultSortIndex: PropTypes.number,
-  onSort: PropTypes.func,
-  onView: PropTypes.func,
-  sort: PropTypes.string,
+  /**
+   * (sortId) => void
+   * Function to call when new sort option is selected.
+   * Should update sortId passed to props
+   */
+  onSort: PropTypes.func.isRequired,
+  /**
+   * (viewOption) => void
+   * Function to call when new view option is selected.
+   * Should update view passed to props
+   */
+  onView: PropTypes.func.isRequired,
+  /**
+   * Id of currently selected sort option
+   */
+  sortId: PropTypes.string.isRequired,
+  /**
+   * Array of object options the list of items can be sorted by
+   */
   sortOptions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
       text: PropTypes.string
     })
   ).isRequired,
-  view: PropTypes.oneOf(['grid', 'list'])
+  /**
+   * Current selected view option
+   */
+  view: PropTypes.oneOf([GRID_VIEW, LIST_VIEW])
 }
 
 export default CatalogSort

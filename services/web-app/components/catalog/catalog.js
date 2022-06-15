@@ -22,17 +22,17 @@ import useQueryState from '@/utils/use-query-state'
 import styles from './catalog.module.scss'
 
 function Catalog({
-  filter = {},
-  items = [],
-  itemPluralName = '',
-  itemName = '',
-  renderItem,
-  availableFilters = {},
   allowMultiView = true,
+  availableFilters = {},
+  defaultSortIndex = 0,
+  filter = {},
+  itemName = '',
+  itemPluralName = '',
+  items = [],
   onFilter,
   onUpdateFilter,
-  sortOptions,
-  defaultSortIndex
+  renderItem,
+  sortOptions
 }) {
   const [query, setQuery] = useQueryState(
     'q',
@@ -148,11 +148,11 @@ function Catalog({
         itemName={itemName}
       />
       <CatalogFilters filter={filter} availableFilters={availableFilters} onFilter={handleFilter} />
-      <CatalogResults items={items} />
+      <CatalogResults resultCount={items.length} />
       <CatalogSort
         onSort={setSort}
         onView={setView}
-        sort={sort}
+        sortId={sort}
         view={view}
         sortOptions={sortOptions}
         defaultSortIndex={defaultSortIndex}
@@ -162,13 +162,12 @@ function Catalog({
         items={items}
         itemPluralName={itemPluralName}
         isGrid={view === GRID_VIEW}
-        filter={filter}
         page={page}
         pageSize={pageSize}
         renderItem={renderItem}
       />
       <CatalogPagination
-        assets={items}
+        items={items}
         page={page}
         pageSize={pageSize}
         setPage={setPage}
@@ -178,17 +177,66 @@ function Catalog({
   )
 }
 
+Catalog.defaultProps = {
+  allowMultiView: true,
+  availableFilters: {},
+  defaultSortIndex: 0,
+  filter: {},
+  itemName: '',
+  itemPluralName: '',
+  items: []
+}
+
 Catalog.propTypes = {
+  /**
+   * True if catalog elements can be rendered both as grid or list, false otherwise
+   */
   allowMultiView: PropTypes.bool,
+  /**
+   * Object containing all keys and  name/values of possible filters
+   */
   availableFilters: PropTypes.object,
+  /**
+   * Indicates array position of default sort strategy in sortOptions array
+   */
   defaultSortIndex: PropTypes.number,
-  filter: PropTypes.object,
+  /**
+   * Object containing key/value(array) of currently applied filters
+   */
+  filter: PropTypes.object.isRequired,
+  /**
+   * singular name to describe catalog items category (e.g : "asset", "component")
+   */
   itemName: PropTypes.string.isRequired,
+  /**
+   * plural name to describe catalog items category (e.g : "assets", "components")
+   */
   itemPluralName: PropTypes.string.isRequired,
+  /**
+   * array of items to display (should take filter into account)
+   */
   items: PropTypes.array.isRequired,
-  onFilter: PropTypes.func,
-  onUpdateFilter: PropTypes.func,
-  renderItem: PropTypes.func,
+  /**
+   * (sort,search) => void
+   * function called when items list should be updated based on new parameters.
+   * Should update the list of items passed as prop)
+   */
+  onFilter: PropTypes.func.isRequired,
+  /**
+   * (updatedFilter) => void
+   * function called when filter needs to be updated (add/remove key, clear all).
+   * Should update the filter object passed as prop.
+   * It is not necessary to update the list of items at this time
+   */
+  onUpdateFilter: PropTypes.func.isRequired,
+  /**
+   * (item,index,isGrid) => React.node
+   * function called to visually render an item. Should return a jsx object.
+   */
+  renderItem: PropTypes.func.isRequired,
+  /**
+   * Array of object options the list of items can be sorted by
+   */
   sortOptions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

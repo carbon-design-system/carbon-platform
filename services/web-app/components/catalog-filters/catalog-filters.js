@@ -13,7 +13,7 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-filters.module.scss'
 
-const CatalogFilters = ({ filter, availableFilters, onFilter }) => {
+const CatalogFilters = ({ availableFilters = {}, filter = {}, onFilter }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
 
   if (isEmpty(filter)) return null
@@ -35,10 +35,25 @@ const CatalogFilters = ({ filter, availableFilters, onFilter }) => {
   )
 }
 
+CatalogFilters.defaultProps = {
+  availableFilters: {},
+  filter: {}
+}
+
 CatalogFilters.propTypes = {
+  /**
+   * Object containing all keys and  name/values of possible filters
+   */
   availableFilters: PropTypes.object,
-  filter: PropTypes.object,
-  onFilter: PropTypes.func
+  /**
+   * Object containing key/value(array) of currently applied filters
+   */
+  filter: PropTypes.object.isRequired,
+  /**
+   * (item, key, action) => void
+   * function to handle filters changes (add/remove key, clear all)
+   */
+  onFilter: PropTypes.func.isRequired
 }
 
 export default CatalogFilters

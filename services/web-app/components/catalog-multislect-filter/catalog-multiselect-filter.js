@@ -18,9 +18,9 @@ import useOutsideClick from '@/utils/use-outside-click'
 import styles from './catalog-multiselect-filter.module.scss'
 
 const CatalogMultiselectFilter = ({
-  filter,
-  availableFilters,
+  availableFilters = {},
   className: customClassName,
+  filter = {},
   onFilter
 }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
@@ -140,11 +140,29 @@ const CatalogMultiselectFilter = ({
   )
 }
 
+CatalogMultiselectFilter.defaultProps = {
+  availableFilters: {},
+  filter: {}
+}
+
 CatalogMultiselectFilter.propTypes = {
+  /**
+   * Object containing all keys and  name/values of possible filters
+   */
   availableFilters: PropTypes.object,
+  /**
+   * Optional container class name.
+   */
   className: PropTypes.string,
-  filter: PropTypes.object,
-  onFilter: PropTypes.func
+  /**
+   * Object containing key/value(array) of currently applied filters
+   */
+  filter: PropTypes.object.isRequired,
+  /**
+   * (item, key, action) => void
+   * function to handle filters changes (add/remove key, clear all)
+   */
+  onFilter: PropTypes.func.isRequired
 }
 
 export default CatalogMultiselectFilter

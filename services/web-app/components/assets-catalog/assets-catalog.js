@@ -141,12 +141,7 @@ const filterPropertyHasValidValue = (filter, key, value) => {
   )
 }
 
-/**
- * The `<Aside>` component is a wrapper component that adds styling to make the text display
- *  smaller than the default body text with a one column offset. It is designed to be used on
- * the side of the page within grid components. Add an aria-label for a11y.
- */
-const AssetsCatalog = ({ libraries, type, collection, glob = {} }) => {
+const AssetsCatalog = ({ collection, glob = {}, libraries, type }) => {
   const defaultFilter = {}
 
   const [availableFilters] = useState(getFilters({ collection, type }))
@@ -271,6 +266,12 @@ const AssetsCatalog = ({ libraries, type, collection, glob = {} }) => {
     }
   }
 
+  const getAssetOtherFrameworkCount = (asset) => {
+    const baseIdentifier = getBaseIdentifier(asset)
+
+    return collapseAssetGroups(asset, filter) ? get(groupedAssets, baseIdentifier, 0) - 1 : 0
+  }
+
   const renderAsset = (asset, index, isGrid) => (
     <AssetCatalogItem
       groupedAssets={groupedAssets}
@@ -278,6 +279,7 @@ const AssetsCatalog = ({ libraries, type, collection, glob = {} }) => {
       filter={filter}
       key={`${index}-${getSlug(asset.content)}`}
       isGrid={isGrid}
+      otherFrameworkCount={getAssetOtherFrameworkCount(asset)}
     />
   )
 
@@ -298,18 +300,23 @@ const AssetsCatalog = ({ libraries, type, collection, glob = {} }) => {
 
 export default AssetsCatalog
 
-AssetsCatalog.defaultsProps = {
+AssetsCatalog.defaultProps = {
   glob: {}
 }
 
 AssetsCatalog.propTypes = {
-  collection: PropTypes.string,
+  /**
+   * Collection of assets to display, if any.
+   */
+  collection: PropTypes.oneOf(['data-visualization']),
+  /**
+   * Glob data to minimatch against.
+   */
   glob: PropTypes.object,
   /**
    * Libraries array.
    */
   libraries: PropTypes.arrayOf(libraryPropTypes).isRequired,
-
   /**
    * type of catalog element.
    */

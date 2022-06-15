@@ -13,9 +13,9 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import styles from './catalog-list.module.scss'
 
 const CatalogList = ({
-  items,
-  itemPluralName,
   isGrid = false,
+  itemPluralName = '',
+  items = [],
   page = 1,
   pageSize = 10,
   renderItem
@@ -53,14 +53,40 @@ const CatalogList = ({
   )
 }
 
+CatalogList.defaultProps = {
+  isGrid: false,
+  itemPluralName: '',
+  items: [],
+  page: 1,
+  pageSize: 10
+}
+
 CatalogList.propTypes = {
+  /**
+   * Whether the current view is a grid (True) or not (false)
+   */
   isGrid: PropTypes.bool,
+  /**
+   * plural name to describe catalog items category (e.g : "assets", "components")
+   */
   itemPluralName: PropTypes.string.isRequired,
+  /**
+   * array of items to display (should take filter into account)
+   */
   items: PropTypes.array.isRequired,
-  itemsCounts: PropTypes.object.isRequired,
+  /**
+   * Current page number
+   */
   page: PropTypes.number,
+  /**
+   * Number of items to display per page
+   */
   pageSize: PropTypes.number,
-  renderItem: PropTypes.func
+  /**
+   * (item,index,isGrid) => React.node
+   * function called to visually render an item. Should return a jsx object.
+   */
+  renderItem: PropTypes.func.isRequired
 }
 
 export default CatalogList

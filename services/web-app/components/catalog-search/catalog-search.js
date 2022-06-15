@@ -16,13 +16,13 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import styles from './catalog-search.module.scss'
 
 const CatalogSearch = ({
+  availableFilters = {},
   className,
-  filter,
-  availableFilters,
+  filter = {},
+  itemName = '',
   onFilter,
   onSearch,
-  search = '',
-  itemName
+  search = ''
 }) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
@@ -74,14 +74,44 @@ const CatalogSearch = ({
   )
 }
 
+CatalogSearch.defaultProps = {
+  availableFilters: {},
+  filter: {},
+  itemName: '',
+  search: ''
+}
+
 CatalogSearch.propTypes = {
+  /**
+   * Object containing all keys and  name/values of possible filters
+   */
   availableFilters: PropTypes.object,
+  /**
+   * Optional container class name.
+   */
   className: PropTypes.string,
-  filter: PropTypes.object,
+  /**
+   * Object containing key/value(array) of currently applied filters
+   */
+  filter: PropTypes.object.isRequired,
+  /**
+   * singular name to describe catalog items category (e.g : "asset", "component")
+   */
   itemName: PropTypes.string.isRequired,
-  onFilter: PropTypes.func,
-  onSearch: PropTypes.func,
-  search: PropTypes.string
+  /**
+   * (item, key, action) => void
+   * function to handle filters changes (add/remove key, clear all)
+   */
+  onFilter: PropTypes.func.isRequired,
+  /**
+   * (newQuery, saveQuery) => void
+   * function to handle query string changes
+   */
+  onSearch: PropTypes.func.isRequired,
+  /**
+   * current value of search query
+   */
+  search: PropTypes.string.isRequired
 }
 
 export default CatalogSearch

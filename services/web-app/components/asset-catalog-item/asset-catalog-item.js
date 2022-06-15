@@ -7,7 +7,6 @@
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import { Events } from '@carbon/react/icons'
 import clsx from 'clsx'
-import { get } from 'lodash'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
@@ -16,7 +15,6 @@ import { assetPropTypes } from 'types'
 import FrameworkIcon from '@/components/framework-icon'
 import TypeTag from '@/components/type-tag'
 import { teams } from '@/data/teams'
-import { collapseAssetGroups, getBaseIdentifier } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
@@ -41,10 +39,13 @@ const AssetCatalogItemImage = ({ asset }) => {
 }
 
 AssetCatalogItemImage.propTypes = {
+  /**
+   * Asset object
+   */
   asset: assetPropTypes
 }
 
-const AssetCatalogItemContent = ({ asset, groupedAssets, filter = {}, isGrid = false }) => {
+const AssetCatalogItemContent = ({ asset, isGrid = false, otherFrameworkCount = 0 }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
 
   const { name, description } = asset.content
@@ -57,12 +58,6 @@ const AssetCatalogItemContent = ({ asset, groupedAssets, filter = {}, isGrid = f
   const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
 
   const isSeparatedMeta = !isLg || isGrid
-
-  const otherFrameworkCount = () => {
-    const baseIdentifier = getBaseIdentifier(asset)
-
-    return collapseAssetGroups(asset, filter) ? get(groupedAssets, baseIdentifier, 0) - 1 : 0
-  }
 
   return (
     <Grid className={styles.content}>
@@ -97,7 +92,7 @@ const AssetCatalogItemContent = ({ asset, groupedAssets, filter = {}, isGrid = f
           <FrameworkIcon
             className={styles.framework}
             framework={asset.content.framework}
-            otherCount={otherFrameworkCount()}
+            otherCount={otherFrameworkCount}
           />
         </div>
       </Column>
@@ -105,14 +100,27 @@ const AssetCatalogItemContent = ({ asset, groupedAssets, filter = {}, isGrid = f
   )
 }
 
-AssetCatalogItemContent.propTypes = {
-  asset: assetPropTypes,
-  filter: PropTypes.object,
-  groupedAssets: PropTypes.object,
-  isGrid: PropTypes.bool
+AssetCatalogItemContent.defaultProps = {
+  isGrid: false,
+  otherFrameworkCount: 0
 }
 
-const AssetCatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
+AssetCatalogItemContent.propTypes = {
+  /**
+   * Asset object to render visually
+   */
+  asset: assetPropTypes.isRequired,
+  /**
+   * Whether the current view is a grid (True) or not (false)
+   */
+  isGrid: PropTypes.bool,
+  /**
+   * Count of other frameworks asset is also available in
+   */
+  otherFrameworkCount: PropTypes.number
+}
+
+const AssetCatalogItem = ({ asset, isGrid = false, otherFrameworkCount = 0 }) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
   const isXlg = useMatchMedia(mediaQueries.xlg)
@@ -137,10 +145,9 @@ const AssetCatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
             <AssetCatalogItemImage asset={asset} />
           </AspectRatio>
           <AspectRatio ratio="16x9">
-            <AssetCatalogItemImage
+            <AssetCatalogItemContent
               asset={asset}
-              assetCounts={assetCounts}
-              filter={filter}
+              otherFrameworkCount={otherFrameworkCount}
               isGrid={isGrid}
             />
           </AspectRatio>
@@ -164,8 +171,7 @@ const AssetCatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
                 <AspectRatio ratio="3x2">
                   <AssetCatalogItemContent
                     asset={asset}
-                    assetCounts={assetCounts}
-                    filter={filter}
+                    otherFrameworkCount={otherFrameworkCount}
                     isGrid={isGrid}
                   />
                 </AspectRatio>
@@ -173,8 +179,7 @@ const AssetCatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
               {isMd && (
                 <AssetCatalogItemContent
                   asset={asset}
-                  assetCounts={assetCounts}
-                  filter={filter}
+                  otherFrameworkCount={otherFrameworkCount}
                   isGrid={isGrid}
                 />
               )}
@@ -188,11 +193,24 @@ const AssetCatalogItem = ({ asset, assetCounts, filter, isGrid = false }) => {
   return isGrid ? renderGrid() : renderList()
 }
 
+AssetCatalogItem.defaultProps = {
+  isGrid: false,
+  otherFrameworkCount: 0
+}
+
 AssetCatalogItem.propTypes = {
-  asset: assetPropTypes,
-  assetCounts: PropTypes.object,
-  filter: PropTypes.object,
-  isGrid: PropTypes.bool
+  /**
+   * Asset object to render visually
+   */
+  asset: assetPropTypes.isRequired,
+  /**
+   * Whether the current view is a grid (True) or not (false)
+   */
+  isGrid: PropTypes.bool,
+  /**
+   * Count of other frameworks asset is also available in
+   */
+  otherFrameworkCount: PropTypes.number
 }
 
 export default AssetCatalogItem

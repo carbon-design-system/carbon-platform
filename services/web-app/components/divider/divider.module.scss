@@ -1,0 +1,28 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+.list-row {
+  padding: spacing.$spacing-07 0 calc(spacing.$spacing-09 + spacing.$spacing-03);
+  border-bottom: 1px solid theme.$border-strong-01;
+}
+
+:global(.cds--subgrid--wide) {
+  margin-top: 0;
+}
+
+.markdown_h2-container {
+  margin-top: 0;
+}
+
+.list-row:last-child {
+  border-bottom: none;
+}

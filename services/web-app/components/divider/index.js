@@ -5,4 +5,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export { default } from './expressive-list'
+export { default } from './divider'

@@ -78,7 +78,7 @@ export const getAssetType = (asset) => {
  * @returns {string} Asset status value
  */
 export const getAssetStatus = (asset) => {
-  return get(asset.content, ['status', 'key'], asset.content.status) ?? 'draft'
+  return asset.content.status?.key || asset.content.status || 'draft'
 }
 
 /**

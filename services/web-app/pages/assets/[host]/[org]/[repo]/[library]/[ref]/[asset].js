@@ -203,7 +203,7 @@ const Asset = ({ libraryData, params }) => {
                           className={styles['status-icon']}
                           status={assetData.statusKey}
                         />
-                        {get(status, `[${assetData.statusKey}].name`, '–')}
+                        {status[assetData.statusKey]?.name || '-'}
                       </dd>
                     </Column>
                     <Column

@@ -2,9 +2,9 @@
 <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>16-angular</title>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="16-angular" fill="#000000" fill-rule="nonzero">
-            <polygon id="Path" points="6.48464286 8 9.515 8 7.99964286 4.80857143"></polygon>
-            <path d="M8,0 L0,2.85714286 L1.64714286,12.5714286 L8,16 L14.3482143,12.5714286 L16,2.85714286 L8,0 Z M11.1428571,11.4285714 L10.1932143,9.42857143 L5.80642857,9.42857143 L4.85714286,11.4285714 L3.42857143,11.4285714 L8,1.42857143 L12.5714286,11.4285714 L11.1428571,11.4285714 Z" id="Shape"></path>
+        <g id="16-angular" transform="translate(1.000000, 1.000000)" fill="#000000" fill-rule="nonzero">
+            <polygon id="Path" points="5.6740625 7 8.325625 7 6.9996875 4.2075"></polygon>
+            <path d="M7,0 L0,2.5 L1.44125,11 L7,14 L12.5546875,11 L14,2.5 L7,0 Z M9.75,10 L8.9190625,8.25 L5.080625,8.25 L4.25,10 L3,10 L7,1.25 L11,10 L9.75,10 Z" id="Shape"></path>
         </g>
     </g>
 </svg>

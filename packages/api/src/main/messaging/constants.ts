@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Options } from 'amqplib'
-import chalk from 'chalk'
 
 import { getEnvVar, Runtime } from '../runtime/index.js'
 
@@ -38,6 +37,11 @@ const CARBON_MESSAGE_QUEUE_USERNAME = getEnvVar('CARBON_MESSAGE_QUEUE_USERNAME',
 const CARBON_MESSAGE_QUEUE_PASSWORD = getEnvVar('CARBON_MESSAGE_QUEUE_PASSWORD', '', runtime)
 
 /**
+ * The delay after which to attempt a reconnect to the message broker.
+ */
+const CONNECT_RETRY_INTERVAL = 3000
+
+/**
  * Default pattern used when binding a queue to an exchange. Blank indicates that there are no
  * specific patterns being used to filter messages (i.e. **all** messages will pass through).
  */
@@ -67,15 +71,14 @@ const DEFAULT_QUEUE_OPTIONS: Options.AssertQueue = {
 
 /**
  * Defalt socket options. This incorporates a certificate representing the message queue if one was
- * provided as an environment variable.
+ * provided as an environment variable, as well as some performance-based optimizations for the
+ * underlying TPC socket.
  */
 const DEFAULT_SOCKET_OPTIONS = {
-  ca: CARBON_MESSAGE_QUEUE_CERTIFICATE ? [CARBON_MESSAGE_QUEUE_CERTIFICATE] : []
-}
-
-// Message queue URL checking
-if (CARBON_MESSAGE_QUEUE_URL === LOCAL_MESSAGE_QUEUE_URL) {
-  console.warn(`${chalk.bgYellowBright.black('WARN')} Using localhost message queue url`)
+  ca: CARBON_MESSAGE_QUEUE_CERTIFICATE ? [CARBON_MESSAGE_QUEUE_CERTIFICATE] : [],
+  keepAlive: true,
+  keepAliveInitialDelay: 1000, // ms
+  noDelay: true // Disable Nagle's algorithm
 }
 
 // Add auth to message queue URL, if present
@@ -89,6 +92,7 @@ export {
   CARBON_MESSAGE_QUEUE_PASSWORD,
   messageQueueUrlWithAuth as CARBON_MESSAGE_QUEUE_URL,
   CARBON_MESSAGE_QUEUE_USERNAME,
+  CONNECT_RETRY_INTERVAL,
   DEFAULT_BIND_PATTERN,
   DEFAULT_EXCHANGE_OPTIONS,
   DEFAULT_EXCHANGE_TYPE,

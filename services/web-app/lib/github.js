@@ -519,6 +519,7 @@ const getPackageJsonContent = async (params = {}, packageJsonPath = '/package.js
     description: packageJsonContent.description,
     license: packageJsonContent.license,
     package: packageJsonContent.name,
-    version: packageJsonContent.version
+    version: packageJsonContent.version,
+    private: !!packageJsonContent.private
   }
 }

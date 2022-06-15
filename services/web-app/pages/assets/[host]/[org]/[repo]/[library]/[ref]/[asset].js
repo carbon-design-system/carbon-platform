@@ -14,7 +14,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect, useRef } from 'react'
-import { libraryPropTypes } from 'types'
+import { libraryPropTypes, paramsPropTypes } from 'types'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
@@ -37,7 +37,7 @@ import { getSlug } from '@/utils/slug'
 
 import styles from './[asset].module.scss'
 
-const Asset = ({ libraryData }) => {
+const Asset = ({ libraryData, params }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
   const contentRef = useRef(null)
@@ -71,7 +71,7 @@ const Asset = ({ libraryData }) => {
     }
   ]
 
-  const libraryPath = `/assets/${getSlug(libraryData.content)}`
+  const libraryPath = `/assets/${getSlug(libraryData.content)}/${params.ref}`
 
   const seo = {
     title: name,
@@ -281,7 +281,8 @@ const Asset = ({ libraryData }) => {
 }
 
 Asset.propTypes = {
-  libraryData: libraryPropTypes
+  libraryData: libraryPropTypes,
+  params: paramsPropTypes
 }
 
 export const getServerSideProps = async ({ params }) => {

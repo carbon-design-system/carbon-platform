@@ -7,6 +7,7 @@
 import amqp from 'amqplib'
 import { v4 as uuidv4 } from 'uuid'
 
+import { Logging } from '../logging/logging.js'
 import { Runtime } from '../runtime/index.js'
 import { CARBON_MESSAGE_QUEUE_URL, DEFAULT_SOCKET_OPTIONS } from './constants.js'
 import { EventMessage, QueryMessage } from './interfaces.js'
@@ -45,6 +46,7 @@ class MessagingClient {
     return MessagingClient.instance
   }
 
+  private readonly logging: Logging
   private messagingConnection: MessagingConnection
   private replyQueue?: amqp.Replies.AssertQueue
   private replyCallbacks: ReplyCallbacks
@@ -52,18 +54,23 @@ class MessagingClient {
 
   private constructor(config?: MessagingClientConfig) {
     this.runtime = config?.runtime || new Runtime()
+
+    this.logging = new Logging({
+      component: 'messaging-connection',
+      isRemoteLoggingEnabled: false
+    })
+
     this.replyCallbacks = new Map()
+
     this.messagingConnection = new MessagingConnection({
       url: CARBON_MESSAGE_QUEUE_URL,
       socketOptions: DEFAULT_SOCKET_OPTIONS,
       retry: true,
-      callback: () => this.handleConnectionReady()
+      onChannelReady: this.handleChannelReady.bind(this)
     })
   }
 
-  private async handleConnectionReady() {
-    const channel = await this.messagingConnection.channel
-
+  private async handleChannelReady(channel: amqp.ConfirmChannel) {
     this.replyQueue = await channel.assertQueue(RANDOM_QUEUE_NAME, {
       exclusive: true
     })
@@ -71,7 +78,7 @@ class MessagingClient {
     // Listen for responses on the reply queue
     await channel.consume(
       this.replyQueue.queue,
-      this.replyReceived.bind(this),
+      this.handleReply.bind(this),
       // No explicit acks needed, since this is the service's personal reply queue
       { noAck: true }
     )
@@ -83,7 +90,7 @@ class MessagingClient {
    *
    * @param reply The message received from the broker.
    */
-  private replyReceived(reply: amqp.ConsumeMessage | null) {
+  private handleReply(reply: amqp.ConsumeMessage | null) {
     const correlationId = reply?.properties.correlationId as string
     const resolve = this.replyCallbacks.get(correlationId)
 
@@ -100,12 +107,7 @@ class MessagingClient {
    * Safely publishes a message such that no exceptions are thrown to the caller and the method does
    * not exit until the publish has happened.
    */
-  private async safePublish(
-    exchange: string,
-    routingKey: string,
-    content: Buffer,
-    options?: amqp.Options.Publish
-  ) {
+  private async safePublish(exchange: string, content: Buffer, options?: amqp.Options.Publish) {
     let publishResult: boolean | undefined
     let channel
 
@@ -114,12 +116,12 @@ class MessagingClient {
         channel = await this.messagingConnection.channel
         // `publish` returns true if it is safe to continue sending messages; or false if pending
         // "confirms" should first be awaited
-        publishResult = channel.publish(exchange, routingKey, content, options)
+        publishResult = channel.publish(exchange, DEFAULT_ROUTING_KEY, content, options)
       } catch (e) {
-        console.error('Unexpected exception thrown while publishing a message', e)
-
-        // Close the connection to prevent future use since it is likely in a bad state
-        this.messagingConnection.close()
+        this.logging.error('Unexpected exception thrown while publishing a message')
+        if (e instanceof Error) {
+          this.logging.error(e)
+        }
 
         // Try again after a few seconds
         await new Promise((resolve) => {
@@ -131,16 +133,14 @@ class MessagingClient {
     // At this point, the message is guaranteed to have been published to the message broker
 
     try {
-      // Typically an emit would not be awaited, but awaiting confirms here after a successful
-      // publish ensures that it can be
       if (publishResult === false && channel) {
         await channel.waitForConfirms()
       }
     } catch (e) {
-      console.error('Unexpected exception thrown while waiting for confirms', e)
-
-      // Close the connection since it is likely in a bad state
-      this.messagingConnection.close()
+      this.logging.error('Unexpected exception thrown while waiting for confirms')
+      if (e instanceof Error) {
+        this.logging.error(e)
+      }
     }
   }
 
@@ -173,7 +173,6 @@ class MessagingClient {
 
     await this.safePublish(
       this.runtime.withEnvironment(eventType),
-      DEFAULT_ROUTING_KEY,
       Buffer.from(JSON.stringify(dataToSend))
     )
   }
@@ -207,7 +206,6 @@ class MessagingClient {
 
     await this.safePublish(
       this.runtime.withEnvironment(queryType),
-      DEFAULT_ROUTING_KEY,
       Buffer.from(JSON.stringify(dataToSend)),
       {
         replyTo: this.replyQueue!.queue,

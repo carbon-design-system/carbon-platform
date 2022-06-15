@@ -43,6 +43,11 @@ interface LoggingConfig {
    * injection.
    */
   runtime?: Runtime
+
+  /**
+   * Explicit override of remote logging
+   */
+  isRemoteLoggingEnabled?: boolean
 }
 
 /**
@@ -83,10 +88,14 @@ class Logging {
 
     this.isDebugLoggingEnabled = this.runtime.runMode === RunMode.Dev || this.runtime.isDebugEnabled
 
-    this.isRemoteLoggingEnabled =
-      Logging.isRemoteLoggingAllowed &&
-      this.runtime.runMode === RunMode.Standard &&
-      this.runtime.environment !== Environment.Build
+    if (Logging.isRemoteLoggingAllowed) {
+      this.isRemoteLoggingEnabled =
+        config.isRemoteLoggingEnabled ??
+        (this.runtime.runMode === RunMode.Standard &&
+          this.runtime.environment !== Environment.Build)
+    } else {
+      this.isRemoteLoggingEnabled = false
+    }
 
     this.service = config.service || CARBON_SERVICE_NAME
 

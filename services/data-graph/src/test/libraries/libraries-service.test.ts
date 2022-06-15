@@ -4,27 +4,23 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Library } from '@carbon-platform/api/data-graph'
 import test from 'ava'
 
-test('TODO: uncomment tests after conversion', (t) => {
-  t.pass()
+import { LibrariesService } from '../../main/libraries/libraries-service.js'
+
+test('findAll', (t) => {
+  const librariesService = new LibrariesService()
+
+  const result = librariesService.findAll()
+
+  t.true(result instanceof Array)
 })
-// import { Library } from '@carbon-platform/api/data-graph'
 
-// import { LibrariesService } from '../../main/libraries/libraries-service'
+test('findById', (t) => {
+  const librariesService = new LibrariesService()
 
-// test('findAll', () => {
-//   const librariesService = new LibrariesService()
+  const result = librariesService.findById('lib1')
 
-//   const result = librariesService.findAll()
-
-//   expect(result).toBeInstanceOf(Array)
-// })
-
-// test('findById', () => {
-//   const librariesService = new LibrariesService()
-
-//   const result = librariesService.findById('lib1')
-
-//   expect(result).toBeInstanceOf(Library)
-// })
+  t.true(result instanceof Library)
+})

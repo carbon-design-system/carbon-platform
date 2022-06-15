@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.16](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.15...@carbon-platform/api@0.3.16) (2022-06-15)
+
+
+### Misc. 🔮
+
+* update node modules ([91ff95f](https://github.com/carbon-design-system/carbon-platform/commit/91ff95fd3d9c797f291099f3d875959010f822f0))
+
+### [0.3.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.14...@carbon-platform/api@0.3.15) (2022-06-13)
+
+
+### Misc. 🔮
+
+* **api:** logging consistency in messaging classes ([ae75426](https://github.com/carbon-design-system/carbon-platform/commit/ae75426fb87254e1f8305e2bcf9f07dfb1a442d0))
+
+### [0.3.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.13...@carbon-platform/api@0.3.14) (2022-06-12)
+
+
+### Bug Fixes 🐛
+
+* **api:** improve messaging connection performance and stability ([d6d0673](https://github.com/carbon-design-system/carbon-platform/commit/d6d06738ea849f3bf48f6f443ff7d5172f2eb287))
+
+### [0.3.13](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.12...@carbon-platform/api@0.3.13) (2022-06-11)
+
+
+### Bug Fixes 🐛
+
+* **api:** avoid logging credentials in messaging URLs ([7f81735](https://github.com/carbon-design-system/carbon-platform/commit/7f81735482f8d77dd852fe6a9b770715d434feac))
+
+### [0.3.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.11...@carbon-platform/api@0.3.12) (2022-06-11)
+
+
+### Features 🌟
+
+* **logging:** enhance self-debug logging ([44335b4](https://github.com/carbon-design-system/carbon-platform/commit/44335b46f814ab14a92c0472e25293bb9dc153a7))
+
+
+### Bug Fixes 🐛
+
+* **api:** even better error handling for rmq connection errors ([33dcd35](https://github.com/carbon-design-system/carbon-platform/commit/33dcd35d12aafa6ec8ae9bdbdce2d9534defa0c9))
+
 ### [0.3.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.10...@carbon-platform/api@0.3.11) (2022-06-10)
 
 

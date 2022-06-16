@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.36](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.35...@carbon-platform/icons@0.0.36) (2022-06-16)
+
+
+### Features 🌟
+
+* **web-app:** library details, add resources section ([51fd7a4](https://github.com/carbon-design-system/carbon-platform/commit/51fd7a4eff1ee5266be2fcb987c3b82dc184d775))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** use black npm logo ([9409747](https://github.com/carbon-design-system/carbon-platform/commit/9409747d53468eda034038ae92838094402b3b9c))
+
 ### [0.0.35](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.34...@carbon-platform/icons@0.0.35) (2022-06-10)
 
 

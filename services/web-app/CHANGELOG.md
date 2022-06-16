@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.135](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.134...@carbon-platform/web-app@0.1.135) (2022-06-16)
+
+
+### Features 🌟
+
+* **web-app:** library details, add resources section ([51fd7a4](https://github.com/carbon-design-system/carbon-platform/commit/51fd7a4eff1ee5266be2fcb987c3b82dc184d775))
+
+
+### Misc. 🔮
+
+* **web-app:** programmatically add statusKey property to asset ([7e1fc83](https://github.com/carbon-design-system/carbon-platform/commit/7e1fc83ef10601ffe293adc371ca97e48119122f))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add asset status lifecycle array to sort against ([3596cf1](https://github.com/carbon-design-system/carbon-platform/commit/3596cf18869c2573bf4b846fe4e94fd86f8bb18b))
+* **web-app:** add library version to lib link in asset detail ([c07a11d](https://github.com/carbon-design-system/carbon-platform/commit/c07a11d02a32564eeb1182b8f13bce2823ac38d9))
+* **web-app:** linter ([a2302c1](https://github.com/carbon-design-system/carbon-platform/commit/a2302c1a5c80e363612152ca7f91e5754c819b1e))
+* **web-app:** remove inline styles ([660b157](https://github.com/carbon-design-system/carbon-platform/commit/660b15739fccd715486fb0638a7013ca91a28b41))
+* **web-app:** remove inline styles ([c88fc2f](https://github.com/carbon-design-system/carbon-platform/commit/c88fc2f4a503abe7f9845e1d16836a90de70ab4b))
+* **web-app:** remove lodash use from asset status ([fba6c32](https://github.com/carbon-design-system/carbon-platform/commit/fba6c321a0b523c6bcab669ab998525357a396b3))
+* **web-app:** run linter ([addc133](https://github.com/carbon-design-system/carbon-platform/commit/addc133d0f7f241e547247414950285d951e9d5d))
+* **web-app:** sort imports ([caf2d4f](https://github.com/carbon-design-system/carbon-platform/commit/caf2d4fdba32aca831ce6dcec73c164b73880c50))
+* **web-app:** use black npm logo ([9409747](https://github.com/carbon-design-system/carbon-platform/commit/9409747d53468eda034038ae92838094402b3b9c))
+
 ### [0.1.134](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.133...@carbon-platform/web-app@0.1.134) (2022-06-15)
 
 

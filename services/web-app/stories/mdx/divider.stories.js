@@ -28,12 +28,7 @@ const Template = (args) => (
   <Divider {...args}>
     <Grid>
       <Column sm={4} md={2} lg={4}>
-        <h3>
-          <strong>v1.0</strong>
-        </h3>
-        <h2>
-          Target release:<div>June</div>
-        </h2>
+        <h2>Heading</h2>
       </Column>
       <Column sm={4} md={6} lg={8}>
         The sites first major release will help system users discover and learn about all the assets

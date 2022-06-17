@@ -14,7 +14,7 @@
   border-top: 1px solid theme.$border-strong;
   margin-top: calc(spacing.$spacing-09 + spacing.$spacing-03);
 
-  @include breakpoint.breakpoint(md) {
+  @include breakpoint.breakpoint(lg) {
     margin-right: -(spacing.$spacing-05);
   }
 }

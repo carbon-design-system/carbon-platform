@@ -10,24 +10,6 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 
-.border {
-  position: relative;
-
-  &::after {
-    position: absolute;
-    top: 0;
-    right: spacing.$spacing-05;
-    left: spacing.$spacing-05;
-    height: 1px;
-    background-color: theme.$border-strong-01;
-    content: '';
-    @include breakpoint.breakpoint(md) {
-      margin-right: -(spacing.$spacing-05);
-      margin-left: -(spacing.$spacing-05);
-    }
-  }
-}
-
 .intro-copy {
   margin-top: spacing.$spacing-11;
   @include type.type-style('fluid-heading-03', true);

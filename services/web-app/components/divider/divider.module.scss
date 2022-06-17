@@ -10,7 +10,7 @@
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 
 .divider {
-  padding-top: spacing.$spacing-04;
+  padding-top: spacing.$spacing-03;
   border-top: 1px solid theme.$border-strong;
   margin-top: calc(spacing.$spacing-09 + spacing.$spacing-03);
 

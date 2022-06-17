@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, Link } from '@carbon/react'
-import clsx from 'clsx'
 import Image from 'next/image'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
@@ -162,7 +161,7 @@ const PageContent = () => {
       </Grid>
       {releases.map((release, i) => (
         <Divider key={i}>
-          <Grid className={clsx(styles.release)}>
+          <Grid className={styles.release}>
             <Column sm={4} md={8} lg={4}>
               <h2 className={styles['release-heading']}>
                 <div>

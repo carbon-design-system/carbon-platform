@@ -250,7 +250,7 @@ const validateAsset = (asset, library) => {
  * @param {string} libraryVersionSlug e.g. 'carbon-charts@0.1.121'
  * @returns {import('../typedefs').Params}
  */
-export const getLibraryParams = (libraryVersionSlug) => {
+export const getLibraryParams = async (libraryVersionSlug) => {
   const inheritParams = getLibraryVersionAsset(libraryVersionSlug)
 
   if (inheritParams.library && libraryAllowList[inheritParams.library]) {

@@ -5,10 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
-@use '@carbon/react/scss/type' as type;
 
 .divider {
   padding: spacing.$spacing-07 0 calc(spacing.$spacing-09 + spacing.$spacing-03);

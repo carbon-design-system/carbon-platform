@@ -7,11 +7,16 @@
 
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
 
 .divider {
   padding-top: spacing.$spacing-04;
   border-top: 1px solid theme.$border-strong;
-  margin-bottom: calc(spacing.$spacing-09 + spacing.$spacing-03);
+  margin-top: calc(spacing.$spacing-09 + spacing.$spacing-03);
+
+  @include breakpoint.breakpoint(md) {
+    margin-right: -(spacing.$spacing-05);
+  }
 }
 
 .divider [class*='column'] > *:first-child {

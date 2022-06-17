@@ -22,7 +22,7 @@
     "start": "node dist/main/index.js",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "newtest": "ava --config ../../ava.config.mjs"
+    "test": "ava --config ../../ava.config.mjs"
   },
   "dependencies": {
     "@logdna/logger": "^2.6.5",

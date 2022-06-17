@@ -16,6 +16,7 @@ import CatalogSearch from '@/components/catalog-search'
 import CatalogSort from '@/components/catalog-sort'
 import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
 import { GRID_VIEW, LIST_VIEW } from '@/data/view'
+import useLocalState from '@/utils/use-local-state'
 import usePrevious from '@/utils/use-previous'
 import useQueryState from '@/utils/use-query-state'
 
@@ -47,8 +48,7 @@ function Catalog({
   const [sort, setSort] = useQueryState(
     'sort',
     {
-      defaultValue: ALPHABETICAL_ORDER,
-      resetOnLoad: false
+      defaultValue: ALPHABETICAL_ORDER
     },
     (value) => {
       return (
@@ -59,11 +59,10 @@ function Catalog({
     }
   )
 
-  const [view, setView] = useQueryState(
+  const [view, setView] = useLocalState(
     'view',
     {
-      defaultValue: LIST_VIEW,
-      resetOnLoad: false
+      defaultValue: LIST_VIEW
     },
     (value) => {
       return value && typeof value === 'string' && [GRID_VIEW, LIST_VIEW].includes(value)

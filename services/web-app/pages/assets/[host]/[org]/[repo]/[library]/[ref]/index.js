@@ -26,14 +26,18 @@ import ResourceCard from '@/components/resource-card'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
-import { getLibraryData, getLibraryNavData } from '@/lib/github'
+import { getLibraryData, getLibraryNavData, getLibraryParams } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { getLicense } from '@/utils/schema'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './index.module.scss'
 
 const Library = ({ libraryData, params, navData }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
+
+  const isLg = useMatchMedia(mediaQueries.lg)
+  const isXlg = useMatchMedia(mediaQueries.xlg)
 
   const router = useRouter()
 
@@ -87,9 +91,10 @@ const Library = ({ libraryData, params, navData }) => {
     return (
       <Column sm={4} md={4} lg={4}>
         <ResourceCard
+          aspectRatio={isLg && !isXlg ? '16:9' : '2:1'}
           title={
             <div>
-              {library} <br /> {version}
+              {libraryData.content.inheritedLib?.content?.name ?? library} <br /> {version}
             </div>
           }
           subTitle="Inherits"
@@ -172,13 +177,14 @@ const Library = ({ libraryData, params, navData }) => {
           </Dashboard>
         </Column>
         <Column sm={4} md={8} lg={8}>
-          <section>
+          <section className={styles['resources-section']}>
             <H2>Resources</H2>
 
             <CardGroup>
               {libraryData.content.inherits && libraryInheritanceCard()}
               <Column sm={4} md={4} lg={4}>
                 <ResourceCard
+                  aspectRatio={isLg && !isXlg ? '16:9' : '2:1'}
                   title={`${libraryData.params.org}/${libraryData.params.repo}`}
                   subTitle={libraryData.params.host === 'github.com' ? 'GitHub' : 'IBM GitHub'}
                   href={`https://${libraryData.params.host}/${libraryData.params.org}/${libraryData.params.repo}`}
@@ -189,6 +195,7 @@ const Library = ({ libraryData, params, navData }) => {
               {!libraryData.content.private && (
                 <Column sm={4} md={4} lg={4}>
                   <ResourceCard
+                    aspectRatio={isLg && !isXlg ? '16:9' : '2:1'}
                     title={libraryData.content.package}
                     subTitle="Package"
                     href={`https://npmjs.com/package/${libraryData.content.package}/v/${libraryData.content.version}`}
@@ -219,8 +226,17 @@ export const getServerSideProps = async ({ params }) => {
       notFound: true
     }
   }
-
   const navData = getLibraryNavData(params, libraryData)
+
+  if (libraryData.content.inherits) {
+    const inheritedLibParams = await getLibraryParams(libraryData.content.inherits)
+    if (inheritedLibParams) {
+      const inheritedLib = await getLibraryData(inheritedLibParams)
+      if (inheritedLib) {
+        libraryData.content.inheritedLib = inheritedLib
+      }
+    }
+  }
 
   return {
     props: {

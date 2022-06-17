@@ -245,6 +245,25 @@ const validateAsset = (asset, library) => {
 }
 
 /**
+ * Finds library object in libraryAllowList from slug and returns a valid set of params
+ * (if librry is valid)
+ * @param {string} libraryVersionSlug e.g. 'carbon-charts@0.1.121'
+ * @returns {import('../typedefs').Params}
+ */
+export const getLibraryParams = (libraryVersionSlug) => {
+  const inheritParams = getLibraryVersionAsset(libraryVersionSlug)
+
+  if (inheritParams.library && libraryAllowList[inheritParams.library]) {
+    return validateLibraryParams({
+      ...libraryAllowList[inheritParams.library],
+      ...inheritParams
+    })
+  } else {
+    return {}
+  }
+}
+
+/**
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  * @param {import('../typedefs').Params} params
@@ -290,19 +309,12 @@ export const getLibraryData = async (params = {}) => {
   let assets = await getLibraryAssets(params)
 
   if (library.inherits) {
-    const inheritParams = getLibraryVersionAsset(library.inherits)
+    const inheritParams = await getLibraryParams(library.inherits)
 
-    if (inheritParams.library && libraryAllowList[inheritParams.library]) {
-      const fullInheritParams = await validateLibraryParams({
-        ...libraryAllowList[inheritParams.library],
-        ...inheritParams
-      })
+    if (!isEmpty(inheritParams)) {
+      const inheritAssets = await getLibraryAssets(inheritParams)
 
-      if (!isEmpty(fullInheritParams)) {
-        const inheritAssets = await getLibraryAssets(fullInheritParams)
-
-        assets = mergeInheritedAssets(assets, inheritAssets)
-      }
+      assets = mergeInheritedAssets(assets, inheritAssets)
     }
   }
 

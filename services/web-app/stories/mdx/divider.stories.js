@@ -11,7 +11,7 @@ import Divider from '@/components/divider'
 
 const stories = {
   title: 'MDX/Divider',
-  component: Divider,,
+  component: Divider,
   argTypes: {
     children: {
       control: false

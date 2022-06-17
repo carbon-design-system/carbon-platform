@@ -47,7 +47,7 @@
  */
 
 .release {
-  padding-bottom: spacing.$spacing-09 + spacing.$spacing-03;
+  padding-top: spacing.$spacing-06;
   @include breakpoint.breakpoint(md) {
     padding-right: 0;
     padding-left: 0;

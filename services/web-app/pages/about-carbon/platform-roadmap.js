@@ -10,6 +10,7 @@ import Image from 'next/image'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import Divider from '@/components/divider/divider'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
@@ -160,54 +161,56 @@ const PageContent = () => {
         </Column>
       </Grid>
       {releases.map((release, i) => (
-        <Grid className={clsx(styles.release, styles.border)} key={i}>
-          <Column sm={4} md={8} lg={4}>
-            <h2 className={styles['release-heading']}>
-              <div>
-                <strong>{release.version}</strong>
+        <Divider key={i}>
+          <Grid className={clsx(styles.release)}>
+            <Column sm={4} md={8} lg={4}>
+              <h2 className={styles['release-heading']}>
+                <div>
+                  <strong>{release.version}</strong>
+                </div>
+                <div>{release.release}</div>
+                <div>{release.date}</div>
+              </h2>
+            </Column>
+            <Column sm={4} md={8}>
+              <div className={styles['release-content']}>
+                {release.title && <h3 className={styles['release-subheading']}>{release.title}</h3>}
+                {release.subtitle && <p className={styles['release-copy']}>{release.subtitle}</p>}
+                {release.description && (
+                  <p className={styles['release-copy']}>{release.description}</p>
+                )}
+                {release.descriptionBlock &&
+                  release.descriptionBlock.map((descriptionBlock, o) => (
+                    <div className={styles['release-copy']} key={o}>
+                      <p>{descriptionBlock.title}</p>
+                      <p>{descriptionBlock.description}</p>
+                    </div>
+                  ))}
+                {release.bulletPointsHeader && (
+                  <p className={styles['release-copy']}>{release.bulletPointsHeader}</p>
+                )}
+                {release.bulletPoints && (
+                  <ul className={styles['release-copy']}>
+                    {release.bulletPoints.map((bulletPoint, e) => {
+                      return <li key={e}>{'– ' + bulletPoint}</li>
+                    })}
+                  </ul>
+                )}
               </div>
-              <div>{release.release}</div>
-              <div>{release.date}</div>
-            </h2>
-          </Column>
-          <Column sm={4} md={8}>
-            <div className={styles['release-content']}>
-              {release.title && <h3 className={styles['release-subheading']}>{release.title}</h3>}
-              {release.subtitle && <p className={styles['release-copy']}>{release.subtitle}</p>}
-              {release.description && (
-                <p className={styles['release-copy']}>{release.description}</p>
-              )}
-              {release.descriptionBlock &&
-                release.descriptionBlock.map((descriptionBlock, o) => (
-                  <div className={styles['release-copy']} key={o}>
-                    <p>{descriptionBlock.title}</p>
-                    <p>{descriptionBlock.description}</p>
-                  </div>
-                ))}
-              {release.bulletPointsHeader && (
-                <p className={styles['release-copy']}>{release.bulletPointsHeader}</p>
-              )}
-              {release.bulletPoints && (
-                <ul className={styles['release-copy']}>
-                  {release.bulletPoints.map((bulletPoint, e) => {
-                    return <li key={e}>{'– ' + bulletPoint}</li>
-                  })}
-                </ul>
-              )}
-            </div>
-            <div className={styles['release-image']}>
-              <Image
-                alt={release.captionHeading}
-                layout="responsive"
-                src={release.image}
-                placeholder="blur"
-              />
-              <p className={styles['release-image-caption']}>
-                <strong>{release.captionHeading}:</strong> {release.caption}
-              </p>
-            </div>
-          </Column>
-        </Grid>
+              <div className={styles['release-image']}>
+                <Image
+                  alt={release.captionHeading}
+                  layout="responsive"
+                  src={release.image}
+                  placeholder="blur"
+                />
+                <p className={styles['release-image-caption']}>
+                  <strong>{release.captionHeading}:</strong> {release.caption}
+                </p>
+              </div>
+            </Column>
+          </Grid>
+        </Divider>
       ))}
     </div>
   )

@@ -10,6 +10,10 @@ import PropTypes from 'prop-types'
 
 import * as styles from './divider.module.scss'
 
+/**
+ * The `<Divider>` component is a wrapper that adds a top border
+ * and spacing to divide sections of content.
+ */
 const Divider = ({ children, className }) => {
   return <div className={clsx(className, styles.divider)}>{children}</div>
 }

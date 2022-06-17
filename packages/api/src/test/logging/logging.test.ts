@@ -25,7 +25,7 @@ test.serial('it does not emit log messages in dev mode', async (t) => {
   }
 
   const logging = new Logging({
-    component: 'my-component',
+    component: 'MyComponent',
     runtime,
     messagingClient
   })
@@ -50,7 +50,7 @@ test.serial('it does not emit a debug log message in standard mode', async (t) =
   }
 
   const logging = new Logging({
-    component: 'my-component',
+    component: 'MyComponent',
     runtime,
     messagingClient
   })
@@ -73,7 +73,7 @@ test.serial('it emits once per message type in standard mode', async (t) => {
   }
 
   const logging = new Logging({
-    component: 'my-component',
+    component: 'MyComponent',
     runtime,
     messagingClient
   })
@@ -96,7 +96,7 @@ test.serial('it respects the global remote logging allowed setting', async (t) =
   Logging.isRemoteLoggingAllowed = false
 
   const logging = new Logging({
-    component: 'my-component',
+    component: 'MyComponent',
     runtime,
     messagingClient
   })
@@ -118,7 +118,7 @@ test.serial('error accepts error objects', async (t) => {
   }
 
   const logging = new Logging({
-    component: 'my-component',
+    component: 'MyComponent',
     runtime,
     messagingClient
   })
@@ -140,7 +140,7 @@ test.serial('debug accepts non-string, non-error objects', async (t) => {
   }
 
   const logging = new Logging({
-    component: 'my-component',
+    component: 'MyComponent',
     runtime,
     messagingClient
   })

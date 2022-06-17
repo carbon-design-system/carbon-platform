@@ -53,7 +53,7 @@ class DevDataset {
   }
 
   public initialize() {
-    const dir = path.join(__dirname, '..', '..', 'dev', 'data-graph')
+    const dir = path.join(__dirname, '..', '..', '..', 'src', 'dev', 'data-graph')
     const entries = fs.readdirSync(dir)
 
     for (const entry of entries) {

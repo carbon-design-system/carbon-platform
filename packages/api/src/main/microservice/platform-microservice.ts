@@ -7,6 +7,7 @@
 import { HttpAdapterHost, NestFactory } from '@nestjs/core'
 import { RmqOptions, Transport } from '@nestjs/microservices'
 
+import { Logging } from '../logging/index.js'
 import {
   CARBON_MESSAGE_QUEUE_URL,
   DEFAULT_BIND_PATTERN,
@@ -59,12 +60,14 @@ class PlatformMicroservice {
   private readonly autoAck: boolean
   private readonly queueName: string
   private readonly runtime: Runtime
+  private readonly logging: Logging
   private messagingConnection?: MessagingConnection
 
   constructor(config: MicroserviceConfig) {
     this.module = config.module
     this.autoAck = config.autoAck || false
     this.runtime = config.runtime || new Runtime()
+    this.logging = new Logging({ component: 'PlatformMicroservice', runtime: this.runtime })
     // Use a queue name that is environment-specific
     this.queueName = this.runtime.withEnvironment(config.queue)
   }
@@ -104,6 +107,8 @@ class PlatformMicroservice {
 
       await channel.assertExchange(exchange, DEFAULT_EXCHANGE_TYPE, DEFAULT_EXCHANGE_OPTIONS)
       await channel.bindQueue(this.queueName, exchange, DEFAULT_BIND_PATTERN)
+
+      this.logging.info(`Service bound to queue: ${this.queueName}`)
     }
 
     await this.messagingConnection.close()

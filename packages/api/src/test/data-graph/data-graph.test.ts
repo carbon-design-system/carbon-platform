@@ -65,3 +65,16 @@ test('it throws when retrieving a non-existant dev dataset query', async (t) => 
       })
   )
 })
+
+test('it can get a dynamically added dev dataset entry', async (t) => {
+  const runtime = new Runtime({ runMode: RunMode.Dev })
+  const dataGraph = new DataGraph({ runtime })
+
+  dataGraph.addDevDataset([{ name: 'wowtest', response: { hello: 'world' } }])
+
+  const result = await dataGraph.queryData<any>({ query: 'query wowtest { asdf { id } }' })
+
+  console.log(result)
+
+  t.is(result.data.hello, 'world')
+})

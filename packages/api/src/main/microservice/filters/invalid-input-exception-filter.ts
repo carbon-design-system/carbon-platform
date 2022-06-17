@@ -13,7 +13,7 @@ import { InvalidInputException } from '../exceptions/invalid-input-exception.js'
 
 @Catch(InvalidInputException)
 class InvalidInputExceptionFilter implements RpcExceptionFilter<InvalidInputException> {
-  private static readonly DEFAULT_COMPONENT_NAME = 'invalid-input-exception-filter'
+  private static readonly DEFAULT_COMPONENT_NAME = 'InvalidInputExceptionFilter'
 
   private readonly logging: Logging
 

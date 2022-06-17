@@ -72,7 +72,7 @@ class RequestLogInterceptor implements NestInterceptor {
   private logging: Logging
 
   constructor(config?: { logging: Logging }) {
-    this.logging = config?.logging || new Logging({ component: 'request-logger' })
+    this.logging = config?.logging || new Logging({ component: 'RequestLogger' })
   }
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {

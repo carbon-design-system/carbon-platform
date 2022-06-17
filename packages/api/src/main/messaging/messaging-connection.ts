@@ -33,7 +33,7 @@ class MessagingConnection {
   public constructor(config: MessagingConnectionConfig) {
     this.config = config
     this.logging = new Logging({
-      component: 'messaging-connection',
+      component: 'MessagingConnection',
       isRemoteLoggingEnabled: false
     })
   }
@@ -59,8 +59,8 @@ class MessagingConnection {
    * the message broker. Once the connection is established, the callback provided in the config
    * object to the constructor will be invoked prior to the channel being returned to the caller.
    *
-   * **NOTE:** This can throw if there is an issue either connecting or running the provided
-   * callback.
+   * **NOTE:** This method will throw if the provided callback throws. It will also throw in the
+   * event of a connection error if the MessagingConnection object is configured with retry=false.
    */
   public get channel(): Promise<amqp.ConfirmChannel> {
     // Guard - Connection attempt is either already pending or has been completed
@@ -113,7 +113,7 @@ class MessagingConnection {
 
       if (this.config.onChannelReady) {
         this.logging.debug(`-> callback: ${this.config.onChannelReady.name}()`)
-        this.config.onChannelReady(this._channel)
+        await this.config.onChannelReady(this._channel)
         this.logging.debug(`<- callback: ${this.config.onChannelReady.name}()`)
       }
 

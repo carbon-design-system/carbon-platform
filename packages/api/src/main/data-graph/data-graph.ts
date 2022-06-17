@@ -45,7 +45,7 @@ class DataGraph {
   private queryStandardData<ResponseType>(
     queryInput: DataGraphMessage
   ): Promise<DataGraphResponse<ResponseType>> {
-    const messagingClient = MessagingClient.getInstance()
+    const messagingClient = MessagingClient.getInstance({ runtime: this.runtime })
 
     return messagingClient.query('data_graph', queryInput) as Promise<
       DataGraphResponse<ResponseType>
@@ -53,7 +53,12 @@ class DataGraph {
   }
 
   public addDevDataset(dataset: Array<DevDatasetEntry>) {
-    this.devDataset?.add(...dataset)
+    if (!this.devDataset) {
+      this.devDataset = new DevDataset()
+      this.devDataset.initialize()
+    }
+
+    this.devDataset.add(...dataset)
   }
 
   public queryData<ResponseType>(

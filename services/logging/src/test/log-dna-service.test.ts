@@ -4,15 +4,20 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-// import { LogDnaService } from '../main/log-dna-service'
+import test from 'ava'
 
-// test('service creates a LogDna logger in "Standard" mode', () => {
-//   const mockLogDnaLogger = {
-//     log: jest.fn()
-//   }
+import { LogDnaService } from '../main/log-dna-service.js'
 
-//   const logDnaService = new LogDnaService({ logDnaLogger: mockLogDnaLogger as any })
-//   logDnaService.log({} as any)
+test('it uses the injected logger', (t) => {
+  t.plan(1)
 
-//   expect(mockLogDnaLogger.log).toHaveBeenCalled()
-// })
+  const logDnaLogger = {
+    log: () => {
+      t.pass()
+    }
+  } as any
+
+  const logDnaService = new LogDnaService({ logDnaLogger })
+
+  logDnaService.log({} as any)
+})

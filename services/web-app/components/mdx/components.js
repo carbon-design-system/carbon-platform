@@ -29,6 +29,7 @@ import ColorBlock from '@/components/color-block'
 import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
+import Divider from '@/components/divider'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
 import Glossary from '@/components/glossary'
@@ -97,6 +98,7 @@ const components = {
   ColorTokenTable,
   DoDont,
   DoDontRow,
+  Divider,
   GifPlayer,
   Glossary,
   Grid,

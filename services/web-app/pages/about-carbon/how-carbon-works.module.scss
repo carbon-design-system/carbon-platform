@@ -8,22 +8,6 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 
-.section {
-  position: relative;
-  padding-top: spacing.$spacing-07;
-}
-
-.section::before {
-  position: absolute;
-  top: 4rem;
-  display: block;
-  width: calc(100% - 2rem);
-  height: 1px;
-  margin: -(spacing.$spacing-07) 0 0 spacing.$spacing-05;
-  background: theme.$border-strong-01;
-  content: '';
-}
-
 .section h4 {
   width: 66%;
   padding-right: spacing.$spacing-07;

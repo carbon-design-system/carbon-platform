@@ -10,22 +10,6 @@
 //---------------------------------------
 // meetups page
 //---------------------------------------
-.meetups-list {
-  position: relative;
-  padding-top: spacing.$spacing-10;
-}
-
-.meetups-list::before {
-  position: absolute;
-  top: 4rem;
-  display: block;
-  width: calc(100% - 2rem);
-  height: 1px;
-  margin: -(spacing.$spacing-07) 0 0 spacing.$spacing-05;
-  background: theme.$border-strong-01;
-  content: '';
-}
-
 .meetups-list :global([class*='markdown_h2-container']) {
   margin-top: 0;
 }

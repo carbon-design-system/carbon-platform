@@ -10,7 +10,7 @@ import { of as observableOf } from 'rxjs'
 import { Logging } from '../../../main/logging/index.js'
 import { RequestLogInterceptor } from '../../../main/microservice/interceptors/request-log-interceptor.js'
 
-const logging = new Logging({ component: 'test-component' })
+const logging = new Logging({ component: 'TestComponent' })
 
 test('it handles rpc interceptions', (t) => {
   t.plan(1)

@@ -42,7 +42,7 @@ file name, etc.
 **Example**
 
 ```ts
-const logging = new Logging({ component: 'request cache' })
+const logging = new Logging({ component: 'RequestCache' })
 ```
 
 **NOTE:** By default, the service name in the resulting logs will come from the

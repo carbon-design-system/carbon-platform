@@ -10,7 +10,7 @@ import { Logging } from '../../../main/logging/index.js'
 import { UncaughtExceptionFilter } from '../../../main/microservice/filters/uncaught-exception-filter.js'
 
 test('catch', async (t) => {
-  const logging = new Logging({ component: 'test-component' })
+  const logging = new Logging({ component: 'TestComponent' })
   const filter = new UncaughtExceptionFilter({ logging })
 
   const result = filter.catch(new Error('a test!'))

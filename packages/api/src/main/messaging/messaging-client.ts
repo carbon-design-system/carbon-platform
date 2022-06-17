@@ -56,7 +56,7 @@ class MessagingClient {
     this.runtime = config?.runtime || new Runtime()
 
     this.logging = new Logging({
-      component: 'messaging-connection',
+      component: 'MessagingClient',
       isRemoteLoggingEnabled: false
     })
 
@@ -103,44 +103,18 @@ class MessagingClient {
     this.replyCallbacks.delete(correlationId)
   }
 
-  /**
-   * Safely publishes a message such that no exceptions are thrown to the caller and the method does
-   * not exit until the publish has happened.
-   */
-  private async safePublish(exchange: string, content: Buffer, options?: amqp.Options.Publish) {
-    let publishResult: boolean | undefined
-    let channel
+  private async publishAndConfirm(
+    channel: amqp.ConfirmChannel,
+    exchange: string,
+    content: Buffer,
+    options?: amqp.Options.Publish
+  ) {
+    const publishResult = channel.publish(exchange, DEFAULT_ROUTING_KEY, content, options)
 
-    while (publishResult === undefined) {
-      try {
-        channel = await this.messagingConnection.channel
-        // `publish` returns true if it is safe to continue sending messages; or false if pending
-        // "confirms" should first be awaited
-        publishResult = channel.publish(exchange, DEFAULT_ROUTING_KEY, content, options)
-      } catch (e) {
-        this.logging.error('Unexpected exception thrown while publishing a message')
-        if (e instanceof Error) {
-          this.logging.error(e)
-        }
-
-        // Try again after a few seconds
-        await new Promise((resolve) => {
-          setTimeout(resolve, RETRY_INTERVAL)
-        })
-      }
-    }
-
-    // At this point, the message is guaranteed to have been published to the message broker
-
-    try {
-      if (publishResult === false && channel) {
-        await channel.waitForConfirms()
-      }
-    } catch (e) {
-      this.logging.error('Unexpected exception thrown while waiting for confirms')
-      if (e instanceof Error) {
-        this.logging.error(e)
-      }
+    // `publish` returns true if it is safe to continue sending messages; or false if pending
+    // "confirms" should first be awaited
+    if (!publishResult) {
+      await channel.waitForConfirms()
     }
   }
 
@@ -171,10 +145,30 @@ class MessagingClient {
       data: payload
     }
 
-    await this.safePublish(
-      this.runtime.withEnvironment(eventType),
-      Buffer.from(JSON.stringify(dataToSend))
-    )
+    let done = false
+    while (!done) {
+      try {
+        const channel = await this.messagingConnection.channel
+
+        await this.publishAndConfirm(
+          channel,
+          this.runtime.withEnvironment(eventType),
+          Buffer.from(JSON.stringify(dataToSend))
+        )
+
+        done = true
+      } catch (e) {
+        this.logging.error('Unexpected exception thrown while publishing a message')
+        if (e instanceof Error) {
+          this.logging.error(e)
+        }
+
+        // Try again after a few seconds
+        await new Promise((resolve) => {
+          setTimeout(resolve, RETRY_INTERVAL)
+        })
+      }
+    }
   }
 
   /**
@@ -204,14 +198,34 @@ class MessagingClient {
       this.replyCallbacks.set(correlationId, resolve)
     })
 
-    await this.safePublish(
-      this.runtime.withEnvironment(queryType),
-      Buffer.from(JSON.stringify(dataToSend)),
-      {
-        replyTo: this.replyQueue!.queue,
-        correlationId
+    let done = false
+    while (!done) {
+      try {
+        const channel = await this.messagingConnection.channel
+
+        await this.publishAndConfirm(
+          channel,
+          this.runtime.withEnvironment(queryType),
+          Buffer.from(JSON.stringify(dataToSend)),
+          {
+            replyTo: this.replyQueue!.queue,
+            correlationId
+          }
+        )
+
+        done = true
+      } catch (e) {
+        this.logging.error('Unexpected exception thrown while publishing a message')
+        if (e instanceof Error) {
+          this.logging.error(e)
+        }
+
+        // Try again after a few seconds
+        await new Promise((resolve) => {
+          setTimeout(resolve, RETRY_INTERVAL)
+        })
       }
-    )
+    }
 
     return replyPromise
   }

@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/api",
   "description": "Carbon platform application programming interfaces to services",
-  "version": "0.3.16",
+  "version": "0.3.18",
   "license": "Apache-2.0",
   "private": true,
   "repository": {
@@ -49,6 +49,7 @@
     "cookie-parser": "^1.4.6",
     "cookie-signature": "^1.2.0",
     "express-session": "^1.17.3",
+    "graphql": "^16.5.0",
     "mongodb": "^4.7.0",
     "openid-client": "^5.1.6",
     "passport": "^0.6.0",

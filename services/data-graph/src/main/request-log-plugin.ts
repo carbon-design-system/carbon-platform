@@ -19,7 +19,7 @@ class RequestLogPlugin implements ApolloServerPlugin {
   private readonly logging: Logging
 
   constructor() {
-    this.logging = new Logging({ component: 'request-logger' })
+    this.logging = new Logging({ component: 'RequestLogger' })
   }
 
   private async log(requestContext: GraphQLRequestContext, performanceId: string) {

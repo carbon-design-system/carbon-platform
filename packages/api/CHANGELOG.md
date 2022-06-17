@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.17...@carbon-platform/api@0.3.18) (2022-06-17)
+
+
+### Bug Fixes 🐛
+
+* **data-graph:** assorted bug fixes ([a039711](https://github.com/carbon-design-system/carbon-platform/commit/a039711d25a4d4073e7e118ccd7b42f40f618b30)), closes [#830](https://github.com/carbon-design-system/carbon-platform/issues/830)
+
+### [0.3.17](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.16...@carbon-platform/api@0.3.17) (2022-06-16)
+
+
+### Features 🌟
+
+* **data-graph:** dev dataset first pass ([7f01471](https://github.com/carbon-design-system/carbon-platform/commit/7f01471210ab94d36bb13005060a7c24704efeb0)), closes [#627](https://github.com/carbon-design-system/carbon-platform/issues/627) [#628](https://github.com/carbon-design-system/carbon-platform/issues/628) [#629](https://github.com/carbon-design-system/carbon-platform/issues/629) [#626](https://github.com/carbon-design-system/carbon-platform/issues/626)
+
 ### [0.3.16](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.15...@carbon-platform/api@0.3.16) (2022-06-15)
 
 

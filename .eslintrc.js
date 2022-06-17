@@ -103,6 +103,7 @@ module.exports = {
     },
     {
       files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
+      excludedFiles: ['.*.js'],
       processor: '@graphql-eslint/graphql'
     },
     {

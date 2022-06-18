@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.37](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.36...@carbon-platform/icons@0.0.37) (2022-06-18)
+
+
+### Features 🌟
+
+* add internal padding to icons ([11021a0](https://github.com/carbon-design-system/carbon-platform/commit/11021a0ec2cec165c638d50f73c949c0dab1b190))
+
 ### [0.0.36](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.35...@carbon-platform/icons@0.0.36) (2022-06-16)
 
 

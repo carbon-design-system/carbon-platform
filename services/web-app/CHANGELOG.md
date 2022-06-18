@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.137](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.136...@carbon-platform/web-app@0.1.137) (2022-06-18)
+
+
+### Misc. 🔮
+
+* **web-app:** separate useQueryState into two hooks ([e8db324](https://github.com/carbon-design-system/carbon-platform/commit/e8db324e984fd2b8e93a5fd3404e51f8ac5e406e))
+
+
+### Features 🌟
+
+* add divider component to meetups page ([93df13b](https://github.com/carbon-design-system/carbon-platform/commit/93df13be9a827b0dfaeccd76b54b0bddb0ebe830))
+* add divider to how carbon works ([0134392](https://github.com/carbon-design-system/carbon-platform/commit/0134392967dbefd66509e1c62998bb340d70315b))
+* add props ([1ceb4e8](https://github.com/carbon-design-system/carbon-platform/commit/1ceb4e85cb831656351c69de212b9f2b5ef6a0cc))
+* add props v2 ([2a7b380](https://github.com/carbon-design-system/carbon-platform/commit/2a7b3803239dcbc80ea167c253a335acdc63e9d0))
+* added storybook cleaned up styles ([eb31004](https://github.com/carbon-design-system/carbon-platform/commit/eb3100444283ad1d9b10e2475067f393aca7d888))
+* expressive list from gatsby ([89490ec](https://github.com/carbon-design-system/carbon-platform/commit/89490ecac20ef5bc60e4d2c08fe89f042ddb1090))
+* fix and update divider component styles ([8271200](https://github.com/carbon-design-system/carbon-platform/commit/8271200030539e4f554f74730313d045d99be818))
+* update border lenght ([12b64fd](https://github.com/carbon-design-system/carbon-platform/commit/12b64fd7371d3f5de72a61646e18e42d32e8b54b))
+* updated divider styles ([3058918](https://github.com/carbon-design-system/carbon-platform/commit/3058918ccecd7572f24d392bd016e2351733877d))
+
+
+### Bug Fixes 🐛
+
+* remove unneeded styles ([0b38806](https://github.com/carbon-design-system/carbon-platform/commit/0b38806d93f0ebaeabe6c5d8a5a1b1d5803adf79))
+* **web-app:** page tab border width ([d6bb8bc](https://github.com/carbon-design-system/carbon-platform/commit/d6bb8bc63c56d1b7f37a2e6e86bb44e19d698693))
+* **web-app:** state hooks - rename output functions, correct docs ([5f852d6](https://github.com/carbon-design-system/carbon-platform/commit/5f852d683935b56213b286d02d320b3c4fc03aa1))
+
 ### [0.1.136](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.135...@carbon-platform/web-app@0.1.136) (2022-06-17)
 
 

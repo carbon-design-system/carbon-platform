@@ -13,9 +13,9 @@ import StatusIcon from '@/components/status-icon'
 import { status } from '@/data/status'
 import { getLicense } from '@/utils/schema'
 
-import styles from './catalog-item-meta.module.scss'
+import styles from './asset-catalog-item-meta.module.scss'
 
-const CatalogItemMeta = ({ asset, className, properties }) => {
+const AssetCatalogItemMeta = ({ asset, className, properties }) => {
   const renderStatus = () => {
     const { name } = status[asset?.statusKey]
 
@@ -50,10 +50,10 @@ const CatalogItemMeta = ({ asset, className, properties }) => {
   )
 }
 
-CatalogItemMeta.propTypes = {
+AssetCatalogItemMeta.propTypes = {
   asset: assetPropTypes,
   className: PropTypes.string,
   properties: PropTypes.array
 }
 
-export default CatalogItemMeta
+export default AssetCatalogItemMeta

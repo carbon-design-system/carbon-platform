@@ -10,13 +10,20 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { sortItems } from '@/data/sort'
 import { GRID_VIEW, LIST_VIEW } from '@/data/view'
 import useEventListener from '@/utils/use-event-listener'
 
 import styles from './catalog-sort.module.scss'
 
-const CatalogSort = ({ onSort, onView, sort, view }) => {
+const CatalogSort = ({
+  allowMultiView = true,
+  defaultSortIndex = 0,
+  onSort,
+  onView,
+  sortId,
+  sortOptions = [],
+  view = LIST_VIEW
+}) => {
   const containerRef = useRef(null)
   const [isSticky, setIsSticky] = useState(false)
 
@@ -44,54 +51,96 @@ const CatalogSort = ({ onSort, onView, sort, view }) => {
           <Dropdown
             id="catalog-sort"
             className={styles.dropdown}
-            initialSelectedItem={sortItems.find((item) => item.id === sort)}
-            items={sortItems}
+            initialSelectedItem={sortOptions.find((item) => item.id === sortId)}
+            items={sortOptions}
             itemToString={(item) => (item ? item.text : '')}
             onChange={({ selectedItem }) => {
               onSort(selectedItem.id)
             }}
             type="inline"
             titleText="Sort by:"
-            label="A–Z"
+            label={sortOptions[defaultSortIndex].text}
             size="lg"
           />
         </Column>
         <Column className={`${styles.column} ${styles['column--switcher']}`} lg={8}>
-          <div className={styles.switcher}>
-            <IconButton
-              className={clsx(styles.button, view === GRID_VIEW && styles.selected)}
-              kind="ghost"
-              label="Grid view"
-              onClick={() => {
-                onView(GRID_VIEW)
-              }}
-              size="lg"
-            >
-              <GridIcon size={20} />
-            </IconButton>
-            <IconButton
-              className={clsx(styles.button, view === LIST_VIEW && styles.selected)}
-              kind="ghost"
-              label="List view"
-              onClick={() => {
-                onView(LIST_VIEW)
-              }}
-              size="lg"
-            >
-              <ListIcon size={20} />
-            </IconButton>
-          </div>
+          {allowMultiView && (
+            <div className={styles.switcher}>
+              <IconButton
+                className={clsx(styles.button, view === GRID_VIEW && styles.selected)}
+                kind="ghost"
+                label="Grid view"
+                onClick={() => {
+                  onView(GRID_VIEW)
+                }}
+                size="lg"
+              >
+                <GridIcon size={20} />
+              </IconButton>
+              <IconButton
+                className={clsx(styles.button, view === LIST_VIEW && styles.selected)}
+                kind="ghost"
+                label="List view"
+                onClick={() => {
+                  onView(LIST_VIEW)
+                }}
+                size="lg"
+              >
+                <ListIcon size={20} />
+              </IconButton>
+            </div>
+          )}
         </Column>
       </Grid>
     </div>
   )
 }
 
+CatalogSort.defaultProps = {
+  allowMultiView: true,
+  defaultSortIndex: 0,
+  sortOptions: [],
+  view: LIST_VIEW
+}
+
 CatalogSort.propTypes = {
-  onSort: PropTypes.func,
-  onView: PropTypes.func,
-  sort: PropTypes.oneOf(sortItems.map((item) => item.id)),
-  view: PropTypes.oneOf(['grid', 'list'])
+  /**
+   * True if catalog elements can be rendered both as grid or list, false otherwise
+   */
+  allowMultiView: PropTypes.bool,
+  /**
+   * Indicates array position of default sort strategy in sortOptions array
+   */
+  defaultSortIndex: PropTypes.number,
+  /**
+   * (sortId) => void
+   * Function to call when new sort option is selected.
+   * Should update sortId passed to props
+   */
+  onSort: PropTypes.func.isRequired,
+  /**
+   * (viewOption) => void
+   * Function to call when new view option is selected.
+   * Should update view passed to props
+   */
+  onView: PropTypes.func.isRequired,
+  /**
+   * Id of currently selected sort option
+   */
+  sortId: PropTypes.string.isRequired,
+  /**
+   * Array of object options the list of items can be sorted by
+   */
+  sortOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string
+    })
+  ).isRequired,
+  /**
+   * Current selected view option
+   */
+  view: PropTypes.oneOf([GRID_VIEW, LIST_VIEW])
 }
 
 export default CatalogSort

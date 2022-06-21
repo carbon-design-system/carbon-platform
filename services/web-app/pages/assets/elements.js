@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
 import { libraryPropTypes } from 'types'
 
-import Catalog from '@/components/catalog'
+import AssetsCatalog from '@/components/assets-catalog'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { type } from '@/data/type'
@@ -31,7 +31,8 @@ const Elements = ({ librariesData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader title={seo.title} pictogram={type.element.icon} />
-      <Catalog data={librariesData} type="element" />
+      {/* this probably eventually gets replaced  by an elementsCatalog */}
+      <AssetsCatalog libraries={librariesData.libraries} type="element" />
     </>
   )
 }

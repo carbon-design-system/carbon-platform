@@ -31,7 +31,7 @@ library:
           path: '/another-page/sub-page.mdx'
           hidden: true
         - title: Another sub page
-          path: '/another-page/another-sub-page.mdx'
+          path: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/developing/react-tutorial/step-1.mdx'
 assets:
   accordion:
     name: Accordion
@@ -118,7 +118,7 @@ library:
           path: '/another-page/sub-page.mdx'
           hidden: true
         - title: Another sub page
-          path: '/another-page/another-sub-page.mdx'
+          path: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/developing/react-tutorial/step-1.mdx'
 ```
 
 ### Library keys
@@ -418,14 +418,14 @@ navData:
         path: '/another-page/sub-page.mdx'
         hidden: true
       - title: Another sub page
-        path: '/another-page/another-sub-page.mdx'
+        path: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/developing/react-tutorial/step-1.mdx'
 ```
 
 For the value of the `navData` array, you can set the following keys.
 
-| Nav data | Description                                                  | Required | Type    | Default |
-| -------- | ------------------------------------------------------------ | -------- | ------- | ------- |
-| `title`  | Navigation title.                                            | Required | String  | –       |
-| `path`   | Path to the file, relative to carbon.yml.                    | Required | String  | –       |
-| `items`  | Second level of navigation.                                  | Optional | Array   | –       |
-| `hidden` | If set to true, the item will be hidden from the navigation. | Optional | Boolean | `false` |
+| Nav data | Description                                                  | Required | Type    | Default | Valid values                                                                                                                                                           |
+| -------- | ------------------------------------------------------------ | -------- | ------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`  | Navigation title.                                            | Required | String  | –       | –                                                                                                                                                                      |
+| `path`   | Path to the file.                                            | Required | String  | –       | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li><li>Path relative to the carbon.yml file location</li></ul> |
+| `items`  | Second level of navigation.                                  | Optional | Array   | –       | –                                                                                                                                                                      |
+| `hidden` | If set to true, the item will be hidden from the navigation. | Optional | Boolean | `false` | –                                                                                                                                                                      |

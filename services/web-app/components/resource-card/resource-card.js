@@ -11,6 +11,8 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
+
 import styles from './resource-card.module.scss'
 import groupStyles from './resource-card-group.module.scss'
 
@@ -26,11 +28,14 @@ const ResourceCard = (props) => {
     title,
     color,
     disabled,
-    aspectRatio,
+    aspectRatio: aspectRatioProp,
     actionIcon,
     className,
     ...rest
   } = props
+
+  const isLg = useMatchMedia(mediaQueries.lg)
+  const isXlg = useMatchMedia(mediaQueries.xlg)
 
   const ResourceCardClassNames = clsx(
     className,
@@ -41,8 +46,13 @@ const ResourceCard = (props) => {
     }
   )
 
+  // if aspectRatio is not specified and it's a card with title displaying at Lg breakpoint,
+  // default aspectRatio to 16:9, all other cases default to 2:1
+  const aspectRatio = aspectRatioProp || (!!title && isLg && !isXlg ? '16:9' : '2:1')
+
   const carbonTileclassNames = clsx(['cds--tile'], {
-    'cds--tile--clickable': href !== undefined
+    'cds--tile--clickable': href !== undefined,
+    [styles['card-with-title']]: !!title
   })
 
   const cardContent = (
@@ -131,7 +141,6 @@ ResourceCard.propTypes = {
 ResourceCard.defaultProps = {
   color: 'light',
   disabled: false,
-  aspectRatio: '2:1',
   actionIcon: 'launch'
 }
 

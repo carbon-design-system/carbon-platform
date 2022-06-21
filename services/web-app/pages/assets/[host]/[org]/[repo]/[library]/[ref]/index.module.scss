@@ -7,9 +7,6 @@
 
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
-@use '@carbon/react/scss/type' as type;
-@use '@carbon/react/scss/theme' as theme;
-@use '~styles/mixins' as mixins;
 
 .page-description {
   margin-top: spacing.$spacing-11;
@@ -36,20 +33,5 @@
   padding-right: spacing.$spacing-05;
   @include breakpoint.breakpoint(lg) {
     width: 50%;
-  }
-}
-
-.resources-section {
-  h5 {
-    @include type.type-style('body-compact-01');
-
-    color: theme.$text-secondary;
-  }
-
-  h4 {
-    @include type.type-style('body-compact-02');
-    @include mixins.line-clamp(2);
-
-    color: theme.$text-primary;
   }
 }

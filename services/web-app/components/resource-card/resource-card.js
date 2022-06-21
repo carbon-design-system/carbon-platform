@@ -61,15 +61,16 @@ const ResourceCard = (props) => {
       {title && <h4 className={styles.title}>{title}</h4>}
       <div className={styles['icon-img']}>{children}</div>
       <div className={styles['icon-action']}>
-        {actionIcon === 'launch' && !disabled && <Launch size={20} aria-label="Open resource" />}
-        {actionIcon === 'arrowRight' && !disabled && (
-          <ArrowRight size={20} aria-label="Open resource" />
-        )}
-        {actionIcon === 'download' && !disabled && <Download size={20} aria-label="Download" />}
-        {actionIcon === 'email' && !disabled && <Email size={20} aria-label="Email" />}
-        {actionIcon === 'calendar' && !disabled && <Calendar size={20} aria-label="Calendar" />}
-        {actionIcon === 'disabled' ||
-          (disabled === true && <Error size={20} aria-label="disabled" />)}
+        {!disabled &&
+          {
+            launch: <Launch size={20} aria-label="Open resource" />,
+            arrowRight: <ArrowRight size={20} aria-label="Open resource" />,
+            download: <Download size={20} aria-label="Download" />,
+            email: <Email size={20} aria-label="Email" />,
+            calendar: <Calendar size={20} aria-label="Calendar" />,
+            disabled: <Error size={20} aria-label="disabled" />
+          }[actionIcon]}
+        {disabled === true && <Error size={20} aria-label="disabled" />}
       </div>
     </>
   )

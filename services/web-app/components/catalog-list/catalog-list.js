@@ -7,21 +7,18 @@
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { assetPropTypes } from 'types'
 
-import CatalogItem from '@/components/catalog-item'
-import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-list.module.scss'
 
 const CatalogList = ({
-  assetCounts,
-  assets,
-  filter = {},
   isGrid = false,
+  itemPluralName = '',
+  items = [],
   page = 1,
-  pageSize = 10
+  pageSize = 10,
+  renderItem
 }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
   const isLgGrid = isGrid && isLg
@@ -29,7 +26,7 @@ const CatalogList = ({
   const start = (page - 1) * pageSize
   const end = start + pageSize
 
-  const renderAssets = assets.slice(start, end)
+  const itemsToRender = items.slice(start, end)
 
   return (
     <Grid
@@ -38,16 +35,8 @@ const CatalogList = ({
       condensed={!isLg}
       narrow={isLg}
     >
-      {renderAssets.map((asset, i) => (
-        <CatalogItem
-          assetCounts={assetCounts}
-          asset={asset}
-          filter={filter}
-          key={`${i}-${getSlug(asset.content)}`}
-          isGrid={isGrid && isLg}
-        />
-      ))}
-      {(!renderAssets || renderAssets.length === 0) && (
+      {itemsToRender.map((item, i) => renderItem(item, i, isGrid && isLg))}
+      {(!itemsToRender || itemsToRender.length === 0) && (
         <Column
           className={clsx(styles.copy, isLgGrid && styles['copy--grid'])}
           sm={4}
@@ -56,9 +45,7 @@ const CatalogList = ({
         >
           <h2 className={styles.heading}>No results found</h2>
           <p className={styles.paragraph}>
-            {
-              "It appears we don't have any assets that match your search. Try different search terms."
-            }
+            {`It appears we don't have any ${itemPluralName} that match your search. Try different search terms.`}
           </p>
         </Column>
       )}
@@ -66,13 +53,40 @@ const CatalogList = ({
   )
 }
 
+CatalogList.defaultProps = {
+  isGrid: false,
+  itemPluralName: '',
+  items: [],
+  page: 1,
+  pageSize: 10
+}
+
 CatalogList.propTypes = {
-  assetCounts: PropTypes.object,
-  assets: PropTypes.arrayOf(assetPropTypes),
-  filter: PropTypes.object,
+  /**
+   * Whether the current view is a grid (True) or not (false)
+   */
   isGrid: PropTypes.bool,
+  /**
+   * plural name to describe catalog items category (e.g : "assets", "components")
+   */
+  itemPluralName: PropTypes.string.isRequired,
+  /**
+   * array of items to display (should take filter into account)
+   */
+  items: PropTypes.array.isRequired,
+  /**
+   * Current page number
+   */
   page: PropTypes.number,
-  pageSize: PropTypes.number
+  /**
+   * Number of items to display per page
+   */
+  pageSize: PropTypes.number,
+  /**
+   * (item,index,isGrid) => React.node
+   * function called to visually render an item. Should return a jsx object.
+   */
+  renderItem: PropTypes.func.isRequired
 }
 
 export default CatalogList

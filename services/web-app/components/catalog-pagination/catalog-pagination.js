@@ -6,16 +6,15 @@
  */
 import { Column, Grid, Pagination } from '@carbon/react'
 import PropTypes from 'prop-types'
-import { assetPropTypes } from 'types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-pagination.module.scss'
 
 const CatalogPagination = ({
-  assets = [],
-  page: currentPage,
-  pageSize: currentPageSize,
+  items = [],
+  page: currentPage = 1,
+  pageSize: currentPageSize = 10,
   setPage,
   setPageSize
 }) => {
@@ -35,7 +34,7 @@ const CatalogPagination = ({
           page={currentPage}
           pageSize={currentPageSize}
           pageSizes={[30, 60, 120, 240]}
-          totalItems={assets.length}
+          totalItems={items.length}
           size="lg"
         />
       </Column>
@@ -43,12 +42,37 @@ const CatalogPagination = ({
   )
 }
 
+CatalogPagination.defaultProps = {
+  items: [],
+  page: 1,
+  pageSize: 10
+}
+
 CatalogPagination.propTypes = {
-  assets: PropTypes.arrayOf(assetPropTypes),
-  page: PropTypes.number,
+  /**
+   * array of items to display (should take filter into account)
+   */
+  items: PropTypes.array.isRequired,
+  /**
+   * Current page number
+   */
+  page: PropTypes.number.isRequired,
+  /**
+   * Number of items to display per page
+   */
   pageSize: PropTypes.number,
-  setPage: PropTypes.func,
-  setPageSize: PropTypes.func
+  /**
+   * (pageNumber) => void
+   * Function to call when new page number option is selected.
+   * Should update page passed to props
+   */
+  setPage: PropTypes.func.isRequired,
+  /**
+   * (pageSize) => void
+   * Function to call when new page size option is selected.
+   * Should update pageSize passed to props
+   */
+  setPageSize: PropTypes.func.isRequired
 }
 
 export default CatalogPagination

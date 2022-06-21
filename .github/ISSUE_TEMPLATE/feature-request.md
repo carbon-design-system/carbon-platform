@@ -2,7 +2,7 @@
 name: Feature request
 about: Suggest an idea for this project.
 title: ''
-labels: "type: enhancement \U0001F4A1"
+labels: 'type: enhancement 💡'
 assignees: ''
 ---
 

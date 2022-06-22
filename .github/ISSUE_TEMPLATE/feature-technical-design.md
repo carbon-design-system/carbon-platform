@@ -29,6 +29,8 @@ Describe how it integrates/relates/communicates with existing features/packages/
 
 ## UI/UX design
 
+- [ ] Approved?
+
 Does this feature have any associated UI/UX? If so, describe any design that needs to be
 completed/red-lined prior to development.
 

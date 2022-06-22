@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { MessagingClient } from '../messaging/messaging-client.js'
+import { Trace } from '../microservice/index.js'
 import { RunMode } from '../runtime/interfaces.js'
 import { Runtime } from '../runtime/runtime.js'
 import { DevDataset } from './dev-dataset.js'
@@ -28,9 +29,9 @@ class DataGraph {
   ): Promise<DataGraphResponse<ResponseType>> {
     if (!this.devDataset) {
       this.devDataset = new DevDataset()
-      this.devDataset.initialize()
     }
 
+    this.devDataset.reload()
     const result = this.devDataset.get(queryInput)
 
     if (!result) {
@@ -55,12 +56,13 @@ class DataGraph {
   public addDevDataset(dataset: Array<DevDatasetEntry>) {
     if (!this.devDataset) {
       this.devDataset = new DevDataset()
-      this.devDataset.initialize()
     }
 
-    this.devDataset.add(...dataset)
+    this.devDataset.reload()
+    this.devDataset.addDynamic(...dataset)
   }
 
+  @Trace()
   public queryData<ResponseType>(
     queryInput: DataGraphMessage
   ): Promise<DataGraphResponse<ResponseType>> {

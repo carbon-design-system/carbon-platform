@@ -12,6 +12,9 @@ test('it throws when adding a query with a duplicate name', (t) => {
   const devDataset = new DevDataset()
 
   t.throws(() =>
-    devDataset.add({ name: 'dup', response: undefined }, { name: 'dup', response: undefined })
+    devDataset.addDynamic(
+      { name: 'dup', response: undefined },
+      { name: 'dup', response: undefined }
+    )
   )
 })

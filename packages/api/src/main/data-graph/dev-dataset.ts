@@ -17,13 +17,16 @@ const __dirname = path.dirname(__filename)
 
 class DevDataset {
   private readonly db: Array<DevDatasetEntry>
+  private readonly dynamicDb: Array<DevDatasetEntry>
 
   constructor() {
     this.db = []
+    this.dynamicDb = []
   }
 
   private singleAdd(queryEntry: DevDatasetEntry) {
     this.validateNewQueryName(queryEntry.name)
+
     this.db.push(queryEntry)
   }
 
@@ -35,8 +38,13 @@ class DevDataset {
     }
   }
 
-  public add(...queryEntries: Array<DevDatasetEntry>) {
+  private add(...queryEntries: Array<DevDatasetEntry>) {
     queryEntries.forEach(this.singleAdd.bind(this))
+  }
+
+  public addDynamic(...queryEntries: Array<DevDatasetEntry>) {
+    this.add(...queryEntries)
+    this.dynamicDb.push(...queryEntries)
   }
 
   public get(queryInput: DataGraphMessage): DevDatasetEntry['response'] | undefined {
@@ -52,10 +60,14 @@ class DevDataset {
     })?.response
   }
 
-  public initialize() {
+  public reload() {
     const dir = path.join(__dirname, '..', '..', '..', 'src', 'dev', 'data-graph')
     const entries = fs.readdirSync(dir)
 
+    // Clear existing db
+    this.db.splice(0, this.db.length)
+
+    // Add file-based datasets
     for (const entry of entries) {
       // Ignore schema files
       if (entry.endsWith('.schema.json')) {
@@ -67,6 +79,9 @@ class DevDataset {
 
       this.add(...json.queries)
     }
+
+    // Add dynamic datasets
+    this.add(...this.dynamicDb)
   }
 }
 

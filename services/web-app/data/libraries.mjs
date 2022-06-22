@@ -453,6 +453,14 @@ const devLibraries = {
     path: '/',
     group: carbonComponentsGroup
   },
+  'ibm-security': {
+    host: 'github.com',
+    org: 'andreancardona',
+    repo: 'ibm-cloud-cognitive',
+    path: '/packages/security',
+    sponsor: 'ibm-security',
+    ref: '730-ibm-security-index'
+  },
   'ibmdotcom-react': {
     host: 'github.com',
     org: 'carbon-design-system',

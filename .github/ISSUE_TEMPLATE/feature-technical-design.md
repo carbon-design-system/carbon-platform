@@ -48,15 +48,6 @@ completed/red-lined prior to development.
     associated with them, whether they are queries or emits, and their expected return values (for
     queries).
 
-## Test strategy
-
-- [ ] Approved?
-
-How will the new feature be tested? (e.g. unit tests, manual verification, automated e2e testing,
-etc.)
-
-What interesting edge cases should be considered and tested?
-
 ## Security
 
 - [ ] Approved?
@@ -68,8 +59,19 @@ Think like a hacker. How might someone attempt to break or abuse this feature?
 
 ## Error handling
 
+- [ ] Approved?
+
 Ignore the happy path. What can go wrong with this feature? How will the error conditions manifest
 through the APIs? How will users be informed about these errors?
+
+## Test strategy
+
+- [ ] Approved?
+
+How will the new feature be tested? (e.g. unit tests, manual verification, automated e2e testing,
+etc.)
+
+What interesting edge cases should be considered and tested?
 
 ## Logging
 

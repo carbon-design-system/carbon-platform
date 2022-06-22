@@ -41,6 +41,8 @@ completed/red-lined prior to development.
 - **Programmatic APIs**
   - List any APIs that will be developed and made available in the `@carbon-platform/api` package,
     including function/class/method names, parameters, and return values.
+- **Data graph**
+  - List any new query resolvers and/or data models being included in the data-graph and/or data-graph API package.
 - **Messages**
   - List any new/changed RabbitMQ messages introduced by this feature, the message payload structure
     associated with them, whether they are queries or emits, and their expected return values (for

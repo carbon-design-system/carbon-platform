@@ -141,7 +141,7 @@ const filterPropertyHasValidValue = (filter, key, value) => {
   )
 }
 
-const AssetsCatalog = ({ collection, glob = {}, libraries, type }) => {
+const AssetsCatalog = ({ collection, glob = {}, libraries, showImage, type }) => {
   const defaultFilter = {}
 
   const [availableFilters] = useState(getFilters({ collection, type }))
@@ -280,6 +280,7 @@ const AssetsCatalog = ({ collection, glob = {}, libraries, type }) => {
       key={`${index}-${getSlug(asset.content)}`}
       isGrid={isGrid}
       otherFrameworkCount={getAssetOtherFrameworkCount(asset)}
+      showImage={showImage}
     />
   )
 
@@ -294,6 +295,7 @@ const AssetsCatalog = ({ collection, glob = {}, libraries, type }) => {
       onFilter={filterAssets}
       onUpdateFilter={updateFilter}
       sortOptions={sortItems}
+      allowMultiView={showImage}
     />
   )
 }
@@ -301,7 +303,8 @@ const AssetsCatalog = ({ collection, glob = {}, libraries, type }) => {
 export default AssetsCatalog
 
 AssetsCatalog.defaultProps = {
-  glob: {}
+  glob: {},
+  showImage: true
 }
 
 AssetsCatalog.propTypes = {
@@ -317,6 +320,10 @@ AssetsCatalog.propTypes = {
    * Libraries array.
    */
   libraries: PropTypes.arrayOf(libraryPropTypes).isRequired,
+  /**
+   * Show image (True) or not (false)
+   */
+  showImage: PropTypes.bool,
   /**
    * type of catalog element.
    */

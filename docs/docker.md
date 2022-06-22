@@ -60,9 +60,7 @@ Run on CLI:
 - `docker image ls` -> take note of latest image build version
 - `docker image tag us.icr.io/carbon-platform/[SERVICE_NAME]:[VERSION] us.icr.io/carbon-platform-test/[SERVICE_NAME]:[VERSION]-[UNIQUE_TAG]`
 - `docker image push us.icr.io/carbon-platform-test/[SERVICE_NAME]:[VERSION]-[UNIQUE_TAG]`
-- `ibmcloud ce application create —name [APP_NAME]
-  —image us.icr.io/carbon-platform-test/[SERVICE_NAME]:[VERSION]-[UNIQUE_TAG] —rs
-  cli-created-icr-registry-secret`
+- `ibmcloud ce application create —name [APP_NAME] —image us.icr.io/carbon-platform-test/[SERVICE_NAME]:[VERSION]-[UNIQUE_TAG] —rs cli-created-icr-registry-secret`
 - Add `CARBON_SERVICE_NAME=[SERVICE_NAME]` and `CARBON_RUN_MODE=DEV` to env variables
 - Adjust runtime settings
 

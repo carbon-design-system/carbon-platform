@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.138](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.137...@carbon-platform/web-app@0.1.138) (2022-06-22)
+
+
+### Misc. 🔮
+
+* **web-app:** asset catalog, abstract filter ([3f4b9bf](https://github.com/carbon-design-system/carbon-platform/commit/3f4b9bf708e9fbd8922274e543f332f8b591502c))
+* **web-app:** move asset specific functions into asset-catalog ([bc10b4a](https://github.com/carbon-design-system/carbon-platform/commit/bc10b4acd6dbe04f4ad34e3c96cb5f833d798155))
+* **web-app:** starting to generalize assets catalog ([9d67721](https://github.com/carbon-design-system/carbon-platform/commit/9d67721d12efa5116503f773b591df99c37b2823))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add comment ([cf2aa7e](https://github.com/carbon-design-system/carbon-platform/commit/cf2aa7e12f5a216991398a31cffc455046ba4458))
+* **web-app:** broken import ([41be24d](https://github.com/carbon-design-system/carbon-platform/commit/41be24d18a1225948071a1b2151904ceda342d71))
+* **web-app:** document proptypes on catalog components ([5665aa6](https://github.com/carbon-design-system/carbon-platform/commit/5665aa6e0cfeb45aa97f5c8fdffdd2d07c97cfa4))
+* **web-app:** fix import ([6b26c9e](https://github.com/carbon-design-system/carbon-platform/commit/6b26c9e237e2f1e03ed85b68af2c82509b2b9b07))
+
 ### [0.1.137](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.136...@carbon-platform/web-app@0.1.137) (2022-06-18)
 
 

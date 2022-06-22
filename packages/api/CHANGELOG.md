@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.19](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.18...@carbon-platform/api@0.3.19) (2022-06-22)
+
+
+### Features 🌟
+
+* **data-graph:** add dynamic dev devdataset reloading ([3f87565](https://github.com/carbon-design-system/carbon-platform/commit/3f87565ffb8c66e858465c7d6d35863fdf70ceac))
+
 ### [0.3.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.17...@carbon-platform/api@0.3.18) (2022-06-17)
 
 

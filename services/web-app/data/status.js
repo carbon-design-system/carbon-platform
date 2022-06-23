@@ -25,3 +25,5 @@ export const status = {
     name: 'Deprecated'
   }
 }
+
+export const assetStatusLifecycle = ['draft', 'experimental', 'stable', 'deprecated']

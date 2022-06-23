@@ -13,7 +13,7 @@ const http = require('http')
 const https = require('https')
 
 const port = process.env.PORT ?? (process.env.RUNNING_SECURELY === '1' ? 8443 : 8080)
-const logging = new Logging('express-proxy')
+const logging = new Logging({ component: 'RequestLogger' })
 
 function getCredentials() {
   return {
@@ -22,7 +22,7 @@ function getCredentials() {
   }
 }
 
-function logRequest(proxyRes, req) {
+async function logRequest(proxyRes, req) {
   const { httpVersion, method, socket, url, hostname } = req
   const { remoteAddress, remotePort } = socket
   const { statusCode } = proxyRes
@@ -37,7 +37,7 @@ function logRequest(proxyRes, req) {
     '"' + req.get('User-Agent') + '"'
   ]
 
-  logging.info(logParts.join(' '))
+  await logging.info(logParts.join(' '))
 }
 
 function startBenchmark(req) {
@@ -77,7 +77,8 @@ function start() {
       : http.createServer(app)
 
   server.listen(port, undefined, undefined, () => {
-    logging.info(`listening on port ${port}`)
+    // Use a one-shot logger for this specific component/log
+    new Logging({ component: 'proxy-server' }).info(`listening on port ${port}`)
   })
 }
 

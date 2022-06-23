@@ -4,22 +4,18 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Logging, LogLoggedMessage } from '@carbon-platform/api/logging'
+import { LogLoggedMessage } from '@carbon-platform/api/logging'
 import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
 import { Environment } from '@carbon-platform/api/runtime'
+import test from 'ava'
 
-import { LogDnaService } from '../main/log-dna-service'
-import { LoggingController } from '../main/logging-controller'
+import { LogDnaService } from '../main/log-dna-service.js'
+import { LoggingController } from '../main/logging-controller.js'
 
-beforeAll(() => {
-  Logging.setRemoteLoggingAllowed(false)
-})
+let data: LogLoggedMessage
 
-test('logLogged runs without crashing', () => {
-  const logDnaService = new LogDnaService()
-  const loggingController = new LoggingController(logDnaService)
-
-  const data: LogLoggedMessage = {
+test.beforeEach(() => {
+  data = {
     component: 'test',
     environment: Environment.Test,
     level: 'debug',
@@ -27,61 +23,72 @@ test('logLogged runs without crashing', () => {
     service: 'test service',
     timestamp: Date.now()
   }
-
-  expect(() => loggingController.logLogged(data)).not.toThrow()
 })
 
-describe('message validation', () => {
-  let logDnaService: LogDnaService
-  let loggingController: LoggingController
-  let data: LogLoggedMessage
+test.serial('logLogged runs without crashing', (t) => {
+  const logDnaService = new LogDnaService({})
+  const loggingController = new LoggingController(logDnaService)
 
-  beforeEach(() => {
-    logDnaService = new LogDnaService()
-    loggingController = new LoggingController(logDnaService)
-    data = {
-      component: 'test',
-      environment: Environment.Test,
-      level: 'debug',
-      message: 'test message',
-      service: 'test service',
-      timestamp: Date.now()
-    }
-  })
+  loggingController.logLogged(data)
+  t.pass()
+})
 
-  it('throws an error when no component specified', () => {
-    delete (data as UnvalidatedMessage).component
+test.serial('logLogged handles its own exception when no component specified', (t) => {
+  const logDnaService = new LogDnaService({})
+  const loggingController = new LoggingController(logDnaService)
 
-    expect(() => loggingController.logLogged(data)).toThrow('component not specified')
-  })
+  delete (data as UnvalidatedMessage).component
 
-  it('throws an error when no environment specified', () => {
-    delete (data as UnvalidatedMessage).environment
+  loggingController.logLogged(data)
+  t.pass()
+})
 
-    expect(() => loggingController.logLogged(data)).toThrow('environment not specified')
-  })
+test.serial('logLogged handles its own exception when no environment specified', (t) => {
+  const logDnaService = new LogDnaService({})
+  const loggingController = new LoggingController(logDnaService)
 
-  it('throws an error when no level specified', () => {
-    delete (data as UnvalidatedMessage).level
+  delete (data as UnvalidatedMessage).environment
 
-    expect(() => loggingController.logLogged(data)).toThrow('level not specified')
-  })
+  loggingController.logLogged(data)
+  t.pass()
+})
 
-  it('throws an error when no message specified', () => {
-    delete (data as UnvalidatedMessage).message
+test.serial('logLogged handles its own exception when no level specified', (t) => {
+  const logDnaService = new LogDnaService({})
+  const loggingController = new LoggingController(logDnaService)
 
-    expect(() => loggingController.logLogged(data)).toThrow('message not specified')
-  })
+  delete (data as UnvalidatedMessage).level
 
-  it('throws an error when no service specified', () => {
-    delete (data as UnvalidatedMessage).service
+  loggingController.logLogged(data)
+  t.pass()
+})
 
-    expect(() => loggingController.logLogged(data)).toThrow('service not specified')
-  })
+test.serial('logLogged handles its own exception when no message specified', (t) => {
+  const logDnaService = new LogDnaService({})
+  const loggingController = new LoggingController(logDnaService)
 
-  it('throws an error when no timestamp specified', () => {
-    delete (data as UnvalidatedMessage).timestamp
+  delete (data as UnvalidatedMessage).message
 
-    expect(() => loggingController.logLogged(data)).toThrow('timestamp not specified')
-  })
+  loggingController.logLogged(data)
+  t.pass()
+})
+
+test.serial('logLogged handles its own exception when no service specified', (t) => {
+  const logDnaService = new LogDnaService({})
+  const loggingController = new LoggingController(logDnaService)
+
+  delete (data as UnvalidatedMessage).service
+
+  loggingController.logLogged(data)
+  t.pass()
+})
+
+test.serial('logLogged handles its own exception when no timestamp specified', (t) => {
+  const logDnaService = new LogDnaService({})
+  const loggingController = new LoggingController(logDnaService)
+
+  delete (data as UnvalidatedMessage).timestamp
+
+  loggingController.logLogged(data)
+  t.pass()
 })

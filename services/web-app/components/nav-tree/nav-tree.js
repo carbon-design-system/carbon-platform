@@ -5,10 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { unstable_TreeNode as TreeNode, unstable_TreeView as TreeView } from '@carbon/react'
+import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 import slugify from 'slugify'
+
+import { dfs } from '@/utils/tree'
 
 import styles from './nav-tree.module.scss'
 
@@ -19,7 +22,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
 
   useEffect(() => {
     const newItemNodeArray = []
-    items.forEach((item) => {
+    items.forEach((item, index) => {
       newItemNodeArray.push(item)
       if (item.isSection) {
         // this is a hack so that we have two elements:
@@ -27,26 +30,14 @@ const NavTree = ({ activeItem, items = [], label }) => {
         // doing this because for some reason the treeNode won't let me
         // programatically render two components
         newItemNodeArray.push({ ...item, isDummy: true })
+      } else {
+        if (index > 0 && items[index - 1].isSection) {
+          item.sectionGroup = true
+        }
       }
     })
     setItemNodes(newItemNodeArray)
   }, [items])
-
-  const dfs = (nodes, returnFunction) => {
-    let node
-    const stack = []
-    stack.push(...nodes)
-    while (stack.length > 0) {
-      node = stack.pop()
-      if (returnFunction(node)) {
-        return node
-      } else {
-        node.items?.forEach((item) => {
-          stack.push(item)
-        })
-      }
-    }
-  }
 
   const getItemId = (item) => {
     return item.path || slugify(item.title, { lower: true, strict: true })
@@ -64,7 +55,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
   )
 
   const isTreeNodeExpanded = (node) => {
-    return node.items?.some((item) => isTreeNodeActive(item))
+    return !!dfs([node], (evalNode) => evalNode.items?.some((item) => isTreeNodeActive(item)))
   }
 
   useEffect(() => {
@@ -79,7 +70,9 @@ const NavTree = ({ activeItem, items = [], label }) => {
 
     return nodes.map((node) => {
       if (node.isSection) {
-        return <h2 className={styles['section-heading']}>{node.title}</h2>
+        return (
+          <h2 className={clsx(styles['section-heading'], styles['section-group'])}>{node.title}</h2>
+        )
       } else {
         return (
           <TreeNode
@@ -88,6 +81,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
             key={node.title}
             onClick={() => node.path && router.push(node.path)}
             isExpanded={isTreeNodeExpanded(node)}
+            className={clsx({ [styles['section-group']]: node.sectionGroup })}
           >
             {renderTree(node.items)}
           </TreeNode>

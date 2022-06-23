@@ -5,6 +5,7 @@ WORKDIR /ibm
 ARG CARBON_GITHUB_TOKEN
 ARG GITHUB_TOKEN=${CARBON_GITHUB_TOKEN}
 
+RUN npm -w services/web-app install
 RUN npm -w services/web-app run build
 RUN npm -w services/web-app run bundle
 

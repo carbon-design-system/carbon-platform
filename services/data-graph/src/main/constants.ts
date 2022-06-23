@@ -7,9 +7,7 @@
 import path from 'path'
 
 const SCHEMA_OUTPUT_FILE = path.join(
-  __dirname,
-  '..',
-  '..',
+  process.cwd(),
   '..',
   '..',
   'packages',

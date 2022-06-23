@@ -16,4 +16,16 @@ interface DataGraphResponse<T = { [key: string]: any }> {
   errors?: Readonly<Array<any>>
 }
 
-export { DataGraphMessage, DataGraphResponse }
+interface DevDatasetEntry {
+  name: string
+  variables?: {
+    [key: string]: any
+  }
+  response: any
+}
+
+interface DevDatasetJson {
+  queries: Array<DevDatasetEntry>
+}
+
+export { DataGraphMessage, DataGraphResponse, DevDatasetEntry, DevDatasetJson }

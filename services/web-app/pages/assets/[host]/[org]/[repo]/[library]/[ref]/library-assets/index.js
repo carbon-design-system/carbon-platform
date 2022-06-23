@@ -26,7 +26,7 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect, useState } from 'react'
 import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'types'
 
-import CatalogItemMeta from '@/components/catalog-item/catalog-item-meta'
+import AssetCatalogItemMeta from '@/components/asset-catalog-item/asset-catalog-item-meta'
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
 import { framework } from '@/data/framework'
@@ -104,7 +104,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
         id: asset.content.id,
         name: <span className={styles['asset-name']}>{asset.content.name}</span>,
         type: <TypeTag type={asset.content.type} className={styles.tag} />,
-        status: <CatalogItemMeta asset={asset} properties={['status']} />,
+        status: <AssetCatalogItemMeta asset={asset} properties={['status']} />,
         tags: (
           <span className={styles['truncated-text']}>
             {asset.content.tags

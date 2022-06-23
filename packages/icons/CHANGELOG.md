@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.37](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.36...@carbon-platform/icons@0.0.37) (2022-06-18)
+
+
+### Features 🌟
+
+* add internal padding to icons ([11021a0](https://github.com/carbon-design-system/carbon-platform/commit/11021a0ec2cec165c638d50f73c949c0dab1b190))
+
+### [0.0.36](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.35...@carbon-platform/icons@0.0.36) (2022-06-16)
+
+
+### Features 🌟
+
+* **web-app:** library details, add resources section ([51fd7a4](https://github.com/carbon-design-system/carbon-platform/commit/51fd7a4eff1ee5266be2fcb987c3b82dc184d775))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** use black npm logo ([9409747](https://github.com/carbon-design-system/carbon-platform/commit/9409747d53468eda034038ae92838094402b3b9c))
+
+### [0.0.35](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.34...@carbon-platform/icons@0.0.35) (2022-06-10)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** app hangs when disconencting from message broker ([bfe11fa](https://github.com/carbon-design-system/carbon-platform/commit/bfe11fa053859ce41c411e68071df433901f4499))
+
+### [0.0.34](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.33...@carbon-platform/icons@0.0.34) (2022-06-10)
+
+
+### Features 🌟
+
+* update releases page content ([0bf656e](https://github.com/carbon-design-system/carbon-platform/commit/0bf656e236aea616e02f18b5067b3d0e8ea24bbb))
+
+
+### Bug Fixes 🐛
+
+* merge conflicts ([f608844](https://github.com/carbon-design-system/carbon-platform/commit/f608844523e55c82c33f84f6de636a48ea9c181b))
+
 ### [0.0.33](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.32...@carbon-platform/icons@0.0.33) (2022-06-03)
 
 

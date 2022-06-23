@@ -2,6 +2,74 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.19](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.18...@carbon-platform/api@0.3.19) (2022-06-22)
+
+
+### Features 🌟
+
+* **data-graph:** add dynamic dev devdataset reloading ([3f87565](https://github.com/carbon-design-system/carbon-platform/commit/3f87565ffb8c66e858465c7d6d35863fdf70ceac))
+
+### [0.3.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.17...@carbon-platform/api@0.3.18) (2022-06-17)
+
+
+### Bug Fixes 🐛
+
+* **data-graph:** assorted bug fixes ([a039711](https://github.com/carbon-design-system/carbon-platform/commit/a039711d25a4d4073e7e118ccd7b42f40f618b30)), closes [#830](https://github.com/carbon-design-system/carbon-platform/issues/830)
+
+### [0.3.17](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.16...@carbon-platform/api@0.3.17) (2022-06-16)
+
+
+### Features 🌟
+
+* **data-graph:** dev dataset first pass ([7f01471](https://github.com/carbon-design-system/carbon-platform/commit/7f01471210ab94d36bb13005060a7c24704efeb0)), closes [#627](https://github.com/carbon-design-system/carbon-platform/issues/627) [#628](https://github.com/carbon-design-system/carbon-platform/issues/628) [#629](https://github.com/carbon-design-system/carbon-platform/issues/629) [#626](https://github.com/carbon-design-system/carbon-platform/issues/626)
+
+### [0.3.16](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.15...@carbon-platform/api@0.3.16) (2022-06-15)
+
+
+### Misc. 🔮
+
+* update node modules ([91ff95f](https://github.com/carbon-design-system/carbon-platform/commit/91ff95fd3d9c797f291099f3d875959010f822f0))
+
+### [0.3.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.14...@carbon-platform/api@0.3.15) (2022-06-13)
+
+
+### Misc. 🔮
+
+* **api:** logging consistency in messaging classes ([ae75426](https://github.com/carbon-design-system/carbon-platform/commit/ae75426fb87254e1f8305e2bcf9f07dfb1a442d0))
+
+### [0.3.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.13...@carbon-platform/api@0.3.14) (2022-06-12)
+
+
+### Bug Fixes 🐛
+
+* **api:** improve messaging connection performance and stability ([d6d0673](https://github.com/carbon-design-system/carbon-platform/commit/d6d06738ea849f3bf48f6f443ff7d5172f2eb287))
+
+### [0.3.13](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.12...@carbon-platform/api@0.3.13) (2022-06-11)
+
+
+### Bug Fixes 🐛
+
+* **api:** avoid logging credentials in messaging URLs ([7f81735](https://github.com/carbon-design-system/carbon-platform/commit/7f81735482f8d77dd852fe6a9b770715d434feac))
+
+### [0.3.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.11...@carbon-platform/api@0.3.12) (2022-06-11)
+
+
+### Features 🌟
+
+* **logging:** enhance self-debug logging ([44335b4](https://github.com/carbon-design-system/carbon-platform/commit/44335b46f814ab14a92c0472e25293bb9dc153a7))
+
+
+### Bug Fixes 🐛
+
+* **api:** even better error handling for rmq connection errors ([33dcd35](https://github.com/carbon-design-system/carbon-platform/commit/33dcd35d12aafa6ec8ae9bdbdce2d9534defa0c9))
+
+### [0.3.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.10...@carbon-platform/api@0.3.11) (2022-06-10)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** app hangs when disconencting from message broker ([bfe11fa](https://github.com/carbon-design-system/carbon-platform/commit/bfe11fa053859ce41c411e68071df433901f4499))
+
 ### [0.3.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.8...@carbon-platform/api@0.3.10) (2022-05-21)
 
 

@@ -12,6 +12,7 @@
 @use '@carbon/react/scss/utilities/convert' as convert;
 
 .container {
+  margin-bottom: spacing.$spacing-10;
   // overide Carbon treeview
   :global(.cds--tree-node) {
     padding-left: spacing.$spacing-05;
@@ -61,6 +62,10 @@
     background-color: theme.$background-selected;
   }
 
+  :global(.cds--tree-node__children .cds--tree-node__label) {
+    @include type.type-style('body-compact-01');
+  }
+
   :global(.cds--tree-node--selected > .cds--tree-node__label::before) {
     left: spacing.$spacing-06;
   }
@@ -75,16 +80,18 @@
     font-weight: bold;
   }
 
-  :global(.cds--tree-node__children .cds--tree-node__children .cds--tree-node__label) {
-    @include type.type-style('body-compact-01');
-  }
-
   :global(.cds--tree-node[aria-expanded='true'] > * > .cds--tree-parent-node__toggle::after) {
     transform: rotate(180deg);
   }
 
   :global(.cds--tree-parent-node.cds--tree-node--selected > .cds--tree-node__label::before) {
     left: 0;
+  }
+
+  :global(.cds--tree-node[aria-expanded='true']
+      > .cds--tree-node__label
+      .cds--tree-node__label__details) {
+    @include type.type-style('heading-compact-01');
   }
 
   :global(.cds--tree-node__children
@@ -94,10 +101,23 @@
     left: spacing.$spacing-06;
   }
 
+  :global(.cds--tree-node__children
+      .cds--tree-node__children
+      .cds--tree-node--selected.cds--tree-node--active
+      .cds--tree-node__label) {
+    background-color: theme.$background-selected;
+    color: theme.$text-primary;
+    font-weight: bold;
+  }
+
   .section-heading {
     padding-bottom: spacing.$spacing-03;
     border-bottom: 1px solid theme.$layer-accent;
-    margin: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
+    margin: 0 spacing.$spacing-05 spacing.$spacing-03;
     @include type.type-style('label-01');
+  }
+
+  .section-group {
+    margin-top: spacing.$spacing-08;
   }
 }

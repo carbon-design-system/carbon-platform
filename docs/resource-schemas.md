@@ -47,7 +47,7 @@ library:
           path: '/another-page/sub-page.mdx'
           hidden: true
         - title: Another sub page
-          path: '/another-page/another-sub-page.mdx'
+          path: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/developing/react-tutorial/step-1.mdx'
 assets:
   accordion:
     name: Accordion
@@ -61,6 +61,11 @@ assets:
       - data-display
     framework: react
     platform: web
+    docs:
+      usagePath: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/components/accordion/usage.mdx'
+      stylePath: './components/accordion/styles.mdx'
+      codePath: './components/accordion/code.mdx'
+      accessibilityPath: './components/accordion/accessibility.mdx'
   card:
     name: Card
     type: component
@@ -131,7 +136,7 @@ library:
           path: '/another-page/sub-page.mdx'
           hidden: true
         - title: Another sub page
-          path: '/another-page/another-sub-page.mdx'
+          path: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/developing/react-tutorial/step-1.mdx'
 ```
 
 ### Library keys
@@ -167,7 +172,7 @@ There are two requirements for an asset to inherit another asset.
    framework filter has been set.
 
 After doing so, some asset keys will be inherited by default. See the [asset keys](#asset-keys)
-table. If you don't want to inherit something that is inherited by default, you can specifiy the
+table. If you don't want to inherit something that is inherited by default, you can specify the
 asset key to override the inherited default.
 
 ## Asset schema
@@ -206,6 +211,11 @@ assets:
         name: Storybook
         action: link
         url: https://react.carbondesignsystem.com/?path=/story/components-accordion--accordion
+    docs:
+      usagePath: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/components/accordion/usage.mdx'
+      stylePath: './components/accordion/styles.mdx'
+      codePath: './components/accordion/code.mdx'
+      accessibilityPath: './components/accordion/accessibility.mdx'
 ```
 
 ### Asset keys
@@ -224,6 +234,7 @@ assets:
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                         | Optional | String           | No          | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `demoLinks`       | Links to demo sites. See [demo links](#demos-links).                                                                                                     | Optional | Array            | No          | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `noIndex`         | If set to `true`, the global catalogs will exclude the asset.                                                                                            | Optional | Boolean          | No          | `false`       | –                                                                                                                                                                                                                                                                                                                                          |
+| `docs`            | Contains information on where to find supporting documentation for the asset. See [asset docs](#asset-docs).                                             | Optional | Object           | Yes         | -             | –                                                                                                                                                                                                                                                                                                                                          |
 
 #### Asset type
 
@@ -263,7 +274,7 @@ These tags can be used when the asset is of type `component`.
 
 #### Data visualization tags
 
-These additional tags can be used alongside the `data-vizualization` tag.
+These additional tags can be used alongside the `data-visualization` tag.
 
 | Tag                     | Name                  | Description                                                                                                                                                                                                                                   |
 | ----------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -311,6 +322,35 @@ have the following values:
 | `cross-platform` | Runs natively on iOS, Android, and/or desktop. |
 | `web`            | Runs on the web.                               |
 
+#### Asset docs
+
+Asset docs is used to determine which supporting documentation is available to fetch and render as
+page tabs in the asset details for the asset as well as its location. For each optional document
+key, a path should be included.
+
+Currently supported document keys are:
+
+| Document            | Description                                                       | Required | Type   | Inheritable | Default             | Valid values                                                                                                                                                            |
+| ------------------- | ----------------------------------------------------------------- | -------- | ------ | ----------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `usagePath`         | When to use the asset and how it behaves.                         | Optional | String | Yes         | ./usage.mdx         | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| `stylePath`         | Asset structure and design specifications.                        | Optional | String | Yes         | ./style.mdx         | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| `codePath`          | Asset API documentation (or where to find it).                    | Optional | String | Yes         | ./code.mdx          | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| `accessibilityPath` | Asset accessibility considerations when designing and developing. | Optional | String | Yes         | ./accessibility.mdx | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+
+**Example**
+
+carbon.yml
+
+```yml
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
+---
+docs:
+  usagePath: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/components/accordion/usage.mdx'
+  stylePath: './components/accordion/styles.mdx'
+  codePath: './components/accordion/code.mdx'
+  accessibilityPath: './components/accordion/accessibility.mdx'
+```
+
 ## Design kit schema
 
 Design kits contain elements, components, guidelines and wireframes for various design tools as the
@@ -318,8 +358,6 @@ design counterpart to coded assets. Design kits are indexed in the
 [carbon-platform](https://github.com/carbon-design-system/carbon-platform) repository
 [`carbon.yml`](https://github.com/carbon-design-system/carbon-platform/blob/main/services/web-app/data/carbon.yml)
 data file.
-
-**Example**
 
 carbon.yml
 
@@ -450,14 +488,14 @@ navData:
         path: '/another-page/sub-page.mdx'
         hidden: true
       - title: Another sub page
-        path: '/another-page/another-sub-page.mdx'
+        path: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/developing/react-tutorial/step-1.mdx'
 ```
 
 For the value of the `navData` array, you can set the following keys.
 
-| Nav data | Description                                                  | Required | Type    | Default |
-| -------- | ------------------------------------------------------------ | -------- | ------- | ------- |
-| `title`  | Navigation title.                                            | Required | String  | –       |
-| `path`   | Path to the file, relative to carbon.yml.                    | Required | String  | –       |
-| `items`  | Second level of navigation.                                  | Optional | Array   | –       |
-| `hidden` | If set to true, the item will be hidden from the navigation. | Optional | Boolean | `false` |
+| Nav data | Description                                                  | Required | Type    | Default | Valid values                                                                                                                                                           |
+| -------- | ------------------------------------------------------------ | -------- | ------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`  | Navigation title.                                            | Required | String  | –       | –                                                                                                                                                                      |
+| `path`   | Path to the file.                                            | Required | String  | –       | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li><li>Path relative to the carbon.yml file location</li></ul> |
+| `items`  | Second level of navigation.                                  | Optional | Array   | –       | –                                                                                                                                                                      |
+| `hidden` | If set to true, the item will be hidden from the navigation. | Optional | Boolean | `false` | –                                                                                                                                                                      |

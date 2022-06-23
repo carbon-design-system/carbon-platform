@@ -1,3 +1,3 @@
-# icons
+# @carbon-platform/icons
 
-Docs located [here](../../docs/packages-icons.md)
+Docs are located [here](../../docs/packages-icons.md).

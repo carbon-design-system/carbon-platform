@@ -16,9 +16,9 @@ service.
 ### Querying via messaging
 
 ```ts
-const messaging = MessagingClient.getInstance()
+const dataGraph = new DataGraph()
 
-const response = await messaging.query('data_graph', {
+const response = await dataGraph.queryData({
   query: gql`
     ...
   `
@@ -36,11 +36,11 @@ const data = response.data
 
 ### Querying via REST API
 
-> **Note:** This is for a direct query to the data graph service, which differs from what a UI
-> client might do via the web-app.
+> **Note:** The URL in the example below is an example of what might be used in a production
+> environment.
 
 ```ts
-const response = await fetch('https://localhost:3000/graphql', {
+const response = await fetch('https://next.carbondesignsystem.com/graphql', {
   method: 'post',
   body: JSON.stringify({
     query: gql`
@@ -64,12 +64,23 @@ const data = responseJson.data
 
 ## Package APIs
 
-TODO: Dev mode testing considerations once implemented
-
 ### `` gql`...` ``
 
 A tagged template literal that can be used when building up GraphQL queries. It will provide full
 auto-complete of the data-graph schema. It returns a minified version of the input string.
+
+### `DataGraph`
+
+An instantiable class that provides a utility method for querying the data-graph called `queryData`.
+This mehtod is generic and accepts a type argument corresponding to the return type of the query.
+
+**Note:** It is left up to the caller to ensure that the type/contents of the return data matches
+the specified type argument and to convert any returned data to model objects for use elsewhere in
+the rest of the code.
+
+The DataGraph class also provides a method for adding a dev dataset
+(`addDevDataset(dataset: Array<DevDatasetEntry>)`) which can then be used in Dev RunMode to obtain
+static data for the provided query
 
 ### `DataGraphMessage`
 
@@ -84,3 +95,22 @@ A type representing a response from the data-graph service.
 The data-graph service exports a comprehensive set of models representing the various objects that
 exist on the graph. It also exports a set of "Input" classes which act as the input types to
 mutations.
+
+## Testing
+
+In Standard RunMode, The DataGraph `queryData` method will send a `QueryMessage.data_graph` message
+to the message broker in order to retrieve "real" data from the graph.
+
+In Dev RunMode, all querying happens locally via the "Dev Dataset". This is a
+[collection of JSON files](/packages/api/src/dev/data-graph/) containing mappings of query names
+(and associated variables) to response objects.
+
+This is useful because in Dev mode, each "real" query can map to a statically-defined result object
+in the Dev Dataset. This makes it possible to build a static export of any service that uses the
+data-graph (like the `web-app`) because in Dev mode, the data for a particular query never changes
+across queries.
+
+An example Dev Dataset file is available [here](/packages/api/src/dev/data-graph/example.json).
+
+The JSON schema that governs the Dev Dataset files is available here
+[here](/packages/api/src/dev/data-graph/dev-dataset.schema.json).

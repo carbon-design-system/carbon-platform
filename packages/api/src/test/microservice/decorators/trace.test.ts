@@ -6,130 +6,113 @@
  */
 import 'reflect-metadata'
 
-import { Trace } from '../../../main/microservice/decorators/trace'
-import * as Runtime from '../../../main/runtime'
+import test from 'ava'
 
-const getRunModeSpy = jest.spyOn(Runtime, 'getRunMode')
-const isDebugEnabledSpy = jest.spyOn(Runtime, 'isDebugEnabled')
+import { Logging } from '../../../main/logging/logging.js'
+import { Trace } from '../../../main/microservice/decorators/trace.js'
+import { RunMode, Runtime } from '../../../main/runtime/index.js'
 
-test('it instantiates a logger', () => {
-  const target = {}
-  const inputFn = (arg: string) => arg + 'hello'
-  const descriptor = { value: inputFn }
+const inputFn = (arg: string) => arg + 'hello'
+const descriptor = { value: inputFn }
+
+test('it instantiates a logger', (t) => {
+  const runtime = new Runtime({ runMode: RunMode.Dev, isDebugEnabled: true })
+  const target: { logging?: Logging } = {}
 
   // Decorate the function
-  Trace()(target, 'propertyKey', descriptor)
+  Trace({ runtime })(target, 'propertyKey', descriptor)
 
   descriptor.value('its an arg!')
 
-  expect(target).toHaveProperty('logging')
+  t.true(target.logging instanceof Logging)
 })
 
-describe('when modifying the runtime', () => {
-  it('honors debug mode', () => {
-    getRunModeSpy.mockReturnValueOnce(Runtime.RunMode.Standard)
-    isDebugEnabledSpy.mockReturnValueOnce(true)
-
-    const target = {
-      logging: undefined
-    }
-    const inputFn = (arg: string) => arg + 'hello'
-    const descriptor = { value: inputFn }
-
-    // Decorate the function
-    Trace()(target, 'propertyKey', descriptor)
-
-    descriptor.value('its an arg!')
-
-    expect(target.logging).toBeDefined()
-  })
-
-  it('honors dev run mode mode', () => {
-    getRunModeSpy.mockReturnValueOnce(Runtime.RunMode.Dev)
-    isDebugEnabledSpy.mockReturnValueOnce(false)
-
-    const target = {
-      logging: undefined
-    }
-    const inputFn = (arg: string) => arg + 'hello'
-    const descriptor = { value: inputFn }
-
-    // Decorate the function
-    Trace()(target, 'propertyKey', descriptor)
-
-    descriptor.value('its an arg!')
-
-    expect(target.logging).toBeDefined()
-  })
-
-  it('can be shut off', () => {
-    getRunModeSpy.mockReturnValueOnce(Runtime.RunMode.Standard)
-    isDebugEnabledSpy.mockReturnValueOnce(false)
-
-    const target = {
-      logging: undefined
-    }
-    const inputFn = (arg: string) => arg + 'hello'
-    const descriptor = { value: inputFn }
-
-    // Decorate the function
-    Trace()(target, 'propertyKey', descriptor)
-
-    descriptor.value('its an arg!')
-
-    expect(target.logging).toBeUndefined()
-  })
-})
-
-test('it works with a non-promise', () => {
-  const target = {
-    logging: {
-      debug: jest.fn()
-    }
-  }
-  const inputFn = (arg: string) => arg
-  const descriptor = { value: inputFn }
+test('it returns the original value', (t) => {
+  const runtime = new Runtime({ runMode: RunMode.Dev, isDebugEnabled: true })
+  const target: { logging?: Logging } = {}
 
   // Decorate the function
-  Trace()(target, 'propertyKey', descriptor)
+  Trace({ runtime })(target, 'propertyKey', descriptor)
 
-  // Invoke the function
-  descriptor.value('its an arg!')
+  const input = 'its an arg!'
+  const result = descriptor.value(input)
 
-  expect(target.logging.debug).toHaveBeenCalledTimes(2)
+  t.is(result, input + 'hello')
 })
 
-test('it works with a promise', async () => {
-  const target = {
-    logging: {
-      debug: jest.fn()
+test('it honors debug mode in standard run mode', (t) => {
+  const runtime = new Runtime({ runMode: RunMode.Standard, isDebugEnabled: true })
+  const target: { logging?: Logging } = {}
+
+  // Decorate the function
+  Trace({ runtime })(target, 'propertyKey', descriptor)
+
+  descriptor.value('its an arg!')
+
+  t.true(target.logging instanceof Logging)
+})
+
+test('it debugs in dev run mode even when debug mode is off', (t) => {
+  const runtime = new Runtime({ runMode: RunMode.Dev, isDebugEnabled: false })
+  const target: { logging?: Logging } = {}
+
+  // Decorate the function
+  Trace({ runtime })(target, 'propertyKey', descriptor)
+
+  descriptor.value('its an arg!')
+
+  t.true(target.logging instanceof Logging)
+})
+
+test('it can be shut off', (t) => {
+  const runtime = new Runtime({ runMode: RunMode.Standard, isDebugEnabled: false })
+  const target: { logging?: Logging } = {}
+
+  // Decorate the function
+  Trace({ runtime })(target, 'propertyKey', descriptor)
+
+  descriptor.value('its an arg!')
+
+  t.is(target.logging, undefined)
+})
+
+test('it works with a promise', async (t) => {
+  t.plan(2)
+
+  const runtime = new Runtime({ runMode: RunMode.Dev })
+  const target: { logging?: Logging } = {}
+  const logging = {
+    debug: () => {
+      t.pass()
     }
   }
   const inputFn = (arg: string) => Promise.resolve(arg)
   const descriptor = { value: inputFn }
 
   // Decorate the function
-  Trace()(target, 'propertyKey', descriptor)
+  Trace({ runtime, logging: logging as any })(target, 'propertyKey', descriptor)
 
-  // Invoke the function
   await descriptor.value('its an arg!')
-
-  expect(target.logging.debug).toHaveBeenCalledTimes(2)
 })
 
-test('it works with an exception', () => {
-  const target = {
-    logging: {
-      debug: jest.fn()
+test('it works with an exception', (t) => {
+  t.plan(3)
+
+  const runtime = new Runtime({ runMode: RunMode.Dev })
+  const target: { logging?: Logging } = {}
+  const logging = {
+    debug: () => {
+      t.pass()
     }
   }
+
   const inputFn = (arg: string) => {
     throw new Error(arg)
   }
   const descriptor = { value: inputFn }
 
   // Decorate the function
-  Trace()(target, 'propertyKey', descriptor)
+  Trace({ runtime, logging: logging as any })(target, 'propertyKey', descriptor)
 
   // Invoke the function
   let result: any
@@ -139,21 +122,25 @@ test('it works with an exception', () => {
     result = err
   }
 
-  expect(result).toBeInstanceOf(Error)
-  expect(target.logging.debug).toHaveBeenCalledTimes(2)
+  t.true(result instanceof Error)
 })
 
-test('it works with a promise that throws an exception', async () => {
-  const target = {
-    logging: {
-      debug: jest.fn()
+test('it works with a promise that thrown an exception', async (t) => {
+  t.plan(3)
+
+  const runtime = new Runtime({ runMode: RunMode.Dev })
+  const target: { logging?: Logging } = {}
+  const logging = {
+    debug: () => {
+      t.pass()
     }
   }
+
   const inputFn = (arg: string) => Promise.reject(new Error(arg))
   const descriptor = { value: inputFn }
 
   // Decorate the function
-  Trace()(target, 'propertyKey', descriptor)
+  Trace({ runtime, logging: logging as any })(target, 'propertyKey', descriptor)
 
   // Invoke the function
   let result: any
@@ -163,28 +150,22 @@ test('it works with a promise that throws an exception', async () => {
     result = err
   }
 
-  expect(result).toBeInstanceOf(Error)
-  expect(target.logging.debug).toHaveBeenCalledTimes(2)
+  t.true(result instanceof Error)
 })
 
-test('it preserves metadata', async () => {
-  const target = {
-    logging: {
-      debug: jest.fn()
-    }
-  }
-  const inputFn = (arg: string) => Promise.resolve(arg)
-  const descriptor = { value: inputFn }
+test('it preserves metadata', (t) => {
+  const target: { logging?: Logging } = {}
+  const metadataInputFn = (arg: string) => arg
+  const descriptor = { value: metadataInputFn }
   const metadataKey = 'testing123'
 
-  Reflect.defineMetadata(metadataKey, 'wowow', inputFn)
+  Reflect.defineMetadata(metadataKey, 'wowow', metadataInputFn)
 
   // Decorate the function
   Trace()(target, 'propertyKey', descriptor)
 
   // Invoke the function
-  await descriptor.value('its an arg!')
+  descriptor.value('its an arg!')
 
-  expect(target.logging.debug).toHaveBeenCalledTimes(2)
-  expect(Reflect.getMetadata(metadataKey, descriptor.value)).toBe('wowow')
+  t.is(Reflect.getMetadata(metadataKey, descriptor.value), 'wowow')
 })

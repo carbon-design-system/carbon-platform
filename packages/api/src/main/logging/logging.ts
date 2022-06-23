@@ -6,10 +6,10 @@
  */
 import chalk from 'chalk'
 
-import { MessagingClient } from '../messaging'
-import { Environment, getEnvironment, getRunMode, isDebugEnabled, RunMode } from '../runtime'
-import { CARBON_SERVICE_NAME } from './constants'
-import { Loggable, LoggingOptions, LogLevel, LogLoggedMessage } from './interfaces'
+import { MessagingClient } from '../messaging/index.js'
+import { Environment, RunMode, Runtime } from '../runtime/index.js'
+import { CARBON_SERVICE_NAME } from './constants.js'
+import { Loggable, LogLevel, LogLoggedMessage } from './interfaces.js'
 
 const logColors = {
   debug: chalk.bgMagenta,
@@ -18,56 +18,89 @@ const logColors = {
   error: chalk.bgRed
 }
 
+interface LoggingConfig {
+  /**
+   * A freeform string that allows a second layer of search/tagging on logs.
+   * Typically this is something like a class name, file name, or other name describing a "chunk"
+   * of code or logic.
+   */
+  component: string
+
+  /**
+   * The name of the service under which this instance should create logs. If not specified, this
+   * will default to the value obtained from the CARBON_SERVICE_NAME envvar.
+   */
+  service?: string
+
+  /**
+   * A client containing a connection to the message broker. If not specified, one will be obtained
+   * implicitly.
+   */
+  messagingClient?: MessagingClient
+
+  /**
+   * A runtime config instance to facilitate modifying the behavior of the logger via dependency
+   * injection.
+   */
+  runtime?: Runtime
+
+  /**
+   * Explicit override of remote logging
+   */
+  isRemoteLoggingEnabled?: boolean
+}
+
 /**
  * An instantiatable class that provides API methods that can be used to log application data. In
  * "Dev" run mode, logs are only output locally. In "Standard" run mode, they are sent as messages
  * to the logging service, which ultimately logs them in LogDNA.
  */
 class Logging {
-  private static isRemoteLoggingAllowed: boolean = true
+  /**
+   * Sets the global setting for whether or not remote logging is allowed to be enabled. This
+   * supersedes all environment-based switches and instance-based overrides.
+   */
+  public static isRemoteLoggingAllowed: boolean = true
 
-  private component: string
-  private readonly environment: Environment
+  /**
+   * The currently set component value for this logging instance. This can be manually re-set as
+   * needed.This is useful when wanting to reuse a single logging instance across multiple
+   * components.
+   *
+   * @param component The new component string to use.
+   */
+  public component: string
+
+  private readonly runtime: Runtime
   private readonly isDebugLoggingEnabled: boolean
   private readonly isRemoteLoggingEnabled: boolean
   private readonly messagingClient?: MessagingClient
   private readonly service: string
 
   /**
-   * Sets the global setting for whether or not remote logging is allowed to be enabled. This
-   * supersedes all environment-based switches and instance-based overrides.
-   *
-   * @param isAllowed Whether or not remote logging is allowed to be enabled.
-   */
-  public static setRemoteLoggingAllowed(isAllowed: boolean) {
-    Logging.isRemoteLoggingAllowed = isAllowed
-  }
-
-  /**
    * Creates a Logging instance for the given service/component combo.
    *
-   * @param component A freeform string that allows a second layer of search/tagging on logs.
-   * Typically this is something like a class name, file name, or other name describing a "chunk"
-   * of code or logic.
-   * @param options Additional configuration options.
+   * @param config Configuration options for the Logging instance.
    */
-  constructor(component: string, options?: LoggingOptions) {
-    this.component = component
-    this.environment = getEnvironment()
-    this.isDebugLoggingEnabled = getRunMode() === RunMode.Dev || isDebugEnabled()
-    this.isRemoteLoggingEnabled =
-      Logging.isRemoteLoggingAllowed &&
-      getRunMode() === RunMode.Standard &&
-      getEnvironment() !== Environment.Build
-    this.service = options?.serviceName || CARBON_SERVICE_NAME
+  constructor(config: LoggingConfig) {
+    this.component = config.component
+    this.runtime = config.runtime || new Runtime()
 
-    // Explicitly turn on/off remote logging based on the supplied argument
-    if (options?.isRemoteLoggingEnabled !== undefined) {
-      this.isRemoteLoggingEnabled = Logging.isRemoteLoggingAllowed && options.isRemoteLoggingEnabled
+    this.isDebugLoggingEnabled = this.runtime.runMode === RunMode.Dev || this.runtime.isDebugEnabled
+
+    if (Logging.isRemoteLoggingAllowed) {
+      this.isRemoteLoggingEnabled =
+        config.isRemoteLoggingEnabled ??
+        (this.runtime.runMode === RunMode.Standard &&
+          this.runtime.environment !== Environment.Build)
+    } else {
+      this.isRemoteLoggingEnabled = false
     }
 
+    this.service = config.service || CARBON_SERVICE_NAME
+
     if (this.isRemoteLoggingEnabled) {
-      this.messagingClient = MessagingClient.getInstance()
+      this.messagingClient = config.messagingClient || MessagingClient.getInstance()
     }
   }
 
@@ -132,16 +165,6 @@ class Logging {
   }
 
   /**
-   * Manually re-sets the component of this logging instance to a newly provided value. This is
-   * useful when wanting to reuse a single logging instance across multiple components.
-   *
-   * @param component The new component string to use.
-   */
-  public setComponent(component: string) {
-    this.component = component
-  }
-
-  /**
    * Creates a message object ready to be logged locally or remotely.
    *
    * @param message The actual message to log.
@@ -159,7 +182,7 @@ class Logging {
       component: this.component,
       level,
       message,
-      environment: this.environment,
+      environment: this.runtime.environment,
       service: this.service,
       timestamp: new Date(Date.now()).getTime()
     }

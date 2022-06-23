@@ -19,7 +19,7 @@ module.exports = {
     'standard',
     'plugin:@next/next/recommended',
     'plugin:eslint-comments/recommended',
-    path.join(__dirname, '.eslintrc.jest.js'),
+    path.join(__dirname, '.eslintrc.ava.js'),
     path.join(__dirname, '.eslintrc.jsdoc.js'),
     path.join(__dirname, '.eslintrc.react.js'),
     path.join(__dirname, '.eslintrc.storybook.js')
@@ -69,7 +69,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['!**/src/test/**/*.test.ts'],
+      files: ['!**/src/test/**/*.test.[jt]s'],
       rules: {
         'no-restricted-syntax': [
           'error',
@@ -88,7 +88,8 @@ module.exports = {
           {
             selector: 'ImportDeclaration[source.value=/@carbon-platform.*/]',
             message:
-              'Carbon Platform API package imports from inside of the API package must be relative.'
+              'Carbon Platform API package imports from inside of the API package must be ' +
+              'relative. This prevents out-of-date builds from being accidentally imported.'
           }
         ]
       }
@@ -102,6 +103,7 @@ module.exports = {
     },
     {
       files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
+      excludedFiles: ['.*.js'],
       processor: '@graphql-eslint/graphql'
     },
     {

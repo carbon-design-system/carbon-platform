@@ -8,7 +8,7 @@ import { Library } from '@carbon-platform/api/data-graph'
 import { Trace } from '@carbon-platform/api/microservice'
 import { Query, Resolver } from '@nestjs/graphql'
 
-import { LibrariesService } from './libraries-service'
+import { LibrariesService } from './libraries-service.js'
 
 @Resolver()
 class LibrariesResolver {

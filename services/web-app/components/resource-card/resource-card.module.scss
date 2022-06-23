@@ -10,6 +10,7 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/utilities/convert' as convert;
+@use '~styles/mixins' as mixins;
 
 //override carbon tile
 .resource-card :global(.cds--tile) {
@@ -51,9 +52,13 @@
   bottom: spacing.$spacing-05;
   left: spacing.$spacing-05;
   display: flex;
-  max-width: convert.rem(32px);
+  width: convert.rem(32px);
   max-height: convert.rem(32px);
   align-items: flex-end;
+
+  img[class*='image'] {
+    background: transparent;
+  }
 }
 
 .icon-action {
@@ -87,4 +92,17 @@
 .disabled .icon-img {
   filter: grayscale(100%);
   opacity: 0.5;
+}
+
+.card-with-title {
+  .subtitle {
+    @include type.type-style('body-compact-01');
+
+    color: theme.$text-secondary;
+  }
+
+  .title {
+    @include type.type-style('body-compact-02');
+    @include mixins.line-clamp(2);
+  }
 }

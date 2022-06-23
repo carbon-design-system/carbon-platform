@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.5.0...@carbon-platform/schemas@1.6.0) (2022-06-22)
+
+
+### Features 🌟
+
+* update schema validation ([1f73e0c](https://github.com/carbon-design-system/carbon-platform/commit/1f73e0c59fee034c62ffbac017ba5c0eb5a38fbf))
+
+## [1.5.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.4.0...@carbon-platform/schemas@1.5.0) (2022-06-10)
+
+
+### Features 🌟
+
+* **schemas:** add assets docs ([1fdc597](https://github.com/carbon-design-system/carbon-platform/commit/1fdc597018525a79c04192f1a99df8d18f3acecf))
+
+
+### Bug Fixes 🐛
+
+* **schemas:** allow for absolute paths in asset docs ([ca28db7](https://github.com/carbon-design-system/carbon-platform/commit/ca28db7790cd79d0551d9d3afb837b6f22830b66))
+* **schemas:** capitalization, address PR comms ([4b6fc1a](https://github.com/carbon-design-system/carbon-platform/commit/4b6fc1a316824f90972a3f14a1c68f98c5544882))
+* **schemas:** linter ([5186410](https://github.com/carbon-design-system/carbon-platform/commit/51864106c052de0c9e2f3631ab917c3c3f5209c8))
+* **schemas:** replace TODOs with real info ([c77e814](https://github.com/carbon-design-system/carbon-platform/commit/c77e8145b3f8e7c095777b7819d8177fd5a86434))
+
+## [1.4.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.3.0...@carbon-platform/schemas@1.4.0) (2022-06-08)
+
+
+### Features 🌟
+
+* **web-app:** add library nav data to side nav ([12b7f97](https://github.com/carbon-design-system/carbon-platform/commit/12b7f97a545dc436fb63b2eecd09e6f8d06e5042))
+
+
+### Bug Fixes 🐛
+
+* **schemas:** do not require path if items present on navData item ([1909006](https://github.com/carbon-design-system/carbon-platform/commit/1909006fbfa266d77f0d8980c61b8787116eacef))
+* **schemas:** run prettier ([e3693ef](https://github.com/carbon-design-system/carbon-platform/commit/e3693efcbd2a020c1706a5891d95872f8b3d5003))
+
 ## [1.3.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.2.0...@carbon-platform/schemas@1.3.0) (2022-06-01)
 
 

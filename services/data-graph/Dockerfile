@@ -2,6 +2,7 @@ FROM local/carbon-platform/base:latest AS builder
 
 WORKDIR /ibm
 
+RUN npm -w services/data-graph install
 RUN npm -w services/data-graph run build
 RUN npm -w services/data-graph run bundle
 

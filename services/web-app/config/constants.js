@@ -4,9 +4,11 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
+import { RunMode, Runtime } from '@carbon-platform/api/runtime'
 
-const CACHE_PATH = getRunMode() === RunMode.Standard ? '.carbon' : 'public/data'
+const runtime = new Runtime()
+
+const CACHE_PATH = runtime.runMode === RunMode.Standard ? '.carbon' : 'public/data'
 const IMAGES_CACHE_PATH = '.carbon'
 
 const ALLOWED_REFERERS = [

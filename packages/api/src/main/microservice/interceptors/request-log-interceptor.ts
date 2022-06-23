@@ -10,14 +10,69 @@ import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
 
-import { Logging } from '../../logging'
+import { Logging } from '../../logging/index.js'
 
 @Injectable()
 class RequestLogInterceptor implements NestInterceptor {
-  private readonly logging: Logging
+  public static getLogTextBuilder(
+    handlerType: string
+  ): ((context: ExecutionContext, result: any, responseTime: string) => string) | undefined {
+    switch (handlerType) {
+      case 'http':
+        return RequestLogInterceptor.buildHttpLogText
+      case 'rpc':
+        return RequestLogInterceptor.buildRpcLogText
+      default:
+        return undefined
+    }
+  }
 
-  constructor() {
-    this.logging = new Logging('request-logger')
+  public static buildHttpLogText(
+    context: ExecutionContext,
+    result: any,
+    responseTime: string
+  ): string {
+    const httpContext = context.switchToHttp()
+    const req = httpContext.getRequest<Request>()
+
+    const { httpVersion, method, socket, url, hostname, headers } = req
+    const { remoteAddress, remotePort } = socket
+    const { statusCode } = httpContext.getResponse<Response>()
+
+    const logParts = [
+      hostname,
+      '"' + method + ' ' + url + ' HTTP/' + httpVersion + '"',
+      statusCode,
+      responseTime + 'ms',
+      '[' + remoteAddress + ']:' + remotePort,
+      '"' + headers['user-agent'] + '"',
+      'out: ' + typeof result
+    ]
+
+    return logParts.join(' ')
+  }
+
+  public static buildRpcLogText(
+    context: ExecutionContext,
+    result: any,
+    responseTime: string
+  ): string {
+    const rpcContext = context.switchToRpc()
+
+    const logParts = [
+      context.getClass().name + '#' + context.getHandler().name,
+      'in: ' + JSON.stringify(rpcContext.getData()),
+      'out: ' + typeof result,
+      responseTime + 'ms'
+    ]
+
+    return logParts.join(' ')
+  }
+
+  private logging: Logging
+
+  constructor(config?: { logging: Logging }) {
+    this.logging = config?.logging || new Logging({ component: 'RequestLogger' })
   }
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
@@ -28,59 +83,18 @@ class RequestLogInterceptor implements NestInterceptor {
       tap(async (result) => {
         const responseTime = performance.measure(performanceId, performanceId)?.duration?.toFixed(4)
 
-        await this.getHandler(context.getType())?.call(this, context, result, responseTime)
+        const logText = RequestLogInterceptor.getLogTextBuilder(context.getType())?.(
+          context,
+          result,
+          responseTime
+        )
+
+        logText && (await this.logging.info(logText))
 
         performance.clearMarks(performanceId)
         performance.clearMeasures(performanceId)
       })
     )
-  }
-
-  private getHandler(
-    handlerType: string
-  ): ((context: ExecutionContext, result: any, responseTime: string) => Promise<void>) | undefined {
-    switch (handlerType) {
-      case 'http':
-        return this.logHttp
-      case 'rpc':
-        return this.logRpc
-      default:
-        return undefined
-    }
-  }
-
-  private async logRpc(context: ExecutionContext, result: any, responseTime: string) {
-    const rpcContext = context.switchToRpc()
-
-    const logParts = [
-      context.getClass().name + '#' + context.getHandler().name,
-      'in: ' + JSON.stringify(rpcContext.getData()),
-      'out: ' + typeof result,
-      responseTime + 'ms'
-    ]
-
-    await this.logging.info(logParts.join(' '))
-  }
-
-  private async logHttp(context: ExecutionContext, result: any, responseTime: string) {
-    const httpContext = context.switchToHttp()
-    const req = httpContext.getRequest<Request>()
-
-    const { httpVersion, method, socket, url, hostname } = req
-    const { remoteAddress, remotePort } = socket
-    const { statusCode } = httpContext.getResponse<Response>()
-
-    const logParts = [
-      hostname,
-      '"' + method + ' ' + url + ' HTTP/' + httpVersion + '"',
-      statusCode,
-      responseTime + 'ms',
-      '[' + remoteAddress + ']:' + remotePort,
-      '"' + req.get('User-Agent') + '"',
-      'out: ' + typeof result
-    ]
-
-    await this.logging.info(logParts.join(' '))
   }
 }
 

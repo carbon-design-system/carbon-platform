@@ -13,16 +13,17 @@ import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
 import unwrapImages from 'remark-unwrap-images'
 
-import { libraryAllowList } from '@/data/libraries'
+import { libraryAllowList } from '@/data/libraries.mjs'
 import { getResponse } from '@/lib/file-cache'
 import { mdxImgResolver } from '@/utils/mdx-image-resolver'
 import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
-import { getAssetId, getLibraryVersionAsset } from '@/utils/schema'
+import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
+import { dfs } from '@/utils/tree'
 import { urlsMatch } from '@/utils/url'
 
-const logging = new Logging('github.js')
+const logging = new Logging({ component: 'github.js' })
 
 /**
  * Generate and return the nav data for a library.
@@ -41,6 +42,15 @@ export const getLibraryNavData = (params, libraryData) => {
     return `v${libraryData.content.version}`
   }
 
+  const libraryNavData = get(libraryData, ['content', 'navData'], [])
+
+  // traverse items subtree and remove hidden nodes
+  dfs(libraryNavData, (item) => {
+    if (item.items) {
+      item.items = item.items?.filter((childItem) => !childItem.hidden)
+    }
+  })
+
   return {
     back: {
       title: 'Back to all Libraries',
@@ -56,6 +66,7 @@ export const getLibraryNavData = (params, libraryData) => {
         title: 'Design kits',
         path: `/assets/${params.library}/${params.ref}/design-kits`
       },
+      ...libraryNavData.filter((item) => !item.hidden),
       {
         title: 'Versions',
         path: `/assets/${params.library}/${params.ref}/versions`
@@ -234,6 +245,25 @@ const validateAsset = (asset, library) => {
 }
 
 /**
+ * Finds library object in libraryAllowList from slug and returns a valid set of params
+ * (if librry is valid)
+ * @param {string} libraryVersionSlug e.g. 'carbon-charts@0.1.121'
+ * @returns {Promise<import('../typedefs').Params>}
+ */
+export const getLibraryParams = async (libraryVersionSlug) => {
+  const inheritParams = getLibraryVersionAsset(libraryVersionSlug)
+
+  if (inheritParams.library && libraryAllowList[inheritParams.library]) {
+    return validateLibraryParams({
+      ...libraryAllowList[inheritParams.library],
+      ...inheritParams
+    })
+  } else {
+    return {}
+  }
+}
+
+/**
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  * @param {import('../typedefs').Params} params
@@ -279,19 +309,12 @@ export const getLibraryData = async (params = {}) => {
   let assets = await getLibraryAssets(params)
 
   if (library.inherits) {
-    const inheritParams = getLibraryVersionAsset(library.inherits)
+    const inheritParams = await getLibraryParams(library.inherits)
 
-    if (inheritParams.library && libraryAllowList[inheritParams.library]) {
-      const fullInheritParams = await validateLibraryParams({
-        ...libraryAllowList[inheritParams.library],
-        ...inheritParams
-      })
+    if (!isEmpty(inheritParams)) {
+      const inheritAssets = await getLibraryAssets(inheritParams)
 
-      if (!isEmpty(fullInheritParams)) {
-        const inheritAssets = await getLibraryAssets(fullInheritParams)
-
-        assets = mergeInheritedAssets(assets, inheritAssets)
-      }
+      assets = mergeInheritedAssets(assets, inheritAssets)
     }
   }
 
@@ -313,7 +336,9 @@ export const getLibraryData = async (params = {}) => {
       ...library, // spread last to use schema description if set
       noIndex: !!library.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
     },
-    assets: filteredAssets
+    assets: filteredAssets.map((asset) => {
+      return { ...asset, statusKey: getAssetStatus(asset) }
+    })
   }
 }
 
@@ -506,6 +531,7 @@ const getPackageJsonContent = async (params = {}, packageJsonPath = '/package.js
     description: packageJsonContent.description,
     license: packageJsonContent.license,
     package: packageJsonContent.name,
-    version: packageJsonContent.version
+    version: packageJsonContent.version,
+    private: !!packageJsonContent.private
   }
 }

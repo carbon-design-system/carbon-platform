@@ -2,6 +2,59 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.19](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.18...@carbon-platform/data-graph@0.1.19) (2022-06-22)
+
+### [0.1.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.17...@carbon-platform/data-graph@0.1.18) (2022-06-18)
+
+### [0.1.17](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.16...@carbon-platform/data-graph@0.1.17) (2022-06-17)
+
+
+### Bug Fixes 🐛
+
+* **data-graph:** assorted bug fixes ([a039711](https://github.com/carbon-design-system/carbon-platform/commit/a039711d25a4d4073e7e118ccd7b42f40f618b30)), closes [#830](https://github.com/carbon-design-system/carbon-platform/issues/830)
+
+### [0.1.16](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.15...@carbon-platform/data-graph@0.1.16) (2022-06-16)
+
+### [0.1.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.14...@carbon-platform/data-graph@0.1.15) (2022-06-15)
+
+
+### Misc. 🔮
+
+* update node modules ([91ff95f](https://github.com/carbon-design-system/carbon-platform/commit/91ff95fd3d9c797f291099f3d875959010f822f0))
+
+### [0.1.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.13...@carbon-platform/data-graph@0.1.14) (2022-06-14)
+
+
+### Tests 🧪
+
+* **data-graph:** convert unit tests to ava ([ac73443](https://github.com/carbon-design-system/carbon-platform/commit/ac734434c5a5f3c40b1fedad1be0c91ae6d50827))
+
+### [0.1.13](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.12...@carbon-platform/data-graph@0.1.13) (2022-06-13)
+
+### [0.1.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.11...@carbon-platform/data-graph@0.1.12) (2022-06-12)
+
+### [0.1.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.10...@carbon-platform/data-graph@0.1.11) (2022-06-11)
+
+### [0.1.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.9...@carbon-platform/data-graph@0.1.10) (2022-06-11)
+
+### [0.1.9](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.8...@carbon-platform/data-graph@0.1.9) (2022-06-10)
+
+
+### Misc. 🔮
+
+* convert esbuild to work with esm ([b494d93](https://github.com/carbon-design-system/carbon-platform/commit/b494d9373c36c45b316d51af2d1eb0dbc881a4a5))
+
+### [0.1.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.7...@carbon-platform/data-graph@0.1.8) (2022-06-10)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** app hangs when disconencting from message broker ([bfe11fa](https://github.com/carbon-design-system/carbon-platform/commit/bfe11fa053859ce41c411e68071df433901f4499))
+
+### [0.1.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.6...@carbon-platform/data-graph@0.1.7) (2022-06-10)
+
+### [0.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.5...@carbon-platform/data-graph@0.1.6) (2022-06-08)
+
 ### [0.1.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.4...@carbon-platform/data-graph@0.1.5) (2022-06-03)
 
 ### [0.1.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.3...@carbon-platform/data-graph@0.1.4) (2022-06-01)

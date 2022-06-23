@@ -4,7 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Environment, getEnvironment, getRunMode, loadEnvVars, RunMode } from '../runtime'
+import { Environment, getEnvVar, RunMode, Runtime } from '../runtime/index.js'
+
+const runtime = new Runtime()
 
 // we can dismiss generating and storing "strong" session secrets since
 // we're only storing session IDs in the cookie which we're matching
@@ -12,34 +14,36 @@ import { Environment, getEnvironment, getRunMode, loadEnvVars, RunMode } from '.
 // which uses uid-safe which is cryptographically secure
 const SESSION_SECRET = 'abc123'
 
-const {
-  // Client id tied to App registration on SSO provisioner (get this from the dev team)
-  CARBON_IBM_ISV_CLIENT_ID,
-  // Client secret tied to App registration on SSO provisioner (get this from dev team)
-  CARBON_IBM_ISV_CLIENT_SECRET,
-  // Strategy name that passport should use when authenticating (get this from dev team)
-  PASSPORT_STRATEGY_NAME,
-  // URL of session storage DB
-  CARBON_MONGO_DB_URL,
-  // DB name for session storage
-  CARBON_MONGO_DB_NAME
-} = loadEnvVars({
-  PASSPORT_STRATEGY_NAME: 'custom',
-  CARBON_IBM_ISV_CLIENT_ID: '',
-  CARBON_IBM_ISV_CLIENT_SECRET: '',
-  CARBON_MONGO_DB_URL: '',
-  CARBON_MONGO_DB_NAME: ''
-})
+/**
+ * Client id tied to App registration on SSO provisioner (get this from the dev team)
+ */
+const CARBON_IBM_ISV_CLIENT_ID = getEnvVar('CARBON_IBM_ISV_CLIENT_ID', '', runtime)
+/**
+ * Client secret tied to App registration on SSO provisioner (get this from dev team)
+ */
+const CARBON_IBM_ISV_CLIENT_SECRET = getEnvVar('CARBON_IBM_ISV_CLIENT_SECRET', '', runtime)
+/**
+ * Strategy name that passport should use when authenticating (get this from dev team)
+ */
+const PASSPORT_STRATEGY_NAME = getEnvVar('PASSPORT_STRATEGY_NAME', 'local', runtime)
+/**
+ * URL of session storage DB
+ */
+const CARBON_MONGO_DB_URL = getEnvVar('CARBON_MONGO_DB_URL', '', runtime)
+/**
+ * DB name for session storage
+ */
+const CARBON_MONGO_DB_NAME = getEnvVar('CARBON_MONGO_DB_NAME', '', runtime)
 
 const OIDC_DISCOVERY_URL =
-  getRunMode() === RunMode.Standard && getEnvironment() === Environment.Production
+  runtime.runMode === RunMode.Standard && runtime.environment === Environment.Production
     ? 'https://login.ibm.com/oidc/endpoint/default/.well-known/openid-configuration'
     : 'https://prepiam.ice.ibmcloud.com/v1.0/endpoint/default/.well-known/openid-configuration'
 
 const OIDC_REDIRECT_URI = (() => {
-  if (getRunMode() === RunMode.Dev) {
+  if (runtime.runMode === RunMode.Dev) {
     return 'https://localhost:8443/api/auth-callback'
-  } else if (getEnvironment() === Environment.Test) {
+  } else if (runtime.environment === Environment.Test) {
     return 'https://web-app.j73b4w218e4.us-south.codeengine.appdomain.cloud/api/auth-callback'
   }
   return 'https://next.carbondesignsystem.com/api/auth-callback'

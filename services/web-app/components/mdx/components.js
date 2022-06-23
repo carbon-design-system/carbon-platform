@@ -5,6 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {
+  Button,
+  ListItem,
+  StructuredListBody,
+  StructuredListCell,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListWrapper,
+  Tag,
+  UnorderedList
+} from '@carbon/react'
+
 import { Accordion, AccordionItem } from '@/components/accordion'
 import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
@@ -17,6 +29,7 @@ import ColorBlock from '@/components/color-block'
 import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
+import Divider from '@/components/divider'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
 import Glossary from '@/components/glossary'
@@ -58,6 +71,16 @@ const components = {
   img: Image,
   table: PageTable,
   pre: Code,
+  /* Core Carbon components */
+  Button,
+  StructuredListWrapper,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListCell,
+  StructuredListBody,
+  UnorderedList,
+  ListItem,
+  Tag,
   /* Gatsby theme components */
   Accordion,
   AccordionItem,
@@ -75,6 +98,7 @@ const components = {
   ColorTokenTable,
   DoDont,
   DoDontRow,
+  Divider,
   GifPlayer,
   Glossary,
   Grid,

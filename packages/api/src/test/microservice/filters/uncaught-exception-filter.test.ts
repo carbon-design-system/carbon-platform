@@ -4,15 +4,21 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Logging } from '../../../main/logging'
-import { UncaughtExceptionFilter } from '../../../main/microservice/filters/uncaught-exception-filter'
+import test from 'ava'
 
-const errorSpy = jest.spyOn(Logging.prototype, 'error').mockImplementation(jest.fn())
+import { Logging } from '../../../main/logging/index.js'
+import { UncaughtExceptionFilter } from '../../../main/microservice/filters/uncaught-exception-filter.js'
 
-test('catch', () => {
-  const filter = new UncaughtExceptionFilter()
+test('catch', async (t) => {
+  const logging = new Logging({ component: 'TestComponent' })
+  const filter = new UncaughtExceptionFilter({ logging })
 
-  filter.catch(new Error('a test!'))
+  const result = filter.catch(new Error('a test!'))
 
-  expect(errorSpy).toHaveBeenCalled()
+  try {
+    await result.forEach(() => {})
+  } catch (e) {
+    t.true(e instanceof Error)
+    t.is((e as Error).message, 'a test!')
+  }
 })

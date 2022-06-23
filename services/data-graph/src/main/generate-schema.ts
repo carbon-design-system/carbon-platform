@@ -6,14 +6,18 @@
  */
 import { NestFactory } from '@nestjs/core'
 
-import { DataGraphModule } from './data-graph-module'
+import { SCHEMA_OUTPUT_FILE } from './constants.js'
+import { DataGraphModule } from './data-graph-module.js'
 
 /**
  * A helper function to generate the full-blown data graph schema and output it to its well-defined
  * output location.
  */
 async function generateSchema() {
-  const app = await NestFactory.create(DataGraphModule, { logger: false })
+  const app = await NestFactory.create(
+    DataGraphModule.register({ isPlaygroundEnabled: false, schemaOutputFile: SCHEMA_OUTPUT_FILE }),
+    { logger: false }
+  )
   await app.init()
 }
 

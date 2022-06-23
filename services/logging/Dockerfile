@@ -2,6 +2,7 @@ FROM local/carbon-platform/base:latest AS builder
 
 WORKDIR /ibm
 
+RUN npm -w services/logging install
 RUN npm -w services/logging run build
 RUN npm -w services/logging run bundle
 

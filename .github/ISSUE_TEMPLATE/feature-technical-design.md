@@ -42,20 +42,12 @@ completed/red-lined prior to development.
   - List any APIs that will be developed and made available in the `@carbon-platform/api` package,
     including function/class/method names, parameters, and return values.
 - **Data graph**
-  - List any new query resolvers and/or data models being included in the data-graph and/or data-graph API package.
+  - List any new query resolvers and/or data models being included in the data-graph and/or
+    data-graph API package.
 - **Messages**
   - List any new/changed RabbitMQ messages introduced by this feature, the message payload structure
     associated with them, whether they are queries or emits, and their expected return values (for
     queries).
-
-## Test strategy
-
-- [ ] Approved?
-
-How will the new feature be tested? (e.g. unit tests, manual verification, automated e2e testing,
-etc.)
-
-What interesting edge cases should be considered and tested?
 
 ## Security
 
@@ -68,8 +60,19 @@ Think like a hacker. How might someone attempt to break or abuse this feature?
 
 ## Error handling
 
+- [ ] Approved?
+
 Ignore the happy path. What can go wrong with this feature? How will the error conditions manifest
 through the APIs? How will users be informed about these errors?
+
+## Test strategy
+
+- [ ] Approved?
+
+How will the new feature be tested? (e.g. unit tests, manual verification, automated e2e testing,
+etc.)
+
+What interesting edge cases should be considered and tested?
 
 ## Logging
 

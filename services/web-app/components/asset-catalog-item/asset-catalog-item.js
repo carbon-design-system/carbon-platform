@@ -45,7 +45,7 @@ AssetCatalogItemImage.propTypes = {
   asset: assetPropTypes
 }
 
-const AssetCatalogItemContent = ({ asset, isGrid = false, otherFrameworkCount = 0 }) => {
+const AssetCatalogItemContent = ({ asset, isGrid = false, otherFrameworkCount = 0, showImage }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
 
   const { name, description } = asset.content
@@ -61,7 +61,7 @@ const AssetCatalogItemContent = ({ asset, isGrid = false, otherFrameworkCount = 
 
   return (
     <Grid className={styles.content}>
-      <Column sm={4} md={4} lg={7} xlg={6}>
+      <Column sm={4} md={4} lg={7} xlg={6} className={!showImage && styles['no-image']}>
         {asset.library.content.name && (
           <p className={styles.library}>{asset.library.content.name}</p>
         )}
@@ -102,7 +102,8 @@ const AssetCatalogItemContent = ({ asset, isGrid = false, otherFrameworkCount = 
 
 AssetCatalogItemContent.defaultProps = {
   isGrid: false,
-  otherFrameworkCount: 0
+  otherFrameworkCount: 0,
+  showImage: true
 }
 
 AssetCatalogItemContent.propTypes = {
@@ -117,10 +118,14 @@ AssetCatalogItemContent.propTypes = {
   /**
    * Count of other frameworks asset is also available in
    */
-  otherFrameworkCount: PropTypes.number
+  otherFrameworkCount: PropTypes.number,
+  /**
+   * Show image (True) or not (false)
+   */
+  showImage: PropTypes.bool
 }
 
-const AssetCatalogItem = ({ asset, isGrid = false, otherFrameworkCount = 0 }) => {
+const AssetCatalogItem = ({ asset, showImage, isGrid = false, otherFrameworkCount = 0 }) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
   const isXlg = useMatchMedia(mediaQueries.xlg)
@@ -141,9 +146,11 @@ const AssetCatalogItem = ({ asset, isGrid = false, otherFrameworkCount = 0 }) =>
     <Column as="li" md={4}>
       <Link href={anchorHref}>
         <a className={anchorStyles}>
-          <AspectRatio ratio="3x2">
-            <AssetCatalogItemImage asset={asset} />
-          </AspectRatio>
+          {showImage && (
+            <AspectRatio ratio="3x2">
+              <AssetCatalogItemImage asset={asset} />
+            </AspectRatio>
+          )}
           <AspectRatio ratio="16x9">
             <AssetCatalogItemContent
               asset={asset}
@@ -161,18 +168,26 @@ const AssetCatalogItem = ({ asset, isGrid = false, otherFrameworkCount = 0 }) =>
       <Link href={anchorHref}>
         <a className={anchorStyles}>
           <Grid narrow>
-            <Column className={clsx(styles.column, styles['column--image'])} md={4}>
-              <AspectRatio ratio={imageAspectRatio()}>
-                <AssetCatalogItemImage asset={asset} />
-              </AspectRatio>
-            </Column>
-            <Column className={clsx(styles.column, styles['column--content'])} sm={4} md={4} lg={8}>
+            {showImage && (
+              <Column className={clsx(styles.column, styles['column--image'])} md={4}>
+                <AspectRatio ratio={imageAspectRatio()}>
+                  <AssetCatalogItemImage asset={asset} />
+                </AspectRatio>
+              </Column>
+            )}
+            <Column
+              className={clsx(styles.column, styles['column--content'])}
+              sm={4}
+              md={showImage ? 4 : 8}
+              lg={showImage ? 8 : 12}
+            >
               {!isMd && (
                 <AspectRatio ratio="3x2">
                   <AssetCatalogItemContent
                     asset={asset}
                     otherFrameworkCount={otherFrameworkCount}
                     isGrid={isGrid}
+                    showImage={showImage}
                   />
                 </AspectRatio>
               )}
@@ -181,6 +196,7 @@ const AssetCatalogItem = ({ asset, isGrid = false, otherFrameworkCount = 0 }) =>
                   asset={asset}
                   otherFrameworkCount={otherFrameworkCount}
                   isGrid={isGrid}
+                  showImage={showImage}
                 />
               )}
             </Column>
@@ -194,6 +210,7 @@ const AssetCatalogItem = ({ asset, isGrid = false, otherFrameworkCount = 0 }) =>
 }
 
 AssetCatalogItem.defaultProps = {
+  showImage: true,
   isGrid: false,
   otherFrameworkCount: 0
 }
@@ -210,7 +227,11 @@ AssetCatalogItem.propTypes = {
   /**
    * Count of other frameworks asset is also available in
    */
-  otherFrameworkCount: PropTypes.number
+  otherFrameworkCount: PropTypes.number,
+  /**
+   * Show image (True) or not (false)
+   */
+  showImage: PropTypes.bool
 }
 
 export default AssetCatalogItem

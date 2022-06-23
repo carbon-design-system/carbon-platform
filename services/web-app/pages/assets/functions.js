@@ -33,8 +33,7 @@ const Functions = ({ librariesData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader bgColor={func.bgColor} title={seo.title} pictogram={func.icon} />
-      {/* this probably eventually gets replaced  by a functionsCatalog */}
-      <AssetsCatalog libraries={librariesData.libraries} type="function" />
+      <AssetsCatalog libraries={librariesData.libraries} type="function" showImage={false} />
     </>
   )
 }

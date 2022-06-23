@@ -26,7 +26,7 @@ import ResourceCard from '@/components/resource-card'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
-import { getLibraryData, getLibraryNavData } from '@/lib/github'
+import { getLibraryData, getLibraryNavData, getLibraryParams } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { getLicense } from '@/utils/schema'
 
@@ -89,7 +89,7 @@ const Library = ({ libraryData, params, navData }) => {
         <ResourceCard
           title={
             <div>
-              {library} <br /> {version}
+              {libraryData.content.inheritedLib?.content?.name ?? library} <br /> {version}
             </div>
           }
           subTitle="Inherits"
@@ -219,8 +219,17 @@ export const getServerSideProps = async ({ params }) => {
       notFound: true
     }
   }
-
   const navData = getLibraryNavData(params, libraryData)
+
+  if (libraryData.content.inherits) {
+    const inheritedLibParams = await getLibraryParams(libraryData.content.inherits)
+    if (inheritedLibParams) {
+      const inheritedLib = await getLibraryData(inheritedLibParams)
+      if (inheritedLib) {
+        libraryData.content.inheritedLib = inheritedLib
+      }
+    }
+  }
 
   return {
     props: {

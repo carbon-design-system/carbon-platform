@@ -5,15 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import path from 'path'
-import { fileURLToPath } from 'url'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
 
 const SCHEMA_OUTPUT_FILE = path.join(
-  __dirname,
-  '..',
-  '..',
+  process.cwd(),
   '..',
   '..',
   'packages',

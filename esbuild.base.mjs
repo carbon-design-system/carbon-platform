@@ -13,6 +13,7 @@ export default {
     '@nestjs/websockets/*',
     'class-transformer',
     'class-validator',
+    'fsevents',
     'kafkajs',
     'mqtt',
     'nats',

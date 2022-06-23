@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { gql } from '@carbon-platform/api/data-graph'
-import { Runtime } from '@carbon-platform/api/runtime'
 import { INestApplication } from '@nestjs/common'
 import { Test } from '@nestjs/testing'
 import test from 'ava'
@@ -16,9 +15,8 @@ import { DataGraphModule } from '../main/data-graph-module.js'
 let app: INestApplication
 
 test.before(async () => {
-  const runtime = new Runtime()
   const moduleRef = await Test.createTestingModule({
-    imports: [DataGraphModule.register(runtime)]
+    imports: [DataGraphModule.register({ isPlaygroundEnabled: false })]
   }).compile()
   app = moduleRef.createNestApplication()
   await app.init()

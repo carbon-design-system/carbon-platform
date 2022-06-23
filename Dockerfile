@@ -20,5 +20,12 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 
 COPY . .
 
-RUN npm install
+# Install base deps for all workspaces
+RUN npm -w base install
+
+# Install node modules for each "package"
+RUN for file in packages/* ; do \
+  npm --workspace "$file" install ; \
+done
+
 RUN npm run packages:build

@@ -7,13 +7,11 @@
 import fs from 'fs'
 import { OperationDefinitionNode, parse } from 'graphql'
 import path from 'path'
-import { fileURLToPath } from 'url'
 
 import { DuplicateQueryException } from './exceptions/duplicate-query-exception.js'
 import { DataGraphMessage, DevDatasetEntry, DevDatasetJson } from './interfaces.js'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const DATASET_SRC_DIR = path.join(process.cwd(), 'src', 'dev', 'data-graph')
 
 class DevDataset {
   private readonly db: Array<DevDatasetEntry>
@@ -61,8 +59,7 @@ class DevDataset {
   }
 
   public reload() {
-    const dir = path.join(__dirname, '..', '..', '..', 'src', 'dev', 'data-graph')
-    const entries = fs.readdirSync(dir)
+    const entries = fs.readdirSync(DATASET_SRC_DIR)
 
     // Clear existing db
     this.db.splice(0, this.db.length)
@@ -74,7 +71,7 @@ class DevDataset {
         continue
       }
 
-      const fileContents = fs.readFileSync(path.join(dir, entry))
+      const fileContents = fs.readFileSync(path.join(DATASET_SRC_DIR, entry))
       const json = JSON.parse(fileContents.toString()) as DevDatasetJson
 
       this.add(...json.queries)

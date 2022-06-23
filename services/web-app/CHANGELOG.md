@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.139](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.138...@carbon-platform/web-app@0.1.139) (2022-06-23)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add async designation to getLibraryParams ([3f79d60](https://github.com/carbon-design-system/carbon-platform/commit/3f79d60ab90fd77d0891984d81e565392305095a))
+* **web-app:** cleanup resource-card render function ([01db6e2](https://github.com/carbon-design-system/carbon-platform/commit/01db6e2698295e2437c0e9ca9a58f16b10acee01))
+* **web-app:** fix various library resources section styles ([d0c5023](https://github.com/carbon-design-system/carbon-platform/commit/d0c5023bfe3a6b861c9e99978fc63c2720dd3064))
+* **web-app:** refactor resource card to handle title styles ([3686343](https://github.com/carbon-design-system/carbon-platform/commit/3686343afcd485cd50d73d30e0801dc2d6e2196d))
+* **web-app:** sonarcloud fix ([ae8de7f](https://github.com/carbon-design-system/carbon-platform/commit/ae8de7f18fc21d20cc32573f3e691e16f71411db))
+
 ### [0.1.138](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.137...@carbon-platform/web-app@0.1.138) (2022-06-22)
 
 

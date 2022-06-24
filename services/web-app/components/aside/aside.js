@@ -23,7 +23,7 @@ const Aside = ({ children, className, hideRule, ...rest }) => {
 
   return (
     <Grid>
-      <Column md={{ span: 2, offset: 1 }} lg={{ span: 4, offset: 1 }}>
+      <Column sm={4} md={{ span: 2, offset: 1 }} lg={{ span: 4, offset: 1 }}>
         <aside className={asideClasses} {...rest}>
           {children}
         </aside>

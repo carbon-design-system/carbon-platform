@@ -490,6 +490,14 @@ const devLibraries = {
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/utilities',
     sponsor: 'ibm-dotcom'
+  },
+  'ibm-cloud-cognitive': {
+    host: 'github.com',
+    org: 'andreancardona',
+    repo: 'ibm-cloud-cognitive',
+    path: '/packages/cloud-cognitive',
+    sponsor: 'ibm-products',
+    ref: '731-ibm-cloud-cognitive'
   }
 }
 

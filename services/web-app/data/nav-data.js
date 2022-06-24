@@ -245,6 +245,14 @@ export const assetsNavData = [
           {
             path: '/data-visualization/color-palettes',
             title: 'Color palettes'
+          },
+          {
+            path: '/data-visualization/axes-and-labels',
+            title: 'Axes and labels'
+          },
+          {
+            path: '/data-visualization/legends',
+            title: 'Legends'
           }
         ]
       }

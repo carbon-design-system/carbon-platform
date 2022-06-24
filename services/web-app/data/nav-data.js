@@ -228,8 +228,25 @@ export const assetsNavData = [
     isSection: true,
     items: [
       {
-        path: '/assets/data-visualization',
-        title: 'Data visualization'
+        title: 'Data vizualization',
+        items: [
+          {
+            path: '/assets/data-visualization',
+            title: 'Data visualization'
+          },
+          {
+            path: '/data-visualization/get-started',
+            title: 'Get started'
+          },
+          {
+            path: '/data-visualization/chart-anatomy',
+            title: 'Chart anatomy'
+          },
+          {
+            path: '/data-visualization/color-palettes',
+            title: 'Color palettes'
+          }
+        ]
       }
     ]
   },

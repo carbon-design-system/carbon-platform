@@ -253,6 +253,10 @@ export const assetsNavData = [
           {
             path: '/data-visualization/legends',
             title: 'Legends'
+          },
+          {
+            path: '/data-visualization/dashboards',
+            title: 'Dashboards'
           }
         ]
       }

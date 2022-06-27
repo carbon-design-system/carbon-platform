@@ -89,6 +89,10 @@ const Asset = ({ libraryData, params }) => {
 
   const pageTabs = [
     {
+      name: 'Overview',
+      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(assetData.content)}`
+    },
+    {
       name: 'Usage',
       path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(
         assetData.content

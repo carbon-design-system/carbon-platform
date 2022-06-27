@@ -31,10 +31,10 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import styles from './layout.module.scss'
 
 // do not show side nav for these paths
-const NO_SIDE_NAV_PATHS = ['/404', '/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]']
+const NO_SIDE_NAV_PATHS = ['/404', '/libraries/[host]/[org]/[repo]/[library]/[ref]/assets/[asset]']
 
 // Only slide to the secondary navigation on page load for these paths.
-const SECONDARY_NAV_SLIDE_PATHS = ['/assets/[host]/[org]/[repo]/[library]/[ref]']
+const SECONDARY_NAV_SLIDE_PATHS = ['/libraries/[host]/[org]/[repo]/[library]/[ref]']
 
 export const LayoutContext = createContext()
 
@@ -64,7 +64,7 @@ const SideNav = () => {
   const [shouldSlideIn, setShouldSlideIn] = useState(isSecondarySlidePath)
   const [shouldSlideOut, setShouldSlideOut] = useState(false)
   const [isSecondaryNav, setIsSecondaryNav] = useState(
-    router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]')
+    router.pathname.startsWith('/libraries/[host]/[org]/[repo]/[library]/[ref]')
   )
 
   // $duration-moderate-01 = 150ms
@@ -172,7 +172,7 @@ const Layout = ({ children }) => {
                 isActive={isSideNavExpanded}
               />
               <div className={styles['header-name']}>
-                <Link href="/assets">
+                <Link href="/">
                   <a className="cds--header__name">Carbon Design System</a>
                 </Link>
               </div>

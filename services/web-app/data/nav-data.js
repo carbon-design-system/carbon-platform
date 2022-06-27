@@ -16,7 +16,7 @@ export const globalNavData = [
   //   title: 'Standards'
   // },
   // {
-  //   path: '/assets',
+  //   path: '/',
   //   title: 'Assets'
   // }
 ]
@@ -193,7 +193,7 @@ export const assetsNavData = [
     ]
   },
   {
-    path: '/assets/libraries',
+    path: '/libraries',
     title: 'Libraries'
   },
   {
@@ -228,7 +228,7 @@ export const assetsNavData = [
     isSection: true,
     items: [
       {
-        path: '/assets/data-visualization',
+        path: '/collections/data-visualization',
         title: 'Data visualization'
       }
     ]

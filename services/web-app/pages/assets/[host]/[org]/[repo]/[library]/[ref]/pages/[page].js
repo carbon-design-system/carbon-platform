@@ -15,10 +15,9 @@ import { getAllLibraries, getLibraryData, getLibraryNavData, getRemoteMdxData } 
 import { isValidHttpUrl } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 
-const RemoteMdxPage = ({ source, navData }) => {
+const RemoteMdxPage = ({ source, navData, navTitle, libraryData }) => {
   const seo = {
-    // TODO: fix this
-    title: 'Consistency in the Cloud'
+    title: `${libraryData?.content?.name ?? ''} - ${navTitle}`
   }
 
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
@@ -47,10 +46,12 @@ export const getStaticProps = async ({ params }) => {
   const navData = getLibraryNavData(params, libraryData)
 
   let pageSrc = ''
+  let navTitle = ''
 
   dfs(libraryData.content.navData, (item) => {
     if (slugify(item.title, { strict: true, lower: true }) === params.page) {
       pageSrc = item.src
+      navTitle = item.title
       return true
     }
   })
@@ -82,7 +83,8 @@ export const getStaticProps = async ({ params }) => {
       libraryData,
       navData,
       params,
-      source: mdxSource
+      source: mdxSource,
+      navTitle
     }
   }
 }

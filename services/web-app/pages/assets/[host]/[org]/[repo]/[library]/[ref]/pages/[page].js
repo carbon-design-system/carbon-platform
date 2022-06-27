@@ -16,8 +16,8 @@ import { isValidHttpUrl } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 
 const RemoteMdxPage = ({ source, navData }) => {
-  console.log('hiiiiiiii')
   const seo = {
+    // TODO: fix this
     title: 'Consistency in the Cloud'
   }
 
@@ -37,7 +37,6 @@ const RemoteMdxPage = ({ source, navData }) => {
 }
 
 export const getStaticProps = async ({ params }) => {
-  console.log('hey', params)
   const libraryData = await getLibraryData(params)
 
   if (!libraryData || !libraryData.content.navData) {
@@ -51,7 +50,7 @@ export const getStaticProps = async ({ params }) => {
 
   dfs(libraryData.content.navData, (item) => {
     if (slugify(item.title, { strict: true, lower: true }) === params.page) {
-      pageSrc = item.path
+      pageSrc = item.src
       return true
     }
   })
@@ -65,10 +64,8 @@ export const getStaticProps = async ({ params }) => {
     org = pathNameChunks[1]
     repo = pathNameChunks[2]
     ref = pathNameChunks[4]
-    src = pathNameChunks.slice(5, pathNameChunks.length - 1).join('/')
+    src = pathNameChunks.slice(5, pathNameChunks.length).join('/')
   }
-
-  console.log(host, org, repo, ref, src)
 
   const mdxSource = await getRemoteMdxData(
     {

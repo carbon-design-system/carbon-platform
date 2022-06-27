@@ -12,6 +12,7 @@ import path from 'path'
 import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
 import unwrapImages from 'remark-unwrap-images'
+import slugify from 'slugify'
 
 import { libraryAllowList } from '@/data/libraries.mjs'
 import { getResponse } from '@/lib/file-cache'
@@ -48,6 +49,11 @@ export const getLibraryNavData = (params, libraryData) => {
   dfs(libraryNavData, (item) => {
     if (item.items) {
       item.items = item.items?.filter((childItem) => !childItem.hidden)
+    }
+    if (item.path) {
+      item.src = item.path
+      const itemSlug = slugify(item.title, { strict: true, lower: true })
+      item.path = `/assets/${params.library}/${params.ref}/pages/${itemSlug}`
     }
   })
 

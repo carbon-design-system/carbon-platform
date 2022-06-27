@@ -100,6 +100,16 @@ const nextConfig = withMDX(
 
       for (const [slug, library] of Object.entries(libraries)) {
         rewrites.push({
+          source: `/assets/${slug}/pages/:page*`,
+          destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest/pages/:page*`
+        })
+
+        rewrites.push({
+          source: `/assets/${slug}/:ref*/pages/:page*`,
+          destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/pages/:page*`
+        })
+
+        rewrites.push({
           source: `/assets/${slug}`,
           destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest`
         })
@@ -110,18 +120,8 @@ const nextConfig = withMDX(
         })
 
         rewrites.push({
-          source: `/assets/${slug}/data/:page*`,
-          destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest/data/:page*`
-        })
-
-        rewrites.push({
           source: `/assets/${slug}/:ref*/library-assets`,
           destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/library-assets`
-        })
-
-        rewrites.push({
-          source: `/assets/${slug}/:ref*/data/:page*`,
-          destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/data/:page*`
         })
 
         rewrites.push({

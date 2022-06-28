@@ -56,7 +56,8 @@ export const getStaticProps = async ({ params }) => {
     }
   })
 
-  let { host, org, repo, ref, src } = params
+  // TODO: add ref
+  let { host, org, repo } = params
 
   if (isValidHttpUrl(pageSrc)) {
     const url = new URL(pageSrc)
@@ -64,8 +65,9 @@ export const getStaticProps = async ({ params }) => {
     const pathNameChunks = url.pathname.split('/')
     org = pathNameChunks[1]
     repo = pathNameChunks[2]
-    ref = pathNameChunks[4]
-    src = pathNameChunks.slice(5, pathNameChunks.length).join('/')
+    // TODO: uncomment
+    // ref = pathNameChunks[4]
+    pageSrc = pathNameChunks.slice(5, pathNameChunks.length).join('/')
   }
 
   const mdxSource = await getRemoteMdxData(
@@ -73,9 +75,10 @@ export const getStaticProps = async ({ params }) => {
       host,
       org,
       repo,
-      ref
+      // TODO: remove
+      ref: 'flucca/fix/react-tutorial-remove-mdx-comments'
     },
-    src
+    pageSrc
   )
 
   return {

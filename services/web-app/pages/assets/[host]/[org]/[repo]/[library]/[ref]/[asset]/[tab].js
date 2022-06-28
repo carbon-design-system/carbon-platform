@@ -40,14 +40,12 @@ const AssetTabPage = ({ source, assetData, params }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <div>Hi</div>
       <RemoteMdxLoader source={source} />
     </>
   )
 }
 
 export const getStaticProps = async ({ params }) => {
-  console.log(params)
   const libraryData = await getLibraryData(params)
 
   if (!libraryData || !libraryData.assets || !libraryData.assets.length) {
@@ -86,8 +84,6 @@ export const getStaticProps = async ({ params }) => {
     ref = pathNameChunks[4]
     src = pathNameChunks.slice(5, pathNameChunks.length).join('/')
   }
-
-  console.log(host, org, repo, ref, src)
 
   const mdxSource = await getRemoteMdxData(
     {

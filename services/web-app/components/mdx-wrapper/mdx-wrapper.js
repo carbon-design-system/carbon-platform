@@ -20,7 +20,11 @@ import styles from './mdx-wrapper.module.scss'
 const MdxWrapper = ({ children, ...props }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
-  const { title, description, tabs, keywords } = JSON.parse(props.frontmatter)
+  const frontmatter = JSON.parse(props.frontmatter)
+  if (props.ignoreTabs) {
+    delete frontmatter.tabs
+  }
+  const { title, description, tabs, keywords } = frontmatter
   const pathSegments = router.asPath.split('/').filter(Boolean)
   pathSegments.pop()
   const baseSegment = pathSegments.join('/')

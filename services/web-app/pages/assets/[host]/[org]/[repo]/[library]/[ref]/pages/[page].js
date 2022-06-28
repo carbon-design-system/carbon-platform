@@ -30,7 +30,7 @@ const RemoteMdxPage = ({ source, navData, navTitle, libraryData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <RemoteMdxLoader source={source} />
+      <RemoteMdxLoader source={source} ignoreTabs/>
     </>
   )
 }

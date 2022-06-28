@@ -178,32 +178,34 @@ const Layout = ({ children }) => {
               </div>
               <Grid narrow className={styles['header-grid']}>
                 <Column sm={0} lg={{ span: 8, offset: 4 }}>
-                  <HeaderNavigation aria-label="Main navigation">
-                    {globalNavData.map((data) => {
-                      if (data.path) {
-                        return (
-                          <HeaderMenuItem
-                            key={data.title}
-                            isCurrentPage={router.pathname.startsWith(data.path)}
-                            href={data.path}
-                            element={NextLink}
-                          >
-                            {data.title}
-                          </HeaderMenuItem>
-                        )
-                      } else {
-                        return (
-                          <HeaderMenuItem
-                            key={data.title}
-                            tabIndex={-1}
-                            className={styles['header-nav-item-disabled']}
-                          >
-                            {data.title}
-                          </HeaderMenuItem>
-                        )
-                      }
-                    })}
-                  </HeaderNavigation>
+                  {globalNavData.length > 0 && (
+                    <HeaderNavigation aria-label="Main navigation">
+                      {globalNavData.map((data) => {
+                        if (data.path) {
+                          return (
+                            <HeaderMenuItem
+                              key={data.title}
+                              isCurrentPage={router.pathname.startsWith(data.path)}
+                              href={data.path}
+                              element={NextLink}
+                            >
+                              {data.title}
+                            </HeaderMenuItem>
+                          )
+                        } else {
+                          return (
+                            <HeaderMenuItem
+                              key={data.title}
+                              tabIndex={-1}
+                              className={styles['header-nav-item-disabled']}
+                            >
+                              {data.title}
+                            </HeaderMenuItem>
+                          )
+                        }
+                      })}
+                    </HeaderNavigation>
+                  )}
                 </Column>
               </Grid>
             </Header>

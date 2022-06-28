@@ -258,7 +258,7 @@ const Asset = ({ libraryData, params }) => {
                 >
                   <dl>
                     <dt className={dashboardStyles.label}>Discussions</dt>
-                    <dd className={dashboardStyles['label-large']}>–</dd>
+                    <dd className={dashboardStyles['label--large']}>–</dd>
                   </dl>
                   <Svg32Github className={dashboardStyles['position-bottom-left']} />
                   {isPathAbsolute(githubRepoUrl) && (

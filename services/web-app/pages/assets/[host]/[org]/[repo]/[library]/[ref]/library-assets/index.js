@@ -104,12 +104,14 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
         id: asset.content.id,
         name: <span className={styles['asset-name']}>{asset.content.name}</span>,
         type: <TypeTag type={asset.content.type} className={styles.tag} />,
-        status: <AssetCatalogItemMeta asset={asset} properties={['status']} />,
+        status: (
+          <AssetCatalogItemMeta asset={asset} properties={['status']} className={styles.status} />
+        ),
         tags: (
           <span className={styles['truncated-text']}>
             {asset.content.tags
               .map((tag) => allTags[tag]?.name)
-              .join('; ')
+              .join(', ')
               .replaceAll('-', '‑')}
           </span>
         ),

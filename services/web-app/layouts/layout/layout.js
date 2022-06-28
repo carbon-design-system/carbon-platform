@@ -31,7 +31,11 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import styles from './layout.module.scss'
 
 // do not show side nav for these paths
-const NO_SIDE_NAV_PATHS = ['/404', '/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]']
+const NO_SIDE_NAV_PATHS = [
+  '/404',
+  '/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]',
+  '/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]/[tab]'
+]
 
 // Only slide to the secondary navigation on page load for these paths.
 const SECONDARY_NAV_SLIDE_PATHS = ['/assets/[host]/[org]/[repo]/[library]/[ref]']

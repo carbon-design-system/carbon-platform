@@ -33,6 +33,7 @@ import { getLicense } from '@/utils/schema'
 import styles from './index.module.scss'
 
 const Library = ({ libraryData, params, navData }) => {
+  console.log(libraryData)
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const router = useRouter()

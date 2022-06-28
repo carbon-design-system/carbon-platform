@@ -80,21 +80,6 @@ const nextConfig = withMDX(
 
       return config
     },
-    async redirects() {
-      return [
-        // temporarily redirect home page for the first release
-        {
-          source: '/',
-          destination: '/assets',
-          permanent: false
-        },
-        {
-          source: '/assets/:host/:org/:repo/:library',
-          destination: '/assets/:host/:org/:repo/:library/latest',
-          permanent: false
-        }
-      ]
-    },
     async rewrites() {
       const rewrites = []
 

@@ -112,13 +112,27 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
 
   const dirPath = response._links.html.split('/').slice(0, -1).join('/')
 
-  return serialize(usageFileSource, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm, unwrapImages],
-      rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
-    },
-    parseFrontmatter: true
-  })
+  try {
+    const serializedVal = await serialize(usageFileSource, {
+      mdxOptions: {
+        remarkPlugins: [remarkGfm, unwrapImages],
+        rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
+      },
+      parseFrontmatter: true
+    })
+    return serializedVal
+  } catch (err) {
+    logging.error(err)
+    // returning this for now so our app doesn't blow up in case mdx is not valid
+    return {
+      compiledSource: await (
+        await serialize('<p>Could not serialize MDX at this time.</p>')
+      ).compiledSource,
+      frontmatter: {
+        title: 'Parsing Error'
+      }
+    }
+  }
 }
 
 /**
@@ -179,7 +193,15 @@ const validateLibraryParams = async (params = {}) => {
  * @returns {import('../typedefs').Asset[]}
  */
 const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
-  const inheritableProperties = ['name', 'description', 'type', 'tags', 'platform', 'thumbnailPath']
+  const inheritableProperties = [
+    'name',
+    'description',
+    'type',
+    'tags',
+    'platform',
+    'thumbnailPath',
+    'docs'
+  ]
 
   return assets.map((asset) => {
     const assetId = getAssetId(asset)

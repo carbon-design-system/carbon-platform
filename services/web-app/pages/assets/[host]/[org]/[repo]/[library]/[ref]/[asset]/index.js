@@ -35,7 +35,7 @@ import pageStyles from '@/pages/pages.module.scss'
 import { getAssetType, getTagsList } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 
-import styles from './[asset].module.scss'
+import styles from './index.module.scss'
 
 const Asset = ({ libraryData, params }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)

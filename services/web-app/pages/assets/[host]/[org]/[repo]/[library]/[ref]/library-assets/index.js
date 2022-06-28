@@ -109,7 +109,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
           <span className={styles['truncated-text']}>
             {asset.content.tags
               .map((tag) => allTags[tag]?.name)
-              .join('; ')
+              .join(', ')
               .replaceAll('-', '‑')}
           </span>
         ),

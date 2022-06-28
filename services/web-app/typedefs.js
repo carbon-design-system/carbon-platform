@@ -34,7 +34,6 @@
  * @typedef {object} Asset
  * @property {AssetContent} content - Asset content
  * @property {Params} params - Params used to fetch asset content
- * @property {object} response - GitHub API response from fetching carbon.yml file
  */
 
 /**

@@ -136,36 +136,6 @@ export const getLicense = (asset) => {
 }
 
 /**
- * Gets the library, ref, and asset from a string like `carbon-styles@0.0.0/accordion`
- * @param {string} str
- * @returns {object}
- */
-export const getLibraryVersionAsset = (str = '') => {
-  let ref = ''
-  let asset = ''
-
-  const slashIndex = str.indexOf('/')
-
-  if (slashIndex !== -1) {
-    asset = str.substring(slashIndex + 1)
-    str = str.slice(0, slashIndex)
-  }
-
-  const atIndex = str.indexOf('@')
-
-  if (atIndex !== -1) {
-    ref = str.substring(atIndex + 1)
-    str = str.slice(0, atIndex)
-  }
-
-  return {
-    library: str,
-    ref,
-    asset
-  }
-}
-
-/**
  * Gets an array of tag names given an asset
  * @param {import('../typedefs').Asset} asset
  * @returns {string[]} An array of tag names

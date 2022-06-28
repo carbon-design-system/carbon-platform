@@ -26,7 +26,7 @@ import ResourceCard from '@/components/resource-card'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
-import { getLibraryData, getLibraryNavData, getLibraryParams } from '@/lib/github'
+import { getLibraryData, getLibraryNavData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { getLicense } from '@/utils/schema'
 
@@ -83,17 +83,27 @@ const Library = ({ libraryData, params, navData }) => {
   }
 
   const libraryInheritanceCard = () => {
-    const [library, version] = libraryData.content.inherits.split('@')
+    const { name: libraryName, ref } = libraryData.content.inherits
+    if (!ref) return null
+
+    // e.g. get `carbon-styles` from `../styles/carbon.yml#/libraries/carbon-styles`
+    const [libraryId] = ref.split('/').reverse()
+
+    // e.g. get `v1.2.3` from `/path/to/v1.2.3/carbon.yml#/libraries/carbon-styles`
+    const libraryVersion = ref.split('/').find((path) => path.match(/^v?[0-9]\d*(\.[0-9]\d*)*$/g))
+
     return (
       <Column sm={4} md={4} lg={4}>
         <ResourceCard
           title={
             <div>
-              {libraryData.content.inheritedLib?.content?.name ?? library} <br /> {version}
+              {libraryName ?? ''}
+              <br />
+              {libraryVersion}
             </div>
           }
           subTitle="Inherits"
-          href={`/assets/${library}/${version ?? ''}`}
+          href={`/assets/${libraryId}/${libraryVersion ?? ''}`}
           actionIcon="arrowRight"
         >
           <Svg32Library />
@@ -220,16 +230,6 @@ export const getServerSideProps = async ({ params }) => {
     }
   }
   const navData = getLibraryNavData(params, libraryData)
-
-  if (libraryData.content.inherits) {
-    const inheritedLibParams = await getLibraryParams(libraryData.content.inherits)
-    if (inheritedLibParams) {
-      const inheritedLib = await getLibraryData(inheritedLibParams)
-      if (inheritedLib) {
-        libraryData.content.inheritedLib = inheritedLib
-      }
-    }
-  }
 
   return {
     props: {

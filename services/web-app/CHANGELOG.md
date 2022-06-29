@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.141](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.140...@carbon-platform/web-app@0.1.141) (2022-06-29)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add comma delineation on libraryy asset list ([3f95637](https://github.com/carbon-design-system/carbon-platform/commit/3f95637084594bd76f0fe00a79d793b107e080e5))
+* **web-app:** aside component styles ([054a965](https://github.com/carbon-design-system/carbon-platform/commit/054a9655bd18a6d4e457b3ca010185037e0c7079))
+* **web-app:** minor styling bugs ([fffe720](https://github.com/carbon-design-system/carbon-platform/commit/fffe7203fd5b0bc6f7a76df76318a1083e39c732))
+* **web-app:** mobile nav spacing ([f3cc973](https://github.com/carbon-design-system/carbon-platform/commit/f3cc973c4e3ee236e1f29c60926a18a8f78d3074))
+* **web-app:** mobile nav spacing ([08f88d4](https://github.com/carbon-design-system/carbon-platform/commit/08f88d43050b03ef8cc3a50d8d93fac1a0b2f131))
+
+
+### Features 🌟
+
+* **web-app:** add dataviz pages ([3aaf355](https://github.com/carbon-design-system/carbon-platform/commit/3aaf35567462c9dbc8c1bc5d8873aff667b928d0))
+* **web-app:** add dataviz pages ([55ea2b8](https://github.com/carbon-design-system/carbon-platform/commit/55ea2b8a39dd996668d78377de315b875cd6e4c1))
+* **web-app:** add dataviz pages dashbaords ([0540c67](https://github.com/carbon-design-system/carbon-platform/commit/0540c6707c33ab618e49617b1a86146fe41c4335))
+
 ### [0.1.140](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.139...@carbon-platform/web-app@0.1.140) (2022-06-24)
 
 

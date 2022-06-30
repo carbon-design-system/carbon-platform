@@ -228,8 +228,37 @@ export const assetsNavData = [
     isSection: true,
     items: [
       {
-        path: '/collections/data-visualization',
-        title: 'Data visualization'
+        title: 'Data vizualization',
+        items: [
+          {
+            path: '/collections/data-visualization',
+            title: 'Data visualization'
+          },
+          {
+            path: '/data-visualization/get-started',
+            title: 'Get started'
+          },
+          {
+            path: '/data-visualization/chart-anatomy',
+            title: 'Chart anatomy'
+          },
+          {
+            path: '/data-visualization/color-palettes',
+            title: 'Color palettes'
+          },
+          {
+            path: '/data-visualization/axes-and-labels',
+            title: 'Axes and labels'
+          },
+          {
+            path: '/data-visualization/legends',
+            title: 'Legends'
+          },
+          {
+            path: '/data-visualization/dashboards',
+            title: 'Dashboards'
+          }
+        ]
       }
     ]
   },

@@ -111,7 +111,7 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
 
   if (!response.content) {
     return {
-      compiledSource: await (await serialize('<p>Component not found.</p>')).compiledSource,
+      compiledSource: (await serialize('<p>Component not found.</p>')).compiledSource,
       frontmatter: {
         title: 'Not found'
       }
@@ -122,27 +122,23 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
 
   const dirPath = response._links.html.split('/').slice(0, -1).join('/')
 
-  try {
-    const serializedVal = await serialize(usageFileSource, {
-      mdxOptions: {
-        remarkPlugins: [remarkGfm, unwrapImages],
-        rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
-      },
-      parseFrontmatter: true
-    })
-    return serializedVal
-  } catch (err) {
+  return serialize(usageFileSource, {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm, unwrapImages],
+      rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
+    },
+    parseFrontmatter: true
+  }).catch(async (err) => {
     logging.error(err)
     // returning this for now so our app doesn't blow up in case mdx is not valid
     return {
-      compiledSource: await (
-        await serialize('<p>Could not serialize MDX at this time.</p>')
-      ).compiledSource,
+      compiledSource: (await serialize('<p>Could not serialize MDX at this time.</p>'))
+        .compiledSource,
       frontmatter: {
         title: 'Parsing Error'
       }
     }
-  }
+  })
 }
 
 /**

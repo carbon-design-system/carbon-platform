@@ -47,13 +47,17 @@ export const getLibraryNavData = (params, libraryData) => {
 
   // traverse items subtree and remove hidden nodes
   dfs(libraryNavData, (item) => {
+    const itemSlug = slugify(item.title, { strict: true, lower: true })
+    const itemPath = item.parentPath ? `${item.parentPath}/${itemSlug}` : itemSlug
     if (item.items) {
       item.items = item.items?.filter((childItem) => !childItem.hidden)
+      item.items.forEach((child) => {
+        child.parentPath = itemPath
+      })
     }
     if (item.path) {
       item.src = item.path
-      const itemSlug = slugify(item.title, { strict: true, lower: true })
-      item.path = `/assets/${params.library}/${params.ref}/pages/${itemSlug}`
+      item.path = `/assets/${params.library}/${params.ref}/pages/${itemPath}`
     }
   })
 

@@ -48,8 +48,17 @@ export const getStaticProps = async ({ params }) => {
   let pageSrc = ''
   let navTitle = ''
 
+  // traverse items subtree and remove hidden nodes
   dfs(libraryData.content.navData, (item) => {
-    if (slugify(item.title, { strict: true, lower: true }) === params.page) {
+    const itemSlug = slugify(item.title, { strict: true, lower: true })
+    const itemPath = item.parentPath ? `${item.parentPath}/${itemSlug}` : itemSlug
+    if (item.items) {
+      item.items = item.items?.filter((childItem) => !childItem.hidden)
+      item.items.forEach((child) => {
+        child.parentPath = itemPath
+      })
+    }
+    if (itemPath === params.page.join('/')) {
       pageSrc = item.src
       navTitle = item.title
       return true
@@ -96,19 +105,32 @@ export const getStaticPaths = async () => {
 
   librariesData.libraries.forEach((library) => {
     if (library.content.navData) {
+      // traverse items subtree and remove hidden nodes
       dfs(library.content.navData, (item) => {
+        const itemSlug = slugify(item.title, { strict: true, lower: true })
+        const itemPath = item.parentPath ? `${item.parentPath}/${itemSlug}` : itemSlug
+        if (item.items) {
+          item.items = item.items?.filter((childItem) => !childItem.hidden)
+          item.items.forEach((child) => {
+            child.parentPath = itemPath
+          })
+        }
         if (item.path) {
           pages.push({
-            params: { ...library.params, page: slugify(item.title, { strict: true, lower: true }) }
+            params: { ...library.params, page: itemPath.split('/') }
           })
+          // hard coding latest temporarily, in the future we want to do ISR here
+          pages.push({ params: { ...library.params, page: itemPath.split('/'), ref: 'latest' } })
         }
       })
     }
   })
 
   return {
-    paths: pages, // indicates that no page needs be created at build time
-    fallback: true // indicates the type of fallback
+    paths: pages,
+    // returning 404 if page wasn't generated at build time
+    // to prevent remote mdx dynamic loading for now
+    fallback: false
   }
 }
 

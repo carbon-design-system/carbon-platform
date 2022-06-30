@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.142](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.141...@carbon-platform/web-app@0.1.142) (2022-06-30)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** replace dotcom and ibm products icons with src from carbon ([2520f58](https://github.com/carbon-design-system/carbon-platform/commit/2520f583f24fc80cd7fd3e332d181dcd237ad452))
+
 ### [0.1.141](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.140...@carbon-platform/web-app@0.1.141) (2022-06-29)
 
 

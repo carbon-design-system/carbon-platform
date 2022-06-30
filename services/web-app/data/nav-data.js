@@ -235,27 +235,27 @@ export const assetsNavData = [
             title: 'Data visualization'
           },
           {
-            path: '/data-visualization/get-started',
+            path: '/collections/data-visualization/get-started',
             title: 'Get started'
           },
           {
-            path: '/data-visualization/chart-anatomy',
+            path: '/collections/data-visualization/chart-anatomy',
             title: 'Chart anatomy'
           },
           {
-            path: '/data-visualization/color-palettes',
+            path: '/collections/data-visualization/color-palettes',
             title: 'Color palettes'
           },
           {
-            path: '/data-visualization/axes-and-labels',
+            path: '/collections/data-visualization/axes-and-labels',
             title: 'Axes and labels'
           },
           {
-            path: '/data-visualization/legends',
+            path: '/collections/data-visualization/legends',
             title: 'Legends'
           },
           {
-            path: '/data-visualization/dashboards',
+            path: '/collections/data-visualization/dashboards',
             title: 'Dashboards'
           }
         ]

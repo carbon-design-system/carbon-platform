@@ -4,43 +4,79 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Column, Grid } from '@carbon/react'
 import { capitalCase } from 'change-case'
+import { get } from 'lodash'
+import Head from 'next/head'
+import { MDXRemote } from 'next-mdx-remote'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import RemoteMdxLoader from '@/components/remote-mdx-loader'
+import PageBreadcrumb from '@/components/page-breadcrumb/page-breadcrumb'
+import PageHeader from '@/components/page-header/page-header'
+import PageTabs from '@/components/page-tabs'
 import { assetsNavData } from '@/data/nav-data'
+import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout/layout'
 import { getAllLibraries, getLibraryData, getRemoteMdxData } from '@/lib/github'
-// import { getAssetType } from '@/utils/schema'
+import { getAssetType } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { isValidHttpUrl } from '@/utils/string'
 
-const AssetTabPage = ({ source, assetData, params }) => {
-  const seo = {
-    title: `${assetData?.content?.name} - ${capitalCase(params?.tab ?? '')}`
-  }
+import styles from './[tab].module.scss'
+
+const AssetTabPage = ({ source, tabs, assetData }) => {
+  const { title, description, keywords } = source.frontmatter
 
   const { setPrimaryNavData } = useContext(LayoutContext)
-
-  //   const breadcrumbItems = [
-  //     {
-  //       name: getAssetType(assetData).namePlural,
-  //       path: getAssetType(assetData).path
-  //     },
-  //     {
-  //       name
-  //     }
-  //   ]
 
   useEffect(() => {
     setPrimaryNavData(assetsNavData)
   }, [setPrimaryNavData])
 
+  const { name } = assetData.content
+
+  const breadcrumbItems = [
+    {
+      name: getAssetType(assetData).namePlural,
+      path: getAssetType(assetData).path
+    },
+    {
+      name
+    }
+  ]
+
   return (
     <>
-      <NextSeo {...seo} />
-      <RemoteMdxLoader source={source} />
+      <NextSeo title={title} description={description} keywords={keywords} />
+      <Grid narrow>
+        <Column lg={{ span: 12, offset: 4 }}>
+          {title && (
+            <PageHeader
+              title={title}
+              withTabs
+              bgColor={get(type, `[${assetData.content.type}].bgColor`)}
+              pictogram={get(type, `[${assetData.content.type}].icon`)}
+            />
+          )}
+          <PageBreadcrumb items={breadcrumbItems} />
+          {keywords && (
+            <Head>
+              <meta name="keywords" content={keywords} />
+            </Head>
+          )}
+          {tabs && (
+            <PageTabs
+              className={styles['asset-tabs']}
+              title={source.frontmatter.title}
+              tabs={tabs}
+            />
+          )}
+          <div className={styles['page-content']}>
+            <MDXRemote {...source} />
+          </div>
+        </Column>
+      </Grid>
     </>
   )
 }
@@ -95,11 +131,29 @@ export const getStaticProps = async ({ params }) => {
     src
   )
 
+  const pageTabs = [
+    {
+      name: 'Overview',
+      path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}`
+    }
+  ]
+
+  const dynamicDocKeys = ['usage', 'style', 'code', 'accessibility']
+
+  dynamicDocKeys.forEach((docKey) => {
+    if (assetData.content.docs?.[`${docKey}Path`]) {
+      pageTabs.push({
+        name: capitalCase(docKey),
+        path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}/${docKey}`
+      })
+    }
+  })
+
   return {
     props: {
-      assetData,
-      params,
-      source: mdxSource
+      source: mdxSource,
+      tabs: pageTabs,
+      assetData
     }
   }
 }
@@ -109,36 +163,36 @@ export const getStaticPaths = async () => {
 
   const pages = []
 
+  const dynamicDocKeys = ['usage', 'style', 'code', 'accessibility']
+
   librariesData.libraries.forEach((library) => {
     if (library.assets && library.assets.length) {
       library.assets.forEach((asset) => {
-        if (asset.content.docs?.accessibilityPath) {
-          pages.push({
-            params: { ...library.params, asset: getSlug(asset.content), tab: 'accessibility' }
-          })
-        }
-        if (asset.content.docs?.codePath) {
-          pages.push({
-            params: { ...library.params, asset: getSlug(asset.content), tab: 'code' }
-          })
-        }
-        if (asset.content.docs?.stylePath) {
-          pages.push({
-            params: { ...library.params, asset: getSlug(asset.content), tab: 'style' }
-          })
-        }
-        if (asset.content.docs?.usagePath) {
-          pages.push({
-            params: { ...library.params, asset: getSlug(asset.content), tab: 'usage' }
-          })
-        }
+        dynamicDocKeys.forEach((docKey) => {
+          if (asset.content.docs?.[`${docKey}Path`]) {
+            pages.push({
+              params: { ...library.params, asset: getSlug(asset.content), tab: docKey }
+            })
+            // hardcoding latest for now, TODO: remove once MDX epic is done
+            pages.push({
+              params: {
+                ...library.params,
+                asset: getSlug(asset.content),
+                tab: docKey,
+                ref: 'latest'
+              }
+            })
+          }
+        })
       })
     }
   })
 
   return {
-    paths: pages, // indicates that no page needs be created at build time
-    fallback: true // indicates the type of fallback
+    paths: pages,
+    // returning 404 if page wasn't generated at build time
+    // to prevent remote mdx dynamic loading for now
+    fallback: false
   }
 }
 

@@ -21,7 +21,7 @@ const MdxWrapper = ({ children, ...props }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
   const { title, description, tabs, keywords } = JSON.parse(props.frontmatter)
-  const pathSegments = router.pathname.split('/').filter(Boolean)
+  const pathSegments = router.asPath.split('/').filter(Boolean)
   pathSegments.pop()
   const baseSegment = pathSegments.join('/')
 

@@ -12,6 +12,7 @@
 @use '@carbon/react/scss/type' as type;
 
 .container {
+  margin-right: -2px;
   background: colors.$black-100;
 }
 

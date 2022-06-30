@@ -8,6 +8,7 @@
 import {
   Button,
   ListItem,
+  OrderedList,
   StructuredListBody,
   StructuredListCell,
   StructuredListHead,
@@ -78,6 +79,7 @@ const components = {
   StructuredListRow,
   StructuredListCell,
   StructuredListBody,
+  OrderedList,
   UnorderedList,
   ListItem,
   Tag,

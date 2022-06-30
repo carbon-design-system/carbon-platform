@@ -30,7 +30,7 @@ const RemoteMdxPage = ({ source, navData, navTitle, libraryData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <RemoteMdxLoader source={source} ignoreTabs/>
+      <RemoteMdxLoader source={source} ignoreTabs />
     </>
   )
 }
@@ -56,8 +56,7 @@ export const getStaticProps = async ({ params }) => {
     }
   })
 
-  // TODO: add ref
-  let { host, org, repo } = params
+  let { host, org, repo, ref } = params
 
   if (isValidHttpUrl(pageSrc)) {
     const url = new URL(pageSrc)
@@ -65,8 +64,7 @@ export const getStaticProps = async ({ params }) => {
     const pathNameChunks = url.pathname.split('/')
     org = pathNameChunks[1]
     repo = pathNameChunks[2]
-    // TODO: uncomment
-    // ref = pathNameChunks[4]
+    ref = pathNameChunks[4]
     pageSrc = pathNameChunks.slice(5, pathNameChunks.length).join('/')
   }
 
@@ -75,8 +73,7 @@ export const getStaticProps = async ({ params }) => {
       host,
       org,
       repo,
-      // TODO: remove
-      ref: 'flucca/fix/react-tutorial-remove-mdx-comments'
+      ref
     },
     pageSrc
   )

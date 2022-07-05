@@ -116,7 +116,11 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
           </span>
         ),
         link: (
-          <Link href={`/assets/${asset.params.library}/${params.ref}/${getSlug(asset.content)}`}>
+          <Link
+            href={`/libraries/${asset.params.library}/${params.ref}/assets/${getSlug(
+              asset.content
+            )}`}
+          >
             <a className={styles['row-anchor']}>
               <ArrowRight size={16} className={styles['arrow-icon']} />
             </a>

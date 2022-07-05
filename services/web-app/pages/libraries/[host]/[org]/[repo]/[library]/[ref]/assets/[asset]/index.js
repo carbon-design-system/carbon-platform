@@ -35,7 +35,7 @@ import pageStyles from '@/pages/pages.module.scss'
 import { getAssetType, getTagsList } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 
-import styles from './[asset].module.scss'
+import styles from './index.module.scss'
 
 const Asset = ({ libraryData, params }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
@@ -71,7 +71,7 @@ const Asset = ({ libraryData, params }) => {
     }
   ]
 
-  const libraryPath = `/assets/${getSlug(libraryData.content)}/${params.ref}`
+  const libraryPath = `/libraries/${getSlug(libraryData.content)}/${params.ref}`
 
   const seo = {
     title: name,
@@ -89,20 +89,32 @@ const Asset = ({ libraryData, params }) => {
 
   const pageTabs = [
     {
+      name: 'Overview',
+      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(assetData.content)}`
+    },
+    {
       name: 'Usage',
-      path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}/usage`
+      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(
+        assetData.content
+      )}/usage`
     },
     {
       name: 'Design',
-      path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}/design`
+      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(
+        assetData.content
+      )}/design`
     },
     {
       name: 'Code',
-      path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}/code`
+      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(
+        assetData.content
+      )}/code`
     },
     {
       name: 'Accessibility',
-      path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}/accessibility`
+      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(
+        assetData.content
+      )}/accessibility`
     }
   ]
 

@@ -21,7 +21,7 @@ import { getAllLibraries } from '@/lib/github'
 import { getLicense, librarySortComparator } from '@/utils/schema'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
-import styles from './libraries.module.scss'
+import styles from './index.module.scss'
 
 const LibrariesList = ({ libraries = [] }) => {
   if (isEmpty(libraries)) return null
@@ -73,7 +73,7 @@ const LibrariesItem = ({ library = {} }) => {
 
   return (
     <li className={styles.item}>
-      <Link href={`/assets/${library.params.library}`}>
+      <Link href={`/libraries/${library.params.library}`}>
         <a className={styles.anchor}>
           {isMd && <div>{renderContent()}</div>}
           {!isMd && <AspectRatio ratio="3x2">{renderContent()}</AspectRatio>}

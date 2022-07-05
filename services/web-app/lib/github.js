@@ -57,7 +57,7 @@ export const getLibraryNavData = (params, libraryData) => {
     }
     if (item.path) {
       item.src = item.path
-      item.path = `/assets/${params.library}/${params.ref}/pages/${itemPath}`
+      item.path = `/libraries/${params.library}/${params.ref}/pages/${itemPath}`
     }
   })
 

@@ -113,6 +113,26 @@
         "additionalProperties": false,
         "oneOf": [{ "required": ["title", "path"] }, { "required": ["title", "items"] }]
       }
+    },
+    "designKits": {
+      "type": "object",
+      "minProperties": 1,
+      "title": "Carbon Design Kit",
+      "description": "Object containing design kits",
+      "patternProperties": {
+        "^.*$": {
+          "description": "Design kits contain elements, guidelines, user interface components and patterns, and wireframes for various design tools as the design counterpart to coded assets.",
+          "type": "object",
+          "properties": {
+            "$ref": {
+              "type": "string",
+              "description": "Reference to a design kit."
+            }
+          },
+          "additionalProperties": false,
+          "required": ["$ref"]
+        }
+      }
     }
   },
   "additionalProperties": false,

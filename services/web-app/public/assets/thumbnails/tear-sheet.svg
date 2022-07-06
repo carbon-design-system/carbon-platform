@@ -1,47 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="320px" height="180px" viewBox="0 0 320 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>tear-sheet</title>
-    <defs>
-        <polygon id="path-1" points="3.8093125 3.5 5.25 2.0593125 4.9406875 1.75 3.5 3.1906875 2.0593125 1.75 1.75 2.0593125 3.1906875 3.5 1.75 4.9406875 2.0593125 5.25 3.5 3.8093125 4.9406875 5.25 5.25 4.9406875"></polygon>
-    </defs>
-    <g id="tear-sheet" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect id="border-copy-14" fill="#FFFFFF" x="60" y="41" width="200" height="109"></rect>
-        <rect id="Rectangle-Copy-229" fill="#F4F4F4" x="60" y="42" width="199" height="109"></rect>
-        <rect id="border-copy-13" stroke="#C6C6C6" x="60.5" y="41.5" width="199" height="109"></rect>
-        <rect id="nav-copy-15" fill="#8F8B8B" x="60" y="29" width="200" height="122"></rect>
-        <rect id="Rectangle" fill="#F4F4F4" x="71" y="43" width="178" height="108"></rect>
-        <rect id="Rectangle" fill="#FFFFFF" x="71" y="58" width="40" height="93.5"></rect>
-        <rect id="Rectangle-Copy" fill="#FFFFFF" x="71" y="43" width="178" height="14"></rect>
-        <rect id="Rectangle-Copy-6" fill="#FFFFFF" x="120" y="70" width="88" height="8"></rect>
-        <rect id="Rectangle-Copy-7" fill="#FFFFFF" x="120" y="92" width="57.3483146" height="8"></rect>
-        <rect id="Rectangle-Copy-9" fill="#FFFFFF" x="182" y="92" width="25.7078652" height="8"></rect>
-        <rect id="Rectangle" fill="#D8D8D8" opacity="0.901055472" x="71" y="63" width="40" height="7"></rect>
-        <rect id="Rectangle-Copy-2" fill="#D8D8D8" x="71" y="58" width="40" height="1"></rect>
-        <rect id="Rectangle-Copy-10" fill="#D8D8D8" x="71" y="150" width="40" height="1"></rect>
-        <rect id="Rectangle-Copy-4" fill="#D8D8D8" x="111" y="137" width="67" height="1"></rect>
-        <rect id="Rectangle" fill="#0F62FE" x="212.950617" y="137" width="36.0493827" height="14"></rect>
-        <rect id="Rectangle-Copy-5" fill="#0F62FE" x="70.9506173" y="63" width="1" height="7"></rect>
-        <rect id="Rectangle-Copy-3" fill="#393939" x="176" y="137" width="36.0493827" height="14"></rect>
-        <rect id="Rectangle-Copy-14" fill="#78A9FF" x="119" y="141" width="20" height="2"></rect>
-        <rect id="Rectangle-Copy-15" fill="#8D8D8D" x="77" y="49" width="22" height="4"></rect>
-        <rect id="Rectangle-Copy-16" fill="#8D8D8D" x="75" y="65.5" width="27" height="2"></rect>
-        <rect id="Rectangle-Copy-17" fill="#A8A8A8" x="75" y="73" width="22" height="2"></rect>
-        <rect id="Rectangle-Copy-20" fill="#A8A8A8" x="120" y="65" width="22" height="2"></rect>
-        <rect id="Rectangle-Copy-22" fill="#A8A8A8" x="120" y="87" width="22" height="2"></rect>
-        <rect id="Rectangle-Copy-26" fill="#A8A8A8" x="182" y="87" width="16" height="2"></rect>
-        <rect id="Rectangle-Copy-21" fill="#A8A8A8" x="120" y="78" width="89" height="1"></rect>
-        <rect id="Rectangle-Copy-23" fill="#A8A8A8" x="120" y="100" width="58" height="1"></rect>
-        <rect id="Rectangle-Copy-27" fill="#A8A8A8" x="182" y="100" width="26" height="1"></rect>
-        <rect id="Rectangle-Copy-8" fill="#FFFFFF" x="120" y="114" width="88" height="8"></rect>
-        <rect id="Rectangle-Copy-25" fill="#A8A8A8" x="120" y="109" width="22" height="2"></rect>
-        <rect id="Rectangle-Copy-24" fill="#A8A8A8" x="120" y="122" width="89" height="1"></rect>
-        <rect id="Rectangle-Copy-18" fill="#A8A8A8" x="75" y="80" width="27" height="2"></rect>
-        <rect id="Rectangle-Copy-19" fill="#A8A8A8" x="75" y="87" width="22" height="2"></rect>
-        <g id="icon/navigation/close/16-copy-3" transform="translate(238.000000, 47.000000)">
-            <mask id="mask-2" fill="white">
-                <use xlink:href="#path-1"></use>
-            </mask>
-            <use id="icon-color" fill="#000000" xlink:href="#path-1"></use>
-        </g>
-    </g>
+<svg width="320" height="180" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="60" y="41" width="200" height="109" fill="white"/>
+<rect x="60" y="29" width="200" height="13" fill="#171717"/>
+<rect opacity="0.844385" x="94" y="34.5" width="22" height="3" fill="#C6C6C6"/>
+<rect opacity="0.844385" x="67" y="34.5" width="22" height="3" fill="#C6C6C6"/>
+<rect opacity="0.844385" x="121" y="34.5" width="22" height="3" fill="#C6C6C6"/>
+<rect opacity="0.844385" x="239" y="33" width="5" height="5" fill="#C6C6C6"/>
+<rect opacity="0.844385" x="249" y="33" width="5" height="5" fill="#C6C6C6"/>
+<g style="mix-blend-mode:multiply">
+<rect x="60" y="29" width="200" height="122" fill="#8D8D8D"/>
+</g>
+<rect x="67" y="48" width="187" height="109" fill="white"/>
+<rect x="113" y="68" width="141" height="83" fill="#F4F4F4"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M68 49H254V61.2449V69H68V49Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M67 69H112V118.592V150H67V69Z" fill="white"/>
+<rect x="69" y="81" width="44" height="8" fill="#E0E0E0"/>
+<rect x="67" y="81" width="2" height="8" fill="#0F62FE"/>
+<rect x="73" y="76" width="22" height="2" fill="#A8A8A8"/>
+<rect x="73" y="84" width="22" height="2" fill="#8D8D8D"/>
+<rect x="73" y="92" width="22" height="2" fill="#A8A8A8"/>
+<rect x="73" y="100" width="22" height="2" fill="#A8A8A8"/>
+<rect x="73" y="108" width="22" height="2" fill="#A8A8A8"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M121 101H169V104.673V107H121V101Z" fill="white"/>
+<rect opacity="0.891745" x="121" y="144" width="16" height="2" fill="#78A9FF"/>
+<rect opacity="0.891745" x="72" y="53" width="16" height="2" fill="#78A9FF"/>
+<rect opacity="0.891745" x="121" y="85" width="56" height="2" fill="#A8A8A8"/>
+<rect opacity="0.891745" x="121" y="124" width="56" height="2" fill="#A8A8A8"/>
+<rect opacity="0.891745" x="121" y="89" width="66" height="2" fill="#A8A8A8"/>
+<rect opacity="0.891745" x="121" y="93" width="56" height="2" fill="#A8A8A8"/>
+<rect opacity="0.891745" x="121" y="128" width="66" height="2" fill="#A8A8A8"/>
+<rect opacity="0.891745" x="93" y="53" width="16" height="2" fill="#78A9FF"/>
+<rect x="121" y="76" width="28" height="3" fill="#A8A8A8"/>
+<rect x="72" y="58" width="54" height="3" fill="#A8A8A8"/>
+<rect x="121" y="115" width="28" height="3" fill="#A8A8A8"/>
+<rect x="67" y="150" width="187" height="1" fill="#C6C6C6"/>
+<rect x="114" y="139" width="140" height="1" fill="#E5E5E5"/>
+<rect x="67" y="68" width="187" height="1" fill="#E5E5E5"/>
+<rect x="219" y="140" width="35" height="11" fill="#0F6DFF"/>
+<rect x="183" y="140" width="35" height="11" fill="#393939"/>
+<rect x="121" y="107" width="48" height="1" fill="#C6C6C6"/>
 </svg>

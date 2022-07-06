@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.143](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.142...@carbon-platform/web-app@0.1.143) (2022-07-06)
+
+
+### Features 🌟
+
+* **web-app:** url strategy redefinition ([b807bee](https://github.com/carbon-design-system/carbon-platform/commit/b807bee439c3e6ef617d87e1d70749faa95549fe))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add overview tab to asset detail ([71ef82c](https://github.com/carbon-design-system/carbon-platform/commit/71ef82c59c920800fd50c4d99d64283e8710fd16))
+* **web-app:** data-viz pages under collections, add some legacy rewrites ([f3404b8](https://github.com/carbon-design-system/carbon-platform/commit/f3404b83eaa96c70cb17211476adde52740b2d47))
+* **web-app:** merge with main ([3bba4ba](https://github.com/carbon-design-system/carbon-platform/commit/3bba4ba0b24392e70411ee3ce5d757ed5195765f))
+* **web-app:** run linter ([762d662](https://github.com/carbon-design-system/carbon-platform/commit/762d66237fa857d71fde01021dc2228a693fc7e9))
+
+
+### Misc. 🔮
+
+* bump @carbon/react from 1.5.0 to 1.6.0 ([504679f](https://github.com/carbon-design-system/carbon-platform/commit/504679fb9d28289f69c79e9a5932a9b4b7ab1046))
+
 ### [0.1.142](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.141...@carbon-platform/web-app@0.1.142) (2022-06-30)
 
 

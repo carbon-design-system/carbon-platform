@@ -23,7 +23,6 @@ $hero-height: convert.rem(560px);
     left: 0;
     width: calc(100vw - var(--scrollbar-width));
     height: $hero-height;
-    margin-right: 20px;
     background: theme.$background;
     content: '';
   }
@@ -51,6 +50,7 @@ $hero-height: convert.rem(560px);
   */
 
 .assets::before {
+  margin-top: -1px;
   background: url(../../pages/assets/index/images/assets-hero_mobile.png) no-repeat bottom right /
     100% auto;
 

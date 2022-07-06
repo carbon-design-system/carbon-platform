@@ -23,21 +23,14 @@ library:
       action: link
       url: https://react.carbondesignsystem.com
   designKits:
-    - carbon-white-sketch
-    - carbon-g10-sketch
-    - carbon-g90-sketch
-    - carbon-g100-sketch
-    - carbon-white-figma
-    - carbon-g10-figma
-    - carbon-g90-figma
-    - carbon-g100-figma
-    - carbon-white-adobe-xd
-    - carbon-g10-adobe-xd
-    - carbon-g90-adobe-xd
-    - carbon-g100-adobe-xd
-    - carbon-g10-axure
-    - carbon-mid-fi-sketch
-    - carbon-wireframe-invision-freehand
+    carbon-white-sketch:
+      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-white-sketch
+    carbon-g10-sketch:
+      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch
+    carbon-g90-sketch:
+      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g90-sketch
+    carbon-g100-sketch:
+      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g100-sketch
   navData:
     - title: A page
       path: '/a-page.mdx'
@@ -150,7 +143,7 @@ library:
 | `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, code package, and other information.                                                                                                                       | Optional | String  | `/package.json`           | –            |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                                                                                                                                        | Optional | String  | –                         | –            |
 | `demoLinks`       | Links to demo sites. See [demo links](#demo-links).                                                                                                                                                                                                                     | Optional | Array   | –                         | –            |
-| `designKits`      | `id`s of indexed design kits that contain the design counterpart to assets in this library.                                                                                                                                                                             | Optional | Array   | –                         | –            |
+| `designKits`      | Design kits that contain the design counterpart to assets in this library. See [design kit schema](#design-kit-schema) for more info.                                                                                                                                   | Optional | Object  | –                         | –            |
 | `noIndex`         | If set to `true`, the global catalogs will exclude the library.                                                                                                                                                                                                         | Optional | Boolean | `false`                   | –            |
 | `navData`         | Links to documentation pages. See [nav data](#nav-data).                                                                                                                                                                                                                | Optional | Array   | -                         | –            |
 
@@ -240,9 +233,6 @@ assets:
 
 Asset type is used for primary categorization in asset catalogs. The `type` key can have the
 following values:
-
-<!-- remove element asset type for first release -->
-<!-- | `element` | Styles, tokens, icons, and pictograms that are the direct translation of design language elements to digital mediums. | -->
 
 | Type        | Description                                                                                                                                                                                            |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -353,10 +343,10 @@ docs:
 
 ## Design kit schema
 
-Design kits contain elements, components, guidelines and wireframes for various design tools as the
-design counterpart to coded assets. Design kits are indexed in the
+Design kits contain elements, guidelines, user interface components and patterns, and wireframes for
+various design tools as the design counterpart to coded assets. Design kits are indexed in the
 [carbon-platform](https://github.com/carbon-design-system/carbon-platform) repository
-[`carbon.yml`](https://github.com/carbon-design-system/carbon-platform/blob/main/services/web-app/data/carbon.yml)
+[`carbon.yml`](https://github.com/carbon-design-system/carbon-platform/blob/main/packages/resources/carbon.yml)
 data file.
 
 carbon.yml
@@ -368,11 +358,10 @@ designKits:
     name: White theme
     description: Carbon universal components in the white color theme.
     tool: sketch
-    type: components
+    type: ui
     status: stable
     url: sketch://add-library/cloud/557b75ff-67d3-41ab-ada5-fa25447218c1
     action: link
-    sponsor: carbon
 ```
 
 ### Design kit keys
@@ -383,11 +372,11 @@ designKits:
 | `name`        | Design kit display name (often includes the tool and color theme.) Use title-case capitalization.                                                                                                                                                                             | Required | String           | –       | –                                                                        |
 | `description` | Design kit description ideally between 50-160 characters in length. Use sentence-case capitalization.                                                                                                                                                                         | Optional | String           | –       | –                                                                        |
 | `tool`        | Design kit's compatible tool.                                                                                                                                                                                                                                                 | Required | String           | –       | `adobe-ase`, `adobe-xd`, `axure`, `figma`, `invision-freehand`, `sketch` |
-| `type`        | Design kit primary categorization. See [design kit type](#design-kit-type).                                                                                                                                                                                                   | Required | String           | –       | `components`, `elements`, `guidelines`, `wireframes`                     |
+| `type`        | Design kit primary categorization. See [design kit type](#design-kit-type).                                                                                                                                                                                                   | Required | String           | –       | `elements`, `guidelines`, `ui`, `wireframes`                             |
 | `status`      | Design kit consumption exptectations. See [status](#status).                                                                                                                                                                                                                  | Required | String \| Object | `draft` | `draft`, `experimental`, `stable`, `deprecated`                          |
 | `url`         | Design kit URL.                                                                                                                                                                                                                                                               | Required | String           | –       | –                                                                        |
 | `action`      | Determines the action icon.                                                                                                                                                                                                                                                   | Optional | String           | `link`  | `download`, `link`                                                       |
-| `sponsor`     | The `id` of a sponsoring team. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive the valid `id`s.                                                                                                        | Optional | String           | –       | –                                                                        |
+| `license`     | Design kit license.                                                                                                                                                                                                                                                           | Optional | String           | –       | `apache-2.0`, `ibm-internal`, `mit`                                      |
 | `noIndex`     | If set to `true`, the global catalogs will exclude the kit.                                                                                                                                                                                                                   | Optional | Boolean          | `false` | –                                                                        |
 
 #### Design kit type

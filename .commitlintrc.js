@@ -22,6 +22,7 @@ module.exports = {
         'logging',
         'messaging',
         'micromanage',
+        'resources',
         'schemas',
         'search',
         'web-app'

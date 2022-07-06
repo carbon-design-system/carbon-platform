@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 designKits:
   carbon-white-sketch:
     name: Sketch white theme
@@ -6,7 +7,6 @@ designKits:
     status: stable
     url: sketch://add-library/cloud/557b75ff-67d3-41ab-ada5-fa25447218c1
     action: link
-    sponsor: carbon
   carbon-g10-sketch:
     name: Sketch gray 10 theme
     tool: sketch
@@ -14,7 +14,6 @@ designKits:
     status: stable
     url: sketch://add-library/cloud/b4ea2a21-4b1a-4c64-99dc-a1365eff5d5f
     action: link
-    sponsor: carbon
   carbon-g90-sketch:
     name: Sketch gray 90 theme
     tool: sketch
@@ -22,7 +21,6 @@ designKits:
     status: stable
     url: sketch://add-library/cloud/a324c6dd-df97-435e-b79f-3a29e04922fc
     action: link
-    sponsor: carbon
   carbon-g100-sketch:
     name: Sketch gray 100 theme
     tool: sketch
@@ -30,7 +28,6 @@ designKits:
     status: stable
     url: sketch://add-library/cloud/9d47a4fd-70dd-44ff-bc57-22c79da8e477
     action: link
-    sponsor: carbon
   ibm-design-language-sketch:
     name: IBM Design Language
     tool: sketch
@@ -45,7 +42,6 @@ designKits:
     status: stable
     url: sketch://add-library/cloud/028e0598-591e-428c-a490-f6ec64b15ea7
     action: link
-    sponsor: carbon
   ibm-icons-24-32-sketch:
     name: IBM Icons (24px, 32px)
     tool: sketch
@@ -53,7 +49,6 @@ designKits:
     status: stable
     url: sketch://add-library/cloud/d530998a-c94c-4f1c-bc0e-c05417e067e3
     action: link
-    sponsor: carbon
   ibm-grid-sketch:
     name: IBM Grid template
     tool: sketch
@@ -68,7 +63,6 @@ designKits:
     status: stable
     url: https://www.sketch.com/s/6a8e1d7b-f00a-4d8d-9d83-79ecf4dc12a0
     action: link
-    sponsor: carbon
   carbon-white-figma:
     name: Figma white theme
     tool: figma
@@ -76,7 +70,6 @@ designKits:
     status: experimental
     url: https://www.figma.com/file/Vzz8k68Pqk5HfaTdQOQrGu/White-Theme---Carbon-Design-System
     action: link
-    sponsor: carbon
   carbon-g10-figma:
     name: Figma gray 10 theme
     tool: figma
@@ -84,7 +77,6 @@ designKits:
     status: experimental
     url: https://www.figma.com/file/i6y80WeotmhmbWxpmcffz7/Gray-10-Theme---Carbon-Design-System
     action: link
-    sponsor: carbon
   carbon-g90-figma:
     name: Figma gray 90 theme
     tool: figma
@@ -92,7 +84,6 @@ designKits:
     status: experimental
     url: https://www.figma.com/file/fCucrHE8tdGDVJX7ODqajd/Gray-90-Theme---Carbon-Design-System
     action: link
-    sponsor: carbon
   carbon-g100-figma:
     name: Figma gray 100 theme
     tool: figma
@@ -100,7 +91,6 @@ designKits:
     status: experimental
     url: https://www.figma.com/file/TckQzGe3bNxHPLoRhbXFal/Gray-100-Theme---Carbon-Design-System
     action: link
-    sponsor: carbon
   carbon-white-adobe-xd:
     name: Adobe XD white theme
     tool: adobe-xd
@@ -157,7 +147,6 @@ designKits:
     status: stable
     url: https://www.sketch.com/s/1a36060a-7a5d-4ddb-aab1-639caa1f74d4
     action: link
-    sponsor: carbon
   ibm-color-palettes-ase-clr:
     name: RGB color palettes (.ase and .clr)
     tool: adobe-ase
@@ -186,7 +175,6 @@ designKits:
     status: stable
     url: https://www.sketch.com/s/240226b0-f455-484d-b412-cfd13fb1bb39
     action: link
-    sponsor: carbon
   carbon-mobile-light-sketch:
     name: Light theme for mobile
     tool: sketch
@@ -243,7 +231,7 @@ designKits:
     status: stable
     url: https://pages.github.ibm.com/cdai-design/cloud-pal/resources/resources/#invision-freehand-kit
     action: link
-    sponsor: ibm-cloud
+    license: ibm-internal
   ibm-dotcom-white-figma:
     name: IBM.com Figma white theme
     tool: figma
@@ -253,7 +241,6 @@ designKits:
       note: Figma kits are being refactored now that Carbon has released their Figma kits.
     url: https://www.figma.com/file/O6R9yl3wXFyBry4l2tz6h4/%F0%9F%9A%ABCarbon-for-IBM.com-(White-Theme)-%5BTo-be-deprecated%5D
     action: link
-    sponsor: ibm-dotcom
   ibm-dotcom-g10-figma:
     name: IBM.com Figma gray 10 theme
     tool: figma
@@ -263,7 +250,6 @@ designKits:
       note: Figma kits are being refactored now that Carbon has released their Figma kits.
     url: https://www.figma.com/file/8leBSqQSIv9GWzX9XXyeEP/%F0%9F%9A%ABCarbon-for-IBM.com-(Gray-10-Theme)-Beta-%5BTo-be-deprecated%5D?node-id=516%3A375
     action: link
-    sponsor: ibm-dotcom
   ibm-dotcom-g90-figma:
     name: IBM.com Figma gray 90 theme
     tool: figma
@@ -273,7 +259,6 @@ designKits:
       note: Figma kits are being refactored now that Carbon has released their Figma kits.
     url: https://www.figma.com/file/89LMb0HHcVQBslVrg4lTEj/%F0%9F%9A%ABCarbon-for-IBM.com-(Gray-90-Theme)-Beta-%5BTo-be-deprecated%5D
     action: link
-    sponsor: ibm-dotcom
   ibm-dotcom-g100-figma:
     name: IBM.com Figma gray 100 theme
     tool: figma
@@ -283,7 +268,6 @@ designKits:
       note: Figma kits are being refactored now that Carbon has released their Figma kits.
     url: https://www.figma.com/file/s8bPpdt9JQDi07Z8NLj2g8/%F0%9F%9A%ABCarbon-for-IBM.com-(Gray-100-Theme)-Beta-%5BTo-be-deprecated%5D
     action: link
-    sponsor: ibm-dotcom
   ibm-products-g10-figma:
     name: IBM Products Figma gray 10 theme
     tool: figma
@@ -291,7 +275,6 @@ designKits:
     status: stable
     url: https://www.figma.com/file/Yz74b1hPqqYWwEtmcPqojq/Gray-10---IBM-Products
     action: link
-    sponsor: ibm-products
   ibm-cloud-light-figma:
     name: Cloud PAL Figma light theme
     tool: figma
@@ -299,5 +282,4 @@ designKits:
     status: stable
     url: https://www.figma.com/file/upZIO5LXG9OnHCKwCawlur/Light---Cloud-PAL
     action: link
-    sponsor: ibm-products
     noIndex: true

@@ -54,25 +54,25 @@ export const getLibraryNavData = (params, libraryData) => {
   return {
     back: {
       title: 'Back to all Libraries',
-      path: '/assets/libraries'
+      path: '/libraries'
     },
     headings: [libraryData?.content?.name ?? 'Library', getVersion()],
     items: [
       {
         title: 'Assets',
-        path: `/assets/${params.library}/${params.ref}/library-assets`
+        path: `/libraries/${params.library}/${params.ref}/assets`
       },
       {
         title: 'Design kits',
-        path: `/assets/${params.library}/${params.ref}/design-kits`
+        path: `/libraries/${params.library}/${params.ref}/design-kits`
       },
       ...libraryNavData.filter((item) => !item.hidden),
       {
         title: 'Versions',
-        path: `/assets/${params.library}/${params.ref}/versions`
+        path: `/libraries/${params.library}/${params.ref}/versions`
       }
     ],
-    path: `/assets/${params.library}/${params.ref}`
+    path: `/libraries/${params.library}/${params.ref}`
   }
 }
 

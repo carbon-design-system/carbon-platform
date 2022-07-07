@@ -16,7 +16,7 @@ export const globalNavData = [
   //   title: 'Standards'
   // },
   // {
-  //   path: '/assets',
+  //   path: '/',
   //   title: 'Assets'
   // }
 ]
@@ -193,7 +193,7 @@ export const assetsNavData = [
     ]
   },
   {
-    path: '/assets/libraries',
+    path: '/libraries',
     title: 'Libraries'
   },
   {
@@ -228,8 +228,37 @@ export const assetsNavData = [
     isSection: true,
     items: [
       {
-        path: '/assets/data-visualization',
-        title: 'Data visualization'
+        title: 'Data vizualization',
+        items: [
+          {
+            path: '/collections/data-visualization',
+            title: 'Data visualization'
+          },
+          {
+            path: '/collections/data-visualization/get-started',
+            title: 'Get started'
+          },
+          {
+            path: '/collections/data-visualization/chart-anatomy',
+            title: 'Chart anatomy'
+          },
+          {
+            path: '/collections/data-visualization/color-palettes',
+            title: 'Color palettes'
+          },
+          {
+            path: '/collections/data-visualization/axes-and-labels',
+            title: 'Axes and labels'
+          },
+          {
+            path: '/collections/data-visualization/legends',
+            title: 'Legends'
+          },
+          {
+            path: '/collections/data-visualization/dashboards',
+            title: 'Dashboards'
+          }
+        ]
       }
     ]
   },

@@ -4,9 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Environment, RunMode, Runtime } from '@carbon-platform/api/runtime'
 import { NestFactory } from '@nestjs/core'
 
+import { SCHEMA_OUTPUT_FILE } from './constants.js'
 import { DataGraphModule } from './data-graph-module.js'
 
 /**
@@ -14,9 +14,10 @@ import { DataGraphModule } from './data-graph-module.js'
  * output location.
  */
 async function generateSchema() {
-  const runtime = new Runtime({ environment: Environment.Test, runMode: RunMode.Dev })
-
-  const app = await NestFactory.create(DataGraphModule.register(runtime), { logger: false })
+  const app = await NestFactory.create(
+    DataGraphModule.register({ isPlaygroundEnabled: false, schemaOutputFile: SCHEMA_OUTPUT_FILE }),
+    { logger: false }
+  )
   await app.init()
 }
 

@@ -4,10 +4,15 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Carbon, IbmCloud, IbmSecurity, Watson } from '@carbon/react/icons'
 import {
-  Svg24CarbonForIbmDotcom,
-  Svg24CarbonForIbmProducts,
+  Carbon,
+  CarbonForIbmDotcom,
+  CarbonForIbmProduct,
+  IbmCloud,
+  IbmSecurity,
+  Watson
+} from '@carbon/icons-react'
+import {
   Svg64Carbon,
   Svg64CarbonForIbmDotcom,
   Svg64CarbonForIbmProducts,
@@ -28,7 +33,7 @@ export const teams = {
     pictogram: Svg64Carbon
   },
   'ibm-dotcom': {
-    icon: Svg24CarbonForIbmDotcom,
+    icon: CarbonForIbmDotcom,
     name: 'IBM.com',
     pictogram: Svg64CarbonForIbmDotcom
   },
@@ -53,7 +58,7 @@ export const teams = {
     pictogram: Svg64Watson
   },
   'ibm-products': {
-    icon: Svg24CarbonForIbmProducts,
+    icon: CarbonForIbmProduct,
     name: 'IBM Products',
     pictogram: Svg64CarbonForIbmProducts
   }

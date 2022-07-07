@@ -34,7 +34,7 @@
     "@carbon/pictograms-react": "^11.28.0",
     "@carbon/react": "^1.6.0",
     "@mdx-js/loader": "^2.1.1",
-    "@next/mdx": "^12.1.6",
+    "@next/mdx": "^12.2.0",
     "@octokit/core": "^3.6.0",
     "ajv": "^8.11.0",
     "cache-manager": "^4.0.1",

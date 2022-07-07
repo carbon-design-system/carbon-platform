@@ -10,15 +10,19 @@ import PropTypes from 'prop-types'
 
 import MdxWrapper from '../mdx-wrapper'
 
-const RemoteMdxLoader = ({ source }) => {
+const RemoteMdxLoader = ({ source, ignoreTabs }) => {
   return (
-    <MdxWrapper frontmatter={JSON.stringify(source?.frontmatter ?? {})}>
+    <MdxWrapper frontmatter={JSON.stringify(source?.frontmatter ?? {})} ignoreTabs={ignoreTabs}>
       <MDXRemote {...source} />
     </MdxWrapper>
   )
 }
 
 RemoteMdxLoader.propTypes = {
+  /**
+   * whether frontmatter tabs should be ignored, defaults to false
+   */
+  ignoreTabs: PropTypes.bool,
   /**
    * serialized mdxSource (AST)
    */

@@ -355,7 +355,7 @@ carbon.yml
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 designKits:
   carbon-white-sketch:
-    name: White theme
+    name: Sketch white theme
     description: Carbon universal components in the white color theme.
     tool: sketch
     type: ui

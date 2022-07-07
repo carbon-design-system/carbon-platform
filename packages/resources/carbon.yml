@@ -167,7 +167,7 @@ designKits:
     type: ui
     status: stable
     url: sketch://add-library/cloud/304313c1-29a8-4946-a6f0-51dbec953bc2
-    action: download
+    action: link
   image-production-guidelines-sketch:
     name: Image production guidelines
     tool: sketch
@@ -230,7 +230,7 @@ designKits:
     type: wireframes
     status: stable
     url: https://pages.github.ibm.com/cdai-design/cloud-pal/resources/resources/#invision-freehand-kit
-    action: link
+    action: download
     license: ibm-internal
   ibm-dotcom-white-figma:
     name: IBM.com Figma white theme

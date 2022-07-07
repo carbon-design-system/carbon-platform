@@ -54,25 +54,25 @@ export const getLibraryNavData = (params, libraryData) => {
   return {
     back: {
       title: 'Back to all Libraries',
-      path: '/assets/libraries'
+      path: '/libraries'
     },
     headings: [libraryData?.content?.name ?? 'Library', getVersion()],
     items: [
       {
         title: 'Assets',
-        path: `/assets/${params.library}/${params.ref}/library-assets`
+        path: `/libraries/${params.library}/${params.ref}/assets`
       },
       {
         title: 'Design kits',
-        path: `/assets/${params.library}/${params.ref}/design-kits`
+        path: `/libraries/${params.library}/${params.ref}/design-kits`
       },
       ...libraryNavData.filter((item) => !item.hidden),
       {
         title: 'Versions',
-        path: `/assets/${params.library}/${params.ref}/versions`
+        path: `/libraries/${params.library}/${params.ref}/versions`
       }
     ],
-    path: `/assets/${params.library}/${params.ref}`
+    path: `/libraries/${params.library}/${params.ref}`
   }
 }
 
@@ -245,6 +245,25 @@ const validateAsset = (asset, library) => {
 }
 
 /**
+ * Finds library object in libraryAllowList from slug and returns a valid set of params
+ * (if librry is valid)
+ * @param {string} libraryVersionSlug e.g. 'carbon-charts@0.1.121'
+ * @returns {Promise<import('../typedefs').Params>}
+ */
+export const getLibraryParams = async (libraryVersionSlug) => {
+  const inheritParams = getLibraryVersionAsset(libraryVersionSlug)
+
+  if (inheritParams.library && libraryAllowList[inheritParams.library]) {
+    return validateLibraryParams({
+      ...libraryAllowList[inheritParams.library],
+      ...inheritParams
+    })
+  } else {
+    return {}
+  }
+}
+
+/**
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  * @param {import('../typedefs').Params} params
@@ -290,19 +309,12 @@ export const getLibraryData = async (params = {}) => {
   let assets = await getLibraryAssets(params)
 
   if (library.inherits) {
-    const inheritParams = getLibraryVersionAsset(library.inherits)
+    const inheritParams = await getLibraryParams(library.inherits)
 
-    if (inheritParams.library && libraryAllowList[inheritParams.library]) {
-      const fullInheritParams = await validateLibraryParams({
-        ...libraryAllowList[inheritParams.library],
-        ...inheritParams
-      })
+    if (!isEmpty(inheritParams)) {
+      const inheritAssets = await getLibraryAssets(inheritParams)
 
-      if (!isEmpty(fullInheritParams)) {
-        const inheritAssets = await getLibraryAssets(fullInheritParams)
-
-        assets = mergeInheritedAssets(assets, inheritAssets)
-      }
+      assets = mergeInheritedAssets(assets, inheritAssets)
     }
   }
 

@@ -6,17 +6,13 @@
  */
 import { build } from 'esbuild'
 import path from 'path'
-import { fileURLToPath } from 'url'
 
 import base from '../../esbuild.base.mjs'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
 build({
   ...base,
-  entryPoints: [path.resolve(__dirname, 'dist', 'main', 'index.js')],
-  outfile: path.resolve(__dirname, 'dist', 'out.js'),
+  entryPoints: [path.resolve(process.cwd(), 'dist', 'main', 'index.js')],
+  outfile: path.resolve(process.cwd(), 'dist', 'out.js'),
   external: [
     ...base.external,
     '@apollo/gateway',

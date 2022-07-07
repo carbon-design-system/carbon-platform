@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.22](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.21...@carbon-platform/data-graph@0.1.22) (2022-07-07)
+
+
+### Misc. 🔮
+
+* bump @nestjs/apollo from 10.0.14 to 10.0.16 ([94fcb7f](https://github.com/carbon-design-system/carbon-platform/commit/94fcb7f0657857f206e3d82e4a8ad261eb465bb9))
+* bump apollo-server-plugin-base from 3.6.0 to 3.6.1 ([ef3cc98](https://github.com/carbon-design-system/carbon-platform/commit/ef3cc987047c3d37230c6bd8c1037b364534c769))
+
+### [0.1.21](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.20...@carbon-platform/data-graph@0.1.21) (2022-06-30)
+
+### [0.1.20](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.19...@carbon-platform/data-graph@0.1.20) (2022-06-24)
+
+
+### Bug Fixes 🐛
+
+* remove runtime usages of import.meta ([acd5277](https://github.com/carbon-design-system/carbon-platform/commit/acd5277122970037a5d8627d6fd2c3c6b14d4fe4))
+
 ### [0.1.19](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.18...@carbon-platform/data-graph@0.1.19) (2022-06-22)
 
 ### [0.1.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.17...@carbon-platform/data-graph@0.1.18) (2022-06-18)

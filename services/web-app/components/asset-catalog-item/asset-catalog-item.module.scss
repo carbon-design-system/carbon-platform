@@ -17,6 +17,7 @@
 
 .column {
   position: relative;
+  min-height: convert.rem(176px);
   transition: border-color motion.$duration-fast-02 motion.motion(standard, productive);
 
   &:not(:first-child) {
@@ -179,12 +180,27 @@
 
 .tags {
   position: absolute;
-  top: spacing.$spacing-04;
-  right: 0;
+  bottom: spacing.$spacing-04;
+  left: 0;
   display: flex;
   transition: background motion.$duration-fast-02 motion.motion(standard, productive);
+
+  .no-image & {
+    @include breakpoint.breakpoint(md) {
+      top: spacing.$spacing-04;
+      right: 0;
+      bottom: auto;
+      left: auto;
+    }
+    @include breakpoint.breakpoint(lg) {
+      right: spacing.$spacing-04;
+    }
+  }
   @include breakpoint.breakpoint(lg) {
+    top: spacing.$spacing-04;
     right: spacing.$spacing-04;
+    bottom: auto;
+    left: auto;
   }
 
   .anchor--grid & {
@@ -206,9 +222,23 @@
   }
 }
 
-.meta {
-  &--absolute {
-    position: absolute;
+.meta--absolute {
+  position: absolute;
+  top: spacing.$spacing-03;
+  right: 0;
+
+  .no-image & {
+    @include breakpoint.breakpoint(md) {
+      top: auto;
+      right: auto;
+      bottom: spacing.$spacing-04;
+      left: spacing.$spacing-04;
+    }
+  }
+
+  @include breakpoint.breakpoint(lg) {
+    top: auto;
+    right: auto;
     bottom: spacing.$spacing-04;
     left: spacing.$spacing-04;
   }

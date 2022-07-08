@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.144](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.143...@carbon-platform/web-app@0.1.144) (2022-07-08)
+
+
+### Features 🌟
+
+* **web-app:** render lib side nav pages initial functionality ([1e0b821](https://github.com/carbon-design-system/carbon-platform/commit/1e0b8213e9cc7385f48ed0f265e5c09095185c60))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** + pageName in seo title,+ err catching to mdx parse ([05aa4be](https://github.com/carbon-design-system/carbon-platform/commit/05aa4be689173b788bf12c60067233f7103b1494))
+* **web-app:** accept subpaths in lib pages ([ba78c73](https://github.com/carbon-design-system/carbon-platform/commit/ba78c73700ece53feebd8638e9bf83fae3170067))
+* **web-app:** address TODOs, update cached files, linting issues ([e4fc954](https://github.com/carbon-design-system/carbon-platform/commit/e4fc9548655f5c5bd7e76e463a22853057a529c0))
+* **web-app:** fix pageSrc bug, temporarily use custom ref ([86ba6f1](https://github.com/carbon-design-system/carbon-platform/commit/86ba6f1501cb18470fe0a51f6fbcc02cc168b8eb))
+* **web-app:** fix src bug in dynamic lib pages ([914bb00](https://github.com/carbon-design-system/carbon-platform/commit/914bb0076d57484d603ac9c3de8e5f017f30c8f9))
+* **web-app:** ignore library pages tabs ([2b88c73](https://github.com/carbon-design-system/carbon-platform/commit/2b88c7308131cfb98859003b977bfa6877e4089e))
+* **web-app:** move file to correct location, fix link url ([4719a3c](https://github.com/carbon-design-system/carbon-platform/commit/4719a3c351be073d6a67c22aa4fea539cfd969ad))
+* **web-app:** sonarcloud issue ([ed29516](https://github.com/carbon-design-system/carbon-platform/commit/ed29516e8dc005b1c09180323e106e33f184db94))
+
+
+### Misc. 🔮
+
+* bump concurrently from 7.2.1 to 7.2.2 ([34807f7](https://github.com/carbon-design-system/carbon-platform/commit/34807f7cd8bb6209ec5512f909a114a58d6be212))
+
 ### [0.1.143](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.142...@carbon-platform/web-app@0.1.143) (2022-07-06)
 
 

@@ -137,9 +137,9 @@ const Library = ({ libraryData, params, navData }) => {
               <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }}>
                 <Grid as="dl" className={dashboardStyles.subgrid}>
                   <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
-                    <dt className={dashboardStyles.label}>Sponsor</dt>
+                    <dt className={dashboardStyles.label}>Maintainer</dt>
                     <dd className={dashboardStyles.meta}>
-                      {get(teams, `[${libraryData.params.sponsor}].name`, 'Community maintained')}
+                      {get(teams, `[${libraryData.params.sponsor}].name`, 'Community')}
                     </dd>
                   </Column>
                   <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>

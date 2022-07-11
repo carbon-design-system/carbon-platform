@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.3...@carbon-platform/base@0.0.4) (2022-07-09)
+
+
+### Misc. 🔮
+
+* dev: bump lint-staged from 13.0.1 to 13.0.3 ([daca02b](https://github.com/carbon-design-system/carbon-platform/commit/daca02b9bb314a6b99b11a6532572d3bacc95695))
+
 ### [0.0.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.2...@carbon-platform/base@0.0.3) (2022-07-08)
 
 

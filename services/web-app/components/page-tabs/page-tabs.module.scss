@@ -14,7 +14,7 @@
 
 .container {
   position: sticky;
-  z-index: z-index.z('overlay');
+  z-index: z-index.z('footer');
   top: 3rem;
 
   &::before {

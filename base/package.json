@@ -46,6 +46,6 @@
     "standard-version": "^9.5.0",
     "stylelint": "^14.9.1",
     "stylelint-config-carbon": "~1.10.0",
-    "ts-node": "^10.8.1"
+    "ts-node": "^10.8.2"
   }
 }

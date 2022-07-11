@@ -78,8 +78,8 @@ const Asset = ({ libraryData, params }) => {
     description
   }
 
-  const { sponsor } = assetData.params
-  const SponsorIcon = teams[sponsor] ? teams[sponsor].pictogram : Svg64Community
+  const { maintainer } = assetData.params
+  const MaintainerIcon = teams[maintainer] ? teams[maintainer].pictogram : Svg64Community
 
   const isPathAbsolute = (path) => {
     const testPath = /^https?:\/\//i
@@ -176,11 +176,11 @@ const Asset = ({ libraryData, params }) => {
                       {`v${libraryData.content.version}`}
                     </CarbonLink>
                   </Link>
-                  {SponsorIcon && (
-                    <SponsorIcon
+                  {MaintainerIcon && (
+                    <MaintainerIcon
                       className={clsx(
                         dashboardStyles['position-bottom-left'],
-                        styles['sponsor-icon']
+                        styles['maintainer-icon']
                       )}
                       size={64}
                     />
@@ -193,7 +193,7 @@ const Asset = ({ libraryData, params }) => {
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>Maintainer</dt>
                       <dd className={dashboardStyles.meta}>
-                        {get(teams, `[${assetData.params.sponsor}].name`, 'Community')}
+                        {get(teams, `[${assetData.params.maintainer}].name`, 'Community')}
                       </dd>
                     </Column>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>

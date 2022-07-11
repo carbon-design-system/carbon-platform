@@ -49,13 +49,13 @@ const AssetCatalogItemContent = ({ asset, isGrid = false, otherFrameworkCount = 
   const isLg = useMatchMedia(mediaQueries.lg)
 
   const { name, description } = asset.content
-  const { sponsor } = asset.params
+  const { maintainer } = asset.params
 
-  const sponsorTitle = teams[sponsor]
-    ? `Sponsored by ${teams[sponsor].name}`
+  const maintainerTitle = teams[maintainer]
+    ? `Maintained by ${teams[maintainer].name}`
     : 'Community maintained'
 
-  const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
+  const MaintainerIcon = teams[maintainer] ? teams[maintainer].icon : Events
 
   const isSeparatedMeta = !isLg || isGrid
 
@@ -67,8 +67,8 @@ const AssetCatalogItemContent = ({ asset, isGrid = false, otherFrameworkCount = 
         )}
         {name && <p className={styles.name}>{name}</p>}
         {description && <p className={styles.description}>{description}</p>}
-        <div className={styles.icon} title={sponsorTitle}>
-          <SponsorIcon className={styles['icon-sponsor']} size={24} />
+        <div className={styles.icon} title={maintainerTitle}>
+          <MaintainerIcon className={styles['icon-maintainer']} size={24} />
         </div>
         {isSeparatedMeta && (
           <>

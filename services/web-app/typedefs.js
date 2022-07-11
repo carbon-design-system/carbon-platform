@@ -14,7 +14,7 @@
  * @property {string} path - Relative path to library in repository
  * @property {string} ref - Git branch, tag, or commit hash
  * @property {string} repo - GitHub repository
- * @property {string} sponsor - Team slug
+ * @property {string} maintainer - Team slug
  */
 
 /**

@@ -150,7 +150,7 @@
 }
 
 .icon-external,
-.icon-sponsor {
+.icon-maintainer {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -158,7 +158,7 @@
   transition: opacity motion.$duration-fast-02 motion.motion(standard, productive);
 }
 
-.icon-sponsor {
+.icon-maintainer {
   width: convert.rem(24px);
   height: convert.rem(24px);
   opacity: 1;

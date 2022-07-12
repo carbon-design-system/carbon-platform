@@ -14,7 +14,7 @@ export const paramsPropTypes = PropTypes.shape({
   path: PropTypes.string,
   ref: PropTypes.string.isRequired,
   repo: PropTypes.string.isRequired,
-  sponsor: PropTypes.string
+  maintainer: PropTypes.string
 })
 
 export const libraryContentPropTypes = PropTypes.shape({

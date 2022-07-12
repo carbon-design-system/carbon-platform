@@ -41,20 +41,20 @@ const LibrariesItem = ({ library = {} }) => {
   if (isEmpty(library)) return null
 
   const { name, description } = library.content
-  const { sponsor } = library.params
-  const sponsorName = get(teams, `${sponsor}.name`)
+  const { maintainer } = library.params
+  const maintainerName = get(teams, `${maintainer}.name`)
 
-  const sponsorTitle = teams[sponsor]
-    ? `Sponsored by ${teams[sponsor].name}`
+  const maintainerTitle = teams[maintainer]
+    ? `Maintained by ${teams[maintainer].name}`
     : 'Community maintained'
 
-  const SponsorIcon = teams[sponsor] ? teams[sponsor].icon : Events
+  const MaintainerIcon = teams[maintainer] ? teams[maintainer].icon : Events
 
   const renderContent = () => (
     <Grid className={styles.grid}>
       <Column sm={4} md={8}>
         <div className={styles.content}>
-          {sponsorName && <p className={styles.sponsor}>{sponsorName}</p>}
+          {maintainerName && <p className={styles.maintainer}>{maintainerName}</p>}
           {name && <p className={styles.name}>{name}</p>}
           {description && <p className={styles.description}>{description}</p>}
           <ul className={styles.meta}>
@@ -63,8 +63,8 @@ const LibrariesItem = ({ library = {} }) => {
               <span>{getLicense(library)}</span>
             </li>
           </ul>
-          <div className={styles.icon} title={sponsorTitle}>
-            {SponsorIcon && <SponsorIcon className={styles['icon-sponsor']} size={24} />}
+          <div className={styles.icon} title={maintainerTitle}>
+            {MaintainerIcon && <MaintainerIcon className={styles['icon-maintainer']} size={24} />}
           </div>
         </div>
       </Column>

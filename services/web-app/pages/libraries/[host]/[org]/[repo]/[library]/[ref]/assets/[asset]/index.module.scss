@@ -20,7 +20,7 @@
   }
 }
 
-.sponsor-icon {
+.maintainer-icon {
   @include breakpoint.breakpoint-down(md) {
     right: spacing.$spacing-04;
     left: auto;

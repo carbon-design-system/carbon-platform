@@ -120,6 +120,15 @@ library:
       name: Storybook
       action: link
       url: https://react.carbondesignsystem.com
+  designKits:
+    carbon-white-sketch:
+      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-white-sketch
+    carbon-g10-sketch:
+      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch
+    carbon-g90-sketch:
+      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g90-sketch
+    carbon-g100-sketch:
+      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g100-sketch
   navData:
     - title: A page
       path: '/a-page.mdx'

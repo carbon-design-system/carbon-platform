@@ -257,7 +257,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["name", "tool", "status", "url"]
+          "required": ["name", "tool", "type", "status", "url"]
         }
       }
     },

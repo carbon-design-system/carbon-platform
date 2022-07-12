@@ -28,7 +28,7 @@ const AnchorLinks = ({ children, small, className }) => {
   })
 
   return (
-    <Grid className={styles.list}>
+    <Grid className={styles.list} data-anchor-links-list>
       <Column sm={4} md={8} lg={8}>
         <ul className={classNames}>
           {Children.map(children, (link, i) => (

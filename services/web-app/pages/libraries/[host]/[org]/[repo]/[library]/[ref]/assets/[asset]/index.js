@@ -91,7 +91,7 @@ const Asset = ({ libraryData, params }) => {
   const pageTabs = [
     {
       name: 'Overview',
-      path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}`
+      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(assetData.content)}`
     }
   ]
 
@@ -101,7 +101,9 @@ const Asset = ({ libraryData, params }) => {
     if (assetData.content.docs?.[`${docKey}Path`]) {
       pageTabs.push({
         name: capitalCase(docKey),
-        path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}/${docKey}`
+        path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(
+          assetData.content
+        )}/${docKey}`
       })
     }
   })

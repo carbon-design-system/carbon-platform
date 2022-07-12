@@ -15,11 +15,7 @@ const AnchorLink = ({ to, children, className }) => {
   const href = to || `#${slugify(children, { lower: true })}`
 
   return (
-    <a
-      className={clsx(styles.link, className)}
-      href={href}
-      id={slugify(children, { lower: true, strict: true })}
-    >
+    <a className={clsx(styles.link, className)} href={href} data-anchor-link>
       {children}
     </a>
   )

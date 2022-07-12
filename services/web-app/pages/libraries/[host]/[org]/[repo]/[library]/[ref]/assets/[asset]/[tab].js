@@ -10,10 +10,11 @@ import { get } from 'lodash'
 import Head from 'next/head'
 import { MDXRemote } from 'next-mdx-remote'
 import { NextSeo } from 'next-seo'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 
 import PageBreadcrumb from '@/components/page-breadcrumb/page-breadcrumb'
 import PageHeader from '@/components/page-header/page-header'
+import PageNav from '@/components/page-nav'
 import PageTabs from '@/components/page-tabs'
 import { assetsNavData } from '@/data/nav-data'
 import { type } from '@/data/type'
@@ -26,9 +27,23 @@ import { isValidHttpUrl } from '@/utils/string'
 import styles from './[tab].module.scss'
 
 const AssetTabPage = ({ source, tabs, assetData }) => {
+  const [pageNavItems, setPageNavItems] = useState([])
   const { title, description, keywords } = source.frontmatter
 
   const { setPrimaryNavData } = useContext(LayoutContext)
+  const contentRef = useRef(null)
+
+  useEffect(() => {
+    const anchorLinks = Array.from(document.querySelectorAll('[data-anchor-link=true')).map(
+      (anchor) => {
+        return {
+          title: anchor.text,
+          id: anchor.attributes.href.value.substring(1)
+        }
+      }
+    )
+    setPageNavItems(anchorLinks)
+  }, [])
 
   useEffect(() => {
     setPrimaryNavData(assetsNavData)
@@ -47,10 +62,10 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
   ]
 
   return (
-    <>
+    <div ref={contentRef}>
       <NextSeo title={title} description={description} keywords={keywords} />
-      <Grid narrow>
-        <Column lg={{ span: 12, offset: 4 }}>
+      <Grid>
+        <Column sm={4} md={8} lg={{ span: 12, offset: 4 }}>
           {title && (
             <PageHeader
               title={title}
@@ -65,6 +80,8 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
               <meta name="keywords" content={keywords} />
             </Head>
           )}
+        </Column>
+        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           {tabs && (
             <PageTabs
               className={styles['asset-tabs']}
@@ -72,20 +89,27 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
               tabs={tabs}
             />
           )}
+        </Column>
+        <Column sm={4} md={8} lg={4}>
+          <PageNav
+            items={pageNavItems}
+            contentRef={contentRef}
+            calculateHeight
+            scrollTopDistance={180}
+          />
+        </Column>
+        <Column sm={4} md={8} lg={12}>
           <div className={styles['page-content']}>
             <MDXRemote {...source} />
           </div>
         </Column>
       </Grid>
-    </>
+    </div>
   )
 }
 
 export const getStaticProps = async ({ params }) => {
-  console.log('hey')
   const libraryData = await getLibraryData(params)
-
-  console.log(params)
 
   if (!libraryData || !libraryData.assets || !libraryData.assets.length) {
     return {
@@ -137,7 +161,7 @@ export const getStaticProps = async ({ params }) => {
   const pageTabs = [
     {
       name: 'Overview',
-      path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}`
+      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(assetData.content)}`
     }
   ]
 
@@ -147,7 +171,9 @@ export const getStaticProps = async ({ params }) => {
     if (assetData.content.docs?.[`${docKey}Path`]) {
       pageTabs.push({
         name: capitalCase(docKey),
-        path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}/${docKey}`
+        path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(
+          assetData.content
+        )}/${docKey}`
       })
     }
   })

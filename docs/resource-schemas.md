@@ -24,13 +24,16 @@ library:
       url: https://react.carbondesignsystem.com
   designKits:
     carbon-white-sketch:
-      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-white-sketch
+      $ref: '#/designKits/carbon-white-sketch'
     carbon-g10-sketch:
       $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch
     carbon-g90-sketch:
-      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g90-sketch
-    carbon-g100-sketch:
-      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g100-sketch
+      name: Sketch gray 90 theme
+      tool: sketch
+      type: ui
+      status: stable
+      url: sketch://add-library/cloud/a324c6dd-df97-435e-b79f-3a29e04922fc
+      action: link
   navData:
     - title: A page
       path: '/a-page.mdx'
@@ -59,18 +62,14 @@ assets:
       stylePath: './components/accordion/styles.mdx'
       codePath: './components/accordion/code.mdx'
       accessibilityPath: './components/accordion/accessibility.mdx'
-  card:
-    name: Card
-    type: component
-    status:
-      key: draft
-      note: Additional usage guidance is coming soon.
-    framework: react
-    platform: web
-    description:
-      Cards are considered “workhorse” components because of their versatility. They provide
-      effective calls to action, and the various designs available work with a wide range of
-      content.
+designKits:
+  carbon-white-sketch:
+    name: Sketch white theme
+    tool: sketch
+    type: ui
+    status: stable
+    url: sketch://add-library/cloud/557b75ff-67d3-41ab-ada5-fa25447218c1
+    action: link
 ```
 
 ## Stable schema version
@@ -122,13 +121,16 @@ library:
       url: https://react.carbondesignsystem.com
   designKits:
     carbon-white-sketch:
-      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-white-sketch
+      $ref: '#/designKits/carbon-white-sketch'
     carbon-g10-sketch:
       $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch
     carbon-g90-sketch:
-      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g90-sketch
-    carbon-g100-sketch:
-      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g100-sketch
+      name: Sketch gray 90 theme
+      tool: sketch
+      type: ui
+      status: stable
+      url: sketch://add-library/cloud/a324c6dd-df97-435e-b79f-3a29e04922fc
+      action: link
   navData:
     - title: A page
       path: '/a-page.mdx'
@@ -139,6 +141,14 @@ library:
           hidden: true
         - title: Another sub page
           path: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/developing/react-tutorial/step-1.mdx'
+designKits:
+  carbon-white-sketch:
+    name: Sketch white theme
+    tool: sketch
+    type: ui
+    status: stable
+    url: sketch://add-library/cloud/557b75ff-67d3-41ab-ada5-fa25447218c1
+    action: link
 ```
 
 ### Library keys

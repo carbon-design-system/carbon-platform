@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.37...@carbon-platform/icons@0.1.0) (2022-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **icons:** delete dotcom and ibm product 24 and 32 px icons
+
+### Features 🌟
+
+* **icons:** remove dotcom and ibm product icons ([f93a913](https://github.com/carbon-design-system/carbon-platform/commit/f93a913dc7234172b94e2d7081f7faccec7f8087))
+
 ### [0.0.37](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.0.36...@carbon-platform/icons@0.0.37) (2022-06-18)
 
 

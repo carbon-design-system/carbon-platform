@@ -6,7 +6,6 @@
  */
 import { Bee, LogoGithub } from '@carbon/icons-react'
 import {
-  Codepen,
   Codesandbox,
   Figma,
   Illustrator,
@@ -36,7 +35,6 @@ const svgIcons = {
   sketch: Sketch,
   codesandbox: Codesandbox,
   illustrator: Illustrator,
-  codepen: Codepen,
   storybook: Storybook,
   medium: Medium,
   npm: Svg32Npm,

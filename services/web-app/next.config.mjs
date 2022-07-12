@@ -80,43 +80,44 @@ const nextConfig = withMDX(
 
       return config
     },
-    async redirects() {
-      return [
-        // temporarily redirect home page for the first release
-        {
-          source: '/',
-          destination: '/assets',
-          permanent: false
-        },
-        {
-          source: '/assets/:host/:org/:repo/:library',
-          destination: '/assets/:host/:org/:repo/:library/latest',
-          permanent: false
-        }
-      ]
-    },
     async rewrites() {
       const rewrites = []
 
       for (const [slug, library] of Object.entries(libraries)) {
         rewrites.push({
-          source: `/assets/${slug}`,
-          destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest`
+          source: `/libraries/${slug}/pages/:page*`,
+          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/latest/pages/:page*`
         })
 
         rewrites.push({
-          source: `/assets/${slug}/library-assets`,
-          destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/latest/library-assets`
+          source: `/libraries/${slug}/:ref*/pages/:page*`,
+          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/pages/:page*`
         })
 
         rewrites.push({
-          source: `/assets/${slug}/:ref*/library-assets`,
-          destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/library-assets`
+          source: `/libraries/${slug}/assets`,
+          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/latest/assets`
         })
 
         rewrites.push({
-          source: `/assets/${slug}/:ref*`,
-          destination: `/assets/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
+          source: `/libraries/${slug}/:ref*/assets`,
+          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/assets`
+        })
+
+        rewrites.push({
+          source: `/libraries/${slug}`,
+          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/latest`
+        })
+
+        rewrites.push({
+          source: `/libraries/${slug}/:ref*`,
+          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
+        })
+
+        // legacy rewrites
+        rewrites.push({
+          source: '/data-visualization/:subpath*',
+          destination: '/collections/data-visualization/:subpath*'
         })
       }
 

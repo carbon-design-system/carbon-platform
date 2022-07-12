@@ -12,6 +12,7 @@ import path from 'path'
 import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
 import unwrapImages from 'remark-unwrap-images'
+import slugify from 'slugify'
 
 import { libraryAllowList } from '@/data/libraries.mjs'
 import { getResponse } from '@/lib/file-cache'
@@ -46,33 +47,42 @@ export const getLibraryNavData = (params, libraryData) => {
 
   // traverse items subtree and remove hidden nodes
   dfs(libraryNavData, (item) => {
+    const itemSlug = slugify(item.title, { strict: true, lower: true })
+    const itemPath = item.parentPath ? `${item.parentPath}/${itemSlug}` : itemSlug
     if (item.items) {
       item.items = item.items?.filter((childItem) => !childItem.hidden)
+      item.items.forEach((child) => {
+        child.parentPath = itemPath
+      })
+    }
+    if (item.path) {
+      item.src = item.path
+      item.path = `/libraries/${params.library}/${params.ref}/pages/${itemPath}`
     }
   })
 
   return {
     back: {
       title: 'Back to all Libraries',
-      path: '/assets/libraries'
+      path: '/libraries'
     },
     headings: [libraryData?.content?.name ?? 'Library', getVersion()],
     items: [
       {
         title: 'Assets',
-        path: `/assets/${params.library}/${params.ref}/library-assets`
+        path: `/libraries/${params.library}/${params.ref}/assets`
       },
       {
         title: 'Design kits',
-        path: `/assets/${params.library}/${params.ref}/design-kits`
+        path: `/libraries/${params.library}/${params.ref}/design-kits`
       },
       ...libraryNavData.filter((item) => !item.hidden),
       {
         title: 'Versions',
-        path: `/assets/${params.library}/${params.ref}/versions`
+        path: `/libraries/${params.library}/${params.ref}/versions`
       }
     ],
-    path: `/assets/${params.library}/${params.ref}`
+    path: `/libraries/${params.library}/${params.ref}`
   }
 }
 
@@ -101,7 +111,7 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
 
   if (!response.content) {
     return {
-      compiledSource: await (await serialize('<p>Component not found.</p>')).compiledSource,
+      compiledSource: (await serialize('<p>Component not found.</p>')).compiledSource,
       frontmatter: {
         title: 'Not found'
       }
@@ -118,6 +128,16 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
       rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
     },
     parseFrontmatter: true
+  }).catch(async (err) => {
+    logging.error(err)
+    // returning this for now so our app doesn't blow up in case mdx is not valid
+    return {
+      compiledSource: (await serialize('<p>Could not serialize MDX at this time.</p>'))
+        .compiledSource,
+      frontmatter: {
+        title: 'Parsing Error'
+      }
+    }
   })
 }
 

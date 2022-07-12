@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.145](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.144...@carbon-platform/web-app@0.1.145) (2022-07-12)
+
+
+### Misc. 🔮
+
+* bump @next/mdx from 12.1.6 to 12.2.1 ([289aaeb](https://github.com/carbon-design-system/carbon-platform/commit/289aaeb7e1a365348430ba9203cb9dd7f4b4d3dc))
+
 ### [0.1.144](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.143...@carbon-platform/web-app@0.1.144) (2022-07-08)
 
 

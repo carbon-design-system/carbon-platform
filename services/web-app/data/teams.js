@@ -23,7 +23,7 @@ import {
 
 /**
  * Teams are defined here for now, but in the future we will probably want these stored in our data-
- * base. Team keys are used in the libraries allowlist to specify sponsorship. Team slugs are
+ * base. Team keys are used in the libraries allowlist to specify maintainership. Team slugs are
  * specified as object keys to ensure uniqueness.
  */
 export const teams = {

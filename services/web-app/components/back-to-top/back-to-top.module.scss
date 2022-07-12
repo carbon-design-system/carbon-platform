@@ -10,10 +10,12 @@
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/components/button/tokens' as button;
+@use '~styles/variables' as variables;
+@use 'sass:map';
 
 .button {
   position: fixed;
-  z-index: z('modal');
+  z-index: map.get(variables.$z-indexes, 'floating');
   right: spacing.$spacing-05;
   bottom: spacing.$spacing-06;
   width: spacing.$spacing-09;

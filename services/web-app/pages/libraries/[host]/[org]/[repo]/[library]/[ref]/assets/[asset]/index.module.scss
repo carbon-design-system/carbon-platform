@@ -8,7 +8,8 @@
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
-@use '@carbon/react/scss/utilities/z-index' as z-index;
+@use '~styles/variables' as variables;
+@use 'sass:map';
 @use '@carbon/react/scss/utilities/convert' as convert;
 
 .dashboard {
@@ -49,7 +50,7 @@
 
 .tabs-column {
   position: sticky;
-  z-index: z-index.z('overlay');
+  z-index: map.get(variables.$z-indexes, 'overlay');
   top: 3rem;
 }
 

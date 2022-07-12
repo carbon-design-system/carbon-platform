@@ -9,3 +9,8 @@
 @use '@carbon/react/scss/utilities/convert' as convert;
 
 $header-height: convert.rem(48px);
+
+$z-indexes: (
+  overlay: 6000,
+  floating: 5000
+);

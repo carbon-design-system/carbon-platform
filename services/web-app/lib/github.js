@@ -199,7 +199,15 @@ const validateLibraryParams = async (params = {}) => {
  * @returns {import('../typedefs').Asset[]}
  */
 const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
-  const inheritableProperties = ['name', 'description', 'type', 'tags', 'platform', 'thumbnailPath']
+  const inheritableProperties = [
+    'name',
+    'description',
+    'docs',
+    'type',
+    'tags',
+    'platform',
+    'thumbnailPath'
+  ]
 
   return assets.map((asset) => {
     const assetId = getAssetId(asset)

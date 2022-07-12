@@ -8,6 +8,7 @@
 import {
   Button,
   ListItem,
+  OrderedList,
   StructuredListBody,
   StructuredListCell,
   StructuredListHead,
@@ -73,6 +74,7 @@ const components = {
   pre: Code,
   /* Core Carbon components */
   Button,
+  OrderedList,
   StructuredListWrapper,
   StructuredListHead,
   StructuredListRow,

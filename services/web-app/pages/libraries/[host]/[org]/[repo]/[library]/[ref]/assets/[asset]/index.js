@@ -8,6 +8,7 @@
 import { Button, Column, Grid, Link as CarbonLink } from '@carbon/react'
 import { ArrowRight, Launch } from '@carbon/react/icons'
 import { Svg32Github, Svg64Community } from '@carbon-platform/icons'
+import { capitalCase } from 'change-case'
 import clsx from 'clsx'
 import { get } from 'lodash'
 import Link from 'next/link'
@@ -90,33 +91,20 @@ const Asset = ({ libraryData, params }) => {
   const pageTabs = [
     {
       name: 'Overview',
-      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(assetData.content)}`
-    },
-    {
-      name: 'Usage',
-      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(
-        assetData.content
-      )}/usage`
-    },
-    {
-      name: 'Design',
-      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(
-        assetData.content
-      )}/design`
-    },
-    {
-      name: 'Code',
-      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(
-        assetData.content
-      )}/code`
-    },
-    {
-      name: 'Accessibility',
-      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(
-        assetData.content
-      )}/accessibility`
+      path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}`
     }
   ]
+
+  const dynamicDocKeys = ['usage', 'style', 'code', 'accessibility']
+
+  dynamicDocKeys.forEach((docKey) => {
+    if (assetData.content.docs?.[`${docKey}Path`]) {
+      pageTabs.push({
+        name: capitalCase(docKey),
+        path: `/assets/${assetData.params.library}/latest/${getSlug(assetData.content)}/${docKey}`
+      })
+    }
+  })
 
   let externalDocsLink
 

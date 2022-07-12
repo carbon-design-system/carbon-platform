@@ -102,7 +102,11 @@
 .content {
   width: calc(100vw - var(--scrollbar-width));
   max-width: none;
+  max-height: 100vh;
+  overflow-y: auto;
+
   @include breakpoint.breakpoint(md) {
+    overflow: hidden;
     // span two columns, where each column has a 1px gutter
     width: calc(200% + convert.rem(2px));
   }

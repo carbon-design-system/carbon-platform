@@ -119,6 +119,13 @@ const prodLibraries = {
     path: '/',
     group: carbonComponentsGroup
   },
+  'ibm-cloud-cognitive': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'ibm-cloud-cognitive',
+    path: '/packages/cloud-cognitive',
+    sponsor: 'ibm-products'
+  },
   // 'carbon-angular': {
   //   host: 'github.ibm.com',
   //   org: 'matt-rosno',
@@ -493,11 +500,10 @@ const devLibraries = {
   },
   'ibm-cloud-cognitive': {
     host: 'github.com',
-    org: 'andreancardona',
+    org: 'carbon-design-system',
     repo: 'ibm-cloud-cognitive',
     path: '/packages/cloud-cognitive',
-    sponsor: 'ibm-products',
-    ref: '731-ibm-cloud-cognitive'
+    sponsor: 'ibm-products'
   }
 }
 

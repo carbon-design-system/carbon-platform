@@ -124,7 +124,7 @@ const prodLibraries = {
     org: 'carbon-design-system',
     repo: 'ibm-cloud-cognitive',
     path: '/packages/cloud-cognitive',
-    sponsor: 'ibm-products'
+    maintainer: 'ibm-products'
   },
   // 'carbon-angular': {
   //   host: 'github.ibm.com',

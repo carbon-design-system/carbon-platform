@@ -16,7 +16,7 @@ import styles from './page-tabs.module.scss'
 const PageTabs = ({ className, tabs = [] }) => {
   const router = useRouter()
 
-  const currTabSlug = router.asPath.split('/').pop().split('?')[0]
+  const currTabSlug = router.asPath.split('/').pop().split('?')[0].split('#')[0]
 
   const currTabIndex = tabs.findIndex(
     (tab) => slugify(tab.name, { strict: true, lower: true }) === currTabSlug

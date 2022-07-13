@@ -13,45 +13,87 @@ import useEventListener from '@/utils/use-event-listener'
 
 import styles from './page-nav.module.scss'
 
-const PageNav = ({ contentRef, items = [], calculateHeight, scrollTopDistance = 120 }) => {
+const PageNav = ({ contentRef, items = [], scrollTopDistance = 120 }) => {
   const [lastActiveLink, setLastActiveLink] = useState(null)
   const [activeItem, setActiveItem] = useState(null)
 
-  const checkIfSectionIdIsActive = (id) => {
-    const section = document.getElementById(id)
-    if (!section) return false
-    const sectionBoundingClientRect = getSectionBoundingClient(section)
-    const sectionHeight = sectionBoundingClientRect.height
-    const sectionTopDistance = sectionBoundingClientRect.top
-    // Space between top of screen and where we want section to be "active"
-    const scrollDistance = scrollTopDistance
-    const sectionIsAtTheTopOfTheView =
-      sectionTopDistance < scrollDistance && sectionHeight + sectionTopDistance - scrollDistance > 0
+  const getSectionBoundingClient = useCallback(
+    (section) => {
+      const readOnlyBoundingClientRect = section.getBoundingClientRect()
+      const boundingClientRect = {
+        top: readOnlyBoundingClientRect.top,
+        bottom: readOnlyBoundingClientRect.bottom,
+        height: readOnlyBoundingClientRect.height,
+        width: readOnlyBoundingClientRect.width,
+        x: readOnlyBoundingClientRect.x,
+        y: readOnlyBoundingClientRect.y,
+        left: readOnlyBoundingClientRect.left,
+        right: readOnlyBoundingClientRect.right
+      }
+      const sectionItemIndex = items.findIndex((item) => item.id === section.id)
+      if (sectionItemIndex || sectionItemIndex === 0) {
+        if (sectionItemIndex < items.length - 1) {
+          boundingClientRect.bottom = document
+            .getElementById(items[sectionItemIndex + 1].id)
+            ?.getBoundingClientRect()?.top
+        } else {
+          const body = document.body
+          const html = document.documentElement
 
-    const sectionIsInView =
-      sectionBoundingClientRect.top >= 0 &&
-      sectionBoundingClientRect.left >= 0 &&
-      sectionBoundingClientRect.bottom <=
-        (window.innerHeight || document.documentElement.clientHeight) &&
-      sectionBoundingClientRect.right <= (window.innerWidth || document.documentElement.clientWidth)
+          boundingClientRect.bottom = Math.max(
+            body.scrollHeight,
+            body.offsetHeight,
+            html.clientHeight,
+            html.scrollHeight,
+            html.offsetHeight
+          )
+        }
+        boundingClientRect.height = boundingClientRect.bottom - boundingClientRect.top
+      }
+      return boundingClientRect
+    },
+    [items]
+  )
 
-    const bottomReached =
-      document.documentElement.scrollTop + document.documentElement.clientHeight ===
-      document.documentElement.scrollHeight
+  const checkIfSectionIdIsActive = useCallback(
+    (id) => {
+      const section = document.getElementById(id)
+      if (!section) return false
+      const sectionBoundingClientRect = getSectionBoundingClient(section)
+      const sectionHeight = sectionBoundingClientRect.height
+      const sectionTopDistance = sectionBoundingClientRect.top
+      // Space between top of screen and where we want section to be "active"
+      const scrollDistance = scrollTopDistance
+      const sectionIsAtTheTopOfTheView =
+        sectionTopDistance < scrollDistance &&
+        sectionHeight + sectionTopDistance - scrollDistance > 0
 
-    const sectionActive = sectionIsAtTheTopOfTheView || (sectionIsInView && bottomReached)
+      const sectionIsInView =
+        sectionBoundingClientRect.top >= 0 &&
+        sectionBoundingClientRect.left >= 0 &&
+        sectionBoundingClientRect.bottom <=
+          (window.innerHeight || document.documentElement.clientHeight) &&
+        sectionBoundingClientRect.right <=
+          (window.innerWidth || document.documentElement.clientWidth)
 
-    if (sectionActive) {
-      setLastActiveLink(id)
-    } else {
-      setLastActiveLink(null)
-    }
-    return sectionActive
-  }
+      const bottomReached =
+        document.documentElement.scrollTop + document.documentElement.clientHeight ===
+        document.documentElement.scrollHeight
+
+      const sectionActive = sectionIsAtTheTopOfTheView || (sectionIsInView && bottomReached)
+
+      if (sectionActive) {
+        setLastActiveLink(id)
+      } else {
+        setLastActiveLink(null)
+      }
+      return sectionActive
+    },
+    [getSectionBoundingClient, scrollTopDistance]
+  )
 
   const handleRAF = () => {
     if (!activeItem || (!checkIfSectionIdIsActive(activeItem) && lastActiveLink === activeItem)) {
-      console.log('calling set selected item')
       window.requestAnimationFrame(setSelectedItem)
     }
   }
@@ -60,8 +102,7 @@ const PageNav = ({ contentRef, items = [], calculateHeight, scrollTopDistance = 
     const hash = window?.location?.hash?.replace('#', '') ?? null
     setActiveItem(hash)
     checkIfSectionIdIsActive(hash)
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- TODO: fix
-  }, [])
+  }, [checkIfSectionIdIsActive])
 
   useEventListener('scroll', handleRAF)
   useEventListener('hashchange', handleHashChange)
@@ -77,47 +118,23 @@ const PageNav = ({ contentRef, items = [], calculateHeight, scrollTopDistance = 
     }
   }, [handleHashChange, contentRef])
 
-  const getSectionBoundingClient = (section) => {
-    const readOnlyBoundingClientRect = section.getBoundingClientRect()
-    const boundingClientRect = {
-      top: readOnlyBoundingClientRect.top,
-      bottom: readOnlyBoundingClientRect.bottom,
-      height: readOnlyBoundingClientRect.height,
-      width: readOnlyBoundingClientRect.width,
-      x: readOnlyBoundingClientRect.x,
-      y: readOnlyBoundingClientRect.y,
-      left: readOnlyBoundingClientRect.left,
-      right: readOnlyBoundingClientRect.right
-    }
-    if (calculateHeight) {
-      const sectionItemIndex = items.findIndex((item) => item.id === section.id)
-      if (sectionItemIndex && sectionItemIndex < items.length - 1) {
-        boundingClientRect.bottom =
-          document.getElementById(items[sectionItemIndex + 1].id)?.getBoundingClientRect()?.top - 1
-      }
-      // TODO: else, height: to bottom
-      boundingClientRect.height = boundingClientRect.bottom - boundingClientRect.top
-    }
-    return boundingClientRect
-  }
-
   const setActiveLink = (link) => {
     // Set url to current link as you scroll past
     history.replaceState(null, null, `#${link.dataset.id}`)
     setActiveItem(link.dataset.id)
   }
 
-  const removeActiveLink = (link) => {
-    if (activeItem === link.dataset.id) {
-      setActiveItem(null)
-      history.replaceState(null, null, window.location.pathname + window.location.search)
-    }
+  const removeActiveLink = () => {
+    setActiveItem(null)
+    history.replaceState(null, null, window.location.pathname + window.location.search)
   }
 
   const setSelectedItem = () => {
-    const navLinks = Array.from(contentRef.current.querySelectorAll('[class^="page-nav_link"]'))
-    const sections = Array.from(contentRef.current.querySelectorAll('[id]'))?.filter((section) =>
-      items.some((item) => item.id === section.id)
+    const navLinks = Array.from(
+      contentRef.current?.querySelectorAll('[class^="page-nav_link"]') ?? []
+    )
+    const sections = Array.from(contentRef.current?.querySelectorAll('[id]') ?? [])?.filter(
+      (section) => items.some((item) => item.id === section.id)
     )
 
     let activeSection = null
@@ -128,35 +145,30 @@ const PageNav = ({ contentRef, items = [], calculateHeight, scrollTopDistance = 
       const sectionBoundingClientRect = getSectionBoundingClient(section)
       const sectionHeight = sectionBoundingClientRect.height
       const sectionTopDistance = sectionBoundingClientRect.top
+
       if (
         // Setting active class when the top of the section is at the top
         // of the screen and the bottom of the section is visible
         sectionTopDistance < scrollDistance &&
         sectionHeight + sectionTopDistance - scrollDistance > 0
       ) {
-        console.log(
-          section?.id,
-          sectionTopDistance,
-          sectionHeight,
-          sectionHeight + sectionTopDistance - scrollDistance
-        )
         activeSection = section
       }
     })
 
-    navLinks.forEach((link) => {
-      if (activeSection?.id === link.dataset.id) {
-        setActiveLink(link)
-      } else {
-        removeActiveLink(link)
-      }
-    })
+    const activeLink = navLinks.find((link) => link.dataset.id === activeSection?.id)
+
+    if (activeLink) {
+      setActiveLink(activeLink)
+    } else {
+      removeActiveLink()
+    }
   }
 
   const handleLinkClick = (id) => {
     history.replaceState(null, null, `#${id}`)
     handleHashChange()
-    contentRef.current.querySelector(`#${id}`)?.scrollIntoView(true)
+    contentRef.current?.querySelector(`#${id}`)?.scrollIntoView(true)
   }
 
   return (

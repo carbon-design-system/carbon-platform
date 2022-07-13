@@ -6,7 +6,6 @@
 @use '~styles/variables' as variables;
 @use 'sass:map';
 @use '@carbon/react/scss/utilities/convert' as convert;
-@use '~styles/variables' as variables;
 
 .svg-page {
   // prevent jank while importing icons

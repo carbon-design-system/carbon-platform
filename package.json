@@ -21,6 +21,7 @@
     "packages/api",
     "packages/icons",
     "packages/micromanage",
+    "packages/resources",
     "packages/schemas",
     "services/data-graph",
     "services/logging",

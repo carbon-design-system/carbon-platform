@@ -1,7 +1,7 @@
 {
-  "name": "@carbon-platform/schemas",
-  "version": "1.6.0",
-  "description": "Schema files for indexing Carbon resources",
+  "name": "@carbon-platform/resources",
+  "version": "1.0.0",
+  "description": "Indexed Carbon resources that use the schema",
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
@@ -15,6 +15,6 @@
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "scripts": {
-    "test": "echo 'No js/ts code to test in schemas package'"
+    "test": "echo 'No js/ts code to test in resources package'"
   }
 }

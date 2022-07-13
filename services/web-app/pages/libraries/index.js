@@ -38,13 +38,11 @@ const Libraries = ({ librariesData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader title={seo.title} />
-      <div className={styles['library-description']}>
-        <PageDescription>
-          Libraries are the reusable building blocks of our design system. Each component meets a
-          specific interaction or UI need, and has been specifically created to work together to
-          create patterns and intuitive user experiences.
-        </PageDescription>
-      </div>
+      <PageDescription className={styles['library-description']}>
+        Libraries are the reusable building blocks of our design system. Each component meets a
+        specific interaction or UI need, and has been specifically created to work together to
+        create patterns and intuitive user experiences.
+      </PageDescription>
       <LibraryCatalog libraries={libraries} />
     </>
   )

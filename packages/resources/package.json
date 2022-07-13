@@ -1,0 +1,20 @@
+{
+  "name": "@carbon-platform/resources",
+  "version": "1.0.0",
+  "description": "Indexed Carbon resources that use the schema",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+  },
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "scripts": {
+    "test": "echo 'No js/ts code to test in resources package'"
+  }
+}

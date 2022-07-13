@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/utilities/convert' as convert;
+@use '~styles/variables' as variables;
 
 .container {
   @include breakpoint.breakpoint(md) {
@@ -17,7 +18,7 @@
     top: spacing.$spacing-09 + spacing.$spacing-05 + spacing.$spacing-09;
 
     &--sticky {
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      box-shadow: variables.$drop-shadow;
     }
   }
 

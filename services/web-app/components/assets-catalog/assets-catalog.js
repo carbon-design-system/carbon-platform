@@ -34,7 +34,7 @@ import useQueryState from '@/utils/use-query-state'
  */
 const assetIsInFilter = (asset, filter) => {
   for (const [key, value] of Object.entries(filter)) {
-    if (key === 'sponsor') {
+    if (key === 'maintainer') {
       if (!value.includes(asset.params[key])) return false
     } else if (key === 'tags') {
       if (!valuesIntersect(value, asset.content[key])) return false
@@ -227,18 +227,18 @@ const AssetsCatalog = ({ collection, glob = {}, libraries, showImage, type }) =>
     (value) => value === undefined || filterPropertyHasValidValue(availableFilters, 'status', value)
   )
 
-  const [sponsor, setSponsor] = useQueryState(
-    'sponsor',
+  const [maintainer, setMaintainer] = useQueryState(
+    'maintainer',
     {
-      defaultValue: defaultFilter.sponsor
+      defaultValue: defaultFilter.maintainer
     },
     (value) =>
-      value === undefined || filterPropertyHasValidValue(availableFilters, 'sponsor', value)
+      value === undefined || filterPropertyHasValidValue(availableFilters, 'maintainer', value)
   )
 
   const [filter, setFilter] = useState(
     Object.fromEntries(
-      Object.entries({ framework, sponsor, platform, tags, status }).filter(([_, v]) => !!v)
+      Object.entries({ framework, maintainer, platform, tags, status }).filter(([_, v]) => !!v)
     )
   )
 
@@ -247,7 +247,9 @@ const AssetsCatalog = ({ collection, glob = {}, libraries, showImage, type }) =>
   }
 
   const updateFilter = (updatedFilterVals) => {
-    if (!isEqual(updatedFilterVals.sponsor, filter.sponsor)) setSponsor(updatedFilterVals.sponsor)
+    if (!isEqual(updatedFilterVals.maintainer, filter.maintainer)) {
+      setMaintainer(updatedFilterVals.maintainer)
+    }
     if (!isEqual(updatedFilterVals.platform, filter.platform)) {
       setPlatform(updatedFilterVals.platform)
     }

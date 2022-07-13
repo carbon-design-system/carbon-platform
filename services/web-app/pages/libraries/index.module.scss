@@ -52,7 +52,7 @@
   }
 }
 
-.sponsor {
+.maintainer {
   color: theme.$text-primary;
   @include mixins.line-clamp(1);
   @include type.type-style('label-01');
@@ -121,7 +121,7 @@
   }
 }
 
-.icon-sponsor {
+.icon-maintainer {
   position: absolute;
   top: 50%;
   left: 50%;

@@ -14,11 +14,6 @@
 
 @use '~styles/mixins' as mixins;
 
-.list {
-  border-bottom: 1px solid theme.$layer-accent;
-  margin: spacing.$spacing-07 0;
-}
-
 .anchor {
   position: relative;
   display: block;

@@ -10,11 +10,14 @@ import { useContext, useEffect } from 'react'
 import { libraryPropTypes } from 'types'
 
 import LibraryCatalog from '@/components/library-catalog/library-catalog'
+import PageDescription from '@/components/page-description/page-description'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 import { librarySortComparator } from '@/utils/schema'
+
+import styles from './index.module.scss'
 
 const Libraries = ({ librariesData }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
@@ -35,6 +38,13 @@ const Libraries = ({ librariesData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader title={seo.title} />
+      <div className={styles['library-description']}>
+        <PageDescription>
+          Libraries are the reusable building blocks of our design system. Each component meets a
+          specific interaction or UI need, and has been specifically created to work together to
+          create patterns and intuitive user experiences.
+        </PageDescription>
+      </div>
       <LibraryCatalog libraries={libraries} />
     </>
   )

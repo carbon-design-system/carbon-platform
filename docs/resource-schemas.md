@@ -1,8 +1,8 @@
 # Resource schemas
 
-Carbon Design System resources (e.g. standards, libraries, assets) follow a schema to document each
-resource in a standardized way. This structured information is indexed by Carbon's platform to use
-in the website and other services.
+Carbon Design System resources (e.g. libraries, assets, design kits) follow a schema to document
+each resource in a standardized way. This structured information is indexed by Carbon's platform to
+use in the website and other services.
 
 Schemas are applied through metadata files written in YAML. If you're new to YAML and want to learn
 more, see "[Learn YAML in Y minutes](https://learnxinyminutes.com/docs/yaml)."
@@ -22,6 +22,18 @@ library:
       name: Storybook
       action: link
       url: https://react.carbondesignsystem.com
+  designKits:
+    carbon-white-sketch:
+      $ref: '#/designKits/carbon-white-sketch'
+    carbon-g10-sketch:
+      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch
+    carbon-g90-sketch:
+      name: Sketch gray 90 theme
+      tool: sketch
+      type: ui
+      status: stable
+      url: sketch://add-library/cloud/a324c6dd-df97-435e-b79f-3a29e04922fc
+      action: link
   navData:
     - title: A page
       path: '/a-page.mdx'
@@ -50,23 +62,19 @@ assets:
       stylePath: './components/accordion/styles.mdx'
       codePath: './components/accordion/code.mdx'
       accessibilityPath: './components/accordion/accessibility.mdx'
-  card:
-    name: Card
-    type: component
-    status:
-      key: draft
-      note: Additional usage guidance is coming soon.
-    framework: react
-    platform: web
-    description:
-      Cards are considered “workhorse” components because of their versatility. They provide
-      effective calls to action, and the various designs available work with a wide range of
-      content.
+designKits:
+  carbon-white-sketch:
+    name: Sketch white theme
+    tool: sketch
+    type: ui
+    status: stable
+    url: sketch://add-library/cloud/557b75ff-67d3-41ab-ada5-fa25447218c1
+    action: link
 ```
 
 ## Stable schema version
 
-The current supported stable version of the resource schemas is _v1_. You can add the yaml language
+The current supported stable version of the resource schemas is _v1_. You can add the YAML language
 server to your YAML files by adding the following line to the top of your files:
 
 ```yml
@@ -74,18 +82,20 @@ server to your YAML files by adding the following line to the top of your files:
 ```
 
 **_Note:_** If you're using VS Code as your editor you may
-[install](https://code.visualstudio.com/docs/editor/extension-marketplace) a yaml extension, such as
+[install](https://code.visualstudio.com/docs/editor/extension-marketplace) a YAML extension, such as
 [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) for additional
 language support.
 
 ## Resource schema keys
 
-A resource file can contain a library, an object of assets or both.
+A resource file can contain a library, an object of assets, an object of design kits, or any
+combination thereof.
 
-| Key       | Description                                                                                              | Required | Type   | Default | Valid values |
-| --------- | -------------------------------------------------------------------------------------------------------- | -------- | ------ | ------- | ------------ |
-| `library` | Object containing library details. See [library schema](#library-schema) for more info.                  | Optional | Object | –       | –            |
-| `assets`  | Object containing one or more assets organized by `id`. See [asset schema](#asset-schema) for more info. | Optional | Object | –       | –            |
+| Key          | Description                                                                                                             | Required | Type   | Default | Valid values |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------- | -------- | ------ | ------- | ------------ |
+| `library`    | Object containing library details. See [library schema](#library-schema) for more info.                                 | Optional | Object | –       | –            |
+| `assets`     | Object containing one or more assets organized by `id`. See [asset schema](#asset-schema) for more info.                | Optional | Object | –       | –            |
+| `designKits` | Object containing one or more design kits organized by `id`. See [design kit schema](#design-kit-schema) for more info. | Optional | Object | –       | –            |
 
 ## Library schema
 
@@ -109,6 +119,18 @@ library:
       name: Storybook
       action: link
       url: https://react.carbondesignsystem.com
+  designKits:
+    carbon-white-sketch:
+      $ref: '#/designKits/carbon-white-sketch'
+    carbon-g10-sketch:
+      $ref: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch
+    carbon-g90-sketch:
+      name: Sketch gray 90 theme
+      tool: sketch
+      type: ui
+      status: stable
+      url: sketch://add-library/cloud/a324c6dd-df97-435e-b79f-3a29e04922fc
+      action: link
   navData:
     - title: A page
       path: '/a-page.mdx'
@@ -119,21 +141,30 @@ library:
           hidden: true
         - title: Another sub page
           path: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/developing/react-tutorial/step-1.mdx'
+designKits:
+  carbon-white-sketch:
+    name: Sketch white theme
+    tool: sketch
+    type: ui
+    status: stable
+    url: sketch://add-library/cloud/557b75ff-67d3-41ab-ada5-fa25447218c1
+    action: link
 ```
 
 ### Library keys
 
-| Key               | Description                                                                                                                                                                                                                                                             | Required | Type    | Default                   | Valid values |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | ------------------------- | ------------ |
-| `id`              | Every library needs an identifier unique to the platform. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive an `id` when registering a new library. See [identifiers](#identifiers) for more info. | Required | String  | –                         | –            |
-| `name`            | Library display name. Use title-case capitalization.                                                                                                                                                                                                                    | Required | String  | –                         | –            |
-| `description`     | Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the `package.json` description if not set here.                                                                                                          | Optional | String  | Value from `package.json` | –            |
-| `inherits`        | Inherit properties from another library on a per-asset basis. See [library inheritance](#library-inheritance).                                                                                                                                                          | Optional | String  | –                         | –            |
-| `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, code package, and other information.                                                                                                                       | Optional | String  | `/package.json`           | –            |
-| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                                                                                                                                        | Optional | String  | –                         | –            |
-| `demoLinks`       | Links to demo sites. See [demo links](#demo-links).                                                                                                                                                                                                                     | Optional | Array   | –                         | –            |
-| `noIndex`         | If set to `true`, the global catalogs will exclude the library.                                                                                                                                                                                                         | Optional | Boolean | `false`                   | –            |
-| `navData`         | Links to documentation pages. See [nav data](#nav-data).                                                                                                                                                                                                                | Optional | Array   | -                         | –            |
+| Key               | Description                                                                                                                                                                                                                                                             | Required | Type    | Inheritable | Default                   | Valid values |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | ----------- | ------------------------- | ------------ |
+| `id`              | Every library needs an identifier unique to the platform. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive an `id` when registering a new library. See [identifiers](#identifiers) for more info. | Required | String  | No          | –                         | –            |
+| `name`            | Library display name. Use title-case capitalization.                                                                                                                                                                                                                    | Required | String  | No          | –                         | –            |
+| `description`     | Library description ideally between 50-160 characters in length. Use sentence-case capitalization. Defaults to the `package.json` description if not set here.                                                                                                          | Optional | String  | No          | Value from `package.json` | –            |
+| `inherits`        | Inherit properties from another library on a per-asset basis. See [library inheritance](#library-inheritance).                                                                                                                                                          | Optional | String  | No          | –                         | –            |
+| `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, code package, and other information.                                                                                                                       | Optional | String  | No          | `/package.json`           | –            |
+| `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                                                                                                                                        | Optional | String  | No          | –                         | –            |
+| `demoLinks`       | Links to demo sites. See [demo links](#demo-links).                                                                                                                                                                                                                     | Optional | Array   | No          | –                         | –            |
+| `designKits`      | Design kits that contain the design counterpart to assets in this library. See [design kit schema](#design-kit-schema) for more info.                                                                                                                                   | Optional | Object  | Yes         | –                         | –            |
+| `noIndex`         | If set to `true`, the global catalogs will exclude the library.                                                                                                                                                                                                         | Optional | Boolean | No          | `false`                   | –            |
+| `navData`         | Links to documentation pages. See [nav data](#nav-data).                                                                                                                                                                                                                | Optional | Array   | No          | -                         | –            |
 
 #### Library inheritance
 
@@ -206,7 +237,7 @@ assets:
 | `id`              | Every asset needs an identifier unique to its library. This is used to associate assets across libraries. See [identifiers](#identifiers) for more info. | Required | String           | No          | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `name`            | Asset display name. Use sentence-case capitalization.                                                                                                    | Required | String           | Yes         | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `description`     | Asset description ideally between 50-160 characters in length. Use sentence-case capitalization.                                                         | Optional | String           | Yes         | –             | –                                                                                                                                                                                                                                                                                                                                          |
-| `status`          | Asset consumption expectations. See [asset status](#asset-status).                                                                                       | Required | String \| Object | No          | `draft`       | `draft`, `experimental`, `stable`, `deprecated`                                                                                                                                                                                                                                                                                            |
+| `status`          | Asset consumption expectations. See [status](#status).                                                                                                   | Required | String \| Object | No          | `draft`       | `draft`, `experimental`, `stable`, `deprecated`                                                                                                                                                                                                                                                                                            |
 | `type`            | Asset primary categorization. See [asset type](#asset-type).                                                                                             | Required | String           | Yes         | –             | `component`, `function`, `pattern`, `template`                                                                                                                                                                                                                                                                                             |
 | `tags`            | Asset secondary categorizations. See [asset tags](#component-tags).                                                                                      | Optional | Array            | Yes         | –             | `content-block`, `content-element`, `contextual-navigation`, `data-display`, `data-visualization`, `form`, `input-control`, `media`, `shell`, `structural-navigation`, `system-feedback`, `comparison`, `connection`, `correlation`, `geographic-overlay`, `geospatial-distortion`, `part-to-whole`, `trend`, `hook`, `service`, `utility` |
 | `framework`       | Asset primary technology dependency. See [asset framework](#asset-framework).                                                                            | Optional | String           | No          | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only`                                                                                                                                                                                                                                             |
@@ -217,42 +248,10 @@ assets:
 | `noIndex`         | If set to `true`, the global catalogs will exclude the asset.                                                                                            | Optional | Boolean          | No          | `false`       | –                                                                                                                                                                                                                                                                                                                                          |
 | `docs`            | Contains information on where to find supporting documentation for the asset. See [asset docs](#asset-docs).                                             | Optional | Object           | Yes         | -             | –                                                                                                                                                                                                                                                                                                                                          |
 
-#### Asset status
-
-Asset status is used by maintainers to set consumption expectations of stability and the likelihood
-of future changes. The `status` key can have the following values:
-
-| Status         | Description                                           |
-| -------------- | ----------------------------------------------------- |
-| `draft`        | Partially complete and not ready for consumption.     |
-| `experimental` | Partially complete, not production ready.             |
-| `stable`       | Complete and ready for production use.                |
-| `deprecated`   | Will be sunset at a future date, minimally supported. |
-
-Additionally, status can be specified as an object to include a `key` and a `note` that explains the
-key. This is often used to communicate the remaining effort to get something from draft or
-experimental to stable, estimated stability dates, and alternative assets to use when the asset has
-been deprecated.
-
-**Example**
-
-carbon.yml
-
-```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
----
-status:
-  key: experimental
-  note: Additional usage guidance is coming soon.
-```
-
 #### Asset type
 
 Asset type is used for primary categorization in asset catalogs. The `type` key can have the
 following values:
-
-<!-- remove element asset type for first release -->
-<!-- | `element` | Styles, tokens, icons, and pictograms that are the direct translation of design language elements to digital mediums. | -->
 
 | Type        | Description                                                                                                                                                                                            |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -361,9 +360,87 @@ docs:
   accessibilityPath: './components/accordion/accessibility.mdx'
 ```
 
+## Design kit schema
+
+Design kits contain elements, guidelines, user interface components and patterns, and wireframes for
+various design tools as the design counterpart to coded assets. Design kits are indexed in the
+[carbon-platform](https://github.com/carbon-design-system/carbon-platform) repository
+[`carbon.yml`](https://github.com/carbon-design-system/carbon-platform/blob/main/packages/resources/carbon.yml)
+data file.
+
+carbon.yml
+
+```yml
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
+designKits:
+  carbon-white-sketch:
+    name: Sketch white theme
+    description: Carbon universal components in the white color theme.
+    tool: sketch
+    type: ui
+    status: stable
+    url: sketch://add-library/cloud/557b75ff-67d3-41ab-ada5-fa25447218c1
+    action: link
+```
+
+### Design kit keys
+
+| Key           | Description                                                                                                                                                                                                                                                                   | Required | Type             | Default | Valid values                                                             |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ---------------- | ------- | ------------------------------------------------------------------------ |
+| `id`          | Every design kit needs an identifier unique to the platform. Contact the [Carbon Platform Devs](https://github.com/orgs/carbon-design-system/teams/carbon-platform-devs) to receive an `id` when registering a new design kit. See [identifiers](#identifiers) for more info. | Required | String           | –       | –                                                                        |
+| `name`        | Design kit display name (often includes the tool and color theme.) Use title-case capitalization.                                                                                                                                                                             | Required | String           | –       | –                                                                        |
+| `description` | Design kit description ideally between 50-160 characters in length. Use sentence-case capitalization.                                                                                                                                                                         | Optional | String           | –       | –                                                                        |
+| `tool`        | Design kit's compatible tool.                                                                                                                                                                                                                                                 | Required | String           | –       | `adobe-ase`, `adobe-xd`, `axure`, `figma`, `invision-freehand`, `sketch` |
+| `type`        | Design kit primary categorization. See [design kit type](#design-kit-type).                                                                                                                                                                                                   | Required | String           | –       | `elements`, `guidelines`, `ui`, `wireframes`                             |
+| `status`      | Design kit consumption exptectations. See [status](#status).                                                                                                                                                                                                                  | Required | String \| Object | `draft` | `draft`, `experimental`, `stable`, `deprecated`                          |
+| `url`         | Design kit URL.                                                                                                                                                                                                                                                               | Required | String           | –       | –                                                                        |
+| `action`      | Determines the action icon.                                                                                                                                                                                                                                                   | Optional | String           | `link`  | `download`, `link`                                                       |
+| `license`     | Design kit license.                                                                                                                                                                                                                                                           | Optional | String           | –       | `apache-2.0`, `ibm-internal`, `mit`                                      |
+| `noIndex`     | If set to `true`, the global catalogs will exclude the kit.                                                                                                                                                                                                                   | Optional | Boolean          | `false` | –                                                                        |
+
+#### Design kit type
+
+The design kit `type` key can have the following values:
+
+| Type         | Description                                                                                                                                          |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `elements`   | Colors, icons, pictograms, typography, and grid and layout templates that are the direct translation of design language elements to digital mediums. |
+| `guidelines` | Bite-sized guidance and tools to assist development handoff.                                                                                         |
+| `ui`         | High fidelity components and patterns which have guidance and (often) coded assets.                                                                  |
+| `wireframes` | Low fidelity and mid fidelity components often used for prototyping.                                                                                 |
+
 ## Shared schemas
 
 The following properties are used in multiple schemas.
+
+### Status
+
+Status is used by maintainers to set consumption expectations of stability and the likelihood of
+future changes. The `status` key can have the following values:
+
+| Status         | Description                                           |
+| -------------- | ----------------------------------------------------- |
+| `draft`        | Partially complete and not ready for consumption.     |
+| `experimental` | Partially complete, not production ready.             |
+| `stable`       | Complete and ready for production use.                |
+| `deprecated`   | Will be sunset at a future date, minimally supported. |
+
+Additionally, status can be specified as an object to include a `key` and a `note` that explains the
+key. This is often used to communicate the remaining effort to get something from draft or
+experimental to stable, estimated stability dates, and alternative resources to use when the asset
+has been deprecated.
+
+**Example**
+
+carbon.yml
+
+```yml
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
+---
+status:
+  key: experimental
+  note: Additional usage guidance is coming soon.
+```
 
 ### Demo links
 

@@ -465,7 +465,7 @@ const devLibraries = {
     org: 'andreancardona',
     repo: 'ibm-cloud-cognitive',
     path: '/packages/security',
-    sponsor: 'ibm-security',
+    maintainer: 'ibm-security',
     ref: '730-ibm-security-index'
   },
   'ibmdotcom-react': {

@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.145...@carbon-platform/web-app@0.2.0) (2022-07-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **web-app:** rename sponsor to maintainer in all code and UI usage
+
+### Features 🌟
+
+* add action set ([86b3447](https://github.com/carbon-design-system/carbon-platform/commit/86b3447c73bf4341665d15004929e6114fc6d0a1))
+* added thumbnails ([5c3b861](https://github.com/carbon-design-system/carbon-platform/commit/5c3b86149b20bb28e0a862aa176047d95237955e))
+* index cloud cognitive ([85e9234](https://github.com/carbon-design-system/carbon-platform/commit/85e9234cd0f043b499b3654efcf1a5948446b844))
+* ready  for prod ([80570c4](https://github.com/carbon-design-system/carbon-platform/commit/80570c41e44fccbbd88b5ace269ce08d9ffb3a42))
+* update tearsheet ([3b0df4a](https://github.com/carbon-design-system/carbon-platform/commit/3b0df4aac1e578608a9753c2f8cc5c10893788c2))
+* **web-app:** rename all codebase sponsor to maintainer ([2370b4c](https://github.com/carbon-design-system/carbon-platform/commit/2370b4c7baa6ff07c0b133d71703644f259857ce))
+* **web-app:** rename sponsor to maintainer ([f9edea6](https://github.com/carbon-design-system/carbon-platform/commit/f9edea6acca93b0967e8fa9a94ab02bc9028f5e3))
+
+
+### Bug Fixes 🐛
+
+* fix merge conflict ([feed50a](https://github.com/carbon-design-system/carbon-platform/commit/feed50aa4807e87fffe8b2143bbf09e0097ed986))
+* options tile ([cb44e34](https://github.com/carbon-design-system/carbon-platform/commit/cb44e34c1487c62026527f0f75f0cd8f44f2c2d5))
+* update svgs| ([bd489c1](https://github.com/carbon-design-system/carbon-platform/commit/bd489c109c0bbade4964efd2b3fa9997d92f1817))
+* update tearsheet svg namee ([1e4dba8](https://github.com/carbon-design-system/carbon-platform/commit/1e4dba866aff54980dab1399f26f5e656c84f696))
+* **web-app:** remove ghost Codepen icons import ([1c47c39](https://github.com/carbon-design-system/carbon-platform/commit/1c47c39d2a84abfefdf4b7722d538feae06eac4b))
+
 ### [0.1.145](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.144...@carbon-platform/web-app@0.1.145) (2022-07-12)
 
 

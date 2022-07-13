@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/base",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Base dependencies for all packages in the carbon platform monorepo",
   "license": "Apache-2.0",
   "private": true,
@@ -32,7 +32,7 @@
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsdoc": "^39.3.2",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-jsx-a11y": "^6.6.0",
     "eslint-plugin-notice": "^0.9.10",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
@@ -46,6 +46,6 @@
     "standard-version": "^9.5.0",
     "stylelint": "^14.9.1",
     "stylelint-config-carbon": "~1.10.0",
-    "ts-node": "^10.8.1"
+    "ts-node": "^10.8.2"
   }
 }

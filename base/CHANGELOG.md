@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.4...@carbon-platform/base@0.0.5) (2022-07-13)
+
+
+### Misc. 🔮
+
+* dev: bump eslint-plugin-jsx-a11y from 6.5.1 to 6.6.0 ([8dfd8b0](https://github.com/carbon-design-system/carbon-platform/commit/8dfd8b044afa8b787d2de8ac2b6e099fcfd8eef7))
+* dev: bump ts-node from 10.8.1 to 10.8.2 ([21e157d](https://github.com/carbon-design-system/carbon-platform/commit/21e157d87bf499cba28bb968719c182fc43dcb9d))
+
 ### [0.0.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.3...@carbon-platform/base@0.0.4) (2022-07-09)
 
 

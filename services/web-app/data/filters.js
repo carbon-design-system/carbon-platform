@@ -12,8 +12,8 @@ import { teams } from '@/data/teams'
 
 export const getFilters = (initialFilter = {}) => {
   const firstFilters = {
-    sponsor: {
-      name: 'Sponsor',
+    maintainer: {
+      name: 'Maintainer',
       values: teams
     },
     status: {

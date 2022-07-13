@@ -6,6 +6,7 @@
 @use '~styles/variables' as variables;
 @use 'sass:map';
 @use '@carbon/react/scss/utilities/convert' as convert;
+@use '~styles/variables' as variables;
 
 .svg-page {
   // prevent jank while importing icons
@@ -46,7 +47,7 @@
 }
 
 .filter-row[data-stuck] {
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: variables.$drop-shadow;
 }
 
 // override carbon, search styling

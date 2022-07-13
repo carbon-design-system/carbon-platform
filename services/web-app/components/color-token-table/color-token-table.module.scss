@@ -10,6 +10,7 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/colors' as colors;
 @use '@carbon/react/scss/utilities/convert' as convert;
+@use '~styles/variables' as variables;
 
 .color-token-table {
   display: flex;
@@ -46,7 +47,7 @@
 
 .theme-switcher--stuck {
   // adds box shadow once it hits scrolling content
-  box-shadow: 0 2px 6px 0 rgba(colors.$gray-100, 0.2);
+  box-shadow: variables.$drop-shadow;
 }
 
 .color-token-value {

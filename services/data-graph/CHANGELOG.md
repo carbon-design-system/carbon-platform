@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.22...@carbon-platform/data-graph@0.1.23) (2022-07-13)
+
+
+### Misc. 🔮
+
+* bump @nestjs/apollo from 10.0.16 to 10.0.17 ([1d20347](https://github.com/carbon-design-system/carbon-platform/commit/1d20347ae261df0d598154728b1710475f9eab7f))
+
 ### [0.1.22](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.21...@carbon-platform/data-graph@0.1.22) (2022-07-07)
 
 

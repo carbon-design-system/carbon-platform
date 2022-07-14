@@ -33,7 +33,7 @@ function Catalog({
   onFilter,
   onUpdateFilter,
   renderItem,
-  sortOptions
+  sortOptions = []
 }) {
   const [query, setQuery] = useQueryState(
     'q',
@@ -148,15 +148,17 @@ function Catalog({
       />
       <CatalogFilters filter={filter} availableFilters={availableFilters} onFilter={handleFilter} />
       <CatalogResults resultCount={items.length} />
-      <CatalogSort
-        onSort={setSort}
-        onView={setView}
-        sortId={sort}
-        view={view}
-        sortOptions={sortOptions}
-        defaultSortIndex={defaultSortIndex}
-        allowMultiView={allowMultiView}
-      />
+      {sortOptions?.length > 0 && (
+        <CatalogSort
+          onSort={setSort}
+          onView={setView}
+          sortId={sort}
+          view={view}
+          sortOptions={sortOptions}
+          defaultSortIndex={defaultSortIndex}
+          allowMultiView={allowMultiView}
+        />
+      )}
       <CatalogList
         items={items}
         itemPluralName={itemPluralName}
@@ -183,7 +185,8 @@ Catalog.defaultProps = {
   filter: {},
   itemName: '',
   itemPluralName: '',
-  items: []
+  items: [],
+  sortOptions: []
 }
 
 Catalog.propTypes = {

@@ -5,8 +5,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use '@carbon/react/scss/spacing' as spacing;
-
-.library-description {
-  margin-top: spacing.$spacing-11;
-}
+export { default } from './library-catalog-item'

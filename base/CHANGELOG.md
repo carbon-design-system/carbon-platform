@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.5...@carbon-platform/base@0.0.6) (2022-07-14)
+
+
+### Misc. 🔮
+
+* dev: bump @next/eslint-plugin-next from 12.2.1 to 12.2.2 ([5aae731](https://github.com/carbon-design-system/carbon-platform/commit/5aae7310636076133f7053a4b1cd10c87976760b))
+
 ### [0.0.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.4...@carbon-platform/base@0.0.5) (2022-07-13)
 
 

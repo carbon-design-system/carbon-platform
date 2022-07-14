@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.24](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.23...@carbon-platform/data-graph@0.1.24) (2022-07-14)
+
+
+### Misc. 🔮
+
+* bump @nestjs/graphql from 10.0.15 to 10.0.18 ([342b7a3](https://github.com/carbon-design-system/carbon-platform/commit/342b7a335edd8717cc69ed80630536ff540f4721))
+
 ### [0.1.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.22...@carbon-platform/data-graph@0.1.23) (2022-07-13)
 
 

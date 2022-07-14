@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.0...@carbon-platform/web-app@0.2.1) (2022-07-14)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** create drop shadow variab ([cbd9e4c](https://github.com/carbon-design-system/carbon-platform/commit/cbd9e4c97bcfed5375d73e360d039a8c7a257f40))
+
+
+### Features 🌟
+
+* add design kit index allowlist ([f2ff836](https://github.com/carbon-design-system/carbon-platform/commit/f2ff836c864b961f5e7c12b68c9b32ded1c1dbea))
+
 ## [0.2.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.1.145...@carbon-platform/web-app@0.2.0) (2022-07-13)
 
 

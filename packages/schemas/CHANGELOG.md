@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.6.0...@carbon-platform/schemas@1.7.0) (2022-07-14)
+
+
+### Features 🌟
+
+* add design kits to schema ([928113d](https://github.com/carbon-design-system/carbon-platform/commit/928113dbe286e2a178127fb5f78350755c519c03))
+
 ## [1.6.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.5.0...@carbon-platform/schemas@1.6.0) (2022-06-22)
 
 

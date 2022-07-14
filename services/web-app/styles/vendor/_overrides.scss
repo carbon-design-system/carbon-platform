@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use '@carbon/react/scss/utilities/convert' as convert;
-@use '@carbon/react/scss/utilities/z-index' as z-index;
+@use '~styles/variables' as variables;
+@use 'sass:map';
 
 .cds--content {
   margin-top: 3rem;
@@ -37,5 +38,5 @@ a.cds--header__menu-item[aria-current='page']::after {
 
 // Have carbon overlay use higher z-index than we're using on our custom components
 .cds--side-nav__overlay.cds--side-nav__overlay-active {
-  z-index: z-index.z('overlay');
+  z-index: map.get(variables.$z-indexes, 'overlay');
 }

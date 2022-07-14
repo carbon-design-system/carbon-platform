@@ -271,7 +271,7 @@ const PageContent = () => {
           </p>
           <p className={styles['content-copy']}>
             To make this happen, we ask that you follow the instructions below to document your
-            library’s metadata in the stuctured format we have provided.
+            library’s metadata in the structured format we have provided.
           </p>
           <div className={styles['content-copy']}>
             <Link

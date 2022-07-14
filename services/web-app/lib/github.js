@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import $RefParser from '@apidevtools/json-schema-ref-parser'
 import { Logging } from '@carbon-platform/api/logging'
 import yaml from 'js-yaml'
 import { get, isEmpty, set } from 'lodash'
@@ -20,7 +21,7 @@ import { mdxImgResolver } from '@/utils/mdx-image-resolver'
 import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
-import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
+import { addTrailingSlash, isValidHttpUrl, removeLeadingSlash } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 import { urlsMatch } from '@/utils/url'
 
@@ -284,6 +285,44 @@ export const getLibraryParams = async (libraryVersionSlug) => {
 }
 
 /**
+ * Creates an absolute github URL from a give library params and a ref path.
+ * @param {import('../typedefs').Params} params
+ * @param {string} ref
+ * @returns {string} an absolute URL or an empty string if the resulting url is invalid
+ */
+const getAbsoluteSchemaRef = (params, ref = '') => {
+  const basePath = `https://${params.host}/${params.org}/${params.repo}/${params.ref}`
+  const absoluteUrl = path.join(basePath, params.path, ref) + '?raw=true'
+  return urlsMatch(absoluteUrl, basePath, 3) ? absoluteUrl : ''
+}
+
+/**
+ * Dereferences a JSON schema and preserves original refs
+ * @param {import('../typedefs').Params} params
+ * @param {*} data
+ * @returns
+ */
+const resolveSchemaReferences = async (params, data) => {
+  if (data.library.designKits) {
+    Object.entries(data.library.designKits).forEach(([key, value]) => {
+      if (value.$ref && !isValidHttpUrl(value.$ref) && !value.$ref.startsWith('#/')) {
+        const absoluteUrl = getAbsoluteSchemaRef(params, value.$ref)
+        if (!absoluteUrl) {
+          logging.warn(
+            `Skipping design kit: ${key}  of library ${params.library} due to invalid ref url: ${value.$ref}`
+          )
+          delete data.library.designKits[key]
+        } else {
+          value.$ref = absoluteUrl
+        }
+      }
+    })
+  }
+
+  return $RefParser.dereference(data)
+}
+
+/**
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  * @param {import('../typedefs').Params} params
@@ -310,7 +349,16 @@ export const getLibraryData = async (params = {}) => {
     return null
   }
 
-  const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+  let content
+  try {
+    content = await resolveSchemaReferences(
+      libraryParams,
+      yaml.load(Buffer.from(response.content, response.encoding).toString())
+    )
+  } catch (err) {
+    logging.warn(`Error parsing library yaml content: ${err}`)
+    return null
+  }
 
   /**
    * @type {import('../typedefs').LibraryContent}

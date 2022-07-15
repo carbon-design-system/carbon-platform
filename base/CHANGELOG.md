@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.6...@carbon-platform/base@0.0.7) (2022-07-15)
+
+
+### Misc. 🔮
+
+* dev: bump eslint-plugin-react from 7.30.0 to 7.30.1 ([929dc4b](https://github.com/carbon-design-system/carbon-platform/commit/929dc4ba53139e74e0e1bc5d78741ea07bf8cc2e))
+
 ### [0.0.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.5...@carbon-platform/base@0.0.6) (2022-07-14)
 
 

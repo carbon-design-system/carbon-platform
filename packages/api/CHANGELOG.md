@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.22](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.21...@carbon-platform/api@0.3.22) (2022-07-15)
+
+
+### Features 🌟
+
+* **mdx-sanitizer:** add mdx test files ([774a59b](https://github.com/carbon-design-system/carbon-platform/commit/774a59b7e1207c6cebd0d43c34a4d164a5322fa1))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** linter ([8018281](https://github.com/carbon-design-system/carbon-platform/commit/80182813ca56a2c2e45d33276ca64582b25b29e5))
+
 ### [0.3.21](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.20...@carbon-platform/api@0.3.21) (2022-07-14)
 
 

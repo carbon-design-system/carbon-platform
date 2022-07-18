@@ -371,6 +371,18 @@ const getAbsoluteSchemaRef = (params, ref = '') => {
   }
 }
 
+const resolveDesignKitUrl = (params, key, value) => {
+  const absoluteUrl = getAbsoluteSchemaRef(params, value.$ref)
+  if (!absoluteUrl) {
+    logging.warn(
+      `Skipping design kit: ${key} for library ${params.library} due to invalid ref url: ${value.$ref}`
+    )
+    return false
+  }
+  value.$ref = absoluteUrl
+  return true
+}
+
 /**
  * Dereferences a JSON schema and preserves original refs
  * @param {import('../typedefs').Params} params
@@ -381,17 +393,13 @@ const resolveSchemaReferences = async (params, data) => {
   if (data.library.designKits) {
     for await (const [key, value] of Object.entries(data.library.designKits)) {
       if (value.$ref) {
-        if (!isValidHttpUrl(value.$ref) && !value.$ref.startsWith('#/')) {
-          const absoluteUrl = getAbsoluteSchemaRef(params, value.$ref)
-          if (!absoluteUrl) {
-            logging.warn(
-              `Skipping design kit: ${key} for library ${params.library} due to invalid ref url: ${value.$ref}`
-            )
-            delete data.library.designKits[key]
-            continue
-          } else {
-            value.$ref = absoluteUrl
-          }
+        if (
+          !isValidHttpUrl(value.$ref) &&
+          !value.$ref.startsWith('#/') &&
+          !resolveDesignKitUrl(params, key, value)
+        ) {
+          delete data.library.designKits[key]
+          continue
         }
         try {
           // dereferencing design kits manually so that one invalid design kit

@@ -6,6 +6,20 @@
  */
 
 /**
+ * Add an object with the following structure: {host, org, repo, path, ref?} here
+ * to have design kits indexed in a carbon.yml inside a github repository appear in the catalog
+ */
+const designKitSources = [
+  // TODO: remove
+  {
+    host: 'github.com',
+    org: 'francinelucca',
+    repo: 'library-testing',
+    path: '/'
+  }
+]
+
+/**
  * Add a design kit to this object to register and include the design kit. Design kit slugs are
  * specified as object keys to ensure uniqueness. If the design kit has a maintaining team, specify
  * that here using the `id` for that maintaining team.
@@ -89,7 +103,9 @@ const designKitAllowList = {
   },
   'ibm-cloud-light-figma': {
     maintainer: 'ibm-cloud'
-  }
+  },
+  // TODO: remove
+  'added-design-kit-2': {}
 }
 
-export { designKitAllowList }
+export { designKitAllowList, designKitSources }

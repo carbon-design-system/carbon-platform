@@ -519,13 +519,15 @@ const devLibraries = {
     path: '/packages/security',
     maintainer: 'ibm-security'
   },
+  // TODO: remove
   'design-kit': {
     host: 'github.com',
     org: 'francinelucca',
     repo: 'library-testing',
     path: '/'
   },
-  'invalid-library': {
+  // TODO: remove
+  'invalid-kits-library': {
     host: 'github.com',
     org: 'francinelucca',
     repo: 'library-testing',

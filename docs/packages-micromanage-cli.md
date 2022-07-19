@@ -94,3 +94,22 @@ This command builds and publishes a specified non-private package via `npm publi
 
 This command updates the versions of all workspaces in the monorepo based on a generated changelog.
 It detects which workspaces have changed and only re-versions the ones that have.
+
+The versioning process divides workspaces into two groups: "packages" and "services". "Packages" are
+considered as dependencies of "services". This means that if any "package" has been updated, all
+"services" in the repo will get a version bump as well to pick up the changes.
+
+An optional configuration setting can be specified in a "package's" `package.json` file:
+
+```json
+{
+  "micromanage": {
+    "standalone": true
+  }
+}
+```
+
+Setting this config option marks the package as "standlone", which means that changes to it will not
+trigger a re-version of the "services" in the repo. This is intended for use when a package is
+contained in the carbon-platform monorepo, but is not used as a node dependency by any other
+workspace within the repo.

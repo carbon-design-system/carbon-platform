@@ -11,6 +11,7 @@ const { exec, getTags, getWorkspaces } = require('./utils')
 function buildVersionCommand() {
   return new Command('version')
     .description('Update the versions of all workspaces based on a generated changelog')
+    .option('--base [base_ref]', 'The base ref against which to compare the current HEAD')
     .option('--dry-run', 'Do not make any changes. Only output prospective updates')
     .action(handleVersionCommand)
 }
@@ -22,7 +23,11 @@ function handleVersionCommand(opts) {
   // Ensure all tags are up-to-date with the remote
   exec('git fetch --tags')
 
-  const updatedWorkspaces = getUpdatedWorkspaces()
+  if (opts.base) {
+    console.error(`Comparing HEAD against ${opts.base}`)
+  }
+
+  const updatedWorkspaces = getUpdatedWorkspaces(opts.base)
 
   if (updatedWorkspaces.length === 0) {
     console.error('Nothing to do')
@@ -73,7 +78,7 @@ function handleVersionCommand(opts) {
   echoJobOutput(newVersions)
 }
 
-function getUpdatedWorkspaces() {
+function getUpdatedWorkspaces(baseRef) {
   const allTags = getTags()
 
   // Find all workspace packages/services with updates since their latest tag
@@ -83,20 +88,24 @@ function getUpdatedWorkspaces() {
       return taggedWorkspaceName === ws.name
     })
     const latestTag = tags[tags.length - 1]
+
+    const compareRef = baseRef || latestTag
+
     const changed =
-      !latestTag || !!exec(`git diff --quiet HEAD ${latestTag} -- ${ws.path} || echo changed`)
+      !latestTag || !!exec(`git diff --quiet HEAD ${compareRef} -- ${ws.path} || echo changed`)
+
     if (changed) {
-      console.error(`*** ${ws.name} has changed since ${latestTag}`)
+      console.error(`❗ ${ws.name} has changed since ${compareRef}`)
       return true
     } else {
-      console.error(`No changes in ${ws.name} since ${latestTag}`)
+      console.error(`No changes in ${ws.name} since ${compareRef}`)
       return false
     }
   })
 
   // If the list of updates contains any "packages", mark all "services" as needing an update too
   const isAnyPackageUpdated = updatedWorkspaces.find((pkg) => {
-    return pkg.path.startsWith('packages/')
+    return pkg.path.startsWith('packages/') && !pkg.micromanage?.standalone
   })
 
   if (isAnyPackageUpdated) {

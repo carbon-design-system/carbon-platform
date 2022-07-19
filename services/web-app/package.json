@@ -20,7 +20,7 @@
     "dev:secure": "sh scripts/create-local-certificates.sh && concurrently 'npm run dev' 'RUNNING_SECURELY=1 npm run start:proxy'",
     "service:build": "npm run build",
     "start": "concurrently 'npm run start:proxy' 'next start -p 3000'",
-    "start:proxy": "node proxy-server.js",
+    "start:proxy": "node proxy-server.mjs",
     "storybook": "start-storybook -p 6006",
     "test": "echo 'No tests defined yet!'"
   },

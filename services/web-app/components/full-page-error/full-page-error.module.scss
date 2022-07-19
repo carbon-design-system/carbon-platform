@@ -10,9 +10,17 @@
 @use '@carbon/react/scss/type' as type;
 
 .title {
-  @include type.type-style('fluid-display-01', true);
+  @include type.type-style('heading-05', true);
+
+  margin: spacing.$spacing-10 0 spacing.$spacing-10;
 }
 
-.grid {
-  margin: spacing.$spacing-10 0;
+.subtitle {
+  @include type.type-style('heading-03', true);
+}
+
+.description {
+  @include type.type-style('body-compact-02', true);
+
+  margin: spacing.$spacing-08 0;
 }

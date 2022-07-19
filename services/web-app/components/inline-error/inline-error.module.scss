@@ -10,9 +10,5 @@
 @use '@carbon/react/scss/type' as type;
 
 .title {
-  @include type.type-style('fluid-display-01', true);
-}
-
-.grid {
-  margin: spacing.$spacing-10 0;
+  @include type.type-style('body-compact-01', true);
 }

@@ -5,21 +5,48 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
+import PropTypes from 'prop-types'
 
 import styles from './full-page-error.module.scss'
 
-export const FullPageError = () => {
+export const FullPageError = ({ title, subtitle, description, content }) => {
   return (
     <Grid>
       <Column className={styles.column} sm={4} md={8} lg={{ start: 6, span: 6 }}>
-        <h1 className={styles.title}>Something’s gone wrong...</h1>
-        <h2 className={styles.subtitle}>Import or export statement identified</h2>
-        <p className={styles.description}>
-          For security concerns, import and export statements are not allowed and should be removed.
-        </p>
+        <h1 className={styles.title}>{title}</h1>
+        <p className={styles.subtitle}>{subtitle}</p>
+        <p className={styles.description}>{description}</p>
+        <div className={styles.content}>{content}</div>
       </Column>
     </Grid>
   )
+}
+
+FullPageError.propTypes = {
+  /**
+   * Provide error details
+   */
+  content: PropTypes.node,
+  /**
+   * Provide a description for the FullPageError
+   */
+  description: PropTypes.string,
+  /**
+   * Provide optional href for the FullPageError
+   */
+  href: PropTypes.string,
+  /**
+   * Provide optional link label for the FullPageError
+   */
+  link: PropTypes.string,
+  /**
+   * Provide a title for the FullPageError
+   */
+  subtitle: PropTypes.string,
+  /**
+   * Provide a title for the FullPageError
+   */
+  title: PropTypes.string
 }
 
 export default FullPageError

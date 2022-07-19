@@ -9,18 +9,24 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
 
+.column {
+  margin-top: spacing.$spacing-10;
+}
+
 .title {
   @include type.type-style('heading-05', true);
 
-  margin: spacing.$spacing-10 0 spacing.$spacing-10;
+  padding-bottom: spacing.$spacing-10;
 }
 
 .subtitle {
   @include type.type-style('heading-03', true);
+
+  padding-bottom: spacing.$spacing-07;
 }
 
 .description {
   @include type.type-style('body-compact-02', true);
 
-  margin: spacing.$spacing-08 0;
+  padding-bottom: spacing.$spacing-07;
 }

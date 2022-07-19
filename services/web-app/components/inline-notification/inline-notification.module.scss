@@ -9,6 +9,10 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 
+:global(.cds--inline-notification__close-button) {
+  position: absolute;
+}
+
 .notification {
   margin-top: spacing.$spacing-05;
 }

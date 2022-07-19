@@ -10,5 +10,16 @@
 @use '@carbon/react/scss/type' as type;
 
 .title {
-  @include type.type-style('body-compact-01', true);
+  @include type.type-style('heading-compact-01', true);
+}
+
+.link {
+  cursor: pointer;
+  float: right;
+}
+
+.description {
+  @include type.type-style('body-short-01', true);
+
+  padding-bottom: spacing.$spacing-05;
 }

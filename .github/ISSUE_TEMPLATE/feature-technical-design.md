@@ -73,7 +73,7 @@ assignees: ''
 - [ ] Approved?
 
 > Ignore the happy path. What can go wrong with this feature? How will the error conditions
-> manifestthrough the APIs? How will users be informed about these errors?
+> manifest through the APIs? How will users be informed about these errors?
 
 ## Test strategy
 

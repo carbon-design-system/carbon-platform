@@ -7,16 +7,11 @@
 import { Logging } from '@carbon-platform/api/logging'
 import yaml from 'js-yaml'
 import { get, isEmpty, set } from 'lodash'
-import { serialize } from 'next-mdx-remote/serialize'
 import path from 'path'
-import rehypeUrls from 'rehype-urls'
-import remarkGfm from 'remark-gfm'
-import unwrapImages from 'remark-unwrap-images'
 import slugify from 'slugify'
 
 import { libraryAllowList } from '@/data/libraries.mjs'
 import { getResponse } from '@/lib/file-cache'
-import { mdxImgResolver } from '@/utils/mdx-image-resolver'
 import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
@@ -90,9 +85,9 @@ export const getLibraryNavData = (params, libraryData) => {
  * Retrieves Mdx file from github repo and serializes it for rendering
  * @param {import('../typedefs').Params} repoParams - Partially-complete parameters
  * @param {string} mdxPath - path to Mdx from repo source
- * @returns {Promise<import('../typedefs').RemoteMdxResponse>} Mdx Source Object
+ * @returns {Promise<import('../typedefs').GitHubContentResponse>} Mdx Source Content Response
  */
-export const getRemoteMdxData = async (repoParams, mdxPath) => {
+export const getRemoteMdxSource = async (repoParams, mdxPath) => {
   /**
    * @type {import('../typedefs').GitHubContentResponse}
    */
@@ -109,36 +104,7 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
     logging.error(err)
   }
 
-  if (!response.content) {
-    return {
-      compiledSource: (await serialize('<p>Component not found.</p>')).compiledSource,
-      frontmatter: {
-        title: 'Not found'
-      }
-    }
-  }
-
-  const usageFileSource = Buffer.from(response.content, response.encoding).toString()
-
-  const dirPath = response._links.html.split('/').slice(0, -1).join('/')
-
-  return serialize(usageFileSource, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm, unwrapImages],
-      rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
-    },
-    parseFrontmatter: true
-  }).catch(async (err) => {
-    logging.error(err)
-    // returning this for now so our app doesn't blow up in case mdx is not valid
-    return {
-      compiledSource: (await serialize('<p>Could not serialize MDX at this time.</p>'))
-        .compiledSource,
-      frontmatter: {
-        title: 'Parsing Error'
-      }
-    }
-  })
+  return response
 }
 
 /**

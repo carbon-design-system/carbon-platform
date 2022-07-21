@@ -11,7 +11,13 @@ import slugify from 'slugify'
 import RemoteMdxLoader from '@/components/remote-mdx-loader'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout/layout'
-import { getAllLibraries, getLibraryData, getLibraryNavData, getRemoteMdxData } from '@/lib/github'
+import {
+  getAllLibraries,
+  getLibraryData,
+  getLibraryNavData,
+  getRemoteMdxSource
+} from '@/lib/github'
+import { parseMdxResponseContent } from '@/utils/mdx'
 import { isValidHttpUrl } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 
@@ -77,14 +83,16 @@ export const getStaticProps = async ({ params }) => {
     pageSrc = pathNameChunks.slice(5, pathNameChunks.length).join('/')
   }
 
-  const mdxSource = await getRemoteMdxData(
-    {
-      host,
-      org,
-      repo,
-      ref
-    },
-    pageSrc
+  const mdxSource = await parseMdxResponseContent(
+    await getRemoteMdxSource(
+      {
+        host,
+        org,
+        repo,
+        ref
+      },
+      pageSrc
+    )
   )
 
   return {

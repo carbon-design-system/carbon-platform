@@ -55,6 +55,15 @@ import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
 import Video from '@/components/video'
 
+const UnknownComponent = ({ name }) => {
+  return (
+    <InlineNotification kind="error">
+      <strong>Error: </strong>The <strong>{name} </strong> component is not supported within the
+      Carbon Platform.
+    </InlineNotification>
+  )
+}
+
 const components = {
   h1: H1,
   h2: H2,
@@ -122,6 +131,7 @@ const components = {
   TypeScaleTable,
   TypesetStyle,
   TypeWeight,
+  UnknownComponent,
   Video
 }
 

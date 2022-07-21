@@ -7,7 +7,8 @@
 import { NextSeo } from 'next-seo'
 
 import RemoteMdxLoader from '@/components/remote-mdx-loader'
-import { getRemoteMdxData } from '@/lib/github'
+import { getRemoteMdxSource } from '@/lib/github'
+import { parseMdxResponseContent } from '@/utils/mdx'
 
 const RemoteMdxPage = ({ source }) => {
   const seo = {
@@ -23,15 +24,17 @@ const RemoteMdxPage = ({ source }) => {
 }
 
 export const getStaticProps = async () => {
-  const mdxSource = await getRemoteMdxData(
-    {
-      host: 'github.com',
-      org: 'carbon-design-system',
-      repo: 'carbon-website',
-      library: 'carbon-website',
-      ref: 'main'
-    },
-    '/src/pages/contributing/component/index.mdx'
+  const mdxSource = await parseMdxResponseContent(
+    await getRemoteMdxSource(
+      {
+        host: 'github.com',
+        org: 'carbon-design-system',
+        repo: 'carbon-website',
+        library: 'carbon-website',
+        ref: 'main'
+      },
+      '/src/pages/contributing/component/index.mdx'
+    )
   )
 
   return {

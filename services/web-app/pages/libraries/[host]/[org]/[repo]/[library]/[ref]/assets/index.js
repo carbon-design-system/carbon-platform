@@ -29,7 +29,6 @@ import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'ty
 import AssetCatalogItemMeta from '@/components/asset-catalog-item/asset-catalog-item-meta'
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
-import { framework } from '@/data/framework'
 import { assetsNavData } from '@/data/nav-data'
 import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
 import { LayoutContext } from '@/layouts/layout'
@@ -127,7 +126,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
           </Link>
         )
       }
-      if (asset.content.framework === framework['design-only']) {
+      if (asset.content.framework === 'design-only') {
         assetRow.type = (
           <div style={{ display: 'flex' }}>
             <TypeTag type={asset.content.type} className={styles.tag} />

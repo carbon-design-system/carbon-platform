@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.3...@carbon-platform/web-app@0.2.4) (2022-07-20)
+
+
+### Bug Fixes 🐛
+
+* format document ([2527348](https://github.com/carbon-design-system/carbon-platform/commit/25273481e3a883d240cd6425d998c402195ed5ad))
+* udpates to how carbon works ([2e08cf8](https://github.com/carbon-design-system/carbon-platform/commit/2e08cf85ee0d8eeea325b1c6ef2debdc45f1e717))
+
+### [0.2.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.2...@carbon-platform/web-app@0.2.3) (2022-07-19)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** // build warning ([c9b284f](https://github.com/carbon-design-system/carbon-platform/commit/c9b284fc913fb0b57af819ca04ec9fa89fd6ca17))
+
 ### [0.2.2](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.1...@carbon-platform/web-app@0.2.2) (2022-07-15)
 
 

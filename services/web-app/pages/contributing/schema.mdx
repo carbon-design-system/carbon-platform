@@ -26,7 +26,33 @@ and other services.
 </AnchorLinks>
 
 Schemas are applied through metadata files written in YAML. If you're new to YAML and want to learn
-more, see "[Learn YAML in Y minutes](https://learnxinyminutes.com/docs/yaml)."
+more, see "[Learn YAML in Y minutes](https://learnxinyminutes.com/docs/yaml)." Below is the latest
+stable version of the schema.
+
+## Stable version
+
+The current supported stable version of the resource schemas is _v1_. You can add the YAML language
+server to your YAML files by adding the following line to the top of your files:
+
+```yml
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
+```
+
+**_Note:_** If you're using VS Code as your editor you may
+[install](https://code.visualstudio.com/docs/editor/extension-marketplace) a YAML extension, such as
+[YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) for additional
+language support such as validation and auto-complete.
+
+## Schema keys
+
+A resource file can contain a library, an object of assets, an object of design kits, or any
+combination thereof.
+
+| Key          | Description                                                                                                             | Required | Type   | Default | Valid values |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------- | -------- | ------ | ------- | ------------ |
+| `library`    | Object containing library details. See [library schema](#library-schema) for more info.                                 | Optional | Object | –       | –            |
+| `assets`     | Object containing one or more assets organized by `id`. See [asset schema](#asset-schema) for more info.                | Optional | Object | –       | –            |
+| `designKits` | Object containing one or more design kits organized by `id`. See [design kit schema](#design-kit-schema) for more info. | Optional | Object | –       | –            |
 
 ```yml path="Example carbon.yml"
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
@@ -88,31 +114,6 @@ designKits:
     url: sketch://add-library/cloud/557b75ff-67d3-41ab-ada5-fa25447218c1
     action: link
 ```
-
-## Stable version
-
-The current supported stable version of the resource schemas is _v1_. You can add the YAML language
-server to your YAML files by adding the following line to the top of your files:
-
-```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
-```
-
-**_Note:_** If you're using VS Code as your editor you may
-[install](https://code.visualstudio.com/docs/editor/extension-marketplace) a YAML extension, such as
-[YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) for additional
-language support.
-
-## Schema keys
-
-A resource file can contain a library, an object of assets, an object of design kits, or any
-combination thereof.
-
-| Key          | Description                                                                                                             | Required | Type   | Default | Valid values |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------- | -------- | ------ | ------- | ------------ |
-| `library`    | Object containing library details. See [library schema](#library-schema) for more info.                                 | Optional | Object | –       | –            |
-| `assets`     | Object containing one or more assets organized by `id`. See [asset schema](#asset-schema) for more info.                | Optional | Object | –       | –            |
-| `designKits` | Object containing one or more design kits organized by `id`. See [design kit schema](#design-kit-schema) for more info. | Optional | Object | –       | –            |
 
 ## Library schema
 

@@ -29,15 +29,10 @@
     "test": "ava --config ../../ava.config.mjs"
   },
   "dependencies": {
-    "@nestjs/common": "^8.4.7",
-    "@nestjs/core": "^8.4.7",
-    "@nestjs/graphql": "^10.0.18",
-    "@nestjs/microservices": "^8.4.7",
-    "@nestjs/platform-express": "^8.4.7",
+    "@nestjs/platform-express": "^9.0.5",
     "@types/amqplib": "^0.8.2",
     "@types/cookie-parser": "^1.4.3",
-    "@types/express-session": "^1.17.4",
-    "@types/node": "^16.11.39",
+    "@types/express-session": "^1.17.5",
     "@types/passport": "^1.0.9",
     "@types/session-file-store": "^1.2.2",
     "@types/supertest": "^2.0.12",
@@ -50,17 +45,16 @@
     "cookie-signature": "^1.2.0",
     "express-session": "^1.17.3",
     "graphql": "^16.5.0",
-    "mongodb": "^4.7.0",
-    "openid-client": "^5.1.6",
+    "mongodb": "^4.8.0",
+    "openid-client": "^5.1.8",
     "passport": "^0.6.0",
     "passport-custom": "^1.1.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.5.5",
+    "rxjs": "^7.5.6",
     "session-file-store": "^1.5.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@nestjs/testing": "^8.4.7",
-    "supertest": "^6.2.3"
+    "supertest": "^6.2.4"
   }
 }

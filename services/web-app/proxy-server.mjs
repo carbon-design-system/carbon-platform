@@ -4,13 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const express = require('express')
-const { createProxyMiddleware } = require('http-proxy-middleware')
-const { Logging } = require('@carbon-platform/api/logging')
-const { v4: uuidv4 } = require('uuid')
-const fs = require('fs')
-const http = require('http')
-const https = require('https')
+import { Logging } from '@carbon-platform/api/logging'
+import express from 'express'
+import fs from 'fs'
+import http from 'http'
+import { createProxyMiddleware } from 'http-proxy-middleware'
+import https from 'https'
+import { v4 as uuidv4 } from 'uuid'
 
 const port = process.env.PORT ?? (process.env.RUNNING_SECURELY === '1' ? 8443 : 8080)
 const logging = new Logging({ component: 'RequestLogger' })

@@ -82,7 +82,7 @@ To update the node modules across all workspaces, from the top-level in the repo
 
 ```
 npm update
-npx --workspaces --include-workspace-root ncu --upgrade --target=minor
+npx --workspaces --include-workspace-root ncu --upgrade --interactive --target=minor
 npm install && npm install
 ```
 

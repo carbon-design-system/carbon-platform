@@ -13,6 +13,12 @@
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "dependencies": {
+    "@nestjs/cli": "^9.0.0",
+    "@nestjs/common": "^9.0.5",
+    "@nestjs/core": "^9.0.5",
+    "@nestjs/graphql": "^10.0.21",
+    "@nestjs/microservices": "^9.0.5",
+    "@types/node": "^18.0.6",
     "esbuild": "~0.14.49",
     "rimraf": "^3.0.2",
     "typescript": "^4.7.4"
@@ -21,6 +27,7 @@
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@graphql-eslint/eslint-plugin": "^3.10.6",
+    "@nestjs/testing": "^9.0.5",
     "@next/eslint-plugin-next": "^12.2.3",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "ava": "^4.3.1",

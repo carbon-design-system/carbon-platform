@@ -116,10 +116,10 @@ function getResultText(workspacesMap) {
     workspacesMap.fix?.size > 0
   ) {
     text =
-      '❗ **This PR will result in the following package and service version changes:**\n\n' +
+      '❗ **The commit titles in this PR will result in the following package and service version changes:**\n\n' +
       '> **Note:** A change to a "package" version will result in a patch release of **all** services.\n\n'
   } else {
-    text = 'This PR will not result in any package/service version changes.'
+    text = 'The commit messages in this PR will not result in any package/service version changes.'
   }
 
   workspacesMap.breaking?.forEach((breakingWorkspace) => {

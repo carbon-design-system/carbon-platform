@@ -16,13 +16,20 @@ assignees: ''
 
 > Describe how it integrates/relates/communicates with existing features/packages/services.
 
+> What needs to be in place prior to this feature being developed?
+
+> What assumptions are being made about those dependencies or about the feature itself?
+
+> What noteworthy things are considered "out of scope" for this feature?
+
 ## Research
 
 - [ ] Approved?
 
 **Unanswered questions**
 
-> List any unknowns and unanswered questions that need answers prior to beginning development.
+> List any unknowns and unanswered questions that need answers prior to beginning development. Note
+> that **all** of these questions should be answered prior to approving the Research section.
 
 **New technologies**
 
@@ -46,7 +53,8 @@ assignees: ''
 **Programmatic APIs**
 
 > List any APIs that will be developed and made available in the `@carbon-platform/api` package,
-> including function/class/method names, parameters, and return values.
+> including function/class/method names, parameters, and return values. If this tech design
+> describes a new monorepo package, detail the APIs and exports of that package.
 
 **Data graph**
 
@@ -64,9 +72,8 @@ assignees: ''
 - [ ] Approved?
 
 > What new data is created/stored/collected/transmitted by this feature? How is that data secured?
-> Who is allowed to access it? How is that access controlled?
-
-> Think like a hacker. How might someone attempt to break or abuse this feature?
+> Who is allowed to access it? How is that access controlled? Think like a hacker. How might someone
+> attempt to break or abuse this feature?
 
 ## Error handling
 
@@ -80,9 +87,7 @@ assignees: ''
 - [ ] Approved?
 
 > How will the new feature be tested? (e.g. unit tests, manual verification, automated e2e testing,
-> etc.)
-
-> What interesting edge cases should be considered and tested?
+> etc.) What interesting edge cases should be considered and tested?
 
 ## Logging
 

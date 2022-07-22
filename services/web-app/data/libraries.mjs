@@ -518,6 +518,12 @@ const devLibraries = {
     repo: 'ibm-cloud-cognitive',
     path: '/packages/security',
     maintainer: 'ibm-security'
+  },
+  'overview-path-library': {
+    host: 'github.com',
+    org: 'francinelucca',
+    repo: 'library-testing',
+    path: '/overview-path'
   }
 }
 

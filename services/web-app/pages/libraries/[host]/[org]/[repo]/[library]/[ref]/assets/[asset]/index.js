@@ -12,7 +12,9 @@ import clsx from 'clsx'
 import { get } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { MDXRemote } from 'next-mdx-remote'
 import { NextSeo } from 'next-seo'
+import PropTypes from 'prop-types'
 import { useContext, useEffect, useRef } from 'react'
 import { libraryPropTypes, paramsPropTypes } from 'types'
 
@@ -30,14 +32,14 @@ import { status } from '@/data/status'
 import { teams } from '@/data/teams'
 import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
-import { getAssetIssueCount, getLibraryData } from '@/lib/github'
+import { getAssetIssueCount, getLibraryData, getRemoteMdxData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { getAssetType, getTagsList } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 
 import styles from './index.module.scss'
 
-const Asset = ({ libraryData, params }) => {
+const Asset = ({ libraryData, overviewMdxSource, params }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
   const contentRef = useRef(null)
@@ -279,6 +281,7 @@ const Asset = ({ libraryData, params }) => {
                 </DashboardItem>
               </Column>
             </Dashboard>
+            {overviewMdxSource && <MDXRemote {...overviewMdxSource} />}
           </section>
           <section id="dependencies">
             <h2 className={pageStyles.h2}>Dependencies</h2>
@@ -294,6 +297,10 @@ const Asset = ({ libraryData, params }) => {
 
 Asset.propTypes = {
   libraryData: libraryPropTypes,
+  overviewMdxSource: PropTypes.shape({
+    frontmatter: PropTypes.object,
+    compiledSource: PropTypes.string
+  }),
   params: paramsPropTypes
 }
 
@@ -309,9 +316,15 @@ export const getServerSideProps = async ({ params }) => {
   const [assetData] = libraryData.assets
   assetData.content.issueCount = await getAssetIssueCount(assetData)
 
+  let overviewMdxSource = null
+  if (assetData.content.docs?.overviewPath) {
+    overviewMdxSource = await getRemoteMdxData(params, assetData.content.docs.overviewPath)
+  }
+
   return {
     props: {
       libraryData,
+      overviewMdxSource,
       params
     }
   }

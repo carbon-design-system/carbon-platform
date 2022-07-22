@@ -98,6 +98,9 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
    */
   let response = {}
 
+  if (!repoParams.ref || repoParams.ref === 'latest') {
+    repoParams.ref = await getRepoDefaultBranch(repoParams)
+  }
   try {
     response = await getResponse(repoParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
       owner: repoParams.org,
@@ -146,6 +149,27 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
  * well as path to the directory that contains the carbon.yml. Returns an empty object if
  * not found. Does not validate ref, so people can set their own branch / tag / commit.
  * @param {import('../typedefs').Params} params - Partially-complete parameters
+ * @returns {string} Complete parameters
+ */
+const getRepoDefaultBranch = async (params = {}) => {
+  try {
+    const repo = await getResponse(params.host, 'GET /repos/{owner}/{repo}', {
+      owner: params.org,
+      repo: params.repo
+    })
+
+    return repo?.default_branch
+  } catch (err) {
+    logging.error(`Error obtaining default branch for repo ${params.org}/${params.repo}: ${err}`)
+    return null
+  }
+}
+
+/**
+ * Validates the route's parameters and returns an object that also includes the library's slug as
+ * well as path to the directory that contains the carbon.yml. Returns an empty object if
+ * not found. Does not validate ref, so people can set their own branch / tag / commit.
+ * @param {import('../typedefs').Params} params - Partially-complete parameters
  * @returns {Promise<import('../typedefs').Params>} Complete parameters
  */
 const validateLibraryParams = async (params = {}) => {
@@ -177,17 +201,9 @@ const validateLibraryParams = async (params = {}) => {
   }
 
   // get default branch if a branch isn't specified through params
-
-  try {
-    const repo = await getResponse(returnParams.host, 'GET /repos/{owner}/{repo}', {
-      owner: returnParams.org,
-      repo: returnParams.repo
-    })
-
-    if (repo && !returnParams.ref) {
-      returnParams.ref = repo.default_branch
-    }
-  } catch (err) {}
+  if (!returnParams.ref) {
+    returnParams.ref = await getRepoDefaultBranch(returnParams)
+  }
 
   return returnParams
 }

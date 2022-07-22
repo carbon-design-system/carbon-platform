@@ -26,11 +26,7 @@
   },
   "dependencies": {
     "@logdna/logger": "^2.6.6",
-    "@nestjs/cli": "^8.2.8",
-    "@nestjs/common": "^8.4.7",
-    "@nestjs/microservices": "^8.4.7",
     "@types/amqplib": "^0.8.2",
-    "@types/node": "^16.11.45",
     "rimraf": "^3.0.2"
   }
 }

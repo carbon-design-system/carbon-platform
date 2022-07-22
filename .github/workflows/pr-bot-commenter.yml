@@ -1,0 +1,42 @@
+name: PR bot commenter
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+env:
+  CI: 'true'
+
+#
+# Limit workflow to a single running instance at a time
+#
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  #
+  # Add a comment to the pull request
+  #
+  add-pr-comment:
+    name: Add pull request comment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+
+      - name: Setup Node 🏗
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Bootstrap Micromanage 🥾
+        run: npm run micromanage:bootstrap
+
+      - name: Run comment script 💬
+        run: node packages/micromanage/scripts/add-pr-comment.mjs
+        env:
+          PR_COMMENT_BOT_TOKEN: ${{ secrets.PR_COMMENT_BOT_TOKEN }}

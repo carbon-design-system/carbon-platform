@@ -29,6 +29,7 @@
     "test": "echo 'No tests specified. Maybe you should add some!'"
   },
   "dependencies": {
-    "commander": "^9.3.0"
+    "commander": "^9.4.0",
+    "octokit": "^2.0.4"
   }
 }

@@ -4,19 +4,21 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Grid } from '@carbon/react'
+import { Column, Grid, Link } from '@carbon/react'
 import PropTypes from 'prop-types'
 
 import styles from './full-page-error.module.scss'
 
-export const FullPageError = ({ title, subtitle, description, content }) => {
+export const FullPageError = ({ title, subtitle, content, link, href }) => {
   return (
     <Grid>
       <Column className={styles.column} sm={4} md={8} lg={{ start: 6, span: 6 }}>
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.subtitle}>{subtitle}</p>
-        <p className={styles.description}>{description}</p>
         <div className={styles.content}>{content}</div>
+        <Link className={styles.link} href={href}>
+          {link}
+        </Link>
       </Column>
     </Grid>
   )
@@ -28,15 +30,11 @@ FullPageError.propTypes = {
    */
   content: PropTypes.node,
   /**
-   * Provide a description for the FullPageError
-   */
-  description: PropTypes.string,
-  /**
-   * Provide optional href for the FullPageError
+   * Provide optional url for the FullPageError
    */
   href: PropTypes.string,
   /**
-   * Provide optional link label for the FullPageError
+   * Provide optional label for the FullPageError link
    */
   link: PropTypes.string,
   /**

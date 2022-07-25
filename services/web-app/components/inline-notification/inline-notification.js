@@ -6,16 +6,9 @@
  */
 
 import { Column, Grid } from '@carbon/react'
-import {
-  CheckmarkFilled,
-  Close,
-  ErrorFilled,
-  InformationFilled,
-  WarningFilled
-} from '@carbon/react/icons'
+import { CheckmarkFilled, ErrorFilled, InformationFilled, WarningFilled } from '@carbon/react/icons'
 import clsx from 'classnames'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
 
 import styles from './inline-notification.module.scss'
 
@@ -33,7 +26,8 @@ const InlineNotification = ({ children, className, kind = 'info' }) => {
   const containerClassName = clsx(className, {
     'cds--inline-notification': true,
     'cds--inline-notification--low-contrast': true,
-    [`cds--inline-notification--${kind}`]: kind
+    [`cds--inline-notification--${kind}`]: kind,
+    'cds--inline-notification--hide-close-button': true
   })
   const IconForKind = iconTypes[kind]
 
@@ -65,7 +59,7 @@ InlineNotification.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Option to hide or hide close button
+   * Notification kind
    */
   kind: PropTypes.oneOf(['error', 'info', 'success', 'warning'])
 }

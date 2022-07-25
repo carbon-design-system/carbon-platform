@@ -8,6 +8,10 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
 
+:global(.cds--inline-notification__close-button) {
+  position: absolute;
+}
+
 :global(.cds--inline-notification) {
   max-width: 100%;
 }

@@ -20,12 +20,14 @@
 
 .subtitle {
   @include type.type-style('heading-03', true);
-
-  padding-bottom: spacing.$spacing-07;
 }
 
-.description {
+.content {
   @include type.type-style('body-compact-02', true);
 
-  padding-bottom: spacing.$spacing-07;
+  padding: spacing.$spacing-07 0;
+}
+
+.link {
+  @include type.type-style('body-compact-02', true);
 }

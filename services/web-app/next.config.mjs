@@ -85,6 +85,16 @@ const nextConfig = withMDX(
 
       for (const [slug, library] of Object.entries(libraries)) {
         rewrites.push({
+          source: `/libraries/${slug}/pages/:page*`,
+          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/latest/pages/:page*`
+        })
+
+        rewrites.push({
+          source: `/libraries/${slug}/:ref*/pages/:page*`,
+          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/pages/:page*`
+        })
+
+        rewrites.push({
           source: `/libraries/${slug}/assets`,
           destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/latest/assets`
         })

@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/logging",
   "description": "Carbon platform logging service",
-  "version": "1.1.19",
+  "version": "1.1.22",
   "main": "dist/main/index.js",
   "license": "Apache-2.0",
   "private": true,
@@ -25,12 +25,8 @@
     "test": "ava --config ../../ava.config.mjs"
   },
   "dependencies": {
-    "@logdna/logger": "^2.6.5",
-    "@nestjs/cli": "^8.2.6",
-    "@nestjs/common": "^8.4.7",
-    "@nestjs/microservices": "^8.4.7",
+    "@logdna/logger": "^2.6.6",
     "@types/amqplib": "^0.8.2",
-    "@types/node": "^16.11.39",
     "rimraf": "^3.0.2"
   }
 }

@@ -3,19 +3,20 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
-@use '@carbon/react/scss/utilities/z-index' as z-index;
+@use '~styles/variables' as variables;
+@use 'sass:map';
 @use '@carbon/react/scss/utilities/convert' as convert;
 
 .svg-page {
   // prevent jank while importing icons
   min-height: 60vh;
-  padding-top: spacing.$spacing-11 + spacing.$spacing-05;
+  padding-top: spacing.$spacing-07;
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
   .filter-row {
     position: sticky;
-    z-index: z-index.z('dropdown');
+    z-index: map.get(variables.$z-indexes, 'floating');
     top: 7rem;
     display: flex;
     flex-direction: column;
@@ -31,7 +32,7 @@
 
 .filter-row {
   position: sticky;
-  z-index: z-index.z('dropdown');
+  z-index: map.get(variables.$z-indexes, 'floating');
   top: 7rem;
   display: flex;
   flex-direction: column;
@@ -45,7 +46,7 @@
 }
 
 .filter-row[data-stuck] {
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: variables.$drop-shadow;
 }
 
 // override carbon, search styling
@@ -99,7 +100,7 @@
 
 .filter-row::before {
   position: absolute;
-  z-index: z-index.z('dropdown');
+  z-index: map.get(variables.$z-indexes, 'floating');
   top: -1rem;
   width: 100%;
   height: 1rem;

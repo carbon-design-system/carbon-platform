@@ -95,6 +95,17 @@ jobs:
     secrets:
       NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
+  resources:
+    name: Publish Resources Package
+    needs: update-versions
+    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/resources']
+    uses: ./.github/workflows/publish-package.yml
+    with:
+      package_name: '@carbon-platform/resources'
+      package_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/resources'] }}
+    secrets:
+      NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
   schemas:
     name: Publish Schemas Package
     needs: update-versions

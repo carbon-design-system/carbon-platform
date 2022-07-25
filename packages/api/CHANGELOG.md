@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.22...@carbon-platform/api@0.3.23) (2022-07-23)
+
+
+### Misc. 🔮
+
+* update node module major versions ([60c2787](https://github.com/carbon-design-system/carbon-platform/commit/60c27871974d539bce1270dc9ceef30ae1c5215e))
+* update node module minor versions ([767b5f7](https://github.com/carbon-design-system/carbon-platform/commit/767b5f7cf5db0a0423dfa04193e64d029a022006))
+
+### [0.3.22](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.21...@carbon-platform/api@0.3.22) (2022-07-15)
+
+
+### Features 🌟
+
+* **mdx-sanitizer:** add mdx test files ([774a59b](https://github.com/carbon-design-system/carbon-platform/commit/774a59b7e1207c6cebd0d43c34a4d164a5322fa1))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** linter ([8018281](https://github.com/carbon-design-system/carbon-platform/commit/80182813ca56a2c2e45d33276ca64582b25b29e5))
+
+### [0.3.21](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.20...@carbon-platform/api@0.3.21) (2022-07-14)
+
+
+### Misc. 🔮
+
+* bump @nestjs/graphql from 10.0.15 to 10.0.18 ([342b7a3](https://github.com/carbon-design-system/carbon-platform/commit/342b7a335edd8717cc69ed80630536ff540f4721))
+
 ### [0.3.20](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.19...@carbon-platform/api@0.3.20) (2022-06-24)
 
 

@@ -149,6 +149,7 @@ function getWorkspaces() {
       dependencies: p.dependencies,
       devDependencies: p.devDependencies,
       path: workspacePath,
+      micromanage: p.micromanage,
       private: !!p.private,
       version: p.version
     }

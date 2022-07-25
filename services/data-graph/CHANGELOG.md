@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.26](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.25...@carbon-platform/data-graph@0.1.26) (2022-07-23)
+
+
+### Misc. 🔮
+
+* update node module major versions ([60c2787](https://github.com/carbon-design-system/carbon-platform/commit/60c27871974d539bce1270dc9ceef30ae1c5215e))
+* update node module minor versions ([767b5f7](https://github.com/carbon-design-system/carbon-platform/commit/767b5f7cf5db0a0423dfa04193e64d029a022006))
+
+### [0.1.25](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.24...@carbon-platform/data-graph@0.1.25) (2022-07-15)
+
+### [0.1.24](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.23...@carbon-platform/data-graph@0.1.24) (2022-07-14)
+
+
+### Misc. 🔮
+
+* bump @nestjs/graphql from 10.0.15 to 10.0.18 ([342b7a3](https://github.com/carbon-design-system/carbon-platform/commit/342b7a335edd8717cc69ed80630536ff540f4721))
+
+### [0.1.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.22...@carbon-platform/data-graph@0.1.23) (2022-07-13)
+
+
+### Misc. 🔮
+
+* bump @nestjs/apollo from 10.0.16 to 10.0.17 ([1d20347](https://github.com/carbon-design-system/carbon-platform/commit/1d20347ae261df0d598154728b1710475f9eab7f))
+
+### [0.1.22](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.21...@carbon-platform/data-graph@0.1.22) (2022-07-07)
+
+
+### Misc. 🔮
+
+* bump @nestjs/apollo from 10.0.14 to 10.0.16 ([94fcb7f](https://github.com/carbon-design-system/carbon-platform/commit/94fcb7f0657857f206e3d82e4a8ad261eb465bb9))
+* bump apollo-server-plugin-base from 3.6.0 to 3.6.1 ([ef3cc98](https://github.com/carbon-design-system/carbon-platform/commit/ef3cc987047c3d37230c6bd8c1037b364534c769))
+
 ### [0.1.21](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.20...@carbon-platform/data-graph@0.1.21) (2022-06-30)
 
 ### [0.1.20](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.19...@carbon-platform/data-graph@0.1.20) (2022-06-24)

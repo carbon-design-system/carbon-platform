@@ -61,8 +61,8 @@ const Library = ({ libraryData, params, navData }) => {
     description
   }
 
-  const { sponsor } = libraryData.params
-  const SponsorIcon = teams[sponsor] ? teams[sponsor].pictogram : Svg64Community
+  const { maintainer } = libraryData.params
+  const MaintainerIcon = teams[maintainer] ? teams[maintainer].pictogram : Svg64Community
 
   const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
 
@@ -122,11 +122,11 @@ const Library = ({ libraryData, params, navData }) => {
                   <dt className={dashboardStyles.label}>Version</dt>
                   <dd className={dashboardStyles['label--large']}>{getVersion()}</dd>
                 </dl>
-                {SponsorIcon && (
-                  <SponsorIcon
+                {MaintainerIcon && (
+                  <MaintainerIcon
                     className={clsx(
                       dashboardStyles['position-bottom-left'],
-                      styles['sponsor-icon']
+                      styles['maintainer-icon']
                     )}
                     size={64}
                   />
@@ -137,9 +137,9 @@ const Library = ({ libraryData, params, navData }) => {
               <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }}>
                 <Grid as="dl" className={dashboardStyles.subgrid}>
                   <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
-                    <dt className={dashboardStyles.label}>Sponsor</dt>
+                    <dt className={dashboardStyles.label}>Maintainer</dt>
                     <dd className={dashboardStyles.meta}>
-                      {get(teams, `[${libraryData.params.sponsor}].name`, 'Community maintained')}
+                      {get(teams, `[${libraryData.params.maintainer}].name`, 'Community')}
                     </dd>
                   </Column>
                   <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>

@@ -15,8 +15,7 @@ import { DataGraphModule } from './data-graph-module.js'
  */
 async function generateSchema() {
   const app = await NestFactory.create(
-    DataGraphModule.register({ isPlaygroundEnabled: false, schemaOutputFile: SCHEMA_OUTPUT_FILE }),
-    { logger: false }
+    DataGraphModule.register({ isPlaygroundEnabled: false, schemaOutputFile: SCHEMA_OUTPUT_FILE })
   )
   await app.init()
 }

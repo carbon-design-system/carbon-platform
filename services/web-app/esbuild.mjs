@@ -11,6 +11,6 @@ import base from '../../esbuild.base.mjs'
 
 build({
   ...base,
-  entryPoints: [path.resolve(process.cwd(), 'proxy-server.js')],
+  entryPoints: [path.resolve(process.cwd(), 'proxy-server.mjs')],
   outfile: path.resolve(process.cwd(), 'dist', 'out.js')
 }).catch(() => process.exit(1))

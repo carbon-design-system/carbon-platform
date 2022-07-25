@@ -15,11 +15,3 @@
 .grid {
   margin: spacing.$spacing-10 0;
 }
-
-// override carbon max-width and padding-right
-.button {
-  width: 100%;
-  max-width: none;
-  padding-right: spacing.$spacing-05;
-  margin-top: spacing.$spacing-07;
-}

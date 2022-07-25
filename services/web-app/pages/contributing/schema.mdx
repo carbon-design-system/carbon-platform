@@ -1,17 +1,60 @@
-# Resource schemas
+---
+title: Schema
+description:
+  Carbon resources (e.g. libraries, assets, design kits) follow a schema to standardize definitions
+  and documentation. This structured information is indexed by Carbon's platform to use in the
+  website and other services.
+---
 
-Carbon Design System resources (e.g. libraries, assets, design kits) follow a schema to document
-each resource in a standardized way. This structured information is indexed by Carbon's platform to
-use in the website and other services.
+<PageDescription>
+
+Carbon resources (e.g. libraries, assets, design kits) follow a schema to standardize definitions
+and documentation. This structured information is indexed by Carbon's platform to use in the website
+and other services.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Stable version</AnchorLink>
+<AnchorLink>Schema keys</AnchorLink>
+<AnchorLink>Library schema</AnchorLink>
+<AnchorLink>Asset schema</AnchorLink>
+<AnchorLink>Design kit schema</AnchorLink>
+<AnchorLink>Shared schemas</AnchorLink>
+
+</AnchorLinks>
 
 Schemas are applied through metadata files written in YAML. If you're new to YAML and want to learn
-more, see "[Learn YAML in Y minutes](https://learnxinyminutes.com/docs/yaml)."
+more, see "[Learn YAML in Y minutes](https://learnxinyminutes.com/docs/yaml)." Below is the latest
+stable version of the schema.
 
-**Example**
+## Stable version
 
-carbon.yml
+The current supported stable version of the resource schemas is _v1_. You can add the YAML language
+server to your YAML files by adding the following line to the top of your files:
 
 ```yml
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
+```
+
+**_Note:_** If you're using VS Code as your editor you may
+[install](https://code.visualstudio.com/docs/editor/extension-marketplace) a YAML extension, such as
+[YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) for additional
+language support such as validation and auto-complete.
+
+## Schema keys
+
+A resource file can contain a library, an object of assets, an object of design kits, or any
+combination thereof.
+
+| Key          | Description                                                                                                             | Required | Type   | Default | Valid values |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------- | -------- | ------ | ------- | ------------ |
+| `library`    | Object containing library details. See [library schema](#library-schema) for more info.                                 | Optional | Object | –       | –            |
+| `assets`     | Object containing one or more assets organized by `id`. See [asset schema](#asset-schema) for more info.                | Optional | Object | –       | –            |
+| `designKits` | Object containing one or more design kits organized by `id`. See [design kit schema](#design-kit-schema) for more info. | Optional | Object | –       | –            |
+
+```yml path="Example carbon.yml"
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 library:
   id: carbon-react
@@ -72,42 +115,20 @@ designKits:
     action: link
 ```
 
-## Stable schema version
-
-The current supported stable version of the resource schemas is _v1_. You can add the YAML language
-server to your YAML files by adding the following line to the top of your files:
-
-```yml
-# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
-```
-
-**_Note:_** If you're using VS Code as your editor you may
-[install](https://code.visualstudio.com/docs/editor/extension-marketplace) a YAML extension, such as
-[YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) for additional
-language support.
-
-## Resource schema keys
-
-A resource file can contain a library, an object of assets, an object of design kits, or any
-combination thereof.
-
-| Key          | Description                                                                                                             | Required | Type   | Default | Valid values |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------- | -------- | ------ | ------- | ------------ |
-| `library`    | Object containing library details. See [library schema](#library-schema) for more info.                                 | Optional | Object | –       | –            |
-| `assets`     | Object containing one or more assets organized by `id`. See [asset schema](#asset-schema) for more info.                | Optional | Object | –       | –            |
-| `designKits` | Object containing one or more design kits organized by `id`. See [design kit schema](#design-kit-schema) for more info. | Optional | Object | –       | –            |
-
 ## Library schema
 
 Libraries are the means to contribute, install, and use one or many assets in products and digital
 experiences. To index your library with Carbon, create a `carbon.yml` metadata file and place it in
 the same directory as your library's `package.json` file.
 
-**Example**
+<AnchorLinks small>
 
-carbon.yml
+<AnchorLink>Library keys</AnchorLink>
+<AnchorLink>Library inheritance</AnchorLink>
 
-```yml
+</AnchorLinks>
+
+```yml path="Example carbon.yml"
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 library:
   id: carbon-react
@@ -166,7 +187,7 @@ designKits:
 | `noIndex`         | If set to `true`, the global catalogs will exclude the library.                                                                                                                                                                                                         | Optional | Boolean | No          | `false`                   | –            |
 | `navData`         | Links to documentation pages. See [nav data](#nav-data).                                                                                                                                                                                                                | Optional | Array   | No          | -                         | –            |
 
-#### Library inheritance
+### Library inheritance
 
 Each asset can inherit properties from another asset. For example, if there are multiple
 implementations of a component for different JavaScript frameworks, it's common that there's an
@@ -192,17 +213,27 @@ asset key to override the inherited default.
 Assets are reusable units of work that are used in products and digital experiences. Every asset
 belongs to a library.
 
-- For each asset in a library, create a `carbon.yml` metadata file in the same directory as the
-  asset's source and place the asset details inside of the `assets` object with the asset `id` as
-  the key.
-- For directories that contain multiple assets, just add each asset as a singular entry to the
-  `assets` object with the asset `id` as the key.
+<AnchorLinks small>
 
-**Example**
+<AnchorLink>Asset keys</AnchorLink>
+<AnchorLink>Asset type</AnchorLink>
+<AnchorLink>Component tags</AnchorLink>
+<AnchorLink>Data visualization tags</AnchorLink>
+<AnchorLink>Function tags</AnchorLink>
+<AnchorLink>Asset framework</AnchorLink>
+<AnchorLink>Asset platform</AnchorLink>
+<AnchorLink>Asset docs</AnchorLink>
 
-carbon.yml
+</AnchorLinks>
 
-```yml
+For each asset in a library, create a `carbon.yml` metadata file in the same directory as the
+asset's source and place the asset details inside of the `assets` object with the asset `id` as the
+key.
+
+For directories that contain multiple assets, just add each asset as a singular entry to the
+`assets` object with the asset `id` as the key.
+
+```yml path="Example carbon.yml"
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 assets:
   accordion:
@@ -249,7 +280,7 @@ assets:
 | `noIndex`         | If set to `true`, the global catalogs will exclude the asset.                                                                                            | Optional | Boolean          | No          | `false`       | –                                                                                                                                                                                                                                                                                                                                          |
 | `docs`            | Contains information on where to find supporting documentation for the asset. See [asset docs](#asset-docs).                                             | Optional | Object           | Yes         | -             | –                                                                                                                                                                                                                                                                                                                                          |
 
-#### Asset type
+### Asset type
 
 Asset type is used for primary categorization in asset catalogs. The `type` key can have the
 following values:
@@ -261,7 +292,7 @@ following values:
 | `pattern`   | Best practice solution for how a user achieves a goal through reusable combinations of components and content with sequences and flows which are too complex to be encapsulated in a single component. |
 | `template`  | Layout example that specifies patterns and component order and placement to compose a specific view.                                                                                                   |
 
-#### Component tags
+### Component tags
 
 Tags organize assets into secondary categories in asset catalogs. An asset can have multiple tags,
 and certain tags are only applicable to specific asset types.
@@ -282,7 +313,7 @@ These tags can be used when the asset is of type `component`.
 | `structural-navigation` | Structural navigation | Creates a consistent navigation experience across multiple pages and reveals site architecture. Includes primary, secondary, and tertiary navigation.                      |
 | `system-feedback`       | System feedback       | Provides feedback generated by a system to inform users of status, progress, or timely information.                                                                        |
 
-#### Data visualization tags
+### Data visualization tags
 
 These additional tags can be used alongside the `data-visualization` tag.
 
@@ -296,7 +327,7 @@ These additional tags can be used alongside the `data-visualization` tag.
 | `part-to-whole`         | Part-to-whole         | Part-to-whole data visualizations show part (or parts) of a variable to it's total. These visualizations are often used to show how something is divided up.                                                                                  |
 | `trend`                 | Trend                 | Trend data visualizations (aka run charts) are used to show trends in data over time. In these visualizations all processes vary, so measurements involving a single point can be misleading.                                                 |
 
-#### Function tags
+### Function tags
 
 These additional tags can be used when the asset is of type `function`.
 
@@ -306,7 +337,7 @@ These additional tags can be used when the asset is of type `function`.
 | `service` | Service | Invokes a service or orchestration of services and returns a response.      | –                  |
 | `utility` | Utility | Returns output that's directly dependent on its input without side effects. | –                  |
 
-#### Asset framework
+### Asset framework
 
 Asset framework specifies if each asset has a dependency on being used alongside a specific
 technology. The `framework` key can have the following values:
@@ -322,7 +353,7 @@ technology. The `framework` key can have the following values:
 | `web-component` | Custom HTML tags build with web platform APIs. |
 | `design-only`   | No coded implementation.                       |
 
-#### Asset platform
+### Asset platform
 
 Asset platform specifies supported runtimes and where each asset can be used. The `platform` key can
 have the following values:
@@ -332,7 +363,7 @@ have the following values:
 | `cross-platform` | Runs natively on iOS, Android, and/or desktop. |
 | `web`            | Runs on the web.                               |
 
-#### Asset docs
+### Asset docs
 
 Asset docs is used to determine which supporting documentation is available to fetch and render as
 page tabs in the asset details for the asset as well as its location. For each optional document
@@ -348,11 +379,7 @@ Currently supported document keys are:
 | `accessibilityPath` | Asset accessibility considerations when designing and developing.                             | Optional | String | Yes         | ./accessibility.mdx | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
 | `overviewPath`      | This conent will render underneath the asset details dashboard, live demo usually lives here. | Optional | String | Yes         | ./overview.mdx      | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
 
-**Example**
-
-carbon.yml
-
-```yml
+```yml path="Example carbon.yml"
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 ---
 docs:
@@ -371,9 +398,14 @@ various design tools as the design counterpart to coded assets. Design kits are 
 [`carbon.yml`](https://github.com/carbon-design-system/carbon-platform/blob/main/packages/resources/carbon.yml)
 data file.
 
-carbon.yml
+<AnchorLinks small>
 
-```yml
+<AnchorLink>Design kit keys</AnchorLink>
+<AnchorLink>Design kit type</AnchorLink>
+
+</AnchorLinks>
+
+```yml path="Example carbon.yml"
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 designKits:
   carbon-white-sketch:
@@ -401,7 +433,7 @@ designKits:
 | `license`     | Design kit license.                                                                                                                                                                                                                                                           | Optional | String           | –       | `apache-2.0`, `ibm-internal`, `mit`                                      |
 | `noIndex`     | If set to `true`, the global catalogs will exclude the kit.                                                                                                                                                                                                                   | Optional | Boolean          | `false` | –                                                                        |
 
-#### Design kit type
+### Design kit type
 
 The design kit `type` key can have the following values:
 
@@ -415,6 +447,15 @@ The design kit `type` key can have the following values:
 ## Shared schemas
 
 The following properties are used in multiple schemas.
+
+<AnchorLinks small>
+
+<AnchorLink>Status</AnchorLink>
+<AnchorLink>Demo links</AnchorLink>
+<AnchorLink>Identifiers</AnchorLink>
+<AnchorLink>Nav data</AnchorLink>
+
+</AnchorLinks>
 
 ### Status
 
@@ -433,11 +474,7 @@ key. This is often used to communicate the remaining effort to get something fro
 experimental to stable, estimated stability dates, and alternative resources to use when the asset
 has been deprecated.
 
-**Example**
-
-carbon.yml
-
-```yml
+```yml path="Example carbon.yml"
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 ---
 status:
@@ -449,11 +486,7 @@ status:
 
 Libraries and assets can specify links to demo sites.
 
-**Example**
-
-carbon.yml
-
-```yml
+```yml path="Example carbon.yml"
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 ---
 demoLinks:
@@ -482,11 +515,7 @@ between resources. More guidance around format and absolute identifiers coming h
 Libraries have documentation pages that are specific to their library. The `navData` array
 determines what MDX pages get rendered in the web app, as well as the link order in the nav.
 
-**Example**
-
-carbon.yml
-
-```yml
+```yml path="Example carbon.yml"
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
 ---
 navData:

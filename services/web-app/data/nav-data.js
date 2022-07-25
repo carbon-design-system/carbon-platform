@@ -101,38 +101,38 @@ export const assetsNavData = [
     title: 'Developing'
   },
   {
-    title: 'Contribute',
+    title: 'Contributing',
     items: [
       {
-        path: '/contribute/overview',
+        path: '/contributing/overview',
         title: 'Overview'
       },
       {
-        path: '/contribute/bugs-and-requests',
+        path: '/contributing/bugs-and-requests',
         title: 'Bugs and requests'
       },
       {
-        path: '/contribute/documentation',
-        title: 'Documentation (schema)'
+        path: '/contributing/schema',
+        title: 'Schema'
       },
       {
-        path: '/contribute/components',
+        path: '/contributing/components',
         title: 'Components'
       },
       {
-        path: '/contribute/icons',
+        path: '/contributing/icons',
         title: 'Icons'
       },
       {
-        path: '/contribute/patterns',
+        path: '/contributing/patterns',
         title: 'Patterns'
       },
       {
-        path: '/contribute/pictograms',
+        path: '/contributing/pictograms',
         title: 'Pictograms'
       },
       {
-        path: '/contribute/add-ons',
+        path: '/contributing/add-ons',
         title: 'Add-ons'
       }
     ]

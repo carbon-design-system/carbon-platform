@@ -14,9 +14,9 @@ export default {
     'class-transformer',
     'class-validator',
     'fsevents',
+    'ioredis',
     'kafkajs',
     'mqtt',
-    'nats',
-    'redis'
+    'nats'
   ]
 }

@@ -33,10 +33,10 @@ const nextConfig = withMDX(
   withYaml({
     pageExtensions: ['js', 'jsx', 'md', 'mdx'],
     experimental: {
-      outputStandalone: true,
       // this includes files from the monorepo base two directories up
       outputFileTracingRoot: path.join(__dirname, '..', '..')
     },
+    output: 'standalone',
     i18n: {
       locales: ['en-US'],
       defaultLocale: 'en-US'

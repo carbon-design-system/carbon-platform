@@ -43,7 +43,7 @@ function checkVars() {
 function getCommitData() {
   // Get the commits between the current ref and the base ref
   const commits = exec(
-    `git log --format=format:"%H %s" ${remote}/${headRef}...${remote}/${baseRef}`
+    `git log --format=format:"%H %s" ${remote}/${headRef} ^${remote}/${baseRef}`
   ).split('\n')
 
   // determine the type (feat, fix, or breaking) of each commit and store it along with its ref
@@ -176,6 +176,8 @@ async function addPrComment(commentBody) {
 //
 
 checkVars()
+
+console.log(`Comparing ${headRef} to ${baseRef}`)
 const commitData = getCommitData()
 console.log(commitData)
 

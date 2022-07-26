@@ -166,7 +166,6 @@
         },
         "overviewPath": {
           "description": "Path to the file, Github URL or path relative to carbon.yml.",
-          "default": "./overview.mdx",
           "type": "string"
         }
       }

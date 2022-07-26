@@ -176,6 +176,8 @@ async function addPrComment(commentBody) {
 //
 
 checkVars()
+
+console.log(`Comparing ${headRef} to ${baseRef}`)
 const commitData = getCommitData()
 console.log(commitData)
 

@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.6...@carbon-platform/web-app@0.2.7) (2022-07-26)
+
+
+### Bug Fixes 🐛
+
+* contributing links ([aed46eb](https://github.com/carbon-design-system/carbon-platform/commit/aed46eb5c010970c36ff9e0be7f740a0c00cac86))
+
+### [0.2.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.5...@carbon-platform/web-app@0.2.6) (2022-07-23)
+
+
+### Misc. 🔮
+
+* update node module major versions ([60c2787](https://github.com/carbon-design-system/carbon-platform/commit/60c27871974d539bce1270dc9ceef30ae1c5215e))
+* update node module minor versions ([767b5f7](https://github.com/carbon-design-system/carbon-platform/commit/767b5f7cf5db0a0423dfa04193e64d029a022006))
+
+### [0.2.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.4...@carbon-platform/web-app@0.2.5) (2022-07-22)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** proxy server conversion to esm ([e71619b](https://github.com/carbon-design-system/carbon-platform/commit/e71619b9f7ebdb0e56776a0e4452b1924786f830))
+* **web-app:** use correct entry point in esbuild ([9bdce75](https://github.com/carbon-design-system/carbon-platform/commit/9bdce752df50c115d77a939158cc7b58f4160b58))
+
+### [0.2.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.3...@carbon-platform/web-app@0.2.4) (2022-07-20)
+
+
+### Bug Fixes 🐛
+
+* format document ([2527348](https://github.com/carbon-design-system/carbon-platform/commit/25273481e3a883d240cd6425d998c402195ed5ad))
+* udpates to how carbon works ([2e08cf8](https://github.com/carbon-design-system/carbon-platform/commit/2e08cf85ee0d8eeea325b1c6ef2debdc45f1e717))
+
+### [0.2.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.2...@carbon-platform/web-app@0.2.3) (2022-07-19)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** // build warning ([c9b284f](https://github.com/carbon-design-system/carbon-platform/commit/c9b284fc913fb0b57af819ca04ec9fa89fd6ca17))
+
 ### [0.2.2](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.1...@carbon-platform/web-app@0.2.2) (2022-07-15)
 
 

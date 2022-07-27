@@ -39,4 +39,4 @@ jobs:
       - name: Run comment script 💬
         run: node packages/micromanage/scripts/add-pr-comment.mjs
         env:
-          PR_COMMENT_BOT_TOKEN: ${{ secrets.PR_COMMENT_BOT_TOKEN }}
+          PR_COMMENT_BOT_TOKEN: ${{ secrets.CARBON_BOT_TOKEN }}

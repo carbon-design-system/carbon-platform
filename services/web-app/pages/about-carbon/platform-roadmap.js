@@ -93,14 +93,11 @@ const PageContent = () => {
       description:
         'The following minor releases add authentication to Carbon’s website so you can log in as ' +
         'an IBM employee to view IBM internal content. Search capabilities will be added for all ' +
-        'indexed content. There will also be improvements to the markdown and MDX content ' +
-        'authoring experience so you can preview your changes prior to publishing to Carbon’s ' +
-        'website.',
+        'indexed content.',
       bulletPoints: [
         'New login capabilities to view IBM internal content',
         'IBM internal Carbon libraries indexed and available in the catalogs upon logging in',
         'New search capabilities',
-        'Contribution preview experience to improve markdown and MDX authoring',
         'New standards added to the site'
       ],
       image: ReleaseFourImg,
@@ -146,7 +143,7 @@ const PageContent = () => {
         'PAL sites sunset with redirects to Carbon’s website',
         'Resource cross-linking among standards, libraries, assets',
         'New code package and component usage analytics',
-        'Visual content authoring experience with less reliance on markdown'
+        'Contribution preview experience to improve markdown and MDX authoring'
       ],
       image: ReleaseFiveImg,
       captionHeading: 'v2.0 User experience',

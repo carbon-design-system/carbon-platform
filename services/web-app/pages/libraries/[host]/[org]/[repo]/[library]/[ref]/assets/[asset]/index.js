@@ -38,6 +38,7 @@ import { getAssetIssueCount, getLibraryData, getRemoteMdxData } from '@/lib/gith
 import pageStyles from '@/pages/pages.module.scss'
 import { getAssetType, getTagsList } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
+import { isValidHttpUrl } from '@/utils/string'
 
 import styles from './index.module.scss'
 
@@ -320,10 +321,10 @@ export const getServerSideProps = async ({ params }) => {
 
   let overviewMdxSource = null
   if (assetData.content.docs?.overviewPath) {
-    const overviewPath = path.join(
-      '.' + libraryData.params.path,
-      assetData.content.docs.overviewPath
-    )
+    let overviewPath = assetData.content.docs?.overviewPath
+    if (!isValidHttpUrl(overviewPath)) {
+      overviewPath = path.join('.' + libraryData.params.path, assetData.content.docs.overviewPath)
+    }
 
     overviewMdxSource = await getRemoteMdxData(params, overviewPath)
   }

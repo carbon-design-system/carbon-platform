@@ -163,11 +163,9 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
 }
 
 /**
- * Validates the route's parameters and returns an object that also includes the library's slug as
- * well as path to the directory that contains the carbon.yml. Returns an empty object if
- * not found. Does not validate ref, so people can set their own branch / tag / commit.
+ * Given a repo's params, retrieve and return the repo's default branch.
  * @param {import('../typedefs').Params} params - Partially-complete parameters
- * @returns {string} Complete parameters
+ * @returns {Promise<string>} Repo's default branch, undefined if not found
  */
 const getRepoDefaultBranch = async (params = {}) => {
   try {

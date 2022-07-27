@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.7...@carbon-platform/web-app@0.2.8) (2022-07-27)
+
+
+### Bug Fixes 🐛
+
+* udpate index library  names ([b2055ee](https://github.com/carbon-design-system/carbon-platform/commit/b2055ee3d04a721cd99355633f3fd57e8db5bca3))
+* **web-app:** next config output standalone fix ([b085b94](https://github.com/carbon-design-system/carbon-platform/commit/b085b94505ab131c6ac62d12d0dff755342b8283))
+
 ### [0.2.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.6...@carbon-platform/web-app@0.2.7) (2022-07-26)
 
 

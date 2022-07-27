@@ -101,6 +101,24 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
   if (!repoParams.ref || repoParams.ref === 'latest') {
     repoParams.ref = await getRepoDefaultBranch(repoParams)
   }
+
+  const fullContentsPath = path.join(
+    'https://',
+    repoParams.host,
+    '/repos',
+    repoParams.org,
+    repoParams.repo,
+    '/contents'
+  )
+
+  if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, mdxPath), 5)) {
+    // mdxPath doesn't belong to this repo and doesn't pass security check
+    logging.info(
+      `Skipping remote mdx content from ${repoParams.host}/${repoParams.org}/${repoParams.repo} due to invalid path ${mdxPath}`
+    )
+    return null
+  }
+
   try {
     response = await getResponse(repoParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
       owner: repoParams.org,
@@ -544,6 +562,10 @@ const getPackageJsonContent = async (params = {}, packageJsonPath = '/package.js
 
   if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, packageJsonPathFromRoot), 5)) {
     // packageJsonPath doesn't belong to this repo and doesn't pass security check
+    logging.info(
+      `Skipping packageJson content from ${libraryParams.host}/${libraryParams.org}/${libraryParams.repo} ` +
+        ` due to invalid path ${packageJsonPath}`
+    )
     return {}
   }
 

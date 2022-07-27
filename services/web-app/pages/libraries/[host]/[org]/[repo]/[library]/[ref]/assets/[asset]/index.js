@@ -14,6 +14,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { MDXRemote } from 'next-mdx-remote'
 import { NextSeo } from 'next-seo'
+import path from 'path'
 import PropTypes from 'prop-types'
 import { useContext, useEffect, useRef } from 'react'
 import { libraryPropTypes, paramsPropTypes } from 'types'
@@ -21,6 +22,7 @@ import { libraryPropTypes, paramsPropTypes } from 'types'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import ExternalLinks from '@/components/external-links'
+import H2 from '@/components/markdown/h2'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import PageNav from '@/components/page-nav'
@@ -83,10 +85,10 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
   const { maintainer } = assetData.params
   const MaintainerIcon = teams[maintainer] ? teams[maintainer].pictogram : Svg64Community
 
-  const isPathAbsolute = (path) => {
+  const isPathAbsolute = (urlPath) => {
     const testPath = /^https?:\/\//i
 
-    return testPath.test(path)
+    return testPath.test(urlPath)
   }
 
   const pageTabs = [
@@ -284,10 +286,10 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
             {overviewMdxSource && <MDXRemote {...overviewMdxSource} />}
           </section>
           <section id="dependencies">
-            <h2 className={pageStyles.h2}>Dependencies</h2>
+            <H2 className={pageStyles.h2}>Dependencies</H2>
           </section>
           <section id="contributors">
-            <h2 className={pageStyles.h2}>Contributors</h2>
+            <H2 className={pageStyles.h2}>Contributors</H2>
           </section>
         </Column>
       </Grid>
@@ -318,7 +320,12 @@ export const getServerSideProps = async ({ params }) => {
 
   let overviewMdxSource = null
   if (assetData.content.docs?.overviewPath) {
-    overviewMdxSource = await getRemoteMdxData(params, assetData.content.docs.overviewPath)
+    const overviewPath = path.join(
+      '.' + libraryData.params.path,
+      assetData.content.docs.overviewPath
+    )
+
+    overviewMdxSource = await getRemoteMdxData(params, overviewPath)
   }
 
   return {

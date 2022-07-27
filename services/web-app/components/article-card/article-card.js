@@ -11,6 +11,8 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 
+import H4 from '../markdown/h4'
+import H5 from '../markdown/h5'
 import styles from './article-card.module.scss'
 
 /**
@@ -46,8 +48,12 @@ const ArticleCard = (props) => {
       <div className={styles.img}>{children}</div>
       <div className={aspectRatioClassNames}>
         <div className={clsx('cds--aspect-ratio--object', styles.tile)}>
-          {subTitle && <h5 className={styles.subtitle}>{subTitle}</h5>}
-          {title && <h4 className={styles.title}>{title}</h4>}
+          {subTitle && <H5 headingClassName={styles.subtitle}>{subTitle}</H5>}
+          {title && (
+            <H4 className={styles['h4-container']} headingClassName={styles.title}>
+              {title}
+            </H4>
+          )}
           <div className={styles.info}>
             {author && <p>{author}</p>}
             {date && <p>{date}</p>}

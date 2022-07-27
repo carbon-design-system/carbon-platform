@@ -20,7 +20,7 @@ import { mdxImgResolver } from '@/utils/mdx-image-resolver'
 import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
-import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
+import { addTrailingSlash, isValidHttpUrl, removeLeadingSlash } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 import { urlsMatch } from '@/utils/url'
 
@@ -98,6 +98,29 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
    */
   let response = {}
 
+  if (!repoParams.ref || repoParams.ref === 'latest') {
+    repoParams.ref = await getRepoDefaultBranch(repoParams)
+  }
+
+  if (!isValidHttpUrl(mdxPath)) {
+    const fullContentsPath = path.join(
+      'https://',
+      repoParams.host,
+      '/repos',
+      repoParams.org,
+      repoParams.repo,
+      '/contents'
+    )
+
+    if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, mdxPath), 5)) {
+      // mdxPath doesn't belong to this repo and doesn't pass security check
+      logging.info(
+        `Skipping remote mdx content from ${repoParams.host}/${repoParams.org}/${repoParams.repo} due to invalid path ${mdxPath}`
+      )
+      return null
+    }
+  }
+
   try {
     response = await getResponse(repoParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
       owner: repoParams.org,
@@ -142,6 +165,25 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
 }
 
 /**
+ * Given a repo's params, retrieve and return the repo's default branch.
+ * @param {import('../typedefs').Params} params - Partially-complete parameters
+ * @returns {Promise<string>} Repo's default branch, undefined if not found
+ */
+const getRepoDefaultBranch = async (params = {}) => {
+  try {
+    const repo = await getResponse(params.host, 'GET /repos/{owner}/{repo}', {
+      owner: params.org,
+      repo: params.repo
+    })
+
+    return repo?.default_branch
+  } catch (err) {
+    logging.error(`Error obtaining default branch for repo ${params.org}/${params.repo}: ${err}`)
+    return null
+  }
+}
+
+/**
  * Validates the route's parameters and returns an object that also includes the library's slug as
  * well as path to the directory that contains the carbon.yml. Returns an empty object if
  * not found. Does not validate ref, so people can set their own branch / tag / commit.
@@ -177,17 +219,9 @@ const validateLibraryParams = async (params = {}) => {
   }
 
   // get default branch if a branch isn't specified through params
-
-  try {
-    const repo = await getResponse(returnParams.host, 'GET /repos/{owner}/{repo}', {
-      owner: returnParams.org,
-      repo: returnParams.repo
-    })
-
-    if (repo && !returnParams.ref) {
-      returnParams.ref = repo.default_branch
-    }
-  } catch (err) {}
+  if (!returnParams.ref) {
+    returnParams.ref = await getRepoDefaultBranch(returnParams)
+  }
 
   return returnParams
 }
@@ -528,6 +562,10 @@ const getPackageJsonContent = async (params = {}, packageJsonPath = '/package.js
 
   if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, packageJsonPathFromRoot), 5)) {
     // packageJsonPath doesn't belong to this repo and doesn't pass security check
+    logging.info(
+      `Skipping packageJson content from ${libraryParams.host}/${libraryParams.org}/${libraryParams.repo} ` +
+        ` due to invalid path ${packageJsonPath}`
+    )
     return {}
   }
 

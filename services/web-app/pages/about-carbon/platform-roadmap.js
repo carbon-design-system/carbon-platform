@@ -67,7 +67,7 @@ const PageContent = () => {
     {
       version: 'v1.0',
       release: 'Target release:',
-      date: 'June',
+      date: 'September',
       title: 'General availability',
       description:
         'The platform’s first major release will help system users discover and learn about all ' +
@@ -75,32 +75,36 @@ const PageContent = () => {
         'maintains them, and how to use them. System users can access documentation for all ' +
         'indexed assets and libraries without leaving the platform.',
       bulletPoints: [
+        'Still hosted on the “next” subdomain',
         'All legacy Carbon website content available in the site',
         'All open-source Carbon libraries indexed and available in the catalogs'
       ],
       image: ReleaseThreeImg,
       captionHeading: 'v1.0 User experience',
       caption:
-        'This release replaces Carbon’s current website — all 32 “core” components will have ' +
-        'complete asset detail pages.'
+        'This release will achieve content parity with Carbon’s current website — all 32 “core” ' +
+        'components will have complete asset detail pages.'
     },
     {
-      version: 'v1.1',
-      release: 'Target release:',
-      date: 'July',
-      title: 'Explore with confidence',
-      subtitle: 'This release will fully take the following Hill 1A:',
+      version: 'v1.x',
+      release: 'Target releases:',
+      date: 'Q4 2022',
+      title: 'IBM internal content, search, and standards',
       description:
-        'An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] ' +
-        'can discover and learn about resources [standards and components/patterns] in the ' +
-        'system with confidence in their completeness, who maintains them and where they’re used.',
+        'The following minor releases add authentication to Carbon’s website so you can log in as ' +
+        'an IBM employee to view IBM internal content. Search capabilities will be added for all ' +
+        'indexed content. There will also be improvements to the markdown and MDX content ' +
+        'authoring experience so you can preview your changes prior to publishing to Carbon’s ' +
+        'website.',
       bulletPoints: [
         'New login capabilities to view IBM internal content',
-        'New standards added to the site',
-        'IBM internal Carbon libraries indexed and available in the catalogs upon logging in'
+        'IBM internal Carbon libraries indexed and available in the catalogs upon logging in',
+        'New search capabilities',
+        'Contribution preview experience to improve markdown and MDX authoring',
+        'New standards added to the site'
       ],
       image: ReleaseFourImg,
-      captionHeading: 'v1.1 User experience',
+      captionHeading: 'v1.x User experience',
       caption:
         'In this release standards content will be available on the platform and IBM internal ' +
         'libraries will be discoverable after logging in.'
@@ -108,11 +112,18 @@ const PageContent = () => {
     {
       version: 'v2.0',
       release: 'Target release:',
-      date: 'Q3 2022',
+      date: '2023',
       title: 'System of systems',
-      subtitle: 'The platform’s second major release will take the following Hills 1B and 1C:',
+      subtitle: 'The platform’s second major release will take the following Hills 1A, 1B, and 1C:',
       description: '',
       descriptionBlock: [
+        {
+          title: 'Explore with confidence',
+          description:
+            'An IBM Maker [designers, developers, product managers delivering to the IBM ecosystem] ' +
+            'can discover and learn about resources [standards and components/patterns] in the ' +
+            'system with confidence in their completeness, who maintains them and where they’re used.'
+        },
         {
           title: 'Contribute with ease',
           description:
@@ -134,8 +145,8 @@ const PageContent = () => {
         'Pattern and Asset Library (PAL) sites migrated as local systems',
         'PAL sites sunset with redirects to Carbon’s website',
         'Resource cross-linking among standards, libraries, assets',
-        'Visual content authoring experience with less reliance on markdown',
-        'New code package and component usage analytics'
+        'New code package and component usage analytics',
+        'Visual content authoring experience with less reliance on markdown'
       ],
       image: ReleaseFiveImg,
       captionHeading: 'v2.0 User experience',
@@ -155,7 +166,10 @@ const PageContent = () => {
             <Link href="https://github.com/carbon-design-system/carbon-platform">GitHub</Link>,
             along with milestones, estimated dates, and descriptions of high level outcomes. For a
             visual overview of the following releases and their epics, view our roadmap in{' '}
-            <Link href="https://airtable.com/shrshl3XOeeT4Uxq0">Airtable</Link>.
+            <Link href="https://app.zenhub.com/workspaces/platform-product-management-624ca9397d28730018df40c2/roadmap">
+              Zenhub
+            </Link>
+            .
           </p>
         </Column>
       </Grid>

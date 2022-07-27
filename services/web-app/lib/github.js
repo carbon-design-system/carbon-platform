@@ -20,7 +20,7 @@ import { mdxImgResolver } from '@/utils/mdx-image-resolver'
 import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
-import { addTrailingSlash, removeLeadingSlash } from '@/utils/string'
+import { addTrailingSlash, isValidHttpUrl, removeLeadingSlash } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 import { urlsMatch } from '@/utils/url'
 
@@ -102,21 +102,23 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
     repoParams.ref = await getRepoDefaultBranch(repoParams)
   }
 
-  const fullContentsPath = path.join(
-    'https://',
-    repoParams.host,
-    '/repos',
-    repoParams.org,
-    repoParams.repo,
-    '/contents'
-  )
-
-  if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, mdxPath), 5)) {
-    // mdxPath doesn't belong to this repo and doesn't pass security check
-    logging.info(
-      `Skipping remote mdx content from ${repoParams.host}/${repoParams.org}/${repoParams.repo} due to invalid path ${mdxPath}`
+  if (!isValidHttpUrl(mdxPath)) {
+    const fullContentsPath = path.join(
+      'https://',
+      repoParams.host,
+      '/repos',
+      repoParams.org,
+      repoParams.repo,
+      '/contents'
     )
-    return null
+
+    if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, mdxPath), 5)) {
+      // mdxPath doesn't belong to this repo and doesn't pass security check
+      logging.info(
+        `Skipping remote mdx content from ${repoParams.host}/${repoParams.org}/${repoParams.repo} due to invalid path ${mdxPath}`
+      )
+      return null
+    }
   }
 
   try {

@@ -25,7 +25,7 @@
 
 .tall,
 .large {
-  height: 480px;
+  height: convert.rem(480px);
 }
 
 .large.tall {

@@ -199,12 +199,6 @@ const Library = ({ libraryData, params, navData }) => {
               )}
             </CardGroup>
           </section>
-          {/* TODO: REMOVE */}
-          <ul style={{ listStyle: 'bullet' }}>
-            {Object.keys(libraryData.content.designKits ?? {}).map((key) => {
-              return <li key={key}>{key}</li>
-            })}
-          </ul>
         </Column>
       </Grid>
     </>

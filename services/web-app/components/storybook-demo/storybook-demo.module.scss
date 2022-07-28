@@ -7,6 +7,7 @@
 
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 // override carbon, label left padding
 :global(.cds--label) {

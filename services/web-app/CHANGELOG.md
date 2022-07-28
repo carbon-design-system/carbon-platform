@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.9](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.8...@carbon-platform/web-app@0.2.9) (2022-07-28)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** display design only tag in library assets ([db5e213](https://github.com/carbon-design-system/carbon-platform/commit/db5e213b80ace828e66f0783d0c445cd5a4e1375))
+* **web-app:** fix design only type capitalization ([861b9d0](https://github.com/carbon-design-system/carbon-platform/commit/861b9d09f3df9c2f1e15b76116cd3668a73b960d))
+
 ### [0.2.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.7...@carbon-platform/web-app@0.2.8) (2022-07-27)
 
 

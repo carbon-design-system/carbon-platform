@@ -5,10 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, Link } from '@carbon/react'
-import {
-  Close,
-  ErrorFilled
-} from '@carbon/react/icons'
+import { Close, ErrorFilled } from '@carbon/react/icons'
 import clsx from 'classnames'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
@@ -33,7 +30,7 @@ export const InlineError = ({ className, content, title, description, href, link
         <Column sm={4} md={6} lg={12} className={clsx(styles.notification, className)}>
           <div className={containerClassName}>
             <Grid>
-              <Column sm={3} md={4} lg={9}>
+              <Column sm={3} md={4} lg={8}>
                 <div className="cds--inline-notification__details">
                   <ErrorFilled className="cds--inline-notification__icon" size={20}>
                     <title>{'Error icon'}</title>
@@ -45,9 +42,11 @@ export const InlineError = ({ className, content, title, description, href, link
                   </div>
                 </div>
               </Column>
-              <Column sm={1} md={2} lg={3}>
+              <Column sm={1} md={2} lg={4}>
                 <div className="cds--inline-notification__text-wrapper">
-                  <div className={clsx(styles['link-content'], 'cds--inline-notification__details')}>
+                  <div
+                    className={clsx(styles['link-content'], 'cds--inline-notification__details')}
+                  >
                     <Link className={styles.link} href={href}>
                       {link}
                     </Link>

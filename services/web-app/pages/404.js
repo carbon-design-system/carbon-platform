@@ -8,7 +8,7 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
 import FullPageError from '@/components/full-page-error'
-// import InlineError from '@/components/inline-error'
+import InlineError from '@/components/inline-error'
 // import PageNotFound from '@/components/page-not-found'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
@@ -28,14 +28,14 @@ const FourOhFour = () => {
     <>
       <NextSeo {...seo} />
       {/* <PageNotFound /> */}
-      {/* <InlineError
+      <InlineError
         title="Import or export statement identified"
         description="For security concerns, import and export
         statements are not allowed and should be removed."
         link="Supported components"
         href="catalogs/components"
         content="import {something} from './the/path/where/it/lives/in/the/remote/repo'"
-      /> */}
+      />
       <FullPageError
         title="Something's gone wrong..."
         subtitle="Import or export statement identified"

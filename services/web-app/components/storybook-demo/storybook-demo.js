@@ -84,7 +84,7 @@ const StorybookDemo = ({ height, themeSelector, size, url, variants }) => {
         </Column>
       </Grid>
       <Grid condensed>
-        <Column sm={4} md={columnSize} lg={columnSize} className={demoClassNames}>
+        <Column sm={4} md={8} lg={columnSize} className={demoClassNames}>
           <iframe
             title="Component demo"
             className={styles.iframe}

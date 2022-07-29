@@ -10,7 +10,32 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 
+import Caption from '@/components/caption'
+
 import * as styles from './storybook-demo.module.scss'
+
+const themeItems = [
+  {
+    id: 'white',
+    label: 'White',
+    src: 'white'
+  },
+  {
+    id: 'g10',
+    label: 'Gray 10',
+    src: 'g10'
+  },
+  {
+    id: 'g90',
+    label: 'Gray 90',
+    src: 'g90'
+  },
+  {
+    id: 'g100',
+    label: 'Gray 100',
+    src: 'g100'
+  }
+]
 
 const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
   const columnWidth = wide ? 12 : 8
@@ -20,50 +45,28 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
     [styles.wide]: wide
   })
 
-  const themeItems = [
-    {
-      id: 'white',
-      label: 'White',
-      src: 'white'
-    },
-    {
-      id: 'g10',
-      label: 'Gray 10',
-      src: 'g10'
-    },
-    {
-      id: 'g90',
-      label: 'Gray 90',
-      src: 'g90'
-    },
-    {
-      id: 'g100',
-      label: 'Gray 100',
-      src: 'g100'
-    }
-  ]
-
-  const [theme, setTheme] = useState('')
+  const [theme, setTheme] = useState(themeItems[0].src)
   const onThemeChange = (item) => {
     setTheme(item.selectedItem.src)
   }
 
-  const variantsDefined = typeof variants !== 'undefined' && variants.length > 1
+  const multipleVariants = variants.length > 1
 
-  // TODO: need to update this initialStateVarint --> need a default variant
-  const initialSetVariant = variantsDefined ? variants[1].variant : 'components-button--default'
+  const variantsDefined = typeof variants !== 'undefined' && variants.length > 0
+
+  const initialSetVariant = variantsDefined && variants[0].variant
 
   const [variant, setVariant] = useState(initialSetVariant)
-
-  const iframeUrl = url + '/iframe.html?id=' + variant + '&globals=theme:' + theme
 
   const onVariantChange = (item) => {
     setVariant(item.selectedItem.variant)
   }
 
+  const iframeUrl = url + '/iframe.html?id=' + variant + '&globals=theme:' + theme
+
   // Only add border when theme and variant selectors are being displayed
   const border = clsx({
-    [styles['theme-selector']]: variantsDefined
+    [styles['theme-selector']]: multipleVariants
   })
 
   return (
@@ -72,6 +75,7 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
         {themeSelector && (
           <Column sm={2} md={4}>
             <Dropdown
+              id="theme-selector"
               titleText="Theme selector"
               label="theme"
               items={themeItems}
@@ -81,13 +85,14 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
             />
           </Column>
         )}
-        {variantsDefined && (
+        {variantsDefined && multipleVariants && (
           <Column sm={2} md={4}>
             <Dropdown
+              id="variant-selector"
               titleText="Variant selector"
               label="variant"
               items={variants}
-              initialSelectedItem={variants[1].label}
+              initialSelectedItem={variants[0].label}
               onChange={onVariantChange}
             />
           </Column>
@@ -107,11 +112,11 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
       </Grid>
       <Grid>
         <Column sm={4} md={7}>
-          <p className={styles.disclaimer}>
+          <Caption>
             This live demo contains only a preview of functionality and styles available for this component.
-            View the <Link className={styles['disclaimer-link']} href="https://next.carbondesignsystem.com/">full demo</Link> on Storybook
+            View the <Link href={`${url}/?path=/story/${variant}&globals=theme:${theme}`}>full demo</Link> on Storybook
             for additional information such as its version, controls, and API documentation.
-          </p>
+          </Caption>
         </Column>
       </Grid>
     </>

@@ -141,7 +141,7 @@ StorybookDemo.propTypes = {
   /**
    * Storybook demo variants for the specified component
    */
-  variants: PropTypes.object,
+  variants: PropTypes.object.isRequired,
   /**
    * Storybook demo width
    */

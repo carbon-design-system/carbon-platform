@@ -18,6 +18,12 @@
   border-bottom: 1px solid theme.$layer-selected-01;
 }
 
+.theme-selector {
+  :global(.cds--dropdown) {
+    border-right: 1px solid theme.$layer-selected;
+  }
+}
+
 .storybook-demo {
   height: 320px;
   padding: spacing.$spacing-03;

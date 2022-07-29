@@ -21,7 +21,7 @@ const stories = {
 
 export default stories
 
-const Template = (args) =>
+const Template = (args) => (
   <StorybookDemo
     {...args}
     themeSelector={true}
@@ -63,6 +63,7 @@ const Template = (args) =>
       }
     ]}
   />
+)
 
 export const Default = Template.bind({})
 Default.args = {}

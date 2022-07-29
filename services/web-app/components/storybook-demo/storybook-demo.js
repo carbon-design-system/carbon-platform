@@ -48,7 +48,7 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
     setTheme(item.selectedItem.src)
   }
 
-  const variantsDefined = (typeof variants !== 'undefined') && variants.length > 1
+  const variantsDefined = typeof variants !== 'undefined' && variants.length > 1
 
   // TODO: need to update this initialStateVarint --> need a default variant
   const initialSetVariant = variantsDefined ? variants[1].variant : 'components-button--default'
@@ -61,6 +61,11 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
     setVariant(item.selectedItem.variant)
   }
 
+  // Only add border when theme and variant selectors are being displayed
+  const border = clsx({
+    [styles['theme-selector']]: variantsDefined
+  })
+
   return (
     <>
       <Grid condensed>
@@ -72,18 +77,21 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
               items={themeItems}
               onChange={onThemeChange}
               initialSelectedItem={themeItems[0]}
+              className={border}
             />
           </Column>
         )}
-        {variantsDefined && <Column sm={2} md={4}>
-          <Dropdown
-            titleText="Variant selector"
-            label="variant"
-            items={variants}
-            initialSelectedItem={variants[1].label}
-            onChange={onVariantChange}
-          />
-        </Column>}
+        {variantsDefined && (
+          <Column sm={2} md={4}>
+            <Dropdown
+              titleText="Variant selector"
+              label="variant"
+              items={variants}
+              initialSelectedItem={variants[1].label}
+              onChange={onVariantChange}
+            />
+          </Column>
+        )}
       </Grid>
       <Grid condensed>
         <Column sm={4} md={8} lg={columnWidth} className={demoClassNames}>

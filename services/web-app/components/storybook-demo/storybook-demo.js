@@ -12,11 +12,12 @@ import { useState } from 'react'
 
 import * as styles from './storybook-demo.module.scss'
 
-const StorybookDemo = ({ height, themeSelector, size, url, variants }) => {
-  const columnSize = size === 'large' ? 12 : 8
+const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
+  const columnWidth = wide ? 12 : 8
 
-  const demoClassNames = clsx(styles['storybook-demo'], styles[`${height}`], {
-    [styles.large]: size === 'large'
+  const demoClassNames = clsx(styles['storybook-demo'], {
+    [styles.tall]: tall,
+    [styles.wide]: wide
   })
 
   const themeItems = [
@@ -47,9 +48,10 @@ const StorybookDemo = ({ height, themeSelector, size, url, variants }) => {
     setTheme(item.selectedItem.src)
   }
 
-  const initialSetVariant = variants[0].variant
-  const initialSelectedVariant = variants[0].label
-  const initialSelectedTheme = themeItems[0]
+  const variantsDefined = (typeof variants !== 'undefined') && variants.length > 1
+
+  // TODO: need to update this initialStateVarint --> need a default variant
+  const initialSetVariant = variantsDefined ? variants[1].variant : 'components-button--default'
 
   const [variant, setVariant] = useState(initialSetVariant)
 
@@ -69,22 +71,22 @@ const StorybookDemo = ({ height, themeSelector, size, url, variants }) => {
               label="theme"
               items={themeItems}
               onChange={onThemeChange}
-              initialSelectedItem={initialSelectedTheme}
+              initialSelectedItem={themeItems[0]}
             />
           </Column>
         )}
-        <Column sm={2} md={4}>
+        {variantsDefined && <Column sm={2} md={4}>
           <Dropdown
             titleText="Variant selector"
             label="variant"
             items={variants}
-            initialSelectedItem={initialSelectedVariant}
+            initialSelectedItem={variants[1].label}
             onChange={onVariantChange}
           />
-        </Column>
+        </Column>}
       </Grid>
       <Grid condensed>
-        <Column sm={4} md={8} lg={columnSize} className={demoClassNames}>
+        <Column sm={4} md={8} lg={columnWidth} className={demoClassNames}>
           <iframe
             title="Component demo"
             className={styles.iframe}
@@ -101,13 +103,9 @@ const StorybookDemo = ({ height, themeSelector, size, url, variants }) => {
 
 StorybookDemo.propTypes = {
   /**
-   * Storybook demo height: default or tall
+   * Storybook demo height
    */
-  height: PropTypes.oneOf(['tall']),
-  /**
-   * Storybook demo size: small or large
-   */
-  size: PropTypes.oneOf(['small', 'large']),
+  tall: PropTypes.bool,
   /**
    * Storybook demo display or hide theme selector
    */
@@ -119,7 +117,11 @@ StorybookDemo.propTypes = {
   /**
    * Storybook demo variants for the specified component
    */
-  variants: PropTypes.object
+  variants: PropTypes.object,
+  /**
+   * Storybook demo width
+   */
+  wide: PropTypes.bool
 }
 
 export default StorybookDemo

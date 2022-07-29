@@ -86,13 +86,13 @@ test('it works with a promise', async (t) => {
       t.pass()
     }
   }
-  const inputFn = (arg: string) => Promise.resolve(arg)
-  const descriptor = { value: inputFn }
+  const myInputFn = (arg: string) => Promise.resolve(arg)
+  const myDescriptor = { value: myInputFn }
 
   // Decorate the function
-  Trace({ runtime, logging: logging as any })(target, 'propertyKey', descriptor)
+  Trace({ runtime, logging: logging as any })(target, 'propertyKey', myDescriptor)
 
-  await descriptor.value('its an arg!')
+  await myDescriptor.value('its an arg!')
 })
 
 test('it works with an exception', (t) => {
@@ -106,18 +106,18 @@ test('it works with an exception', (t) => {
     }
   }
 
-  const inputFn = (arg: string) => {
+  const myInputFn = (arg: string) => {
     throw new Error(arg)
   }
-  const descriptor = { value: inputFn }
+  const myDescriptor = { value: myInputFn }
 
   // Decorate the function
-  Trace({ runtime, logging: logging as any })(target, 'propertyKey', descriptor)
+  Trace({ runtime, logging: logging as any })(target, 'propertyKey', myDescriptor)
 
   // Invoke the function
   let result: any
   try {
-    descriptor.value('its an arg!')
+    myDescriptor.value('its an arg!')
   } catch (err) {
     result = err
   }
@@ -136,16 +136,16 @@ test('it works with a promise that thrown an exception', async (t) => {
     }
   }
 
-  const inputFn = (arg: string) => Promise.reject(new Error(arg))
-  const descriptor = { value: inputFn }
+  const myInputFn = (arg: string) => Promise.reject(new Error(arg))
+  const myDescriptor = { value: myInputFn }
 
   // Decorate the function
-  Trace({ runtime, logging: logging as any })(target, 'propertyKey', descriptor)
+  Trace({ runtime, logging: logging as any })(target, 'propertyKey', myDescriptor)
 
   // Invoke the function
   let result: any
   try {
-    await descriptor.value('its an arg!')
+    await myDescriptor.value('its an arg!')
   } catch (err) {
     result = err
   }
@@ -156,16 +156,16 @@ test('it works with a promise that thrown an exception', async (t) => {
 test('it preserves metadata', (t) => {
   const target: { logging?: Logging } = {}
   const metadataInputFn = (arg: string) => arg
-  const descriptor = { value: metadataInputFn }
+  const myDescriptor = { value: metadataInputFn }
   const metadataKey = 'testing123'
 
   Reflect.defineMetadata(metadataKey, 'wowow', metadataInputFn)
 
   // Decorate the function
-  Trace()(target, 'propertyKey', descriptor)
+  Trace()(target, 'propertyKey', myDescriptor)
 
   // Invoke the function
-  descriptor.value('its an arg!')
+  myDescriptor.value('its an arg!')
 
-  t.is(Reflect.getMetadata(metadataKey, descriptor.value), 'wowow')
+  t.is(Reflect.getMetadata(metadataKey, myDescriptor.value), 'wowow')
 })

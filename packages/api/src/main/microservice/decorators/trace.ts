@@ -102,7 +102,7 @@ async function traceExit(logging: Logging, methodName: string, result: any, resp
   if (result instanceof Promise) {
     result.then(
       async (value: any) =>
-        await logging.debug(`<- ${methodName} <- ${safeStringify(value)} ${responseTime}ms`),
+        logging.debug(`<- ${methodName} <- ${safeStringify(value)} ${responseTime}ms`),
       (err: any) => logging.debug(`-x- ${methodName} <- ${err} ${responseTime}ms`)
     )
   } else {

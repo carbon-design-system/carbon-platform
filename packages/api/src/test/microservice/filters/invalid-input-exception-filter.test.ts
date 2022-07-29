@@ -28,7 +28,7 @@ test('catch', async (t) => {
   const result = filter.catch(new InvalidInputException('a test!'), rpcArgHost as any)
 
   try {
-    await result.forEach(() => {})
+    await result.forEach(() => undefined)
   } catch (e) {
     t.true(e instanceof InvalidInputException)
     t.is((e as InvalidInputException).message, 'a test!')

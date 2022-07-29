@@ -18,23 +18,23 @@ const LOCAL_MESSAGE_QUEUE_URL = 'amqp://localhost:5672'
 /**
  * The self-signed cert presented by the message queue.
  */
-const CARBON_MESSAGE_QUEUE_CERTIFICATE = getEnvVar('CARBON_MESSAGE_QUEUE_CERTIFICATE', '', runtime)
+const CARBON_MESSAGE_QUEUE_CERTIFICATE = getEnvVar(runtime, 'CARBON_MESSAGE_QUEUE_CERTIFICATE')
 /**
  * Message queue to which to connect.
  */
 const CARBON_MESSAGE_QUEUE_URL = getEnvVar(
+  runtime,
   'CARBON_MESSAGE_QUEUE_URL',
-  LOCAL_MESSAGE_QUEUE_URL,
-  runtime
+  LOCAL_MESSAGE_QUEUE_URL
 )
 /**
  * Username to use during message queue authentication.
  */
-const CARBON_MESSAGE_QUEUE_USERNAME = getEnvVar('CARBON_MESSAGE_QUEUE_USERNAME', '', runtime)
+const CARBON_MESSAGE_QUEUE_USERNAME = getEnvVar(runtime, 'CARBON_MESSAGE_QUEUE_USERNAME')
 /**
  * Password to use during message queue authentication.
  */
-const CARBON_MESSAGE_QUEUE_PASSWORD = getEnvVar('CARBON_MESSAGE_QUEUE_PASSWORD', '', runtime)
+const CARBON_MESSAGE_QUEUE_PASSWORD = getEnvVar(runtime, 'CARBON_MESSAGE_QUEUE_PASSWORD')
 
 /**
  * The delay after which to attempt a reconnect to the message broker.

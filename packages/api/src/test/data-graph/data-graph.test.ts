@@ -52,17 +52,16 @@ test('it throws when retrieving a non-existant dev dataset query', async (t) => 
   const runtime = new Runtime({ runMode: RunMode.Dev })
   const dataGraph = new DataGraph({ runtime })
 
-  await t.throwsAsync(
-    async () =>
-      await dataGraph.queryData<any>({
-        query: gql`
-          query DoesNotExist {
-            libraries {
-              id
-            }
+  await t.throwsAsync(async () =>
+    dataGraph.queryData<any>({
+      query: gql`
+        query DoesNotExist {
+          libraries {
+            id
           }
-        `
-      })
+        }
+      `
+    })
   )
 })
 

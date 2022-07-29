@@ -16,7 +16,7 @@ test('catch', async (t) => {
   const result = filter.catch(new Error('a test!'))
 
   try {
-    await result.forEach(() => {})
+    await result.forEach(() => undefined)
   } catch (e) {
     t.true(e instanceof Error)
     t.is((e as Error).message, 'a test!')

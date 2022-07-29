@@ -10,7 +10,7 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/colors' as colors;
 @use '@carbon/react/scss/utilities/convert' as convert;
-@use '~styles/variables' as variables;
+@use '../../styles/variables' as variables;
 
 .color-token-table {
   display: flex;

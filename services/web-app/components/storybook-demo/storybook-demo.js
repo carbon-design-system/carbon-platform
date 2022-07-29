@@ -50,7 +50,7 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
     setTheme(item.selectedItem.src)
   }
 
-  const multipleVariants = variants.length > 1
+  const multipleVariants = variants?.length > 1
 
   const variantsDefined = typeof variants !== 'undefined' && variants.length > 0
 
@@ -92,7 +92,7 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
               titleText="Variant selector"
               label="variant"
               items={variants}
-              initialSelectedItem={variants[0].label}
+              initialSelectedItem={variants[0]?.label}
               onChange={onVariantChange}
             />
           </Column>
@@ -137,11 +137,11 @@ StorybookDemo.propTypes = {
   /**
    * Storybook demo url to change themes and variants
    */
-  url: PropTypes.string,
+  url: PropTypes.string.isRequired,
   /**
    * Storybook demo variants for the specified component
    */
-  variants: PropTypes.object,
+  variants: PropTypes.object.isRequired,
   /**
    * Storybook demo width
    */

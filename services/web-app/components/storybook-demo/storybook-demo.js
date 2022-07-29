@@ -92,7 +92,7 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
               titleText="Variant selector"
               label="variant"
               items={variants}
-              initialSelectedItem={variants[0].label}
+              initialSelectedItem={variants[0]?.label}
               onChange={onVariantChange}
             />
           </Column>

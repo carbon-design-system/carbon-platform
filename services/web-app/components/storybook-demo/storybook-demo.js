@@ -137,7 +137,7 @@ StorybookDemo.propTypes = {
   /**
    * Storybook demo url to change themes and variants
    */
-  url: PropTypes.string,
+  url: PropTypes.string.isRequired,
   /**
    * Storybook demo variants for the specified component
    */

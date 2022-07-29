@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Column, Dropdown, Grid } from '@carbon/react'
+import { Column, Dropdown, Grid, Link } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
@@ -103,6 +103,15 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
             allowtransparency="true"
             allowFullScreen="true"
           />
+        </Column>
+      </Grid>
+      <Grid>
+        <Column sm={4} md={7}>
+          <p className={styles.disclaimer}>
+            This live demo contains only a preview of functionality and styles available for this component.
+            View the <Link className={styles['disclaimer-link']} href="https://next.carbondesignsystem.com/">full demo</Link> on Storybook
+            for additional information such as its version, controls, and API documentation.
+          </p>
         </Column>
       </Grid>
     </>

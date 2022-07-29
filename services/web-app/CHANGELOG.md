@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.9...@carbon-platform/web-app@0.2.10) (2022-07-29)
+
+
+### Features 🌟
+
+* **web-app:** added design kit minimal functionality ([8e9273c](https://github.com/carbon-design-system/carbon-platform/commit/8e9273c2fc0b692b101239ea5dd8c66584f8e5e0))
+* **web-app:** design kit validation and error handling, global function ([4d60eaa](https://github.com/carbon-design-system/carbon-platform/commit/4d60eaab7217a3a852826252fe94ecbab99d6e79))
+
+
+### Bug Fixes 🐛
+
+* delete Vanilla JS text ([7e820e6](https://github.com/carbon-design-system/carbon-platform/commit/7e820e6a890cd4c5ebe3795be1604be4c9137df9))
+* merge with main ([6285f37](https://github.com/carbon-design-system/carbon-platform/commit/6285f37e582ff2bacf9a4dc7c2d40606df4301db))
+* udpates to developing ([c8a1562](https://github.com/carbon-design-system/carbon-platform/commit/c8a1562fca5bb2227961c7af6214d034d6e205da))
+* **web-app:** reduce cognitive complexity of github function ([bef9521](https://github.com/carbon-design-system/carbon-platform/commit/bef95213e71c19f2190fc7ce7a96edfe4ecb3f02))
+* **web-app:** remove test mock data ([652cad3](https://github.com/carbon-design-system/carbon-platform/commit/652cad32894bcd264dbb2b722a425d22bd5d48ff))
+
+### [0.2.9](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.8...@carbon-platform/web-app@0.2.9) (2022-07-28)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** display design only tag in library assets ([db5e213](https://github.com/carbon-design-system/carbon-platform/commit/db5e213b80ace828e66f0783d0c445cd5a4e1375))
+* **web-app:** fix design only type capitalization ([861b9d0](https://github.com/carbon-design-system/carbon-platform/commit/861b9d09f3df9c2f1e15b76116cd3668a73b960d))
+
 ### [0.2.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.7...@carbon-platform/web-app@0.2.8) (2022-07-27)
 
 

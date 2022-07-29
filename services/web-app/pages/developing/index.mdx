@@ -10,8 +10,10 @@ description:
 
 <AnchorLinks>
   <AnchorLink>Step 1: Learn about Carbon</AnchorLink>
-  <AnchorLink>Step 2: Get started</AnchorLink>
-  <AnchorLink>Step 3: Explore developer tools</AnchorLink>
+  <AnchorLink>Step 2: Learn about libraries</AnchorLink>
+  <AnchorLink>Step 3: Get started</AnchorLink>
+  <AnchorLink>Step 4: Build your first app</AnchorLink>
+  <AnchorLink>Step 5: Explore developer tools</AnchorLink>
 </AnchorLinks>
 
 ## Step 1: Learn about Carbon
@@ -25,44 +27,106 @@ build websites and user interfaces quickly and efficiently.
 
 ### Understand the ecosystem
 
-The following diagram shows the relationships of assets and guidance across IBM. The Carbon Design
-System is often extended or complimented by additional product and digital systems.
+Carbon is a system of systems. At the epicenter lies the `core system`, with elements, assets, code,
+design kits, and guidelines intended as a base for the widest variety of situations. These assets
+are open source and can be easily extended or adapted.
+
+Teams at IBM also create `local systems` that depend on and extend the core system for specific use
+cases.
 
 ![Carbon ecosystem](/about-carbon/ecosystem.png)
 
-## Step 2: Get Started
+## Step 2: Learn about libraries
 
-### Choose your framework
+`Libraries` are the means to contribute, install, and use one or many assets in products and digital
+experiences.
 
-The Carbon Design System is built React first, with official support for Web Components. We also
-support core parts of the system in vanilla JS, Angular, Vue, and Svelte—and we offer guidelines for
-other frameworks.
+In the past, Libraries were scattered across several websites or lived in inaccessible team
+documents. By [centralizing libraries](https://next.carbondesignsystem.com/libraries) on the new
+Carbon platform, developers and designers no longer have to spend time looking for the right set of
+assets.
 
-Head over to [Libraries](/libraries) to complete the installation tutorial for your framework of
-choice.
+<Divider>
+  <Grid>
+    <Column lg={4} md={2}>
+      **Discover code packages**
+    </Column>
+    <Column lg={7} md={5}>
+      Libraries are 1:1 with code packages. All coded assets belong to a library and have a
+      maintainer.
+    </Column>
+  </Grid>
+</Divider>
+
+<Divider>
+  <Grid>
+    <Column lg={4} md={2}>
+      **Find design kits**
+    </Column>
+    <Column lg={7} md={5}>
+      Design kits compatible with coded implementations are easily discoverable in libraries. In
+      addition, libraries are a great way to look across a portfolio of assets and read additional
+      guidance provided by library maintainers.
+    </Column>
+  </Grid>
+</Divider>
+<Divider></Divider>
+
+### Core libraries
+
+Carbon is built React first, so `Carbon React` is our most up-to-date library where components
+included in the `core system` live. Assets in this library are open source and can be easily
+extended or adapted. Core components are also offered in other frameworks, including Web Components,
+Vue, Angular, and Svelte. These frameworks are mostly community maintained.
 
 <CardGroup>
-  <MiniCard title="React tutorial" href="/libraries/carbon-components-react">
+  <Column lg={4} md={4}>
+    <ResourceCard
+      subTitle="Carbon React"
+      href="https://next.carbondesignsystem.com/libraries/carbon-react"
+    >
+      <MdxIcon name="react" />
+    </ResourceCard>
+  </Column>
+</CardGroup>
+
+### Local libraries
+
+Teams at IBM also create `local systems` that depend on and extend the core system for specific use
+cases. For example, IBM.com provides components for an editorial approach and uses
+[Web Components](https://next.carbondesignsystem.com/libraries/ibmdotcom-web-components) as their
+primary framework. Additional libraries are available in the
+[library catalog](https://next.carbondesignsystem.com/libraries).
+
+## Step 3: Get started
+
+Head over to core libraries for guidance to get started with your framework of choice.
+
+<CardGroup>
+  <MiniCard title="Carbon React" href="https://carbondesignsystem.com/developing/frameworks/react/">
     <MdxIcon name="react" />
   </MiniCard>
-  <MiniCard title="Web Component tutorial" href="/libraries/carbon-components--web-components">
-    <MdxIcon name="webcomponents" />
-  </MiniCard>
-  <MiniCard title="Angular tutorial" href="/libraries/carbon-components-angular">
+  <MiniCard
+    title="Carbon Angular"
+    href="https://carbondesignsystem.com/developing/frameworks/angular"
+  >
     <MdxIcon name="angular" />
   </MiniCard>
-  <MiniCard title="Vue tutorial" href="/libraries/carbon-components-vue">
+  <MiniCard
+    title="Web Components"
+    href="https://carbondesignsystem.com/developing/frameworks/web-components"
+  >
+    <MdxIcon name="webcomponents" />
+  </MiniCard>
+  <MiniCard title="Vue" href="https://carbondesignsystem.com/developing/frameworks/vue">
     <MdxIcon name="vue" />
   </MiniCard>
-  <MiniCard title="Svelte tutorial" href="/libraries/carbon-components-svelte">
+  <MiniCard title="Svelte" href="https://carbondesignsystem.com/developing/frameworks/svelte">
     <MdxIcon name="svelte" />
-  </MiniCard>
-  <MiniCard title="Vanilla tutorial" href="/libraries/carbon-components">
-    <MdxIcon name="js" />
   </MiniCard>
 </CardGroup>
 
-### Build your first app
+## Step 4: Build your first app
 
 We offer tutorials in Angular, React, and Vue to guide you in creating an app with the Carbon Design
 System. We’ll teach you the ins and outs of using Carbon components, and introduce web development
@@ -89,32 +153,7 @@ best practices along the way. Everyone who completes the tutorial will earn an I
   </MiniCard>
 </CardGroup>
 
-### Explore additional libraries
-
-Product and digital teams at IBM have additional [Libraries](/libraries) that are built upon the
-Carbon Design System, with components and styling developed for specific experiences.
-
-<CardGroup>
-<Column lg={4} md={4}>
-  <ResourceCard
-    subTitle="IBM.com React"
-    href=""
-    >
-<MdxIcon name="react" />
-  </ResourceCard>
-</Column>
-
-<Column lg={4} md={4}>
-  <ResourceCard
-    subTitle="IBM.com Web Components"
-    href=""
-    >
-<MdxIcon name="webcomponents" />
-  </ResourceCard>
-</Column>
-</CardGroup>
-
-## Step 3: Explore developer tools
+## Step 5: Explore developer tools
 
 <CardGroup>
 <Column lg={4} md={4}>
@@ -168,6 +207,17 @@ Carbon Design System, with components and styling developed for specific experie
     >
 
 ![](/developing/color-contrast-icon.png)
+
+  </ResourceCard>
+</Column>
+
+<Column lg={4} md={4}>
+  <ResourceCard
+    subTitle="Accessibility tools"
+    href="https://www.ibm.com/able/toolkit/tools"
+    >
+
+![](/elements/accessibility/a11ybee.svg)
 
   </ResourceCard>
 </Column>

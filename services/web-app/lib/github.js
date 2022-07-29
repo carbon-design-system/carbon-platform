@@ -4,7 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import $RefParser from '@apidevtools/json-schema-ref-parser'
 import { Logging } from '@carbon-platform/api/logging'
+import resources from '@carbon-platform/resources/carbon.yml'
 import yaml from 'js-yaml'
 import { get, isEmpty, set } from 'lodash'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -14,10 +16,11 @@ import remarkGfm from 'remark-gfm'
 import unwrapImages from 'remark-unwrap-images'
 import slugify from 'slugify'
 
+import { designKitAllowList, designKitSources } from '@/data/design-kits'
 import { libraryAllowList } from '@/data/libraries.mjs'
 import { getResponse } from '@/lib/file-cache'
 import { mdxImgResolver } from '@/utils/mdx-image-resolver'
-import { getAssetErrors, getLibraryErrors } from '@/utils/resources'
+import { getAssetErrors, getDesignKitErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { addTrailingSlash, isValidHttpUrl, removeLeadingSlash } from '@/utils/string'
@@ -182,6 +185,52 @@ const getRepoDefaultBranch = async (params = {}) => {
     return null
   }
 }
+/**
+ * Validates the route's parameters and returns an object that also includes the
+ *  path to the directory that contains the carbon.yml. Returns an empty object if
+ * not found. Does not validate ref, so people can set their own branch / tag / commit.
+ * @param {import('../typedefs').Params} params - Partially-complete parameters
+ * @returns {Promise<import('../typedefs').Params>} Complete parameters
+ */
+const validateDesignKitsParams = async (params = {}) => {
+  /**
+   * @type {import('../typedefs').Params}
+   */
+  let returnParams = { ...params }
+
+  for (const designKitSource of designKitSources) {
+    if (
+      params.host === designKitSource.host &&
+      params.org === designKitSource.org &&
+      params.repo === designKitSource.repo
+    ) {
+      returnParams = {
+        ...designKitSource
+      }
+
+      if (params.ref && params.ref !== 'latest') {
+        returnParams.ref = params.ref
+      }
+    }
+  }
+
+  // get default branch if a branch isn't specified through params
+
+  if (!returnParams.ref) {
+    try {
+      const repo = await getResponse(returnParams.host, 'GET /repos/{owner}/{repo}', {
+        owner: returnParams.org,
+        repo: returnParams.repo
+      })
+
+      if (repo) {
+        returnParams.ref = repo.default_branch
+      }
+    } catch (err) {}
+  }
+
+  return returnParams
+}
 
 /**
  * Validates the route's parameters and returns an object that also includes the library's slug as
@@ -257,6 +306,28 @@ const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
 }
 
 /**
+ * Validates a design kit's structure and content and logs any validation errors as warnings
+ * @param {import('../typedefs').DesignKit} designKit
+ * @returns {boolean} whether the design kit is valid or not
+ */
+const validateDesignKit = (designKit, source) => {
+  const designKitErrors = getDesignKitErrors(designKit)
+  if (designKitErrors.length) {
+    const errors = designKitErrors.map((err) => {
+      const { instancePath, message } = err
+      return { instancePath, message }
+    })
+    logging.warn(
+      `Skipping design kit: ${getSlug(
+        designKit
+      )} for ${source} due to the following errors: ${JSON.stringify(errors)}`
+    )
+    return false
+  }
+  return true
+}
+
+/**
  * Validates a library's structure and content and logs any validation errors as warnings
  * @param {import('../typedefs').library} library
  * @returns {boolean} whether the library is valid or not
@@ -318,6 +389,143 @@ export const getLibraryParams = async (libraryVersionSlug) => {
 }
 
 /**
+ * Creates an absolute github URL from a give library params and a ref path.
+ * @param {import('../typedefs').Params} params
+ * @param {string} ref
+ * @returns {string} an absolute URL or an empty string if the resulting url is invalid
+ */
+const getAbsoluteSchemaRef = (params, ref = '') => {
+  try {
+    const basePath = `https://raw.${params.host}/${params.org}/${params.repo}/${params.ref}`
+    const absoluteUrl = path.join(basePath, params.path, ref)
+    return urlsMatch(absoluteUrl, basePath, 3) ? absoluteUrl : ''
+  } catch (err) {
+    return ''
+  }
+}
+
+const resolveDesignKitUrl = (params, key, value) => {
+  const absoluteUrl = getAbsoluteSchemaRef(params, value.$ref)
+  if (!absoluteUrl) {
+    logging.warn(
+      `Skipping design kit: ${key} for library ${params.library} due to invalid ref url: ${value.$ref}`
+    )
+    return false
+  }
+  value.$ref = absoluteUrl
+  return true
+}
+
+/**
+ * Dereferences a JSON schema and preserves original refs
+ * @param {import('../typedefs').Params} params
+ * @param {*} data
+ * @returns
+ */
+const resolveSchemaReferences = async (params, data) => {
+  if (data.library.designKits) {
+    for await (const [key, value] of Object.entries(data.library.designKits)) {
+      if (value.$ref) {
+        if (
+          !isValidHttpUrl(value.$ref) &&
+          !value.$ref.startsWith('#/') &&
+          !resolveDesignKitUrl(params, key, value)
+        ) {
+          delete data.library.designKits[key]
+          continue
+        }
+        try {
+          // dereferencing design kits manually so that one invalid design kit
+          // doesn't throw out the whole library
+          const obj = { kit: data.library.designKits[key], designKits: data.designKits }
+          data.library.designKits[key] = (await $RefParser.dereference(obj)).kit
+        } catch (err) {
+          logging.warn(
+            `Skipping design kit: ${key} of library ${params.library} due to reference error: ${err}`
+          )
+          delete data.library.designKits[key]
+        }
+      }
+    }
+  }
+
+  return $RefParser.dereference(data)
+}
+
+/**
+ * If the params map to a valid design kit in the allowlist, fetch the contents of the design kit's
+ * metadata file. If the params are not valid, early return.
+ * @param {import('../typedefs').Params} params
+ * @returns {import('../typedefs').DesignKit[]}
+ */
+export const getDesignKitsData = async (params = {}) => {
+  const designKitsParams = await validateDesignKitsParams(params)
+
+  if (isEmpty(designKitsParams)) return null
+
+  /**
+   * @type {import('../typedefs').GitHubContentResponse}
+   */
+  let response = {}
+
+  try {
+    response = await getResponse(
+      designKitsParams.host,
+      'GET /repos/{owner}/{repo}/contents/{path}',
+      {
+        owner: designKitsParams.org,
+        repo: designKitsParams.repo,
+        path: removeLeadingSlash(`${designKitsParams.path}/carbon.yml`),
+        ref: designKitsParams.ref
+      }
+    )
+  } catch (err) {
+    return null
+  }
+
+  let content
+  try {
+    content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+  } catch (err) {
+    logging.warn(
+      `Error parsing yaml content for design kits from repo ${params.host}/${params.org}/${params.repo}: ${err}`
+    )
+    return null
+  }
+
+  const { designKits } = content
+
+  if (!designKits) {
+    logging.warn(
+      `Could not retrieve ${params.host}/${params.org}/${params.repo} designKits' content at this time`
+    )
+    return null
+  }
+
+  // validate design kits
+  Object.entries(designKits).forEach(([key, value]) => {
+    if (!designKitAllowList[key]) {
+      logging.warn(
+        `Skipping design kit: ${key} from source ${params.host}/${params.org}/${params.repo} because key is not present in allowList`
+      )
+    }
+    if (
+      !designKitAllowList[key] ||
+      !validateDesignKit(value, `${params.host}/${params.org}/${params.repo}`)
+    ) {
+      delete designKits[key]
+    }
+  })
+
+  return Object.entries(designKits).map(([id, designKit]) => {
+    return {
+      id,
+      ...designKit
+    }
+  })
+}
+
+/**
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  * @param {import('../typedefs').Params} params
@@ -344,7 +552,16 @@ export const getLibraryData = async (params = {}) => {
     return null
   }
 
-  const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+  let content
+  try {
+    content = await resolveSchemaReferences(
+      libraryParams,
+      yaml.load(Buffer.from(response.content, response.encoding).toString())
+    )
+  } catch (err) {
+    logging.warn(`Error parsing yaml content for library ${params.library}: ${err}`)
+    return null
+  }
 
   /**
    * @type {import('../typedefs').LibraryContent}
@@ -359,6 +576,13 @@ export const getLibraryData = async (params = {}) => {
   if (!validateLibrary(library)) {
     return null
   }
+
+  // validate library design kits
+  Object.entries(library.designKits ?? []).forEach(([key, value]) => {
+    if (!validateDesignKit(value, `library ${getSlug(library)}`)) {
+      delete library.designKits[key]
+    }
+  })
 
   let assets = await getLibraryAssets(params)
 
@@ -507,6 +731,33 @@ export const getAssetIssueCount = async (asset) => {
   }
 
   return response?.total_count ?? 0
+}
+
+/**
+ * Retrieves all indexed design kits and filters them out through the allowlist
+ * branch is used.
+ * @returns {import('../typedefs').DesignKit[]}
+ */
+export const getAllDesignKits = async () => {
+  const baseDesignKits = Object.entries(resources.designKits).map(([key, value]) => {
+    return {
+      ...value,
+      id: key
+    }
+  })
+
+  const promises = []
+  designKitSources.forEach((source) => {
+    const params = {
+      ref: 'latest',
+      ...source
+    }
+    promises.push(getDesignKitsData(params))
+  })
+
+  const designKits = await Promise.all(promises)
+
+  return [...designKits.filter((n) => n.length).flat(), ...baseDesignKits]
 }
 
 /**

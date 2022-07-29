@@ -6,6 +6,12 @@
  */
 
 /**
+ * Add an object with the following structure: {host, org, repo, path, ref?} here
+ * to have design kits indexed in a carbon.yml inside a github repository appear in the catalog
+ */
+const designKitSources = []
+
+/**
  * Add a design kit to this object to register and include the design kit. Design kit slugs are
  * specified as object keys to ensure uniqueness. If the design kit has a maintaining team, specify
  * that here using the `id` for that maintaining team.
@@ -92,4 +98,4 @@ const designKitAllowList = {
   }
 }
 
-export { designKitAllowList }
+export { designKitAllowList, designKitSources }

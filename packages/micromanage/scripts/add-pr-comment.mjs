@@ -9,7 +9,7 @@ import { Octokit } from 'octokit'
 import { exec, getWorkspaceForFile } from '../lib/utils.js'
 
 const commitTypes = ['fix', 'feat', 'breaking']
-const commentingUserLogin = 'carbon-platform-bot'
+const commentingUserLogin = 'carbon-bot'
 const remote = 'origin'
 const accessToken = process.env.PR_COMMENT_BOT_TOKEN
 const headRef = process.env.GITHUB_HEAD_REF

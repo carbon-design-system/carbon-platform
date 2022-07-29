@@ -25,7 +25,7 @@
 }
 
 .storybook-demo {
-  height: 320px;
+  height: convert.rem(320px);
   padding: spacing.$spacing-03;
   background: theme.$layer-01;
 }

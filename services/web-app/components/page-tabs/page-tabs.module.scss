@@ -10,7 +10,7 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/utilities/convert' as convert;
-@use '~styles/variables' as variables;
+@use '../../styles/variables' as variables;
 @use 'sass:map';
 
 .container {

@@ -10,8 +10,8 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/utilities/convert' as convert;
-@use '~styles/mixins' as mixins;
-@use '~styles/variables' as variables;
+@use '../../styles/mixins' as mixins;
+@use '../../styles/variables' as variables;
 
 // match width of side nav
 $breadcrumb-container-width: convert.rem(256px);

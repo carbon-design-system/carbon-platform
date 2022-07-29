@@ -50,7 +50,7 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
     setTheme(item.selectedItem.src)
   }
 
-  const multipleVariants = variants.length > 1
+  const multipleVariants = variants?.length > 1
 
   const variantsDefined = typeof variants !== 'undefined' && variants.length > 0
 

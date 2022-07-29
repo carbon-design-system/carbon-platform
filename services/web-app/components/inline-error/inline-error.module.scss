@@ -8,10 +8,11 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
 
-:global(.cds--inline-notification__close-button) {
-  position: absolute;
+.notification {
+  padding-top: spacing.$spacing-06;
 }
 
+// override carbon max-width
 :global(.cds--inline-notification) {
   max-width: 100%;
 }
@@ -40,5 +41,5 @@
 }
 
 .content {
-  @include type.type-style('body-short-01', true);
+  @include type.type-style('code-02', true);
 }

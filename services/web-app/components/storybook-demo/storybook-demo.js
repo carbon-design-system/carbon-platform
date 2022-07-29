@@ -113,9 +113,11 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
       <Grid>
         <Column sm={4} md={7}>
           <Caption>
-            This live demo contains only a preview of functionality and styles available for this component.
-            View the <Link href={`${url}/?path=/story/${variant}&globals=theme:${theme}`}>full demo</Link> on Storybook
-            for additional information such as its version, controls, and API documentation.
+            This live demo contains only a preview of functionality and styles available for this
+            component. View the{' '}
+            <Link href={`${url}/?path=/story/${variant}&globals=theme:${theme}`}>full demo</Link> on
+            Storybook for additional information such as its version, controls, and API
+            documentation.
           </Caption>
         </Column>
       </Grid>

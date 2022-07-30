@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.10...@carbon-platform/web-app@0.2.11) (2022-07-30)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** handle relative urls in library pages ([2b57ecf](https://github.com/carbon-design-system/carbon-platform/commit/2b57ecfcdc45dc73f80b82b889e2f0775221dcde))
+* **web-app:** merge with main ([9eb2a4d](https://github.com/carbon-design-system/carbon-platform/commit/9eb2a4d2da3186033ac6fb09a306881bc4d7c04b))
+* **web-app:** remove mock library from devLibraries ([f808c61](https://github.com/carbon-design-system/carbon-platform/commit/f808c61eb396fbe8691cd30a4483126d7bc91e8b))
+* **web-app:** storybook compile error ([a888d23](https://github.com/carbon-design-system/carbon-platform/commit/a888d2334f3e6457887fa25570302f8186f0737a))
+
 ### [0.2.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.9...@carbon-platform/web-app@0.2.10) (2022-07-29)
 
 

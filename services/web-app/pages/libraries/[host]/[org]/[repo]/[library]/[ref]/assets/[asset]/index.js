@@ -227,7 +227,7 @@ const Asset = ({ libraryData, params }) => {
                         router.push(assetsPath)
                       }}
                     >
-                      View all library assets
+                      View library assets
                       <ArrowRight size={16} />
                     </Button>{' '}
                     <Button

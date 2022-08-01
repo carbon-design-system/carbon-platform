@@ -17,7 +17,6 @@ import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'ty
 import CardGroup from '@/components/card-group'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
-import ExternalLinks from '@/components/external-links'
 import { H2 } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import PageDescription from '@/components/page-description'
@@ -29,6 +28,7 @@ import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData, getLibraryNavData, getLibraryParams } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { getLicense } from '@/utils/schema'
+import { getUrlWithProtocol } from '@/utils/string'
 
 import styles from './index.module.scss'
 
@@ -102,6 +102,30 @@ const Library = ({ libraryData, params, navData }) => {
     )
   }
 
+  const DemoLinks = ({ links = [] }) => {
+    const linkList = links.filter((link) => !!link).sort((a, b) => a.name.localeCompare(b.name))
+
+    let demoLinks
+    if (linkList.length > 0) {
+      demoLinks = (
+        <CardGroup>
+          {linkList.map((link, i) => (
+            <Column sm={4} md={4} lg={4} key={i}>
+              <ResourceCard
+                title={link.name}
+                href={getUrlWithProtocol(link.url)}
+                actionIcon={link.action === 'download' ? 'download' : 'launch'}
+              >
+                <MdxIcon name={link.type} />
+              </ResourceCard>
+            </Column>
+          ))}
+        </CardGroup>
+      )
+    }
+    return demoLinks
+  }
+
   return (
     <>
       <NextSeo {...seo} />
@@ -146,17 +170,6 @@ const Library = ({ libraryData, params, navData }) => {
                     <dt className={dashboardStyles.label}>License</dt>
                     <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
                   </Column>
-                  <Column
-                    sm={4}
-                    className={clsx(dashboardStyles.subcolumn, dashboardStyles['subcolumn--links'])}
-                  >
-                    <dt className={clsx(dashboardStyles.label)}>Links</dt>
-                    <dd className={dashboardStyles.meta}>
-                      <ExternalLinks
-                        links={[...get(libraryData, 'content.demoLinks', []), externalDocsLink]}
-                      />
-                    </dd>
-                  </Column>
                   <Button
                     className={styles['versions-button']}
                     onClick={() => {
@@ -171,6 +184,14 @@ const Library = ({ libraryData, params, navData }) => {
             </Column>
           </Dashboard>
         </Column>
+        {(externalDocsLink || libraryData.content.demoLinks) && (
+          <Column sm={4} md={8} lg={8}>
+            <section>
+              <H2>Demo links</H2>
+              <DemoLinks links={[...get(libraryData, 'content.demoLinks', []), externalDocsLink]} />
+            </section>
+          </Column>
+        )}
         <Column sm={4} md={8} lg={8}>
           <section>
             <H2>Resources</H2>

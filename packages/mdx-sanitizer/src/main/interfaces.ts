@@ -16,12 +16,12 @@ interface TagReplacementMap {
 }
 
 interface Config {
-  customComponentKeys?: string[]
+  customComponentKeys: string[]
   fallbackComponent: ComponentReplaceFn
-  allowImports?: boolean
-  allowExports?: boolean
+  allowImports: boolean
+  allowExports: boolean
   stripHTMLComments?: boolean
-  tagReplacements?: TagReplacementMap
+  tagReplacements: TagReplacementMap
 }
 
 export type { ComponentReplaceFn, Config, TagReplacementMap }

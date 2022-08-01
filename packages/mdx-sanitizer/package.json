@@ -25,7 +25,9 @@
     "dependencies": {
         "@mdx-js/mdx": "^2.1.2",
         "html-comment-regex": "^1.1.2",
+        "mdast-util-mdx-jsx": "^2.1.0",
         "unified": "^10.1.2",
+        "unist-util-visit": "^4.1.0",
         "vfile": "^5.3.4"
     }
 }

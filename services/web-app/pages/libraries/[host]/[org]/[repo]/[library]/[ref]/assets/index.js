@@ -91,7 +91,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
   const { description } = libraryData.content
 
   const seo = {
-    title: 'Library assets',
+    title: 'Assets',
     description
   }
 

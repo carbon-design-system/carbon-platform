@@ -35,19 +35,6 @@
   margin-left: convert.rem(-1px);
 }
 
-// override carbon padding and max width
-.kits-button {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  max-width: none;
-  padding-right: spacing.$spacing-05;
-  @include breakpoint.breakpoint(lg) {
-    width: 50%;
-  }
-}
-
 .tabs-column {
   position: sticky;
   z-index: map.get(variables.$z-indexes, 'overlay');

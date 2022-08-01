@@ -4,8 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Button, Column, Grid } from '@carbon/react'
-import { ArrowRight } from '@carbon/react/icons'
+import { Button, ButtonSet, Column, Grid } from '@carbon/react'
+import { ArrowRight, Launch } from '@carbon/react/icons'
 import { Svg32Github, Svg32Library, Svg64Community } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
@@ -17,6 +17,7 @@ import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'ty
 import CardGroup from '@/components/card-group'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
+import DemoLinks from '@/components/demo-links'
 import { H2 } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import PageDescription from '@/components/page-description'
@@ -28,7 +29,6 @@ import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData, getLibraryNavData, getLibraryParams } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { getLicense } from '@/utils/schema'
-import { getUrlWithProtocol } from '@/utils/string'
 
 import styles from './index.module.scss'
 
@@ -66,14 +66,6 @@ const Library = ({ libraryData, params, navData }) => {
 
   const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
 
-  let externalDocsLink
-  if (libraryData.content.externalDocsUrl) {
-    externalDocsLink = {
-      name: 'External docs',
-      url: libraryData.content.externalDocsUrl
-    }
-  }
-
   const getVersion = () => {
     if (params.ref === 'main' || params.ref === 'master' || params.ref === 'latest') {
       return 'Latest'
@@ -100,30 +92,6 @@ const Library = ({ libraryData, params, navData }) => {
         </ResourceCard>
       </Column>
     )
-  }
-
-  const DemoLinks = ({ links = [] }) => {
-    const linkList = links.filter((link) => !!link).sort((a, b) => a.name.localeCompare(b.name))
-
-    let demoLinks
-    if (linkList.length > 0) {
-      demoLinks = (
-        <CardGroup>
-          {linkList.map((link, i) => (
-            <Column sm={4} md={4} lg={4} key={i}>
-              <ResourceCard
-                title={link.name}
-                href={getUrlWithProtocol(link.url)}
-                actionIcon={link.action === 'download' ? 'download' : 'launch'}
-              >
-                <MdxIcon name={link.type} />
-              </ResourceCard>
-            </Column>
-          ))}
-        </CardGroup>
-      )
-    }
-    return demoLinks
   }
 
   return (
@@ -158,7 +126,7 @@ const Library = ({ libraryData, params, navData }) => {
               </DashboardItem>
             </Column>
             <Column className={dashboardStyles.column} sm={4} lg={8}>
-              <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }}>
+              <DashboardItem aspectRatio={{ sm: '3x4', md: '3x4', lg: 'none', xlg: 'none' }}>
                 <Grid as="dl" className={dashboardStyles.subgrid}>
                   <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Maintainer</dt>
@@ -170,25 +138,36 @@ const Library = ({ libraryData, params, navData }) => {
                     <dt className={dashboardStyles.label}>License</dt>
                     <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
                   </Column>
+                </Grid>
+
+                <ButtonSet className={dashboardStyles['button-set']}>
                   <Button
-                    className={styles['versions-button']}
+                    className={dashboardStyles['dashboard-button']}
                     onClick={() => {
                       router.push(assetsPath)
                     }}
                   >
-                    View assets
+                    View all library assets
                     <ArrowRight size={16} />
+                  </Button>{' '}
+                  <Button
+                    kind="tertiary"
+                    className={dashboardStyles['dashboard-button']}
+                    href={libraryData.content.externalDocsUrl}
+                  >
+                    View library docs
+                    <Launch size={16} />
                   </Button>
-                </Grid>
+                </ButtonSet>
               </DashboardItem>
             </Column>
           </Dashboard>
         </Column>
-        {(externalDocsLink || libraryData.content.demoLinks) && (
+        {libraryData.content.demoLinks && (
           <Column sm={4} md={8} lg={8}>
             <section>
               <H2>Demo links</H2>
-              <DemoLinks links={[...get(libraryData, 'content.demoLinks', []), externalDocsLink]} />
+              <DemoLinks links={[...get(libraryData, 'content.demoLinks', [])]} />
             </section>
           </Column>
         )}

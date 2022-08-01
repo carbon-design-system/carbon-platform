@@ -7,16 +7,8 @@
 import StorybookDemo from '@/components/storybook-demo'
 
 const stories = {
-  title: 'MDX/Storybook Demo',
-  component: StorybookDemo,
-  argTypes: {
-    children: {
-      control: false
-    },
-    className: {
-      control: false
-    }
-  }
+  title: 'MDX/StorybookDemo',
+  component: StorybookDemo
 }
 
 export default stories
@@ -25,8 +17,8 @@ const Template = (args) => (
   <StorybookDemo
     {...args}
     themeSelector={true}
-    size="small"
-    height="tall"
+    wide
+    tall
     url="https://react.carbondesignsystem.com"
     variants={[
       {

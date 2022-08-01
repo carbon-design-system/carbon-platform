@@ -17,7 +17,7 @@
     "@nestjs/common": "^9.0.5",
     "@nestjs/core": "^9.0.5",
     "@nestjs/graphql": "^10.0.21",
-    "@nestjs/microservices": "^9.0.5",
+    "@nestjs/microservices": "^9.0.7",
     "@types/node": "^16.11.45",
     "esbuild": "~0.14.49",
     "rimraf": "^3.0.2",

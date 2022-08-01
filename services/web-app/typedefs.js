@@ -38,6 +38,21 @@
  */
 
 /**
+ * @typedef {object} DesignKit
+ * @property {string} name - Design Kit name
+ * @property {string} description - Design kit description
+ * @property {('adobe-ase'|'adobe-xd'|'axure'|'figma'|'invision-freehand'| 'sketch')} tool
+ *  - Design kit’s compatible tool
+ * @property {('elements'|'guidelines'|'ui'|'wireframes')} type - Design kit primary categorization
+ * @property {('draft'| 'experimental' | 'status'|'deprecated'| object)} status
+ *  - Design kit consumption exptectations
+ * @property {string} url - Design kit URL
+ * @property {('download'| 'link')} action - Determines the action icon
+ * @property {('apache-2.0'|'ibm-internal'|'mit')} license - Design kit license
+ * @property {boolean} noIndex - If set to true, the global catalogs will exclude the kit
+ */
+
+/**
  * @typedef {object} LibraryContent
  * @property {string} description - One-two sentence description
  * @property {string} externalDocsUrl - Absolute URL to externally-hosted documentation

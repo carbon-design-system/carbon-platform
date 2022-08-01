@@ -12,14 +12,14 @@ import { Runtime } from '../../main/runtime/runtime.js'
 
 test('it correctly gets an environment variable', (t) => {
   const runtime = new Runtime()
-  const result = getEnvVar('NODE_ENV', '', runtime)
+  const result = getEnvVar(runtime, 'NODE_ENV')
 
   t.is(result, 'test')
 })
 
 test('it correctly uses the fallback', (t) => {
   const runtime = new Runtime()
-  const result = getEnvVar('NOT_FOUND', 'fallback', runtime)
+  const result = getEnvVar(runtime, 'NOT_FOUND', 'fallback')
 
   t.is(result, 'fallback')
 })
@@ -27,7 +27,7 @@ test('it correctly uses the fallback', (t) => {
 test('it throws an exception when the var is not set in standard mode', (t) => {
   const runtime = new Runtime({ runMode: RunMode.Standard })
   try {
-    getEnvVar('NOT_FOUND', 'fallback', runtime)
+    getEnvVar(runtime, 'NOT_FOUND', 'fallback')
   } catch (err) {
     t.pass()
   }

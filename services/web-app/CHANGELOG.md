@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.10...@carbon-platform/web-app@0.2.11) (2022-07-30)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** handle relative urls in library pages ([2b57ecf](https://github.com/carbon-design-system/carbon-platform/commit/2b57ecfcdc45dc73f80b82b889e2f0775221dcde))
+* **web-app:** merge with main ([9eb2a4d](https://github.com/carbon-design-system/carbon-platform/commit/9eb2a4d2da3186033ac6fb09a306881bc4d7c04b))
+* **web-app:** remove mock library from devLibraries ([f808c61](https://github.com/carbon-design-system/carbon-platform/commit/f808c61eb396fbe8691cd30a4483126d7bc91e8b))
+* **web-app:** storybook compile error ([a888d23](https://github.com/carbon-design-system/carbon-platform/commit/a888d2334f3e6457887fa25570302f8186f0737a))
+
+### [0.2.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.9...@carbon-platform/web-app@0.2.10) (2022-07-29)
+
+
+### Features 🌟
+
+* **web-app:** added design kit minimal functionality ([8e9273c](https://github.com/carbon-design-system/carbon-platform/commit/8e9273c2fc0b692b101239ea5dd8c66584f8e5e0))
+* **web-app:** design kit validation and error handling, global function ([4d60eaa](https://github.com/carbon-design-system/carbon-platform/commit/4d60eaab7217a3a852826252fe94ecbab99d6e79))
+
+
+### Bug Fixes 🐛
+
+* delete Vanilla JS text ([7e820e6](https://github.com/carbon-design-system/carbon-platform/commit/7e820e6a890cd4c5ebe3795be1604be4c9137df9))
+* merge with main ([6285f37](https://github.com/carbon-design-system/carbon-platform/commit/6285f37e582ff2bacf9a4dc7c2d40606df4301db))
+* udpates to developing ([c8a1562](https://github.com/carbon-design-system/carbon-platform/commit/c8a1562fca5bb2227961c7af6214d034d6e205da))
+* **web-app:** reduce cognitive complexity of github function ([bef9521](https://github.com/carbon-design-system/carbon-platform/commit/bef95213e71c19f2190fc7ce7a96edfe4ecb3f02))
+* **web-app:** remove test mock data ([652cad3](https://github.com/carbon-design-system/carbon-platform/commit/652cad32894bcd264dbb2b722a425d22bd5d48ff))
+
+### [0.2.9](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.8...@carbon-platform/web-app@0.2.9) (2022-07-28)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** display design only tag in library assets ([db5e213](https://github.com/carbon-design-system/carbon-platform/commit/db5e213b80ace828e66f0783d0c445cd5a4e1375))
+* **web-app:** fix design only type capitalization ([861b9d0](https://github.com/carbon-design-system/carbon-platform/commit/861b9d09f3df9c2f1e15b76116cd3668a73b960d))
+
+### [0.2.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.7...@carbon-platform/web-app@0.2.8) (2022-07-27)
+
+
+### Bug Fixes 🐛
+
+* udpate index library  names ([b2055ee](https://github.com/carbon-design-system/carbon-platform/commit/b2055ee3d04a721cd99355633f3fd57e8db5bca3))
+* **web-app:** next config output standalone fix ([b085b94](https://github.com/carbon-design-system/carbon-platform/commit/b085b94505ab131c6ac62d12d0dff755342b8283))
+
+### [0.2.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.6...@carbon-platform/web-app@0.2.7) (2022-07-26)
+
+
+### Bug Fixes 🐛
+
+* contributing links ([aed46eb](https://github.com/carbon-design-system/carbon-platform/commit/aed46eb5c010970c36ff9e0be7f740a0c00cac86))
+
 ### [0.2.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.5...@carbon-platform/web-app@0.2.6) (2022-07-23)
 
 

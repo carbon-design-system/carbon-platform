@@ -9,7 +9,7 @@ import { Octokit } from 'octokit'
 import { exec, getWorkspaceForFile } from '../lib/utils.js'
 
 const commitTypes = ['fix', 'feat', 'breaking']
-const commentingUserLogin = 'carbon-platform-bot'
+const commentingUserLogin = 'carbon-bot'
 const remote = 'origin'
 const accessToken = process.env.PR_COMMENT_BOT_TOKEN
 const headRef = process.env.GITHUB_HEAD_REF
@@ -43,7 +43,7 @@ function checkVars() {
 function getCommitData() {
   // Get the commits between the current ref and the base ref
   const commits = exec(
-    `git log --format=format:"%H %s" ${remote}/${headRef}...${remote}/${baseRef}`
+    `git log --format=format:"%H %s" ${remote}/${headRef} ^${remote}/${baseRef}`
   ).split('\n')
 
   // determine the type (feat, fix, or breaking) of each commit and store it along with its ref
@@ -176,6 +176,8 @@ async function addPrComment(commentBody) {
 //
 
 checkVars()
+
+console.log(`Comparing ${headRef} to ${baseRef}`)
 const commitData = getCommitData()
 console.log(commitData)
 

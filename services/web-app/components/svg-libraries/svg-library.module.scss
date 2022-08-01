@@ -3,7 +3,7 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
-@use '~styles/variables' as variables;
+@use '../../styles/variables' as variables;
 @use 'sass:map';
 @use '@carbon/react/scss/utilities/convert' as convert;
 

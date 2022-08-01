@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.28](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.27...@carbon-platform/data-graph@0.1.28) (2022-07-30)
+
+
+### Bug Fixes 🐛
+
+* sonarcloud smells ([2b98c6a](https://github.com/carbon-design-system/carbon-platform/commit/2b98c6a896e27e77617786625ad7db43cb6a413a))
+
+### [0.1.27](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.26...@carbon-platform/data-graph@0.1.27) (2022-07-29)
+
 ### [0.1.26](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.25...@carbon-platform/data-graph@0.1.26) (2022-07-23)
 
 

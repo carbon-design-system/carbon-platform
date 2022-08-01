@@ -11,6 +11,6 @@ const runtime = new Runtime()
 /**
  * The name of the service used during logging.
  */
-const CARBON_SERVICE_NAME = getEnvVar('CARBON_SERVICE_NAME', 'local-dev', runtime)
+const CARBON_SERVICE_NAME = getEnvVar(runtime, 'CARBON_SERVICE_NAME', 'local-dev')
 
 export { CARBON_SERVICE_NAME }

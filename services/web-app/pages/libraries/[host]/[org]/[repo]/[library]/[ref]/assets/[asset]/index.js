@@ -18,13 +18,14 @@ import { libraryPropTypes, paramsPropTypes } from 'types'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
-import ExternalLinks from '@/components/external-links'
+import MdxIcon from '@/components/mdx-icon'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import PageNav from '@/components/page-nav'
 import PageTabs from '@/components/page-tabs'
 import StatusIcon from '@/components/status-icon'
 import { framework } from '@/data/framework'
+import { libraryAllowList } from '@/data/libraries.mjs'
 import { assetsNavData } from '@/data/nav-data'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
@@ -32,7 +33,7 @@ import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getAssetIssueCount, getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
-import { getAssetType, getTagsList } from '@/utils/schema'
+import { getAssetType } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 
 import styles from './index.module.scss'
@@ -118,15 +119,6 @@ const Asset = ({ libraryData, params }) => {
     }
   ]
 
-  let externalDocsLink
-
-  if (assetData.content.externalDocsUrl) {
-    externalDocsLink = {
-      name: 'External docs',
-      url: assetData.content.externalDocsUrl
-    }
-  }
-
   const pageNavItems = [
     {
       title: 'At a glance',
@@ -142,6 +134,11 @@ const Asset = ({ libraryData, params }) => {
     }
   ]
   const githubRepoUrl = `https://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
+
+  const frameworkIcon = assetData.content.framework
+
+  console.log(libraryAllowList)
+  console.log(assetData.params.library)
 
   return (
     <div ref={contentRef}>
@@ -205,6 +202,11 @@ const Asset = ({ libraryData, params }) => {
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>Framework</dt>
                       <dd className={dashboardStyles.meta}>
+                        <MdxIcon
+                          name={frameworkIcon}
+                          className={dashboardStyles['framework-icon']}
+                        />
+
                         {get(framework, `[${assetData.content.framework}].name`, '–')}
                       </dd>
                     </Column>
@@ -226,19 +228,10 @@ const Asset = ({ libraryData, params }) => {
                       sm={2}
                       lg={4}
                     >
-                      <dt className={clsx(dashboardStyles.label)}>Links</dt>
-                      <dd className={dashboardStyles.meta}>
-                        <ExternalLinks
-                          links={[...get(assetData, 'content.demoLinks', []), externalDocsLink]}
-                        />
-                      </dd>
+                      <dt className={clsx(dashboardStyles.label)}>Other frameworks</dt>
+                      <dd className={dashboardStyles.meta}></dd>
                     </Column>
-                    <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
-                      <dt className={dashboardStyles.label}>Tags</dt>
-                      <dd className={dashboardStyles.meta}>
-                        {getTagsList(assetData).join(', ') || '–'}
-                      </dd>
-                    </Column>
+
                     <Button className={styles['kits-button']}>
                       Coming soon...
                       <ArrowRight size={16} />

@@ -42,7 +42,8 @@ const svgIcons = {
   zenhub: Zenhub,
   vue: Vue,
   svelte: Svelte,
-  js: Js
+  js: Js,
+  vanilla: Js
 }
 
 const localIcons = {
@@ -51,6 +52,7 @@ const localIcons = {
   vue,
   angular,
   webcomponents,
+  'web-component': webcomponents,
   sass,
   codepen
 }
@@ -64,11 +66,11 @@ const iconColor = {
   inverse: 'icon-inverse'
 }
 
-const MdxIcon = ({ name, color }) => {
+const MdxIcon = ({ name, className, color }) => {
   if (svgIcons[name]) {
     const SvgComponent = svgIcons[name]
     return (
-      <div className={styles['mdx-icon']}>
+      <div className={clsx(className, styles['mdx-icon'])}>
         <SvgComponent />
       </div>
     )
@@ -76,7 +78,7 @@ const MdxIcon = ({ name, color }) => {
 
   if (localIcons[name]) {
     return (
-      <div className={styles['mdx-icon']}>
+      <div className={clsx(className, styles['mdx-icon'])}>
         <Image alt={`${name} icon`} src={localIcons[name]} />
       </div>
     )
@@ -84,7 +86,9 @@ const MdxIcon = ({ name, color }) => {
 
   if (carbonIcons[name]) {
     const Icon = carbonIcons[name]
-    return <Icon className={clsx(styles['mdx-icon'], styles[iconColor[color]])} size={32} />
+    return (
+      <Icon className={clsx(className, styles['mdx-icon'], styles[iconColor[color]])} size={32} />
+    )
   }
 
   return null
@@ -97,6 +101,10 @@ const acceptedCompNames = [
 ]
 
 MdxIcon.propTypes = {
+  /**
+   * Optional class name.
+   */
+  className: PropTypes.string,
   /**
    * Optional: can supply color "icon-inverse" for carbonIcons.
    */

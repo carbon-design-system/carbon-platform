@@ -90,3 +90,16 @@
 .meta-link--large {
   @include type.type-style('fluid-heading-04', true);
 }
+
+.framework-icon {
+  position: relative;
+  top: -(spacing.$spacing-02);
+  width: 1rem;
+  height: 1rem;
+  margin-right: spacing.$spacing-03;
+}
+
+.framework-icon svg {
+  width: 1rem;
+  height: 1rem;
+}

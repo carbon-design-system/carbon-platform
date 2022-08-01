@@ -12,17 +12,19 @@ import { RequestLogInterceptor } from '../../../main/microservice/interceptors/r
 
 const logging = new Logging({ component: 'TestComponent' })
 
+const handle = () => {
+  return {
+    pipe: () => {
+      return observableOf('hello test!')
+    }
+  }
+}
+
 test('it handles rpc interceptions', (t) => {
   t.plan(1)
 
   const next = {
-    handle: () => {
-      return {
-        pipe: () => {
-          return observableOf('hello test!')
-        }
-      }
-    }
+    handle
   }
 
   const executionContext = {
@@ -45,13 +47,7 @@ test('it handles http interceptions', (t) => {
   t.plan(1)
 
   const next = {
-    handle: () => {
-      return {
-        pipe: () => {
-          return observableOf('hello test!')
-        }
-      }
-    }
+    handle
   }
 
   const executionContext = {
@@ -88,13 +84,7 @@ test("it doesn't break when given an unknown type", (t) => {
   t.plan(1)
 
   const next = {
-    handle: () => {
-      return {
-        pipe: () => {
-          return observableOf('hello test!')
-        }
-      }
-    }
+    handle
   }
 
   const executionContext = {

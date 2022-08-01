@@ -14,12 +14,12 @@ import { Runtime } from './runtime.js'
  *   in a build environment).
  * - Otherwise, throws an exception, indicating that the specified var is required.
  *
+ * @param runtime Runtime configuration object
  * @param varName Name of env variable
  * @param fallbackValue Value to return if env var is not set in Dev mode
- * @param runtime Runtime configuration object
  * @returns Value of env variable or supplied fallback value
  */
-function getEnvVar(varName: string, fallbackValue = '', runtime: Runtime): string {
+function getEnvVar(runtime: Runtime, varName: string, fallbackValue = ''): string {
   const value = process.env[varName]
 
   if (!value && runtime.runMode !== RunMode.Dev && runtime.environment !== Environment.Build) {

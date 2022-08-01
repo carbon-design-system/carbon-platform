@@ -51,7 +51,7 @@ export const type = {
   },
   'design-only': {
     bgColor: gray[20],
-    name: 'Design Only',
+    name: 'Design only',
     path: '/',
     textColor: gray[70]
   },

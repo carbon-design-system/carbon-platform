@@ -9,11 +9,11 @@ import { getEnvVar, Runtime } from '@carbon-platform/api/runtime'
 const runtime = new Runtime()
 
 const CARBON_LOGDNA_ENDPOINT = getEnvVar(
+  runtime,
   'CARBON_LOGDNA_ENDPOINT',
-  'https://logs.us-south.logging.cloud.ibm.com/logs/ingest',
-  runtime
+  'https://logs.us-south.logging.cloud.ibm.com/logs/ingest'
 )
 
-const CARBON_LOGDNA_KEY = getEnvVar('CARBON_LOGDNA_KEY', '', runtime)
+const CARBON_LOGDNA_KEY = getEnvVar(runtime, 'CARBON_LOGDNA_KEY')
 
 export { CARBON_LOGDNA_ENDPOINT, CARBON_LOGDNA_KEY }

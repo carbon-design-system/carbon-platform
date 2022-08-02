@@ -128,6 +128,7 @@ export const getRemoteMdxSource = async (repoParams, mdxPath) => {
     })
   } catch (err) {
     logging.error(err)
+    return null
   }
 
   return response

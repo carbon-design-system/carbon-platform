@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "description": "Strips out undesired content from MDX files",
     "license": "Apache-2.0",
-    "main": "dist/mdx-sanitizer-plugin.js",
+    "main": "dist/main",
+    "type": "module",
     "publishConfig": {
         "access": "public"
     },

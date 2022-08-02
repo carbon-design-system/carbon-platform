@@ -15,10 +15,10 @@ import { Processor, unified } from 'unified'
 import { visit } from 'unist-util-visit'
 import { VFile } from 'vfile'
 
-import { ExportFoundException } from './exceptions/export-found-exception'
-import { ImportFoundException } from './exceptions/import-found-exception'
-import { HTMLTags } from './html-tags'
-import { Config } from './interfaces'
+import { ExportFoundException } from './exceptions/export-found-exception.js'
+import { ImportFoundException } from './exceptions/import-found-exception.js'
+import { HTMLTags } from './html-tags.js'
+import { Config } from './interfaces.js'
 
 const processor = unified().use(remarkParse).use(remarkMdx).use(remarkMarkAndUnravel)
 
@@ -35,8 +35,6 @@ const processor = unified().use(remarkParse).use(remarkMdx).use(remarkMarkAndUnr
  * @returns {Root} modified tree
  */
 const sanitizeASTTree = async (config: Config, tree: Parent) => {
-  console.log(config.customComponentKeys, tree)
-
   // Imports/Exports
   if (!config.allowExports || !config.allowImports) {
     visit(tree, { type: 'mdxjsEsm' }, (node: Literal) => {
@@ -75,7 +73,7 @@ const sanitizeASTTree = async (config: Config, tree: Parent) => {
     tree,
     (node) => Object.keys(config.tagReplacements).includes((node as MdxJsxFlowElement).name ?? ''),
     async (node: MdxJsxFlowElement, index: number, parent: Parent) => {
-      const stringSrc = config.tagReplacements[(node as MdxJsxFlowElement).name ?? '']?.(node)
+      const stringSrc = config.tagReplacements[node.name ?? '']?.(node)
 
       // TODO: fix type
       const replaceContentNode: any = await new Promise((resolve) => {
@@ -133,9 +131,8 @@ function mdxSanitizerPlugin(this: Processor, config: Config) {
       vFile.value = (vFile.value as string).replace(htmlCommentRegex, '')
       return parse(vFile)
     }
-    return null
   }
-  return sanitizeASTTree.bind(config)
+  return sanitizeASTTree.bind(null, config)
 }
 
 export default mdxSanitizerPlugin

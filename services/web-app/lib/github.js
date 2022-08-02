@@ -40,7 +40,7 @@ export const getLibraryNavData = (params, libraryData) => {
 
   const getVersion = () => {
     if (params.ref === 'main' || params.ref === 'master' || params.ref === 'latest') {
-      return 'Latest'
+      return 'Latest version'
     }
 
     return `v${libraryData.content.version}`

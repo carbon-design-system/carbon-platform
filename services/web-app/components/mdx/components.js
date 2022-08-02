@@ -47,6 +47,7 @@ import Preview from '@/components/preview'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
 import StatusIndicatorTable from '@/components/status-indicator-table'
+import StorybookDemo from '@/components/storybook-demo'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'
@@ -125,6 +126,7 @@ const components = {
   ResourceCard,
   Row,
   StatusIndicatorTable,
+  StorybookDemo,
   Tab,
   Tabs,
   Title,

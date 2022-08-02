@@ -169,13 +169,16 @@ const Asset = ({ libraryData, params }) => {
                 <DashboardItem aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}>
                   <dl>
                     <dt className={dashboardStyles.label}>Library</dt>
-                    <dd className={dashboardStyles['label--large']}>{libraryData.content.name}</dd>
+                    <dd className={dashboardStyles['label--large']}>
+                      <Link href={libraryPath} passHref>
+                        <CarbonLink className={dashboardStyles['meta-link--large']}>
+                          {libraryData.content.name}
+                          <br />
+                          {`v${libraryData.content.version}`}
+                        </CarbonLink>
+                      </Link>
+                    </dd>
                   </dl>
-                  <Link href={libraryPath} passHref>
-                    <CarbonLink className={dashboardStyles['meta-link--large']}>
-                      {`v${libraryData.content.version}`}
-                    </CarbonLink>
-                  </Link>
                   {MaintainerIcon && (
                     <MaintainerIcon
                       className={clsx(

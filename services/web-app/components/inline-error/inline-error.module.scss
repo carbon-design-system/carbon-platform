@@ -8,8 +8,14 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
 
-.notification {
-  padding-top: spacing.$spacing-06;
+// override carbon display close button
+:global(.cds--inline-notification__close-button) {
+  display: none;
+}
+
+// override carbon - icon inline with title
+:global(.cds--inline-notification__icon) {
+  margin-top: spacing.$spacing-05;
 }
 
 // override carbon max-width
@@ -24,6 +30,11 @@
   margin-right: 0;
 }
 
+.container {
+  display: inline;
+  width: 100%;
+}
+
 .title {
   @include type.type-style('heading-compact-01', true);
 
@@ -31,6 +42,7 @@
 }
 
 .link {
+  padding-right: spacing.$spacing-04;
   cursor: pointer;
   float: right;
 }

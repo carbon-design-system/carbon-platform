@@ -68,6 +68,14 @@ export const assetsNavData = [
       {
         path: '/about-carbon/meetups',
         title: 'Meetups'
+      },
+      {
+        path: '/about-carbon/faq',
+        title: 'FAQ'
+      },
+      {
+        path: '/about-carbon/contact',
+        title: 'Contact'
       }
     ]
   },
@@ -146,16 +154,6 @@ export const assetsNavData = [
         hasTabs: true
       },
       {
-        path: '/elements/accessibility/overview',
-        title: ' Accessibility',
-        hasTabs: true
-      },
-      {
-        path: '/elements/content/overview',
-        title: ' Content',
-        hasTabs: true
-      },
-      {
         path: '/elements/color/overview',
         title: ' Color',
         hasTabs: true
@@ -193,16 +191,44 @@ export const assetsNavData = [
     ]
   },
   {
-    path: '/libraries',
-    title: 'Libraries'
+    title: 'Guidelines',
+    items: [
+      {
+        path: '/guidelines/accessibility/overview',
+        title: ' Accessibility',
+        hasTabs: true
+      },
+      {
+        path: '/guidelines/content/overview',
+        title: ' Content',
+        hasTabs: true
+      }
+    ]
   },
   {
     title: 'Catalogs',
     isSection: true,
     items: [
       {
-        path: type.component.path,
-        title: type.component.namePlural
+        title: 'Assets',
+        items: [
+          {
+            path: type.component.path,
+            title: type.component.namePlural
+          },
+          {
+            path: type.function.path,
+            title: type.function.namePlural
+          },
+          {
+            path: type.pattern.path,
+            title: type.pattern.namePlural
+          },
+          {
+            path: type.template.path,
+            title: type.template.namePlural
+          }
+        ]
       },
       // remove elements for the first release
       // {
@@ -210,16 +236,8 @@ export const assetsNavData = [
       //   title: type.element.namePlural
       // },
       {
-        path: type.function.path,
-        title: type.function.namePlural
-      },
-      {
-        path: type.pattern.path,
-        title: type.pattern.namePlural
-      },
-      {
-        path: type.template.path,
-        title: type.template.namePlural
+        path: '/libraries',
+        title: 'Libraries'
       }
     ]
   },
@@ -261,13 +279,5 @@ export const assetsNavData = [
         ]
       }
     ]
-  },
-  {
-    path: '/faq',
-    title: 'FAQ'
-  },
-  {
-    path: '/contact',
-    title: 'Contact'
   }
 ]

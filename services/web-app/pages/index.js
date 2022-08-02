@@ -100,7 +100,7 @@ const PageContent = () => {
       <Grid className={styles['highlight-grid']}>
         <Column sm={4} md={8} lg={8} xlg={7}>
           <h2 className={clsx(styles.subheading, styles['subheading--no-padding'])}>
-            Asset catalog
+            Asset catalogs
           </h2>
           <p className={styles['subheading-content']}>
             Asset catalogs allow you to search across all open and inner source resources and apply

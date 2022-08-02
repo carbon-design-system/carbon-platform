@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.11...@carbon-platform/web-app@0.2.12) (2022-08-02)
+
+
+### Misc. 🔮
+
+* bump sass from 1.53.0 to 1.54.0 ([0c2c2ef](https://github.com/carbon-design-system/carbon-platform/commit/0c2c2efb375c6b84b509acd26d777c38e6f706c3))
+
 ### [0.2.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.10...@carbon-platform/web-app@0.2.11) (2022-07-30)
 
 

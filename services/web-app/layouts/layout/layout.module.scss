@@ -24,6 +24,7 @@
 
 .header-name {
   height: 100%;
+  white-space: nowrap;
   @include breakpoint.breakpoint(lg) {
     position: absolute;
   }

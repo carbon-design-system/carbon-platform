@@ -103,3 +103,30 @@
   width: 1rem;
   height: 1rem;
 }
+
+/*
+ * Buttons
+ */
+// override carbon display flex tablet/mobile
+:global(.cds--btn-set).button-set {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+
+  @include breakpoint.breakpoint(lg) {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
+
+// override carbon width, max width and padding
+:global(.cds--btn-set .cds--btn).dashboard-button {
+  width: 100%;
+  max-width: 100%;
+  padding-right: spacing.$spacing-05;
+  @include breakpoint.breakpoint(lg) {
+    width: 50%;
+  }
+}

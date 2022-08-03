@@ -12,17 +12,12 @@ import slugify from 'slugify'
 import RemoteMdxLoader from '@/components/remote-mdx-loader'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout/layout'
-import {
-  getAllLibraries,
-  getLibraryData,
-  getLibraryNavData,
-  getRemoteMdxSource
-} from '@/lib/github'
-import { parseMdxResponseContent } from '@/utils/mdx'
+import { getAllLibraries, getLibraryData, getLibraryNavData } from '@/lib/github'
+import { getRemoteMdxPageStaticProps } from '@/utils/mdx'
 import { isValidHttpUrl } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 
-const RemoteMdxPage = ({ source, navData, navTitle, libraryData }) => {
+const RemoteMdxPage = ({ source, navData, navTitle, libraryData, mdxError }) => {
   const seo = {
     title: `${libraryData?.content?.name ?? ''} - ${navTitle}`
   }
@@ -37,7 +32,7 @@ const RemoteMdxPage = ({ source, navData, navTitle, libraryData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <RemoteMdxLoader source={source} ignoreTabs />
+      <RemoteMdxLoader source={source} ignoreTabs mdxError={mdxError} />
     </>
   )
 }
@@ -86,16 +81,14 @@ export const getStaticProps = async ({ params }) => {
     pageSrc = path.join('.' + libraryData.params.path, pageSrc)
   }
 
-  const mdxSource = await parseMdxResponseContent(
-    await getRemoteMdxSource(
-      {
-        host,
-        org,
-        repo,
-        ref
-      },
-      pageSrc
-    )
+  const { source, mdxError } = await getRemoteMdxPageStaticProps(
+    {
+      host,
+      org,
+      repo,
+      ref
+    },
+    pageSrc
   )
 
   return {
@@ -103,7 +96,8 @@ export const getStaticProps = async ({ params }) => {
       libraryData,
       navData,
       params,
-      source: mdxSource,
+      source,
+      mdxError,
       navTitle
     }
   }

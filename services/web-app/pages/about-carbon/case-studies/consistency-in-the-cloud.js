@@ -7,10 +7,9 @@
 import { NextSeo } from 'next-seo'
 
 import RemoteMdxLoader from '@/components/remote-mdx-loader'
-import { getRemoteMdxSource } from '@/lib/github'
-import { parseMdxResponseContent } from '@/utils/mdx'
+import { getRemoteMdxPageStaticProps } from '@/utils/mdx'
 
-const RemoteMdxPage = ({ source }) => {
+const RemoteMdxPage = ({ source, mdxError }) => {
   const seo = {
     title: 'Consistency in the Cloud'
   }
@@ -18,30 +17,22 @@ const RemoteMdxPage = ({ source }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <RemoteMdxLoader source={source} />
+      <RemoteMdxLoader source={source} mdxError={mdxError} />
     </>
   )
 }
 
 export const getStaticProps = async () => {
-  const mdxSource = await parseMdxResponseContent(
-    await getRemoteMdxSource(
-      {
-        host: 'github.com',
-        org: 'carbon-design-system',
-        repo: 'carbon-website',
-        library: 'carbon-website',
-        ref: 'main'
-      },
-      '/src/pages/case-studies/consistency-in-the-cloud.mdx'
-    )
+  return getRemoteMdxPageStaticProps(
+    {
+      host: 'github.com',
+      org: 'carbon-design-system',
+      repo: 'carbon-website',
+      library: 'carbon-website',
+      ref: 'main'
+    },
+    '/src/pages/case-studies/consistency-in-the-cloud.mdx'
   )
-
-  return {
-    props: {
-      source: mdxSource
-    }
-  }
 }
 
 export default RemoteMdxPage

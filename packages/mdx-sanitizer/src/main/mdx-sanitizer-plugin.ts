@@ -12,7 +12,7 @@ import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx'
 import remarkMdx from 'remark-mdx'
 import remarkParse from 'remark-parse'
 import { Processor, unified } from 'unified'
-import { visit } from 'unist-util-visit'
+import { Node, visit } from 'unist-util-visit'
 import { VFile } from 'vfile'
 
 import { ExportFoundException } from './exceptions/export-found-exception.js'
@@ -20,7 +20,25 @@ import { ImportFoundException } from './exceptions/import-found-exception.js'
 import { HTMLTags } from './html-tags.js'
 import { Config } from './interfaces.js'
 
-const processor = unified().use(remarkParse).use(remarkMdx).use(remarkMarkAndUnravel)
+/**
+ * Converts a chunk of mdx source string into an MDAST node
+ *
+ * @param {string} src src mdx string to convert to MDAST node
+ * @param {(Node) => void} callback function to call with resulting MDAST node
+ * as a param when content has been parsed
+ */
+const getMDASTNodeFromSrc = async (src: string, callback: (node: Node) => void) => {
+  const processor = unified().use(remarkParse).use(remarkMdx).use(remarkMarkAndUnravel)
+  const node: Node = await new Promise((resolve) => {
+    processor.run(processor.parse(src), src, (_, replaceContentTree) => {
+      resolve(replaceContentTree!)
+    })
+  })
+  // positions expects numbers, have to cast to any to make it work
+  node.position!.end = { line: null as any, column: null as any, offset: null as any }
+
+  callback(node)
+}
 
 /**
  * Sanitizes MDX Ast tree:
@@ -35,6 +53,7 @@ const processor = unified().use(remarkParse).use(remarkMdx).use(remarkMarkAndUnr
  * @returns {Root} modified tree
  */
 const sanitizeASTTree = async (config: Config, tree: Parent) => {
+  const promises: Promise<any>[] = []
   // Imports/Exports
   if (!config.allowExports || !config.allowImports) {
     visit(tree, { type: 'mdxjsEsm' }, (node: Literal) => {
@@ -56,15 +75,11 @@ const sanitizeASTTree = async (config: Config, tree: Parent) => {
     async (node: MdxJsxFlowElement, index: number, parent: Parent) => {
       const stringSrc = config.fallbackComponent(node)
 
-      // TODO: fix type
-      const replaceContentNode: any = await new Promise((resolve) => {
-        processor.run(processor.parse(stringSrc), stringSrc, (_, replaceContentTree) => {
-          resolve(replaceContentTree)
+      promises.push(
+        getMDASTNodeFromSrc(stringSrc, (replacementNode) => {
+          parent.children[index] = replacementNode as MdxJsxFlowElement
         })
-      })
-
-      replaceContentNode.position.end = { line: null, column: null, offset: null }
-      parent.children[index] = replaceContentNode
+      )
     }
   )
 
@@ -73,18 +88,17 @@ const sanitizeASTTree = async (config: Config, tree: Parent) => {
     tree,
     (node) => Object.keys(config.tagReplacements).includes((node as MdxJsxFlowElement).name ?? ''),
     async (node: MdxJsxFlowElement, index: number, parent: Parent) => {
-      const stringSrc = config.tagReplacements[node.name ?? '']?.(node)
+      const stringSrc = config.tagReplacements[node.name ?? '']?.(node) ?? ''
 
-      // TODO: fix type
-      const replaceContentNode: any = await new Promise((resolve) => {
-        processor.run(processor.parse(stringSrc), stringSrc, (_, replaceContentTree) => {
-          resolve(replaceContentTree)
+      promises.push(
+        getMDASTNodeFromSrc(stringSrc, (replacementNode) => {
+          parent.children[index] = replacementNode as MdxJsxFlowElement
         })
-      })
-      replaceContentNode.position.end = { line: null, column: null, offset: null }
-      parent.children[index] = replaceContentNode
+      )
     }
   )
+
+  await Promise.all(promises)
 }
 
 /**

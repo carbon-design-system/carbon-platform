@@ -15,6 +15,7 @@ import remarkGfm from 'remark-gfm'
 import unwrapImages from 'remark-unwrap-images'
 
 import components from '@/components/mdx/components'
+import { getRemoteMdxSource } from '@/lib/github'
 import { mdxImgResolver } from '@/utils/mdx-image-resolver'
 
 const logging = new Logging({ component: 'mdx.js' })
@@ -52,17 +53,8 @@ const replacementMapper = {
   script: getScriptReplacementSrc
 }
 
-export const parseMdxResponseContent = async (response) => {
-  if (!response.content) {
-    return {
-      // TODO: replace with full page error
-      compiledSource: (await serialize('<p>Component not found.</p>')).compiledSource,
-      frontmatter: {
-        title: 'Not found'
-      }
-    }
-  }
-
+// TODO: jsDOC
+const parseMdxResponseContent = async (response) => {
   const usageFileSource = Buffer.from(response.content, response.encoding).toString()
 
   // the path to where the mdx file is located on github
@@ -113,4 +105,41 @@ export const parseMdxResponseContent = async (response) => {
         throw err
     }
   })
+}
+
+// TODO: jsDoc
+export const getRemoteMdxPageStaticProps = async (params, src) => {
+  let mdxError
+  const mdxSrc = await getRemoteMdxSource(params, src)
+
+  if (!mdxSrc?.content) {
+    return {
+      props: {
+        mdxError: {
+          type: 'ContentNotFoundException'
+        }
+      }
+    }
+  }
+
+  const mdxSource = await parseMdxResponseContent(mdxSrc).catch((err) => {
+    mdxError = { ...err }
+    switch (true) {
+      case err instanceof ImportFoundException:
+        mdxError.type = 'ImportFoundException'
+        break
+      case err instanceof ExportFoundException:
+        mdxError.type = 'ExportFoundException'
+        break
+      default:
+        mdxError.type = 'Error'
+    }
+  })
+
+  return {
+    props: {
+      source: mdxSource ?? null,
+      mdxError: mdxError ?? null
+    }
+  }
 }

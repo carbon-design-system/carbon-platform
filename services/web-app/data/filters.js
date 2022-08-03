@@ -12,8 +12,8 @@ import { teams } from '@/data/teams'
 
 export const getFilters = (initialFilter = {}) => {
   const firstFilters = {
-    sponsor: {
-      name: 'Sponsor',
+    maintainer: {
+      name: 'Maintainer',
       values: teams
     },
     status: {
@@ -53,4 +53,30 @@ export const getFilters = (initialFilter = {}) => {
   }
 
   return { ...firstFilters, ...tagFilters, ...lastFilters }
+}
+
+export const getLibraryFilters = () => {
+  return {
+    maintainer: {
+      name: 'Maintainer',
+      values: teams
+    },
+    license: {
+      name: 'License',
+      values: {
+        'apache-2.0': {
+          name: 'Apache 2.0'
+        },
+        'ibm-internal': {
+          name: 'IBM Internal'
+        },
+        mit: {
+          name: 'MIT'
+        },
+        'no-license': {
+          name: 'No license'
+        }
+      }
+    }
+  }
 }

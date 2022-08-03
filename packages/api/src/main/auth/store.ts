@@ -9,11 +9,17 @@ import cookieParser from 'cookie-parser'
 import expressSession from 'express-session'
 import path from 'path'
 
-import { getRunMode, RunMode } from '../runtime'
-import { CARBON_MONGO_DB_NAME, CARBON_MONGO_DB_URL, SESSION_SECRET } from './constants'
-import { User } from './interfaces'
+import { RunMode, Runtime } from '../runtime/index.js'
+import { CARBON_MONGO_DB_NAME, CARBON_MONGO_DB_URL, SESSION_SECRET } from './constants.js'
+import { User } from './interfaces.js'
 
 let storeInstance: expressSession.Store
+
+// TODO: For this file as a whole, wrap it up into a class that has its configuration "injected" so
+// it is not required to reach out to the runtime itself or use environment variables, since that
+// level of config-grabbing should be done at the top-level in the application.
+// Also remove all `new Runtime()` instances from these functions and dependency inject them (or
+// what is needed from them).
 
 async function createMongoStore(): Promise<expressSession.Store> {
   const { MongoClient } = await import('mongodb')
@@ -41,9 +47,11 @@ async function createFileStore(): Promise<expressSession.Store> {
  *
  * @returns {Promise<Store>} Promise that resolves to a store instance.
  */
-const getStore = async (): Promise<expressSession.Store> => {
+const getStore = async (runtime: Runtime): Promise<expressSession.Store> => {
   if (!storeInstance) {
-    if (getRunMode() === RunMode.Standard && process.env.CARBON_USE_LOCAL_DB !== '1') {
+    // TODO: refactor this to use dependency injection instead of needing to get an envvar. Inject
+    // a configuration object that is created at a higher [application] level
+    if (runtime.runMode === RunMode.Standard && process.env.CARBON_USE_LOCAL_DB !== '1') {
       storeInstance = await createMongoStore()
     } else {
       storeInstance = await createFileStore()
@@ -63,7 +71,8 @@ const getStore = async (): Promise<expressSession.Store> => {
 const getUserSessionByKey = async (
   sessionKey: string
 ): Promise<expressSession.SessionData | null> => {
-  const retrievedStore = await getStore()
+  const runtime = new Runtime()
+  const retrievedStore = await getStore(runtime)
   return new Promise((resolve) => {
     retrievedStore.get(sessionKey, (_: any, session: any) => {
       if (session?.cookie?.expires) {
@@ -107,6 +116,7 @@ const getUserBySessionKey = (sessionKey: string): Promise<User | undefined> => {
  * @returns {Promise<boolean>} Promise that resolves to boolean indicating success status
  */
 const updateUserBySessionKey = (sessionKey: string, userInfo: Object): Promise<boolean> => {
+  const runtime = new Runtime()
   return new Promise((resolve) => {
     getUserSessionByKey(sessionKey)
       .then((userSession: any) => {
@@ -118,7 +128,7 @@ const updateUserBySessionKey = (sessionKey: string, userInfo: Object): Promise<b
               user: { ...userSession.passport.user, ...userInfo }
             }
           }
-          getStore().then((retrievedStore) => {
+          getStore(runtime).then((retrievedStore) => {
             retrievedStore.set(sessionKey, newSessionVal, (err: any) => {
               resolve(!err)
             })

@@ -1,0 +1,54 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '~styles/variables' as variables;
+@use 'sass:map';
+@use '@carbon/react/scss/utilities/convert' as convert;
+
+.dashboard {
+  margin-top: spacing.$spacing-07;
+  margin-bottom: spacing.$spacing-07;
+
+  @include breakpoint.breakpoint(lg) {
+    margin-top: spacing.$spacing-11;
+  }
+}
+
+.maintainer-icon {
+  @include breakpoint.breakpoint-down(md) {
+    right: spacing.$spacing-04;
+    left: auto;
+  }
+}
+
+.status-icon {
+  position: relative;
+  top: convert.rem(2px);
+  margin-right: spacing.$spacing-02;
+  margin-left: convert.rem(-1px);
+}
+
+.tabs-column {
+  position: sticky;
+  z-index: map.get(variables.$z-indexes, 'overlay');
+  top: 3rem;
+}
+
+.asset-tabs {
+  &::before {
+    position: absolute;
+    z-index: 0;
+    width: 100vw;
+    height: convert.rem(48px);
+    border-bottom: 1px solid theme.$layer-active-01;
+    background: theme.$background;
+    content: '';
+  }
+}

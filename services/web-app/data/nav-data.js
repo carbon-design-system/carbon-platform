@@ -16,7 +16,7 @@ export const globalNavData = [
   //   title: 'Standards'
   // },
   // {
-  //   path: '/assets',
+  //   path: '/',
   //   title: 'Assets'
   // }
 ]
@@ -37,8 +37,41 @@ export const assetsNavData = [
     title: 'About Carbon',
     items: [
       {
+        path: '/about-carbon/how-carbon-works',
+        title: 'How Carbon works'
+      },
+      {
         path: '/about-carbon/platform-roadmap',
         title: 'Platform roadmap'
+      },
+      {
+        path: '/about-carbon/releases',
+        title: 'Releases'
+      },
+      {
+        path: '/about-carbon/articles',
+        title: 'Articles'
+      },
+      {
+        title: 'Case studies',
+        items: [
+          {
+            path: '/about-carbon/case-studies/overview',
+            title: 'Overview'
+          },
+          {
+            path: '/about-carbon/case-studies/consistency-in-the-cloud',
+            title: 'Consistency in the Cloud'
+          },
+          {
+            path: '/about-carbon/case-studies/ibm-commerce-platform',
+            title: 'IBM Commerce Platform'
+          }
+        ]
+      },
+      {
+        path: '/about-carbon/meetups',
+        title: 'Meetups'
       }
     ]
   },
@@ -70,6 +103,43 @@ export const assetsNavData = [
   {
     path: '/developing',
     title: 'Developing'
+  },
+  {
+    title: 'Contributing',
+    items: [
+      {
+        path: '/contributing/overview',
+        title: 'Overview'
+      },
+      {
+        path: '/contributing/bugs-and-requests',
+        title: 'Bugs and requests'
+      },
+      {
+        path: '/contributing/schema',
+        title: 'Schema'
+      },
+      {
+        path: '/contributing/components',
+        title: 'Components'
+      },
+      {
+        path: '/contributing/icons',
+        title: 'Icons'
+      },
+      {
+        path: '/contributing/patterns',
+        title: 'Patterns'
+      },
+      {
+        path: '/contributing/pictograms',
+        title: 'Pictograms'
+      },
+      {
+        path: '/contributing/add-ons',
+        title: 'Add-ons'
+      }
+    ]
   },
   {
     title: 'Elements',
@@ -127,7 +197,7 @@ export const assetsNavData = [
     ]
   },
   {
-    path: '/assets/libraries',
+    path: '/libraries',
     title: 'Libraries'
   },
   {
@@ -162,9 +232,46 @@ export const assetsNavData = [
     isSection: true,
     items: [
       {
-        path: '/assets/data-visualization',
-        title: 'Data visualization'
+        title: 'Data vizualization',
+        items: [
+          {
+            path: '/collections/data-visualization',
+            title: 'Data visualization'
+          },
+          {
+            path: '/collections/data-visualization/get-started',
+            title: 'Get started'
+          },
+          {
+            path: '/collections/data-visualization/chart-anatomy',
+            title: 'Chart anatomy'
+          },
+          {
+            path: '/collections/data-visualization/color-palettes',
+            title: 'Color palettes'
+          },
+          {
+            path: '/collections/data-visualization/axes-and-labels',
+            title: 'Axes and labels'
+          },
+          {
+            path: '/collections/data-visualization/legends',
+            title: 'Legends'
+          },
+          {
+            path: '/collections/data-visualization/dashboards',
+            title: 'Dashboards'
+          }
+        ]
       }
     ]
+  },
+  {
+    path: '/faq',
+    title: 'FAQ'
+  },
+  {
+    path: '/contact',
+    title: 'Contact'
   }
 ]

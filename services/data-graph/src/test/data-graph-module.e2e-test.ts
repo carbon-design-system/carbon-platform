@@ -7,66 +7,41 @@
 import { gql } from '@carbon-platform/api/data-graph'
 import { INestApplication } from '@nestjs/common'
 import { Test } from '@nestjs/testing'
+import test from 'ava'
 import request from 'supertest'
 
-import { DataGraphModule } from '../main/data-graph-module'
+import { DataGraphModule } from '../main/data-graph-module.js'
 
-describe('basic resolvers test', () => {
-  let app: INestApplication
+let app: INestApplication
 
-  beforeAll(async () => {
-    const moduleRef = await Test.createTestingModule({
-      imports: [DataGraphModule]
-    }).compile()
+test.before(async () => {
+  const moduleRef = await Test.createTestingModule({
+    imports: [DataGraphModule.register({ isPlaygroundEnabled: false })]
+  }).compile()
+  app = moduleRef.createNestApplication()
+  await app.init()
+})
 
-    app = moduleRef.createNestApplication()
-    await app.init()
-  })
+test.after.always(async () => {
+  await app.close()
+})
 
-  it('returns multiple libraries', async () => {
-    const response = await request(app.getHttpServer())
-      .post('/graphql')
-      .set('Accept', 'application/json')
-      .send({
-        query: gql`
-          query Asdf {
-            libraries {
-              id
-              name
-            }
+test('it can resolve a query and return some data', async (t) => {
+  const response = await request(app.getHttpServer())
+    .post('/graphql')
+    .set('Accept', 'application/json')
+    .send({
+      query: gql`
+        query Asdf {
+          libraries {
+            id
+            name
           }
-        `
-      })
-
-    expect(response.statusCode).toBe(200)
-    expect(response.body.data).toHaveProperty('libraries')
-    expect(response.body.data.libraries).toContainEqual(expect.objectContaining({ id: 'lib1' }))
-  })
-
-  it('returns single user', async () => {
-    const response = await request(app.getHttpServer())
-      .post('/graphql')
-      .set('Accept', 'application/json')
-      .send({
-        query: gql`
-          query Test($thing: ID) {
-            users(id: $thing) {
-              id
-              name
-            }
-          }
-        `,
-        variables: {
-          thing: '2'
         }
-      })
+      `
+    })
 
-    expect(response.statusCode).toBe(200)
-    expect(response.body.data).toHaveProperty('users')
-    expect(response.body.data.users).toContainEqual(expect.objectContaining({ id: '2' }))
-  })
-
-  afterAll(async () => {
-    await app.close()
-  })
+  t.not(response, undefined)
+  t.is(response.statusCode, 200)
+  t.not(response.body.data.libraries, undefined)
 })

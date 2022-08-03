@@ -29,6 +29,7 @@ import ColorBlock from '@/components/color-block'
 import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
+import Divider from '@/components/divider'
 import { DoDont, DoDontRow } from '@/components/do-dont'
 import GifPlayer from '@/components/gif-player'
 import Glossary from '@/components/glossary'
@@ -46,6 +47,7 @@ import Preview from '@/components/preview'
 import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
 import StatusIndicatorTable from '@/components/status-indicator-table'
+import StorybookDemo from '@/components/storybook-demo'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'
@@ -97,6 +99,7 @@ const components = {
   ColorTokenTable,
   DoDont,
   DoDontRow,
+  Divider,
   GifPlayer,
   Glossary,
   Grid,
@@ -114,6 +117,7 @@ const components = {
   ResourceCard,
   Row,
   StatusIndicatorTable,
+  StorybookDemo,
   Tab,
   Tabs,
   Title,

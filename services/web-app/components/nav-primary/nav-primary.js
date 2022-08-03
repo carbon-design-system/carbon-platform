@@ -31,28 +31,31 @@ const NavPrimary = ({ className, globalItems }) => {
       onOverlayClick={() => setSideNavExpanded(false)}
     >
       <SideNavItems>
-        <HeaderSideNavItems>
-          {globalItems.map((data, i) => {
-            if (data.path) {
-              return (
-                <SideNavLink
-                  element={NextLink}
-                  href={data.path}
-                  key={i}
-                  tabIndex={isSecondaryNav ? '-1' : 0}
-                >
-                  {data.title}
-                </SideNavLink>
-              )
-            } else {
-              return (
-                <SideNavLink tabIndex="-1" key={i} className={styles['side-nav-disabled']}>
-                  {data.title}
-                </SideNavLink>
-              )
-            }
-          })}
-        </HeaderSideNavItems>
+        {globalItems.length > 0 && (
+          <HeaderSideNavItems>
+            {globalItems.map((data, i) => {
+              if (data.path) {
+                return (
+                  <SideNavLink
+                    element={NextLink}
+                    href={data.path}
+                    key={i}
+                    tabIndex={isSecondaryNav ? '-1' : 0}
+                  >
+                    {data.title}
+                  </SideNavLink>
+                )
+              } else {
+                return (
+                  <SideNavLink tabIndex="-1" key={i} className={styles['side-nav-disabled']}>
+                    {data.title}
+                  </SideNavLink>
+                )
+              }
+            })}
+          </HeaderSideNavItems>
+        )}
+
         {primaryNavData && primaryNavData.length > 0 && (
           <NavTree items={primaryNavData} label="Main navigation" activeItem={router.asPath} />
         )}

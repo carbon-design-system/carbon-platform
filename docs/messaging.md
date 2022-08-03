@@ -216,7 +216,7 @@ To test messaging locally, two things are needed:
 To run RabbitMQ locally via Docker, use the following command:
 
 ```
-docker run --rm --hostname rabbitmq -p 5672:5672 rabbitmq:3.8
+docker run --rm --hostname rabbitmq -p 5672:5672 rabbitmq:3.9
 ```
 
 This will allow it to become accessible at: `amqp://localhost:5672`

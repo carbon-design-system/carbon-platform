@@ -5,8 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Library } from '@carbon-platform/api/data-graph'
+import test from 'ava'
 
-import { LibrariesResolver } from '../../main/libraries/libraries-resolver'
+import { LibrariesResolver } from '../../main/libraries/libraries-resolver.js'
 
 const testLibraries = [
   new Library({ id: 'lib1', description: 'asdf1 description', name: 'asdf1' }),
@@ -14,13 +15,13 @@ const testLibraries = [
 ]
 
 const mockedLibrariesService = {
-  findAll: jest.fn(() => testLibraries)
+  findAll: () => testLibraries
 }
 
-test('libraries', () => {
+test('libraries', (t) => {
   const librariesResolver = new LibrariesResolver(mockedLibrariesService as any)
 
   const result = librariesResolver.libraries()
 
-  expect(result).toBe(testLibraries)
+  t.deepEqual(result, testLibraries)
 })

@@ -6,6 +6,7 @@
  */
 
 import { Column, Grid, Search } from '@carbon/react'
+import { capitalCase } from 'change-case'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
@@ -14,7 +15,15 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-search.module.scss'
 
-const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, search = '' }) => {
+const CatalogSearch = ({
+  availableFilters = {},
+  className,
+  filter = {},
+  itemName = '',
+  onFilter,
+  onSearch,
+  search = ''
+}) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
 
@@ -35,8 +44,8 @@ const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, s
       <Column className={clsx(styles.column, styles['column-search'])} sm={4} md={4} lg={8}>
         <Search
           id="catalog-search"
-          labelText="Search component index by name, keyword, or domain"
-          placeholder="Component name, keyword, domain"
+          labelText={`Search ${itemName} index by name, keyword, or domain`}
+          placeholder={`${capitalCase(itemName)} name, keyword, domain`}
           value={search}
           onBlur={handleOnBlur}
           onChange={handleOnChange}
@@ -47,7 +56,7 @@ const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, s
           <CatalogMultiselectFilter
             className={styles.filter}
             filter={filter}
-            initialFilter={initialFilter}
+            availableFilters={availableFilters}
             onFilter={onFilter}
           />
         )}
@@ -56,7 +65,7 @@ const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, s
         <Column className={styles.column} md={4} lg={4}>
           <CatalogMultiselectFilter
             filter={filter}
-            initialFilter={initialFilter}
+            availableFilters={availableFilters}
             onFilter={onFilter}
           />
         </Column>
@@ -65,13 +74,44 @@ const CatalogSearch = ({ className, filter, initialFilter, onFilter, onSearch, s
   )
 }
 
+CatalogSearch.defaultProps = {
+  availableFilters: {},
+  filter: {},
+  itemName: '',
+  search: ''
+}
+
 CatalogSearch.propTypes = {
+  /**
+   * Object containing all keys and  name/values of possible filters
+   */
+  availableFilters: PropTypes.object,
+  /**
+   * Optional container class name.
+   */
   className: PropTypes.string,
-  filter: PropTypes.object,
-  initialFilter: PropTypes.object,
-  onFilter: PropTypes.func,
-  onSearch: PropTypes.func,
-  search: PropTypes.string
+  /**
+   * Object containing key/value(array) of currently applied filters
+   */
+  filter: PropTypes.object.isRequired,
+  /**
+   * singular name to describe catalog items category (e.g : "asset", "component")
+   */
+  itemName: PropTypes.string.isRequired,
+  /**
+   * (item, key, action) => void
+   * function to handle filters changes (add/remove key, clear all)
+   */
+  onFilter: PropTypes.func.isRequired,
+  /**
+   * (newQuery, saveQuery) => void
+   * function to handle query string changes
+   */
+  onSearch: PropTypes.func.isRequired,
+  /**
+   * current value of search query
+   */
+  search: PropTypes.string.isRequired
 }
 
 export default CatalogSearch

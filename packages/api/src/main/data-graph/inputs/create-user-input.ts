@@ -6,7 +6,7 @@
  */
 import { InputType, PickType } from '@nestjs/graphql'
 
-import { User } from '../models/user.model'
+import { User } from '../models/user.model.js'
 
 /**
  * Defines the object structure that can be provided to the create user mutation. It is based on the

@@ -1,0 +1,20 @@
+{
+  "$schema": "./dev-dataset.schema.json",
+  "queries": [
+    {
+      "name": "BasicExample",
+      "response": {
+        "hello": "world"
+      }
+    },
+    {
+      "name": "ExampleWithVariables",
+      "variables": {
+        "varName": "var value"
+      },
+      "response": {
+        "hello": "world"
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Dev Dataset Schema",
+  "description": "Schema governing the definition of a file containing dev-mode graphql responses",
+  "type": "object",
+  "properties": {
+    "queries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "variables": {
+            "type": "object"
+          },
+          "response": {
+            "type": "object"
+          }
+        },
+        "required": ["name", "response"]
+      }
+    }
+  }
+}

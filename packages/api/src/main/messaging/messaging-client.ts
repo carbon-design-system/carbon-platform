@@ -7,27 +7,20 @@
 import amqp from 'amqplib'
 import { v4 as uuidv4 } from 'uuid'
 
-import { withEnvironment } from '../runtime'
-import { CARBON_MESSAGE_QUEUE_URL, DEFAULT_SOCKET_OPTIONS } from './constants'
-import { EventMessage, QueryMessage } from './interfaces'
+import { Logging } from '../logging/logging.js'
+import { Runtime } from '../runtime/index.js'
+import { CARBON_MESSAGE_QUEUE_URL, DEFAULT_SOCKET_OPTIONS } from './constants.js'
+import { EventMessage, QueryMessage } from './interfaces.js'
+import { MessagingConnection } from './messaging-connection.js'
 
 const RANDOM_QUEUE_NAME = ''
 const DEFAULT_ROUTING_KEY = ''
-const CONNECT_RETRY_INTERVAL = 5000
+const RETRY_INTERVAL = 5000
 
 type ReplyCallbacks = Map<string, (value: any) => void>
 
-/**
- * Wrapper class around message broker connection properties.
- */
-class MessagingConnection {
-  public readonly connection: amqp.Connection
-  public readonly channel: amqp.ConfirmChannel
-
-  constructor(connection: amqp.Connection, channel: amqp.ConfirmChannel) {
-    this.connection = connection
-    this.channel = channel
-  }
+interface MessagingClientConfig {
+  runtime: Runtime
 }
 
 /**
@@ -45,70 +38,50 @@ class MessagingClient {
    *
    * @returns The singleton.
    */
-  public static getInstance(): MessagingClient {
+  public static getInstance(config?: MessagingClientConfig): MessagingClient {
     if (!MessagingClient.instance) {
-      MessagingClient.instance = new MessagingClient()
+      MessagingClient.instance = new MessagingClient(config)
     }
 
     return MessagingClient.instance
   }
 
-  private messagingConnection?: MessagingConnection
-  private messagingConnectionPromise?: Promise<MessagingConnection>
+  private readonly logging: Logging
+  private messagingConnection: MessagingConnection
   private replyQueue?: amqp.Replies.AssertQueue
   private replyCallbacks: ReplyCallbacks
+  private runtime: Runtime
 
-  private constructor() {
+  private constructor(config?: MessagingClientConfig) {
+    this.runtime = config?.runtime || new Runtime()
+
+    this.logging = new Logging({
+      component: 'MessagingClient',
+      isRemoteLoggingEnabled: false
+    })
+
     this.replyCallbacks = new Map()
+
+    this.messagingConnection = new MessagingConnection({
+      url: CARBON_MESSAGE_QUEUE_URL,
+      socketOptions: DEFAULT_SOCKET_OPTIONS,
+      retry: true,
+      onChannelReady: this.handleChannelReady.bind(this)
+    })
   }
 
-  /**
-   * Internal method to ensure that a connection to the message broker is established in a reliable
-   * way. This is intended to only be called one-per-instance by `connect` so that duplicate
-   * connections and race conditions are not created.
-   *
-   * @param retry Whether or not to indefinitely wait for a connection to be established before
-   * allowing this method to return.
-   * @returns A promise of a messaging connection.
-   */
-  private async assertConnection(retry: boolean): Promise<MessagingConnection> {
-    while (!this.messagingConnection) {
-      let connection: amqp.Connection | undefined
-      let channel: amqp.ConfirmChannel | undefined
+  private async handleChannelReady(channel: amqp.ConfirmChannel) {
+    this.replyQueue = await channel.assertQueue(RANDOM_QUEUE_NAME, {
+      exclusive: true
+    })
 
-      try {
-        connection = await amqp.connect(CARBON_MESSAGE_QUEUE_URL, DEFAULT_SOCKET_OPTIONS)
-        channel = await connection.createConfirmChannel()
-
-        this.replyQueue = await channel.assertQueue(RANDOM_QUEUE_NAME, { exclusive: true })
-
-        // Listen for responses on the reply queue
-        await channel.consume(
-          this.replyQueue.queue,
-          this.replyReceived.bind(this),
-          // No explicit acks needed, since this is the service's personal reply queue
-          { noAck: true }
-        )
-
-        this.messagingConnection = new MessagingConnection(connection, channel)
-      } catch (e) {
-        console.error('Could not connect to messaging service', e)
-
-        channel && channel.close()
-        connection && connection.close()
-
-        if (retry) {
-          // Retry again after a few seconds
-          await new Promise((resolve) => {
-            setTimeout(resolve, CONNECT_RETRY_INTERVAL)
-          })
-        } else {
-          throw e
-        }
-      }
-    }
-
-    return this.messagingConnection
+    // Listen for responses on the reply queue
+    await channel.consume(
+      this.replyQueue.queue,
+      this.handleReply.bind(this),
+      // No explicit acks needed, since this is the service's personal reply queue
+      { noAck: true }
+    )
   }
 
   /**
@@ -117,7 +90,7 @@ class MessagingClient {
    *
    * @param reply The message received from the broker.
    */
-  private replyReceived(reply: amqp.ConsumeMessage | null) {
+  private handleReply(reply: amqp.ConsumeMessage | null) {
     const correlationId = reply?.properties.correlationId as string
     const resolve = this.replyCallbacks.get(correlationId)
 
@@ -130,43 +103,26 @@ class MessagingClient {
     this.replyCallbacks.delete(correlationId)
   }
 
-  /**
-   * Establishes a connection, channel, and reply queue with the message broker. Most users of this
-   * class will not need to call this, as it is implicitly called before all other methods. It is
-   * public for testing purposes.
-   *
-   * @param retry Whether or not to indefinitely wait for a connection to be established before
-   * allowing this method to return.
-   * @returns A promise of a MessagingConnection object that is created after connecting to the
-   * message broker.
-   */
-  public connect(retry = true): Promise<MessagingConnection> {
-    // Guard - Connection has already been established
-    if (this.messagingConnection) {
-      return Promise.resolve(this.messagingConnection)
+  private async publishAndConfirm(
+    channel: amqp.ConfirmChannel,
+    exchange: string,
+    content: Buffer,
+    options?: amqp.Options.Publish
+  ) {
+    const publishResult = channel.publish(exchange, DEFAULT_ROUTING_KEY, content, options)
+
+    // `publish` returns true if it is safe to continue sending messages; or false if pending
+    // "confirms" should first be awaited
+    if (!publishResult) {
+      await channel.waitForConfirms()
     }
-
-    // Guard - Connection attempt is pending
-    if (this.messagingConnectionPromise) {
-      return this.messagingConnectionPromise
-    }
-
-    // No existing connection. Set up a promise of a new one
-    this.messagingConnectionPromise = this.assertConnection(retry)
-
-    return this.messagingConnectionPromise
   }
 
   /**
    * Severs the connection to the message broker and cleans up any related resources.
    */
   public async disconnect() {
-    if (this.messagingConnection) {
-      await this.messagingConnection.channel.close()
-      await this.messagingConnection.connection.close()
-
-      delete this.messagingConnection
-    }
+    await this.messagingConnection.close()
 
     this.replyCallbacks.clear()
   }
@@ -184,31 +140,35 @@ class MessagingClient {
     eventType: EventType,
     payload: EventMessage[EventType]['payload']
   ): Promise<void> {
-    const messagingConnection = await this.connect()
+    const dataToSend = {
+      pattern: eventType,
+      data: payload
+    }
 
-    // Entire method invocation is deferred and returned as a promise
-    return new Promise((resolve) => {
-      const dataToSend = {
-        pattern: eventType,
-        data: payload
+    let done = false
+    while (!done) {
+      try {
+        const channel = await this.messagingConnection.channel
+
+        await this.publishAndConfirm(
+          channel,
+          this.runtime.withEnvironment(eventType),
+          Buffer.from(JSON.stringify(dataToSend))
+        )
+
+        done = true
+      } catch (e) {
+        this.logging.error('Unexpected exception thrown while publishing a message')
+        if (e instanceof Error) {
+          this.logging.error(e)
+        }
+
+        // Try again after a few seconds
+        await new Promise((resolve) => {
+          setTimeout(resolve, RETRY_INTERVAL)
+        })
       }
-
-      // `publish` returns true if it is safe to continue sending messages; or false if pending
-      // "confirms" should first be awaited
-      const sendResult = messagingConnection.channel.publish(
-        withEnvironment(eventType),
-        DEFAULT_ROUTING_KEY,
-        Buffer.from(JSON.stringify(dataToSend))
-      )
-
-      // Typically an emit would not be awaited, but resolving the Promise after a successful send
-      // ensures that it can be
-      if (sendResult) {
-        resolve()
-      } else {
-        messagingConnection.channel.waitForConfirms().then(resolve)
-      }
-    })
+    }
   }
 
   /**
@@ -225,9 +185,6 @@ class MessagingClient {
     queryType: Type,
     payload: QueryMessage[Type]['payload']
   ): Promise<QueryMessage[Type]['response']> {
-    // Connect and ensure channel and reply queue are established
-    const messagingConnection = await this.connect()
-
     const correlationId = uuidv4()
     const dataToSend = {
       pattern: queryType,
@@ -241,20 +198,33 @@ class MessagingClient {
       this.replyCallbacks.set(correlationId, resolve)
     })
 
-    // `publish` returns true if it is safe to continue sending messages; or false if pending
-    // "confirms" should first be awaited
-    const publishResult = messagingConnection.channel.publish(
-      withEnvironment(queryType),
-      DEFAULT_ROUTING_KEY,
-      Buffer.from(JSON.stringify(dataToSend)),
-      {
-        replyTo: this.replyQueue!.queue,
-        correlationId
-      }
-    )
+    let done = false
+    while (!done) {
+      try {
+        const channel = await this.messagingConnection.channel
 
-    if (!publishResult) {
-      await messagingConnection.channel.waitForConfirms()
+        await this.publishAndConfirm(
+          channel,
+          this.runtime.withEnvironment(queryType),
+          Buffer.from(JSON.stringify(dataToSend)),
+          {
+            replyTo: this.replyQueue!.queue,
+            correlationId
+          }
+        )
+
+        done = true
+      } catch (e) {
+        this.logging.error('Unexpected exception thrown while publishing a message')
+        if (e instanceof Error) {
+          this.logging.error(e)
+        }
+
+        // Try again after a few seconds
+        await new Promise((resolve) => {
+          setTimeout(resolve, RETRY_INTERVAL)
+        })
+      }
     }
 
     return replyPromise
@@ -263,11 +233,11 @@ class MessagingClient {
 
 const __test__ = {
   destroyInstance: () => {
-    const unlocked = MessagingClient as any
+    const unlockedMessagingClient = MessagingClient as any
 
-    if (unlocked.instance) {
-      unlocked.instance.disconnect()
-      unlocked.instance = null
+    if (unlockedMessagingClient.instance) {
+      unlockedMessagingClient.instance.disconnect()
+      unlockedMessagingClient.instance = null
     }
   },
   RANDOM_QUEUE_NAME

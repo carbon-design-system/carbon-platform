@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
+import { RunMode, Runtime } from '@carbon-platform/api/runtime'
 import { Octokit } from '@octokit/core'
 import cacheManager from 'cache-manager'
 import fsStore from 'cache-manager-fs-hash'
@@ -21,7 +21,7 @@ const diskCache = cacheManager.caching({
   store: fsStore,
   options: {
     path: CACHE_PATH,
-    ttl: getRunMode() === RunMode.Standard ? 60 * 60 : 60 * 60 * 24 * 365 /* seconds */,
+    ttl: new Runtime().runMode === RunMode.Standard ? 60 * 60 : 60 * 60 * 24 * 365 /* seconds */,
     zip: false
   }
 })

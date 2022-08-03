@@ -4,32 +4,20 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import * as runtime from '@carbon-platform/api/runtime'
-import logDna from '@logdna/logger'
+import test from 'ava'
 
-import { LogDnaService } from '../main/log-dna-service'
+import { LogDnaService } from '../main/log-dna-service.js'
 
-jest.mock('@logdna/logger')
-const mockedLogDna = logDna as jest.Mocked<typeof logDna>
+test('it uses the injected logger', (t) => {
+  t.plan(1)
 
-jest.mock('@carbon-platform/api/runtime', () => ({
-  getRunMode: jest.fn(() => runtime.RunMode.Standard),
-  loadEnvVars: jest.fn(() => ({ CARBON_LOGDNA_ENDPOINT: 'fake test endpoint' })),
-  RunMode: {
-    Standard: 'STANDARD'
-  }
-}))
+  const logDnaLogger = {
+    log: () => {
+      t.pass()
+    }
+  } as any
 
-test('service creates a LogDna logger in "Standard" mode', () => {
-  const mockedLogger = {
-    log: jest.fn()
-  }
+  const logDnaService = new LogDnaService({ logDnaLogger })
 
-  mockedLogDna.createLogger.mockReturnValue(mockedLogger as any)
-
-  const logDnaService = new LogDnaService()
   logDnaService.log({} as any)
-
-  expect(mockedLogDna.createLogger).toHaveBeenCalled()
-  expect(mockedLogger.log).toHaveBeenCalled()
 })

@@ -20,6 +20,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
 
+import BackToTop from '@/components/back-to-top'
 import Footer from '@/components/footer'
 import NavPrimary from '@/components/nav-primary'
 import NavSecondary from '@/components/nav-secondary'
@@ -30,10 +31,10 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import styles from './layout.module.scss'
 
 // do not show side nav for these paths
-const NO_SIDE_NAV_PATHS = ['/404', '/assets/[host]/[org]/[repo]/[library]/[ref]/[asset]']
+const NO_SIDE_NAV_PATHS = ['/404', '/libraries/[host]/[org]/[repo]/[library]/[ref]/assets/[asset]']
 
 // Only slide to the secondary navigation on page load for these paths.
-const SECONDARY_NAV_SLIDE_PATHS = ['/assets/[host]/[org]/[repo]/[library]/[ref]']
+const SECONDARY_NAV_SLIDE_PATHS = ['/libraries/[host]/[org]/[repo]/[library]/[ref]']
 
 export const LayoutContext = createContext()
 
@@ -63,7 +64,7 @@ const SideNav = () => {
   const [shouldSlideIn, setShouldSlideIn] = useState(isSecondarySlidePath)
   const [shouldSlideOut, setShouldSlideOut] = useState(false)
   const [isSecondaryNav, setIsSecondaryNav] = useState(
-    router.pathname.startsWith('/assets/[host]/[org]/[repo]/[library]/[ref]')
+    router.pathname.startsWith('/libraries/[host]/[org]/[repo]/[library]/[ref]')
   )
 
   // $duration-moderate-01 = 150ms
@@ -165,44 +166,48 @@ const Layout = ({ children }) => {
           <Theme theme="g100">
             <Header aria-label="Carbon Design System" className={styles.header}>
               <SkipToContent />
-              <HeaderMenuButton
-                aria-label="Open menu"
-                onClick={onClickSideNavExpand}
-                isActive={isSideNavExpanded}
-              />
+              {showSideNav && (
+                <HeaderMenuButton
+                  aria-label="Open menu"
+                  onClick={onClickSideNavExpand}
+                  isActive={isSideNavExpanded}
+                />
+              )}
               <div className={styles['header-name']}>
-                <Link href="/assets">
+                <Link href="/">
                   <a className="cds--header__name">Carbon Design System</a>
                 </Link>
               </div>
               <Grid narrow className={styles['header-grid']}>
                 <Column sm={0} lg={{ span: 8, offset: 4 }}>
-                  <HeaderNavigation aria-label="Main navigation">
-                    {globalNavData.map((data) => {
-                      if (data.path) {
-                        return (
-                          <HeaderMenuItem
-                            key={data.title}
-                            isCurrentPage={router.pathname.startsWith(data.path)}
-                            href={data.path}
-                            element={NextLink}
-                          >
-                            {data.title}
-                          </HeaderMenuItem>
-                        )
-                      } else {
-                        return (
-                          <HeaderMenuItem
-                            key={data.title}
-                            tabIndex={-1}
-                            className={styles['header-nav-item-disabled']}
-                          >
-                            {data.title}
-                          </HeaderMenuItem>
-                        )
-                      }
-                    })}
-                  </HeaderNavigation>
+                  {globalNavData.length > 0 && (
+                    <HeaderNavigation aria-label="Main navigation">
+                      {globalNavData.map((data) => {
+                        if (data.path) {
+                          return (
+                            <HeaderMenuItem
+                              key={data.title}
+                              isCurrentPage={router.pathname.startsWith(data.path)}
+                              href={data.path}
+                              element={NextLink}
+                            >
+                              {data.title}
+                            </HeaderMenuItem>
+                          )
+                        } else {
+                          return (
+                            <HeaderMenuItem
+                              key={data.title}
+                              tabIndex={-1}
+                              className={styles['header-nav-item-disabled']}
+                            >
+                              {data.title}
+                            </HeaderMenuItem>
+                          )
+                        }
+                      })}
+                    </HeaderNavigation>
+                  )}
                 </Column>
               </Grid>
             </Header>
@@ -224,6 +229,7 @@ const Layout = ({ children }) => {
               </Column>
             </Grid>
           </Theme>
+          <BackToTop />
           <Footer hasSideNav={showSideNav} />
         </>
       )}

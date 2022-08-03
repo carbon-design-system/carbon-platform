@@ -8,7 +8,7 @@
 import { get } from 'lodash'
 
 import { ORDER_BY_STATUS } from '@/data/sort'
-import { status } from '@/data/status'
+import { assetStatusLifecycle } from '@/data/status'
 import { tagsForCollection, tagsForType } from '@/data/tags'
 import { type } from '@/data/type'
 /**
@@ -17,15 +17,11 @@ import { type } from '@/data/type'
  * @param {import('../typedefs').Asset} assetB
  * @returns {number} Sort order
  */
-export const statusSortComparator = (assetA, assetB) => {
-  const statusKeys = Object.keys(status)
+export const statusSortComparator = (assetA, assetB) =>
+  assetStatusLifecycle.indexOf(assetA.statusKey) > assetStatusLifecycle.indexOf(assetB.statusKey)
+    ? 1
+    : -1
 
-  const statusA =
-    typeof assetA.content.status === 'object' ? assetA.content.status.key : assetA.content.status
-  const statusB =
-    typeof assetB.content.status === 'object' ? assetB.content.status.key : assetB.content.status
-  return statusKeys.indexOf(statusA) > statusKeys.indexOf(statusB) ? 1 : -1
-}
 /**
  * Defines the sort order of assets by a key
  * @param {string} key
@@ -74,6 +70,15 @@ export const getAssetId = (asset) => {
  */
 export const getAssetType = (asset) => {
   return get(type, `${asset.content.type}`, type.component)
+}
+
+/**
+ * Gets the asset status string value. If not found, defaults to 'draft'.
+ * @param {import('../typedefs').Asset} asset
+ * @returns {string} Asset status value
+ */
+export const getAssetStatus = (asset) => {
+  return asset.content.status?.key || asset.content.status || 'draft'
 }
 
 /**

@@ -6,8 +6,8 @@
  */
 import { HttpAdapterHost, NestFactory } from '@nestjs/core'
 import { RmqOptions, Transport } from '@nestjs/microservices'
-import amqp from 'amqplib'
 
+import { Logging } from '../logging/index.js'
 import {
   CARBON_MESSAGE_QUEUE_URL,
   DEFAULT_BIND_PATTERN,
@@ -18,12 +18,13 @@ import {
   EventMessage,
   QueryMessage,
   Queue
-} from '../messaging'
-import { withEnvironment } from '../runtime'
-import { CONNECT_RETRY_INTERVAL, PORT } from './constants'
-import { InvalidInputExceptionFilter } from './filters/invalid-input-exception-filter'
-import { UncaughtExceptionFilter } from './filters/uncaught-exception-filter'
-import { RequestLogInterceptor } from './interceptors/request-log-interceptor'
+} from '../messaging/index.js'
+import { MessagingConnection } from '../messaging/messaging-connection.js'
+import { Runtime } from '../runtime/index.js'
+import { PORT } from './constants.js'
+import { InvalidInputExceptionFilter } from './filters/invalid-input-exception-filter.js'
+import { UncaughtExceptionFilter } from './filters/uncaught-exception-filter.js'
+import { RequestLogInterceptor } from './interceptors/request-log-interceptor.js'
 
 type BindableMessage = EventMessage | QueryMessage
 
@@ -33,9 +34,10 @@ type BindableMessageKey<T extends BindableMessage> = T extends EventMessage
 
 interface MicroserviceConfig {
   /**
-   * The NestJS module that defines all of the controller and providers for this microservice.
+   * The NestJS module that defines all of the controller and providers for this microservice. This
+   * is defined as "any" to be in accordance with NestJS conventions.
    */
-  module: Function
+  module: any
 
   /**
    * Whether or not to enable automatic removal of messages from the associated queue.
@@ -46,38 +48,28 @@ interface MicroserviceConfig {
    * The name of the queue from which to consume messages.
    */
   queue: Queue
+
+  /**
+   * Runtime configuration object.
+   */
+  runtime?: Runtime
 }
 
 class PlatformMicroservice {
-  private readonly module: Function
+  private readonly module: any
   private readonly autoAck: boolean
   private readonly queueName: string
+  private readonly runtime: Runtime
+  private readonly logging: Logging
+  private messagingConnection?: MessagingConnection
 
   constructor(config: MicroserviceConfig) {
     this.module = config.module
     this.autoAck = config.autoAck || false
+    this.runtime = config.runtime || new Runtime()
+    this.logging = new Logging({ component: 'PlatformMicroservice', runtime: this.runtime })
     // Use a queue name that is environment-specific
-    this.queueName = withEnvironment(config.queue)
-  }
-
-  /**
-   * Connects to the RabbitMQ server.
-   *
-   * @returns A connection to the RabbitMQ server.
-   */
-  private async connect(): Promise<amqp.Connection> {
-    while (true) {
-      try {
-        return await amqp.connect(CARBON_MESSAGE_QUEUE_URL, DEFAULT_SOCKET_OPTIONS)
-      } catch (e) {
-        console.error('Could not connect to messaging service', e)
-
-        // Retry again after a few seconds
-        await new Promise((resolve) => {
-          setTimeout(resolve, CONNECT_RETRY_INTERVAL)
-        })
-      }
-    }
+    this.queueName = this.runtime.withEnvironment(config.queue)
   }
 
   /**
@@ -97,21 +89,29 @@ class PlatformMicroservice {
   public async bind<T extends BindableMessage>(
     ...messageTypes: [BindableMessageKey<T>, ...Array<BindableMessageKey<T>>]
   ) {
-    const connection = await this.connect()
-    const channel = await connection.createChannel()
+    if (!this.messagingConnection) {
+      this.messagingConnection = new MessagingConnection({
+        url: CARBON_MESSAGE_QUEUE_URL,
+        socketOptions: DEFAULT_SOCKET_OPTIONS,
+        retry: true
+      })
+    }
+
+    const channel = await this.messagingConnection.channel
 
     await channel.assertQueue(this.queueName, DEFAULT_QUEUE_OPTIONS)
 
     for (const messageType of messageTypes) {
       // Use an exchange name that is environment-specific
-      const exchange = withEnvironment(messageType)
+      const exchange = this.runtime.withEnvironment(messageType)
 
       await channel.assertExchange(exchange, DEFAULT_EXCHANGE_TYPE, DEFAULT_EXCHANGE_OPTIONS)
       await channel.bindQueue(this.queueName, exchange, DEFAULT_BIND_PATTERN)
+
+      this.logging.info(`Service bound to queue: ${this.queueName}`)
     }
 
-    await channel.close()
-    await connection.close()
+    await this.messagingConnection.close()
   }
 
   /**
@@ -125,8 +125,8 @@ class PlatformMicroservice {
     const { httpAdapter } = application.get(HttpAdapterHost)
 
     application.useGlobalFilters(
-      new InvalidInputExceptionFilter(),
-      new UncaughtExceptionFilter(httpAdapter)
+      new UncaughtExceptionFilter({ applicationRef: httpAdapter }),
+      new InvalidInputExceptionFilter()
     )
 
     application.useGlobalInterceptors(new RequestLogInterceptor())

@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { unstable_TreeNode as TreeNode, unstable_TreeView as TreeView } from '@carbon/react'
+import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
@@ -21,7 +22,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
 
   useEffect(() => {
     const newItemNodeArray = []
-    items.forEach((item) => {
+    items.forEach((item, index) => {
       newItemNodeArray.push(item)
       if (item.isSection) {
         // this is a hack so that we have two elements:
@@ -29,6 +30,10 @@ const NavTree = ({ activeItem, items = [], label }) => {
         // doing this because for some reason the treeNode won't let me
         // programatically render two components
         newItemNodeArray.push({ ...item, isDummy: true })
+      } else {
+        if (index > 0 && items[index - 1].isSection) {
+          item.sectionGroup = true
+        }
       }
     })
     setItemNodes(newItemNodeArray)
@@ -65,7 +70,9 @@ const NavTree = ({ activeItem, items = [], label }) => {
 
     return nodes.map((node) => {
       if (node.isSection) {
-        return <h2 className={styles['section-heading']}>{node.title}</h2>
+        return (
+          <h2 className={clsx(styles['section-heading'], styles['section-group'])}>{node.title}</h2>
+        )
       } else {
         return (
           <TreeNode
@@ -74,6 +81,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
             key={node.title}
             onClick={() => node.path && router.push(node.path)}
             isExpanded={isTreeNodeExpanded(node)}
+            className={clsx({ [styles['section-group']]: node.sectionGroup })}
           >
             {renderTree(node.items)}
           </TreeNode>

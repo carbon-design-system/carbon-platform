@@ -2,6 +2,61 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.4.1...@carbon-platform/micromanage-cli@1.4.2) (2022-07-28)
+
+### [1.4.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.4.0...@carbon-platform/micromanage-cli@1.4.1) (2022-07-27)
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** add better debug logging ([a191325](https://github.com/carbon-design-system/carbon-platform/commit/a1913259ad8b5a4f80c93716fe8bffb4aba29004))
+* **micromanage:** adjust git log command to properly return commits ([c3e060d](https://github.com/carbon-design-system/carbon-platform/commit/c3e060d6d67c1d1e84fba183d23a8c079ae76f3a))
+
+## [1.4.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.3.0...@carbon-platform/micromanage-cli@1.4.0) (2022-07-23)
+
+
+### Features 🌟
+
+* **micromanage:** add script for commenting version changes on PRs ([3ba20f6](https://github.com/carbon-design-system/carbon-platform/commit/3ba20f6b7aa0a4cc27813d56cfa80a6ed8a7dbee))
+
+
+### Misc. 🔮
+
+* update node module minor versions ([767b5f7](https://github.com/carbon-design-system/carbon-platform/commit/767b5f7cf5db0a0423dfa04193e64d029a022006))
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** adjust wording to clarify what causes re-versioning ([88f1d3a](https://github.com/carbon-design-system/carbon-platform/commit/88f1d3a2b818d8c292063748af86181a3c458012))
+
+## [1.3.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.2.14...@carbon-platform/micromanage-cli@1.3.0) (2022-07-20)
+
+
+### Features 🌟
+
+* **micromanage:** allow version comparison against any ref ([ab2886d](https://github.com/carbon-design-system/carbon-platform/commit/ab2886d996258aeed012b2da93f096fd14731219))
+
+### [1.2.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.2.13...@carbon-platform/micromanage-cli@1.2.14) (2022-06-15)
+
+
+### Misc. 🔮
+
+* update node modules ([91ff95f](https://github.com/carbon-design-system/carbon-platform/commit/91ff95fd3d9c797f291099f3d875959010f822f0))
+
+### [1.2.13](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.2.12...@carbon-platform/micromanage-cli@1.2.13) (2022-06-11)
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** version push failure when upstream has newer commits ([4a14473](https://github.com/carbon-design-system/carbon-platform/commit/4a14473aafd50ed4297881462981dd105229c5b6))
+
+### [1.2.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.2.11...@carbon-platform/micromanage-cli@1.2.12) (2022-06-10)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** app hangs when disconencting from message broker ([bfe11fa](https://github.com/carbon-design-system/carbon-platform/commit/bfe11fa053859ce41c411e68071df433901f4499))
+
 ### [1.2.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.2.10...@carbon-platform/micromanage-cli@1.2.11) (2022-04-30)
 
 

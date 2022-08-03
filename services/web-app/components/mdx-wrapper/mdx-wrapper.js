@@ -20,8 +20,12 @@ import styles from './mdx-wrapper.module.scss'
 const MdxWrapper = ({ children, ...props }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
-  const { title, description, tabs, keywords } = JSON.parse(props.frontmatter)
-  const pathSegments = router.pathname.split('/').filter(Boolean)
+  const frontmatter = JSON.parse(props.frontmatter)
+  if (props.ignoreTabs) {
+    delete frontmatter.tabs
+  }
+  const { title, description, tabs, keywords } = frontmatter
+  const pathSegments = router.asPath.split('/').filter(Boolean)
   pathSegments.pop()
   const baseSegment = pathSegments.join('/')
 
@@ -43,9 +47,10 @@ const MdxWrapper = ({ children, ...props }) => {
         <PageTabs
           title={title}
           tabs={tabs.map((tab) => {
+            const tabSlug = slugify(tab, { strict: true, lower: true })
             return {
               name: tab,
-              path: `/${baseSegment}/${slugify(tab, { strict: true, lower: true })}`
+              path: baseSegment ? `/${baseSegment}/${tabSlug}` : `/${tabSlug}`
             }
           })}
         />

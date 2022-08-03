@@ -14,7 +14,7 @@
  * @property {string} path - Relative path to library in repository
  * @property {string} ref - Git branch, tag, or commit hash
  * @property {string} repo - GitHub repository
- * @property {string} sponsor - Team slug
+ * @property {string} maintainer - Team slug
  */
 
 /**
@@ -35,6 +35,21 @@
  * @property {AssetContent} content - Asset content
  * @property {Params} params - Params used to fetch asset content
  * @property {object} response - GitHub API response from fetching carbon.yml file
+ */
+
+/**
+ * @typedef {object} DesignKit
+ * @property {string} name - Design Kit name
+ * @property {string} description - Design kit description
+ * @property {('adobe-ase'|'adobe-xd'|'axure'|'figma'|'invision-freehand'| 'sketch')} tool
+ *  - Design kit’s compatible tool
+ * @property {('elements'|'guidelines'|'ui'|'wireframes')} type - Design kit primary categorization
+ * @property {('draft'| 'experimental' | 'status'|'deprecated'| object)} status
+ *  - Design kit consumption exptectations
+ * @property {string} url - Design kit URL
+ * @property {('download'| 'link')} action - Determines the action icon
+ * @property {('apache-2.0'|'ibm-internal'|'mit')} license - Design kit license
+ * @property {boolean} noIndex - If set to true, the global catalogs will exclude the kit
  */
 
 /**

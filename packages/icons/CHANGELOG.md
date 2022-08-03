@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.1...@carbon-platform/icons@0.1.2) (2022-08-03)
+
+
+### Bug Fixes 🐛
+
+* **icons:** decrease storybook icon size ([4480275](https://github.com/carbon-design-system/carbon-platform/commit/4480275203620a0fdcd7c17e5220c94465ecaf50))
+
 ### [0.1.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.0...@carbon-platform/icons@0.1.1) (2022-07-23)
 
 

@@ -140,6 +140,8 @@ const Asset = ({ libraryData, params }) => {
 
   const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
 
+  const designKitPath = `/libraries/${params.library}/${params.ref}/design-kits`
+
   console.log(' 🐬 ~ libraryAllowList', libraryAllowList)
 
   console.log(' 🐬 ~ params.library', params.library)
@@ -239,6 +241,14 @@ const Asset = ({ libraryData, params }) => {
                     >
                       <dt className={clsx(dashboardStyles.label)}>Other frameworks</dt>
                       <dd className={dashboardStyles.meta}></dd>
+                    </Column>
+                    <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                      <dt className={dashboardStyles.label}>Design files</dt>
+                      <dd className={dashboardStyles.meta}>
+                        <Link href={designKitPath} passHref>
+                          <CarbonLink size="lg">View compatible kits</CarbonLink>
+                        </Link>
+                      </dd>
                     </Column>
                   </Grid>
                   <ButtonSet className={dashboardStyles['button-set']}>

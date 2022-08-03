@@ -81,15 +81,17 @@ export const getStaticProps = async ({ params }) => {
     pageSrc = path.join('.' + libraryData.params.path, pageSrc)
   }
 
-  const { source, mdxError } = await getRemoteMdxPageStaticProps(
-    {
-      host,
-      org,
-      repo,
-      ref
-    },
-    pageSrc
-  )
+  const { source, mdxError } = (
+    await getRemoteMdxPageStaticProps(
+      {
+        host,
+        org,
+        repo,
+        ref
+      },
+      pageSrc
+    )
+  ).props
 
   return {
     props: {

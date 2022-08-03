@@ -6,7 +6,6 @@
  */
 
 import { Link } from '@carbon/react'
-import { MDXRemote } from 'next-mdx-remote'
 import PropTypes from 'prop-types'
 
 import H1 from '../markdown/h1'
@@ -55,7 +54,9 @@ const RemoteMdxLoader = ({ source, ignoreTabs, mdxError }) => {
     <>
       {source && (
         <MdxWrapper frontmatter={JSON.stringify(source?.frontmatter ?? {})} ignoreTabs={ignoreTabs}>
-          <MDXRemote {...source} />
+          {source?.compiledSource && (
+            <div dangerouslySetInnerHTML={{ __html: source?.compiledSource }} />
+          )}
         </MdxWrapper>
       )}
       {mdxError && getMdxErrorDisplay(mdxError)}

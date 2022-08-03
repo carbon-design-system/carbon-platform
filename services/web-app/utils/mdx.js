@@ -9,7 +9,10 @@ import mdxSanitizerPlugin, {
   ExportFoundException,
   ImportFoundException
 } from '@carbon-platform/mdx-sanitizer'
-import { serialize } from 'next-mdx-remote/serialize'
+import { evaluate } from '@mdx-js/mdx'
+import * as matter from 'gray-matter'
+import * as runtime from 'react/jsx-runtime.js'
+import * as ReactDOMServer from 'react-dom/server'
 import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
 import unwrapImages from 'remark-unwrap-images'
@@ -53,15 +56,27 @@ const replacementMapper = {
   script: getScriptReplacementSrc
 }
 
-// TODO: jsDOC
+/**
+ * Sanitizes and serializes MDX source from a given string so that it can be rendered
+ *
+ * @param {Promise<import('../typedefs').GitHubContentResponse} response
+ * MDX response previously retrieved from Github
+ * @returns {Promise<import('../typedefs').RemoteMdxResponse>} parsed mdx
+ * @throws {ImportFoundException}
+ * @throws {ExportFoundException}
+ * @throws {Error}
+ */
 const parseMdxResponseContent = async (response) => {
-  const usageFileSource = Buffer.from(response.content, response.encoding).toString()
+  const fileSource = Buffer.from(response.content, response.encoding).toString()
 
   // the path to where the mdx file is located on github
   const dirPath = response._links.html.split('/').slice(0, -1).join('/')
 
-  return serialize(usageFileSource, {
-    mdxOptions: {
+  const fileContent = matter(fileSource)
+
+  const MdxContentComponent = (
+    await evaluate(fileContent.content, {
+      ...runtime,
       remarkPlugins: [
         [
           mdxSanitizerPlugin,
@@ -78,36 +93,28 @@ const parseMdxResponseContent = async (response) => {
         unwrapImages
       ],
       rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
-    },
-    parseFrontmatter: true
-  }).catch(async (err) => {
-    switch (true) {
-      case err.message.includes('Import statement found'): {
-        // take just the source code part of the error
-        const content = err.message.substring(
-          err.message.indexOf('Import statement found') + 22,
-          err.message.length
-        )
+    })
+  ).default
 
-        throw new ImportFoundException(content, null)
-      }
-      case err.message.includes('Export statement found'): {
-        // take just the source code part of the error
-        const content = err.message.substring(
-          err.message.indexOf('Export statement found') + 22,
-          err.message.length
-        )
+  let htmlContent
+  try {
+    htmlContent = ReactDOMServer.renderToString(new MdxContentComponent({ components }))
+  } catch (err) {
+    logging.error(err)
+    throw err
+  }
 
-        throw new ExportFoundException(content, null)
-      }
-      default: // returning this for now so our app doesn't blow up in case mdx is not valid
-        logging.error(err)
-        throw err
-    }
-  })
+  return { compiledSource: htmlContent, frontmatter: fileContent.data }
 }
-
-// TODO: jsDoc
+/**
+ * Common util function to get the staticProps for a remote mdx page
+ *
+ * @param {Promise<import('../typedefs').Params} params
+ * MDX response previously retrieved from Github
+ * @returns {Promise<{
+ * mdxError: {type: string, ...},
+ * source: import('../typedefs').RemoteMdxResponse }>} static props
+ */
 export const getRemoteMdxPageStaticProps = async (params, src) => {
   let mdxError
   const mdxSrc = await getRemoteMdxSource(params, src)

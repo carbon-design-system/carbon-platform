@@ -12,7 +12,7 @@
 @use '@carbon/react/scss/utilities/convert' as convert;
 
 .container {
-  margin: spacing.$spacing-03 0 spacing.$spacing-10;
+  margin-bottom: spacing.$spacing-10;
   // overide Carbon treeview
   :global(.cds--tree-node) {
     padding-left: spacing.$spacing-05;

@@ -24,11 +24,10 @@
   max-width: 100%;
 }
 
-.link-content {
-  display: block;
-  width: 100%;
-  padding-right: spacing.$spacing-07;
-  margin-right: 0;
+.grid {
+  @include breakpoint.breakpoint-down(lg) {
+    position: relative;
+  }
 }
 
 .container {
@@ -43,12 +42,15 @@
 }
 
 .link {
-  padding-right: spacing.$spacing-07;
+  position: absolute;
+  right: 0;
+  padding: 0 spacing.$spacing-07 0 spacing.$spacing-05;
   cursor: pointer;
 
-  @include breakpoint.breakpoint(lg) {
-    position: absolute;
-    right: 0;
+  @include breakpoint.breakpoint-down(lg) {
+    bottom: 0;
+    left: 0;
+    padding-top: spacing.$spacing-05;
   }
 }
 
@@ -60,4 +62,11 @@
 
 .content {
   @include type.type-style('code-02', true);
+
+  overflow-x: scroll;
+  white-space: nowrap;
+
+  @include breakpoint.breakpoint-down(lg) {
+    margin-bottom: spacing.$spacing-07;
+  }
 }

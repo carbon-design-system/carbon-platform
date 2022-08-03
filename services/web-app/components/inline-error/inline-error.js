@@ -10,8 +10,8 @@ import PropTypes from 'prop-types'
 
 import styles from './inline-error.module.scss'
 
-export const InlineError = ({ className, content, title, description, href, link }) => {
-  const wrapperClassName = clsx(className, {
+export const InlineError = ({ content, title, description, href, link }) => {
+  const wrapperClassName = clsx({
     'cds--inline-notification': true,
     'cds--inline-notification--low-contrast': true,
     'cds--inline-notification--error': true
@@ -22,9 +22,9 @@ export const InlineError = ({ className, content, title, description, href, link
       <Column sm={4} md={6} lg={12}>
         <InlineNotification
           href={href}
-          className={clsx(styles.notification, className, wrapperClassName)}
+          className={clsx(wrapperClassName)}
         >
-          <Grid>
+          <Grid className={styles.grid}>
             <Column sm={4} md={6} lg={12}>
               <span className={styles.container}>
                 <strong className={styles.title}>{title}</strong>
@@ -41,10 +41,6 @@ export const InlineError = ({ className, content, title, description, href, link
 }
 
 InlineError.propTypes = {
-  /**
-   * Specify an optional className to be applied to the container node
-   */
-  className: PropTypes.string,
   /**
    * Provide error details
    */

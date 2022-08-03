@@ -148,6 +148,8 @@ const Asset = ({ libraryData, params }) => {
   console.log(' 🐬 ~ params.asset', params.asset)
   console.log(' 🐬 ~ assetsPath', assetsPath)
 
+  console.log(' 🐬 ~ otherFrameworks', assetData.content.otherFrameworks)
+
   return (
     <div ref={contentRef}>
       <NextSeo {...seo} />
@@ -240,7 +242,11 @@ const Asset = ({ libraryData, params }) => {
                       lg={4}
                     >
                       <dt className={clsx(dashboardStyles.label)}>Other frameworks</dt>
-                      <dd className={dashboardStyles.meta}></dd>
+                      <dd className={dashboardStyles.meta}>
+                        {assetData.content.otherFrameworks
+                          .map((framework) => framework.framework)
+                          .join(',')}
+                      </dd>
                     </Column>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>Design files</dt>
@@ -336,6 +342,38 @@ export const getServerSideProps = async ({ params }) => {
 
   const [assetData] = libraryData.assets
   assetData.content.issueCount = await getAssetIssueCount(assetData)
+
+  const otherAssetFrameworks = []
+  for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
+    if (libraryParams.group === libraryData.params.group) {
+      const relatedLibData = await getLibraryData({
+        library: slug,
+        ref: 'latest',
+        ...libraryParams,
+        asset: params.asset
+      })
+      if (
+        relatedLibData?.content.id !== libraryData.content.id &&
+        !relatedLibData?.content?.noIndex &&
+        relatedLibData.assets &&
+        relatedLibData.assets.length &&
+        !relatedLibData.assets[0].content?.noIndex &&
+        relatedLibData.assets[0].content?.framework
+      ) {
+        otherAssetFrameworks.push({
+          framework: relatedLibData.assets[0]?.content.framework,
+          params: {
+            library: slug,
+            ref: 'latest',
+            ...libraryParams,
+            asset: params.asset
+          }
+        })
+      }
+    }
+  }
+
+  assetData.content.otherFrameworks = otherAssetFrameworks
 
   return {
     props: {

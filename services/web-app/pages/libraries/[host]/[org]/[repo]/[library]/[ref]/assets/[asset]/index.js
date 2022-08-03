@@ -148,7 +148,7 @@ const Asset = ({ libraryData, params }) => {
     <>
       {index !== 0 && ', '}
       <Link
-        href={`/libraries/${framework.framework}/${params.ref}/assets/${params.asset}`}
+        href={`/libraries/${framework.params.library}/${params.ref}/assets/${params.asset}`}
         passHref
       >
         <CarbonLink size="lg">{framework.framework}</CarbonLink>

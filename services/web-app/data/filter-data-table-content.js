@@ -27,62 +27,62 @@ export const rowData = [
     sponsor: 'IBM Design Language',
     design_kit: 'Color styles',
     type: <Tag type="blue">Elements</Tag>,
-    design_tool: 'Figma'
+    design_tool: 'figma'
   },
   {
     id: 2,
     sponsor: '',
     design_kit: 'Text styles',
     type: <Tag type="blue">Elements</Tag>,
-    design_tool: 'Figma'
+    design_tool: 'figma'
   },
   {
     id: 3,
     sponsor: '',
     design_kit: 'Icons',
     type: <Tag type="blue">Elements</Tag>,
-    design_tool: 'Figma'
+    design_tool: 'figma'
   },
   {
     id: 4,
     sponsor: '',
     design_kit: 'Pictograms',
     type: <Tag type="blue">Elements</Tag>,
-    design_tool: 'Sketch'
+    design_tool: 'sketch'
   },
   {
     id: 5,
     sponsor: 'Carbon',
     design_kit: 'White theme',
     type: <Tag type="green">Components</Tag>,
-    design_tool: 'Sketch'
+    design_tool: 'sketch'
   },
   {
     id: 6,
     sponsor: '',
     design_kit: 'Gray 10 theme',
     type: <Tag type="green">Components</Tag>,
-    design_tool: 'Sketch'
+    design_tool: 'sketch'
   },
   {
     id: 7,
     sponsor: '',
     design_kit: 'Gray 90 theme',
     type: <Tag type="green">Components</Tag>,
-    design_tool: 'Sketch'
+    design_tool: 'sketch'
   },
   {
     id: 8,
     sponsor: '',
     design_kit: 'Gray 100 theme',
     type: <Tag type="green">Components</Tag>,
-    design_tool: 'Axure'
+    design_tool: 'axure'
   },
   {
     id: 9,
     sponsor: 'IBM Accessibility',
     design_kit: 'Accessibility Toolkit',
     type: <Tag type="red">Guidance</Tag>,
-    design_tool: 'Adobe XD'
+    design_tool: 'adobe-xd'
   }
 ]

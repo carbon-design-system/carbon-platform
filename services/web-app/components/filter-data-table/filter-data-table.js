@@ -18,14 +18,37 @@ import {
 } from '@carbon/react'
 import { useCallback, useEffect, useState } from 'react'
 
-import { headerData, rowData } from '@/data/filter-data-table-content'
+// import { rowData } from '@/data/filter-data-table-content'
 import { designTools } from '@/data/filter-data-table-tools'
 
+import designKitData from '../../../../packages/resources/carbon.yml'
 import styles from './filter-data-table.module.scss'
+import { filter } from 'minimatch'
+
+const headerData = [
+  {
+    header: 'Maintainer',
+    key: 'maintainer'
+  },
+  {
+    header: 'Design kit',
+    key: 'name'
+  },
+  {
+    header: 'Type',
+    key: 'type'
+  }
+]
+const rowData2 = Object.values(designKitData.designKits)
+
+
+console.log(rowData2[0], 'he')
 
 const FilterDataTable = () => {
-  const [filteredRows, setFilteredRows] = useState(rowData)
-  const [currentItem, setCurrentItem] = useState('Figma')
+  const [filteredRows, setFilteredRows] = useState(rowData2)
+  const [currentItem, setCurrentItem] = useState('figma')
+
+  console.log(filteredRows, 'hi')
 
   const filterByDesignTool = useCallback(
     (filteredData) => {
@@ -33,7 +56,7 @@ const FilterDataTable = () => {
         return filteredData
       }
 
-      return filteredData.filter((item) => item.design_tool === currentItem)
+      return filteredData.filter((item) => item.tool === currentItem)
     },
     [currentItem]
   )
@@ -43,7 +66,7 @@ const FilterDataTable = () => {
   }
 
   useEffect(() => {
-    setFilteredRows(filterByDesignTool(rowData))
+    setFilteredRows(filterByDesignTool(rowData2))
   }, [currentItem, filterByDesignTool])
 
   return (
@@ -74,11 +97,12 @@ const FilterDataTable = () => {
                 ))}
               </TableRow>
             </TableHead>
+            {console.log(rows, 'bye')}
             <TableBody>
               {rows.map((row) => (
-                <TableRow key={row.id}>
+                <TableRow key={row.value}>
                   {row.cells.map((cell) => (
-                    <TableCell key={cell.id}>{cell.value}</TableCell>
+                    <TableCell key={cell.value}>{cell.value}</TableCell>
                   ))}
                 </TableRow>
               ))}

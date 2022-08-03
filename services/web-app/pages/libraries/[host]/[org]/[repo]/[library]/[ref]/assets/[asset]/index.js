@@ -144,17 +144,19 @@ const Asset = ({ libraryData, params }) => {
 
   const otherFrameworks = assetData.content.otherFrameworks
 
-  const otherFrameworkLinks = otherFrameworks.map((framework, index) => (
-    <>
-      {index !== 0 && ', '}
-      <Link
-        href={`/libraries/${framework.params.library}/${params.ref}/assets/${params.asset}`}
-        passHref
-      >
-        <CarbonLink size="lg">{framework.framework}</CarbonLink>
-      </Link>
-    </>
-  ))
+  const otherFrameworkLinks = otherFrameworks
+    .sort((a, b) => a.framework.localeCompare(b.framework))
+    .map((framework, index) => (
+      <>
+        {index !== 0 && ', '}
+        <Link
+          href={`/libraries/${framework.params.library}/${params.ref}/assets/${params.asset}`}
+          passHref
+        >
+          <CarbonLink size="lg">{framework.framework}</CarbonLink>
+        </Link>
+      </>
+    ))
 
   return (
     <div ref={contentRef}>

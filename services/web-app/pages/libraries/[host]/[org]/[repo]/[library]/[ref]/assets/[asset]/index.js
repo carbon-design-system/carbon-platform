@@ -142,13 +142,19 @@ const Asset = ({ libraryData, params }) => {
 
   const designKitPath = `/libraries/${params.library}/${params.ref}/design-kits`
 
-  console.log(' 🐬 ~ libraryAllowList', libraryAllowList)
+  const otherFrameworks = assetData.content.otherFrameworks
 
-  console.log(' 🐬 ~ params.library', params.library)
-  console.log(' 🐬 ~ params.asset', params.asset)
-  console.log(' 🐬 ~ assetsPath', assetsPath)
-
-  console.log(' 🐬 ~ otherFrameworks', assetData.content.otherFrameworks)
+  const otherFrameworkLinks = otherFrameworks.map((framework, index) => (
+    <>
+      {index !== 0 && ', '}
+      <Link
+        href={`/libraries/${framework.framework}/${params.ref}/assets/${params.asset}`}
+        passHref
+      >
+        <CarbonLink size="lg">{framework.framework}</CarbonLink>
+      </Link>
+    </>
+  ))
 
   return (
     <div ref={contentRef}>
@@ -241,11 +247,9 @@ const Asset = ({ libraryData, params }) => {
                       sm={2}
                       lg={4}
                     >
-                      <dt className={clsx(dashboardStyles.label)}>Other frameworks</dt>
-                      <dd className={dashboardStyles.meta}>
-                        {assetData.content.otherFrameworks
-                          .map((framework) => framework.framework)
-                          .join(',')}
+                      <dt className={dashboardStyles.label}>Other frameworks</dt>
+                      <dd className={clsx(dashboardStyles.meta, styles['other-frameworks'])}>
+                        {otherFrameworks.length > 0 ? otherFrameworkLinks : '–'}
                       </dd>
                     </Column>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>

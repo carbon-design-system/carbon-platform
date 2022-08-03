@@ -24,12 +24,16 @@ export const InlineError = ({ className, content, title, description, href, link
           href={href}
           className={clsx(styles.notification, className, wrapperClassName)}
         >
-          <span className={styles.container}>
-            <strong className={styles.title}>{title}</strong>
-            <Link className={styles.link}>{link}</Link>
-          </span>
-          <p className={styles.description}>{description}</p>
-          <p className={styles.content}>{content}</p>
+          <Grid>
+            <Column sm={4} md={6} lg={12}>
+              <span className={styles.container}>
+                <strong className={styles.title}>{title}</strong>
+                <Link className={styles.link}>{link}</Link>
+              </span>
+              <p className={styles.description}>{description}</p>
+              <p className={styles.content}>{content}</p>
+            </Column>
+          </Grid>
         </InlineNotification>
       </Column>
     </Grid>

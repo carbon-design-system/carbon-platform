@@ -136,8 +136,6 @@ const Asset = ({ libraryData, params }) => {
 
   const githubRepoUrl = `https://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
 
-  const frameworkIcon = assetData.content.framework
-
   const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
 
   const designKitPath = `/libraries/${params.library}/${params.ref}/design-kits`
@@ -224,7 +222,7 @@ const Asset = ({ libraryData, params }) => {
                       <dt className={dashboardStyles.label}>Framework</dt>
                       <dd className={dashboardStyles.meta}>
                         <MdxIcon
-                          name={frameworkIcon}
+                          name={assetData.content.framework}
                           className={dashboardStyles['framework-icon']}
                         />
 

@@ -146,14 +146,14 @@ const Asset = ({ libraryData, params }) => {
 
   const otherFrameworkLinks = otherFrameworks
     .sort((a, b) => a.framework.localeCompare(b.framework))
-    .map((framework, index) => (
+    .map((frameworks, index) => (
       <>
         {index !== 0 && ', '}
         <Link
-          href={`/libraries/${framework.params.library}/${params.ref}/assets/${params.asset}`}
+          href={`/libraries/${frameworks.params.library}/${params.ref}/assets/${params.asset}`}
           passHref
         >
-          <CarbonLink size="lg">{framework.framework}</CarbonLink>
+          <CarbonLink size="lg">{frameworks.framework}</CarbonLink>
         </Link>
       </>
     ))

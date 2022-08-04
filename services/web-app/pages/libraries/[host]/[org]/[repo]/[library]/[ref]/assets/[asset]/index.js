@@ -361,8 +361,7 @@ export const getServerSideProps = async ({ params }) => {
       if (
         relatedLibData?.content.id !== libraryData.content.id &&
         !relatedLibData?.content?.noIndex &&
-        relatedLibData.assets &&
-        relatedLibData.assets.length &&
+        relatedLibData.assets?.length &&
         !relatedLibData.assets[0].content?.noIndex &&
         relatedLibData.assets[0].content?.framework
       ) {

@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.13...@carbon-platform/web-app@0.2.14) (2022-08-04)
+
+
+### Features 🌟
+
+* **web-app:** add design kit links to dashboard ([bbcc203](https://github.com/carbon-design-system/carbon-platform/commit/bbcc203c471798332a92c47066142f5de6d75bca))
+
+### [0.2.13](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.12...@carbon-platform/web-app@0.2.13) (2022-08-03)
+
+
+### Features 🌟
+
+* added caption ([cd5c6c4](https://github.com/carbon-design-system/carbon-platform/commit/cd5c6c463606b4d27370961afdd8bd1b40fcfd69))
+* fix lint ([124cdc9](https://github.com/carbon-design-system/carbon-platform/commit/124cdc912345d754e8d4e3168d0d479d3b9c7950))
+* fixed height border ([cd6e42e](https://github.com/carbon-design-system/carbon-platform/commit/cd6e42e7a1f698b7dfb3ec8a1f00a6613f7eec78))
+* fixed height border ([731259c](https://github.com/carbon-design-system/carbon-platform/commit/731259ce6b9b78c99cf369c58e0789307ed8ae2b))
+* need to update default variant ([e98479f](https://github.com/carbon-design-system/carbon-platform/commit/e98479f60f35f9e3683a385c00263bf250caeaa1))
+* storybook demo component ([af32f31](https://github.com/carbon-design-system/carbon-platform/commit/af32f311e43962cf4dd04bc75745d6af13675bf2))
+* update border ([668323c](https://github.com/carbon-design-system/carbon-platform/commit/668323c15997d10d7173565592c21229c6cb92bc))
+* updated styles and funcctionality ([a4e4de9](https://github.com/carbon-design-system/carbon-platform/commit/a4e4de9bfdfea0f407727c6edb2fe8d53c49e5db))
+* **web-app:** move demo links to resource cards library detail ([726698e](https://github.com/carbon-design-system/carbon-platform/commit/726698e9cad0cfc958f325c5a280ebd7da3c1caf))
+* **web-app:** update demo links on library and detail pages ([4af6a13](https://github.com/carbon-design-system/carbon-platform/commit/4af6a131ebff16142a81796c58af8a8690276a7b))
+
+
+### Bug Fixes 🐛
+
+* add component description ([393489b](https://github.com/carbon-design-system/carbon-platform/commit/393489b8b2b6aaac144ff476330a49d7d084adf8))
+* button copy ([7da0d79](https://github.com/carbon-design-system/carbon-platform/commit/7da0d792c6892f463106d7f213a6ba577b3faec7))
+* mobile heading text wrap ([ea1c743](https://github.com/carbon-design-system/carbon-platform/commit/ea1c743062c98d8855abdd9c30e166f9e00d90de))
+* storybook story for demo ([01e1777](https://github.com/carbon-design-system/carbon-platform/commit/01e1777a742d6bf2ed112653d2363540aa196ffd))
+* **web-app:** make library name clickable ([3f54fbf](https://github.com/carbon-design-system/carbon-platform/commit/3f54fbfa450b846be87cf1755efbe8a8da097a41))
+* **web-app:** update library side nav and page heading ([ef8409f](https://github.com/carbon-design-system/carbon-platform/commit/ef8409f65bc45e4206a98bf99865752edc726afc))
+
 ### [0.2.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.11...@carbon-platform/web-app@0.2.12) (2022-08-02)
 
 

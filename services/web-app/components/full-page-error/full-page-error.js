@@ -15,7 +15,7 @@ export const FullPageError = ({ title, subtitle, content, link, href }) => {
       <Column className={styles.column} sm={4} md={8} lg={{ start: 5, span: 6 }}>
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.subtitle}>{subtitle}</p>
-        <div className={styles.content}>{content}</div>
+        {content && <div className={styles.content}>{content}</div>}
         <Link className={styles.link} href={href}>
           {link}
         </Link>

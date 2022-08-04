@@ -24,6 +24,10 @@
   max-width: 100%;
 }
 
+.error-container {
+  margin-top: spacing.$spacing-05;
+}
+
 .grid {
   @include breakpoint.breakpoint-down(lg) {
     position: relative;

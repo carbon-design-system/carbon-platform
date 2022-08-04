@@ -19,12 +19,17 @@ import unwrapImages from 'remark-unwrap-images'
 
 import components from '@/components/mdx/components'
 import { getRemoteMdxSource } from '@/lib/github'
-import { mdxImgResolver } from '@/utils/mdx-image-resolver'
+import { mdxImgResolver } from '@/utils/mdx-image-resolver' // TODO: should this be its own package as well?
 
 const logging = new Logging({ component: 'mdx.js' })
 
-// TODO: sub for inline error
-const fallbackComponent = (node) => `<UnknownComponent name="${node.name}"/>`
+class ContentRenderException extends Error {}
+
+const fallbackComponent = (node) => `<InlineError
+title="\`${node.name}\` not recognized"
+description="This component is not supported or there is a typo. Please update to a supported component or review any mistakes.
+It is referenced in your code at \`13:1-13:23\`"
+link="Supported components" href="/TODO" />`
 
 const getScriptReplacementSrc = (node) => {
   let content = ''
@@ -44,10 +49,9 @@ const getScriptReplacementSrc = (node) => {
   content = content.slice(0, -1)
   const scriptString =
     '```\n' + '<script>\n  ' + content.replaceAll('\n', '\n  ') + '\n</script>' + '\n```'
-  // TODO: sub for inline error
   return `
-  <div style={{marginTop: '60px'}}><strong>Script tag identified</strong></div>
-  <div>For security concerns, script tags are not allowed and should be removed. Remove script referenced below </div>
+  <InlineError title="Script tag identified"
+  description="For security concerns, script tags are not allowed and should be removed. Remove script referenced below"/>
   ${scriptString}
   `
 }
@@ -101,7 +105,7 @@ const parseMdxResponseContent = async (response) => {
     htmlContent = ReactDOMServer.renderToString(new MdxContentComponent({ components }))
   } catch (err) {
     logging.error(err)
-    throw err
+    throw new Error('Component not rendering')
   }
 
   return { compiledSource: htmlContent, frontmatter: fileContent.data }
@@ -138,8 +142,11 @@ export const getRemoteMdxPageStaticProps = async (params, src) => {
       case err instanceof ExportFoundException:
         mdxError.type = 'ExportFoundException'
         break
+      case err instanceof ContentRenderException:
+        mdxError.type = 'ContentRenderException'
+        break
       default:
-        mdxError.type = 'Error'
+        mdxError.type = 'MdxParseException'
     }
   })
 

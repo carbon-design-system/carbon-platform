@@ -25,9 +25,11 @@
 .content {
   @include type.type-style('code-02', true);
 
-  padding: spacing.$spacing-07 0;
+  padding-top: spacing.$spacing-07;
 }
 
 .link {
   @include type.type-style('body-compact-02', true);
+
+  padding-top: spacing.$spacing-07;
 }

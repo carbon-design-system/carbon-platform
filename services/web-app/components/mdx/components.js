@@ -31,10 +31,12 @@ import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
 import Divider from '@/components/divider'
 import { DoDont, DoDontRow } from '@/components/do-dont'
+import FullPageError from '@/components/full-page-error'
 import GifPlayer from '@/components/gif-player'
 import Glossary from '@/components/glossary'
 import { Column, Grid, Row } from '@/components/grid-transform'
 import ImageWrapper from '@/components/image-wrapper'
+import InlineError from '@/components/inline-error'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
@@ -56,15 +58,6 @@ import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
 import Video from '@/components/video'
 
-const UnknownComponent = ({ name }) => {
-  return (
-    <InlineNotification kind="error">
-      <strong>Error: </strong>The <strong>{name} </strong> component is not supported within the
-      Carbon Platform.
-    </InlineNotification>
-  )
-}
-
 const components = {
   h1: H1,
   h2: H2,
@@ -81,6 +74,8 @@ const components = {
   img: Image,
   table: PageTable,
   pre: Code,
+  InlineError,
+  FullPageError,
   /* Core Carbon components */
   Button,
   StructuredListWrapper,
@@ -133,7 +128,6 @@ const components = {
   TypeScaleTable,
   TypesetStyle,
   TypeWeight,
-  UnknownComponent,
   Video
 }
 

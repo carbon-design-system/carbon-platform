@@ -5,47 +5,55 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Link } from '@carbon/react'
 import PropTypes from 'prop-types'
 
-import H1 from '../markdown/h1'
-import H2 from '../markdown/h2'
+import FullPageError from '../full-page-error/full-page-error'
+import InlineError from '../inline-error/inline-error'
 import MdxWrapper from '../mdx-wrapper'
 
 const getMdxErrorDisplay = (mdxError) => {
-  switch (true) {
-    case mdxError.type === 'ImportFoundException' || mdxError.type === 'ExportFoundException':
-      // TODO: sub for full page error
-      return (
-        <>
-          <H1>{"Something's gone wrong"}</H1>
-          <H2>{`${
-            mdxError.type === 'ExportFoundException' ? 'Export' : 'Import'
-          } statement identified`}</H2>
-          <div>
-            For security concerns, import and export statements are not allowed and should be
-            removed
-          </div>
-          <div style={{ whiteSpace: 'pre-wrap' }}>
-            {/* TODO: There is still a space off here */}
-            {mdxError.value}
-          </div>
-        </>
-      )
-    case mdxError.type === 'ContentNotFoundException':
-      // TODO: sub for full page error
-      return (
-        <>
-          <H1>The page you are looking for cannot be found.</H1>
-          <div>Supplied Github route does not exist. Update to a valid route.</div>
-          <Link>See common errors for further information on valid urls</Link>
-        </>
-      )
-    default:
-      return (
-        // TODO: sub for inline error
-        <div>{mdxError.message}</div>
-      )
+  if (mdxError.type === 'ImportFoundException' || mdxError.type === 'ExportFoundException') {
+    return (
+      <FullPageError
+        title="Something's gone wrong"
+        subtitle={`${
+          mdxError.type === 'ExportFoundException' ? 'Export' : 'Import'
+        } statement identified`}
+        content={
+          <>
+            <div style={{ marginBottom: '20px' }}>
+              For security concerns, import and export statements are not allowed and should be
+              removed
+            </div>
+            <code>{mdxError.value}</code>
+          </>
+        }
+        link="See common errors for more information"
+        href="/common-errors"
+      />
+    )
+  } else if (mdxError.type === 'ContentNotFoundException') {
+    return (
+      <FullPageError
+        title="The page you are looking for cannot be found."
+        subtitle="Supplied Github route does not exist. Update to a valid route."
+        link="See common errors for further information on valid urls"
+        href="/common-errors"
+      />
+    )
+  } else if (mdxError.type === ['MdxParseException']) {
+    return (
+      <InlineError title="[next-mdx-remote] error compiling MDX:" description={mdxError.message} />
+    )
+  } else {
+    return (
+      <InlineError
+        title="Component not rendering"
+        description="Verify component usage documentation to make sure you're supplying all necessary information in the correct format"
+        link="Get support"
+        href="/TODO"
+      />
+    )
   }
 }
 

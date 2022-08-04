@@ -4,11 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Button, ButtonSet, Column, Grid } from '@carbon/react'
+import { Button, ButtonSet, Column, Grid, Link as CarbonLink } from '@carbon/react'
 import { ArrowRight, Launch } from '@carbon/react/icons'
 import { Svg32Github, Svg32Library, Svg64Community } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
@@ -65,6 +66,8 @@ const Library = ({ libraryData, params, navData }) => {
   const MaintainerIcon = teams[maintainer] ? teams[maintainer].pictogram : Svg64Community
 
   const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
+
+  const designKitPath = `/libraries/${params.library}/${params.ref}/design-kits`
 
   const getVersion = () => {
     if (params.ref === 'main' || params.ref === 'master' || params.ref === 'latest') {
@@ -137,6 +140,18 @@ const Library = ({ libraryData, params, navData }) => {
                   <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>License</dt>
                     <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
+                  </Column>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                    <dt className={dashboardStyles.label}>Related libraries</dt>
+                    <dd className={dashboardStyles.meta}>–</dd>
+                  </Column>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                    <dt className={dashboardStyles.label}>Design files</dt>
+                    <dd className={dashboardStyles.meta}>
+                      <Link href={designKitPath} passHref>
+                        <CarbonLink size="lg">View compatible kits</CarbonLink>
+                      </Link>
+                    </dd>
                   </Column>
                 </Grid>
 

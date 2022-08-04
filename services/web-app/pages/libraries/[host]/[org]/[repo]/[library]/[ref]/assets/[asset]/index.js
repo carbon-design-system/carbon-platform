@@ -136,6 +136,8 @@ const Asset = ({ libraryData, params }) => {
 
   const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
 
+  const designKitPath = `/libraries/${params.library}/${params.ref}/design-kits`
+
   return (
     <div ref={contentRef}>
       <NextSeo {...seo} />
@@ -219,6 +221,14 @@ const Asset = ({ libraryData, params }) => {
                       <dt className={dashboardStyles.label}>Tags</dt>
                       <dd className={dashboardStyles.meta}>
                         {getTagsList(assetData).join(', ') || '–'}
+                      </dd>
+                    </Column>
+                    <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                      <dt className={dashboardStyles.label}>Design files</dt>
+                      <dd className={dashboardStyles.meta}>
+                        <Link href={designKitPath} passHref>
+                          <CarbonLink size="lg">View compatible kits</CarbonLink>
+                        </Link>
                       </dd>
                     </Column>
                   </Grid>

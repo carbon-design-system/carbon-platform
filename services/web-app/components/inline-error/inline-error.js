@@ -20,10 +20,7 @@ export const InlineError = ({ content, title, description, href, link }) => {
   return (
     <Grid>
       <Column sm={4} md={6} lg={12}>
-        <InlineNotification
-          href={href}
-          className={clsx(wrapperClassName)}
-        >
+        <InlineNotification href={href} className={clsx(wrapperClassName)}>
           <Grid className={styles.grid}>
             <Column sm={4} md={6} lg={12}>
               <span className={styles.container}>

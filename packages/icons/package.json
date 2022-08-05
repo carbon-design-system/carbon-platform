@@ -2,8 +2,6 @@
   "name": "@carbon-platform/icons",
   "description": "Carbon platform icons",
   "version": "0.1.2",
-  "module": "dist/main/generated/index.js",
-  "types": "dist/main/generated/index.d.ts",
   "license": "Apache-2.0",
   "private": true,
   "repository": {
@@ -14,10 +12,14 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "type": "module",
+  "exports": {
+    "default": "./dist/main/generated/index.js"
+  },
   "scripts": {
     "build": "npm run build:svg && tsc",
     "build:svg": "svgr --no-prettier --out-dir src/main/generated src/main/svg",
-    "clean": "rimraf dist src/main/generated",
+    "clean": "rimraf dist src/main/generated '*.tsbuildinfo'",
     "package:build": "npm run build"
   },
   "dependencies": {

@@ -24,7 +24,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "clean": "rimraf dist generated",
+    "clean": "rimraf dist generated '*.tsbuildinfo'",
     "package:build": "npm run build",
     "test": "ava --config ../../ava.config.mjs"
   },

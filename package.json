@@ -20,6 +20,7 @@
     "base",
     "packages/api",
     "packages/icons",
+    "packages/mdx-processor",
     "packages/mdx-sanitizer",
     "packages/micromanage",
     "packages/resources",

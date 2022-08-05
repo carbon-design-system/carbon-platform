@@ -338,7 +338,7 @@ const validateAsset = (asset, library) => {
 
 /**
  * Finds library object in libraryAllowList from slug and returns a valid set of params
- * (if librry is valid)
+ * (if library is valid)
  * @param {string} libraryVersionSlug e.g. 'carbon-charts@0.1.121'
  * @returns {Promise<import('../typedefs').Params>}
  */

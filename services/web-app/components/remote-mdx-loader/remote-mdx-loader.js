@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { MDXRemote } from 'next-mdx-remote'
 import PropTypes from 'prop-types'
 
 import FullPageError from '../full-page-error/full-page-error'
@@ -12,6 +13,7 @@ import InlineError from '../inline-error/inline-error'
 import MdxWrapper from '../mdx-wrapper'
 
 const getMdxErrorDisplay = (mdxError) => {
+  console.log(mdxError)
   if (mdxError.type === 'ImportFoundException' || mdxError.type === 'ExportFoundException') {
     return (
       <FullPageError
@@ -41,7 +43,7 @@ const getMdxErrorDisplay = (mdxError) => {
         href="/common-errors"
       />
     )
-  } else if (mdxError.type === ['MdxParseException']) {
+  } else if (mdxError.type === 'MdxParseException') {
     return (
       <InlineError title="[next-mdx-remote] error compiling MDX:" description={mdxError.message} />
     )
@@ -57,37 +59,41 @@ const getMdxErrorDisplay = (mdxError) => {
   }
 }
 
-const RemoteMdxLoader = ({ source, ignoreTabs, mdxError }) => {
+const RemoteMdxLoader = ({ compiledSource, ignoreTabs, mdxError }) => {
   return (
     <>
-      {source && (
-        <MdxWrapper frontmatter={JSON.stringify(source?.frontmatter ?? {})} ignoreTabs={ignoreTabs}>
-          {source?.compiledSource && (
-            <div dangerouslySetInnerHTML={{ __html: source?.compiledSource }} />
-          )}
-        </MdxWrapper>
-      )}
+      <MdxWrapper
+        frontmatter={JSON.stringify(compiledSource?.data?.matter ?? {})}
+        ignoreTabs={ignoreTabs}
+      >
+        <MDXRemote compiledSource={compiledSource.value} frontmatter={compiledSource.data.matter} />
+      </MdxWrapper>
       {mdxError && getMdxErrorDisplay(mdxError)}
     </>
   )
 }
 
 RemoteMdxLoader.propTypes = {
+  compiledSource: PropTypes.shape({
+    value: PropTypes.string,
+    data: PropTypes.shape({
+      matter: PropTypes.object
+    })
+  }),
   /**
    * whether frontmatter tabs should be ignored, defaults to false
    */
   ignoreTabs: PropTypes.bool,
+  /**
+   *
+   */
   mdxError: PropTypes.shape({
     type: PropTypes.string,
     message: PropTypes.string
-  }),
+  })
   /**
    * serialized mdxSource (AST)
    */
-  source: PropTypes.shape({
-    frontmatter: PropTypes.object,
-    compiledSource: PropTypes.string
-  })
 }
 
 export default RemoteMdxLoader

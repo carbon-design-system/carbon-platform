@@ -4,8 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-const matter = require('gray-matter')
+import { matter } from 'vfile-matter'
 
 const shiftNode = (node) => {
   node.position.start.line += 1
@@ -15,7 +14,7 @@ const shiftNode = (node) => {
 }
 
 const mdxWrapperPlugin = () => (tree, file) => {
-  const { data } = matter(file.value)
+  const { data } = matter(file)
 
   // removes the frontmatter lines
   if (tree.children[0].type === 'thematicBreak') {
@@ -62,4 +61,4 @@ const mdxWrapperPlugin = () => (tree, file) => {
   ]
 }
 
-module.exports = { mdxWrapperPlugin }
+export { mdxWrapperPlugin }

@@ -5,10 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Position } from 'unist'
+
 class ImportFoundException extends Error {
   value: string
-  position: any
-  constructor(value: string, position: Position) {
+  position?: Position
+
+  constructor(value: string, position: Position | undefined) {
     super('Import statement found')
     this.value = value
     this.position = position

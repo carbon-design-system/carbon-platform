@@ -128,7 +128,8 @@ const components = {
   TypeScaleTable,
   TypesetStyle,
   TypeWeight,
-  Video
+  Video,
+  Whatever: ({ something }) => <div>{something.hello}</div>
 }
 
 export default components

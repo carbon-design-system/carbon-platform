@@ -15,7 +15,6 @@
 .body {
   flex-grow: 1;
   padding-bottom: spacing.$spacing-13 + spacing.$spacing-07;
-  margin-left: -1px;
   background: theme.$background;
 }
 
@@ -129,8 +128,7 @@
 
 .column-content {
   @include breakpoint.breakpoint-down(md) {
-    // override carbon 0.5px left and right margins in condensed nested grid
-    margin-right: 0;
+    // override carbon 0.5px left margin in condensed nested grid
     margin-left: 0;
   }
 }

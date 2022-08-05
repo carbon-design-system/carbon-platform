@@ -48,7 +48,7 @@
     "graphql-config": "^4.3.3",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
-    "npm-check-updates": "^15.3.4",
+    "npm-check-updates": "^16.0.5",
     "prettier": "^2.7.1",
     "standard-version": "^9.5.0",
     "stylelint": "^14.9.1",

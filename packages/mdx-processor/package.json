@@ -1,14 +1,12 @@
 {
-    "name": "@carbon-platform/mdx-converter",
-    "version": "1.0.0",
-    "description": "Convert input MDX to a safe-to-use React component",
+    "name": "@carbon-platform/mdx-processor",
+    "version": "0.1.0",
+    "description": "Convert input MDX to safe-to-use React components",
     "license": "Apache-2.0",
     "type": "module",
+    "private": true,
     "exports": {
         "default": "./dist/main/index.js"
-    },
-    "publishConfig": {
-        "access": "public"
     },
     "repository": {
         "type": "git",
@@ -27,10 +25,16 @@
     },
     "dependencies": {
         "@mdx-js/mdx": "^2.1.2",
-        "html-comment-regex": "^1.1.2",
-        "mdast-util-mdx-jsx": "^2.1.0",
-        "unified": "^10.1.2",
-        "unist-util-visit": "^4.1.0",
-        "vfile": "^5.3.4"
+        "rehype-urls": "^1.1.1",
+        "remark-gfm": "^3.0.1",
+        "remark-unwrap-images": "^3.0.1",
+        "vfile": "^5.3.4",
+        "vfile-matter": "^4.0.0"
+    },
+    "peerDependencies": {
+        "@types/react": ">=17",
+        "@types/react-dom": ">=17",
+        "react": ">=17",
+        "react-dom": ">=17"
     }
 }

@@ -10,12 +10,12 @@ import mdxSanitizerPlugin, {
   ImportFoundException
 } from '@carbon-platform/mdx-sanitizer'
 import { evaluate } from '@mdx-js/mdx'
-import * as matter from 'gray-matter'
 import * as runtime from 'react/jsx-runtime.js'
 import * as ReactDOMServer from 'react-dom/server'
 import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
 import unwrapImages from 'remark-unwrap-images'
+import { matter } from 'vfile-matter'
 
 import components from '@/components/mdx/components'
 import { getRemoteMdxSource } from '@/lib/github'
@@ -135,6 +135,7 @@ export const getRemoteMdxPageStaticProps = async (params, src) => {
 
   const mdxSource = await parseMdxResponseContent(mdxSrc).catch((err) => {
     mdxError = { ...err }
+    console.log(err.message)
     switch (true) {
       case err instanceof ImportFoundException:
         mdxError.type = 'ImportFoundException'

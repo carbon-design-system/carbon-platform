@@ -27,7 +27,7 @@ import { Config } from './interfaces.js'
  * @param {(Node) => void} callback function to call with resulting MDAST node
  * as a param when content has been parsed
  */
-const getMDASTNodeFromSrc = async (src: string, callback: (node: Node) => void) => {
+async function getMdAstNodeFromSrc(src: string, callback: (node: Node) => void) {
   const processor = unified().use(remarkParse).use(remarkMdx).use(remarkMarkAndUnravel)
   const node: Node = await new Promise((resolve) => {
     processor.run(processor.parse(src), src, (_, replaceContentTree) => {
@@ -52,7 +52,7 @@ const getMDASTNodeFromSrc = async (src: string, callback: (node: Node) => void) 
  * @param {object} tree AST: mdx source
  * @returns {Root} modified tree
  */
-const sanitizeASTTree = async (config: Config, tree: Parent) => {
+async function sanitizeAst(config: Config, tree: Parent) {
   const promises: Promise<any>[] = []
   // Imports/Exports
   if (!config.allowExports || !config.allowImports) {
@@ -76,7 +76,7 @@ const sanitizeASTTree = async (config: Config, tree: Parent) => {
       const stringSrc = config.fallbackComponent(node)
 
       promises.push(
-        getMDASTNodeFromSrc(stringSrc, (replacementNode) => {
+        getMdAstNodeFromSrc(stringSrc, (replacementNode) => {
           parent.children[index] = replacementNode as MdxJsxFlowElement
         })
       )
@@ -91,7 +91,7 @@ const sanitizeASTTree = async (config: Config, tree: Parent) => {
       const stringSrc = config.tagReplacements[node.name ?? '']?.(node) ?? ''
 
       promises.push(
-        getMDASTNodeFromSrc(stringSrc, (replacementNode) => {
+        getMdAstNodeFromSrc(stringSrc, (replacementNode) => {
           parent.children[index] = replacementNode as MdxJsxFlowElement
         })
       )
@@ -102,7 +102,7 @@ const sanitizeASTTree = async (config: Config, tree: Parent) => {
 }
 
 /**
- * Varifies mdx sanitizer configuration object and adds defaults where necessary
+ * Verifies mdx sanitizer configuration object and adds defaults where necessary
  *
  * @param {Config} config partially configuration settings to customize the sanitizer's behavior
  * @returns {Config} config complete configuration object with defaults baked in
@@ -138,15 +138,17 @@ function getConfigDefaults(config: Config) {
  */
 function mdxSanitizerPlugin(this: Processor, config: Config) {
   getConfigDefaults(config)
+
   // strip HTML comments if necessary
   if (config.stripHTMLComments) {
     const parse = this.parse
     this.parse = (vFile: VFile) => {
-      vFile.value = (vFile.value as string).replace(htmlCommentRegex, '')
+      vFile.value = String(vFile.value).replace(htmlCommentRegex, '')
       return parse(vFile)
     }
   }
-  return sanitizeASTTree.bind(null, config)
+
+  return sanitizeAst.bind(null, config)
 }
 
-export default mdxSanitizerPlugin
+export { mdxSanitizerPlugin }

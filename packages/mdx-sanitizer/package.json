@@ -3,7 +3,9 @@
     "version": "1.0.0",
     "description": "Strips out undesired content from MDX files",
     "license": "Apache-2.0",
-    "main": "dist/main",
+    "exports": {
+        "default": "./dist/main/index.js"
+    },
     "type": "module",
     "publishConfig": {
         "access": "public"

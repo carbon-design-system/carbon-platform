@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { MDXRemote } from 'next-mdx-remote'
 import PropTypes from 'prop-types'
 
 import FullPageError from '../full-page-error/full-page-error'
@@ -57,11 +58,14 @@ const getMdxErrorDisplay = (mdxError) => {
   }
 }
 
-const RemoteMdxLoader = ({ source, ignoreTabs, mdxError }) => {
+const RemoteMdxLoader = ({ compiledSource, ignoreTabs, mdxError }) => {
   return (
-    <MdxWrapper frontmatter={JSON.stringify(source?.frontmatter ?? {})} ignoreTabs={ignoreTabs}>
-      {source?.compiledSource && (
-        <div dangerouslySetInnerHTML={{ __html: source?.compiledSource }} />
+    <MdxWrapper
+      frontmatter={JSON.stringify(compiledSource?.data?.matter ?? {})}
+      ignoreTabs={ignoreTabs}
+    >
+      {compiledSource?.value && (
+        <MDXRemote compiledSource={compiledSource.value} frontmatter={compiledSource.data.matter} />
       )}
       {mdxError && getMdxErrorDisplay(mdxError)}
     </MdxWrapper>
@@ -69,21 +73,26 @@ const RemoteMdxLoader = ({ source, ignoreTabs, mdxError }) => {
 }
 
 RemoteMdxLoader.propTypes = {
+  compiledSource: PropTypes.shape({
+    value: PropTypes.string,
+    data: PropTypes.shape({
+      matter: PropTypes.object
+    })
+  }),
   /**
    * whether frontmatter tabs should be ignored, defaults to false
    */
   ignoreTabs: PropTypes.bool,
+  /**
+   *
+   */
   mdxError: PropTypes.shape({
     type: PropTypes.string,
     message: PropTypes.string
-  }),
+  })
   /**
    * serialized mdxSource (AST)
    */
-  source: PropTypes.shape({
-    frontmatter: PropTypes.object,
-    compiledSource: PropTypes.string
-  })
 }
 
 export default RemoteMdxLoader

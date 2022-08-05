@@ -105,7 +105,7 @@ const parseMdxResponseContent = async (response) => {
     htmlContent = ReactDOMServer.renderToString(new MdxContentComponent({ components }))
   } catch (err) {
     logging.error(err)
-    throw new Error('Component not rendering')
+    throw new ContentRenderException(err.message)
   }
 
   return { compiledSource: htmlContent, frontmatter: fileContent.data }

@@ -41,7 +41,7 @@ const getMdxErrorDisplay = (mdxError) => {
         href="/common-errors"
       />
     )
-  } else if (mdxError.type === ['MdxParseException']) {
+  } else if (mdxError.type === 'MdxParseException') {
     return (
       <InlineError title="[next-mdx-remote] error compiling MDX:" description={mdxError.message} />
     )
@@ -59,16 +59,12 @@ const getMdxErrorDisplay = (mdxError) => {
 
 const RemoteMdxLoader = ({ source, ignoreTabs, mdxError }) => {
   return (
-    <>
-      {source && (
-        <MdxWrapper frontmatter={JSON.stringify(source?.frontmatter ?? {})} ignoreTabs={ignoreTabs}>
-          {source?.compiledSource && (
-            <div dangerouslySetInnerHTML={{ __html: source?.compiledSource }} />
-          )}
-        </MdxWrapper>
+    <MdxWrapper frontmatter={JSON.stringify(source?.frontmatter ?? {})} ignoreTabs={ignoreTabs}>
+      {source?.compiledSource && (
+        <div dangerouslySetInnerHTML={{ __html: source?.compiledSource }} />
       )}
       {mdxError && getMdxErrorDisplay(mdxError)}
-    </>
+    </MdxWrapper>
   )
 }
 

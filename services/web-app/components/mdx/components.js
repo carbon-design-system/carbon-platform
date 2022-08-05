@@ -7,6 +7,7 @@
 
 import {
   Button,
+  Layer,
   ListItem,
   StructuredListBody,
   StructuredListCell,
@@ -84,6 +85,7 @@ const components = {
   StructuredListCell,
   StructuredListBody,
   UnorderedList,
+  Layer,
   ListItem,
   Tag,
   /* Gatsby theme components */

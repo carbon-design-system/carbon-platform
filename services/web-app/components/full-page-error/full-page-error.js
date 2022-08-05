@@ -12,7 +12,7 @@ import styles from './full-page-error.module.scss'
 export const FullPageError = ({ title, subtitle, content, link, href }) => {
   return (
     <Grid>
-      <Column className={styles.column} sm={4} md={8} lg={{ start: 5, span: 6 }}>
+      <Column className={styles.column} sm={4} md={8} lg={8}>
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.subtitle}>{subtitle}</p>
         {content && <div className={styles.content}>{content}</div>}

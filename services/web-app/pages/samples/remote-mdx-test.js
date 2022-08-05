@@ -31,7 +31,7 @@ export const getStaticProps = async () => {
       library: 'carbon-website',
       ref: 'main'
     },
-    'all-errors.mdx'
+    'parse-error.mdx'
   )
 }
 

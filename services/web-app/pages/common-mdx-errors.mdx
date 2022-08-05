@@ -1,25 +1,123 @@
-<!-- TODO: does this go here -->
+---
+title: Common MDX Errors
+---
 
-# Common MDX Parsing Errors
+## Import statement found
 
-<!-- TODO: fill out -->
+Sample:
 
-## Import Statement Found
+<div style={{backgroundColor: 'lightgray', padding:'30px', borderRadius: '10px'}}>
+    <FullPageError
+    title="Something's gone wrong"
+    subtitle="Import statement identified"
+    content={
+        <>
+        <div style={{ marginBottom: '20px' }}>
+            For security concerns, import and export statements are not allowed and should be removed
+        </div>
+        <code>{"import {hey} from '../hey.js'"}</code>
+        </>
+    }
+    link="See common errors for more information"
+    href="/common-errors"
+    />
+</div>
 
-<!-- TODO: fill out -->
+For security reasons import stamenets are not allowed in remotely loaded MDX files.
 
-## Export Statement Found
+Please revise your MDX content, remove all imports and try again.
 
-<!-- TODO: fill out -->
+## Export statement found
 
-## Component Not Recognized
+Sample:
 
-<!-- TODO: fill out -->
+<div style={{backgroundColor: 'lightgray', padding:'30px', borderRadius: '10px'}}>
+    <FullPageError
+    title="Something's gone wrong"
+    subtitle="Import statement identified"
+    content={
+        <>
+        <div style={{ marginBottom: '20px' }}>
+            For security concerns, import and export statements are not allowed and should be removed
+        </div>
+        <code>{"import {hey} from '../hey.js'"}</code>
+        </>
+    }
+    link="See common errors for more information"
+    href="/common-errors"
+    />
+</div>
+
+For security reasons export stamenets are not allowed in remotely loaded MDX files.
+
+Please revise your MDX content, remove all exports and try again.
+
+## Component not recognized
+
+Sample:
+
+<div style={{backgroundColor: 'lightgray', padding:'30px', borderRadius: '10px'}}>
+    <InlineError
+    title="UnknownComponent not recognized"
+    description="This component is not supported or there is a typo. Please update to a supported component or review any mistakes.
+    It is referenced in your code at \`13:1-13:23\`"
+    link="Supported components" href="/TODO"
+    />
+</div>
+
+You will see this message when we identify there is a component being used that we don't currently
+support; Revise your MDX content to make sure you don't have a typo in the component name and please
+visit our [component list](/TODO) to view an updated list of our supported components.
+
 
 ## Error Compiling MDX
 
-<!-- TODO: fill out -->
+<AnchorLinks small>
+    <AnchorLink>Common MDX parsing errors</AnchorLink>
+</AnchorLinks>
 
-## Component Not Rendering
+Sample:
 
-<!-- TODO: fill out -->
+<div style={{backgroundColor: 'lightgray', padding:'30px', borderRadius: '10px'}}>
+    <InlineError
+        title="[next-mdx-remote] error compiling MDX:"
+        description="Expected a closing tag for `<div>` (13:1-13:6) before the end of `paragraph`"
+      />
+</div>
+
+This type of error indicate there was a problem trying to parse the supplied MDX content, likely due to syntax error; these can range from a variety of reasons relating to MDX files themselves, not the context of the application.
+
+### Common MDX parsing errors
+
+Vist [MDXjs.com's troubleshooting page](https://mdxjs.com/docs/troubleshooting-mdx/#could-not-parse-importexports-with-acorn-error) for a comprehensive list of common MDX parsing errors
+
+
+## Component not rendering
+
+<AnchorLinks small>
+    <AnchorLink>Inline styles</AnchorLink>
+    <AnchorLink>Components with missing or incorrect props</AnchorLink>
+</AnchorLinks>
+
+Sample:
+
+<div style={{backgroundColor: 'lightgray', padding:'30px', borderRadius: '10px'}}>
+    <InlineError
+        title="Component not rendering"
+        description="Verify component usage documentation to make sure you're supplying all necessary information in the correct format"
+        link="Get support"
+        href="/TODO"
+      />
+</div>
+
+You will see this type of error when the MDX content was succesfully parsed but a runtime error occured which prevented the content from rendering.
+
+### Inline Styles
+
+Inline styles in the form of string: `style="padding-top: 20px; color: red"` instead of javascript objects: `style={{paddingTop: '20px', color: 'red'}}`
+will result in a Component not rendering error.
+
+### Components with missing or incorrect props
+
+If a component is being used incorrectly or some required props are omitted, the content may be unable to render and display this type of error as well;
+please refer to the [component list](/TODO) to view an updated list of our supported components and how to use them correctly.

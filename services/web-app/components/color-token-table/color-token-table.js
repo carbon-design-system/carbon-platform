@@ -10,7 +10,8 @@ import {
   Grid,
   OverflowMenu,
   OverflowMenuItem,
-  Switch
+  Switch,
+  Theme
 } from '@carbon/react'
 import clsx from 'clsx'
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -172,12 +173,14 @@ const ColorTokenTable = () => {
       <Column sm={4} md={8} lg={16}>
         <StickyContainer navBar banner secondary={false}>
           <div ref={containerRef}>
-            <ContentSwitcher className={themeSwitcherClasses} onChange={switchTheme}>
-              <Switch name="white" text={mobile ? 'Wte' : 'White'} />
-              <Switch name="g10" text={mobile ? 'G10' : 'Gray 10'} />
-              <Switch name="g90" text={mobile ? 'G90' : 'Gray 90'} />
-              <Switch name="g100" text={mobile ? 'G100' : 'Gray 100'} />
-            </ContentSwitcher>
+            <Theme theme={'white'}>
+              <ContentSwitcher size="lg" className={themeSwitcherClasses} onChange={switchTheme}>
+                <Switch name="white" text={mobile ? 'Wte' : 'White'} />
+                <Switch name="g10" text={mobile ? 'G10' : 'Gray 10'} />
+                <Switch name="g90" text={mobile ? 'G90' : 'Gray 90'} />
+                <Switch name="g100" text={mobile ? 'G100' : 'Gray 100'} />
+              </ContentSwitcher>
+            </Theme>
           </div>
         </StickyContainer>
 

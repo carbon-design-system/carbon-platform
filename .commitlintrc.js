@@ -20,6 +20,7 @@ module.exports = {
         'object-storage',
         'icons',
         'logging',
+        'mdx-components',
         'mdx-sanitizer',
         'messaging',
         'micromanage',

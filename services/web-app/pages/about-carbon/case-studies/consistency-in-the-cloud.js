@@ -9,7 +9,7 @@ import { mdxSanitizerPlugin } from '@carbon-platform/mdx-sanitizer'
 import { NextSeo } from 'next-seo'
 import { VFile } from 'vfile'
 
-import RemoteMdxLoader from '@/components/remote-mdx-loader'
+import RemoteMdxLoader2 from '@/components/remote-mdx-loader-2'
 import { getRemoteMdxSource } from '@/lib/github'
 
 const RemoteMdxPage = ({ compiledSource, mdxError }) => {
@@ -21,7 +21,7 @@ const RemoteMdxPage = ({ compiledSource, mdxError }) => {
     <>
       <NextSeo {...seo} />
       {/* <div id="need-to-make-unique-id" dangerouslySetInnerHTML={{ __html: html }} /> */}
-      <RemoteMdxLoader compiledSource={compiledSource} mdxError={mdxError} />
+      <RemoteMdxLoader2 compiledSource={compiledSource} mdxError={mdxError} />
     </>
   )
 }

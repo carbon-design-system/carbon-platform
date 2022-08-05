@@ -38,7 +38,7 @@ const mdxWrapperPlugin = () => (tree, file) => {
         {
           type: 'mdxJsxAttribute',
           name: 'frontmatter',
-          value: JSON.stringify(data)
+          value: JSON.stringify(data?.matter ?? {})
         }
       ],
       children: tree.children,

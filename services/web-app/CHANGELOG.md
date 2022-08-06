@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.16](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.15...@carbon-platform/web-app@0.2.16) (2022-08-06)
+
+
+### Misc. 🔮
+
+* update node module minor + patch versions ([e5d1ef2](https://github.com/carbon-design-system/carbon-platform/commit/e5d1ef222370b0a0cc39d4985891aed7881a0f94))
+
 ### [0.2.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.14...@carbon-platform/web-app@0.2.15) (2022-08-05)
 
 

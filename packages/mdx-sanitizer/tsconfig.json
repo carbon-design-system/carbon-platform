@@ -4,8 +4,5 @@
     "rootDir": "./src",
     "outDir": "./dist"
   },
-  "exclude": ["./dist"],
-  "ts-node": {
-    "files": true
-  }
+  "exclude": ["./dist"]
 }

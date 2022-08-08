@@ -21,19 +21,39 @@
     "build": "npm run build:react && npm run build:sass",
     "build:react": "tsc",
     "build:sass": "sass --load-path=../../node_modules/ src/main/index.scss dist/main/index.css",
+    "build:storybook": "build-storybook -o .storybook-static",
     "build:watch": "nodemon --watch src/main --ext .ts,.tsx,.scss --exec 'npm run build'",
     "clean": "rimraf dist '*.tsbuildinfo'",
-    "package:build": "npm run build"
+    "package:build": "npm run build",
+    "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
-    "rimraf": "^3.0.2"
+    "@storybook/addon-postcss": "^3.0.0-alpha.1",
+    "clsx": "^1.2.1",
+    "prop-types": "^15.8.1",
+    "rimraf": "^3.0.2",
+    "slugify": "^1.6.5"
   },
   "peerDependencies": {
-    "@types/react": ">=17",
-    "react": ">=17"
+    "@carbon/react": "^1.9.0",
+    "@carbon/styles": "^1.9.0",
+    "@types/react": "^17.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/builder-webpack4": "^6.5.10",
+    "@storybook/manager-webpack4": "^6.5.10",
+    "@storybook/react": "^6.5.10",
+    "@storybook/testing-library": "^0.0.13",
+    "babel-loader": "^8.2.5",
     "nodemon": "^2.0.19",
+    "postcss": "^8.4.16",
     "sass": "^1.54.0"
   }
 }

@@ -12,4 +12,4 @@ prettier --check .
 
 stylelint '**/*.{css,scss}'
 
-eslint --max-warnings=0 --ext .js,.jsx,.ts,.tsx .
+eslint --max-warnings=0 --ext .js,.cjs,.mjs,.jsx,.ts,.tsx .

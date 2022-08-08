@@ -10,8 +10,9 @@ import { useContext, useEffect } from 'react'
 import FilterDataTable from '@/components/filter-data-table'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
+import { getAllDesignKits } from '@/lib/github'
 
-const FilterDataTableTest = () => {
+const FilterDataTableTest = ({ designKitsData }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
 
   useEffect(() => {
@@ -25,9 +26,19 @@ const FilterDataTableTest = () => {
   return (
     <>
       <NextSeo {...seo} />
-      <FilterDataTable />
+      <FilterDataTable designKitsData={designKitsData} />
     </>
   )
+}
+
+export const getStaticProps = async () => {
+  const designKitsData = await getAllDesignKits()
+
+  return {
+    props: {
+      designKitsData
+    }
+  }
 }
 
 export default FilterDataTableTest

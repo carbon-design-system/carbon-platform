@@ -14,16 +14,12 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
+  Tag
 } from '@carbon/react'
 import { useCallback, useEffect, useState } from 'react'
 
-// import { rowData } from '@/data/filter-data-table-content'
-import { designTools } from '@/data/filter-data-table-tools'
-
-import designKitData from '../../../../packages/resources/carbon.yml'
 import styles from './filter-data-table.module.scss'
-import { filter } from 'minimatch'
 
 const headerData = [
   {
@@ -39,16 +35,21 @@ const headerData = [
     key: 'type'
   }
 ]
-const rowData2 = Object.values(designKitData.designKits)
 
+const tagColor =
+  {
+    elements: 'blue',
+    components: 'green',
+    guidelines: 'purple',
+    ui: 'gray',
+    wireframes: 'magenta'
+  }
 
-console.log(rowData2[0], 'he')
+const designTools = ['Figma', 'Sketch', 'Adobe-xd', 'Axure', 'Invision-freehand', 'Adobe-ase']
 
-const FilterDataTable = () => {
-  const [filteredRows, setFilteredRows] = useState(rowData2)
-  const [currentItem, setCurrentItem] = useState('figma')
-
-  console.log(filteredRows, 'hi')
+const FilterDataTable = ({ designKitsData }) => {
+  const [filteredRows, setFilteredRows] = useState(designKitsData)
+  const [currentItem, setCurrentItem] = useState('Figma')
 
   const filterByDesignTool = useCallback(
     (filteredData) => {
@@ -56,7 +57,9 @@ const FilterDataTable = () => {
         return filteredData
       }
 
-      return filteredData.filter((item) => item.tool === currentItem)
+      return filteredData.filter(
+        (item) => item.tool[0].toUpperCase() + item.tool.slice(1) === currentItem
+      )
     },
     [currentItem]
   )
@@ -66,8 +69,8 @@ const FilterDataTable = () => {
   }
 
   useEffect(() => {
-    setFilteredRows(filterByDesignTool(rowData2))
-  }, [currentItem, filterByDesignTool])
+    setFilteredRows(filterByDesignTool(designKitsData))
+  }, [currentItem, designKitsData, filterByDesignTool])
 
   return (
     <>
@@ -97,13 +100,19 @@ const FilterDataTable = () => {
                 ))}
               </TableRow>
             </TableHead>
-            {console.log(rows, 'bye')}
             <TableBody>
               {rows.map((row) => (
                 <TableRow key={row.value}>
-                  {row.cells.map((cell) => (
-                    <TableCell key={cell.value}>{cell.value}</TableCell>
-                  ))}
+                  <TableCell>
+                    <div>{row.cells[0].value?.replace(/-/g, ' ').replace(/(?:^|\s)\S/g, a => a.toUpperCase())}</div>
+                  </TableCell>
+                  <TableCell>
+                    <div>{row.cells[1].value}</div>
+                  </TableCell>
+                  <TableCell>
+                    <Tag type={tagColor[row.cells[2].value]}>
+                      {row.cells[2].value[0].toUpperCase() + row.cells[2].value.slice(1)}</Tag>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

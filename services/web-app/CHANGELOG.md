@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.16](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.15...@carbon-platform/web-app@0.2.16) (2022-08-06)
+
+
+### Misc. 🔮
+
+* update node module minor + patch versions ([e5d1ef2](https://github.com/carbon-design-system/carbon-platform/commit/e5d1ef222370b0a0cc39d4985891aed7881a0f94))
+
+### [0.2.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.14...@carbon-platform/web-app@0.2.15) (2022-08-05)
+
+
+### Features 🌟
+
+* add full page error and inline error comp ([5843779](https://github.com/carbon-design-system/carbon-platform/commit/58437798e244823a133058816e5ee2ab43583070))
+* added full page error comp ([4fb3d79](https://github.com/carbon-design-system/carbon-platform/commit/4fb3d790c19cb59332c4014bbcda49335c5134cd))
+* added mobile styles ([106f1ac](https://github.com/carbon-design-system/carbon-platform/commit/106f1ac6b2878b28ffe34d28b549fba85dfac069))
+* added nested grid ([1632a9a](https://github.com/carbon-design-system/carbon-platform/commit/1632a9ad30b9d4067d42122a1d04a2332e9877e9))
+* clean up code ([6da2e7a](https://github.com/carbon-design-system/carbon-platform/commit/6da2e7a2721caf949ad7460184d5016f75011672))
+* clean up inline error component ([43587f6](https://github.com/carbon-design-system/carbon-platform/commit/43587f64a92aa014b34d70ec586e9d2cb24cce62))
+* cleaned up props ([d6467e5](https://github.com/carbon-design-system/carbon-platform/commit/d6467e5f2e2a5ed7d60dc6ea8b0e0fd7fecfb549))
+* remove 404 ([eb2e3a1](https://github.com/carbon-design-system/carbon-platform/commit/eb2e3a14f9b3e7940d8c634f0de8de5ce2848a7a))
+* styling updates ([5ecefd3](https://github.com/carbon-design-system/carbon-platform/commit/5ecefd3556f95362d3f698eea5ba2b08fbb951cd))
+* update link styling ([a47524e](https://github.com/carbon-design-system/carbon-platform/commit/a47524e807976a1bdad01b37fdc1276715d30ae3))
+* updated columns ([34ab1d8](https://github.com/carbon-design-system/carbon-platform/commit/34ab1d8369d2ddad46123a4a6b1706ba90ed6a94))
+* using default inline notification ([e42d351](https://github.com/carbon-design-system/carbon-platform/commit/e42d351907308470237a4c8f6ec5ad24b91d67e9))
+
 ### [0.2.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.13...@carbon-platform/web-app@0.2.14) (2022-08-04)
 
 

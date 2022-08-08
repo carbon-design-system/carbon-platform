@@ -6,6 +6,29 @@
  */
 import test from 'ava'
 
+import { mdxSanitizerPlugin } from '../main/mdx-sanitizer-plugin.js'
+
+test('it runs without crashing', async (t) => {
+  const processor = {} as any
+  const plugin = mdxSanitizerPlugin.bind(processor)({
+    allowExports: true,
+    allowImports: true,
+    customComponentKeys: [],
+    fallbackComponent: () => '',
+    tagReplacements: {},
+    stripHTMLComments: false
+  })
+  const tree = {
+    type: 'wow',
+    children: []
+  }
+
+  await plugin(tree)
+
+  // TODO: it's not a very useful test!
+  t.is(true, true)
+})
+
 test.serial('returns test when the envvar is not set', (t) => {
   t.is(true, true)
 })

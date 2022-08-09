@@ -246,7 +246,7 @@ export const assetsNavData = [
     isSection: true,
     items: [
       {
-        title: 'Data vizualization',
+        title: 'Data visualization',
         items: [
           {
             path: '/data-visualization',

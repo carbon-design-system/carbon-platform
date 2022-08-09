@@ -100,7 +100,7 @@ const PageContent = () => {
       <Grid className={styles['highlight-grid']}>
         <Column sm={4} md={8} lg={8} xlg={7}>
           <h2 className={clsx(styles.subheading, styles['subheading--no-padding'])}>
-            Asset catalog
+            Asset catalogs
           </h2>
           <p className={styles['subheading-content']}>
             Asset catalogs allow you to search across all open and inner source resources and apply
@@ -114,7 +114,7 @@ const PageContent = () => {
           <Dashboard>
             <Column className={dashboardStyles.column} sm={4} lg={6}>
               <DashboardItem
-                href="/catalogs/components"
+                href="/assets/components"
                 aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
               >
                 <dl>
@@ -138,7 +138,7 @@ const PageContent = () => {
             <Column className={dashboardStyles.column} sm={4} lg={6}>
               <DashboardItem
                 aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
-                href="/catalogs/patterns"
+                href="/assets/patterns"
               >
                 <dl>
                   <dt className={styles['dashboard-label']}>Patterns</dt>
@@ -160,7 +160,7 @@ const PageContent = () => {
             <Column className={dashboardStyles.column} sm={4} lg={6}>
               <DashboardItem
                 aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
-                href="/catalogs/functions"
+                href="/assets/functions"
               >
                 <dl>
                   <dt className={styles['dashboard-label']}>Functions</dt>
@@ -183,7 +183,7 @@ const PageContent = () => {
               <DashboardItem
                 aspectRatio={{ sm: '3x2', md: '4x3', lg: '3x2', xlg: '2x1' }}
                 border={['sm', 'md', 'lg', 'xlg']}
-                href="/catalogs/templates"
+                href="/assets/templates"
               >
                 <dl>
                   <dt className={styles['dashboard-label']}>Templates</dt>
@@ -218,7 +218,7 @@ const PageContent = () => {
         </Column>
       </Grid>
       <FeatureCard
-        href="/collections/data-visualization"
+        href="/data-visualization"
         title="Data visualization"
         description="A collection of reusable charting components to build websites and user interfaces."
       >

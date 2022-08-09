@@ -14,7 +14,7 @@ export const type = {
     icon: TextInput,
     name: 'Component',
     namePlural: 'Components',
-    path: '/catalogs/components',
+    path: '/assets/components',
     textColor: blue[70]
   },
   element: {
@@ -22,7 +22,7 @@ export const type = {
     icon: Construct,
     name: 'Element',
     namePlural: 'Elements',
-    path: '/catalogs/elements',
+    path: '/assets/elements',
     textColor: white
   },
   function: {
@@ -30,7 +30,7 @@ export const type = {
     icon: CodeSyntax,
     name: 'Function',
     namePlural: 'Functions',
-    path: '/catalogs/functions',
+    path: '/assets/functions',
     textColor: green[70]
   },
   pattern: {
@@ -38,7 +38,7 @@ export const type = {
     icon: Pattern,
     name: 'Pattern',
     namePlural: 'Patterns',
-    path: '/catalogs/patterns',
+    path: '/assets/patterns',
     textColor: purple[70]
   },
   template: {
@@ -46,7 +46,7 @@ export const type = {
     icon: Dashboard,
     name: 'Template',
     namePlural: 'Templates',
-    path: '/catalogs/templates',
+    path: '/assets/templates',
     textColor: magenta[70]
   },
   'design-only': {

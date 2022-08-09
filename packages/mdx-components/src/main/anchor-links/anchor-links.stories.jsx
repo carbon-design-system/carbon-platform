@@ -13,11 +13,25 @@ export default {
   component: AnchorLinks
 }
 
-export const Single = () => <AnchorLink>test</AnchorLink>
+export const Normal = () => (
+  <>
+    <AnchorLinks>
+      <AnchorLink>Link 1</AnchorLink>
+      <AnchorLink>Link 2</AnchorLink>
+      <AnchorLink>Link 3</AnchorLink>
+      <AnchorLink>Link 4</AnchorLink>
+      <AnchorLink>Link 5</AnchorLink>
+      <AnchorLink>Link 6</AnchorLink>
+      <AnchorLink>Link 7</AnchorLink>
+    </AnchorLinks>
+    <div>is it red?</div>
+  </>
+)
 
-export const Group = () => (
-  <AnchorLinks>
-    <AnchorLink>test</AnchorLink>
-    <AnchorLink>test</AnchorLink>
+export const Small = () => (
+  <AnchorLinks small>
+    <AnchorLink>Small link 1</AnchorLink>
+    <AnchorLink>Small link 2</AnchorLink>
+    <AnchorLink>Small link 3</AnchorLink>
   </AnchorLinks>
 )

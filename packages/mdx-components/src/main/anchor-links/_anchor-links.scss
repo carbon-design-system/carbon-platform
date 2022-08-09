@@ -13,11 +13,9 @@
 @use '../utils' as utils;
 
 .#{utils.$prefix}--anchor-links {
-  margin-top: spacing.$spacing-07;
-}
-
-.#{utils.$prefix}--anchor-links + * {
-  margin-top: calc(spacing.$spacing-11 - spacing.$spacing-03);
+  + * {
+    margin-top: calc(spacing.$spacing-11 - spacing.$spacing-03);
+  }
 
   .#{utils.$prefix}--link {
     @include type.type-style('fluid-heading-03', true);

@@ -136,7 +136,12 @@ const Asset = ({ libraryData, params }) => {
 
   const githubRepoUrl = `https://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
 
-  const frameworkIcon = assetData.content.framework
+  const frameworkName = assetData.content.framework
+
+  let frameworkIcon = frameworkName
+  if (frameworkName === 'vanilla') frameworkIcon = 'js'
+  if (frameworkName === 'web-component') frameworkIcon = 'webcomponents'
+  if (frameworkName === 'react-native') frameworkIcon = 'react'
 
   const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
 

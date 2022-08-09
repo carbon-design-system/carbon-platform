@@ -42,8 +42,7 @@ const svgIcons = {
   zenhub: Zenhub,
   vue: Vue,
   svelte: Svelte,
-  js: Js,
-  vanilla: Js
+  js: Js
 }
 
 const localIcons = {
@@ -52,7 +51,6 @@ const localIcons = {
   vue,
   angular,
   webcomponents,
-  'web-component': webcomponents,
   sass,
   codepen
 }

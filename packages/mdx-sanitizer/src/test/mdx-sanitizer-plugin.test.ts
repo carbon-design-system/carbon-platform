@@ -4,32 +4,86 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import { remarkMarkAndUnravel } from '@mdx-js/mdx/lib/plugin/remark-mark-and-unravel.js'
 import test from 'ava'
+import fs from 'fs'
+import path from 'path'
+import remarkMdx from 'remark-mdx'
+import remarkParse from 'remark-parse'
+import { unified } from 'unified'
+import { fileURLToPath } from 'url'
 
 import { mdxSanitizerPlugin } from '../main/mdx-sanitizer-plugin.js'
 
-test('it runs without crashing', async (t) => {
-  const processor = {} as any
-  const plugin = mdxSanitizerPlugin.bind(processor)({
-    allowExports: true,
-    allowImports: true,
-    customComponentKeys: [],
-    fallbackComponent: () => '',
-    tagReplacements: {},
-    stripHTMLComments: false
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+const processor = unified().use(remarkParse).use(remarkMdx).use(remarkMarkAndUnravel)
+
+const enforcedConfig = {
+  allowExports: false,
+  allowImports: false,
+  stripHTMLComments: true,
+  fallbackComponent: () => '<UnknownComponent />',
+  tagReplacements: {
+    div: () => '<CustomDiv />'
+  },
+  customComponentKeys: ['UnknownComponent', 'CustomDiv']
+}
+
+test('stays the same if no special cases', (t) => {
+  const mdxData = fs.readFileSync(path.resolve(__dirname, './test-files/no-errors.mdx'), 'utf8')
+
+  const transformer = mdxSanitizerPlugin.bind(processor)(enforcedConfig)
+  processor.run(processor.parse(mdxData), mdxData, async (_, tree) => {
+    const treeString = JSON.stringify(tree)
+    await transformer(tree!)
+
+    t.is(treeString === JSON.stringify(tree), true)
   })
-  const tree = {
-    type: 'wow',
-    children: []
-  }
 
-  await plugin(tree)
+  console.log(mdxData)
+})
 
-  // TODO: it's not a very useful test!
+test('allows for use of custom components', (t) => {
   t.is(true, true)
 })
 
-test.serial('returns test when the envvar is not set', (t) => {
+test('replaces unknown component', (t) => {
+  t.is(true, true)
+})
+
+test('throws ImportFoundException when configured to do so', (t) => {
+  t.is(true, true)
+})
+
+test('does not throw ImportFoundException when not configured to do so', (t) => {
+  t.is(true, true)
+})
+
+test('throws ExportFoundException when configured to do so', (t) => {
+  t.is(true, true)
+})
+
+test('does not throw ExportFoundException when not configured to do so', (t) => {
+  t.is(true, true)
+})
+
+test('removes HTML comments when configured to do so', (t) => {
+  t.is(true, true)
+})
+
+test('does not remove HTML comments when not configured to do so', (t) => {
+  t.is(true, true)
+})
+
+test('replaces components when indicated in tagReplacements', (t) => {
   t.is(true, true)
 })
 

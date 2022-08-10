@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.17...@carbon-platform/web-app@0.2.18) (2022-08-10)
+
+
+### Features 🌟
+
+* rewrite navigation paths ([04d6246](https://github.com/carbon-design-system/carbon-platform/commit/04d62464233b5f6139bc358ade22c5c0f69b64a4))
+* **web-app:** side nav ia updates ([f01d617](https://github.com/carbon-design-system/carbon-platform/commit/f01d617d7d6516b876369b98ad04d7ced0513638))
+
+
+### Bug Fixes 🐛
+
+* cleanup content switcher styles ([cb5c10a](https://github.com/carbon-design-system/carbon-platform/commit/cb5c10afcdf79400b2f58de71234d1358b2b457e))
+* code margin on grid page ([09337c6](https://github.com/carbon-design-system/carbon-platform/commit/09337c63a062b1592f83ca8333c4a99247e1eb54))
+* fix white space ([3be270a](https://github.com/carbon-design-system/carbon-platform/commit/3be270ac05a0779b9cf5ef294dc20e3859f8a747))
+* margin bugs and scroll jump ([f614791](https://github.com/carbon-design-system/carbon-platform/commit/f614791c1f137abf829833c15f7821985d8225bf))
+* merge conflict ([056e8a2](https://github.com/carbon-design-system/carbon-platform/commit/056e8a2af92e2934eb61bae58126e2aecdd8d78a))
+* **web-app:** fix margin strategy, eliminate extra whiteline ([4732227](https://github.com/carbon-design-system/carbon-platform/commit/47322275e31390f8f24b8d3e454fec96c2bc1065))
+* **web-app:** remove style overrides content switcher ([1ef23d5](https://github.com/carbon-design-system/carbon-platform/commit/1ef23d57f4e1d1bd2e2d5a522fe055e302a735a8))
+* white space margin right ([c4af7fb](https://github.com/carbon-design-system/carbon-platform/commit/c4af7fb52b98eebaa37a4f0712fda2c5c68599f0))
+
 ### [0.2.17](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.16...@carbon-platform/web-app@0.2.17) (2022-08-09)
 
 

@@ -108,6 +108,10 @@
               "type": "string",
               "description": "Relative location of the asset's thumbnail image."
             },
+            "thumbnailSvg": {
+              "type": "string",
+              "description": "Asset's thumbnail image as an SVG string."
+            },
             "externalDocsUrl": {
               "type": "string",
               "description": "Absolute URL to externally-hosted documentation."

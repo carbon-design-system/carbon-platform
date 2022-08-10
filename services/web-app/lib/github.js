@@ -18,7 +18,7 @@ import slugify from 'slugify'
 
 import { designKitAllowList, designKitSources } from '@/data/design-kits'
 import { libraryAllowList } from '@/data/libraries.mjs'
-import { getResponse } from '@/lib/file-cache'
+import { getResponse, getSvgResponse } from '@/lib/file-cache'
 import { mdxImgResolver } from '@/utils/mdx-image-resolver'
 import { getAssetErrors, getDesignKitErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
@@ -185,6 +185,7 @@ const getRepoDefaultBranch = async (params = {}) => {
     return null
   }
 }
+
 /**
  * Validates the route's parameters and returns an object that also includes the
  *  path to the directory that contains the carbon.yml. Returns an empty object if
@@ -621,6 +622,39 @@ export const getLibraryData = async (params = {}) => {
 }
 
 /**
+ * Validates and returns an asset thumbnail path with the leading slash removed.
+ * @param {import('../typedefs').Params} libraryParams
+ * @param {import('../typedefs').Asset} asset
+ * @returns {string}
+ */
+const getThumbnailPath = (libraryParams = {}, asset = {}) => {
+  if (isEmpty(libraryParams) || !asset.thumbnailPath) return ''
+
+  const thumbnailPathFromRoot = path.join(libraryParams.path, asset.thumbnailPath)
+
+  const fullContentsPath = path.join(
+    'https://',
+    libraryParams.host,
+    '/repos',
+    libraryParams.org,
+    libraryParams.repo,
+    '/contents'
+  )
+
+  if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, thumbnailPathFromRoot), 5)) {
+    // thumbnailPath doesn't belong to this repo and doesn't pass security check
+    logging.info(
+      `Skipping thumbnailPath content from ${libraryParams.host}/${libraryParams.org}/${libraryParams.repo} ` +
+        ` due to invalid path ${asset.thumbnailPath}`
+    )
+
+    return ''
+  }
+
+  return removeLeadingSlash(thumbnailPathFromRoot)
+}
+
+/**
  * If the params map to a valid library in the allowlist, get the default branch if there isn't a
  * specified ref, then recursively get all asset metadata files. Find the files that are in the
  * library's subdirectory and then fetch the contents for each asset metadata file.
@@ -673,6 +707,10 @@ const getLibraryAssets = async (params = {}) => {
 
   const assetContentData = await Promise.all(assetContentPromises)
 
+  // asset thumbnails to fetch contents and optimize
+  const thumbnailPathPromises = []
+
+  // return array
   let assets = []
 
   assetContentData.forEach((response) => {
@@ -686,9 +724,33 @@ const getLibraryAssets = async (params = {}) => {
       return []
     }
 
+    Object.keys(libAssets).forEach((assetKey) => {
+      /**
+       * @type {import('../typedefs').AssetContent}
+       */
+      const asset = libAssets[assetKey]
+
+      const thumbnailPathFromRoot = getThumbnailPath(libraryParams, asset)
+
+      if (thumbnailPathFromRoot) {
+        thumbnailPathPromises.push(
+          getSvgResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+            owner: libraryParams.org,
+            repo: libraryParams.repo,
+            path: thumbnailPathFromRoot,
+            ref: libraryParams.ref
+          })
+        )
+      }
+    })
+
     assets.push(
       ...Object.keys(libAssets).map((assetKey) => {
+        /**
+         * @type {import('../typedefs').AssetContent}
+         */
         const asset = libAssets[assetKey]
+
         return {
           params: libraryParams,
           response,
@@ -706,6 +768,38 @@ const getLibraryAssets = async (params = {}) => {
     // if fetching a specific asset, only return that
     return libraryParams.asset ? getSlug(asset.content) === libraryParams.asset : true
   })
+
+  // merge in thumbnail content
+
+  try {
+    const thumbnailContentData = await Promise.all(thumbnailPathPromises)
+
+    assets = assets.map((asset) => {
+      const thumbnailPath = getThumbnailPath(libraryParams, asset.content)
+
+      const thumbnailContentResponse = thumbnailContentData.find(
+        (response) => response.path === thumbnailPath
+      )
+
+      if (thumbnailContentResponse) {
+        asset = {
+          ...asset,
+          content: {
+            ...asset.content,
+            thumbnailSvg: Buffer.from(
+              thumbnailContentResponse.content,
+              thumbnailContentResponse.encoding
+            ).toString()
+          }
+        }
+      }
+
+      return asset
+    })
+  } catch (err) {
+    logging.error(err)
+  }
+
   return assets
 }
 

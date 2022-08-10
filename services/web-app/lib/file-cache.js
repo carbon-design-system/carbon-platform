@@ -4,13 +4,17 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Logging } from '@carbon-platform/api/logging'
 import { RunMode, Runtime } from '@carbon-platform/api/runtime'
 import { Octokit } from '@octokit/core'
 import cacheManager from 'cache-manager'
 import fsStore from 'cache-manager-fs-hash'
 import fs from 'fs-extra'
+import { optimize } from 'svgo'
 
 import { CACHE_PATH, IMAGES_CACHE_PATH } from '@/config/constants'
+
+const logging = new Logging({ component: 'file-cache.js' })
 
 /**
  * If using prototyping data committed to the repo, use a crazy long ttl like a year so the cache
@@ -93,6 +97,40 @@ export const getResponse = (host, route, options) => {
 
   return diskCache.wrap(responseKey, () => {
     return _getResponse(host, route, options)
+  })
+}
+
+/**
+ * Just like `getResponse`, but before returning a GitHub response using the cache, it attempts to
+ * read the contents as a string and optimize using SVGO, returning a base64-encoded SVG.
+ * @param {string} host - GitHub API base URL
+ * @param {string} route - GitHub API request route
+ * @param {object} options - Options merged into the request route
+ * @returns {Promise<object>} GitHub API response data
+ */
+export const getSvgResponse = async (host, route, options = {}) => {
+  const responseKey = slugifyRequest(host, route, options)
+  // console.log('CACHE HIT', responseKey)
+
+  return diskCache.wrap(responseKey, async () => {
+    const data = await _getResponse(host, route, options)
+
+    try {
+      const originalSvgString = Buffer.from(data.content, data.encoding).toString('utf8')
+      const optimizedSvgResult = optimize(originalSvgString)
+      const optimizedSvgString = optimizedSvgResult.data
+
+      return {
+        ...data,
+        content: Buffer.from(optimizedSvgString, 'utf8').toString('base64')
+      }
+    } catch (err) {
+      logging.info(
+        `Unable to optimize the SVG from ${host}/${options.owner}/${options.repo}/${options.path} with the ref ${options.ref}`
+      )
+
+      return data
+    }
   })
 }
 

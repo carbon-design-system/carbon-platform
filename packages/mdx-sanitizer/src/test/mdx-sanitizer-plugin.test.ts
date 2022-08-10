@@ -13,10 +13,13 @@
 import { remarkMarkAndUnravel } from '@mdx-js/mdx/lib/plugin/remark-mark-and-unravel.js'
 import test from 'ava'
 import fs from 'fs'
+import { Root } from 'mdast'
+import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx'
 import path from 'path'
 import remarkMdx from 'remark-mdx'
 import remarkParse from 'remark-parse'
 import { unified } from 'unified'
+import { visit } from 'unist-util-visit'
 import { fileURLToPath } from 'url'
 
 import { mdxSanitizerPlugin } from '../main/mdx-sanitizer-plugin.js'
@@ -31,32 +34,55 @@ const enforcedConfig = {
   allowImports: false,
   stripHTMLComments: true,
   fallbackComponent: () => '<UnknownComponent />',
-  tagReplacements: {
-    div: () => '<CustomDiv />'
-  },
-  customComponentKeys: ['UnknownComponent', 'CustomDiv']
+  tagReplacements: {},
+  customComponentKeys: ['UnknownComponent', 'PageDescription']
 }
 
-test('stays the same if no special cases', (t) => {
+test('stays the same if no special cases', async (t) => {
   const mdxData = fs.readFileSync(path.resolve(__dirname, './test-files/no-errors.mdx'), 'utf8')
 
   const transformer = mdxSanitizerPlugin.bind(processor)(enforcedConfig)
-  processor.run(processor.parse(mdxData), mdxData, async (_, tree) => {
-    const treeString = JSON.stringify(tree)
-    await transformer(tree!)
 
-    t.is(treeString === JSON.stringify(tree), true)
+  await new Promise<void>((resolve) => {
+    processor.run(processor.parse({ value: mdxData }), mdxData, async (_, tree) => {
+      const treeString = JSON.stringify(tree)
+      await transformer(tree!)
+      t.is(treeString, JSON.stringify(tree))
+      resolve()
+    })
   })
-
-  console.log(mdxData)
 })
 
-test('allows for use of custom components', (t) => {
-  t.is(true, true)
+test('allows for use of custom components', async (t) => {
+  const mdxData = fs.readFileSync(
+    path.resolve(__dirname, './test-files/custom-component.mdx'),
+    'utf8'
+  )
+
+  const transformer = mdxSanitizerPlugin.bind(processor)(enforcedConfig)
+
+  await new Promise<void>((resolve) => {
+    processor.run(processor.parse({ value: mdxData }), mdxData, async (_, tree) => {
+      await transformer(tree!)
+      resolve()
+      let visitCount = 0
+      console.log(JSON.stringify(tree))
+      visit(
+        tree as Root,
+        (node) =>
+          !!(node as MdxJsxFlowElement).name &&
+          (node as MdxJsxFlowElement).name === 'PageDescription',
+        () => {
+          visitCount++
+        }
+      )
+      t.is(visitCount, 1)
+    })
+  })
 })
 
 test('replaces unknown component', (t) => {
-  t.is(true, true)
+  t.pass()
 })
 
 test('throws ImportFoundException when configured to do so', (t) => {

@@ -4,8 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React from 'react'
-
 import { AnchorLink, AnchorLinks } from '../../../dist/main/index'
 
 export default {
@@ -14,18 +12,15 @@ export default {
 }
 
 export const Normal = () => (
-  <>
-    <AnchorLinks>
-      <AnchorLink>Link 1</AnchorLink>
-      <AnchorLink>Link 2</AnchorLink>
-      <AnchorLink>Link 3</AnchorLink>
-      <AnchorLink>Link 4</AnchorLink>
-      <AnchorLink>Link 5</AnchorLink>
-      <AnchorLink>Link 6</AnchorLink>
-      <AnchorLink>Link 7</AnchorLink>
-    </AnchorLinks>
-    <div>is it red?</div>
-  </>
+  <AnchorLinks>
+    <AnchorLink>Link 1</AnchorLink>
+    <AnchorLink>Link 2</AnchorLink>
+    <AnchorLink>Link 3</AnchorLink>
+    <AnchorLink>Link 4</AnchorLink>
+    <AnchorLink>Link 5</AnchorLink>
+    <AnchorLink>Link 6</AnchorLink>
+    <AnchorLink>Link 7</AnchorLink>
+  </AnchorLinks>
 )
 
 export const Small = () => (

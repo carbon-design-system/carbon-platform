@@ -9,13 +9,13 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
-@use '../utils' as utils;
+@use '../utils' as *;
 
-.#{utils.$prefix}--color-block {
+.#{with-prefix('color-block')} {
   position: relative;
   @include type.type-style('body-compact-01');
 
-  .#{utils.$prefix}--color {
+  .#{with-prefix('color')} {
     position: relative;
     display: block;
     width: convert.rem(14px);

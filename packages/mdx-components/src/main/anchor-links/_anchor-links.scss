@@ -10,14 +10,14 @@
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/motion' as motion;
 
-@use '../utils' as utils;
+@use '../utils' as *;
 
-.#{utils.$prefix}--anchor-links {
+.#{with-prefix('anchor-links')} {
   + * {
     margin-top: calc(spacing.$spacing-11 - spacing.$spacing-03);
   }
 
-  .#{utils.$prefix}--link {
+  .#{with-prefix('link')} {
     @include type.type-style('fluid-heading-03', true);
 
     position: relative;
@@ -50,14 +50,14 @@
     }
   }
 
-  .#{utils.$prefix}--list--small .#{utils.$prefix}--link {
+  .#{with-prefix('list--small')} .#{with-prefix('link')} {
     @include type.type-style('body-02');
 
     margin-bottom: 0;
   }
 
   // Multiple Columns
-  .#{utils.$prefix}--multiple-columns {
+  .#{with-prefix('multiple-columns')} {
     @include breakpoint.breakpoint('md') {
       column-count: 2;
     }

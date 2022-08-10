@@ -5,27 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  Button,
-  ListItem,
-  StructuredListBody,
-  StructuredListCell,
-  StructuredListHead,
-  StructuredListRow,
-  StructuredListWrapper,
-  Tag,
-  UnorderedList
-} from '@carbon/react'
+import * as mdxComponents from '@carbon-platform/mdx-components'
 
 import { Accordion, AccordionItem } from '@/components/accordion'
-import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
 import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
 import Caption from '@/components/caption'
 import CardGroup from '@/components/card-group'
 import Code from '@/components/code'
-import ColorBlock from '@/components/color-block'
 import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
@@ -57,6 +45,7 @@ import TypesetStyle from '@/components/typeset-style'
 import Video from '@/components/video'
 
 const components = {
+  ...mdxComponents,
   h1: H1,
   h2: H2,
   h3: H3,
@@ -73,26 +62,26 @@ const components = {
   table: PageTable,
   pre: Code,
   /* Core Carbon components */
-  Button,
-  StructuredListWrapper,
-  StructuredListHead,
-  StructuredListRow,
-  StructuredListCell,
-  StructuredListBody,
-  UnorderedList,
-  ListItem,
-  Tag,
+  // Button,
+  // StructuredListWrapper,
+  // StructuredListHead,
+  // StructuredListRow,
+  // StructuredListCell,
+  // StructuredListBody,
+  // UnorderedList,
+  // ListItem,
+  // Tag,
   /* Gatsby theme components */
   Accordion,
   AccordionItem,
-  AnchorLink,
-  AnchorLinks,
+  // AnchorLink,
+  // AnchorLinks,
   ArtDirection,
   ArticleCard,
   Aside,
   Caption,
   CardGroup,
-  ColorBlock,
+  // ColorBlock,
   ColorGrid,
   ColorPalette,
   Column,

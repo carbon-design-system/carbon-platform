@@ -151,4 +151,4 @@ function mdxSanitizerPlugin(this: Processor, config: Config) {
   return sanitizeAst.bind(null, config)
 }
 
-export { mdxSanitizerPlugin }
+export { getConfigDefaults, mdxSanitizerPlugin }

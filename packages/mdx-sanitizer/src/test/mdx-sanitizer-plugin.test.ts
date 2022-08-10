@@ -13,16 +13,20 @@
 import { remarkMarkAndUnravel } from '@mdx-js/mdx/lib/plugin/remark-mark-and-unravel.js'
 import test from 'ava'
 import fs from 'fs'
+import htmlCommentRegex from 'html-comment-regex'
 import { Root } from 'mdast'
 import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx'
 import path from 'path'
 import remarkMdx from 'remark-mdx'
 import remarkParse from 'remark-parse'
-import { unified } from 'unified'
+import { Processor, unified } from 'unified'
 import { visit } from 'unist-util-visit'
 import { fileURLToPath } from 'url'
+import { VFile } from 'vfile'
 
-import { mdxSanitizerPlugin } from '../main/mdx-sanitizer-plugin.js'
+import { ExportFoundException, ImportFoundException } from '../main/index.js'
+import { Config } from '../main/interfaces.js'
+import { getConfigDefaults, mdxSanitizerPlugin } from '../main/mdx-sanitizer-plugin.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -34,11 +38,37 @@ const enforcedConfig = {
   allowImports: false,
   stripHTMLComments: true,
   fallbackComponent: () => '<UnknownComponent />',
-  tagReplacements: {},
+  tagReplacements: {
+    script: () => '<ScriptReplacementComponent />'
+  },
   customComponentKeys: ['UnknownComponent', 'PageDescription']
 }
 
-test('stays the same if no special cases', async (t) => {
+const relaxedConfig = {
+  allowExports: true,
+  allowImports: true,
+  stripHTMLComments: false,
+  fallbackComponent: () => '<UnknownComponent />',
+  tagReplacements: { script: () => '<ScriptReplacementComponent />' },
+  customComponentKeys: ['UnknownComponent', 'PageDescription']
+}
+
+test('getConfigDefaults populates object with defaults if empty', (t) => {
+  const defaults = getConfigDefaults({} as Config)
+  t.is(defaults.allowExports, true)
+  t.is(defaults.allowImports, true)
+  t.is(defaults.stripHTMLComments, true)
+  t.deepEqual(defaults.tagReplacements, {})
+  t.deepEqual(defaults.customComponentKeys, [])
+  t.true(defaults.fallbackComponent !== undefined)
+})
+
+test('getConfigDefaults does not override values', (t) => {
+  const defaults = getConfigDefaults(enforcedConfig)
+  t.deepEqual(defaults, enforcedConfig)
+})
+
+test('mdx content stays the same if no special cases', async (t) => {
   const mdxData = fs.readFileSync(path.resolve(__dirname, './test-files/no-errors.mdx'), 'utf8')
 
   const transformer = mdxSanitizerPlugin.bind(processor)(enforcedConfig)
@@ -47,13 +77,13 @@ test('stays the same if no special cases', async (t) => {
     processor.run(processor.parse({ value: mdxData }), mdxData, async (_, tree) => {
       const treeString = JSON.stringify(tree)
       await transformer(tree!)
-      t.is(treeString, JSON.stringify(tree))
+      t.deepEqual(treeString, JSON.stringify(tree))
       resolve()
     })
   })
 })
 
-test('allows for use of custom components', async (t) => {
+test('mdxSanitizer allows for use of custom components', async (t) => {
   const mdxData = fs.readFileSync(
     path.resolve(__dirname, './test-files/custom-component.mdx'),
     'utf8'
@@ -64,9 +94,7 @@ test('allows for use of custom components', async (t) => {
   await new Promise<void>((resolve) => {
     processor.run(processor.parse({ value: mdxData }), mdxData, async (_, tree) => {
       await transformer(tree!)
-      resolve()
       let visitCount = 0
-      console.log(JSON.stringify(tree))
       visit(
         tree as Root,
         (node) =>
@@ -76,148 +104,147 @@ test('allows for use of custom components', async (t) => {
           visitCount++
         }
       )
-      t.is(visitCount, 1)
+      t.true(visitCount === 1)
+      resolve()
     })
   })
 })
 
-test('replaces unknown component', (t) => {
-  t.pass()
+test('mdxSanitizer replaces unknown component', async (t) => {
+  const mdxData = fs.readFileSync(
+    path.resolve(__dirname, './test-files/unknown-component.mdx'),
+    'utf8'
+  )
+
+  const transformer = mdxSanitizerPlugin.bind(processor)(enforcedConfig)
+
+  await new Promise<void>((resolve) => {
+    processor.run(processor.parse({ value: mdxData }), mdxData, async (_, tree) => {
+      await transformer(tree!)
+      let unknownComponentCount = 0
+      let fallbackComponentCount = 0
+      visit(
+        tree as Root,
+        (node) =>
+          !!(node as MdxJsxFlowElement).name &&
+          ((node as MdxJsxFlowElement).name === 'UnknownComponent' ||
+            (node as MdxJsxFlowElement).name === 'ThisComponentDoesNotExist'),
+        (node: MdxJsxFlowElement) => {
+          if (node.name === 'UnknownComponent') fallbackComponentCount++
+          if (node.name === 'ThisComponentDoesNotExist') unknownComponentCount++
+        }
+      )
+      t.true(unknownComponentCount === 0)
+      t.true(fallbackComponentCount === 1)
+
+      resolve()
+    })
+  })
 })
 
-test('throws ImportFoundException when configured to do so', (t) => {
-  t.is(true, true)
+test('mdxSanitizer throws ImportFoundException when configured to do so', async (t) => {
+  const mdxData = fs.readFileSync(path.resolve(__dirname, './test-files/import.mdx'), 'utf8')
+
+  const transformer = mdxSanitizerPlugin.bind(processor)(enforcedConfig)
+
+  await new Promise<void>((resolve) => {
+    processor.run(processor.parse({ value: mdxData }), mdxData, async (_, tree) => {
+      await t.throwsAsync(transformer.bind(null, tree!), { instanceOf: ImportFoundException })
+      resolve()
+    })
+  })
 })
 
-test('does not throw ImportFoundException when not configured to do so', (t) => {
-  t.is(true, true)
+test('mdxSanitizer does not throw ImportFoundException when not configured to do so', async (t) => {
+  const mdxData = fs.readFileSync(path.resolve(__dirname, './test-files/import.mdx'), 'utf8')
+
+  const transformer = mdxSanitizerPlugin.bind(processor)(relaxedConfig)
+
+  await new Promise<void>((resolve) => {
+    processor.run(processor.parse({ value: mdxData }), mdxData, async (_, tree) => {
+      await t.notThrowsAsync(transformer.bind(null, tree!))
+      resolve()
+    })
+  })
 })
 
-test('throws ExportFoundException when configured to do so', (t) => {
-  t.is(true, true)
+test('mdxSanitizer throws ExportFoundException when configured to do so', async (t) => {
+  const mdxData = fs.readFileSync(path.resolve(__dirname, './test-files/export.mdx'), 'utf8')
+
+  const transformer = mdxSanitizerPlugin.bind(processor)(enforcedConfig)
+
+  await new Promise<void>((resolve) => {
+    processor.run(processor.parse({ value: mdxData }), mdxData, async (_, tree) => {
+      await t.throwsAsync(transformer.bind(null, tree!), { instanceOf: ExportFoundException })
+      resolve()
+    })
+  })
 })
 
-test('does not throw ExportFoundException when not configured to do so', (t) => {
-  t.is(true, true)
+test('mdxSanitizer does not throw ExportFoundException when not configured to do so', async (t) => {
+  const mdxData = fs.readFileSync(path.resolve(__dirname, './test-files/export.mdx'), 'utf8')
+
+  const transformer = mdxSanitizerPlugin.bind(processor)(relaxedConfig)
+
+  await new Promise<void>((resolve) => {
+    processor.run(processor.parse({ value: mdxData }), mdxData, async (_, tree) => {
+      await t.notThrowsAsync(transformer.bind(null, tree!))
+      resolve()
+    })
+  })
 })
 
-test('removes HTML comments when configured to do so', (t) => {
-  t.is(true, true)
+test('mdxSanitizer removes HTML comments when configured to do so', (t) => {
+  const mdxData = fs.readFileSync(path.resolve(__dirname, './test-files/html-comments.mdx'), 'utf8')
+
+  const parser = { parse: (vFile: VFile) => vFile }
+  const data = { value: mdxData }
+
+  mdxSanitizerPlugin.bind(parser as unknown as Processor)(enforcedConfig)
+
+  const parsedContent = parser.parse(data as VFile)
+
+  t.falsy(htmlCommentRegex.test(String(parsedContent.value)))
 })
 
-test('does not remove HTML comments when not configured to do so', (t) => {
-  t.is(true, true)
+test('mdxSanitizer does not remove HTML comments when not configured to do so', (t) => {
+  const mdxData = fs.readFileSync(path.resolve(__dirname, './test-files/html-comments.mdx'), 'utf8')
+
+  const parser = { parse: (vFile: VFile) => vFile }
+  const data = { value: mdxData }
+
+  mdxSanitizerPlugin.bind(parser as unknown as Processor)(relaxedConfig)
+
+  const parsedContent = parser.parse(data as VFile)
+
+  t.truthy(htmlCommentRegex.test(String(parsedContent.value)))
 })
 
-test('replaces components when indicated in tagReplacements', (t) => {
-  t.is(true, true)
+test('mdxSanitizer replaces components when indicated in tagReplacements', async (t) => {
+  const mdxData = fs.readFileSync(path.resolve(__dirname, './test-files/script.mdx'), 'utf8')
+
+  const transformer = mdxSanitizerPlugin.bind(processor)(enforcedConfig)
+
+  await new Promise<void>((resolve) => {
+    processor.run(processor.parse({ value: mdxData }), mdxData, async (_, tree) => {
+      await transformer(tree!)
+      let scriptCount = 0
+      let ScriptReplacementComponentCount = 0
+      visit(
+        tree as Root,
+        (node) =>
+          !!(node as MdxJsxFlowElement).name &&
+          ((node as MdxJsxFlowElement).name === 'script' ||
+            (node as MdxJsxFlowElement).name === 'ScriptReplacementComponent'),
+        (node: MdxJsxFlowElement) => {
+          if (node.name === 'script') scriptCount++
+          if (node.name === 'ScriptReplacementComponent') ScriptReplacementComponentCount++
+        }
+      )
+      t.true(scriptCount === 0)
+      t.true(ScriptReplacementComponentCount === 1)
+
+      resolve()
+    })
+  })
 })
-
-// is there a way to import the mdx without using fs?
-
-// TODO: ALL OF THIS
-
-// import { remarkMarkAndUnravel } from '@mdx-js/mdx/lib/plugin/remark-mark-and-unravel'
-// import fs from 'fs'
-// import path from 'path'
-// import remarkMdx from 'remark-mdx'
-// import remarkParse from 'remark-parse'
-// import { unified } from 'unified'
-// import { fileURLToPath } from 'url'
-
-// import mdxSanitizerPlugin from '../main/mdx-sanitizer-plugin.mjs'
-
-// const __filename = fileURLToPath(import.meta.url)
-// const __dirname = path.dirname(__filename)
-
-// const sanitizer = mdxSanitizerPlugin(['customComponent1', 'customComponent2'])
-
-// const processor = unified().use(remarkParse).use(remarkMdx).use(remarkMarkAndUnravel)
-
-// test('Keeps tree as is for correct file', () => {
-//   const mdxData = fs.readFileSync(
-//     path.resolve(__dirname, './test-files/simple-mdx/sample.mdx'),
-//     'utf8'
-//   )
-
-//   const outputTreeData = fs.readFileSync(
-//     path.resolve(__dirname, './test-files/simple-mdx/output.json'),
-//     'utf8'
-//   )
-
-//   const outputTree = JSON.parse(outputTreeData)
-
-//   processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-//     expect(sanitizer(tree)).toEqual(outputTree)
-//   })
-// })
-
-// describe('Import/Export statements', () => {
-//   it('Removes import statements from file and used variables', () => {
-//     const mdxData = fs.readFileSync(
-//       path.resolve(__dirname, './test-files/mdx-with-imports/sample.mdx'),
-//       'utf8'
-//     )
-
-//     const outputTreeData = fs.readFileSync(
-//       path.resolve(__dirname, './test-files/mdx-with-imports/output.json'),
-//       'utf8'
-//     )
-
-//     const outputTree = JSON.parse(outputTreeData)
-
-//     processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-//       expect(sanitizer(tree)).toEqual(outputTree)
-//     })
-//   })
-//   it('Removes export statements from file', async () => {
-//     const mdxData = fs.readFileSync(
-//       path.resolve(__dirname, './test-files/mdx-with-exports/sample.mdx'),
-//       'utf8'
-//     )
-
-//     const outputTreeData = fs.readFileSync(
-//       path.resolve(__dirname, './test-files/mdx-with-exports/output.json'),
-//       'utf8'
-//     )
-
-//     const outputTree = JSON.parse(outputTreeData)
-//     processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-//       expect(sanitizer(tree)).toEqual(outputTree)
-//     })
-//   })
-// })
-
-// test('Does not alter custom component', async () => {
-//   const mdxData = fs.readFileSync(
-//     path.resolve(__dirname, './test-files/mdx-with-custom-components/sample.mdx'),
-//     'utf8'
-//   )
-
-//   const outputTreeData = fs.readFileSync(
-//     path.resolve(__dirname, './test-files/mdx-with-custom-components/output.json'),
-//     'utf8'
-//   )
-
-//   const outputTree = JSON.parse(outputTreeData)
-//   processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-//     expect(sanitizer(tree)).toEqual(outputTree)
-//   })
-// })
-
-// test('Substitutes unknown components with UnknownComponent', () => {
-//   const mdxData = fs.readFileSync(
-//     path.resolve(__dirname, './test-files/mdx-with-unknown-component/sample.mdx'),
-//     'utf8'
-//   )
-
-//   const outputTreeData = fs.readFileSync(
-//     path.resolve(__dirname, './test-files/mdx-with-unknown-component/output.json'),
-//     'utf8'
-//   )
-
-//   const outputTree = JSON.parse(outputTreeData)
-//   processor.run(processor.parse(mdxData), mdxData, (_, tree) => {
-//     expect(sanitizer(tree)).toEqual(outputTree)
-//   })
-// })

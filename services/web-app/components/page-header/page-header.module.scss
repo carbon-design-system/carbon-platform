@@ -10,8 +10,8 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 
-@use '~styles/mixins' as mixins;
-@use '~styles/variables' as variables;
+@use '../../styles/mixins' as mixins;
+@use '../../styles/variables' as variables;
 
 .container {
   --header-height: 320px;

@@ -113,12 +113,6 @@ const nextConfig = withMDX(
           source: `/libraries/${slug}/:ref*`,
           destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
         })
-
-        // legacy rewrites
-        rewrites.push({
-          source: '/data-visualization/:subpath*',
-          destination: '/collections/data-visualization/:subpath*'
-        })
       }
 
       return rewrites

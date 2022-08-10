@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { NextSeo } from 'next-seo'
+import path from 'path'
 import { useContext, useEffect } from 'react'
 import slugify from 'slugify'
 
@@ -75,6 +76,8 @@ export const getStaticProps = async ({ params }) => {
     repo = pathNameChunks[2]
     ref = pathNameChunks[4]
     pageSrc = pathNameChunks.slice(5, pathNameChunks.length).join('/')
+  } else {
+    pageSrc = path.join('.' + libraryData.params.path, pageSrc)
   }
 
   const mdxSource = await getRemoteMdxData(

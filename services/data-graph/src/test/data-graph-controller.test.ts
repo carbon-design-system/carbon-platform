@@ -11,12 +11,12 @@ import { GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql'
 import { DataGraphController } from '../main/data-graph-controller.js'
 
 const mockChannelRef = {
-  ack: () => {},
-  nack: () => {}
+  ack: () => undefined,
+  nack: () => undefined
 }
 const mockContext = {
   getChannelRef: () => mockChannelRef,
-  getMessage: () => {}
+  getMessage: () => undefined
 }
 const mockModuleRef = {
   schema: new GraphQLSchema({
@@ -67,11 +67,11 @@ test('it calls ack on the success path', async (t) => {
     ack: () => {
       t.pass()
     },
-    nack: () => {}
+    nack: () => undefined
   }
   const myMockContext = {
     getChannelRef: () => myMockChannelRef,
-    getMessage: () => {}
+    getMessage: () => undefined
   }
 
   const controller = new DataGraphController({ get: () => mockModuleRef } as any)
@@ -83,14 +83,14 @@ test('it calls nack on the validation error path', async (t) => {
   t.plan(1)
 
   const myMockChannelRef = {
-    ack: () => {},
+    ack: () => undefined,
     nack: () => {
       t.pass()
     }
   }
   const myMockContext = {
     getChannelRef: () => myMockChannelRef,
-    getMessage: () => {}
+    getMessage: () => undefined
   }
 
   const controller = new DataGraphController({ get: () => mockModuleRef } as any)

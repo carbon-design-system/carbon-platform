@@ -4,39 +4,39 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Link as CarbonLink } from '@carbon/react'
+import { Column } from '@carbon/react'
 import PropTypes from 'prop-types'
 
+import CardGroup from '@/components/card-group'
+import MdxIcon from '@/components/mdx-icon'
+import ResourceCard from '@/components/resource-card'
 import { getUrlWithProtocol } from '@/utils/string'
 
-const ExternalLinks = ({ links = [] }) => {
+const DemoLinks = ({ links = [] }) => {
   const linkList = links.filter((link) => !!link).sort((a, b) => a.name.localeCompare(b.name))
 
-  // en dash
-  let allLinks = '\u2014'
+  let demoLinks
   if (linkList.length > 0) {
-    allLinks = (
-      <>
+    demoLinks = (
+      <CardGroup>
         {linkList.map((link, i) => (
-          <span key={link.url}>
-            <CarbonLink
-              size="lg"
-              key={i}
+          <Column sm={4} md={4} lg={4} key={i}>
+            <ResourceCard
+              title={link.name}
               href={getUrlWithProtocol(link.url)}
-              aria-label={link.name}
+              actionIcon={link.action === 'download' ? 'download' : 'launch'}
             >
-              {link.name}
-            </CarbonLink>
-            {i < linkList.length - 1 ? ', ' : ''}
-          </span>
+              <MdxIcon name={link.type} />
+            </ResourceCard>
+          </Column>
         ))}
-      </>
+      </CardGroup>
     )
   }
-  return allLinks
+  return demoLinks
 }
 
-ExternalLinks.propTypes = {
+DemoLinks.propTypes = {
   links: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -45,4 +45,4 @@ ExternalLinks.propTypes = {
   )
 }
 
-export default ExternalLinks
+export default DemoLinks

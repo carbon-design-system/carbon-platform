@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.25](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.24...@carbon-platform/api@0.3.25) (2022-08-06)
+
+
+### Misc. 🔮
+
+* update node module minor + patch versions ([e5d1ef2](https://github.com/carbon-design-system/carbon-platform/commit/e5d1ef222370b0a0cc39d4985891aed7881a0f94))
+
+### [0.3.24](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.23...@carbon-platform/api@0.3.24) (2022-07-30)
+
+
+### Bug Fixes 🐛
+
+* sonarcloud smells ([2b98c6a](https://github.com/carbon-design-system/carbon-platform/commit/2b98c6a896e27e77617786625ad7db43cb6a413a))
+
 ### [0.3.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.22...@carbon-platform/api@0.3.23) (2022-07-23)
 
 

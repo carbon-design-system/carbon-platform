@@ -139,8 +139,11 @@
 
 // override carbon muli line code snippet following grid demo
 .grid-demo + * :global([class*='cds--css-grid-column']) {
-  margin-right: spacing.$spacing-05;
   grid-column: span 12 / span 12 !important;
+
+  @include breakpoint.breakpoint('lg') {
+    margin-right: spacing.$spacing-05;
+  }
 }
 
 .grid-demo + * :global(.cds--snippet--multi) {

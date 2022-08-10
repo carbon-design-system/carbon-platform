@@ -17,23 +17,23 @@ const SESSION_SECRET = 'abc123'
 /**
  * Client id tied to App registration on SSO provisioner (get this from the dev team)
  */
-const CARBON_IBM_ISV_CLIENT_ID = getEnvVar('CARBON_IBM_ISV_CLIENT_ID', '', runtime)
+const CARBON_IBM_ISV_CLIENT_ID = getEnvVar(runtime, 'CARBON_IBM_ISV_CLIENT_ID')
 /**
  * Client secret tied to App registration on SSO provisioner (get this from dev team)
  */
-const CARBON_IBM_ISV_CLIENT_SECRET = getEnvVar('CARBON_IBM_ISV_CLIENT_SECRET', '', runtime)
+const CARBON_IBM_ISV_CLIENT_SECRET = getEnvVar(runtime, 'CARBON_IBM_ISV_CLIENT_SECRET')
 /**
  * Strategy name that passport should use when authenticating (get this from dev team)
  */
-const PASSPORT_STRATEGY_NAME = getEnvVar('PASSPORT_STRATEGY_NAME', 'local', runtime)
+const PASSPORT_STRATEGY_NAME = getEnvVar(runtime, 'PASSPORT_STRATEGY_NAME', 'local')
 /**
  * URL of session storage DB
  */
-const CARBON_MONGO_DB_URL = getEnvVar('CARBON_MONGO_DB_URL', '', runtime)
+const CARBON_MONGO_DB_URL = getEnvVar(runtime, 'CARBON_MONGO_DB_URL')
 /**
  * DB name for session storage
  */
-const CARBON_MONGO_DB_NAME = getEnvVar('CARBON_MONGO_DB_NAME', '', runtime)
+const CARBON_MONGO_DB_NAME = getEnvVar(runtime, 'CARBON_MONGO_DB_NAME')
 
 const OIDC_DISCOVERY_URL =
   runtime.runMode === RunMode.Standard && runtime.environment === Environment.Production

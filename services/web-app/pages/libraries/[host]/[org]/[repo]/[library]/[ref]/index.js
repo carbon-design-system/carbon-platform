@@ -4,11 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Button, Column, Grid } from '@carbon/react'
-import { ArrowRight } from '@carbon/react/icons'
+import { Button, ButtonSet, Column, Grid, Link as CarbonLink } from '@carbon/react'
+import { ArrowRight, Launch } from '@carbon/react/icons'
 import { Svg32Github, Svg32Library, Svg64Community } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import { get } from 'lodash'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
@@ -17,7 +18,7 @@ import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'ty
 import CardGroup from '@/components/card-group'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
-import ExternalLinks from '@/components/external-links'
+import DemoLinks from '@/components/demo-links'
 import { H2 } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import PageDescription from '@/components/page-description'
@@ -66,13 +67,7 @@ const Library = ({ libraryData, params, navData }) => {
 
   const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
 
-  let externalDocsLink
-  if (libraryData.content.externalDocsUrl) {
-    externalDocsLink = {
-      name: 'External docs',
-      url: libraryData.content.externalDocsUrl
-    }
-  }
+  const designKitPath = `/libraries/${params.library}/${params.ref}/design-kits`
 
   const getVersion = () => {
     if (params.ref === 'main' || params.ref === 'master' || params.ref === 'latest') {
@@ -134,7 +129,7 @@ const Library = ({ libraryData, params, navData }) => {
               </DashboardItem>
             </Column>
             <Column className={dashboardStyles.column} sm={4} lg={8}>
-              <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }}>
+              <DashboardItem aspectRatio={{ sm: '3x4', md: '3x4', lg: 'none', xlg: 'none' }}>
                 <Grid as="dl" className={dashboardStyles.subgrid}>
                   <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Maintainer</dt>
@@ -146,31 +141,51 @@ const Library = ({ libraryData, params, navData }) => {
                     <dt className={dashboardStyles.label}>License</dt>
                     <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
                   </Column>
-                  <Column
-                    sm={4}
-                    className={clsx(dashboardStyles.subcolumn, dashboardStyles['subcolumn--links'])}
-                  >
-                    <dt className={clsx(dashboardStyles.label)}>Links</dt>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                    <dt className={dashboardStyles.label}>Related libraries</dt>
+                    <dd className={dashboardStyles.meta}>–</dd>
+                  </Column>
+                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                    <dt className={dashboardStyles.label}>Design files</dt>
                     <dd className={dashboardStyles.meta}>
-                      <ExternalLinks
-                        links={[...get(libraryData, 'content.demoLinks', []), externalDocsLink]}
-                      />
+                      <Link href={designKitPath} passHref>
+                        <CarbonLink size="lg">View compatible kits</CarbonLink>
+                      </Link>
                     </dd>
                   </Column>
+                </Grid>
+
+                <ButtonSet className={dashboardStyles['button-set']}>
                   <Button
-                    className={styles['versions-button']}
+                    className={dashboardStyles['dashboard-button']}
                     onClick={() => {
                       router.push(assetsPath)
                     }}
                   >
-                    View assets
+                    View library assets
                     <ArrowRight size={16} />
+                  </Button>{' '}
+                  <Button
+                    kind="tertiary"
+                    className={dashboardStyles['dashboard-button']}
+                    href={libraryData.content.externalDocsUrl}
+                  >
+                    View library docs
+                    <Launch size={16} />
                   </Button>
-                </Grid>
+                </ButtonSet>
               </DashboardItem>
             </Column>
           </Dashboard>
         </Column>
+        {libraryData.content.demoLinks && (
+          <Column sm={4} md={8} lg={8}>
+            <section>
+              <H2>Demo links</H2>
+              <DemoLinks links={[...get(libraryData, 'content.demoLinks', [])]} />
+            </section>
+          </Column>
+        )}
         <Column sm={4} md={8} lg={8}>
           <section>
             <H2>Resources</H2>

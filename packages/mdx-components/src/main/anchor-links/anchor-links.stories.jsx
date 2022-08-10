@@ -7,12 +7,18 @@
 import { AnchorLink, AnchorLinks } from '../../../dist/main/index'
 
 export default {
-  title: 'Anchor Links',
-  component: AnchorLinks
+  title: 'Components/AnchorLinks',
+  component: AnchorLinks,
+  subcomponents: { AnchorLink },
+  argTypes: {
+    small: {
+      control: 'boolean'
+    }
+  }
 }
 
-export const Normal = () => (
-  <AnchorLinks>
+const Template = (args) => (
+  <AnchorLinks {...args}>
     <AnchorLink>Link 1</AnchorLink>
     <AnchorLink>Link 2</AnchorLink>
     <AnchorLink>Link 3</AnchorLink>
@@ -23,10 +29,12 @@ export const Normal = () => (
   </AnchorLinks>
 )
 
-export const Small = () => (
-  <AnchorLinks small>
-    <AnchorLink>Small link 1</AnchorLink>
-    <AnchorLink>Small link 2</AnchorLink>
-    <AnchorLink>Small link 3</AnchorLink>
-  </AnchorLinks>
-)
+export const Default = Template.bind({})
+Default.args = {
+  small: false
+}
+
+export const Small = Template.bind({})
+Small.args = {
+  small: true
+}

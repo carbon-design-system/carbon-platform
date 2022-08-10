@@ -14,5 +14,5 @@ module.exports = {
     postcss: false
   },
   framework: '@storybook/react',
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)']
+  stories: ['./*.stories.jsx', '../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)']
 }

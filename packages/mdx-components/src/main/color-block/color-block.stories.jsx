@@ -7,8 +7,13 @@
 import { ColorBlock } from '../../../dist/main/index'
 
 export default {
-  title: 'Color Block',
-  component: ColorBlock
+  title: 'Components/ColorBlock',
+  component: ColorBlock,
+  argTypes: {},
+  parameters: {}
 }
 
-export const Default = () => <ColorBlock>#0066ff</ColorBlock>
+const Template = (args) => <ColorBlock {...args}>#0066ff</ColorBlock>
+
+export const Default = Template.bind({})
+Default.args = {}

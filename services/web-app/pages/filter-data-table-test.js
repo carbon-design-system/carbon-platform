@@ -26,7 +26,18 @@ const FilterDataTableTest = ({ designKitsData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <FilterDataTable designKitsData={designKitsData} />
+      <FilterDataTable
+        designKitsData={designKitsData}
+        designTools={['Figma', 'Sketch', 'Adobe XD', 'Axure']}
+        designKitIds={[
+          'carbon-white-sketch',
+          'carbon-g10-sketch',
+          'carbon-g10-adobe-xd',
+          'ibm-icons-24-32-sketch',
+          'carbon-white-figma',
+          'ibm-dotcom-g10-figma'
+        ]}
+      />
     </>
   )
 }

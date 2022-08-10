@@ -37,18 +37,16 @@ const headerData = [
   }
 ]
 
-const tagColor =
-  {
-    elements: 'high-contrast',
-    ui: 'cyan',
-    guidelines: 'red',
-    wireframes: 'warm gray'
-  }
+const tagColor = {
+  elements: 'high-contrast',
+  ui: 'cyan',
+  guidelines: 'red',
+  wireframes: 'warm gray'
+}
 
-const FilterDataTable = ({ designKitsData, designTools }) => {
+const FilterDataTable = ({ designKitsData, designTools, designKitIds }) => {
   const [filteredRows, setFilteredRows] = useState(designKitsData)
   const [currentItem, setCurrentItem] = useState('Figma')
-  const designKitIds = ['carbon-white-sketch', 'carbon-g10-sketch', 'carbon-g10-adobe-xd', 'ibm-icons-24-32-sketch', 'carbon-white-figma', 'ibm-dotcom-g10-figma']
 
   const selectedDesignKits = designKitsData.filter((item) => {
     return designKitIds?.includes(item.id)
@@ -62,8 +60,11 @@ const FilterDataTable = ({ designKitsData, designTools }) => {
       return selectedDesignKits.filter(
         (item) =>
           // allows to check for Adobe XD
-          item.tool[0].toUpperCase() + item.tool.split('-')[0].slice(1) + (' ') + item.tool.split('-')[1]?.toUpperCase() === currentItem ||
-          item.tool[0].toUpperCase() + item.tool.slice(1) === currentItem
+          item.tool[0].toUpperCase() +
+            item.tool.split('-')[0].slice(1) +
+            ' ' +
+            item.tool.split('-')[1]?.toUpperCase() ===
+            currentItem || item.tool[0].toUpperCase() + item.tool.slice(1) === currentItem
       )
     },
     [currentItem]
@@ -107,14 +108,21 @@ const FilterDataTable = ({ designKitsData, designTools }) => {
               {rows.map((row) => (
                 <TableRow key={row.value}>
                   <TableCell>
-                    <div>{row.cells[0].value?.replace(/-/g, ' ').replace(/(?:^|\s)\S/g, a => a.toUpperCase())}</div>
+                    <div>
+                      {row.cells[0].value
+                        ?.replace(/-/g, ' ')
+                        .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase())}
+                    </div>
                   </TableCell>
                   <TableCell>
                     <div>{row.cells[1].value}</div>
                   </TableCell>
                   <TableCell>
                     <Tag type={tagColor[row.cells[2].value]}>
-                      {row.cells[2].value === 'ui' ? 'UI' : row.cells[2].value[0].toUpperCase() + row.cells[2].value.slice(1)}</Tag>
+                      {row.cells[2].value === 'ui'
+                        ? 'UI'
+                        : row.cells[2].value[0].toUpperCase() + row.cells[2].value.slice(1)}
+                    </Tag>
                   </TableCell>
                 </TableRow>
               ))}
@@ -130,11 +138,11 @@ FilterDataTable.propTypes = {
   /**
    * Pass in the children that will be rendered within the FilterDataTable
    */
-  designKitsData: PropTypes.array,
+  designKitIds: PropTypes.array,
   /**
    * Pass in the children that will be rendered within the FilterDataTable
    */
-  designKitIds: PropTypes.array,
+  designKitsData: PropTypes.array,
   /**
    * Pass in the children that will be rendered within the FilterDataTable
    */

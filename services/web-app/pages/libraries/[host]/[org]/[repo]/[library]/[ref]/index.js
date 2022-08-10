@@ -100,14 +100,16 @@ const Library = ({ libraryData, params, navData }) => {
 
   const relatedLibraries = libraryData.content.otherLibraries
 
-  const relatedLibrariesLinks = relatedLibraries.map((item, index) => (
-    <>
-      {index !== 0 && ', '}
-      <Link href={`/libraries/${item.params.library}`} passHref>
-        <CarbonLink size="lg">{item.content.name}</CarbonLink>
-      </Link>
-    </>
-  ))
+  const relatedLibrariesLinks = relatedLibraries
+    .sort((a, b) => a.content.name.localeCompare(b.content.name))
+    .map((item, index) => (
+      <>
+        {index !== 0 && ', '}
+        <Link href={`/libraries/${item.params.library}`} passHref>
+          <CarbonLink size="lg">{item.content.name}</CarbonLink>
+        </Link>
+      </>
+    ))
 
   return (
     <>

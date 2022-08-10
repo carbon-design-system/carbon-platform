@@ -3,6 +3,24 @@ title: Get started
 description:
 ---
 
-TESTING
+import { getAllDesignKits } from '@/lib/github'
 
-<FilterDataTable designTools={['Figma', 'Sketch', 'Adobe XD', 'Axure']} />
+export const getStaticProps = async () => {
+  const designKitsData = await getAllDesignKits()
+  return {
+    props: { designKitsData }
+  }
+}
+
+<FilterDataTable
+  designKitsData={props.designKitsData}
+  designTools={['Figma', 'Sketch', 'Adobe XD', 'Axure']}
+  designKitIds={[
+    'carbon-white-sketch',
+    'carbon-g10-sketch',
+    'carbon-g10-adobe-xd',
+    'ibm-icons-24-32-sketch',
+    'carbon-white-figma',
+    'ibm-dotcom-g10-figma'
+  ]}
+/>

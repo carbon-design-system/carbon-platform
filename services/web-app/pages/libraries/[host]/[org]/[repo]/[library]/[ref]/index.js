@@ -24,6 +24,7 @@ import MdxIcon from '@/components/mdx-icon'
 import PageDescription from '@/components/page-description'
 import PageHeader from '@/components/page-header'
 import ResourceCard from '@/components/resource-card'
+import { libraryAllowList } from '@/data/libraries.mjs'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
@@ -97,6 +98,17 @@ const Library = ({ libraryData, params, navData }) => {
     )
   }
 
+  const relatedLibraries = libraryData.content.otherLibraries
+
+  const relatedLibrariesLinks = relatedLibraries.map((item, index) => (
+    <>
+      {index !== 0 && ', '}
+      <Link href={`/libraries/${item.params.library}`} passHref>
+        <CarbonLink size="lg">{item.content.name}</CarbonLink>
+      </Link>
+    </>
+  ))
+
   return (
     <>
       <NextSeo {...seo} />
@@ -143,7 +155,9 @@ const Library = ({ libraryData, params, navData }) => {
                   </Column>
                   <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Related libraries</dt>
-                    <dd className={dashboardStyles.meta}>–</dd>
+                    <dd className={dashboardStyles.meta}>
+                      {relatedLibraries.length > 0 ? relatedLibrariesLinks : '–'}
+                    </dd>
                   </Column>
                   <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Design files</dt>
@@ -245,6 +259,25 @@ export const getServerSideProps = async ({ params }) => {
       }
     }
   }
+
+  const relatedLibs = []
+  for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
+    if (libraryParams.group === libraryData.params.group) {
+      const relatedLibData = await getLibraryData({
+        library: slug,
+        ref: 'latest',
+        ...libraryParams
+      })
+      if (
+        relatedLibData?.content.id !== libraryData.content.id &&
+        !relatedLibData?.content?.noIndex
+      ) {
+        relatedLibs.push(relatedLibData)
+      }
+    }
+  }
+
+  libraryData.content.otherLibraries = relatedLibs
 
   return {
     props: {

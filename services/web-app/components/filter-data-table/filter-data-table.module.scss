@@ -18,38 +18,3 @@
     width: auto;
   }
 }
-
-.column {
-  background: theme.$layer-01;
-
-  &:first-child {
-    margin-right: 0;
-  }
-}
-
-.dropdown {
-  // override carbon display, grid-gap
-  position: relative;
-  display: flex;
-  width: 100%;
-  padding-left: spacing.$spacing-05;
-  margin-bottom: -1px;
-  grid-gap: 0;
-
-  // overide title text carbon color
-  :global(.cds--label) {
-    color: theme.$text-primary;
-  }
-
-  // overide carbon position, flex-grow
-  :global(.cds--dropdown) {
-    position: static;
-    flex-grow: 1;
-  }
-
-  // overide carbon max-width
-  :global(.cds--list-box__field),
-  :global(.cds--list-box__menu) {
-    max-width: none;
-  }
-}

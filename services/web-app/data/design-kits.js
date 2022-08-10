@@ -72,7 +72,9 @@ const designKitAllowList = {
   'carbon-mobile-dark-sketch': {},
   'ibm-grid-mobile-sketch': {},
   'mobile-patterns-sketch': {},
-  'ibm-accessibility-sketch': {},
+  'ibm-accessibility-sketch': {
+    maintainer: 'IBM-accessibility'
+  },
   'ibm-accessibility-figma': {},
   'carbon-mid-fi-sketch': {},
   'carbon-wireframe-invision-freehand': {

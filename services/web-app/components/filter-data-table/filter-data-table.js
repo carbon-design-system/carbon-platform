@@ -17,6 +17,7 @@ import {
   TableRow,
   Tag
 } from '@carbon/react'
+import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 
 import styles from './filter-data-table.module.scss'
@@ -38,27 +39,31 @@ const headerData = [
 
 const tagColor =
   {
-    elements: 'blue',
-    components: 'green',
-    guidelines: 'purple',
-    ui: 'gray',
-    wireframes: 'magenta'
+    elements: 'high-contrast',
+    ui: 'cyan',
+    guidelines: 'red',
+    wireframes: 'warm gray'
   }
 
-const designTools = ['Figma', 'Sketch', 'Adobe-xd', 'Axure', 'Invision-freehand', 'Adobe-ase']
-
-const FilterDataTable = ({ designKitsData }) => {
+const FilterDataTable = ({ designKitsData, designTools }) => {
   const [filteredRows, setFilteredRows] = useState(designKitsData)
   const [currentItem, setCurrentItem] = useState('Figma')
+  const designKitIds = ['carbon-white-sketch', 'carbon-g10-sketch', 'carbon-g10-adobe-xd', 'ibm-icons-24-32-sketch', 'carbon-white-figma', 'ibm-dotcom-g10-figma']
+
+  const selectedDesignKits = designKitsData.filter((item) => {
+    return designKitIds?.includes(item.id)
+  })
 
   const filterByDesignTool = useCallback(
-    (filteredData) => {
+    (selectedDesignKits) => {
       if (!currentItem) {
-        return filteredData
+        return selectedDesignKits
       }
-
-      return filteredData.filter(
-        (item) => item.tool[0].toUpperCase() + item.tool.slice(1) === currentItem
+      return selectedDesignKits.filter(
+        (item) =>
+          // allows to check for Adobe XD
+          item.tool[0].toUpperCase() + item.tool.split('-')[0].slice(1) + (' ') + item.tool.split('-')[1]?.toUpperCase() === currentItem ||
+          item.tool[0].toUpperCase() + item.tool.slice(1) === currentItem
       )
     },
     [currentItem]
@@ -69,18 +74,16 @@ const FilterDataTable = ({ designKitsData }) => {
   }
 
   useEffect(() => {
-    setFilteredRows(filterByDesignTool(designKitsData))
-  }, [currentItem, designKitsData, filterByDesignTool])
+    setFilteredRows(filterByDesignTool(selectedDesignKits))
+  }, [currentItem, selectedDesignKits, filterByDesignTool])
 
   return (
     <>
       <Grid className={styles.grid} narrow>
-        <Column className={styles.column} sm={4} md={8} lg={4}>
+        <Column sm={4} md={8} lg={4}>
           <Dropdown
-            className={styles.dropdown}
             id="filter data table"
             size="lg"
-            type="inline"
             titleText="Type:"
             items={designTools}
             onChange={handleFilterChange}
@@ -111,7 +114,7 @@ const FilterDataTable = ({ designKitsData }) => {
                   </TableCell>
                   <TableCell>
                     <Tag type={tagColor[row.cells[2].value]}>
-                      {row.cells[2].value[0].toUpperCase() + row.cells[2].value.slice(1)}</Tag>
+                      {row.cells[2].value === 'ui' ? 'UI' : row.cells[2].value[0].toUpperCase() + row.cells[2].value.slice(1)}</Tag>
                   </TableCell>
                 </TableRow>
               ))}
@@ -121,6 +124,21 @@ const FilterDataTable = ({ designKitsData }) => {
       </DataTable>
     </>
   )
+}
+
+FilterDataTable.propTypes = {
+  /**
+   * Pass in the children that will be rendered within the FilterDataTable
+   */
+  designKitsData: PropTypes.array,
+  /**
+   * Pass in the children that will be rendered within the FilterDataTable
+   */
+  designKitIds: PropTypes.array,
+  /**
+   * Pass in the children that will be rendered within the FilterDataTable
+   */
+  designTools: PropTypes.array
 }
 
 export default FilterDataTable

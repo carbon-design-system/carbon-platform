@@ -20,18 +20,7 @@
 }
 
 .theme-switcher {
-  position: relative;
-  width: 100%;
-  height: 3rem;
-  background: theme.$layer-01;
-
-  @include breakpoint.breakpoint-down('lg') {
-    margin-left: 0;
-  }
-  @include breakpoint.breakpoint-down('md') {
-    max-width: calc(100% - 1rem);
-    margin-left: spacing.$spacing-03;
-  }
+  background: theme.$background;
 }
 
 .theme-switcher::before {
@@ -40,8 +29,8 @@
   left: 0;
   display: block;
   width: 100%;
-  height: convert.rem(64px);
-  background: theme.$background;
+  height: 1rem;
+  background: theme.$layer-01;
   content: '';
 }
 
@@ -101,33 +90,7 @@
 
 /* override carbon content switcher styles */
 .theme-switcher :global(.cds--content-switcher-btn) {
-  height: 3rem;
-  flex: 1;
-  padding: spacing.$spacing-03 spacing.$spacing-07 spacing.$spacing-03 spacing.$spacing-05;
   border-radius: 0;
-
-  @include breakpoint.breakpoint('sm') {
-    padding-right: spacing.$spacing-05;
-  }
-
-  @include breakpoint.breakpoint('md') {
-    padding-right: spacing.$spacing-10;
-  }
-}
-
-.theme-switcher :global(.cds--content-switcher-btn:not(.cds--content-switcher--selected)) {
-  background-color: theme.$layer-01;
-  color: theme.$text-primary;
-
-  &:hover {
-    background-color: theme.$background-hover;
-  }
-}
-
-.theme-switcher :global(.cds--content-switcher-btn:not(:last-of-type))::after {
-  top: spacing.$spacing-04;
-  right: convert.rem(-1px);
-  height: convert.rem(24px);
 }
 
 .color-token-table table {

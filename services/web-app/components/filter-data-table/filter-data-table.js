@@ -85,10 +85,9 @@ const FilterDataTable = ({ designKitsData, designTools, designKitIds }) => {
           <Dropdown
             id="filter data table"
             size="lg"
-            titleText="Type:"
             items={designTools}
             onChange={handleFilterChange}
-            selectedItem={currentItem}
+            selectedItem={`Tool: ${currentItem}`}
           />
         </Column>
       </Grid>

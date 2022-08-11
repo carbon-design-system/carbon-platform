@@ -12,6 +12,8 @@ export const getStaticProps = async () => {
   }
 }
 
+### Core design kits
+
 <FilterDataTable
   designKitsData={props.designKitsData}
   designTools={['Figma', 'Sketch', 'Adobe XD', 'Axure']}
@@ -20,14 +22,35 @@ export const getStaticProps = async () => {
     'carbon-g90-figma',
     'carbon-g10-figma',
     'carbon-white-figma',
-    'ibm-dotcom-white-figma',
+    'ibm-accessibility-figma',
+    'ibm-design-language-sketch',
+    'ibm-icons-16-20-sketch',
+    'ibm-icons-24-32-sketch',
+    'ibm-grid-sketch',
+    'carbon-white-sketch',
+    'carbon-g10-sketch',
+    'carbon-g90-sketch',
+    'carbon-g100-sketch',
     'ibm-accessibility-sketch',
-    'carbon-shell-sketch',
-    'carbon-template-axure',
-    'carbon-g100-adobe-xd',
-    'carbon-g90-adobe-xd',
-    'carbon-g10-adobe-xd',
     'carbon-white-adobe-xd',
-    'ibm-icons-adobe-xd'
+    'carbon-g10-adobe-xd',
+    'carbon-g90-adobe-xd',
+    'carbon-g100-adobe-xd',
+    'ibm-icons-adobe-xd',
+    'carbon-g10-axure',
+    'carbon-template-axure'
+  ]}
+/>
+
+### Local design kits
+
+<FilterDataTable
+  designKitsData={props.designKitsData}
+  designTools={['Figma']}
+  designKitIds={[
+    'ibm-dotcom-g10-figma',
+    'ibm-dotcom-white-figma',
+    'ibm-dotcom-g90-figma',
+    'ibm-dotcom-g100-figma'
   ]}
 />

@@ -263,6 +263,7 @@ export const getServerSideProps = async ({ params }) => {
   }
 
   const relatedLibs = []
+if(libraryData.params.group){
   for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
     if (libraryParams.group === libraryData.params.group) {
       const relatedLibData = await getLibraryData({
@@ -277,6 +278,7 @@ export const getServerSideProps = async ({ params }) => {
         relatedLibs.push(relatedLibData)
       }
     }
+  }
   }
 
   libraryData.content.otherLibraries = relatedLibs

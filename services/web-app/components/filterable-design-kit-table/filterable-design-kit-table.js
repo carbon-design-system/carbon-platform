@@ -67,6 +67,12 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     return 0
   })
 
+  const toolKeyValueMapper = {
+  figma: 'Figma': , 
+  sketch: 'Sketch':, 
+  adobe-xd: 'Adobe XD':, 
+  axure: 'Axure':
+  }
   const filterByDesignTool = useCallback(
     (orderedDesignKits) => {
       if (!currentItem) {
@@ -74,12 +80,7 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
       }
       return orderedDesignKits.filter(
         (item) =>
-          // allows to check for Adobe XD
-          item.tool[0].toUpperCase() +
-            item.tool.split('-')[0].slice(1) +
-            ' ' +
-            item.tool.split('-')[1]?.toUpperCase() ===
-            currentItem || item.tool[0].toUpperCase() + item.tool.slice(1) === currentItem
+         toolKeyValueMapper[item.tool]  === currentItem
       )
     },
     [currentItem]

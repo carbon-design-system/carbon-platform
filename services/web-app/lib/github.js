@@ -283,7 +283,7 @@ const validateLibraryParams = async (params = {}) => {
  * @returns {import('../typedefs').Asset[]}
  */
 const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
-  const inheritableProperties = ['name', 'description', 'type', 'tags', 'platform', 'thumbnailPath']
+  const inheritableProperties = ['name', 'description', 'type', 'tags', 'platform', 'thumbnailSvg']
 
   return assets.map((asset) => {
     const assetId = getAssetId(asset)
@@ -739,7 +739,7 @@ const getLibraryAssets = async (params = {}) => {
             repo: libraryParams.repo,
             path: thumbnailPathFromRoot,
             ref: libraryParams.ref
-          })
+          }).catch(() => 'Error getting SVG response')
         )
       }
     })

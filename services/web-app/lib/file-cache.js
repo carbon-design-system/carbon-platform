@@ -108,12 +108,12 @@ export const getResponse = (host, route, options) => {
  * @param {object} options - Options merged into the request route
  * @returns {Promise<object>} GitHub API response data
  */
-export const getSvgResponse = async (host, route, options = {}) => {
+export const getSvgResponse = (host, route, options = {}) => {
   const responseKey = slugifyRequest(host, route, options)
   // console.log('CACHE HIT', responseKey)
 
-  return diskCache.wrap(responseKey, async () => {
-    const data = await _getResponse(host, route, options)
+  return diskCache.wrap(responseKey, () => {
+    const data = _getResponse(host, route, options)
 
     try {
       const originalSvgString = Buffer.from(data.content, data.encoding).toString('utf8')

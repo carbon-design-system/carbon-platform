@@ -57,13 +57,15 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
   })
 
   // alphabetically sort maintainer
-  const orderedDesignKits = designKits.sort((a, b) =>
-    a.maintainer?.toLowerCase() < b.maintainer?.toLowerCase()
-      ? -1
-      : b.maintainer?.toLowerCase() > a.maintainer?.toLowerCase()
-        ? 1
-        : 0
-  )
+  const orderedDesignKits = designKits.sort((a, b) => {
+    if (a.maintainer?.toLowerCase() < b.maintainer?.toLowerCase()) {
+      return -1
+    }
+    if (a.maintainer?.toLowerCase() > b.maintainer?.toLowerCase()) {
+      return 1
+    }
+    return 0
+  })
 
   const filterByDesignTool = useCallback(
     (orderedDesignKits) => {

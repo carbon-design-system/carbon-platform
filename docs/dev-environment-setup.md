@@ -23,8 +23,8 @@ testing and code smells. They help out with SonarCloud's "clean as you code" phi
 
 - **ESLint** (dbaeumer.vscode-eslint)
   - Shows linting errors as you type. Allows auto-fixing on save.
-- **Jest Test Explorer** (kavod-io.vscode-jest-test-adapter)
-  - Run your Jest tests in the Sidebar of VS Code.
+- **GraphQL** (GraphQL.vscode-graphql)
+  - GraphQL query syntax highlighting and autocomplete.
 - **MDX** (silvenon.mdx)
   - Provides syntax highlighting and bracket matching for MDX files.
 - **Prettier** - Code formatter (esbenp.prettier-vscode)

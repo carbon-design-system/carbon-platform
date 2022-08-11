@@ -30,12 +30,12 @@ jobs:
         with:
           fetch-depth: 0
           ssh-key: ${{ secrets.NIGHTLY_BUILD_DEPLOY_KEY }}
-          token: ${{ secrets.NIGHTLY_BUILD_BOT_TOKEN }}
+          token: ${{ secrets.CARBON_BOT_TOKEN }}
 
       - name: Set up Git User 🤖
         run: |
-          git config --global user.email 'carbon.platform.bot@outlook.com'
-          git config --global user.name 'Carbon Platform Bot'
+          git config --global user.email 'carbon@us.ibm.com'
+          git config --global user.name 'Carbon Bot'
 
       - name: Setup Node 🏗
         uses: actions/setup-node@v3
@@ -92,6 +92,17 @@ jobs:
     with:
       package_name: '@carbon-platform/micromanage-cli'
       package_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/micromanage-cli'] }}
+    secrets:
+      NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+  resources:
+    name: Publish Resources Package
+    needs: update-versions
+    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/resources']
+    uses: ./.github/workflows/publish-package.yml
+    with:
+      package_name: '@carbon-platform/resources'
+      package_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/resources'] }}
     secrets:
       NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 

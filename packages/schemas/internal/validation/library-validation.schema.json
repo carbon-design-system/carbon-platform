@@ -77,7 +77,7 @@
           },
           "path": {
             "type": "string",
-            "description": "Path to the file, relative to carbon.yml."
+            "description": "Path to the file, Github URL or path relative to carbon.yml."
           },
           "hidden": {
             "type": "boolean",
@@ -97,7 +97,7 @@
                 },
                 "path": {
                   "type": "string",
-                  "description": "Path to the file, relative to carbon.yml."
+                  "description": "Path to the file, Github URL or path relative to carbon.yml."
                 },
                 "hidden": {
                   "type": "boolean",
@@ -113,6 +113,11 @@
         "additionalProperties": false,
         "oneOf": [{ "required": ["title", "path"] }, { "required": ["title", "items"] }]
       }
+    },
+    "designKits": {
+      "type": "object",
+      "title": "Carbon Design Kit",
+      "description": "Object containing design kits"
     }
   },
   "additionalProperties": false,

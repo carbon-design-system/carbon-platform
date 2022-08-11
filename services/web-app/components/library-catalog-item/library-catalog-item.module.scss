@@ -1,0 +1,129 @@
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/motion' as motion;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
+
+@use '../../styles/mixins' as mixins;
+
+.anchor {
+  position: relative;
+  display: block;
+  border-top: 1px solid theme.$layer-accent;
+  background: theme.$layer-01;
+  text-decoration: none;
+  transition: background motion.$duration-fast-02 motion.motion(standard, productive);
+
+  &:hover,
+  &:focus {
+    background: theme.$layer-hover;
+  }
+
+  &:active {
+    outline: 2px solid theme.$focus;
+    outline-offset: -2px;
+  }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.content {
+  padding: spacing.$spacing-05 spacing.$spacing-05 spacing.$spacing-05 0;
+  @include breakpoint.breakpoint(md) {
+    height: convert.rem(176px);
+  }
+  @include breakpoint.breakpoint(xlg) {
+    padding-right: spacing.$spacing-05 + spacing.$spacing-06;
+  }
+}
+
+.maintainer {
+  color: theme.$text-primary;
+  @include mixins.line-clamp(1);
+  @include type.type-style('label-01');
+}
+
+.name {
+  color: theme.$text-primary;
+  @include mixins.line-clamp(2);
+  @include type.type-style('heading-02');
+}
+
+.description {
+  margin-top: spacing.$spacing-02;
+  color: theme.$text-primary;
+  @include mixins.line-clamp(3);
+  @include type.type-style('body-short-01');
+}
+
+.meta {
+  position: absolute;
+  bottom: spacing.$spacing-04;
+  left: spacing.$spacing-04;
+  color: theme.$text-secondary;
+  @include type.type-style('label-01');
+}
+
+.meta-item {
+  display: inline;
+
+  &:not(:first-child) {
+    margin-left: spacing.$spacing-03;
+  }
+}
+
+.meta-icon {
+  position: relative;
+  top: convert.rem(3px);
+  margin-right: spacing.$spacing-02;
+}
+
+.icon {
+  position: absolute;
+  right: spacing.$spacing-04;
+  bottom: spacing.$spacing-04;
+  display: block;
+  width: convert.rem(48px);
+  height: convert.rem(48px);
+  border: 1px solid theme.$border-subtle;
+  background: theme.$layer-01;
+  border-radius: 100%;
+  color: theme.$icon-primary;
+  transition: all motion.$duration-fast-02 motion.motion(standard, productive);
+  @include breakpoint.breakpoint(xlg) {
+    width: convert.rem(56px);
+    height: convert.rem(56px);
+  }
+
+  .anchor:hover &,
+  .anchor:focus & {
+    border-color: theme.$border-subtle-selected;
+    background: theme.$layer-hover;
+  }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.icon-maintainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity motion.$duration-fast-02 motion.motion(standard, productive);
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}

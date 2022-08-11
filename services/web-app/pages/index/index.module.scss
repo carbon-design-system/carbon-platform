@@ -1,0 +1,234 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
+
+/**
+ * Global
+ */
+
+.border {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: spacing.$spacing-05;
+    left: spacing.$spacing-05;
+    height: 1px;
+    background-color: theme.$border-strong-01;
+    content: '';
+    @include breakpoint.breakpoint(md) {
+      margin-right: -(spacing.$spacing-05);
+      margin-left: -(spacing.$spacing-05);
+    }
+  }
+}
+
+/**
+ * Subheading
+ */
+
+.subheading {
+  padding: spacing.$spacing-10 0;
+  @include type.type-style('fluid-heading-04', true);
+  @include breakpoint.breakpoint(md) {
+    padding-right: spacing.$spacing-06;
+  }
+  @include breakpoint.breakpoint(lg) {
+    padding-right: spacing.$spacing-05;
+  }
+
+  &--no-padding {
+    padding: 0;
+  }
+}
+
+.subheading-medium {
+  padding: spacing.$spacing-10 0;
+  @include type.type-style('fluid-heading-04', true);
+}
+
+.subheading-large {
+  padding: spacing.$spacing-11 0 spacing.$spacing-05;
+  @include type.type-style('fluid-heading-04', true);
+}
+
+.subheading-content {
+  @include type.type-style('body-long-02');
+
+  padding: spacing.$spacing-06 0;
+}
+
+/**
+ * Dashboard
+ */
+
+.dashboard {
+  padding-bottom: spacing.$spacing-10;
+}
+
+.dashboard-label {
+  @include type.type-style('expressive-heading-03', true);
+
+  padding-bottom: spacing.$spacing-05;
+
+  color: theme.$text-primary;
+}
+
+.dashboard-content {
+  @include type.type-style('body-long-01');
+
+  width: 75%;
+
+  color: theme.$text-primary;
+}
+
+.dashboard-link {
+  color: theme.$link-primary;
+}
+
+.dashboard-icon {
+  position: absolute;
+  bottom: spacing.$spacing-05;
+  left: spacing.$spacing-05;
+  color: theme.$text-primary;
+}
+
+/**
+ * Feature Card
+ */
+
+.feature-card-container {
+  padding-bottom: spacing.$spacing-10;
+}
+
+/**
+ * Highlights
+ */
+
+.highlights {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100vw - var(--scrollbar-width));
+    height: 100%;
+    background: theme.$layer-01;
+    content: '';
+    @include breakpoint.breakpoint(md) {
+      // grid margin
+      left: -(spacing.$spacing-05);
+      margin-left: -1px;
+    }
+    @include breakpoint.breakpoint(lg) {
+      // grid margin + 6.25% column * 4 columns + 8px
+      left: calc(-25vw - #{spacing.$spacing-03});
+    }
+    @include breakpoint.breakpoint(max) {
+      // grid margin + 96px column * 4 columns
+      left: -(spacing.$spacing-06 + spacing.$spacing-12 * 4);
+    }
+  }
+}
+
+.highlight-grid {
+  position: relative;
+
+  &--height {
+    @include breakpoint.breakpoint(md) {
+      min-height: rem(208px);
+    }
+    @include breakpoint.breakpoint(lg) {
+      min-height: convert.rem(184px);
+    }
+  }
+}
+
+.highlight-heading {
+  margin-top: spacing.$spacing-08;
+  @include type.type-style('fluid-heading-03', true);
+  @include breakpoint.breakpoint(md) {
+    margin-top: spacing.$spacing-10 + spacing.$spacing-02;
+  }
+  @include breakpoint.breakpoint(lg) {
+    padding-right: spacing.$spacing-07;
+  }
+
+  &--big {
+    margin-top: spacing.$spacing-07;
+    @include type.type-style('fluid-heading-04', true);
+  }
+}
+
+.highlight-description {
+  margin: spacing.$spacing-06 0 (spacing.$spacing-08 + spacing.$spacing-05);
+  @include type.type-style('body-long-02');
+  @include breakpoint.breakpoint(md) {
+    margin: spacing.$spacing-07 0;
+  }
+  @include breakpoint.breakpoint(lg) {
+    padding-right: spacing.$spacing-05;
+  }
+  @include breakpoint.breakpoint(xlg) {
+    padding-right: 0;
+  }
+
+  &--big {
+    @include type.type-style('fluid-heading-04', true);
+    @include breakpoint.breakpoint(md) {
+      margin: spacing.$spacing-08 0;
+    }
+  }
+}
+
+.highlight-title {
+  display: block;
+  @include type.type-style('heading-02');
+}
+
+/**
+ * Content
+ */
+
+.content-column {
+  @include breakpoint.breakpoint(md) {
+    padding-right: spacing.$spacing-06;
+  }
+  @include breakpoint.breakpoint(lg) {
+    padding-right: spacing.$spacing-05;
+  }
+  @include breakpoint.breakpoint(xlg) {
+    padding-right: spacing.$spacing-06;
+  }
+}
+
+.content-heading {
+  margin-top: spacing.$spacing-11;
+  @include type.type-style('fluid-heading-04', true);
+}
+
+.content-copy {
+  margin-top: spacing.$spacing-06;
+  @include type.type-style('body-long-02');
+
+  &:last-child {
+    margin-bottom: spacing.$spacing-10;
+  }
+
+  a {
+    // override carbon
+    font-size: inherit;
+    line-height: inherit;
+  }
+}

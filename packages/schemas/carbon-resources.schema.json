@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://carbondesignsystem.com/schemas/carbon-resources.schema.json",
   "title": "Carbon Resources",
-  "description": "Defines Assets and Libraries",
+  "description": "Defines Assets, Design Kits, and Libraries",
   "type": "object",
   "properties": {
     "assets": {
@@ -147,10 +147,117 @@
                 "additionalProperties": false,
                 "required": ["type", "name", "url"]
               }
+            },
+            "docs": {
+              "description": "Determines which supporting documentation is available to fetch and render as page tabs in asset details.",
+              "type": "object",
+              "minProperties": 1,
+              "properties": {
+                "usagePath": {
+                  "description": "Path to the file, Github URL or path relative to carbon.yml.",
+                  "default": "./usage.mdx",
+                  "type": "string"
+                },
+                "stylePath": {
+                  "description": "Path to the file, Github URL or path relative to carbon.yml.",
+                  "default": "./style.mdx",
+                  "type": "string"
+                },
+                "codePath": {
+                  "description": "Path to the file, Github URL or path relative to carbon.yml.",
+                  "default": "./code.mdx",
+                  "type": "string"
+                },
+                "accessibilityPath": {
+                  "description": "Path to the file, Github URL or path relative to carbon.yml.",
+                  "default": "./accessibility.mdx",
+                  "type": "string"
+                }
+              }
             }
           },
           "additionalProperties": false,
           "required": ["status"]
+        }
+      }
+    },
+    "designKits": {
+      "type": "object",
+      "minProperties": 1,
+      "title": "Carbon Design Kit",
+      "description": "Object containing all design kits",
+      "patternProperties": {
+        "^.*$": {
+          "description": "Design kits contain elements, guidelines, user interface components and patterns, and wireframes for various design tools as the design counterpart to coded assets.",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Design kit display name (often includes the tool and color theme.) Use title-case capitalization."
+            },
+            "description": {
+              "type": "string",
+              "description": "Design kit description ideally between 50-160 characters in length. Use sentence-case capitalization."
+            },
+            "status": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "default": "draft",
+                  "enum": ["deprecated", "draft", "experimental", "stable"]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string",
+                      "default": "draft",
+                      "enum": ["deprecated", "draft", "experimental", "stable"]
+                    },
+                    "note": {
+                      "type": "string",
+                      "description": "Explains the key. This is often used to communicate the remaining effort to get something from draft or experimental to stable, estimated stability dates, and alternative assets to use when the asset has been deprecated."
+                    }
+                  },
+                  "required": ["key", "note"],
+                  "additionalProperties": false
+                }
+              ],
+              "description": "Used to set consumption expectations and the likelihood of future changes."
+            },
+            "tool": {
+              "type": "string",
+              "enum": ["adobe-ase", "adobe-xd", "axure", "figma", "invision-freehand", "sketch"],
+              "description": "Design kit's compatible tool."
+            },
+            "type": {
+              "type": "string",
+              "enum": ["elements", "guidelines", "ui", "wireframes"],
+              "description": "Design kit primary categorization."
+            },
+            "url": {
+              "type": "string",
+              "description": "Design kit URL."
+            },
+            "action": {
+              "type": "string",
+              "default": "link",
+              "enum": ["download", "link"],
+              "description": "Determines the action icon."
+            },
+            "license": {
+              "type": "string",
+              "enum": ["apache-2.0", "ibm-internal", "mit"],
+              "description": "Design kit license."
+            },
+            "noIndex": {
+              "type": "boolean",
+              "default": false,
+              "description": "If set to true, the catalogs will exclude the kit."
+            }
+          },
+          "additionalProperties": false,
+          "required": ["name", "tool", "type", "status", "url"]
         }
       }
     },
@@ -233,7 +340,7 @@
               },
               "path": {
                 "type": "string",
-                "description": "Path to the file, relative to carbon.yml."
+                "description": "Path to the file, Github URL or path relative to carbon.yml."
               },
               "hidden": {
                 "type": "boolean",
@@ -253,7 +360,7 @@
                     },
                     "path": {
                       "type": "string",
-                      "description": "Path to the file, relative to carbon.yml."
+                      "description": "Path to the file, Github URL or path relative to carbon.yml."
                     },
                     "hidden": {
                       "type": "boolean",
@@ -268,6 +375,108 @@
             },
             "additionalProperties": false,
             "oneOf": [{ "required": ["title", "path"] }, { "required": ["title", "items"] }]
+          }
+        },
+        "designKits": {
+          "type": "object",
+          "minProperties": 1,
+          "title": "Carbon Design Kit",
+          "description": "Object containing design kits",
+          "patternProperties": {
+            "^.*$": {
+              "description": "Design kits contain elements, guidelines, user interface components and patterns, and wireframes for various design tools as the design counterpart to coded assets.",
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Design kit display name (often includes the tool and color theme.) Use title-case capitalization."
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Design kit description ideally between 50-160 characters in length. Use sentence-case capitalization."
+                    },
+                    "status": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "default": "draft",
+                          "enum": ["deprecated", "draft", "experimental", "stable"]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "default": "draft",
+                              "enum": ["deprecated", "draft", "experimental", "stable"]
+                            },
+                            "note": {
+                              "type": "string",
+                              "description": "Explains the key. This is often used to communicate the remaining effort to get something from draft or experimental to stable, estimated stability dates, and alternative assets to use when the asset has been deprecated."
+                            }
+                          },
+                          "required": ["key", "note"],
+                          "additionalProperties": false
+                        }
+                      ],
+                      "description": "Used to set consumption expectations and the likelihood of future changes."
+                    },
+                    "tool": {
+                      "type": "string",
+                      "enum": [
+                        "adobe-ase",
+                        "adobe-xd",
+                        "axure",
+                        "figma",
+                        "invision-freehand",
+                        "sketch"
+                      ],
+                      "description": "Design kit's compatible tool."
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": ["elements", "guidelines", "ui", "wireframes"],
+                      "description": "Design kit primary categorization."
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "Design kit URL."
+                    },
+                    "action": {
+                      "type": "string",
+                      "default": "link",
+                      "enum": ["download", "link"],
+                      "description": "Determines the action icon."
+                    },
+                    "license": {
+                      "type": "string",
+                      "enum": ["apache-2.0", "ibm-internal", "mit"],
+                      "description": "Design kit license."
+                    },
+                    "noIndex": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "If set to true, the catalogs will exclude the kit."
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": ["name", "tool", "type", "status", "url"]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "$ref": {
+                      "type": "string",
+                      "description": "Reference to a design kit."
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": ["$ref"]
+                }
+              ]
+            }
           }
         }
       },

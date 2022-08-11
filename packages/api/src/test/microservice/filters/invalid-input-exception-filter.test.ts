@@ -4,24 +4,49 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Logging } from '../../../main/logging'
-import { InvalidInputException } from '../../../main/microservice/exceptions/invalid-input-exception'
-import { InvalidInputExceptionFilter } from '../../../main/microservice/filters/invalid-input-exception-filter'
+import test from 'ava'
 
-const warnSpy = jest.spyOn(Logging.prototype, 'warn').mockImplementation(jest.fn())
+import { Logging } from '../../../main/logging/logging.js'
+import { InvalidInputException } from '../../../main/microservice/exceptions/invalid-input-exception.js'
+import { InvalidInputExceptionFilter } from '../../../main/microservice/filters/invalid-input-exception-filter.js'
+
+test.before(() => {
+  Logging.isRemoteLoggingAllowed = false
+})
 
 const rpcArgHost = {
-  switchToRpc: jest.fn().mockReturnValue({
-    getContext: jest.fn().mockReturnValue({
-      getPattern: jest.fn()
+  switchToRpc: () => ({
+    getContext: () => ({
+      getPattern: () => 'the pattern'
     })
   })
 }
 
-test('catch', () => {
+test('catch', async (t) => {
   const filter = new InvalidInputExceptionFilter()
 
-  filter.catch(new InvalidInputException('a test!'), rpcArgHost as any)
+  const result = filter.catch(new InvalidInputException('a test!'), rpcArgHost as any)
 
-  expect(warnSpy).toHaveBeenCalled()
+  try {
+    await result.forEach(() => undefined)
+  } catch (e) {
+    t.true(e instanceof InvalidInputException)
+    t.is((e as InvalidInputException).message, 'a test!')
+  }
+})
+
+test('catch with no pattern does not crash', (t) => {
+  const customRpcArgHost = {
+    switchToRpc: () => ({
+      getContext: () => ({
+        getPattern: () => undefined
+      })
+    })
+  }
+
+  const filter = new InvalidInputExceptionFilter()
+
+  filter.catch(new InvalidInputException('a test!'), customRpcArgHost as any)
+
+  t.pass()
 })

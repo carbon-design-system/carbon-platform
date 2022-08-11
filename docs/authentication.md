@@ -107,7 +107,7 @@ session secret and the `getStore` function available through the exported `store
 store. Example with express-session:
 
 ```ts
-import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
+import { Runtime, RunMode } from '@carbon-platform/api/runtime'
 import { SESSION_SECRET, store } from '@carbon-platform/api/auth'
 import expressSession from 'express-session'
 // ...
@@ -118,7 +118,7 @@ expressSession({
   secret: SESSION_SECRET,
   cookie: {
     path: '/',
-    secure: getRunMode() === RunMode.Standard,
+    secure: new Runtime().runMode === RunMode.Standard,
     maxAge: 60 * 60 * 2 * 1000 // 2 hours
   }
 })
@@ -129,26 +129,29 @@ to use it
 
 ### Passport Authentication
 
-If the service needs to authenticate users against IBMId, the exported function
-`getPassportInstance` returns a promise that resolves to a pre-configured passport instance. This
-instance can be used just like the passport package and doesn't need to be further setup:
+If the service needs to authenticate users against IBMId, the exported class `Auth` provides utility
+functions, such as `getPassport`, which returns a promise that resolves to a pre-configured passport
+instance. This instance can be used just like the passport package and doesn't need to be further
+setup:
 
 ```ts
-import { getPassportInstance } from '@carbon-platform/api/auth'
-const passport = await getPassportInstance()
+import { Auth } from '@carbon-platform/api/auth'
+const auth = new Auth()
+const passport = await auth.getPassport()
 app.use(passport.session())
 ```
 
 _Note:_ keep in mind you will have to await for the passport instance to be resolved before being
 able to use it
 
-To invoke the passport authentication you can make use of the exported `authenticateWithPassport`
-handler:
+To invoke the passport authentication you can make use of the `authenticate` method on the Auth
+instance:
 
 ```ts
-import { authenticateWithPassport } from '@carbon-platform/api/auth'
+import { Auth, AuthStrategy } from '@carbon-platform/api/auth'
 
-const login = authenticateWithPassport()
+const auth = new Auth()
+const login = await auth.authenticate(AuthStrategy.ibmIdProd)
 
 export default login
 ```

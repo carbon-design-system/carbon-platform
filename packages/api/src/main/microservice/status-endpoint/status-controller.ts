@@ -6,7 +6,7 @@
  */
 import { Controller, Get, HttpCode } from '@nestjs/common'
 
-import { Trace } from '../decorators/trace'
+import { Trace } from '../decorators/trace.js'
 
 @Controller()
 class StatusController {

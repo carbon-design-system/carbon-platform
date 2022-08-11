@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/micromanage-cli",
-  "version": "1.2.11",
+  "version": "1.4.2",
   "description": "Monorepo management of microservices",
   "license": "Apache-2.0",
   "main": "./lib/index.js",
@@ -22,10 +22,14 @@
     "node": "16",
     "npm": "8"
   },
+  "micromanage": {
+    "standalone": true
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo 'No tests specified. Maybe you should add some!'"
   },
   "dependencies": {
-    "commander": "^9.2.0"
+    "commander": "^9.4.0",
+    "octokit": "^2.0.4"
   }
 }

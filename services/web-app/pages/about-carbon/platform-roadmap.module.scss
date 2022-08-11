@@ -10,31 +10,9 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 
-.border {
-  position: relative;
-
-  &::after {
-    position: absolute;
-    top: 0;
-    right: spacing.$spacing-05;
-    left: spacing.$spacing-05;
-    height: 1px;
-    background-color: theme.$border-strong-01;
-    content: '';
-    @include breakpoint.breakpoint(md) {
-      margin-right: -(spacing.$spacing-05);
-      margin-left: -(spacing.$spacing-05);
-    }
-  }
-}
-
 .intro-copy {
   margin-top: spacing.$spacing-11;
   @include type.type-style('fluid-heading-03', true);
-
-  &:last-child {
-    margin-bottom: spacing.$spacing-10;
-  }
 
   a {
     font-size: inherit;
@@ -47,7 +25,7 @@
  */
 
 .release {
-  padding-bottom: spacing.$spacing-09 + spacing.$spacing-03;
+  padding-top: spacing.$spacing-06;
   @include breakpoint.breakpoint(md) {
     padding-right: 0;
     padding-left: 0;
@@ -86,7 +64,7 @@
 }
 
 .release-image {
-  margin-top: spacing.$spacing-06;
+  margin: spacing.$spacing-06 spacing.$spacing-05 0 0;
   @include breakpoint.breakpoint-down(md) {
     display: none;
   }

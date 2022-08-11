@@ -8,18 +8,17 @@
 **/.env*
 **/*.md
 **/Dockerfile
-sonar-project.properties
 .tsbuildinfo
+sonar-project.properties
 
 # Dirs
+**/.test-coverage/
 **/dist/
 **/generated/
 **/node_modules/
 **/src/test/
 .github/
 .husky/
-**/.next/
-.test-coverage/
 .vscode/
 docs/
 
@@ -28,6 +27,7 @@ docs/
 #
 
 # web-app
+**/.next/
 services/web-app/.carbon/
 services/web-app/pages/samples/
 services/web-app/public/data/

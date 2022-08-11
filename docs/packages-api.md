@@ -8,7 +8,7 @@ instead has a set of top-level `js` and corresponding `d.ts` files to allow impo
 
 ```ts
 import { Logging } from '@carbon-platform/api/logging'
-import { getRunMode, loadEnvVars } from '@carbon-platform/api/runtime'
+import { Runtime, getEnvVar } from '@carbon-platform/api/runtime'
 import { getPassportInstance, store } from '@carbon-platform/api/auth'
 ```
 
@@ -49,56 +49,52 @@ See [Platform microservices](./platform-microservices.md).
 
 A set of modules relating to runtime configuration of services on the platform.
 
-### debug
+### Runtime
 
-Exports a utility function that indicates whether or not the current node process is running in
-debug mode.
+A class with utility functions for checking debug mode, run mode, environment config, etc. It
+contains:
 
-### env-vars
+1. A property called `environment`, which returns one of the three enum values, depending on the
+   value of the `CARBON_ENVIRONMENT` environment variable.
+2. A method called `withEnvironment()`, which takes a string as input and returns a version of that
+   string with the environment incorporated in a deterministic way.
+3. A property called `runMode`, which returns one of two enum values, depending on the value of the
+   `CARBON_RUN_MODE` environment variable.
 
-Exports a utility function that manages retrieving and validating environment variables across
-different run modes.
+### getEnvVar
 
-### environment
+A utility function that manages retrieving and validating environment variables across different run
+modes.
 
-A module that indicates the type of runtime environment in which the service/process is running.
-This is mostly used by deployments as a switch for service endpoint URLs or other configuration-type
-data. It contains the following:
+### Environment
 
-1. An enum called `Environment` containing the values `Build`, `Test`, and `Production`.
-2. A function valled `getEnvironment()`, which returns one of the three enum values, depending on
-   the value of the `CARBON_ENVIRONMENT` environment variable.
-3. A function called `withEnvironment()`, which takes a string as input and returns a version of
-   that string with the environment incorporated in a deterministic way.
+An enum called `Environment` containing the values `Build`, `Test`, and `Production` which indicates
+the environment in which the service/process is running. This is mostly used by deployments as a
+switch for service endpoint URLs or other configuration-type data. It contains the following:
 
-`CARBON_ENVIRONMENT` can be set to the following values:
+It is based on the `CARBON_ENVIRONMENT` environment variable and can be set to the following values:
 
 - `BUILD`
-  - Causes `getEnvironment()` to return `Environment.Build`
+  - Causes the runtime to return `Environment.Build`
 - `TEST`
-  - Causes `getEnvironment()` to return `Environment.Test`
+  - Causes the runtime to return `Environment.Test`
 - `PRODUCTION`
-  - Causes `getEnvironment()` to return `Environment.Production`
+  - Causes the runtime to return `Environment.Production`
 
 If the `CARBON_ENVIRONMENT` environment variable is not set, the mode will default to `Test`.
 
 Setting this env var to any other value will result in an error being thrown.
 
-### run-mode
+### RunMode
 
-A module that provides a runtime switch between standard code and development hooks to make local
-development easier. The module exports two things:
-
-1. An enum called `RunMode` containing the values `Dev` and `Standard`.
-2. A function called `getRunMode()`, which returns one of two enum values, depending on the value of
-   the `CARBON_RUN_MODE` environment variable.
-
-`CARBON_RUN_MODE` can be set to the following values:
+An enum that represents a runtime switch between standard code and development hooks to make local
+development easier. It is based off of the `CARBON_RUN_MODE` environment variable and can be set to
+the following values:
 
 - `DEV`
-  - Causes `getRunMode()` to return `RunMode.Dev`
+  - Causes the runtime to return `RunMode.Dev`
 - `STANDARD`
-  - Causes `getRunMode()` to return `RunMode.Standard`
+  - Causes the runtime to return `RunMode.Standard`
 
 If the `CARBON_RUN_MODE` environment variable is not set, the mode will default to the "Dev" run
 mode.

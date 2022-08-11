@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/type' as type;
+@include type.type-classes();
 
 *,
 *::before,
@@ -34,6 +36,7 @@ html,
 body {
   width: 100%;
   height: 100%;
+  overscroll-behavior: none;
 }
 
 #__next {

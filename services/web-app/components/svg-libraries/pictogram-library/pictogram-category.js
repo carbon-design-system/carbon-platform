@@ -19,7 +19,7 @@ const PictogramCategory = ({ category, pictograms, columnCount }) => {
   return (
     <section ref={sectionRef} className={styles['svg-category']}>
       <h2 className={clsx(h2, styles['category-title'])}>{category}</h2>
-      <ul className={clsx(styles['svg-grid'], styles['pictogram-list'])}>
+      <ul className={clsx(styles['svg-grid'], styles.pictograms)}>
         {pictograms
           .filter((pictogram) => {
             return !(pictogram.name === 'ibm--z' || pictogram.name === 'ibm--z--partition')

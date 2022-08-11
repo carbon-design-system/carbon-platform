@@ -109,8 +109,10 @@ const FilterDataTable = ({ designKitsData, designTools, designKitIds }) => {
                   <TableCell>
                     <div>
                       {row.cells[0].value
-                        ?.replace(/-/g, ' ')
-                        .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase())}
+                        ? row.cells[0].value
+                            ?.replace(/-/g, ' ')
+                            .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase())
+                        : 'Community'}
                     </div>
                   </TableCell>
                   <TableCell>

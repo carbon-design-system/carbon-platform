@@ -56,12 +56,13 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     return designKitIds?.includes(item.id)
   })
 
+  // alphabetically sort maintainer
   const orderedDesignKits = designKits.sort((a, b) =>
     a.maintainer?.toLowerCase() < b.maintainer?.toLowerCase()
       ? -1
       : b.maintainer?.toLowerCase() > a.maintainer?.toLowerCase()
-      ? 1
-      : 0
+        ? 1
+        : 0
   )
 
   const filterByDesignTool = useCallback(
@@ -90,6 +91,7 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     setFilteredRows(filterByDesignTool(orderedDesignKits))
   }, [currentItem, orderedDesignKits, filterByDesignTool])
 
+  // only render the firt maintainer within the respective group
   const hideRepeatedMaintainer = (array) => {
     let previousValue = ''
     array.forEach((row, index) => {

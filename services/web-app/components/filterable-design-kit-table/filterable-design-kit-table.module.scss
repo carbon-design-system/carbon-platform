@@ -11,8 +11,6 @@
 @use '@carbon/react/scss/utilities/convert' as convert;
 
 .grid {
-  margin-top: 50px;
-
   // override carbon width to align icon
   :global(.cds--list-box__menu-icon) {
     width: auto;

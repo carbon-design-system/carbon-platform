@@ -48,16 +48,16 @@ const FilterDataTable = ({ designKitsData, designTools, designKitIds }) => {
   const [filteredRows, setFilteredRows] = useState(designKitsData)
   const [currentItem, setCurrentItem] = useState('Figma')
 
-  const selectedDesignKits = designKitsData.filter((item) => {
+  const designKits = designKitsData.filter((item) => {
     return designKitIds?.includes(item.id)
   })
 
   const filterByDesignTool = useCallback(
-    (selectedDesignKits) => {
+    (designKits) => {
       if (!currentItem) {
-        return selectedDesignKits
+        return designKits
       }
-      return selectedDesignKits.filter(
+      return designKits.filter(
         (item) =>
           // allows to check for Adobe XD
           item.tool[0].toUpperCase() +
@@ -75,8 +75,8 @@ const FilterDataTable = ({ designKitsData, designTools, designKitIds }) => {
   }
 
   useEffect(() => {
-    setFilteredRows(filterByDesignTool(selectedDesignKits))
-  }, [currentItem, selectedDesignKits, filterByDesignTool])
+    setFilteredRows(filterByDesignTool(designKits))
+  }, [currentItem, designKits, filterByDesignTool])
 
   return (
     <>

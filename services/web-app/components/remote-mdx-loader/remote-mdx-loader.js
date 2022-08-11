@@ -57,11 +57,27 @@ const getMdxErrorDisplay = (mdxError) => {
   }
 }
 
-const RemoteMdxLoader = ({ source, ignoreTabs, mdxError }) => {
+const RemoteMdxLoader = ({ source, ignoreTabs, mdxError, warnings }) => {
   return (
     <MdxWrapper frontmatter={JSON.stringify(source?.frontmatter ?? {})} ignoreTabs={ignoreTabs}>
       {source?.compiledSource && (
-        <div dangerouslySetInnerHTML={{ __html: source?.compiledSource }} />
+        <>
+          {warnings?.length > 0 && (
+            <InlineError
+              title={`This page has ${warnings.length} ${
+                warnings.length === 1 ? 'error' : 'errors'
+              }`}
+              description={
+                <ul style={{ listStyle: 'disc' }}>
+                  {warnings.map((warning, index) => (
+                    <li key={index}>{warning}</li>
+                  ))}
+                </ul>
+              }
+            />
+          )}
+          <div dangerouslySetInnerHTML={{ __html: source?.compiledSource }} />
+        </>
       )}
       {mdxError && getMdxErrorDisplay(mdxError)}
     </MdxWrapper>
@@ -83,7 +99,11 @@ RemoteMdxLoader.propTypes = {
   source: PropTypes.shape({
     frontmatter: PropTypes.object,
     compiledSource: PropTypes.string
-  })
+  }),
+  /**
+   * array of warnings on the page
+   */
+  warnings: PropTypes.arrayOf(PropTypes.string)
 }
 
 export default RemoteMdxLoader

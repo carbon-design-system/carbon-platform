@@ -59,10 +59,6 @@ const getScriptReplacementSrc = (node) => {
   `
 }
 
-const replacementMapper = {
-  script: getScriptReplacementSrc
-}
-
 /**
  * Sanitizes and serializes MDX source from a given string so that it can be rendered
  *
@@ -74,12 +70,20 @@ const replacementMapper = {
  * @throws {Error}
  */
 const parseMdxResponseContent = async (response) => {
+  const pageWarnings = []
   const fileSource = Buffer.from(response.content, response.encoding).toString()
 
   // the path to where the mdx file is located on github
   const dirPath = response._links.html.split('/').slice(0, -1).join('/')
 
   const fileContent = matter(fileSource)
+
+  const replacementMapper = {
+    script: (node) => {
+      pageWarnings.push('Script tag identified')
+      return getScriptReplacementSrc(node)
+    }
+  }
 
   const MdxContentComponent = (
     await evaluate(fileContent.content, {
@@ -89,7 +93,10 @@ const parseMdxResponseContent = async (response) => {
           mdxSanitizerPlugin,
           {
             customComponentKeys: Object.keys(components),
-            fallbackComponent,
+            fallbackComponent: (node) => {
+              pageWarnings.push(`Unknown Component identified: ${node.name}`)
+              return fallbackComponent(node)
+            },
             allowImports: false,
             allowExports: false,
             stripHTMLComments: true,
@@ -111,7 +118,10 @@ const parseMdxResponseContent = async (response) => {
     throw new ContentRenderException(err.message)
   }
 
-  return { compiledSource: htmlContent, frontmatter: fileContent.data }
+  return {
+    source: { compiledSource: htmlContent, frontmatter: fileContent.data },
+    warnings: pageWarnings
+  }
 }
 /**
  * Common util function to get the staticProps for a remote mdx page
@@ -136,7 +146,7 @@ export const getRemoteMdxPageStaticProps = async (params, src) => {
     }
   }
 
-  const mdxSource = await parseMdxResponseContent(mdxSrc).catch((err) => {
+  const { source, warnings } = await parseMdxResponseContent(mdxSrc).catch((err) => {
     mdxError = { ...err }
     switch (true) {
       case err instanceof ImportFoundException:
@@ -155,8 +165,9 @@ export const getRemoteMdxPageStaticProps = async (params, src) => {
 
   return {
     props: {
-      source: mdxSource ?? null,
-      mdxError: mdxError ?? null
+      source: source ?? null,
+      mdxError: mdxError ?? null,
+      warnings
     }
   }
 }

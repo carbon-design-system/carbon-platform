@@ -9,7 +9,7 @@ import { NextSeo } from 'next-seo'
 import RemoteMdxLoader from '@/components/remote-mdx-loader'
 import { getRemoteMdxPageStaticProps } from '@/utils/mdx'
 
-const RemoteMdxTest = ({ source, mdxError }) => {
+const RemoteMdxTest = ({ source, mdxError, warnings }) => {
   const seo = {
     title: 'Remote Mdx'
   }
@@ -17,7 +17,7 @@ const RemoteMdxTest = ({ source, mdxError }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <RemoteMdxLoader source={source} mdxError={mdxError} />
+      <RemoteMdxLoader source={source} mdxError={mdxError} warnings={warnings} />
     </>
   )
 }
@@ -31,7 +31,7 @@ export const getStaticProps = async () => {
       library: 'carbon-website',
       ref: 'main'
     },
-    'all-errors.mdx'
+    'too-many-errors.mdx'
   )
 }
 

@@ -455,7 +455,7 @@ const resolveSchemaReferences = async (params, data) => {
 /**
  * Find related libraries by group to a particular library
  * @param {import('../typedefs').Library} libData
- * @returns {import('../typedefs').Library[]}
+ * @returns {Promise<import('../typedefs').Library[]>}
  */
 export const getLibraryRelatedLibs = async (libData) => {
   const relatedLibs = []
@@ -556,7 +556,7 @@ export const getDesignKitsData = async (params = {}) => {
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  * @param {import('../typedefs').Params} params
- * @returns {import('../typedefs').Library}
+ * @returns {Promise<import('../typedefs').Library>}
  */
 export const getLibraryData = async (params = {}) => {
   const libraryParams = await validateLibraryParams(params)

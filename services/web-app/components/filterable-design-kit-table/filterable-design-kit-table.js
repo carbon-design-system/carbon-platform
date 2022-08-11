@@ -93,7 +93,7 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     setFilteredRows(filterByDesignTool(orderedDesignKits))
   }, [currentItem, orderedDesignKits, filterByDesignTool])
 
-  // only render the firt maintainer within the respective group
+  // only render the first maintainer within the respective group
   const hideRepeatedMaintainer = (array) => {
     let previousValue = ''
     array.forEach((row, index) => {

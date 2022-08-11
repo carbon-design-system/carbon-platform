@@ -59,7 +59,7 @@ const NavSecondary = ({ className, visible, onSlidePrimary }) => {
           <a
             className={clsx(
               styles.heading,
-              router.pathname === '/assets/[host]/[org]/[repo]/[library]/[ref]' &&
+              router.pathname === '/libraries/[host]/[org]/[repo]/[library]/[ref]' &&
                 styles['heading--active']
             )}
           >

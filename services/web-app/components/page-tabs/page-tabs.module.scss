@@ -10,11 +10,12 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/utilities/convert' as convert;
-@use '@carbon/react/scss/utilities/z-index' as z-index;
+@use '../../styles/variables' as variables;
+@use 'sass:map';
 
 .container {
   position: sticky;
-  z-index: z-index.z('overlay');
+  z-index: map.get(variables.$z-indexes, 'floating');
   top: 3rem;
 
   &::before {

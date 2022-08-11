@@ -6,16 +6,15 @@
  */
 import { Bee, LogoGithub } from '@carbon/icons-react'
 import {
-  Codepen,
   Codesandbox,
   Figma,
   Illustrator,
   Js,
   Medium,
-  Npm,
   Sketch,
   Storybook,
   Svelte,
+  Svg32Npm,
   Vue,
   Zenhub
 } from '@carbon-platform/icons'
@@ -36,10 +35,9 @@ const svgIcons = {
   sketch: Sketch,
   codesandbox: Codesandbox,
   illustrator: Illustrator,
-  codepen: Codepen,
   storybook: Storybook,
   medium: Medium,
-  npm: Npm,
+  npm: Svg32Npm,
   figma: Figma,
   zenhub: Zenhub,
   vue: Vue,
@@ -66,11 +64,11 @@ const iconColor = {
   inverse: 'icon-inverse'
 }
 
-const MdxIcon = ({ name, color }) => {
+const MdxIcon = ({ name, className, color }) => {
   if (svgIcons[name]) {
     const SvgComponent = svgIcons[name]
     return (
-      <div className={styles['mdx-icon']}>
+      <div className={clsx(className, styles['mdx-icon'])}>
         <SvgComponent />
       </div>
     )
@@ -78,7 +76,7 @@ const MdxIcon = ({ name, color }) => {
 
   if (localIcons[name]) {
     return (
-      <div className={styles['mdx-icon']}>
+      <div className={clsx(className, styles['mdx-icon'])}>
         <Image alt={`${name} icon`} src={localIcons[name]} />
       </div>
     )
@@ -86,7 +84,9 @@ const MdxIcon = ({ name, color }) => {
 
   if (carbonIcons[name]) {
     const Icon = carbonIcons[name]
-    return <Icon className={clsx(styles['mdx-icon'], styles[iconColor[color]])} size={32} />
+    return (
+      <Icon className={clsx(className, styles['mdx-icon'], styles[iconColor[color]])} size={32} />
+    )
   }
 
   return null
@@ -99,6 +99,10 @@ const acceptedCompNames = [
 ]
 
 MdxIcon.propTypes = {
+  /**
+   * Optional class name.
+   */
+  className: PropTypes.string,
   /**
    * Optional: can supply color "icon-inverse" for carbonIcons.
    */

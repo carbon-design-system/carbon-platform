@@ -4,14 +4,14 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { getPassportInstance, SESSION_SECRET, store } from '@carbon-platform/api/auth'
+import { Auth, SESSION_SECRET, store } from '@carbon-platform/api/auth'
 import { Logging } from '@carbon-platform/api/logging'
-import { getRunMode, RunMode } from '@carbon-platform/api/runtime'
+import { RunMode, Runtime } from '@carbon-platform/api/runtime'
 import cookieParser from 'cookie-parser'
 import expressSession from 'express-session'
 import nextConnect from 'next-connect'
 
-const logging = new Logging('require-session')
+const logging = new Logging({ component: 'require-session' })
 
 /**
  * Bootstraps session into request, returns 404 if user is required for resource
@@ -20,6 +20,8 @@ const logging = new Logging('require-session')
  * @returns {import('next-connect').NextConnect} NextConnect middleware with session configuration
  */
 export default function requireSession(needsUser = false) {
+  const runtime = new Runtime()
+
   return nextConnect({
     onError: (err, _req, res) => {
       logging.error(err.stack)
@@ -28,13 +30,13 @@ export default function requireSession(needsUser = false) {
   })
     .use(cookieParser())
     .use(async (...args) => {
-      const storeInstance = await store.getStore()
+      const storeInstance = await store.getStore(runtime)
       expressSession({
         cookie: {
           httpOnly: true,
           maxAge: 60 * 60 * 2 * 1000, // 2 hours
           path: '/',
-          secure: getRunMode() === RunMode.Standard
+          secure: runtime.runMode === RunMode.Standard
         },
         proxy: true,
         resave: false,
@@ -43,8 +45,8 @@ export default function requireSession(needsUser = false) {
         store: storeInstance
       })(...args)
     })
-    .use(async (...args) => (await getPassportInstance()).initialize()(...args))
-    .use(async (...args) => (await getPassportInstance()).session()(...args))
+    .use(async (...args) => (await new Auth().getPassport()).initialize()(...args))
+    .use(async (...args) => (await new Auth().getPassport()).session()(...args))
     .use((req, res, next) => {
       if (needsUser && !req.user) {
         res.status(404)

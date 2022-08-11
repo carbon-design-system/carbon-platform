@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
 import { libraryPropTypes } from 'types'
 
-import Catalog from '@/components/catalog'
+import AssetsCatalog from '@/components/assets-catalog'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { type } from '@/data/type'
@@ -33,7 +33,8 @@ const Patterns = ({ librariesData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader bgColor={pattern.bgColor} title={seo.title} pictogram={pattern.icon} />
-      <Catalog data={librariesData} type="pattern" />
+      {/* this probably eventually gets replaced  by a parentsCatalog */}
+      <AssetsCatalog libraries={librariesData.libraries} type="pattern" />
     </>
   )
 }

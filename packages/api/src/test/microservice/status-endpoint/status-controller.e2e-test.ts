@@ -6,35 +6,38 @@
  */
 import { INestApplication } from '@nestjs/common'
 import { Test } from '@nestjs/testing'
+import test from 'ava'
 import request from 'supertest'
 
-import { StatusModule } from '../../../main/microservice/status-endpoint/status-module'
+import { StatusModule } from '../../../main/microservice/status-endpoint/status-module.js'
 
-describe('Status', () => {
-  let app: INestApplication
+let app: INestApplication
 
-  beforeAll(async () => {
-    const moduleRef = await Test.createTestingModule({
-      imports: [StatusModule]
-    }).compile()
+test.before(async () => {
+  const moduleRef = await Test.createTestingModule({
+    imports: [StatusModule]
+  }).compile()
 
-    app = moduleRef.createNestApplication()
-    await app.init()
-  })
+  app = moduleRef.createNestApplication()
+  await app.init()
+})
 
-  it('gets /liveness and returns 204', async () => {
-    const response = await request(app.getHttpServer()).get('/liveness')
+test.after.always(async () => {
+  await app.close()
+})
 
-    expect(response.statusCode).toBe(204)
-  })
+test("it doesn't crash", (t) => {
+  t.not(app, undefined)
+})
 
-  it('gets /readiness and returns 204', async () => {
-    const response = await request(app.getHttpServer()).get('/readiness')
+test('gets /liveness and returns 204', async (t) => {
+  const response = await request(app.getHttpServer()).get('/liveness')
 
-    expect(response.statusCode).toBe(204)
-  })
+  t.is(response.statusCode, 204)
+})
 
-  afterAll(async () => {
-    await app.close()
-  })
+test('gets /readiness and returns 204', async (t) => {
+  const response = await request(app.getHttpServer()).get('/readiness')
+
+  t.is(response.statusCode, 204)
 })

@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
 
@@ -15,12 +14,4 @@
 
 .grid {
   margin: spacing.$spacing-10 0;
-}
-
-// override carbon max-width and padding-right
-.button {
-  width: 100%;
-  max-width: none;
-  padding-right: spacing.$spacing-05;
-  margin-top: spacing.$spacing-07;
 }

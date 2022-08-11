@@ -13,7 +13,7 @@ import { GraphQLSchemaHost } from '@nestjs/graphql'
 import { Ctx, MessagePattern, Payload, RmqContext } from '@nestjs/microservices'
 import { graphql, GraphQLSchema } from 'graphql'
 
-import { validateDataGraphMessage } from './validate-data-graph-message'
+import { validateDataGraphMessage } from './validate-data-graph-message.js'
 
 @Controller()
 class DataGraphController {

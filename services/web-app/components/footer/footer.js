@@ -11,7 +11,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 
-import { currentMonth, currentYear } from '@/utils/date'
+import { currentYear } from '@/utils/date'
 
 import styles from './footer.module.scss'
 
@@ -62,10 +62,7 @@ const Footer = ({ hasSideNav }) => {
             <ul>{getColList(colTwo)}</ul>
           </Column>
           <Column sm={4} md={3} lg={5} className={styles.column}>
-            <p className={styles.text}>
-              Last updated {currentMonth} {currentYear}
-              <br />©{currentYear} IBM Design Program Office
-            </p>
+            <p className={styles.text}>©{currentYear} IBM Design Program Office</p>
           </Column>
           <Column md={{ start: 1 }} lg={{ start: hasSideNav ? 5 : 1 }} className={styles.logo}>
             <IbmLogo />

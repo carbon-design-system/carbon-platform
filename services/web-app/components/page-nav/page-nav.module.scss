@@ -11,7 +11,7 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
-@use '~styles/mixins' as mixins;
+@use '../../styles/mixins' as mixins;
 
 .container {
   margin: spacing.$spacing-11 0 0 0;

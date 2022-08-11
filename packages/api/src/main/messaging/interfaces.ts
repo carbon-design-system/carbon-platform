@@ -4,8 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { DataGraphMessage, DataGraphResponse } from '../data-graph/interfaces'
-import { LogLoggedMessage } from '../logging'
+import { DataGraphMessage, DataGraphResponse } from '../data-graph/index.js'
+import { LogLoggedMessage } from '../logging/index.js'
 
 /**
  * An incoming message to a service is first treated as unvalidated. Once validated, the incoming

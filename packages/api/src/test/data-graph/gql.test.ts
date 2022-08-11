@@ -4,16 +4,11 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { gql } from '../../main/data-graph/gql'
+import test from 'ava'
 
-test('it returns a basic string correctly', () => {
-  // prettier-ignore
-  const result = gql`query Test { libraries { id } }`
+import { gql } from '../../main/data-graph/gql.js'
 
-  expect(result).toBe('query Test { libraries { id } }')
-})
-
-test('it returns a minified string', () => {
+test('it returns a minified string', (t) => {
   const result = gql`
     query Test {
       libraries {
@@ -22,10 +17,10 @@ test('it returns a minified string', () => {
     }
   `
 
-  expect(result).toBe('query Test { libraries { id } }')
+  t.is(result, 'query Test { libraries { id } }')
 })
 
-test('it handles substitutions', () => {
+test('it handles substitutions', (t) => {
   const field = 'name'
   const result = gql`
     query Test
@@ -37,13 +32,13 @@ test('it handles substitutions', () => {
     }
   `
 
-  expect(result).toBe('query Test { libraries { id name } }')
+  t.is(result, 'query Test { libraries { id name } }')
 })
 
-test('it works even when you try to break it', () => {
+test('it works even when you try to break it', (t) => {
   const sub = 123
   // Explicitly test no additional whitespace
   const result = gql([] as any, sub)
 
-  expect(result).toBe('123')
+  t.is(result, '123')
 })

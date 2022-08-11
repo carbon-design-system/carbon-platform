@@ -10,7 +10,6 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { useRef, useState } from 'react'
 
-import { getFilters } from '@/data/filters'
 import useFocus from '@/utils/use-focus'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import useOnKey from '@/utils/use-on-key'
@@ -19,9 +18,9 @@ import useOutsideClick from '@/utils/use-outside-click'
 import styles from './catalog-multiselect-filter.module.scss'
 
 const CatalogMultiselectFilter = ({
-  filter,
-  initialFilter,
+  availableFilters = {},
   className: customClassName,
+  filter = {},
   onFilter
 }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
@@ -108,11 +107,11 @@ const CatalogMultiselectFilter = ({
         <div className={styles.wrapper} ref={popoverRef} tabIndex="0">
           <Column span={columns}>
             <Grid className={styles.grid} condensed>
-              {Object.keys(getFilters(initialFilter)).map((item, i) => (
+              {Object.keys(availableFilters).map((item, i) => (
                 <Column className={styles.column} key={i} sm={1}>
-                  <h3 className={styles.heading}>{getFilters(initialFilter)[item].name}</h3>
+                  <h3 className={styles.heading}>{availableFilters[item].name}</h3>
                   <ul className={styles.list}>
-                    {Object.keys(getFilters(initialFilter)[item].values).map((key, j) => (
+                    {Object.keys(availableFilters[item].values).map((key, j) => (
                       <li className={styles['list-item']} key={j}>
                         <Tag
                           onClick={() => {
@@ -126,7 +125,7 @@ const CatalogMultiselectFilter = ({
                             filter[item] && filter[item].includes(key) ? 'high-contrast' : 'gray'
                           }
                         >
-                          {getFilters(initialFilter)[item].values[key].name}
+                          {availableFilters[item].values[key].name}
                         </Tag>
                       </li>
                     ))}
@@ -141,11 +140,29 @@ const CatalogMultiselectFilter = ({
   )
 }
 
+CatalogMultiselectFilter.defaultProps = {
+  availableFilters: {},
+  filter: {}
+}
+
 CatalogMultiselectFilter.propTypes = {
+  /**
+   * Object containing all keys and  name/values of possible filters
+   */
+  availableFilters: PropTypes.object,
+  /**
+   * Optional container class name.
+   */
   className: PropTypes.string,
-  filter: PropTypes.object,
-  initialFilter: PropTypes.object,
-  onFilter: PropTypes.func
+  /**
+   * Object containing key/value(array) of currently applied filters
+   */
+  filter: PropTypes.object.isRequired,
+  /**
+   * (item, key, action) => void
+   * function to handle filters changes (add/remove key, clear all)
+   */
+  onFilter: PropTypes.func.isRequired
 }
 
 export default CatalogMultiselectFilter

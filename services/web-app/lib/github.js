@@ -453,6 +453,33 @@ const resolveSchemaReferences = async (params, data) => {
 }
 
 /**
+ * Find related libraries by group to a particular library
+ * @param {import('../typedefs').Library} libData
+ * @returns {import('../typedefs').Library[]}
+ */
+export const getLibraryRelatedLibs = async (libData) => {
+  const relatedLibs = []
+  if (libData.params.group) {
+    for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
+      if (libraryParams.group === libData.params.group) {
+        const relatedLibData = await getLibraryData({
+          library: slug,
+          ref: 'latest',
+          ...libraryParams
+        })
+        if (
+          relatedLibData?.content.id !== libData.content.id &&
+          !relatedLibData?.content?.noIndex
+        ) {
+          relatedLibs.push(relatedLibData)
+        }
+      }
+    }
+  }
+  return relatedLibs
+}
+
+/**
  * If the params map to a valid design kit in the allowlist, fetch the contents of the design kit's
  * metadata file. If the params are not valid, early return.
  * @param {import('../typedefs').Params} params

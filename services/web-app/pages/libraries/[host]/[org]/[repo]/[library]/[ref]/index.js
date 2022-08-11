@@ -24,11 +24,15 @@ import MdxIcon from '@/components/mdx-icon'
 import PageDescription from '@/components/page-description'
 import PageHeader from '@/components/page-header'
 import ResourceCard from '@/components/resource-card'
-import { libraryAllowList } from '@/data/libraries.mjs'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
-import { getLibraryData, getLibraryNavData, getLibraryParams } from '@/lib/github'
+import {
+  getLibraryData,
+  getLibraryNavData,
+  getLibraryParams,
+  getLibraryRelatedLibs
+} from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { getLicense } from '@/utils/schema'
 
@@ -262,25 +266,7 @@ export const getServerSideProps = async ({ params }) => {
     }
   }
 
-  const relatedLibs = []
-  if (libraryData.params.group) {
-    for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
-      if (libraryParams.group === libraryData.params.group) {
-        const relatedLibData = await getLibraryData({
-          library: slug,
-          ref: 'latest',
-          ...libraryParams
-        })
-        if (
-          relatedLibData?.content.id !== libraryData.content.id &&
-          !relatedLibData?.content?.noIndex
-        ) {
-          relatedLibs.push(relatedLibData)
-        }
-      }
-    }
-  }
-  libraryData.content.otherLibraries = relatedLibs
+  libraryData.content.otherLibraries = await getLibraryRelatedLibs(libraryData)
 
   return {
     props: {

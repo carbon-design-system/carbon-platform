@@ -89,7 +89,6 @@ const AssetCatalogItemContent = ({ asset, isGrid = false, otherFrameworkCount = 
         )}
         <div className={styles.tags}>
           <TypeTag className={styles['tags-item']} type={asset.content.type} />
-          {console.log(asset.content.type, 'bo')}
           <FrameworkIcon
             className={styles.framework}
             framework={asset.content.framework}

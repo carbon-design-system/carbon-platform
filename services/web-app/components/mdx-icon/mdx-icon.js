@@ -6,10 +6,6 @@
  */
 import { Bee, LogoGithub } from '@carbon/icons-react'
 import {
-  Svg24Adobe,
-  Svg24Axure,
-  Svg32Adobe,
-  Svg32Axure,
   Codesandbox,
   Figma,
   Illustrator,
@@ -18,6 +14,10 @@ import {
   Sketch,
   Storybook,
   Svelte,
+  Svg24Adobe,
+  Svg24Axure,
+  Svg32Adobe,
+  Svg32Axure,
   Svg32Npm,
   Vue,
   Zenhub

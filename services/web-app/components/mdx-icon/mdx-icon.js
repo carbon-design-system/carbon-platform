@@ -6,6 +6,10 @@
  */
 import { Bee, LogoGithub } from '@carbon/icons-react'
 import {
+  Svg24Adobe,
+  Svg24Axure,
+  Svg32Adobe,
+  Svg32Axure,
   Codepen,
   Codesandbox,
   Figma,
@@ -44,7 +48,11 @@ const svgIcons = {
   zenhub: Zenhub,
   vue: Vue,
   svelte: Svelte,
-  js: Js
+  js: Js,
+  adobe24: Svg24Adobe,
+  axure24: Svg24Axure,
+  adobe32: Svg32Adobe,
+  axure32: Svg32Axure
 }
 
 const localIcons = {

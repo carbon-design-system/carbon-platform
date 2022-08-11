@@ -8,6 +8,7 @@ import {
   Carbon,
   CarbonForIbmDotcom,
   CarbonForIbmProduct,
+  Events,
   IbmCloud,
   IbmSecurity,
   Watson
@@ -17,6 +18,7 @@ import {
   Svg64CarbonForIbmDotcom,
   Svg64CarbonForIbmProducts,
   Svg64Cloud,
+  Svg64Community,
   Svg64Security,
   Svg64Watson
 } from '@carbon-platform/icons'
@@ -31,6 +33,11 @@ export const teams = {
     icon: Carbon,
     name: 'Carbon',
     pictogram: Svg64Carbon
+  },
+  community: {
+    icon: Events,
+    name: 'Community',
+    pictogram: Svg64Community
   },
   'ibm-dotcom': {
     icon: CarbonForIbmDotcom,

@@ -14,7 +14,7 @@ export const getStaticProps = async () => {
 
 ### Core design kits
 
-<FilterDataTable
+<FilterableDesignKitTable
   designKitsData={props.designKitsData}
   designTools={['Figma', 'Sketch', 'Adobe XD', 'Axure']}
   designKitIds={[
@@ -23,7 +23,6 @@ export const getStaticProps = async () => {
     'carbon-g10-figma',
     'carbon-white-figma',
     'ibm-accessibility-figma',
-    'ibm-design-language-sketch',
     'ibm-icons-16-20-sketch',
     'ibm-icons-24-32-sketch',
     'ibm-grid-sketch',
@@ -38,13 +37,14 @@ export const getStaticProps = async () => {
     'carbon-g100-adobe-xd',
     'ibm-icons-adobe-xd',
     'carbon-g10-axure',
-    'carbon-template-axure'
+    'carbon-template-axure',
+    'ibm-design-language-sketch'
   ]}
 />
 
 ### Local design kits
 
-<FilterDataTable
+<FilterableDesignKitTable
   designKitsData={props.designKitsData}
   designTools={['Figma']}
   designKitIds={[

@@ -9,6 +9,7 @@ import {
   DataTable,
   Dropdown,
   Grid,
+  Link as CarbonLink,
   Table,
   TableBody,
   TableCell,
@@ -17,10 +18,13 @@ import {
   TableRow,
   Tag
 } from '@carbon/react'
+import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 
-import styles from './filter-data-table.module.scss'
+import { P } from '@/components/markdown'
+
+import styles from './filterable-design-kit-table.module.scss'
 
 const headerData = [
   {
@@ -44,7 +48,7 @@ const tagColor = {
   wireframes: 'warm gray'
 }
 
-const FilterDataTable = ({ designKitsData, designTools, designKitIds }) => {
+const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds }) => {
   const [filteredRows, setFilteredRows] = useState(designKitsData)
   const [currentItem, setCurrentItem] = useState(designTools[0])
 
@@ -52,12 +56,20 @@ const FilterDataTable = ({ designKitsData, designTools, designKitIds }) => {
     return designKitIds?.includes(item.id)
   })
 
+  const orderedDesignKits = designKits.sort((a, b) =>
+    a.maintainer?.toLowerCase() < b.maintainer?.toLowerCase()
+      ? -1
+      : b.maintainer?.toLowerCase() > a.maintainer?.toLowerCase()
+      ? 1
+      : 0
+  )
+
   const filterByDesignTool = useCallback(
-    (designKits) => {
+    (orderedDesignKits) => {
       if (!currentItem) {
-        return designKits
+        return orderedDesignKits
       }
-      return designKits.filter(
+      return orderedDesignKits.filter(
         (item) =>
           // allows to check for Adobe XD
           item.tool[0].toUpperCase() +
@@ -75,8 +87,20 @@ const FilterDataTable = ({ designKitsData, designTools, designKitIds }) => {
   }
 
   useEffect(() => {
-    setFilteredRows(filterByDesignTool(designKits))
-  }, [currentItem, designKits, filterByDesignTool])
+    setFilteredRows(filterByDesignTool(orderedDesignKits))
+  }, [currentItem, orderedDesignKits, filterByDesignTool])
+
+  const hideRepeatedMaintainer = (array) => {
+    let previousValue = ''
+    array.forEach((row, index) => {
+      const currentValue = row.cells[0].value
+      if (index > 0 && previousValue === currentValue) {
+        row.cells[0].value = ''
+      }
+      previousValue = currentValue
+    })
+    return array
+  }
 
   return (
     <>
@@ -104,20 +128,14 @@ const FilterDataTable = ({ designKitsData, designTools, designKitIds }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {hideRepeatedMaintainer(rows).map((row) => (
                 <TableRow key={row.value}>
                   <TableCell>
-                    <div>
-                      {row.cells[0].value
-                        ? row.cells[0].value
-                            ?.replace(/-/g, ' ')
-                            .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase())
-                        : 'Community'}
-                    </div>
+                    {row.cells[0].value
+                      ?.replace(/-/g, ' ')
+                      .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase())}
                   </TableCell>
-                  <TableCell>
-                    <div>{row.cells[1].value}</div>
-                  </TableCell>
+                  <TableCell>{row.cells[1].value}</TableCell>
                   <TableCell>
                     <Tag type={tagColor[row.cells[2].value]}>
                       {row.cells[2].value === 'ui'
@@ -131,23 +149,33 @@ const FilterDataTable = ({ designKitsData, designTools, designKitIds }) => {
           </Table>
         )}
       </DataTable>
+      {currentItem === 'Figma' && (
+        <P>
+          The links in the table for Figma Libraries are preview only. To learn more about
+          installing Figma Libraries visit the{' '}
+          <Link href="/designing/figma" passHref>
+            <CarbonLink size="lg">Figma tutorial</CarbonLink>
+          </Link>
+          .
+        </P>
+      )}
     </>
   )
 }
 
-FilterDataTable.propTypes = {
+FilterableDesignKitTable.propTypes = {
   /**
-   * Pass in the children that will be rendered within the FilterDataTable
+   * Pass in the children that will be rendered within the FilterableDesignKitTable
    */
   designKitIds: PropTypes.array,
   /**
-   * Pass in the children that will be rendered within the FilterDataTable
+   * Pass in the children that will be rendered within the FilterableDesignKitTable
    */
   designKitsData: PropTypes.array,
   /**
-   * Pass in the children that will be rendered within the FilterDataTable
+   * Pass in the children that will be rendered within the FilterableDesignKitTable
    */
   designTools: PropTypes.array
 }
 
-export default FilterDataTable
+export default FilterableDesignKitTable

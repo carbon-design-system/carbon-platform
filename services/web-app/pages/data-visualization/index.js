@@ -21,7 +21,7 @@ const DataVisualization = ({ librariesData }) => {
   const { collection } = type
 
   const seo = {
-    title: 'Data Visualization'
+    title: 'Data visualization'
   }
 
   useEffect(() => {

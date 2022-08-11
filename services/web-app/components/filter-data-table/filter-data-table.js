@@ -46,7 +46,7 @@ const tagColor = {
 
 const FilterDataTable = ({ designKitsData, designTools, designKitIds }) => {
   const [filteredRows, setFilteredRows] = useState(designKitsData)
-  const [currentItem, setCurrentItem] = useState('Figma')
+  const [currentItem, setCurrentItem] = useState(designTools[0])
 
   const designKits = designKitsData.filter((item) => {
     return designKitIds?.includes(item.id)

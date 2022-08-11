@@ -201,8 +201,6 @@ export const assetsNavData = [
     ]
   },
   {
-    path: '/assets/libraries',
-    title: 'Libraries'
     title: 'Guidelines',
     items: [
       {

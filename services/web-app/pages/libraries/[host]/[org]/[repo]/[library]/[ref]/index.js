@@ -262,24 +262,7 @@ export const getServerSideProps = async ({ params }) => {
     }
   }
 
-  const relatedLibs = []
-  if (libraryData.params.group) {
-    for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
-      if (libraryParams.group === libraryData.params.group) {
-        const relatedLibData = await getLibraryData({
-          library: slug,
-          ref: 'latest',
-          ...libraryParams
-        })
-        if (
-          relatedLibData?.content.id !== libraryData.content.id &&
-          !relatedLibData?.content?.noIndex
-        ) {
-          relatedLibs.push(relatedLibData)
-        }
-      }
-    }
-  }
+  const relatedLibs = await getRelatedLibraries()
 
   libraryData.content.otherLibraries = relatedLibs
 
@@ -289,6 +272,28 @@ export const getServerSideProps = async ({ params }) => {
       navData,
       params
     }
+  }
+
+  async function getRelatedLibraries() {
+    const relatedLibs = []
+    if (libraryData.params.group) {
+      for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
+        if (libraryParams.group === libraryData.params.group) {
+          const relatedLibData = await getLibraryData({
+            library: slug,
+            ref: 'latest',
+            ...libraryParams
+          })
+          if (
+            relatedLibData?.content.id !== libraryData.content.id &&
+            !relatedLibData?.content?.noIndex
+          ) {
+            relatedLibs.push(relatedLibData)
+          }
+        }
+      }
+    }
+    return relatedLibs
   }
 }
 

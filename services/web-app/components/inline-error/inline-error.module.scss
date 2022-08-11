@@ -67,7 +67,7 @@
 .content {
   @include type.type-style('code-02', true);
 
-  overflow-x: scroll;
+  overflow-x: auto;
   white-space: nowrap;
 
   @include breakpoint.breakpoint-down(lg) {

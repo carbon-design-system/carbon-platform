@@ -15,8 +15,10 @@ import { Processor, unified } from 'unified'
 import { Node, visit } from 'unist-util-visit'
 import { VFile } from 'vfile'
 
+import { ComponentReplacedException } from './exceptions/component-remapped-exception.js'
 import { ExportFoundException } from './exceptions/export-found-exception.js'
 import { ImportFoundException } from './exceptions/import-found-exception.js'
+import { UnknownComponentException } from './exceptions/unknown-component-exception.js'
 import { HTMLTags } from './html-tags.js'
 import { Config } from './interfaces.js'
 
@@ -69,9 +71,10 @@ async function sanitizeAst(config: Config, tree: Parent) {
   const availableComponentKeys = [...config.customComponentKeys, ...HTMLTags]
   visit(
     tree,
-    (node) =>
-      !!(node as MdxJsxFlowElement).name &&
-      !availableComponentKeys.includes((node as MdxJsxFlowElement).name ?? ''),
+    (node) => {
+      const flowElement = node as MdxJsxFlowElement
+      return !!flowElement.name && !availableComponentKeys.includes(flowElement.name ?? '')
+    },
     async (node: MdxJsxFlowElement, index: number, parent: Parent) => {
       const stringSrc = config.fallbackComponent(node)
 
@@ -80,6 +83,8 @@ async function sanitizeAst(config: Config, tree: Parent) {
           parent.children[index] = replacementNode as MdxJsxFlowElement
         })
       )
+
+      config.onError(new UnknownComponentException(node.name!, node.position))
     }
   )
 
@@ -95,6 +100,8 @@ async function sanitizeAst(config: Config, tree: Parent) {
           parent.children[index] = replacementNode as MdxJsxFlowElement
         })
       )
+
+      config.onError(new ComponentReplacedException(node.name!, node.position))
     }
   )
 
@@ -125,6 +132,9 @@ function getConfigDefaults(config: Config) {
   }
   if (!config.customComponentKeys) {
     config.customComponentKeys = []
+  }
+  if (!config.onError) {
+    config.onError = () => undefined
   }
   return config
 }

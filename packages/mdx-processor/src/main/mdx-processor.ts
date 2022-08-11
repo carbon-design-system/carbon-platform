@@ -8,28 +8,31 @@ import { compile, run } from '@mdx-js/mdx'
 import { ReactElement } from 'react'
 import * as runtime from 'react/jsx-runtime.js'
 import { renderToString } from 'react-dom/server.js'
+import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
-import unwrapImages from 'remark-unwrap-images'
+import remarkUnwrapImages from 'remark-unwrap-images'
 import { VFile } from 'vfile'
 import { matter } from 'vfile-matter'
 
-/*
-Goal:
-start with mdx from github as a string
-
-end up with a renderable component (+ matter?)
-
-steps:
-
-- take input string and run it through mdx-js/mdx compile
-- also run it through matter, reporting errors along the way
-- build up a MDXRemote component based off of that output (needs the components in-hand)
-*/
+import { MdxCompileException } from './exceptions/mdx-compile-exception.js'
 
 interface MdxProcessorConfig {
-  components: Array<ReactElement>
+  components: {
+    [key: string]: ReactElement
+  }
+  fallbackComponent: (node: any) => string
+  imageResolverPlugin: () => () => void | Promise<void>
+  logger: {
+    debug: Function
+    info: Function
+    warn: Function
+    error: Function
+  }
+  onError: () => void
   sanitizerPlugin: () => () => void | Promise<void>
-  // imageResolverPlugin: () => (() => void | Promise<void>)
+  tagReplacements: {
+    [tag: string]: () => string
+  }
 }
 
 class MdxProcessor {
@@ -39,49 +42,79 @@ class MdxProcessor {
     this.config = config
   }
 
+  /**
+   * Process a provided vFile, turning it into executable JS and frontmatter.
+   *
+   * @param mdxSource The input mdx source, as a vFile.
+   *
+   * @returns An vFile-like object containing a value (the JS) and a data object which contains
+   * frontmatter, if available.
+   */
   public async process(mdxSource: VFile) {
+    this.config.logger.debug('-> process: ' + mdxSource.value)
+
     // Insert the frontmatter into the VFile
     matter(mdxSource, { strip: true })
 
-    const compiledSource = await this.compileSource(mdxSource)
-    const { default: MdxContent } = await run(compiledSource, { ...runtime })
+    let compiledSource
+    try {
+      compiledSource = await this.compileSource(mdxSource)
+    } catch (err: any) {
+      this.config.logger.warn(err)
+      throw new MdxCompileException(err.reason, err.position)
+    }
 
-    this.checkRuntimeErrors(MdxContent({ components: this.config.components }))
+    try {
+      await this.checkRuntimeErrors(compiledSource)
+    } catch (err) {
+      this.config.logger.warn(err)
+      throw err
+    }
 
     // A pseudo-vfile
+    this.config.logger.debug(
+      '<- process: ' + compiledSource.value + ' ' + JSON.stringify(compiledSource.data)
+    )
     return { value: compiledSource.value, data: compiledSource.data }
   }
 
   private compileSource(mdxSource: VFile) {
     return compile(mdxSource, {
-      ...runtime,
       outputFormat: 'function-body',
-      jsx: false,
+      providerImportSource: '@mdx-js/react',
       remarkPlugins: [
         [
           this.config.sanitizerPlugin,
           {
-            // customComponentKeys: this.config.components.map((component) => component.key),
-            customComponentKeys: [],
-            // fallbackComponent,
+            customComponentKeys: Object.keys(this.config.components),
+            fallbackComponent: this.config.fallbackComponent,
             allowImports: false,
             allowExports: false,
-            stripHTMLComments: true
-            // tagReplacements: replacementMapper
+            onError: this.config.onError,
+            stripHTMLComments: true,
+            tagReplacements: this.config.tagReplacements
           }
         ],
         remarkGfm,
-        unwrapImages
+        remarkUnwrapImages
       ],
-      rehypePlugins: [
-        // TODO: what to do about this plugin?
-        // [rehypeUrls, mdxImgResolver.bind(null, dirPath)]
-      ]
+      rehypePlugins: [[rehypeUrls, this.config.imageResolverPlugin]]
     })
   }
 
-  private checkRuntimeErrors(Component: any) {
-    return renderToString(Component) // TODO: this can throw... wrap it in our own error?
+  private async checkRuntimeErrors(compiledSource: VFile) {
+    const { default: MdxContent } = await run(compiledSource, {
+      ...runtime,
+      // This is needed because of the providerImportSource prop. In this package, a provider isn't
+      // used, so this hook can be a no-op and defer to the provided components object
+      useMDXComponents: () => undefined
+    })
+
+    return renderToString(
+      MdxContent({
+        components: this.config.components
+      })
+    )
   }
 }
 

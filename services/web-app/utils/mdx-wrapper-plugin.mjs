@@ -4,14 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { remarkMarkAndUnravel } from '@mdx-js/mdx/lib/plugin/remark-mark-and-unravel.js'
+import remarkMdx from 'remark-mdx'
+import remarkParse from 'remark-parse'
+import { unified } from 'unified'
 import { matter } from 'vfile-matter'
 
-const shiftNode = (node) => {
-  node.position.start.line += 1
-  node.position.end.line += 1
-
-  node.children?.forEach((child) => shiftNode(child))
-}
+const processor = unified().use(remarkParse).use(remarkMdx).use(remarkMarkAndUnravel)
 
 const mdxWrapperPlugin = () => (tree, file) => {
   const { data } = matter(file)
@@ -21,44 +20,18 @@ const mdxWrapperPlugin = () => (tree, file) => {
     tree.children.splice(0, 2)
   }
 
-  let lastLine = 1
+  const mdxPageString = `
+<MdxPage
+  title="${data?.matter?.title || 'Title is missing!'}"
+  description="${data?.matter?.description || ''}"
+  tabs={${JSON.stringify(data?.matter?.tabs || [])}}
+  keywords={${JSON.stringify(data?.matter?.keywords || [])}}
+/>
+`
 
-  tree.children?.forEach((child, index) => {
-    shiftNode(child)
-    if (index === tree.children.length - 1) {
-      lastLine = child.position.end.line
-    }
-  })
-
-  tree.children = [
-    {
-      type: 'mdxJsxFlowElement',
-      name: 'MdxWrapper',
-      attributes: [
-        {
-          type: 'mdxJsxAttribute',
-          name: 'frontmatter',
-          value: JSON.stringify(data?.matter ?? {})
-        }
-      ],
-      children: tree.children,
-      position: {
-        start: {
-          line: 1,
-          column: 1,
-          offset: 1
-        },
-        end: {
-          line: lastLine + 1,
-          column: 11,
-          offset: 73
-        }
-      },
-      data: {
-        _mdxExplicitJsx: true
-      }
-    }
-  ]
+  const childTree = processor.parse({ value: mdxPageString }).children[0]
+  childTree.children = tree.children
+  tree.children = [childTree]
 }
 
 export { mdxWrapperPlugin }

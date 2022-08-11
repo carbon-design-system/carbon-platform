@@ -22,6 +22,7 @@ interface Config {
   allowExports: boolean
   stripHTMLComments?: boolean
   tagReplacements: TagReplacementMap
+  onError: (err: Error) => void
 }
 
 export type { ComponentReplaceFn, Config, TagReplacementMap }

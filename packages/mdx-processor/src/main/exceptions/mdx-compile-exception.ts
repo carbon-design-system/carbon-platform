@@ -6,7 +6,7 @@
  */
 import { Position } from 'unist'
 
-class ExportFoundException extends Error {
+class MdxCompileException extends Error {
   position?: Position
 
   constructor(message: string, position: Position | undefined) {
@@ -16,4 +16,4 @@ class ExportFoundException extends Error {
   }
 }
 
-export { ExportFoundException }
+export { MdxCompileException }

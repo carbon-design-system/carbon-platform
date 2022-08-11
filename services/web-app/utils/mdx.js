@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Logging } from '@carbon-platform/api/logging'
+import { MdxProcessor } from '@carbon-platform/mdx-processor'
 import {
   ExportFoundException,
   ImportFoundException,
@@ -17,12 +18,13 @@ import * as ReactDOMServer from 'react-dom/server'
 import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
 import unwrapImages from 'remark-unwrap-images'
+import { VFile } from 'vfile'
 
 // this is bombing out
 // import { matter } from 'vfile-matter'
 import components from '@/components/mdx/components'
 import { getRemoteMdxSource } from '@/lib/github'
-import { mdxImgResolver } from '@/utils/mdx-image-resolver' // TODO: should this be its own package as well?
+import { mdxUrlResolver } from '@/utils/mdx-url-resolver'
 
 const logging = new Logging({ component: 'mdx.js' })
 
@@ -106,7 +108,7 @@ const parseMdxResponseContent = async (response) => {
         remarkGfm,
         unwrapImages
       ],
-      rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
+      rehypePlugins: [[rehypeUrls, mdxUrlResolver.bind(null, dirPath)]]
     })
   ).default
 
@@ -169,5 +171,54 @@ export const getRemoteMdxPageStaticProps = async (params, src) => {
       mdxError: mdxError ?? null,
       warnings
     }
+  }
+}
+
+export async function processMdxSource(mdxSource, url) {
+  const warnings = []
+
+  const replacementMapper = {
+    script: (node) => {
+      return getScriptReplacementSrc(node)
+    }
+  }
+
+  let compiledSource = null
+  let mdxError = null
+
+  const f = new VFile({ value: mdxSource, path: url })
+  const processor = new MdxProcessor({
+    sanitizerPlugin: mdxSanitizerPlugin,
+    imageResolverPlugin: mdxUrlResolver.bind(null, url),
+    components,
+    fallbackComponent,
+    tagReplacements: replacementMapper,
+    logger: new Logging({ component: 'mdx-processor' }),
+    onError: (err) => {
+      warnings.push({
+        name: err.name || null,
+        message: err.message || null,
+        stack: err.stack || null,
+        position: err.position || null
+      })
+    }
+  })
+
+  try {
+    compiledSource = await processor.process(f)
+  } catch (err) {
+    // Use null so these can be serialized to JSON
+    mdxError = {
+      name: err.name || null,
+      message: err.message || null,
+      stack: err.stack || null,
+      position: err.position || null
+    }
+  }
+
+  return {
+    compiledSource,
+    mdxError,
+    warnings
   }
 }

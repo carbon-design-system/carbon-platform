@@ -4,51 +4,68 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { MdxProcessor } from '@carbon-platform/mdx-processor'
-import { mdxSanitizerPlugin } from '@carbon-platform/mdx-sanitizer'
-import { NextSeo } from 'next-seo'
-import { VFile } from 'vfile'
+import { MDXRemote } from 'next-mdx-remote'
 
-import RemoteMdxLoader2 from '@/components/remote-mdx-loader-2'
-import { getRemoteMdxSource } from '@/lib/github'
+import MdxPage from '@/components/mdx-page'
+import { newGetRemoteMdxSource } from '@/lib/github'
+import { processMdxSource } from '@/utils/mdx'
 
-const RemoteMdxPage = ({ compiledSource, mdxError }) => {
-  const seo = {
-    title: 'Consistency in the Cloud'
-  }
+const RemoteMdxPage = ({ compiledSource, tabs, mdxError, warnings }) => {
+  const frontmatter = compiledSource?.data?.matter || {}
+  const { title, description, keywords } = frontmatter
 
   return (
-    <>
-      <NextSeo {...seo} />
-      {/* <div id="need-to-make-unique-id" dangerouslySetInnerHTML={{ __html: html }} /> */}
-      <RemoteMdxLoader2 compiledSource={compiledSource} mdxError={mdxError} />
-    </>
+    <MdxPage
+      title={title}
+      description={description}
+      keywords={keywords}
+      tabs={tabs}
+      mdxError={mdxError}
+      warnings={warnings}
+    >
+      {compiledSource && <MDXRemote compiledSource={compiledSource.value} />}
+    </MdxPage>
   )
 }
 
 export const getStaticProps = async () => {
+  const repoParams = {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon-website',
+    library: 'carbon-website',
+    ref: 'main'
+  }
   const filePath = '/src/pages/case-studies/consistency-in-the-cloud.mdx'
 
-  const response = await getRemoteMdxSource(
-    {
-      host: 'github.com',
-      org: 'carbon-design-system',
-      repo: 'carbon-website',
-      library: 'carbon-website',
-      ref: 'main'
-    },
-    '/src/pages/case-studies/consistency-in-the-cloud.mdx'
-  )
+  let mdxSource
+  let url
 
-  const mdxSource = Buffer.from(response.content, response.encoding).toString()
+  try {
+    const response = await newGetRemoteMdxSource(repoParams, filePath)
+    mdxSource = response.mdxSource
+    url = response.url
+  } catch (err) {
+    return {
+      props: {
+        mdxError: {
+          name: err.name,
+          message: err.message,
+          stack: err.stack
+        }
+      }
+    }
+  }
 
-  const f = new VFile({ value: mdxSource, path: filePath })
-  const processor = new MdxProcessor({ sanitizerPlugin: mdxSanitizerPlugin, components: [] })
-  const compiledSource = await processor.process(f)
+  const safeSource = await processMdxSource(mdxSource, url)
+
+  // TODO: query GH for the actual tabs and have one supersede the other
+  const tabs = safeSource?.data?.matter?.tabs || []
 
   return {
     props: {
-      compiledSource
+      ...safeSource,
+      tabs
     }
   }
 }

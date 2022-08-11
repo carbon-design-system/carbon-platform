@@ -7,12 +7,11 @@
 import { Position } from 'unist'
 
 class ImportFoundException extends Error {
-  value: string
   position?: Position
 
-  constructor(value: string, position: Position | undefined) {
-    super('Import statement found')
-    this.value = value
+  constructor(message: string, position: Position | undefined) {
+    super(message)
+    this.name = this.constructor.name
     this.position = position
   }
 }

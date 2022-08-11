@@ -1,0 +1,35 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/type' as type;
+
+.column {
+  margin-top: spacing.$spacing-10;
+}
+
+.title {
+  @include type.type-style('heading-05', true);
+
+  padding-bottom: spacing.$spacing-10;
+}
+
+.subtitle {
+  @include type.type-style('heading-03', true);
+}
+
+.content {
+  @include type.type-style('code-02', true);
+
+  padding-top: spacing.$spacing-07;
+}
+
+.link {
+  @include type.type-style('body-compact-02', true);
+
+  padding-top: spacing.$spacing-07;
+}

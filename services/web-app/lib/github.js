@@ -14,6 +14,7 @@ import slugify from 'slugify'
 
 import { designKitAllowList, designKitSources } from '@/data/design-kits'
 import { libraryAllowList } from '@/data/libraries.mjs'
+import { ContentNotFoundException } from '@/exceptions/content-not-found-exception'
 import { getResponse } from '@/lib/file-cache'
 import { getAssetErrors, getDesignKitErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
@@ -132,6 +133,67 @@ export const getRemoteMdxSource = async (repoParams, mdxPath) => {
   }
 
   return response
+}
+
+/**
+ * Retrieves Mdx file from github repo and serializes it for rendering
+ * @param {import('../typedefs').Params} repoParams Partially-complete parameters
+ * @param {string} mdxPath Path to Mdx from repo source
+ * @returns {Promise<string>} Mdx Source Content
+ */
+export const newGetRemoteMdxSource = async (repoParams, mdxPath) => {
+  logging.info(`Getting remote MDX for ${JSON.stringify(repoParams)} ${mdxPath}`)
+  /**
+   * @type {import('../typedefs').GitHubContentResponse}
+   */
+  let response = {}
+
+  if (!repoParams.ref || repoParams.ref === 'latest') {
+    repoParams.ref = await getRepoDefaultBranch(repoParams)
+  }
+
+  if (!isValidHttpUrl(mdxPath)) {
+    const fullContentsPath = path.join(
+      'https://',
+      repoParams.host,
+      '/repos',
+      repoParams.org,
+      repoParams.repo,
+      '/contents'
+    )
+
+    if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, mdxPath), 5)) {
+      logging.warn(
+        `Skipping remote mdx content from ${repoParams.host}/${repoParams.org}/${repoParams.repo} due to invalid path ${mdxPath}`
+      )
+
+      const err = new ContentNotFoundException(mdxPath)
+      logging.warn(err)
+      throw err
+    }
+  }
+
+  try {
+    response = await getResponse(repoParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: repoParams.org,
+      repo: repoParams.repo,
+      path: removeLeadingSlash(mdxPath),
+      ref: repoParams.ref
+    })
+  } catch (err) {
+    logging.warn(err)
+
+    if (err.name === 'HttpError' && err.message === 'Not Found') {
+      throw new ContentNotFoundException(mdxPath)
+    }
+
+    throw err
+  }
+
+  return {
+    mdxSource: Buffer.from(response.content, response.encoding).toString(),
+    url: response.html_url
+  }
 }
 
 /**

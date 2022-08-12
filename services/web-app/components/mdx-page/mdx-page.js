@@ -6,6 +6,7 @@
  */
 
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
@@ -24,11 +25,14 @@ import MdxParseExceptionContent from './errors/mdx-parse-exception-content'
 import WarningsRollup from './errors/warnings-rollup'
 import styles from './mdx-page.module.scss'
 
-const getTabData = (tabs) => {
-  return tabs.map((tab) => ({
-    name: tab,
-    path: slugify(tab, { strict: true, lower: true })
-  }))
+const getTabData = (tabs, baseSegment) => {
+  return tabs.map((tab) => {
+    const tabSlug = slugify(tab, { strict: true, lower: true })
+    return {
+      name: tab,
+      path: baseSegment ? `/${baseSegment}/${tabSlug}` : `/${tabSlug}`
+    }
+  })
 }
 
 const errorMap = {
@@ -77,7 +81,11 @@ const createSeo = ({ title, description, keywords }) => {
 
 const MdxPage = ({ title, description, keywords, tabs, mdxError, warnings, children }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
+  const router = useRouter()
   const areTabsPresent = tabs && tabs.length > 0
+  const pathSegments = router.asPath.split('/').filter(Boolean)
+  pathSegments.pop()
+  const baseSegment = pathSegments.join('/')
 
   useEffect(() => {
     setPrimaryNavData(assetsNavData)
@@ -87,7 +95,7 @@ const MdxPage = ({ title, description, keywords, tabs, mdxError, warnings, child
     <>
       {createSeo({ title, description, keywords })}
       {title && <PageHeader title={title} withTabs={areTabsPresent} />}
-      {areTabsPresent && <PageTabs title={title} tabs={getTabData(tabs)} />}
+      {areTabsPresent && <PageTabs title={title} tabs={getTabData(tabs, baseSegment)} />}
       {createPageContent({ children, mdxError, warnings })}
     </>
   )

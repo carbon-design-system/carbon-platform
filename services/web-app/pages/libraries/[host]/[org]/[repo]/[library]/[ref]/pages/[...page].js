@@ -4,20 +4,34 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { MDXRemote } from 'next-mdx-remote'
 import { NextSeo } from 'next-seo'
 import path from 'path'
 import { useContext, useEffect } from 'react'
 import slugify from 'slugify'
 
-import RemoteMdxLoader from '@/components/remote-mdx-loader'
+import MdxPage from '@/components/mdx-page/mdx-page'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout/layout'
-import { getAllLibraries, getLibraryData, getLibraryNavData } from '@/lib/github'
-import { getRemoteMdxPageStaticProps } from '@/utils/mdx'
+import {
+  getAllLibraries,
+  getLibraryData,
+  getLibraryNavData,
+  getRemoteMdxSource
+} from '@/lib/github'
+import { processMdxSource } from '@/utils/mdx'
 import { isValidHttpUrl } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 
-const RemoteMdxPage = ({ source, navData, navTitle, libraryData, mdxError }) => {
+const LibraryPage = ({
+  compiledSource,
+  tabs,
+  mdxError,
+  warnings,
+  navData,
+  navTitle,
+  libraryData
+}) => {
   const seo = {
     title: `${libraryData?.content?.name ?? ''} - ${navTitle}`
   }
@@ -29,10 +43,21 @@ const RemoteMdxPage = ({ source, navData, navTitle, libraryData, mdxError }) => 
     setSecondaryNavData(navData)
   }, [setPrimaryNavData, navData, setSecondaryNavData])
 
+  const frontmatter = compiledSource?.data?.matter || {}
+  const { title, description, keywords } = frontmatter
   return (
     <>
       <NextSeo {...seo} />
-      <RemoteMdxLoader source={source} ignoreTabs mdxError={mdxError} />
+      <MdxPage
+        title={title}
+        description={description}
+        keywords={keywords}
+        tabs={tabs}
+        mdxError={mdxError}
+        warnings={warnings}
+      >
+        {compiledSource && <MDXRemote compiledSource={compiledSource.value} />}
+      </MdxPage>
     </>
   )
 }
@@ -81,8 +106,13 @@ export const getStaticProps = async ({ params }) => {
     pageSrc = path.join('.' + libraryData.params.path, pageSrc)
   }
 
-  const { source, mdxError } = (
-    await getRemoteMdxPageStaticProps(
+  let mdxSource
+  let pageUrl
+  let safeSource = {}
+  let tabs
+
+  try {
+    const response = await getRemoteMdxSource(
       {
         host,
         org,
@@ -91,16 +121,27 @@ export const getStaticProps = async ({ params }) => {
       },
       pageSrc
     )
-  ).props
+    mdxSource = response.mdxSource
+    pageUrl = response.url
+    safeSource = await processMdxSource(mdxSource, pageUrl)
+    // TODO: query GH for the actual tabs and have one supersede the other
+    tabs = safeSource?.compiledSource?.data?.matter?.tabs || []
+  } catch (err) {
+    safeSource.mdxError = {
+      name: err.name,
+      message: err.message,
+      stack: err.stack
+    }
+  }
 
   return {
     props: {
       libraryData,
       navData,
       params,
-      source,
-      mdxError,
-      navTitle
+      ...safeSource,
+      navTitle,
+      tabs
     }
   }
 }
@@ -141,4 +182,4 @@ export const getStaticPaths = async () => {
   }
 }
 
-export default RemoteMdxPage
+export default LibraryPage

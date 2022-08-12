@@ -87,61 +87,11 @@ export const getLibraryNavData = (params, libraryData) => {
 
 /**
  * Retrieves Mdx file from github repo and serializes it for rendering
- * @param {import('../typedefs').Params} repoParams - Partially-complete parameters
- * @param {string} mdxPath - path to Mdx from repo source
- * @returns {Promise<import('../typedefs').GitHubContentResponse>} Mdx Source Content Response
- */
-export const getRemoteMdxSource = async (repoParams, mdxPath) => {
-  /**
-   * @type {import('../typedefs').GitHubContentResponse}
-   */
-  let response = {}
-
-  if (!repoParams.ref || repoParams.ref === 'latest') {
-    repoParams.ref = await getRepoDefaultBranch(repoParams)
-  }
-
-  if (!isValidHttpUrl(mdxPath)) {
-    const fullContentsPath = path.join(
-      'https://',
-      repoParams.host,
-      '/repos',
-      repoParams.org,
-      repoParams.repo,
-      '/contents'
-    )
-
-    if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, mdxPath), 5)) {
-      // mdxPath doesn't belong to this repo and doesn't pass security check
-      logging.info(
-        `Skipping remote mdx content from ${repoParams.host}/${repoParams.org}/${repoParams.repo} due to invalid path ${mdxPath}`
-      )
-      return null
-    }
-  }
-
-  try {
-    response = await getResponse(repoParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
-      owner: repoParams.org,
-      repo: repoParams.repo,
-      path: removeLeadingSlash(mdxPath),
-      ref: repoParams.ref
-    })
-  } catch (err) {
-    logging.error(err)
-    return null
-  }
-
-  return response
-}
-
-/**
- * Retrieves Mdx file from github repo and serializes it for rendering
  * @param {import('../typedefs').Params} repoParams Partially-complete parameters
  * @param {string} mdxPath Path to Mdx from repo source
  * @returns {Promise<string>} Mdx Source Content
  */
-export const newGetRemoteMdxSource = async (repoParams, mdxPath) => {
+export const getRemoteMdxSource = async (repoParams, mdxPath) => {
   logging.info(`Getting remote MDX for ${JSON.stringify(repoParams)} ${mdxPath}`)
   /**
    * @type {import('../typedefs').GitHubContentResponse}
@@ -482,6 +432,33 @@ const resolveSchemaReferences = async (params, data) => {
 }
 
 /**
+ * Find related libraries by group to a particular library
+ * @param {import('../typedefs').Library} libData
+ * @returns {Promise<import('../typedefs').Library[]>}
+ */
+export const getLibraryRelatedLibs = async (libData) => {
+  const relatedLibs = []
+  if (libData.params.group) {
+    for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
+      if (libraryParams.group === libData.params.group) {
+        const relatedLibData = await getLibraryData({
+          library: slug,
+          ref: 'latest',
+          ...libraryParams
+        })
+        if (
+          relatedLibData?.content.id !== libData.content.id &&
+          !relatedLibData?.content?.noIndex
+        ) {
+          relatedLibs.push(relatedLibData)
+        }
+      }
+    }
+  }
+  return relatedLibs
+}
+
+/**
  * If the params map to a valid design kit in the allowlist, fetch the contents of the design kit's
  * metadata file. If the params are not valid, early return.
  * @param {import('../typedefs').Params} params
@@ -549,7 +526,8 @@ export const getDesignKitsData = async (params = {}) => {
   return Object.entries(designKits).map(([id, designKit]) => {
     return {
       id,
-      ...designKit
+      ...designKit,
+      ...designKitAllowList[id]
     }
   })
 }
@@ -558,7 +536,7 @@ export const getDesignKitsData = async (params = {}) => {
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  * @param {import('../typedefs').Params} params
- * @returns {import('../typedefs').Library}
+ * @returns {Promise<import('../typedefs').Library>}
  */
 export const getLibraryData = async (params = {}) => {
   const libraryParams = await validateLibraryParams(params)
@@ -768,12 +746,15 @@ export const getAssetIssueCount = async (asset) => {
  * @returns {import('../typedefs').DesignKit[]}
  */
 export const getAllDesignKits = async () => {
-  const baseDesignKits = Object.entries(resources.designKits).map(([key, value]) => {
-    return {
-      ...value,
-      id: key
-    }
-  })
+  const baseDesignKits = Object.entries(resources.designKits)
+    .filter(([key]) => !!designKitAllowList[key])
+    .map(([key, value]) => {
+      return {
+        ...value,
+        ...designKitAllowList[key],
+        id: key
+      }
+    })
 
   const promises = []
   designKitSources.forEach((source) => {

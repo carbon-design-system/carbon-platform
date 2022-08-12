@@ -1,6 +1,208 @@
 ---
 title: Get started
-description:
 ---
 
-Coming soon
+import { getAllDesignKits } from '@/lib/github'
+
+export const getStaticProps = async () => {
+  const designKitsData = await getAllDesignKits()
+  return {
+    props: { designKitsData }
+  }
+}
+
+<PageDescription>
+
+If you’re just starting out designing with Carbon, you’re in the right place. Navigate through each
+of the four steps to get up and running.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Step 1: Learn about Carbon</AnchorLink>
+  <AnchorLink>Step 2: Access design tools</AnchorLink>
+  <AnchorLink>Step 3: Get the design kits</AnchorLink>
+  <AnchorLink>Step 4: Review foundational guidance</AnchorLink>
+</AnchorLinks>
+
+## Step 1: Learn about Carbon
+
+By adopting Carbon, designers gain a collection of reusable assets to design websites and user
+interfaces quickly and efficiently.
+
+The [IBM Design Language](https://www.ibm.com/design/language/) governs IBM’s brand story and visual
+expression, and Carbon translates the design language into resources for building digital
+experiences.
+
+This is done through `elements` such as color tokens, type tokens, and spacing tokens that are meant
+to be applied to all sorts of things like websites, banners at conferences, and email templates.
+Carbon also applies the design language to product UI through guidance and components.
+
+### Understand the ecosystem
+
+Carbon is a system of systems. At the epicenter lies the `core system`, with elements, assets, code,
+design kits, and guidelines intended as a base for the widest variety of situations. These assets
+are open source and can be easily extended or adapted.
+
+Teams at IBM also create `local systems` that depend on and extend the core system for specific use
+cases.
+
+<Image src="/designing/get-started/CarbonEcosystem.png" />
+
+## Step 2: Access design tools
+
+IBMers should ask their team about which tool they should adopt and follow instructions in the
+[Design Toolbox](https://w3.ibm.com/design/toolbox/#/) to procure a software license. Carbon is
+supported on Figma, Sketch, Adobe XD, and Axure.
+
+<Row className="resource-card-group">
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Get Figma"
+      aspectRatio="2:1"
+      actionIcon="launch"
+      href="https://w3.ibm.com/design/toolbox/#/ui-design-tools/figma/README"
+      >
+
+<MdxIcon name="figma" />
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Get Sketch"
+      actionIcon="launch"
+      aspectRatio="2:1"
+      href="https://w3.ibm.com/design/toolbox/#/ui-design-tools/sketch/README"
+      >
+
+<MdxIcon name="sketch" />
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Get Adobe XD"
+      aspectRatio="2:1"
+      actionIcon="launch"
+      href="https://w3.ibm.com/design/toolbox/#/ui-design-tools/adobe-creative-cloud/README"
+      >
+
+<MdxIcon name="adobe32" />
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Get Axure"
+      aspectRatio="2:1"
+      actionIcon="launch"
+      href="https://w3.ibm.com/design/toolbox/#/prototyping-tools/axure/README"
+      >
+
+<MdxIcon name="axure32" />
+
+  </ResourceCard>
+</Column>
+</Row>
+
+## Step 3: Get the design kits
+
+`Design kits` are libraries from Sketch and Figma—and other tools such as Adobe XD and Invision.
+They contain components and elements as well as wireframes and guidance to aid designers.
+
+They are also living, breathing documents. This means you’ll automatically get any updates made by
+the Carbon team so you don’t need to go back and change any designs to match the latest release. And
+when handing off to your developers there won’t be confusion about components and their behaviors.
+
+The following illustration shows how design kits depend on one another.
+
+<Image src="/designing/get-started/KitDependancy.png" />
+
+### Tutorials
+
+When you have access to your design tool of choice, head over to our tool-based tutorials to get
+step-by-step guidance on installing the kits.
+
+<CardGroup>
+  <MiniCard title="Figma tutorial" href="https://next.carbondesignsystem.com/designing/figma">
+    <MdxIcon name="figma" />
+  </MiniCard>
+  <MiniCard title="Sketch tutorial" href="https://next.carbondesignsystem.com/designing/sketch">
+    <MdxIcon name="sketch" />
+  </MiniCard>
+  <MiniCard title="Adobe XD tutorial" href="https://next.carbondesignsystem.com/designing/adobe-xd">
+    <MdxIcon name="adobe24" />
+  </MiniCard>
+  <MiniCard title="Axure tutorial" href="https://next.carbondesignsystem.com/designing/axure">
+    <MdxIcon name="axure32" />
+  </MiniCard>
+</CardGroup>
+
+### Core design kits
+
+Everyone using Carbon should use core design kits as a starting point for building user interfaces.
+This brings consistency and speed, allowing teams to focus on solving more specific user tasks. Core
+design kits include elements, core components, wireframes, and guidelines.
+
+### Core design kits
+
+<FilterableDesignKitTable
+  designKitsData={props.designKitsData}
+  designTools={['Figma', 'Sketch', 'Adobe XD', 'Axure']}
+  designKitIds={[
+    'carbon-g100-figma',
+    'carbon-g90-figma',
+    'carbon-g10-figma',
+    'carbon-white-figma',
+    'ibm-accessibility-figma',
+    'ibm-icons-16-20-sketch',
+    'ibm-icons-24-32-sketch',
+    'ibm-grid-sketch',
+    'carbon-white-sketch',
+    'carbon-g10-sketch',
+    'carbon-g90-sketch',
+    'carbon-g100-sketch',
+    'ibm-accessibility-sketch',
+    'carbon-white-adobe-xd',
+    'carbon-g10-adobe-xd',
+    'carbon-g90-adobe-xd',
+    'carbon-g100-adobe-xd',
+    'ibm-icons-adobe-xd',
+    'carbon-g10-axure',
+    'carbon-template-axure',
+    'ibm-design-language-sketch'
+  ]}
+/>
+
+### Local design kits
+
+Additional design kits compliment and extend Carbon. For example, IBM.com provides components for an
+editorial approach. More kits can be found in the [design kit catalog]().
+
+### Local design kits
+
+<FilterableDesignKitTable
+  designKitsData={props.designKitsData}
+  designTools={['Figma']}
+  designKitIds={[
+    'ibm-dotcom-g10-figma',
+    'ibm-dotcom-white-figma',
+    'ibm-dotcom-g90-figma',
+    'ibm-dotcom-g100-figma'
+  ]}
+/>
+
+## Step 4: Review foundational guidance
+
+The following sites provide guidance for creating experiences that are consistent, provide an
+interoperability of experience with other offerings, and represent IBM as a company.
+
+| **Resource**                                                                                                                | **What you'll find**                                                                                                                                                          |
+| --------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Brand Center](https://www.ibm.com/brand/)                                                                                  | Home base for the IBM Brand story, visual brand elements, guidelines, and assets.Home base for the IBM Brand story, visual brand elements, guidelines, and assets.            |
+| [Brand Systems](https://www.ibm.com/brand/experience-guides)                                                                | Documentation of the rationale behind every visual and verbal detail for IBM businesses, audiences, categories, and offerings.                                                |
+| [IBM Design Language](https://www.ibm.com/design/language/)                                                                 | IBM’s design philosophy and principles that govern and guide every experience designed by IBM.                                                                                |
+| [IBM Style](https://ibmdocs-test.mybluemix.net/docs/en/ibm-style?_ga=2.139068405.716538948.1649782752-687898146.1623775061) | A central reference that ensures all IBM content for external audiences is grammatically correct, clear, consistent, appropriate for global audiences, and easy to translate. |
+| [IBM Experience Standards](https://w3.ibm.com/design/experience-standards/)                                                 | Provides a shared definition of our standards at IBM, a way to measure excellence, and actionable ways to improve product or service experiences.                             |
+| [IBM Accessibility](https://www.ibm.com/able/)                                                                              | Discipline-specific direction on how to make your product more accessible.                                                                                                    |

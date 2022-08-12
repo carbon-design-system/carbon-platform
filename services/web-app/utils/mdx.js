@@ -6,29 +6,11 @@
  */
 import { Logging } from '@carbon-platform/api/logging'
 import { MdxProcessor } from '@carbon-platform/mdx-processor'
-import {
-  ExportFoundException,
-  ImportFoundException,
-  mdxSanitizerPlugin
-} from '@carbon-platform/mdx-sanitizer'
-import { evaluate } from '@mdx-js/mdx'
-import * as matter from 'gray-matter'
-import * as runtime from 'react/jsx-runtime.js'
-import * as ReactDOMServer from 'react-dom/server'
-import rehypeUrls from 'rehype-urls'
-import remarkGfm from 'remark-gfm'
-import unwrapImages from 'remark-unwrap-images'
+import { mdxSanitizerPlugin } from '@carbon-platform/mdx-sanitizer'
 import { VFile } from 'vfile'
 
-// this is bombing out
-// import { matter } from 'vfile-matter'
 import components from '@/components/mdx/components'
-import { getRemoteMdxSource } from '@/lib/github'
 import { mdxUrlResolver } from '@/utils/mdx-url-resolver'
-
-const logging = new Logging({ component: 'mdx.js' })
-
-class ContentRenderException extends Error {}
 
 const fallbackComponent = (node) => `<InlineError
 title="\`${node.name}\` not recognized"
@@ -59,119 +41,6 @@ const getScriptReplacementSrc = (node) => {
   description="For security concerns, script tags are not allowed and should be removed. Remove script referenced below"/>
   ${scriptString}
   `
-}
-
-/**
- * Sanitizes and serializes MDX source from a given string so that it can be rendered
- *
- * @param {Promise<import('../typedefs').GitHubContentResponse} response
- * MDX response previously retrieved from Github
- * @returns {Promise<import('../typedefs').RemoteMdxResponse>} parsed mdx
- * @throws {ImportFoundException}
- * @throws {ExportFoundException}
- * @throws {Error}
- */
-const parseMdxResponseContent = async (response) => {
-  const pageWarnings = []
-  const fileSource = Buffer.from(response.content, response.encoding).toString()
-
-  // the path to where the mdx file is located on github
-  const dirPath = response._links.html.split('/').slice(0, -1).join('/')
-
-  const fileContent = matter(fileSource)
-
-  const replacementMapper = {
-    script: (node) => {
-      pageWarnings.push('Script tag identified')
-      return getScriptReplacementSrc(node)
-    }
-  }
-
-  const MdxContentComponent = (
-    await evaluate(fileContent.content, {
-      ...runtime,
-      remarkPlugins: [
-        [
-          mdxSanitizerPlugin,
-          {
-            customComponentKeys: Object.keys(components),
-            fallbackComponent: (node) => {
-              pageWarnings.push(`Unknown Component identified: ${node.name}`)
-              return fallbackComponent(node)
-            },
-            allowImports: false,
-            allowExports: false,
-            stripHTMLComments: true,
-            tagReplacements: replacementMapper
-          }
-        ],
-        remarkGfm,
-        unwrapImages
-      ],
-      rehypePlugins: [[rehypeUrls, mdxUrlResolver.bind(null, dirPath)]]
-    })
-  ).default
-
-  let htmlContent
-  try {
-    htmlContent = ReactDOMServer.renderToString(new MdxContentComponent({ components }))
-  } catch (err) {
-    logging.error(err)
-    throw new ContentRenderException(err.message)
-  }
-
-  return {
-    source: { compiledSource: htmlContent, frontmatter: fileContent.data },
-    warnings: pageWarnings
-  }
-}
-/**
- * Common util function to get the staticProps for a remote mdx page
- *
- * @param {Promise<import('../typedefs').Params} params
- * MDX response previously retrieved from Github
- * @returns {Promise<{
- * mdxError: {type: string, ...},
- * source: import('../typedefs').RemoteMdxResponse }>} static props
- */
-export const getRemoteMdxPageStaticProps = async (params, src) => {
-  let mdxError
-  const mdxSrc = await getRemoteMdxSource(params, src)
-
-  if (!mdxSrc?.content) {
-    return {
-      props: {
-        mdxError: {
-          type: 'ContentNotFoundException'
-        }
-      }
-    }
-  }
-
-  const { source, warnings } = await parseMdxResponseContent(mdxSrc).catch((err) => {
-    mdxError = { ...err }
-    switch (true) {
-      case err instanceof ImportFoundException:
-        mdxError.type = 'ImportFoundException'
-        break
-      case err instanceof ExportFoundException:
-        mdxError.type = 'ExportFoundException'
-        break
-      case err instanceof ContentRenderException:
-        mdxError.type = 'ContentRenderException'
-        break
-      default:
-        mdxError.type = 'MdxParseException'
-    }
-  })
-
-  return {
-    props: {
-      source: source ?? null,
-      mdxError: mdxError ?? null,
-      warnings
-    }
-  }
 }
 
 export async function processMdxSource(mdxSource, url) {

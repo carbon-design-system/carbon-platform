@@ -21,6 +21,7 @@ import {
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
+import slugify from 'slugify'
 
 import { P } from '@/components/markdown'
 
@@ -48,6 +49,13 @@ const tagColor = {
   wireframes: 'warm gray'
 }
 
+const toolKeyValueMapper = {
+  figma: 'Figma',
+  sketch: 'Sketch',
+  axure: 'Axure',
+  'adobe-xd': 'Adobe XD'
+}
+
 const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds }) => {
   const [filteredRows, setFilteredRows] = useState(designKitsData)
   const [currentItem, setCurrentItem] = useState(designTools[0])
@@ -67,24 +75,16 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     return 0
   })
 
-  const toolKeyValueMapper = {
-  figma: 'Figma': , 
-  sketch: 'Sketch':, 
-  adobe-xd: 'Adobe XD':, 
-  axure: 'Axure':
-  }
-  const filterByDesignTool = useCallback(
-    (orderedDesignKits) => {
-      if (!currentItem) {
-        return orderedDesignKits
-      }
-      return orderedDesignKits.filter(
-        (item) =>
-         toolKeyValueMapper[item.tool]  === currentItem
-      )
-    },
-    [currentItem]
-  )
+  const filterByDesignTool =
+  useCallback((orderedDesignKits) => {
+    if (!currentItem) {
+      return orderedDesignKits
+    }
+    return orderedDesignKits.filter(
+      (item) =>
+        toolKeyValueMapper[item.tool] === currentItem
+    )
+  }, [currentItem])
 
   const handleFilterChange = ({ selectedItem }) => {
     setCurrentItem(selectedItem)

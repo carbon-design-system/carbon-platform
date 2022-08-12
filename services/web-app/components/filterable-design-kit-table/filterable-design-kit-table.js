@@ -63,34 +63,33 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     return designKitIds?.includes(item.id)
   })
 
-  // alphabetically sort maintainer
-  const orderedDesignKits = designKits.sort((a, b) => {
-    if (a.maintainer?.toLowerCase() < b.maintainer?.toLowerCase()) {
-      return -1
-    }
-    if (a.maintainer?.toLowerCase() > b.maintainer?.toLowerCase()) {
-      return 1
-    }
-    return 0
-  })
-
-  const filterByDesignTool = useCallback(
-    (orderedDesignKits) => {
-      if (!currentItem) {
-        return orderedDesignKits
+  // alphabetically sort by maintainer
+  const [orderedDesignKits] = useState(
+    designKits.sort((a, b) => {
+      if (a.maintainer?.toLowerCase() < b.maintainer?.toLowerCase()) {
+        return -1
       }
-      return orderedDesignKits.filter((item) => toolKeyValueMapper[item.tool] === currentItem)
-    },
-    [currentItem]
+      if (a.maintainer?.toLowerCase() > b.maintainer?.toLowerCase()) {
+        return 1
+      }
+      return 0
+    })
   )
+
+  const filterByDesignTool = useCallback(() => {
+    if (!currentItem) {
+      return orderedDesignKits
+    }
+    return orderedDesignKits.filter((item) => toolKeyValueMapper[item.tool] === currentItem)
+  }, [currentItem, orderedDesignKits])
 
   const handleFilterChange = ({ selectedItem }) => {
     setCurrentItem(selectedItem)
   }
 
   useEffect(() => {
-    setFilteredRows(filterByDesignTool(orderedDesignKits))
-  }, [currentItem, orderedDesignKits, filterByDesignTool])
+    setFilteredRows(filterByDesignTool())
+  }, [currentItem, filterByDesignTool])
 
   // only render the first maintainer within the respective group
   const hideRepeatedMaintainer = (array) => {

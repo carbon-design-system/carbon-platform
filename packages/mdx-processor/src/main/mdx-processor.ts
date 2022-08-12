@@ -13,6 +13,7 @@ import remarkGfm from 'remark-gfm'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import { VFile } from 'vfile'
 import { matter } from 'vfile-matter'
+import { VFileMessage } from 'vfile-message'
 
 import { MdxCompileException } from './exceptions/mdx-compile-exception.js'
 
@@ -61,7 +62,12 @@ class MdxProcessor {
       compiledSource = await this.compileSource(mdxSource)
     } catch (err: any) {
       this.config.logger.warn(err)
-      throw new MdxCompileException(err.reason, err.position)
+
+      if (err instanceof VFileMessage) {
+        throw new MdxCompileException(err.reason, err.position || undefined)
+      }
+
+      throw err
     }
 
     try {

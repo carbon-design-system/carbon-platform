@@ -18,8 +18,14 @@ export const mdxUrlResolver = (mdxFileUrlString, url) => {
     return undefined
   }
 
+  // Remove leading slash
   if (url.path.startsWith('/')) {
     url.path = url.path.substring(1)
+  }
+
+  // Don't touch extension-less paths
+  if (!url.path.split('/').pop().includes('.')) {
+    return undefined
   }
 
   // TODO: make sure you can't see private stuff if you provide an absolute url

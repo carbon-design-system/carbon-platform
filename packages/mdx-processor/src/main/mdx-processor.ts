@@ -51,7 +51,7 @@ class MdxProcessor {
    * frontmatter, if available.
    */
   public async process(mdxSource: VFile) {
-    this.config.logger.debug('-> process: ' + mdxSource.value)
+    this.config.logger.debug('-> process() input length: ' + mdxSource.value.length)
 
     // Insert the frontmatter into the VFile
     matter(mdxSource, { strip: true })
@@ -73,7 +73,10 @@ class MdxProcessor {
 
     // A pseudo-vfile
     this.config.logger.debug(
-      '<- process: ' + compiledSource.value + ' ' + JSON.stringify(compiledSource.data)
+      '<- process() output length: ' +
+        compiledSource.value.length +
+        ', data: ' +
+        JSON.stringify(compiledSource.data)
     )
     return { value: compiledSource.value, data: compiledSource.data }
   }

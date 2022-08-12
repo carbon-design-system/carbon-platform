@@ -41,7 +41,8 @@ const enforcedConfig = {
   tagReplacements: {
     script: () => '<ScriptReplacementComponent />'
   },
-  customComponentKeys: ['UnknownComponent', 'PageDescription']
+  customComponentKeys: ['UnknownComponent', 'PageDescription'],
+  onError: () => {}
 }
 
 const relaxedConfig = {
@@ -50,7 +51,8 @@ const relaxedConfig = {
   stripHTMLComments: false,
   fallbackComponent: () => '<UnknownComponent />',
   tagReplacements: { script: () => '<ScriptReplacementComponent />' },
-  customComponentKeys: ['UnknownComponent', 'PageDescription']
+  customComponentKeys: ['UnknownComponent', 'PageDescription'],
+  onError: () => {}
 }
 
 test('getConfigDefaults populates object with defaults if empty', (t) => {

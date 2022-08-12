@@ -21,7 +21,6 @@ import {
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
-import slugify from 'slugify'
 
 import { P } from '@/components/markdown'
 

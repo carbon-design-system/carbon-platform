@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.20](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.19...@carbon-platform/web-app@0.2.20) (2022-08-12)
+
+
+### Bug Fixes 🐛
+
+* move spacing to library nav only ([4f92d41](https://github.com/carbon-design-system/carbon-platform/commit/4f92d411e58160247670b44427978447a20cfba3))
+* **web-app:** library side nav spacing fix ([62a3851](https://github.com/carbon-design-system/carbon-platform/commit/62a38515b22d8cbd84268781ffcceb6a67f9c1ed))
+
+### [0.2.19](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.18...@carbon-platform/web-app@0.2.19) (2022-08-11)
+
+
+### Features 🌟
+
+* add otherframeworks links ([8dc2f54](https://github.com/carbon-design-system/carbon-platform/commit/8dc2f5462e4d02bc7129dcc43f5c0c29b9298353))
+* add react native and fix icon mapping ([6828c23](https://github.com/carbon-design-system/carbon-platform/commit/6828c23f7c0130a008cdc0ac2b218b39194ea685))
+* add sort to frameworks ([3748076](https://github.com/carbon-design-system/carbon-platform/commit/37480760d23f7666ccdbc6ee3c465d191cfd7e26))
+* update framework links ([441d916](https://github.com/carbon-design-system/carbon-platform/commit/441d916492b1766294dcbeebe91ba4ffb0a53817))
+* **web-app:** add framework icon to detail page ([b8f8a79](https://github.com/carbon-design-system/carbon-platform/commit/b8f8a79a7ab9fea5bbb45d91e07dc5f8b149dfa0))
+* **web-app:** get other frameworks for asset detail ([fbb5716](https://github.com/carbon-design-system/carbon-platform/commit/fbb57164f39b0a95f4f91c987e27e5ca023b6155))
+
+
+### Bug Fixes 🐛
+
+* linting ([1e4d34d](https://github.com/carbon-design-system/carbon-platform/commit/1e4d34d64da6fd4aa91a382869e806b2fe52a681))
+* sonar issues ([3feae02](https://github.com/carbon-design-system/carbon-platform/commit/3feae02c30344a3c0e5911bd3c5ba273db1c5efd))
+
 ### [0.2.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.17...@carbon-platform/web-app@0.2.18) (2022-08-10)
 
 

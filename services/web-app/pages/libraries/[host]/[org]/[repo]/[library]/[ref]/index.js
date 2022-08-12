@@ -27,7 +27,12 @@ import ResourceCard from '@/components/resource-card'
 import { assetsNavData } from '@/data/nav-data'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
-import { getLibraryData, getLibraryNavData, getLibraryParams } from '@/lib/github'
+import {
+  getLibraryData,
+  getLibraryNavData,
+  getLibraryParams,
+  getLibraryRelatedLibs
+} from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { getLicense } from '@/utils/schema'
 
@@ -97,6 +102,19 @@ const Library = ({ libraryData, params, navData }) => {
     )
   }
 
+  const relatedLibraries = libraryData.content.otherLibraries
+
+  const relatedLibrariesLinks = relatedLibraries
+    .sort((a, b) => a.content.name.localeCompare(b.content.name))
+    .map((item, index) => (
+      <>
+        {index !== 0 && ', '}
+        <Link href={`/libraries/${item.params.library}`} passHref>
+          <CarbonLink size="lg">{item.content.name}</CarbonLink>
+        </Link>
+      </>
+    ))
+
   return (
     <>
       <NextSeo {...seo} />
@@ -143,7 +161,9 @@ const Library = ({ libraryData, params, navData }) => {
                   </Column>
                   <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Related libraries</dt>
-                    <dd className={dashboardStyles.meta}>–</dd>
+                    <dd className={dashboardStyles.meta}>
+                      {relatedLibraries.length > 0 ? relatedLibrariesLinks : '–'}
+                    </dd>
                   </Column>
                   <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                     <dt className={dashboardStyles.label}>Design files</dt>
@@ -245,6 +265,8 @@ export const getServerSideProps = async ({ params }) => {
       }
     }
   }
+
+  libraryData.content.otherLibraries = await getLibraryRelatedLibs(libraryData)
 
   return {
     props: {

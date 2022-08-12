@@ -14,6 +14,10 @@ import {
   Sketch,
   Storybook,
   Svelte,
+  Svg24Adobe,
+  Svg24Axure,
+  Svg32Adobe,
+  Svg32Axure,
   Svg32Npm,
   Vue,
   Zenhub
@@ -42,7 +46,11 @@ const svgIcons = {
   zenhub: Zenhub,
   vue: Vue,
   svelte: Svelte,
-  js: Js
+  js: Js,
+  adobe24: Svg24Adobe,
+  axure24: Svg24Axure,
+  adobe32: Svg32Adobe,
+  axure32: Svg32Axure
 }
 
 const localIcons = {

@@ -355,30 +355,32 @@ export const getServerSideProps = async ({ params }) => {
   assetData.content.issueCount = await getAssetIssueCount(assetData)
 
   const otherAssetFrameworks = []
-  for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
-    if (libraryParams.group === libraryData.params.group) {
-      const relatedLibData = await getLibraryData({
-        library: slug,
-        ref: 'latest',
-        ...libraryParams,
-        asset: params.asset
-      })
-      if (
-        relatedLibData?.content.id !== libraryData.content.id &&
-        !relatedLibData?.content?.noIndex &&
-        relatedLibData.assets?.length &&
-        !relatedLibData.assets[0].content?.noIndex &&
-        relatedLibData.assets[0].content?.framework
-      ) {
-        otherAssetFrameworks.push({
-          framework: relatedLibData.assets[0]?.content.framework,
-          params: {
-            library: slug,
-            ref: 'latest',
-            ...libraryParams,
-            asset: params.asset
-          }
+  if (libraryData.params.group) {
+    for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
+      if (libraryParams.group === libraryData.params.group) {
+        const relatedLibData = await getLibraryData({
+          library: slug,
+          ref: 'latest',
+          ...libraryParams,
+          asset: params.asset
         })
+        if (
+          relatedLibData?.content.id !== libraryData.content.id &&
+          !relatedLibData?.content?.noIndex &&
+          relatedLibData.assets?.length &&
+          !relatedLibData.assets[0].content?.noIndex &&
+          relatedLibData.assets[0].content?.framework
+        ) {
+          otherAssetFrameworks.push({
+            framework: relatedLibData.assets[0]?.content.framework,
+            params: {
+              library: slug,
+              ref: 'latest',
+              ...libraryParams,
+              asset: params.asset
+            }
+          })
+        }
       }
     }
   }

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.20](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.19...@carbon-platform/web-app@0.2.20) (2022-08-12)
+
+
+### Bug Fixes 🐛
+
+* move spacing to library nav only ([4f92d41](https://github.com/carbon-design-system/carbon-platform/commit/4f92d411e58160247670b44427978447a20cfba3))
+* **web-app:** library side nav spacing fix ([62a3851](https://github.com/carbon-design-system/carbon-platform/commit/62a38515b22d8cbd84268781ffcceb6a67f9c1ed))
+
 ### [0.2.19](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.18...@carbon-platform/web-app@0.2.19) (2022-08-11)
 
 

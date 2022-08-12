@@ -482,6 +482,33 @@ const resolveSchemaReferences = async (params, data) => {
 }
 
 /**
+ * Find related libraries by group to a particular library
+ * @param {import('../typedefs').Library} libData
+ * @returns {Promise<import('../typedefs').Library[]>}
+ */
+export const getLibraryRelatedLibs = async (libData) => {
+  const relatedLibs = []
+  if (libData.params.group) {
+    for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
+      if (libraryParams.group === libData.params.group) {
+        const relatedLibData = await getLibraryData({
+          library: slug,
+          ref: 'latest',
+          ...libraryParams
+        })
+        if (
+          relatedLibData?.content.id !== libData.content.id &&
+          !relatedLibData?.content?.noIndex
+        ) {
+          relatedLibs.push(relatedLibData)
+        }
+      }
+    }
+  }
+  return relatedLibs
+}
+
+/**
  * If the params map to a valid design kit in the allowlist, fetch the contents of the design kit's
  * metadata file. If the params are not valid, early return.
  * @param {import('../typedefs').Params} params
@@ -549,7 +576,8 @@ export const getDesignKitsData = async (params = {}) => {
   return Object.entries(designKits).map(([id, designKit]) => {
     return {
       id,
-      ...designKit
+      ...designKit,
+      ...designKitAllowList[id]
     }
   })
 }
@@ -558,7 +586,7 @@ export const getDesignKitsData = async (params = {}) => {
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  * @param {import('../typedefs').Params} params
- * @returns {import('../typedefs').Library}
+ * @returns {Promise<import('../typedefs').Library>}
  */
 export const getLibraryData = async (params = {}) => {
   const libraryParams = await validateLibraryParams(params)
@@ -768,12 +796,15 @@ export const getAssetIssueCount = async (asset) => {
  * @returns {import('../typedefs').DesignKit[]}
  */
 export const getAllDesignKits = async () => {
-  const baseDesignKits = Object.entries(resources.designKits).map(([key, value]) => {
-    return {
-      ...value,
-      id: key
-    }
-  })
+  const baseDesignKits = Object.entries(resources.designKits)
+    .filter(([key]) => !!designKitAllowList[key])
+    .map(([key, value]) => {
+      return {
+        ...value,
+        ...designKitAllowList[key],
+        id: key
+      }
+    })
 
   const promises = []
   designKitSources.forEach((source) => {

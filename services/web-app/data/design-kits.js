@@ -29,14 +29,18 @@ const designKitAllowList = {
   'carbon-g100-sketch': {
     maintainer: 'carbon'
   },
-  'ibm-design-language-sketch': {},
+  'ibm-design-language-sketch': {
+    maintainer: 'community'
+  },
   'ibm-icons-16-20-sketch': {
     maintainer: 'carbon'
   },
   'ibm-icons-24-32-sketch': {
     maintainer: 'carbon'
   },
-  'ibm-grid-sketch': {},
+  'ibm-grid-sketch': {
+    maintainer: 'community'
+  },
   'carbon-shell-sketch': {
     maintainer: 'carbon'
   },
@@ -52,13 +56,27 @@ const designKitAllowList = {
   'carbon-g100-figma': {
     maintainer: 'carbon'
   },
-  'carbon-white-adobe-xd': {},
-  'carbon-g10-adobe-xd': {},
-  'carbon-g90-adobe-xd': {},
-  'carbon-g100-adobe-xd': {},
-  'ibm-icons-adobe-xd': {},
-  'carbon-g10-axure': {},
-  'carbon-template-axure': {},
+  'carbon-white-adobe-xd': {
+    maintainer: 'community'
+  },
+  'carbon-g10-adobe-xd': {
+    maintainer: 'community'
+  },
+  'carbon-g90-adobe-xd': {
+    maintainer: 'community'
+  },
+  'carbon-g100-adobe-xd': {
+    maintainer: 'community'
+  },
+  'ibm-icons-adobe-xd': {
+    maintainer: 'community'
+  },
+  'carbon-g10-axure': {
+    maintainer: 'community'
+  },
+  'carbon-template-axure': {
+    maintainer: 'community'
+  },
   'data-viz-sketch': {
     maintainer: 'carbon'
   },
@@ -72,8 +90,12 @@ const designKitAllowList = {
   'carbon-mobile-dark-sketch': {},
   'ibm-grid-mobile-sketch': {},
   'mobile-patterns-sketch': {},
-  'ibm-accessibility-sketch': {},
-  'ibm-accessibility-figma': {},
+  'ibm-accessibility-sketch': {
+    maintainer: 'IBM-accessibility'
+  },
+  'ibm-accessibility-figma': {
+    maintainer: 'community'
+  },
   'carbon-mid-fi-sketch': {},
   'carbon-wireframe-invision-freehand': {
     maintainer: 'ibm-cloud'

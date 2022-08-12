@@ -2,6 +2,15 @@
 title: Get started
 ---
 
+import { getAllDesignKits } from '@/lib/github'
+
+export const getStaticProps = async () => {
+  const designKitsData = await getAllDesignKits()
+  return {
+    props: { designKitsData }
+  }
+}
+
 <PageDescription>
 
 If you’re just starting out designing with Carbon, you’re in the right place. Navigate through each
@@ -136,10 +145,53 @@ Everyone using Carbon should use core design kits as a starting point for buildi
 This brings consistency and speed, allowing teams to focus on solving more specific user tasks. Core
 design kits include elements, core components, wireframes, and guidelines.
 
+### Core design kits
+
+<FilterableDesignKitTable
+  designKitsData={props.designKitsData}
+  designTools={['Figma', 'Sketch', 'Adobe XD', 'Axure']}
+  designKitIds={[
+    'carbon-g100-figma',
+    'carbon-g90-figma',
+    'carbon-g10-figma',
+    'carbon-white-figma',
+    'ibm-accessibility-figma',
+    'ibm-icons-16-20-sketch',
+    'ibm-icons-24-32-sketch',
+    'ibm-grid-sketch',
+    'carbon-white-sketch',
+    'carbon-g10-sketch',
+    'carbon-g90-sketch',
+    'carbon-g100-sketch',
+    'ibm-accessibility-sketch',
+    'carbon-white-adobe-xd',
+    'carbon-g10-adobe-xd',
+    'carbon-g90-adobe-xd',
+    'carbon-g100-adobe-xd',
+    'ibm-icons-adobe-xd',
+    'carbon-g10-axure',
+    'carbon-template-axure',
+    'ibm-design-language-sketch'
+  ]}
+/>
+
 ### Local design kits
 
 Additional design kits compliment and extend Carbon. For example, IBM.com provides components for an
 editorial approach. More kits can be found in the [design kit catalog]().
+
+### Local design kits
+
+<FilterableDesignKitTable
+  designKitsData={props.designKitsData}
+  designTools={['Figma']}
+  designKitIds={[
+    'ibm-dotcom-g10-figma',
+    'ibm-dotcom-white-figma',
+    'ibm-dotcom-g90-figma',
+    'ibm-dotcom-g100-figma'
+  ]}
+/>
 
 ## Step 4: Review foundational guidance
 

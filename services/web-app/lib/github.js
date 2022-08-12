@@ -547,7 +547,8 @@ export const getDesignKitsData = async (params = {}) => {
   return Object.entries(designKits).map(([id, designKit]) => {
     return {
       id,
-      ...designKit
+      ...designKit,
+      ...designKitAllowList[id]
     }
   })
 }
@@ -766,12 +767,15 @@ export const getAssetIssueCount = async (asset) => {
  * @returns {import('../typedefs').DesignKit[]}
  */
 export const getAllDesignKits = async () => {
-  const baseDesignKits = Object.entries(resources.designKits).map(([key, value]) => {
-    return {
-      ...value,
-      id: key
-    }
-  })
+  const baseDesignKits = Object.entries(resources.designKits)
+    .filter(([key]) => !!designKitAllowList[key])
+    .map(([key, value]) => {
+      return {
+        ...value,
+        ...designKitAllowList[key],
+        id: key
+      }
+    })
 
   const promises = []
   designKitSources.forEach((source) => {

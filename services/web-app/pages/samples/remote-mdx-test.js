@@ -4,35 +4,70 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { NextSeo } from 'next-seo'
+import { MDXRemote } from 'next-mdx-remote'
 
-import RemoteMdxLoader from '@/components/remote-mdx-loader'
-import { getRemoteMdxPageStaticProps } from '@/utils/mdx'
+import MdxPage from '@/components/mdx-page/mdx-page'
+import { getRemoteMdxSource } from '@/lib/github'
+import { processMdxSource } from '@/utils/mdx'
 
-const RemoteMdxTest = ({ source, mdxError, warnings }) => {
-  const seo = {
-    title: 'Remote Mdx'
-  }
+const RemoteMdxTest = ({ compiledSource, tabs, mdxError, warnings }) => {
+  const frontmatter = compiledSource?.data?.matter || {}
+  const { title, description, keywords } = frontmatter
 
   return (
-    <>
-      <NextSeo {...seo} />
-      <RemoteMdxLoader source={source} mdxError={mdxError} warnings={warnings} />
-    </>
+    <MdxPage
+      title={title}
+      description={description}
+      keywords={keywords}
+      tabs={tabs}
+      mdxError={mdxError}
+      warnings={warnings}
+    >
+      {compiledSource && <MDXRemote compiledSource={compiledSource.value} />}
+    </MdxPage>
   )
 }
 
 export const getStaticProps = async () => {
-  return getRemoteMdxPageStaticProps(
-    {
-      host: 'github.com',
-      org: 'francinelucca',
-      repo: 'mdx-testing',
-      library: 'carbon-website',
-      ref: 'main'
-    },
-    'too-many-errors.mdx'
-  )
+  let mdxSource
+  let url
+
+  try {
+    const response = await getRemoteMdxSource(
+      {
+        host: 'github.com',
+        org: 'francinelucca',
+        repo: 'mdx-testing',
+        library: 'carbon-website',
+        ref: 'main'
+      },
+      'too-many-errors.mdx'
+    )
+    mdxSource = response.mdxSource
+    url = response.url
+  } catch (err) {
+    return {
+      props: {
+        mdxError: {
+          name: err.name,
+          message: err.message,
+          stack: err.stack
+        }
+      }
+    }
+  }
+
+  const safeSource = await processMdxSource(mdxSource, url)
+
+  // TODO: query GH for the actual tabs and have one supersede the other
+  const tabs = safeSource?.compiledSource?.data?.matter?.tabs || []
+
+  return {
+    props: {
+      ...safeSource,
+      tabs
+    }
+  }
 }
 
 export default RemoteMdxTest

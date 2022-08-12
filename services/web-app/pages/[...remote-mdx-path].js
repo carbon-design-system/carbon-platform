@@ -9,7 +9,7 @@ import { MDXRemote } from 'next-mdx-remote'
 
 import MdxPage from '@/components/mdx-page/mdx-page'
 import { defaultFilePathPrefix, defaultParams, remotePages } from '@/data/remote-pages'
-import { newGetRemoteMdxSource } from '@/lib/github'
+import { getRemoteMdxSource } from '@/lib/github'
 import { processMdxSource } from '@/utils/mdx'
 
 const RemoteMdxPage = ({ compiledSource, tabs, mdxError, warnings }) => {
@@ -48,7 +48,7 @@ export const getStaticProps = async ({ params }) => {
   const filePath = pageData.filePath || `${defaultFilePathPrefix}/${pageRoute}.mdx`
 
   try {
-    const response = await newGetRemoteMdxSource(pageParams, filePath)
+    const response = await getRemoteMdxSource(pageParams, filePath)
     mdxSource = response.mdxSource
     url = response.url
   } catch (err) {

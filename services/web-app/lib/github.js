@@ -87,61 +87,11 @@ export const getLibraryNavData = (params, libraryData) => {
 
 /**
  * Retrieves Mdx file from github repo and serializes it for rendering
- * @param {import('../typedefs').Params} repoParams - Partially-complete parameters
- * @param {string} mdxPath - path to Mdx from repo source
- * @returns {Promise<import('../typedefs').GitHubContentResponse>} Mdx Source Content Response
- */
-export const getRemoteMdxSource = async (repoParams, mdxPath) => {
-  /**
-   * @type {import('../typedefs').GitHubContentResponse}
-   */
-  let response = {}
-
-  if (!repoParams.ref || repoParams.ref === 'latest') {
-    repoParams.ref = await getRepoDefaultBranch(repoParams)
-  }
-
-  if (!isValidHttpUrl(mdxPath)) {
-    const fullContentsPath = path.join(
-      'https://',
-      repoParams.host,
-      '/repos',
-      repoParams.org,
-      repoParams.repo,
-      '/contents'
-    )
-
-    if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, mdxPath), 5)) {
-      // mdxPath doesn't belong to this repo and doesn't pass security check
-      logging.info(
-        `Skipping remote mdx content from ${repoParams.host}/${repoParams.org}/${repoParams.repo} due to invalid path ${mdxPath}`
-      )
-      return null
-    }
-  }
-
-  try {
-    response = await getResponse(repoParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
-      owner: repoParams.org,
-      repo: repoParams.repo,
-      path: removeLeadingSlash(mdxPath),
-      ref: repoParams.ref
-    })
-  } catch (err) {
-    logging.error(err)
-    return null
-  }
-
-  return response
-}
-
-/**
- * Retrieves Mdx file from github repo and serializes it for rendering
  * @param {import('../typedefs').Params} repoParams Partially-complete parameters
  * @param {string} mdxPath Path to Mdx from repo source
  * @returns {Promise<string>} Mdx Source Content
  */
-export const newGetRemoteMdxSource = async (repoParams, mdxPath) => {
+export const getRemoteMdxSource = async (repoParams, mdxPath) => {
   logging.info(`Getting remote MDX for ${JSON.stringify(repoParams)} ${mdxPath}`)
   /**
    * @type {import('../typedefs').GitHubContentResponse}

@@ -74,16 +74,15 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     return 0
   })
 
-  const filterByDesignTool =
-  useCallback((orderedDesignKits) => {
-    if (!currentItem) {
-      return orderedDesignKits
-    }
-    return orderedDesignKits.filter(
-      (item) =>
-        toolKeyValueMapper[item.tool] === currentItem
-    )
-  }, [currentItem])
+  const filterByDesignTool = useCallback(
+    (orderedDesignKits) => {
+      if (!currentItem) {
+        return orderedDesignKits
+      }
+      return orderedDesignKits.filter((item) => toolKeyValueMapper[item.tool] === currentItem)
+    },
+    [currentItem]
+  )
 
   const handleFilterChange = ({ selectedItem }) => {
     setCurrentItem(selectedItem)

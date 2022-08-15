@@ -15,7 +15,7 @@ import { Processor, unified } from 'unified'
 import { Node, visit } from 'unist-util-visit'
 import { VFile } from 'vfile'
 
-import { ComponentReplacedException } from './exceptions/component-remapped-exception.js'
+import { ComponentReplacedException } from './exceptions/component-replaced-exception.js'
 import { ExportFoundException } from './exceptions/export-found-exception.js'
 import { ImportFoundException } from './exceptions/import-found-exception.js'
 import { UnknownComponentException } from './exceptions/unknown-component-exception.js'

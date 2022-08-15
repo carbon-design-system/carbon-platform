@@ -6,10 +6,10 @@
  */
 import InlineError from '@/components/inline-error'
 
-const MdxParseExceptionContent = ({ mdxError }) => {
+const MdxCompileExceptionContent = ({ mdxError }) => {
   return (
     <InlineError title="[next-mdx-remote] error compiling MDX:" description={mdxError.message} />
   )
 }
 
-export default MdxParseExceptionContent
+export default MdxCompileExceptionContent

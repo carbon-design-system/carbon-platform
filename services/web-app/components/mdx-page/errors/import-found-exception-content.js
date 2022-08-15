@@ -13,7 +13,7 @@ const ImportFoundExceptionContent = ({ mdxError }) => {
       title="Something's gone wrong"
       subtitle="Import statement found"
       link="See common errors for more information"
-      href="/common-errors"
+      href="/common-mdx-errors#import-statement-found"
     >
       <p style={{ marginBottom: '20px' }}>
         For security reasons, import statements are not allowed and should be removed.

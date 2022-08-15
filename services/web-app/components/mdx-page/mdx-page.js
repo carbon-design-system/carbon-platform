@@ -21,7 +21,7 @@ import ContentNotFoundExceptionContent from './errors/content-not-found-exceptio
 import ExportFoundExceptionContent from './errors/export-found-exception-content'
 import FallbackExceptionContent from './errors/fallback-exception-content'
 import ImportFoundExceptionContent from './errors/import-found-exception-content'
-import MdxParseExceptionContent from './errors/mdx-parse-exception-content'
+import MdxCompileExceptionContent from './errors/mdx-compile-exception-content'
 import WarningsRollup from './errors/warnings-rollup'
 import styles from './mdx-page.module.scss'
 
@@ -39,7 +39,7 @@ const errorMap = {
   ContentNotFoundException: ContentNotFoundExceptionContent,
   ImportFoundException: ImportFoundExceptionContent,
   ExportFoundException: ExportFoundExceptionContent,
-  MdxParseException: MdxParseExceptionContent,
+  MdxCompileException: MdxCompileExceptionContent,
   fallback: FallbackExceptionContent
 }
 

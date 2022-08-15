@@ -14,10 +14,11 @@ const FallbackExceptionContent = ({ mdxError }) => {
 
   return (
     <InlineError
-      title="Unable to render MDX content"
+      title="Component not rendering"
       description={description}
       content={Content}
       link="Get support"
+      // TODO: what goes here?
       href="/TODO"
     />
   )

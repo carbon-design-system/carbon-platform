@@ -12,6 +12,7 @@ import { VFile } from 'vfile'
 import components from '@/components/mdx/components'
 import { mdxUrlResolver } from '@/utils/mdx-url-resolver'
 
+// TODO: link out to components storybook
 const fallbackComponent = (node) => `<InlineError
 title="\`${node.name}\` not recognized"
 description="This component is not supported or there is a typo. Please update to a supported component or review any mistakes.

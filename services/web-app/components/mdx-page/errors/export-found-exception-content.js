@@ -12,7 +12,7 @@ const ExportFoundExceptionContent = ({ mdxError }) => {
       title="Something's gone wrong"
       subtitle="Export statement found"
       link="See common errors for more information"
-      href="/common-errors"
+      href="/common-mdx-errors#export-statement-found"
     >
       <p style={{ marginBottom: '20px' }}>
         For security reasons, export statements are not allowed and should be removed.

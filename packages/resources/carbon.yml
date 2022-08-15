@@ -92,28 +92,28 @@ designKits:
     url: https://www.figma.com/file/TckQzGe3bNxHPLoRhbXFal/Gray-100-Theme---Carbon-Design-System
     action: link
   carbon-white-adobe-xd:
-    name: Adobe XD white theme
+    name: White theme
     tool: adobe-xd
     type: ui
     status: stable
     url: https://assets.adobe.com/libraries/urn:aaid:sc:VA7:35c94afd-9cc4-4703-a4b0-49acb165d28d?libraryVersion=8&org=973430F0543801CA0A4C98C6%40AdobeOrg
     action: link
   carbon-g10-adobe-xd:
-    name: Adobe XD gray 10 theme
+    name: Gray 10 theme
     tool: adobe-xd
     type: ui
     status: stable
     url: https://assets.adobe.com/libraries/urn:aaid:sc:VA7:92418e29-f824-4cfc-9be2-866a5230cbb1?libraryVersion=5&org=973430F0543801CA0A4C98C6%40AdobeOrg
     action: link
   carbon-g90-adobe-xd:
-    name: Adobe XD gray 90 theme
+    name: Gray 90 theme
     tool: adobe-xd
     type: ui
     status: stable
     url: https://assets.adobe.com/libraries/urn:aaid:sc:VA7:fc4859fd-beea-4407-b41c-34170a4e8203?libraryVersion=9&org=973430F0543801CA0A4C98C6%40AdobeOrg
     action: link
   carbon-g100-adobe-xd:
-    name: Adobe XD gray 100 theme
+    name: Gray 100 theme
     tool: adobe-xd
     type: ui
     status: stable
@@ -136,7 +136,7 @@ designKits:
   carbon-template-axure:
     name: Axure template
     tool: axure
-    type: elements
+    type: ui
     status: stable
     url: https://github.com/IBM/design-kit/blob/master/Axure/ibm-carbon-template.rp?raw=true
     action: download
@@ -204,14 +204,14 @@ designKits:
     url: https://www.sketch.com/s/f13d67b9-3116-4b50-a2e9-56148f1976b0
     action: link
   ibm-accessibility-sketch:
-    name: IBM Accessibility Sketch kit
+    name: Accessibility toolkit
     tool: sketch
     type: guidelines
     status: stable
     url: https://www.sketch.com/s/f0a04c0d-fb62-4d71-92c6-07c402f8cae7
     action: link
   ibm-accessibility-figma:
-    name: IBM Accessibility Figma kit
+    name: Accessibility toolkit
     tool: figma
     type: guidelines
     status: stable

@@ -23,15 +23,7 @@ import { processMdxSource } from '@/utils/mdx'
 import { isValidHttpUrl } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 
-const LibraryPage = ({
-  compiledSource,
-  tabs,
-  mdxError,
-  warnings,
-  navData,
-  navTitle,
-  libraryData
-}) => {
+const LibraryPage = ({ compiledSource, mdxError, warnings, navData, navTitle, libraryData }) => {
   const seo = {
     title: `${libraryData?.content?.name ?? ''} - ${navTitle}`
   }
@@ -52,7 +44,6 @@ const LibraryPage = ({
         title={title}
         description={description}
         keywords={keywords}
-        tabs={tabs}
         mdxError={mdxError}
         warnings={warnings}
       >
@@ -109,7 +100,6 @@ export const getStaticProps = async ({ params }) => {
   let mdxSource
   let pageUrl
   let safeSource = {}
-  let tabs
 
   try {
     const response = await getRemoteMdxSource(
@@ -124,8 +114,6 @@ export const getStaticProps = async ({ params }) => {
     mdxSource = response.mdxSource
     pageUrl = response.url
     safeSource = await processMdxSource(mdxSource, pageUrl)
-    // TODO: query GH for the actual tabs and have one supersede the other
-    tabs = safeSource?.compiledSource?.data?.matter?.tabs || []
   } catch (err) {
     safeSource.mdxError = {
       name: err.name,
@@ -140,8 +128,7 @@ export const getStaticProps = async ({ params }) => {
       navData,
       params,
       ...safeSource,
-      navTitle,
-      tabs
+      navTitle
     }
   }
 }

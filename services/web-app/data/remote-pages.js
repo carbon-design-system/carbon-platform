@@ -58,6 +58,16 @@ export const remotePages = {
   'elements/color/implementation': {
     filePath: '/src/pages/guidelines/color/implementation.mdx'
   },
+  'elements/color/usage': {
+    filePath: '/src/pages/guidelines/color/usage.mdx',
+    params: {
+      host: 'github.com',
+      org: 'carbon-design-system',
+      repo: 'carbon-website',
+      library: 'carbon-website',
+      ref: 'carbon-platform'
+    }
+  },
   'elements/icons/code': {
     filePath: '/src/pages/guidelines/icons/code.mdx'
   },
@@ -69,6 +79,16 @@ export const remotePages = {
   },
   'elements/motion/code': {
     filePath: '/src/pages/guidelines/motion/code.mdx'
+  },
+  'elements/motion/overview': {
+    filePath: '/src/pages/guidelines/motion/overview.mdx',
+    params: {
+      host: 'github.com',
+      org: 'carbon-design-system',
+      repo: 'carbon-website',
+      library: 'carbon-website',
+      ref: 'carbon-platform'
+    }
   },
   'elements/pictograms/code': {
     filePath: '/src/pages/guidelines/pictograms/code.mdx'
@@ -82,8 +102,28 @@ export const remotePages = {
   'elements/typography/code': {
     filePath: '/src/pages/guidelines/typography/code.mdx'
   },
+  'elements/typography/overview': {
+    filePath: '/src/pages/guidelines/typography/overview.mdx',
+    params: {
+      host: 'github.com',
+      org: 'carbon-design-system',
+      repo: 'carbon-website',
+      library: 'carbon-website',
+      ref: 'carbon-platform'
+    }
+  },
   'elements/typography/styling-strategies': {
     filePath: '/src/pages/guidelines/typography/styling-strategies.mdx'
+  },
+  'elements/typography/type-sets': {
+    filePath: '/src/pages/guidelines/typography/type-sets.mdx',
+    params: {
+      host: 'github.com',
+      org: 'carbon-design-system',
+      repo: 'carbon-website',
+      library: 'carbon-website',
+      ref: 'carbon-platform'
+    }
   },
   'guidelines/accessibility/developers': {},
   'guidelines/accessibility/keyboard': {},

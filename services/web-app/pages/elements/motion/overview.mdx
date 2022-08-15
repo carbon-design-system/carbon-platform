@@ -1,17 +1,15 @@
 ---
 title: Motion
 description:
-  Motion can bring the screen to life, guide users through complex experiences,
-  and help move them forward—from here to there, now to next, start to
-  finish—and make progress.
+  Motion can bring the screen to life, guide users through complex experiences, and help move them
+  forward—from here to there, now to next, start to finish—and make progress.
 tabs: ['Overview', 'Choreography', 'Code']
 ---
 
 <PageDescription>
 
-Motion can bring the screen to life, guide users through complex experiences,
-and help move them forward—from here to there, now to next, start to finish—and
-make progress.
+Motion can bring the screen to life, guide users through complex experiences, and help move them
+forward—from here to there, now to next, start to finish—and make progress.
 
 </PageDescription>
 
@@ -30,21 +28,21 @@ make progress.
 
 ## Carbon in motion
 
-[Carbon components](https://next.carbondesignsystem.com/components/overview/) have motion built in for
-microinteractions. However, the motion design of the overarching UI — that is,
-how the components interact with each other and enter and exit the page itself —
-is up to each product team to implement. Use this guidance to customize,
-combine, coordinate, and choreograph this aspect of motion in the UI.
+[Carbon components](https://next.carbondesignsystem.com/components/overview/) have motion built in
+for microinteractions. However, the motion design of the overarching UI — that is, how the
+components interact with each other and enter and exit the page itself — is up to each product team
+to implement. Use this guidance to customize, combine, coordinate, and choreograph this aspect of
+motion in the UI.
 
 ## Style
 
-Carbon recognizes different types of moments in users' experience and offers two
-styles of motion—_productive_ motion, and _expressive_ motion. The motion curves
-are designed to reflect the duality of man and machine.
+Carbon recognizes different types of moments in users' experience and offers two styles of
+motion—_productive_ motion, and _expressive_ motion. The motion curves are designed to reflect the
+duality of man and machine.
 
-Productivity and expression are both essential to an interface. Reserve
-expressive motion for occasional, important moments, to better capture the
-user’s attention and offer a rhythmic break to the productive experience.
+Productivity and expression are both essential to an interface. Reserve expressive motion for
+occasional, important moments, to better capture the user’s attention and offer a rhythmic break to
+the productive experience.
 
 <Tabs>
 <Tab label="Curves">
@@ -82,19 +80,17 @@ user’s attention and offer a rhythmic break to the productive experience.
 
 ### Productive motion
 
-Productive motion creates a sense of efficiency and responsiveness, while remain
-subtle and out of the way. Productive motion is appropriate for moments when the
-user needs to focus on completing tasks. Microinteractions in Carbon such as
-button states, dropdowns, revealing additional information, or rendering data
-tables and visualizations were all designed with productive motion.
+Productive motion creates a sense of efficiency and responsiveness, while remain subtle and out of
+the way. Productive motion is appropriate for moments when the user needs to focus on completing
+tasks. Microinteractions in Carbon such as button states, dropdowns, revealing additional
+information, or rendering data tables and visualizations were all designed with productive motion.
 
 ### Expressive motion
 
-Expressive motion delivers enthusiastic, vibrant, and highly visible movement.
-Use expressive motion for significant moments such as opening a new page,
-clicking the primary action button, or when the movement itself conveys a
-meaning. System alerts and the appearance of notification boxes are great cases
-for expressive motion.
+Expressive motion delivers enthusiastic, vibrant, and highly visible movement. Use expressive motion
+for significant moments such as opening a new page, clicking the primary action button, or when the
+movement itself conveys a meaning. System alerts and the appearance of notification boxes are great
+cases for expressive motion.
 
 <DoDontRow>
 <DoDont colLg={12} colMd={8} fullWidth caption="Productive moments are labeled in blue, and expressive moments are labeled in magenta.">
@@ -106,10 +102,10 @@ for expressive motion.
 
 ## Easing
 
-Strictly linear movement appears unnatural to the human eye. Elements on the
-screen should speed up quickly and slow down smoothly, obeying the physics of a
-light-weight material. "Easing curves" describe the precise amount of
-accelerations in motion. We commonly use one of these three types of easing.
+Strictly linear movement appears unnatural to the human eye. Elements on the screen should speed up
+quickly and slow down smoothly, obeying the physics of a light-weight material. "Easing curves"
+describe the precise amount of accelerations in motion. We commonly use one of these three types of
+easing.
 
 <DoDontRow>
 <DoDont colLg={12} colMd={8} fullWidth caption="Elements on the screen speed up quickly and slow down smoothly, obeying the physics of a light-weight material.">
@@ -121,9 +117,8 @@ accelerations in motion. We commonly use one of these three types of easing.
 
 <br />
 
-Avoid easing curves that are unnatural, distracting, or purely decorative. IBM
-motion is essential and efficient, guiding users to value as quickly as
-possible.
+Avoid easing curves that are unnatural, distracting, or purely decorative. IBM motion is essential
+and efficient, guiding users to value as quickly as possible.
 
 <DoDontRow>
 <DoDont colLg={12} colMd={8} type="dont" fullWidth caption="Do not use easing curves that suggest bounce, stretch, or sudden stops.">
@@ -135,8 +130,8 @@ possible.
 
 ### Standard easing
 
-Use `standard-easing` when an element is visible from the beginning to the end
-of a motion. Expanding tiles and the sorting of table rows are good examples.
+Use `standard-easing` when an element is visible from the beginning to the end of a motion.
+Expanding tiles and the sorting of table rows are good examples.
 
 <Tabs>
 <Tab label="Curves">
@@ -162,10 +157,9 @@ of a motion. Expanding tiles and the sorting of table rows are good examples.
 
 ### Entrance easing
 
-With this style, an element quickly appears and slows down to a stop. Use
-`entrance-ease` when adding elements to the view, such as a modal or toaster
-appearing. Elements moving in response to the user's input, such as a dropdown
-opening or toggle switching should also use this style.
+With this style, an element quickly appears and slows down to a stop. Use `entrance-ease` when
+adding elements to the view, such as a modal or toaster appearing. Elements moving in response to
+the user's input, such as a dropdown opening or toggle switching should also use this style.
 
 <Tabs>
 <Tab label="Curves">
@@ -191,14 +185,13 @@ opening or toggle switching should also use this style.
 
 ### Exit easing
 
-Use `exit-easing` when removing elements from view, such as closing a modal or
-toaster. The element speeds up as it exits from view, implying that its
-departure from the screen is permanent.
+Use `exit-easing` when removing elements from view, such as closing a modal or toaster. The element
+speeds up as it exits from view, implying that its departure from the screen is permanent.
 
-An exception to exits: if an element leaves the view but stays nearby, ready to
-reappear upon user action, use standard easing instead. A good example of this
-is a side panel. The panel leaves the view, but slows down as it exits, implying
-that it would come to rest just outside the view, and ready to be recalled.
+An exception to exits: if an element leaves the view but stays nearby, ready to reappear upon user
+action, use standard easing instead. A good example of this is a side panel. The panel leaves the
+view, but slows down as it exits, implying that it would come to rest just outside the view, and
+ready to be recalled.
 
 <Tabs>
 <Tab label="Curves">
@@ -224,10 +217,9 @@ that it would come to rest just outside the view, and ready to be recalled.
 
 ### Summary on easing
 
-The
-[IBM motion package](https://github.com/carbon-design-system/carbon/tree/v10/packages/motion)
-has the easing curves stored for fast access. This is the recommended method to
-call an easing curve and stay connected to receive any future updates.
+The [IBM motion package](https://github.com/carbon-design-system/carbon/tree/v10/packages/motion)
+has the easing curves stored for fast access. This is the recommended method to call an easing curve
+and stay connected to receive any future updates.
 
 | Easing curve    | Productive                     | Expressive                     |
 | --------------- | ------------------------------ | ------------------------------ |
@@ -235,8 +227,8 @@ call an easing curve and stay connected to receive any future updates.
 | Entrance easing | `motion(entrance, productive)` | `motion(entrance, expressive)` |
 | Exit easing     | `motion(exit, productive)`     | `motion(exit, expressive)`     |
 
-If you are unable to use the above method, cubic-bezier curve notation is the
-standard way to express easing curves.
+If you are unable to use the above method, cubic-bezier curve notation is the standard way to
+express easing curves.
 
 | Easing curve    | Productive                      | Expressive                      |
 | --------------- | ------------------------------- | ------------------------------- |
@@ -246,11 +238,10 @@ standard way to express easing curves.
 
 ## Duration
 
-Duration is calculated based on the style and size of the motion. Among the two
-motion styles, productive motion is significantly faster than expressive motion.
-Motion’s duration should be dynamic based on the size of the animation; the
-larger the change in distance (traveled) or size (scaling) of the element, the
-longer the animation takes.
+Duration is calculated based on the style and size of the motion. Among the two motion styles,
+productive motion is significantly faster than expressive motion. Motion’s duration should be
+dynamic based on the size of the animation; the larger the change in distance (traveled) or size
+(scaling) of the element, the longer the animation takes.
 
 <DoDontRow>
 <DoDont colLg={8} colMd={8} caption="Duration contrast between a taller and a shorter component.">
@@ -262,17 +253,13 @@ longer the animation takes.
 
 <br />
 
-When custom duration is possible, please use the
-[Motion Generator](https://ibm.github.io/motion/) to get the customized duration
-calculated for your element. Carbon uses a non-linear duration scale to achieve
-better perceived consistency across all distances.
+When custom duration is possible, please use the [Motion Generator](https://ibm.github.io/motion/)
+to get the customized duration calculated for your element. Carbon uses a non-linear duration scale
+to achieve better perceived consistency across all distances.
 
 <Row className="resource-card-group">
   <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="Motion Generator"
-      href="https://ibm.github.io/motion/"
-    />
+    <ResourceCard subTitle="Motion Generator" href="https://ibm.github.io/motion/" />
   </Column>
 </Row>
 
@@ -280,9 +267,8 @@ better perceived consistency across all distances.
 
 ### Duration tokens
 
-Dynamic duration is an upcoming built-in feature for Carbon components and a
-part of the motion package. Currently, there are six static value tokens for
-easier implementation.
+Dynamic duration is an upcoming built-in feature for Carbon components and a part of the motion
+package. Currently, there are six static value tokens for easier implementation.
 
 | Token                  | Usage                                                         | Value |     |
 | ---------------------- | ------------------------------------------------------------- | ----- | --- |
@@ -302,14 +288,11 @@ Follow these steps to assess your interface for purposeful motion:
 1. Define the goals and values of the product.
 2. Establish information hierarchy within the view.
 3. Identify the journey you will guide users through.
-4. Identify key moments and opportunities for UI motion in the journey.
-   Examples:
-   - Give feedback, such as hover states and active state component behaviors
-     like opening a dropdown menu
-   - Solutions to a UX need, such as reducing cognitive load with progressive
-     disclosure
-   - Providing guidance, such as revealing a call to action to draw users’
-     attention
+4. Identify key moments and opportunities for UI motion in the journey. Examples:
+   - Give feedback, such as hover states and active state component behaviors like opening a
+     dropdown menu
+   - Solutions to a UX need, such as reducing cognitive load with progressive disclosure
+   - Providing guidance, such as revealing a call to action to draw users’ attention
 5. Assign or determine either productive or expressive motion
 6. Prototype and test
 
@@ -322,28 +305,26 @@ Follow these steps to assess your interface for purposeful motion:
    - Do user actions receive immediate feedback that's seen and felt?
    - Do micro-interactions use `ease-out` on user input?
    - Do micro-interactions fall within a static duration ranging from 90–120 ms?
-   - If there are large, or full screen, transitions in your product, are there
-     continuous elements in your transition to guide the user?
+   - If there are large, or full screen, transitions in your product, are there continuous elements
+     in your transition to guide the user?
 3. Is your motion meticulous?
    - Did you use the appropriate easing curves?
    - Is each motion individually considered?
    - Do related movements have a unified relationship with each other?
-   - Is the motion effective across all screen sizes? Keep in mind that on
-     mobile screens, subtle motions may be easily missed.
+   - Is the motion effective across all screen sizes? Keep in mind that on mobile screens, subtle
+     motions may be easily missed.
 4. Is your motion unobtrusive?
-   - The best interface motion may go unnoticed, because it often keeps users
-     engaged with their tasks. Is your motion frequently noticed by average
-     users? If so, consider removing or minimizing it.
+   - The best interface motion may go unnoticed, because it often keeps users engaged with their
+     tasks. Is your motion frequently noticed by average users? If so, consider removing or
+     minimizing it.
 
 ### Adaptive interface motion design
 
-A large population of users exist with impaired vision or impaired ability to
-perceive and handle motion in UI. In addition, not all devices are powerful
-enough to smoothly perform all the motion you would like, no matter how
-essential the motion design is. Always provide alternatives for interface state
-transitions. Consider simplified or reduced motion designs for mobile and
-tablet. Make sure there is always a way to communicate similar messages
-statically.
+A large population of users exist with impaired vision or impaired ability to perceive and handle
+motion in UI. In addition, not all devices are powerful enough to smoothly perform all the motion
+you would like, no matter how essential the motion design is. Always provide alternatives for
+interface state transitions. Consider simplified or reduced motion designs for mobile and tablet.
+Make sure there is always a way to communicate similar messages statically.
 
 ## Resources
 

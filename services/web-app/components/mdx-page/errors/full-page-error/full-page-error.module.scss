@@ -31,5 +31,5 @@
 .link {
   @include type.type-style('body-compact-02', true);
 
-  padding-top: spacing.$spacing-07;
+  margin-top: spacing.$spacing-07;
 }

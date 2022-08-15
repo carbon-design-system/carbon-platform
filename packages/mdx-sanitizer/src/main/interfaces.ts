@@ -16,7 +16,7 @@ interface TagReplacementMap {
 }
 
 interface Config {
-  customComponentKeys: string[]
+  allowedComponents: string[]
   fallbackComponent: ComponentReplaceFn
   allowImports: boolean
   allowExports: boolean

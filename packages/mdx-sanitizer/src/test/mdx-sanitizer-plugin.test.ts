@@ -41,8 +41,8 @@ const enforcedConfig = {
   tagReplacements: {
     script: () => '<ScriptReplacementComponent />'
   },
-  customComponentKeys: ['UnknownComponent', 'PageDescription'],
-  onError: () => {}
+  allowedComponents: ['UnknownComponent', 'PageDescription', 'div'],
+  onError: () => undefined
 }
 
 const relaxedConfig = {
@@ -51,8 +51,8 @@ const relaxedConfig = {
   stripHTMLComments: false,
   fallbackComponent: () => '<UnknownComponent />',
   tagReplacements: { script: () => '<ScriptReplacementComponent />' },
-  customComponentKeys: ['UnknownComponent', 'PageDescription'],
-  onError: () => {}
+  allowedComponents: ['UnknownComponent', 'PageDescription', 'div'],
+  onError: () => undefined
 }
 
 test('getConfigDefaults populates object with defaults if empty', (t) => {
@@ -61,7 +61,7 @@ test('getConfigDefaults populates object with defaults if empty', (t) => {
   t.is(defaults.allowImports, true)
   t.is(defaults.stripHTMLComments, true)
   t.deepEqual(defaults.tagReplacements, {})
-  t.deepEqual(defaults.customComponentKeys, [])
+  t.deepEqual(defaults.allowedComponents, [])
   t.true(defaults.fallbackComponent !== undefined)
 })
 

@@ -19,7 +19,6 @@ import { ComponentReplacedException } from './exceptions/component-remapped-exce
 import { ExportFoundException } from './exceptions/export-found-exception.js'
 import { ImportFoundException } from './exceptions/import-found-exception.js'
 import { UnknownComponentException } from './exceptions/unknown-component-exception.js'
-import { HTMLTags } from './html-tags.js'
 import { Config } from './interfaces.js'
 
 /**
@@ -44,7 +43,7 @@ async function getMdAstNodeFromSrc(src: string, callback: (node: Node) => void) 
 
 /**
  * Sanitizes MDX Ast tree:
- * - Finds any component that isn't listed in the supplied in the customComponentsKeys array
+ * - Finds any component that isn't listed in the supplied in the allowedComponents array
  *  and replaces it's content with fallbackComponent
  * - if !config.allowImports throws an ImportFoundException
  * - if !config.allowExports throws an ExportFoundException
@@ -68,7 +67,7 @@ async function sanitizeAst(config: Config, tree: Parent) {
     })
   }
   // Replace unknown components with Fallback component
-  const availableComponentKeys = [...config.customComponentKeys, ...HTMLTags]
+  const availableComponentKeys = [...config.allowedComponents]
   visit(
     tree,
     (node) => {
@@ -130,8 +129,8 @@ function getConfigDefaults(config: Config) {
   if (!config.tagReplacements) {
     config.tagReplacements = {}
   }
-  if (!config.customComponentKeys) {
-    config.customComponentKeys = []
+  if (!config.allowedComponents) {
+    config.allowedComponents = []
   }
   if (!config.onError) {
     config.onError = () => undefined

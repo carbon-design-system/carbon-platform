@@ -10,6 +10,7 @@ import { mdxSanitizerPlugin } from '@carbon-platform/mdx-sanitizer'
 import { VFile } from 'vfile'
 
 import components from '@/components/mdx/components'
+import { HTMLTags } from '@/data/html-tags'
 import { mdxUrlResolver } from '@/utils/mdx-url-resolver'
 
 // TODO: link out to components storybook
@@ -61,6 +62,7 @@ export async function processMdxSource(mdxSource, url) {
     sanitizerPlugin: mdxSanitizerPlugin,
     imageResolverPlugin: mdxUrlResolver.bind(null, url),
     components,
+    allowedTags: HTMLTags,
     fallbackComponent,
     tagReplacements: replacementMapper,
     logger: new Logging({ component: 'mdx-processor' }),

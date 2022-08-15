@@ -18,6 +18,7 @@ import { VFileMessage } from 'vfile-message'
 import { MdxCompileException } from './exceptions/mdx-compile-exception.js'
 
 interface MdxProcessorConfig {
+  allowedTags: string[]
   components: {
     [key: string]: ReactElement
   }
@@ -95,7 +96,11 @@ class MdxProcessor {
         [
           this.config.sanitizerPlugin,
           {
-            customComponentKeys: Object.keys(this.config.components),
+            allowedComponents: [
+              ...Object.keys(this.config.components),
+              ...this.config.allowedTags,
+              ...Object.keys(this.config.tagReplacements)
+            ],
             fallbackComponent: this.config.fallbackComponent,
             allowImports: false,
             allowExports: false,

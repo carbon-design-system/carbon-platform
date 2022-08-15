@@ -19,6 +19,7 @@ const createWarningText = ({ warning }) => {
   return warningMap[warning.name](warning.message)
 }
 
+// TODO: THIS IS MISSING DESIGN COMPLETION
 const WarningsRollup = ({ warnings }) => {
   return (
     <InlineError

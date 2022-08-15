@@ -58,9 +58,6 @@ export const remotePages = {
   'elements/color/implementation': {
     filePath: '/src/pages/guidelines/color/implementation.mdx'
   },
-  'elements/color/usage': {
-    filePath: '/src/pages/guidelines/color/usage.mdx'
-  },
   'elements/icons/code': {
     filePath: '/src/pages/guidelines/icons/code.mdx'
   },
@@ -69,9 +66,6 @@ export const remotePages = {
   },
   'elements/motion/choreography': {
     filePath: '/src/pages/guidelines/motion/choreography.mdx'
-  },
-  'elements/motion/overview': {
-    filePath: '/src/pages/guidelines/motion/overview.mdx'
   },
   'elements/motion/code': {
     filePath: '/src/pages/guidelines/motion/code.mdx'
@@ -88,14 +82,8 @@ export const remotePages = {
   'elements/typography/code': {
     filePath: '/src/pages/guidelines/typography/code.mdx'
   },
-  'elements/typography/overview': {
-    filePath: '/src/pages/guidelines/typography/overview.mdx'
-  },
   'elements/typography/styling-strategies': {
     filePath: '/src/pages/guidelines/typography/styling-strategies.mdx'
-  },
-  'elements/typography/type-sets': {
-    filePath: '/src/pages/guidelines/typography/type-sets.mdx'
   },
   'guidelines/accessibility/developers': {},
   'guidelines/accessibility/keyboard': {},

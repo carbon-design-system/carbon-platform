@@ -24,7 +24,8 @@ import { visit } from 'unist-util-visit'
 import { fileURLToPath } from 'url'
 import { VFile } from 'vfile'
 
-import { ExportFoundException, ImportFoundException } from '../main/index.js'
+import { ExportFoundException } from '../main/exceptions/export-found-exception.js'
+import { ImportFoundException } from '../main/exceptions/import-found-exception.js'
 import { Config } from '../main/interfaces.js'
 import { getConfigDefaults, mdxSanitizerPlugin } from '../main/mdx-sanitizer-plugin.js'
 

@@ -96,11 +96,7 @@ class MdxProcessor {
         [
           this.config.sanitizerPlugin,
           {
-            allowedComponents: [
-              ...Object.keys(this.config.components),
-              ...this.config.allowedTags,
-              ...Object.keys(this.config.tagReplacements)
-            ],
+            allowedComponents: [...Object.keys(this.config.components), ...this.config.allowedTags],
             fallbackComponent: this.config.fallbackComponent,
             allowImports: false,
             allowExports: false,

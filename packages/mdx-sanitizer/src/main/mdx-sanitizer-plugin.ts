@@ -119,11 +119,9 @@ function replaceMappedTags(config: Config, node: Node, index: number, parent: Pa
 }
 
 function replaceUnknownComponents(config: Config, node: Node, index: number, parent: Parent) {
-  const allowedComponents = [...config.allowedComponents, ...Object.keys(config.tagReplacements)]
-
   const flowElement = node as MdxJsxFlowElement
 
-  if (flowElement.name && !allowedComponents.includes(flowElement.name)) {
+  if (flowElement.name && !config.allowedComponents.includes(flowElement.name)) {
     const stringSrc = config.fallbackComponent(node)
     const replacementNode = getMdAstNodeFromSrc(stringSrc)
 

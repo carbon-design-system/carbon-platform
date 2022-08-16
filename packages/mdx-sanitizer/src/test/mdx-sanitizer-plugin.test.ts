@@ -231,7 +231,6 @@ test('mdxSanitizer replaces components when indicated in tagReplacements', async
         {
           ...strictConfig,
           onError: (err: Error) => {
-            console.log(err)
             if (err instanceof ComponentReplacedException && err.message === 'script') {
               replacementCount++
             }

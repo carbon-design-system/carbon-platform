@@ -11,6 +11,8 @@
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/utilities/convert' as convert;
+@use '../../styles/variables' as variables;
+@use 'sass:map';
 
 .body {
   flex-grow: 1;
@@ -67,7 +69,7 @@
 .side-nav {
   @include breakpoint.breakpoint(lg) {
     position: fixed;
-    z-index: 3;
+    z-index: map.get(variables.$z-indexes, 'overlay');
     top: 0;
     left: 0;
     width: 16rem;

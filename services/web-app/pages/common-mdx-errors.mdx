@@ -12,6 +12,7 @@ title: Common MDX Errors
 <AnchorLink>Error Compiling MDX</AnchorLink>
 <AnchorLink>Common MDX parsing errors</AnchorLink>
 <AnchorLink>Component not rendering</AnchorLink>
+<AnchorLink>The page you're looking for cannot be found</AnchorLink>
 
 </AnchorLinks>
 
@@ -32,7 +33,7 @@ Sample:
       </>
     }
     link="See common errors for more information"
-    href="/common-errors"
+    href="/common-mdx-errors#import-statement-found"
   />
 </div>
 
@@ -57,7 +58,7 @@ Sample:
       </>
     }
     link="See common errors for more information"
-    href="/common-errors"
+    href="/common-mdx-errors#export-statement-found"
   />
 </div>
 
@@ -140,3 +141,25 @@ error.
 If a component is being used incorrectly or some required props are omitted, the content may be
 unable to render and display this type of error as well; please refer to the [component list](/TODO)
 to view an updated list of our supported components and how to use them correctly.
+
+## The page you're looking for cannot be found
+
+Sample:
+
+<div style={{ backgroundColor: 'lightgray', padding: '30px', borderRadius: '10px' }}>
+  <FullPageError
+    title="The page you are looking for cannot be found."
+    subtitle="Supplied Github route does not exist. Update to a valid route."
+    link="See common errors for further information on valid urls"
+    href="/common-mdx-errors#the-page-you're-looking-for-cannot-be-found"
+  >
+    <p>{'Anything.mdx'}</p>
+  </FullPageError>
+</div>
+
+This error occures when the registered route either does not exist or has been incorrectly configured. Valid MDX routes are:
+- Absolute URLs: 'https://github.com/[some-organization]/[some-repository]/blob/[ref]/[path-to-file].[extension]?raw=true'
+- Relative URLs: './relative/path/to/file.mdx', '../../../relative/path/to/file.mdx'
+*These will be relative from the carbon.yml file they're defined in, see [schema](/contributing/schema) for further details.
+
+Note that a relative file can not go so far back (../../../...) that it goes out of it's defined github repository or org.

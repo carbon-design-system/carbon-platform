@@ -7,7 +7,7 @@
 
 import { remarkMarkAndUnravel } from '@mdx-js/mdx/lib/plugin/remark-mark-and-unravel.js'
 import htmlCommentRegex from 'html-comment-regex'
-import { Literal, Parent } from 'mdast'
+import { Literal, Parent, Root } from 'mdast'
 import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx'
 import remarkMdx from 'remark-mdx'
 import remarkParse from 'remark-parse'
@@ -21,24 +21,30 @@ import { ImportFoundException } from './exceptions/import-found-exception.js'
 import { UnknownComponentException } from './exceptions/unknown-component-exception.js'
 import { Config } from './interfaces.js'
 
+let conversionProcessor: Processor<Root, Root, Root, void> | undefined
+
+function getConversionProcessor() {
+  if (!conversionProcessor) {
+    conversionProcessor = unified().use(remarkParse).use(remarkMdx).use(remarkMarkAndUnravel)
+  }
+
+  return conversionProcessor
+}
+
 /**
  * Converts a chunk of mdx source string into an MDAST node
  *
  * @param {string} src src mdx string to convert to MDAST node
- * @param {(Node) => void} callback function to call with resulting MDAST node
- * as a param when content has been parsed
+ * @returns {MdxJsxFlowElement} A partial AST based on the input string.
  */
-async function getMdAstNodeFromSrc(src: string, callback: (node: Node) => void) {
-  const processor = unified().use(remarkParse).use(remarkMdx).use(remarkMarkAndUnravel)
-  const node: Node = await new Promise((resolve) => {
-    processor.run(processor.parse(src), src, (_, replaceContentTree) => {
-      resolve(replaceContentTree!)
-    })
-  })
-  // positions expects numbers, have to cast to any to make it work
-  node.position!.end = { line: null as any, column: null as any, offset: null as any }
+function getMdAstNodeFromSrc(src: string): MdxJsxFlowElement {
+  const processor = getConversionProcessor()
+  const rootNode = processor.parse(src) as Node
 
-  callback(node)
+  // Must not be present if a node is generated.
+  delete rootNode.position
+
+  return rootNode as MdxJsxFlowElement
 }
 
 /**
@@ -51,11 +57,16 @@ async function getMdAstNodeFromSrc(src: string, callback: (node: Node) => void) 
  *
  * @param {Config} config configuration settings to customize the sanitizer's behavior
  * @param {object} tree AST: mdx source
- * @returns {Root} modified tree
  */
-async function sanitizeAst(config: Config, tree: Parent) {
-  const promises: Promise<any>[] = []
-  // Imports/Exports
+function sanitizeAst(config: Config, tree: Parent) {
+  replaceImportsAndExports(config, tree)
+
+  replaceUnknownComponents(config, tree)
+
+  replaceMappedTags(config, tree)
+}
+
+function replaceImportsAndExports(config: Config, tree: Parent) {
   if (!config.allowExports || !config.allowImports) {
     visit(tree, { type: 'mdxjsEsm' }, (node: Literal) => {
       if (!config.allowImports && node.value?.startsWith('import ')) {
@@ -66,45 +77,39 @@ async function sanitizeAst(config: Config, tree: Parent) {
       }
     })
   }
-  // Replace unknown components with Fallback component
-  const availableComponentKeys = [...config.allowedComponents]
+}
+
+function replaceUnknownComponents(config: Config, tree: Parent) {
   visit(
     tree,
     (node) => {
       const flowElement = node as MdxJsxFlowElement
-      return !!flowElement.name && !availableComponentKeys.includes(flowElement.name ?? '')
+      return !!flowElement.name && !config.allowedComponents.includes(flowElement.name ?? '')
     },
-    async (node: MdxJsxFlowElement, index: number, parent: Parent) => {
+    (node: MdxJsxFlowElement, index: number, parent: Parent) => {
       const stringSrc = config.fallbackComponent(node)
 
-      promises.push(
-        getMdAstNodeFromSrc(stringSrc, (replacementNode) => {
-          parent.children[index] = replacementNode as MdxJsxFlowElement
-        })
-      )
+      const replacementNode = getMdAstNodeFromSrc(stringSrc)
+      parent.children[index] = replacementNode
 
       config.onError(new UnknownComponentException(node.name!, node.position))
     }
   )
+}
 
-  // Replace replacement mapper components
+function replaceMappedTags(config: Config, tree: Parent) {
   visit(
     tree,
     (node) => Object.keys(config.tagReplacements).includes((node as MdxJsxFlowElement).name ?? ''),
-    async (node: MdxJsxFlowElement, index: number, parent: Parent) => {
+    (node: MdxJsxFlowElement, index: number, parent: Parent) => {
       const stringSrc = config.tagReplacements[node.name ?? '']?.(node) ?? ''
 
-      promises.push(
-        getMdAstNodeFromSrc(stringSrc, (replacementNode) => {
-          parent.children[index] = replacementNode as MdxJsxFlowElement
-        })
-      )
+      const replacementNode = getMdAstNodeFromSrc(stringSrc)
+      parent.children[index] = replacementNode
 
       config.onError(new ComponentReplacedException(node.name!, node.position))
     }
   )
-
-  await Promise.all(promises)
 }
 
 /**

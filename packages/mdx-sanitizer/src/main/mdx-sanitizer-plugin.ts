@@ -21,6 +21,8 @@ import { ImportFoundException } from './exceptions/import-found-exception.js'
 import { UnknownComponentException } from './exceptions/unknown-component-exception.js'
 import { Config } from './interfaces.js'
 
+const exportIdentifiers = ['ExportDefaultDeclaration', 'ExportNamedDeclaration']
+
 let conversionProcessor: Processor<Root, Root, Root, void> | undefined
 
 function getConversionProcessor() {
@@ -59,57 +61,78 @@ function getMdAstNodeFromSrc(src: string): MdxJsxFlowElement {
  * @param {object} tree AST: mdx source
  */
 function sanitizeAst(config: Config, tree: Parent) {
-  replaceImportsAndExports(config, tree)
+  visit(
+    tree,
+    (node) => !!node,
+    (node: Literal, index: number, parent?: Parent) => {
+      detectImports(config, node)
+      detectExports(config, node)
 
-  replaceUnknownComponents(config, tree)
+      // We skip when there is no parent because we don't want to modify the root node of an MDX
+      // document
+      if (!parent) {
+        return
+      }
 
-  replaceMappedTags(config, tree)
+      const newNode = replaceMappedTags(config, node, index, parent)
+      replaceUnknownComponents(config, newNode || node, index, parent)
+    }
+  )
 }
 
-function replaceImportsAndExports(config: Config, tree: Parent) {
-  if (!config.allowExports || !config.allowImports) {
-    visit(tree, { type: 'mdxjsEsm' }, (node: Literal) => {
-      if (!config.allowImports && node.value?.startsWith('import ')) {
-        throw new ImportFoundException(node.value, node.position)
-      }
-      if (!config.allowExports && node.value?.startsWith('export ')) {
-        throw new ExportFoundException(node.value, node.position)
-      }
-    })
+function detectImports(config: Config, node: Literal) {
+  if (config.allowImports) return
+
+  if (
+    node.type === 'mdxjsEsm' &&
+    (node.data?.estree as any)?.body?.[0]?.type === 'ImportDeclaration'
+  ) {
+    throw new ImportFoundException(node.value, node.position)
   }
 }
 
-function replaceUnknownComponents(config: Config, tree: Parent) {
-  visit(
-    tree,
-    (node) => {
-      const flowElement = node as MdxJsxFlowElement
-      return !!flowElement.name && !config.allowedComponents.includes(flowElement.name ?? '')
-    },
-    (node: MdxJsxFlowElement, index: number, parent: Parent) => {
-      const stringSrc = config.fallbackComponent(node)
+function detectExports(config: Config, node: Literal) {
+  if (config.allowExports) {
+    return
+  }
 
-      const replacementNode = getMdAstNodeFromSrc(stringSrc)
-      parent.children[index] = replacementNode
-
-      config.onError(new UnknownComponentException(node.name!, node.position))
-    }
-  )
+  if (
+    node.type === 'mdxjsEsm' &&
+    exportIdentifiers.includes((node.data?.estree as any)?.body?.[0]?.type)
+  ) {
+    throw new ExportFoundException(node.value, node.position)
+  }
 }
 
-function replaceMappedTags(config: Config, tree: Parent) {
-  visit(
-    tree,
-    (node) => Object.keys(config.tagReplacements).includes((node as MdxJsxFlowElement).name ?? ''),
-    (node: MdxJsxFlowElement, index: number, parent: Parent) => {
-      const stringSrc = config.tagReplacements[node.name ?? '']?.(node) ?? ''
+function replaceMappedTags(config: Config, node: Node, index: number, parent: Parent) {
+  const flowElement = node as MdxJsxFlowElement
 
-      const replacementNode = getMdAstNodeFromSrc(stringSrc)
-      parent.children[index] = replacementNode
+  if (flowElement.name && Object.keys(config.tagReplacements).includes(flowElement.name)) {
+    const stringSrc = config.tagReplacements[flowElement.name]?.(node) ?? ''
+    const replacementNode = getMdAstNodeFromSrc(stringSrc)
 
-      config.onError(new ComponentReplacedException(node.name!, node.position))
-    }
-  )
+    parent.children[index] = replacementNode
+
+    config.onError(new ComponentReplacedException(flowElement.name, node.position))
+  }
+  return parent.children[index]
+}
+
+function replaceUnknownComponents(config: Config, node: Node, index: number, parent: Parent) {
+  const allowedComponents = [...config.allowedComponents, ...Object.keys(config.tagReplacements)]
+
+  const flowElement = node as MdxJsxFlowElement
+
+  if (flowElement.name && !allowedComponents.includes(flowElement.name)) {
+    const stringSrc = config.fallbackComponent(node)
+    const replacementNode = getMdAstNodeFromSrc(stringSrc)
+
+    parent.children[index] = replacementNode
+
+    config.onError(new UnknownComponentException(flowElement.name, node.position))
+  }
+
+  return parent.children[index]
 }
 
 /**

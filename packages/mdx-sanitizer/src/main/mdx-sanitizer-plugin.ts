@@ -9,6 +9,7 @@ import { remarkMarkAndUnravel } from '@mdx-js/mdx/lib/plugin/remark-mark-and-unr
 import htmlCommentRegex from 'html-comment-regex'
 import { Literal, Parent, Root } from 'mdast'
 import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx'
+import { Program } from 'mdast-util-mdx-jsx/lib/index.js'
 import remarkMdx from 'remark-mdx'
 import remarkParse from 'remark-parse'
 import { Processor, unified } from 'unified'
@@ -83,10 +84,9 @@ function sanitizeAst(config: Config, tree: Parent) {
 function detectImports(config: Config, node: Literal) {
   if (config.allowImports) return
 
-  if (
-    node.type === 'mdxjsEsm' &&
-    (node.data?.estree as any)?.body?.[0]?.type === 'ImportDeclaration'
-  ) {
+  const nodeData = node.data as { estree: Program } | undefined
+
+  if (node.type === 'mdxjsEsm' && nodeData?.estree?.body?.[0]?.type === 'ImportDeclaration') {
     throw new ImportFoundException(node.value, node.position)
   }
 }
@@ -96,9 +96,12 @@ function detectExports(config: Config, node: Literal) {
     return
   }
 
+  const nodeData = node.data as { estree: Program } | undefined
+
   if (
     node.type === 'mdxjsEsm' &&
-    exportIdentifiers.includes((node.data?.estree as any)?.body?.[0]?.type)
+    nodeData?.estree?.body?.[0]?.type &&
+    exportIdentifiers.includes(nodeData.estree.body[0].type)
   ) {
     throw new ExportFoundException(node.value, node.position)
   }

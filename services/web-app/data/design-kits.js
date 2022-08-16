@@ -30,16 +30,16 @@ const designKitAllowList = {
     maintainer: 'carbon'
   },
   'ibm-design-language-sketch': {
-    maintainer: 'community'
+    maintainer: 'ibm-design-language'
   },
   'ibm-icons-16-20-sketch': {
-    maintainer: 'carbon'
+    maintainer: 'ibm-design-language'
   },
   'ibm-icons-24-32-sketch': {
-    maintainer: 'carbon'
+    maintainer: 'ibm-design-language'
   },
   'ibm-grid-sketch': {
-    maintainer: 'community'
+    maintainer: 'carbon'
   },
   'carbon-shell-sketch': {
     maintainer: 'carbon'
@@ -57,19 +57,19 @@ const designKitAllowList = {
     maintainer: 'carbon'
   },
   'carbon-white-adobe-xd': {
-    maintainer: 'community'
+    maintainer: 'carbon'
   },
   'carbon-g10-adobe-xd': {
-    maintainer: 'community'
+    maintainer: 'carbon'
   },
   'carbon-g90-adobe-xd': {
-    maintainer: 'community'
+    maintainer: 'carbon'
   },
   'carbon-g100-adobe-xd': {
-    maintainer: 'community'
+    maintainer: 'carbon'
   },
   'ibm-icons-adobe-xd': {
-    maintainer: 'community'
+    maintainer: 'ibm-design-language'
   },
   'carbon-g10-axure': {
     maintainer: 'community'
@@ -91,10 +91,10 @@ const designKitAllowList = {
   'ibm-grid-mobile-sketch': {},
   'mobile-patterns-sketch': {},
   'ibm-accessibility-sketch': {
-    maintainer: 'IBM-accessibility'
+    maintainer: 'ibm-accessibility'
   },
   'ibm-accessibility-figma': {
-    maintainer: 'community'
+    maintainer: 'ibm-accessibility'
   },
   'carbon-mid-fi-sketch': {},
   'carbon-wireframe-invision-freehand': {

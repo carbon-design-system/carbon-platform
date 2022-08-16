@@ -68,7 +68,7 @@ const slugifyRequest = (host, route, options = {}) => {
  * @param {string} host - GitHub API base URL
  * @param {string} route - GitHub API request route
  * @param {object} options - Options merged into the request route
- * @returns {object} GitHub API response data
+ * @returns {Promise<object>} GitHub API response data
  */
 const _getResponse = async (host, route, options) => {
   // console.log('CACHE MISS', responseKey)
@@ -108,12 +108,12 @@ export const getResponse = (host, route, options) => {
  * @param {object} options - Options merged into the request route
  * @returns {Promise<object>} GitHub API response data
  */
-export const getSvgResponse = (host, route, options = {}) => {
+export const getSvgResponse = async (host, route, options = {}) => {
   const responseKey = slugifyRequest(host, route, options)
   // console.log('CACHE HIT', responseKey)
 
-  return diskCache.wrap(responseKey, () => {
-    const data = _getResponse(host, route, options)
+  return diskCache.wrap(responseKey, async () => {
+    const data = await _getResponse(host, route, options)
 
     try {
       const originalSvgString = Buffer.from(data.content, data.encoding).toString('utf8')

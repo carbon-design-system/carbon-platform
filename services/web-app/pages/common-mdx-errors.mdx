@@ -157,9 +157,14 @@ Sample:
   </FullPageError>
 </div>
 
-This error occures when the registered route either does not exist or has been incorrectly configured. Valid MDX routes are:
-- Absolute URLs: 'https://github.com/[some-organization]/[some-repository]/blob/[ref]/[path-to-file].[extension]?raw=true'
-- Relative URLs: './relative/path/to/file.mdx', '../../../relative/path/to/file.mdx'
-*These will be relative from the carbon.yml file they're defined in, see [schema](/contributing/schema) for further details.
+This error occures when the registered route either does not exist or has been incorrectly
+configured. Valid MDX routes are:
 
-Note that a relative file can not go so far back (../../../...) that it goes out of it's defined github repository or org.
+- Absolute URLs:
+  'https://github.com/[some-organization]/[some-repository]/blob/[ref]/[path-to-file].[extension]?raw=true'
+- Relative URLs: './relative/path/to/file.mdx', '../../../relative/path/to/file.mdx' \*These will be
+  relative from the carbon.yml file they're defined in, see [schema](/contributing/schema) for
+  further details.
+
+Note that a relative file can not go so far back (../../../...) that it goes out of it's defined
+github repository or org.

@@ -191,16 +191,6 @@ export const assetsNavData = [
     ]
   },
   {
-    title: 'Designing',
-    items: [
-      {
-        path: 'designing/get-started',
-        title: 'Get started',
-        hasTabs: false
-      }
-    ]
-  },
-  {
     title: 'Guidelines',
     items: [
       {

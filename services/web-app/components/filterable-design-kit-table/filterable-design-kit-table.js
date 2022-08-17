@@ -23,6 +23,7 @@ import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 
 import { P } from '@/components/markdown'
+import { teams } from '@/data/teams'
 
 import styles from './filterable-design-kit-table.module.scss'
 
@@ -55,6 +56,49 @@ const toolKeyValueMapper = {
   'adobe-xd': 'Adobe XD'
 }
 
+const captions = {
+  Figma: (
+    <P>
+      The links in the table for Figma Libraries are preview only. To learn more about installing
+      Figma Libraries visit the{' '}
+      <Link href="/designing/figma" passHref>
+        <CarbonLink size="lg">Figma tutorial</CarbonLink>
+      </Link>
+      .
+    </P>
+  ),
+
+  Sketch: (
+    <P>
+      To learn more about installing Sketch Libraries visit the{' '}
+      <Link href="/designing/sketch" passHref>
+        <CarbonLink size="lg">Sketch tutorial</CarbonLink>
+      </Link>
+      .
+    </P>
+  ),
+
+  Axure: (
+    <P>
+      To learn more about installing Axure Libraries visit the{' '}
+      <Link href="/designing/axure" passHref>
+        <CarbonLink size="lg">Axure tutorial</CarbonLink>
+      </Link>
+      .
+    </P>
+  ),
+
+  'Adobe XD': (
+    <P>
+      To learn more about installing Adobe XD Libraries visit the{' '}
+      <Link href="/designing/adobe-xd" passHref>
+        <CarbonLink size="lg">Adobe XD tutorial</CarbonLink>
+      </Link>
+      .
+    </P>
+  )
+}
+
 const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds }) => {
   const [filteredRows, setFilteredRows] = useState(designKitsData)
   const [currentItem, setCurrentItem] = useState(designTools[0])
@@ -63,7 +107,7 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     return designKitIds?.includes(item.id)
   })
 
-  // alphabetically sort by maintainer
+  // alphabetically sort by maintainer, after first rendering IBM Design Language Kits
   const [orderedDesignKits] = useState(
     designKits.sort((a, b) => {
       if (a.maintainer?.toLowerCase() < b.maintainer?.toLowerCase()) {
@@ -132,11 +176,7 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
             <TableBody>
               {hideRepeatedMaintainer(rows).map((row) => (
                 <TableRow key={row.value}>
-                  <TableCell>
-                    {row.cells[0].value
-                      ?.replace(/-/g, ' ')
-                      .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase())}
-                  </TableCell>
+                  <TableCell>{teams[row.cells[0].value]?.name}</TableCell>
                   <TableCell>{row.cells[1].value}</TableCell>
                   <TableCell>
                     <Tag type={tagColor[row.cells[2].value]}>
@@ -151,16 +191,7 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
           </Table>
         )}
       </DataTable>
-      {currentItem === 'Figma' && (
-        <P>
-          The links in the table for Figma Libraries are preview only. To learn more about
-          installing Figma Libraries visit the{' '}
-          <Link href="/designing/figma" passHref>
-            <CarbonLink size="lg">Figma tutorial</CarbonLink>
-          </Link>
-          .
-        </P>
-      )}
+      {captions[currentItem]}
     </>
   )
 }

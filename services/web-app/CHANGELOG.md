@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.22](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.21...@carbon-platform/web-app@0.2.22) (2022-08-17)
+
+
+### Bug Fixes 🐛
+
+* hot fixes for get started design page ([6823722](https://github.com/carbon-design-system/carbon-platform/commit/68237227f7143be38c5b25501bb7694a91c48c26))
+* **web-app:** arrow icon color ([c41616a](https://github.com/carbon-design-system/carbon-platform/commit/c41616af2b6f16a84bdd8571e880a614295f629e))
+
+
+### Features 🌟
+
+* added captionss and hot fixes ([7c1612c](https://github.com/carbon-design-system/carbon-platform/commit/7c1612c6fdb8dc42a502ef5bba77d7883942c32f))
+* **web-app:** add anchor links to library detail page ([35785d8](https://github.com/carbon-design-system/carbon-platform/commit/35785d8a6ce6038fe2c6896e1df952fe1cda2e2a))
+
 ### [0.2.21](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.20...@carbon-platform/web-app@0.2.21) (2022-08-13)
 
 

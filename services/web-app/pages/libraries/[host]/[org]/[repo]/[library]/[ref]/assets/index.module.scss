@@ -68,7 +68,7 @@
 
   // overide carbon position, flex-grow
   :global(.cds--dropdown) {
-    position: static;
+    z-index: 1;
     flex-grow: 1;
     border: none;
   }

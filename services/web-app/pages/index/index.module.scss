@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/colors' as colors;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
 /**
@@ -21,6 +22,25 @@
 
   [class*='paragraph'] {
     @include type.type-style('fluid-heading-04', true);
+  }
+}
+
+.intro-paragraph mark {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+
+  &::after {
+    position: absolute;
+    z-index: -1;
+    top: 4px;
+    left: -4px;
+    display: block;
+    width: calc(100% + 8px);
+    height: 84%;
+    padding: 0 5px;
+    background: colors.$purple-20;
+    content: '';
   }
 }
 

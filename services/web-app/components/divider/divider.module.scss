@@ -30,6 +30,10 @@
   }
 }
 
+.divider > [class*='grid'] {
+  margin-top: 0;
+}
+
 .divider [class*='column'] > *:first-child {
   margin-top: 0;
 }

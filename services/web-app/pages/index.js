@@ -233,8 +233,8 @@ const PageContent = () => {
 
       <P className={styles['intro-paragraph']}>
         By standardizing and surfacing our assets, the new site helps makers Find assets that{' '}
-        <em>comply</em> with platform requirements, are <em>convenient</em> to implement, and are{' '}
-        <em>consistent</em> with design patterns across the company.
+        <mark>comply</mark> with platform requirements, are <mark>convenient</mark> to implement,
+        and are <mark>consistent</mark> with design patterns across the company.
         <br />↓
       </P>
 

@@ -20,8 +20,6 @@ const TypeTag = ({ className, name, type }) => {
   const bgColor = item?.bgColor ?? gray[20]
   const textColor = item?.textColor ?? gray[70]
 
-  console.log(name, item, tagName, bgColor, textColor)
-
   if (!tagName) return null
 
   return (

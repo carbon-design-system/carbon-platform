@@ -17,7 +17,7 @@ const RemoteMdxPage = ({ source }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <RemoteMdxLoader source={source} />
+      <RemoteMdxLoader source={source} pageHeaderType="collection" />
     </>
   )
 }

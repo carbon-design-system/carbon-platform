@@ -13,6 +13,7 @@ import slugify from 'slugify'
 import PageHeader from '@/components/page-header'
 import PageTabs from '@/components/page-tabs'
 import { assetsNavData } from '@/data/nav-data'
+import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout'
 
 import styles from './mdx-wrapper.module.scss'
@@ -24,10 +25,11 @@ const MdxWrapper = ({ children, ...props }) => {
   if (props.ignoreTabs) {
     delete frontmatter.tabs
   }
-  const { title, description, tabs, keywords } = frontmatter
+  const { title, description, tabs, keywords, pageHeaderType } = frontmatter
   const pathSegments = router.asPath.split('/').filter(Boolean)
   pathSegments.pop()
   const baseSegment = pathSegments.join('/')
+  const pageHeader = pageHeaders?.[pageHeaderType] ?? {}
 
   useEffect(() => {
     setPrimaryNavData(assetsNavData)
@@ -37,7 +39,14 @@ const MdxWrapper = ({ children, ...props }) => {
   return (
     <>
       <NextSeo title={title} description={description} keywords={keywords} />
-      {title && <PageHeader title={title} withTabs={withTabs} />}
+      {title && (
+        <PageHeader
+          title={title}
+          withTabs={withTabs}
+          bgColor={pageHeader?.bgColor}
+          pictogram={pageHeader?.icon}
+        />
+      )}
       {keywords && (
         <Head>
           <meta name="keywords" content={keywords} />

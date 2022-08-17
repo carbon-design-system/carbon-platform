@@ -4,24 +4,24 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+import { Column, Grid } from '@carbon/react'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import AssetsCatalog from '@/components/assets-catalog'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout'
-import { getAllLibraries } from '@/lib/github'
 
-const DataVisualization = ({ librariesData }) => {
+import styles from './pages.module.scss'
+
+const DesignKits = () => {
   const { setPrimaryNavData } = useContext(LayoutContext)
 
-  const pageHeader = pageHeaders?.collection ?? {}
+  const pageHeader = pageHeaders?.designKit ?? {}
 
   const seo = {
-    title: 'Data visualization'
+    title: 'Design kits'
   }
 
   useEffect(() => {
@@ -32,23 +32,13 @@ const DataVisualization = ({ librariesData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader bgColor={pageHeader?.bgColor} title={seo.title} pictogram={pageHeader?.icon} />
-      <AssetsCatalog
-        collection="data-visualization"
-        libraries={librariesData.libraries}
-        glob={{ data: 'params.library', pattern: 'carbon-charts*' }}
-      />
+      <Grid>
+        <Column sm={4} md={8} lg={12}>
+          <div className={styles.content}>Coming soon!</div>
+        </Column>
+      </Grid>
     </>
   )
 }
 
-export const getStaticProps = async () => {
-  const librariesData = await getAllLibraries()
-
-  return {
-    props: {
-      librariesData
-    }
-  }
-}
-
-export default DataVisualization
+export default DesignKits

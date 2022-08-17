@@ -10,9 +10,15 @@ import PropTypes from 'prop-types'
 
 import MdxWrapper from '../mdx-wrapper'
 
-const RemoteMdxLoader = ({ source, ignoreTabs }) => {
+const RemoteMdxLoader = ({ source, ignoreTabs, pageHeaderType }) => {
+  const frontmatter = source?.frontmatter ?? {}
+
+  if (pageHeaderType) {
+    frontmatter.pageHeaderType = pageHeaderType
+  }
+
   return (
-    <MdxWrapper frontmatter={JSON.stringify(source?.frontmatter ?? {})} ignoreTabs={ignoreTabs}>
+    <MdxWrapper frontmatter={JSON.stringify(frontmatter)} ignoreTabs={ignoreTabs}>
       <MDXRemote {...source} />
     </MdxWrapper>
   )
@@ -23,6 +29,10 @@ RemoteMdxLoader.propTypes = {
    * whether frontmatter tabs should be ignored, defaults to false
    */
   ignoreTabs: PropTypes.bool,
+  /**
+   * page header type that determines background color and pictogram
+   */
+  pageHeaderType: PropTypes.string,
   /**
    * serialized mdxSource (AST)
    */

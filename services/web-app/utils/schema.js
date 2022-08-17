@@ -7,10 +7,10 @@
 
 import { get } from 'lodash'
 
+import { assetTypes } from '@/data/asset-types'
 import { ORDER_BY_STATUS } from '@/data/sort'
 import { assetStatusLifecycle } from '@/data/status'
 import { tagsForCollection, tagsForType } from '@/data/tags'
-import { type } from '@/data/type'
 /**
  * Defines the sort order of assets by status
  * @param {import('../typedefs').Asset} assetA
@@ -69,7 +69,7 @@ export const getAssetId = (asset) => {
  * @returns {object} Asset type
  */
 export const getAssetType = (asset) => {
-  return get(type, `${asset.content.type}`, type.component)
+  return get(assetTypes, `${asset.content.type}`, assetTypes.component)
 }
 
 /**

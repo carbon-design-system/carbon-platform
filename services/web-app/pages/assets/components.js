@@ -11,15 +11,15 @@ import { libraryPropTypes } from 'types'
 
 import AssetsCatalog from '@/components/assets-catalog'
 import PageHeader from '@/components/page-header'
+import { assetTypes } from '@/data/asset-types'
 import { assetsNavData } from '@/data/nav-data'
-import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 
 const Components = ({ librariesData }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
 
-  const { component } = type
+  const { component } = assetTypes
 
   const seo = {
     title: 'Components'

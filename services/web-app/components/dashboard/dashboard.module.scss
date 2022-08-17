@@ -86,6 +86,19 @@
   padding-bottom: spacing.$spacing-06;
   color: theme.$text-primary;
   @include type.type-style('body-short-02');
+
+  @include breakpoint.breakpoint(lg) {
+    padding-right: spacing.$spacing-05;
+  }
+
+  @include breakpoint.breakpoint(xlg) {
+    padding-right: spacing.$spacing-06;
+  }
+}
+
+//override carbon, link style so comma stays on same line
+.meta :global(.cds--link) {
+  display: inline;
 }
 
 .meta-link--large {

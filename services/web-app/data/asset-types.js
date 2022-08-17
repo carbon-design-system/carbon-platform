@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { black, blue, gray, green, magenta, purple, warmGray, white } from '@carbon/colors'
-import { CodeSyntax, Construct, Dashboard, Pattern, TextInput } from '@carbon/pictograms-react'
+import { blue, green, magenta, purple } from '@carbon/colors'
+import { CodeSyntax, Dashboard, Pattern, TextInput } from '@carbon/pictograms-react'
 
-export const type = {
+export const assetTypes = {
   component: {
     bgColor: blue[20],
     icon: TextInput,
@@ -16,14 +16,6 @@ export const type = {
     namePlural: 'Components',
     path: '/assets/components',
     textColor: blue[70]
-  },
-  element: {
-    bgColor: black,
-    icon: Construct,
-    name: 'Element',
-    namePlural: 'Elements',
-    path: '/assets/elements',
-    textColor: white
   },
   function: {
     bgColor: green[20],
@@ -48,18 +40,5 @@ export const type = {
     namePlural: 'Templates',
     path: '/assets/templates',
     textColor: magenta[70]
-  },
-  'design-only': {
-    bgColor: gray[20],
-    name: 'Design only',
-    path: '/',
-    textColor: gray[70]
-  },
-  collection: {
-    bgColor: warmGray[20],
-    icon: Construct,
-    name: 'Collection',
-    namePlural: 'Collections',
-    textColor: gray[70]
   }
 }

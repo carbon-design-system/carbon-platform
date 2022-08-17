@@ -136,7 +136,7 @@ designKits:
   carbon-template-axure:
     name: Axure template
     tool: axure
-    type: elements
+    type: ui
     status: stable
     url: https://github.com/IBM/design-kit/blob/master/Axure/ibm-carbon-template.rp?raw=true
     action: download
@@ -204,14 +204,14 @@ designKits:
     url: https://www.sketch.com/s/f13d67b9-3116-4b50-a2e9-56148f1976b0
     action: link
   ibm-accessibility-sketch:
-    name: IBM Accessibility Sketch kit
+    name: Accessibility toolkit
     tool: sketch
     type: guidelines
     status: stable
     url: https://www.sketch.com/s/f0a04c0d-fb62-4d71-92c6-07c402f8cae7
     action: link
   ibm-accessibility-figma:
-    name: IBM Accessibility Figma kit
+    name: Accessibility toolkit
     tool: figma
     type: guidelines
     status: stable

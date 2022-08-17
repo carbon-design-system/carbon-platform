@@ -13,6 +13,7 @@ import LibraryCatalog from '@/components/library-catalog/library-catalog'
 import PageDescription from '@/components/page-description/page-description'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
+import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 import { librarySortComparator } from '@/utils/schema'
@@ -21,6 +22,8 @@ import styles from './index.module.scss'
 
 const Libraries = ({ librariesData }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
+
+  const pageHeader = pageHeaders?.library ?? {}
 
   const seo = {
     title: 'Libraries'
@@ -37,7 +40,7 @@ const Libraries = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} />
+      <PageHeader bgColor={pageHeader?.bgColor} title={seo.title} pictogram={pageHeader?.icon} />
       <PageDescription className={styles['library-description']}>
         Libraries are 1:1 with code packages. All coded components, elements, patterns, or functions
         belong to a library and have a maintainer. Design kits with compatible code also live in

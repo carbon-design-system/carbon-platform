@@ -22,6 +22,7 @@ import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import ArtDirection from '@/components/art-direction'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import Divider from '@/components/divider'
@@ -32,8 +33,16 @@ import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
-import ChartImg from './index/images/chart-banner.png'
-import ReactImg from './index/images/react-banner.png'
+import ReactImgMax from './index/images/carbon-react_max-lg.png'
+import ReactImgMd from './index/images/carbon-react_md.png'
+import ReactImgSm from './index/images/carbon-react_sm.png'
+import EcosystemImgMax from './index/images/ecosystem_max-md.png'
+import EcosystemImgSm from './index/images/ecosystem_sm.png'
+import DotComImgMax from './index/images/ibmdotcom_max-lg.png'
+import DotComImgMd from './index/images/ibmdotcom_md.png'
+import DotComImgSm from './index/images/ibmdotcom_sm.png'
+import RoadmapMax from './index/images/roadmap_max-lg.png'
+import RoadmapSm from './index/images/roadmap_sm.png'
 import styles from './index/index.module.scss'
 
 const PageContent = () => {
@@ -41,55 +50,53 @@ const PageContent = () => {
 
   return (
     <div className={styles.container}>
-      <H2>
+      <P className={styles['intro-paragraph']}>
         Carbon is IBM’s design system for digital experiences. The new website is your pathway to
         accessing components, patterns, functions, templates, and other assets across IBM.
         <br />↓
-      </H2>
+      </P>
 
       <Divider />
 
       <FeatureCard
-        href="/libraries/carbon-react"
+        href="/about-carbon/how-carbon-works"
         title="How Carbon works"
         description="Learn more about the Carbon ecosystem."
       >
-        <Image
-          alt={'image'}
-          src={ReactImg}
-          layout={isLg ? 'responsive' : 'fill'}
-          objectFit="cover"
-        />
+        <ArtDirection>
+          <Image alt={'image'} src={EcosystemImgSm} layout="responsive" objectFit="cover" />
+          <Image alt={'image'} src={EcosystemImgMax} layout="responsive" objectFit="cover" />
+        </ArtDirection>
       </FeatureCard>
 
-      <Divider>
+      <Divider className={styles['divider--fixed-height']}>
         <Grid>
           <Column sm={4} md={2} lg={4}>
             <H2>
               Start
               <br />
-              Designing
+              <em>Designing</em>
             </H2>
           </Column>
           <Column sm={4} md={6} lg={7}>
-            <P>
+            <P large>
               Learn how design kits are used to build consistent, scalable user interfaces — and get
               started with your design tool of choice — Figma, Sketch, Adobe Xd.
             </P>
           </Column>
         </Grid>
       </Divider>
-      <Divider>
+      <Divider className={styles['divider--fixed-height']}>
         <Grid>
           <Column sm={4} md={2} lg={4}>
             <H2>
               Start
               <br />
-              Developing
+              <em>Developing</em>
             </H2>
           </Column>
           <Column sm={4} md={6} lg={7}>
-            <P>
+            <P large>
               Learn about libraries and access everything you need to get up and running with your
               framework from the various choices available in Carbon — React, Angular, Web
               components, and Vue.
@@ -190,7 +197,9 @@ const PageContent = () => {
 
       <H2>Try featured libraries</H2>
       <P>
-        Libraries are the means to contribute, install, and use one or many assets. Explore the{' '}
+        Libraries are the means to contribute, install, and use one or many assets.
+        <br />
+        Explore the{' '}
         <Link href="/library" passHref>
           <CarbonLink size="lg">library</CarbonLink>
         </Link>{' '}
@@ -202,32 +211,70 @@ const PageContent = () => {
         title="Carbon React library"
         description="A library of reusable React components to build websites and user interfaces."
       >
-        <Image
-          alt={'image'}
-          src={ReactImg}
-          layout={isLg ? 'responsive' : 'fill'}
-          objectFit="cover"
-        />
+        <ArtDirection>
+          <Image alt={'image'} src={ReactImgSm} layout="responsive" objectFit="cover" />
+          <Image alt={'image'} src={ReactImgMd} layout="responsive" objectFit="cover" />
+          <Image alt={'image'} src={ReactImgMax} layout="responsive" objectFit="cover" />
+        </ArtDirection>
       </FeatureCard>
       <FeatureCard
         href="/libraries/ibmdotcom-web-components"
         title="IBM.com Web Components"
         description="A library of reusable React components to build websites and user interfaces."
       >
-        <Image
-          alt={'image'}
-          src={ChartImg}
-          layout={isLg ? 'responsive' : 'fill'}
-          objectFit="cover"
-        />
+        <ArtDirection>
+          <Image alt={'image'} src={DotComImgSm} layout="responsive" objectFit="cover" />
+          <Image alt={'image'} src={DotComImgMd} layout="responsive" objectFit="cover" />
+          <Image alt={'image'} src={DotComImgMax} layout="responsive" objectFit="cover" />
+        </ArtDirection>
       </FeatureCard>
 
-      <H2>
+      <Divider />
+
+      <P className={styles['intro-paragraph']}>
         By standardizing and surfacing our assets, the new site helps makers Find assets that{' '}
         <em>comply</em> with platform requirements, are <em>convenient</em> to implement, and are{' '}
         <em>consistent</em> with design patterns across the company.
         <br />↓
-      </H2>
+      </P>
+
+      <Divider>
+        <Grid>
+          <Column sm={4} md={2} lg={4}>
+            <H2>
+              Better
+              <br />
+              discoverability
+            </H2>
+          </Column>
+          <Column sm={4} md={6} lg={7}>
+            <P large>
+              <strong>For designers and developers:</strong>
+              <br />A unified discovery experience helps designers and developers find and access
+              components, patterns, and functions across all IBM teams.
+            </P>
+          </Column>
+        </Grid>
+      </Divider>
+      <Divider>
+        <Grid>
+          <Column sm={4} md={2} lg={4}>
+            <H2>
+              Easier
+              <br />
+              management
+            </H2>
+          </Column>
+          <Column sm={4} md={6} lg={7}>
+            <P large>
+              <strong>For designers and developers:</strong>
+              <br />A unified discovery experience helps designers and developers find and access
+              components, patterns, and functions across all IBM teams.
+            </P>
+          </Column>
+        </Grid>
+      </Divider>
+      <Divider />
 
       <H2>How PAL teams can prepare</H2>
       <P>
@@ -249,6 +296,20 @@ const PageContent = () => {
           Get started
         </CarbonLink>
       </P>
+
+      <H2>Platform roadmap</H2>
+      <P>
+        For designers and developers: A unified discovery experience helps designers and developers
+        find and access components, patterns, and functions across all IBM teams.
+      </P>
+      <Grid>
+        <Column sm={4} md={8} lg={12}>
+          <ArtDirection>
+            <Image alt={'image'} src={RoadmapSm} layout="responsive" objectFit="cover" />
+            <Image alt={'image'} src={RoadmapMax} layout="responsive" objectFit="cover" />
+          </ArtDirection>
+        </Column>
+      </Grid>
     </div>
   )
 }
@@ -267,7 +328,11 @@ const Index = () => {
   return (
     <>
       <NextSeo {...seo} />
-      <Hero title="Build consistent & scalable experiences with confidence." section="homepage" />
+      <Hero
+        title="Build consistent & scalable experiences with confidence."
+        section="homepage"
+        theme="white"
+      />
       <PageContent />
     </>
   )

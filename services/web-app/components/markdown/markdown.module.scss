@@ -91,6 +91,10 @@
   @include type.type-style('body-long-02');
 }
 
+.paragraph--large {
+  @include type.type-style('fluid-heading-03', true);
+}
+
 /*  Blockquote */
 .blockquote {
   padding-left: 1ch;

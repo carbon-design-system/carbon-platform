@@ -20,7 +20,7 @@ export const FeatureCard = ({ href, children, description, title }) => {
 
   const imageAspectRatio = () => {
     if (isLg) return null
-    if (isMd) return '16x9'
+    if (isMd) return null
     return '1x1'
   }
 
@@ -29,14 +29,14 @@ export const FeatureCard = ({ href, children, description, title }) => {
     return '2x1'
   }
   return (
-    <Grid>
+    <Grid className={styles.container}>
       <Column sm={4} md={8} lg={12}>
         <Link href={href}>
           <a className={styles['feature-card']}>
             <AspectRatio ratio={imageAspectRatio()} className={styles.image}>
               {children}
             </AspectRatio>
-            <Grid className={styles['grid-tile']}>
+            <Grid className={styles['grid-tile']} condensed={isMd}>
               <Column sm={4} md={{ offset: 4, span: 4 }} lg={{ offset: 8, span: 4 }}>
                 <AspectRatio ratio={tileAspectRatio()} className={styles.tile}>
                   <h5 className={styles.title}>{title}</h5>

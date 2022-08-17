@@ -15,57 +15,40 @@
  * Global
  */
 
-.border {
-  position: relative;
+.intro-paragraph {
+  padding-bottom: spacing.$spacing-08;
+  margin-top: spacing.$spacing-10;
 
-  &::after {
-    position: absolute;
-    top: 0;
-    right: spacing.$spacing-05;
-    left: spacing.$spacing-05;
-    height: 1px;
-    background-color: theme.$border-strong-01;
-    content: '';
-    @include breakpoint.breakpoint(md) {
-      margin-right: -(spacing.$spacing-05);
-      margin-left: -(spacing.$spacing-05);
-    }
+  [class*='paragraph'] {
+    @include type.type-style('fluid-heading-04', true);
   }
 }
 
-/**
- * Subheading
- */
-
-.subheading {
-  padding: spacing.$spacing-10 0;
-  @include type.type-style('fluid-heading-04', true);
+.divider--fixed-height {
+  // fixed height minus default padding
+  height: calc(convert.rem(304px) - spacing.$spacing-10);
   @include breakpoint.breakpoint(md) {
-    padding-right: spacing.$spacing-06;
+    height: calc(convert.rem(192px) - spacing.$spacing-10);
   }
   @include breakpoint.breakpoint(lg) {
-    padding-right: spacing.$spacing-05;
-  }
-
-  &--no-padding {
-    padding: 0;
+    height: calc(convert.rem(184px) - spacing.$spacing-10);
   }
 }
 
-.subheading-medium {
-  padding: spacing.$spacing-10 0;
-  @include type.type-style('fluid-heading-04', true);
-}
+.container {
+  // custom top spacing when components are next to divider
+  [class*='divider'] + [class*='feature-card_container'],
+  [class*='divider'] + [class*='h2-container'] {
+    margin-top: spacing.$spacing-08;
+  }
 
-.subheading-large {
-  padding: spacing.$spacing-11 0 spacing.$spacing-05;
-  @include type.type-style('fluid-heading-04', true);
-}
+  [class*='divider'] + .intro-paragraph {
+    margin-top: spacing.$spacing-08;
+  }
 
-.subheading-content {
-  @include type.type-style('body-long-02');
-
-  padding: spacing.$spacing-06 0;
+  .intro-paragraph + [class*='divider'] {
+    margin-top: spacing.$spacing-06;
+  }
 }
 
 /**
@@ -101,134 +84,4 @@
   bottom: spacing.$spacing-05;
   left: spacing.$spacing-05;
   color: theme.$text-primary;
-}
-
-/**
- * Feature Card
- */
-
-.feature-card-container {
-  padding-bottom: spacing.$spacing-10;
-}
-
-/**
- * Highlights
- */
-
-.highlights {
-  position: relative;
-
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: calc(100vw - var(--scrollbar-width));
-    height: 100%;
-    background: theme.$layer-01;
-    content: '';
-    @include breakpoint.breakpoint(md) {
-      // grid margin
-      left: -(spacing.$spacing-05);
-      margin-left: -1px;
-    }
-    @include breakpoint.breakpoint(lg) {
-      // grid margin + 6.25% column * 4 columns + 8px
-      left: calc(-25vw - #{spacing.$spacing-03});
-    }
-    @include breakpoint.breakpoint(max) {
-      // grid margin + 96px column * 4 columns
-      left: -(spacing.$spacing-06 + spacing.$spacing-12 * 4);
-    }
-  }
-}
-
-.highlight-grid {
-  position: relative;
-
-  &--height {
-    @include breakpoint.breakpoint(md) {
-      min-height: rem(208px);
-    }
-    @include breakpoint.breakpoint(lg) {
-      min-height: convert.rem(184px);
-    }
-  }
-}
-
-.highlight-heading {
-  margin-top: spacing.$spacing-08;
-  @include type.type-style('fluid-heading-03', true);
-  @include breakpoint.breakpoint(md) {
-    margin-top: spacing.$spacing-10 + spacing.$spacing-02;
-  }
-  @include breakpoint.breakpoint(lg) {
-    padding-right: spacing.$spacing-07;
-  }
-
-  &--big {
-    margin-top: spacing.$spacing-07;
-    @include type.type-style('fluid-heading-04', true);
-  }
-}
-
-.highlight-description {
-  margin: spacing.$spacing-06 0 (spacing.$spacing-08 + spacing.$spacing-05);
-  @include type.type-style('body-long-02');
-  @include breakpoint.breakpoint(md) {
-    margin: spacing.$spacing-07 0;
-  }
-  @include breakpoint.breakpoint(lg) {
-    padding-right: spacing.$spacing-05;
-  }
-  @include breakpoint.breakpoint(xlg) {
-    padding-right: 0;
-  }
-
-  &--big {
-    @include type.type-style('fluid-heading-04', true);
-    @include breakpoint.breakpoint(md) {
-      margin: spacing.$spacing-08 0;
-    }
-  }
-}
-
-.highlight-title {
-  display: block;
-  @include type.type-style('heading-02');
-}
-
-/**
- * Content
- */
-
-.content-column {
-  @include breakpoint.breakpoint(md) {
-    padding-right: spacing.$spacing-06;
-  }
-  @include breakpoint.breakpoint(lg) {
-    padding-right: spacing.$spacing-05;
-  }
-  @include breakpoint.breakpoint(xlg) {
-    padding-right: spacing.$spacing-06;
-  }
-}
-
-.content-heading {
-  margin-top: spacing.$spacing-11;
-  @include type.type-style('fluid-heading-04', true);
-}
-
-.content-copy {
-  margin-top: spacing.$spacing-06;
-  @include type.type-style('body-long-02');
-
-  &:last-child {
-    margin-bottom: spacing.$spacing-10;
-  }
-
-  a {
-    // override carbon
-    font-size: inherit;
-    line-height: inherit;
-  }
 }

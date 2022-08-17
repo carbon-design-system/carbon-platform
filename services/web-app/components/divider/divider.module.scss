@@ -10,12 +10,23 @@
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 
 .divider {
-  padding-top: spacing.$spacing-03;
-  border-top: 1px solid theme.$border-strong;
+  position: relative;
+  padding-top: spacing.$spacing-05;
   margin-top: spacing.$spacing-10;
 
   @include breakpoint.breakpoint(lg) {
     margin-right: -(spacing.$spacing-05);
+  }
+
+  &::after {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 1rem;
+    width: calc(100% - 2rem);
+    height: 1px;
+    background: theme.$border-strong;
+    content: '';
   }
 }
 

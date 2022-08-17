@@ -50,11 +50,11 @@ $hero-height: convert.rem(560px);
   */
 
 .homepage::before {
-  background: url(../../pages/index/images/assets-hero_mobile.png) no-repeat bottom right / 100%
-    auto;
+  background: theme.$background url(../../pages/index/images/assets-hero_mobile.png) no-repeat
+    bottom right / 100% auto;
 
   @include breakpoint.breakpoint(md) {
-    background: url(../../pages/index/images/assets-hero.png) no-repeat top right / auto
-      $hero-height;
+    background: theme.$background url(../../pages/index/images/assets-hero.png) no-repeat top right /
+      auto $hero-height;
   }
 }

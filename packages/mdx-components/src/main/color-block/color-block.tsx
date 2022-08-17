@@ -24,7 +24,11 @@ const ColorBlock = (props: any) => {
 
   return (
     <div className={withPrefix('color-block')}>
-      <span className={withPrefix('color')} style={colorBlockStyles} />
+      <span
+        className={withPrefix('color')}
+        style={colorBlockStyles}
+        title={'Colored block with hex value ' + hex}
+      />
     </div>
   )
 }

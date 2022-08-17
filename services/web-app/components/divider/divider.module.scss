@@ -12,7 +12,7 @@
 .divider {
   padding-top: spacing.$spacing-03;
   border-top: 1px solid theme.$border-strong;
-  margin-top: calc(spacing.$spacing-09 + spacing.$spacing-03);
+  margin-top: spacing.$spacing-10;
 
   @include breakpoint.breakpoint(lg) {
     margin-right: -(spacing.$spacing-05);

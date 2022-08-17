@@ -92,28 +92,28 @@ designKits:
     url: https://www.figma.com/file/TckQzGe3bNxHPLoRhbXFal/Gray-100-Theme---Carbon-Design-System
     action: link
   carbon-white-adobe-xd:
-    name: White theme
+    name: Adobe XD white theme
     tool: adobe-xd
     type: ui
     status: stable
     url: https://assets.adobe.com/libraries/urn:aaid:sc:VA7:35c94afd-9cc4-4703-a4b0-49acb165d28d?libraryVersion=8&org=973430F0543801CA0A4C98C6%40AdobeOrg
     action: link
   carbon-g10-adobe-xd:
-    name: Gray 10 theme
+    name: Adobe XD gray 10 theme
     tool: adobe-xd
     type: ui
     status: stable
     url: https://assets.adobe.com/libraries/urn:aaid:sc:VA7:92418e29-f824-4cfc-9be2-866a5230cbb1?libraryVersion=5&org=973430F0543801CA0A4C98C6%40AdobeOrg
     action: link
   carbon-g90-adobe-xd:
-    name: Gray 90 theme
+    name: Adobe XD gray 90 theme
     tool: adobe-xd
     type: ui
     status: stable
     url: https://assets.adobe.com/libraries/urn:aaid:sc:VA7:fc4859fd-beea-4407-b41c-34170a4e8203?libraryVersion=9&org=973430F0543801CA0A4C98C6%40AdobeOrg
     action: link
   carbon-g100-adobe-xd:
-    name: Gray 100 theme
+    name: Adobe XD gray 100 theme
     tool: adobe-xd
     type: ui
     status: stable

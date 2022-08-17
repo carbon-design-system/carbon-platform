@@ -146,4 +146,13 @@ const designKitAllowList = {
   }
 }
 
+/**
+ * Design kits with no maintaining team default to `community`.
+ */
+Object.keys(designKitAllowList).forEach((library) => {
+  if (!designKitAllowList[library].maintainer) {
+    designKitAllowList[library].maintainer = 'community'
+  }
+})
+
 export { designKitAllowList, designKitSources }

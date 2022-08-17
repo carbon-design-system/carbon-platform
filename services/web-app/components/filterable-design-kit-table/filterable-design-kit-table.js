@@ -23,6 +23,7 @@ import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 
 import { P } from '@/components/markdown'
+import { teams } from '@/data/teams'
 
 import styles from './filterable-design-kit-table.module.scss'
 
@@ -176,7 +177,7 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
             <TableBody>
               {hideRepeatedMaintainer(rows).map((row) => (
                 <TableRow key={row.value}>
-                  <TableCell>{sponsors[row.cells[0].value]}</TableCell>
+                  <TableCell>{teams[row.cells[0].value]?.name}</TableCell>
                   <TableCell>{row.cells[1].value}</TableCell>
                   <TableCell>
                     <Tag type={tagColor[row.cells[2].value]}>

@@ -4,9 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+@use 'sass:map';
 @use '@carbon/react/scss/utilities/convert' as convert;
 @use '../variables' as variables;
-@use 'sass:map';
 
 .cds--content {
   margin-top: 3rem;

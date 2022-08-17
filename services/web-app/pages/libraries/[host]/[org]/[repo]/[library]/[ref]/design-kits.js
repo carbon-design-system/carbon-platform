@@ -21,7 +21,7 @@ const DesignKits = ({ libraryData, navData }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
   const router = useRouter()
 
-  const pageHeader = pageHeaders?.designKit ?? {}
+  const pageHeader = pageHeaders?.library ?? {}
 
   const { name } = libraryData.content
 

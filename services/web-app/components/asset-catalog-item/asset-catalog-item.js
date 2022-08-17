@@ -22,12 +22,14 @@ import styles from './asset-catalog-item.module.scss'
 import AssetCatalogItemMeta from './asset-catalog-item-meta'
 
 const AssetCatalogItemImage = ({ asset }) => {
-  const [src, setSrc] = useState(`/assets/thumbnails/${getSlug(asset.content)}.svg`)
+  const [src, setSrc] = useState(
+    `data:image/svg+xml;utf8,${encodeURIComponent(asset.content.thumbnailSvg)}`
+  )
 
   return (
     // The Next.js Image component isn't firing the onError callback for some reason, so for now,
-    // use the unoptimized img element since we're just using SVGs for now. We'll eventually want
-    // to use the Image component for placeholders.
+    // use the unoptimized img element since we're just using SVGs for now. At minimum, the SVGs are
+    // getting optimized at build time.
     // eslint-disable-next-line @next/next/no-img-element -- See previous line for rationale.
     <img
       alt={`${asset.content.name} thumbnail`}

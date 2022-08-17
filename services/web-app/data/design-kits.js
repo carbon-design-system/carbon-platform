@@ -30,13 +30,13 @@ const designKitAllowList = {
     maintainer: 'carbon'
   },
   'ibm-design-language-sketch': {
-    maintainer: 'ibm-design-language'
+    maintainer: 'ibm-brand'
   },
   'ibm-icons-16-20-sketch': {
-    maintainer: 'ibm-design-language'
+    maintainer: 'ibm-brand'
   },
   'ibm-icons-24-32-sketch': {
-    maintainer: 'ibm-design-language'
+    maintainer: 'ibm-brand'
   },
   'ibm-grid-sketch': {
     maintainer: 'carbon'
@@ -69,14 +69,10 @@ const designKitAllowList = {
     maintainer: 'carbon'
   },
   'ibm-icons-adobe-xd': {
-    maintainer: 'ibm-design-language'
+    maintainer: 'ibm-brand'
   },
-  'carbon-g10-axure': {
-    maintainer: 'community'
-  },
-  'carbon-template-axure': {
-    maintainer: 'community'
-  },
+  'carbon-g10-axure': {},
+  'carbon-template-axure': {},
   'data-viz-sketch': {
     maintainer: 'carbon'
   },
@@ -119,5 +115,14 @@ const designKitAllowList = {
     maintainer: 'ibm-cloud'
   }
 }
+
+/**
+ * Design kits with no maintaining team default to `community`.
+ */
+Object.keys(designKitAllowList).forEach((library) => {
+  if (!designKitAllowList[library].maintainer) {
+    designKitAllowList[library].maintainer = 'community'
+  }
+})
 
 export { designKitAllowList, designKitSources }

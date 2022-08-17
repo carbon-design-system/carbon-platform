@@ -23,6 +23,7 @@ import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 
 import { P } from '@/components/markdown'
+import { teams } from '@/data/teams'
 
 import styles from './filterable-design-kit-table.module.scss'
 
@@ -53,16 +54,6 @@ const toolKeyValueMapper = {
   sketch: 'Sketch',
   axure: 'Axure',
   'adobe-xd': 'Adobe XD'
-}
-
-const sponsors = {
-  carbon: 'Carbon',
-  community: 'Community',
-  'ibm-accessibility': 'IBM Accessibility',
-  'ibm-dotcom': 'Carbon for IBM.com',
-  'ibm-cloud': 'IBM Cloud',
-  'ibm-products': 'IBM Products',
-  'ibm-design-language': 'IBM Design Language'
 }
 
 const captions = {
@@ -185,7 +176,7 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
             <TableBody>
               {hideRepeatedMaintainer(rows).map((row) => (
                 <TableRow key={row.value}>
-                  <TableCell>{sponsors[row.cells[0].value]}</TableCell>
+                  <TableCell>{teams[row.cells[0].value]?.name}</TableCell>
                   <TableCell>{row.cells[1].value}</TableCell>
                   <TableCell>
                     <Tag type={tagColor[row.cells[2].value]}>

@@ -121,3 +121,13 @@
     margin-top: spacing.$spacing-08;
   }
 }
+
+.h2-container {
+  &.h2-container {
+    margin-top: 0;
+  }
+
+  + * {
+    margin-top: 0;
+  }
+}

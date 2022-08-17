@@ -13,6 +13,7 @@ import slugify from 'slugify'
 
 import { dfs } from '@/utils/tree'
 
+import H2 from '../markdown/h2'
 import styles from './nav-tree.module.scss'
 
 const NavTree = ({ activeItem, items = [], label }) => {
@@ -71,7 +72,12 @@ const NavTree = ({ activeItem, items = [], label }) => {
     return nodes.map((node) => {
       if (node.isSection) {
         return (
-          <h2 className={clsx(styles['section-heading'], styles['section-group'])}>{node.title}</h2>
+          <H2
+            headingClassName={clsx(styles['section-heading'], styles['section-group'])}
+            className={styles['h2-container']}
+          >
+            {node.title}
+          </H2>
         )
       } else {
         return (

@@ -8,6 +8,8 @@ import clsx from 'clsx'
 import Markdown from 'markdown-it'
 import PropTypes from 'prop-types'
 
+import H2 from '@/components/markdown/h2'
+
 import styles from './glossary-list.module.scss'
 
 const md = new Markdown({
@@ -23,10 +25,13 @@ const renderGlossaryEntry = (glossary, glossaryEntry) => {
       key={glossaryEntry}
       className={clsx(styles['glossary-entry'], 'glossary-entry')}
     >
-      <h2 className={styles['glossary-entry__main-heading']}>
+      <H2
+        headingClassName={styles['glossary-entry__main-heading']}
+        className={styles['h2-container']}
+      >
         {glossaryEntry}
         <span>{glossaryEntry}</span>
-      </h2>
+      </H2>
       {Object.keys(entry).map((list, i) => {
         const listItems = Object.keys(entry[list]).map((word) => {
           counter += 1

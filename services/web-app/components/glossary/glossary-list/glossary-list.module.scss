@@ -40,3 +40,13 @@
   margin-top: spacing.$spacing-04;
   @include type.type-style('heading-02');
 }
+
+.h2-container {
+  &.h2-container {
+    margin-top: 0;
+  }
+
+  + * {
+    margin-top: 0;
+  }
+}

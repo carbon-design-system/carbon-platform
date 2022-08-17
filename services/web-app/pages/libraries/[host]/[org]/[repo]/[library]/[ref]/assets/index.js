@@ -27,6 +27,7 @@ import { useContext, useEffect, useState } from 'react'
 import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'types'
 
 import AssetCatalogItemMeta from '@/components/asset-catalog-item/asset-catalog-item-meta'
+import H2 from '@/components/markdown/h2'
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
 import { assetsNavData } from '@/data/nav-data'
@@ -156,7 +157,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
         <Column sm={4} md={8} lg={12}>
           <Grid>
             <Column sm={4} md={8} lg={8}>
-              <h2 className={styles.subheading}>{description}</h2>
+              <H2 headingClassName={styles.subheading}>{description}</H2>
             </Column>
           </Grid>
           <Grid condensed={!isLg} narrow={isLg}>
@@ -206,9 +207,9 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
                             <TableCell colSpan={5}>
                               <div className={styles['no-results-container']}>
                                 <FilingCabinet />
-                                <h2 className={styles['no-results-heading']}>
+                                <H2 narrow className={styles['h2-container']}>
                                   No assets in library.
-                                </h2>
+                                </H2>
                                 <h3 className={styles['no-results-subheading']}>
                                   This library does not contain any assets.
                                 </h3>

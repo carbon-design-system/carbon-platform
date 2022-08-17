@@ -32,11 +32,6 @@
   }
 }
 
-.release-heading {
-  margin-top: spacing.$spacing-07;
-  @include type.type-style('fluid-heading-04', true);
-}
-
 .release-subheading {
   @include type.type-style('heading-02');
 }

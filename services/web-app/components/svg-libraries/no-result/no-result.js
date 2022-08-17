@@ -10,6 +10,7 @@ import { Svg32Illustrator } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
+import H2 from '@/components/markdown/h2'
 import markdownStyles from '@/components/markdown/markdown.module.scss'
 import ResourceCard from '@/components/resource-card'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
@@ -33,7 +34,7 @@ const NoResult = ({
           <span className={styles['search-label']}>
             {`0 results found in the "${selectedCategory}" category.`}
           </span>
-          <h2 className={markdownStyles.h2}>
+          <H2>
             {allIconResults} matches found in{' '}
             <button
               type="button"
@@ -42,12 +43,12 @@ const NoResult = ({
             >
               all {type}.
             </button>
-          </h2>
+          </H2>
         </>
       )}
       {!allIconResults && (
         <>
-          <h2 className={markdownStyles.h2}>No result found</h2>
+          <H2>No result found</H2>
           <p className={markdownStyles.paragraph}>
             It appears we don’t have an icon that matches your search. Try different search terms or
             give us a hand—submit your own design to the library!

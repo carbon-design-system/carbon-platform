@@ -10,6 +10,7 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
 import Divider from '@/components/divider/divider'
+import H2 from '@/components/markdown/h2'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
@@ -174,13 +175,13 @@ const PageContent = () => {
         <Divider key={i}>
           <Grid className={styles.release}>
             <Column sm={4} md={8} lg={4}>
-              <h2 className={styles['release-heading']}>
+              <H2>
                 <div>
                   <strong>{release.version}</strong>
                 </div>
                 <div>{release.release}</div>
                 <div>{release.date}</div>
-              </h2>
+              </H2>
             </Column>
             <Column sm={4} md={8}>
               <div className={styles['release-content']}>

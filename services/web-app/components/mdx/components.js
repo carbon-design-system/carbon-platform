@@ -44,7 +44,6 @@ import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/comp
 import MdxIcon from '@/components/mdx-icon'
 import MdxPage from '@/components/mdx-page'
 import FullPageError from '@/components/mdx-page/errors/full-page-error'
-import MdxWrapper from '@/components/mdx-wrapper'
 import MiniCard from '@/components/mini-card'
 import PageDescription from '@/components/page-description'
 import PageTable from '@/components/page-table'
@@ -118,7 +117,6 @@ const components = {
   InlineNotification,
   MdxIcon,
   MdxPage,
-  MdxWrapper,
   MiniCard,
   PageDescription,
   PictogramLibrary,

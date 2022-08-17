@@ -55,21 +55,11 @@ const toolKeyValueMapper = {
   'adobe-xd': 'Adobe XD'
 }
 
-const sponsors = {
-  carbon: 'Carbon',
-  community: 'Community',
-  'ibm-accessibility': 'IBM Accessibility',
-  'ibm-dotcom': 'Carbon for IBM.com',
-  'ibm-cloud': 'IBM Cloud',
-  'ibm-products': 'IBM Products',
-  'ibm-design-language': 'IBM Design Language'
-}
-
 const captions = {
   Figma: (
     <P>
-      The links in the table for Figma Libraries are preview only. To learn more about installing
-      Figma Libraries visit the{' '}
+      The links in the table for Figma Libraries are preview only. Some of the Figma kits are for internal IBMers.
+      To learn more about installing Figma Libraries and available external libraries visit the Figma tutorial{' '}
       <Link href="/designing/figma" passHref>
         <CarbonLink size="lg">Figma tutorial</CarbonLink>
       </Link>
@@ -109,8 +99,9 @@ const captions = {
 }
 
 const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds }) => {
+  const displayDropdown = designTools?.length > 0
   const [filteredRows, setFilteredRows] = useState(designKitsData)
-  const [currentItem, setCurrentItem] = useState(designTools[0])
+  const [currentItem, setCurrentItem] = useState(displayDropdown && designTools[0])
 
   const designKits = designKitsData.filter((item) => {
     return designKitIds?.includes(item.id)
@@ -161,13 +152,13 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     <>
       <Grid className={styles.grid} narrow>
         <Column sm={4} md={8} lg={4}>
-          <Dropdown
+          {displayDropdown && <Dropdown
             id="filter data table"
             size="lg"
             items={designTools}
             onChange={handleFilterChange}
             selectedItem={`Tool: ${currentItem}`}
-          />
+          />}
         </Column>
       </Grid>
       <DataTable rows={filteredRows} headers={headerData}>
@@ -200,7 +191,7 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
           </Table>
         )}
       </DataTable>
-      {captions[currentItem]}
+      {displayDropdown && captions[currentItem]}
     </>
   )
 }

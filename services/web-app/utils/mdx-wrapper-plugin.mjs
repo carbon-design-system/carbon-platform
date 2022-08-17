@@ -26,6 +26,7 @@ const mdxWrapperPlugin = () => (tree, file) => {
   description="${data?.matter?.description || ''}"
   tabs={${JSON.stringify(data?.matter?.tabs || [])}}
   keywords={${JSON.stringify(data?.matter?.keywords || [])}}
+  pageHeaderType="${data?.matter?.pageHeaderType || ''}
 />
 `
 

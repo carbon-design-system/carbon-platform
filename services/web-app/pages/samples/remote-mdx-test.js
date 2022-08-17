@@ -12,7 +12,7 @@ import { processMdxSource } from '@/utils/mdx'
 
 const RemoteMdxTest = ({ compiledSource, tabs, mdxError, warnings }) => {
   const frontmatter = compiledSource?.data?.matter || {}
-  const { title, description, keywords } = frontmatter
+  const { title, description, keywords, pageHeaderType } = frontmatter
 
   return (
     <MdxPage
@@ -22,6 +22,7 @@ const RemoteMdxTest = ({ compiledSource, tabs, mdxError, warnings }) => {
       tabs={tabs}
       mdxError={mdxError}
       warnings={warnings}
+      pageHeaderType={pageHeaderType}
     >
       {compiledSource && <MDXRemote compiledSource={compiledSource.value} />}
     </MdxPage>

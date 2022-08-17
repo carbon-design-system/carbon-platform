@@ -15,6 +15,7 @@ import slugify from 'slugify'
 import PageHeader from '@/components/page-header'
 import PageTabs from '@/components/page-tabs'
 import { assetsNavData } from '@/data/nav-data'
+import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout'
 
 import ContentNotFoundExceptionContent from './errors/content-not-found-exception-content'
@@ -79,13 +80,23 @@ const createSeo = ({ title, description, keywords }) => {
   )
 }
 
-const MdxPage = ({ title, description, keywords, tabs, mdxError, warnings, children }) => {
+const MdxPage = ({
+  title,
+  description,
+  keywords,
+  tabs,
+  mdxError,
+  warnings,
+  children,
+  pageHeaderType
+}) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
   const areTabsPresent = tabs && tabs.length > 0
   const pathSegments = router.asPath.split('/').filter(Boolean)
   pathSegments.pop()
   const baseSegment = pathSegments.join('/')
+  const pageHeader = pageHeaders[pageHeaderType] ?? {}
 
   useEffect(() => {
     setPrimaryNavData(assetsNavData)
@@ -94,7 +105,14 @@ const MdxPage = ({ title, description, keywords, tabs, mdxError, warnings, child
   return (
     <>
       {createSeo({ title, description, keywords })}
-      {title && <PageHeader title={title} withTabs={areTabsPresent} />}
+      {title && (
+        <PageHeader
+          title={title}
+          withTabs={areTabsPresent}
+          bgColor={pageHeader?.bgColor}
+          pictogram={pageHeader?.icon}
+        />
+      )}
       {areTabsPresent && <PageTabs title={title} tabs={getTabData(tabs, baseSegment)} />}
       {createPageContent({ children, mdxError, warnings })}
     </>
@@ -122,6 +140,10 @@ MdxPage.propTypes = {
     message: PropTypes.string,
     stack: PropTypes.string
   }),
+  /**
+   * page header type that determines background color and pictogram
+   */
+  pageHeaderType: PropTypes.string,
   /**
    * Tabs to display on the page.
    */

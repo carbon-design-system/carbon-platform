@@ -5,35 +5,40 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { gray } from '@carbon/colors'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
-import { type as typeMap } from '@/data/type'
+import { assetTypes } from '@/data/asset-types'
 
 import styles from './type-tag.module.scss'
 
-const TypeTag = ({ className, type }) => {
-  const item = typeMap[type]
+const TypeTag = ({ className, name, type }) => {
+  const item = assetTypes[type]
 
-  if (!item) return null
+  const tagName = item?.name ?? name
+  const bgColor = item?.bgColor ?? gray[20]
+  const textColor = item?.textColor ?? gray[70]
 
-  const { name, bgColor, textColor } = item
-
-  if (!name || !bgColor || !textColor) return null
+  if (!tagName) return null
 
   return (
     <span
       className={clsx(styles.container, className)}
-      style={{ '--cds-background': bgColor, '--cds-text-primary': textColor }}
+      style={{
+        '--cds-background': bgColor,
+        '--cds-text-primary': textColor
+      }}
     >
-      {name}
+      {tagName}
     </span>
   )
 }
 
 TypeTag.propTypes = {
   className: PropTypes.string,
-  type: PropTypes.oneOf(Object.keys(typeMap))
+  name: PropTypes.string,
+  type: PropTypes.oneOf(Object.keys(assetTypes))
 }
 
 export default TypeTag

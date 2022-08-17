@@ -24,7 +24,8 @@ export const remotePages = {
     filePath: '/src/pages/case-studies/overview.mdx'
   },
   'data-visualization/legends': {
-    filePath: '/src/pages/data-visualization/legends/index.mdx'
+    filePath: '/src/pages/data-visualization/legends/index.mdx',
+    pageHeaderType: 'collection'
   },
   'contributing/bugs-and-requests': {},
   'contributing/icons': {
@@ -41,13 +42,16 @@ export const remotePages = {
     filePath: '/src/pages/contributing/contribute-pictograms.mdx'
   },
   'data-visualization/axes-and-labels': {
-    filePath: '/src/pages/data-visualization/axes-and-labels/index.mdx'
+    filePath: '/src/pages/data-visualization/axes-and-labels/index.mdx',
+    pageHeaderType: 'collection'
   },
   'data-visualization/dashboards': {
-    filePath: '/src/pages/data-visualization/dashboards/index.mdx'
+    filePath: '/src/pages/data-visualization/dashboards/index.mdx',
+    pageHeaderType: 'collection'
   },
   'data-visualization/get-started': {
-    filePath: '/src/pages/data-visualization/getting-started/index.mdx'
+    filePath: '/src/pages/data-visualization/getting-started/index.mdx',
+    pageHeaderType: 'collection'
   },
   'elements/2x-grid/overview': {
     filePath: '/src/pages/guidelines/2x-grid/overview.mdx'

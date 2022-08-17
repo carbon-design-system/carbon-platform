@@ -46,6 +46,7 @@ const LibraryPage = ({ compiledSource, mdxError, warnings, navData, navTitle, li
         keywords={keywords}
         mdxError={mdxError}
         warnings={warnings}
+        pageHeaderType="library"
       >
         {compiledSource && <MDXRemote compiledSource={compiledSource.value} />}
       </MdxPage>

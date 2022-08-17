@@ -75,11 +75,7 @@ export const getLibraryNavData = (params, libraryData) => {
         title: 'Design kits',
         path: `/libraries/${params.library}/${params.ref}/design-kits`
       },
-      ...libraryNavData.filter((item) => !item.hidden),
-      {
-        title: 'Versions',
-        path: `/libraries/${params.library}/${params.ref}/versions`
-      }
+      ...libraryNavData.filter((item) => !item.hidden)
     ],
     path: `/libraries/${params.library}/${params.ref}`
   }

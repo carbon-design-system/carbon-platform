@@ -12,7 +12,7 @@ import { defaultFilePathPrefix, defaultParams, remotePages } from '@/data/remote
 import { getRemoteMdxSource } from '@/lib/github'
 import { processMdxSource } from '@/utils/mdx'
 
-const RemoteMdxPage = ({ compiledSource, tabs, mdxError, warnings }) => {
+const RemoteMdxPage = ({ compiledSource, tabs, mdxError, warnings, pageHeaderType }) => {
   const frontmatter = compiledSource?.data?.matter || {}
   const { title, description, keywords } = frontmatter
 
@@ -24,6 +24,7 @@ const RemoteMdxPage = ({ compiledSource, tabs, mdxError, warnings }) => {
       tabs={tabs}
       mdxError={mdxError}
       warnings={warnings}
+      pageHeaderType={pageHeaderType}
     >
       {compiledSource && <MDXRemote compiledSource={compiledSource.value} />}
     </MdxPage>
@@ -71,7 +72,9 @@ export const getStaticProps = async ({ params }) => {
   return {
     props: {
       ...safeSource,
-      tabs
+      tabs,
+      pageHeaderType:
+        pageData.pageHeaderType ?? safeSource?.compiledSource?.data?.matter?.pageHeaderType ?? null
     }
   }
 }

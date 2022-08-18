@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Download, Launch } from '@carbon/icons-react'
 import {
   Column,
   DataTable,
@@ -43,6 +44,10 @@ const headerData = [
   {
     header: '',
     key: 'action'
+  },
+  {
+    header: '',
+    key: 'url'
   }
 ]
 
@@ -113,7 +118,7 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     return designKitIds?.includes(item.id)
   })
 
-  // alphabetically sort by maintainer, after first rendering IBM Brand kits
+  // after first rendering IBM Brand kits, alphabetically sort by maintainer
   const [orderedDesignKits] = useState(
     designKits.sort((a, b) => {
       if (a.maintainer?.toLowerCase() === 'ibm-brand') {
@@ -144,7 +149,7 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     setFilteredRows(filterByDesignTool())
   }, [currentItem, filterByDesignTool])
 
-  // only render the first maintainer within the respective group
+  // only render the first maintainer name within the respective group
   const hideRepeatedMaintainer = (array) => {
     let previousValue = ''
     array.forEach((row, index) => {
@@ -172,45 +177,59 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
           )}
         </Column>
       </Grid>
-      <DataTable rows={filteredRows} headers={headerData}>
-        {({ rows, headers, getHeaderProps, getTableProps, i }) => (
-          <Table {...getTableProps()}>
-            <TableHead>
-              <TableRow>
-                {headers.map((header) => (
-                  <TableHeader key={i} {...getHeaderProps({ header })}>
-                    {header.header}
-                  </TableHeader>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {hideRepeatedMaintainer(rows).map((row, i) => (
-                <Link
-                  key={i}
-                  href={
-                    'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md'
-                  }
-                  passHref
-                >
-                  <TableRow key={i}>
-                    <TableCell>{teams[row.cells[0].value]?.name}</TableCell>
-                    <TableCell>{row.cells[1].value}</TableCell>
-                    <TableCell>
-                      <Tag type={tagColor[row.cells[2].value]}>
-                        {row.cells[2].value === 'ui'
-                          ? 'UI'
-                          : row.cells[2].value[0].toUpperCase() + row.cells[2].value.slice(1)}
-                      </Tag>
-                    </TableCell>
-                    <TableCell>{row.cells[3].value}</TableCell>
+      <Grid className={styles.grid} narrow>
+        <Column sm={4} md={8} lg={16}>
+          <DataTable rows={filteredRows} headers={headerData}>
+            {({ rows, headers, getHeaderProps, getTableProps, i }) => (
+              <Table {...getTableProps()}>
+                <TableHead>
+                  <TableRow>
+                    {headers.map((header, index) => {
+                      if (index === 4) {
+                        return null
+                      } else {
+                        return (
+                          <TableHeader key={i} {...getHeaderProps({ header })}>
+                            {header.header}
+                          </TableHeader>
+                        )
+                      }
+                    })}
                   </TableRow>
-                </Link>
-              ))}
-            </TableBody>
-          </Table>
-        )}
-      </DataTable>
+                </TableHead>
+                <TableBody>
+                  {hideRepeatedMaintainer(rows).map((row, i) => (
+                    <TableRow key={i}>
+                      <TableCell>{teams[row.cells[0].value]?.name}</TableCell>
+                      <TableCell>{row.cells[1].value}</TableCell>
+                      <TableCell>
+                        <Tag type={tagColor[row.cells[2].value]}>
+                          {row.cells[2].value === 'ui'
+                            ? 'UI'
+                            : row.cells[2].value[0].toUpperCase() + row.cells[2].value.slice(1)}
+                        </Tag>
+                      </TableCell>
+                      <TableCell>
+                        <Link key={i} href={row.cells[4].value}>
+                          <a className={styles['row-anchor']}>
+                            <span className={styles['row-icon']}>
+                              {row.cells[3].value === 'download' ? (
+                                <Download size={16} />
+                              ) : (
+                                <Launch size={16} />
+                              )}
+                            </span>
+                          </a>
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            )}
+          </DataTable>
+        </Column>
+      </Grid>
       {displayDropdown && captions[currentItem]}
     </>
   )

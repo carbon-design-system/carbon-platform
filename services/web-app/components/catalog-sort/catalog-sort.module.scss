@@ -69,6 +69,7 @@
   :global(.cds--dropdown) {
     position: static;
     flex-grow: 1;
+    border: none;
   }
 
   // overide carbon max-width

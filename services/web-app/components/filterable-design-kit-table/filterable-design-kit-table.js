@@ -213,11 +213,13 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
                         <Link key={i} href={row.cells[4].value}>
                           <a className={styles['row-anchor']}>
                             <span className={styles['row-icon']}>
-                              {row.cells[3].value === 'download' ? (
-                                <Download size={16} />
-                              ) : (
-                                <Launch size={16} />
-                              )}
+                              {(row.cells[3].value === 'download')
+                                ? (
+                                  <Download size={16} />
+                                )
+                                : (
+                                  <Launch size={16} />
+                                )}
                             </span>
                           </a>
                         </Link>

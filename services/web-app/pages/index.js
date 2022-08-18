@@ -71,7 +71,7 @@ const PageContent = () => {
         </ArtDirection>
       </FeatureCard>
 
-      <Divider className={styles['divider--fixed-height']}>
+      <Divider>
         <Grid>
           <Column sm={4} md={2} lg={4}>
             <H2 className={clsx(styles['start-heading'], styles['start-heading--designing'])}>
@@ -88,7 +88,7 @@ const PageContent = () => {
           </Column>
         </Grid>
       </Divider>
-      <Divider className={styles['divider--fixed-height']}>
+      <Divider>
         <Grid>
           <Column sm={4} md={2} lg={4}>
             <H2 className={clsx(styles['start-heading'], styles['start-heading--developing'])}>

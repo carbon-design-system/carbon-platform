@@ -63,16 +63,6 @@
   color: colors.$blue-60;
 }
 
-// .divider--fixed-height {
-//   // fixed height minus default padding
-//   height: calc(convert.rem(304px) - spacing.$spacing-10);
-//   @include breakpoint.breakpoint(md) {
-//     height: calc(convert.rem(192px) - spacing.$spacing-10);
-//   }
-//   @include breakpoint.breakpoint(lg) {
-//     height: calc(convert.rem(184px) - spacing.$spacing-10);
-//   }
-// }
 .container {
   .intro-paragraph + [class*='divider'] {
     margin-top: spacing.$spacing-06;

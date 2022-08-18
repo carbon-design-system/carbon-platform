@@ -25,6 +25,7 @@ import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import { FeatureCard } from '@/components/feature-card/feature-card'
 import Hero from '@/components/hero'
+import H2 from '@/components/markdown/h2'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
@@ -58,11 +59,11 @@ const PageContent = () => {
       <div className={styles.highlights}>
         <Grid className={styles['highlight-grid']}>
           <Column sm={4} md={8} lg={8} xlg={7}>
-            <h2 className={styles.subheading}>
+            <H2 className={styles['h2-container']} headingClassName={styles.subheading}>
               The new Carbon Design System provides a single place to find and use all open and
               inner source assets teams need to build consistent, scalable experiences with
               confidence.
-            </h2>
+            </H2>
           </Column>
         </Grid>
         {highlights.map((highlight, i) => (
@@ -99,9 +100,7 @@ const PageContent = () => {
       </Grid>
       <Grid className={styles['highlight-grid']}>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <h2 className={clsx(styles.subheading, styles['subheading--no-padding'])}>
-            Asset catalogs
-          </h2>
+          <H2 className={styles['h2-container']}>Asset catalogs</H2>
           <p className={styles['subheading-content']}>
             Asset catalogs allow you to search across all open and inner source resources and apply
             complex filters for any scenario—so that you can apply other teams’ knowledge to your
@@ -208,9 +207,7 @@ const PageContent = () => {
       </Grid>
       <Grid className={styles['highlight-grid']}>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <h2 className={clsx(styles.subheading, styles['subheading--no-padding'])}>
-            Asset collections
-          </h2>
+          <H2 className={styles['h2-container']}>Asset collections</H2>
           <p className={styles['subheading-content']}>
             Collections allow you to explore curated lists of assets, like a playlist, so that you
             can easily locate your relevant resources when you come back.
@@ -231,9 +228,7 @@ const PageContent = () => {
       </FeatureCard>
       <Grid className={styles['highlight-grid']}>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <h2 className={clsx(styles.subheading, styles['subheading--no-padding'])}>
-            Featured libraries
-          </h2>
+          <H2 className={clsx(styles['h2-container'], styles['no-padding'])}>Featured libraries</H2>
           <p className={styles['subheading-content']}>
             Libraries are the means to contribute, install, and use one or many assets in products
             and digital experiences.
@@ -263,7 +258,7 @@ const PageContent = () => {
       </Grid>
       <Grid>
         <Column sm={4} md={8} className={styles['content-column']}>
-          <h2 className={styles['content-heading']}>How PAL teams can prepare</h2>
+          <H2>How PAL teams can prepare</H2>
           <p className={styles['content-copy']}>
             Ensure your components, patterns, and functions are indexed in our unified asset
             discovery experience. To help you get started, our team will reach out to document your

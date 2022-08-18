@@ -38,7 +38,7 @@
  */
 
 .subheading {
-  padding: spacing.$spacing-10 0;
+  padding-bottom: spacing.$spacing-10;
   @include type.type-style('fluid-heading-04', true);
   @include breakpoint.breakpoint(md) {
     padding-right: spacing.$spacing-06;
@@ -46,14 +46,18 @@
   @include breakpoint.breakpoint(lg) {
     padding-right: spacing.$spacing-05;
   }
+}
 
-  &--no-padding {
-    padding: 0;
-  }
+.h2-container.h2-container {
+  margin-top: spacing.$spacing-10;
+}
+
+.h2-container.no-padding {
+  margin-top: 0;
 }
 
 .subheading-medium {
-  padding: spacing.$spacing-10 0;
+  padding-top: spacing.$spacing-10;
   @include type.type-style('fluid-heading-04', true);
 }
 
@@ -65,16 +69,12 @@
 .subheading-content {
   @include type.type-style('body-long-02');
 
-  padding: spacing.$spacing-06 0;
+  padding-bottom: spacing.$spacing-06;
 }
 
 /**
  * Dashboard
  */
-
-.dashboard {
-  padding-bottom: spacing.$spacing-10;
-}
 
 .dashboard-label {
   @include type.type-style('expressive-heading-03', true);
@@ -211,11 +211,6 @@
   @include breakpoint.breakpoint(xlg) {
     padding-right: spacing.$spacing-06;
   }
-}
-
-.content-heading {
-  margin-top: spacing.$spacing-11;
-  @include type.type-style('fluid-heading-04', true);
 }
 
 .content-copy {

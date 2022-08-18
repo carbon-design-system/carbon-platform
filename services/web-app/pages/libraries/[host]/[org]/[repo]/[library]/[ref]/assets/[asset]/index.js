@@ -26,12 +26,12 @@ import PageHeader from '@/components/page-header'
 import PageNav from '@/components/page-nav'
 import PageTabs from '@/components/page-tabs'
 import StatusIcon from '@/components/status-icon'
+import { assetTypes } from '@/data/asset-types'
 import { framework } from '@/data/framework'
 import { libraryAllowList } from '@/data/libraries.mjs'
 import { assetsNavData } from '@/data/nav-data'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
-import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getAssetIssueCount, getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
@@ -169,9 +169,9 @@ const Asset = ({ libraryData, params }) => {
       <Grid>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <PageHeader
-            bgColor={get(type, `[${assetData.content.type}].bgColor`)}
+            bgColor={get(assetTypes, `[${assetData.content.type}].bgColor`)}
             title={seo.title}
-            pictogram={get(type, `[${assetData.content.type}].icon`)}
+            pictogram={get(assetTypes, `[${assetData.content.type}].icon`)}
             withTabs
           />
           <PageBreadcrumb items={breadcrumbItems} />
@@ -222,7 +222,7 @@ const Asset = ({ libraryData, params }) => {
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>Type</dt>
                       <dd className={dashboardStyles.meta}>
-                        {get(type, `[${assetData.content.type}].name`, '–')}
+                        {get(assetTypes, `[${assetData.content.type}].name`, '–')}
                       </dd>
                     </Column>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>

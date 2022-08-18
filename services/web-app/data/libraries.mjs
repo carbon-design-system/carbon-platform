@@ -133,57 +133,6 @@ const prodLibraries = {
     path: '/packages/security',
     maintainer: 'ibm-security'
   },
-  // 'carbon-angular': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon-components-angular',
-  //   path: '/',
-  //   maintainer: 'ai-apps',
-  //   group: carbonComponentsGroup
-  // },
-  // 'carbon-vue': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon-components-vue',
-  //   path: '/packages/core',
-  //   group: carbonComponentsGroup
-  // },
-  // 'carbon-svelte': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon-components-svelte',
-  //   path: '/',
-  //   group: carbonComponentsGroup
-  // },
-  // 'carbon-web-components': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon-web-components',
-  //   path: '/',
-  //   maintainer: 'ibm-dotcom',
-  //   group: carbonComponentsGroup
-  // },
-  // 'carbon-cli': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/cli',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-cli-reporter': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/cli-reporter',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-colors': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/colors',
-  //   maintainer: 'carbon'
-  // },
   'carbon-components': {
     host: 'github.com',
     org: 'carbon-design-system',
@@ -192,118 +141,6 @@ const prodLibraries = {
     group: carbonComponentsGroup,
     ref: 'v10'
   },
-  // 'carbon-elements': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/elements',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-feature-flags': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/feature-flags',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-grid': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/grid',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-icons': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/icons',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-icons-handlebars': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/icons-handlebars',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-icons-react': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/icons-react',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-icons-vue': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/icons-vue',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-layout': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/layout',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-motion': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/motion',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-patterns': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/patterns',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-pictograms': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/pictograms',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-pictograms-react': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/pictograms-react',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-themes': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/themes',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-type': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/type',
-  //   maintainer: 'carbon'
-  // },
-  // 'carbon-upgrade': {
-  //   host: 'github.ibm.com',
-  //   org: 'matt-rosno',
-  //   repo: 'carbon',
-  //   path: '/packages/upgrade',
-  //   maintainer: 'carbon'
-  // },
-  // 'cloud-pal': {
-  //   host: 'github.ibm.com',
-  //   org: 'francine-lucca',
-  //   repo: 'ibmcloud-pal',
-  //   path: '/patterns',
-  //   maintainer: 'ibm-cloud'
-  // },
   'ibmdotcom-react': {
     host: 'github.com',
     org: 'carbon-design-system',
@@ -342,36 +179,6 @@ const prodLibraries = {
     path: '/packages/utilities',
     maintainer: 'ibm-dotcom'
   }
-  // 'ibm-security': {
-  //   host: 'github.ibm.com',
-  //   org: 'jdharvey',
-  //   repo: 'ibm-security',
-  //   path: '/',
-  //   maintainer: 'ibm-security'
-  // },
-  // 'watson-moments-react': {
-  //   host: 'github.ibm.com',
-  //   org: 'andrea-cardona',
-  //   repo: 'carbon-watson-moments',
-  //   path: '/packages/react',
-  //   maintainer: 'watson',
-  //   group: watsonMomentsGroup
-  // },
-  // 'watson-moments-styles': {
-  //   host: 'github.ibm.com',
-  //   org: 'andrea-cardona',
-  //   repo: 'carbon-watson-moments',
-  //   path: '/packages/styles',
-  //   maintainer: 'watson',
-  //   group: watsonMomentsGroup
-  // },
-  // 'gatsby-theme-carbon': {
-  //   host: 'github.ibm.com',
-  //   org: 'francine-lucca',
-  //   repo: 'gatsby-theme-carbon',
-  //   path: '/packages/gatsby-theme-carbon',
-  //   maintainer: 'carbon'
-  // },
 }
 
 /**
@@ -429,20 +236,13 @@ const devLibraries = {
     maintainer: 'carbon',
     group: carbonComponentsGroup
   },
-  'carbon-components-angular': {
-    host: 'github.com',
-    org: 'IBM',
-    repo: 'carbon-components-angular',
-    path: '/src',
-    group: carbonComponentsGroup
-  },
-  'carbon-components': {
+  'carbon-react': {
     host: 'github.com',
     org: 'carbon-design-system',
     repo: 'carbon',
-    path: '/packages/components',
-    group: carbonComponentsGroup,
-    ref: 'v10'
+    path: '/packages/react',
+    maintainer: 'carbon',
+    group: carbonComponentsGroup
   },
   'carbon-components-vue': {
     host: 'github.com',
@@ -452,12 +252,11 @@ const devLibraries = {
     packageJsonPath: '/../package.json',
     group: carbonComponentsGroup
   },
-  'carbon-react': {
+  'carbon-components-angular': {
     host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon',
-    path: '/packages/react',
-    maintainer: 'carbon',
+    org: 'IBM',
+    repo: 'carbon-components-angular',
+    path: '/src',
     group: carbonComponentsGroup
   },
   'carbon-components-svelte': {
@@ -466,6 +265,28 @@ const devLibraries = {
     repo: 'carbon-components-svelte',
     path: '/',
     group: carbonComponentsGroup
+  },
+  'ibm-cloud-cognitive': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'ibm-cloud-cognitive',
+    path: '/packages/cloud-cognitive',
+    maintainer: 'ibm-products'
+  },
+  'ibm-security': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'ibm-cloud-cognitive',
+    path: '/packages/security',
+    maintainer: 'ibm-security'
+  },
+  'carbon-components': {
+    host: 'github.com',
+    org: 'carbon-design-system',
+    repo: 'carbon',
+    path: '/packages/components',
+    group: carbonComponentsGroup,
+    ref: 'v10'
   },
   'ibmdotcom-react': {
     host: 'github.com',
@@ -504,20 +325,6 @@ const devLibraries = {
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/utilities',
     maintainer: 'ibm-dotcom'
-  },
-  'ibm-cloud-cognitive': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'ibm-cloud-cognitive',
-    path: '/packages/cloud-cognitive',
-    maintainer: 'ibm-products'
-  },
-  'ibm-security': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'ibm-cloud-cognitive',
-    path: '/packages/security',
-    maintainer: 'ibm-security'
   }
 }
 

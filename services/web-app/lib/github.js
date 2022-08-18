@@ -9,17 +9,13 @@ import { Logging } from '@carbon-platform/api/logging'
 import resources from '@carbon-platform/resources/carbon.yml'
 import yaml from 'js-yaml'
 import { get, isEmpty, set } from 'lodash'
-import { serialize } from 'next-mdx-remote/serialize'
 import path from 'path'
-import rehypeUrls from 'rehype-urls'
-import remarkGfm from 'remark-gfm'
-import unwrapImages from 'remark-unwrap-images'
 import slugify from 'slugify'
 
 import { designKitAllowList, designKitSources } from '@/data/design-kits'
 import { libraryAllowList } from '@/data/libraries.mjs'
-import { getResponse } from '@/lib/file-cache'
-import { mdxImgResolver } from '@/utils/mdx-image-resolver'
+import { ContentNotFoundException } from '@/exceptions/content-not-found-exception'
+import { getResponse, getSvgResponse } from '@/lib/file-cache'
 import { getAssetErrors, getDesignKitErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
@@ -79,11 +75,7 @@ export const getLibraryNavData = (params, libraryData) => {
         title: 'Design kits',
         path: `/libraries/${params.library}/${params.ref}/design-kits`
       },
-      ...libraryNavData.filter((item) => !item.hidden),
-      {
-        title: 'Versions',
-        path: `/libraries/${params.library}/${params.ref}/versions`
-      }
+      ...libraryNavData.filter((item) => !item.hidden)
     ],
     path: `/libraries/${params.library}/${params.ref}`
   }
@@ -91,11 +83,12 @@ export const getLibraryNavData = (params, libraryData) => {
 
 /**
  * Retrieves Mdx file from github repo and serializes it for rendering
- * @param {import('../typedefs').Params} repoParams - Partially-complete parameters
- * @param {string} mdxPath - path to Mdx from repo source
- * @returns {Promise<import('../typedefs').RemoteMdxResponse>} Mdx Source Object
+ * @param {import('../typedefs').Params} repoParams Partially-complete parameters
+ * @param {string} mdxPath Path to Mdx from repo source
+ * @returns {Promise<string>} Mdx Source Content
  */
-export const getRemoteMdxData = async (repoParams, mdxPath) => {
+export const getRemoteMdxSource = async (repoParams, mdxPath) => {
+  logging.info(`Getting remote MDX for ${JSON.stringify(repoParams)} ${mdxPath}`)
   /**
    * @type {import('../typedefs').GitHubContentResponse}
    */
@@ -116,11 +109,13 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
     )
 
     if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, mdxPath), 5)) {
-      // mdxPath doesn't belong to this repo and doesn't pass security check
-      logging.info(
+      logging.warn(
         `Skipping remote mdx content from ${repoParams.host}/${repoParams.org}/${repoParams.repo} due to invalid path ${mdxPath}`
       )
-      return null
+
+      const err = new ContentNotFoundException(mdxPath)
+      logging.warn(err)
+      throw err
     }
   }
 
@@ -132,39 +127,19 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
       ref: repoParams.ref
     })
   } catch (err) {
-    logging.error(err)
+    logging.warn(err)
+
+    if (err.name === 'HttpError' && err.message === 'Not Found') {
+      throw new ContentNotFoundException(mdxPath)
+    }
+
+    throw err
   }
 
-  if (!response.content) {
-    return {
-      compiledSource: (await serialize('<p>Component not found.</p>')).compiledSource,
-      frontmatter: {
-        title: 'Not found'
-      }
-    }
+  return {
+    mdxSource: Buffer.from(response.content, response.encoding).toString(),
+    url: response.html_url
   }
-
-  const usageFileSource = Buffer.from(response.content, response.encoding).toString()
-
-  const dirPath = response._links.html.split('/').slice(0, -1).join('/')
-
-  return serialize(usageFileSource, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm, unwrapImages],
-      rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
-    },
-    parseFrontmatter: true
-  }).catch(async (err) => {
-    logging.error(err)
-    // returning this for now so our app doesn't blow up in case mdx is not valid
-    return {
-      compiledSource: (await serialize('<p>Could not serialize MDX at this time.</p>'))
-        .compiledSource,
-      frontmatter: {
-        title: 'Parsing Error'
-      }
-    }
-  })
 }
 
 /**
@@ -185,6 +160,7 @@ const getRepoDefaultBranch = async (params = {}) => {
     return null
   }
 }
+
 /**
  * Validates the route's parameters and returns an object that also includes the
  *  path to the directory that contains the carbon.yml. Returns an empty object if
@@ -282,7 +258,7 @@ const validateLibraryParams = async (params = {}) => {
  * @returns {import('../typedefs').Asset[]}
  */
 const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
-  const inheritableProperties = ['name', 'description', 'type', 'tags', 'platform', 'thumbnailPath']
+  const inheritableProperties = ['name', 'description', 'type', 'tags', 'platform', 'thumbnailSvg']
 
   return assets.map((asset) => {
     const assetId = getAssetId(asset)
@@ -371,7 +347,7 @@ const validateAsset = (asset, library) => {
 
 /**
  * Finds library object in libraryAllowList from slug and returns a valid set of params
- * (if librry is valid)
+ * (if library is valid)
  * @param {string} libraryVersionSlug e.g. 'carbon-charts@0.1.121'
  * @returns {Promise<import('../typedefs').Params>}
  */
@@ -649,6 +625,39 @@ export const getLibraryData = async (params = {}) => {
 }
 
 /**
+ * Validates and returns an asset thumbnail path with the leading slash removed.
+ * @param {import('../typedefs').Params} libraryParams
+ * @param {import('../typedefs').Asset} asset
+ * @returns {string}
+ */
+const getThumbnailPath = (libraryParams = {}, asset = {}) => {
+  if (isEmpty(libraryParams) || !asset.thumbnailPath) return ''
+
+  const thumbnailPathFromRoot = path.join(libraryParams.path, asset.thumbnailPath)
+
+  const fullContentsPath = path.join(
+    'https://',
+    libraryParams.host,
+    '/repos',
+    libraryParams.org,
+    libraryParams.repo,
+    '/contents'
+  )
+
+  if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, thumbnailPathFromRoot), 5)) {
+    // thumbnailPath doesn't belong to this repo and doesn't pass security check
+    logging.info(
+      `Skipping thumbnailPath content from ${libraryParams.host}/${libraryParams.org}/${libraryParams.repo} ` +
+        ` due to invalid path ${asset.thumbnailPath}`
+    )
+
+    return ''
+  }
+
+  return removeLeadingSlash(thumbnailPathFromRoot)
+}
+
+/**
  * If the params map to a valid library in the allowlist, get the default branch if there isn't a
  * specified ref, then recursively get all asset metadata files. Find the files that are in the
  * library's subdirectory and then fetch the contents for each asset metadata file.
@@ -701,6 +710,10 @@ const getLibraryAssets = async (params = {}) => {
 
   const assetContentData = await Promise.all(assetContentPromises)
 
+  // asset thumbnails to fetch contents and optimize
+  const thumbnailPathPromises = []
+
+  // return array
   let assets = []
 
   assetContentData.forEach((response) => {
@@ -714,9 +727,33 @@ const getLibraryAssets = async (params = {}) => {
       return []
     }
 
+    Object.keys(libAssets).forEach((assetKey) => {
+      /**
+       * @type {import('../typedefs').AssetContent}
+       */
+      const asset = libAssets[assetKey]
+
+      const thumbnailPathFromRoot = getThumbnailPath(libraryParams, asset)
+
+      if (thumbnailPathFromRoot) {
+        thumbnailPathPromises.push(
+          getSvgResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+            owner: libraryParams.org,
+            repo: libraryParams.repo,
+            path: thumbnailPathFromRoot,
+            ref: libraryParams.ref
+          }).catch(() => 'Error getting SVG response')
+        )
+      }
+    })
+
     assets.push(
       ...Object.keys(libAssets).map((assetKey) => {
+        /**
+         * @type {import('../typedefs').AssetContent}
+         */
         const asset = libAssets[assetKey]
+
         return {
           params: libraryParams,
           response,
@@ -734,6 +771,38 @@ const getLibraryAssets = async (params = {}) => {
     // if fetching a specific asset, only return that
     return libraryParams.asset ? getSlug(asset.content) === libraryParams.asset : true
   })
+
+  // merge in thumbnail content
+
+  try {
+    const thumbnailContentData = await Promise.all(thumbnailPathPromises)
+
+    assets = assets.map((asset) => {
+      const thumbnailPath = getThumbnailPath(libraryParams, asset.content)
+
+      const thumbnailContentResponse = thumbnailContentData.find(
+        (response) => response.path === thumbnailPath
+      )
+
+      if (thumbnailContentResponse) {
+        asset = {
+          ...asset,
+          content: {
+            ...asset.content,
+            thumbnailSvg: Buffer.from(
+              thumbnailContentResponse.content,
+              thumbnailContentResponse.encoding
+            ).toString()
+          }
+        }
+      }
+
+      return asset
+    })
+  } catch (err) {
+    logging.error(err)
+  }
+
   return assets
 }
 

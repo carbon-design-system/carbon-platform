@@ -24,6 +24,10 @@
   max-width: 100%;
 }
 
+.error-container {
+  margin-top: spacing.$spacing-05;
+}
+
 .grid {
   @include breakpoint.breakpoint-down(lg) {
     position: relative;
@@ -63,7 +67,7 @@
 .content {
   @include type.type-style('code-02', true);
 
-  overflow-x: scroll;
+  overflow-x: auto;
   white-space: nowrap;
 
   @include breakpoint.breakpoint-down(lg) {

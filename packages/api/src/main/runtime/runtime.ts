@@ -32,7 +32,7 @@ class Runtime {
    *
    * @returns true if debug mode is enabled; false otherwise.
    */
-  public get isDebugEnabled(): boolean {
+  public get isDebugEnabled(): boolean | undefined {
     return this.config?.isDebugEnabled ?? isDebugEnabled()
   }
 

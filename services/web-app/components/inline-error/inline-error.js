@@ -18,17 +18,19 @@ export const InlineError = ({ content, title, description, href, link }) => {
   })
 
   return (
-    <Grid>
-      <Column sm={4} md={6} lg={12}>
+    <Grid narrow className={styles['error-container']}>
+      <Column sm={4} md={6} lg={16}>
         <InlineNotification href={href} className={clsx(wrapperClassName)}>
           <Grid className={styles.grid}>
             <Column sm={4} md={6} lg={12}>
               <span className={styles.container}>
                 <strong className={styles.title}>{title}</strong>
-                <Link className={styles.link}>{link}</Link>
               </span>
               <p className={styles.description}>{description}</p>
               <p className={styles.content}>{content}</p>
+            </Column>
+            <Column sm={4} md={6} lg={4}>
+              <Link className={styles.link}>{link}</Link>
             </Column>
           </Grid>
         </InlineNotification>

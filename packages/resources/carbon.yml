@@ -140,6 +140,13 @@ designKits:
     status: stable
     url: https://github.com/IBM/design-kit/blob/master/Axure/ibm-carbon-template.rp?raw=true
     action: download
+  axure-widget-library:
+    name: Axure widget library
+    tool: axure
+    type: ui
+    status: stable
+    url: https://github.com/IBM/design-kit/blob/master/Axure/IBM%20Carbon%2010.rplib?raw=true
+    action: download
   data-viz-sketch:
     name: Data vizualization
     tool: sketch

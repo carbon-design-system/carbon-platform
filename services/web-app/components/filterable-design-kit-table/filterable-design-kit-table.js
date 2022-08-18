@@ -162,6 +162,22 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     return array
   }
 
+  const renderType = (row) => {
+    if (row.cells[2].value === 'ui') {
+      return 'UI'
+    } else {
+      return row.cells[2].value[0].toUpperCase() + row.cells[2].value.slice(1)
+    }
+  }
+
+  const renderIcon = (row) => {
+    if (row.cells[3].value === 'download') {
+      return <Download size={16} />
+    } else {
+      return <Launch size={16} />
+    }
+  }
+
   return (
     <>
       <Grid className={styles.grid} narrow>
@@ -203,24 +219,12 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
                       <TableCell>{teams[row.cells[0].value]?.name}</TableCell>
                       <TableCell>{row.cells[1].value}</TableCell>
                       <TableCell>
-                        <Tag type={tagColor[row.cells[2].value]}>
-                          {row.cells[2].value === 'ui'
-                            ? 'UI'
-                            : row.cells[2].value[0].toUpperCase() + row.cells[2].value.slice(1)}
-                        </Tag>
+                        <Tag type={tagColor[row.cells[2].value]}>{renderType(row)}</Tag>
                       </TableCell>
                       <TableCell>
                         <Link key={i} href={row.cells[4].value}>
                           <a className={styles['row-anchor']}>
-                            <span className={styles['row-icon']}>
-                              {(row.cells[3].value === 'download')
-                                ? (
-                                  <Download size={16} />
-                                )
-                                : (
-                                  <Launch size={16} />
-                                )}
-                            </span>
+                            <span className={styles['row-icon']}>{renderIcon(row)}</span>
                           </a>
                         </Link>
                       </TableCell>

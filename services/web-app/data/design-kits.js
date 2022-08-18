@@ -143,6 +143,9 @@ const designKitAllowList = {
   },
   'color-styles-figma': {
     maintainer: 'ibm-brand'
+  },
+  'axure-widget-library': {
+    maintainer: 'community'
   }
 }
 

@@ -26,6 +26,7 @@ import PageDescription from '@/components/page-description'
 import PageHeader from '@/components/page-header'
 import ResourceCard from '@/components/resource-card'
 import { assetsNavData } from '@/data/nav-data'
+import { pageHeaders } from '@/data/page-headers'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
 import {
@@ -62,6 +63,8 @@ const Library = ({ libraryData, params, navData }) => {
   }
 
   const { name, description } = libraryData.content
+
+  const pageHeader = pageHeaders?.library ?? {}
 
   const seo = {
     title: name,
@@ -121,7 +124,11 @@ const Library = ({ libraryData, params, navData }) => {
       <NextSeo {...seo} />
       <Grid>
         <Column sm={4} md={8} lg={12}>
-          <PageHeader title={seo.title} />
+          <PageHeader
+            bgColor={pageHeader?.bgColor}
+            title={seo.title}
+            pictogram={pageHeader?.icon}
+          />
         </Column>
         <Column sm={4} md={6} lg={8}>
           <PageDescription className={styles['page-description']}>

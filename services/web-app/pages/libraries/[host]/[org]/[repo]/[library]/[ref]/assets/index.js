@@ -30,6 +30,7 @@ import AssetCatalogItemMeta from '@/components/asset-catalog-item/asset-catalog-
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
 import { assetsNavData } from '@/data/nav-data'
+import { pageHeaders } from '@/data/page-headers'
 import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData, getLibraryNavData } from '@/lib/github'
@@ -90,6 +91,8 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
 
   const { description } = libraryData.content
 
+  const pageHeader = pageHeaders?.library ?? {}
+
   const seo = {
     title: 'Assets',
     description
@@ -130,7 +133,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
         assetRow.type = (
           <div style={{ display: 'flex' }}>
             <TypeTag type={asset.content.type} className={styles.tag} />
-            <TypeTag type={'design-only'} className={clsx(styles['design-tag'], styles.tag)} />
+            <TypeTag name="Design only" className={clsx(styles['design-tag'], styles.tag)} />
           </div>
         )
       }
@@ -144,7 +147,11 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
       <NextSeo {...seo} />
       <Grid className={styles['library-assets-container']}>
         <Column sm={4} md={8} lg={12}>
-          <PageHeader title={seo.title} />
+          <PageHeader
+            bgColor={pageHeader?.bgColor}
+            title={seo.title}
+            pictogram={pageHeader?.icon}
+          />
         </Column>
         <Column sm={4} md={8} lg={12}>
           <Grid>

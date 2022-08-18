@@ -32,7 +32,7 @@ class LogDnaService {
    * @param logEntry The log to send to LogDNA.
    */
   public log(logEntry: LogLoggedMessage) {
-    this.logDnaLogger?.log(logEntry.message, {
+    this.logDnaLogger?.log(String(logEntry.message), {
       app: 'service:' + logEntry.service,
       env: logEntry.environment,
       indexMeta: true,

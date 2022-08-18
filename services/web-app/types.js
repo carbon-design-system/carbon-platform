@@ -46,6 +46,7 @@ export const assetContentPropTypes = PropTypes.shape({
   noIndex: PropTypes.bool,
   status: PropTypes.oneOf(['draft', 'experimental', 'stable', 'deprecated']),
   thumbnailPath: PropTypes.string,
+  thumbnailSvg: PropTypes.string,
   type: PropTypes.oneOf(['element', 'component', 'pattern', 'function', 'layout'])
 })
 

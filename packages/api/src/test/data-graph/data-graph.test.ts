@@ -73,7 +73,5 @@ test('it can get a dynamically added dev dataset entry', async (t) => {
 
   const result = await dataGraph.queryData<any>({ query: 'query wowtest { asdf { id } }' })
 
-  console.log(result)
-
   t.is(result.data.hello, 'world')
 })

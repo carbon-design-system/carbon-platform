@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { type } from '@/data/type'
+import { assetTypes } from '@/data/asset-types'
 
 export const globalNavData = [
   // remove L0 for the first release
@@ -213,28 +213,27 @@ export const assetsNavData = [
         title: 'Assets',
         items: [
           {
-            path: type.component.path,
-            title: type.component.namePlural
+            path: assetTypes.component.path,
+            title: assetTypes.component.namePlural
           },
           {
-            path: type.function.path,
-            title: type.function.namePlural
+            path: assetTypes.function.path,
+            title: assetTypes.function.namePlural
           },
           {
-            path: type.pattern.path,
-            title: type.pattern.namePlural
+            path: assetTypes.pattern.path,
+            title: assetTypes.pattern.namePlural
           },
           {
-            path: type.template.path,
-            title: type.template.namePlural
+            path: assetTypes.template.path,
+            title: assetTypes.template.namePlural
           }
         ]
       },
-      // remove elements for the first release
-      // {
-      //   path: type.element.path,
-      //   title: type.element.namePlural
-      // },
+      {
+        path: '/design-kits',
+        title: 'Design kits'
+      },
       {
         path: '/libraries',
         title: 'Libraries'

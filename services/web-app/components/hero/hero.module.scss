@@ -12,9 +12,14 @@
 @use '@carbon/react/scss/utilities/convert' as convert;
 
 $hero-height: convert.rem(560px);
+$hero-height-mobile: convert.rem(480px);
 
 .container {
-  height: $hero-height;
+  height: $hero-height-mobile;
+
+  @include breakpoint.breakpoint(md) {
+    height: $hero-height;
+  }
 
   &::before {
     position: absolute;
@@ -22,18 +27,23 @@ $hero-height: convert.rem(560px);
     top: spacing.$spacing-09;
     left: 0;
     width: calc(100vw - var(--scrollbar-width));
-    height: $hero-height;
+    height: $hero-height-mobile;
     background: theme.$background;
     content: '';
+
+    @include breakpoint.breakpoint(md) {
+      height: $hero-height;
+    }
   }
 }
 
 .column {
   position: relative;
   z-index: 1;
-  padding: spacing.$spacing-08 0;
+  padding: spacing.$spacing-07 0 spacing.$spacing-08 0;
+
   @include breakpoint.breakpoint(md) {
-    padding: (spacing.$spacing-09 + spacing.$spacing-03) 0 spacing.$spacing-05;
+    padding-bottom: spacing.$spacing-05;
   }
   @include breakpoint.breakpoint(lg) {
     padding-right: spacing.$spacing-06;
@@ -50,8 +60,10 @@ $hero-height: convert.rem(560px);
   */
 
 .homepage::before {
+  // background: theme.$background url(../../pages/index/images/assets-hero_mobile.png) no-repeat
+  //   bottom right / 100% auto;
   background: theme.$background url(../../pages/index/images/assets-hero_mobile.png) no-repeat
-    bottom right / 100% auto;
+    bottom center / auto $hero-height-mobile;
 
   @include breakpoint.breakpoint(md) {
     background: theme.$background url(../../pages/index/images/assets-hero.png) no-repeat top right /

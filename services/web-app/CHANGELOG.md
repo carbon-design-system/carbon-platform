@@ -2,6 +2,63 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.22...@carbon-platform/web-app@0.2.23) (2022-08-18)
+
+
+### Features 🌟
+
+* add colored page headers to library pages ([2c6f62f](https://github.com/carbon-design-system/carbon-platform/commit/2c6f62f1bc37958242abc4be8556387a5ae6fba8))
+* add page header colors and pictograms ([93d7512](https://github.com/carbon-design-system/carbon-platform/commit/93d7512295bb262d7b98d2e8a34fa214c1f5198b))
+* **api:** create and use mdx-sanitizer package ([8649d07](https://github.com/carbon-design-system/carbon-platform/commit/8649d07fc2d6ee6408f645acdc26754fdc089cbb))
+* finish removing svgs ([ba6a667](https://github.com/carbon-design-system/carbon-platform/commit/ba6a66715cb4ad93ccf9c9c771719b3ea3976108))
+* **mdx-sanitizer:** create interfaces, add test files ([8259849](https://github.com/carbon-design-system/carbon-platform/commit/82598493a6d50e11a52561eff16c90ce5a13c6fa))
+* resolve and render remote thumbnail paths ([1d1235e](https://github.com/carbon-design-system/carbon-platform/commit/1d1235e90478edf4916f406a90f9020c7e5cc5e4))
+* **web-app:** add anchorlinks to mdx-errors page ([d604650](https://github.com/carbon-design-system/carbon-platform/commit/d604650a2121bc53583a03a4e6ac2dfa7edfe551))
+* **web-app:** add jsdocs to mdx util, change mdx render library ([4ddbe8a](https://github.com/carbon-design-system/carbon-platform/commit/4ddbe8ab5b40ece1d19bb1c8ec6d027c995c1bf7))
+* **web-app:** add temporary rollup notification ([191220f](https://github.com/carbon-design-system/carbon-platform/commit/191220ff4834d9b2fa8623481e94138df61d1cd0))
+* **web-app:** create dynamic page for all remotely loaded mdx ([7043a0d](https://github.com/carbon-design-system/carbon-platform/commit/7043a0d2b91a92e140fe926928d62d4e025afc37))
+* **web-app:** integrate mdx-sanitizer-plugin call into web-app ([53f982e](https://github.com/carbon-design-system/carbon-platform/commit/53f982e0903ecdaddff3af7af818d354d9e86828))
+* **web-app:** mdx-sanitizer small refactor,redefine mdx loader strategy ([7ae7abe](https://github.com/carbon-design-system/carbon-platform/commit/7ae7abe11e3dea97e220fe8f76935ed680c35067))
+* **web-app:** use error UI components for mdx-sanitizer ([10a1404](https://github.com/carbon-design-system/carbon-platform/commit/10a1404d31071a8d31b35b4b9679d6d7112294f1))
+
+
+### Misc. 🔮
+
+* remote mdx, local mdx, and mdx processor ([09f9ee6](https://github.com/carbon-design-system/carbon-platform/commit/09f9ee671136eb4c57058ad2ff6841d0f2cd75d0))
+* remove a temporary console.log ([a048aac](https://github.com/carbon-design-system/carbon-platform/commit/a048aac75fd8cf852c0be9211e6b7166640035b3))
+
+
+### Bug Fixes 🐛
+
+* async and await used in getting svg response ([d3601b8](https://github.com/carbon-design-system/carbon-platform/commit/d3601b892e8ee63fc41313460f983938fb8a49cd))
+* thumbnail svg promise all error handling ([a7b68c1](https://github.com/carbon-design-system/carbon-platform/commit/a7b68c104075573083401ee70ebab14bf9316f7e))
+* use teams data for design kit maintainers ([6e4dee0](https://github.com/carbon-design-system/carbon-platform/commit/6e4dee03e65f45ebfd04fec5ee8e20aa0c850931))
+* **web-app:** add design warning comment for rollup and common mdx errs ([336fcf1](https://github.com/carbon-design-system/carbon-platform/commit/336fcf1b5728fd476ba035435655ba283ac07e8a))
+* **web-app:** add entry to common-mdx-errros, refresh cached files ([c2fe45f](https://github.com/carbon-design-system/carbon-platform/commit/c2fe45f64db33e407d08ebb4b131b7aad57b02cf))
+* **web-app:** add hrefs to errors, rename mdxParseException ([76cdeba](https://github.com/carbon-design-system/carbon-platform/commit/76cdeba400d390254eb99e902651bd28c99b8348))
+* **web-app:** cleanup old remote mdx logic ([a293cf5](https://github.com/carbon-design-system/carbon-platform/commit/a293cf5deae3ffe6033e5728f50668508735194f))
+* **web-app:** format common mdx error page ([de7e084](https://github.com/carbon-design-system/carbon-platform/commit/de7e084cfb1ff3b420c60794df0076fd4c7ecafb))
+* **web-app:** linter ([e192e4b](https://github.com/carbon-design-system/carbon-platform/commit/e192e4b18f3a4a6e03a168658b5126eb1a496072))
+* **web-app:** linter error ([b9616c5](https://github.com/carbon-design-system/carbon-platform/commit/b9616c599d1c76ff9aa115777453a126003b0520))
+* **web-app:** manually add pages with imports content ([11a1c02](https://github.com/carbon-design-system/carbon-platform/commit/11a1c022745e1d6af2943de544762257ccb94065))
+* **web-app:** merge with upstream ([e3c7bdc](https://github.com/carbon-design-system/carbon-platform/commit/e3c7bdcddc36209c4fd856adabcda12ce8927afa))
+* **web-app:** minor error UI comps fixes, enhance error handling ([019d8d8](https://github.com/carbon-design-system/carbon-platform/commit/019d8d8ee43ed809d2abefa6f8858a84956dc0e5))
+* **web-app:** missing quote in plugin ([d9af436](https://github.com/carbon-design-system/carbon-platform/commit/d9af436d8e6744eb3e4936edba32cce295c0f3ae))
+* **web-app:** package-lock.json ([3031974](https://github.com/carbon-design-system/carbon-platform/commit/30319748f604709b95636de45681b64f3e66f6ad))
+* **web-app:** pass html tags onto mdx-processor ([57de501](https://github.com/carbon-design-system/carbon-platform/commit/57de501182abd7c7d2e45956a16c14d62fa701b3))
+* **web-app:** re-add remote mdx pages, ignoreTabs on lib pages ([ea254e5](https://github.com/carbon-design-system/carbon-platform/commit/ea254e5ddebee0933f06cc55a5897e69284d00b7))
+* **web-app:** refresh cached files ([2115de3](https://github.com/carbon-design-system/carbon-platform/commit/2115de301679be41721751bdd122609a37fcd500))
+* **web-app:** refresh cached files ([2a36260](https://github.com/carbon-design-system/carbon-platform/commit/2a3626057dcf628d3452242d9eaa856efe7a2962))
+* **web-app:** refresh cached files ([e1195a5](https://github.com/carbon-design-system/carbon-platform/commit/e1195a55a508ef89a64de3bd4dc5d024c7505d67))
+* **web-app:** remove duplicate full page error, css fix ([2457b32](https://github.com/carbon-design-system/carbon-platform/commit/2457b320c1893a6b6181c6ce12da2547b0b15a5c))
+* **web-app:** remove gray-matter dependency ([024dc2a](https://github.com/carbon-design-system/carbon-platform/commit/024dc2a621f85bdfd067c5ff824858c8ae86e2b6))
+* **web-app:** remove unused component ([bb465bb](https://github.com/carbon-design-system/carbon-platform/commit/bb465bb9d6fe2d8f3217ae4fbe6490fe7d2b972e))
+* **web-app:** run prettier ([fb7a43c](https://github.com/carbon-design-system/carbon-platform/commit/fb7a43ce60717608be7c677981004ee34aebc422))
+* **web-app:** solve conflicts ([e9372e2](https://github.com/carbon-design-system/carbon-platform/commit/e9372e24aa1b0504a0f11bf68e9a37ef7cf6de7d))
+* **web-app:** update side nav z-index ([fcc97f9](https://github.com/carbon-design-system/carbon-platform/commit/fcc97f9db7c51a7eb1b81cf117b59d0de5b78584))
+* **web-app:** update side nav z-index ([85cbcb3](https://github.com/carbon-design-system/carbon-platform/commit/85cbcb3c604c0aba86d9dea15df506b663f12289))
+* **web-app:** wrong exception from mdx-processor ([b529fb6](https://github.com/carbon-design-system/carbon-platform/commit/b529fb60899b0e74cd2c61ae9150df2a37d29ff4))
+
 ### [0.2.22](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.21...@carbon-platform/web-app@0.2.22) (2022-08-17)
 
 

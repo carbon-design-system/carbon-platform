@@ -10,11 +10,23 @@
 @use '@carbon/react/scss/type' as type;
 
 /*  Spacing */
+.h1-container + *,
+.h2-container + *,
+.h3-container + *,
+.paragraph-container + * {
+  margin-top: spacing.$spacing-06;
+}
+
+.h4-container + * {
+  margin-top: 0;
+}
+
 .h1-container {
   margin-top: spacing.$spacing-12;
 }
 
-.h2-container {
+.h2-container,
+.paragraph-container + .h2-container {
   margin-top: spacing.$spacing-09;
 
   @include breakpoint.breakpoint(md) {
@@ -22,11 +34,13 @@
   }
 }
 
-.h3-container {
+.h3-container,
+.paragraph-container + .h3-container {
   margin-top: spacing.$spacing-10;
 }
 
-.h4-container {
+.h4-container,
+.paragraph-container + .h4-container {
   margin-top: spacing.$spacing-07;
 }
 
@@ -39,19 +53,6 @@
   margin-top: spacing.$spacing-06;
 }
 
-.h1-container + *,
-.h2-container + *,
-.h3-container + *,
-.paragraph--container + *,
-.paragraph--container + :not([class*='h2-container']),
-.paragraph--container + :not([class*='h3-container']),
-.paragraph--container + :not([class*='h4-container']) {
-  margin-top: spacing.$spacing-06;
-}
-
-.h4-container + * {
-  margin-top: 0;
-}
 /* Spacing List */
 .list {
   margin-top: spacing.$spacing-06;

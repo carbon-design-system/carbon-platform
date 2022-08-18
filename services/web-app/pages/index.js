@@ -7,6 +7,8 @@
 import { Column, Grid, Link as CarbonLink } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
 import {
+  StartDesigningArrow,
+  StartDevArrow,
   Svg48Components,
   Svg48Functions,
   Svg48Patterns,
@@ -72,10 +74,10 @@ const PageContent = () => {
       <Divider className={styles['divider--fixed-height']}>
         <Grid>
           <Column sm={4} md={2} lg={4}>
-            <H2>
+            <H2 className={clsx(styles['start-heading'], styles['start-heading--designing'])}>
               Start
-              <br />
               <em>Designing</em>
+              <StartDesigningArrow />
             </H2>
           </Column>
           <Column sm={4} md={6} lg={7}>
@@ -89,10 +91,10 @@ const PageContent = () => {
       <Divider className={styles['divider--fixed-height']}>
         <Grid>
           <Column sm={4} md={2} lg={4}>
-            <H2>
+            <H2 className={clsx(styles['start-heading'], styles['start-heading--developing'])}>
               Start
-              <br />
               <em>Developing</em>
+              <StartDevArrow />
             </H2>
           </Column>
           <Column sm={4} md={6} lg={7}>
@@ -296,7 +298,6 @@ const PageContent = () => {
           Get started
         </CarbonLink>
       </P>
-
       <H2>Platform roadmap</H2>
       <P>
         For designers and developers: A unified discovery experience helps designers and developers

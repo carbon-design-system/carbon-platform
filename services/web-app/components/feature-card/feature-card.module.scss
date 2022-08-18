@@ -12,12 +12,15 @@
 
 .container {
   margin-top: spacing.$spacing-06;
+
+  @include breakpoint.breakpoint(md) {
+    margin-top: spacing.$spacing-06;
+  }
 }
 
 .feature-card {
   position: relative;
   display: block;
-
   text-decoration: none;
 
   &:active {

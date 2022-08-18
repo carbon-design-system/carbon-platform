@@ -17,8 +17,13 @@
  */
 
 .intro-paragraph {
-  padding-bottom: spacing.$spacing-08;
-  margin-top: spacing.$spacing-10;
+  padding-bottom: spacing.$spacing-06;
+  margin-top: spacing.$spacing-09;
+
+  @include breakpoint.breakpoint(md) {
+    padding-bottom: spacing.$spacing-08;
+    margin-top: spacing.$spacing-10;
+  }
 
   [class*='paragraph'] {
     @include type.type-style('fluid-heading-04', true);
@@ -27,45 +32,48 @@
 
 .intro-paragraph mark {
   position: relative;
-  z-index: 1;
+  z-index: 0;
   background: transparent;
 
   &::after {
     position: absolute;
     z-index: -1;
-    top: 4px;
-    left: -4px;
+    top: calc(convert.rem(4px));
+    left: calc(convert.rem(-4px));
     display: block;
-    width: calc(100% + 8px);
+    width: calc(100% + calc(convert.rem(8px)));
     height: 84%;
-    padding: 0 5px;
+    padding: 0 spacing.$spacing-02;
     background: colors.$purple-20;
     content: '';
   }
 }
 
-.divider--fixed-height {
-  // fixed height minus default padding
-  height: calc(convert.rem(304px) - spacing.$spacing-10);
-  @include breakpoint.breakpoint(md) {
-    height: calc(convert.rem(192px) - spacing.$spacing-10);
-  }
-  @include breakpoint.breakpoint(lg) {
-    height: calc(convert.rem(184px) - spacing.$spacing-10);
-  }
+.start-heading em {
+  display: block;
+  padding-bottom: spacing.$spacing-03;
+  font-style: normal;
 }
 
+.start-heading--designing em {
+  color: colors.$purple-60;
+}
+
+.start-heading--developing em {
+  color: colors.$blue-60;
+}
+
+// .divider--fixed-height {
+//   // fixed height minus default padding
+//   height: calc(convert.rem(304px) - spacing.$spacing-10);
+//   @include breakpoint.breakpoint(md) {
+//     height: calc(convert.rem(192px) - spacing.$spacing-10);
+//   }
+//   @include breakpoint.breakpoint(lg) {
+//     height: calc(convert.rem(184px) - spacing.$spacing-10);
+//   }
+// }
 .container {
-  // custom top spacing when components are next to divider
-  [class*='divider'] + [class*='feature-card_container'],
-  [class*='divider'] + [class*='h2-container'] {
-    margin-top: spacing.$spacing-08;
-  }
-
-  [class*='divider'] + .intro-paragraph {
-    margin-top: spacing.$spacing-08;
-  }
-
   .intro-paragraph + [class*='divider'] {
     margin-top: spacing.$spacing-06;
   }
@@ -83,7 +91,6 @@
   @include type.type-style('expressive-heading-03', true);
 
   padding-bottom: spacing.$spacing-05;
-
   color: theme.$text-primary;
 }
 
@@ -91,7 +98,6 @@
   @include type.type-style('body-long-01');
 
   width: 75%;
-
   color: theme.$text-primary;
 }
 

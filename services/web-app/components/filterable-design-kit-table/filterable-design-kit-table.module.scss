@@ -18,3 +18,8 @@
     }
   }
 }
+
+// override carbon pointer styles
+:global(.cds--data-table) tbody tr {
+  cursor: pointer;
+}

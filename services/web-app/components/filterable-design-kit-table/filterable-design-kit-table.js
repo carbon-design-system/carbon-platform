@@ -39,6 +39,10 @@ const headerData = [
   {
     header: 'Type',
     key: 'type'
+  },
+  {
+    header: '',
+    key: 'action'
   }
 ]
 
@@ -59,8 +63,9 @@ const toolKeyValueMapper = {
 const captions = {
   Figma: (
     <P>
-      The links in the table for Figma Libraries are preview only. Some of the Figma kits are for internal IBMers.
-      To learn more about installing Figma Libraries and available external libraries visit the Figma tutorial{' '}
+      The links in the table for Figma Libraries are preview only. Some of the Figma kits are for
+      internal IBMers. To learn more about installing Figma Libraries and available external
+      libraries visit the Figma tutorial{' '}
       <Link href="/designing/figma" passHref>
         <CarbonLink size="lg">Figma tutorial</CarbonLink>
       </Link>
@@ -108,9 +113,12 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     return designKitIds?.includes(item.id)
   })
 
-  // alphabetically sort by maintainer, after first rendering IBM Design Language Kits
+  // alphabetically sort by maintainer, after first rendering IBM Brand kits
   const [orderedDesignKits] = useState(
     designKits.sort((a, b) => {
+      if (a.maintainer?.toLowerCase() === 'ibm-brand') {
+        return -1
+      }
       if (a.maintainer?.toLowerCase() < b.maintainer?.toLowerCase()) {
         return -1
       }
@@ -153,13 +161,15 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     <>
       <Grid className={styles.grid} narrow>
         <Column sm={4} md={8} lg={4}>
-          {displayDropdown && <Dropdown
-            id="filter data table"
-            size="lg"
-            items={designTools}
-            onChange={handleFilterChange}
-            selectedItem={`Tool: ${currentItem}`}
-          />}
+          {displayDropdown && (
+            <Dropdown
+              id="filter data table"
+              size="lg"
+              items={designTools}
+              onChange={handleFilterChange}
+              selectedItem={`Tool: ${currentItem}`}
+            />
+          )}
         </Column>
       </Grid>
       <DataTable rows={filteredRows} headers={headerData}>
@@ -175,18 +185,27 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
               </TableRow>
             </TableHead>
             <TableBody>
-              {hideRepeatedMaintainer(rows).map((row) => (
-                <TableRow key={row.value}>
-                  <TableCell>{teams[row.cells[0].value]?.name}</TableCell>
-                  <TableCell>{row.cells[1].value}</TableCell>
-                  <TableCell>
-                    <Tag type={tagColor[row.cells[2].value]}>
-                      {row.cells[2].value === 'ui'
-                        ? 'UI'
-                        : row.cells[2].value[0].toUpperCase() + row.cells[2].value.slice(1)}
-                    </Tag>
-                  </TableCell>
-                </TableRow>
+              {hideRepeatedMaintainer(rows).map((row, i) => (
+                <Link
+                  key={i}
+                  href={
+                    'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md'
+                  }
+                  passHref
+                >
+                  <TableRow key={i}>
+                    <TableCell>{teams[row.cells[0].value]?.name}</TableCell>
+                    <TableCell>{row.cells[1].value}</TableCell>
+                    <TableCell>
+                      <Tag type={tagColor[row.cells[2].value]}>
+                        {row.cells[2].value === 'ui'
+                          ? 'UI'
+                          : row.cells[2].value[0].toUpperCase() + row.cells[2].value.slice(1)}
+                      </Tag>
+                    </TableCell>
+                    <TableCell>{row.cells[3].value}</TableCell>
+                  </TableRow>
+                </Link>
               ))}
             </TableBody>
           </Table>
@@ -199,15 +218,16 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
 
 FilterableDesignKitTable.propTypes = {
   /**
-   * Pass in the children that will be rendered within the FilterableDesignKitTable
+   * Pass in designKitIdss that will be rendered within the FilterableDesignKitTable
    */
   designKitIds: PropTypes.array,
   /**
-   * Pass in the children that will be rendered within the FilterableDesignKitTable
+   * Fetch designKitsData within getStaticProps
    */
   designKitsData: PropTypes.array,
   /**
-   * Pass in the children that will be rendered within the FilterableDesignKitTable
+   * Pass in the designTools to be rendered
+   * Do not define if there is only one tool and Dropdown needs to remain hidden
    */
   designTools: PropTypes.array
 }

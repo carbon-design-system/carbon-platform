@@ -39,7 +39,7 @@ const designKitAllowList = {
     maintainer: 'ibm-brand'
   },
   'ibm-grid-sketch': {
-    maintainer: 'carbon'
+    maintainer: 'ibm-brand'
   },
   'carbon-shell-sketch': {
     maintainer: 'carbon'

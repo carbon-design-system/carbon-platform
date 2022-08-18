@@ -74,11 +74,15 @@ const PageContent = () => {
       <Divider>
         <Grid>
           <Column sm={4} md={2} lg={4}>
-            <H2 className={clsx(styles['start-heading'], styles['start-heading--designing'])}>
-              Start
-              <em>Designing</em>
-              <StartDesigningArrow />
-            </H2>
+            <h2 className={clsx(styles['start-heading'], styles['start-heading--designing'])}>
+              <Link href="/designing/get-started" passHref>
+                <CarbonLink>
+                  Start
+                  <span>Designing</span>
+                  <StartDesigningArrow />
+                </CarbonLink>
+              </Link>
+            </h2>
           </Column>
           <Column sm={4} md={6} lg={7}>
             <P large>
@@ -91,11 +95,15 @@ const PageContent = () => {
       <Divider>
         <Grid>
           <Column sm={4} md={2} lg={4}>
-            <H2 className={clsx(styles['start-heading'], styles['start-heading--developing'])}>
-              Start
-              <em>Developing</em>
-              <StartDevArrow />
-            </H2>
+            <h2 className={clsx(styles['start-heading'], styles['start-heading--developing'])}>
+              <Link href="/developing" passHref>
+                <CarbonLink>
+                  Start
+                  <span>Developing</span>
+                  <StartDevArrow />
+                </CarbonLink>
+              </Link>
+            </h2>
           </Column>
           <Column sm={4} md={6} lg={7}>
             <P large>
@@ -300,8 +308,9 @@ const PageContent = () => {
       </P>
       <H2>Platform roadmap</H2>
       <P>
-        For designers and developers: A unified discovery experience helps designers and developers
-        find and access components, patterns, and functions across all IBM teams.
+        Progress on the following releases are documented in GitHub, along with milestones,
+        estimated dates, and descriptions of high level outcomes. For a visual overview of the
+        following releases and their epics, view our roadmap in Airtable.
       </P>
       <Grid>
         <Column sm={4} md={8} lg={12}>

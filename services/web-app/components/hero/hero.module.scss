@@ -11,14 +11,14 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
-$hero-height: convert.rem(560px);
-$hero-height-mobile: convert.rem(480px);
+$hero-height-lg: convert.rem(560px);
+$hero-height-sm: convert.rem(480px);
 
 .container {
-  height: $hero-height-mobile;
+  height: $hero-height-sm;
 
-  @include breakpoint.breakpoint(md) {
-    height: $hero-height;
+  @include breakpoint.breakpoint(lg) {
+    height: $hero-height-lg;
   }
 
   &::before {
@@ -27,12 +27,12 @@ $hero-height-mobile: convert.rem(480px);
     top: spacing.$spacing-09;
     left: 0;
     width: calc(100vw - var(--scrollbar-width));
-    height: $hero-height-mobile;
+    height: $hero-height-sm;
     background: theme.$background;
     content: '';
 
-    @include breakpoint.breakpoint(md) {
-      height: $hero-height;
+    @include breakpoint.breakpoint(lg) {
+      height: $hero-height-lg;
     }
   }
 }
@@ -60,13 +60,16 @@ $hero-height-mobile: convert.rem(480px);
   */
 
 .homepage::before {
-  // background: theme.$background url(../../pages/index/images/assets-hero_mobile.png) no-repeat
-  //   bottom right / 100% auto;
   background: theme.$background url(../../pages/index/images/assets-hero_mobile.png) no-repeat
-    bottom center / auto $hero-height-mobile;
+    bottom center / auto $hero-height-sm;
 
   @include breakpoint.breakpoint(md) {
     background: theme.$background url(../../pages/index/images/assets-hero.png) no-repeat top right /
-      auto $hero-height;
+      auto $hero-height-sm;
+  }
+
+  @include breakpoint.breakpoint(lg) {
+    background: theme.$background url(../../pages/index/images/assets-hero.png) no-repeat top right /
+      auto $hero-height-lg;
   }
 }

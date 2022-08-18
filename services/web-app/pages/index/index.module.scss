@@ -49,17 +49,30 @@
   }
 }
 
-.start-heading em {
+// overide carbon link
+.start-heading :global(.cds--link) {
+  @include type.type-style('fluid-heading-04', true);
+
+  display: inline-block;
+  color: theme.$text-primary;
+  text-decoration: none;
+
+  &:hover {
+    color: theme.$text-primary;
+  }
+}
+
+.start-heading span {
   display: block;
   padding-bottom: spacing.$spacing-03;
   font-style: normal;
 }
 
-.start-heading--designing em {
+.start-heading--designing span {
   color: colors.$purple-60;
 }
 
-.start-heading--developing em {
+.start-heading--developing span {
   color: colors.$blue-60;
 }
 

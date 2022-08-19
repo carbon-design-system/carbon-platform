@@ -89,7 +89,7 @@ const ResourceCard = (props) => {
   }
 
   return (
-    <Theme theme={color === 'dark' && 'g100'}>
+    <Theme theme={color === 'dark' ? 'g100' : 'g10'}>
       <div className={ResourceCardClassNames}>
         <AspectRatio ratio={`${aspectRatio.replace(':', 'x')}`}>
           <div className="cds--aspect-ratio--object">{cardContainer}</div>

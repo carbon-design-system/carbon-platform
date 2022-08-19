@@ -19,9 +19,9 @@ const Code = ({ children }) => {
 
   const language = children.props.className?.replace('language-', '').trim()
   return (
-    <Theme theme={'g100'}>
-      <Grid condensed>
-        <Column sm={4} md={6} lg={8}>
+    <Grid condensed>
+      <Column sm={4} md={6} lg={8}>
+        <Theme theme={'g100'}>
           {path && (
             <Path src={src} path={path}>
               {children}
@@ -42,9 +42,9 @@ const Code = ({ children }) => {
               )}
             </Highlight>
           </CodeSnippet>
-        </Column>
-      </Grid>
-    </Theme>
+        </Theme>
+      </Column>
+    </Grid>
   )
 }
 

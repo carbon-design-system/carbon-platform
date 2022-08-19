@@ -87,7 +87,7 @@ const PageContent = () => {
           <Column sm={4} md={6} lg={7}>
             <P large>
               Learn how design kits are used to build consistent, scalable user interfaces — and get
-              started with your design tool of choice — Figma, Sketch, Adobe Xd.
+              started with your design tool of choice, including Figma, Sketch, Adobe XD, or Axure.
             </P>
           </Column>
         </Grid>
@@ -108,8 +108,7 @@ const PageContent = () => {
           <Column sm={4} md={6} lg={7}>
             <P large>
               Learn about libraries and access everything you need to get up and running with your
-              framework from the various choices available in Carbon — React, Angular, Web
-              components, and Vue.
+              preferred framework — React, Angular, Web Components, Vue, or Svelte.
             </P>
           </Column>
         </Grid>
@@ -277,9 +276,9 @@ const PageContent = () => {
           </Column>
           <Column sm={4} md={6} lg={7}>
             <P large>
-              <strong>For designers and developers:</strong>
-              <br />A unified discovery experience helps designers and developers find and access
-              components, patterns, and functions across all IBM teams.
+              <strong>For contributors and maintainers:</strong>
+              <br />A common schema helps PAL maintainers more easily manage their assets, keep
+              content fresh in a live index, and add version control to their libraries.
             </P>
           </Column>
         </Grid>

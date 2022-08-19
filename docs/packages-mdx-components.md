@@ -5,6 +5,36 @@ The set of components renderable in MDX files on the Carbon Platform.
 Each component has a folder containing its assets and storybook stories. There is a typescript build
 and a Sass build to compile JavaScript and styles, respectively.
 
+## Using this package
+
+This package exports two things:
+
+1. A set of React components (including some base Carbon components) that are available for use in
+   Carbon Platform MDX files
+2. A css file including the styles for the React components, but **not including** the styles for
+   the base Carbon components.
+
+**To use this package, you'll need to do the following:**
+
+1. Include the base Carbon component styles in your application
+2. Include the @carbon-platform/mdx-components styles in your application via the
+   `@carbon-platform/mdx-components/styles` export
+3. Import React components from `@carbon-platform/mdx-components` and use them in your application.
+   Example:
+
+   ```jsx
+   import { Button, ColorBlock } from '@carbon-platform/mdx-components'
+
+   // ...
+   return (
+     <>
+       <ColorBlock>#0066ff</ColorBlock>
+       <Button>Hello!</Button>
+     </>
+   )
+   // ...
+   ```
+
 ## Developing
 
 There is a convenience script available: `npm run dev`. This does two things:

@@ -8,13 +8,13 @@ import test from 'ava'
 
 import { RunMode, Runtime } from '../../../main/runtime/index.js'
 
-test.serial('returns false when the envvar is not set', (t) => {
+test.serial('returns undefined when the envvar is not set', (t) => {
   const old = process.env.CARBON_DEBUG
   delete process.env.CARBON_DEBUG
 
   const runtime = new Runtime()
 
-  t.is(runtime.isDebugEnabled, false)
+  t.is(runtime.isDebugEnabled, undefined)
 
   process.env.CARBON_DEBUG = old
 })
@@ -30,8 +30,14 @@ test.serial('returns true when the envvar is set', (t) => {
   process.env.CARBON_DEBUG = old
 })
 
-test('can be manually specified', (t) => {
+test('can be manually specified as true', (t) => {
   const runtime = new Runtime({ runMode: RunMode.Standard, isDebugEnabled: true })
 
   t.is(runtime.isDebugEnabled, true)
+})
+
+test('can be manually specified as false', (t) => {
+  const runtime = new Runtime({ runMode: RunMode.Standard, isDebugEnabled: false })
+
+  t.is(runtime.isDebugEnabled, false)
 })

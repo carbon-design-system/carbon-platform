@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.2.15",
+  "version": "0.2.24",
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
@@ -49,7 +49,6 @@
     "express-session": "^1.17.3",
     "file-loader": "^6.2.0",
     "fs-extra": "^10.1.0",
-    "gray-matter": "^4.0.3",
     "http-proxy-middleware": "^2.0.6",
     "image-extensions": "^1.1.0",
     "js-yaml": "^4.1.0",
@@ -72,7 +71,10 @@
     "rimraf": "^3.0.2",
     "sass": "^1.54.3",
     "slugify": "^1.6.5",
-    "uuid": "^8.3.2"
+    "svgo": "^2.8.0",
+    "uuid": "^8.3.2",
+    "vfile": "^5.3.4",
+    "vfile-matter": "^4.0.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.5.10",

@@ -5,18 +5,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {
+  AccessibilityAlt,
+  Bee as BeeIcon,
   Carbon,
   CarbonForIbmDotcom,
   CarbonForIbmProduct,
+  Events,
   IbmCloud,
   IbmSecurity,
   Watson
 } from '@carbon/icons-react'
+import { Advocate, Bee as BeePictogram } from '@carbon/pictograms-react'
 import {
   Svg64Carbon,
   Svg64CarbonForIbmDotcom,
   Svg64CarbonForIbmProducts,
   Svg64Cloud,
+  Svg64Community,
   Svg64Security,
   Svg64Watson
 } from '@carbon-platform/icons'
@@ -32,34 +37,49 @@ export const teams = {
     name: 'Carbon',
     pictogram: Svg64Carbon
   },
+  community: {
+    icon: Events,
+    name: 'Community',
+    pictogram: Svg64Community
+  },
   'ibm-dotcom': {
     icon: CarbonForIbmDotcom,
     name: 'IBM.com',
     pictogram: Svg64CarbonForIbmDotcom
   },
-  'ibm-cloud': {
-    icon: IbmCloud,
-    name: 'IBM Cloud',
-    pictogram: Svg64Cloud
-  },
-  'ibm-security': {
-    icon: IbmSecurity,
-    name: 'IBM Security',
-    pictogram: Svg64Security
+  'ibm-accessibility': {
+    icon: AccessibilityAlt,
+    name: 'IBM Accessibility',
+    pictogram: Advocate // This is just a placeholder pictogram for now
   },
   'ai-apps': {
     icon: Watson,
     name: 'IBM AI Apps',
     pictogram: Svg64Watson
   },
-  watson: {
-    icon: Watson,
-    name: 'IBM Watson',
-    pictogram: Svg64Watson
+  'ibm-brand': {
+    icon: BeeIcon,
+    name: 'IBM Brand',
+    pictogram: BeePictogram
+  },
+  'ibm-cloud': {
+    icon: IbmCloud,
+    name: 'IBM Cloud',
+    pictogram: Svg64Cloud
   },
   'ibm-products': {
     icon: CarbonForIbmProduct,
     name: 'IBM Products',
     pictogram: Svg64CarbonForIbmProducts
+  },
+  'ibm-security': {
+    icon: IbmSecurity,
+    name: 'IBM Security',
+    pictogram: Svg64Security
+  },
+  watson: {
+    icon: Watson,
+    name: 'IBM Watson',
+    pictogram: Svg64Watson
   }
 }

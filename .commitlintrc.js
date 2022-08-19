@@ -21,6 +21,8 @@ module.exports = {
         'icons',
         'logging',
         'mdx-components',
+        'mdx-converter',
+        'mdx-processor',
         'mdx-sanitizer',
         'messaging',
         'micromanage',

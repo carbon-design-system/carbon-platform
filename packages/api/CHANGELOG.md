@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.26](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.25...@carbon-platform/api@0.3.26) (2022-08-18)
+
+
+### Features 🌟
+
+* **api:** create and use mdx-sanitizer package ([8649d07](https://github.com/carbon-design-system/carbon-platform/commit/8649d07fc2d6ee6408f645acdc26754fdc089cbb))
+* **mdx-sanitizer:** create interfaces, add test files ([8259849](https://github.com/carbon-design-system/carbon-platform/commit/82598493a6d50e11a52561eff16c90ce5a13c6fa))
+* **mdx-sanitizer:** initial file structure ([724768c](https://github.com/carbon-design-system/carbon-platform/commit/724768c65addd1ba52552ad269fd2f6fe3b25cbf))
+
+
+### Bug Fixes 🐛
+
+* **api:** remove unnecessary installs ([66dc8a5](https://github.com/carbon-design-system/carbon-platform/commit/66dc8a55e914fd9adfbed396da458be8c3926fc9))
+* **logging:** allow debug to be turned off ([bfdb039](https://github.com/carbon-design-system/carbon-platform/commit/bfdb0398ee6093e1088cc383481f5a4212213942))
+
+
+### Misc. 🔮
+
+* remove console.log statements ([7159f07](https://github.com/carbon-design-system/carbon-platform/commit/7159f07cd54c70ebc960162f735fb9c2f00cdb28))
+
+### [0.3.25](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.24...@carbon-platform/api@0.3.25) (2022-08-06)
+
+
+### Misc. 🔮
+
+* update node module minor + patch versions ([e5d1ef2](https://github.com/carbon-design-system/carbon-platform/commit/e5d1ef222370b0a0cc39d4985891aed7881a0f94))
+
 ### [0.3.24](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.23...@carbon-platform/api@0.3.24) (2022-07-30)
 
 

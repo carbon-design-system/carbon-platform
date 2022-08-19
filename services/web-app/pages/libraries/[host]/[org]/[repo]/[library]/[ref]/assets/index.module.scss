@@ -68,8 +68,9 @@
 
   // overide carbon position, flex-grow
   :global(.cds--dropdown) {
-    position: static;
+    z-index: 1;
     flex-grow: 1;
+    border: none;
   }
 
   // overide carbon max-width
@@ -126,7 +127,7 @@
   position: absolute;
   top: convert.rem(18px);
   right: convert.rem(20px);
-  color: theme.$interactive;
+  fill: theme.$icon-primary;
 }
 
 .library-assets-container {

@@ -129,6 +129,7 @@
     @include breakpoint.breakpoint(md) {
       // grid margin
       left: -(spacing.$spacing-05);
+      margin-left: -1px;
     }
     @include breakpoint.breakpoint(lg) {
       // grid margin + 6.25% column * 4 columns + 8px

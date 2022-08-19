@@ -52,8 +52,8 @@ test('it honors debug mode in standard run mode', (t) => {
   t.true(target.logging instanceof Logging)
 })
 
-test('it debugs in dev run mode even when debug mode is off', (t) => {
-  const runtime = new Runtime({ runMode: RunMode.Dev, isDebugEnabled: false })
+test('it debugs in dev run mode by default', (t) => {
+  const runtime = new Runtime({ runMode: RunMode.Dev })
   const target: { logging?: Logging } = {}
 
   // Decorate the function
@@ -62,6 +62,18 @@ test('it debugs in dev run mode even when debug mode is off', (t) => {
   descriptor.value('its an arg!')
 
   t.true(target.logging instanceof Logging)
+})
+
+test('it turns off debug in dev run mode when explicity set  to false', (t) => {
+  const runtime = new Runtime({ runMode: RunMode.Dev, isDebugEnabled: false })
+  const target: { logging?: Logging } = {}
+
+  // Decorate the function
+  Trace({ runtime })(target, 'propertyKey', descriptor)
+
+  descriptor.value('its an arg!')
+
+  t.is(target.logging, undefined)
 })
 
 test('it can be shut off', (t) => {

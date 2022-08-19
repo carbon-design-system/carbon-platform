@@ -29,14 +29,18 @@ const designKitAllowList = {
   'carbon-g100-sketch': {
     maintainer: 'carbon'
   },
-  'ibm-design-language-sketch': {},
+  'ibm-design-language-sketch': {
+    maintainer: 'ibm-brand'
+  },
   'ibm-icons-16-20-sketch': {
-    maintainer: 'carbon'
+    maintainer: 'ibm-brand'
   },
   'ibm-icons-24-32-sketch': {
+    maintainer: 'ibm-brand'
+  },
+  'ibm-grid-sketch': {
     maintainer: 'carbon'
   },
-  'ibm-grid-sketch': {},
   'carbon-shell-sketch': {
     maintainer: 'carbon'
   },
@@ -52,11 +56,21 @@ const designKitAllowList = {
   'carbon-g100-figma': {
     maintainer: 'carbon'
   },
-  'carbon-white-adobe-xd': {},
-  'carbon-g10-adobe-xd': {},
-  'carbon-g90-adobe-xd': {},
-  'carbon-g100-adobe-xd': {},
-  'ibm-icons-adobe-xd': {},
+  'carbon-white-adobe-xd': {
+    maintainer: 'carbon'
+  },
+  'carbon-g10-adobe-xd': {
+    maintainer: 'carbon'
+  },
+  'carbon-g90-adobe-xd': {
+    maintainer: 'carbon'
+  },
+  'carbon-g100-adobe-xd': {
+    maintainer: 'carbon'
+  },
+  'ibm-icons-adobe-xd': {
+    maintainer: 'ibm-brand'
+  },
   'carbon-g10-axure': {},
   'carbon-template-axure': {},
   'data-viz-sketch': {
@@ -72,8 +86,12 @@ const designKitAllowList = {
   'carbon-mobile-dark-sketch': {},
   'ibm-grid-mobile-sketch': {},
   'mobile-patterns-sketch': {},
-  'ibm-accessibility-sketch': {},
-  'ibm-accessibility-figma': {},
+  'ibm-accessibility-sketch': {
+    maintainer: 'ibm-accessibility'
+  },
+  'ibm-accessibility-figma': {
+    maintainer: 'ibm-accessibility'
+  },
   'carbon-mid-fi-sketch': {},
   'carbon-wireframe-invision-freehand': {
     maintainer: 'ibm-cloud'
@@ -97,5 +115,14 @@ const designKitAllowList = {
     maintainer: 'ibm-cloud'
   }
 }
+
+/**
+ * Design kits with no maintaining team default to `community`.
+ */
+Object.keys(designKitAllowList).forEach((library) => {
+  if (!designKitAllowList[library].maintainer) {
+    designKitAllowList[library].maintainer = 'community'
+  }
+})
 
 export { designKitAllowList, designKitSources }

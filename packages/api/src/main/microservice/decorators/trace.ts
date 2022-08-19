@@ -30,7 +30,7 @@ function Trace(config?: { runtime?: Runtime; logging?: Logging }): MethodDecorat
     descriptor: PropertyDescriptor
   ) {
     const runtime = config?.runtime || new Runtime()
-    const shouldTrace = runtime.isDebugEnabled || runtime.runMode === RunMode.Dev
+    const shouldTrace = runtime.isDebugEnabled ?? runtime.runMode === RunMode.Dev
     if (!shouldTrace) {
       return
     }

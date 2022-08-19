@@ -11,6 +11,11 @@ This project follows a structured format for writing commit messages. The main b
 approach is that we can use these details to automatically generate things like changelogs, in
 addition to clarifying what changes correspond to when looking at our Git history.
 
+Commit message titles will show up in the changelog of each package, so each message should be as
+descriptive as possible.
+
+Feature related write-ups should be outlined in detail within the PR description.
+
 ### Commit message format
 
 _Parts of this section are duplicated from

@@ -17,7 +17,7 @@
   "scripts": {
     "build": "nest build",
     "bundle": "node esbuild.js",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist '*.tsbuildinfo'",
     "service:build": "npm run build",
     "start": "node dist/main/index.js",
     "start:dev": "nest start --watch",

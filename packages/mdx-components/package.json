@@ -1,0 +1,63 @@
+{
+  "name": "@carbon-platform/mdx-components",
+  "description": "Carbon Platform MDX components",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+  },
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "type": "module",
+  "exports": {
+    ".": "./dist/main/index.js",
+    "./styles": "./dist/main/index.css"
+  },
+  "scripts": {
+    "build": "npm run build:react && npm run build:sass",
+    "build:react": "tsc",
+    "build:sass": "sass --load-path=../../node_modules/ src/main/index.scss dist/main/index.css",
+    "build:storybook": "build-storybook -o .storybook-static",
+    "build:watch": "nodemon --watch src/main --ext .ts,.tsx,.scss --exec 'npm run build'",
+    "dev": "concurrently 'npm run build:watch' 'npm run storybook'",
+    "clean": "rimraf dist '*.tsbuildinfo'",
+    "package:build": "npm run build",
+    "storybook": "start-storybook -p 6006",
+    "test": "ava --config ../../ava.config.mjs"
+  },
+  "dependencies": {
+    "clsx": "^1.2.1",
+    "prop-types": "^15.8.1",
+    "rimraf": "^3.0.2",
+    "slugify": "^1.6.5"
+  },
+  "peerDependencies": {
+    "@carbon/layout": "^11.5.0",
+    "@carbon/react": "^1.9.0",
+    "@carbon/styles": "^1.9.0",
+    "@types/react": "^17.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@carbon/layout": "^11.5.0",
+    "@carbon/react": "^1.9.0",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/builder-webpack5": "^6.5.10",
+    "@storybook/manager-webpack5": "^6.5.10",
+    "@storybook/react": "^6.5.10",
+    "@storybook/testing-library": "^0.0.13",
+    "babel-loader": "^8.2.5",
+    "concurrently": "^7.3.0",
+    "nodemon": "^2.0.19",
+    "sass": "^1.54.3"
+  }
+}

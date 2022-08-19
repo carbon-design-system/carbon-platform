@@ -6,11 +6,11 @@
  */
 
 import { Column, Grid } from '@carbon/react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
-import { Children } from 'react'
+import React, { Children } from 'react'
 
-import styles from './anchor-links.module.scss'
+import { withPrefix } from '../utils.js'
 
 /**
  * The `<AnchorLinks>` and `<AnchorLink>` components are used together to display a list of anchor
@@ -20,15 +20,15 @@ import styles from './anchor-links.module.scss'
  * For most pages, we recommend starting with a `PageDescription` followed by `AnchorLinks` if the
  * content is long enough.
  */
-const AnchorLinks = ({ children, small, className }) => {
+const AnchorLinks = ({ children, small }: any) => {
   const isColumn = Children.count(children) > 9
-  const classNames = clsx(className, {
-    [styles['list--small']]: small,
-    [styles['multiple-columns']]: isColumn
+  const classNames = clsx({
+    [withPrefix('list--small')]: small,
+    [withPrefix('multiple-columns')]: isColumn
   })
 
   return (
-    <Grid className={styles.list}>
+    <Grid className={withPrefix('anchor-links')}>
       <Column sm={4} md={8} lg={8}>
         <ul className={classNames}>
           {Children.map(children, (link, i) => (

@@ -22,11 +22,15 @@ generated/
 # Github workflows
 .github/workflows/
 
+# Storybook build output
+.storybook-static/
 
 # Web App
 services/web-app/public/data/
-!services/web-app/.storybook/
 
-# Enable config file linting
+# Enable config file linting except for copyright file
 !.*.js
 .copyright.js
+
+# Enable storybook story linting
+!.storybook/

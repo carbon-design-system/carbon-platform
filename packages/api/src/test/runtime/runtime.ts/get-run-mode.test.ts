@@ -57,3 +57,9 @@ test.serial('throws when the envvar is set to an unknown value', (t) => {
 
   process.env.CARBON_RUN_MODE = old
 })
+
+test.serial('can be set via config option', (t) => {
+  const runtime = new Runtime({ runMode: RunMode.Standard })
+
+  t.is(runtime.runMode, RunMode.Standard)
+})

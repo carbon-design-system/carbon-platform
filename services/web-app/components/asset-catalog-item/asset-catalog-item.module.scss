@@ -73,7 +73,6 @@
     margin-right: 0;
     transition: border-color motion.$duration-fast-02 motion.motion(standard, productive);
 
-    /* stylelint-disable-next-line max-nesting-depth */
     @media screen and (prefers-reduced-motion: reduce) {
       transition: none;
     }

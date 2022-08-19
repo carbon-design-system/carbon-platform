@@ -14,6 +14,9 @@ addition to clarifying what changes correspond to when looking at our Git histor
 Commit message titles will show up in the changelog of each package, so each message should be as
 descriptive as possible.
 
+Commit message bodies should include all closed and relevant issue numbers. These will show up in
+the changelog as well.
+
 Feature related write-ups should be outlined in detail within the PR description.
 
 ### Commit message format

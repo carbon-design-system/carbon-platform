@@ -211,15 +211,15 @@ const PageContent = () => {
         <br />
         Explore the{' '}
         <Link href="/library" passHref>
-          <CarbonLink size="lg">library</CarbonLink>
+          <CarbonLink size="lg">library catalog</CarbonLink>
         </Link>{' '}
-        catalog for all options.
+        for all options.
       </P>
 
       <FeatureCard
         href="/libraries/carbon-react"
         title="Carbon React library"
-        description="A library of reusable React components to build websites and user interfaces."
+        description="Build user interfaces with core components using Carbon's primary library."
       >
         <ArtDirection>
           <Image alt={'image'} src={ReactImgSm} layout="responsive" objectFit="cover" />
@@ -230,7 +230,7 @@ const PageContent = () => {
       <FeatureCard
         href="/libraries/ibmdotcom-web-components"
         title="IBM.com Web Components"
-        description="A library of reusable React components to build websites and user interfaces."
+        description="Create web experiences that adhere to IBM's web standards using this primary component library."
       >
         <ArtDirection>
           <Image alt={'image'} src={DotComImgSm} layout="responsive" objectFit="cover" />
@@ -308,9 +308,19 @@ const PageContent = () => {
       </P>
       <H2>Platform roadmap</H2>
       <P>
-        Progress on the following releases are documented in GitHub, along with milestones,
-        estimated dates, and descriptions of high level outcomes. For a visual overview of the
-        following releases and their epics, view our roadmap in Airtable.
+        Progress on the following releases are documented in{' '}
+        <CarbonLink href="https://github.com/carbon-design-system/carbon-platform" size="lg">
+          GitHub
+        </CarbonLink>
+        , along with milestones, estimated dates, and descriptions of high level outcomes. For a
+        visual overview of the following releases and their epics, view our roadmap in{' '}
+        <CarbonLink
+          href="https://app.zenhub.com/workspaces/platform-product-management-624ca9397d28730018df40c2/roadmap"
+          size="lg"
+        >
+          Zenhub
+        </CarbonLink>
+        .
       </P>
       <Grid>
         <Column sm={4} md={8} lg={12}>

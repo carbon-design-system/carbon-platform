@@ -93,7 +93,11 @@ assignees: ''
 
 - [ ] Approved?
 
-> Detail any FFDC data (info, warning, error, debug logs) to be captured by this feature.
+> Detail any FFDC data (info, warning, error, debug logs) to be captured by this feature. Pretend
+> you're on-call for supporting the Platform. In the event something breaks and all you have to go
+> by is a list of log entries (i.e. you can't reproduce the failure yourself, but users are
+> reporting problems), what information would you need to be able to pinpoint the source of a
+> production-site failure? Additional info: [Logging service](/docs/services-logging.md)
 
 ## File and code layout
 

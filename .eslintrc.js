@@ -6,7 +6,7 @@
  */
 const path = require('path')
 
-const noUnusedVarsOptions = { args: 'all', argsIgnorePattern: '^_' }
+const noUnusedVarsOptions = { args: 'all', argsIgnorePattern: '^_', varsIgnorePattern: '^React' }
 
 module.exports = {
   env: {
@@ -105,7 +105,7 @@ module.exports = {
       }
     },
     {
-      files: ['*.ts'],
+      files: ['*.ts', '*.tsx'],
       rules: {
         'no-unused-vars': 'off', // Disabled in favor of @typescript-eslint/no-unused-vars
         '@typescript-eslint/no-unused-vars': ['error', noUnusedVarsOptions]

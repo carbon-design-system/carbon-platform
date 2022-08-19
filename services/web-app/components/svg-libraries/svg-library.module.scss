@@ -1,10 +1,10 @@
+@use 'sass:map';
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
 @use '../../styles/variables' as variables;
-@use 'sass:map';
 @use '@carbon/react/scss/utilities/convert' as convert;
 
 .svg-page {

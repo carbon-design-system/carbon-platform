@@ -9,17 +9,13 @@ import { Logging } from '@carbon-platform/api/logging'
 import resources from '@carbon-platform/resources/carbon.yml'
 import yaml from 'js-yaml'
 import { get, isEmpty, set } from 'lodash'
-import { serialize } from 'next-mdx-remote/serialize'
 import path from 'path'
-import rehypeUrls from 'rehype-urls'
-import remarkGfm from 'remark-gfm'
-import unwrapImages from 'remark-unwrap-images'
 import slugify from 'slugify'
 
 import { designKitAllowList, designKitSources } from '@/data/design-kits'
 import { libraryAllowList } from '@/data/libraries.mjs'
+import { ContentNotFoundException } from '@/exceptions/content-not-found-exception'
 import { getResponse, getSvgResponse } from '@/lib/file-cache'
-import { mdxImgResolver } from '@/utils/mdx-image-resolver'
 import { getAssetErrors, getDesignKitErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
@@ -87,11 +83,12 @@ export const getLibraryNavData = (params, libraryData) => {
 
 /**
  * Retrieves Mdx file from github repo and serializes it for rendering
- * @param {import('../typedefs').Params} repoParams - Partially-complete parameters
- * @param {string} mdxPath - path to Mdx from repo source
- * @returns {Promise<import('../typedefs').RemoteMdxResponse>} Mdx Source Object
+ * @param {import('../typedefs').Params} repoParams Partially-complete parameters
+ * @param {string} mdxPath Path to Mdx from repo source
+ * @returns {Promise<string>} Mdx Source Content
  */
-export const getRemoteMdxData = async (repoParams, mdxPath) => {
+export const getRemoteMdxSource = async (repoParams, mdxPath) => {
+  logging.info(`Getting remote MDX for ${JSON.stringify(repoParams)} ${mdxPath}`)
   /**
    * @type {import('../typedefs').GitHubContentResponse}
    */
@@ -112,11 +109,13 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
     )
 
     if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, mdxPath), 5)) {
-      // mdxPath doesn't belong to this repo and doesn't pass security check
-      logging.info(
+      logging.warn(
         `Skipping remote mdx content from ${repoParams.host}/${repoParams.org}/${repoParams.repo} due to invalid path ${mdxPath}`
       )
-      return null
+
+      const err = new ContentNotFoundException(mdxPath)
+      logging.warn(err)
+      throw err
     }
   }
 
@@ -128,39 +127,19 @@ export const getRemoteMdxData = async (repoParams, mdxPath) => {
       ref: repoParams.ref
     })
   } catch (err) {
-    logging.error(err)
+    logging.warn(err)
+
+    if (err.name === 'HttpError' && err.message === 'Not Found') {
+      throw new ContentNotFoundException(mdxPath)
+    }
+
+    throw err
   }
 
-  if (!response.content) {
-    return {
-      compiledSource: (await serialize('<p>Component not found.</p>')).compiledSource,
-      frontmatter: {
-        title: 'Not found'
-      }
-    }
+  return {
+    mdxSource: Buffer.from(response.content, response.encoding).toString(),
+    url: response.html_url
   }
-
-  const usageFileSource = Buffer.from(response.content, response.encoding).toString()
-
-  const dirPath = response._links.html.split('/').slice(0, -1).join('/')
-
-  return serialize(usageFileSource, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm, unwrapImages],
-      rehypePlugins: [[rehypeUrls, mdxImgResolver.bind(null, dirPath)]]
-    },
-    parseFrontmatter: true
-  }).catch(async (err) => {
-    logging.error(err)
-    // returning this for now so our app doesn't blow up in case mdx is not valid
-    return {
-      compiledSource: (await serialize('<p>Could not serialize MDX at this time.</p>'))
-        .compiledSource,
-      frontmatter: {
-        title: 'Parsing Error'
-      }
-    }
-  })
 }
 
 /**
@@ -368,7 +347,7 @@ const validateAsset = (asset, library) => {
 
 /**
  * Finds library object in libraryAllowList from slug and returns a valid set of params
- * (if librry is valid)
+ * (if library is valid)
  * @param {string} libraryVersionSlug e.g. 'carbon-charts@0.1.121'
  * @returns {Promise<import('../typedefs').Params>}
  */

@@ -6,9 +6,9 @@ dist/
 *.tsbuildinfo
 
 # Generated stuff
-generated/
-.test-coverage/
 .dev/
+.test-coverage/
+generated/
 
 # OS stuff
 .DS_Store
@@ -19,3 +19,6 @@ generated/
 
 # Dotenv stuff
 .env
+
+# Storybook build output
+.storybook-static/

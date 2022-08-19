@@ -20,6 +20,9 @@
     "base",
     "packages/api",
     "packages/icons",
+    "packages/mdx-components",
+    "packages/mdx-processor",
+    "packages/mdx-sanitizer",
     "packages/micromanage",
     "packages/resources",
     "packages/schemas",
@@ -30,7 +33,7 @@
   "scripts": {
     "all:build": "npm --workspaces --if-present run build",
     "all:clean": "npm --workspaces --include-workspace-root --if-present run clean",
-    "clean": "rimraf .tsbuildinfo .test-coverage",
+    "clean": "rimraf .test-coverage",
     "lint": "scripts/lint",
     "lint:fix": "scripts/lint_and_fix",
     "micromanage:bootstrap": "node packages/micromanage/scripts/bootstrap.js",

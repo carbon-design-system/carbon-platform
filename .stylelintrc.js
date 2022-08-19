@@ -12,7 +12,7 @@ module.exports = {
   rules: {
     'selector-pseudo-class-no-unknown': null,
     'max-nesting-depth': [
-      1,
+      2,
       {
         ignore: ['pseudo-classes'],
         ignoreAtRules: ['include']

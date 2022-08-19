@@ -308,19 +308,11 @@ const PageContent = () => {
       </P>
       <H2>Platform roadmap</H2>
       <P>
-        Progress on the following releases are documented in{' '}
-        <CarbonLink href="https://github.com/carbon-design-system/carbon-platform" size="lg">
-          GitHub
-        </CarbonLink>
-        , along with milestones, estimated dates, and descriptions of high level outcomes. For a
-        visual overview of the following releases and their epics, view our roadmap in{' '}
-        <CarbonLink
-          href="https://app.zenhub.com/workspaces/platform-product-management-624ca9397d28730018df40c2/roadmap"
-          size="lg"
-        >
-          Zenhub
-        </CarbonLink>
-        .
+        Check out the{' '}
+        <Link href="/about-carbon/platform-roadmap" passHref>
+          <CarbonLink size="lg">platform roadmap</CarbonLink>
+        </Link>{' '}
+        to learn more about planned releases.
       </P>
       <Grid>
         <Column sm={4} md={8} lg={12}>

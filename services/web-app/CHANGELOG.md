@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.24](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.23...@carbon-platform/web-app@0.2.24) (2022-08-19)
+
+
+### Bug Fixes 🐛
+
+* focus state dropdown ([5fb50a8](https://github.com/carbon-design-system/carbon-platform/commit/5fb50a8580e27254171b9261395c0abf16725565))
+* remove border ([40b0726](https://github.com/carbon-design-system/carbon-platform/commit/40b07267a5657f29d32d686fa2942b36af112eff))
+* **web-app:** dropdown border styles ([1ff880b](https://github.com/carbon-design-system/carbon-platform/commit/1ff880b3a18fb86bf49606ec61303025b45700fb))
+* **web-app:** sass import order ([47d8f4c](https://github.com/carbon-design-system/carbon-platform/commit/47d8f4cc03bb1a8a69660c8a31658b72afa305f9))
+
 ### [0.2.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.22...@carbon-platform/web-app@0.2.23) (2022-08-18)
 
 

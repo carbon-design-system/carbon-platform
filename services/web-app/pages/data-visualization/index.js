@@ -11,14 +11,14 @@ import { useContext, useEffect } from 'react'
 import AssetsCatalog from '@/components/assets-catalog'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
-import { type } from '@/data/type'
+import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 
 const DataVisualization = ({ librariesData }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
 
-  const { collection } = type
+  const pageHeader = pageHeaders?.collection ?? {}
 
   const seo = {
     title: 'Data visualization'
@@ -31,7 +31,7 @@ const DataVisualization = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader bgColor={collection.bgColor} title={seo.title} pictogram={collection.icon} />
+      <PageHeader bgColor={pageHeader?.bgColor} title={seo.title} pictogram={pageHeader?.icon} />
       <AssetsCatalog
         collection="data-visualization"
         libraries={librariesData.libraries}

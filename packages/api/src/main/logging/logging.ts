@@ -86,7 +86,8 @@ class Logging {
     this.component = config.component
     this.runtime = config.runtime || new Runtime()
 
-    this.isDebugLoggingEnabled = this.runtime.runMode === RunMode.Dev || this.runtime.isDebugEnabled
+    // Runtime always takes precedence, if set
+    this.isDebugLoggingEnabled = this.runtime.isDebugEnabled ?? this.runtime.runMode === RunMode.Dev
 
     if (Logging.isRemoteLoggingAllowed) {
       this.isRemoteLoggingEnabled =
@@ -172,10 +173,9 @@ class Logging {
    * @returns An object containing the log and associated metadata.
    */
   private createMessage(message: Loggable, level: LogLevel): LogLoggedMessage {
+    // Make errors/exceptions look a specific way
     if (message instanceof Error) {
       message = message.stack || message.name + ': ' + message.message
-    } else if (typeof message !== 'string') {
-      message = String(message)
     }
 
     return {
@@ -210,14 +210,18 @@ class Logging {
     const colorizer = logColors[logEntry.level]
     const date = new Date(logEntry.timestamp)
 
-    // Using concatenation because it is slightly faster than template literals
-    console[logEntry.level](
-      date.toLocaleString() +
-        chalk.magenta(' service:' + logEntry.service + ' ') +
-        colorizer(logEntry.level) +
-        chalk.green(' [' + logEntry.component + '] ') +
-        logEntry.message
-    )
+    const lines = String(logEntry.message).split(/\r?\n|\r/)
+
+    lines.forEach((line) => {
+      // Using concatenation because it is slightly faster than template literals
+      console[logEntry.level](
+        date.toLocaleString() +
+          chalk.magenta(' service:' + logEntry.service + ' ') +
+          colorizer(logEntry.level) +
+          chalk.green(' [' + logEntry.component + '] ') +
+          line
+      )
+    })
   }
 
   /**

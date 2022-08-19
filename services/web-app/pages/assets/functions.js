@@ -11,15 +11,15 @@ import { libraryPropTypes } from 'types'
 
 import AssetsCatalog from '@/components/assets-catalog'
 import PageHeader from '@/components/page-header'
+import { assetTypes } from '@/data/asset-types'
 import { assetsNavData } from '@/data/nav-data'
-import { type } from '@/data/type'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 
 const Functions = ({ librariesData }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
 
-  const { function: func } = type
+  const { function: func } = assetTypes
 
   const seo = {
     title: 'Functions'

@@ -7,6 +7,7 @@
 
 import {
   Button,
+  Layer,
   ListItem,
   StructuredListBody,
   StructuredListCell,
@@ -36,11 +37,13 @@ import GifPlayer from '@/components/gif-player'
 import Glossary from '@/components/glossary'
 import { Column, Grid, Row } from '@/components/grid-transform'
 import ImageWrapper from '@/components/image-wrapper'
+import InlineError from '@/components/inline-error'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
-import MdxWrapper from '@/components/mdx-wrapper'
+import MdxPage from '@/components/mdx-page'
+import FullPageError from '@/components/mdx-page/errors/full-page-error'
 import MiniCard from '@/components/mini-card'
 import PageDescription from '@/components/page-description'
 import PageTable from '@/components/page-table'
@@ -73,6 +76,8 @@ const components = {
   img: Image,
   table: PageTable,
   pre: Code,
+  InlineError,
+  FullPageError,
   /* Core Carbon components */
   Button,
   StructuredListWrapper,
@@ -81,6 +86,7 @@ const components = {
   StructuredListCell,
   StructuredListBody,
   UnorderedList,
+  Layer,
   ListItem,
   Tag,
   /* Gatsby theme components */
@@ -110,7 +116,7 @@ const components = {
   ImageWrapper,
   InlineNotification,
   MdxIcon,
-  MdxWrapper,
+  MdxPage,
   MiniCard,
   PageDescription,
   PictogramLibrary,

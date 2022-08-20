@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.9...@carbon-platform/base@0.0.10) (2022-08-20)
+
+
+### Misc. 🔮
+
+* rebuild lockfile and update deps minor/patch ([7bfa4e4](https://github.com/carbon-design-system/carbon-platform/commit/7bfa4e459317175233af2eaaf1b188c0a42fe8d0))
+
+
+### Tests 🧪
+
+* **mdx-components:** test infrastructure and basic snapshot testing ([1504e9f](https://github.com/carbon-design-system/carbon-platform/commit/1504e9fbbf42ef01f5a1dcac8cbd07085b2fad18))
+
 ### [0.0.9](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.8...@carbon-platform/base@0.0.9) (2022-08-06)
 
 

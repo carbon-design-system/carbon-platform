@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.3...@carbon-platform/icons@0.1.4) (2022-08-20)
+
+
+### Bug Fixes 🐛
+
+* baseline module updates ([1a7ab2f](https://github.com/carbon-design-system/carbon-platform/commit/1a7ab2f74b9cd477c0f5d83e8f99a5e34f0668ed))
+
+
+### Features 🌟
+
+* **mdx-components:** add storybook and 2 components ([532b421](https://github.com/carbon-design-system/carbon-platform/commit/532b4219420e951f44a54ce2ba21fcac5c4e070f))
+
 ### [0.1.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.2...@carbon-platform/icons@0.1.3) (2022-08-13)
 
 

@@ -20,7 +20,7 @@ import CardGroup from '@/components/card-group'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import DemoLinks from '@/components/demo-links'
-import { H2 } from '@/components/markdown'
+import { H1, H2 } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import PageDescription from '@/components/page-description'
 import PageHeader from '@/components/page-header'
@@ -55,7 +55,7 @@ const Library = ({ libraryData, params, navData }) => {
       <Grid>
         <Column sm={4} md={8} lg={16}>
           <div className={pageStyles.content}>
-            <h1>Loading...</h1>
+            <H1>Loading...</H1>
           </div>
         </Column>
       </Grid>

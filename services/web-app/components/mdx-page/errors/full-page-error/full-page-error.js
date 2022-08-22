@@ -7,13 +7,17 @@
 import { Column, Grid, Link } from '@carbon/react'
 import PropTypes from 'prop-types'
 
+import H1 from '@/components/markdown/h1'
+
 import styles from './full-page-error.module.scss'
 
 export const FullPageError = ({ children, title, subtitle, link, href }) => {
   return (
     <Grid>
-      <Column className={styles.column} sm={4} md={8} lg={8}>
-        <h1 className={styles.title}>{title}</h1>
+      <Column sm={4} md={8} lg={8}>
+        <H1 headingClassName={styles.title} className={styles['h1-container']}>
+          {title}
+        </H1>
         <p className={styles.subtitle}>{subtitle}</p>
         <div className={styles.content}>{children}</div>
         <Link className={styles.link} href={href}>

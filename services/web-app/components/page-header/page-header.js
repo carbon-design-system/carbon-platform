@@ -7,6 +7,7 @@
 import { Column, Grid, Theme } from '@carbon/react'
 import PropTypes from 'prop-types'
 
+import H1 from '../markdown/h1'
 import styles from './page-header.module.scss'
 
 const PageHeader = ({ bgColor, pictogram: Pictogram, title, withTabs }) => {
@@ -27,7 +28,7 @@ const PageHeader = ({ bgColor, pictogram: Pictogram, title, withTabs }) => {
     <Theme className={styles.container} style={containerStyle} theme={bgColor ? 'white' : 'g100'}>
       <Grid className={styles.grid}>
         <Column className={styles.column} sm={4} md={6} lg={10}>
-          <h1 className={styles.title}>{title}</h1>
+          <H1 headingClassName={styles.title}>{title}</H1>
         </Column>
         {Pictogram && <Pictogram className={styles.pictogram} />}
       </Grid>

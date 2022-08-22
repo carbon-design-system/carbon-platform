@@ -9,6 +9,7 @@ import Markdown from 'markdown-it'
 import PropTypes from 'prop-types'
 
 import H2 from '@/components/markdown/h2'
+import H4 from '@/components/markdown/h4'
 
 import styles from './glossary-list.module.scss'
 
@@ -44,9 +45,7 @@ const renderGlossaryEntry = (glossary, glossaryEntry) => {
           }
           return (
             <div id={wordId} key={word} className={styles['glossary-entry__word']}>
-              <h4 className={clsx(styles['page-h4'], styles['glossary-entry__word-heading'])}>
-                {word}
-              </h4>
+              <H4 className={styles['h4-container']}>{word}</H4>
               <p
                 className={clsx(styles['glossary-entry__desc'], 'page-p')}
                 dangerouslySetInnerHTML={{ __html: desc }}

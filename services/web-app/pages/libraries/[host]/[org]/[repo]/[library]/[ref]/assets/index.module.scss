@@ -158,3 +158,17 @@
     margin-top: spacing.$spacing-05;
   }
 }
+
+.h3-container {
+  &.h3-container {
+    margin-top: 0;
+  }
+
+  + * {
+    margin-top: 0;
+  }
+}
+
+.no-results-heading {
+  margin-bottom: spacing.$spacing-06;
+}

@@ -17,10 +17,6 @@
   }
 }
 
-.glossary-entry__word-heading {
-  padding-top: spacing.$spacing-04;
-}
-
 .glossary-entry__desc {
   padding: 0;
   margin-top: spacing.$spacing-02;
@@ -36,11 +32,6 @@
   font-style: italic;
 }
 
-.page-h4 {
-  margin-top: spacing.$spacing-04;
-  @include type.type-style('heading-02');
-}
-
 .h2-container {
   &.h2-container {
     margin-top: 0;
@@ -49,4 +40,8 @@
   + * {
     margin-top: 0;
   }
+}
+
+.h4-container.h4-container {
+  margin-top: spacing.$spacing-06;
 }

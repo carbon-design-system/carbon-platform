@@ -26,6 +26,7 @@ import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import { FeatureCard } from '@/components/feature-card/feature-card'
 import Hero from '@/components/hero'
 import H2 from '@/components/markdown/h2'
+import H3 from '@/components/markdown/h3'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
@@ -76,9 +77,15 @@ const PageContent = () => {
             key={i}
           >
             <Column sm={4} key={i}>
-              <h3 className={clsx(styles['highlight-heading'], styles['highlight-heading--big'])}>
+              <H3
+                className={styles['h3-container']}
+                headingClassName={clsx(
+                  styles['highlight-heading'],
+                  styles['highlight-heading--big']
+                )}
+              >
                 {highlight.header}
-              </h3>
+              </H3>
             </Column>
             <Column sm={4} lg={8} xlg={7}>
               <p className={styles['highlight-description']}>

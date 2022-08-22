@@ -360,3 +360,7 @@
     top: 8.5rem;
   }
 }
+
+.typestyle-header {
+  @include type.type-style('heading-03');
+}

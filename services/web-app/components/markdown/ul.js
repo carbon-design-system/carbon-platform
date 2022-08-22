@@ -27,7 +27,7 @@ const Ul = ({ children, className, ...rest }) => {
           )
         } else {
           return (
-            <Grid>
+            <Grid className={styles['list-container']}>
               <Column sm={4} md={6} lg={8}>
                 <UnorderedList
                   isExpressive

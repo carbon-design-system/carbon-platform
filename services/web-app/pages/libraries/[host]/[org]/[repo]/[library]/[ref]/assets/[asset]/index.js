@@ -278,14 +278,16 @@ const Asset = ({ libraryData, params }) => {
                       View library assets
                       <ArrowRight size={16} />
                     </Button>{' '}
-                    <Button
-                      kind="tertiary"
-                      className={dashboardStyles['dashboard-button']}
-                      href={assetData.content.externalDocsUrl}
-                    >
-                      View asset docs
-                      <Launch size={16} />
-                    </Button>
+                    {assetData.content.externalDocsUrl && (
+                      <Button
+                        kind="tertiary"
+                        className={dashboardStyles['dashboard-button']}
+                        href={assetData.content.externalDocsUrl}
+                      >
+                        View asset docs
+                        <Launch size={16} />
+                      </Button>
+                    )}
                   </ButtonSet>
                 </DashboardItem>
               </Column>

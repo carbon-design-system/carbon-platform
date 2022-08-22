@@ -150,6 +150,10 @@
   max-width: 100%;
 }
 
+.grid-demo + * :global(.cds--snippet-container) {
+  width: 100%;
+}
+
 .grid-demo + * :global([class*='code']) {
   margin-top: 0;
 }

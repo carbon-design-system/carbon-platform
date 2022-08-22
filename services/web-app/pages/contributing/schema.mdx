@@ -87,6 +87,10 @@ library:
           hidden: true
         - title: Another sub page
           path: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/developing/react-tutorial/step-1.mdx'
+  contactLinks:
+    - type: slack
+      name: #slack-channel-name
+      url: 'https://ibm-studios.slack.com/messages/C0M053VPT/'
 assets:
   accordion:
     name: Accordion
@@ -162,6 +166,10 @@ library:
           hidden: true
         - title: Another sub page
           path: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/developing/react-tutorial/step-1.mdx'
+  contactLinks:
+    - type: slack
+      name: #slack-channel-name
+      url: 'https://ibm-studios.slack.com/messages/C0M053VPT/'
 designKits:
   carbon-white-sketch:
     name: Sketch white theme
@@ -186,6 +194,7 @@ designKits:
 | `designKits`      | Design kits that contain the design counterpart to assets in this library. See [design kit schema](#design-kit-schema) for more info.                                                                                                                                   | Optional | Object  | Yes         | –                         | –            |
 | `noIndex`         | If set to `true`, the global catalogs will exclude the library.                                                                                                                                                                                                         | Optional | Boolean | No          | `false`                   | –            |
 | `navData`         | Links to documentation pages. See [nav data](#nav-data).                                                                                                                                                                                                                | Optional | Array   | No          | -                         | –            |
+| `contactLinks`    | Links to contact or support channels. See [contact links](#contact-links).                                                                                                                                                                                              | Optional | Array   | No          | –                         | –            |
 
 ### Library inheritance
 
@@ -451,6 +460,7 @@ The following properties are used in multiple schemas.
 <AnchorLink>Demo links</AnchorLink>
 <AnchorLink>Identifiers</AnchorLink>
 <AnchorLink>Nav data</AnchorLink>
+<AnchorLink>Contact links</AnchorLink>
 
 </AnchorLinks>
 
@@ -535,3 +545,27 @@ For the value of the `navData` array, you can set the following keys.
 | `path`   | Path to the file.                                            | Required | String  | –       | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li><li>Path relative to the carbon.yml file location</li></ul> |
 | `items`  | Second level of navigation.                                  | Optional | Array   | –       | –                                                                                                                                                                      |
 | `hidden` | If set to true, the item will be hidden from the navigation. | Optional | Boolean | `false` | –                                                                                                                                                                      |
+
+### Contact links
+
+Libraries can specify links to contact/support channels.
+
+```yml path="Example carbon.yml"
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
+---
+contactLinks:
+  - type: slack
+    name: #slack-channel-name
+    url: 'https://ibm-studios.slack.com/messages/C0M053VPT/'
+  - type: email
+    name: contact@website.com
+    url: 'mailto:contact@website.com'
+```
+
+For the value of the `contactLinks` array, you can set the following keys.
+
+| Demo link | Description                           | Required | Type   | Valid values                |
+| --------- | ------------------------------------- | -------- | ------ | --------------------------- |
+| `type`    | Determines the display icon.          | Required | String | `slack`, `discord`, `email` |
+| `name`    | Display name.                         | Required | String | –                           |
+| `url`     | Link to the contact channel or email. | Required | String | –                           |

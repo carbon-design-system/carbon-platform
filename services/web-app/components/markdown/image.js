@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
 import styles from './image.module.scss'
 
 const getImageProps = (props) => {
-  const { height, width, blurDataURL } = props.src
+  const { height, width, blurDataURL, src } = props.src
 
   if (!(height && width)) {
     props.className = styles.image
@@ -24,11 +24,20 @@ const getImageProps = (props) => {
     props.layout = 'responsive'
   }
 
+  // do not uptimize if is svg file
+  if (src.split('/').pop().includes('.svg')) {
+    props.unoptimized = true
+  }
+
   return props
 }
 
 const Image = ({ alt, ...props }) => {
-  const imageProps = getImageProps(props)
+  const { height, width, blurDataURL, src } = props
+  // when dynamically set, src properties come spread out and we have to manually construct object
+  const imageProps = getImageProps({
+    src: typeof src === 'string' ? { height, width, blurDataURL, src } : src
+  })
 
   return (
     <div className={clsx(imageProps.layout === 'fill' && styles['image-container'])}>
@@ -38,7 +47,19 @@ const Image = ({ alt, ...props }) => {
 }
 
 Image.propTypes = {
-  alt: PropTypes.string
+  alt: PropTypes.string,
+  blurDataURL: PropTypes.string,
+  height: PropTypes.number,
+  src: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      blurDataURL: PropTypes.string,
+      height: PropTypes.number,
+      width: PropTypes.number,
+      src: PropTypes.string
+    })
+  ]),
+  width: PropTypes.number
 }
 
 export default Image

@@ -4,6 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+const prefix = 'carbon-platform-mdx-components'
 
-export { default as AnchorLink } from './anchor-link'
-export { default as AnchorLinks } from './anchor-links'
+function withPrefix(className: string) {
+  return prefix + '--' + className
+}
+
+export { withPrefix }

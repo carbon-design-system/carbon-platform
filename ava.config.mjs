@@ -9,14 +9,19 @@ export default {
   cache: false,
 
   extensions: {
-    ts: 'module'
+    ts: 'module',
+    tsx: 'module'
   },
 
   files: ['src/test/**/*'],
 
+  // Run TypeScript tests by using the ts-node esm loader
   nodeArguments: ['--loader=ts-node/esm'],
 
-  timeout: '20s',
+  // Used for RTL testing
+  require: ['jsdom-global/register'],
+
+  timeout: '60s',
 
   // https://github.com/avajs/ava/issues/2902
   workerThreads: false

@@ -4,16 +4,16 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 import Proptypes from 'prop-types'
+import React from 'react'
 
-import styles from './color-block.module.scss'
+import { withPrefix } from '../utils.js'
 
 /**
  * The `<ColorBlock>` component displays the color of the hex value.
  * Designed to be used within a page table for documentation.
  */
-const ColorBlock = (props) => {
+const ColorBlock = (props: any) => {
   const { children } = props
 
   const hex = children
@@ -23,8 +23,12 @@ const ColorBlock = (props) => {
   }
 
   return (
-    <div className={styles['color-block']}>
-      <span className={styles.color} style={colorBlockStyles} />
+    <div className={withPrefix('color-block')}>
+      <span
+        className={withPrefix('color')}
+        style={colorBlockStyles}
+        title={'Colored block with hex value ' + hex}
+      />
     </div>
   )
 }

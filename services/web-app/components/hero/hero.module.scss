@@ -26,7 +26,7 @@ $hero-height-sm: convert.rem(480px);
     z-index: 0;
     top: spacing.$spacing-09;
     left: 0;
-    width: calc(100vw - var(--scrollbar-width));
+    width: 100%;
     height: $hero-height-sm;
     background: theme.$background;
     content: '';

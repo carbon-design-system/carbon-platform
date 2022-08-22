@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/data-graph",
   "description": "Carbon Platform Data Graph service",
-  "version": "0.1.33",
+  "version": "0.1.34",
   "main": "dist/main/index.js",
   "license": "Apache-2.0",
   "private": true,
@@ -18,7 +18,7 @@
     "build": "nest build",
     "build:schema": "npm run build && node dist/main/generate-schema.js",
     "bundle": "node esbuild.js",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist '*.tsbuildinfo'",
     "service:build": "npm run build",
     "start": "node dist/main/index.js",
     "start:dev": "nest start --watch",

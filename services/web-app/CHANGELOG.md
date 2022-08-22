@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.25](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.24...@carbon-platform/web-app@0.2.25) (2022-08-20)
+
+
+### Misc. 🔮
+
+* **web-app:** remove commented out lines from components.js ([ec8cc28](https://github.com/carbon-design-system/carbon-platform/commit/ec8cc286dc0efb80f5e8cffba493ea60a990dc6a))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** apply first mdx-components ([22c4d76](https://github.com/carbon-design-system/carbon-platform/commit/22c4d761db3a671c8a842b30aff81359027c7b1b))
+* **web-app:** change anchor link import location to new package ([a58642e](https://github.com/carbon-design-system/carbon-platform/commit/a58642e52c701d7c24da9a7571a1bdefa8cf05b4))
+* **web-app:** code snippet background bug ([787573c](https://github.com/carbon-design-system/carbon-platform/commit/787573ca32ee1ffcd8a6c3e03ea38ae833e6fd53))
+* **web-app:** linter error in page-tabs scss ([c4f5761](https://github.com/carbon-design-system/carbon-platform/commit/c4f5761352996700e5a0cea58e90e03f78c2b23c))
+* **web-app:** resource-card default theme color ([a1c8e11](https://github.com/carbon-design-system/carbon-platform/commit/a1c8e1109a375af80ad3d09024157b5f1e07f138))
+* **web-app:** sass linter error ([39ba3c9](https://github.com/carbon-design-system/carbon-platform/commit/39ba3c9266396a9e71b97e8b0c3737487b72d2ba))
+
 ### [0.2.24](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.23...@carbon-platform/web-app@0.2.24) (2022-08-19)
 
 

@@ -4,18 +4,19 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import slugify from 'slugify'
+import React from 'react'
+import slugifyCjs from 'slugify'
 
-import styles from './anchor-links.module.scss'
+import { withPrefix } from '../utils.js'
 
-const AnchorLink = ({ to, children, className }) => {
+const slugify = slugifyCjs.default
+
+const AnchorLink = ({ to, children }: any) => {
   const href = to || `#${slugify(children, { lower: true })}`
 
   return (
-    <a className={clsx(styles.link, className)} href={href}>
+    <a className={withPrefix('link')} href={href}>
       {children}
     </a>
   )

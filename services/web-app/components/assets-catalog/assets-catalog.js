@@ -38,6 +38,8 @@ const assetIsInFilter = (asset, filter) => {
       if (!value.includes(asset.params[key])) return false
     } else if (key === 'tags') {
       if (!valuesIntersect(value, asset.content[key])) return false
+    } else if (key === 'status') {
+      if (!value.includes(asset.statusKey)) return false
     } else {
       if (!value.includes(asset.content[key])) return false
     }

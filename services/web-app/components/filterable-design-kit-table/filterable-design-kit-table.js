@@ -112,7 +112,7 @@ const captions = {
 const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds }) => {
   const displayDropdown = designTools?.length > 0
   const [filteredRows, setFilteredRows] = useState(designKitsData)
-  const [currentItem, setCurrentItem] = useState(displayDropdown && designTools[0])
+  const [currentItem, setCurrentItem] = useState(displayDropdown ? designTools[0] : undefined)
 
   const designKits = designKitsData.filter((item) => {
     return designKitIds?.includes(item.id)

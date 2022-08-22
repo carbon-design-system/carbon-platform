@@ -4,34 +4,35 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
-.color-block {
+@use '../utils' as *;
+
+.#{with-prefix('color-block')} {
   position: relative;
   @include type.type-style('body-compact-01');
-}
 
-.color {
-  position: relative;
-  display: block;
-  width: convert.rem(14px);
-  height: convert.rem(14px);
-  margin-top: spacing.$spacing-01;
-  border-radius: convert.rem(14px);
-
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .#{with-prefix('color')} {
+    position: relative;
     display: block;
     width: convert.rem(14px);
     height: convert.rem(14px);
-    border: 1px solid theme.$border-subtle;
+    margin-top: spacing.$spacing-01;
     border-radius: convert.rem(14px);
-    content: '';
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: convert.rem(14px);
+      height: convert.rem(14px);
+      border: 1px solid theme.$border-subtle;
+      border-radius: convert.rem(14px);
+      content: '';
+    }
   }
 }

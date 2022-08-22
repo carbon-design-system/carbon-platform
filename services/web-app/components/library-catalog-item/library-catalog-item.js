@@ -1,3 +1,9 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import { Events, Scales } from '@carbon/react/icons'
 import { get, isEmpty } from 'lodash'
@@ -10,12 +16,6 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './library-catalog-item.module.scss'
 
-/*
- * Copyright IBM Corp. 2022, 2022
- *
- * This source code is licensed under the Apache-2.0 license found in the
- * LICENSE file in the root directory of this source tree.
- */
 const LibraryCatalogItem = ({ library = {} }) => {
   const isMd = useMatchMedia(mediaQueries.md)
 

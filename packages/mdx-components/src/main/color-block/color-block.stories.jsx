@@ -4,22 +4,16 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import ColorBlock from '@/components/color-block'
+import { ColorBlock } from '../../../dist/main/index'
 
-const stories = {
-  title: 'MDX/ColorBlock',
+export default {
+  title: 'Components/ColorBlock',
   component: ColorBlock,
   argTypes: {},
   parameters: {}
 }
 
-export default stories
-
-const Template = (args) => (
-  <ColorBlock size="xs" {...args}>
-    #f4f4f4
-  </ColorBlock>
-)
+const Template = (args) => <ColorBlock {...args}>#0066ff</ColorBlock>
 
 export const Default = Template.bind({})
 Default.args = {}

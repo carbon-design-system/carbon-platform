@@ -4,10 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { AnchorLink, AnchorLinks } from '@/components/anchor-links'
+import { AnchorLink, AnchorLinks } from '../../../dist/main/index'
 
-const stories = {
-  title: 'MDX/AnchorLinks',
+export default {
+  title: 'Components/AnchorLinks',
   component: AnchorLinks,
   subcomponents: { AnchorLink },
   argTypes: {
@@ -16,8 +16,6 @@ const stories = {
     }
   }
 }
-
-export default stories
 
 const Template = (args) => (
   <AnchorLinks {...args}>

@@ -36,9 +36,7 @@
     }
     @include breakpoint.breakpoint('max') {
       // max grid minus the width of the screen
-      right: calc(1584px - 100vw - 1.5rem);
-      // subtract width of left side nav
-      width: calc(100vw - 16rem);
+      right: calc(1584px - 100vw - 0.5rem);
     }
   }
 }
@@ -67,7 +65,6 @@
   }
 
   // stylelint not recognizing class selectors in sass module global syntax
-  /* stylelint-disable-next-line no-descending-specificity */
   :global(.cds--tabs__nav-item--selected) {
     border-bottom: spacing.$spacing-02 solid theme.$border-interactive;
     @include type.type-style('heading-02');

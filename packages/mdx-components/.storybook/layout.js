@@ -5,10 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use '@carbon/react/scss/spacing' as spacing;
-@use '@carbon/react/scss/theme' as theme;
-
-.title {
-  display: inline-block;
-  color: theme.$text-primary;
+export const pageConfig = {
+  parameters: {
+    options: { showPanel: false },
+    previewTabs: {
+      'storybook/docs/panel': { hidden: true }
+    },
+    viewMode: 'canvas'
+  }
 }

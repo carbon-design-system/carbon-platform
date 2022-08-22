@@ -21,7 +21,7 @@
 .secondary-nav {
   // override carbon style to allow scroll abillty
   :global(.cds--tree--sm) {
-    overflow: scroll;
+    overflow: auto;
   }
 
   [class*='nav-tree_container'] {

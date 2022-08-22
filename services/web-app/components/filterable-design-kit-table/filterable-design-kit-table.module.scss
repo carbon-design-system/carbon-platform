@@ -21,6 +21,7 @@
   }
 }
 
+// override carbon data table body
 :global(.cds--data-table) tbody {
   @include breakpoint.breakpoint-down(md) {
     overflow-x: auto;

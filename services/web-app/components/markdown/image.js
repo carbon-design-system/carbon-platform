@@ -24,7 +24,7 @@ const getImageProps = (props) => {
     props.layout = 'responsive'
   }
 
-  // do not uptimize if is svg file
+  // do not optimize if is svg file
   if (src.split('/').pop().includes('.svg')) {
     props.unoptimized = true
   }

@@ -116,13 +116,3 @@
 
   display: block;
 }
-
-.h2-container {
-  &.h2-container {
-    margin-top: 0;
-  }
-
-  + * {
-    margin-top: 0;
-  }
-}

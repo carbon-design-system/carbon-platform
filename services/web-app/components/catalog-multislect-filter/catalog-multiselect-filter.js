@@ -15,7 +15,6 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import useOnKey from '@/utils/use-on-key'
 import useOutsideClick from '@/utils/use-outside-click'
 
-import H3 from '../markdown/h3'
 import styles from './catalog-multiselect-filter.module.scss'
 
 const CatalogMultiselectFilter = ({
@@ -110,9 +109,7 @@ const CatalogMultiselectFilter = ({
             <Grid className={styles.grid} condensed>
               {Object.keys(availableFilters).map((item, i) => (
                 <Column className={styles.column} key={i} sm={1}>
-                  <H3 headingClassName={styles.heading} narrow className={styles['h2-container']}>
-                    {availableFilters[item].name}
-                  </H3>
+                  <h3 className={styles.heading}>{availableFilters[item].name}</h3>
                   <ul className={styles.list}>
                     {Object.keys(availableFilters[item].values).map((key, j) => (
                       <li className={styles['list-item']} key={j}>

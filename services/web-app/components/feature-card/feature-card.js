@@ -12,7 +12,6 @@ import PropTypes from 'prop-types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
-import H5 from '../markdown/h5'
 import styles from './feature-card.module.scss'
 
 export const FeatureCard = ({ href, children, description, title }) => {
@@ -40,7 +39,7 @@ export const FeatureCard = ({ href, children, description, title }) => {
             <Grid className={styles['grid-tile']}>
               <Column sm={4} md={{ offset: 4, span: 4 }} lg={{ offset: 8, span: 4 }}>
                 <AspectRatio ratio={tileAspectRatio()} className={styles.tile}>
-                  <H5 className={styles.title}>{title}</H5>
+                  <h5 className={styles.title}>{title}</h5>
                   <p className={styles.description}>{description}</p>
                   <ArrowRight className={styles['arrow-right']} size={20} />
                 </AspectRatio>

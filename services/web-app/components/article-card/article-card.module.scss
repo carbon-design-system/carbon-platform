@@ -40,14 +40,8 @@
   padding: spacing.$spacing-05 25% spacing.$spacing-05 spacing.$spacing-05;
 }
 
-.h4-container.h4-container {
-  margin-top: 0;
-}
-
 .title {
   @include type.type-style('body-compact-02');
-
-  margin-left: -(spacing.$spacing-05);
 
   color: theme.$text-primary;
   text-decoration: none;

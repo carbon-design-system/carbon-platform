@@ -25,8 +25,6 @@ import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import { FeatureCard } from '@/components/feature-card/feature-card'
 import Hero from '@/components/hero'
-import H2 from '@/components/markdown/h2'
-import H3 from '@/components/markdown/h3'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
@@ -60,11 +58,11 @@ const PageContent = () => {
       <div className={styles.highlights}>
         <Grid className={styles['highlight-grid']}>
           <Column sm={4} md={8} lg={8} xlg={7}>
-            <H2 className={styles['h2-container']} headingClassName={styles.subheading}>
+            <h2 className={styles.subheading}>
               The new Carbon Design System provides a single place to find and use all open and
               inner source assets teams need to build consistent, scalable experiences with
               confidence.
-            </H2>
+            </h2>
           </Column>
         </Grid>
         {highlights.map((highlight, i) => (
@@ -77,15 +75,9 @@ const PageContent = () => {
             key={i}
           >
             <Column sm={4} key={i}>
-              <H3
-                className={styles['h3-container']}
-                headingClassName={clsx(
-                  styles['highlight-heading'],
-                  styles['highlight-heading--big']
-                )}
-              >
+              <h3 className={clsx(styles['highlight-heading'], styles['highlight-heading--big'])}>
                 {highlight.header}
-              </H3>
+              </h3>
             </Column>
             <Column sm={4} lg={8} xlg={7}>
               <p className={styles['highlight-description']}>
@@ -107,7 +99,9 @@ const PageContent = () => {
       </Grid>
       <Grid className={styles['highlight-grid']}>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <H2 className={styles['h2-container']}>Asset catalogs</H2>
+          <h2 className={clsx(styles.subheading, styles['subheading--no-padding'])}>
+            Asset catalogs
+          </h2>
           <p className={styles['subheading-content']}>
             Asset catalogs allow you to search across all open and inner source resources and apply
             complex filters for any scenario—so that you can apply other teams’ knowledge to your
@@ -214,7 +208,9 @@ const PageContent = () => {
       </Grid>
       <Grid className={styles['highlight-grid']}>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <H2 className={styles['h2-container']}>Asset collections</H2>
+          <h2 className={clsx(styles.subheading, styles['subheading--no-padding'])}>
+            Asset collections
+          </h2>
           <p className={styles['subheading-content']}>
             Collections allow you to explore curated lists of assets, like a playlist, so that you
             can easily locate your relevant resources when you come back.
@@ -235,7 +231,9 @@ const PageContent = () => {
       </FeatureCard>
       <Grid className={styles['highlight-grid']}>
         <Column sm={4} md={8} lg={8} xlg={7}>
-          <H2 className={clsx(styles['h2-container'], styles['no-padding'])}>Featured libraries</H2>
+          <h2 className={clsx(styles.subheading, styles['subheading--no-padding'])}>
+            Featured libraries
+          </h2>
           <p className={styles['subheading-content']}>
             Libraries are the means to contribute, install, and use one or many assets in products
             and digital experiences.
@@ -265,7 +263,7 @@ const PageContent = () => {
       </Grid>
       <Grid>
         <Column sm={4} md={8} className={styles['content-column']}>
-          <H2>How PAL teams can prepare</H2>
+          <h2 className={styles['content-heading']}>How PAL teams can prepare</h2>
           <p className={styles['content-copy']}>
             Ensure your components, patterns, and functions are indexed in our unified asset
             discovery experience. To help you get started, our team will reach out to document your

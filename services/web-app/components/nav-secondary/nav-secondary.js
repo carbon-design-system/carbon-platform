@@ -16,7 +16,6 @@ import NavTree from '@/components/nav-tree'
 import { LayoutContext } from '@/layouts/layout'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
-import H2 from '../markdown/h2'
 import styles from './nav-secondary.module.scss'
 
 const NavSecondary = ({ className, visible, onSlidePrimary }) => {
@@ -64,13 +63,13 @@ const NavSecondary = ({ className, visible, onSlidePrimary }) => {
                 styles['heading--active']
             )}
           >
-            <H2 className={styles['h2-container']}>
+            <h2>
               {headings.map((heading, i) => (
                 <span className={styles['heading-item']} key={i}>
                   {heading}
                 </span>
               ))}
-            </H2>
+            </h2>
           </a>
         </Link>
       )}

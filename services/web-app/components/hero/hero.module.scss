@@ -46,8 +46,8 @@ $hero-height: convert.rem(560px);
 }
 
 /*
-  * Assets hero image & custom styles
-  */
+   * Assets hero image & custom styles
+   */
 
 .assets::before {
   background: url(../../pages/index/images/assets-hero_mobile.png) no-repeat bottom right / 100%
@@ -57,8 +57,4 @@ $hero-height: convert.rem(560px);
     background: url(../../pages/index/images/assets-hero.png) no-repeat top right / auto
       $hero-height;
   }
-}
-
-.h1-container.h1-container {
-  margin-top: 0;
 }

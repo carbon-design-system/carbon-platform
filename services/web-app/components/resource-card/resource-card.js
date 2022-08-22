@@ -13,8 +13,6 @@ import PropTypes from 'prop-types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
-import H4 from '../markdown/h4'
-import H5 from '../markdown/h5'
 import styles from './resource-card.module.scss'
 import groupStyles from './resource-card-group.module.scss'
 
@@ -59,16 +57,8 @@ const ResourceCard = (props) => {
 
   const cardContent = (
     <>
-      {subTitle && (
-        <H5 headingClassName={styles.subtitle} narrow>
-          {subTitle}
-        </H5>
-      )}
-      {title && (
-        <H4 headingClassName={styles.title} className={styles['h4-container']} narrow>
-          {title}
-        </H4>
-      )}
+      {subTitle && <h5 className={styles.subtitle}>{subTitle}</h5>}
+      {title && <h4 className={styles.title}>{title}</h4>}
       <div className={styles['icon-img']}>{children}</div>
       <div className={styles['icon-action']}>
         {!disabled &&

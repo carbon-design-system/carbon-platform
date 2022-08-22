@@ -8,7 +8,6 @@ import { Column, Grid, Theme } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
-import H1 from '../markdown/h1'
 import styles from './hero.module.scss'
 
 const Hero = ({ title, section }) => {
@@ -16,11 +15,7 @@ const Hero = ({ title, section }) => {
     <Theme className={clsx(styles[section], styles.container)} theme="g100">
       <Grid>
         <Column className={styles.column} sm={4} md={4} lg={8}>
-          {title && (
-            <H1 headingClassName={styles.title} className={styles['h1-container']}>
-              {title}
-            </H1>
-          )}
+          {title && <h1 className={styles.title}>{title}</h1>}
         </Column>
       </Grid>
     </Theme>

@@ -26,7 +26,7 @@ const DemoLinks = ({ links = [] }) => {
               href={getUrlWithProtocol(link.url)}
               actionIcon={link.action === 'download' ? 'download' : 'launch'}
             >
-              <MdxIcon name={link.type === 'other' ? 'code' : link.type} />
+              <MdxIcon name={link.type === 'other' ? 'codereference' : link.type} />
             </ResourceCard>
           </Column>
         ))}

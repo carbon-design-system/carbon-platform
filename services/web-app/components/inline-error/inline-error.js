@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, InlineNotification, Link } from '@carbon/react'
-import clsx from 'classnames'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
 import styles from './inline-error.module.scss'

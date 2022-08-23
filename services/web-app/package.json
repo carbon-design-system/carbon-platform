@@ -4,6 +4,7 @@
   "description": "Carbon web application",
   "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "license": "Apache-2.0",
+  "author": "IBM",
   "private": true,
   "repository": {
     "type": "git",

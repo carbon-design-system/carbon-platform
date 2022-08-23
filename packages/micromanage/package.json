@@ -4,6 +4,7 @@
   "description": "Monorepo management of microservices",
   "license": "Apache-2.0",
   "main": "./lib/index.js",
+  "author": "IBM",
   "publishConfig": {
     "access": "public"
   },

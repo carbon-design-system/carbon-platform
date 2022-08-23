@@ -4,6 +4,7 @@
   "description": "Carbon platform monorepo",
   "license": "Apache-2.0",
   "private": true,
+  "author": "IBM",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/carbon-design-system/carbon-platform.git"

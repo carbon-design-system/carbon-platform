@@ -7,7 +7,6 @@
 import { NextSeo } from 'next-seo'
 import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
-import { libraryPropTypes } from 'types'
 
 import AssetsCatalog from '@/components/assets-catalog'
 import PageHeader from '@/components/page-header'
@@ -15,6 +14,7 @@ import { assetTypes } from '@/data/asset-types'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
+import { libraryPropTypes } from '@/types'
 
 const Functions = ({ librariesData }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)

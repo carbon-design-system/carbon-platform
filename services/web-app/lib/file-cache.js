@@ -21,7 +21,7 @@ const logging = new Logging({ component: 'file-cache.js' })
  * doesn't unintentionally invalidate while doing development. If using the full file cache in
  * production, use a one hour ttl.
  */
-const diskCache = cacheManager.caching({
+export const diskCache = cacheManager.caching({
   store: fsStore,
   options: {
     path: CACHE_PATH,
@@ -71,8 +71,6 @@ const slugifyRequest = (host, route, options = {}) => {
  * @returns {Promise<object>} GitHub API response data
  */
 const _getResponse = async (host, route, options) => {
-  // console.log('CACHE MISS', responseKey)
-
   const octokitRef = host === 'github.ibm.com' ? octokitIbm : octokit
 
   const { data } = await octokitRef.request(route, {
@@ -93,7 +91,6 @@ const _getResponse = async (host, route, options) => {
  */
 export const getResponse = (host, route, options) => {
   const responseKey = slugifyRequest(host, route, options)
-  // console.log('CACHE HIT', responseKey)
 
   return diskCache.wrap(responseKey, () => {
     return _getResponse(host, route, options)
@@ -110,7 +107,6 @@ export const getResponse = (host, route, options) => {
  */
 export const getSvgResponse = async (host, route, options = {}) => {
   const responseKey = slugifyRequest(host, route, options)
-  // console.log('CACHE HIT', responseKey)
 
   return diskCache.wrap(responseKey, async () => {
     const data = await _getResponse(host, route, options)
@@ -139,7 +135,7 @@ export const getSvgResponse = async (host, route, options = {}) => {
  * @param {string} key - Cache key
  */
 export const deleteResponse = async (key) => {
-  console.log('DELETE CACHED', key)
+  logging.debug('DELETE CACHED: ' + key)
 
   await diskCache.del(key)
 }
@@ -154,13 +150,13 @@ export const writeFile = async (path, contents) => {
     const exists = await fs.pathExists(`./public/${IMAGES_CACHE_PATH}/${path}`)
 
     if (exists) {
-      console.log('FILE EXISTS', path)
+      logging.debug('FILE EXISTS: ' + path)
     } else {
       await fs.outputFile(`./public/${IMAGES_CACHE_PATH}/${path}`, contents)
 
-      console.log('FILE WRITE', path)
+      logging.debug('FILE WRITE: ' + path)
     }
   } catch (err) {
-    console.error(err)
+    logging.error(err)
   }
 }

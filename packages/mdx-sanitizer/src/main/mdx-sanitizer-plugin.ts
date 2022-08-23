@@ -65,7 +65,7 @@ function sanitizeAst(config: Config, tree: Parent) {
   visit(
     tree,
     (node) => !!node,
-    (node: Literal, index: number, parent?: Parent) => {
+    (node: Node, index: number | null, parent: Parent | null) => {
       detectImports(config, node)
       detectExports(config, node)
 
@@ -75,27 +75,36 @@ function sanitizeAst(config: Config, tree: Parent) {
         return
       }
 
+      // We skip when there is no index because this would mean there's no child node to replace
+      if (!index) {
+        return
+      }
+
       const newNode = replaceMappedTags(config, node, index, parent)
       replaceUnknownComponents(config, newNode || node, index, parent)
     }
   )
 }
 
-function detectImports(config: Config, node: Literal) {
-  if (config.allowImports) return
+function detectImports(config: Config, node: Node) {
+  if (config.allowImports) {
+    return
+  }
 
+  const literal = node as Literal
   const nodeData = node.data as { estree: Program } | undefined
 
   if (node.type === 'mdxjsEsm' && nodeData?.estree?.body?.[0]?.type === 'ImportDeclaration') {
-    throw new ImportFoundException(node.value, node.position)
+    throw new ImportFoundException(literal.value, node.position)
   }
 }
 
-function detectExports(config: Config, node: Literal) {
+function detectExports(config: Config, node: Node) {
   if (config.allowExports) {
     return
   }
 
+  const literal = node as Literal
   const nodeData = node.data as { estree: Program } | undefined
 
   if (
@@ -103,7 +112,7 @@ function detectExports(config: Config, node: Literal) {
     nodeData?.estree?.body?.[0]?.type &&
     exportIdentifiers.includes(nodeData.estree.body[0].type)
   ) {
-    throw new ExportFoundException(node.value, node.position)
+    throw new ExportFoundException(literal.value, node.position)
   }
 }
 

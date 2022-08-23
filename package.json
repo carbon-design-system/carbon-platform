@@ -14,11 +14,12 @@
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "engines": {
     "node": "16",
-    "npm": ">=8.8.0"
+    "npm": "^8.8.0"
   },
   "workspaces": [
     "base",
     "packages/api",
+    "packages/eslint-plugin-carbon-platform",
     "packages/icons",
     "packages/mdx-components",
     "packages/mdx-processor",

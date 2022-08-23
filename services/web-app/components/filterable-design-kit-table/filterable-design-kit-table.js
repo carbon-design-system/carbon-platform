@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Download, Launch } from '@carbon/icons-react'
 import {
   Column,
   DataTable,
@@ -39,6 +40,14 @@ const headerData = [
   {
     header: 'Type',
     key: 'type'
+  },
+  {
+    header: '',
+    key: 'action'
+  },
+  {
+    header: '',
+    key: 'url'
   }
 ]
 
@@ -59,8 +68,9 @@ const toolKeyValueMapper = {
 const captions = {
   Figma: (
     <P>
-      The links in the table for Figma Libraries are preview only. To learn more about installing
-      Figma Libraries visit the{' '}
+      The links in the table for Figma Libraries are preview only. Some of the Figma kits are for
+      internal IBMers. To learn more about installing Figma Libraries and available external
+      libraries visit the Figma tutorial{' '}
       <Link href="/designing/figma" passHref>
         <CarbonLink size="lg">Figma tutorial</CarbonLink>
       </Link>
@@ -100,16 +110,20 @@ const captions = {
 }
 
 const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds }) => {
+  const displayDropdown = designTools?.length > 0
   const [filteredRows, setFilteredRows] = useState(designKitsData)
-  const [currentItem, setCurrentItem] = useState(designTools[0])
+  const [currentItem, setCurrentItem] = useState(displayDropdown ? designTools[0] : undefined)
 
   const designKits = designKitsData.filter((item) => {
     return designKitIds?.includes(item.id)
   })
 
-  // alphabetically sort by maintainer, after first rendering IBM Design Language Kits
+  // after first rendering IBM Brand kits, alphabetically sort by maintainer
   const [orderedDesignKits] = useState(
     designKits.sort((a, b) => {
+      if (a.maintainer?.toLowerCase() === 'ibm-brand') {
+        return -1
+      }
       if (a.maintainer?.toLowerCase() < b.maintainer?.toLowerCase()) {
         return -1
       }
@@ -135,7 +149,7 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     setFilteredRows(filterByDesignTool())
   }, [currentItem, filterByDesignTool])
 
-  // only render the first maintainer within the respective group
+  // only render the first maintainer name within the respective group
   const hideRepeatedMaintainer = (array) => {
     let previousValue = ''
     array.forEach((row, index) => {
@@ -148,65 +162,97 @@ const FilterableDesignKitTable = ({ designKitsData, designTools, designKitIds })
     return array
   }
 
+  const renderType = (row) => {
+    if (row.cells[2].value === 'ui') {
+      return 'UI'
+    } else {
+      return row.cells[2].value[0].toUpperCase() + row.cells[2].value.slice(1)
+    }
+  }
+
+  const renderIcon = (row) => {
+    if (row.cells[3].value === 'download') {
+      return <Download size={16} />
+    } else {
+      return <Launch size={16} />
+    }
+  }
+
   return (
     <>
       <Grid className={styles.grid} narrow>
         <Column sm={4} md={8} lg={4}>
-          <Dropdown
-            id="filter data table"
-            size="lg"
-            items={designTools}
-            onChange={handleFilterChange}
-            selectedItem={`Tool: ${currentItem}`}
-          />
+          {displayDropdown && (
+            <Dropdown
+              id="filter data table"
+              size="lg"
+              items={designTools}
+              onChange={handleFilterChange}
+              selectedItem={`Tool: ${currentItem}`}
+            />
+          )}
         </Column>
       </Grid>
-      <DataTable rows={filteredRows} headers={headerData}>
-        {({ rows, headers, getHeaderProps, getTableProps, i }) => (
-          <Table {...getTableProps()}>
-            <TableHead>
-              <TableRow>
-                {headers.map((header) => (
-                  <TableHeader key={i} {...getHeaderProps({ header })}>
-                    {header.header}
-                  </TableHeader>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {hideRepeatedMaintainer(rows).map((row) => (
-                <TableRow key={row.value}>
-                  <TableCell>{teams[row.cells[0].value]?.name}</TableCell>
-                  <TableCell>{row.cells[1].value}</TableCell>
-                  <TableCell>
-                    <Tag type={tagColor[row.cells[2].value]}>
-                      {row.cells[2].value === 'ui'
-                        ? 'UI'
-                        : row.cells[2].value[0].toUpperCase() + row.cells[2].value.slice(1)}
-                    </Tag>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        )}
-      </DataTable>
-      {captions[currentItem]}
+      <Grid className={styles.grid} narrow>
+        <Column sm={4} md={8} lg={16}>
+          <DataTable rows={filteredRows} headers={headerData}>
+            {({ rows, headers, getHeaderProps, getTableProps, i }) => (
+              <Table {...getTableProps()}>
+                <TableHead>
+                  <TableRow>
+                    {headers.map((header, index) => {
+                      if (index === 4) {
+                        return null
+                      } else {
+                        return (
+                          <TableHeader key={i} {...getHeaderProps({ header })}>
+                            {header.header}
+                          </TableHeader>
+                        )
+                      }
+                    })}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {hideRepeatedMaintainer(rows).map((row, i) => (
+                    <TableRow key={i}>
+                      <TableCell>{teams[row.cells[0].value]?.name}</TableCell>
+                      <TableCell>{row.cells[1].value}</TableCell>
+                      <TableCell>
+                        <Tag type={tagColor[row.cells[2].value]}>{renderType(row)}</Tag>
+                      </TableCell>
+                      <TableCell>
+                        <Link key={i} href={row.cells[4].value}>
+                          <a className={styles['row-anchor']}>
+                            <span className={styles['row-icon']}>{renderIcon(row)}</span>
+                          </a>
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            )}
+          </DataTable>
+        </Column>
+      </Grid>
+      {displayDropdown && captions[currentItem]}
     </>
   )
 }
 
 FilterableDesignKitTable.propTypes = {
   /**
-   * Pass in the children that will be rendered within the FilterableDesignKitTable
+   * Pass in designKitIdss that will be rendered within the FilterableDesignKitTable
    */
   designKitIds: PropTypes.array,
   /**
-   * Pass in the children that will be rendered within the FilterableDesignKitTable
+   * Fetch designKitsData within getStaticProps
    */
   designKitsData: PropTypes.array,
   /**
-   * Pass in the children that will be rendered within the FilterableDesignKitTable
+   * Pass in the designTools to be rendered
+   * Do not define if there is only one tool and Dropdown needs to remain hidden
    */
   designTools: PropTypes.array
 }

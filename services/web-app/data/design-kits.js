@@ -39,7 +39,7 @@ const designKitAllowList = {
     maintainer: 'ibm-brand'
   },
   'ibm-grid-sketch': {
-    maintainer: 'carbon'
+    maintainer: 'ibm-brand'
   },
   'carbon-shell-sketch': {
     maintainer: 'carbon'
@@ -71,8 +71,12 @@ const designKitAllowList = {
   'ibm-icons-adobe-xd': {
     maintainer: 'ibm-brand'
   },
-  'carbon-g10-axure': {},
-  'carbon-template-axure': {},
+  'carbon-g10-axure': {
+    maintainer: 'community'
+  },
+  'carbon-template-axure': {
+    maintainer: 'community'
+  },
   'data-viz-sketch': {
     maintainer: 'carbon'
   },
@@ -92,7 +96,9 @@ const designKitAllowList = {
   'ibm-accessibility-figma': {
     maintainer: 'ibm-accessibility'
   },
-  'carbon-mid-fi-sketch': {},
+  'carbon-mid-fi-sketch': {
+    maintainer: 'carbon'
+  },
   'carbon-wireframe-invision-freehand': {
     maintainer: 'ibm-cloud'
   },
@@ -113,6 +119,33 @@ const designKitAllowList = {
   },
   'ibm-cloud-light-figma': {
     maintainer: 'ibm-cloud'
+  },
+  'figma-v11-white-theme': {
+    maintainer: 'carbon'
+  },
+  'figma-v11-gray-10-theme': {
+    maintainer: 'carbon'
+  },
+  'figma-v11-gray-90-theme': {
+    maintainer: 'carbon'
+  },
+  'figma-v11-gray-100-theme': {
+    maintainer: 'carbon'
+  },
+  'ibm-pictograms-figma': {
+    maintainer: 'ibm-brand'
+  },
+  'ibm-icons-figma': {
+    maintainer: 'ibm-brand'
+  },
+  'v11-text-styles-figma': {
+    maintainer: 'ibm-brand'
+  },
+  'color-styles-figma': {
+    maintainer: 'ibm-brand'
+  },
+  'axure-widget-library': {
+    maintainer: 'community'
   }
 }
 

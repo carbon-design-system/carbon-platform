@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.26](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.25...@carbon-platform/web-app@0.2.26) (2022-08-23)
+
+
+### Bug Fixes 🐛
+
+* cleanup duplicate code ([101861e](https://github.com/carbon-design-system/carbon-platform/commit/101861e3234be2e5b17d85dc82180764c15b4e66))
+* **web-app:** code snippet on grid page ([cb12e90](https://github.com/carbon-design-system/carbon-platform/commit/cb12e90f8377ad08178dfe12eb2ab05b6a1cc3ef))
+* **web-app:** double margin for lists ([12b3ca8](https://github.com/carbon-design-system/carbon-platform/commit/12b3ca84652076305d5f839d7385c942c212bcfc))
+* **web-app:** hide view asset doc button if no external docs ([b9a8774](https://github.com/carbon-design-system/carbon-platform/commit/b9a8774d03e94fd560f319e7b012331d1c8d6fdc))
+* **web-app:** page scroll bug ([ed16c3d](https://github.com/carbon-design-system/carbon-platform/commit/ed16c3d67caf84e9e5399c088f888575f2b6466d))
+* **web-app:** scrollbar display on library nav ([7860c1d](https://github.com/carbon-design-system/carbon-platform/commit/7860c1d4e0ee1f8826ed16068d38871a9b9f3522)), closes [#1147](https://github.com/carbon-design-system/carbon-platform/issues/1147)
+* **web-app:** spacing across markdown components ([bcfecb5](https://github.com/carbon-design-system/carbon-platform/commit/bcfecb59b277c6a6b4e9d3592a8258d505cbe880)), closes [#806](https://github.com/carbon-design-system/carbon-platform/issues/806) [#811](https://github.com/carbon-design-system/carbon-platform/issues/811)
+
 ### [0.2.25](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.24...@carbon-platform/web-app@0.2.25) (2022-08-20)
 
 

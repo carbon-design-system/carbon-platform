@@ -12,6 +12,8 @@
   @include type.type-style('fluid-display-01', true);
 }
 
-.h1-container.h1-container {
-  margin-top: spacing.$spacing-10;
+.h1-container {
+  &.h1-container {
+    margin-top: spacing.$spacing-10;
+  }
 }

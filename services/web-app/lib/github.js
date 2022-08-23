@@ -6,7 +6,7 @@
  */
 import $RefParser from '@apidevtools/json-schema-ref-parser'
 import { Logging } from '@carbon-platform/api/logging'
-import resources from '@carbon-platform/resources/carbon.yml'
+import resources from '@carbon-platform/resources'
 import yaml from 'js-yaml'
 import { get, isEmpty, set } from 'lodash'
 import path from 'path'

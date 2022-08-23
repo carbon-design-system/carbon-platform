@@ -6,7 +6,7 @@
  */
 import { baseFontSize, breakpoints as carbonBreakpoints } from '@carbon/elements'
 import { CodeSnippet, Column, Grid, Theme } from '@carbon/react'
-import classnames from 'classnames'
+import clsx from 'clsx'
 import { findKey, values } from 'lodash'
 
 import styles from './typeset-example.module.scss'
@@ -99,7 +99,7 @@ const TypesetExample = (props) => (
 
       const versionClassName = type.version ? `cds--type-${type.version}` : ''
 
-      const versionClassNames = classnames(`cds--type-${type.key}`, versionClassName)
+      const versionClassNames = clsx(`cds--type-${type.key}`, versionClassName)
 
       return (
         <div key={`${props.name}${type.key}${type.version}`} className={styles['typeset-example']}>

@@ -14,7 +14,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
-import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'types'
 
 import CardGroup from '@/components/card-group'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
@@ -36,6 +35,7 @@ import {
   getLibraryRelatedLibs
 } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
+import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from '@/types'
 import { getLicense } from '@/utils/schema'
 
 import styles from './index.module.scss'

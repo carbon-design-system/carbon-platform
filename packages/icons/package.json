@@ -3,6 +3,7 @@
   "description": "Carbon platform icons",
   "version": "0.1.4",
   "license": "Apache-2.0",
+  "author": "IBM",
   "private": true,
   "repository": {
     "type": "git",

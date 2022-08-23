@@ -4,8 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { LogoGithub } from '@carbon/icons-react'
 import { Column, Grid } from '@carbon/react'
+import { LogoGithub } from '@carbon/react/icons'
 import { Svg32Illustrator } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'

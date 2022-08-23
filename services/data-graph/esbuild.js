@@ -9,7 +9,7 @@ import path from 'path'
 
 import base from '../../esbuild.base.mjs'
 
-build({
+await build({
   ...base,
   entryPoints: [path.resolve(process.cwd(), 'dist', 'main', 'index.js')],
   outfile: path.resolve(process.cwd(), 'dist', 'out.js'),
@@ -20,4 +20,4 @@ build({
     'apollo-server-fastify',
     'ts-morph'
   ]
-}).catch(() => process.exit(1))
+})

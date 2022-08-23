@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Advocate, Bee as BeePictogram } from '@carbon/pictograms-react'
 import {
   AccessibilityAlt,
   Bee as BeeIcon,
@@ -14,8 +15,7 @@ import {
   IbmCloud,
   IbmSecurity,
   Watson
-} from '@carbon/icons-react'
-import { Advocate, Bee as BeePictogram } from '@carbon/pictograms-react'
+} from '@carbon/react/icons'
 import {
   Svg64Carbon,
   Svg64CarbonForIbmDotcom,

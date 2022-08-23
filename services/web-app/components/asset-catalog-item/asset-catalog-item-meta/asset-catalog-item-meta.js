@@ -7,10 +7,10 @@
 import { Scales } from '@carbon/react/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { assetPropTypes } from 'types'
 
 import StatusIcon from '@/components/status-icon'
 import { status } from '@/data/status'
+import { assetPropTypes } from '@/types'
 import { getLicense } from '@/utils/schema'
 
 import styles from './asset-catalog-item-meta.module.scss'

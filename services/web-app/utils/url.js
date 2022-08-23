@@ -29,3 +29,13 @@ export const urlsMatch = (url1, url2, matchChunks = 0) => {
     JSON.stringify(urlObj2.pathname.split('/', matchChunks))
   )
 }
+
+/**
+ * Determines if a url string is absolute
+ *
+ * @param {string} url url string to evaluate
+ * @returns {boolean} whether the url is absolute or not
+ */
+export const isAbsoluteUrl = (url) => {
+  return url.startsWith('http://') || url.startsWith('https://')
+}

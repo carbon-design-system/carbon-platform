@@ -249,14 +249,14 @@ const PageContent = () => {
 
       <Divider>
         <Grid>
-          <Column sm={4} md={2} lg={4}>
+          <Column sm={4} md={4} lg={4}>
             <H2>
               Better
               <br />
               discoverability
             </H2>
           </Column>
-          <Column sm={4} md={6} lg={7}>
+          <Column sm={4} md={4} lg={7}>
             <P large>
               <strong>For designers and developers:</strong>
               <br />A unified discovery experience helps designers and developers find and access
@@ -267,14 +267,14 @@ const PageContent = () => {
       </Divider>
       <Divider>
         <Grid>
-          <Column sm={4} md={2} lg={4}>
+          <Column sm={4} md={4} lg={4}>
             <H2>
               Easier
               <br />
               management
             </H2>
           </Column>
-          <Column sm={4} md={6} lg={7}>
+          <Column sm={4} md={4} lg={7}>
             <P large>
               <strong>For contributors and maintainers:</strong>
               <br />A common schema helps PAL maintainers more easily manage their assets, keep

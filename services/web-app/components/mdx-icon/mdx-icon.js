@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Bee, LogoGithub } from '@carbon/icons-react'
+import { Bee, Code, LogoGithub } from '@carbon/icons-react'
 import {
   Codesandbox,
   Figma,
@@ -65,7 +65,8 @@ const localIcons = {
 
 const carbonIcons = {
   github: LogoGithub,
-  bee: Bee
+  bee: Bee,
+  code: Code
 }
 
 const iconColor = {

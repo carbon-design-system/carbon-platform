@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/micromanage-cli",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Monorepo management of microservices",
   "license": "Apache-2.0",
   "main": "./lib/index.js",

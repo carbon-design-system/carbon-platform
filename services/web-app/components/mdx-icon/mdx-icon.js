@@ -6,7 +6,6 @@
  */
 
 import { Bee, CodeReference, LogoGithub } from '@carbon/react/icons'
-
 import {
   Codesandbox,
   Figma,

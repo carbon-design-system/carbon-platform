@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.28](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.27...@carbon-platform/web-app@0.2.28) (2022-08-24)
+
+
+### Features 🌟
+
+* **web-app:** use heading components in article cards ([7bf9896](https://github.com/carbon-design-system/carbon-platform/commit/7bf9896f738f9615a2e0d6e4cd17ef8c83c30698))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** convert all h2 into H2s ([f15cf66](https://github.com/carbon-design-system/carbon-platform/commit/f15cf664fd7b882151df14ae73094be8f9b57f56))
+* **web-app:** heading replacements to markdown components ([2870e6b](https://github.com/carbon-design-system/carbon-platform/commit/2870e6b029e359141333d5eee1bae993e9a64624))
+* **web-app:** replace heading in catalog list ([6d798b1](https://github.com/carbon-design-system/carbon-platform/commit/6d798b160bc49ea81f33f9323b8896093df9c362))
+* **web-app:** replace headings with md components ([597c1f0](https://github.com/carbon-design-system/carbon-platform/commit/597c1f0f4d1d541ba8166ae38f941dee56abaf52)), closes [#859](https://github.com/carbon-design-system/carbon-platform/issues/859)
+* **web-app:** replace multiple h2 with H2 ([1db2d40](https://github.com/carbon-design-system/carbon-platform/commit/1db2d40822fd3b3e664cbde78f602a7e2fb4ed3c))
+* **web-app:** revert changes ([3292fc4](https://github.com/carbon-design-system/carbon-platform/commit/3292fc4690c208cfa290e1247709a909c02f2da4)), closes [#859](https://github.com/carbon-design-system/carbon-platform/issues/859)
+* **web-app:** scss coment spacing fixes ([13e8d56](https://github.com/carbon-design-system/carbon-platform/commit/13e8d563cb088025a4cb350d7bf518bda94cc7cb)), closes [#859](https://github.com/carbon-design-system/carbon-platform/issues/859)
+* **web-app:** scss coment spacing fixes ([3d99458](https://github.com/carbon-design-system/carbon-platform/commit/3d994584419e9291b255919d51d401e73668a455)), closes [#859](https://github.com/carbon-design-system/carbon-platform/issues/859)
+* **web-app:** scss coment spacing fixes ([7060588](https://github.com/carbon-design-system/carbon-platform/commit/7060588601280bedb036590d721210180e511e53)), closes [#859](https://github.com/carbon-design-system/carbon-platform/issues/859)
+* **web-app:** use nested scss instead of inline ([baef8ec](https://github.com/carbon-design-system/carbon-platform/commit/baef8ec602a9510529c84b0a6e78ed592e4b4951)), closes [#859](https://github.com/carbon-design-system/carbon-platform/issues/859)
+
 ### [0.2.27](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.26...@carbon-platform/web-app@0.2.27) (2022-08-24)
 
 

@@ -46,6 +46,9 @@ jobs:
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Install Node modules 🔧
+        run: npm install
+
       - name: Bootstrap Micromanage 🥾
         run: npm run micromanage:bootstrap
 

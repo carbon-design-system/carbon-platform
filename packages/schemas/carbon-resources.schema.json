@@ -126,7 +126,7 @@
                 "properties": {
                   "type": {
                     "type": "string",
-                    "enum": ["codesandbox", "github", "storybook"],
+                    "enum": ["codesandbox", "github", "storybook", "other"],
                     "description": "Determines the display icon."
                   },
                   "name": {
@@ -305,7 +305,7 @@
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["codesandbox", "github", "storybook"],
+                "enum": ["codesandbox", "github", "storybook", "other"],
                 "description": "Determines the display icon."
               },
               "name": {

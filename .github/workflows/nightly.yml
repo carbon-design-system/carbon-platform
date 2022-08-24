@@ -84,17 +84,6 @@ jobs:
     secrets:
       CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
 
-  mdx-components:
-    name: Publish MDX Components package
-    needs: update-versions
-    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/mdx-components']
-    uses: ./.github/workflows/publish-package.yml
-    with:
-      package_name: '@carbon-platform/mdx-components'
-      package_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/mdx-components'] }}
-    secrets:
-      NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-
   mdx-sanitizer:
     name: Publish MDX Sanitizer package
     needs: update-versions

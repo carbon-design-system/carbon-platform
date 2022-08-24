@@ -4,10 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
-import { h2 } from '@/components/markdown/markdown.module.scss'
+import H2 from '@/components/markdown/h2'
 import useIntersectionObserver from '@/utils/use-intersection-observer'
 
 import SvgCard from '../svg-card'
@@ -17,7 +16,7 @@ const IconCategory = ({ category, icons, columnCount }) => {
   const [subCategoryRef, containerIsVisible] = useIntersectionObserver()
   return (
     <section className={styles['svg-category']}>
-      <h2 className={clsx(h2, styles['category-title'])}>{category}</h2>
+      <H2 className={styles['h2-container']}>{category}</H2>
       <ul ref={subCategoryRef}>
         <ul className={styles['svg-grid']}>
           {icons.map((icon, i) => (

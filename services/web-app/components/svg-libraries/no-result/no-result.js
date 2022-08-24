@@ -4,12 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { LogoGithub } from '@carbon/icons-react'
 import { Column, Grid } from '@carbon/react'
+import { LogoGithub } from '@carbon/react/icons'
 import { Svg32Illustrator } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
+import H2 from '@/components/markdown/h2'
 import markdownStyles from '@/components/markdown/markdown.module.scss'
 import ResourceCard from '@/components/resource-card'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
@@ -33,7 +34,7 @@ const NoResult = ({
           <span className={styles['search-label']}>
             {`0 results found in the "${selectedCategory}" category.`}
           </span>
-          <h2 className={markdownStyles.h2}>
+          <H2>
             {allIconResults} matches found in{' '}
             <button
               type="button"
@@ -42,12 +43,12 @@ const NoResult = ({
             >
               all {type}.
             </button>
-          </h2>
+          </H2>
         </>
       )}
       {!allIconResults && (
         <>
-          <h2 className={markdownStyles.h2}>No result found</h2>
+          <H2>No result found</H2>
           <p className={markdownStyles.paragraph}>
             It appears we don’t have an icon that matches your search. Try different search terms or
             give us a hand—submit your own design to the library!

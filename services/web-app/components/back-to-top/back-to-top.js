@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { UpToTop } from '@carbon/icons-react'
+import { UpToTop } from '@carbon/react/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'

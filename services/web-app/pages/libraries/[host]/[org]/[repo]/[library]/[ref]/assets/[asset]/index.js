@@ -14,12 +14,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect, useRef } from 'react'
-import { libraryPropTypes, paramsPropTypes } from 'types'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import DemoLinks from '@/components/demo-links'
-import { H2 } from '@/components/markdown'
+import { H1, H2 } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
@@ -35,6 +34,7 @@ import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
 import { getAssetIssueCount, getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
+import { libraryPropTypes, paramsPropTypes } from '@/types'
 import { getAssetType } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 
@@ -54,7 +54,7 @@ const Asset = ({ libraryData, params }) => {
       <Grid>
         <Column sm={4} md={8} lg={16}>
           <div className={pageStyles.content}>
-            <h1>Loading...</h1>
+            <H1>Loading...</H1>
           </div>
         </Column>
       </Grid>

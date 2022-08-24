@@ -24,7 +24,7 @@ function main() {
     program.parse()
   } catch (err) {
     logErrorInfo(err)
-    process.exit(1)
+    throw err
   }
 }
 

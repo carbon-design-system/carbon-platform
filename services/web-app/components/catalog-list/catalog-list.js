@@ -10,6 +10,7 @@ import PropTypes from 'prop-types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
+import H2 from '../markdown/h2'
 import styles from './catalog-list.module.scss'
 
 const CatalogList = ({
@@ -43,7 +44,9 @@ const CatalogList = ({
           md={8}
           lg={12}
         >
-          <h2 className={styles.heading}>No results found</h2>
+          <H2 className={styles['h2-container']} narrow headingClassName={styles.heading}>
+            No results found
+          </H2>
           <p className={styles.paragraph}>
             {`It appears we don't have any ${itemPluralName} that match your search. Try different search terms.`}
           </p>

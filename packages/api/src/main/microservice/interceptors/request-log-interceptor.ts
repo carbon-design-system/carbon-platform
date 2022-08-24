@@ -12,6 +12,8 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { Logging } from '../../logging/index.js'
 
+const MAX_INPUT_DATA_LOG_SIZE = 500 // characters
+
 @Injectable()
 class RequestLogInterceptor implements NestInterceptor {
   public static getLogTextBuilder(
@@ -58,10 +60,15 @@ class RequestLogInterceptor implements NestInterceptor {
     responseTime: string
   ): string {
     const rpcContext = context.switchToRpc()
+    let inDataLog = JSON.stringify(rpcContext.getData())
+
+    if (inDataLog.length > MAX_INPUT_DATA_LOG_SIZE) {
+      inDataLog = inDataLog.substring(0, MAX_INPUT_DATA_LOG_SIZE) + '... (truncated)'
+    }
 
     const logParts = [
       context.getClass().name + '#' + context.getHandler().name,
-      'in: ' + JSON.stringify(rpcContext.getData()),
+      'in: ' + inDataLog,
       'out: ' + typeof result,
       responseTime + 'ms'
     ]
@@ -98,4 +105,8 @@ class RequestLogInterceptor implements NestInterceptor {
   }
 }
 
-export { RequestLogInterceptor }
+const __test__ = {
+  MAX_INPUT_DATA_LOG_SIZE
+}
+
+export { __test__, RequestLogInterceptor }

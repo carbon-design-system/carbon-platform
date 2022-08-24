@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.27](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.26...@carbon-platform/web-app@0.2.27) (2022-08-24)
+
+
+### Features 🌟
+
+* add axure fix lint [#1142](https://github.com/carbon-design-system/carbon-platform/issues/1142) ([68914e8](https://github.com/carbon-design-system/carbon-platform/commit/68914e842b6c0e23ec033f94e7b11b0d867952f4))
+* add in links functionality and pictograms ([a906c03](https://github.com/carbon-design-system/carbon-platform/commit/a906c036b1c4ddaa8a8046e1df58957d2c437940))
+* add in links functionality and pictograms ([efe7554](https://github.com/carbon-design-system/carbon-platform/commit/efe755465ce12b9f93094c9ab74d588048c32ee0))
+* update design kits and start functionality for links [#1142](https://github.com/carbon-design-system/carbon-platform/issues/1142) ([ecb0d53](https://github.com/carbon-design-system/carbon-platform/commit/ecb0d532d9f33c0e7e1b0c4fd9d2349c7d5695d2))
+* updated design kits ([9f9cec6](https://github.com/carbon-design-system/carbon-platform/commit/9f9cec67f9df608a5b7935e499d4c82a801be566))
+
+
+### Bug Fixes 🐛
+
+* html comment ([c5ae4b7](https://github.com/carbon-design-system/carbon-platform/commit/c5ae4b7da6537777eca597af5b0ed5798f8a72bc))
+* lint error ([1399998](https://github.com/carbon-design-system/carbon-platform/commit/1399998440415545fa841c0aff13582e87996be6))
+* merge conflicts ([c690a10](https://github.com/carbon-design-system/carbon-platform/commit/c690a1060cb9174512eea5304b9d066aba20b8da))
+* syntax issue ([299d219](https://github.com/carbon-design-system/carbon-platform/commit/299d21970fd931ceb954c7910232dbeab97fa8fb))
+* syntax issue ([86a2616](https://github.com/carbon-design-system/carbon-platform/commit/86a2616ddf5ff43d15c35cf0ff38e970befb1eed))
+
+
+### Misc. 🔮
+
+* update node modules and related documentation ([7a7a955](https://github.com/carbon-design-system/carbon-platform/commit/7a7a955ed7b12220ac79cf321c5f5e2543529e17))
+* **web-app:** fix eslint error ([077aacc](https://github.com/carbon-design-system/carbon-platform/commit/077aaccd77b1eda0a16379250e4140de37741998))
+
 ### [0.2.26](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.25...@carbon-platform/web-app@0.2.26) (2022-08-23)
 
 

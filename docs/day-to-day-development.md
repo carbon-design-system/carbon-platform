@@ -32,70 +32,10 @@ All of the projects are stored in a single monorepo located at
 https://github.com/carbon-design-system/carbon-platform. To get started, clone this repository
 locally.
 
-## Installing project dependencies
+## Working with npm dependencies
 
-It is a good idea each time after cloning or pulling from the upstream repository to install the
-project dependencies. From the top-level directory of the project, this can be done by running:
-
-```
-$ npm install
-```
-
-This will install the dependencies across _all_ projects in the monorepo.
-
-This will _also_ build all of the `packages` in the repo, since these are required to run any
-services that depend on them.
-
-## Adding new project dependencies
-
-To install a new node module into a project, from the top-level of the repository, run:
-
-```
-$ npm --workspace <workspace_path> install [--save-dev] some-node-package-name@latest
-```
-
-- `workspace_path` is the folder containing the package.json you wish to update. For example
-  `services/logging`.
-- `--save-dev` is optional, depending on whether the dep is a production dep or only used during
-  development/build.
-- Make sure to specify a package version or `@latest` so the dependency doesn't get installed with
-  the `*` wildcard.
-
-Here's a full example of installing the `immer` package into the `@carbon-platform/logging` package:
-
-```
-$ npm --workspace services/logging install immer
-```
-
-Removing dependencies works the same way with the `npm uninstall` command.
-
-> ⚠️⚠️⚠️ Note ⚠️⚠️⚠️
->
-> It is important to only run install commands from the top-level of the repository. This allows a
-> single `package-lock.json` file to be maintained at the root of the repo. If you see that you've
-> accidentally created another lock file in your git views, don't commit it! Delete it and re-run
-> the install/update/uninstall commands from the top-level of the repo.
-
-## Updating node modules
-
-To update the node modules across all workspaces, from the top-level in the repo, run:
-
-```
-npm update
-npx --workspaces --include-workspace-root ncu --upgrade --interactive --target=minor
-npm install && npm install
-```
-
-> Note: An ncu target of `latest` or `patch` can also be used, depending on the objective.
-
-> Note: Running npm install twice during this helps to eliminate wildcard versions from showing up
-> in the package-lock.json file.
-
-To update the node modules only for a specific workspace, from the top-level in the repo, run:
-
-```
-$ npm --workspace <workspace_path> update
-```
+For information about installing and managing repo-wide dependencies, see
+[Working with dependencies](./working-with-dependencies.md).
 
 ## Running npm scripts for packages and services
 

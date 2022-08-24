@@ -4,10 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { useAuth } from 'contexts/auth'
 import { useEffect } from 'react'
 
 import RequireAuth from '@/components/auth/require-auth'
+import { useAuth } from '@/contexts/auth'
 import { isValidIbmEmail } from '@/utils/string'
 
 import FourOhFour from '../404'

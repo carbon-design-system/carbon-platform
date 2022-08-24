@@ -9,12 +9,12 @@ import { get, isEqual, set } from 'lodash'
 import minimatch from 'minimatch'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { libraryPropTypes } from 'types'
 
 import AssetCatalogItem from '@/components/asset-catalog-item'
 import Catalog from '@/components/catalog'
 import { getFilters } from '@/data/filters'
 import { sortItems } from '@/data/sort'
+import { libraryPropTypes } from '@/types'
 import { valuesIntersect } from '@/utils/array'
 import {
   assetSortComparator,

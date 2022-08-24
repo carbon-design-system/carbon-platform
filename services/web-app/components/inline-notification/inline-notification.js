@@ -7,7 +7,7 @@
 
 import { Column, Grid } from '@carbon/react'
 import { CheckmarkFilled, ErrorFilled, InformationFilled, WarningFilled } from '@carbon/react/icons'
-import clsx from 'classnames'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
 import styles from './inline-notification.module.scss'

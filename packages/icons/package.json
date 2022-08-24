@@ -1,8 +1,9 @@
 {
   "name": "@carbon-platform/icons",
   "description": "Carbon platform icons",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "Apache-2.0",
+  "author": "IBM",
   "private": true,
   "repository": {
     "type": "git",

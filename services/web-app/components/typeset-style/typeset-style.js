@@ -15,6 +15,7 @@ import { typeScale } from '@/data/type-scale'
 import { typeSets } from '@/data/type-sets'
 import useEventListener from '@/utils/use-event-listener'
 
+import H4 from '../markdown/h4'
 import InputRange from './input-range'
 import StickyContainer from './sticky-container'
 import TypesetExample from './typeset-example'
@@ -141,12 +142,12 @@ const TypesetStyle = ({
           .map((typeset, i) => (
             <>
               {header && (
-                <h4>
+                <H4 headingClassName={styles['typestyle-header']} narrow>
                   {typeset
                     .replace(/fixed/g, '')
                     .replace(/([a-z])([A-Z])/g, '$1 $2')
                     .toLowerCase()}
-                </h4>
+                </H4>
               )}
               <TypesetExample
                 key={i}

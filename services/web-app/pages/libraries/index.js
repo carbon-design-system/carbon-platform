@@ -7,7 +7,6 @@
 import { NextSeo } from 'next-seo'
 import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
-import { libraryPropTypes } from 'types'
 
 import LibraryCatalog from '@/components/library-catalog/library-catalog'
 import PageDescription from '@/components/page-description/page-description'
@@ -16,6 +15,7 @@ import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
+import { libraryPropTypes } from '@/types'
 import { librarySortComparator } from '@/utils/schema'
 
 import styles from './index.module.scss'

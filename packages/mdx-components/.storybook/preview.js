@@ -4,12 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+/* eslint-disable node/no-extraneous-import -- Rule doesn't properly use root package.json file  */
 import '@carbon/styles/css/styles.css'
 import '../dist/main/index.css'
 
 import { breakpoints } from '@carbon/layout'
 import { Theme } from '@carbon/react'
-import { RouterContext } from 'next/dist/shared/lib/router-context'
+/* eslint-enable node/no-extraneous-import -- Re-enable rule */
 
 export const decorators = [
   (Story, context) => {
@@ -78,9 +79,6 @@ export const parameters = {
     }
   },
   layout: 'fullscreen',
-  nextRouter: {
-    Provider: RouterContext.Provider
-  },
   viewMode: 'docs',
   viewport: {
     viewports: {

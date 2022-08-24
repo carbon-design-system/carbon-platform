@@ -8,9 +8,9 @@ import { AspectRatio, Column, Grid } from '@carbon/react'
 import { Events, Scales } from '@carbon/react/icons'
 import { get, isEmpty } from 'lodash'
 import Link from 'next/link'
-import { libraryPropTypes } from 'types'
 
 import { teams } from '@/data/teams'
+import { libraryPropTypes } from '@/types'
 import { getLicense } from '@/utils/schema'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 

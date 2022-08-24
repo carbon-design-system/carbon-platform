@@ -65,11 +65,11 @@ export const getUrlWithProtocol = (url) => {
 }
 
 /**
- * Determins if a given string is a valid http url
+ * Determines if a given string is a valid http url
  * @param {string} urlString
  * @returns {boolean} true if valid url, false otherwise
  */
-export const isValidHttpUrl = (urlString) => {
+export const isAbsoluteUrl = (urlString) => {
   let url
 
   try {
@@ -78,5 +78,5 @@ export const isValidHttpUrl = (urlString) => {
     return false
   }
 
-  return url.protocol === 'http:' || url.protocol === 'https:'
+  return !!url
 }

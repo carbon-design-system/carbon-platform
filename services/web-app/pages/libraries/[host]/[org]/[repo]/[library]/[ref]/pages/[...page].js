@@ -20,7 +20,7 @@ import {
   getRemoteMdxSource
 } from '@/lib/github'
 import { processMdxSource } from '@/utils/mdx'
-import { isValidHttpUrl } from '@/utils/string'
+import { isAbsoluteUrl } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 
 const LibraryPage = ({ compiledSource, mdxError, warnings, navData, navTitle, libraryData }) => {
@@ -86,7 +86,7 @@ export const getStaticProps = async ({ params }) => {
 
   let { host, org, repo, ref } = params
 
-  if (isValidHttpUrl(pageSrc)) {
+  if (isAbsoluteUrl(pageSrc)) {
     const url = new URL(pageSrc)
     host = url.host
     const pathNameChunks = url.pathname.split('/')

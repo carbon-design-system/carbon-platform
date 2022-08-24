@@ -17,7 +17,7 @@ const P = ({ children, className, large, ...rest }) => {
 
   return (
     <Grid className={clsx(className, styles['paragraph-container'])} {...rest}>
-      <Column sm={4} md={6} lg={8}>
+      <Column sm={4} md={8} lg={8}>
         <p className={classNames}>{children}</p>
       </Column>
     </Grid>

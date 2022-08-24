@@ -12,7 +12,7 @@ import styles from './markdown.module.scss'
 const H6 = ({ children, className, ...rest }) => {
   return (
     <Grid className={clsx(className, styles['h6-container'])} {...rest}>
-      <Column sm={4} md={6} lg={8}>
+      <Column sm={4} md={8} lg={8}>
         <h6 className={styles.h6}>{children}</h6>
       </Column>
     </Grid>

@@ -130,7 +130,7 @@ const Library = ({ libraryData, params, navData }) => {
             pictogram={pageHeader?.icon}
           />
         </Column>
-        <Column sm={4} md={6} lg={8}>
+        <Column sm={4} md={8} lg={8}>
           <PageDescription className={styles['page-description']}>
             {seo.description}
           </PageDescription>

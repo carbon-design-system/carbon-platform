@@ -9,7 +9,7 @@ import clsx from 'clsx'
 import NextImage from 'next/image'
 import PropTypes from 'prop-types'
 
-import { isAbsoluteUrl } from '@/utils/string'
+import { createUrl } from '@/utils/string'
 
 import styles from './image.module.scss'
 
@@ -27,8 +27,8 @@ const getImageProps = (props) => {
   }
 
   // do not optimize if is svg file (absolute or relative)
-  const url = isAbsoluteUrl(src) ? new URL(src).pathname.split('/').pop().endsWith('.svg') : null
-  if (src.endsWith('.svg') || !!url) {
+  const url = createUrl(src)
+  if (src.endsWith('.svg') || (url && url.pathname.split('/').pop().endsWith('.svg'))) {
     props.unoptimized = true
   }
 

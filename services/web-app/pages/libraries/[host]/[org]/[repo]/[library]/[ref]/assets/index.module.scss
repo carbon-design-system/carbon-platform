@@ -18,7 +18,7 @@
  */
 
 .subheading {
-  padding: (spacing.$spacing-11) spacing.$spacing-05 spacing.$spacing-11 0;
+  padding: 0 spacing.$spacing-05 spacing.$spacing-11 0;
   @include type.type-style('fluid-heading-03', true);
 
   @include breakpoint.breakpoint-down(md) {
@@ -142,11 +142,6 @@
   padding: spacing.$spacing-11 0;
 }
 
-.no-results-heading {
-  margin: spacing.$spacing-05 0;
-  @include type.type-style('heading-04');
-}
-
 .no-results-subheading {
   @include type.type-style('body-02');
 }
@@ -156,4 +151,24 @@
   :global(.cds--data-table-container) {
     padding-top: 0;
   }
+}
+
+.h2-container {
+  &.h2-container {
+    margin-top: spacing.$spacing-05;
+  }
+}
+
+.h3-container {
+  &.h3-container {
+    margin-top: 0;
+  }
+
+  + * {
+    margin-top: 0;
+  }
+}
+
+.no-results-heading {
+  margin-bottom: spacing.$spacing-06;
 }

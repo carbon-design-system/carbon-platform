@@ -23,20 +23,31 @@ export const mdxUrlResolver = (mdxFileUrlString, url) => {
     url.path = url.path.substring(1)
   }
 
-  // Don't touch extension-less paths
+  // Don't touch extension-less paths (i.e. routes)
   if (!url.path.split('/').pop().includes('.')) {
     return undefined
   }
 
   // TODO: make sure you can't see private stuff if you provide an absolute url
-  // TODO: make sure you can't jump outside of your own repo
 
   const resultUrl = new URL(mdxFileUrlString)
+  const pathParts = resultUrl.pathname.split('/')
 
+  // Take off the org/repo from the GH URL
+  const orgRepo = pathParts.splice(0, 2).join('/')
+
+  // Set the pathname to the path without the org/repo combo
+  resultUrl.pathname = pathParts.join('/')
+
+  // Resolve the dirName (without the org/repo) against the incoming url path
   const dirName = path.dirname(resultUrl.pathname)
   const resolvedPath = path.resolve(dirName, url.path)
 
-  resultUrl.pathname = resolvedPath
+  // Combine the resolvedPath (which is not guaranteed to not have '..' anywhere in it) with the
+  // org/repo
+  resultUrl.pathname = resolvedPath.startsWith('/')
+    ? orgRepo + resolvedPath
+    : orgRepo + '/' + resolvedPath
   resultUrl.search = '?raw=true'
 
   return resultUrl.href

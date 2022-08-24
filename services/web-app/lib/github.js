@@ -588,33 +588,11 @@ export const getLibraryData = async (params = {}) => {
     }
   })
 
-  let assets = await getLibraryAssets(params)
-
-  if (library.inherits) {
-    const inheritParams = await getLibraryParams(library.inherits)
-
-    if (!isEmpty(inheritParams)) {
-      const inheritLibrary = await getLibraryData(inheritParams)
-
-      assets = mergeInheritedAssets(assets, inheritLibrary.assets)
-
-      if (!library.designKits && inheritLibrary.content.designKits) {
-        library.designKits = inheritLibrary.content.designKits
-      }
-    }
-  }
+  const assets = await getLibraryAssets(libraryParams)
 
   const packageJsonContent = await getPackageJsonContent(params, library.packageJsonPath)
 
-  const filteredAssets = assets.filter((asset) => {
-    const isValidAsset = validateAsset(asset.content, library)
-    if (libraryParams.asset) {
-      return isValidAsset && getSlug(asset.content) === libraryParams.asset
-    }
-    return isValidAsset
-  })
-
-  return {
+  const libraryResponse = {
     params: libraryParams,
     response,
     content: {
@@ -622,10 +600,16 @@ export const getLibraryData = async (params = {}) => {
       ...library, // spread last to use schema description if set
       noIndex: !!library.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
     },
-    assets: filteredAssets.map((asset) => {
+    assets: assets.map((asset) => {
       return { ...asset, statusKey: getAssetStatus(asset) }
     })
   }
+
+  await addLibraryInheritedData(libraryResponse)
+
+  validateLibraryAssets(libraryResponse)
+
+  return libraryResponse
 }
 
 /**
@@ -662,17 +646,12 @@ const getThumbnailPath = (libraryParams = {}, asset = {}) => {
 }
 
 /**
- * If the params map to a valid library in the allowlist, get the default branch if there isn't a
- * specified ref, then recursively get all asset metadata files. Find the files that are in the
+ * Recursively get all asset metadata files. Find the files that are in the
  * library's subdirectory and then fetch the contents for each asset metadata file.
- * @param {import('../typedefs').Params} params
+ * @param {import('../typedefs').Params} libraryParams
  * @returns {Promise<import('../typedefs').Asset[]>}
  */
-const getLibraryAssets = async (params = {}) => {
-  const libraryParams = await validateLibraryParams(params)
-
-  if (isEmpty(libraryParams)) return []
-
+const getLibraryAssets = async (libraryParams = {}) => {
   // get all asset metadata files in subdirectories
 
   /**
@@ -808,6 +787,42 @@ const getLibraryAssets = async (params = {}) => {
   }
 
   return assets
+}
+
+/**
+ * Validates and filters an array of assets,
+ * returns a modified array containing only valid assets for a library.
+ * @param {Promise<import('../typedefs').Library>} library
+ */
+const validateLibraryAssets = (library) => {
+  library.assets = library.assets.filter((asset) => {
+    const isValidAsset = validateAsset(asset.content, library)
+    if (library.params.asset) {
+      return isValidAsset && getSlug(asset.content) === library.params.asset
+    }
+    return isValidAsset
+  })
+}
+
+/**
+ * Adds inherited data to library.
+ * @param {import('../typedefs').Library} library
+ * @returns {Promise<void>}
+ */
+const addLibraryInheritedData = async (library) => {
+  if (library.content.inherits) {
+    const inheritParams = await getLibraryParams(library.content.inherits)
+
+    if (!isEmpty(inheritParams)) {
+      const inheritLibrary = await getLibraryData(inheritParams)
+
+      library.assets = mergeInheritedAssets(library.assets, inheritLibrary.assets)
+
+      if (!library.content.designKits && inheritLibrary.content.designKits) {
+        library.content.designKits = inheritLibrary.content.designKits
+      }
+    }
+  }
 }
 
 /**

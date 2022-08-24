@@ -325,6 +325,24 @@ const devLibraries = {
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/utilities',
     maintainer: 'ibm-dotcom'
+  },
+  'design-kit': {
+    host: 'github.com',
+    org: 'francinelucca',
+    repo: 'library-testing',
+    path: '/isolated'
+  },
+  'design-kit-inheritance': {
+    host: 'github.com',
+    org: 'francinelucca',
+    repo: 'library-testing',
+    path: '/inherit/1'
+  },
+  'design-kit-inheritance-2': {
+    host: 'github.com',
+    org: 'francinelucca',
+    repo: 'library-testing',
+    path: '/inherit/2'
   }
 }
 

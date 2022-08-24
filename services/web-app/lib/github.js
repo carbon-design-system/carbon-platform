@@ -594,9 +594,13 @@ export const getLibraryData = async (params = {}) => {
     const inheritParams = await getLibraryParams(library.inherits)
 
     if (!isEmpty(inheritParams)) {
-      const inheritAssets = await getLibraryAssets(inheritParams)
+      const inheritLibrary = await getLibraryData(inheritParams)
 
-      assets = mergeInheritedAssets(assets, inheritAssets)
+      assets = mergeInheritedAssets(assets, inheritLibrary.assets)
+
+      if (!library.designKits && inheritLibrary.content.designKits) {
+        library.designKits = inheritLibrary.content.designKits
+      }
     }
   }
 

@@ -85,7 +85,7 @@ async function start() {
     module: MyServiceModule
   })
 
-  pm.bind<EventMessage>('log_logged', 'some_other_event', ...)
+  await pm.bind<EventMessage>('log_logged', 'some_other_event', ...)
 
   await pm.start()
 }

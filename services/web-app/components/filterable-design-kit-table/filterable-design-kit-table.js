@@ -4,7 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Download, Launch } from '@carbon/icons-react'
 import {
   Column,
   DataTable,
@@ -19,6 +18,7 @@ import {
   TableRow,
   Tag
 } from '@carbon/react'
+import { Download, Launch } from '@carbon/react/icons'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'

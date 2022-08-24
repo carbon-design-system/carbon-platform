@@ -26,6 +26,9 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect, useState } from 'react'
 
 import AssetCatalogItemMeta from '@/components/asset-catalog-item/asset-catalog-item-meta'
+import H1 from '@/components/markdown/h1'
+import H2 from '@/components/markdown/h2'
+import H3 from '@/components/markdown/h3'
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
 import { assetsNavData } from '@/data/nav-data'
@@ -82,7 +85,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
       <Grid>
         <Column sm={4} md={8} lg={16}>
           <div className={pageStyles.content}>
-            <h1>Loading...</h1>
+            <H1>Loading...</H1>
           </div>
         </Column>
       </Grid>
@@ -156,7 +159,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
         <Column sm={4} md={8} lg={12}>
           <Grid>
             <Column sm={4} md={8} lg={8}>
-              <h2 className={styles.subheading}>{description}</h2>
+              <H2 headingClassName={styles.subheading}>{description}</H2>
             </Column>
           </Grid>
           <Grid condensed={!isLg} narrow={isLg}>
@@ -206,17 +209,29 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
                             <TableCell colSpan={5}>
                               <div className={styles['no-results-container']}>
                                 <FilingCabinet />
-                                <h2 className={styles['no-results-heading']}>
+                                <H2
+                                  narrow
+                                  className={styles['h2-container']}
+                                  headingClassName={styles['no-results-heading']}
+                                >
                                   No assets in library.
-                                </h2>
-                                <h3 className={styles['no-results-subheading']}>
+                                </H2>
+                                <H3
+                                  narrow
+                                  className={styles['h3-container']}
+                                  headingClassName={styles['no-results-subheading']}
+                                >
                                   This library does not contain any assets.
-                                </h3>
+                                </H3>
                                 {/* library maintainers should be a link but leaving as text for
-                                  now until we figure out contributors discussion */}
-                                <h3 className={styles['no-results-subheading']}>
+                                now until we figure out contributors discussion */}
+                                <H3
+                                  narrow
+                                  className={styles['h3-container']}
+                                  headingClassName={styles['no-results-subheading']}
+                                >
                                   Contact library maintainers for further details.
-                                </h3>
+                                </H3>
                               </div>
                             </TableCell>
                           </TableRow>

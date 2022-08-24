@@ -9,11 +9,11 @@ import clsx from 'clsx'
 
 import styles from './markdown.module.scss'
 
-const H6 = ({ children, className, ...rest }) => {
+const H6 = ({ children, className, headingClassName, ...rest }) => {
   return (
-    <Grid className={clsx(className, styles['h6-container'])} {...rest}>
+    <Grid className={clsx(styles['h6-container'], className)} {...rest}>
       <Column sm={4} md={6} lg={8}>
-        <h6 className={styles.h6}>{children}</h6>
+        <h6 className={clsx(styles.h6, headingClassName)}>{children}</h6>
       </Column>
     </Grid>
   )

@@ -19,7 +19,7 @@ import { getResponse, getSvgResponse } from '@/lib/file-cache'
 import { getAssetErrors, getDesignKitErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
-import { addTrailingSlash, isValidHttpUrl, removeLeadingSlash } from '@/utils/string'
+import { addTrailingSlash, createUrl, removeLeadingSlash } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 import { urlsMatch } from '@/utils/url'
 
@@ -98,7 +98,7 @@ export const getRemoteMdxSource = async (repoParams, mdxPath) => {
     repoParams.ref = await getRepoDefaultBranch(repoParams)
   }
 
-  if (!isValidHttpUrl(mdxPath)) {
+  if (!createUrl(mdxPath)) {
     const fullContentsPath = path.join(
       'https://',
       repoParams.host,
@@ -403,7 +403,7 @@ const resolveSchemaReferences = async (params, data) => {
     for await (const [key, value] of Object.entries(data.library.designKits)) {
       if (value.$ref) {
         if (
-          !isValidHttpUrl(value.$ref) &&
+          !createUrl(value.$ref) &&
           !value.$ref.startsWith('#/') &&
           !resolveDesignKitUrl(params, key, value)
         ) {

@@ -1,8 +1,9 @@
 {
   "name": "@carbon-platform/schemas",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Schema files for indexing Carbon resources",
   "license": "Apache-2.0",
+  "author": "IBM",
   "publishConfig": {
     "access": "public"
   },
@@ -14,6 +15,12 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "exports": {
+    ".": "./carbon-resources.schema.json",
+    "./asset-validation.schema.json": "./internal/validation/asset-validation.schema.json",
+    "./design-kit-validation.schema.json": "./internal/validation/design-kit-validation.schema.json",
+    "./library-validation.schema.json": "./internal/validation/library-validation.schema.json"
+  },
   "scripts": {
     "test": "echo 'No js/ts code to test in schemas package'"
   }

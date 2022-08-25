@@ -1,45 +1,46 @@
 {
-    "name": "@carbon-platform/mdx-processor",
-    "version": "0.1.1",
-    "description": "Convert input MDX to safe-to-use React components",
-    "license": "Apache-2.0",
-    "type": "module",
-    "private": true,
-    "exports": {
-        "default": "./dist/main/index.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
-    },
-    "bugs": {
-        "url": "https://github.com/carbon-design-system/carbon-platform/issues"
-    },
-    "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
-    "scripts": {
-        "build": "tsc",
-        "build:watch": "tsc --watch",
-        "clean": "rimraf dist generated",
-        "package:build": "npm run build",
-        "test": "ava --config ../../ava.config.mjs"
-    },
-    "dependencies": {
-        "@mdx-js/mdx": "^2.1.2",
-        "image-extensions": "^1.1.0",
-        "rehype-urls": "^1.1.1",
-        "remark-gfm": "^3.0.1",
-        "remark-unwrap-images": "^3.0.1",
-        "vfile": "^5.3.4",
-        "vfile-matter": "^4.0.0",
-        "vfile-message": "^3.1.2"
-    },
-    "peerDependencies": {
-        "@types/react": ">=17",
-        "@types/react-dom": ">=17",
-        "react": ">=17",
-        "react-dom": ">=17"
-    },
-    "devDependencies": {
-        "@types/unist": "^2.0.6"
-    }
+  "name": "@carbon-platform/mdx-processor",
+  "version": "0.1.3",
+  "description": "Convert input MDX to safe-to-use React components",
+  "license": "Apache-2.0",
+  "type": "module",
+  "author": "IBM",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+  },
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "exports": {
+    "default": "./dist/main/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "clean": "rimraf dist generated",
+    "package:build": "npm run build",
+    "test": "ava --config ../../ava.config.mjs"
+  },
+  "dependencies": {
+    "@mdx-js/mdx": "^2.1.3",
+    "image-extensions": "^1.1.0",
+    "rehype-urls": "^1.1.1",
+    "remark-gfm": "^3.0.1",
+    "remark-unwrap-images": "^3.0.1",
+    "vfile": "^5.3.4",
+    "vfile-matter": "^4.0.0",
+    "vfile-message": "^3.1.2"
+  },
+  "peerDependencies": {
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/unist": "^2.0.6"
+  }
 }

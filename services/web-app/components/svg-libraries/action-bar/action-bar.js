@@ -4,8 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Code, Download } from '@carbon/icons-react'
 import { IconButton, Link, Tooltip } from '@carbon/react'
+import { Code, Download } from '@carbon/react/icons'
 import { pascalCase } from 'change-case'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'

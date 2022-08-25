@@ -140,6 +140,13 @@ designKits:
     status: stable
     url: https://github.com/IBM/design-kit/blob/master/Axure/ibm-carbon-template.rp?raw=true
     action: download
+  axure-widget-library:
+    name: Axure widget library
+    tool: axure
+    type: ui
+    status: stable
+    url: https://github.com/IBM/design-kit/blob/master/Axure/IBM%20Carbon%2010.rplib?raw=true
+    action: download
   data-viz-sketch:
     name: Data vizualization
     tool: sketch
@@ -283,3 +290,59 @@ designKits:
     url: https://www.figma.com/file/upZIO5LXG9OnHCKwCawlur/Light---Cloud-PAL
     action: link
     noIndex: true
+  figma-v11-white-theme:
+    name: Figma v11 white theme
+    tool: figma
+    type: ui
+    status: stable
+    url: https://www.figma.com/file/YAnB1jKx0yCUL29j6uSLpg/(v11-BETA)-White-Theme---Carbon-Design-System
+    action: link
+  figma-v11-gray-10-theme:
+    name: Figma v11 gray 10 theme
+    tool: figma
+    type: ui
+    status: stable
+    url: https://www.figma.com/file/0sd447WTcazDI6Dq9tjXOe/(v11-BETA)-Gray-10-Theme---Carbon-Design-System
+    action: link
+  figma-v11-gray-90-theme:
+    name: Figma v11 gray 90 theme
+    tool: figma
+    type: ui
+    status: stable
+    url: https://www.figma.com/file/fH8rkv1VUTw5pvFDvO1kPO/(v11-BETA)-Gray-90-Theme---Carbon-Design-System
+    action: link
+  figma-v11-gray-100-theme:
+    name: Figma v11 gray 100 theme
+    tool: figma
+    type: ui
+    status: stable
+    url: https://www.figma.com/file/XhRIHF6qGiJQaJ5eOSSBRm/(v11-BETA)-Gray-100-Theme---Carbon-Design-System
+    action: link
+  color-styles-figma:
+    name: Figma Color styles
+    tool: figma
+    type: elements
+    status: stable
+    url: https://www.figma.com/file/Gvwx2RnAZzDKTjVuC5xOlO/Color-Styles---IBM-Design-Language?node-id=129%3A2
+    action: link
+  v11-text-styles-figma:
+    name: Figma v11 Text styles
+    tool: figma
+    type: elements
+    status: stable
+    url: https://www.figma.com/file/rK06GY6bvEfokuzrFGdtWB/(v11)-Text-Styles---IBM-Design-Language?node-id=129%3A2
+    action: link
+  ibm-icons-figma:
+    name: Figma IBM icons
+    tool: figma
+    type: elements
+    status: stable
+    url: https://www.figma.com/file/J5c0d85dSJn9JnBhSYYLmD/Icons---IBM-Design-Language?node-id=129%3A2
+    action: link
+  ibm-pictograms-figma:
+    name: Figma IBM pictograms
+    tool: figma
+    type: elements
+    status: stable
+    url: https://www.figma.com/file/PkUl9UBuvA41GPpyl84NBc/Pictograms---IBM-Design-Language
+    action: link

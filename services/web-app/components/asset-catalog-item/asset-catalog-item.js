@@ -10,11 +10,11 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { assetPropTypes } from 'types'
 
 import FrameworkIcon from '@/components/framework-icon'
 import TypeTag from '@/components/type-tag'
 import { teams } from '@/data/teams'
+import { assetPropTypes } from '@/types'
 import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 

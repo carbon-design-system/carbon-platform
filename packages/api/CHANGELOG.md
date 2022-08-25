@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.28...@carbon-platform/api@0.3.29) (2022-08-25)
+
+
+### Features 🌟
+
+* add additional demo link type other ([dbe821c](https://github.com/carbon-design-system/carbon-platform/commit/dbe821cdd3bb030951775cda2649668d0003759e)), closes [#581](https://github.com/carbon-design-system/carbon-platform/issues/581)
+
+
+### Bug Fixes 🐛
+
+* **api:** enforce max length for trace and request logs ([f6443aa](https://github.com/carbon-design-system/carbon-platform/commit/f6443aa7f93ac9393e847ec2b82248373c0bbb5e))
+
+
+### Misc. 🔮
+
+* **api:** fix sonarlint errors ([300ec78](https://github.com/carbon-design-system/carbon-platform/commit/300ec785f13b26883597b9df0f6e28d3deee903c))
+* **api:** remove commented out auth tests for now ([0dd6b61](https://github.com/carbon-design-system/carbon-platform/commit/0dd6b61b38aacc6026be87c924be214e1535286f))
+
 ### [0.3.28](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.27...@carbon-platform/api@0.3.28) (2022-08-24)
 
 

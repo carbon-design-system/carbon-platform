@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.28...@carbon-platform/web-app@0.2.29) (2022-08-25)
+
+
+### Features 🌟
+
+* add additional demo link type other ([dbe821c](https://github.com/carbon-design-system/carbon-platform/commit/dbe821cdd3bb030951775cda2649668d0003759e)), closes [#581](https://github.com/carbon-design-system/carbon-platform/issues/581)
+* update icons for other demo link ([fe80042](https://github.com/carbon-design-system/carbon-platform/commit/fe80042b532fb66093b57fab182ffc5c3444ee29)), closes [#581](https://github.com/carbon-design-system/carbon-platform/issues/581)
+
+
+### Bug Fixes 🐛
+
+* lint error ([2741d04](https://github.com/carbon-design-system/carbon-platform/commit/2741d0479599cfa7aea841caa12ec9f23ad22bc7)), closes [#581](https://github.com/carbon-design-system/carbon-platform/issues/581)
+* **web-app:** improve remote mdx relative url security ([831ac8c](https://github.com/carbon-design-system/carbon-platform/commit/831ac8c47c14f6b0074d83d1a48f5a4ceb9a9852))
+
 ### [0.2.28](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.27...@carbon-platform/web-app@0.2.28) (2022-08-24)
 
 

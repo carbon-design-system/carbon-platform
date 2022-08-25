@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.37](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.36...@carbon-platform/data-graph@0.1.37) (2022-08-25)
+
+
+### Misc. 🔮
+
+* **api:** fix sonarlint errors ([300ec78](https://github.com/carbon-design-system/carbon-platform/commit/300ec785f13b26883597b9df0f6e28d3deee903c))
+
 ### [0.1.36](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.35...@carbon-platform/data-graph@0.1.36) (2022-08-24)
 
 ### [0.1.35](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.34...@carbon-platform/data-graph@0.1.35) (2022-08-24)

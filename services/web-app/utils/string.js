@@ -67,7 +67,7 @@ export const getUrlWithProtocol = (url) => {
 /**
  * Converts string to url if valid
  * @param {string} src
- * @returns {URL | undefined}}
+ * @returns {URL | undefined}
  */
 export const createUrl = (src) => {
   let result

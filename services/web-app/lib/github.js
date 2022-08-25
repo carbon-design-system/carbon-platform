@@ -792,7 +792,7 @@ const getLibraryAssets = async (libraryParams = {}) => {
 /**
  * Validates and filters an array of assets,
  * returns a modified array containing only valid assets for a library.
- * @param {Promise<import('../typedefs').Library>} library
+ * @param {import('../typedefs').Library} library
  */
 const validateLibraryAssets = (library) => {
   library.assets = library.assets.filter((asset) => {

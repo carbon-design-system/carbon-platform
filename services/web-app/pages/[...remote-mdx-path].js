@@ -80,19 +80,9 @@ export const getStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths = async () => {
-  const allowedPaths = Object.keys(remotePages).map((remotePage) => {
-    return {
-      params: {
-        'remote-mdx-path': remotePage.split('/')
-      }
-    }
-  })
-
   return {
-    paths: allowedPaths,
-    // returning 404 if page wasn't generated at build time
-    // to prevent remote mdx dynamic loading for now
-    fallback: false
+    paths: [],
+    fallback: 'blocking'
   }
 }
 

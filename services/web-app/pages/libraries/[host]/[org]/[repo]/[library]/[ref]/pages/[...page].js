@@ -13,12 +13,7 @@ import slugify from 'slugify'
 import MdxPage from '@/components/mdx-page/mdx-page'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout/layout'
-import {
-  getAllLibraries,
-  getLibraryData,
-  getLibraryNavData,
-  getRemoteMdxSource
-} from '@/lib/github'
+import { getLibraryData, getLibraryNavData, getRemoteMdxSource } from '@/lib/github'
 import { processMdxSource } from '@/utils/mdx'
 import { isValidHttpUrl } from '@/utils/string'
 import { dfs } from '@/utils/tree'
@@ -84,6 +79,12 @@ export const getStaticProps = async ({ params }) => {
     }
   })
 
+  if (!pageSrc) {
+    return {
+      notFound: true
+    }
+  }
+
   let { host, org, repo, ref } = params
 
   if (isValidHttpUrl(pageSrc)) {
@@ -135,38 +136,9 @@ export const getStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths = async () => {
-  const librariesData = await getAllLibraries()
-
-  const pages = []
-
-  librariesData.libraries.forEach((library) => {
-    if (library.content.navData) {
-      // traverse items subtree and remove hidden nodes
-      dfs(library.content.navData, (item) => {
-        const itemSlug = slugify(item.title, { strict: true, lower: true })
-        const itemPath = item.parentPath ? `${item.parentPath}/${itemSlug}` : itemSlug
-        if (item.items) {
-          item.items = item.items?.filter((childItem) => !childItem.hidden)
-          item.items.forEach((child) => {
-            child.parentPath = itemPath
-          })
-        }
-        if (item.path) {
-          pages.push({
-            params: { ...library.params, page: itemPath.split('/') }
-          })
-          // hard coding latest temporarily, in the future we want to do ISR here
-          pages.push({ params: { ...library.params, page: itemPath.split('/'), ref: 'latest' } })
-        }
-      })
-    }
-  })
-
   return {
-    paths: pages,
-    // returning 404 if page wasn't generated at build time
-    // to prevent remote mdx dynamic loading for now
-    fallback: false
+    paths: [],
+    fallback: 'blocking'
   }
 }
 

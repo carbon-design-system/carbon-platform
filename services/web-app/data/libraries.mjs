@@ -325,6 +325,12 @@ const devLibraries = {
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/utilities',
     maintainer: 'ibm-dotcom'
+  },
+  'overview-path-library': {
+    host: 'github.com',
+    org: 'francinelucca',
+    repo: 'library-testing',
+    path: '/overview-path'
   }
 }
 

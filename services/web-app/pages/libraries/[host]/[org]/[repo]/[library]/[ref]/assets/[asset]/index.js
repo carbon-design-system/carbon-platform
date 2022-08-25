@@ -12,7 +12,10 @@ import clsx from 'clsx'
 import { get } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { MDXRemote } from 'next-mdx-remote'
 import { NextSeo } from 'next-seo'
+import path from 'path'
+import PropTypes from 'prop-types'
 import { useContext, useEffect, useRef } from 'react'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
@@ -32,15 +35,17 @@ import { assetsNavData } from '@/data/nav-data'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
-import { getAssetIssueCount, getLibraryData } from '@/lib/github'
+import { getAssetIssueCount, getLibraryData, getRemoteMdxSource } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { libraryPropTypes, paramsPropTypes } from '@/types'
+import { processMdxSource } from '@/utils/mdx'
 import { getAssetType } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
+import { isValidHttpUrl } from '@/utils/string'
 
 import styles from './index.module.scss'
 
-const Asset = ({ libraryData, params }) => {
+const Asset = ({ libraryData, overviewMdxSource, params }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
   const contentRef = useRef(null)
@@ -84,10 +89,10 @@ const Asset = ({ libraryData, params }) => {
   const { maintainer } = assetData.params
   const MaintainerIcon = teams[maintainer] ? teams[maintainer].pictogram : Svg64Community
 
-  const isPathAbsolute = (path) => {
+  const isPathAbsolute = (urlPath) => {
     const testPath = /^https?:\/\//i
 
-    return testPath.test(path)
+    return testPath.test(urlPath)
   }
 
   const pageTabs = [
@@ -333,6 +338,11 @@ const Asset = ({ libraryData, params }) => {
               )}
             </Dashboard>
           </section>
+          <section id="remote-content">
+            {!!overviewMdxSource?.compiledSource?.value && (
+              <MDXRemote compiledSource={overviewMdxSource.compiledSource.value} />
+            )}
+          </section>
         </Column>
       </Grid>
     </div>
@@ -341,7 +351,49 @@ const Asset = ({ libraryData, params }) => {
 
 Asset.propTypes = {
   libraryData: libraryPropTypes,
+  overviewMdxSource: PropTypes.shape({
+    compiledSource: PropTypes.shape({
+      value: PropTypes.string,
+      data: PropTypes.shape({
+        matter: PropTypes.object
+      })
+    }),
+    mdxError: PropTypes.shape({
+      name: PropTypes.string,
+      message: PropTypes.string,
+      stack: PropTypes.string,
+      position: PropTypes.string
+    })
+  }),
   params: paramsPropTypes
+}
+
+const getOverviewMdxSource = async (assetData, libraryData) => {
+  let overviewMdxSource = {}
+  if (assetData.content.docs?.overviewPath) {
+    let overviewPath = assetData.content.docs?.overviewPath
+    if (!isValidHttpUrl(overviewPath)) {
+      overviewPath = path.join('.' + libraryData.params.path, assetData.content.docs.overviewPath)
+    }
+
+    let mdxSource
+    let pageUrl
+    try {
+      const response = await getRemoteMdxSource(libraryData.params, overviewPath)
+      mdxSource = response.mdxSource
+      pageUrl = response.url
+
+      overviewMdxSource = await processMdxSource(mdxSource, pageUrl)
+    } catch (err) {
+      overviewMdxSource.mdxError = {
+        name: err.name,
+        message: err.message,
+        stack: err.stack
+      }
+    }
+  }
+
+  return overviewMdxSource
 }
 
 export const getServerSideProps = async ({ params }) => {
@@ -355,6 +407,8 @@ export const getServerSideProps = async ({ params }) => {
 
   const [assetData] = libraryData.assets
   assetData.content.issueCount = await getAssetIssueCount(assetData)
+
+  const overviewMdxSource = await getOverviewMdxSource(assetData, libraryData)
 
   const otherAssetFrameworks = []
   if (libraryData.params.group) {
@@ -392,6 +446,7 @@ export const getServerSideProps = async ({ params }) => {
   return {
     props: {
       libraryData,
+      overviewMdxSource,
       params
     }
   }

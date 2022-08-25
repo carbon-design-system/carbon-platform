@@ -28,7 +28,7 @@ const getImageProps = (props) => {
 
   // do not optimize if is svg file (absolute or relative)
   const url = createUrl(src)
-  if (src.endsWith('.svg') || (url && url.pathname.split('/').pop().endsWith('.svg'))) {
+  if (src.endsWith('.svg') || (url && url.pathname.endsWith('.svg'))) {
     props.unoptimized = true
   }
 

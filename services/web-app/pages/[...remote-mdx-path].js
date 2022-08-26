@@ -75,13 +75,23 @@ export const getStaticProps = async ({ params }) => {
       tabs,
       pageHeaderType:
         pageData.pageHeaderType ?? safeSource?.compiledSource?.data?.matter?.pageHeaderType ?? null
-    }
+    }, // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every hour
+    revalidate: 60 * 60 // In seconds
   }
 }
 
 export const getStaticPaths = async () => {
+  const allowedPaths = Object.keys(remotePages).map((remotePage) => {
+    return {
+      params: {
+        'remote-mdx-path': remotePage.split('/')
+      }
+    }
+  })
   return {
-    paths: [],
+    paths: allowedPaths,
     fallback: 'blocking'
   }
 }

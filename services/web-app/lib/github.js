@@ -548,6 +548,7 @@ const addAssetDefaults = async (assets, params) => {
 
   const defaultOverviewPath = path.join('.' + params.path, './overview.mdx')
   const defaultAccessibilityPath = path.join('.' + params.path, './accessibility.mdx')
+  const defaultCodePath = path.join('.' + params.path, './code.mdx')
   const defaultStylePath = path.join('.' + params.path, './style.mdx')
   const defaultUsagePath = path.join('.' + params.path, './usage.mdx')
 
@@ -559,6 +560,10 @@ const addAssetDefaults = async (assets, params) => {
     accessibilityPath: {
       path: defaultAccessibilityPath,
       default: './accessibility.mdx'
+    },
+    codePath: {
+      path: defaultCodePath,
+      default: './code.mdx'
     },
     stylePath: {
       path: defaultStylePath,

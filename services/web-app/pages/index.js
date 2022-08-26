@@ -9,10 +9,6 @@ import { ArrowRight } from '@carbon/react/icons'
 import {
   StartDesigningArrow,
   StartDevArrow,
-  Svg48Components,
-  Svg48Functions,
-  Svg48Patterns,
-  Svg48Templates,
   Svg64Components,
   Svg64Functions,
   Svg64Patterns,
@@ -33,7 +29,6 @@ import Hero from '@/components/hero'
 import { H2, P } from '@/components/markdown'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
-import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import ReactImgMax from './index/images/carbon-react_max-lg.png'
 import ReactImgMd from './index/images/carbon-react_md.png'
@@ -48,8 +43,6 @@ import RoadmapSm from './index/images/roadmap_sm.png'
 import styles from './index/index.module.scss'
 
 const PageContent = () => {
-  const isLg = useMatchMedia(mediaQueries.lg)
-
   return (
     <div className={styles.container}>
       <P className={styles['intro-paragraph']}>
@@ -135,8 +128,7 @@ const PageContent = () => {
                 ready to use when creating new experiences.
               </dd>
             </dl>
-            {!isLg && <Svg48Components className={styles['dashboard-icon']} />}
-            {isLg && <Svg64Components className={styles['dashboard-icon']} />}
+            <Svg64Components className={styles['dashboard-icon']} />
             <ArrowRight
               className={clsx(dashboardStyles['position-bottom-right'], styles['dashboard-link'])}
               size={20}
@@ -154,8 +146,7 @@ const PageContent = () => {
                 Reusable combinations of components and content with sequences and flows.
               </dd>
             </dl>
-            {!isLg && <Svg48Patterns className={styles['dashboard-icon']} />}
-            {isLg && <Svg64Patterns className={styles['dashboard-icon']} />}
+            <Svg64Patterns className={styles['dashboard-icon']} />
             <ArrowRight
               className={clsx(dashboardStyles['position-bottom-right'], styles['dashboard-link'])}
               size={20}
@@ -173,8 +164,7 @@ const PageContent = () => {
                 Code that performs a single action and has no user interface.
               </dd>
             </dl>
-            {!isLg && <Svg48Functions className={styles['dashboard-icon']} />}
-            {isLg && <Svg64Functions className={styles['dashboard-icon']} />}
+            <Svg64Functions className={styles['dashboard-icon']} />
             <ArrowRight
               className={clsx(dashboardStyles['position-bottom-right'], styles['dashboard-link'])}
               size={20}
@@ -194,8 +184,7 @@ const PageContent = () => {
                 scenario.
               </dd>
             </dl>
-            {!isLg && <Svg48Templates className={styles['dashboard-icon']} />}
-            {isLg && <Svg64Templates className={styles['dashboard-icon']} />}
+            <Svg64Templates className={styles['dashboard-icon']} />
             <ArrowRight
               className={clsx(dashboardStyles['position-bottom-right'], styles['dashboard-link'])}
               size={20}
@@ -206,9 +195,7 @@ const PageContent = () => {
 
       <H2>Try featured libraries</H2>
       <P>
-        Libraries are the means to contribute, install, and use one or many assets.
-        <br />
-        Explore the{' '}
+        Libraries are the means to contribute, install, and use one or many assets. Explore the{' '}
         <Link href="/library" passHref>
           <CarbonLink size="lg">library catalog</CarbonLink>
         </Link>{' '}

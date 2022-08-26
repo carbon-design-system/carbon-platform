@@ -41,7 +41,7 @@ import { libraryPropTypes, paramsPropTypes } from '@/types'
 import { processMdxSource } from '@/utils/mdx'
 import { getAssetType } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
-import { isValidHttpUrl } from '@/utils/string'
+import { createUrl } from '@/utils/string'
 
 import styles from './index.module.scss'
 
@@ -372,8 +372,9 @@ const getOverviewMdxSource = async (assetData, libraryData) => {
   let overviewMdxSource = {}
   if (assetData.content.docs?.overviewPath) {
     let overviewPath = assetData.content.docs?.overviewPath
-    if (!isValidHttpUrl(overviewPath)) {
-      overviewPath = path.join('.' + libraryData.params.path, assetData.content.docs.overviewPath)
+
+    if (!createUrl(overviewPath)) {
+      overviewPath = path.join('.' + libraryData.params.path, overviewPath)
     }
 
     let mdxSource

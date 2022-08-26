@@ -98,7 +98,11 @@ export const getRemoteMdxSource = async (repoParams, mdxPath) => {
     repoParams.ref = await getRepoDefaultBranch(repoParams)
   }
 
-  if (!createUrl(mdxPath)) {
+  let src = mdxPath
+  let { host, org, repo, ref } = repoParams
+
+  const mdxUrl = createUrl(mdxPath)
+  if (!mdxUrl) {
     const fullContentsPath = path.join(
       'https://',
       repoParams.host,
@@ -117,14 +121,22 @@ export const getRemoteMdxSource = async (repoParams, mdxPath) => {
       logging.warn(err)
       throw err
     }
+  } else {
+    // https://github.com/[org]/[repo]/blob/[ref]/[...path]
+    host = mdxUrl.host
+    const pathNameChunks = mdxUrl.pathname.split('/')
+    org = pathNameChunks[1]
+    repo = pathNameChunks[2]
+    ref = pathNameChunks[4]
+    src = pathNameChunks.slice(5).join('/')
   }
 
   try {
-    response = await getResponse(repoParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
-      owner: repoParams.org,
-      repo: repoParams.repo,
-      path: removeLeadingSlash(mdxPath),
-      ref: repoParams.ref
+    response = await getResponse(host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: org,
+      repo,
+      path: removeLeadingSlash(src),
+      ref
     })
   } catch (err) {
     logging.warn(err)
@@ -577,26 +589,25 @@ const addAssetDefaults = async (library) => {
 
   const docsKeys = Object.keys(docsDefaults)
 
+  if (!libraryTree?.tree?.length) return
+
   // add docs defaults
   library.assets.forEach((asset) => {
-    if (!asset.content.docs) {
-      asset.content.docs = {}
+    const assetDocsKeys = Object.keys(asset.content.docs ?? {})
 
-      const assetDocsKeys = Object.keys(asset.content.docs)
-
-      // if asset docs doesn't have all path keys
-      if (!docsKeys.every((key) => assetDocsKeys.includes(key))) {
-        if (libraryTree?.tree) {
-          libraryTree.tree.forEach((file) => {
-            docsKeys.forEach((key) => {
-              // if assets docs doesn't have path and the file matches the default path, add it
-              if (!asset.content.docs[key] && file.path === docsDefaults[key].path) {
-                asset.content.docs[key] = docsDefaults[key].default
-              }
-            })
-          })
-        }
-      }
+    // if asset docs doesn't have all path keys
+    if (!docsKeys.every((key) => assetDocsKeys.includes(key))) {
+      libraryTree.tree.forEach((file) => {
+        docsKeys.forEach((key) => {
+          // if assets docs doesn't have path and the file matches the default path, add it
+          if (!asset.content.docs?.[key] && file.path === docsDefaults[key].path) {
+            if (!asset.content.docs) {
+              asset.content.docs = {}
+            }
+            asset.content.docs[key] = docsDefaults[key].default
+          }
+        })
+      })
     }
   })
 }

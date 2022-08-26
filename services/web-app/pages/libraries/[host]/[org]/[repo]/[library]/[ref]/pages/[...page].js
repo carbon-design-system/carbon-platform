@@ -84,36 +84,17 @@ export const getStaticProps = async ({ params }) => {
     }
   })
 
-  let { host, org, repo, ref } = params
-
-  const url = createUrl(pageSrc)
-  if (url) {
-    host = url.host
-    const pathNameChunks = url.pathname.split('/')
-    org = pathNameChunks[1]
-    repo = pathNameChunks[2]
-    ref = pathNameChunks[4]
-    pageSrc = pathNameChunks.slice(5, pathNameChunks.length).join('/')
-  } else {
+  if (!createUrl(pageSrc)) {
     pageSrc = path.join('.' + libraryData.params.path, pageSrc)
   }
 
   let mdxSource
-  let pageUrl
   let safeSource = {}
 
   try {
-    const response = await getRemoteMdxSource(
-      {
-        host,
-        org,
-        repo,
-        ref
-      },
-      pageSrc
-    )
+    const response = await getRemoteMdxSource(params, pageSrc)
     mdxSource = response.mdxSource
-    pageUrl = response.url
+    const pageUrl = response.url
     safeSource = await processMdxSource(mdxSource, pageUrl)
   } catch (err) {
     safeSource.mdxError = {

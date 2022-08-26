@@ -15,7 +15,10 @@ import * as styles from './divider.module.scss'
  * and spacing to divide sections of content.
  */
 const Divider = ({ children, className }) => {
-  return <div className={clsx(className, styles.divider)}>{children}</div>
+  const classNames = clsx(className, styles.divider, {
+    [styles['divider--empty']]: children === undefined
+  })
+  return <div className={classNames}>{children}</div>
 }
 
 Divider.propTypes = {

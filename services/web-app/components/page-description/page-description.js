@@ -17,7 +17,7 @@ import styles from './page-description.module.scss'
  */
 const PageDescription = ({ children, className, ...rest }) => (
   <Grid>
-    <Column sm={4} md={6} lg={8} className={clsx(styles['page-description'], className)} {...rest}>
+    <Column sm={4} md={8} lg={8} className={clsx(styles['page-description'], className)} {...rest}>
       {children}
     </Column>
   </Grid>

@@ -373,8 +373,9 @@ const getOverviewMdxSource = async (assetData, libraryData) => {
   if (assetData.content.docs?.overviewPath) {
     let overviewPath = assetData.content.docs?.overviewPath
 
+    const carbonYmlDirPath = assetData.response.path.split('/').slice(0, -1).join('/')
     if (!createUrl(overviewPath)) {
-      overviewPath = path.join('.' + libraryData.params.path, overviewPath)
+      overviewPath = path.join(carbonYmlDirPath, overviewPath)
     }
 
     let mdxSource

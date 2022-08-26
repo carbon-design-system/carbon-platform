@@ -558,36 +558,7 @@ const addAssetDefaults = async (library) => {
   const { params } = library
   const libraryTree = await getGithubTree(params)
 
-  const defaultOverviewPath = path.join('.' + params.path, './overview.mdx')
-  const defaultAccessibilityPath = path.join('.' + params.path, './accessibility.mdx')
-  const defaultCodePath = path.join('.' + params.path, './code.mdx')
-  const defaultStylePath = path.join('.' + params.path, './style.mdx')
-  const defaultUsagePath = path.join('.' + params.path, './usage.mdx')
-
-  const docsDefaults = {
-    overviewPath: {
-      path: defaultOverviewPath,
-      default: './overview.mdx'
-    },
-    accessibilityPath: {
-      path: defaultAccessibilityPath,
-      default: './accessibility.mdx'
-    },
-    codePath: {
-      path: defaultCodePath,
-      default: './code.mdx'
-    },
-    stylePath: {
-      path: defaultStylePath,
-      default: './style.mdx'
-    },
-    usagePath: {
-      path: defaultUsagePath,
-      default: './usage.mdx'
-    }
-  }
-
-  const docsKeys = Object.keys(docsDefaults)
+  const docsKeys = ['overviewPath', 'accessibilityPath', 'codePath', 'usagePath', 'stylePath']
 
   if (!libraryTree?.tree?.length) return
 
@@ -595,20 +566,53 @@ const addAssetDefaults = async (library) => {
   library.assets.forEach((asset) => {
     const assetDocsKeys = Object.keys(asset.content.docs ?? {})
 
-    // if asset docs doesn't have all path keys
-    if (!docsKeys.every((key) => assetDocsKeys.includes(key))) {
-      libraryTree.tree.forEach((file) => {
-        docsKeys.forEach((key) => {
-          // if assets docs doesn't have path and the file matches the default path, add it
-          if (!asset.content.docs?.[key] && file.path === docsDefaults[key].path) {
-            if (!asset.content.docs) {
-              asset.content.docs = {}
-            }
-            asset.content.docs[key] = docsDefaults[key].default
-          }
-        })
-      })
+    // if asset docs has all path keys, skip this iteration
+    if (docsKeys.every((key) => assetDocsKeys.includes(key))) {
+      return
     }
+
+    const carbonYmlDirPath = asset.response.path.split('/').slice(0, -1).join('/')
+
+    const defaultOverviewPath = path.join('./' + carbonYmlDirPath, './overview.mdx')
+    const defaultAccessibilityPath = path.join('./' + carbonYmlDirPath, './accessibility.mdx')
+    const defaultCodePath = path.join('./' + carbonYmlDirPath, './code.mdx')
+    const defaultStylePath = path.join('./' + carbonYmlDirPath, './style.mdx')
+    const defaultUsagePath = path.join('./' + carbonYmlDirPath, './usage.mdx')
+
+    const docsDefaults = {
+      overviewPath: {
+        path: defaultOverviewPath,
+        default: './overview.mdx'
+      },
+      accessibilityPath: {
+        path: defaultAccessibilityPath,
+        default: './accessibility.mdx'
+      },
+      codePath: {
+        path: defaultCodePath,
+        default: './code.mdx'
+      },
+      stylePath: {
+        path: defaultStylePath,
+        default: './style.mdx'
+      },
+      usagePath: {
+        path: defaultUsagePath,
+        default: './usage.mdx'
+      }
+    }
+
+    libraryTree.tree.forEach((file) => {
+      docsKeys.forEach((key) => {
+        // if assets docs doesn't have path and the file matches the default path, add it
+        if (!asset.content.docs?.[key] && file.path === docsDefaults[key].path) {
+          if (!asset.content.docs) {
+            asset.content.docs = {}
+          }
+          asset.content.docs[key] = docsDefaults[key].default
+        }
+      })
+    })
   })
 }
 

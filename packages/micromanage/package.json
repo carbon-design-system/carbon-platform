@@ -1,15 +1,12 @@
 {
   "name": "@carbon-platform/micromanage-cli",
-  "version": "1.4.3",
+  "version": "1.4.5",
   "description": "Monorepo management of microservices",
   "license": "Apache-2.0",
   "main": "./lib/index.js",
   "author": "IBM",
   "publishConfig": {
     "access": "public"
-  },
-  "bin": {
-    "micromanage": "./lib/index.js"
   },
   "repository": {
     "type": "git",
@@ -23,14 +20,21 @@
     "node": "16",
     "npm": "8"
   },
-  "micromanage": {
-    "standalone": true
+  "bin": {
+    "micromanage": "./lib/index.js"
   },
+  "files": [
+    "lib/*",
+    "scripts/*"
+  ],
   "scripts": {
     "test": "echo 'No tests specified. Maybe you should add some!'"
   },
   "dependencies": {
     "commander": "^9.4.0",
     "octokit": "^2.0.7"
+  },
+  "micromanage": {
+    "standalone": true
   }
 }

@@ -8,14 +8,8 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
 
-.column {
-  margin-top: spacing.$spacing-10;
-}
-
 .title {
   @include type.type-style('heading-05', true);
-
-  padding-bottom: spacing.$spacing-10;
 }
 
 .subtitle {
@@ -32,4 +26,14 @@
   @include type.type-style('body-compact-02', true);
 
   margin-top: spacing.$spacing-07;
+}
+
+.h1-container {
+  &.h1-container {
+    margin-top: spacing.$spacing-10;
+  }
+
+  + * {
+    margin-top: spacing.$spacing-10;
+  }
 }

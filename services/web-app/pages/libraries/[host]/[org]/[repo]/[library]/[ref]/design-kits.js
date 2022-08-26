@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import H1 from '@/components/markdown/h1'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
@@ -39,7 +40,7 @@ const DesignKits = ({ libraryData, navData }) => {
       <Grid>
         <Column sm={4} md={8} lg={16}>
           <div className={pageStyles.content}>
-            <h1>Loading...</h1>
+            <H1>Loading...</H1>
           </div>
         </Column>
       </Grid>

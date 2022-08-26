@@ -7,7 +7,7 @@
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
-import { h2 } from '@/components/markdown/markdown.module.scss'
+import H2 from '@/components/markdown/h2'
 import useIntersectionObserver from '@/utils/use-intersection-observer'
 
 import SvgCard from '../svg-card'
@@ -18,7 +18,7 @@ const PictogramCategory = ({ category, pictograms, columnCount }) => {
 
   return (
     <section ref={sectionRef} className={styles['svg-category']}>
-      <h2 className={clsx(h2, styles['category-title'])}>{category}</h2>
+      <H2>{category}</H2>
       <ul className={clsx(styles['svg-grid'], styles.pictograms)}>
         {pictograms
           .filter((pictogram) => {

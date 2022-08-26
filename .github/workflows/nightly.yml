@@ -19,7 +19,7 @@ env:
 
 jobs:
   update-versions:
-    name: Update Versions
+    name: Update versions
     runs-on: ubuntu-latest
     outputs:
       changed_workspaces: ${{ steps.version.outputs.changed_workspaces }}
@@ -32,7 +32,7 @@ jobs:
           ssh-key: ${{ secrets.NIGHTLY_BUILD_DEPLOY_KEY }}
           token: ${{ secrets.CARBON_BOT_TOKEN }}
 
-      - name: Set up Git User 🤖
+      - name: Set up git user 🤖
         run: |
           git config --global user.email 'carbon@us.ibm.com'
           git config --global user.name 'Carbon Bot'
@@ -43,7 +43,7 @@ jobs:
           node-version: '16'
           cache: 'npm'
 
-      - name: Install Node Modules 🔧
+      - name: Install Node modules 🔧
         run: npm install
 
       - id: version
@@ -52,7 +52,7 @@ jobs:
 
 
   data-graph:
-    name: Publish Data-Graph Service
+    name: Publish Data-Graph service
     needs: update-versions
     if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/data-graph']
     uses: ./.github/workflows/publish-service.yml
@@ -63,7 +63,7 @@ jobs:
       CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
 
   logging:
-    name: Publish Logging Service
+    name: Publish Logging service
     needs: update-versions
     if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/logging']
     uses: ./.github/workflows/publish-service.yml
@@ -74,7 +74,7 @@ jobs:
       CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
 
   web-app:
-    name: Publish Web-App Service
+    name: Publish Web-App service
     needs: update-versions
     if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/web-app']
     uses: ./.github/workflows/publish-service.yml
@@ -84,8 +84,19 @@ jobs:
     secrets:
       CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
 
+  mdx-sanitizer:
+    name: Publish MDX Sanitizer package
+    needs: update-versions
+    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/mdx-sanitizer']
+    uses: ./.github/workflows/publish-package.yml
+    with:
+      package_name: '@carbon-platform/mdx-sanitizer'
+      package_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/mdx-sanitizer'] }}
+    secrets:
+      NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
   micromanage-cli:
-    name: Publish Micromanage CLI Package
+    name: Publish Micromanage CLI package
     needs: update-versions
     if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/micromanage-cli']
     uses: ./.github/workflows/publish-package.yml
@@ -96,7 +107,7 @@ jobs:
       NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
   resources:
-    name: Publish Resources Package
+    name: Publish Resources package
     needs: update-versions
     if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/resources']
     uses: ./.github/workflows/publish-package.yml
@@ -107,7 +118,7 @@ jobs:
       NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
   schemas:
-    name: Publish Schemas Package
+    name: Publish Schemas package
     needs: update-versions
     if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/schemas']
     uses: ./.github/workflows/publish-package.yml

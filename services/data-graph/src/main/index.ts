@@ -19,7 +19,7 @@ async function start() {
     module: DataGraphModule.register({ isPlaygroundEnabled })
   })
 
-  pm.bind<QueryMessage>('data_graph')
+  await pm.bind<QueryMessage>('data_graph')
 
   await pm.start()
 }

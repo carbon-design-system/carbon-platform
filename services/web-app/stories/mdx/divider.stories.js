@@ -8,6 +8,7 @@
 import { Column, Grid } from '@carbon/react'
 
 import Divider from '@/components/divider'
+import H2 from '@/components/markdown/h2'
 
 const stories = {
   title: 'MDX/Divider',
@@ -28,7 +29,7 @@ const Template = (args) => (
   <Divider {...args}>
     <Grid>
       <Column sm={4} md={2} lg={4}>
-        <h2>Heading</h2>
+        <H2>Heading</H2>
       </Column>
       <Column sm={4} md={6} lg={8}>
         The sites first major release will help system users discover and learn about all the assets

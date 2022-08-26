@@ -19,7 +19,7 @@ import { getResponse, getSvgResponse } from '@/lib/file-cache'
 import { getAssetErrors, getDesignKitErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
-import { addTrailingSlash, isValidHttpUrl, removeLeadingSlash } from '@/utils/string'
+import { addTrailingSlash, createUrl, removeLeadingSlash } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 import { urlsMatch } from '@/utils/url'
 
@@ -98,7 +98,7 @@ export const getRemoteMdxSource = async (repoParams, mdxPath) => {
     repoParams.ref = await getRepoDefaultBranch(repoParams)
   }
 
-  if (!isValidHttpUrl(mdxPath)) {
+  if (!createUrl(mdxPath)) {
     const fullContentsPath = path.join(
       'https://',
       repoParams.host,
@@ -411,7 +411,7 @@ const resolveSchemaReferences = async (params, data) => {
     for await (const [key, value] of Object.entries(data.library.designKits)) {
       if (value.$ref) {
         if (
-          !isValidHttpUrl(value.$ref) &&
+          !createUrl(value.$ref) &&
           !value.$ref.startsWith('#/') &&
           !resolveDesignKitUrl(params, key, value)
         ) {
@@ -538,12 +538,12 @@ export const getDesignKitsData = async (params = {}) => {
 }
 
 /**
- * Adds default attributes to each asset in an array as per necessary (e.g.: docs)
- * @param {import('../typedefs').Asset[]} assets
- * @param {import('../typedefs').Params} params
- * @returns {Promise<void>}
+ * Adds default attributes to each asset in a library as per necessary (e.g.: docs)
+ * @param {import('../typedefs').Library} library
+ * @returns {Promise<void>} A promise that resolves to void.
  */
-const addAssetDefaults = async (assets, params) => {
+const addAssetDefaults = async (library) => {
+  const { params } = library
   const libraryTree = await getGithubTree(params)
 
   const defaultOverviewPath = path.join('.' + params.path, './overview.mdx')
@@ -578,7 +578,7 @@ const addAssetDefaults = async (assets, params) => {
   const docsKeys = Object.keys(docsDefaults)
 
   // add docs defaults
-  assets.forEach((asset) => {
+  library.assets.forEach((asset) => {
     if (!asset.content.docs) {
       asset.content.docs = {}
 
@@ -660,31 +660,11 @@ export const getLibraryData = async (params = {}) => {
     }
   })
 
-  let assets = await getLibraryAssets(params)
-
-  if (library.inherits) {
-    const inheritParams = await getLibraryParams(library.inherits)
-
-    if (!isEmpty(inheritParams)) {
-      const inheritAssets = await getLibraryAssets(inheritParams)
-
-      assets = mergeInheritedAssets(assets, inheritAssets)
-    }
-  }
+  const assets = await getLibraryAssets(libraryParams)
 
   const packageJsonContent = await getPackageJsonContent(params, library.packageJsonPath)
 
-  const filteredAssets = assets.filter((asset) => {
-    const isValidAsset = validateAsset(asset.content, library)
-    if (libraryParams.asset) {
-      return isValidAsset && getSlug(asset.content) === libraryParams.asset
-    }
-    return isValidAsset
-  })
-
-  await addAssetDefaults(filteredAssets, libraryParams)
-
-  return {
+  const libraryResponse = {
     params: libraryParams,
     response,
     content: {
@@ -692,10 +672,18 @@ export const getLibraryData = async (params = {}) => {
       ...library, // spread last to use schema description if set
       noIndex: !!library.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
     },
-    assets: filteredAssets.map((asset) => {
+    assets: assets.map((asset) => {
       return { ...asset, statusKey: getAssetStatus(asset) }
     })
   }
+
+  await addLibraryInheritedData(libraryResponse)
+
+  await addAssetDefaults(libraryResponse)
+
+  validateLibraryAssets(libraryResponse)
+
+  return libraryResponse
 }
 
 /**
@@ -898,6 +886,42 @@ const getLibraryAssets = async (params = {}) => {
   }
 
   return assets
+}
+
+/**
+ * Validates and filters an array of assets,
+ * returns a modified array containing only valid assets for a library.
+ * @param {import('../typedefs').Library} library
+ */
+const validateLibraryAssets = (library) => {
+  library.assets = library.assets.filter((asset) => {
+    const isValidAsset = validateAsset(asset.content, library)
+    if (library.params.asset) {
+      return isValidAsset && getSlug(asset.content) === library.params.asset
+    }
+    return isValidAsset
+  })
+}
+
+/**
+ * Adds inherited data to library.
+ * @param {import('../typedefs').Library} library
+ * @returns {Promise<void>} A promise that resolves to void.
+ */
+const addLibraryInheritedData = async (library) => {
+  if (library.content.inherits) {
+    const inheritParams = await getLibraryParams(library.content.inherits)
+
+    if (!isEmpty(inheritParams)) {
+      const inheritLibrary = await getLibraryData(inheritParams)
+
+      library.assets = mergeInheritedAssets(library.assets, inheritLibrary.assets)
+
+      if (!library.content.designKits && inheritLibrary.content.designKits) {
+        library.content.designKits = inheritLibrary.content.designKits
+      }
+    }
+  }
 }
 
 /**

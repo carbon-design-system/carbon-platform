@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.30](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.29...@carbon-platform/web-app@0.2.30) (2022-08-26)
+
+
+### Bug Fixes 🐛
+
+* copy update ([edf1431](https://github.com/carbon-design-system/carbon-platform/commit/edf1431356f7e2e67681741e0a9723efd800b9bb))
+* **web-app:** active nav state ([4c321cb](https://github.com/carbon-design-system/carbon-platform/commit/4c321cbd0b3d16d2b1cc4fd0770d47a6694adb2c)), closes [#1082](https://github.com/carbon-design-system/carbon-platform/issues/1082)
+* **web-app:** change check logic for svg sourcs ([87ad362](https://github.com/carbon-design-system/carbon-platform/commit/87ad362309818ad70519e5edde2f032883ea3615)), closes [#767](https://github.com/carbon-design-system/carbon-platform/issues/767)
+* **web-app:** render remotely loaded SVGs ([3cbe2c6](https://github.com/carbon-design-system/carbon-platform/commit/3cbe2c61f9a5ef9f200c666a3ec498a7aa598bd6)), closes [#767](https://github.com/carbon-design-system/carbon-platform/issues/767)
+* **web-app:** rewrite isAbsoluteUrl function ([f35fa30](https://github.com/carbon-design-system/carbon-platform/commit/f35fa30433da6513022d2e84ad343280a1a9078b)), closes [#767](https://github.com/carbon-design-system/carbon-platform/issues/767)
+* **web-app:** use existing url validator function in image component ([aa561c5](https://github.com/carbon-design-system/carbon-platform/commit/aa561c599c381cd5c4ff58fcf3b463c7d8cca037)), closes [#767](https://github.com/carbon-design-system/carbon-platform/issues/767)
+
 ### [0.2.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.28...@carbon-platform/web-app@0.2.29) (2022-08-25)
 
 

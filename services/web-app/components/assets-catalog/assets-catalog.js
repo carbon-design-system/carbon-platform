@@ -34,12 +34,18 @@ import useQueryState from '@/utils/use-query-state'
  */
 const assetIsInFilter = (asset, filter) => {
   for (const [key, value] of Object.entries(filter)) {
-    if (key === 'maintainer') {
-      if (!value.includes(asset.params[key])) return false
-    } else if (key === 'tags') {
-      if (!valuesIntersect(value, asset.content[key])) return false
-    } else {
-      if (!value.includes(asset.content[key])) return false
+    switch (key) {
+      case 'maintainer':
+        if (!value.includes(asset.params[key])) return false
+        break
+      case 'tags':
+        if (!valuesIntersect(value, asset.content[key])) return false
+        break
+      case 'status':
+        if (!value.includes(asset.statusKey)) return false
+        break
+      default:
+        if (!value.includes(asset.content[key])) return false
     }
   }
 
@@ -329,5 +335,5 @@ AssetsCatalog.propTypes = {
   /**
    * type of catalog element.
    */
-  type: PropTypes.oneOf(['element', 'function', 'pattern', 'template']).isRequired
+  type: PropTypes.oneOf(['component', 'element', 'function', 'pattern', 'template']).isRequired
 }

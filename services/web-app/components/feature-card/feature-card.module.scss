@@ -10,10 +10,17 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 
+.container {
+  margin-top: spacing.$spacing-06;
+
+  @include breakpoint.breakpoint(md) {
+    margin-top: spacing.$spacing-06;
+  }
+}
+
 .feature-card {
   position: relative;
   display: block;
-  margin-bottom: spacing.$spacing-10;
   text-decoration: none;
 
   &:active {
@@ -25,8 +32,13 @@
 .grid-tile {
   @include breakpoint.breakpoint(md) {
     position: absolute;
-    right: 0;
     bottom: 0;
+    left: 1rem;
+    width: 100%;
+  }
+
+  @include breakpoint.breakpoint(lg) {
+    padding-left: spacing.$spacing-05;
   }
 }
 

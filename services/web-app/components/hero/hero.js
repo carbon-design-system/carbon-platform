@@ -10,9 +10,9 @@ import PropTypes from 'prop-types'
 
 import styles from './hero.module.scss'
 
-const Hero = ({ title, section }) => {
+const Hero = ({ title, section, theme }) => {
   return (
-    <Theme className={clsx(styles[section], styles.container)} theme="g100">
+    <Theme className={clsx(styles[section], styles.container)} theme={theme}>
       <Grid>
         <Column className={styles.column} sm={4} md={4} lg={8}>
           {title && <h1 className={styles.title}>{title}</h1>}
@@ -22,8 +22,13 @@ const Hero = ({ title, section }) => {
   )
 }
 
+Hero.defaultProps = {
+  theme: 'g100'
+}
+
 Hero.propTypes = {
   section: PropTypes.string,
+  theme: PropTypes.oneOf(['white', 'g10', 'g90', 'g100']),
   title: PropTypes.string.isRequired
 }
 

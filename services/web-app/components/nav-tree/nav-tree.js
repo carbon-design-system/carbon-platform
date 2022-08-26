@@ -95,6 +95,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
       className={styles.container}
       label={label}
       hideLabel
+      key={treeActiveItem}
       active={treeActiveItem}
       selected={[treeActiveItem]}
     >

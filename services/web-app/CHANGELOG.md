@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.30](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.29...@carbon-platform/web-app@0.2.30) (2022-08-26)
+
+
+### Bug Fixes 🐛
+
+* copy update ([edf1431](https://github.com/carbon-design-system/carbon-platform/commit/edf1431356f7e2e67681741e0a9723efd800b9bb))
+* **web-app:** active nav state ([4c321cb](https://github.com/carbon-design-system/carbon-platform/commit/4c321cbd0b3d16d2b1cc4fd0770d47a6694adb2c)), closes [#1082](https://github.com/carbon-design-system/carbon-platform/issues/1082)
+* **web-app:** change check logic for svg sourcs ([87ad362](https://github.com/carbon-design-system/carbon-platform/commit/87ad362309818ad70519e5edde2f032883ea3615)), closes [#767](https://github.com/carbon-design-system/carbon-platform/issues/767)
+* **web-app:** render remotely loaded SVGs ([3cbe2c6](https://github.com/carbon-design-system/carbon-platform/commit/3cbe2c61f9a5ef9f200c666a3ec498a7aa598bd6)), closes [#767](https://github.com/carbon-design-system/carbon-platform/issues/767)
+* **web-app:** rewrite isAbsoluteUrl function ([f35fa30](https://github.com/carbon-design-system/carbon-platform/commit/f35fa30433da6513022d2e84ad343280a1a9078b)), closes [#767](https://github.com/carbon-design-system/carbon-platform/issues/767)
+* **web-app:** use existing url validator function in image component ([aa561c5](https://github.com/carbon-design-system/carbon-platform/commit/aa561c599c381cd5c4ff58fcf3b463c7d8cca037)), closes [#767](https://github.com/carbon-design-system/carbon-platform/issues/767)
+
+### [0.2.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.28...@carbon-platform/web-app@0.2.29) (2022-08-25)
+
+
+### Features 🌟
+
+* add additional demo link type other ([dbe821c](https://github.com/carbon-design-system/carbon-platform/commit/dbe821cdd3bb030951775cda2649668d0003759e)), closes [#581](https://github.com/carbon-design-system/carbon-platform/issues/581)
+* update icons for other demo link ([fe80042](https://github.com/carbon-design-system/carbon-platform/commit/fe80042b532fb66093b57fab182ffc5c3444ee29)), closes [#581](https://github.com/carbon-design-system/carbon-platform/issues/581)
+
+
+### Bug Fixes 🐛
+
+* lint error ([2741d04](https://github.com/carbon-design-system/carbon-platform/commit/2741d0479599cfa7aea841caa12ec9f23ad22bc7)), closes [#581](https://github.com/carbon-design-system/carbon-platform/issues/581)
+* **web-app:** improve remote mdx relative url security ([831ac8c](https://github.com/carbon-design-system/carbon-platform/commit/831ac8c47c14f6b0074d83d1a48f5a4ceb9a9852))
+
+### [0.2.28](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.27...@carbon-platform/web-app@0.2.28) (2022-08-24)
+
+
+### Features 🌟
+
+* **web-app:** use heading components in article cards ([7bf9896](https://github.com/carbon-design-system/carbon-platform/commit/7bf9896f738f9615a2e0d6e4cd17ef8c83c30698))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** convert all h2 into H2s ([f15cf66](https://github.com/carbon-design-system/carbon-platform/commit/f15cf664fd7b882151df14ae73094be8f9b57f56))
+* **web-app:** heading replacements to markdown components ([2870e6b](https://github.com/carbon-design-system/carbon-platform/commit/2870e6b029e359141333d5eee1bae993e9a64624))
+* **web-app:** replace heading in catalog list ([6d798b1](https://github.com/carbon-design-system/carbon-platform/commit/6d798b160bc49ea81f33f9323b8896093df9c362))
+* **web-app:** replace headings with md components ([597c1f0](https://github.com/carbon-design-system/carbon-platform/commit/597c1f0f4d1d541ba8166ae38f941dee56abaf52)), closes [#859](https://github.com/carbon-design-system/carbon-platform/issues/859)
+* **web-app:** replace multiple h2 with H2 ([1db2d40](https://github.com/carbon-design-system/carbon-platform/commit/1db2d40822fd3b3e664cbde78f602a7e2fb4ed3c))
+* **web-app:** revert changes ([3292fc4](https://github.com/carbon-design-system/carbon-platform/commit/3292fc4690c208cfa290e1247709a909c02f2da4)), closes [#859](https://github.com/carbon-design-system/carbon-platform/issues/859)
+* **web-app:** scss coment spacing fixes ([13e8d56](https://github.com/carbon-design-system/carbon-platform/commit/13e8d563cb088025a4cb350d7bf518bda94cc7cb)), closes [#859](https://github.com/carbon-design-system/carbon-platform/issues/859)
+* **web-app:** scss coment spacing fixes ([3d99458](https://github.com/carbon-design-system/carbon-platform/commit/3d994584419e9291b255919d51d401e73668a455)), closes [#859](https://github.com/carbon-design-system/carbon-platform/issues/859)
+* **web-app:** scss coment spacing fixes ([7060588](https://github.com/carbon-design-system/carbon-platform/commit/7060588601280bedb036590d721210180e511e53)), closes [#859](https://github.com/carbon-design-system/carbon-platform/issues/859)
+* **web-app:** use nested scss instead of inline ([baef8ec](https://github.com/carbon-design-system/carbon-platform/commit/baef8ec602a9510529c84b0a6e78ed592e4b4951)), closes [#859](https://github.com/carbon-design-system/carbon-platform/issues/859)
+
 ### [0.2.27](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.26...@carbon-platform/web-app@0.2.27) (2022-08-24)
 
 

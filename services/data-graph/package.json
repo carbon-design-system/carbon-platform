@@ -1,8 +1,7 @@
 {
   "name": "@carbon-platform/data-graph",
   "description": "Carbon Platform Data Graph service",
-  "version": "0.1.35",
-  "main": "dist/main/index.js",
+  "version": "0.1.37",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
@@ -15,6 +14,7 @@
   },
   "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "type": "module",
+  "main": "dist/main/index.js",
   "scripts": {
     "build": "nest build",
     "build:schema": "npm run build && node dist/main/generate-schema.js",

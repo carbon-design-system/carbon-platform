@@ -329,5 +329,5 @@ AssetsCatalog.propTypes = {
   /**
    * type of catalog element.
    */
-  type: PropTypes.oneOf(['element', 'function', 'pattern', 'template']).isRequired
+  type: PropTypes.oneOf(['component', 'element', 'function', 'pattern', 'template']).isRequired
 }

@@ -807,7 +807,7 @@ const validateLibraryAssets = (library) => {
 /**
  * Adds inherited data to library.
  * @param {import('../typedefs').Library} library
- * @returns {Promise<void>}
+ * @returns {Promise<void>} A promise that resolves to void.
  */
 const addLibraryInheritedData = async (library) => {
   if (library.content.inherits) {

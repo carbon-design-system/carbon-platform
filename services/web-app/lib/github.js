@@ -271,7 +271,8 @@ const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
       inheritableProperties.forEach((property) => {
         const inheritProperty = get(inheritAsset, `content.${property}`)
 
-        if (!get(asset, `content.${property}`) && inheritProperty) {
+        // check for undefined properties, as well as empty arrays for tags
+        if (isEmpty(get(asset, `content.${property}`)) && inheritProperty) {
           set(asset, `content.${property}`, inheritProperty)
         }
       })
@@ -743,7 +744,9 @@ const getLibraryAssets = async (libraryParams = {}) => {
           content: {
             id: assetKey,
             ...asset,
-            noIndex: !!asset.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
+            noIndex: !!asset.noIndex && process.env.INDEX_ALL !== '1', // default to false if not specified,
+            framework: asset?.framework ?? 'design-only',
+            tags: asset?.tags ?? []
           }
         }
       })

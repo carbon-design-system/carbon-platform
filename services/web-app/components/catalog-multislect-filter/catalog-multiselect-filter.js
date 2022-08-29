@@ -144,31 +144,6 @@ const CatalogMultiselectFilter = ({
                   </ul>
                 </Column>
               ))}
-              {Object.keys(availableFilters).map((item, i) => (
-                <Column className={styles.column} key={i} sm={1}>
-                  <h3 className={styles.heading}>{availableFilters[item].name}</h3>
-                  <ul className={styles.list}>
-                    {Object.keys(availableFilters[item].values).map((key, j) => (
-                      <li className={styles['list-item']} key={j}>
-                        <Tag
-                          onClick={() => {
-                            onFilter(
-                              item,
-                              key,
-                              filter[item] && filter[item].includes(key) ? 'remove' : 'add'
-                            )
-                          }}
-                          type={
-                            filter[item] && filter[item].includes(key) ? 'high-contrast' : 'gray'
-                          }
-                        >
-                          {availableFilters[item].values[key].name}
-                        </Tag>
-                      </li>
-                    ))}
-                  </ul>
-                </Column>
-              ))}
             </Grid>
           </Column>
         </div>

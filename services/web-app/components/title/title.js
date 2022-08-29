@@ -18,7 +18,7 @@ import markdownStyles from '@/components/markdown/markdown.module.scss'
  */
 const Title = ({ children, className }) => (
   <Grid className={clsx(className, markdownStyles['h4-container'])}>
-    <Column sm={4} md={6} lg={8}>
+    <Column sm={4} md={8} lg={8}>
       <p className={markdownStyles.h4}>{children}</p>
     </Column>
   </Grid>

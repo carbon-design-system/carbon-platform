@@ -23,7 +23,7 @@
     position: absolute;
     z-index: 0;
     left: 0;
-    width: calc(100vw - var(--scrollbar-width));
+    width: 100%;
     height: var(--header-height);
     background: theme.$background;
     content: '';

@@ -100,11 +100,20 @@
 }
 
 .content {
+  --page-height: 100vh;
+
   width: calc(100vw - var(--scrollbar-width));
   max-width: none;
+  // height of sticky header + search = 96px
+  height: calc(var(--page-height) - convert.rem(96px));
+  overflow-x: hidden;
+  overflow-y: auto;
+
   @include breakpoint.breakpoint(md) {
+    overflow: hidden;
     // span two columns, where each column has a 1px gutter
     width: calc(200% + convert.rem(2px));
+    height: auto;
   }
   // span three columns, plus an offset for gutters
   @include breakpoint.breakpoint(lg) {

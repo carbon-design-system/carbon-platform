@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.5...@carbon-platform/icons@0.1.6) (2022-08-27)
+
+
+### Features 🌟
+
+* **icons:** add adobe xd ([164fea1](https://github.com/carbon-design-system/carbon-platform/commit/164fea1454ebdd640ece31fed35d4b2fbd05aac9)), closes [#1000](https://github.com/carbon-design-system/carbon-platform/issues/1000)
+* **icons:** add axure icon ([7755249](https://github.com/carbon-design-system/carbon-platform/commit/775524981f452093e44b8502da3a1220cdea3549)), closes [#1000](https://github.com/carbon-design-system/carbon-platform/issues/1000)
+* **icons:** add figma ([adc5019](https://github.com/carbon-design-system/carbon-platform/commit/adc501980be23ca573f87f87c95b95f5fef583d6)), closes [#1000](https://github.com/carbon-design-system/carbon-platform/issues/1000)
+* **icons:** add figma invision and sketch icons ([e25b8bb](https://github.com/carbon-design-system/carbon-platform/commit/e25b8bb2ad41adc5be1f9d117ed7d55c5c723826)), closes [#1000](https://github.com/carbon-design-system/carbon-platform/issues/1000)
+* **icons:** add icons ([cc41ecd](https://github.com/carbon-design-system/carbon-platform/commit/cc41ecdc954e284572e99cc6321ea0a7fd5d3734))
+* **icons:** axure ([ca724b5](https://github.com/carbon-design-system/carbon-platform/commit/ca724b5c3b0e6d26f8d70d02f42bb10c3c73258f)), closes [#1000](https://github.com/carbon-design-system/carbon-platform/issues/1000)
+* **web-app:** update landing page to new design ([cbecdfe](https://github.com/carbon-design-system/carbon-platform/commit/cbecdfe61310f609bd4e292b0c8f5e4629c434dc))
+
+
+### Bug Fixes 🐛
+
+* merge conflicts ([9c65621](https://github.com/carbon-design-system/carbon-platform/commit/9c656210b2f7ee1b95b5a7b4874675ff88d36f1e))
+* revert icon changes ([7ba8238](https://github.com/carbon-design-system/carbon-platform/commit/7ba823888c32535edebccde2f15bbb3a64a96f87))
+
 ### [0.1.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.4...@carbon-platform/icons@0.1.5) (2022-08-24)
 
 ### [0.1.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.3...@carbon-platform/icons@0.1.4) (2022-08-20)

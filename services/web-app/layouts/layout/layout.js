@@ -167,11 +167,13 @@ const Layout = ({ children }) => {
             <Header aria-label="Carbon Design System" className={styles.header}>
               <SkipToContent />
               {showSideNav && (
-                <HeaderMenuButton
-                  aria-label="Open menu"
-                  onClick={onClickSideNavExpand}
-                  isActive={isSideNavExpanded}
-                />
+                <div>
+                  <HeaderMenuButton
+                    aria-label="Open menu"
+                    onClick={onClickSideNavExpand}
+                    isActive={isSideNavExpanded}
+                  />
+                </div>
               )}
               <div className={styles['header-name']}>
                 <Link href="/">

@@ -115,6 +115,7 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
             frameBorder="no"
             allowtransparency="true"
             allowFullScreen="true"
+            sandbox="allow-forms allow-scripts allow-same-origin"
           />
         </Column>
       </Grid>

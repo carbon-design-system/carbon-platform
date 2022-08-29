@@ -8,8 +8,9 @@ import { Column, Grid, Popover, PopoverContent, Tag } from '@carbon/react'
 import { ChevronDown, Close, Filter } from '@carbon/react/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
+import useEventListener from '@/utils/use-event-listener'
 import useFocus from '@/utils/use-focus'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import useOnKey from '@/utils/use-on-key'
@@ -41,6 +42,17 @@ const CatalogMultiselectFilter = ({
       setOpen(false)
     }
   })
+
+  const resizeHandler = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      document.documentElement.style.setProperty('--page-height', window.innerHeight + 'px')
+    }
+  }, [])
+
+  useEventListener('resize', resizeHandler)
+  useEffect(() => {
+    resizeHandler()
+  }, [resizeHandler])
 
   let columns = 1
   if (isMd) columns = 2
@@ -107,6 +119,31 @@ const CatalogMultiselectFilter = ({
         <div className={styles.wrapper} ref={popoverRef} tabIndex="0">
           <Column span={columns}>
             <Grid className={styles.grid} condensed>
+              {Object.keys(availableFilters).map((item, i) => (
+                <Column className={styles.column} key={i} sm={1}>
+                  <h3 className={styles.heading}>{availableFilters[item].name}</h3>
+                  <ul className={styles.list}>
+                    {Object.keys(availableFilters[item].values).map((key, j) => (
+                      <li className={styles['list-item']} key={j}>
+                        <Tag
+                          onClick={() => {
+                            onFilter(
+                              item,
+                              key,
+                              filter[item] && filter[item].includes(key) ? 'remove' : 'add'
+                            )
+                          }}
+                          type={
+                            filter[item] && filter[item].includes(key) ? 'high-contrast' : 'gray'
+                          }
+                        >
+                          {availableFilters[item].values[key].name}
+                        </Tag>
+                      </li>
+                    ))}
+                  </ul>
+                </Column>
+              ))}
               {Object.keys(availableFilters).map((item, i) => (
                 <Column className={styles.column} key={i} sm={1}>
                   <h3 className={styles.heading}>{availableFilters[item].name}</h3>

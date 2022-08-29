@@ -100,10 +100,12 @@
 }
 
 .content {
+  --page-height: 100vh;
+
   width: calc(100vw - var(--scrollbar-width));
   max-width: none;
   // height of sticky header + search = 96px
-  height: calc(100vh - convert.rem(96px));
+  height: calc(var(--page-height) - convert.rem(96px));
   overflow-x: hidden;
   overflow-y: auto;
 

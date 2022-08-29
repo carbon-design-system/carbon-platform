@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Proptypes from 'prop-types'
+import clsx from 'clsx'
+import PropTypes from 'prop-types'
 
 import styles from './preview.module.scss'
 
@@ -13,7 +14,7 @@ import styles from './preview.module.scss'
  * The `<Preview>` component is a simple wrapper for an `<iframe />` with
  * styling added to allow it to display responsively within the Platform.
  */
-const Preview = ({ title, height, src, style }) => (
+const Preview = ({ className, title, height, src, style }) => (
   <iframe
     src={src}
     loading="lazy"
@@ -22,21 +23,37 @@ const Preview = ({ title, height, src, style }) => (
     allowtransparency="true"
     allowFullScreen="true"
     frameBorder="no"
-    className={styles.preview}
+    className={clsx(className, styles.preview)}
     style={style}
     sandbox="allow-forms allow-scripts allow-same-origin"
   />
 )
 
 Preview.propTypes = {
-  /** Provide the height for the iframe */
-  height: Proptypes.string,
-  /** Provide the url for the iframe */
-  src: Proptypes.string,
-  /** Provide custom inline styles for the iframe */
-  style: Proptypes.object,
-  /** Provide the title for the iframe */
-  title: Proptypes.string
+  /**
+   * Specify a custom class
+   */
+  className: PropTypes.string,
+
+  /**
+   * Provide the height for the iframe
+   */
+  height: PropTypes.string,
+
+  /**
+   * Provide the url for the iframe
+   */
+  src: PropTypes.string,
+
+  /**
+   * Provide custom inline styles for the iframe
+   */
+  style: PropTypes.object,
+
+  /**
+   * Provide the title for the iframe
+   */
+  title: PropTypes.string
 }
 
 export default Preview

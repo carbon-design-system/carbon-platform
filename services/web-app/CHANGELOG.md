@@ -2,6 +2,51 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.31](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.30...@carbon-platform/web-app@0.2.31) (2022-08-27)
+
+
+### Features 🌟
+
+* **web-app:** designKit inheritance ([063acc9](https://github.com/carbon-design-system/carbon-platform/commit/063acc9c71c69bd4f485a0705d55d8aad0ef1e61)), closes [#1016](https://github.com/carbon-design-system/carbon-platform/issues/1016)
+* **web-app:** homepage spacing updates ([674749f](https://github.com/carbon-design-system/carbon-platform/commit/674749f9e24563ed0653ea006220f821527c4a3c)), closes [#905](https://github.com/carbon-design-system/carbon-platform/issues/905)
+* **web-app:** homepage updates ([455aaa8](https://github.com/carbon-design-system/carbon-platform/commit/455aaa8cba5c723172d002d86392214991bd2504)), closes [#905](https://github.com/carbon-design-system/carbon-platform/issues/905)
+* **web-app:** landing page copy ([cd64b49](https://github.com/carbon-design-system/carbon-platform/commit/cd64b491dfa713046eda5f068bd24959c377fabd)), closes [#905](https://github.com/carbon-design-system/carbon-platform/issues/905)
+* **web-app:** remove 48px pictograms ([14a3a11](https://github.com/carbon-design-system/carbon-platform/commit/14a3a113cf17f3a5a7016397ce443ac25f2eabe8)), closes [#905](https://github.com/carbon-design-system/carbon-platform/issues/905)
+* **web-app:** update homepage copy ([a1c627c](https://github.com/carbon-design-system/carbon-platform/commit/a1c627c4fed624d4dd18e9fe7ba0b7eb4d205708)), closes [#905](https://github.com/carbon-design-system/carbon-platform/issues/905)
+* **web-app:** update landing page images ([fe1ef5f](https://github.com/carbon-design-system/carbon-platform/commit/fe1ef5fd31aace8ea6c9632c6288fe14f3fcdfd2)), closes [#905](https://github.com/carbon-design-system/carbon-platform/issues/905)
+* **web-app:** update landing page to new design ([045800b](https://github.com/carbon-design-system/carbon-platform/commit/045800b7c7c17653a9cb1d3666af003d8c8f31a1))
+* **web-app:** update landing page to new design ([067c783](https://github.com/carbon-design-system/carbon-platform/commit/067c7833d39de2c658c3b2bc6d2f8fba8358f437))
+* **web-app:** update landing page to new design ([1272ac1](https://github.com/carbon-design-system/carbon-platform/commit/1272ac124303d0452bc751bfeaa1345990ef3517))
+* **web-app:** update landing page to new design ([cf35e95](https://github.com/carbon-design-system/carbon-platform/commit/cf35e9553d4a3e46be4c81007d36a6ea8888a5e7))
+* **web-app:** update landing page to new design ([cbecdfe](https://github.com/carbon-design-system/carbon-platform/commit/cbecdfe61310f609bd4e292b0c8f5e4629c434dc))
+* **web-app:** update mobile hero graphic ([7db74e5](https://github.com/carbon-design-system/carbon-platform/commit/7db74e5dce151a307a06fa8ad2b6cd52a4222ef8)), closes [#905](https://github.com/carbon-design-system/carbon-platform/issues/905)
+
+
+### Bug Fixes 🐛
+
+* hero image ([8900ff5](https://github.com/carbon-design-system/carbon-platform/commit/8900ff5ec7a39c84f077c707ae49e0bc24bbec41)), closes [#905](https://github.com/carbon-design-system/carbon-platform/issues/905)
+* merge conflicts ([9c65621](https://github.com/carbon-design-system/carbon-platform/commit/9c656210b2f7ee1b95b5a7b4874675ff88d36f1e))
+* **web-app:** add component to types for assets catalog ([0423baf](https://github.com/carbon-design-system/carbon-platform/commit/0423bafedebc363c0758d148d1a521fe5ee9aaa5))
+* **web-app:** add description to addLibraryInheritedData return type ([99226c8](https://github.com/carbon-design-system/carbon-platform/commit/99226c896dbec2a8575d33c1e0ee8711c55f4eb7)), closes [#1016](https://github.com/carbon-design-system/carbon-platform/issues/1016)
+* **web-app:** asset catalog filter by status ([d219abe](https://github.com/carbon-design-system/carbon-platform/commit/d219abec7a8d844105bf46fd9be98a8d4ae67524)), closes [#866](https://github.com/carbon-design-system/carbon-platform/issues/866)
+* **web-app:** column width for paragraph at md set to 8 col ([0e6660a](https://github.com/carbon-design-system/carbon-platform/commit/0e6660a9a437d7b8a5fb97a85595f9210f1c6fef))
+* **web-app:** hero image scrollbar ([2348836](https://github.com/carbon-design-system/carbon-platform/commit/2348836c440cdd38f189bdb6073ca613c6666d53)), closes [#905](https://github.com/carbon-design-system/carbon-platform/issues/905)
+* **web-app:** reduce cognitive complexity in assetIsInFilter ([7830222](https://github.com/carbon-design-system/carbon-platform/commit/78302228c6731b214836bb9261c4c471f311557a)), closes [#866](https://github.com/carbon-design-system/carbon-platform/issues/866)
+* **web-app:** refactor getLibraryData, reduce cognitive complexity ([aaf41ad](https://github.com/carbon-design-system/carbon-platform/commit/aaf41adf836167dfb27f58ba34b496ee6d6567c9)), closes [#1016](https://github.com/carbon-design-system/carbon-platform/issues/1016)
+* **web-app:** remove mocked data ([144310d](https://github.com/carbon-design-system/carbon-platform/commit/144310d388cbbe0718a7ca58b729facf2ba57fda)), closes [#1016](https://github.com/carbon-design-system/carbon-platform/issues/1016)
+
+### [0.2.30](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.29...@carbon-platform/web-app@0.2.30) (2022-08-26)
+
+
+### Bug Fixes 🐛
+
+* copy update ([edf1431](https://github.com/carbon-design-system/carbon-platform/commit/edf1431356f7e2e67681741e0a9723efd800b9bb))
+* **web-app:** active nav state ([4c321cb](https://github.com/carbon-design-system/carbon-platform/commit/4c321cbd0b3d16d2b1cc4fd0770d47a6694adb2c)), closes [#1082](https://github.com/carbon-design-system/carbon-platform/issues/1082)
+* **web-app:** change check logic for svg sourcs ([87ad362](https://github.com/carbon-design-system/carbon-platform/commit/87ad362309818ad70519e5edde2f032883ea3615)), closes [#767](https://github.com/carbon-design-system/carbon-platform/issues/767)
+* **web-app:** render remotely loaded SVGs ([3cbe2c6](https://github.com/carbon-design-system/carbon-platform/commit/3cbe2c61f9a5ef9f200c666a3ec498a7aa598bd6)), closes [#767](https://github.com/carbon-design-system/carbon-platform/issues/767)
+* **web-app:** rewrite isAbsoluteUrl function ([f35fa30](https://github.com/carbon-design-system/carbon-platform/commit/f35fa30433da6513022d2e84ad343280a1a9078b)), closes [#767](https://github.com/carbon-design-system/carbon-platform/issues/767)
+* **web-app:** use existing url validator function in image component ([aa561c5](https://github.com/carbon-design-system/carbon-platform/commit/aa561c599c381cd5c4ff58fcf3b463c7d8cca037)), closes [#767](https://github.com/carbon-design-system/carbon-platform/issues/767)
+
 ### [0.2.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.28...@carbon-platform/web-app@0.2.29) (2022-08-25)
 
 

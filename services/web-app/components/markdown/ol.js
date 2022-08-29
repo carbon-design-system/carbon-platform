@@ -28,7 +28,7 @@ const Ol = ({ children, className, ...rest }) => {
         } else {
           return (
             <Grid className={styles['list-container']}>
-              <Column sm={4} md={6} lg={8}>
+              <Column sm={4} md={8} lg={8}>
                 <OrderedList
                   isExpressive
                   className={clsx(className, styles.list, styles.ol)}

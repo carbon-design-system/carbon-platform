@@ -14,7 +14,7 @@ import styles from './markdown.module.scss'
 const H3 = ({ children, className, headingClassName, ...rest }) => {
   return (
     <Grid className={clsx(styles['h3-container'], className)} {...rest}>
-      <Column sm={4} md={6} lg={8}>
+      <Column sm={4} md={8} lg={8}>
         <AutolinkHeader is="h3" className={clsx(styles.h3, headingClassName)}>
           {children}
         </AutolinkHeader>

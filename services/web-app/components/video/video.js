@@ -49,6 +49,7 @@ const Video = ({ autoPlay, vimeoId, title, src, poster, muted, ...props }) => {
                   webkitallowfullscreen="true"
                   mozallowfullscreen="true"
                   allowFullScreen
+                  sandbox="allow-forms allow-scripts  allow-same-origin"
                 />
               </div>
             </div>

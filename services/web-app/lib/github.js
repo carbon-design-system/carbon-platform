@@ -745,8 +745,8 @@ const getLibraryAssets = async (libraryParams = {}) => {
             id: assetKey,
             ...asset,
             noIndex: !!asset.noIndex && process.env.INDEX_ALL !== '1', // default to false if not specified,
-            framework: asset?.framework ?? 'design-only',
-            tags: asset?.tags ?? []
+            framework: get(asset, 'framework', 'design-only'),
+            tags: get(asset, 'tags', [])
           }
         }
       })

@@ -7,6 +7,10 @@
 
 @use '@carbon/react/scss/spacing' as spacing;
 
+html {
+  --scroll-padding: 0;
+}
+
 .search {
   margin-top: spacing.$spacing-07;
 }

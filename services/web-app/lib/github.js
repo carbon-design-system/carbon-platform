@@ -283,6 +283,20 @@ const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
 }
 
 /**
+ * Ensures an asset has default properties if not set
+ * @param {import('../typedefs').AssetContent} assetContent
+ * @returns {import('../typedefs').AssetContent}
+ */
+const mergeAssetContentDefaults = (assetContent = {}) => {
+  return {
+    ...assetContent,
+    noIndex: !!assetContent.noIndex && process.env.INDEX_ALL !== '1', // default to false if not specified
+    framework: assetContent?.framework ?? 'design-only',
+    tags: assetContent?.tags ?? []
+  }
+}
+
+/**
  * Validates a design kit's structure and content and logs any validation errors as warnings
  * @param {import('../typedefs').DesignKit} designKit
  * @returns {boolean} whether the design kit is valid or not
@@ -741,13 +755,10 @@ const getLibraryAssets = async (libraryParams = {}) => {
         return {
           params: libraryParams,
           response,
-          content: {
+          content: mergeAssetContentDefaults({
             id: assetKey,
-            ...asset,
-            noIndex: !!asset.noIndex && process.env.INDEX_ALL !== '1', // default to false if not specified,
-            framework: get(asset, 'framework', 'design-only'),
-            tags: get(asset, 'tags', [])
-          }
+            ...asset
+          })
         }
       })
     )

@@ -44,7 +44,7 @@ designKits:
     name: IBM Design Language
     description:
       Use this Sketch kit to apply type and colors styles to your projects using the IBM Design
-      Language
+      Language.
     tool: sketch
     type: elements
     status: stable

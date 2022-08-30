@@ -341,7 +341,7 @@ designKits:
     action: link
   carbon-wireframe-invision-freehand:
     name: Invision Freehand wireframe kit
-    description: Quickly create and test low fidelity wireframes in Invision Freehand.
+    description: Quickly create and test low fidelity wireframes in InVision Freehand.
     tool: invision-freehand
     type: wireframes
     status: stable

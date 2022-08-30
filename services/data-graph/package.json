@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/data-graph",
   "description": "Carbon Platform Data Graph service",
-  "version": "0.1.38",
+  "version": "0.1.39",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,

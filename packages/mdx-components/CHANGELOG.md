@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.2...@carbon-platform/mdx-components@0.1.3) (2022-08-30)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add kill-others to concurrently commands ([26a4fa3](https://github.com/carbon-design-system/carbon-platform/commit/26a4fa3ae7200f7d8286b76f3bebfe810686a24d)), closes [#849](https://github.com/carbon-design-system/carbon-platform/issues/849)
+
 ### [0.1.2](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.1...@carbon-platform/mdx-components@0.1.2) (2022-08-24)
 
 

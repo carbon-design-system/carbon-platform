@@ -271,7 +271,8 @@ const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
       inheritableProperties.forEach((property) => {
         const inheritProperty = get(inheritAsset, `content.${property}`)
 
-        if (!get(asset, `content.${property}`) && inheritProperty) {
+        // check for undefined properties, as well as empty arrays for tags
+        if (isEmpty(get(asset, `content.${property}`)) && inheritProperty) {
           set(asset, `content.${property}`, inheritProperty)
         }
       })
@@ -279,6 +280,20 @@ const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
 
     return asset
   })
+}
+
+/**
+ * Ensures an asset has default properties if not set
+ * @param {import('../typedefs').AssetContent} assetContent
+ * @returns {import('../typedefs').AssetContent}
+ */
+const mergeAssetContentDefaults = (assetContent = {}) => {
+  return {
+    ...assetContent,
+    noIndex: !!assetContent.noIndex && process.env.INDEX_ALL !== '1', // default to false if not specified
+    framework: assetContent?.framework ?? 'design-only',
+    tags: assetContent?.tags ?? []
+  }
 }
 
 /**
@@ -740,11 +755,10 @@ const getLibraryAssets = async (libraryParams = {}) => {
         return {
           params: libraryParams,
           response,
-          content: {
+          content: mergeAssetContentDefaults({
             id: assetKey,
-            ...asset,
-            noIndex: !!asset.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
-          }
+            ...asset
+          })
         }
       })
     )

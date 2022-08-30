@@ -80,12 +80,7 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
           {tabs && <PageTabs className={styles['asset-tabs']} tabs={tabs} />}
         </Column>
         <Column sm={4} md={8} lg={4}>
-          <PageNav
-            items={pageNavItems}
-            contentRef={contentRef}
-            calculateHeight
-            scrollTopDistance={180}
-          />
+          <PageNav items={pageNavItems} contentRef={contentRef} scrollTopDistance={180} />
         </Column>
         <Column sm={4} md={8} lg={12}>
           <MdxPage

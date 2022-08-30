@@ -205,7 +205,6 @@ const PageNav = ({ contentRef, items = [], scrollTopDistance = 120 }) => {
 }
 
 PageNav.propTypes = {
-  calculateHeight: PropTypes.bool,
   contentRef: PropTypes.object,
   items: PropTypes.array,
   scrollTopDistance: PropTypes.number

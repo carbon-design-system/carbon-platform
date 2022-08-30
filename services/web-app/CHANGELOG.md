@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.32](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.31...@carbon-platform/web-app@0.2.32) (2022-08-30)
+
+
+### Features 🌟
+
+* **web-app:** lock down iframe props ([1314ecf](https://github.com/carbon-design-system/carbon-platform/commit/1314ecf6c6f5c983c00f132ccdc56e3301f8e2ec)), closes [#1172](https://github.com/carbon-design-system/carbon-platform/issues/1172)
+
+
+### Bug Fixes 🐛
+
+* faq-updates ([c457e05](https://github.com/carbon-design-system/carbon-platform/commit/c457e055826a8105845e9864bb42c387ebddb279))
+* getting started descriptions ([0046e79](https://github.com/carbon-design-system/carbon-platform/commit/0046e795a5d3daa02b9858f1a8e04d5ada28f7b6))
+* rewrite FAQ page ([2e3cb9a](https://github.com/carbon-design-system/carbon-platform/commit/2e3cb9a1c36bc57a976d42ee932650957915564d))
+* **web-app:** add kill-others to concurrently commands ([f22fa00](https://github.com/carbon-design-system/carbon-platform/commit/f22fa00d12a73269e4b685d2b65f7c6947bfe5ae))
+* **web-app:** cleanup props ([983a864](https://github.com/carbon-design-system/carbon-platform/commit/983a8647ad255581068f335b4abb8e88908f1f7d)), closes [#1184](https://github.com/carbon-design-system/carbon-platform/issues/1184)
+* **web-app:** filter search popover mobile scroll styles ([4241a09](https://github.com/carbon-design-system/carbon-platform/commit/4241a09da88ada4ce3579ca9abbe95ed44376934)), closes [#462](https://github.com/carbon-design-system/carbon-platform/issues/462)
+* **web-app:** filter search popover mobile scroll styles ([e43edc3](https://github.com/carbon-design-system/carbon-platform/commit/e43edc3f1c42d10176f369ea730942b6d0a32cc5)), closes [#462](https://github.com/carbon-design-system/carbon-platform/issues/462)
+
 ### [0.2.31](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.30...@carbon-platform/web-app@0.2.31) (2022-08-27)
 
 

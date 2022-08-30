@@ -98,7 +98,11 @@ export const getRemoteMdxSource = async (repoParams, mdxPath) => {
     repoParams.ref = await getRepoDefaultBranch(repoParams)
   }
 
-  if (!createUrl(mdxPath)) {
+  let src = mdxPath
+  let { host, org, repo, ref } = repoParams
+
+  const mdxUrl = createUrl(mdxPath)
+  if (!mdxUrl) {
     const fullContentsPath = path.join(
       'https://',
       repoParams.host,
@@ -117,14 +121,22 @@ export const getRemoteMdxSource = async (repoParams, mdxPath) => {
       logging.warn(err)
       throw err
     }
+  } else {
+    // https://github.com/[org]/[repo]/blob/[ref]/[...path]
+    host = mdxUrl.host
+    const pathNameChunks = mdxUrl.pathname.split('/')
+    org = pathNameChunks[1]
+    repo = pathNameChunks[2]
+    ref = pathNameChunks[4]
+    src = pathNameChunks.slice(5).join('/')
   }
 
   try {
-    response = await getResponse(repoParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
-      owner: repoParams.org,
-      repo: repoParams.repo,
-      path: removeLeadingSlash(mdxPath),
-      ref: repoParams.ref
+    response = await getResponse(host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: org,
+      repo,
+      path: removeLeadingSlash(src),
+      ref
     })
   } catch (err) {
     logging.warn(err)
@@ -258,7 +270,15 @@ const validateLibraryParams = async (params = {}) => {
  * @returns {import('../typedefs').Asset[]}
  */
 const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
-  const inheritableProperties = ['name', 'description', 'type', 'tags', 'platform', 'thumbnailSvg']
+  const inheritableProperties = [
+    'name',
+    'description',
+    'docs',
+    'type',
+    'tags',
+    'platform',
+    'thumbnailSvg'
+  ]
 
   return assets.map((asset) => {
     const assetId = getAssetId(asset)
@@ -530,6 +550,73 @@ export const getDesignKitsData = async (params = {}) => {
 }
 
 /**
+ * Adds default attributes to each asset in a library as per necessary (e.g.: docs)
+ * @param {import('../typedefs').Library} library
+ * @returns {Promise<void>} A promise that resolves to void.
+ */
+const addAssetDefaults = async (library) => {
+  const { params } = library
+  const libraryTree = await getGithubTree(params)
+
+  const docsKeys = ['overviewPath', 'accessibilityPath', 'codePath', 'usagePath', 'stylePath']
+
+  if (!libraryTree?.tree?.length) return
+
+  // add docs defaults
+  library.assets.forEach((asset) => {
+    const assetDocsKeys = Object.keys(asset.content.docs ?? {})
+
+    // if asset docs has all path keys, skip this iteration
+    if (docsKeys.every((key) => assetDocsKeys.includes(key))) {
+      return
+    }
+
+    const carbonYmlDirPath = asset.response.path.split('/').slice(0, -1).join('/')
+
+    const defaultOverviewPath = path.join('./' + carbonYmlDirPath, './overview.mdx')
+    const defaultAccessibilityPath = path.join('./' + carbonYmlDirPath, './accessibility.mdx')
+    const defaultCodePath = path.join('./' + carbonYmlDirPath, './code.mdx')
+    const defaultStylePath = path.join('./' + carbonYmlDirPath, './style.mdx')
+    const defaultUsagePath = path.join('./' + carbonYmlDirPath, './usage.mdx')
+
+    const docsDefaults = {
+      overviewPath: {
+        path: defaultOverviewPath,
+        default: './overview.mdx'
+      },
+      accessibilityPath: {
+        path: defaultAccessibilityPath,
+        default: './accessibility.mdx'
+      },
+      codePath: {
+        path: defaultCodePath,
+        default: './code.mdx'
+      },
+      stylePath: {
+        path: defaultStylePath,
+        default: './style.mdx'
+      },
+      usagePath: {
+        path: defaultUsagePath,
+        default: './usage.mdx'
+      }
+    }
+
+    libraryTree.tree.forEach((file) => {
+      docsKeys.forEach((key) => {
+        // if assets docs doesn't have path and the file matches the default path, add it
+        if (!asset.content.docs?.[key] && file.path === docsDefaults[key].path) {
+          if (!asset.content.docs) {
+            asset.content.docs = {}
+          }
+          asset.content.docs[key] = docsDefaults[key].default
+        }
+      })
+    })
+  })
+}
+
+/**
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
  * @param {import('../typedefs').Params} params
@@ -607,6 +694,8 @@ export const getLibraryData = async (params = {}) => {
 
   await addLibraryInheritedData(libraryResponse)
 
+  await addAssetDefaults(libraryResponse)
+
   validateLibraryAssets(libraryResponse)
 
   return libraryResponse
@@ -646,12 +735,15 @@ const getThumbnailPath = (libraryParams = {}, asset = {}) => {
 }
 
 /**
- * Recursively get all asset metadata files. Find the files that are in the
- * library's subdirectory and then fetch the contents for each asset metadata file.
- * @param {import('../typedefs').Params} libraryParams
- * @returns {Promise<import('../typedefs').Asset[]>}
+ * Recursively get all github metadata files for a given library
+ * @param {import('../typedefs').Params} params
+ * @returns {Promise<import('../typedefs').GitHubTreeResponse>}
  */
-const getLibraryAssets = async (libraryParams = {}) => {
+const getGithubTree = async (params = {}) => {
+  const libraryParams = await validateLibraryParams(params)
+
+  if (isEmpty(libraryParams)) return []
+
   // get all asset metadata files in subdirectories
 
   /**
@@ -672,6 +764,28 @@ const getLibraryAssets = async (libraryParams = {}) => {
   } catch (err) {
     return []
   }
+
+  return treeResponse
+}
+
+/**
+ * If the params map to a valid library in the allowlist, get the default branch if there isn't a
+ * specified ref, then recursively get all asset metadata files. Find the files that are in the
+ * library's subdirectory and then fetch the contents for each asset metadata file.
+ * @param {import('../typedefs').Params} params
+ * @returns {Promise<import('../typedefs').Asset[]>}
+ */
+const getLibraryAssets = async (params = {}) => {
+  const libraryParams = await validateLibraryParams(params)
+
+  if (isEmpty(libraryParams)) return []
+
+  // get all asset metadata files in subdirectories
+
+  /**
+   * @type {import('../typedefs').GitHubTreeResponse}
+   */
+  const treeResponse = await getGithubTree(params)
 
   // request contents for each asset metadata file
 

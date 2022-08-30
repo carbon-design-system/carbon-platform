@@ -228,7 +228,7 @@ const PageContent = () => {
       <Divider />
 
       <P className={styles['intro-paragraph']}>
-        By standardizing and surfacing our assets, the new site helps makers Find assets that{' '}
+        By standardizing and surfacing our assets, the new site helps makers find assets that{' '}
         <mark>comply</mark> with platform requirements, are <mark>convenient</mark> to implement,
         and are <mark>consistent</mark> with design patterns across the company.
         <br />↓

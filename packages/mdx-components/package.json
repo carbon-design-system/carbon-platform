@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/mdx-components",
   "description": "Carbon Platform MDX components",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
@@ -24,7 +24,7 @@
     "build:sass": "sass --load-path=../../node_modules/ src/main/index.scss dist/main/index.css",
     "build:storybook": "build-storybook -o .storybook-static",
     "build:watch": "nodemon --watch src/main --ext .ts,.tsx,.scss --exec 'npm run build'",
-    "dev": "concurrently 'npm run build:watch' 'npm run storybook'",
+    "dev": "concurrently --kill-others 'npm run build:watch' 'npm run storybook'",
     "clean": "rimraf dist '*.tsbuildinfo'",
     "package:build": "npm run build",
     "storybook": "start-storybook -p 6006",

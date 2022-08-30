@@ -2,6 +2,9 @@
 designKits:
   carbon-white-sketch:
     name: Sketch white theme
+    description:
+      Use this White theme Sketch kit to rapidly design user interfaces with Carbon’s core
+      components.
     tool: sketch
     type: ui
     status: stable
@@ -9,6 +12,9 @@ designKits:
     action: link
   carbon-g10-sketch:
     name: Sketch gray 10 theme
+    description:
+      Use this Gray 10 theme Sketch kit to rapidly design user interfaces with Carbon’s core
+      components.
     tool: sketch
     type: ui
     status: stable
@@ -16,6 +22,9 @@ designKits:
     action: link
   carbon-g90-sketch:
     name: Sketch gray 90 theme
+    description:
+      Use this Gray 90 theme Sketch kit to rapidly design user interfaces with Carbon’s core
+      components.
     tool: sketch
     type: ui
     status: stable
@@ -23,6 +32,9 @@ designKits:
     action: link
   carbon-g100-sketch:
     name: Sketch gray 100 theme
+    description:
+      Use this Gray 100 theme Sketch kit to rapidly design user interfaces with Carbon’s core
+      components.
     tool: sketch
     type: ui
     status: stable
@@ -30,6 +42,9 @@ designKits:
     action: link
   ibm-design-language-sketch:
     name: IBM Design Language
+    description:
+      Use this Sketch kit to apply type and colors styles to your projects using the IBM Design
+      Language.
     tool: sketch
     type: elements
     status: stable
@@ -37,6 +52,9 @@ designKits:
     action: link
   ibm-icons-16-20-sketch:
     name: IBM Icons (16px, 20px)
+    description:
+      This Sketch kit includes 16px and 20px IBM icons to apply in projects that use the IBM Design
+      Language.
     tool: sketch
     type: elements
     status: stable
@@ -44,6 +62,9 @@ designKits:
     action: link
   ibm-icons-24-32-sketch:
     name: IBM Icons (24px, 32px)
+    description:
+      This Sketch kit includes 24px and 32px IBM icons to apply in projects that use the IBM Design
+      Language.
     tool: sketch
     type: elements
     status: stable
@@ -51,6 +72,9 @@ designKits:
     action: link
   ibm-grid-sketch:
     name: IBM Grid template
+    description:
+      This Sketch template contains the IBM 2x Grid, including structure and guidance around the
+      basic grid and grid influencers.
     tool: sketch
     type: elements
     status: stable
@@ -58,6 +82,9 @@ designKits:
     action: link
   carbon-shell-sketch:
     name: UI Shell template
+    description:
+      Use this Sketch kit to consistently apply components and interaction patterns shared by
+      products within a platform.
     tool: sketch
     type: elements
     status: stable
@@ -65,6 +92,10 @@ designKits:
     action: link
   carbon-white-figma:
     name: Figma white theme
+    description:
+      Use this White theme Figma kit to rapidly design user interfaces with Carbon’s core
+      components. The v10 libraries will not receive continuous updates and will remain permanently
+      on v10.
     tool: figma
     type: ui
     status: experimental
@@ -72,6 +103,10 @@ designKits:
     action: link
   carbon-g10-figma:
     name: Figma gray 10 theme
+    description:
+      Use this Gray 10 theme Figma kit to rapidly design user interfaces with Carbon’s core
+      components. The v10 libraries will not receive continuous updates and will remain permanently
+      on v10.
     tool: figma
     type: ui
     status: experimental
@@ -79,6 +114,10 @@ designKits:
     action: link
   carbon-g90-figma:
     name: Figma gray 90 theme
+    description:
+      Use this Gray 90 theme Figma kit to rapidly design user interfaces with Carbon’s core
+      components. The v10 libraries will not receive continuous updates and will remain permanently
+      on v10.
     tool: figma
     type: ui
     status: experimental
@@ -86,6 +125,10 @@ designKits:
     action: link
   carbon-g100-figma:
     name: Figma gray 100 theme
+    description:
+      Use this Gray 100 theme Figma kit to rapidly design user interfaces with Carbon’s core
+      components. The v10 libraries will not receive continuous updates and will remain permanently
+      on v10.
     tool: figma
     type: ui
     status: experimental
@@ -93,6 +136,9 @@ designKits:
     action: link
   carbon-white-adobe-xd:
     name: Adobe XD white theme
+    description:
+      Use this white theme Adobe XD kit to rapidly design user interfaces with Carbon’s core
+      components.
     tool: adobe-xd
     type: ui
     status: stable
@@ -100,6 +146,9 @@ designKits:
     action: link
   carbon-g10-adobe-xd:
     name: Adobe XD gray 10 theme
+    description:
+      Use this Gray 10 theme Adobe XD kit to rapidly design user interfaces with Carbon’s core
+      components.
     tool: adobe-xd
     type: ui
     status: stable
@@ -107,6 +156,9 @@ designKits:
     action: link
   carbon-g90-adobe-xd:
     name: Adobe XD gray 90 theme
+    description:
+      Use this Gray 90 theme Adobe XD kit to rapidly design user interfaces with Carbon’s core
+      components.
     tool: adobe-xd
     type: ui
     status: stable
@@ -114,6 +166,9 @@ designKits:
     action: link
   carbon-g100-adobe-xd:
     name: Adobe XD gray 100 theme
+    description:
+      Use this Gray 100 theme Adobe XD kit to rapidly design user interfaces with Carbon’s core
+      components.
     tool: adobe-xd
     type: ui
     status: stable
@@ -121,6 +176,8 @@ designKits:
     action: link
   ibm-icons-adobe-xd:
     name: IBM Icons
+    description:
+      This Adobe XD kit includes IBM icons to apply in projects that use the IBM Design Language.
     tool: adobe-xd
     type: elements
     status: stable
@@ -128,6 +185,9 @@ designKits:
     action: link
   carbon-g10-axure:
     name: Axure gray 10
+    description:
+      Use this Gray 10 theme to rapidly create wireframes, interactive prototypes, and documentation
+      in Axure RP.
     tool: axure
     type: ui
     status: stable
@@ -135,6 +195,7 @@ designKits:
     action: download
   carbon-template-axure:
     name: Axure template
+    description: This kit provides all the settings you need to use elements in Axure RP.
     tool: axure
     type: ui
     status: stable
@@ -142,6 +203,9 @@ designKits:
     action: download
   axure-widget-library:
     name: Axure widget library
+    description:
+      This Axure kit contains the widgets for core Carbon components, design elements, and other
+      common shapes. All widgets come with pre-built styles and interactions.
     tool: axure
     type: ui
     status: stable
@@ -149,6 +213,9 @@ designKits:
     action: download
   data-viz-sketch:
     name: Data vizualization
+    description:
+      This Sketch kit includes basic and complex chart assets, along with usage guidance, theming
+      guidance, palettes, and sample layouts.
     tool: sketch
     type: ui
     status: stable
@@ -156,6 +223,7 @@ designKits:
     action: link
   ibm-color-palettes-ase-clr:
     name: RGB color palettes (.ase and .clr)
+    description: These .ase and .clr color palettes contain the IBM Design Language color families.
     tool: adobe-ase
     type: elements
     status: stable
@@ -163,6 +231,9 @@ designKits:
     action: download
   text-toolbar-sketch:
     name: Text toolbar pattern
+    description:
+      This Sketch kit includes guidance and structure around buttons, dropdowns, and groups for the
+      Text toolbar pattern.
     tool: sketch
     type: ui
     status: stable
@@ -170,13 +241,29 @@ designKits:
     action: download
   carbon-gatsby-theme-sketch:
     name: Gatsby theme
+    description:
+      This Sketch kit includes all the Gatsby components, patterns, and sample layouts that have
+      been developed by the IBM community.
     tool: sketch
     type: ui
     status: stable
     url: sketch://add-library/cloud/304313c1-29a8-4946-a6f0-51dbec953bc2
     action: link
+  carbon-gatsby-theme-figma:
+    name: Gatsby theme
+    description:
+      This Figma kit includes all the Gatsby components, patterns, and sample layouts that have been
+      developed by the IBM community.
+    tool: figma
+    type: ui
+    status: stable
+    url: https://www.figma.com/file/9arERt9v8YZVMDn7AYdmZt/Gatsby-Design-Kit?node-id=0%3A1
+    action: link
   image-production-guidelines-sketch:
     name: Image production guidelines
+    description:
+      This Sketch kit includes guidance, symbols, and templates to help designers with every aspect
+      of image creation and component specs.
     tool: sketch
     type: guidelines
     status: stable
@@ -184,6 +271,9 @@ designKits:
     action: link
   carbon-mobile-light-sketch:
     name: Light theme for mobile
+    description:
+      Use this light theme Sketch kit to rapidly design user interfaces for mobile experiences with
+      Carbon’s core components.
     tool: sketch
     type: ui
     status: stable
@@ -191,6 +281,9 @@ designKits:
     action: link
   carbon-mobile-dark-sketch:
     name: Dark theme for mobile
+    description:
+      Use this dark theme Sketch kit to rapidly design user interfaces for mobile experiences with
+      Carbon’s core components.
     tool: sketch
     type: ui
     status: stable
@@ -198,6 +291,9 @@ designKits:
     action: link
   ibm-grid-mobile-sketch:
     name: IBM Grid template for mobile
+    description:
+      This Sketch template contains the IBM 2x Grid for mobile experiences, including guidance for
+      various device sizes.
     tool: sketch
     type: ui
     status: stable
@@ -205,6 +301,9 @@ designKits:
     action: link
   mobile-patterns-sketch:
     name: Mobile patterns and examples
+    description:
+      This Sketch kit provides guidance for mobile experiences, including login, navigation, and UI
+      examples.
     tool: sketch
     type: ui
     status: stable
@@ -212,6 +311,9 @@ designKits:
     action: link
   ibm-accessibility-sketch:
     name: Accessibility toolkit
+    description:
+      This Sketch kit includes checklists, bite-sized guidance, and handoff assets to make sure your
+      designs are accessible when implemented.
     tool: sketch
     type: guidelines
     status: stable
@@ -219,6 +321,9 @@ designKits:
     action: link
   ibm-accessibility-figma:
     name: Accessibility toolkit
+    description:
+      This Figma kit includes checklists, bite-sized guidance, and handoff assets to make sure your
+      designs are accessible when implemented.
     tool: figma
     type: guidelines
     status: stable
@@ -226,6 +331,9 @@ designKits:
     action: link
   carbon-mid-fi-sketch:
     name: Carbon Mid-Fi Sketch kit
+    description:
+      Use this Sketch kit to visualize concepts and test them out before committing to high-fidelity
+      designs.
     tool: sketch
     type: wireframes
     status: stable
@@ -233,6 +341,7 @@ designKits:
     action: link
   carbon-wireframe-invision-freehand:
     name: Invision Freehand wireframe kit
+    description: Quickly create and test low fidelity wireframes in InVision Freehand.
     tool: invision-freehand
     type: wireframes
     status: stable
@@ -241,6 +350,9 @@ designKits:
     license: ibm-internal
   ibm-dotcom-white-figma:
     name: IBM.com Figma white theme
+    description:
+      This white theme Figma kit includes components, color styles, and expressive and productive
+      type styles to build web experiences that adhere to IBM's web standards.
     tool: figma
     type: ui
     status:
@@ -250,6 +362,9 @@ designKits:
     action: link
   ibm-dotcom-g10-figma:
     name: IBM.com Figma gray 10 theme
+    description:
+      This Gray 10 theme Figma kit includes components, color tokens, and expressive and productive
+      type styles to build web experiences that adhere to IBM's web standards.
     tool: figma
     type: ui
     status:
@@ -259,6 +374,9 @@ designKits:
     action: link
   ibm-dotcom-g90-figma:
     name: IBM.com Figma gray 90 theme
+    description:
+      This Gray 90 theme Figma kit includes components, color tokens, and expressive and productive
+      type styles to build web experiences that adhere to IBM's web standards.
     tool: figma
     type: ui
     status:
@@ -268,6 +386,9 @@ designKits:
     action: link
   ibm-dotcom-g100-figma:
     name: IBM.com Figma gray 100 theme
+    description:
+      This Gray 100 theme Figma kit includes components, color tokens, and expressive and productive
+      type styles to build web experiences that adhere to IBM's web standards.
     tool: figma
     type: ui
     status:
@@ -277,6 +398,9 @@ designKits:
     action: link
   ibm-products-g10-figma:
     name: IBM Products Figma gray 10 theme
+    description:
+      This Gray 10 theme Figma kit provides a portfolio of components and resources for designers
+      working on products within Cloud, Data, and Security.
     tool: figma
     type: ui
     status: stable
@@ -284,6 +408,9 @@ designKits:
     action: link
   ibm-cloud-light-figma:
     name: Cloud PAL Figma light theme
+    description:
+      This light theme Figma kit contains all components used to create scalable and accessible
+      experiences on IBM Cloud.
     tool: figma
     type: ui
     status: stable
@@ -292,6 +419,9 @@ designKits:
     noIndex: true
   figma-v11-white-theme:
     name: Figma v11 white theme
+    description:
+      Use this v11 white theme Figma kit to rapidly design user interfaces with Carbon’s core
+      components.
     tool: figma
     type: ui
     status: stable
@@ -299,6 +429,9 @@ designKits:
     action: link
   figma-v11-gray-10-theme:
     name: Figma v11 gray 10 theme
+    description:
+      Use this v11 Gray 10 theme Figma kit to rapidly design user interfaces with Carbon’s core
+      components.
     tool: figma
     type: ui
     status: stable
@@ -306,6 +439,9 @@ designKits:
     action: link
   figma-v11-gray-90-theme:
     name: Figma v11 gray 90 theme
+    description:
+      Use this v11 Gray 90 theme Figma kit to rapidly design user interfaces with Carbon’s core
+      components.
     tool: figma
     type: ui
     status: stable
@@ -313,20 +449,26 @@ designKits:
     action: link
   figma-v11-gray-100-theme:
     name: Figma v11 gray 100 theme
+    description:
+      Use this v11 Gray 100 theme Figma kit to rapidly design user interfaces with Carbon’s core
+      components.
     tool: figma
     type: ui
     status: stable
     url: https://www.figma.com/file/XhRIHF6qGiJQaJ5eOSSBRm/(v11-BETA)-Gray-100-Theme---Carbon-Design-System
     action: link
   color-styles-figma:
-    name: Figma Color styles
+    name: Figma color styles
+    description: Use this Figma kit to apply colors from the IBM Design Language to your projects.
     tool: figma
     type: elements
     status: stable
     url: https://www.figma.com/file/Gvwx2RnAZzDKTjVuC5xOlO/Color-Styles---IBM-Design-Language?node-id=129%3A2
     action: link
   v11-text-styles-figma:
-    name: Figma v11 Text styles
+    name: Figma v11 text styles
+    description:
+      Use this Figma kit to apply v11 type styles to your projects using the IBM Design Language.
     tool: figma
     type: elements
     status: stable
@@ -334,6 +476,8 @@ designKits:
     action: link
   ibm-icons-figma:
     name: Figma IBM icons
+    description:
+      This Figma kit includes IBM icons to apply in projects that use the IBM Design Language.
     tool: figma
     type: elements
     status: stable
@@ -341,6 +485,8 @@ designKits:
     action: link
   ibm-pictograms-figma:
     name: Figma IBM pictograms
+    description:
+      This Figma kit includes IBM pictograms to apply in projects that use the IBM Design Language.
     tool: figma
     type: elements
     status: stable

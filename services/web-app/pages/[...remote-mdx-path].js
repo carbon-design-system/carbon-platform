@@ -75,7 +75,10 @@ export const getStaticProps = async ({ params }) => {
       tabs,
       pageHeaderType:
         pageData.pageHeaderType ?? safeSource?.compiledSource?.data?.matter?.pageHeaderType ?? null
-    }
+    }, // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every hour
+    revalidate: 60 * 60 // In seconds
   }
 }
 
@@ -87,12 +90,9 @@ export const getStaticPaths = async () => {
       }
     }
   })
-
   return {
     paths: allowedPaths,
-    // returning 404 if page wasn't generated at build time
-    // to prevent remote mdx dynamic loading for now
-    fallback: false
+    fallback: 'blocking'
   }
 }
 

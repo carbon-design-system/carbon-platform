@@ -16,7 +16,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import { NextSeo } from 'next-seo'
 import path from 'path'
 import PropTypes from 'prop-types'
-import { useContext, useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
@@ -49,10 +49,32 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
   const contentRef = useRef(null)
+  const [pageNavItems, setPageNavItems] = useState([
+    {
+      title: 'Dashboard',
+      id: 'dashboard'
+    }
+  ])
 
   useEffect(() => {
     setPrimaryNavData(assetsNavData)
   }, [setPrimaryNavData])
+
+  useEffect(() => {
+    const headers = Array.from(document.querySelectorAll('#remote-content h2')).map((header) => {
+      return {
+        title: header.textContent,
+        id: header.id
+      }
+    })
+    setPageNavItems([
+      {
+        title: 'Dashboard',
+        id: 'dashboard'
+      },
+      ...headers
+    ])
+  }, [])
 
   if (router.isFallback) {
     return (
@@ -126,12 +148,6 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
     }
   ]
 
-  const pageNavItems = [
-    {
-      title: 'Dashboard',
-      id: 'dashboard'
-    }
-  ]
   if (libraryData.content.demoLinks) {
     pageNavItems.push({
       title: 'Demo links',

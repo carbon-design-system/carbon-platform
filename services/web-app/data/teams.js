@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Advocate, Bee as BeePictogram } from '@carbon/pictograms-react'
+import { Bee as BeePictogram } from '@carbon/pictograms-react'
 import {
   AccessibilityAlt,
   Bee as BeeIcon,
@@ -17,6 +17,7 @@ import {
   Watson
 } from '@carbon/react/icons'
 import {
+  Svg64AccessibilityAlt,
   Svg64Carbon,
   Svg64CarbonForIbmDotcom,
   Svg64CarbonForIbmProducts,
@@ -34,7 +35,7 @@ import {
 export const teams = {
   carbon: {
     icon: Carbon,
-    name: 'Carbon',
+    name: 'Carbon System Squad',
     pictogram: Svg64Carbon
   },
   community: {
@@ -44,13 +45,13 @@ export const teams = {
   },
   'ibm-dotcom': {
     icon: CarbonForIbmDotcom,
-    name: 'IBM.com',
+    name: 'Carbon Dotcom Squad',
     pictogram: Svg64CarbonForIbmDotcom
   },
   'ibm-accessibility': {
     icon: AccessibilityAlt,
     name: 'IBM Accessibility',
-    pictogram: Advocate // This is just a placeholder pictogram for now
+    pictogram: Svg64AccessibilityAlt
   },
   'ai-apps': {
     icon: Watson,

@@ -117,7 +117,7 @@ const Asset = ({ libraryData, params }) => {
       id: 'dashboard'
     }
   ]
-  if (libraryData.content.demoLinks) {
+  if (assetData.content.demoLinks) {
     pageNavItems.push({
       title: 'Demo links',
       id: 'demo-links'
@@ -148,7 +148,7 @@ const Asset = ({ libraryData, params }) => {
           href={`/libraries/${frameworks.params.library}/${params.ref}/assets/${params.asset}`}
           passHref
         >
-          <CarbonLink size="lg">{frameworks.framework}</CarbonLink>
+          <CarbonLink size="lg">{framework[frameworks.framework]?.name}</CarbonLink>
         </Link>
       </>
     ))
@@ -245,7 +245,7 @@ const Asset = ({ libraryData, params }) => {
                       lg={4}
                     >
                       <dt className={dashboardStyles.label}>Other frameworks</dt>
-                      <dd className={clsx(dashboardStyles.meta, styles['other-frameworks'])}>
+                      <dd className={dashboardStyles.meta}>
                         {otherFrameworks.length > 0 ? otherFrameworkLinks : '–'}
                       </dd>
                     </Column>
@@ -313,11 +313,11 @@ const Asset = ({ libraryData, params }) => {
                   )}
                 </DashboardItem>
               </Column>
-              {libraryData.content.demoLinks && (
+              {assetData.content.demoLinks && (
                 <Column sm={4} md={8} lg={8}>
                   <section id="demo-links">
                     <H2>Demo links</H2>
-                    <DemoLinks links={[...get(libraryData, 'content.demoLinks', [])]} />
+                    <DemoLinks links={[...get(assetData, 'content.demoLinks', [])]} />
                   </section>
                 </Column>
               )}

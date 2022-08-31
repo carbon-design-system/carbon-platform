@@ -28,7 +28,7 @@ const createTabs = ({ tabs }) => {
 
 const getPathLeaf = (fullPath) => {
   // Get the last piece of the path without the query string
-  return fullPath.split('/').pop().split('?')[0]
+  return fullPath.split('/').pop().split('?')[0].split('#')[0]
 }
 
 const PageTabs = ({ className, tabs = [] }) => {

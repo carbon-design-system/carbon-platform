@@ -28,6 +28,9 @@ import styles from './mdx-page.module.scss'
 
 const getTabData = (tabs, baseSegment) => {
   return tabs.map((tab) => {
+    if (tab?.name && tab?.path) {
+      return tab
+    }
     const tabSlug = slugify(tab, { strict: true, lower: true })
     return {
       name: tab,
@@ -88,7 +91,8 @@ const MdxPage = ({
   mdxError,
   warnings,
   children,
-  pageHeaderType
+  pageHeaderType,
+  seoTitle
 }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
@@ -104,7 +108,7 @@ const MdxPage = ({
 
   return (
     <>
-      {createSeo({ title, description, keywords })}
+      {createSeo({ title: seoTitle ?? title, description, keywords })}
       {title && (
         <PageHeader
           title={title}
@@ -144,6 +148,10 @@ MdxPage.propTypes = {
    * page header type that determines background color and pictogram
    */
   pageHeaderType: PropTypes.string,
+  /**
+   * title to use for SEO
+   */
+  seoTitle: PropTypes.string,
   /**
    * Tabs to display on the page.
    */

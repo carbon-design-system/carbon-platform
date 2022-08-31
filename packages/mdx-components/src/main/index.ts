@@ -15,6 +15,7 @@ export {
   Button,
   Layer,
   ListItem,
+  OrderedList,
   StructuredListBody,
   StructuredListCell,
   StructuredListHead,

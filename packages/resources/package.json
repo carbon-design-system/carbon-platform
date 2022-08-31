@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/resources",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Indexed Carbon resources that use the schema",
   "license": "Apache-2.0",
   "author": "IBM",

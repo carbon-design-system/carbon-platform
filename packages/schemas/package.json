@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/schemas",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "Schema files for indexing Carbon resources",
   "license": "Apache-2.0",
   "author": "IBM",

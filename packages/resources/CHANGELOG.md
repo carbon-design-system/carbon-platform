@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/resources@1.3.0...@carbon-platform/resources@1.4.0) (2022-08-31)
+
+
+### Features 🌟
+
+* **resources:** add design kit descriptions, index figma gatsby ([f76915a](https://github.com/carbon-design-system/carbon-platform/commit/f76915abf894f628dfe353af836c71e33e5bbff2))
+
 ## [1.3.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/resources@1.2.1...@carbon-platform/resources@1.3.0) (2022-08-24)
 
 

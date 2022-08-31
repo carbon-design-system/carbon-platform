@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.33](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.32...@carbon-platform/web-app@0.2.33) (2022-08-31)
+
+
+### Bug Fixes 🐛
+
+* asset tags valid with no items ([a49efdf](https://github.com/carbon-design-system/carbon-platform/commit/a49efdfe90de343e125e816c0a5b913280fe2e71))
+* mobile text alignment ([514d085](https://github.com/carbon-design-system/carbon-platform/commit/514d085dffc2eb311af25b83189f3c0ec9a90da6))
+* set default framework and tags as empty array ([583464b](https://github.com/carbon-design-system/carbon-platform/commit/583464b7ca24db50ca187778f13f1a362d7cab03))
+* show dashes in library assets table when no tag ([4fc76ee](https://github.com/carbon-design-system/carbon-platform/commit/4fc76eeadf31eaa878ba66817362f7912d5e5c21))
+* show demo links in asset overview page ([b532e24](https://github.com/carbon-design-system/carbon-platform/commit/b532e24a1ecf1aca799e9436931df4a54355fbdb))
+* sonar link cleanup complexity ([2407c3d](https://github.com/carbon-design-system/carbon-platform/commit/2407c3da9c734a76e8ad02c05ee5cdd951def4ba))
+* **web-app:** build mdx pages dynamically ([dc6974c](https://github.com/carbon-design-system/carbon-platform/commit/dc6974cd2dcdaa49a90a15f65683a99909b8833b)), closes [#944](https://github.com/carbon-design-system/carbon-platform/issues/944)
+* **web-app:** revalidate remote mdx pages once every hour ([886635e](https://github.com/carbon-design-system/carbon-platform/commit/886635e4f649e70849727c094fc7f03b3fa7a547)), closes [#944](https://github.com/carbon-design-system/carbon-platform/issues/944)
+* **web-app:** update roadmap images on homepage ([6665bb1](https://github.com/carbon-design-system/carbon-platform/commit/6665bb1ecfed9cb551a81b94897017f79b100b42)), closes [#1189](https://github.com/carbon-design-system/carbon-platform/issues/1189)
+
+
+### Misc. 🔮
+
+* no lodash get for asset content defaults ([4050b86](https://github.com/carbon-design-system/carbon-platform/commit/4050b862d697f50366baf87832b6833360452066))
+
 ### [0.2.32](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.31...@carbon-platform/web-app@0.2.32) (2022-08-30)
 
 

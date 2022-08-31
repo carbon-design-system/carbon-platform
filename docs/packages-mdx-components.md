@@ -53,6 +53,17 @@ that folder for display.
 
 Stories themselves are written in plain JavaScript (jsx) to avoid any unnecessary complexity.
 
+## Updating snapshot tests
+
+Ava + RTL snapshot testing is used to help prevent component regressions. This means that
+intentional changes to components require the corresponding snapshots to be updated. Once you've
+confirmed that the tests are failing as expected (as a results of changes you've made), run the
+following command to update the snapshots:
+
+```
+npm -w packages/mdx-components run test -- --update-snapshots
+```
+
 ## Style considerations
 
 To style components, the base `@carbon/styles` css needs to be included, along with the `index.css`

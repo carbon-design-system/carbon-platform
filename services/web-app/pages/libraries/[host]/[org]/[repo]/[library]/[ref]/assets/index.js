@@ -103,6 +103,14 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
 
   const allTags = getAllTags()
 
+  const getTagStr = (tags = []) => {
+    if (!tags || !tags.length) {
+      return '–'
+    }
+
+    return tags.map((tag) => allTags[tag]?.name).join(', ')
+  }
+
   const assets =
     libraryData.assets?.sort(assetSortComparator(sort)).map((asset) => {
       const assetRow = {
@@ -112,14 +120,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
         status: (
           <AssetCatalogItemMeta asset={asset} properties={['status']} className={styles.status} />
         ),
-        tags: (
-          <span className={styles['truncated-text']}>
-            {asset.content.tags
-              .map((tag) => allTags[tag]?.name)
-              .join(', ')
-              .replaceAll('-', '‑')}
-          </span>
-        ),
+        tags: <span className={styles['truncated-text']}>{getTagStr(asset?.content?.tags)}</span>,
         link: (
           <Link
             href={`/libraries/${asset.params.library}/${params.ref}/assets/${getSlug(

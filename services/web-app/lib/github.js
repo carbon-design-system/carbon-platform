@@ -15,7 +15,7 @@ import slugify from 'slugify'
 import { designKitAllowList, designKitSources } from '@/data/design-kits'
 import { libraryAllowList } from '@/data/libraries.mjs'
 import { ContentNotFoundException } from '@/exceptions/content-not-found-exception'
-import { getResponse, getSvgResponse } from '@/lib/file-cache'
+import { getDereferencedObjectResponse, getResponse, getSvgResponse } from '@/lib/file-cache'
 import { getAssetErrors, getDesignKitErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
@@ -647,22 +647,26 @@ export const getLibraryData = async (params = {}) => {
    */
   let response = {}
 
+  const { host, org, repo, path: libPath, ref } = libraryParams
+
   try {
-    response = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
-      owner: libraryParams.org,
-      repo: libraryParams.repo,
-      path: removeLeadingSlash(`${libraryParams.path}/carbon.yml`),
-      ref: libraryParams.ref
+    response = await getResponse(host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: org,
+      repo,
+      path: removeLeadingSlash(`${libPath}/carbon.yml`),
+      ref
     })
   } catch (err) {
     return null
   }
 
   let content
+  const dereferenceKey = `library=${host}/${org}/${repo}&path=${libPath}&ref=${ref}-dereferenced`
   try {
-    content = await resolveSchemaReferences(
-      libraryParams,
-      yaml.load(Buffer.from(response.content, response.encoding).toString())
+    content = await getDereferencedObjectResponse(
+      dereferenceKey,
+      yaml.load(Buffer.from(response.content, response.encoding).toString()),
+      resolveSchemaReferences.bind(null, libraryParams)
     )
   } catch (err) {
     logging.warn(`Error parsing yaml content for library ${params.library}: ${err}`)

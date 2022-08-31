@@ -82,6 +82,20 @@ const _getResponse = async (host, route, options) => {
 }
 
 /**
+ * Returns a cached dereferenced object response and if it's a cache miss,
+ * initiates and caches the derefencing function.
+ * @param {string} key - Key to use to store cache
+ * @param {object} obj - object to be dereferenced
+ * @param {(object) => obj} dereferencer - Function to handle dereferencing the object
+ * @returns {Promise<object>} dereferenced object response data
+ */
+export const getDereferencedObjectResponse = (key, obj, dereferencer) => {
+  return diskCache.wrap(key, () => {
+    return dereferencer(obj)
+  })
+}
+
+/**
  * Returns a cached GitHub response and if it's a cache miss, initiates and caches the GitHub
  * request.
  * @param {string} host - GitHub API base URL

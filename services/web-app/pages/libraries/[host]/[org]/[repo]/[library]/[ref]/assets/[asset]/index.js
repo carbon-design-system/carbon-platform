@@ -67,14 +67,21 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
         id: header.id
       }
     })
-    setPageNavItems([
+    const navItems = [
       {
         title: 'Dashboard',
         id: 'dashboard'
-      },
-      ...headers
-    ])
-  }, [])
+      }
+    ]
+    if (libraryData?.assets?.[0]?.content?.demoLinks) {
+      navItems.push({
+        title: 'Demo links',
+        id: 'demo-links'
+      })
+    }
+    navItems.push(...headers)
+    setPageNavItems(navItems)
+  }, [libraryData?.assets])
 
   if (router.isFallback) {
     return (
@@ -147,16 +154,6 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
       )}/accessibility`
     }
   ]
-
-  if (assetData.content.demoLinks) {
-    setPageNavItems([
-      ...pageNavItems,
-      {
-        title: 'Demo links',
-        id: 'demo-links'
-      }
-    ])
-  }
 
   const githubRepoUrl = `https://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
 

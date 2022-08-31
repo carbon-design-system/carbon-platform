@@ -304,3 +304,20 @@ expect the user response to look like this:
   // ...Other User Properties
 }
 ```
+
+## Production build bundle analysis
+
+To run the bundle analyzer against the web-app (to see where certain deps are being included which
+may affect initial page load times), run the following command:
+
+_(From the top-level directory)_
+
+```
+ANALYZE=true npm -w services/web-app run build
+```
+
+_(From the `services/web-app` directory)_
+
+```
+ANALYZE=true npm run build
+```

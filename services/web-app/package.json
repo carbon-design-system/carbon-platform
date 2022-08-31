@@ -88,6 +88,7 @@
     "vfile-matter": "^4.0.0"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^12.2.5",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-links": "^6.5.10",

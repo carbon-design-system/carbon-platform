@@ -4,7 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import metaData from '@carbon/icons/metadata.json'
 import { Column, Grid } from '@carbon/react'
 import { debounce, groupBy } from 'lodash'
 import dynamic from 'next/dynamic'
@@ -17,9 +16,7 @@ import NoResult from '../no-result'
 import styles from '../svg-library.module.scss'
 import IconCategory from './icon-category'
 
-const { icons: iconMetaData, categories: iconCategoryMetadata } = metaData
-
-const IconLibrary = () => {
+const IconLibrary = ({ iconMetaData, iconCategoryMetadata }) => {
   const [iconComponents, setIconComponents] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('All icons')
   const [searchInputValue, setSearchInputValue] = useState('')
@@ -64,7 +61,7 @@ const IconLibrary = () => {
     setCategoriesLoaded(true)
 
     setIconComponents(iconArray)
-  }, [])
+  }, [iconCategoryMetadata, iconMetaData])
 
   const getFilteredIcons = () => {
     if (!searchInputValue) {

@@ -4,7 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import metaData from '@carbon/pictograms/metadata.json'
 import { Column, Grid } from '@carbon/react'
 import { debounce, groupBy } from 'lodash'
 import dynamic from 'next/dynamic'
@@ -17,9 +16,7 @@ import NoResult from '../no-result'
 import styles from '../svg-library.module.scss'
 import PictogramCategory from './pictogram-category'
 
-const { icons: pictogramMetaData, categories: pictogramCategoryMetadata } = metaData
-
-const PictogramLibrary = () => {
+const PictogramLibrary = ({ pictogramCategoryMetadata, pictogramMetadata }) => {
   const [pictogramComponents, setPictogramComponents] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('All pictograms')
   const [searchInputValue, setSearchInputValue] = useState('')
@@ -30,7 +27,7 @@ const PictogramLibrary = () => {
   const columnCount = useColumnCount({ assetType: 'pictograms' })
 
   useEffect(() => {
-    const pictogramArray = pictogramMetaData.reduce((accumulator, pictogram) => {
+    const pictogramArray = pictogramMetadata.reduce((accumulator, pictogram) => {
       if (pictogram.deprecated) {
         return accumulator
       }
@@ -50,9 +47,9 @@ const PictogramLibrary = () => {
     setCategoriesLoaded(true)
 
     setPictogramComponents(pictogramArray)
-  }, [])
+  }, [pictogramCategoryMetadata, pictogramMetadata])
 
-  const getFilteredPictorams = () => {
+  const getFilteredPictograms = () => {
     if (!searchInputValue) {
       return pictogramComponents
     }
@@ -69,10 +66,10 @@ const PictogramLibrary = () => {
     })
   }
 
-  const filteredPictograms = getFilteredPictorams()
+  const filteredPictograms = getFilteredPictograms()
 
   const allCategories = Object.entries(groupBy(filteredPictograms, 'category')).sort(
-    ([catagoryA], [catagoryB]) => catagoryA > catagoryB
+    ([categoryA], [categoryB]) => categoryA > categoryB
   )
 
   const filteredCategories =

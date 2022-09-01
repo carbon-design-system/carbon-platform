@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
-import { debounce, groupBy } from 'lodash'
+import debounce from 'lodash/debounce'
+import groupBy from 'lodash/groupBy'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 

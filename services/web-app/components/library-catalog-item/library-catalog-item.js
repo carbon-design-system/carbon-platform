@@ -6,7 +6,7 @@
  */
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import { Events, Scales } from '@carbon/react/icons'
-import { get, isEmpty } from 'lodash'
+import { isEmpty } from 'lodash/isEmpty'
 import Link from 'next/link'
 
 import { teams } from '@/data/teams'
@@ -23,7 +23,7 @@ const LibraryCatalogItem = ({ library = {} }) => {
 
   const { name, description } = library.content
   const { maintainer } = library.params
-  const maintainerName = get(teams, `${maintainer}.name`)
+  const maintainerName = teams[maintainer]?.name
 
   const maintainerTitle = teams[maintainer]
     ? `Maintained by ${teams[maintainer].name}`

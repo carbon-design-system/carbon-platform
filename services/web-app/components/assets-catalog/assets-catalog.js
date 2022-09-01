@@ -5,7 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { get, isEqual, set } from 'lodash'
+import get from 'lodash/get'
+import isEqual from 'lodash/isEqual'
+import set from 'lodash/set'
 import minimatch from 'minimatch'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
@@ -85,8 +87,7 @@ const filterAssetsBysearch = (assets, search) => {
   })
 }
 
-const isCanonicalLibAsset = (asset) =>
-  get(asset, 'library.content.id') === getCanonicalLibraryId(asset)
+const isCanonicalLibAsset = (asset) => asset?.library?.content?.id === getCanonicalLibraryId(asset)
 
 /**
  * Sorts and filters an array of assets given a filter, sort key, and search query. Until a better

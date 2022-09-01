@@ -6,7 +6,7 @@
  */
 
 import { Column, Grid, Tag } from '@carbon/react'
-import { isEmpty } from 'lodash'
+import isEmpty from 'lodash/isEmpty'
 import PropTypes from 'prop-types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'

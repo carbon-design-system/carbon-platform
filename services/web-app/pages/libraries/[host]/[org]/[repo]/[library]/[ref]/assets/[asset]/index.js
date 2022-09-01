@@ -10,7 +10,6 @@ import { ArrowRight, Launch } from '@carbon/react/icons'
 import { Svg32Github, Svg64Community } from '@carbon-platform/icons'
 import { capitalCase } from 'change-case'
 import clsx from 'clsx'
-import { get } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
@@ -159,9 +158,9 @@ const Asset = ({ libraryData, params }) => {
       <Grid>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <PageHeader
-            bgColor={get(assetTypes, `[${assetData.content.type}].bgColor`)}
+            bgColor={assetTypes[assetData.content.type]?.bgColor}
             title={seo.title}
-            pictogram={get(assetTypes, `[${assetData.content.type}].icon`)}
+            pictogram={assetTypes[assetData.content.type]?.icon}
             withTabs
           />
           <PageBreadcrumb items={breadcrumbItems} />
@@ -206,13 +205,13 @@ const Asset = ({ libraryData, params }) => {
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>Maintainer</dt>
                       <dd className={dashboardStyles.meta}>
-                        {get(teams, `[${assetData.params.maintainer}].name`, 'Community')}
+                        {teams[assetData?.params?.maintainer]?.name || 'Community'}
                       </dd>
                     </Column>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>Type</dt>
                       <dd className={dashboardStyles.meta}>
-                        {get(assetTypes, `[${assetData.content.type}].name`, '–')}
+                        {assetTypes[assetData?.content?.type]?.name || '–'}
                       </dd>
                     </Column>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
@@ -223,7 +222,7 @@ const Asset = ({ libraryData, params }) => {
                           className={dashboardStyles['framework-icon']}
                         />
 
-                        {get(framework, `[${assetData.content.framework}].name`, '–')}
+                        {framework[assetData?.content?.framework]?.name || '–'}
                       </dd>
                     </Column>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
@@ -317,7 +316,7 @@ const Asset = ({ libraryData, params }) => {
                 <Column sm={4} md={8} lg={8}>
                   <section id="demo-links">
                     <H2>Demo links</H2>
-                    <DemoLinks links={[...get(assetData, 'content.demoLinks', [])]} />
+                    <DemoLinks links={assetData?.content?.demoLinks || []} />
                   </section>
                 </Column>
               )}

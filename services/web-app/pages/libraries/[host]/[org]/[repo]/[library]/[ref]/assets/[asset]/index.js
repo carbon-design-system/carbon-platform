@@ -119,12 +119,6 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
   const { maintainer } = assetData.params
   const MaintainerIcon = teams[maintainer] ? teams[maintainer].pictogram : Svg64Community
 
-  const isPathAbsolute = (urlPath) => {
-    const testPath = /^https?:\/\//i
-
-    return testPath.test(urlPath)
-  }
-
   const pageTabs = [
     {
       name: 'Overview',
@@ -314,7 +308,7 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
                     </dd>
                   </dl>
                   <Svg32Github className={dashboardStyles['position-bottom-left']} />
-                  {isPathAbsolute(githubRepoUrl) && (
+                  {!!createUrl(githubRepoUrl) && (
                     <Launch className={dashboardStyles['position-bottom-right']} size={20} />
                   )}
                 </DashboardItem>
@@ -329,7 +323,7 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
                     <dd className={dashboardStyles['label--large']}>–</dd>
                   </dl>
                   <Svg32Github className={dashboardStyles['position-bottom-left']} />
-                  {isPathAbsolute(githubRepoUrl) && (
+                  {!!createUrl(githubRepoUrl) && (
                     <Launch className={dashboardStyles['position-bottom-right']} size={20} />
                   )}
                 </DashboardItem>

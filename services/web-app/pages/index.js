@@ -279,10 +279,6 @@ const PageContent = () => {
         metadata in the structured format we have provided.
       </P>
       <P>
-        To make this happen, we ask that you follow the instructions below to document your
-        library’s metadata in the structured format we have provided.
-      </P>
-      <P>
         <CarbonLink
           size="lg"
           className={styles.link}

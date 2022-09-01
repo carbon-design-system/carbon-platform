@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.34](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.33...@carbon-platform/web-app@0.2.34) (2022-09-01)
+
+
+### Features 🌟
+
+* update carbon team names ([fd5467e](https://github.com/carbon-design-system/carbon-platform/commit/fd5467e6c3ccbc5acf0d7628ac6e680b3fe0ee31))
+* **web-app:** render asset tabs from index ([684eeaa](https://github.com/carbon-design-system/carbon-platform/commit/684eeaaf3d83c4fade11b08707f81ac4e7dc88a7))
+
+
+### Bug Fixes 🐛
+
+* lint error ([4edb754](https://github.com/carbon-design-system/carbon-platform/commit/4edb75495e1ec34f48dc0d37ebdb543d846bbfab))
+* spacing bug ([3f32335](https://github.com/carbon-design-system/carbon-platform/commit/3f32335f0029527e32981d7dd9e9e2baff988933))
+* **web-app:** remove extra copy from homepage ([e00f416](https://github.com/carbon-design-system/carbon-platform/commit/e00f41698b7319d08870cf37508740a107442591))
+* **web-app:** remove unnecessary prop ([98e95ad](https://github.com/carbon-design-system/carbon-platform/commit/98e95ad33d6b2c76f054cd93977b7f4b04553895))
+
 ### [0.2.33](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.32...@carbon-platform/web-app@0.2.33) (2022-08-31)
 
 

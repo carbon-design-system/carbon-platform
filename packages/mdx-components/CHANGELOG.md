@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.3...@carbon-platform/mdx-components@0.1.4) (2022-09-01)
+
+
+### Bug Fixes 🐛
+
+* **mdx-components:** add data attr to anchorlinks, export OrderedList ([8257aa0](https://github.com/carbon-design-system/carbon-platform/commit/8257aa0c2a0c37430a02fed2ccd1a16e4f46e619))
+* **mdx-components:** update snapshot ([cccb8ad](https://github.com/carbon-design-system/carbon-platform/commit/cccb8aded2a54187f4c445afc235605b41b95621))
+
 ### [0.1.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.2...@carbon-platform/mdx-components@0.1.3) (2022-08-30)
 
 

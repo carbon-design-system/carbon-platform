@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.6...@carbon-platform/icons@0.1.7) (2022-09-01)
+
+
+### Features 🌟
+
+* add custom picto for a11y team ([717f18c](https://github.com/carbon-design-system/carbon-platform/commit/717f18ceb3738a1fa9037edfbc15793018a0f185))
+
 ### [0.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.5...@carbon-platform/icons@0.1.6) (2022-08-27)
 
 

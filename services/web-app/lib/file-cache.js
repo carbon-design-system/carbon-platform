@@ -45,7 +45,7 @@ const octokitIbm = new Octokit({
  * @param {object} options - Options merged into the request route
  * @returns {string} Unique key to use in the file cache
  */
-const slugifyRequest = (host, route, options = {}) => {
+export const slugifyRequest = (host, route, options = {}) => {
   let mergedStr = `${host} ${route}`
 
   for (const [key, value] of Object.entries(options)) {

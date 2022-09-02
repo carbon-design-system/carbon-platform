@@ -40,6 +40,37 @@ import { getSlug } from '@/utils/slug'
 
 import styles from './index.module.scss'
 
+const frameworkNameToIconMap = {
+  vanilla: 'js',
+  'web-components': 'webcomponents',
+  'react-native': 'react'
+}
+
+const Fallback = () => (
+  <Grid>
+    <Column sm={4} md={8} lg={16}>
+      <div className={pageStyles.content}>
+        <H1>Loading...</H1>
+      </div>
+    </Column>
+  </Grid>
+)
+
+const createMaintainerIcon = (maintainer) => {
+  const MaintainerIcon = teams[maintainer] ? teams[maintainer].pictogram : Svg64Community
+
+  if (!MaintainerIcon) {
+    return null
+  }
+
+  return (
+    <MaintainerIcon
+      className={clsx(dashboardStyles['position-bottom-left'], styles['maintainer-icon'])}
+      size={64}
+    />
+  )
+}
+
 const Asset = ({ libraryData, params }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
@@ -50,15 +81,7 @@ const Asset = ({ libraryData, params }) => {
   }, [setPrimaryNavData])
 
   if (router.isFallback) {
-    return (
-      <Grid>
-        <Column sm={4} md={8} lg={16}>
-          <div className={pageStyles.content}>
-            <H1>Loading...</H1>
-          </div>
-        </Column>
-      </Grid>
-    )
+    return <Fallback />
   }
 
   const [assetData] = libraryData.assets
@@ -82,7 +105,6 @@ const Asset = ({ libraryData, params }) => {
   }
 
   const { maintainer } = assetData.params
-  const MaintainerIcon = teams[maintainer] ? teams[maintainer].pictogram : Svg64Community
 
   const isPathAbsolute = (path) => {
     const testPath = /^https?:\/\//i
@@ -127,10 +149,7 @@ const Asset = ({ libraryData, params }) => {
 
   const frameworkName = assetData.content.framework
 
-  let frameworkIcon = frameworkName
-  if (frameworkName === 'vanilla') frameworkIcon = 'js'
-  if (frameworkName === 'web-component') frameworkIcon = 'webcomponents'
-  if (frameworkName === 'react-native') frameworkIcon = 'react'
+  const frameworkIcon = frameworkNameToIconMap[frameworkName] || frameworkName
 
   const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
 
@@ -188,15 +207,7 @@ const Asset = ({ libraryData, params }) => {
                       </Link>
                     </dd>
                   </dl>
-                  {MaintainerIcon && (
-                    <MaintainerIcon
-                      className={clsx(
-                        dashboardStyles['position-bottom-left'],
-                        styles['maintainer-icon']
-                      )}
-                      size={64}
-                    />
-                  )}
+                  {createMaintainerIcon(maintainer)}
                 </DashboardItem>
               </Column>
               <Column className={dashboardStyles.column} sm={4} lg={8}>

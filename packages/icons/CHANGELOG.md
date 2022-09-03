@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.7...@carbon-platform/icons@0.1.8) (2022-09-03)
+
+
+### Bug Fixes 🐛
+
+* **icons:** replace adobe xd icon ([8376937](https://github.com/carbon-design-system/carbon-platform/commit/83769376ce82b6a709f403d2ac6084710913009a))
+
 ### [0.1.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.6...@carbon-platform/icons@0.1.7) (2022-09-01)
 
 

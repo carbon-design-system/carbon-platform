@@ -39,22 +39,29 @@ const createMaintainerIcon = (MaintainerIcon) => {
   )
 }
 
-const AssetDetails = ({ library, asset }) => {
-  const router = useRouter()
+const createOtherFrameworkLinks = (otherFrameworks) => {
+  if (!otherFrameworks.length) {
+    return '–'
+  }
 
-  const otherFrameworkLinks = asset.otherFrameworks
+  return otherFrameworks
     .sort((a, b) => a.framework.localeCompare(b.framework))
     .map((frameworks, index) => (
       <>
         {index !== 0 && ', '}
         <Link
-          href={`/libraries/${frameworks.params.library}/${frameworks.params.ref}/assets/${asset.params.asset}`}
+          href={`/libraries/${frameworks.params.library}/${frameworks.params.ref}/assets/${frameworks.params.asset}`}
           passHref
         >
           <CarbonLink size="lg">{framework[frameworks.framework]?.name}</CarbonLink>
         </Link>
       </>
     ))
+}
+
+const AssetDetails = ({ library, asset }) => {
+  const router = useRouter()
+
   return (
     <>
       <section id="dashboard">
@@ -112,7 +119,7 @@ const AssetDetails = ({ library, asset }) => {
                 >
                   <dt className={dashboardStyles.label}>Other frameworks</dt>
                   <dd className={dashboardStyles.meta}>
-                    {asset.otherFrameworks.length > 0 ? otherFrameworkLinks : '–'}
+                    {createOtherFrameworkLinks(asset.otherFrameworks)}
                   </dd>
                 </Column>
                 <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>

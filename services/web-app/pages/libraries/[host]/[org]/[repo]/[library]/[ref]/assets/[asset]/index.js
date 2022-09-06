@@ -8,7 +8,6 @@
 import { Column, Grid } from '@carbon/react'
 import { Svg64Community } from '@carbon-platform/icons'
 import { capitalCase } from 'change-case'
-import { get } from 'lodash'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import path from 'path'
@@ -37,6 +36,22 @@ import { getSlug } from '@/utils/slug'
 import { createUrl } from '@/utils/string'
 
 import styles from './index.module.scss'
+
+const frameworkNameToIconMap = {
+  vanilla: 'js',
+  'web-components': 'webcomponents',
+  'react-native': 'react'
+}
+
+const Fallback = () => (
+  <Grid>
+    <Column sm={4} md={8} lg={16}>
+      <div className={pageStyles.content}>
+        <H1>Loading...</H1>
+      </div>
+    </Column>
+  </Grid>
+)
 
 const Asset = ({ libraryData, overviewMdxSource, params }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
@@ -77,15 +92,7 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
   }, [libraryData?.assets])
 
   if (router.isFallback) {
-    return (
-      <Grid>
-        <Column sm={4} md={8} lg={16}>
-          <div className={pageStyles.content}>
-            <H1>Loading...</H1>
-          </div>
-        </Column>
-      </Grid>
-    )
+    return <Fallback />
   }
 
   const [assetData] = libraryData.assets
@@ -136,10 +143,7 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
 
   const frameworkName = assetData.content.framework
 
-  let frameworkIcon = frameworkName
-  if (frameworkName === 'vanilla') frameworkIcon = 'js'
-  if (frameworkName === 'web-component') frameworkIcon = 'webcomponents'
-  if (frameworkName === 'react-native') frameworkIcon = 'react'
+  const frameworkIcon = frameworkNameToIconMap[frameworkName] || frameworkName
 
   const otherFrameworks = assetData.content.otherFrameworks
 
@@ -149,9 +153,9 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
       <Grid>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <PageHeader
-            bgColor={get(assetTypes, `[${assetData.content.type}].bgColor`)}
+            bgColor={assetTypes[assetData.content.type]?.bgColor}
             title={seo.title}
-            pictogram={get(assetTypes, `[${assetData.content.type}].icon`)}
+            pictogram={assetTypes[assetData.content.type]?.icon}
             withTabs
           />
           <PageBreadcrumb items={breadcrumbItems} />
@@ -175,10 +179,10 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
             }}
             asset={{
               ...assetData.content,
-              maintainer: get(teams, `[${assetData.params.maintainer}].name`, 'Community'),
-              type: get(assetTypes, `[${assetData.content.type}].name`, '–'),
+              maintainer: teams[assetData?.params?.maintainer]?.name || 'Community',
+              type: assetTypes[assetData?.content?.type]?.name || '–',
               frameworkIcon,
-              frameworkName: get(framework, `[${assetData.content.framework}].name`, '–'),
+              frameworkName: framework[assetData?.content?.framework]?.name || '–',
               status: assetData.statusKey,
               statusName: status[assetData.statusKey]?.name || '-',
               otherFrameworks,

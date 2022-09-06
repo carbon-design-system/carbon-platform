@@ -26,6 +26,19 @@ import { createUrl } from '@/utils/string'
 
 import styles from './asset-details.module.scss'
 
+const createMaintainerIcon = (MaintainerIcon) => {
+  if (!MaintainerIcon) {
+    return null
+  }
+
+  return (
+    <MaintainerIcon
+      className={clsx(dashboardStyles['position-bottom-left'], styles['maintainer-icon'])}
+      size={64}
+    />
+  )
+}
+
 const AssetDetails = ({ library, asset }) => {
   const router = useRouter()
 
@@ -60,15 +73,7 @@ const AssetDetails = ({ library, asset }) => {
                   </Link>
                 </dd>
               </dl>
-              {library.maintainerIcon && (
-                <library.maintainerIcon
-                  className={clsx(
-                    dashboardStyles['position-bottom-left'],
-                    styles['maintainer-icon']
-                  )}
-                  size={64}
-                />
-              )}
+              {createMaintainerIcon(library.maintainerIcon)}
             </DashboardItem>
           </Column>
           <Column className={dashboardStyles.column} sm={4} lg={8}>

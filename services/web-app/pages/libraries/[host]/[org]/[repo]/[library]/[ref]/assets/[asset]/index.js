@@ -7,7 +7,6 @@
 
 import { Column, Grid } from '@carbon/react'
 import { Svg64Community } from '@carbon-platform/icons'
-import { capitalCase } from 'change-case'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import path from 'path'
@@ -22,16 +21,15 @@ import PageNav from '@/components/page-nav'
 import PageTabs from '@/components/page-tabs'
 import { assetTypes } from '@/data/asset-types'
 import { framework } from '@/data/framework'
-import { libraryAllowList } from '@/data/libraries.mjs'
 import { assetsNavData } from '@/data/nav-data'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
-import { getAssetIssueCount, getLibraryData, getRemoteMdxSource } from '@/lib/github'
+import { getAssetIssueCount, getAssetRelatedFrameworks, getLibraryData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { libraryPropTypes, paramsPropTypes } from '@/types'
-import { processMdxSource } from '@/utils/mdx'
-import { getAssetType } from '@/utils/schema'
+import { getProcessedMdxSource } from '@/utils/mdx'
+import { getAssetTabs, getAssetType } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { createUrl } from '@/utils/string'
 
@@ -121,25 +119,7 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
   const { maintainer } = assetData.params
   const MaintainerIcon = teams[maintainer] ? teams[maintainer].pictogram : Svg64Community
 
-  const pageTabs = [
-    {
-      name: 'Overview',
-      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(assetData.content)}`
-    }
-  ]
-
-  const dynamicDocKeys = ['usage', 'style', 'code', 'accessibility']
-
-  dynamicDocKeys.forEach((docKey) => {
-    if (assetData.content.docs?.[`${docKey}Path`]) {
-      pageTabs.push({
-        name: capitalCase(docKey),
-        path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(
-          assetData.content
-        )}/${docKey}`
-      })
-    }
-  })
+  const pageTabs = getAssetTabs(assetData)
 
   const frameworkName = assetData.content.framework
 
@@ -226,21 +206,7 @@ const getOverviewMdxSource = async (assetData, libraryData) => {
       overviewPath = path.join(carbonYmlDirPath, overviewPath)
     }
 
-    let mdxSource
-    let pageUrl
-    try {
-      const response = await getRemoteMdxSource(libraryData.params, overviewPath)
-      mdxSource = response.mdxSource
-      pageUrl = response.url
-
-      overviewMdxSource = await processMdxSource(mdxSource, pageUrl)
-    } catch (err) {
-      overviewMdxSource.mdxError = {
-        name: err.name,
-        message: err.message,
-        stack: err.stack
-      }
-    }
+    overviewMdxSource = await getProcessedMdxSource(libraryData.params, overviewPath)
   }
 
   return overviewMdxSource
@@ -260,38 +226,7 @@ export const getServerSideProps = async ({ params }) => {
 
   const overviewMdxSource = await getOverviewMdxSource(assetData, libraryData)
 
-  const otherAssetFrameworks = []
-  if (libraryData.params.group) {
-    for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
-      if (libraryParams.group === libraryData.params.group) {
-        const relatedLibData = await getLibraryData({
-          library: slug,
-          ref: 'latest',
-          ...libraryParams,
-          asset: params.asset
-        })
-        if (
-          relatedLibData?.content.id !== libraryData.content.id &&
-          !relatedLibData?.content?.noIndex &&
-          relatedLibData.assets?.length &&
-          !relatedLibData.assets[0].content?.noIndex &&
-          relatedLibData.assets[0].content?.framework
-        ) {
-          otherAssetFrameworks.push({
-            framework: relatedLibData.assets[0]?.content.framework,
-            params: {
-              library: slug,
-              ref: 'latest',
-              ...libraryParams,
-              asset: params.asset
-            }
-          })
-        }
-      }
-    }
-  }
-
-  assetData.content.otherFrameworks = otherAssetFrameworks
+  assetData.content.otherFrameworks = await getAssetRelatedFrameworks(params, libraryData)
 
   return {
     props: {

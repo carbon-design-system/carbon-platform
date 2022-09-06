@@ -491,6 +491,46 @@ export const getLibraryRelatedLibs = async (libData) => {
 }
 
 /**
+ * Compiles an object list of all known tags
+ * @param {import('../typedefs').Params} params
+ * @param {import('../typedefs').Library} library
+ * @returns {{framework: string, params: import('../typedefs).Params}[]} Array of related frameworks
+ */
+export const getAssetRelatedFrameworks = async (params, library) => {
+  const otherAssetFrameworks = []
+  if (library.params.group) {
+    for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
+      if (libraryParams.group === library.params.group) {
+        const relatedLibData = await getLibraryData({
+          library: slug,
+          ref: 'latest',
+          ...libraryParams,
+          asset: params.asset
+        })
+        if (
+          relatedLibData?.content.id !== library.content.id &&
+          !relatedLibData?.content?.noIndex &&
+          relatedLibData.assets?.length &&
+          !relatedLibData.assets[0].content?.noIndex &&
+          relatedLibData.assets[0].content?.framework
+        ) {
+          otherAssetFrameworks.push({
+            framework: relatedLibData.assets[0]?.content.framework,
+            params: {
+              library: slug,
+              ...libraryParams,
+              ref: params.ref,
+              asset: params.asset
+            }
+          })
+        }
+      }
+    }
+  }
+  return otherAssetFrameworks
+}
+
+/**
  * If the params map to a valid design kit in the allowlist, fetch the contents of the design kit's
  * metadata file. If the params are not valid, early return.
  * @param {import('../typedefs').Params} params

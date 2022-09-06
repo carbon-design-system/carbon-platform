@@ -48,7 +48,7 @@ const AssetDetails = ({ library, asset }) => {
       <>
         {index !== 0 && ', '}
         <Link
-          href={`/libraries/${frameworks.params.library}/${asset.params.ref}/assets/${asset.params.asset}`}
+          href={`/libraries/${frameworks.params.library}/${frameworks.params.ref}/assets/${asset.params.asset}`}
           passHref
         >
           <CarbonLink size="lg">{framework[frameworks.framework]?.name}</CarbonLink>

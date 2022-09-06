@@ -5,12 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { capitalCase } from 'change-case'
 import { get } from 'lodash'
 
 import { assetTypes } from '@/data/asset-types'
 import { ORDER_BY_STATUS } from '@/data/sort'
 import { assetStatusLifecycle } from '@/data/status'
 import { tagsForCollection, tagsForType } from '@/data/tags'
+
+import { getSlug } from './slug'
 /**
  * Defines the sort order of assets by status
  * @param {import('../typedefs').Asset} assetA
@@ -206,4 +209,30 @@ export const getAllTags = () => {
   Object.assign(tags, allTypeTags)
 
   return tags
+}
+
+/**
+ * Compiles a list of valid asset tabs
+ * @param {import('../typedefs').Asset} asset
+ * @returns {{name: string, path: string}[]} Array of tabs
+ */
+export const getAssetTabs = (asset) => {
+  const tabs = [
+    {
+      name: 'Overview',
+      path: `/libraries/${asset.params.library}/latest/assets/${getSlug(asset.content)}`
+    }
+  ]
+  const dynamicDocKeys = ['usage', 'style', 'code', 'accessibility']
+
+  dynamicDocKeys.forEach((docKey) => {
+    if (asset.content.docs?.[`${docKey}Path`]) {
+      tabs.push({
+        name: capitalCase(docKey),
+        path: `/libraries/${asset.params.library}/latest/assets/${getSlug(asset.content)}/${docKey}`
+      })
+    }
+  })
+
+  return tabs
 }

@@ -168,7 +168,7 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
               path: libraryPath,
               name: libraryData.content.name,
               version: `v${libraryData.content.version}`,
-              icon: MaintainerIcon,
+              maintainerIcon: MaintainerIcon,
               assetsPath,
               designKitsPath,
               githubRepoUrl
@@ -206,7 +206,8 @@ Asset.propTypes = {
       message: PropTypes.string,
       stack: PropTypes.string,
       position: PropTypes.string
-    })
+    }),
+    warnings: PropTypes.arrayOf(PropTypes.string)
   }),
   params: paramsPropTypes
 }

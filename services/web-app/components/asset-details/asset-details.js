@@ -12,9 +12,8 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { MDXRemote } from 'next-mdx-remote'
+import PropTypes from 'prop-types'
 
-// TODO
-// import PropTypes from 'prop-types'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import DemoLinks from '@/components/demo-links'
@@ -22,6 +21,7 @@ import { H2 } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import StatusIcon from '@/components/status-icon'
 import { framework } from '@/data/framework'
+import { assetContentPropTypes, paramsPropTypes } from '@/types'
 import { createUrl } from '@/utils/string'
 
 import styles from './asset-details.module.scss'
@@ -60,8 +60,8 @@ const AssetDetails = ({ library, asset }) => {
                   </Link>
                 </dd>
               </dl>
-              {library.MaintainerIcon && (
-                <library.MaintainerIcon
+              {library.maintainerIcon && (
+                <library.maintainerIcon
                   className={clsx(
                     dashboardStyles['position-bottom-left'],
                     styles['maintainer-icon']
@@ -193,10 +193,64 @@ const AssetDetails = ({ library, asset }) => {
 
 export default AssetDetails
 
-// TODO
-// Aside.propTypes = {
-//   /**
-//    * Child of the Aside.
-//    */
-//   children: PropTypes.node
-// }
+AssetDetails.propTypes = {
+  /**
+   * Object containing finalized asset properties.
+   */
+  asset: PropTypes.shape({
+    demoLinks: assetContentPropTypes.demoLinks,
+    externalDocsUrl: PropTypes.string,
+    frameworkIcon: PropTypes.node,
+    frameworkName: PropTypes.string,
+    id: assetContentPropTypes.id,
+    issueCount: PropTypes.number,
+    maintainer: PropTypes.string,
+    name: assetContentPropTypes.name,
+    otherFrameworks: PropTypes.arrayOf(
+      PropTypes.shape({
+        framework: PropTypes.oneOf([
+          'angular',
+          'react',
+          'react-native',
+          'svelte',
+          'vanilla',
+          'vue',
+          'web-component',
+          'design-only'
+        ]),
+        params: paramsPropTypes
+      })
+    ),
+    overviewMdxSource: PropTypes.shape({
+      compiledSource: PropTypes.shape({
+        value: PropTypes.string,
+        data: PropTypes.shape({
+          matter: PropTypes.object
+        })
+      }),
+      mdxError: PropTypes.shape({
+        name: PropTypes.string,
+        message: PropTypes.string,
+        stack: PropTypes.string,
+        position: PropTypes.string
+      }),
+      warnings: PropTypes.arrayOf(PropTypes.string)
+    }),
+    params: paramsPropTypes,
+    status: assetContentPropTypes.status,
+    statusName: PropTypes.string,
+    type: assetContentPropTypes.type
+  }),
+  /**
+   * Object containing library details the asset belongs to.
+   */
+  library: PropTypes.shape({
+    path: PropTypes.string,
+    name: PropTypes.string,
+    version: PropTypes.string,
+    maintainerIcon: PropTypes.node,
+    assetsPath: PropTypes.string,
+    designKitsPath: PropTypes.string,
+    githubRepoUrl: PropTypes.string
+  })
+}

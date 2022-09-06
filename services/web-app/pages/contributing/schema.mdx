@@ -184,7 +184,7 @@ designKits:
 | `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, code package, and other information.                                                                                                                       | Optional | String  | No          | `/package.json`           | –            |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                                                                                                                                        | Optional | String  | No          | –                         | –            |
 | `demoLinks`       | Links to demo sites. See [demo links](#demo-links).                                                                                                                                                                                                                     | Optional | Array   | No          | –                         | –            |
-| `designKits`      | Design kits that contain the design counterpart to assets in this library, items can be [referenced](#schema-references). See [design kit schema](#design-kit-schema) for more info.                                                                                                                                   | Optional | Object  | Yes         | –                         | –            |
+| `designKits`      | Design kits that contain the design counterpart to assets in this library, items can be [referenced](#schema-references). See [design kit schema](#design-kit-schema) for more info.                                                                                    | Optional | Object  | Yes         | –                         | –            |
 | `noIndex`         | If set to `true`, the global catalogs will exclude the library.                                                                                                                                                                                                         | Optional | Boolean | No          | `false`                   | –            |
 | `navData`         | Links to documentation pages. See [nav data](#nav-data).                                                                                                                                                                                                                | Optional | Array   | No          | -                         | –            |
 
@@ -431,7 +431,8 @@ designKits:
 | `license`     | Design kit license.                                                                                                                                                                                                                                                           | Optional | String           | –       | `apache-2.0`, `ibm-internal`, `mit`                                      |
 | `noIndex`     | If set to `true`, the global catalogs will exclude the kit.                                                                                                                                                                                                                   | Optional | Boolean          | `false` | –                                                                        |
 
-Additionally, design kits defined __inside library objects__ can be specified as a schema reference. See [schema references](#schema-references).
+Additionally, design kits defined **inside library objects** can be specified as a schema reference.
+See [schema references](#schema-references).
 
 ### Design kit type
 
@@ -549,13 +550,17 @@ For the value of the `navData` array, you can set the following keys.
 
 </AnchorLinks>
 
-For certain resource keys, platform allows the object to be defined as a reference to another existing resource instead of writing the actual value:
+For certain resource keys, platform allows the object to be defined as a reference to another
+existing resource instead of writing the actual value:
+
 ```yml path="Example carbon.yml"
 designKits:
   sample-design-kit:
   $ref: './design-kits.yml#/designKits/sample-design-kit'
 ```
+
 instead of:
+
 ```yml path="Example carbon.yml"
 designKits:
   sample-design-kit:
@@ -571,7 +576,8 @@ There are 3 ways you can define references in carbon: absolute, relative and loc
 
 ### Absolute references
 
-An absolute url that points to a resource contained in a yml file , e.g.: https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch
+An absolute url that points to a resource contained in a yml file , e.g.:
+https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch
 
 ```yml path="Example carbon.yml"
 designKits:
@@ -581,7 +587,8 @@ designKits:
 
 ### Relative references
 
-A relative path to a resourced contained in a yml file within the current repo, e.g.: './design-kits.yml#/designKits/sample-design-kit'
+A relative path to a resourced contained in a yml file within the current repo, e.g.:
+'./design-kits.yml#/designKits/sample-design-kit'
 
 ```yml path="Example carbon.yml"
 designKits:
@@ -591,7 +598,8 @@ designKits:
 
 ### Local file references
 
-Reference to a resource contained in the same file where the referencing property is being defined, e.g.: '#/designKits/sample-design-kit'
+Reference to a resource contained in the same file where the referencing property is being defined,
+e.g.: '#/designKits/sample-design-kit'
 
 ```yml path="Example carbon.yml"
 library:
@@ -609,4 +617,5 @@ designKits:
     action: link
 ```
 
-Note that it must be explicitly identified in the schema that a certain object or property accepts references for this to work.
+Note that it must be explicitly identified in the schema that a certain object or property accepts
+references for this to work.

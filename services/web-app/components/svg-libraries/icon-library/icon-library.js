@@ -17,7 +17,7 @@ import NoResult from '../no-result'
 import styles from '../svg-library.module.scss'
 import IconCategory from './icon-category'
 
-const IconLibrary = ({ iconMetaData, iconCategoryMetadata }) => {
+const IconLibrary = ({ iconMetadata, iconCategoryMetadata }) => {
   const [iconComponents, setIconComponents] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('All icons')
   const [searchInputValue, setSearchInputValue] = useState('')
@@ -28,7 +28,7 @@ const IconLibrary = ({ iconMetaData, iconCategoryMetadata }) => {
   const debouncedSetSearchInputValue = debounce(setSearchInputValue, 200)
 
   useEffect(() => {
-    const iconArray = iconMetaData.reduce((accumulator, icon) => {
+    const iconArray = iconMetadata.reduce((accumulator, icon) => {
       if (icon.deprecated) {
         return accumulator
       }
@@ -62,7 +62,7 @@ const IconLibrary = ({ iconMetaData, iconCategoryMetadata }) => {
     setCategoriesLoaded(true)
 
     setIconComponents(iconArray)
-  }, [iconCategoryMetadata, iconMetaData])
+  }, [iconCategoryMetadata, iconMetadata])
 
   const getFilteredIcons = () => {
     if (!searchInputValue) {

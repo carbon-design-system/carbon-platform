@@ -27,7 +27,7 @@ async function main() {
     await program.parseAsync()
   } catch (err) {
     logErrorInfo(err)
-    process.exit(1)
+    throw err
   }
 }
 

@@ -5,14 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { capitalCase } from 'change-case'
+
 import { assetTypes } from '@/data/asset-types'
 import { ORDER_BY_STATUS } from '@/data/sort'
 import { assetStatusLifecycle } from '@/data/status'
 import { tagsForCollection, tagsForType } from '@/data/tags'
+
+import { getSlug } from './slug'
 /**
  * Defines the sort order of assets by status
- * @param {import('../typedefs').Asset} assetA
- * @param {import('../typedefs').Asset} assetB
+ * @param {import('@/typedefs').Asset} assetA
+ * @param {import('@/typedefs').Asset} assetB
  * @returns {number} Sort order
  */
 export const statusSortComparator = (assetA, assetB) =>
@@ -41,8 +45,8 @@ export const assetSortComparator = (key) => (assetA, assetB) => {
 
 /**
  * Defines the sort order of libraries by their name.
- * @param {import('../typedefs').Library} libraryA
- * @param {import('../typedefs').Library} libraryB
+ * @param {import('@/typedefs').Library} libraryA
+ * @param {import('@/typedefs').Library} libraryB
  * @returns {number} Sort order
  */
 export const librarySortComparator = (libraryA, libraryB) => {
@@ -54,7 +58,7 @@ export const librarySortComparator = (libraryA, libraryB) => {
 
 /**
  * Gets the asset id
- * @param {import('../typedefs').Asset} asset
+ * @param {import('@/typedefs').Asset} asset
  * @returns {string} Asset id
  */
 export const getAssetId = (asset) => {
@@ -63,7 +67,7 @@ export const getAssetId = (asset) => {
 
 /**
  * Gets the asset type object. If not found, default to component.
- * @param {import('../typedefs').Asset} asset
+ * @param {import('@/typedefs').Asset} asset
  * @returns {object} Asset type
  */
 export const getAssetType = (asset) => {
@@ -72,7 +76,7 @@ export const getAssetType = (asset) => {
 
 /**
  * Gets the asset status string value. If not found, defaults to 'draft'.
- * @param {import('../typedefs').Asset} asset
+ * @param {import('@/typedefs').Asset} asset
  * @returns {string} Asset status value
  */
 export const getAssetStatus = (asset) => {
@@ -81,7 +85,7 @@ export const getAssetStatus = (asset) => {
 
 /**
  * Gets the fully qualified path `library-id/asset-id` for a base library
- * @param {import('../typedefs').Asset} asset
+ * @param {import('@/typedefs').Asset} asset
  * @returns {string} Base library asset identifier
  */
 export const getBaseIdentifier = (asset) => {
@@ -93,7 +97,7 @@ export const getBaseIdentifier = (asset) => {
 
 /**
  * Gets the base library id if the asset is part of a group
- * @param {import('../typedefs').Asset} asset
+ * @param {import('@/typedefs').Asset} asset
  * @returns {string} Library id
  */
 export const getBaseLibraryId = (asset) => {
@@ -102,7 +106,7 @@ export const getBaseLibraryId = (asset) => {
 
 /**
  * Gets the canonical library id if the asset is part of a group
- * @param {import('../typedefs').Asset} asset
+ * @param {import('@/typedefs').Asset} asset
  * @returns {string} Library id
  */
 export const getCanonicalLibraryId = (asset) => {
@@ -111,7 +115,7 @@ export const getCanonicalLibraryId = (asset) => {
 
 /**
  * Determines if assets should be collapsed by framework
- * @param {import('../typedefs').Asset} asset
+ * @param {import('@/typedefs').Asset} asset
  * @param {object} filter
  * @returns {boolean} If asset frameworks are collapsed
  */
@@ -123,7 +127,7 @@ export const collapseAssetGroups = (asset, filter) => {
 
 /**
  * Gets the license from an asset
- * @param {import('../typedefs').Asset} asset
+ * @param {import('@/typedefs').Asset} asset
  * @returns {string} License
  */
 export const getLicense = (asset) => {
@@ -165,7 +169,7 @@ export const getLibraryVersionAsset = (str = '') => {
 
 /**
  * Gets an array of tag names given an asset
- * @param {import('../typedefs').Asset} asset
+ * @param {import('@/typedefs').Asset} asset
  * @returns {string[]} An array of tag names
  */
 export const getTagsList = (asset) => {
@@ -204,4 +208,30 @@ export const getAllTags = () => {
   Object.assign(tags, allTypeTags)
 
   return tags
+}
+
+/**
+ * Compiles a list of valid asset tabs
+ * @param {import('@/typedefs').Asset} asset
+ * @returns {{name: string, path: string}[]} Array of tabs
+ */
+export const getAssetTabs = (asset) => {
+  const tabs = [
+    {
+      name: 'Overview',
+      path: `/libraries/${asset.params.library}/latest/assets/${getSlug(asset.content)}`
+    }
+  ]
+  const dynamicDocKeys = ['usage', 'style', 'code', 'accessibility']
+
+  dynamicDocKeys.forEach((docKey) => {
+    if (asset.content.docs?.[`${docKey}Path`]) {
+      tabs.push({
+        name: capitalCase(docKey),
+        path: `/libraries/${asset.params.library}/latest/assets/${getSlug(asset.content)}/${docKey}`
+      })
+    }
+  })
+
+  return tabs
 }

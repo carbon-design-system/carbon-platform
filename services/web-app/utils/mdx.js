@@ -11,6 +11,7 @@ import { VFile } from 'vfile'
 
 import components from '@/components/mdx/components'
 import { HTMLTags } from '@/data/html-tags'
+import { getRemoteMdxSource } from '@/lib/github'
 import { mdxUrlResolver } from '@/utils/mdx-url-resolver'
 
 // TODO: link out to components storybook
@@ -93,4 +94,33 @@ export async function processMdxSource(mdxSource, url) {
     mdxError,
     warnings
   }
+}
+
+/**
+ * Retrieves the remote mdx source content, processes it
+ * and converts it into an object containing HTML value
+ * @param {import('@/typedefs').Params} params
+ * @param {string} url
+ * @returns {Promise<import('@/typedefs').RemoteMdxSource>}
+ * mdxSource or empty object
+ */
+export async function getProcessedMdxSource(params, url) {
+  let processedMdx = {}
+  let mdxSource
+  let pageUrl
+  try {
+    const response = await getRemoteMdxSource(params, url)
+    mdxSource = response.mdxSource
+    pageUrl = response.url
+
+    processedMdx = await processMdxSource(mdxSource, pageUrl)
+  } catch (err) {
+    processedMdx.mdxError = {
+      name: err.name,
+      message: err.message,
+      stack: err.stack
+    }
+  }
+
+  return processedMdx
 }

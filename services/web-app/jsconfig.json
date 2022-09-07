@@ -14,6 +14,7 @@
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"],
       "@/types": ["types.js"],
+      "@/typedefs": ["typedefs.js"],
       "@/utils/*": ["utils/*"]
     }
   },

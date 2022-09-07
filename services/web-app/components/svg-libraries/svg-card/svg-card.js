@@ -11,7 +11,7 @@ import { useState } from 'react'
 import ActionBar from '../action-bar'
 import styles from '../svg-library.module.scss'
 
-const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
+const SvgCard = ({ icon, containerIsVisible, isLastCard, isPictogram, ...rest }) => {
   const { name, Component, friendlyName, assets } = icon
   const [isActionBarVisible, setIsActionBarVisible] = useState(false)
 
@@ -50,6 +50,7 @@ const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
               source={source}
               friendlyName={friendlyName}
               isActionBarVisible={isActionBarVisible}
+              isPictogram={isPictogram}
               setIsActionBarVisible={setIsActionBarVisible}
               glyphOnly={glyphOnly}
             />
@@ -73,7 +74,8 @@ SvgCard.propTypes = {
       })
     )
   }),
-  isLastCard: PropTypes.bool
+  isLastCard: PropTypes.bool,
+  isPictogram: PropTypes.bool
 }
 
 export default SvgCard

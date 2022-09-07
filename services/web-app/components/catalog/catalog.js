@@ -4,7 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { cloneDeep, isEqual, remove, union } from 'lodash'
+import cloneDeep from 'lodash/cloneDeep'
+import isEqual from 'lodash/isEqual'
+import remove from 'lodash/remove'
+import union from 'lodash/union'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 

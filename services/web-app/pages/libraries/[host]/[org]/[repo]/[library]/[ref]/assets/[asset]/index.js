@@ -10,7 +10,6 @@ import { ArrowRight, Launch } from '@carbon/react/icons'
 import { Svg32Github, Svg64Community } from '@carbon-platform/icons'
 import { capitalCase } from 'change-case'
 import clsx from 'clsx'
-import { get } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
@@ -41,6 +40,37 @@ import { getSlug } from '@/utils/slug'
 
 import styles from './index.module.scss'
 
+const frameworkNameToIconMap = {
+  vanilla: 'js',
+  'web-components': 'webcomponents',
+  'react-native': 'react'
+}
+
+const Fallback = () => (
+  <Grid>
+    <Column sm={4} md={8} lg={16}>
+      <div className={pageStyles.content}>
+        <H1>Loading...</H1>
+      </div>
+    </Column>
+  </Grid>
+)
+
+const createMaintainerIcon = (maintainer) => {
+  const MaintainerIcon = teams[maintainer] ? teams[maintainer].pictogram : Svg64Community
+
+  if (!MaintainerIcon) {
+    return null
+  }
+
+  return (
+    <MaintainerIcon
+      className={clsx(dashboardStyles['position-bottom-left'], styles['maintainer-icon'])}
+      size={64}
+    />
+  )
+}
+
 const Asset = ({ libraryData, params }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
@@ -51,15 +81,7 @@ const Asset = ({ libraryData, params }) => {
   }, [setPrimaryNavData])
 
   if (router.isFallback) {
-    return (
-      <Grid>
-        <Column sm={4} md={8} lg={16}>
-          <div className={pageStyles.content}>
-            <H1>Loading...</H1>
-          </div>
-        </Column>
-      </Grid>
-    )
+    return <Fallback />
   }
 
   const [assetData] = libraryData.assets
@@ -83,7 +105,6 @@ const Asset = ({ libraryData, params }) => {
   }
 
   const { maintainer } = assetData.params
-  const MaintainerIcon = teams[maintainer] ? teams[maintainer].pictogram : Svg64Community
 
   const isPathAbsolute = (path) => {
     const testPath = /^https?:\/\//i
@@ -128,10 +149,7 @@ const Asset = ({ libraryData, params }) => {
 
   const frameworkName = assetData.content.framework
 
-  let frameworkIcon = frameworkName
-  if (frameworkName === 'vanilla') frameworkIcon = 'js'
-  if (frameworkName === 'web-component') frameworkIcon = 'webcomponents'
-  if (frameworkName === 'react-native') frameworkIcon = 'react'
+  const frameworkIcon = frameworkNameToIconMap[frameworkName] || frameworkName
 
   const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
 
@@ -159,9 +177,9 @@ const Asset = ({ libraryData, params }) => {
       <Grid>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <PageHeader
-            bgColor={get(assetTypes, `[${assetData.content.type}].bgColor`)}
+            bgColor={assetTypes[assetData.content.type]?.bgColor}
             title={seo.title}
-            pictogram={get(assetTypes, `[${assetData.content.type}].icon`)}
+            pictogram={assetTypes[assetData.content.type]?.icon}
             withTabs
           />
           <PageBreadcrumb items={breadcrumbItems} />
@@ -189,15 +207,7 @@ const Asset = ({ libraryData, params }) => {
                       </Link>
                     </dd>
                   </dl>
-                  {MaintainerIcon && (
-                    <MaintainerIcon
-                      className={clsx(
-                        dashboardStyles['position-bottom-left'],
-                        styles['maintainer-icon']
-                      )}
-                      size={64}
-                    />
-                  )}
+                  {createMaintainerIcon(maintainer)}
                 </DashboardItem>
               </Column>
               <Column className={dashboardStyles.column} sm={4} lg={8}>
@@ -206,13 +216,13 @@ const Asset = ({ libraryData, params }) => {
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>Maintainer</dt>
                       <dd className={dashboardStyles.meta}>
-                        {get(teams, `[${assetData.params.maintainer}].name`, 'Community')}
+                        {teams[assetData?.params?.maintainer]?.name || 'Community'}
                       </dd>
                     </Column>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>Type</dt>
                       <dd className={dashboardStyles.meta}>
-                        {get(assetTypes, `[${assetData.content.type}].name`, '–')}
+                        {assetTypes[assetData?.content?.type]?.name || '–'}
                       </dd>
                     </Column>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
@@ -223,7 +233,7 @@ const Asset = ({ libraryData, params }) => {
                           className={dashboardStyles['framework-icon']}
                         />
 
-                        {get(framework, `[${assetData.content.framework}].name`, '–')}
+                        {framework[assetData?.content?.framework]?.name || '–'}
                       </dd>
                     </Column>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
@@ -317,7 +327,7 @@ const Asset = ({ libraryData, params }) => {
                 <Column sm={4} md={8} lg={8}>
                   <section id="demo-links">
                     <H2>Demo links</H2>
-                    <DemoLinks links={[...get(assetData, 'content.demoLinks', [])]} />
+                    <DemoLinks links={assetData?.content?.demoLinks || []} />
                   </section>
                 </Column>
               )}

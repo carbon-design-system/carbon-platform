@@ -7,7 +7,6 @@
 import { baseFontSize, breakpoints as carbonBreakpoints } from '@carbon/elements'
 import { CodeSnippet, Column, Grid, Theme } from '@carbon/react'
 import clsx from 'clsx'
-import { findKey, values } from 'lodash'
 
 import styles from './typeset-example.module.scss'
 
@@ -28,12 +27,14 @@ const TypesetExample = (props) => (
     {(props.typeSet || []).map((type) => {
       const indexOfClosestLargerBreakpoint = Math.max(
         0,
-        values(breakpoints).findIndex((width) => props.simulatedScreenWidth <= width)
+        Object.values(breakpoints).findIndex((width) => props.simulatedScreenWidth <= width)
       )
 
-      const currentBreakpointPx = values(breakpoints)[indexOfClosestLargerBreakpoint]
+      const currentBreakpointPx = Object.values(breakpoints)[indexOfClosestLargerBreakpoint]
 
-      const currentBreakpointName = findKey(breakpoints, (val) => val === currentBreakpointPx)
+      const currentBreakpointName = Object.keys(breakpoints).find(
+        (val) => val === currentBreakpointPx
+      )
       const getCurrentCompoundStylesForBreakpoint = (breakpointName) => {
         const typeKeys = Object.keys(breakpoints)
         const typeStylesUntilCurrentBreakpoint = []

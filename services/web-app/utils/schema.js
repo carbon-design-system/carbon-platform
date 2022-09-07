@@ -5,8 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { get } from 'lodash'
-
 import { assetTypes } from '@/data/asset-types'
 import { ORDER_BY_STATUS } from '@/data/sort'
 import { assetStatusLifecycle } from '@/data/status'
@@ -60,7 +58,7 @@ export const librarySortComparator = (libraryA, libraryB) => {
  * @returns {string} Asset id
  */
 export const getAssetId = (asset) => {
-  return get(asset, 'content.id')
+  return asset?.content?.id
 }
 
 /**
@@ -69,7 +67,7 @@ export const getAssetId = (asset) => {
  * @returns {object} Asset type
  */
 export const getAssetType = (asset) => {
-  return get(assetTypes, `${asset.content.type}`, assetTypes.component)
+  return assetTypes[asset?.content?.type || 'undefined'] || assetTypes.component
 }
 
 /**
@@ -99,7 +97,7 @@ export const getBaseIdentifier = (asset) => {
  * @returns {string} Library id
  */
 export const getBaseLibraryId = (asset) => {
-  return get(asset, 'library.params.group.base', '')
+  return asset?.library?.params?.group?.base || ''
 }
 
 /**
@@ -108,7 +106,7 @@ export const getBaseLibraryId = (asset) => {
  * @returns {string} Library id
  */
 export const getCanonicalLibraryId = (asset) => {
-  return get(asset, 'library.params.group.canonical', '')
+  return asset?.library?.params?.group?.canonical || ''
 }
 
 /**
@@ -174,7 +172,7 @@ export const getTagsList = (asset) => {
   const tags = asset?.content?.tags ?? []
 
   // retrieve valid tags for asset type
-  const componentTypeTags = get(tagsForType, asset?.content.type, {})
+  const componentTypeTags = tagsForType[asset?.content.type] || {}
 
   // flatten all collections to obtain single object with all tags keys
   const allCollectionTags = Object.keys(tagsForCollection).reduce((prev, currKey) => {

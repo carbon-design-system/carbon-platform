@@ -198,9 +198,9 @@ Asset.propTypes = {
 
 /**
  * Given an asset, retrieves the overview section mdx source content if path defined in asset index
- * @param {import('../../../../../../../../../typedefs').Asset} assetData
- * @param {import('../../../../../../../../../typedefs').Library} libraryData
- * @returns {Promise<import('../../../../../../../../../typedefs').RemoteMdxSource>}
+ * @param {import('@/typedefs').Asset} assetData
+ * @param {import('@/typedefs').Library} libraryData
+ * @returns {Promise<import('@/typedefs').RemoteMdxSource>}
  * mdxSource or empty object
  */
 const getOverviewMdxSource = async (assetData, libraryData) => {

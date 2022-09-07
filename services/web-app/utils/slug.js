@@ -9,7 +9,7 @@ import slugify from 'slugify'
 /**
  * Generates a slug from an asset metadata object. This first attempts to use an `id` if it
  * exists and if not, it slugifies the asset's `name`.
- * @param {import('../typedefs').AssetContent} content
+ * @param {import('@/typedefs').AssetContent} content
  * @returns {string} A slug
  */
 export const getSlug = (content = {}) => {

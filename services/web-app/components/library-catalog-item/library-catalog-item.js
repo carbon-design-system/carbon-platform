@@ -6,7 +6,7 @@
  */
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import { Events, Scales } from '@carbon/react/icons'
-import { isEmpty } from 'lodash/isEmpty'
+import isEmpty from 'lodash/isEmpty'
 import Link from 'next/link'
 
 import { teams } from '@/data/teams'

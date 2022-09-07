@@ -6,7 +6,7 @@
  */
 import { Octokit } from 'octokit'
 
-import { exec, getWorkspaceForFile } from '../lib/utils.js'
+import { exec, getWorkspaceForFile } from '../packages/micromanage-cli/lib/utils.js'
 
 const commitTypes = ['fix', 'feat', 'breaking']
 const commentingUserLogin = 'carbon-bot'

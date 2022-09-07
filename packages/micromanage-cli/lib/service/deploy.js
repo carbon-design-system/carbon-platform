@@ -4,9 +4,11 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const { Command } = require('commander')
-const path = require('path')
-const { exec, spawn } = require('./utils')
+import { Command } from 'commander'
+import fs from 'fs'
+import path from 'path'
+
+import { exec, spawn } from '../utils.js'
 
 const DEPLOY_TARGETS = ['test', 'prod']
 
@@ -20,6 +22,7 @@ const RESOURCE_GROUP = 'Carbon Platform'
 
 function buildDeployCommand() {
   return new Command('deploy')
+    .configureHelp({ helpWidth: 100 })
     .description('Deploy all services to CodeEngine')
     .option('--dry-run', 'Do not make any changes. Only output prospective updates')
     .requiredOption('--target <target>', `target environment for deploy: [${DEPLOY_TARGETS}]`)
@@ -39,7 +42,9 @@ async function handleDeployCommand(options) {
     }
   })
 
-  const serviceConfig = require(path.join(process.cwd(), `service-config.${options.target}.json`))
+  const serviceConfig = readConfigFile(
+    path.join(process.cwd(), `service-config.${options.target}.json`)
+  )
 
   // assuming both ibmcloud and codeengine(ce) plugins are installed and ibmcloud is logged in
   console.log('Setting IBM Cloud resource group')
@@ -132,6 +137,12 @@ function getChangedServices(serviceConfig) {
   return changedServices
 }
 
+function readConfigFile(filePath) {
+  const f = fs.readFileSync(filePath)
+
+  return JSON.parse(f)
+}
+
 async function deployService(changedService) {
   // assuming image tag exists in container registry
 
@@ -143,6 +154,4 @@ async function deployService(changedService) {
   await spawn(`ibmcloud ce application update -n ${changedService.name} --image ${deployImage}`)
 }
 
-module.exports = {
-  buildDeployCommand
-}
+export { buildDeployCommand }

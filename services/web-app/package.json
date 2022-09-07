@@ -17,7 +17,7 @@
     "build": "npm run clean && next build",
     "build:storybook": "build-storybook -o .storybook-static",
     "bundle": "node esbuild.mjs",
-    "clean": "rimraf .carbon public/.carbon .next .dev",
+    "clean": "rimraf .carbon public/.carbon .next .dev out dist",
     "dev": "next dev -p 3000",
     "dev:all": "concurrently 'open http://localhost:3000 && next dev -p 3000' 'npm run storybook'",
     "dev:clean": "npm run clean && npm run dev",

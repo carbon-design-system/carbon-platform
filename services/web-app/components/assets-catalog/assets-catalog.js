@@ -30,7 +30,7 @@ import useQueryState from '@/utils/use-query-state'
 
 /**
  * Returns true if an asset should be included in the catalog results given the filter.
- * @param {import('../../typedefs').Asset} asset
+ * @param {import('@/typedefs').Asset} asset
  * @param {object} filter
  * @returns {boolean}
  */
@@ -56,8 +56,8 @@ const assetIsInFilter = (asset, filter) => {
 
 /**
  * Takes an array of assets and returns only id-unique assets (removes duplicate IDs)
- * @param {import('../../typedefs').Asset[]} assets list of assets to remove duplicates from
- * @returns {import('../../typedefs').Asset[]} array of unique assets
+ * @param {import('@/typedefs').Asset[]} assets list of assets to remove duplicates from
+ * @returns {import('@/typedefs').Asset[]} array of unique assets
  */
 const getUniqueAssetsById = (assets) => {
   return assets.filter(
@@ -68,9 +68,9 @@ const getUniqueAssetsById = (assets) => {
 /**
  * Finds and returns assets that match a search criteria (name or description)
  * from an array of assets
- * @param {import('../../typedefs').Asset[]} assets list of assets to filter
+ * @param {import('@/typedefs').Asset[]} assets list of assets to filter
  * @param {string} search search string to match assets against
- * @returns {import('../../typedefs').Asset[]} array of assets that match search criteria
+ * @returns {import('@/typedefs').Asset[]} array of assets that match search criteria
  */
 const filterAssetsBysearch = (assets, search) => {
   return assets.filter((asset) => {
@@ -93,11 +93,11 @@ const isCanonicalLibAsset = (asset) => asset?.library?.content?.id === getCanoni
  * Sorts and filters an array of assets given a filter, sort key, and search query. Until a better
  * solution is in place, the search is simply a filter to remove assets that don't match any part of
  * the name or description.
- * @param {import('../../typedefs').Asset[]} assets list of assets to filter
+ * @param {import('@/typedefs').Asset[]} assets list of assets to filter
  * @param {object} filter filter object to apply to assets
  * @param {string} sort sort type to apply to assets
  * @param {string} search search string to match assets against
- * @returns {import('../../typedefs').Asset[]} array of filtered assets
+ * @returns {import('@/typedefs').Asset[]} array of filtered assets
  */
 const getFilteredAssets = (assets, filter, sort, search) => {
   const skippedAssets = []

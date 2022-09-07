@@ -1,12 +1,9 @@
-# Micromanage CLI Package
+# Micromanage CLI package
 
-Micromanage is a monorepo microservice orchestration utility. It uses npm workspaces as the
-foundation for individual packages and services which contribute to a base Docker image and
-cloud-deployed microservices, respectively.
+Docs for micromanage are located in the package's [README.md](../packages/micromanage-cli/README.md)
+file.
 
-# Commands
-
-## `deploy`
+## Legacy `deploy` docs (Deprecated)
 
 Use this command to deploy to _test_ and _production_ environments
 

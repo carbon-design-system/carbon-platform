@@ -556,7 +556,7 @@ existing resource instead of writing the actual value:
 ```yml path="Example carbon.yml"
 designKits:
   sample-design-kit:
-  $ref: './design-kits.yml#/designKits/sample-design-kit'
+    $ref: './design-kits.yml#/designKits/sample-design-kit'
 ```
 
 instead of:
@@ -577,29 +577,29 @@ There are 3 ways you can define references in Carbon: absolute, relative and loc
 ### Absolute references
 
 An absolute URL that points to a resource contained in a yml file , e.g.:
-https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch
+`https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch`
 
 ```yml path="Example carbon.yml"
 designKits:
   sample-design-kit:
-  $ref: 'https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch'
+    $ref: 'https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch'
 ```
 
 ### Relative references
 
 A relative path to a resource contained in a yml file within the current repo, e.g.:
-'./design-kits.yml#/designKits/sample-design-kit'
+`./design-kits.yml#/designKits/sample-design-kit`
 
 ```yml path="Example carbon.yml"
 designKits:
   sample-design-kit:
-  $ref: './design-kits.yml#/designKits/sample-design-kit'
+    $ref: './design-kits.yml#/designKits/sample-design-kit'
 ```
 
 ### Local file references
 
 Reference to a resource contained in the same file where the referencing property is being defined,
-e.g.: '#/designKits/sample-design-kit'
+e.g.: `#/designKits/sample-design-kit`
 
 ```yml path="Example carbon.yml"
 library:

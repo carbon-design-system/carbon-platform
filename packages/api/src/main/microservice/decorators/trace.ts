@@ -11,6 +11,8 @@ import { v4 as uuidv4 } from 'uuid'
 import { Logging } from '../../logging/index.js'
 import { RunMode, Runtime } from '../../runtime/index.js'
 
+const MAX_ARGS_STRING_LENGTH = 500 // characters
+
 /**
  * Returns a decorated version of a method that automatically uses the Platform logging
  * infrastructure to log a set of debug messages before and after the decorated method's execution.
@@ -30,7 +32,7 @@ function Trace(config?: { runtime?: Runtime; logging?: Logging }): MethodDecorat
     descriptor: PropertyDescriptor
   ) {
     const runtime = config?.runtime || new Runtime()
-    const shouldTrace = runtime.isDebugEnabled || runtime.runMode === RunMode.Dev
+    const shouldTrace = runtime.isDebugEnabled ?? runtime.runMode === RunMode.Dev
     if (!shouldTrace) {
       return
     }
@@ -93,7 +95,11 @@ function safeStringify(arg: any) {
 }
 
 async function traceEnter(logging: Logging, methodName: string, args: any[]) {
-  const stringArgs = args.map(safeStringify)
+  let stringArgs = String(args.map(safeStringify))
+
+  if (stringArgs.length > MAX_ARGS_STRING_LENGTH) {
+    stringArgs = stringArgs.substring(0, MAX_ARGS_STRING_LENGTH) + '... (truncated)'
+  }
 
   await logging.debug(`-> ${methodName}(${stringArgs})`)
 }
@@ -114,4 +120,9 @@ async function traceExit(logging: Logging, methodName: string, result: any, resp
   }
 }
 
-export { Trace }
+const __test__ = {
+  safeStringify,
+  MAX_ARGS_STRING_LENGTH
+}
+
+export { __test__, Trace }

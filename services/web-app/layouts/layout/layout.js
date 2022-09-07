@@ -31,7 +31,11 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 import styles from './layout.module.scss'
 
 // do not show side nav for these paths
-const NO_SIDE_NAV_PATHS = ['/404', '/libraries/[host]/[org]/[repo]/[library]/[ref]/assets/[asset]']
+const NO_SIDE_NAV_PATHS = [
+  '/404',
+  '/libraries/[host]/[org]/[repo]/[library]/[ref]/assets/[asset]',
+  '/libraries/[host]/[org]/[repo]/[library]/[ref]/assets/[asset]/[tab]'
+]
 
 // Only slide to the secondary navigation on page load for these paths.
 const SECONDARY_NAV_SLIDE_PATHS = ['/libraries/[host]/[org]/[repo]/[library]/[ref]']
@@ -167,11 +171,13 @@ const Layout = ({ children }) => {
             <Header aria-label="Carbon Design System" className={styles.header}>
               <SkipToContent />
               {showSideNav && (
-                <HeaderMenuButton
-                  aria-label="Open menu"
-                  onClick={onClickSideNavExpand}
-                  isActive={isSideNavExpanded}
-                />
+                <div>
+                  <HeaderMenuButton
+                    aria-label="Open menu"
+                    onClick={onClickSideNavExpand}
+                    isActive={isSideNavExpanded}
+                  />
+                </div>
               )}
               <div className={styles['header-name']}>
                 <Link href="/">

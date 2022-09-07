@@ -24,16 +24,20 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect, useState } from 'react'
-import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'types'
 
 import AssetCatalogItemMeta from '@/components/asset-catalog-item/asset-catalog-item-meta'
+import H1 from '@/components/markdown/h1'
+import H2 from '@/components/markdown/h2'
+import H3 from '@/components/markdown/h3'
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
 import { assetsNavData } from '@/data/nav-data'
+import { pageHeaders } from '@/data/page-headers'
 import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData, getLibraryNavData } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
+import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from '@/types'
 import { assetSortComparator } from '@/utils/schema'
 import { getAllTags } from '@/utils/schema.js'
 import { getSlug } from '@/utils/slug'
@@ -81,7 +85,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
       <Grid>
         <Column sm={4} md={8} lg={16}>
           <div className={pageStyles.content}>
-            <h1>Loading...</h1>
+            <H1>Loading...</H1>
           </div>
         </Column>
       </Grid>
@@ -90,12 +94,22 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
 
   const { description } = libraryData.content
 
+  const pageHeader = pageHeaders?.library ?? {}
+
   const seo = {
-    title: 'Library assets',
+    title: 'Assets',
     description
   }
 
   const allTags = getAllTags()
+
+  const getTagStr = (tags = []) => {
+    if (!tags || !tags.length) {
+      return '–'
+    }
+
+    return tags.map((tag) => allTags[tag]?.name).join(', ')
+  }
 
   const assets =
     libraryData.assets?.sort(assetSortComparator(sort)).map((asset) => {
@@ -106,14 +120,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
         status: (
           <AssetCatalogItemMeta asset={asset} properties={['status']} className={styles.status} />
         ),
-        tags: (
-          <span className={styles['truncated-text']}>
-            {asset.content.tags
-              .map((tag) => allTags[tag]?.name)
-              .join(', ')
-              .replaceAll('-', '‑')}
-          </span>
-        ),
+        tags: <span className={styles['truncated-text']}>{getTagStr(asset?.content?.tags)}</span>,
         link: (
           <Link
             href={`/libraries/${asset.params.library}/${params.ref}/assets/${getSlug(
@@ -130,7 +137,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
         assetRow.type = (
           <div style={{ display: 'flex' }}>
             <TypeTag type={asset.content.type} className={styles.tag} />
-            <TypeTag type={'design-only'} className={clsx(styles['design-tag'], styles.tag)} />
+            <TypeTag name="Design only" className={clsx(styles['design-tag'], styles.tag)} />
           </div>
         )
       }
@@ -144,12 +151,16 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
       <NextSeo {...seo} />
       <Grid className={styles['library-assets-container']}>
         <Column sm={4} md={8} lg={12}>
-          <PageHeader title={seo.title} />
+          <PageHeader
+            bgColor={pageHeader?.bgColor}
+            title={seo.title}
+            pictogram={pageHeader?.icon}
+          />
         </Column>
         <Column sm={4} md={8} lg={12}>
           <Grid>
             <Column sm={4} md={8} lg={8}>
-              <h2 className={styles.subheading}>{description}</h2>
+              <H2 headingClassName={styles.subheading}>{description}</H2>
             </Column>
           </Grid>
           <Grid condensed={!isLg} narrow={isLg}>
@@ -199,17 +210,29 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
                             <TableCell colSpan={5}>
                               <div className={styles['no-results-container']}>
                                 <FilingCabinet />
-                                <h2 className={styles['no-results-heading']}>
+                                <H2
+                                  narrow
+                                  className={styles['h2-container']}
+                                  headingClassName={styles['no-results-heading']}
+                                >
                                   No assets in library.
-                                </h2>
-                                <h3 className={styles['no-results-subheading']}>
+                                </H2>
+                                <H3
+                                  narrow
+                                  className={styles['h3-container']}
+                                  headingClassName={styles['no-results-subheading']}
+                                >
                                   This library does not contain any assets.
-                                </h3>
+                                </H3>
                                 {/* library maintainers should be a link but leaving as text for
-                                  now until we figure out contributors discussion */}
-                                <h3 className={styles['no-results-subheading']}>
+                                now until we figure out contributors discussion */}
+                                <H3
+                                  narrow
+                                  className={styles['h3-container']}
+                                  headingClassName={styles['no-results-subheading']}
+                                >
                                   Contact library maintainers for further details.
-                                </h3>
+                                </H3>
                               </div>
                             </TableCell>
                           </TableRow>

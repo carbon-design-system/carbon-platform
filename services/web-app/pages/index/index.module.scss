@@ -9,63 +9,72 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/colors' as colors;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
 /**
  * Global
  */
 
-.border {
+.intro-paragraph {
+  //padding-bottom: spacing.$spacing-06;
+  padding-bottom: 0;
+  margin-top: spacing.$spacing-09;
+
+  @include breakpoint.breakpoint(md) {
+    //padding-bottom: spacing.$spacing-08;
+    margin-top: spacing.$spacing-10;
+  }
+
+  [class*='paragraph'] {
+    @include type.type-style('fluid-heading-04', true);
+  }
+}
+
+.intro-paragraph mark {
   position: relative;
+  z-index: 0;
+  background: transparent;
 
   &::after {
     position: absolute;
-    top: 0;
-    right: spacing.$spacing-05;
-    left: spacing.$spacing-05;
-    height: 1px;
-    background-color: theme.$border-strong-01;
+    z-index: -1;
+    top: calc(convert.rem(4px));
+    left: calc(convert.rem(-4px));
+    display: block;
+    width: calc(100% + calc(convert.rem(8px)));
+    height: 84%;
+    padding: 0 spacing.$spacing-02;
+    background: colors.$purple-20;
     content: '';
-    @include breakpoint.breakpoint(md) {
-      margin-right: -(spacing.$spacing-05);
-      margin-left: -(spacing.$spacing-05);
-    }
   }
 }
 
-/**
- * Subheading
- */
-
-.subheading {
-  padding: spacing.$spacing-10 0;
+// overide carbon link
+.start-heading :global(.cds--link) {
   @include type.type-style('fluid-heading-04', true);
-  @include breakpoint.breakpoint(md) {
-    padding-right: spacing.$spacing-06;
-  }
-  @include breakpoint.breakpoint(lg) {
-    padding-right: spacing.$spacing-05;
-  }
 
-  &--no-padding {
-    padding: 0;
+  display: inline-block;
+  color: theme.$text-primary;
+  text-decoration: none;
+
+  &:hover {
+    color: theme.$text-primary;
   }
 }
 
-.subheading-medium {
-  padding: spacing.$spacing-10 0;
-  @include type.type-style('fluid-heading-04', true);
+.start-heading span {
+  display: block;
+  padding-bottom: spacing.$spacing-03;
+  font-style: normal;
 }
 
-.subheading-large {
-  padding: spacing.$spacing-11 0 spacing.$spacing-05;
-  @include type.type-style('fluid-heading-04', true);
+.start-heading--designing span {
+  color: colors.$purple-60;
 }
 
-.subheading-content {
-  @include type.type-style('body-long-02');
-
-  padding: spacing.$spacing-06 0;
+.start-heading--developing span {
+  color: colors.$blue-60;
 }
 
 /**
@@ -80,7 +89,6 @@
   @include type.type-style('expressive-heading-03', true);
 
   padding-bottom: spacing.$spacing-05;
-
   color: theme.$text-primary;
 }
 
@@ -88,7 +96,6 @@
   @include type.type-style('body-long-01');
 
   width: 75%;
-
   color: theme.$text-primary;
 }
 
@@ -101,133 +108,4 @@
   bottom: spacing.$spacing-05;
   left: spacing.$spacing-05;
   color: theme.$text-primary;
-}
-
-/**
- * Feature Card
- */
-
-.feature-card-container {
-  padding-bottom: spacing.$spacing-10;
-}
-
-/**
- * Highlights
- */
-
-.highlights {
-  position: relative;
-
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: calc(100vw - var(--scrollbar-width));
-    height: 100%;
-    background: theme.$layer-01;
-    content: '';
-    @include breakpoint.breakpoint(md) {
-      // grid margin
-      left: -(spacing.$spacing-05);
-    }
-    @include breakpoint.breakpoint(lg) {
-      // grid margin + 6.25% column * 4 columns + 8px
-      left: calc(-25vw - #{spacing.$spacing-03});
-    }
-    @include breakpoint.breakpoint(max) {
-      // grid margin + 96px column * 4 columns
-      left: -(spacing.$spacing-06 + spacing.$spacing-12 * 4);
-    }
-  }
-}
-
-.highlight-grid {
-  position: relative;
-
-  &--height {
-    @include breakpoint.breakpoint(md) {
-      min-height: rem(208px);
-    }
-    @include breakpoint.breakpoint(lg) {
-      min-height: convert.rem(184px);
-    }
-  }
-}
-
-.highlight-heading {
-  margin-top: spacing.$spacing-08;
-  @include type.type-style('fluid-heading-03', true);
-  @include breakpoint.breakpoint(md) {
-    margin-top: spacing.$spacing-10 + spacing.$spacing-02;
-  }
-  @include breakpoint.breakpoint(lg) {
-    padding-right: spacing.$spacing-07;
-  }
-
-  &--big {
-    margin-top: spacing.$spacing-07;
-    @include type.type-style('fluid-heading-04', true);
-  }
-}
-
-.highlight-description {
-  margin: spacing.$spacing-06 0 (spacing.$spacing-08 + spacing.$spacing-05);
-  @include type.type-style('body-long-02');
-  @include breakpoint.breakpoint(md) {
-    margin: spacing.$spacing-07 0;
-  }
-  @include breakpoint.breakpoint(lg) {
-    padding-right: spacing.$spacing-05;
-  }
-  @include breakpoint.breakpoint(xlg) {
-    padding-right: 0;
-  }
-
-  &--big {
-    @include type.type-style('fluid-heading-04', true);
-    @include breakpoint.breakpoint(md) {
-      margin: spacing.$spacing-08 0;
-    }
-  }
-}
-
-.highlight-title {
-  display: block;
-  @include type.type-style('heading-02');
-}
-
-/**
- * Content
- */
-
-.content-column {
-  @include breakpoint.breakpoint(md) {
-    padding-right: spacing.$spacing-06;
-  }
-  @include breakpoint.breakpoint(lg) {
-    padding-right: spacing.$spacing-05;
-  }
-  @include breakpoint.breakpoint(xlg) {
-    padding-right: spacing.$spacing-06;
-  }
-}
-
-.content-heading {
-  margin-top: spacing.$spacing-11;
-  @include type.type-style('fluid-heading-04', true);
-}
-
-.content-copy {
-  margin-top: spacing.$spacing-06;
-  @include type.type-style('body-long-02');
-
-  &:last-child {
-    margin-bottom: spacing.$spacing-10;
-  }
-
-  a {
-    // override carbon
-    font-size: inherit;
-    line-height: inherit;
-  }
 }

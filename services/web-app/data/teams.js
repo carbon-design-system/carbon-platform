@@ -4,19 +4,25 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Bee as BeePictogram } from '@carbon/pictograms-react'
 import {
+  AccessibilityAlt,
+  Bee as BeeIcon,
   Carbon,
   CarbonForIbmDotcom,
   CarbonForIbmProduct,
+  Events,
   IbmCloud,
   IbmSecurity,
   Watson
-} from '@carbon/icons-react'
+} from '@carbon/react/icons'
 import {
+  Svg64AccessibilityAlt,
   Svg64Carbon,
   Svg64CarbonForIbmDotcom,
   Svg64CarbonForIbmProducts,
   Svg64Cloud,
+  Svg64Community,
   Svg64Security,
   Svg64Watson
 } from '@carbon-platform/icons'
@@ -29,37 +35,52 @@ import {
 export const teams = {
   carbon: {
     icon: Carbon,
-    name: 'Carbon',
+    name: 'Carbon System Squad',
     pictogram: Svg64Carbon
+  },
+  community: {
+    icon: Events,
+    name: 'Community',
+    pictogram: Svg64Community
   },
   'ibm-dotcom': {
     icon: CarbonForIbmDotcom,
-    name: 'IBM.com',
+    name: 'Carbon Dotcom Squad',
     pictogram: Svg64CarbonForIbmDotcom
   },
-  'ibm-cloud': {
-    icon: IbmCloud,
-    name: 'IBM Cloud',
-    pictogram: Svg64Cloud
-  },
-  'ibm-security': {
-    icon: IbmSecurity,
-    name: 'IBM Security',
-    pictogram: Svg64Security
+  'ibm-accessibility': {
+    icon: AccessibilityAlt,
+    name: 'IBM Accessibility',
+    pictogram: Svg64AccessibilityAlt
   },
   'ai-apps': {
     icon: Watson,
     name: 'IBM AI Apps',
     pictogram: Svg64Watson
   },
-  watson: {
-    icon: Watson,
-    name: 'IBM Watson',
-    pictogram: Svg64Watson
+  'ibm-brand': {
+    icon: BeeIcon,
+    name: 'IBM Brand',
+    pictogram: BeePictogram
+  },
+  'ibm-cloud': {
+    icon: IbmCloud,
+    name: 'IBM Cloud',
+    pictogram: Svg64Cloud
   },
   'ibm-products': {
     icon: CarbonForIbmProduct,
     name: 'IBM Products',
     pictogram: Svg64CarbonForIbmProducts
+  },
+  'ibm-security': {
+    icon: IbmSecurity,
+    name: 'IBM Security',
+    pictogram: Svg64Security
+  },
+  watson: {
+    icon: Watson,
+    name: 'IBM Watson',
+    pictogram: Svg64Watson
   }
 }

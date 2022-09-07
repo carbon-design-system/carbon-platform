@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.9.0...@carbon-platform/schemas@1.9.1) (2022-08-31)
+
+
+### Bug Fixes 🐛
+
+* asset tags valid with no items ([a49efdf](https://github.com/carbon-design-system/carbon-platform/commit/a49efdfe90de343e125e816c0a5b913280fe2e71))
+
+## [1.9.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.8.1...@carbon-platform/schemas@1.9.0) (2022-08-25)
+
+
+### Features 🌟
+
+* add additional demo link type other ([dbe821c](https://github.com/carbon-design-system/carbon-platform/commit/dbe821cdd3bb030951775cda2649668d0003759e)), closes [#581](https://github.com/carbon-design-system/carbon-platform/issues/581)
+
+### [1.8.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.8.0...@carbon-platform/schemas@1.8.1) (2022-08-24)
+
+## [1.8.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.7.1...@carbon-platform/schemas@1.8.0) (2022-08-18)
+
+
+### Features 🌟
+
+* resolve and render remote thumbnail paths ([1d1235e](https://github.com/carbon-design-system/carbon-platform/commit/1d1235e90478edf4916f406a90f9020c7e5cc5e4))
+
+
+### Bug Fixes 🐛
+
+* async and await used in getting svg response ([d3601b8](https://github.com/carbon-design-system/carbon-platform/commit/d3601b892e8ee63fc41313460f983938fb8a49cd))
+
 ### [1.7.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.7.0...@carbon-platform/schemas@1.7.1) (2022-07-29)
 
 

@@ -6,7 +6,7 @@
  */
 const path = require('path')
 
-const noUnusedVarsOptions = { args: 'all', argsIgnorePattern: '^_' }
+const noUnusedVarsOptions = { args: 'all', argsIgnorePattern: '^_', varsIgnorePattern: '^React' }
 
 module.exports = {
   env: {
@@ -19,7 +19,9 @@ module.exports = {
     'standard',
     'plugin:@next/next/recommended',
     'plugin:eslint-comments/recommended',
+    'plugin:node/recommended',
     path.join(__dirname, '.eslintrc.ava.js'),
+    path.join(__dirname, '.eslintrc.carbon-platform.js'),
     path.join(__dirname, '.eslintrc.jsdoc.js'),
     path.join(__dirname, '.eslintrc.react.js'),
     path.join(__dirname, '.eslintrc.storybook.js')
@@ -60,6 +62,21 @@ module.exports = {
     'no-implicit-globals': 'error',
     'no-use-before-define': 'off', // Disabled in favor of @typescript-eslint/no-use-before-define
     'no-unused-vars': ['error', noUnusedVarsOptions],
+    'node/no-extraneous-import': [
+      'error',
+      {
+        allowModules: [
+          ...Object.keys(require('./base/package.json').dependencies),
+          ...Object.keys(require('./base/package.json').devDependencies)
+        ]
+      }
+    ],
+    'node/no-missing-import': 'off', // Too restrictive in a monorepo
+    'node/no-missing-require': 'off', // Too restrictive in a monorepo
+    'node/no-unpublished-import': 'off', // Too restrictive in a monorepo
+    'node/no-unsupported-features/es-builtins': ['error', { version: '16' }],
+    'node/no-unsupported-features/es-syntax': 'off', // Doesn't account for TypeScript and Babel
+    'node/no-unsupported-features/node-builtins': ['error', { version: '16' }],
     'notice/notice': [
       'error',
       {
@@ -79,33 +96,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['!**/src/test/**/*.test.[jt]s'],
-      rules: {
-        'no-restricted-syntax': [
-          'error',
-          {
-            selector: 'ImportSpecifier[imported.name="__test__"]',
-            message: 'Test exports are not allowed to be used outside of test files.'
-          }
-        ]
-      }
-    },
-    {
-      files: ['**/packages/**'],
-      rules: {
-        'no-restricted-syntax': [
-          'error',
-          {
-            selector: 'ImportDeclaration[source.value=/@carbon-platform.*/]',
-            message:
-              'Carbon Platform API package imports from inside of the API package must be ' +
-              'relative. This prevents out-of-date builds from being accidentally imported.'
-          }
-        ]
-      }
-    },
-    {
-      files: ['*.ts'],
+      files: ['*.ts', '*.tsx'],
       rules: {
         'no-unused-vars': 'off', // Disabled in favor of @typescript-eslint/no-unused-vars
         '@typescript-eslint/no-unused-vars': ['error', noUnusedVarsOptions]

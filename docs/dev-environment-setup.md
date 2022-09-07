@@ -25,7 +25,7 @@ testing and code smells. They help out with SonarCloud's "clean as you code" phi
   - Shows linting errors as you type. Allows auto-fixing on save.
 - **GraphQL** (GraphQL.vscode-graphql)
   - GraphQL query syntax highlighting and autocomplete.
-- **MDX** (silvenon.mdx)
+- **MDX** (unifiedjs.vscode-mdx)
   - Provides syntax highlighting and bracket matching for MDX files.
 - **Prettier** - Code formatter (esbenp.prettier-vscode)
   - Enables auto-formatting on save to match Prettier code styles.

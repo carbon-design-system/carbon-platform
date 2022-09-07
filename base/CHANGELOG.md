@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.10...@carbon-platform/base@0.0.11) (2022-08-24)
+
+
+### Misc. 🔮
+
+* update node modules and related documentation ([7a7a955](https://github.com/carbon-design-system/carbon-platform/commit/7a7a955ed7b12220ac79cf321c5f5e2543529e17))
+
+### [0.0.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.9...@carbon-platform/base@0.0.10) (2022-08-20)
+
+
+### Misc. 🔮
+
+* rebuild lockfile and update deps minor/patch ([7bfa4e4](https://github.com/carbon-design-system/carbon-platform/commit/7bfa4e459317175233af2eaaf1b188c0a42fe8d0))
+
+
+### Tests 🧪
+
+* **mdx-components:** test infrastructure and basic snapshot testing ([1504e9f](https://github.com/carbon-design-system/carbon-platform/commit/1504e9fbbf42ef01f5a1dcac8cbd07085b2fad18))
+
+### [0.0.9](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.8...@carbon-platform/base@0.0.9) (2022-08-06)
+
+
+### Misc. 🔮
+
+* update ncu to 16 ([d0ea453](https://github.com/carbon-design-system/carbon-platform/commit/d0ea4537280bad7253d358d4a8421cbbf1d222db))
+* update node module minor + patch versions ([e5d1ef2](https://github.com/carbon-design-system/carbon-platform/commit/e5d1ef222370b0a0cc39d4985891aed7881a0f94))
+
 ### [0.0.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.7...@carbon-platform/base@0.0.8) (2022-07-23)
 
 

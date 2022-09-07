@@ -9,7 +9,7 @@ import {
   PauseOutlineFilled,
   PlayOutline,
   PlayOutlineFilled
-} from '@carbon/icons-react'
+} from '@carbon/react/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { Children, useState } from 'react'

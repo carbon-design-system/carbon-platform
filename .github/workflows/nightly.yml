@@ -43,7 +43,7 @@ jobs:
           node-version: '16'
           cache: 'npm'
 
-      - name: Install Node Modules 🔧
+      - name: Install Node modules 🔧
         run: npm install
 
       - id: version
@@ -83,6 +83,17 @@ jobs:
       service_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/web-app'] }}
     secrets:
       CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
+
+  mdx-sanitizer:
+    name: Publish MDX Sanitizer package
+    needs: update-versions
+    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/mdx-sanitizer']
+    uses: ./.github/workflows/publish-package.yml
+    with:
+      package_name: '@carbon-platform/mdx-sanitizer'
+      package_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/mdx-sanitizer'] }}
+    secrets:
+      NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
   micromanage-cli:
     name: Publish micromanage-cli package

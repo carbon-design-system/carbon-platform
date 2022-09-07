@@ -11,11 +11,11 @@ import AutolinkHeader from '@/components/autolink-header'
 
 import styles from './markdown.module.scss'
 
-const H2 = ({ children, className, ...rest }) => {
+const H2 = ({ children, className, headingClassName, ...rest }) => {
   return (
-    <Grid className={clsx(className, styles['h2-container'])} {...rest}>
-      <Column sm={4} md={6} lg={8}>
-        <AutolinkHeader is="h2" className={styles.h2}>
+    <Grid className={clsx(styles['h2-container'], className)} {...rest}>
+      <Column sm={4} md={8} lg={8}>
+        <AutolinkHeader is="h2" className={clsx(styles.h2, headingClassName)}>
           {children}
         </AutolinkHeader>
       </Column>

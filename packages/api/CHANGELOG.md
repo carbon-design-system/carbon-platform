@@ -2,6 +2,82 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.28...@carbon-platform/api@0.3.29) (2022-08-25)
+
+
+### Features 🌟
+
+* add additional demo link type other ([dbe821c](https://github.com/carbon-design-system/carbon-platform/commit/dbe821cdd3bb030951775cda2649668d0003759e)), closes [#581](https://github.com/carbon-design-system/carbon-platform/issues/581)
+
+
+### Bug Fixes 🐛
+
+* **api:** enforce max length for trace and request logs ([f6443aa](https://github.com/carbon-design-system/carbon-platform/commit/f6443aa7f93ac9393e847ec2b82248373c0bbb5e))
+
+
+### Misc. 🔮
+
+* **api:** fix sonarlint errors ([300ec78](https://github.com/carbon-design-system/carbon-platform/commit/300ec785f13b26883597b9df0f6e28d3deee903c))
+* **api:** remove commented out auth tests for now ([0dd6b61](https://github.com/carbon-design-system/carbon-platform/commit/0dd6b61b38aacc6026be87c924be214e1535286f))
+
+### [0.3.28](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.27...@carbon-platform/api@0.3.28) (2022-08-24)
+
+
+### Misc. 🔮
+
+* update node modules and related documentation ([7a7a955](https://github.com/carbon-design-system/carbon-platform/commit/7a7a955ed7b12220ac79cf321c5f5e2543529e17))
+
+### [0.3.27](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.26...@carbon-platform/api@0.3.27) (2022-08-20)
+
+
+### Bug Fixes 🐛
+
+* baseline module updates ([1a7ab2f](https://github.com/carbon-design-system/carbon-platform/commit/1a7ab2f74b9cd477c0f5d83e8f99a5e34f0668ed))
+
+
+### Misc. 🔮
+
+* rebuild lockfile and update deps minor/patch ([7bfa4e4](https://github.com/carbon-design-system/carbon-platform/commit/7bfa4e459317175233af2eaaf1b188c0a42fe8d0))
+
+
+### Tests 🧪
+
+* **mdx-components:** test infrastructure and basic snapshot testing ([1504e9f](https://github.com/carbon-design-system/carbon-platform/commit/1504e9fbbf42ef01f5a1dcac8cbd07085b2fad18))
+
+### [0.3.26](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.25...@carbon-platform/api@0.3.26) (2022-08-18)
+
+
+### Features 🌟
+
+* **api:** create and use mdx-sanitizer package ([8649d07](https://github.com/carbon-design-system/carbon-platform/commit/8649d07fc2d6ee6408f645acdc26754fdc089cbb))
+* **mdx-sanitizer:** create interfaces, add test files ([8259849](https://github.com/carbon-design-system/carbon-platform/commit/82598493a6d50e11a52561eff16c90ce5a13c6fa))
+* **mdx-sanitizer:** initial file structure ([724768c](https://github.com/carbon-design-system/carbon-platform/commit/724768c65addd1ba52552ad269fd2f6fe3b25cbf))
+
+
+### Bug Fixes 🐛
+
+* **api:** remove unnecessary installs ([66dc8a5](https://github.com/carbon-design-system/carbon-platform/commit/66dc8a55e914fd9adfbed396da458be8c3926fc9))
+* **logging:** allow debug to be turned off ([bfdb039](https://github.com/carbon-design-system/carbon-platform/commit/bfdb0398ee6093e1088cc383481f5a4212213942))
+
+
+### Misc. 🔮
+
+* remove console.log statements ([7159f07](https://github.com/carbon-design-system/carbon-platform/commit/7159f07cd54c70ebc960162f735fb9c2f00cdb28))
+
+### [0.3.25](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.24...@carbon-platform/api@0.3.25) (2022-08-06)
+
+
+### Misc. 🔮
+
+* update node module minor + patch versions ([e5d1ef2](https://github.com/carbon-design-system/carbon-platform/commit/e5d1ef222370b0a0cc39d4985891aed7881a0f94))
+
+### [0.3.24](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.23...@carbon-platform/api@0.3.24) (2022-07-30)
+
+
+### Bug Fixes 🐛
+
+* sonarcloud smells ([2b98c6a](https://github.com/carbon-design-system/carbon-platform/commit/2b98c6a896e27e77617786625ad7db43cb6a413a))
+
 ### [0.3.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.22...@carbon-platform/api@0.3.23) (2022-07-23)
 
 

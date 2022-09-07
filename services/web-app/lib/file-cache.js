@@ -4,20 +4,24 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Logging } from '@carbon-platform/api/logging'
 import { RunMode, Runtime } from '@carbon-platform/api/runtime'
 import { Octokit } from '@octokit/core'
 import cacheManager from 'cache-manager'
 import fsStore from 'cache-manager-fs-hash'
 import fs from 'fs-extra'
+import { optimize } from 'svgo'
 
 import { CACHE_PATH, IMAGES_CACHE_PATH } from '@/config/constants'
+
+const logging = new Logging({ component: 'file-cache.js' })
 
 /**
  * If using prototyping data committed to the repo, use a crazy long ttl like a year so the cache
  * doesn't unintentionally invalidate while doing development. If using the full file cache in
  * production, use a one hour ttl.
  */
-const diskCache = cacheManager.caching({
+export const diskCache = cacheManager.caching({
   store: fsStore,
   options: {
     path: CACHE_PATH,
@@ -64,11 +68,9 @@ const slugifyRequest = (host, route, options = {}) => {
  * @param {string} host - GitHub API base URL
  * @param {string} route - GitHub API request route
  * @param {object} options - Options merged into the request route
- * @returns {object} GitHub API response data
+ * @returns {Promise<object>} GitHub API response data
  */
 const _getResponse = async (host, route, options) => {
-  // console.log('CACHE MISS', responseKey)
-
   const octokitRef = host === 'github.ibm.com' ? octokitIbm : octokit
 
   const { data } = await octokitRef.request(route, {
@@ -89,10 +91,42 @@ const _getResponse = async (host, route, options) => {
  */
 export const getResponse = (host, route, options) => {
   const responseKey = slugifyRequest(host, route, options)
-  // console.log('CACHE HIT', responseKey)
 
   return diskCache.wrap(responseKey, () => {
     return _getResponse(host, route, options)
+  })
+}
+
+/**
+ * Just like `getResponse`, but before returning a GitHub response using the cache, it attempts to
+ * read the contents as a string and optimize using SVGO, returning a base64-encoded SVG.
+ * @param {string} host - GitHub API base URL
+ * @param {string} route - GitHub API request route
+ * @param {object} options - Options merged into the request route
+ * @returns {Promise<object>} GitHub API response data
+ */
+export const getSvgResponse = async (host, route, options = {}) => {
+  const responseKey = slugifyRequest(host, route, options)
+
+  return diskCache.wrap(responseKey, async () => {
+    const data = await _getResponse(host, route, options)
+
+    try {
+      const originalSvgString = Buffer.from(data.content, data.encoding).toString('utf8')
+      const optimizedSvgResult = optimize(originalSvgString)
+      const optimizedSvgString = optimizedSvgResult.data
+
+      return {
+        ...data,
+        content: Buffer.from(optimizedSvgString, 'utf8').toString('base64')
+      }
+    } catch (err) {
+      logging.info(
+        `Unable to optimize the SVG from ${host}/${options.owner}/${options.repo}/${options.path} with the ref ${options.ref}`
+      )
+
+      return data
+    }
   })
 }
 
@@ -101,7 +135,7 @@ export const getResponse = (host, route, options) => {
  * @param {string} key - Cache key
  */
 export const deleteResponse = async (key) => {
-  console.log('DELETE CACHED', key)
+  logging.debug('DELETE CACHED: ' + key)
 
   await diskCache.del(key)
 }
@@ -116,13 +150,13 @@ export const writeFile = async (path, contents) => {
     const exists = await fs.pathExists(`./public/${IMAGES_CACHE_PATH}/${path}`)
 
     if (exists) {
-      console.log('FILE EXISTS', path)
+      logging.debug('FILE EXISTS: ' + path)
     } else {
       await fs.outputFile(`./public/${IMAGES_CACHE_PATH}/${path}`, contents)
 
-      console.log('FILE WRITE', path)
+      logging.debug('FILE WRITE: ' + path)
     }
   } catch (err) {
-    console.error(err)
+    logging.error(err)
   }
 }

@@ -19,24 +19,19 @@ const [repoOwner, repoName] = process.env.GITHUB_REPOSITORY.split('/')
 
 function checkVars() {
   if (!headRef) {
-    console.error('No head ref found in GITHUB_HEAD_REF environment variable')
-    process.exit(1)
+    throw new Error('No head ref found in GITHUB_HEAD_REF environment variable')
   }
   if (!baseRef) {
-    console.error('No base ref found in GITHUB_BASE_REF environment variable')
-    process.exit(1)
+    throw new Error('No base ref found in GITHUB_BASE_REF environment variable')
   }
   if (!prNumber) {
-    console.error('No pr number found in GITHUB_REF environment variable')
-    process.exit(1)
+    throw new Error('No pr number found in GITHUB_REF environment variable')
   }
   if (!repoName) {
-    console.error('No repo name found in GITHUB_REPOSITORY environment variable')
-    process.exit(1)
+    throw new Error('No repo name found in GITHUB_REPOSITORY environment variable')
   }
   if (!repoOwner) {
-    console.error('No repo owner found in GITHUB_REPOSITORY environment variable')
-    process.exit(1)
+    throw new Error('No repo owner found in GITHUB_REPOSITORY environment variable')
   }
 }
 

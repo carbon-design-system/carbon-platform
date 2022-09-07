@@ -6,6 +6,7 @@
  */
 'use strict'
 
+import bundleAnalyzer from '@next/bundle-analyzer'
 import nextMdx from '@next/mdx'
 import withYaml from 'next-plugin-yaml'
 import path from 'path'
@@ -14,11 +15,15 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 import { fileURLToPath } from 'url'
 
 import { libraryAllowList as libraries } from './data/libraries.mjs'
-import { mdxWrapperPlugin } from './utils/mdx-wrapper-plugin.js'
+import { mdxWrapperPlugin } from './utils/mdx-wrapper-plugin.mjs'
 import rehypeMetaAsAttributes from './utils/rehype-meta-as-attributes.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true'
+})
 
 const withMDX = nextMdx({
   extension: /\.mdx?$/,
@@ -29,101 +34,97 @@ const withMDX = nextMdx({
   }
 })
 
-const nextConfig = withMDX(
-  withYaml({
-    pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-    experimental: {
-      // this includes files from the monorepo base two directories up
-      outputFileTracingRoot: path.join(__dirname, '..', '..')
-    },
-    output: 'standalone',
-    i18n: {
-      locales: ['en-US'],
-      defaultLocale: 'en-US'
-    },
-    images: {
-      domains: ['raw.githubusercontent.com', 'github.com']
-    },
-    swcMinify: true,
-    webpack(config) {
-      // silence cache warning notifications due to next.config.mjs imports for now, open issues:
-      // https://github.com/vercel/next.js/issues/33693
-      // https://github.com/webpack/webpack/issues/15574
-      config.infrastructureLogging = { level: 'error' }
+const nextConfig = withBundleAnalyzer(
+  withMDX(
+    withYaml({
+      pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+      experimental: {
+        // this includes files from the monorepo base two directories up
+        outputFileTracingRoot: path.join(__dirname, '..', '..')
+      },
+      output: 'standalone',
+      i18n: {
+        locales: ['en-US'],
+        defaultLocale: 'en-US'
+      },
+      images: {
+        domains: ['raw.githubusercontent.com', 'github.com']
+      },
+      swcMinify: true,
+      webpack(config) {
+        // silence cache warning notifications due to next.config.mjs imports for now, open issues:
+        // https://github.com/vercel/next.js/issues/33693
+        // https://github.com/webpack/webpack/issues/15574
+        config.infrastructureLogging = { level: 'error' }
 
-      const rules = config.module.rules
-        .find((rule) => typeof rule.oneOf === 'object')
-        .oneOf.filter((rule) => Array.isArray(rule.use))
+        const rules = config.module.rules
+          .find((rule) => typeof rule.oneOf === 'object')
+          .oneOf.filter((rule) => Array.isArray(rule.use))
 
-      rules.forEach((rule) => {
-        rule.use.forEach((moduleLoader) => {
-          if (
-            moduleLoader.loader &&
-            moduleLoader.loader.includes('css-loader') &&
-            typeof moduleLoader.options.modules === 'object'
-          ) {
-            moduleLoader.options = {
-              ...moduleLoader.options,
-              modules: {
-                ...moduleLoader.options.modules,
-                mode: 'local' // https://github.com/webpack-contrib/css-loader#mode
+        rules.forEach((rule) => {
+          rule.use.forEach((moduleLoader) => {
+            if (
+              moduleLoader.loader &&
+              moduleLoader.loader.includes('css-loader') &&
+              typeof moduleLoader.options.modules === 'object'
+            ) {
+              moduleLoader.options = {
+                ...moduleLoader.options,
+                modules: {
+                  ...moduleLoader.options.modules,
+                  mode: 'local' // https://github.com/webpack-contrib/css-loader#mode
+                }
               }
             }
-          }
-        })
-      })
-
-      config.module.rules.push({
-        test: /\.mp4$/,
-        use: 'file-loader?name=static/media/[name].[ext]'
-      })
-
-      return config
-    },
-    async rewrites() {
-      const rewrites = []
-
-      for (const [slug, library] of Object.entries(libraries)) {
-        rewrites.push({
-          source: `/libraries/${slug}/pages/:page*`,
-          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/latest/pages/:page*`
+          })
         })
 
-        rewrites.push({
-          source: `/libraries/${slug}/:ref*/pages/:page*`,
-          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/pages/:page*`
+        config.module.rules.push({
+          test: /\.mp4$/,
+          use: 'file-loader?name=static/media/[name].[ext]'
         })
 
-        rewrites.push({
-          source: `/libraries/${slug}/assets`,
-          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/latest/assets`
-        })
+        return config
+      },
+      async rewrites() {
+        const rewrites = []
 
-        rewrites.push({
-          source: `/libraries/${slug}/:ref*/assets`,
-          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/assets`
-        })
+        for (const [slug, library] of Object.entries(libraries)) {
+          rewrites.push({
+            source: `/libraries/${slug}/pages/:page*`,
+            destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/latest/pages/:page*`
+          })
 
-        rewrites.push({
-          source: `/libraries/${slug}`,
-          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/latest`
-        })
+          rewrites.push({
+            source: `/libraries/${slug}/:ref*/pages/:page*`,
+            destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/pages/:page*`
+          })
 
-        rewrites.push({
-          source: `/libraries/${slug}/:ref*`,
-          destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
-        })
+          rewrites.push({
+            source: `/libraries/${slug}/assets`,
+            destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/latest/assets`
+          })
 
-        // legacy rewrites
-        rewrites.push({
-          source: '/data-visualization/:subpath*',
-          destination: '/collections/data-visualization/:subpath*'
-        })
+          rewrites.push({
+            source: `/libraries/${slug}/:ref*/assets`,
+            destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/:ref*/assets`
+          })
+
+          rewrites.push({
+            source: `/libraries/${slug}`,
+            destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/latest`
+          })
+
+          rewrites.push({
+            source: `/libraries/${slug}/:ref*`,
+            destination: `/libraries/${library.host}/${library.org}/${library.repo}/${slug}/:ref*`
+          })
+        }
+
+        return rewrites
       }
-
-      return rewrites
-    }
-  })
+    })
+  )
 )
 
 export default nextConfig

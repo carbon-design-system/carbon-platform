@@ -20,6 +20,9 @@ module.exports = {
         'object-storage',
         'icons',
         'logging',
+        'mdx-components',
+        'mdx-converter',
+        'mdx-processor',
         'mdx-sanitizer',
         'messaging',
         'micromanage',
@@ -34,7 +37,7 @@ module.exports = {
       'always',
       [
         'build', // Changes that affect how code is built (e.g. npm, tsconfig, Dockerfile, etc.)
-        'ci', // Changes to CI config files and scripts (e.g. GH Workflows, SonarCloud, etc.)
+        'ci', // Changes to CI config files and scripts (e.g. GH Workflows, SonarCloud, ESLint, etc.)
         'deps', // Changes to project dependencies
         'docs', // Documentation changes
         'feat', // A new feature (corresponds to a minor version)

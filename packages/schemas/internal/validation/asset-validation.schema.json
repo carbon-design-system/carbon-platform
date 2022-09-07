@@ -47,7 +47,7 @@
     },
     "tags": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "items": {
         "enum": [
           "content-block",
@@ -99,6 +99,10 @@
       "type": "string",
       "description": "Relative location of the asset's thumbnail image."
     },
+    "thumbnailSvg": {
+      "type": "string",
+      "description": "Asset's thumbnail image as an SVG string."
+    },
     "externalDocsUrl": {
       "type": "string",
       "description": "Absolute URL to externally-hosted documentation."
@@ -117,7 +121,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["codesandbox", "github", "storybook"],
+            "enum": ["codesandbox", "github", "storybook", "other"],
             "description": "Determines the display icon."
           },
           "name": {
@@ -162,6 +166,11 @@
         "accessibilityPath": {
           "description": "Path to the file, Github URL or path relative to carbon.yml.",
           "default": "./accessibility.mdx",
+          "type": "string"
+        },
+        "overviewPath": {
+          "description": "Path to the file, Github URL or path relative to carbon.yml.",
+          "default": "./overview.mdx",
           "type": "string"
         }
       }

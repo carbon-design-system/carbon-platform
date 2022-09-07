@@ -20,7 +20,7 @@ async function start() {
     autoAck: true // Remove messages immediately from the queue without explicit ack
   })
 
-  pm.bind<EventMessage>('log_logged')
+  await pm.bind<EventMessage>('log_logged')
 
   await pm.start()
 }

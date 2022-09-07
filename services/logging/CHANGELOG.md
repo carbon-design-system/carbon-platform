@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.38](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.37...@carbon-platform/logging@1.1.38) (2022-09-03)
+
+### [1.1.37](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.36...@carbon-platform/logging@1.1.37) (2022-09-01)
+
+### [1.1.36](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.35...@carbon-platform/logging@1.1.36) (2022-08-31)
+
+### [1.1.35](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.34...@carbon-platform/logging@1.1.35) (2022-08-30)
+
+### [1.1.34](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.33...@carbon-platform/logging@1.1.34) (2022-08-27)
+
+### [1.1.33](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.32...@carbon-platform/logging@1.1.33) (2022-08-25)
+
+
+### Misc. 🔮
+
+* **api:** fix sonarlint errors ([300ec78](https://github.com/carbon-design-system/carbon-platform/commit/300ec785f13b26883597b9df0f6e28d3deee903c))
+
+### [1.1.32](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.31...@carbon-platform/logging@1.1.32) (2022-08-24)
+
+### [1.1.31](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.30...@carbon-platform/logging@1.1.31) (2022-08-24)
+
+### [1.1.30](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.29...@carbon-platform/logging@1.1.30) (2022-08-20)
+
+
+### Bug Fixes 🐛
+
+* baseline module updates ([1a7ab2f](https://github.com/carbon-design-system/carbon-platform/commit/1a7ab2f74b9cd477c0f5d83e8f99a5e34f0668ed))
+
+### [1.1.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.28...@carbon-platform/logging@1.1.29) (2022-08-18)
+
+
+### Bug Fixes 🐛
+
+* **logging:** allow debug to be turned off ([bfdb039](https://github.com/carbon-design-system/carbon-platform/commit/bfdb0398ee6093e1088cc383481f5a4212213942))
+
+### [1.1.28](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.27...@carbon-platform/logging@1.1.28) (2022-08-17)
+
+### [1.1.27](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.26...@carbon-platform/logging@1.1.27) (2022-08-13)
+
+### [1.1.26](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.25...@carbon-platform/logging@1.1.26) (2022-08-06)
+
+### [1.1.25](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.24...@carbon-platform/logging@1.1.25) (2022-08-03)
+
+### [1.1.24](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.23...@carbon-platform/logging@1.1.24) (2022-07-30)
+
+
+### Bug Fixes 🐛
+
+* sonarcloud smells ([2b98c6a](https://github.com/carbon-design-system/carbon-platform/commit/2b98c6a896e27e77617786625ad7db43cb6a413a))
+
 ### [1.1.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.22...@carbon-platform/logging@1.1.23) (2022-07-29)
 
 ### [1.1.22](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.21...@carbon-platform/logging@1.1.22) (2022-07-23)

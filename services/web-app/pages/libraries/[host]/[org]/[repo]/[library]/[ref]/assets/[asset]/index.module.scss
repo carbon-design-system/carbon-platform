@@ -5,48 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use '@carbon/react/scss/breakpoint' as breakpoint;
-@use '@carbon/react/scss/spacing' as spacing;
+@use 'sass:map';
 @use '@carbon/react/scss/theme' as theme;
 @use '~styles/variables' as variables;
-@use 'sass:map';
 @use '@carbon/react/scss/utilities/convert' as convert;
-
-.dashboard {
-  margin-top: spacing.$spacing-07;
-  margin-bottom: spacing.$spacing-07;
-
-  @include breakpoint.breakpoint(lg) {
-    margin-top: spacing.$spacing-11;
-  }
-}
-
-.maintainer-icon {
-  @include breakpoint.breakpoint-down(md) {
-    right: spacing.$spacing-04;
-    left: auto;
-  }
-}
-
-.status-icon {
-  position: relative;
-  top: convert.rem(2px);
-  margin-right: spacing.$spacing-02;
-  margin-left: convert.rem(-1px);
-}
-
-// override carbon padding and max width
-.kits-button {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  max-width: none;
-  padding-right: spacing.$spacing-05;
-  @include breakpoint.breakpoint(lg) {
-    width: 50%;
-  }
-}
 
 .tabs-column {
   position: sticky;

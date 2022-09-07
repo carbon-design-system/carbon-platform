@@ -9,33 +9,41 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
-import slugify from 'slugify'
 
 import styles from './page-tabs.module.scss'
+
+const createTabs = ({ tabs }) => {
+  return tabs.map((tab, i) => {
+    return (
+      <Tab as="span" key={i}>
+        <Link href={tab.path}>
+          <a href={tab.path} className={styles['tab-link']}>
+            {tab.name}
+          </a>
+        </Link>
+      </Tab>
+    )
+  })
+}
+
+const getPathLeaf = (fullPath) => {
+  // Get the last piece of the path without the query string
+  return fullPath.split('/').pop().split('?')[0].split('#')[0]
+}
 
 const PageTabs = ({ className, tabs = [] }) => {
   const router = useRouter()
 
-  const currTabSlug = router.asPath.split('/').pop().split('?')[0]
+  const currTabSlug = getPathLeaf(router.asPath)
 
-  const currTabIndex = tabs.findIndex(
-    (tab) => slugify(tab.name, { strict: true, lower: true }) === currTabSlug
-  )
+  const currTabIndex = tabs.findIndex((tab) => getPathLeaf(tab.path) === currTabSlug)
 
   return (
     <Grid className={clsx(styles.container, className)} narrow>
       <Column sm={4} md={8} lg={12}>
         <Tabs defaultSelectedIndex={currTabIndex > 0 ? currTabIndex : 0}>
           <TabList aria-label="List of tabs" className={styles['tab-list']} selected>
-            {tabs.map((tab, i) => (
-              <Tab as="span" key={i}>
-                <Link href={tab.path}>
-                  <a href={tab.path} className={styles['tab-link']}>
-                    {tab.name}
-                  </a>
-                </Link>
-              </Tab>
-            ))}
+            {createTabs({ tabs, pathPrefix: currTabSlug })}
           </TabList>
         </Tabs>
       </Column>
@@ -48,7 +56,7 @@ PageTabs.propTypes = {
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      path: PropTypes.string
+      path: PropTypes.string.isRequired
     })
   )
 }

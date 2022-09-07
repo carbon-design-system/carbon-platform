@@ -5,12 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'sass:map';
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/utilities/convert' as convert;
+@use '../../styles/variables' as variables;
 
 .body {
   flex-grow: 1;
@@ -24,6 +26,7 @@
 
 .header-name {
   height: 100%;
+  white-space: nowrap;
   @include breakpoint.breakpoint(lg) {
     position: absolute;
   }
@@ -66,7 +69,7 @@
 .side-nav {
   @include breakpoint.breakpoint(lg) {
     position: fixed;
-    z-index: 3;
+    z-index: map.get(variables.$z-indexes, 'overlay');
     top: 0;
     left: 0;
     width: 16rem;
@@ -128,8 +131,7 @@
 
 .column-content {
   @include breakpoint.breakpoint-down(md) {
-    // override carbon 0.5px left and right margins in condensed nested grid
-    margin-right: 0;
+    // override carbon 0.5px left margin in condensed nested grid
     margin-left: 0;
   }
 }

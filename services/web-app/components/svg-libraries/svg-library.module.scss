@@ -1,10 +1,10 @@
+@use 'sass:map';
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
 @use '../../styles/variables' as variables;
-@use 'sass:map';
 @use '@carbon/react/scss/utilities/convert' as convert;
 
 .svg-page {
@@ -117,13 +117,6 @@
   @include breakpoint.breakpoint('md') {
     overflow: visible;
   }
-}
-
-.svg-category .category-title {
-  margin: 0;
-  margin-top: spacing.$spacing-11;
-  margin-left: spacing.$spacing-05;
-  color: theme.$text-primary;
 }
 
 // i.e. fallback
@@ -317,12 +310,6 @@ $svg-card-border: 1px solid theme.$border-subtle-01;
   text-decoration: underline;
 }
 
-.no-result h2 {
-  margin: 0;
-  margin-top: spacing.$spacing-11;
-  margin-left: spacing.$spacing-05;
-}
-
 .no-result p {
   max-width: convert.rem(400px);
   margin: 0;
@@ -345,4 +332,8 @@ $svg-card-border: 1px solid theme.$border-subtle-01;
 
 .icon-inverse {
   fill: theme.$icon-inverse;
+}
+
+.h2-container + * {
+  margin-top: 0;
 }

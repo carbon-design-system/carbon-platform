@@ -65,18 +65,15 @@ export const getUrlWithProtocol = (url) => {
 }
 
 /**
- * Determins if a given string is a valid http url
- * @param {string} urlString
- * @returns {boolean} true if valid url, false otherwise
+ * Converts string to url if valid
+ * @param {string} src
+ * @returns {URL | undefined}
  */
-export const isValidHttpUrl = (urlString) => {
-  let url
-
+export const createUrl = (src) => {
+  let result
   try {
-    url = new URL(urlString)
-  } catch (_) {
-    return false
-  }
+    result = new URL(src)
+  } catch {}
 
-  return url.protocol === 'http:' || url.protocol === 'https:'
+  return result
 }

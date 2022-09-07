@@ -57,7 +57,6 @@
   position: relative;
   display: flex;
   width: 100%;
-  padding-left: spacing.$spacing-05;
   grid-gap: 0;
 
   // overide carbon color
@@ -69,12 +68,17 @@
   :global(.cds--dropdown) {
     position: static;
     flex-grow: 1;
+    border: none;
   }
 
   // overide carbon max-width
   :global(.cds--list-box__field),
   :global(.cds--list-box__menu) {
     max-width: none;
+  }
+
+  @include breakpoint.breakpoint(md) {
+    padding-left: spacing.$spacing-05;
   }
 }
 

@@ -21,7 +21,11 @@
 .secondary-nav {
   // override carbon style to allow scroll abillty
   :global(.cds--tree--sm) {
-    overflow: scroll;
+    overflow: auto;
+  }
+
+  [class*='nav-tree_container'] {
+    margin-top: spacing.$spacing-03;
   }
 }
 
@@ -44,12 +48,13 @@
   transition: background motion.$duration-fast-02 motion.motion(standard, productive);
 
   &:hover {
-    background: theme.$layer-hover;
+    background: transparent;
     text-decoration: none;
   }
 
   &:active {
-    color: theme.$text-primary;
+    background: transparent;
+    color: theme.$link-primary-hover;
   }
 
   &:focus {
@@ -68,7 +73,6 @@
 }
 
 .heading {
-  height: spacing.$spacing-11;
   padding: spacing.$spacing-08 spacing.$spacing-05 spacing.$spacing-03;
   border-top: 1px solid theme.$border-subtle;
   border-bottom: 1px solid theme.$border-subtle;

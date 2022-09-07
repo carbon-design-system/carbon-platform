@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.42](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.41...@carbon-platform/data-graph@0.1.42) (2022-09-03)
+
+### [0.1.41](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.40...@carbon-platform/data-graph@0.1.41) (2022-09-01)
+
+### [0.1.40](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.39...@carbon-platform/data-graph@0.1.40) (2022-08-31)
+
+### [0.1.39](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.38...@carbon-platform/data-graph@0.1.39) (2022-08-30)
+
+### [0.1.38](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.37...@carbon-platform/data-graph@0.1.38) (2022-08-27)
+
+### [0.1.37](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.36...@carbon-platform/data-graph@0.1.37) (2022-08-25)
+
+
+### Misc. 🔮
+
+* **api:** fix sonarlint errors ([300ec78](https://github.com/carbon-design-system/carbon-platform/commit/300ec785f13b26883597b9df0f6e28d3deee903c))
+
+### [0.1.36](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.35...@carbon-platform/data-graph@0.1.36) (2022-08-24)
+
+### [0.1.35](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.34...@carbon-platform/data-graph@0.1.35) (2022-08-24)
+
+
+### Misc. 🔮
+
+* update node modules and related documentation ([7a7a955](https://github.com/carbon-design-system/carbon-platform/commit/7a7a955ed7b12220ac79cf321c5f5e2543529e17))
+
+### [0.1.34](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.33...@carbon-platform/data-graph@0.1.34) (2022-08-20)
+
+
+### Bug Fixes 🐛
+
+* baseline module updates ([1a7ab2f](https://github.com/carbon-design-system/carbon-platform/commit/1a7ab2f74b9cd477c0f5d83e8f99a5e34f0668ed))
+
+### [0.1.33](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.32...@carbon-platform/data-graph@0.1.33) (2022-08-18)
+
+### [0.1.32](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.31...@carbon-platform/data-graph@0.1.32) (2022-08-17)
+
+### [0.1.31](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.30...@carbon-platform/data-graph@0.1.31) (2022-08-13)
+
+### [0.1.30](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.29...@carbon-platform/data-graph@0.1.30) (2022-08-06)
+
+### [0.1.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.28...@carbon-platform/data-graph@0.1.29) (2022-08-03)
+
+### [0.1.28](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.27...@carbon-platform/data-graph@0.1.28) (2022-07-30)
+
+
+### Bug Fixes 🐛
+
+* sonarcloud smells ([2b98c6a](https://github.com/carbon-design-system/carbon-platform/commit/2b98c6a896e27e77617786625ad7db43cb6a413a))
+
 ### [0.1.27](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.26...@carbon-platform/data-graph@0.1.27) (2022-07-29)
 
 ### [0.1.26](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.25...@carbon-platform/data-graph@0.1.26) (2022-07-23)

@@ -6,13 +6,16 @@
  */
 import { Column, Grid } from '@carbon/react'
 
+import H1 from '../markdown/h1'
 import styles from './page-not-found.module.scss'
 
 export const PageNotFound = () => {
   return (
-    <Grid className={styles.grid}>
+    <Grid>
       <Column className={styles.column} sm={4} md={8} lg={6}>
-        <h1 className={styles.title}>Page not found.</h1>
+        <H1 headingClassName={styles.title} className={styles['h1-container']}>
+          Page not found.
+        </H1>
       </Column>
     </Grid>
   )

@@ -8,7 +8,10 @@ import test from 'ava'
 import { of as observableOf } from 'rxjs'
 
 import { Logging } from '../../../main/logging/index.js'
-import { RequestLogInterceptor } from '../../../main/microservice/interceptors/request-log-interceptor.js'
+import {
+  __test__,
+  RequestLogInterceptor
+} from '../../../main/microservice/interceptors/request-log-interceptor.js'
 
 const logging = new Logging({ component: 'TestComponent' })
 
@@ -152,4 +155,30 @@ test('it returns a well-formed rpc log message', (t) => {
   )
 
   t.is(logText, 'MyClass#handlerMethod in: {"it":"is some data"} out: string 123ms')
+})
+
+test('it truncates long rpc log messages', (t) => {
+  const dataToTruncate = { tooLong: '' }
+  for (let i = 0; i < 500; i++) {
+    dataToTruncate.tooLong += 'a'
+  }
+
+  const logText = RequestLogInterceptor.buildRpcLogText(
+    {
+      switchToRpc: () => ({
+        getData: () => dataToTruncate
+      }),
+      getClass: () => ({ name: 'MyClass' }),
+      getHandler: () => ({ name: 'handlerMethod' })
+    } as any,
+    'result is a string',
+    '123'
+  )
+
+  t.is(
+    logText,
+    'MyClass#handlerMethod in: ' +
+      JSON.stringify(dataToTruncate).substring(0, __test__.MAX_INPUT_DATA_LOG_SIZE) +
+      '... (truncated) out: string 123ms'
+  )
 })

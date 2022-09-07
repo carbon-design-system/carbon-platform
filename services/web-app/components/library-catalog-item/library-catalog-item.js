@@ -1,21 +1,21 @@
-import { AspectRatio, Column, Grid } from '@carbon/react'
-import { Events, Scales } from '@carbon/react/icons'
-import { get, isEmpty } from 'lodash'
-import Link from 'next/link'
-import { libraryPropTypes } from 'types'
-
-import { teams } from '@/data/teams'
-import { getLicense } from '@/utils/schema'
-import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
-
-import styles from './library-catalog-item.module.scss'
-
 /*
  * Copyright IBM Corp. 2022, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { AspectRatio, Column, Grid } from '@carbon/react'
+import { Events, Scales } from '@carbon/react/icons'
+import isEmpty from 'lodash/isEmpty'
+import Link from 'next/link'
+
+import { teams } from '@/data/teams'
+import { libraryPropTypes } from '@/types'
+import { getLicense } from '@/utils/schema'
+import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
+
+import styles from './library-catalog-item.module.scss'
+
 const LibraryCatalogItem = ({ library = {} }) => {
   const isMd = useMatchMedia(mediaQueries.md)
 
@@ -23,7 +23,7 @@ const LibraryCatalogItem = ({ library = {} }) => {
 
   const { name, description } = library.content
   const { maintainer } = library.params
-  const maintainerName = get(teams, `${maintainer}.name`)
+  const maintainerName = teams[maintainer]?.name
 
   const maintainerTitle = teams[maintainer]
     ? `Maintained by ${teams[maintainer].name}`

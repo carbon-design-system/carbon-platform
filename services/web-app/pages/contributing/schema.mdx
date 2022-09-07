@@ -22,6 +22,7 @@ and other services.
 <AnchorLink>Asset schema</AnchorLink>
 <AnchorLink>Design kit schema</AnchorLink>
 <AnchorLink>Shared schemas</AnchorLink>
+<AnchorLink>Schema references</AnchorLink>
 
 </AnchorLinks>
 
@@ -183,7 +184,7 @@ designKits:
 | `packageJsonPath` | Relative location of the library's `package.json`. This is used to reference the library's license, version, code package, and other information.                                                                                                                       | Optional | String  | No          | `/package.json`           | –            |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                                                                                                                                        | Optional | String  | No          | –                         | –            |
 | `demoLinks`       | Links to demo sites. See [demo links](#demo-links).                                                                                                                                                                                                                     | Optional | Array   | No          | –                         | –            |
-| `designKits`      | Design kits that contain the design counterpart to assets in this library. See [design kit schema](#design-kit-schema) for more info.                                                                                                                                   | Optional | Object  | Yes         | –                         | –            |
+| `designKits`      | Design kits that contain the design counterpart to assets in this library, items can be [referenced](#schema-references). See [design kit schema](#design-kit-schema) for more info.                                                                                    | Optional | Object  | Yes         | –                         | –            |
 | `noIndex`         | If set to `true`, the global catalogs will exclude the library.                                                                                                                                                                                                         | Optional | Boolean | No          | `false`                   | –            |
 | `navData`         | Links to documentation pages. See [nav data](#nav-data).                                                                                                                                                                                                                | Optional | Array   | No          | -                         | –            |
 
@@ -259,6 +260,7 @@ assets:
       stylePath: './components/accordion/styles.mdx'
       codePath: './components/accordion/code.mdx'
       accessibilityPath: './components/accordion/accessibility.mdx'
+      overviewPath: './components/accordion/overview.mdx'
 ```
 
 ### Asset keys
@@ -273,7 +275,7 @@ assets:
 | `tags`            | Asset secondary categorizations. See [asset tags](#component-tags).                                                                                      | Optional | Array            | Yes         | –             | `content-block`, `content-element`, `contextual-navigation`, `data-display`, `data-visualization`, `form`, `input-control`, `media`, `shell`, `structural-navigation`, `system-feedback`, `comparison`, `connection`, `correlation`, `geographic-overlay`, `geospatial-distortion`, `part-to-whole`, `trend`, `hook`, `service`, `utility` |
 | `framework`       | Asset primary technology dependency. See [asset framework](#asset-framework).                                                                            | Optional | String           | No          | `design-only` | `angular`, `react`, `react-native`, `svelte`, `vanilla`, `vue`, `web-component`, `design-only`                                                                                                                                                                                                                                             |
 | `platform`        | Runtime where the asset can be used. See [asset platform](#asset-platform).                                                                              | Optional | String           | Yes         | `web`         | `cross-platform`, `web`                                                                                                                                                                                                                                                                                                                    |
-| `thumbnailPath`   | Relative location of the asset's thumbnail image.                                                                                                        | Optional | String           | Yes         | –             | –                                                                                                                                                                                                                                                                                                                                          |
+| `thumbnailPath`   | Relative location of the asset's thumbnail image. Only SVGs are supported.                                                                               | Optional | String           | Yes         | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `externalDocsUrl` | Absolute URL to externally-hosted documentation.                                                                                                         | Optional | String           | No          | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `demoLinks`       | Links to demo sites. See [demo links](#demos-links).                                                                                                     | Optional | Array            | No          | –             | –                                                                                                                                                                                                                                                                                                                                          |
 | `noIndex`         | If set to `true`, the global catalogs will exclude the asset.                                                                                            | Optional | Boolean          | No          | `false`       | –                                                                                                                                                                                                                                                                                                                                          |
@@ -370,12 +372,13 @@ key, a path should be included.
 
 Currently supported document keys are:
 
-| Document            | Description                                                       | Required | Type   | Inheritable | Default             | Valid values                                                                                                                                                            |
-| ------------------- | ----------------------------------------------------------------- | -------- | ------ | ----------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `usagePath`         | When to use the asset and how it behaves.                         | Optional | String | Yes         | ./usage.mdx         | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
-| `stylePath`         | Asset structure and design specifications.                        | Optional | String | Yes         | ./style.mdx         | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
-| `codePath`          | Asset API documentation (or where to find it).                    | Optional | String | Yes         | ./code.mdx          | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
-| `accessibilityPath` | Asset accessibility considerations when designing and developing. | Optional | String | Yes         | ./accessibility.mdx | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| Document            | Description                                                                                   | Required | Type   | Inheritable | Default             | Valid values                                                                                                                                                            |
+| ------------------- | --------------------------------------------------------------------------------------------- | -------- | ------ | ----------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `usagePath`         | When to use the asset and how it behaves.                                                     | Optional | String | Yes         | ./usage.mdx         | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| `stylePath`         | Asset structure and design specifications.                                                    | Optional | String | Yes         | ./style.mdx         | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| `codePath`          | Asset API documentation (or where to find it).                                                | Optional | String | Yes         | ./code.mdx          | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| `accessibilityPath` | Asset accessibility considerations when designing and developing.                             | Optional | String | Yes         | ./accessibility.mdx | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
+| `overviewPath`      | This conent will render underneath the asset details dashboard, live demo usually lives here. | Optional | String | Yes         | ./overview.mdx      | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li> <li>Path relative to the carbon.yml file location</li></ul> |
 
 ```yml path="Example carbon.yml"
 # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
@@ -385,6 +388,7 @@ docs:
   stylePath: './components/accordion/styles.mdx'
   codePath: './components/accordion/code.mdx'
   accessibilityPath: './components/accordion/accessibility.mdx'
+  overviewPath: './components/accordion/overview.mdx'
 ```
 
 ## Design kit schema
@@ -429,6 +433,9 @@ designKits:
 | `action`      | Determines the action icon.                                                                                                                                                                                                                                                   | Optional | String           | `link`  | `download`, `link`                                                       |
 | `license`     | Design kit license.                                                                                                                                                                                                                                                           | Optional | String           | –       | `apache-2.0`, `ibm-internal`, `mit`                                      |
 | `noIndex`     | If set to `true`, the global catalogs will exclude the kit.                                                                                                                                                                                                                   | Optional | Boolean          | `false` | –                                                                        |
+
+Additionally, design kits defined **inside library objects** can be specified as a schema reference.
+See [schema references](#schema-references).
 
 ### Design kit type
 
@@ -495,12 +502,12 @@ demoLinks:
 
 For the value of the `demoLinks` array, you can set the following keys.
 
-| Demo link | Description                  | Required | Type   | Default | Valid values                         |
-| --------- | ---------------------------- | -------- | ------ | ------- | ------------------------------------ |
-| `type`    | Determines the display icon. | Required | String | –       | `codesandbox`, `github`, `storybook` |
-| `name`    | Display name.                | Required | String | –       | –                                    |
-| `action`  | Determines the action icon.  | Optional | String | `link`  | `download`, `link`                   |
-| `url`     | Link to the resource.        | Required | String | –       | –                                    |
+| Demo link | Description                  | Required | Type   | Default | Valid values                                  |
+| --------- | ---------------------------- | -------- | ------ | ------- | --------------------------------------------- |
+| `type`    | Determines the display icon. | Required | String | –       | `codesandbox`, `github`, `storybook`, `other` |
+| `name`    | Display name.                | Required | String | –       | –                                             |
+| `action`  | Determines the action icon.  | Optional | String | `link`  | `download`, `link`                            |
+| `url`     | Link to the resource.        | Required | String | –       | –                                             |
 
 ### Identifiers
 
@@ -535,3 +542,83 @@ For the value of the `navData` array, you can set the following keys.
 | `path`   | Path to the file.                                            | Required | String  | –       | <ul><li>Github URL according to the `https://{host}/{org}/{repo}/blob/{branch}/{path-to-file}` format </li><li>Path relative to the carbon.yml file location</li></ul> |
 | `items`  | Second level of navigation.                                  | Optional | Array   | –       | –                                                                                                                                                                      |
 | `hidden` | If set to true, the item will be hidden from the navigation. | Optional | Boolean | `false` | –                                                                                                                                                                      |
+
+## Schema references
+
+<AnchorLinks small>
+
+<AnchorLink>Absolute references</AnchorLink>
+<AnchorLink>Relative references</AnchorLink>
+<AnchorLink>Local references</AnchorLink>
+
+</AnchorLinks>
+
+For certain resource keys, platform allows the object to be defined as a reference to another
+existing resource instead of writing the actual value:
+
+```yml path="Example carbon.yml"
+designKits:
+  sample-design-kit:
+    $ref: './design-kits.yml#/designKits/sample-design-kit'
+```
+
+instead of:
+
+```yml path="Example carbon.yml"
+designKits:
+  sample-design-kit:
+    name: Sample Design Kit
+    tool: sketch
+    type: ui
+    status: stable
+    url: sketch://something
+    action: link
+```
+
+There are 3 ways you can define references in Carbon: absolute, relative and local references.
+
+### Absolute references
+
+An absolute URL that points to a resource contained in a yml file , e.g.:
+`https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch`
+
+```yml path="Example carbon.yml"
+designKits:
+  sample-design-kit:
+    $ref: 'https://unpkg.com/@carbon-platform/resources/carbon.yml#/designKits/carbon-g10-sketch'
+```
+
+### Relative references
+
+A relative path to a resource contained in a yml file within the current repo, e.g.:
+`./design-kits.yml#/designKits/sample-design-kit`
+
+```yml path="Example carbon.yml"
+designKits:
+  sample-design-kit:
+    $ref: './design-kits.yml#/designKits/sample-design-kit'
+```
+
+### Local file references
+
+Reference to a resource contained in the same file where the referencing property is being defined,
+e.g.: `#/designKits/sample-design-kit`
+
+```yml path="Example carbon.yml"
+library:
+  ...
+  designKits:
+    sample-design-kit:
+      $ref: '#/designKits/sample-design-kit'
+designKits:
+  sample-design-kit:
+    name: Sample Design Kit
+    tool: sketch
+    type: ui
+    status: stable
+    url: sketch://something
+    action: link
+```
+
+Note that it must be explicitly identified in the schema that a certain object or property accepts
+references for this to work.

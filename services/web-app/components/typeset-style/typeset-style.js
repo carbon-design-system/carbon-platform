@@ -7,7 +7,7 @@
 import { baseFontSize, breakpoints as carbonBreakpoints } from '@carbon/elements'
 import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
-import { findLastIndex, values } from 'lodash'
+import findLastIndex from 'lodash/findLastIndex'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -15,6 +15,7 @@ import { typeScale } from '@/data/type-scale'
 import { typeSets } from '@/data/type-sets'
 import useEventListener from '@/utils/use-event-listener'
 
+import H4 from '../markdown/h4'
 import InputRange from './input-range'
 import StickyContainer from './sticky-container'
 import TypesetExample from './typeset-example'
@@ -29,10 +30,10 @@ const breakpoints = {
 }
 
 const nextLargerBreakpointPx = (viewportWidth) =>
-  values(breakpoints)[indexOfCurrentBreakpoint(viewportWidth) + 1]
+  Object.values(breakpoints)[indexOfCurrentBreakpoint(viewportWidth) + 1]
 
 const indexOfCurrentBreakpoint = (viewportWidth) =>
-  findLastIndex(values(breakpoints), (width) => viewportWidth >= width)
+  findLastIndex(Object.values(breakpoints), (width) => viewportWidth >= width)
 
 const isWithinBreakpoint = (viewportWidth, currentBreakpoint) => {
   if (viewportWidth === currentBreakpoint) return true
@@ -141,12 +142,12 @@ const TypesetStyle = ({
           .map((typeset, i) => (
             <>
               {header && (
-                <h4>
+                <H4 headingClassName={styles['typestyle-header']} narrow>
                   {typeset
                     .replace(/fixed/g, '')
                     .replace(/([a-z])([A-Z])/g, '$1 $2')
                     .toLowerCase()}
-                </h4>
+                </H4>
               )}
               <TypesetExample
                 key={i}

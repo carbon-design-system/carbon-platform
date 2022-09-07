@@ -5,16 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { get, isEqual, set } from 'lodash'
+import get from 'lodash/get'
+import isEqual from 'lodash/isEqual'
+import set from 'lodash/set'
 import minimatch from 'minimatch'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { libraryPropTypes } from 'types'
 
 import AssetCatalogItem from '@/components/asset-catalog-item'
 import Catalog from '@/components/catalog'
 import { getFilters } from '@/data/filters'
 import { sortItems } from '@/data/sort'
+import { libraryPropTypes } from '@/types'
 import { valuesIntersect } from '@/utils/array'
 import {
   assetSortComparator,
@@ -28,18 +30,24 @@ import useQueryState from '@/utils/use-query-state'
 
 /**
  * Returns true if an asset should be included in the catalog results given the filter.
- * @param {import('../../typedefs').Asset} asset
+ * @param {import('@/typedefs').Asset} asset
  * @param {object} filter
  * @returns {boolean}
  */
 const assetIsInFilter = (asset, filter) => {
   for (const [key, value] of Object.entries(filter)) {
-    if (key === 'maintainer') {
-      if (!value.includes(asset.params[key])) return false
-    } else if (key === 'tags') {
-      if (!valuesIntersect(value, asset.content[key])) return false
-    } else {
-      if (!value.includes(asset.content[key])) return false
+    switch (key) {
+      case 'maintainer':
+        if (!value.includes(asset.params[key])) return false
+        break
+      case 'tags':
+        if (!valuesIntersect(value, asset.content[key])) return false
+        break
+      case 'status':
+        if (!value.includes(asset.statusKey)) return false
+        break
+      default:
+        if (!value.includes(asset.content[key])) return false
     }
   }
 
@@ -48,8 +56,8 @@ const assetIsInFilter = (asset, filter) => {
 
 /**
  * Takes an array of assets and returns only id-unique assets (removes duplicate IDs)
- * @param {import('../../typedefs').Asset[]} assets list of assets to remove duplicates from
- * @returns {import('../../typedefs').Asset[]} array of unique assets
+ * @param {import('@/typedefs').Asset[]} assets list of assets to remove duplicates from
+ * @returns {import('@/typedefs').Asset[]} array of unique assets
  */
 const getUniqueAssetsById = (assets) => {
   return assets.filter(
@@ -60,9 +68,9 @@ const getUniqueAssetsById = (assets) => {
 /**
  * Finds and returns assets that match a search criteria (name or description)
  * from an array of assets
- * @param {import('../../typedefs').Asset[]} assets list of assets to filter
+ * @param {import('@/typedefs').Asset[]} assets list of assets to filter
  * @param {string} search search string to match assets against
- * @returns {import('../../typedefs').Asset[]} array of assets that match search criteria
+ * @returns {import('@/typedefs').Asset[]} array of assets that match search criteria
  */
 const filterAssetsBysearch = (assets, search) => {
   return assets.filter((asset) => {
@@ -79,18 +87,17 @@ const filterAssetsBysearch = (assets, search) => {
   })
 }
 
-const isCanonicalLibAsset = (asset) =>
-  get(asset, 'library.content.id') === getCanonicalLibraryId(asset)
+const isCanonicalLibAsset = (asset) => asset?.library?.content?.id === getCanonicalLibraryId(asset)
 
 /**
  * Sorts and filters an array of assets given a filter, sort key, and search query. Until a better
  * solution is in place, the search is simply a filter to remove assets that don't match any part of
  * the name or description.
- * @param {import('../../typedefs').Asset[]} assets list of assets to filter
+ * @param {import('@/typedefs').Asset[]} assets list of assets to filter
  * @param {object} filter filter object to apply to assets
  * @param {string} sort sort type to apply to assets
  * @param {string} search search string to match assets against
- * @returns {import('../../typedefs').Asset[]} array of filtered assets
+ * @returns {import('@/typedefs').Asset[]} array of filtered assets
  */
 const getFilteredAssets = (assets, filter, sort, search) => {
   const skippedAssets = []
@@ -329,5 +336,5 @@ AssetsCatalog.propTypes = {
   /**
    * type of catalog element.
    */
-  type: PropTypes.oneOf(['element', 'function', 'pattern', 'template']).isRequired
+  type: PropTypes.oneOf(['component', 'element', 'function', 'pattern', 'template']).isRequired
 }

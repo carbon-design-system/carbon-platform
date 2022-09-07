@@ -4,30 +4,37 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Button, Column, Grid } from '@carbon/react'
-import { ArrowRight } from '@carbon/react/icons'
+import { Button, ButtonSet, Column, Grid, Link as CarbonLink } from '@carbon/react'
+import { ArrowRight, Launch } from '@carbon/react/icons'
 import { Svg32Github, Svg32Library, Svg64Community } from '@carbon-platform/icons'
+import { AnchorLink, AnchorLinks } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
-import { get } from 'lodash'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
-import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from 'types'
 
 import CardGroup from '@/components/card-group'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
-import ExternalLinks from '@/components/external-links'
-import { H2 } from '@/components/markdown'
+import DemoLinks from '@/components/demo-links'
+import { H1, H2 } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import PageDescription from '@/components/page-description'
 import PageHeader from '@/components/page-header'
 import ResourceCard from '@/components/resource-card'
 import { assetsNavData } from '@/data/nav-data'
+import { pageHeaders } from '@/data/page-headers'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
-import { getLibraryData, getLibraryNavData, getLibraryParams } from '@/lib/github'
+import {
+  getLibraryData,
+  getLibraryNavData,
+  getLibraryParams,
+  getLibraryRelatedLibs
+} from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
+import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from '@/types'
 import { getLicense } from '@/utils/schema'
 
 import styles from './index.module.scss'
@@ -47,7 +54,7 @@ const Library = ({ libraryData, params, navData }) => {
       <Grid>
         <Column sm={4} md={8} lg={16}>
           <div className={pageStyles.content}>
-            <h1>Loading...</h1>
+            <H1>Loading...</H1>
           </div>
         </Column>
       </Grid>
@@ -55,6 +62,8 @@ const Library = ({ libraryData, params, navData }) => {
   }
 
   const { name, description } = libraryData.content
+
+  const pageHeader = pageHeaders?.library ?? {}
 
   const seo = {
     title: name,
@@ -66,13 +75,7 @@ const Library = ({ libraryData, params, navData }) => {
 
   const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
 
-  let externalDocsLink
-  if (libraryData.content.externalDocsUrl) {
-    externalDocsLink = {
-      name: 'External docs',
-      url: libraryData.content.externalDocsUrl
-    }
-  }
+  const designKitPath = `/libraries/${params.library}/${params.ref}/design-kits`
 
   const getVersion = () => {
     if (params.ref === 'main' || params.ref === 'master' || params.ref === 'latest') {
@@ -102,75 +105,121 @@ const Library = ({ libraryData, params, navData }) => {
     )
   }
 
+  const relatedLibraries = libraryData.content.otherLibraries
+
+  const relatedLibrariesLinks = relatedLibraries
+    .sort((a, b) => a.content.name.localeCompare(b.content.name))
+    .map((item, index) => (
+      <>
+        {index !== 0 && ', '}
+        <Link href={`/libraries/${item.params.library}`} passHref>
+          <CarbonLink size="lg">{item.content.name}</CarbonLink>
+        </Link>
+      </>
+    ))
+
   return (
     <>
       <NextSeo {...seo} />
       <Grid>
         <Column sm={4} md={8} lg={12}>
-          <PageHeader title={seo.title} />
+          <PageHeader
+            bgColor={pageHeader?.bgColor}
+            title={seo.title}
+            pictogram={pageHeader?.icon}
+          />
         </Column>
-        <Column sm={4} md={6} lg={8}>
+        <Column sm={4} md={8} lg={8}>
           <PageDescription className={styles['page-description']}>
             {seo.description}
           </PageDescription>
+          <AnchorLinks>
+            <AnchorLink>Dashboard</AnchorLink>
+            {libraryData.content.demoLinks && <AnchorLink>Demo links</AnchorLink>}
+            <AnchorLink>Resources</AnchorLink>
+          </AnchorLinks>
         </Column>
         <Column sm={4} md={8} lg={12}>
-          <Dashboard className={styles.dashboard}>
-            <Column className={dashboardStyles.column} sm={4}>
-              <DashboardItem aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}>
-                <dl>
-                  <dt className={dashboardStyles.label}>Version</dt>
-                  <dd className={dashboardStyles['label--large']}>{getVersion()}</dd>
-                </dl>
-                {MaintainerIcon && (
-                  <MaintainerIcon
-                    className={clsx(
-                      dashboardStyles['position-bottom-left'],
-                      styles['maintainer-icon']
-                    )}
-                    size={64}
-                  />
-                )}
-              </DashboardItem>
-            </Column>
-            <Column className={dashboardStyles.column} sm={4} lg={8}>
-              <DashboardItem aspectRatio={{ sm: '1x1', lg: 'none', xlg: 'none' }}>
-                <Grid as="dl" className={dashboardStyles.subgrid}>
-                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
-                    <dt className={dashboardStyles.label}>Maintainer</dt>
-                    <dd className={dashboardStyles.meta}>
-                      {get(teams, `[${libraryData.params.maintainer}].name`, 'Community')}
-                    </dd>
-                  </Column>
-                  <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
-                    <dt className={dashboardStyles.label}>License</dt>
-                    <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
-                  </Column>
-                  <Column
-                    sm={4}
-                    className={clsx(dashboardStyles.subcolumn, dashboardStyles['subcolumn--links'])}
-                  >
-                    <dt className={clsx(dashboardStyles.label)}>Links</dt>
-                    <dd className={dashboardStyles.meta}>
-                      <ExternalLinks
-                        links={[...get(libraryData, 'content.demoLinks', []), externalDocsLink]}
-                      />
-                    </dd>
-                  </Column>
-                  <Button
-                    className={styles['versions-button']}
-                    onClick={() => {
-                      router.push(assetsPath)
-                    }}
-                  >
-                    View assets
-                    <ArrowRight size={16} />
-                  </Button>
-                </Grid>
-              </DashboardItem>
-            </Column>
-          </Dashboard>
+          <div id="dashboard">
+            <Dashboard className={styles.dashboard}>
+              <Column className={dashboardStyles.column} sm={4}>
+                <DashboardItem aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}>
+                  <dl>
+                    <dt className={dashboardStyles.label}>Version</dt>
+                    <dd className={dashboardStyles['label--large']}>{getVersion()}</dd>
+                  </dl>
+                  {MaintainerIcon && (
+                    <MaintainerIcon
+                      className={clsx(
+                        dashboardStyles['position-bottom-left'],
+                        styles['maintainer-icon']
+                      )}
+                      size={64}
+                    />
+                  )}
+                </DashboardItem>
+              </Column>
+              <Column className={dashboardStyles.column} sm={4} lg={8}>
+                <DashboardItem aspectRatio={{ sm: '3x4', md: '3x4', lg: 'none', xlg: 'none' }}>
+                  <Grid as="dl" className={dashboardStyles.subgrid}>
+                    <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                      <dt className={dashboardStyles.label}>Maintainer</dt>
+                      <dd className={dashboardStyles.meta}>
+                        {teams[libraryData.params.maintainer]?.name || 'Community'}
+                      </dd>
+                    </Column>
+                    <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                      <dt className={dashboardStyles.label}>License</dt>
+                      <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
+                    </Column>
+                    <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                      <dt className={dashboardStyles.label}>Related libraries</dt>
+                      <dd className={dashboardStyles.meta}>
+                        {relatedLibraries.length > 0 ? relatedLibrariesLinks : '–'}
+                      </dd>
+                    </Column>
+                    <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                      <dt className={dashboardStyles.label}>Design files</dt>
+                      <dd className={dashboardStyles.meta}>
+                        <Link href={designKitPath} passHref>
+                          <CarbonLink size="lg">View compatible kits</CarbonLink>
+                        </Link>
+                      </dd>
+                    </Column>
+                  </Grid>
+
+                  <ButtonSet className={dashboardStyles['button-set']}>
+                    <Button
+                      className={dashboardStyles['dashboard-button']}
+                      onClick={() => {
+                        router.push(assetsPath)
+                      }}
+                    >
+                      View library assets
+                      <ArrowRight size={16} />
+                    </Button>{' '}
+                    <Button
+                      kind="tertiary"
+                      className={dashboardStyles['dashboard-button']}
+                      href={libraryData.content.externalDocsUrl}
+                    >
+                      View library docs
+                      <Launch size={16} />
+                    </Button>
+                  </ButtonSet>
+                </DashboardItem>
+              </Column>
+            </Dashboard>
+          </div>
         </Column>
+        {libraryData.content.demoLinks && (
+          <Column sm={4} md={8} lg={8}>
+            <section>
+              <H2>Demo links</H2>
+              <DemoLinks links={libraryData?.content?.demoLinks || []} />
+            </section>
+          </Column>
+        )}
         <Column sm={4} md={8} lg={8}>
           <section>
             <H2>Resources</H2>
@@ -230,6 +279,8 @@ export const getServerSideProps = async ({ params }) => {
       }
     }
   }
+
+  libraryData.content.otherLibraries = await getLibraryRelatedLibs(libraryData)
 
   return {
     props: {

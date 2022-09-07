@@ -2,6 +2,68 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.7...@carbon-platform/icons@0.1.8) (2022-09-03)
+
+
+### Bug Fixes 🐛
+
+* **icons:** replace adobe xd icon ([8376937](https://github.com/carbon-design-system/carbon-platform/commit/83769376ce82b6a709f403d2ac6084710913009a))
+
+### [0.1.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.6...@carbon-platform/icons@0.1.7) (2022-09-01)
+
+
+### Features 🌟
+
+* add custom picto for a11y team ([717f18c](https://github.com/carbon-design-system/carbon-platform/commit/717f18ceb3738a1fa9037edfbc15793018a0f185))
+
+### [0.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.5...@carbon-platform/icons@0.1.6) (2022-08-27)
+
+
+### Features 🌟
+
+* **icons:** add adobe xd ([164fea1](https://github.com/carbon-design-system/carbon-platform/commit/164fea1454ebdd640ece31fed35d4b2fbd05aac9)), closes [#1000](https://github.com/carbon-design-system/carbon-platform/issues/1000)
+* **icons:** add axure icon ([7755249](https://github.com/carbon-design-system/carbon-platform/commit/775524981f452093e44b8502da3a1220cdea3549)), closes [#1000](https://github.com/carbon-design-system/carbon-platform/issues/1000)
+* **icons:** add figma ([adc5019](https://github.com/carbon-design-system/carbon-platform/commit/adc501980be23ca573f87f87c95b95f5fef583d6)), closes [#1000](https://github.com/carbon-design-system/carbon-platform/issues/1000)
+* **icons:** add figma invision and sketch icons ([e25b8bb](https://github.com/carbon-design-system/carbon-platform/commit/e25b8bb2ad41adc5be1f9d117ed7d55c5c723826)), closes [#1000](https://github.com/carbon-design-system/carbon-platform/issues/1000)
+* **icons:** add icons ([cc41ecd](https://github.com/carbon-design-system/carbon-platform/commit/cc41ecdc954e284572e99cc6321ea0a7fd5d3734))
+* **icons:** axure ([ca724b5](https://github.com/carbon-design-system/carbon-platform/commit/ca724b5c3b0e6d26f8d70d02f42bb10c3c73258f)), closes [#1000](https://github.com/carbon-design-system/carbon-platform/issues/1000)
+* **web-app:** update landing page to new design ([cbecdfe](https://github.com/carbon-design-system/carbon-platform/commit/cbecdfe61310f609bd4e292b0c8f5e4629c434dc))
+
+
+### Bug Fixes 🐛
+
+* merge conflicts ([9c65621](https://github.com/carbon-design-system/carbon-platform/commit/9c656210b2f7ee1b95b5a7b4874675ff88d36f1e))
+* revert icon changes ([7ba8238](https://github.com/carbon-design-system/carbon-platform/commit/7ba823888c32535edebccde2f15bbb3a64a96f87))
+
+### [0.1.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.4...@carbon-platform/icons@0.1.5) (2022-08-24)
+
+### [0.1.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.3...@carbon-platform/icons@0.1.4) (2022-08-20)
+
+
+### Bug Fixes 🐛
+
+* baseline module updates ([1a7ab2f](https://github.com/carbon-design-system/carbon-platform/commit/1a7ab2f74b9cd477c0f5d83e8f99a5e34f0668ed))
+
+
+### Features 🌟
+
+* **mdx-components:** add storybook and 2 components ([532b421](https://github.com/carbon-design-system/carbon-platform/commit/532b4219420e951f44a54ce2ba21fcac5c4e070f))
+
+### [0.1.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.2...@carbon-platform/icons@0.1.3) (2022-08-13)
+
+
+### Features 🌟
+
+* updated get started page and path ([548cf5a](https://github.com/carbon-design-system/carbon-platform/commit/548cf5ab651f63c0715505d1207dedda0326d687))
+* updated get started page and path ([120108d](https://github.com/carbon-design-system/carbon-platform/commit/120108dc750e6fbdb88ea3073f42632baf17151d))
+
+### [0.1.2](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.1...@carbon-platform/icons@0.1.2) (2022-08-03)
+
+
+### Bug Fixes 🐛
+
+* **icons:** decrease storybook icon size ([4480275](https://github.com/carbon-design-system/carbon-platform/commit/4480275203620a0fdcd7c17e5220c94465ecaf50))
+
 ### [0.1.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.0...@carbon-platform/icons@0.1.1) (2022-07-23)
 
 

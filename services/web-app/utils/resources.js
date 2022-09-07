@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import assetValidationSchema from '@carbon-platform/schemas/internal/validation/asset-validation.schema.json'
-import designKitValidationSchema from '@carbon-platform/schemas/internal/validation/design-kit-validation.schema.json'
-import libraryValidationSchema from '@carbon-platform/schemas/internal/validation/library-validation.schema.json'
+import assetValidationSchema from '@carbon-platform/schemas/asset-validation.schema.json'
+import designKitValidationSchema from '@carbon-platform/schemas/design-kit-validation.schema.json'
+import libraryValidationSchema from '@carbon-platform/schemas/library-validation.schema.json'
 
 const Ajv = require('ajv')
 const ajv = new Ajv({ allErrors: true, verbose: true })
@@ -30,7 +30,7 @@ const getValidationErrors = (content, schema) => {
 /**
  * Given a library asset object, obtains list of errors regarding its structure and content
  *
- * @param {import('../typedefs').Asset} assetContent a library asset object to be validated
+ * @param {import('@/typedefs').Asset} assetContent a library asset object to be validated
  * @returns {object[]} Array of AJV error objects, empty array if valid asset
  */
 const getAssetErrors = (assetContent) => getValidationErrors(assetContent, assetValidationSchema)
@@ -38,7 +38,7 @@ const getAssetErrors = (assetContent) => getValidationErrors(assetContent, asset
 /**
  * Given a design kit object, obtains list of errors regarding its structure and content
  *
- * @param {import('../typedefs').DesignKit} designKit a designKit object to be validated
+ * @param {import('@/typedefs').DesignKit} designKit a designKit object to be validated
  * @returns {object[]} Array of AJV error objects, empty array if valid asset
  */
 const getDesignKitErrors = (designKit) => getValidationErrors(designKit, designKitValidationSchema)
@@ -46,7 +46,7 @@ const getDesignKitErrors = (designKit) => getValidationErrors(designKit, designK
 /**
  * Given a library object, obtains list of errors regarding its structure and content
  *
- * @param {import('../typedefs').Library} libraryContent a library object to be validated
+ * @param {import('@/typedefs').Library} libraryContent a library object to be validated
  * @returns {object[]} Array of AJV error objects, empty array if valid library
  */
 const getLibraryErrors = (libraryContent) =>

@@ -7,7 +7,7 @@
 
 import { Column, Grid } from '@carbon/react'
 import { CheckmarkFilled, ErrorFilled, InformationFilled, WarningFilled } from '@carbon/react/icons'
-import clsx from 'classnames'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
 import styles from './inline-notification.module.scss'
@@ -33,7 +33,7 @@ const InlineNotification = ({ children, className, kind = 'info' }) => {
 
   return (
     <Grid>
-      <Column sm={4} md={6} lg={8} className={clsx(styles.notification, className)}>
+      <Column sm={4} md={8} lg={8} className={clsx(styles.notification, className)}>
         <div className={containerClassName}>
           <div className="cds--inline-notification__details">
             <IconForKind className="cds--inline-notification__icon" size={20}>

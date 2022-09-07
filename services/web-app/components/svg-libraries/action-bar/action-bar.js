@@ -4,14 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Code, Download } from '@carbon/icons-react'
 import { IconButton, Link, Tooltip } from '@carbon/react'
+import { Code, Download } from '@carbon/react/icons'
 import { pascalCase } from 'change-case'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { useContext, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
-import { LibraryContext } from '../library-provider'
 import styles from './action-bar.module.scss'
 
 const ActionBar = ({
@@ -21,11 +20,11 @@ const ActionBar = ({
   setIsActionBarVisible,
   isActionBarVisible,
   isLastCard,
+  isPictogram = false,
   glyphOnly
 }) => {
-  const { site, type } = useContext(LibraryContext)
   let suffix
-  if (type === 'pictogram') {
+  if (isPictogram) {
     suffix = ''
   } else if (glyphOnly) {
     suffix = 'Glyph'
@@ -36,9 +35,6 @@ const ActionBar = ({
 
   const [copyText, setCopyText] = useState(`Copy ${component}`)
   const actionBarRef = useRef()
-
-  // Don't show copy button on IDL deployment
-  const shouldShowCopyButton = site === 'carbon'
 
   const handleBlurEvent = (e) => {
     const isStillFocusedWithin = actionBarRef.current.contains(e.relatedTarget)
@@ -77,19 +73,17 @@ const ActionBar = ({
           download={`${name}.svg`}
         />
       </Tooltip>
-      {shouldShowCopyButton && (
-        <IconButton
-          kind="ghost"
-          label={copyText}
-          size="sm"
-          onClick={handleCopy}
-          onFocus={() => setIsActionBarVisible(true)}
-          className={styles.tooltip}
-          align={tooltipAlignment}
-        >
-          <Code size={16} />
-        </IconButton>
-      )}
+      <IconButton
+        kind="ghost"
+        label={copyText}
+        size="sm"
+        onClick={handleCopy}
+        onFocus={() => setIsActionBarVisible(true)}
+        className={styles.tooltip}
+        align={tooltipAlignment}
+      >
+        <Code size={16} />
+      </IconButton>
     </div>
   )
 }
@@ -99,6 +93,7 @@ ActionBar.propTypes = {
   glyphOnly: PropTypes.bool,
   isActionBarVisible: PropTypes.bool,
   isLastCard: PropTypes.bool,
+  isPictogram: PropTypes.bool,
   name: PropTypes.string,
   setIsActionBarVisible: PropTypes.func,
   source: PropTypes.any

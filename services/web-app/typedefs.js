@@ -76,8 +76,8 @@
  * @property {"cross-platform" | "web"} platform - Asset environment
  * @property {boolean} noIndex - Exclude asset from catalogs
  * @property {"draft" | "experimental" | "stable" | "deprecated"} status - Consumption expectation
- * @property {PlaceholderImage} thumbnailData - Thumbnail image source, dimensions, and placeholder
- * @property {string} thumbnailPath - Asset's thumbnail image relative to its GitHub source
+ * @property {string} thumbnailPath - Asset's thumbnail image path relative to its GitHub source
+ * @property {string} thumbnailSvg - Asset's thumbnail image as an optimized string
  * @property {"element" | "component" | "pattern" | "function" | "layout"} type - Asset categoration
  */
 
@@ -112,6 +112,38 @@
  * @typedef {object} RemoteMdxResponse
  * @property {object} frontmatter
  * @property {string} compiledSource
+ */
+
+/**
+ * @typedef {object} CompiledSourceData
+ * @property {object} matter
+ */
+
+/**
+ * @typedef {object} CompiledSource
+ * @property {string} value
+ * @property {CompiledSourceData} data
+ */
+
+/**
+ * @typedef {object} CompiledSource
+ * @property {string} value
+ * @property {object} data
+ */
+
+/**
+ * @typedef {object} mdxError
+ * @property {string} name
+ * @property {string} message
+ * @property {string} stack
+ * @property {string} position
+ */
+
+/**
+ * @typedef {object} RemoteMdxSource
+ * @property {CompiledSource} compiledSource
+ * @property {mdxError} mdxError
+ * @property {string[]} warnings
  */
 
 exports.unused = {}

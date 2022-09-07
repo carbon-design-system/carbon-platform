@@ -5,14 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { isEqual } from 'lodash'
+import isEqual from 'lodash/isEqual'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import slugify from 'slugify'
-import { libraryPropTypes } from 'types'
 
 import Catalog from '@/components/catalog'
 import { getLibraryFilters } from '@/data/filters'
+import { libraryPropTypes } from '@/types'
 import { librarySortComparator } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import useQueryState from '@/utils/use-query-state'
@@ -21,7 +21,7 @@ import LibraryCatalogItem from '../library-catalog-item'
 
 /**
  * Returns true if a library should be included in the catalog results given the filter.
- * @param {import('../../typedefs').Library} library
+ * @param {import('@/typedefs').Library} library
  * @param {object} filter
  * @returns {boolean}
  */
@@ -42,9 +42,9 @@ const libraryIsInFilter = (library, filter) => {
 /**
  * Finds and returns libraries that match a search criteria (name or description)
  * from an array of libraries
- * @param {import('../../typedefs').Library[]} libraries list of libraries to filter
+ * @param {import('@/typedefs').Library[]} libraries list of libraries to filter
  * @param {string} search search string to match libraries against
- * @returns {import('../../typedefs').Library[]} array of libraries that match search criteria
+ * @returns {import('@/typedefs').Library[]} array of libraries that match search criteria
  */
 const filterLibrariesBysearch = (libraries, search) => {
   return libraries.filter((library) => {
@@ -65,10 +65,10 @@ const filterLibrariesBysearch = (libraries, search) => {
  * filters an array of libraries given a filter, and search query. Until a better
  * solution is in place, the search is simply a filter to remove libraries that don't match
  * any part of the name or description.
- * @param {import('../../typedefs').Library[]} libraries list of libraries to filter
+ * @param {import('@/typedefs').Library[]} libraries list of libraries to filter
  * @param {object} filter filter object to apply to libraries
  * @param {string} search search string to match libraries against
- * @returns {import('../../typedefs').Library[]} array of filtered libraries
+ * @returns {import('@/typedefs').Library[]} array of filtered libraries
  */
 const getFilteredLibraries = (libraries, filter, search) => {
   const librariesWithAppliedFilter = (libraries || []).filter((library) => {

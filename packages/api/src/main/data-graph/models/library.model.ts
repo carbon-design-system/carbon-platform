@@ -6,7 +6,7 @@
  */
 import { Field, ID, ObjectType } from '@nestjs/graphql'
 
-type DemoLinkType = 'codesandbox' | 'github' | 'storybook'
+type DemoLinkType = 'codesandbox' | 'github' | 'storybook' | 'other'
 type DemoLinkAction = 'download' | 'link'
 
 const defaultValues = {

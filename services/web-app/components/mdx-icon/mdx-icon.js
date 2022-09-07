@@ -4,7 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Bee, LogoGithub } from '@carbon/icons-react'
+
+import { Bee, CodeReference, LogoGithub } from '@carbon/react/icons'
 import {
   Codesandbox,
   Figma,
@@ -14,6 +15,10 @@ import {
   Sketch,
   Storybook,
   Svelte,
+  Svg24Adobe,
+  Svg24Axure,
+  Svg32Adobe,
+  Svg32Axure,
   Svg32Npm,
   Vue,
   Zenhub
@@ -42,7 +47,11 @@ const svgIcons = {
   zenhub: Zenhub,
   vue: Vue,
   svelte: Svelte,
-  js: Js
+  js: Js,
+  adobe24: Svg24Adobe,
+  axure24: Svg24Axure,
+  adobe32: Svg32Adobe,
+  axure32: Svg32Axure
 }
 
 const localIcons = {
@@ -57,18 +66,19 @@ const localIcons = {
 
 const carbonIcons = {
   github: LogoGithub,
-  bee: Bee
+  bee: Bee,
+  codereference: CodeReference
 }
 
 const iconColor = {
   inverse: 'icon-inverse'
 }
 
-const MdxIcon = ({ name, color }) => {
+const MdxIcon = ({ name, className, color }) => {
   if (svgIcons[name]) {
     const SvgComponent = svgIcons[name]
     return (
-      <div className={styles['mdx-icon']}>
+      <div className={clsx(className, styles['mdx-icon'])}>
         <SvgComponent />
       </div>
     )
@@ -76,7 +86,7 @@ const MdxIcon = ({ name, color }) => {
 
   if (localIcons[name]) {
     return (
-      <div className={styles['mdx-icon']}>
+      <div className={clsx(className, styles['mdx-icon'])}>
         <Image alt={`${name} icon`} src={localIcons[name]} />
       </div>
     )
@@ -84,7 +94,9 @@ const MdxIcon = ({ name, color }) => {
 
   if (carbonIcons[name]) {
     const Icon = carbonIcons[name]
-    return <Icon className={clsx(styles['mdx-icon'], styles[iconColor[color]])} size={32} />
+    return (
+      <Icon className={clsx(className, styles['mdx-icon'], styles[iconColor[color]])} size={32} />
+    )
   }
 
   return null
@@ -97,6 +109,10 @@ const acceptedCompNames = [
 ]
 
 MdxIcon.propTypes = {
+  /**
+   * Optional class name.
+   */
+  className: PropTypes.string,
   /**
    * Optional: can supply color "icon-inverse" for carbonIcons.
    */

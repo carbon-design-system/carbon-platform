@@ -7,10 +7,14 @@
       "@/contexts/*": ["contexts/*"],
       "@/config/*": ["config/*"],
       "@/data/*": ["data/*"],
+      "@/exceptions/*": ["exceptions/*"],
       "@/layouts/*": ["layouts/*"],
       "@/lib/*": ["lib/*"],
+      "@/middleware/*": ["middleware/*"],
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"],
+      "@/types": ["types.js"],
+      "@/typedefs": ["typedefs.js"],
       "@/utils/*": ["utils/*"]
     }
   },

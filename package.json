@@ -19,6 +19,7 @@
   },
   "workspaces": [
     "base",
+    "scripts",
     "packages/api",
     "packages/eslint-plugin-carbon-platform",
     "packages/icons",

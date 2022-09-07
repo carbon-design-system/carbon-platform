@@ -72,7 +72,18 @@ const websiteToPlatformRedirects = [
   ['/whats-happening/meetups', '/about-carbon/meetups'],
   ['/whats-happening/news-and-articles', '/about-carbon/articles'],
   ['/whats-happening/work-in-progress', '/assets/components?status[]=draft'],
-  ['/guidelines/icons/:slug*', '/elements/icons/:slug*']
+  ['/guidelines/icons/:slug*', '/elements/icons/:slug*'],
+  ['/patterns/dialog-pattern', '/libraries/carbon-styles/latest/assets/dialogs/usage'],
+  ['/patterns/disclosures-pattern', '/libraries/carbon-styles/latest/assets/disclosures/usage'],
+  ['/patterns/empty-states-pattern', '/libraries/carbon-styles/latest/assets/empty-states/usage'],
+  ['/patterns/forms-pattern', '/libraries/carbon-styles/latest/assets/forms/usage'],
+  ['/patterns/login-pattern', '/libraries/carbon-styles/latest/assets/login/usage'],
+  ['/patterns/notification-pattern', '/libraries/carbon-styles/latest/assets/notifications/usage'],
+  ['/patterns/overview', '/assets/patterns'],
+  ['/status-indicator-pattern', '/libraries/carbon-styles/latest/assets/status-indicators/usage'],
+  ['/text-toolbar-pattern', '/libraries/carbon-styles/latest/assets/text-toolbar/usage'],
+  ['/patterns/:slug', '/libraries/carbon-styles/latest/assets/:slug/usage'], // after all `/patterns/`
+  ['/test/list-section', '/']
 ]
 
 /**

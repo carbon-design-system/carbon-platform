@@ -9,7 +9,49 @@
  * Redirects previously used by the carbon-website repository.
  * @see https://github.com/carbon-design-system/carbon-website/blob/main/conf.d/rewrite.conf
  */
-const websiteRedirects = [['/guidelines/iconography/:slug*', '/guidelines/icons/:slug*']]
+const websiteRedirects = [
+  // Guidelines rewrites
+  ['/guidelines/iconography/:slug*', '/guidelines/icons/:slug*'],
+  ['/guidelines/layout', '/guidelines/2x-grid/basics'],
+  ['/guidelines/content/glossary', '/guidelines/content/action-labels'],
+  // Experimental -> Cloud, Data, and AI
+  [
+    '/experimental/cards/:slug*',
+    'https://pages.github.ibm.com/CDAI-design/CDAI-design-website/components/card/:slug*'
+  ],
+  [
+    '/experimental/dashboard-widgets/:slug*',
+    'https://pages.github.ibm.com/CDAI-design/CDAI-design-website/components/widget/:slug*'
+  ],
+  [
+    '/experimental/order-summary-template/:slug*',
+    'https://pages.github.ibm.com/CDAI-design/CDAI-design-website/patterns/order-summary/:slug*'
+  ],
+  // Experimental -> community
+  ['/experimental/:slug*', '/community/patterns/:slug*'],
+  // Community index
+  ['/community/components', '/community/component-index'],
+  // IA updates 08/2020
+  ['/get-started/about-carbon', '/all-about-carbon/what-is-carbon'],
+  ['/contributing/governance', '/all-about-carbon/how-we-work'],
+  ['/get-started/design/:slug*', '/designing/get-started/kits/:slug*'],
+  ['/how-to-contribute/:slug*', '/contributing/:slug*'],
+  ['/updates/whats-new', '/whats-happening/releases'],
+  ['/whats-happening/changelog-and-roadmap', '/whats-happening/releases'],
+  ['/updates/work-in-progress', '/whats-happening/work-in-progress'],
+  ['/updates/migration-guide/:slug*', '/help/migration-guide/:slug*'],
+  ['/help/support', '/help/contact-us'],
+  ['/get-started/develop/:slug*', '/developing/frameworks/:slug*'],
+  ['/resources', '/developing/developer-resource'],
+  ['/tutorial/angular/:slug*', '/developing/angular-tutorial/:slug*'],
+  ['/tutorial/react/:slug*', '/developing/react-tutorial/:slug*'],
+  ['/tutorial/vue/:slug*', '/developing/vue-tutorial/:slug*'],
+  // Data visualization
+  ['/data-visualization/basic-charts', '/data-visualization/simple-charts'],
+  ['/data-visualization/advanced-charts', '/data-visualization/complex-charts'],
+  // v11
+  ['/whats-happening/v11-release', '/migrating/guide']
+]
 
 /**
  * Redirects for URLs previously available in carbon-website, that are no longer available in

@@ -50,7 +50,9 @@ const websiteRedirects = [
   ['/data-visualization/basic-charts', '/data-visualization/simple-charts'],
   ['/data-visualization/advanced-charts', '/data-visualization/complex-charts'],
   // v11
-  ['/whats-happening/v11-release', '/migrating/guide']
+  ['/whats-happening/v11-release', '/migrating/guide'],
+  // Added 09/2022
+  ['/all-about-carbon/how-we-work', '/all-about-carbon/how-carbon-works']
 ]
 
 /**
@@ -58,7 +60,20 @@ const websiteRedirects = [
  * carbon-platform.
  * @see https://carbondesignsystem.com/sitemap/sitemap-0.xml
  */
-const websiteToPlatformRedirects = [['/guidelines/icons/:slug*', '/elements/icons/:slug*']]
+const websiteToPlatformRedirects = [
+  ['/all-about-carbon/how-carbon-works', '/about-carbon/how-carbon-works'],
+  ['/all-about-carbon/partners', '/about-carbon/how-carbon-works'],
+  ['/all-about-carbon/releases', '/about-carbon/releases'],
+  ['/all-about-carbon/the-carbon-ecosystem', '/about-carbon/how-carbon-works'],
+  ['/all-about-carbon/the-team', '/about-carbon/how-carbon-works'],
+  ['/all-about-carbon/what-is-carbon', '/about-carbon/how-carbon-works'],
+  ['/all-about-carbon/who-uses-carbon', '/about-carbon/how-carbon-works'],
+  ['/case-studies/:slug*', '/about-carbon/case-studies/:slug*'],
+  ['/whats-happening/meetups', '/about-carbon/meetups'],
+  ['/whats-happening/news-and-articles', '/about-carbon/articles'],
+  ['/whats-happening/work-in-progress', '/assets/components?status[]=draft'],
+  ['/guidelines/icons/:slug*', '/elements/icons/:slug*']
+]
 
 /**
  * `/pages` subdirectories that don't have `index.js`, `index.md`, or `index.mdx` so base paths
@@ -90,15 +105,13 @@ const platformRedirects = [
  * @returns
  */
 const transformRedirectsArray = (redirectArray = []) => {
-  return redirectArray.map((redirect = []) => {
-    if (!redirect[0] || !redirect[1]) return {}
-
-    return {
+  return redirectArray
+    .filter((redirect) => redirect[0] && redirect[1])
+    .map((redirect = []) => ({
       source: redirect[0],
       destination: redirect[1],
       permanent: true
-    }
-  })
+    }))
 }
 
 export const redirects = transformRedirectsArray([

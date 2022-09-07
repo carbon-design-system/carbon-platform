@@ -39,11 +39,15 @@ const DesignKits = ({ libraryData, navData }) => {
 
   const { name, designKits } = libraryData.content
 
-  const groupedDesignKits = Object.entries(
-    groupBy(
-      Object.entries(designKits).map((key) => ({ ...key[1] })),
-      (kit) => kit.tool
-    )
+  const groupedDesignKits = groupBy(
+    Object.entries(designKits).map((key) => ({ ...key[1] })),
+    (kit) => kit.tool
+  )
+
+  const groupedDesignKitsKeys = Object.keys(groupedDesignKits)
+
+  const filteredDesignTools = Object.keys(designTools).filter((item) =>
+    groupedDesignKitsKeys.includes(item)
   )
 
   const seo = {
@@ -107,31 +111,31 @@ const DesignKits = ({ libraryData, navData }) => {
                   .
                 </PageDescription>
                 <AnchorLinks>
-                  {groupedDesignKits.map((kit, i) => (
-                    <AnchorLink key={i}>{get(designTools, `[${kit[0]}].name`)}</AnchorLink>
+                  {filteredDesignTools.map((item, i) => (
+                    <AnchorLink key={i}>{get(designTools, `[${item}].name`)}</AnchorLink>
                   ))}
                 </AnchorLinks>
-                {groupedDesignKits.map((kit, i) => (
-                  <div key={i}>
-                    <H2>{get(designTools, `[${kit[0]}].name`)}</H2>
+                {filteredDesignTools.map((item, i) => (
+                  <>
+                    <H2 key={i}>{get(designTools, `[${item}].name`)}</H2>
                     <CardGroup>
-                      {kit[1].map((item, i) => (
+                      {groupedDesignKits[`${item}`].map((kit, i) => (
                         <Column lg={4} md={4} key={i}>
                           <ResourceCard
-                            subTitle={item.name}
-                            href={item.url}
+                            subTitle={kit.name}
+                            href={kit.url}
                             component={
-                              <Tag type={get(designKitTypes, `[${item.type}].tagType`)}>
-                                {get(designKitTypes, `[${item.type}].name`)}
+                              <Tag type={get(designKitTypes, `[${kit.type}].tagType`)}>
+                                {get(designKitTypes, `[${kit.type}].name`)}
                               </Tag>
                             }
                           >
-                            <MdxIcon name={get(designTools, `[${item.tool}].icon`)} />
+                            <MdxIcon name={get(designTools, `[${kit.tool}].icon`)} />
                           </ResourceCard>
                         </Column>
                       ))}
                     </CardGroup>
-                  </div>
+                  </>
                 ))}
               </>
             )}

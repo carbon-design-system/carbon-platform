@@ -39,9 +39,11 @@ const DesignKits = ({ libraryData, navData }) => {
 
   const { name, designKits } = libraryData.content
 
-  const groupedDesignKits = groupBy(
-    Object.entries(designKits).map((key) => ({ ...key[1] })),
-    (kit) => kit.tool
+  const groupedDesignKits = Object.entries(
+    groupBy(
+      Object.entries(designKits).map((key) => ({ ...key[1] })),
+      (kit) => kit.tool
+    )
   )
 
   const seo = {
@@ -104,13 +106,12 @@ const DesignKits = ({ libraryData, navData }) => {
                   </Link>
                   .
                 </PageDescription>
-
                 <AnchorLinks>
-                  {Object.entries(groupedDesignKits).map((kit, i) => (
+                  {groupedDesignKits.map((kit, i) => (
                     <AnchorLink key={i}>{get(designTools, `[${kit[0]}].name`)}</AnchorLink>
                   ))}
                 </AnchorLinks>
-                {Object.entries(groupedDesignKits).map((kit, i) => (
+                {groupedDesignKits.map((kit, i) => (
                   <div key={i}>
                     <H2>{get(designTools, `[${kit[0]}].name`)}</H2>
                     <CardGroup>

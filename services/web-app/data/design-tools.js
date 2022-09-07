@@ -14,13 +14,13 @@ export const designTools = {
     name: 'Sketch',
     icon: 'sketch'
   },
-  axure: {
-    name: 'Axure',
-    icon: 'axure'
-  },
   'adobe-xd': {
     name: 'Adobe XD',
     icon: 'xd'
+  },
+  axure: {
+    name: 'Axure',
+    icon: 'axure'
   },
   'invision-freehand': {
     name: 'Invision Freehand',

@@ -13,6 +13,7 @@ import remarkGfm from 'remark-gfm'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import { fileURLToPath } from 'url'
 
+import { redirects } from './config/redirects.mjs'
 import { libraryAllowList as libraries } from './data/libraries.mjs'
 import { mdxWrapperPlugin } from './utils/mdx-wrapper-plugin.mjs'
 import rehypeMetaAsAttributes from './utils/rehype-meta-as-attributes.mjs'
@@ -79,6 +80,9 @@ const nextConfig = withMDX(
       })
 
       return config
+    },
+    async redirects() {
+      return redirects
     },
     async rewrites() {
       const rewrites = []

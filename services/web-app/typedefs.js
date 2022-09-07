@@ -114,4 +114,10 @@
  * @property {string} compiledSource
  */
 
+/**
+ * @typedef {Array} Redirect
+ * @property {string} 0 - Next.js redirect source
+ * @property {string} 1 - Next.js redirect destination
+ */
+
 exports.unused = {}

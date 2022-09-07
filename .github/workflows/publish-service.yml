@@ -1,4 +1,4 @@
-name: Publish Service
+name: Publish service
 on:
   # Enable running this workflow from other workflows
   workflow_call:
@@ -29,15 +29,18 @@ env:
   CI: 'true'
 
 jobs:
-  build-service-image:
-    name: Build Service Image
+  build-and-push-service:
+    name: Build and push service
     runs-on: ubuntu-latest
+    env:
+      SERVICE_NAME: ${{ inputs.service_name || github.event.inputs.service_name }}
+      SERVICE_TAG: ${{ inputs.service_tag || github.event.inputs.service_tag }}
 
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@v3
         with:
-          ref: ${{ inputs.service_tag || github.event.inputs.service_tag }}
+          ref: $SERVICE_TAG
 
       - name: Setup Node 🏗
         uses: actions/setup-node@v3
@@ -45,13 +48,18 @@ jobs:
           node-version: '16'
           cache: 'npm'
 
-      - name: Bootstrap Micromanage 🥾
-        run: npm run micromanage:bootstrap
+      - name: Install Micromanage 🏗
+        run: npm --workspace packages/micromanage-cli install
 
       - name: Setup Docker 🐳
         run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io
 
-      - name: Build, Push 🚀
-        run: node packages/micromanage docker --build --push ${{ inputs.service_name || github.event.inputs.service_name }}
+      - name: Build base image 🔨
+        run: npx micromanage build --docker base
+        env:
+          CARBON_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push 🔨 🚀
+        run: npx micromanage build --docker $SERVICE_NAME | xargs docker push
         env:
           CARBON_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

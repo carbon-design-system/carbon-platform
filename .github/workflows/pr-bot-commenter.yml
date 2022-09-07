@@ -33,10 +33,10 @@ jobs:
           node-version: '16'
           cache: 'npm'
 
-      - name: Bootstrap Micromanage 🥾
-        run: npm run micromanage:bootstrap
+      - name: Install Micromanage 🏗
+        run: npm --workspace packages/micromanage-cli install
 
       - name: Run comment script 💬
-        run: node packages/micromanage/scripts/add-pr-comment.mjs
+        run: node scripts/add-pr-comment.mjs
         env:
           PR_COMMENT_BOT_TOKEN: ${{ secrets.CARBON_BOT_TOKEN }}

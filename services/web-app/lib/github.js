@@ -491,10 +491,11 @@ export const getLibraryRelatedLibs = async (libData) => {
 }
 
 /**
- * Compiles an object list of all known tags
+ * Finds and returns array of related frameworks for a given asset
  * @param {import('../typedefs').Params} params
  * @param {import('../typedefs').Library} library
- * @returns {{framework: string, params: import('../typedefs).Params}[]} Array of related frameworks
+ * @returns {Promise<{framework: string, params: import('../typedefs).Params}[]>}
+ * Array of related frameworks
  */
 export const getAssetRelatedFrameworks = async (params, library) => {
   const otherAssetFrameworks = []

@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
-import { get } from 'lodash'
 import { MDXRemote } from 'next-mdx-remote'
 import path from 'path'
 import { useContext, useEffect, useRef, useState } from 'react'
@@ -68,8 +67,8 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
             <PageHeader
               title={title}
               withTabs
-              bgColor={get(assetTypes, `[${assetData.content.type}].bgColor`)}
-              pictogram={get(assetTypes, `[${assetData.content.type}].icon`)}
+              bgColor={assetTypes[assetData.content.type]?.bgColor}
+              pictogram={assetTypes[assetData.content.type]?.icon}
             />
           )}
           <PageBreadcrumb items={breadcrumbItems} />

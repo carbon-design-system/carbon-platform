@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { isEqual } from 'lodash'
+import isEqual from 'lodash/isEqual'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import slugify from 'slugify'

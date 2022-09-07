@@ -4,9 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import metaData from '@carbon/icons/metadata.json'
 import { Column, Grid } from '@carbon/react'
-import { debounce, groupBy } from 'lodash'
+import debounce from 'lodash/debounce'
+import groupBy from 'lodash/groupBy'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 
@@ -17,9 +17,7 @@ import NoResult from '../no-result'
 import styles from '../svg-library.module.scss'
 import IconCategory from './icon-category'
 
-const { icons: iconMetaData, categories: iconCategoryMetadata } = metaData
-
-const IconLibrary = () => {
+const IconLibrary = ({ iconMetadata, iconCategoryMetadata }) => {
   const [iconComponents, setIconComponents] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('All icons')
   const [searchInputValue, setSearchInputValue] = useState('')
@@ -30,7 +28,7 @@ const IconLibrary = () => {
   const debouncedSetSearchInputValue = debounce(setSearchInputValue, 200)
 
   useEffect(() => {
-    const iconArray = iconMetaData.reduce((accumulator, icon) => {
+    const iconArray = iconMetadata.reduce((accumulator, icon) => {
       if (icon.deprecated) {
         return accumulator
       }
@@ -64,7 +62,7 @@ const IconLibrary = () => {
     setCategoriesLoaded(true)
 
     setIconComponents(iconArray)
-  }, [])
+  }, [iconCategoryMetadata, iconMetadata])
 
   const getFilteredIcons = () => {
     if (!searchInputValue) {

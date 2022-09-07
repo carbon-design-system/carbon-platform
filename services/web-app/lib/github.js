@@ -8,7 +8,8 @@ import $RefParser from '@apidevtools/json-schema-ref-parser'
 import { Logging } from '@carbon-platform/api/logging'
 import resources from '@carbon-platform/resources'
 import yaml from 'js-yaml'
-import { get, isEmpty, set } from 'lodash'
+import isEmpty from 'lodash/isEmpty'
+import set from 'lodash/set'
 import path from 'path'
 import slugify from 'slugify'
 
@@ -42,7 +43,7 @@ export const getLibraryNavData = (params, libraryData) => {
     return `v${libraryData.content.version}`
   }
 
-  const libraryNavData = get(libraryData, ['content', 'navData'], [])
+  const libraryNavData = libraryData.content?.navData || []
 
   // traverse items subtree and remove hidden nodes
   dfs(libraryNavData, (item) => {
@@ -289,10 +290,10 @@ const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
 
     if (inheritAsset) {
       inheritableProperties.forEach((property) => {
-        const inheritProperty = get(inheritAsset, `content.${property}`)
+        const inheritProperty = inheritAsset.content?.[property]
 
         // check for undefined properties, as well as empty arrays for tags
-        if (isEmpty(get(asset, `content.${property}`)) && inheritProperty) {
+        if (isEmpty(asset.content?.[property]) && inheritProperty) {
           set(asset, `content.${property}`, inheritProperty)
         }
       })

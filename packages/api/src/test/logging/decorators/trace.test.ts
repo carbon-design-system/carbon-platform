@@ -8,8 +8,8 @@ import 'reflect-metadata'
 
 import test from 'ava'
 
+import { __test__, Trace } from '../../../main/logging/decorators/trace.js'
 import { Logging } from '../../../main/logging/logging.js'
-import { __test__, Trace } from '../../../main/microservice/decorators/trace.js'
 import { RunMode, Runtime } from '../../../main/runtime/index.js'
 
 const inputFn = (arg: string) => arg + 'hello'

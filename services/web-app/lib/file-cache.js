@@ -90,7 +90,9 @@ const _getResponse = async (host, route, options) => {
  * @returns {Promise<object>} dereferenced object response data
  */
 export const getDereferencedObjectResponse = (key, obj, dereferencer) => {
+  logging.info(`Getting dereferenced object response for key ${key}`)
   return diskCache.wrap(key, () => {
+    logging.info(`CACHE MISS for key ${key}`)
     return dereferencer(obj)
   })
 }
@@ -104,9 +106,11 @@ export const getDereferencedObjectResponse = (key, obj, dereferencer) => {
  * @returns {Promise<object>} GitHub API response data
  */
 export const getResponse = (host, route, options) => {
+  logging.info(`Getting github response for ${JSON.stringify({ host, route, ...options })}`)
   const responseKey = slugifyRequest(host, route, options)
 
   return diskCache.wrap(responseKey, () => {
+    logging.info(`CACHE MISS for key ${responseKey}`)
     return _getResponse(host, route, options)
   })
 }
@@ -120,9 +124,11 @@ export const getResponse = (host, route, options) => {
  * @returns {Promise<object>} GitHub API response data
  */
 export const getSvgResponse = async (host, route, options = {}) => {
+  logging.info(`Getting svgResponse with params: ${JSON.stringify({ host, route, ...options })}`)
   const responseKey = slugifyRequest(host, route, options)
 
   return diskCache.wrap(responseKey, async () => {
+    logging.info(`CACHE MISS for key ${responseKey}`)
     const data = await _getResponse(host, route, options)
 
     try {

@@ -46,7 +46,7 @@ https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started
 
 Run on CLI:
 
-- `CARBON_RUN_MODE=STANDARD CARBON_GITHUB_TOKEN=[token] npx micromanage build --docker base`
+- `CARBON_RUN_MODE=STANDARD CARBON_GITHUB_TOKEN=[token] npx micromanage build --docker @carbon-platform/base`
 - `CARBON_RUN_MODE=STANDARD CARBON_GITHUB_TOKEN=[token] npx micromanage build --docker @carbon-platform/[SERVICE_NAME]`
   - Note: Github token is only necessary when building web-app
 - `ibmcloud login —sso`
@@ -79,7 +79,7 @@ NOTE: if any command fails, try typing it out manually, the single quotes copy w
 
 Run on CLI:
 
-- `CARBON_RUN_MODE=STANDARD CARBON_GITHUB_TOKEN=[token] npx micromanage build --docker base`
+- `CARBON_RUN_MODE=STANDARD CARBON_GITHUB_TOKEN=[token] npx micromanage build --docker @carbon-platform/base`
 - `CARBON_RUN_MODE=STANDARD CARBON_GITHUB_TOKEN=[token] npx micromanage build --docker @carbon-platform/[SERVICE_NAME]`
   - Note: Github token is only necessary when building web-app
 - `ibmcloud login —sso`

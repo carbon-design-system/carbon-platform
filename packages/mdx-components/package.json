@@ -38,16 +38,16 @@
   },
   "peerDependencies": {
     "@carbon/layout": "^11.5.0",
-    "@carbon/react": "^1.11.0",
+    "@carbon/react": "^1.12.0",
     "@carbon/styles": "^1.9.0",
     "@types/react": "^17.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.13",
+    "@babel/core": "^7.19.0",
     "@carbon/layout": "^11.5.0",
-    "@carbon/react": "^1.11.0",
+    "@carbon/react": "^1.12.0",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-interactions": "^6.5.10",
@@ -57,8 +57,8 @@
     "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5",
-    "concurrently": "^7.3.0",
+    "concurrently": "^7.4.0",
     "nodemon": "^2.0.19",
-    "sass": "^1.54.5"
+    "sass": "^1.54.9"
   }
 }

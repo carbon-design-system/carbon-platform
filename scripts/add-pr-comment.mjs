@@ -6,6 +6,7 @@
  */
 import { Octokit } from 'octokit'
 
+import { getChangedWorkspaces } from '../packages/micromanage-cli/lib/changed.js'
 import { exec, getWorkspaceForFile } from '../packages/micromanage-cli/lib/utils.js'
 
 const commitTypes = ['fix', 'feat', 'breaking']
@@ -59,12 +60,9 @@ function getCommitData() {
     .filter((data) => commitTypes.includes(data.type))
 }
 
-function getUpdatedWorkspacesMap(commits) {
-  const results = {}
-
-  // For each commit, find the packages to which its changed files apply
-  commits.forEach((data) => {
-    // Get changed files
+function applyCommitData(updatedWorkspaces, commitData) {
+  // For each commit, find the packages (folders) changed by it
+  commitData.forEach((data) => {
     const changedFiles = exec(`git show --format=format:"" --name-only ${data.ref}`).split('\n')
 
     changedFiles.forEach((changedFile) => {
@@ -73,61 +71,50 @@ function getUpdatedWorkspacesMap(commits) {
         return
       }
 
-      // Add a new set at the key if one does not already exist
-      if (!results[data.type]) {
-        results[data.type] = new Set()
+      if (!updatedWorkspaces[ws.name]) {
+        return
       }
 
-      // Add the workspace name to the set if it is not already a part of it
-      if (!results[data.type].has(ws.name)) {
-        results[data.type].add(ws.name)
+      // If it's a higher-order version bump, update the value in the workspaces map
+      if (commitTypes.indexOf(data.type) > commitTypes.indexOf(updatedWorkspaces[ws.name])) {
+        updatedWorkspaces[ws.name] = data.type
       }
     })
-  })
-
-  return results
-}
-
-function removeDuplicates(workspacesMap) {
-  workspacesMap.fix?.forEach((wsName) => {
-    if (workspacesMap.feat?.has(wsName) || workspacesMap.breaking?.has(wsName)) {
-      workspacesMap.fix.delete(wsName)
-    }
-  })
-
-  workspacesMap.feat?.forEach((wsName) => {
-    if (workspacesMap.breaking?.has(wsName)) {
-      workspacesMap.feat.delete(wsName)
-    }
   })
 }
 
 function getResultText(workspacesMap) {
   let text = ''
 
-  if (
-    workspacesMap.breaking?.size > 0 ||
-    workspacesMap.feat?.size > 0 ||
-    workspacesMap.fix?.size > 0
-  ) {
+  if (Object.keys(workspacesMap).length > 0) {
     text =
-      '❗ **The commit titles in this PR will result in the following package and service version changes:**\n\n' +
-      '> **Note:** A change to a "package" version will result in a patch release of **all** services.\n\n'
+      '❗ **The commit titles in this PR will result in the following package and service version changes:**\n\n'
   } else {
     text = 'The commit messages in this PR will not result in any package/service version changes.'
   }
 
-  workspacesMap.breaking?.forEach((breakingWorkspace) => {
-    text += `💣 MAJOR release: \`${breakingWorkspace}\`\n`
-  })
-
-  workspacesMap.feat?.forEach((featWorkspace) => {
-    text += `🌟 MINOR release: \`${featWorkspace}\`\n`
-  })
-
-  workspacesMap.fix?.forEach((fixWorkspace) => {
-    text += `🐛 PATCH release: \`${fixWorkspace}\`\n`
-  })
+  Object.entries(workspacesMap)
+    .sort(([nameA, typeA], [nameB, typeB]) => {
+      if (commitTypes.indexOf(typeB) === commitTypes.indexOf(typeA)) {
+        return nameA.localeCompare(nameB)
+      }
+      return commitTypes.indexOf(typeB) - commitTypes.indexOf(typeA)
+    })
+    .forEach(([wsName, type]) => {
+      switch (type) {
+        case 'fix':
+          text += `🐛 PATCH release: \`${wsName}\`\n`
+          break
+        case 'feat':
+          text += `🌟 MINOR release: \`${wsName}\`\n`
+          break
+        case 'breaking':
+          text += `💣 MAJOR release: \`${wsName}\`\n`
+          break
+        default:
+          break
+      }
+    })
 
   return text
 }
@@ -157,13 +144,12 @@ async function addPrComment(commentBody) {
   }
 
   // Create new comment
-  response = await octokit.rest.issues.createComment({
+  return octokit.rest.issues.createComment({
     body: commentBody,
     issue_number: prNumber,
     owner: repoOwner,
     repo: repoName
   })
-  console.log(response)
 }
 
 //
@@ -173,15 +159,24 @@ async function addPrComment(commentBody) {
 checkVars()
 
 console.log(`Comparing ${headRef} to ${baseRef}`)
+
 const commitData = getCommitData()
-console.log(commitData)
 
-const updatedWorkspacesMap = getUpdatedWorkspacesMap(commitData)
-removeDuplicates(updatedWorkspacesMap)
-console.log(updatedWorkspacesMap)
+console.log('Considering the following commits:')
+commitData.forEach((commit) => console.log(commit))
+console.log()
 
-const resultText = getResultText(updatedWorkspacesMap)
+const updatedWorkspaces = {}
 
-await addPrComment(resultText)
+getChangedWorkspaces(baseRef).forEach((ws) => {
+  updatedWorkspaces[ws.name] = 'fix'
+})
+
+applyCommitData(updatedWorkspaces, commitData)
+
+const resultText = getResultText(updatedWorkspaces)
+
+const response = await addPrComment(resultText)
+console.log(response)
 
 console.log(resultText)

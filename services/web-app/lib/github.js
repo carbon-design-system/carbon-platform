@@ -17,7 +17,7 @@ import { libraryAllowList } from '@/data/libraries.mjs'
 import { ContentNotFoundException } from '@/exceptions/content-not-found-exception'
 import { getResponse, getSvgResponse } from '@/lib/file-cache'
 import { getAssetErrors, getDesignKitErrors, getLibraryErrors } from '@/utils/resources'
-import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
+import { getAssetId, getElementStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { addTrailingSlash, createUrl, removeLeadingSlash } from '@/utils/string'
 import { dfs } from '@/utils/tree'
@@ -703,7 +703,7 @@ export const getLibraryData = async (params = {}) => {
       noIndex: !!library.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
     },
     assets: assets.map((asset) => {
-      return { ...asset, statusKey: getAssetStatus(asset) }
+      return { ...asset, statusKey: getElementStatus(asset.content) }
     })
   }
 
@@ -1004,7 +1004,9 @@ export const getAllDesignKits = async () => {
 
   const designKits = await Promise.all(promises)
 
-  return [...designKits.filter((n) => n.length).flat(), ...baseDesignKits]
+  return [...designKits.filter((n) => n.length).flat(), ...baseDesignKits].map((designKit) => {
+    return { ...designKit, statusKey: getElementStatus(designKit) }
+  })
 }
 
 /**

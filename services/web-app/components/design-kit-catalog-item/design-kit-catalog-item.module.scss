@@ -1,0 +1,215 @@
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'sass:math';
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/motion' as motion;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
+
+@use '../../styles/mixins' as mixins;
+
+.column {
+  position: relative;
+  min-height: convert.rem(176px);
+  transition: border-color motion.$duration-fast-02 motion.motion(standard, productive);
+
+  &:not(:first-child) {
+    @include breakpoint.breakpoint(md) {
+      border-left: 1px solid theme.$layer-accent;
+    }
+
+    .anchor:hover &,
+    .anchor:focus & {
+      border-color: theme.$border-subtle-selected;
+    }
+  }
+
+  &--image {
+    @include breakpoint.breakpoint-down(md) {
+      display: none;
+    }
+
+    margin-right: 0;
+  }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.anchor {
+  display: block;
+  background: theme.$layer-01;
+  text-decoration: none;
+  transition: background motion.$duration-fast-02 motion.motion(standard, productive);
+
+  &:hover,
+  &:focus {
+    background: theme.$layer-hover;
+  }
+
+  &:active {
+    outline: 2px solid theme.$focus;
+    outline-offset: -2px;
+  }
+
+  &:not(.anchor--grid) {
+    border-top: 1px solid theme.$layer-accent;
+  }
+}
+
+.content {
+  padding: spacing.$spacing-05 0;
+
+  .anchor--grid & {
+    border-top: 1px solid theme.$layer-accent;
+    margin-right: 0;
+    transition: border-color motion.$duration-fast-02 motion.motion(standard, productive);
+
+    @media screen and (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  .anchor--grid:hover &,
+  .anchor--grid:focus & {
+    border-color: theme.$border-subtle-selected;
+  }
+}
+
+.library {
+  color: theme.$text-primary;
+  @include mixins.line-clamp(1);
+  @include type.type-style('label-01');
+}
+
+.name {
+  color: theme.$text-primary;
+  @include mixins.line-clamp(2);
+  @include type.type-style('heading-02');
+
+  .anchor--grid & {
+    @include breakpoint.breakpoint-down(xlg) {
+      @include mixins.line-clamp(1);
+    }
+  }
+}
+
+.description {
+  margin-top: spacing.$spacing-02;
+  color: theme.$text-primary;
+  @include mixins.line-clamp(3);
+  @include type.type-style('body-short-01');
+
+  .anchor--grid & {
+    display: none;
+  }
+}
+
+.icon {
+  position: absolute;
+  right: 0;
+  bottom: spacing.$spacing-04;
+  display: block;
+  width: convert.rem(48px);
+  height: convert.rem(48px);
+  border: 1px solid theme.$border-subtle;
+  background: theme.$layer-01;
+  border-radius: 100%;
+  color: theme.$icon-primary;
+  transition: all motion.$duration-fast-02 motion.motion(standard, productive);
+  @include breakpoint.breakpoint(lg) {
+    right: spacing.$spacing-04;
+  }
+  @include breakpoint.breakpoint(xlg) {
+    width: convert.rem(56px);
+    height: convert.rem(56px);
+  }
+
+  .anchor--grid & {
+    top: convert.rem(-24px);
+    bottom: auto;
+    @include breakpoint.breakpoint(xlg) {
+      top: convert.rem(-28px);
+    }
+  }
+
+  .anchor:hover &,
+  .anchor:focus & {
+    border-color: theme.$border-subtle-selected;
+    background: theme.$layer-hover;
+  }
+}
+
+.icon-external,
+.icon-maintainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity motion.$duration-fast-02 motion.motion(standard, productive);
+}
+
+.icon-maintainer {
+  width: convert.rem(24px);
+  height: convert.rem(24px);
+  opacity: 1;
+
+  .anchor--external:hover &,
+  .anchor--external:focus & {
+    opacity: 0;
+  }
+}
+
+.icon-external {
+  opacity: 1;
+
+  .anchor--external:hover &,
+  .anchor--external:focus & {
+    opacity: 1;
+  }
+}
+
+.tags {
+  position: absolute;
+  bottom: spacing.$spacing-04;
+  left: 0;
+  display: flex;
+  transition: background motion.$duration-fast-02 motion.motion(standard, productive);
+
+  @include breakpoint.breakpoint(lg) {
+    top: spacing.$spacing-04;
+    right: spacing.$spacing-04;
+    bottom: auto;
+    left: auto;
+  }
+
+  .anchor--grid & {
+    top: auto;
+    bottom: spacing.$spacing-04;
+  }
+}
+
+.tags-item {
+  margin: 0 spacing.$spacing-03;
+}
+
+.meta--absolute {
+  position: absolute;
+  top: spacing.$spacing-03;
+  right: 0;
+
+  @include breakpoint.breakpoint(lg) {
+    top: auto;
+    right: auto;
+    bottom: spacing.$spacing-04;
+    left: spacing.$spacing-04;
+  }
+}

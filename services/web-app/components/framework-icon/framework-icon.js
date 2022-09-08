@@ -41,7 +41,7 @@ FrameworkIcon.propTypes = {
   className: PropTypes.string,
   /**
    * Framework key from the asset schema. See:
-   * https://github.com/carbon-design-system/carbon-platform/blob/main/docs/resource-schemas.md.
+   * https://bit.ly/3BPZoTw
    */
   framework: PropTypes.oneOf(Object.keys(frameworkMap)),
   /**

@@ -1,0 +1,33 @@
+/*
+ * Copyright IBM Corp. 2021, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/utilities/convert' as convert;
+
+.container {
+  display: inline-flex;
+  min-width: convert.rem(24px);
+  height: convert.rem(24px);
+  align-items: center;
+  justify-content: center;
+  padding: spacing.$spacing-02;
+  background: theme.$layer-accent;
+  border-radius: spacing.$spacing-06;
+  color: theme.$icon-primary;
+}
+
+.icon {
+  width: convert.rem(16px);
+  height: convert.rem(16px);
+}
+
+.text {
+  margin: 0 spacing.$spacing-02;
+  @include type.type-style('label-01');
+}

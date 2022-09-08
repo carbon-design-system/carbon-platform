@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.30](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.29...@carbon-platform/api@0.3.30) (2022-09-08)
+
+
+### Features 🌟
+
+* **logging:** use custom date format in console logs ([aeeded7](https://github.com/carbon-design-system/carbon-platform/commit/aeeded78be44f72809d13edb25c826efb6027aca))
+
 ### [0.3.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.28...@carbon-platform/api@0.3.29) (2022-08-25)
 
 

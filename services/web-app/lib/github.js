@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import $RefParser from '@apidevtools/json-schema-ref-parser'
-import { Logging } from '@carbon-platform/api/logging'
+import { Logging, withTrace } from '@carbon-platform/api/logging'
 import resources from '@carbon-platform/resources'
 import yaml from 'js-yaml'
 import isEmpty from 'lodash/isEmpty'
@@ -94,82 +94,85 @@ export const getLibraryNavData = (params, libraryData) => {
  * @param {string} mdxPath Path to Mdx from repo source
  * @returns {Promise<string>} Mdx Source Content
  */
-export const getRemoteMdxSource = async (repoParams, mdxPath) => {
-  logging.info(`Getting remote MDX for ${JSON.stringify(repoParams)} ${mdxPath}`)
-  /**
-   * @type {import('@/typedefs').GitHubContentResponse}
-   */
-  let response = {}
+export const getRemoteMdxSource = withTrace(
+  logging,
+  async function getRemoteMdxSource(repoParams, mdxPath) {
+    logging.info(`Getting remote MDX for ${JSON.stringify(repoParams)} ${mdxPath}`)
+    /**
+     * @type {import('@/typedefs').GitHubContentResponse}
+     */
+    let response = {}
 
-  if (!repoParams.ref || repoParams.ref === 'latest') {
-    logging.info(
-      `No Reference set in params, attempting to getRepoDefaultBranch for ${JSON.stringify(
-        repoParams
-      )}`
-    )
-    repoParams.ref = await getRepoDefaultBranch(repoParams)
-  }
+    if (!repoParams.ref || repoParams.ref === 'latest') {
+      logging.info(
+        `No Reference set in params, attempting to getRepoDefaultBranch for ${JSON.stringify(
+          repoParams
+        )}`
+      )
+      repoParams.ref = await getRepoDefaultBranch(repoParams)
+    }
 
-  let src = mdxPath
-  let { host, org, repo, ref } = repoParams
+    let src = mdxPath
+    let { host, org, repo, ref } = repoParams
 
-  const mdxUrl = createUrl(mdxPath)
-  if (!mdxUrl) {
-    const fullContentsPath = path.join(
-      'https://',
-      repoParams.host,
-      '/repos',
-      repoParams.org,
-      repoParams.repo,
-      '/contents'
-    )
-
-    if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, mdxPath), 5)) {
-      logging.warn(
-        `Skipping remote mdx content from ${repoParams.host}/${repoParams.org}/${repoParams.repo} due to invalid path ${mdxPath}`
+    const mdxUrl = createUrl(mdxPath)
+    if (!mdxUrl) {
+      const fullContentsPath = path.join(
+        'https://',
+        repoParams.host,
+        '/repos',
+        repoParams.org,
+        repoParams.repo,
+        '/contents'
       )
 
-      throw new ContentNotFoundException(mdxPath)
-    }
-  } else {
-    // https://github.com/[org]/[repo]/blob/[ref]/[...path]
-    host = mdxUrl.host
-    const pathNameChunks = mdxUrl.pathname.split('/')
-    org = pathNameChunks[1]
-    repo = pathNameChunks[2]
-    ref = pathNameChunks[4]
-    src = pathNameChunks.slice(5).join('/')
-  }
+      if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, mdxPath), 5)) {
+        logging.warn(
+          `Skipping remote mdx content from ${repoParams.host}/${repoParams.org}/${repoParams.repo} due to invalid path ${mdxPath}`
+        )
 
-  try {
-    response = await getResponse(host, 'GET /repos/{owner}/{repo}/contents/{path}', {
-      owner: org,
-      repo,
-      path: removeLeadingSlash(src),
-      ref
-    })
-  } catch (err) {
-    logging.warn(err)
-
-    if (err.name === 'HttpError' && err.message === 'Not Found') {
-      throw new ContentNotFoundException(mdxPath)
+        throw new ContentNotFoundException(mdxPath)
+      }
+    } else {
+      // https://github.com/[org]/[repo]/blob/[ref]/[...path]
+      host = mdxUrl.host
+      const pathNameChunks = mdxUrl.pathname.split('/')
+      org = pathNameChunks[1]
+      repo = pathNameChunks[2]
+      ref = pathNameChunks[4]
+      src = pathNameChunks.slice(5).join('/')
     }
 
-    throw err
-  }
+    try {
+      response = await getResponse(host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+        owner: org,
+        repo,
+        path: removeLeadingSlash(src),
+        ref
+      })
+    } catch (err) {
+      logging.warn(err)
 
-  return {
-    mdxSource: Buffer.from(response.content, response.encoding).toString(),
-    url: response.html_url
+      if (err.name === 'HttpError' && err.message === 'Not Found') {
+        throw new ContentNotFoundException(mdxPath)
+      }
+
+      throw err
+    }
+
+    return {
+      mdxSource: Buffer.from(response.content, response.encoding).toString(),
+      url: response.html_url
+    }
   }
-}
+)
 
 /**
  * Given a repo's params, retrieve and return the repo's default branch.
  * @param {import('@/typedefs').Params} params - Partially-complete parameters
  * @returns {Promise<string>} Repo's default branch, undefined if not found
  */
-const getRepoDefaultBranch = async (params = {}) => {
+const getRepoDefaultBranch = withTrace(logging, async function getRepoDefaultBranch(params = {}) {
   logging.info(`Getting repo default branch for ${JSON.stringify(params)}`)
   try {
     const repo = await getResponse(params.host, 'GET /repos/{owner}/{repo}', {
@@ -183,7 +186,7 @@ const getRepoDefaultBranch = async (params = {}) => {
     // TODO: throw error instead
     return null
   }
-}
+})
 
 /**
  * Validates the route's parameters and returns an object that also includes the
@@ -411,20 +414,23 @@ const validateAsset = (asset, library) => {
  * @param {string} libraryVersionSlug e.g. 'carbon-charts@0.1.121'
  * @returns {Promise<import('@/typedefs').Params>}
  */
-export const getLibraryParams = async (libraryVersionSlug) => {
-  logging.info(`Getting library params for ${libraryVersionSlug}`)
-  const inheritParams = getLibraryVersionAsset(libraryVersionSlug)
+export const getLibraryParams = withTrace(
+  logging,
+  async function getLibraryParams(libraryVersionSlug) {
+    logging.info(`Getting library params for ${libraryVersionSlug}`)
+    const inheritParams = getLibraryVersionAsset(libraryVersionSlug)
 
-  if (inheritParams.library && libraryAllowList[inheritParams.library]) {
-    return validateLibraryParams({
-      ...libraryAllowList[inheritParams.library],
-      ...inheritParams
-    })
-  } else {
-    logging.warn(`Could not find entry in allowlist for ${libraryVersionSlug}`)
-    return {}
+    if (inheritParams.library && libraryAllowList[inheritParams.library]) {
+      return validateLibraryParams({
+        ...libraryAllowList[inheritParams.library],
+        ...inheritParams
+      })
+    } else {
+      logging.warn(`Could not find entry in allowlist for ${libraryVersionSlug}`)
+      return {}
+    }
   }
-}
+)
 
 /**
  * Creates an absolute github URL from a give library params and a ref path.
@@ -469,67 +475,73 @@ const resolveDesignKitUrl = (params, key, value) => {
  * @param {*} data
  * @returns
  */
-const resolveSchemaReferences = async (params, data) => {
-  logging.info(`Resolving schema references for library ${data.library.name}`)
-  if (data.library.designKits) {
-    for await (const [key, value] of Object.entries(data.library.designKits)) {
-      if (value.$ref) {
-        if (
-          !createUrl(value.$ref) &&
-          !value.$ref.startsWith('#/') &&
-          !resolveDesignKitUrl(params, key, value)
-        ) {
-          delete data.library.designKits[key]
-          continue
-        }
-        try {
-          // dereferencing design kits manually so that one invalid design kit
-          // doesn't throw out the whole library
-          const obj = { kit: data.library.designKits[key], designKits: data.designKits }
-          data.library.designKits[key] = (await $RefParser.dereference(obj)).kit
-        } catch (err) {
-          logging.warn(
-            `Skipping design kit: ${key} of library ${params.library} due to reference error: ${err}`
-          )
-          delete data.library.designKits[key]
+const resolveSchemaReferences = withTrace(
+  logging,
+  async function resolveSchemaReferences(params, data) {
+    logging.info(`Resolving schema references for library ${data.library.name}`)
+    if (data.library.designKits) {
+      for await (const [key, value] of Object.entries(data.library.designKits)) {
+        if (value.$ref) {
+          if (
+            !createUrl(value.$ref) &&
+            !value.$ref.startsWith('#/') &&
+            !resolveDesignKitUrl(params, key, value)
+          ) {
+            delete data.library.designKits[key]
+            continue
+          }
+          try {
+            // dereferencing design kits manually so that one invalid design kit
+            // doesn't throw out the whole library
+            const obj = { kit: data.library.designKits[key], designKits: data.designKits }
+            data.library.designKits[key] = (await $RefParser.dereference(obj)).kit
+          } catch (err) {
+            logging.warn(
+              `Skipping design kit: ${key} of library ${params.library} due to reference error: ${err}`
+            )
+            delete data.library.designKits[key]
+          }
         }
       }
     }
+
+    logging.info(`Dereferencing library ${data.library.name}`)
+    const dereferencedLibrary = await $RefParser.dereference(data)
+
+    return Buffer.from(JSON.stringify(dereferencedLibrary), 'utf8').toString('base64')
   }
-
-  logging.info(`Dereferencing library ${data.library.name}`)
-  const dereferencedLibrary = await $RefParser.dereference(data)
-
-  return Buffer.from(JSON.stringify(dereferencedLibrary), 'utf8').toString('base64')
-}
+)
 
 /**
  * Find related libraries by group to a particular library
  * @param {import('@/typedefs').Library} libData
  * @returns {Promise<import('@/typedefs').Library[]>}
  */
-export const getLibraryRelatedLibs = async (libData) => {
-  logging.info(`Getting Related libraries for ${getSlug(libData.content)}`)
-  const relatedLibs = []
-  if (libData.params.group) {
-    for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
-      if (libraryParams.group === libData.params.group) {
-        const relatedLibData = await getLibraryData({
-          library: slug,
-          ref: 'latest',
-          ...libraryParams
-        })
-        if (
-          relatedLibData?.content.id !== libData.content.id &&
-          !relatedLibData?.content?.noIndex
-        ) {
-          relatedLibs.push(relatedLibData)
+export const getLibraryRelatedLibs = withTrace(
+  logging,
+  async function getLibraryRelatedLibs(libData) {
+    logging.info(`Getting Related libraries for ${getSlug(libData.content)}`)
+    const relatedLibs = []
+    if (libData.params.group) {
+      for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
+        if (libraryParams.group === libData.params.group) {
+          const relatedLibData = await getLibraryData({
+            library: slug,
+            ref: 'latest',
+            ...libraryParams
+          })
+          if (
+            relatedLibData?.content.id !== libData.content.id &&
+            !relatedLibData?.content?.noIndex
+          ) {
+            relatedLibs.push(relatedLibData)
+          }
         }
       }
     }
+    return relatedLibs
   }
-  return relatedLibs
-}
+)
 
 /**
  * Finds and returns array of related frameworks for a given asset
@@ -538,41 +550,44 @@ export const getLibraryRelatedLibs = async (libData) => {
  * @returns {Promise<{framework: string, params: import('@/typedefs).Params}[]>}
  * Array of related frameworks
  */
-export const getAssetRelatedFrameworks = async (params, library) => {
-  logging.info(`Getting related frameworks for asset for ${JSON.stringify(params)}`)
-  const otherAssetFrameworks = []
-  if (library.params.group) {
-    for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
-      if (libraryParams.group === library.params.group) {
-        const libParams = {
-          library: slug,
-          ref: 'latest',
-          ...libraryParams,
-          asset: params.asset
-        }
-        const relatedLibData = await getLibraryData(libParams)
-        if (
-          relatedLibData?.content.id !== library.content.id &&
-          !relatedLibData?.content?.noIndex &&
-          relatedLibData.assets?.length &&
-          !relatedLibData.assets[0].content?.noIndex &&
-          relatedLibData.assets[0].content?.framework
-        ) {
-          otherAssetFrameworks.push({
-            framework: relatedLibData.assets[0]?.content.framework,
-            params: {
-              library: slug,
-              ...libraryParams,
-              ref: params.ref,
-              asset: params.asset
-            }
-          })
+export const getAssetRelatedFrameworks = withTrace(
+  logging,
+  async function getAssetRelatedFrameworks(params, library) {
+    logging.info(`Getting related frameworks for asset for ${JSON.stringify(params)}`)
+    const otherAssetFrameworks = []
+    if (library.params.group) {
+      for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
+        if (libraryParams.group === library.params.group) {
+          const libParams = {
+            library: slug,
+            ref: 'latest',
+            ...libraryParams,
+            asset: params.asset
+          }
+          const relatedLibData = await getLibraryData(libParams)
+          if (
+            relatedLibData?.content.id !== library.content.id &&
+            !relatedLibData?.content?.noIndex &&
+            relatedLibData.assets?.length &&
+            !relatedLibData.assets[0].content?.noIndex &&
+            relatedLibData.assets[0].content?.framework
+          ) {
+            otherAssetFrameworks.push({
+              framework: relatedLibData.assets[0]?.content.framework,
+              params: {
+                library: slug,
+                ...libraryParams,
+                ref: params.ref,
+                asset: params.asset
+              }
+            })
+          }
         }
       }
     }
+    return otherAssetFrameworks
   }
-  return otherAssetFrameworks
-}
+)
 
 /**
  * If the params map to a valid design kit in the allowlist, fetch the contents of the design kit's
@@ -580,7 +595,7 @@ export const getAssetRelatedFrameworks = async (params, library) => {
  * @param {import('@/typedefs').Params} params
  * @returns {import('@/typedefs').DesignKit[]}
  */
-export const getDesignKitsData = async (params = {}) => {
+export const getDesignKitsData = withTrace(logging, async function getDesignKitsData(params = {}) {
   logging.info(`Getting design kits data for ${JSON.stringify(params)}`)
   const designKitsParams = await validateDesignKitsParams(params)
 
@@ -668,14 +683,14 @@ export const getDesignKitsData = async (params = {}) => {
       ...designKitAllowList[id]
     }
   })
-}
+})
 
 /**
  * Adds default attributes to each asset in a library as per necessary (e.g.: docs)
  * @param {import('@/typedefs').Library} library
  * @returns {Promise<void>} A promise that resolves to void.
  */
-const addAssetDefaults = async (library) => {
+const addAssetDefaults = withTrace(logging, async function addAssetDefaults(library) {
   logging.info(`Adding defaults for assets in library ${getSlug(library.content)}`)
   const { params } = library
   const libraryTree = await getGithubTree(params)
@@ -736,7 +751,7 @@ const addAssetDefaults = async (library) => {
       })
     })
   })
-}
+})
 
 /**
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
@@ -744,7 +759,7 @@ const addAssetDefaults = async (library) => {
  * @param {import('@/typedefs').Params} params
  * @returns {Promise<import('@/typedefs').Library>}
  */
-export const getLibraryData = async (params = {}) => {
+export const getLibraryData = withTrace(logging, async function getLibraryData(params = {}) {
   logging.info(`Getting library data for ${JSON.stringify(params)}`)
   const libraryParams = await validateLibraryParams(params)
 
@@ -851,7 +866,7 @@ export const getLibraryData = async (params = {}) => {
   validateLibraryAssets(libraryResponse)
 
   return libraryResponse
-}
+})
 
 /**
  * Validates and returns an asset thumbnail path with the leading slash removed.
@@ -904,7 +919,7 @@ const getThumbnailPath = (libraryParams = {}, asset = {}) => {
  * @param {import('@/typedefs').Params} params
  * @returns {Promise<import('@/typedefs').GitHubTreeResponse>}
  */
-const getGithubTree = async (params = {}) => {
+const getGithubTree = withTrace(logging, async function getGithubTree(params = {}) {
   logging.info(`Getting repo github tree, params: ${JSON.stringify(params)}`)
 
   const libraryParams = await validateLibraryParams(params)
@@ -952,7 +967,7 @@ const getGithubTree = async (params = {}) => {
   }
 
   return treeResponse
-}
+})
 
 /**
  * If the params map to a valid library in the allowlist, get the default branch if there isn't a
@@ -961,7 +976,7 @@ const getGithubTree = async (params = {}) => {
  * @param {import('@/typedefs').Params} params
  * @returns {Promise<import('@/typedefs').Asset[]>}
  */
-const getLibraryAssets = async (params = {}) => {
+const getLibraryAssets = withTrace(logging, async function getLibraryAssets(params = {}) {
   logging.info(`Getting assets for library, params: ${JSON.stringify(params)}`)
 
   const libraryParams = await validateLibraryParams(params)
@@ -1111,7 +1126,7 @@ const getLibraryAssets = async (params = {}) => {
   }
 
   return assets
-}
+})
 
 /**
  * Validates and filters an array of assets,
@@ -1134,7 +1149,7 @@ const validateLibraryAssets = (library) => {
  * @param {import('@/typedefs').Library} library
  * @returns {Promise<void>} A promise that resolves to void.
  */
-const addLibraryInheritedData = async (library) => {
+const addLibraryInheritedData = withTrace(logging, async function addLibraryInheritedData(library) {
   logging.info(`Adding inherited data to library ${getSlug(library.content)}`)
   if (library.content.inherits) {
     const inheritParams = await getLibraryParams(library.content.inherits)
@@ -1149,14 +1164,14 @@ const addLibraryInheritedData = async (library) => {
       }
     }
   }
-}
+})
 
 /**
  * Gets the GitHub open issue count for an asset using the asset's name searching only issue title
  * @param {import('@/typedefs').Asset} asset
  * @returns {number}
  */
-export const getAssetIssueCount = async (asset) => {
+export const getAssetIssueCount = withTrace(logging, async function getAssetIssueCount(asset) {
   logging.info(`Getting asset issue count ${getSlug(asset.content)}`)
   const { host, org, repo } = asset.params
 
@@ -1180,14 +1195,14 @@ export const getAssetIssueCount = async (asset) => {
   }
 
   return response?.total_count ?? 0
-}
+})
 
 /**
  * Retrieves all indexed design kits and filters them out through the allowlist
  * branch is used.
  * @returns {import('@/typedefs').DesignKit[]}
  */
-export const getAllDesignKits = async () => {
+export const getAllDesignKits = withTrace(logging, async function getAllDesignKits() {
   logging.info('Getting all design kits')
   const baseDesignKits = Object.entries(resources.designKits)
     .filter(([key]) => !!designKitAllowList[key])
@@ -1211,14 +1226,14 @@ export const getAllDesignKits = async () => {
   const designKits = await Promise.all(promises)
 
   return [...designKits.filter((n) => n.length).flat(), ...baseDesignKits]
-}
+})
 
 /**
  * Iterates over all libraries in the allowlist and fetches library data with no ref so the default
  * branch is used.
  * @returns {import('@/typedefs').Libraries}
  */
-export const getAllLibraries = async () => {
+export const getAllLibraries = withTrace(logging, async function getAllLibraries() {
   logging.info('Getting all libraries')
   const promises = []
 
@@ -1238,7 +1253,7 @@ export const getAllLibraries = async () => {
   return {
     libraries: libraries.filter((n) => n)
   }
-}
+})
 
 /**
  * Requests content of the package.json file and returns some of the properties.
@@ -1246,74 +1261,81 @@ export const getAllLibraries = async () => {
  * @param {string} packageJsonPath
  * @returns {Promise<import('@/typedefs').LibraryContent>}
  */
-const getPackageJsonContent = async (params = {}, packageJsonPath = '/package.json') => {
-  logging.info(
-    `Getting package.json content for params:  ${JSON.stringify(params)}, path: ${packageJsonPath}`
-  )
-  const libraryParams = await validateLibraryParams(params)
-
-  if (isEmpty(libraryParams)) {
-    logging.warn(
-      `Could not retrieve package.json content at this time due to invalid params ${JSON.stringify(
+const getPackageJsonContent = withTrace(
+  logging,
+  async function getPackageJsonContent(params = {}, packageJsonPath = '/package.json') {
+    logging.info(
+      `Getting package.json content for params:  ${JSON.stringify(
         params
-      )}`
+      )}, path: ${packageJsonPath}`
     )
-    return {}
-  }
+    const libraryParams = await validateLibraryParams(params)
 
-  /**
-   * @type {import('@/typedefs').GitHubContentResponse}
-   */
-  let response = {}
+    if (isEmpty(libraryParams)) {
+      logging.warn(
+        `Could not retrieve package.json content at this time due to invalid params ${JSON.stringify(
+          params
+        )}`
+      )
+      return {}
+    }
 
-  const packageJsonPathFromRoot = path.join(libraryParams.path, packageJsonPath)
-  const fullContentsPath = path.join(
-    'https://',
-    libraryParams.host,
-    '/repos',
-    libraryParams.org,
-    libraryParams.repo,
-    '/contents'
-  )
+    /**
+     * @type {import('@/typedefs').GitHubContentResponse}
+     */
+    let response = {}
 
-  if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, packageJsonPathFromRoot), 5)) {
-    // packageJsonPath doesn't belong to this repo and doesn't pass security check
-    logging.warn(
-      `Skipping packageJson content from ${libraryParams.host}/${libraryParams.org}/${libraryParams.repo} ` +
-        ` due to invalid path ${packageJsonPath}`
-    )
-    return {}
-  }
-
-  const options = {
-    owner: libraryParams.org,
-    repo: libraryParams.repo,
-    path: removeLeadingSlash(packageJsonPathFromRoot),
-    ref: libraryParams.ref
-  }
-  try {
-    response = await getResponse(
+    const packageJsonPathFromRoot = path.join(libraryParams.path, packageJsonPath)
+    const fullContentsPath = path.join(
+      'https://',
       libraryParams.host,
-      'GET /repos/{owner}/{repo}/contents/{path}',
-      options
+      '/repos',
+      libraryParams.org,
+      libraryParams.repo,
+      '/contents'
     )
-  } catch (err) {
-    logging.warn(`Could not get repository file path with options: ${options}, error: ${err}`)
-    // TODO: throw err
-    return {}
-  }
 
-  logging.info('Loading packageJson content response content using yaml')
-  /**
-   * @type {import('@/typedefs').LibraryContent}
-   */
-  const packageJsonContent = yaml.load(Buffer.from(response.content, response.encoding).toString())
+    if (!urlsMatch(fullContentsPath, path.join(fullContentsPath, packageJsonPathFromRoot), 5)) {
+      // packageJsonPath doesn't belong to this repo and doesn't pass security check
+      logging.warn(
+        `Skipping packageJson content from ${libraryParams.host}/${libraryParams.org}/${libraryParams.repo} ` +
+          ` due to invalid path ${packageJsonPath}`
+      )
+      return {}
+    }
 
-  return {
-    description: packageJsonContent.description,
-    license: packageJsonContent.license,
-    package: packageJsonContent.name,
-    version: packageJsonContent.version,
-    private: !!packageJsonContent.private
+    const options = {
+      owner: libraryParams.org,
+      repo: libraryParams.repo,
+      path: removeLeadingSlash(packageJsonPathFromRoot),
+      ref: libraryParams.ref
+    }
+    try {
+      response = await getResponse(
+        libraryParams.host,
+        'GET /repos/{owner}/{repo}/contents/{path}',
+        options
+      )
+    } catch (err) {
+      logging.warn(`Could not get repository file path with options: ${options}, error: ${err}`)
+      // TODO: throw err
+      return {}
+    }
+
+    logging.info('Loading packageJson content response content using yaml')
+    /**
+     * @type {import('@/typedefs').LibraryContent}
+     */
+    const packageJsonContent = yaml.load(
+      Buffer.from(response.content, response.encoding).toString()
+    )
+
+    return {
+      description: packageJsonContent.description,
+      license: packageJsonContent.license,
+      package: packageJsonContent.name,
+      version: packageJsonContent.version,
+      private: !!packageJsonContent.private
+    }
   }
-}
+)

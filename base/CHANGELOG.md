@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.12...@carbon-platform/base@0.0.13) (2022-09-08)
+
+
+### Misc. 🔮
+
+* move standard-version dep from base to micromanage ([9da47c4](https://github.com/carbon-design-system/carbon-platform/commit/9da47c448671ca9d5f9f793f068349ea88661011))
+
+### [0.0.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.11...@carbon-platform/base@0.0.12) (2022-09-08)
+
+
+### Bug Fixes 🐛
+
+* resolve merge conflicts ([04aaa6b](https://github.com/carbon-design-system/carbon-platform/commit/04aaa6b4d27cbd4ed11e6c66845ab84f3eb39b5d))
+
 ### [0.0.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/base@0.0.10...@carbon-platform/base@0.0.11) (2022-08-24)
 
 

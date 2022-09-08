@@ -184,7 +184,7 @@ class Logging {
       message,
       environment: this.runtime.environment,
       service: this.service,
-      timestamp: new Date(Date.now()).getTime()
+      timestamp: Date.now()
     }
   }
 
@@ -215,13 +215,31 @@ class Logging {
     lines.forEach((line) => {
       // Using concatenation because it is slightly faster than template literals
       console[logEntry.level](
-        date.toLocaleString() +
+        this.getDateString(date) +
           chalk.magenta(' service:' + logEntry.service + ' ') +
           colorizer(logEntry.level) +
           chalk.green(' [' + logEntry.component + '] ') +
           line
       )
     })
+  }
+
+  private getDateString(date: Date) {
+    return (
+      date.getFullYear() +
+      '-' +
+      String(date.getMonth()).padStart(2, '0') +
+      '-' +
+      String(date.getDate()).padStart(2, '0') +
+      ' ' +
+      String(date.getHours()).padStart(2, '0') +
+      ':' +
+      String(date.getMinutes()).padStart(2, '0') +
+      ':' +
+      String(date.getSeconds()).padStart(2, '0') +
+      '.' +
+      String(date.getMilliseconds()).padStart(3, '0')
+    )
   }
 
   /**

@@ -47,7 +47,13 @@ export const assetContentPropTypes = PropTypes.shape({
   status: PropTypes.oneOf(['draft', 'experimental', 'stable', 'deprecated']),
   thumbnailPath: PropTypes.string,
   thumbnailSvg: PropTypes.string,
-  type: PropTypes.oneOf(['element', 'component', 'pattern', 'function', 'layout'])
+  type: PropTypes.oneOf(['element', 'component', 'pattern', 'function', 'layout']),
+  demoLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired
+    })
+  )
 })
 
 export const assetPropTypes = PropTypes.shape({

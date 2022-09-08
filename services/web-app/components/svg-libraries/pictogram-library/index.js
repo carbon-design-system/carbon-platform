@@ -5,13 +5,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import LibraryProvider from '../library-provider'
-import Library from './pictogram-library'
-
-const PictogramLibrary = ({ site }) => (
-  <LibraryProvider site={site} type="pictogram">
-    <Library />
-  </LibraryProvider>
-)
-
-export default PictogramLibrary
+export { default } from './pictogram-library'

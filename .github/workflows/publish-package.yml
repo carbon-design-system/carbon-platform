@@ -1,4 +1,4 @@
-name: Publish Package
+name: Publish package
 on:
   # Enable running this workflow from other workflows
   workflow_call:
@@ -32,6 +32,8 @@ jobs:
   publish:
     name: Publish
     runs-on: ubuntu-latest
+    env:
+      PACKAGE_NAME: ${{ inputs.package_name || github.event.inputs.package_name }}
 
     steps:
       - name: Checkout 🛎
@@ -46,13 +48,13 @@ jobs:
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install Node modules 🔧
-        run: npm install
+      - name: Install Micromanage 🏗
+        run: npm --workspace packages/micromanage-cli install
 
-      - name: Bootstrap Micromanage 🥾
-        run: npm run micromanage:bootstrap
+      - name: Build package 🔨
+        run: npx micromanage build $PACKAGE_NAME
 
       - name: Publish 🚀
-        run: node packages/micromanage publish ${{ inputs.package_name || github.event.inputs.package_name }}
+        run: npx micromanage package publish $PACKAGE_NAME
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

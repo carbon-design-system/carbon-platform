@@ -113,8 +113,6 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
             className={styles.iframe}
             src={iframeUrl}
             frameBorder="no"
-            allowtransparency="true"
-            allowFullScreen="true"
             sandbox="allow-forms allow-scripts allow-same-origin"
           />
         </Column>

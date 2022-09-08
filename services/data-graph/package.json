@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/data-graph",
   "description": "Carbon Platform Data Graph service",
-  "version": "0.1.42",
+  "version": "0.1.46",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
@@ -19,7 +19,7 @@
     "build": "nest build",
     "build:schema": "npm run build && node dist/main/generate-schema.js",
     "bundle": "node esbuild.js",
-    "clean": "rimraf dist '*.tsbuildinfo'",
+    "clean": "rimraf dist",
     "service:build": "npm run build",
     "start": "node dist/main/index.js",
     "start:dev": "nest start --watch",
@@ -27,11 +27,11 @@
     "test": "ava --config ../../ava.config.mjs"
   },
   "dependencies": {
-    "@nestjs/apollo": "^10.0.22",
-    "apollo-server-express": "^3.10.1",
+    "@nestjs/apollo": "^10.1.0",
+    "apollo-server-express": "^3.10.2",
     "apollo-server-plugin-base": "^3.6.2",
     "express": "^4.18.1",
     "graphql": "^16.6.0",
-    "uuid": "^8.3.2"
+    "uuid": "^9.0.0"
   }
 }

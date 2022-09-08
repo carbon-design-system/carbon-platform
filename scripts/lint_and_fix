@@ -10,8 +10,10 @@ set -e
 
 prettier --check --write .
 
+echo "Running stylelint"
 stylelint --fix '**/*.{css,scss}'
 
+echo "Running eslint"
 eslint --fix --max-warnings=0 --ext .js,.cjs,.mjs,.jsx,.ts,.tsx .
 
 # Lint once more to ensure no thrashing occurred

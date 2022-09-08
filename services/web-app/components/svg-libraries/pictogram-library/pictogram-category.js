@@ -27,6 +27,7 @@ const PictogramCategory = ({ category, pictograms, columnCount }) => {
           .map((pictogram, i) => (
             <SvgCard
               isLastCard={(i + 1) % columnCount === 0}
+              isPictogram={true}
               containerIsVisible={containerIsVisible}
               key={pictogram.name}
               icon={pictogram}

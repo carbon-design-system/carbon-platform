@@ -5,20 +5,6 @@ Here are some of the package management tasks that are periodically performed ac
 > Note: The monorepo is using npm 8 "workspaces", which simplify the dependency management across
 > projects through the use of many top-level commands which target specific workspaces.
 
-## Installing project dependencies
-
-It is a good idea each time after cloning or pulling from the upstream repository to install the
-project dependencies. From the top-level directory of the project, this can be done by running:
-
-```
-$ npm install
-```
-
-This will install the dependencies across _all_ workspaces in the monorepo.
-
-This will _also_ build all of the `packages` in the repo, since these are required to run any
-services that depend on them.
-
 ## Adding new project dependencies
 
 To install a new node module into a project, from the top-level of the repository, run:
@@ -56,7 +42,7 @@ To update the node modules across all workspaces, from the top-level in the repo
 ```
 npm update
 npx --workspaces --include-workspace-root ncu --upgrade --interactive --target=minor
-npm install && npm install
+CI=true npm install && npm install
 ```
 
 > Note: An ncu target of `latest` or `patch` can also be used, depending on the objective.

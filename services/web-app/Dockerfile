@@ -1,4 +1,4 @@
-FROM local/carbon-platform/base:latest AS builder
+FROM us.icr.io/carbon-platform/base:latest AS builder
 
 WORKDIR /ibm
 

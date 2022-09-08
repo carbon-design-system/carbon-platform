@@ -43,8 +43,10 @@ jobs:
           node-version: '16'
           cache: 'npm'
 
-      - name: Install Micromanage 🔧
-        run: npm --workspace packages/micromanage-cli install
+      # A full install is done here since micromanage does an install internally to keep the
+      # lockfile up to date.
+      - name: Install Node Modules 🔧
+        run: npm install
 
       - id: version
         name: Version 📆

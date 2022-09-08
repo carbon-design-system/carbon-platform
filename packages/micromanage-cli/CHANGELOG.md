@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.3](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@2.0.2...micromanage-cli@2.0.3) (2022-09-08)
+
+
+### Misc. 🔮
+
+* **micromanage:** remove octokit since it is no longer used ([c84582e](https://github.com/carbon-design-system/carbon-platform/commit/c84582e08b2b988b492247486307f58bea48b753))
+
 ### [2.0.2](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@2.0.1...micromanage-cli@2.0.2) (2022-09-08)
 
 

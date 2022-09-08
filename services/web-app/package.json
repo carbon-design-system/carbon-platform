@@ -84,7 +84,7 @@
     "svgo": "^2.8.0",
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.1",
-    "uuid": "^8.3.2",
+    "uuid": "^9.0.0",
     "vfile": "^5.3.5",
     "vfile-matter": "^4.0.0"
   },

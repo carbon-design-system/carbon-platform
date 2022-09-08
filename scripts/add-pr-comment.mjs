@@ -87,10 +87,9 @@ function getResultText(workspacesMap) {
   let text = ''
 
   if (Object.keys(workspacesMap).length > 0) {
-    text =
-      '❗ **The commit titles in this PR will result in the following package and service version changes:**\n\n'
+    text = '❗ **The commits in this PR will result in the following version changes:**\n\n'
   } else {
-    text = 'The commit messages in this PR will not result in any package/service version changes.'
+    text = 'The commits in this PR will not result in any workspace version changes.'
   }
 
   Object.entries(workspacesMap)

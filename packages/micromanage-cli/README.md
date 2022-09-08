@@ -13,15 +13,10 @@ Options:
 
 Commands:
   build [options] <workspace-name>       Build a workspace
-  changed [options]                      List each workspace that has changed since its most recent
-                                         tag
+  changed [options]                      List changed workspaces
   package                                Commands that operate on packages
   service                                Commands that operate on services
-  version [options] <workspace-name...>  Update the version of each provided workspace based on a
-                                         conventional commits changelog. The version bump
-                                         (major/minor/patch) is determined based on the
-                                         conventional commits found since each workspace's most
-                                         recent tag.
+  version [options] <workspace-name...>  Update workspace versions based on conventional commits
   help [command]                         display help for command
 ```
 
@@ -62,7 +57,9 @@ Options:
 ```
 Usage: micromanage version [options] <workspace-name...>
 
-Update the version of each provided workspace based on a conventional commits changelog. The version bump (major/minor/patch) is determined based on the conventional commits found since each workspace's most recent tag.
+Update the version of each provided workspace based on a conventional commits changelog. The
+version bump (major/minor/patch) is determined based on the conventional commits found since each
+workspace's most recent tag.
 
 Arguments:
   workspace-name  List of workspace names (from package.json) to process

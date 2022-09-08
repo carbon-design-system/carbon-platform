@@ -12,6 +12,7 @@ import { exec, filters, getTags, getWorkspaces } from './utils.js'
 function buildChangedCommand() {
   return new Command('changed')
     .configureHelp({ helpWidth: 100 })
+    .summary('List changed workspaces')
     .description('List each workspace that has changed since its most recent tag')
     .option('--base <base_ref>', 'Compare workspaces to a ref instead')
     .option('--json', 'Output as a JSON array')

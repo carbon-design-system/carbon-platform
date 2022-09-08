@@ -4,17 +4,22 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Command } from 'commander'
+import { Command, Help } from 'commander'
 
 import { exec, getWorkspaceByName } from './utils.js'
 
 function buildVersionCommand() {
   return new Command('version')
     .configureHelp({ helpWidth: 100 })
+    .summary('Update workspace versions based on conventional commits')
     .description(
-      'Update the version of each provided workspace based on a conventional commits changelog. ' +
-        'The version bump (major/minor/patch) is determined based on the conventional commits found ' +
-        "since each workspace's most recent tag."
+      new Help().wrap(
+        'Update the version of each provided workspace based on a conventional commits changelog. ' +
+          'The version bump (major/minor/patch) is determined based on the conventional commits found ' +
+          "since each workspace's most recent tag.",
+        100,
+        0
+      )
     )
     .option('--dry-run', 'Do not make any changes. Only output prospective updates')
     .option('--json', 'Output as a JSON array of new tags')

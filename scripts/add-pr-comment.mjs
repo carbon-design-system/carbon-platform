@@ -168,7 +168,7 @@ console.log()
 
 const updatedWorkspaces = {}
 
-getChangedWorkspaces(baseRef).forEach((ws) => {
+getChangedWorkspaces(`${remote}/${baseRef}`).forEach((ws) => {
   updatedWorkspaces[ws.name] = 'fix'
 })
 

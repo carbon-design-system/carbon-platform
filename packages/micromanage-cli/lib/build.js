@@ -8,7 +8,7 @@ import { Command } from 'commander'
 
 import { getWorkspaceByName, spawn } from './utils.js'
 
-// TODO: make this configurable
+// TODO: make these configurable
 const REMOTE_REGISTRY = 'us.icr.io'
 const ENVVAR_PREFIX = 'CARBON_'
 
@@ -55,13 +55,8 @@ async function handleBuildCommand(workspaceName, opts) {
 async function build(workspace, isDryRun) {
   const buildCmd = `npm --workspace ${workspace.path} run --if-present build`
 
-  console.error('Build command: ', buildCmd)
-
-  if (isDryRun) {
-    return
-  }
-
-  await spawn(buildCmd)
+  console.error('Running build command: ', buildCmd)
+  !isDryRun && (await spawn(buildCmd))
 }
 
 /**
@@ -73,19 +68,17 @@ async function dockerBuild(workspace, isDryRun) {
   let imageName = workspace.name.startsWith('@') ? workspace.name.substring(1) : workspace.name
   imageName = `${REMOTE_REGISTRY}/${imageName}:${workspace.version}`
 
-  console.error(`Building image ${imageName}`)
-
   const buildArgs = getEnvvarNames().map((envvarName) => `--build-arg ${envvarName}`)
   const buildArgsStr = buildArgs.join(' ')
-  const buildCmd = `docker build --no-cache --tag ${imageName} ${buildArgsStr} --file ${workspace.path}/Dockerfile .`
+  const buildCmd = `docker build --tag ${imageName} ${buildArgsStr} --file ${workspace.path}/Dockerfile .`
 
   const latestImageName = imageName.split(':')[0] + ':latest'
   const tagCmd = `docker tag ${imageName} ${latestImageName}`
 
-  console.error('Build command: ', buildCmd)
-  console.error('Tag command: ', tagCmd)
-
+  console.error('Running build command: ', buildCmd)
   !isDryRun && (await spawn(buildCmd))
+
+  console.error('Running tag command: ', tagCmd)
   !isDryRun && (await spawn(tagCmd))
 
   return imageName

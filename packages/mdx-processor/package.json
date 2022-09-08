@@ -30,7 +30,7 @@
     "rehype-urls": "^1.1.1",
     "remark-gfm": "^3.0.1",
     "remark-unwrap-images": "^3.0.1",
-    "vfile": "^5.3.4",
+    "vfile": "^5.3.5",
     "vfile-matter": "^4.0.0",
     "vfile-message": "^3.1.2"
   },

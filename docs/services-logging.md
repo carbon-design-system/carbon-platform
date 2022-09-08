@@ -29,7 +29,7 @@ all environment-based switches and instance-based overrides. This is only really
 purpose and for the logging service itself, which uses Logger objects, but does not bother writing
 them to the messaging infrastructure.
 
-### `constructor(config: LoggingConfig)`
+### `new Logging(config: LoggingConfig)`
 
 Instantiates a `Logging` object with a given service and component name. All log messages given to
 this logging instance will automatically include the component and optionally specified
@@ -128,3 +128,15 @@ try {
 ```ts
 error(`processImage encountered a checksum mismatch. Expected: ${expected}, Was: ${actual}`)
 ```
+
+### Decorators
+
+#### `@Trace()`
+
+A decorator that automatically \[debug\] logs method entry and exit, along with the arguments and
+return value of the method.
+
+#### `withTrace()`
+
+A higher-order decoration function similar to `@Trace()`, but for use outside of classes and/or in
+JS instead of TS.

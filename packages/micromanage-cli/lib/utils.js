@@ -77,7 +77,8 @@ async function spawn(cmd, options = {}) {
 
   const spawnOptions = {
     env: process.env,
-    stdio: 'inherit',
+    // Send stdout to stderr by default to avoid clobbering upstream command stdout output
+    stdio: ['inherit', process.stderr, 'inherit'],
     shell: true,
     ...options
   }

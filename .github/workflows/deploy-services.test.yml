@@ -33,8 +33,8 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install Node Modules 🔧
-        run: npm install @carbon-platform/micromanage-cli
+      - name: Install Micromanage 🔧
+        run: npm install micromanage-cli
 
       - name: Call Deploy Script 🚀
         run: npx micromanage service deploy --target=test

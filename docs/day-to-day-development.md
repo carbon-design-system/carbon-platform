@@ -32,6 +32,20 @@ All of the projects are stored in a single monorepo located at
 https://github.com/carbon-design-system/carbon-platform. To get started, clone this repository
 locally.
 
+## Installing project dependencies
+
+It is a good idea each time after cloning or pulling from the upstream repository to install the
+project dependencies. From the top-level directory of the project, this can be done by running:
+
+```
+$ npm install
+```
+
+This will install the dependencies across _all_ workspaces in the monorepo.
+
+This will _also_ build all of the `packages` in the repo, since these are required to run any
+services that depend on them.
+
 ## Working with npm dependencies
 
 For information about installing and managing repo-wide dependencies, see

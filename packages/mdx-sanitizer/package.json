@@ -38,6 +38,6 @@
     "remark-parse": "^10.0.1",
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.1",
-    "vfile": "^5.3.4"
+    "vfile": "^5.3.5"
   }
 }

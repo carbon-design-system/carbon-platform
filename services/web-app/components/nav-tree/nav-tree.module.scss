@@ -13,6 +13,11 @@
 
 .container {
   margin-bottom: spacing.$spacing-10;
+
+  .anchor {
+    color: theme.$text-secondary;
+    text-decoration: none;
+  }
   // overide Carbon treeview
   :global(.cds--tree-node) {
     padding-left: spacing.$spacing-05;
@@ -78,6 +83,10 @@
     background-color: theme.$background-selected;
     color: theme.$text-primary;
     font-weight: bold;
+
+    .anchor {
+      color: theme.$text-primary;
+    }
   }
 
   :global(.cds--tree-node[aria-expanded='true'] > * > .cds--tree-parent-node__toggle::after) {

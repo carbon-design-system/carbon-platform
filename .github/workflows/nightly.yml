@@ -43,8 +43,8 @@ jobs:
           node-version: '16'
           cache: 'npm'
 
-      - name: Install Node modules 🔧
-        run: npm install
+      - name: Install Micromanage 🔧
+        run: npm --workspace packages/micromanage-cli install
 
       - id: version
         name: Version 📆

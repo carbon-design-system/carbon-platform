@@ -4,13 +4,14 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const { Command } = require('commander')
-const path = require('path')
+import { Command } from 'commander'
+import path from 'path'
 
-const { getWorkspaceByName, exec } = require('./utils')
+import { exec, getWorkspaceByName } from '../utils.js'
 
 function buildPublishCommand() {
   return new Command('publish')
+    .configureHelp({ helpWidth: 100 })
     .description('Publish a package to npmjs')
     .option('--dry-run', 'Do not make any changes. Only output prospective updates')
     .argument('<package-name>', 'Name of the package to publish')
@@ -18,7 +19,8 @@ function buildPublishCommand() {
 }
 
 function handlePublishCommand(packageName, opts) {
-  console.log('===== micromanage publish =====')
+  // Note: stderr is used so stdout can be used by subsequent scripts
+  console.error('===== micromanage publish =====')
 
   const pkg = getWorkspaceByName(packageName)
   const dryRun = opts.dryRun ? '--dry-run' : ''
@@ -39,9 +41,6 @@ function handlePublishCommand(packageName, opts) {
 
   console.log(`Publishing ${pkg.name}`)
 
-  // Build
-  exec(`npm run --if-present --workspace=${pkg.path} build`)
-
   // Add top-level license
   exec(`cp LICENSE ${pkg.path}`)
 
@@ -52,6 +51,4 @@ function handlePublishCommand(packageName, opts) {
   exec(`rm ${path.join(pkg.path, 'LICENSE')}`)
 }
 
-module.exports = {
-  buildPublishCommand
-}
+export { buildPublishCommand }

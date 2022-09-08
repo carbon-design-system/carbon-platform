@@ -1,7 +1,7 @@
 {
-  "name": "@carbon-platform/micromanage-cli",
-  "version": "1.4.5",
-  "description": "Monorepo management of microservices",
+  "name": "micromanage-cli",
+  "version": "2.0.3",
+  "description": "The missing npm workspace management tool",
   "license": "Apache-2.0",
   "main": "./lib/index.js",
   "author": "IBM",
@@ -20,21 +20,18 @@
     "node": "16",
     "npm": "8"
   },
+  "type": "module",
   "bin": {
     "micromanage": "./lib/index.js"
   },
   "files": [
-    "lib/*",
-    "scripts/*"
+    "lib/*"
   ],
   "scripts": {
     "test": "echo 'No tests specified. Maybe you should add some!'"
   },
   "dependencies": {
     "commander": "^9.4.0",
-    "octokit": "^2.0.7"
-  },
-  "micromanage": {
-    "standalone": true
+    "standard-version": "^9.5.0"
   }
 }

@@ -10,6 +10,8 @@ set -e
 
 prettier --check .
 
+echo "Running stylelint"
 stylelint '**/*.{css,scss}'
 
+echo "Running eslint"
 eslint --max-warnings=0 --ext .js,.cjs,.mjs,.jsx,.ts,.tsx .

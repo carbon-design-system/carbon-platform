@@ -9,7 +9,6 @@ import { ArrowRight, Launch } from '@carbon/react/icons'
 import { Svg32Github, Svg32Library, Svg64Community } from '@carbon-platform/icons'
 import { AnchorLink, AnchorLinks } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
-import { get } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
@@ -166,7 +165,7 @@ const Library = ({ libraryData, params, navData }) => {
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>Maintainer</dt>
                       <dd className={dashboardStyles.meta}>
-                        {get(teams, `[${libraryData.params.maintainer}].name`, 'Community')}
+                        {teams[libraryData.params.maintainer]?.name || 'Community'}
                       </dd>
                     </Column>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
@@ -217,7 +216,7 @@ const Library = ({ libraryData, params, navData }) => {
           <Column sm={4} md={8} lg={8}>
             <section>
               <H2>Demo links</H2>
-              <DemoLinks links={[...get(libraryData, 'content.demoLinks', [])]} />
+              <DemoLinks links={libraryData?.content?.demoLinks || []} />
             </section>
           </Column>
         )}

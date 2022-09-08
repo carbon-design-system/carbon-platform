@@ -8,7 +8,8 @@ import $RefParser from '@apidevtools/json-schema-ref-parser'
 import { Logging } from '@carbon-platform/api/logging'
 import resources from '@carbon-platform/resources'
 import yaml from 'js-yaml'
-import { get, isEmpty, set } from 'lodash'
+import isEmpty from 'lodash/isEmpty'
+import set from 'lodash/set'
 import path from 'path'
 import slugify from 'slugify'
 
@@ -27,9 +28,9 @@ const logging = new Logging({ component: 'github.js' })
 
 /**
  * Generate and return the nav data for a library.
- * @param {import('../typedefs').Params} params
- * @param {import('../typedefs').Library} libraryData
- * @returns {import('../typedefs').LibraryNavData}
+ * @param {import('@/typedefs').Params} params
+ * @param {import('@/typedefs').Library} libraryData
+ * @returns {import('@/typedefs').LibraryNavData}
  */
 export const getLibraryNavData = (params, libraryData) => {
   if (isEmpty(libraryData)) return {}
@@ -42,7 +43,7 @@ export const getLibraryNavData = (params, libraryData) => {
     return `v${libraryData.content.version}`
   }
 
-  const libraryNavData = get(libraryData, ['content', 'navData'], [])
+  const libraryNavData = libraryData.content?.navData || []
 
   // traverse items subtree and remove hidden nodes
   dfs(libraryNavData, (item) => {
@@ -83,14 +84,14 @@ export const getLibraryNavData = (params, libraryData) => {
 
 /**
  * Retrieves Mdx file from github repo and serializes it for rendering
- * @param {import('../typedefs').Params} repoParams Partially-complete parameters
+ * @param {import('@/typedefs').Params} repoParams Partially-complete parameters
  * @param {string} mdxPath Path to Mdx from repo source
  * @returns {Promise<string>} Mdx Source Content
  */
 export const getRemoteMdxSource = async (repoParams, mdxPath) => {
   logging.info(`Getting remote MDX for ${JSON.stringify(repoParams)} ${mdxPath}`)
   /**
-   * @type {import('../typedefs').GitHubContentResponse}
+   * @type {import('@/typedefs').GitHubContentResponse}
    */
   let response = {}
 
@@ -156,7 +157,7 @@ export const getRemoteMdxSource = async (repoParams, mdxPath) => {
 
 /**
  * Given a repo's params, retrieve and return the repo's default branch.
- * @param {import('../typedefs').Params} params - Partially-complete parameters
+ * @param {import('@/typedefs').Params} params - Partially-complete parameters
  * @returns {Promise<string>} Repo's default branch, undefined if not found
  */
 const getRepoDefaultBranch = async (params = {}) => {
@@ -177,12 +178,12 @@ const getRepoDefaultBranch = async (params = {}) => {
  * Validates the route's parameters and returns an object that also includes the
  *  path to the directory that contains the carbon.yml. Returns an empty object if
  * not found. Does not validate ref, so people can set their own branch / tag / commit.
- * @param {import('../typedefs').Params} params - Partially-complete parameters
- * @returns {Promise<import('../typedefs').Params>} Complete parameters
+ * @param {import('@/typedefs').Params} params - Partially-complete parameters
+ * @returns {Promise<import('@/typedefs').Params>} Complete parameters
  */
 const validateDesignKitsParams = async (params = {}) => {
   /**
-   * @type {import('../typedefs').Params}
+   * @type {import('@/typedefs').Params}
    */
   let returnParams = { ...params }
 
@@ -224,12 +225,12 @@ const validateDesignKitsParams = async (params = {}) => {
  * Validates the route's parameters and returns an object that also includes the library's slug as
  * well as path to the directory that contains the carbon.yml. Returns an empty object if
  * not found. Does not validate ref, so people can set their own branch / tag / commit.
- * @param {import('../typedefs').Params} params - Partially-complete parameters
- * @returns {Promise<import('../typedefs').Params>} Complete parameters
+ * @param {import('@/typedefs').Params} params - Partially-complete parameters
+ * @returns {Promise<import('@/typedefs').Params>} Complete parameters
  */
 const validateLibraryParams = async (params = {}) => {
   /**
-   * @type {import('../typedefs').Params}
+   * @type {import('@/typedefs').Params}
    */
   let returnParams = {}
 
@@ -265,9 +266,9 @@ const validateLibraryParams = async (params = {}) => {
 
 /**
  * Merges inheritable properties from one asset to another if that property isn't set
- * @param {import('../typedefs').Asset[]} assets
- * @param {import('../typedefs').Asset[]} inheritAssets
- * @returns {import('../typedefs').Asset[]}
+ * @param {import('@/typedefs').Asset[]} assets
+ * @param {import('@/typedefs').Asset[]} inheritAssets
+ * @returns {import('@/typedefs').Asset[]}
  */
 const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
   const inheritableProperties = [
@@ -289,10 +290,10 @@ const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
 
     if (inheritAsset) {
       inheritableProperties.forEach((property) => {
-        const inheritProperty = get(inheritAsset, `content.${property}`)
+        const inheritProperty = inheritAsset.content?.[property]
 
         // check for undefined properties, as well as empty arrays for tags
-        if (isEmpty(get(asset, `content.${property}`)) && inheritProperty) {
+        if (isEmpty(asset.content?.[property]) && inheritProperty) {
           set(asset, `content.${property}`, inheritProperty)
         }
       })
@@ -304,8 +305,8 @@ const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
 
 /**
  * Ensures an asset has default properties if not set
- * @param {import('../typedefs').AssetContent} assetContent
- * @returns {import('../typedefs').AssetContent}
+ * @param {import('@/typedefs').AssetContent} assetContent
+ * @returns {import('@/typedefs').AssetContent}
  */
 const mergeAssetContentDefaults = (assetContent = {}) => {
   return {
@@ -318,7 +319,7 @@ const mergeAssetContentDefaults = (assetContent = {}) => {
 
 /**
  * Validates a design kit's structure and content and logs any validation errors as warnings
- * @param {import('../typedefs').DesignKit} designKit
+ * @param {import('@/typedefs').DesignKit} designKit
  * @returns {boolean} whether the design kit is valid or not
  */
 const validateDesignKit = (designKit, source) => {
@@ -340,7 +341,7 @@ const validateDesignKit = (designKit, source) => {
 
 /**
  * Validates a library's structure and content and logs any validation errors as warnings
- * @param {import('../typedefs').library} library
+ * @param {import('@/typedefs').library} library
  * @returns {boolean} whether the library is valid or not
  */
 const validateLibrary = (library) => {
@@ -360,7 +361,7 @@ const validateLibrary = (library) => {
 
 /**
  * Validates an asset's structure and content and logs any validation errors as warnings
- * @param {import('../typedefs').asset} asset
+ * @param {import('@/typedefs').asset} asset
  * @returns {boolean} whether the asset is valid or not
  */
 const validateAsset = (asset, library) => {
@@ -384,7 +385,7 @@ const validateAsset = (asset, library) => {
  * Finds library object in libraryAllowList from slug and returns a valid set of params
  * (if library is valid)
  * @param {string} libraryVersionSlug e.g. 'carbon-charts@0.1.121'
- * @returns {Promise<import('../typedefs').Params>}
+ * @returns {Promise<import('@/typedefs').Params>}
  */
 export const getLibraryParams = async (libraryVersionSlug) => {
   const inheritParams = getLibraryVersionAsset(libraryVersionSlug)
@@ -401,7 +402,7 @@ export const getLibraryParams = async (libraryVersionSlug) => {
 
 /**
  * Creates an absolute github URL from a give library params and a ref path.
- * @param {import('../typedefs').Params} params
+ * @param {import('@/typedefs').Params} params
  * @param {string} ref
  * @returns {string} an absolute URL or an empty string if the resulting url is invalid
  */
@@ -429,7 +430,7 @@ const resolveDesignKitUrl = (params, key, value) => {
 
 /**
  * Dereferences a JSON schema and preserves original refs
- * @param {import('../typedefs').Params} params
+ * @param {import('@/typedefs').Params} params
  * @param {*} data
  * @returns
  */
@@ -465,8 +466,8 @@ const resolveSchemaReferences = async (params, data) => {
 
 /**
  * Find related libraries by group to a particular library
- * @param {import('../typedefs').Library} libData
- * @returns {Promise<import('../typedefs').Library[]>}
+ * @param {import('@/typedefs').Library} libData
+ * @returns {Promise<import('@/typedefs').Library[]>}
  */
 export const getLibraryRelatedLibs = async (libData) => {
   const relatedLibs = []
@@ -491,10 +492,51 @@ export const getLibraryRelatedLibs = async (libData) => {
 }
 
 /**
+ * Finds and returns array of related frameworks for a given asset
+ * @param {import('@/typedefs').Params} params
+ * @param {import('@/typedefs').Library} library
+ * @returns {Promise<{framework: string, params: import('@/typedefs).Params}[]>}
+ * Array of related frameworks
+ */
+export const getAssetRelatedFrameworks = async (params, library) => {
+  const otherAssetFrameworks = []
+  if (library.params.group) {
+    for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
+      if (libraryParams.group === library.params.group) {
+        const relatedLibData = await getLibraryData({
+          library: slug,
+          ref: 'latest',
+          ...libraryParams,
+          asset: params.asset
+        })
+        if (
+          relatedLibData?.content.id !== library.content.id &&
+          !relatedLibData?.content?.noIndex &&
+          relatedLibData.assets?.length &&
+          !relatedLibData.assets[0].content?.noIndex &&
+          relatedLibData.assets[0].content?.framework
+        ) {
+          otherAssetFrameworks.push({
+            framework: relatedLibData.assets[0]?.content.framework,
+            params: {
+              library: slug,
+              ...libraryParams,
+              ref: params.ref,
+              asset: params.asset
+            }
+          })
+        }
+      }
+    }
+  }
+  return otherAssetFrameworks
+}
+
+/**
  * If the params map to a valid design kit in the allowlist, fetch the contents of the design kit's
  * metadata file. If the params are not valid, early return.
- * @param {import('../typedefs').Params} params
- * @returns {import('../typedefs').DesignKit[]}
+ * @param {import('@/typedefs').Params} params
+ * @returns {import('@/typedefs').DesignKit[]}
  */
 export const getDesignKitsData = async (params = {}) => {
   const designKitsParams = await validateDesignKitsParams(params)
@@ -502,7 +544,7 @@ export const getDesignKitsData = async (params = {}) => {
   if (isEmpty(designKitsParams)) return null
 
   /**
-   * @type {import('../typedefs').GitHubContentResponse}
+   * @type {import('@/typedefs').GitHubContentResponse}
    */
   let response = {}
 
@@ -566,7 +608,7 @@ export const getDesignKitsData = async (params = {}) => {
 
 /**
  * Adds default attributes to each asset in a library as per necessary (e.g.: docs)
- * @param {import('../typedefs').Library} library
+ * @param {import('@/typedefs').Library} library
  * @returns {Promise<void>} A promise that resolves to void.
  */
 const addAssetDefaults = async (library) => {
@@ -634,8 +676,8 @@ const addAssetDefaults = async (library) => {
 /**
  * If the params map to a valid library in the allowlist, fetch the contents of the library's
  * metadata file. If the params are not valid, early return so the page redirects to 404.
- * @param {import('../typedefs').Params} params
- * @returns {Promise<import('../typedefs').Library>}
+ * @param {import('@/typedefs').Params} params
+ * @returns {Promise<import('@/typedefs').Library>}
  */
 export const getLibraryData = async (params = {}) => {
   const libraryParams = await validateLibraryParams(params)
@@ -643,7 +685,7 @@ export const getLibraryData = async (params = {}) => {
   if (isEmpty(libraryParams)) return null
 
   /**
-   * @type {import('../typedefs').GitHubContentResponse}
+   * @type {import('@/typedefs').GitHubContentResponse}
    */
   let response = {}
 
@@ -670,7 +712,7 @@ export const getLibraryData = async (params = {}) => {
   }
 
   /**
-   * @type {import('../typedefs').LibraryContent}
+   * @type {import('@/typedefs').LibraryContent}
    */
   const { library } = content
 
@@ -718,8 +760,8 @@ export const getLibraryData = async (params = {}) => {
 
 /**
  * Validates and returns an asset thumbnail path with the leading slash removed.
- * @param {import('../typedefs').Params} libraryParams
- * @param {import('../typedefs').Asset} asset
+ * @param {import('@/typedefs').Params} libraryParams
+ * @param {import('@/typedefs').Asset} asset
  * @returns {string}
  */
 const getThumbnailPath = (libraryParams = {}, asset = {}) => {
@@ -751,8 +793,8 @@ const getThumbnailPath = (libraryParams = {}, asset = {}) => {
 
 /**
  * Recursively get all github metadata files for a given library
- * @param {import('../typedefs').Params} params
- * @returns {Promise<import('../typedefs').GitHubTreeResponse>}
+ * @param {import('@/typedefs').Params} params
+ * @returns {Promise<import('@/typedefs').GitHubTreeResponse>}
  */
 const getGithubTree = async (params = {}) => {
   const libraryParams = await validateLibraryParams(params)
@@ -762,7 +804,7 @@ const getGithubTree = async (params = {}) => {
   // get all asset metadata files in subdirectories
 
   /**
-   * @type {import('../typedefs').GitHubTreeResponse}
+   * @type {import('@/typedefs').GitHubTreeResponse}
    */
   let treeResponse = {}
 
@@ -787,8 +829,8 @@ const getGithubTree = async (params = {}) => {
  * If the params map to a valid library in the allowlist, get the default branch if there isn't a
  * specified ref, then recursively get all asset metadata files. Find the files that are in the
  * library's subdirectory and then fetch the contents for each asset metadata file.
- * @param {import('../typedefs').Params} params
- * @returns {Promise<import('../typedefs').Asset[]>}
+ * @param {import('@/typedefs').Params} params
+ * @returns {Promise<import('@/typedefs').Asset[]>}
  */
 const getLibraryAssets = async (params = {}) => {
   const libraryParams = await validateLibraryParams(params)
@@ -798,7 +840,7 @@ const getLibraryAssets = async (params = {}) => {
   // get all asset metadata files in subdirectories
 
   /**
-   * @type {import('../typedefs').GitHubTreeResponse}
+   * @type {import('@/typedefs').GitHubTreeResponse}
    */
   const treeResponse = await getGithubTree(params)
 
@@ -831,7 +873,7 @@ const getLibraryAssets = async (params = {}) => {
   assetContentData.forEach((response) => {
     const content = yaml.load(Buffer.from(response.content, response.encoding).toString())
     /**
-     * @type {import('../typedefs').AssetContent[]}
+     * @type {import('@/typedefs').AssetContent[]}
      */
     const { assets: libAssets } = content
 
@@ -841,7 +883,7 @@ const getLibraryAssets = async (params = {}) => {
 
     Object.keys(libAssets).forEach((assetKey) => {
       /**
-       * @type {import('../typedefs').AssetContent}
+       * @type {import('@/typedefs').AssetContent}
        */
       const asset = libAssets[assetKey]
 
@@ -862,7 +904,7 @@ const getLibraryAssets = async (params = {}) => {
     assets.push(
       ...Object.keys(libAssets).map((assetKey) => {
         /**
-         * @type {import('../typedefs').AssetContent}
+         * @type {import('@/typedefs').AssetContent}
          */
         const asset = libAssets[assetKey]
 
@@ -920,7 +962,7 @@ const getLibraryAssets = async (params = {}) => {
 /**
  * Validates and filters an array of assets,
  * returns a modified array containing only valid assets for a library.
- * @param {import('../typedefs').Library} library
+ * @param {import('@/typedefs').Library} library
  */
 const validateLibraryAssets = (library) => {
   library.assets = library.assets.filter((asset) => {
@@ -934,7 +976,7 @@ const validateLibraryAssets = (library) => {
 
 /**
  * Adds inherited data to library.
- * @param {import('../typedefs').Library} library
+ * @param {import('@/typedefs').Library} library
  * @returns {Promise<void>} A promise that resolves to void.
  */
 const addLibraryInheritedData = async (library) => {
@@ -955,14 +997,14 @@ const addLibraryInheritedData = async (library) => {
 
 /**
  * Gets the GitHub open issue count for an asset using the asset's name searching only issue title
- * @param {import('../typedefs').Asset} asset
+ * @param {import('@/typedefs').Asset} asset
  * @returns {number}
  */
 export const getAssetIssueCount = async (asset) => {
   const { host, org, repo } = asset.params
 
   /**
-   * @type {import('../typedefs').GitHubSearchResponse}
+   * @type {import('@/typedefs').GitHubSearchResponse}
    */
   let response = {}
 
@@ -980,7 +1022,7 @@ export const getAssetIssueCount = async (asset) => {
 /**
  * Retrieves all indexed design kits and filters them out through the allowlist
  * branch is used.
- * @returns {import('../typedefs').DesignKit[]}
+ * @returns {import('@/typedefs').DesignKit[]}
  */
 export const getAllDesignKits = async () => {
   const baseDesignKits = Object.entries(resources.designKits)
@@ -1010,7 +1052,7 @@ export const getAllDesignKits = async () => {
 /**
  * Iterates over all libraries in the allowlist and fetches library data with no ref so the default
  * branch is used.
- * @returns {import('../typedefs').Libraries}
+ * @returns {import('@/typedefs').Libraries}
  */
 export const getAllLibraries = async () => {
   const promises = []
@@ -1034,9 +1076,9 @@ export const getAllLibraries = async () => {
 
 /**
  * Requests content of the package.json file and returns some of the properties.
- * @param {import('../typedefs').Params} params
+ * @param {import('@/typedefs').Params} params
  * @param {string} packageJsonPath
- * @returns {Promise<import('../typedefs').LibraryContent>}
+ * @returns {Promise<import('@/typedefs').LibraryContent>}
  */
 const getPackageJsonContent = async (params = {}, packageJsonPath = '/package.json') => {
   const libraryParams = await validateLibraryParams(params)
@@ -1044,7 +1086,7 @@ const getPackageJsonContent = async (params = {}, packageJsonPath = '/package.js
   if (isEmpty(libraryParams)) return {}
 
   /**
-   * @type {import('../typedefs').GitHubContentResponse}
+   * @type {import('@/typedefs').GitHubContentResponse}
    */
   let response = {}
 
@@ -1079,7 +1121,7 @@ const getPackageJsonContent = async (params = {}, packageJsonPath = '/package.js
   }
 
   /**
-   * @type {import('../typedefs').LibraryContent}
+   * @type {import('@/typedefs').LibraryContent}
    */
   const packageJsonContent = yaml.load(Buffer.from(response.content, response.encoding).toString())
 

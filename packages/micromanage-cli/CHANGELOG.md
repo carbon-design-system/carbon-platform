@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.3](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@2.0.2...micromanage-cli@2.0.3) (2022-09-08)
+
+
+### Misc. 🔮
+
+* **micromanage:** remove octokit since it is no longer used ([c84582e](https://github.com/carbon-design-system/carbon-platform/commit/c84582e08b2b988b492247486307f58bea48b753))
+
+### [2.0.2](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@2.0.1...micromanage-cli@2.0.2) (2022-09-08)
+
+
+### Misc. 🔮
+
+* move standard-version dep from base to micromanage ([9da47c4](https://github.com/carbon-design-system/carbon-platform/commit/9da47c448671ca9d5f9f793f068349ea88661011))
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** change spawned command output stream ([c62b1e1](https://github.com/carbon-design-system/carbon-platform/commit/c62b1e122e151866bb2af779652b7ba575c84a6f))
+
+### [2.0.1](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@2.0.0...micromanage-cli@2.0.1) (2022-09-08)
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** improve debug logging in build command ([1074a92](https://github.com/carbon-design-system/carbon-platform/commit/1074a923cb30049d3ad388fe4e5c6ad74c06d273))
+
+## 2.0.0 (2022-09-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **micromanage:** This is a complete rewrite of the command interfaces.
+
+### Features 🌟
+
+* **micromanage:** huge improvements and rework ([67285a6](https://github.com/carbon-design-system/carbon-platform/commit/67285a690cc7fb71a1bd7105b1b59e544d713704))
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** sonar lint issue with process.exit ([48f017f](https://github.com/carbon-design-system/carbon-platform/commit/48f017f0cd29e3d77f809b739929a8b689487414))
+* resolve merge conflicts ([04aaa6b](https://github.com/carbon-design-system/carbon-platform/commit/04aaa6b4d27cbd4ed11e6c66845ab84f3eb39b5d))
+
 ### [1.4.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.4.4...@carbon-platform/micromanage-cli@1.4.5) (2022-08-24)
 
 ### [1.4.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.4.3...@carbon-platform/micromanage-cli@1.4.4) (2022-08-24)

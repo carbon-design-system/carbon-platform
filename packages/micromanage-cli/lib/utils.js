@@ -4,8 +4,26 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const childProcess = require('child_process')
-const path = require('path')
+import childProcess from 'child_process'
+import { readFileSync } from 'fs'
+import path from 'path'
+
+const filters = {
+  PACKAGES: (ws) => ws.path?.startsWith('packages/'),
+  SERVICES: (ws) => ws.path?.startsWith('services/')
+}
+
+const workspacesCache = new Map()
+
+/**
+ * @typedef {object} Workspace
+ * @property {string} name - package name from package.json
+ * @property {object} dependencies - the dependencies object from package.json
+ * @property {object} devDependencies - the devDependencies object from package.json
+ * @property {string} path - the path of the workspace relative to the workspace root
+ * @property {boolean} private - the "private" boolean from package.json
+ * @property {string} version - the version from package.json
+ */
 
 function buildCurlUrlParams(params) {
   const encodedParams = Object.entries(params).map(([key, val]) => {
@@ -59,7 +77,8 @@ async function spawn(cmd, options = {}) {
 
   const spawnOptions = {
     env: process.env,
-    stdio: 'inherit',
+    // Send stdout to stderr by default to avoid clobbering upstream command stdout output
+    stdio: ['inherit', process.stderr, 'inherit'],
     shell: true,
     ...options
   }
@@ -129,30 +148,35 @@ function getFiles(dir, extensions, exclusions = []) {
  *
  * @returns {object} The package.json file as a JSON object.
  */
-function getPackageJson() {
-  return require(path.join(process.cwd(), 'package.json'))
+function getPackageJson(workspacePath) {
+  const p = path.join(process.cwd(), workspacePath || '', 'package.json')
+
+  return JSON.parse(readFileSync(p))
 }
 
 /**
  * Get an object for each workspace, as defined in the top-level package.json file.
  *
- * @returns {Array} Array of workspace info objects.
+ * @returns {Array<Workspace>} Array of workspace info objects.
  */
 function getWorkspaces() {
   const workspacePaths = getPackageJson().workspaces
 
   return workspacePaths.map((workspacePath) => {
-    const p = require(path.join(process.cwd(), workspacePath, 'package.json'))
+    const pJson = getPackageJson(workspacePath)
 
-    return {
-      name: p.name,
-      dependencies: p.dependencies,
-      devDependencies: p.devDependencies,
-      path: workspacePath,
-      micromanage: p.micromanage,
-      private: !!p.private,
-      version: p.version
+    if (!workspacesCache.has(pJson.name)) {
+      workspacesCache.set(pJson.name, {
+        name: pJson.name,
+        dependencies: pJson.dependencies,
+        devDependencies: pJson.devDependencies,
+        path: workspacePath,
+        private: !!pJson.private,
+        version: pJson.version
+      })
     }
+
+    return workspacesCache.get(pJson.name)
   })
 }
 
@@ -167,6 +191,29 @@ function getTags() {
 }
 
 /**
+ * Determine whether or not the package is used by the workspace. Determines this by looking at the
+ * tracked files in the repo and grepping them for something like: '@carbon-platform/icons.*', which
+ * would be found in an import statement, for example.
+ *
+ * @param {import('./utils.js.js').Workspace} pkg
+ * @param {import('./utils.js.js').Workspace} ws
+ *
+ * @returns {Promise<boolean>} Whether or not the package is used by the workspace
+ */
+async function isDependencyOf(pkg, ws) {
+  let isUsed = false
+  try {
+    await spawn(`git ls-tree -r HEAD --name-only | xargs egrep "'${pkg.name}.*'" > /dev/null`, {
+      cwd: ws.path
+    })
+
+    isUsed = true
+  } catch {}
+
+  return isUsed
+}
+
+/**
  * Output information contained in an error object, if present.
  *
  * @param {object} err Error object from which to obtain and output data.
@@ -177,15 +224,17 @@ function logErrorInfo(err) {
   err.stderr && console.log('stderr: ' + err.stderr.toString())
 }
 
-module.exports = {
+export {
   buildCurlUrlParams,
   exec,
+  filters,
   getFiles,
+  getPackageJson,
+  getTags,
   getWorkspaceByName,
   getWorkspaceForFile,
-  getPackageJson,
   getWorkspaces,
-  getTags,
+  isDependencyOf,
   logErrorInfo,
   spawn
 }

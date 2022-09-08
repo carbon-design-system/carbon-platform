@@ -5,8 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { isArray } from 'lodash'
-
 /**
  * Iterates over an array and returns true if another array has at least one value in the first
  * array. This could probably be replaced by checking the length of the Lodash `intersection()`
@@ -16,7 +14,7 @@ import { isArray } from 'lodash'
  * @returns {boolean}
  */
 export const valuesIntersect = (arr1, arr2) => {
-  if (!isArray(arr1) || !isArray(arr2)) return false
+  if (!Array.isArray(arr1) || !Array.isArray(arr2)) return false
 
   return arr1.filter((v) => arr2.includes(v)).length > 0
 }

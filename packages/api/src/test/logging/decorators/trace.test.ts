@@ -8,8 +8,8 @@ import 'reflect-metadata'
 
 import test from 'ava'
 
+import { __test__, Trace } from '../../../main/logging/decorators/trace.js'
 import { Logging } from '../../../main/logging/logging.js'
-import { __test__, Trace } from '../../../main/microservice/decorators/trace.js'
 import { RunMode, Runtime } from '../../../main/runtime/index.js'
 
 const inputFn = (arg: string) => arg + 'hello'
@@ -229,11 +229,13 @@ test('it truncates a long arg list', (t) => {
     }
   })()
 
-  const myInputFn = (...arg: string[]) => arg + 'hello'
+  const myInputFn = function myMethodName(...arg: string[]) {
+    return arg + 'hello'
+  }
   const myDescriptor = { value: myInputFn }
 
   // Decorate the function
-  Trace({ runtime, logging: logging as any })(target, 'myMethodName', myDescriptor)
+  Trace({ runtime, logging: logging as any })(target, 'not used', myDescriptor)
 
   myDescriptor.value(...argsList)
 })

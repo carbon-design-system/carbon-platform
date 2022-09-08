@@ -70,7 +70,9 @@ const NavTree = ({ activeItem, items = [], label }) => {
     return nodes.map((node) => {
       if (node.isSection) {
         return (
-          <h2 className={clsx(styles['section-heading'], styles['section-group'])}>{node.title}</h2>
+          <h2 className={clsx(styles['section-heading'], styles['section-group'])} key={node.title}>
+            {node.title}
+          </h2>
         )
       } else {
         if (node.path) {

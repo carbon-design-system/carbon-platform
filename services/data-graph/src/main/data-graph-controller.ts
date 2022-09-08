@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { DataGraphMessage, DataGraphResponse } from '@carbon-platform/api/data-graph'
+import { Trace } from '@carbon-platform/api/logging'
 import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
-import { Trace } from '@carbon-platform/api/microservice'
 import { Controller } from '@nestjs/common'
 import { ModuleRef } from '@nestjs/core'
 import { GraphQLSchemaHost } from '@nestjs/graphql'

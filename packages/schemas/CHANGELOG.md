@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.9.1...@carbon-platform/schemas@1.10.0) (2022-09-08)
+
+
+### Features 🌟
+
+* **schemas:** add overviewPath to asset schema ([4957653](https://github.com/carbon-design-system/carbon-platform/commit/49576533550f81ec0b6a3f9d5274cce7a21b8b4c)), closes [#1015](https://github.com/carbon-design-system/carbon-platform/issues/1015)
+
 ### [1.9.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/schemas@1.9.0...@carbon-platform/schemas@1.9.1) (2022-08-31)
 
 

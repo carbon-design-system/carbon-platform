@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.0.0 (2022-09-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **micromanage:** This is a complete rewrite of the command interfaces.
+
+### Features 🌟
+
+* **micromanage:** huge improvements and rework ([67285a6](https://github.com/carbon-design-system/carbon-platform/commit/67285a690cc7fb71a1bd7105b1b59e544d713704))
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** sonar lint issue with process.exit ([48f017f](https://github.com/carbon-design-system/carbon-platform/commit/48f017f0cd29e3d77f809b739929a8b689487414))
+* resolve merge conflicts ([04aaa6b](https://github.com/carbon-design-system/carbon-platform/commit/04aaa6b4d27cbd4ed11e6c66845ab84f3eb39b5d))
+
 ### [1.4.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.4.4...@carbon-platform/micromanage-cli@1.4.5) (2022-08-24)
 
 ### [1.4.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/micromanage-cli@1.4.3...@carbon-platform/micromanage-cli@1.4.4) (2022-08-24)

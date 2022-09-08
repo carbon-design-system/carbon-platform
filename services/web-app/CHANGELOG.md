@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.36](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.35...@carbon-platform/web-app@0.2.36) (2022-09-08)
+
+
+### Features 🌟
+
+* **web-app:** handle asset docs and render overview content ([ba14182](https://github.com/carbon-design-system/carbon-platform/commit/ba141823993b42daa66947e184b2209a769785fd)), closes [#1015](https://github.com/carbon-design-system/carbon-platform/issues/1015)
+
+
+### Misc. 🔮
+
+* **web-app:** add proptypes to assetDetails component ([73edb8e](https://github.com/carbon-design-system/carbon-platform/commit/73edb8e3870792d631a4bc07de23b717ca23b7db))
+* **web-app:** asset details page ([684c61d](https://github.com/carbon-design-system/carbon-platform/commit/684c61d3a23f1ebf357b2a2eb46c67a4588871df))
+* **web-app:** asset pages cleanup common functionalities ([cc83d13](https://github.com/carbon-design-system/carbon-platform/commit/cc83d139c7e843d59ff13a3af937d193dc0c12be))
+* **web-app:** createOtherFrameworLinks funtion ([56fca84](https://github.com/carbon-design-system/carbon-platform/commit/56fca8472a768d613bbb7ba08acc2367cf8a3204))
+* **web-app:** reduce assets index cognitive complexity ([a00b821](https://github.com/carbon-design-system/carbon-platform/commit/a00b8214e8e635d01facc30b04430fcb2b784fe9))
+* **web-app:** reduce lodash footprint ([bee52b6](https://github.com/carbon-design-system/carbon-platform/commit/bee52b6c301c5130f24f1cc73c3cd488e3afa88c))
+* **web-app:** remove lodash get, cleanup framework icon logic ([4b96427](https://github.com/carbon-design-system/carbon-platform/commit/4b9642792a96786fed075ca0ef0eef114c6051c5))
+
+
+### Bug Fixes 🐛
+
+* resolve merge conflicts ([04aaa6b](https://github.com/carbon-design-system/carbon-platform/commit/04aaa6b4d27cbd4ed11e6c66845ab84f3eb39b5d))
+* revert back to mdx icon and pictogram libraries ([b078a2f](https://github.com/carbon-design-system/carbon-platform/commit/b078a2f4cf023c55491c51471f0d1275b0063688))
+* **web-app:** add codePath defaults ([49dc96b](https://github.com/carbon-design-system/carbon-platform/commit/49dc96bbf876dffb3778d1916470afe99489e95d)), closes [#1015](https://github.com/carbon-design-system/carbon-platform/issues/1015)
+* **web-app:** asset details, replace isPathAbsolute with createUrl ([11a3bd8](https://github.com/carbon-design-system/carbon-platform/commit/11a3bd841d1c261ecaba2d40c4e86253359ee0ed))
+* **web-app:** correct infinite loop ([bbaa2e6](https://github.com/carbon-design-system/carbon-platform/commit/bbaa2e6765dcbbce160451a126b22574deef1455))
+* **web-app:** correct spacing at top of svg library pages ([83b2f3a](https://github.com/carbon-design-system/carbon-platform/commit/83b2f3acf0326596092b2c884f4383b082f3400c))
+* **web-app:** dynamically import icons and pictograms ([71fab42](https://github.com/carbon-design-system/carbon-platform/commit/71fab42912d045a7a22eeb892c720ceff9be37ad)), closes [#1201](https://github.com/carbon-design-system/carbon-platform/issues/1201)
+* **web-app:** handle absolute urls inside getMdxSource function ([704d670](https://github.com/carbon-design-system/carbon-platform/commit/704d6701d164284d47e517fe2cbfdb5367dfe6e2)), closes [#1015](https://github.com/carbon-design-system/carbon-platform/issues/1015)
+* **web-app:** isEmpty lodash function ([4ae45e7](https://github.com/carbon-design-system/carbon-platform/commit/4ae45e723ac31ddc5ee3981e0ede9ccf5c940f22))
+* **web-app:** jsdocs ([1c8fd86](https://github.com/carbon-design-system/carbon-platform/commit/1c8fd868f8cba076644ea71344505f50da38734c))
+* **web-app:** merge conflicts ([878f410](https://github.com/carbon-design-system/carbon-platform/commit/878f410941dbd41b8e227bdcda68dd9a6ce3ef1f))
+* **web-app:** move bundle-analyzer to a regular dep ([69a6686](https://github.com/carbon-design-system/carbon-platform/commit/69a66866c4be39b704605b00ea1bd52888415a42))
+* **web-app:** overview remote content headings as pageNavs ([acd1951](https://github.com/carbon-design-system/carbon-platform/commit/acd195176d6a45184446fd3886bf3e00a9a211a6)), closes [#1015](https://github.com/carbon-design-system/carbon-platform/issues/1015)
+* **web-app:** remove mocked data ([37ed381](https://github.com/carbon-design-system/carbon-platform/commit/37ed381524b195ca0e3a10c1b79e43176d5bf908))
+* **web-app:** run linter ([1730f4d](https://github.com/carbon-design-system/carbon-platform/commit/1730f4d1aa34ebb2182d7d921df873d6e45486a6))
+* **web-app:** use asset's carbon.yml location to construct tabs urls ([09fcaa8](https://github.com/carbon-design-system/carbon-platform/commit/09fcaa8ff1319182239afda272498019f7efd195)), closes [#1015](https://github.com/carbon-design-system/carbon-platform/issues/1015)
+* **web-app:** use backtick instead of single quote for examples ([fd17bbe](https://github.com/carbon-design-system/carbon-platform/commit/fd17bbe6d2e4dd84ea4d31f45f3bdb1bcf95db66))
+* **web-app:** use import alias for typeDefs ([0a3a65a](https://github.com/carbon-design-system/carbon-platform/commit/0a3a65a208747407d8e0a60cf68ae125691eb0c6))
+
 ### [0.2.35](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.34...@carbon-platform/web-app@0.2.35) (2022-09-03)
 
 ### [0.2.34](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.33...@carbon-platform/web-app@0.2.34) (2022-09-01)

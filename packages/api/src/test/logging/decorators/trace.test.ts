@@ -229,11 +229,13 @@ test('it truncates a long arg list', (t) => {
     }
   })()
 
-  const myInputFn = (...arg: string[]) => arg + 'hello'
+  const myInputFn = function myMethodName(...arg: string[]) {
+    return arg + 'hello'
+  }
   const myDescriptor = { value: myInputFn }
 
   // Decorate the function
-  Trace({ runtime, logging: logging as any })(target, 'myMethodName', myDescriptor)
+  Trace({ runtime, logging: logging as any })(target, 'not used', myDescriptor)
 
   myDescriptor.value(...argsList)
 })

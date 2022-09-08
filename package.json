@@ -36,7 +36,7 @@
   "scripts": {
     "all:build": "npm --workspaces --if-present run build",
     "all:clean": "npm --workspaces --include-workspace-root --if-present run clean",
-    "clean": "rimraf .test-coverage",
+    "clean": "scripts/clean",
     "lint": "scripts/lint",
     "lint:fix": "scripts/lint_and_fix",
     "packages:build": "npm --workspaces --if-present run package:build",

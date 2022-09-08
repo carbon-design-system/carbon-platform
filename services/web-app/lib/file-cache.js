@@ -45,7 +45,7 @@ const octokitIbm = new Octokit({
  * @param {object} options - Options merged into the request route
  * @returns {string} Unique key to use in the file cache
  */
-const slugifyRequest = (host, route, options = {}) => {
+export const slugifyRequest = (host, route, options = {}) => {
   let mergedStr = `${host} ${route}`
 
   for (const [key, value] of Object.entries(options)) {
@@ -79,6 +79,20 @@ const _getResponse = async (host, route, options) => {
   })
 
   return data
+}
+
+/**
+ * Returns a cached dereferenced object response and if it's a cache miss,
+ * initiates and caches the derefencing function.
+ * @param {string} key - Key to use to store cache
+ * @param {object} obj - object to be dereferenced
+ * @param {(object) => obj} dereferencer - Function to handle dereferencing the object
+ * @returns {Promise<object>} dereferenced object response data
+ */
+export const getDereferencedObjectResponse = (key, obj, dereferencer) => {
+  return diskCache.wrap(key, () => {
+    return dereferencer(obj)
+  })
 }
 
 /**

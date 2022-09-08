@@ -16,7 +16,12 @@ import slugify from 'slugify'
 import { designKitAllowList, designKitSources } from '@/data/design-kits'
 import { libraryAllowList } from '@/data/libraries.mjs'
 import { ContentNotFoundException } from '@/exceptions/content-not-found-exception'
-import { getResponse, getSvgResponse } from '@/lib/file-cache'
+import {
+  getDereferencedObjectResponse,
+  getResponse,
+  getSvgResponse,
+  slugifyRequest
+} from '@/lib/file-cache'
 import { getAssetErrors, getDesignKitErrors, getLibraryErrors } from '@/utils/resources'
 import { getAssetId, getAssetStatus, getLibraryVersionAsset } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
@@ -461,7 +466,9 @@ const resolveSchemaReferences = async (params, data) => {
     }
   }
 
-  return $RefParser.dereference(data)
+  const dereferencedLibrary = await $RefParser.dereference(data)
+
+  return Buffer.from(JSON.stringify(dereferencedLibrary), 'utf8').toString('base64')
 }
 
 /**
@@ -689,23 +696,37 @@ export const getLibraryData = async (params = {}) => {
    */
   let response = {}
 
+  const { host, org, repo, path: libPath, ref } = libraryParams
+
   try {
-    response = await getResponse(libraryParams.host, 'GET /repos/{owner}/{repo}/contents/{path}', {
-      owner: libraryParams.org,
-      repo: libraryParams.repo,
-      path: removeLeadingSlash(`${libraryParams.path}/carbon.yml`),
-      ref: libraryParams.ref
+    response = await getResponse(host, 'GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: org,
+      repo,
+      path: removeLeadingSlash(`${libPath}/carbon.yml`),
+      ref
     })
   } catch (err) {
     return null
   }
 
   let content
+  const dereferenceKey = slugifyRequest(
+    host,
+    'GET DEREFERENCED /repos/{owner}/{repo}/contents/{path}',
+    {
+      owner: org,
+      repo,
+      path: removeLeadingSlash(`${libPath}/carbon.yml`),
+      ref
+    }
+  )
   try {
-    content = await resolveSchemaReferences(
-      libraryParams,
-      yaml.load(Buffer.from(response.content, response.encoding).toString())
+    const base64EncodedLib = await getDereferencedObjectResponse(
+      dereferenceKey,
+      yaml.load(Buffer.from(response.content, response.encoding).toString()),
+      resolveSchemaReferences.bind(null, libraryParams)
     )
+    content = JSON.parse(Buffer.from(base64EncodedLib, 'base64').toString('utf-8'))
   } catch (err) {
     logging.warn(`Error parsing yaml content for library ${params.library}: ${err}`)
     return null

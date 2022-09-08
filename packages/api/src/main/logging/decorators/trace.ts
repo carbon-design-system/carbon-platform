@@ -8,8 +8,8 @@ import 'reflect-metadata'
 
 import { v4 as uuidv4 } from 'uuid'
 
-import { Logging } from '../../logging/index.js'
 import { RunMode, Runtime } from '../../runtime/index.js'
+import { Logging } from '../index.js'
 
 const MAX_ARGS_STRING_LENGTH = 500 // characters
 
@@ -28,7 +28,7 @@ const MAX_ARGS_STRING_LENGTH = 500 // characters
 function Trace(config?: { runtime?: Runtime; logging?: Logging }): MethodDecorator {
   return function methodDecorator(
     target: any,
-    propertyKey: string | symbol,
+    _propertyKey: string | symbol,
     descriptor: PropertyDescriptor
   ) {
     const runtime = config?.runtime || new Runtime()
@@ -42,35 +42,9 @@ function Trace(config?: { runtime?: Runtime; logging?: Logging }): MethodDecorat
         config?.logging || new Logging({ component: target.name || target.constructor.name })
     }
 
-    const original = descriptor.value
+    const original = descriptor.value as Function
 
-    descriptor.value = function traced(...args: any[]) {
-      const methodName = String(propertyKey)
-
-      traceEnter(target.logging, methodName, args)
-
-      const performanceId = uuidv4()
-      let result: any
-
-      try {
-        performance.mark(performanceId)
-
-        // Call the original method and capture the result
-        result = original.apply(this, args)
-
-        return result
-      } catch (err) {
-        result = err
-        throw err
-      } finally {
-        const responseTime = performance.measure(performanceId, performanceId)?.duration?.toFixed(4)
-
-        traceExit(target.logging, methodName, result, responseTime)
-
-        performance.clearMarks(performanceId)
-        performance.clearMeasures(performanceId)
-      }
-    }
+    descriptor.value = withTrace(target.logging, original)
 
     // Preserve the original method name
     Object.defineProperty(descriptor.value, 'name', { value: original.name })
@@ -120,9 +94,39 @@ async function traceExit(logging: Logging, methodName: string, result: any, resp
   }
 }
 
+function withTrace<T extends Function>(logging: Logging, functionDef: T): T {
+  const functionName = functionDef.name || '(anonymous function)'
+
+  return function traced(this: any, ...args: any[]) {
+    traceEnter(logging, functionName, args)
+
+    const performanceId = uuidv4()
+    let result: any
+
+    try {
+      performance.mark(performanceId)
+
+      // Call the original method and capture the result
+      result = functionDef.apply(this, args)
+
+      return result
+    } catch (err) {
+      result = err
+      throw err
+    } finally {
+      const responseTime = performance.measure(performanceId, performanceId)?.duration?.toFixed(4)
+
+      traceExit(logging, functionName, result, responseTime)
+
+      performance.clearMarks(performanceId)
+      performance.clearMeasures(performanceId)
+    }
+  } as any
+}
+
 const __test__ = {
   safeStringify,
   MAX_ARGS_STRING_LENGTH
 }
 
-export { __test__, Trace }
+export { __test__, Trace, withTrace }

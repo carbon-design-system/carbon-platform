@@ -26,13 +26,6 @@ messages of those types.
 Starts the service listening for incoming messages and REST API requests. The promise returned by
 this method does not resolve so long as the service continues running.
 
-### Decorators
-
-#### `@Trace()`
-
-A decorator that automatically \[debug\] logs method entry and exit, along with the arguments and
-return value of the method.
-
 ### Exceptions
 
 #### `InvalidInputException`

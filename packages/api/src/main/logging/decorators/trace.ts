@@ -20,8 +20,9 @@ const MAX_ARGS_STRING_LENGTH = 500 // characters
  * and a stringified version of its return value.
  *
  * **Note:** This decorator **redefines** the provided method in order to wrap it with logging
- * logic. It redefines the metadata from the source method onto the new one, but certain reference
- * equality checks may fail if they are looking at method property descriptor values directly.
+ * logic. It reconstitutes the metadata from the source method onto the new one, but certain
+ * reference equality checks may fail if they are looking at method property descriptor values
+ * directly.
  *
  * @returns A decorated method.
  */
@@ -56,44 +57,14 @@ function Trace(config?: { runtime?: Runtime; logging?: Logging }): MethodDecorat
   }
 }
 
-function safeStringify(arg: any) {
-  try {
-    return JSON.stringify(arg)
-  } catch {}
-
-  try {
-    return String(arg)
-  } catch {}
-
-  return typeof arg
-}
-
-async function traceEnter(logging: Logging, methodName: string, args: any[]) {
-  let stringArgs = String(args.map(safeStringify))
-
-  if (stringArgs.length > MAX_ARGS_STRING_LENGTH) {
-    stringArgs = stringArgs.substring(0, MAX_ARGS_STRING_LENGTH) + '... (truncated)'
-  }
-
-  await logging.debug(`-> ${methodName}(${stringArgs})`)
-}
-
-async function traceExit(logging: Logging, methodName: string, result: any, responseTime: string) {
-  if (result instanceof Promise) {
-    result.then(
-      async (value: any) =>
-        logging.debug(`<- ${methodName} <- ${safeStringify(value)} ${responseTime}ms`),
-      (err: any) => logging.debug(`-x- ${methodName} <- ${err} ${responseTime}ms`)
-    )
-  } else {
-    await logging.debug(
-      `${result instanceof Error ? '-x-' : '<-'} ${methodName} <- ${
-        result instanceof Error ? result : safeStringify(result)
-      } ${responseTime}ms`
-    )
-  }
-}
-
+/**
+ * Returns a wrapped version of a function that uses the provided logger to log a set of debug
+ * messages before and after the wrapped functions's execution. The debug messages contain the name
+ * of the called function, a stringified version of its arguments, and a stringified version of its
+ * return value.
+ *
+ * @returns A wrapped function.
+ */
 function withTrace<T extends Function>(logging: Logging, functionDef: T): T {
   const functionName = functionDef.name || '(anonymous function)'
 
@@ -122,6 +93,50 @@ function withTrace<T extends Function>(logging: Logging, functionDef: T): T {
       performance.clearMeasures(performanceId)
     }
   } as any
+}
+
+function safeStringify(arg: any): string {
+  let result
+
+  try {
+    result = JSON.stringify(arg)
+  } catch {}
+
+  if (!result) {
+    result = String(arg)
+  }
+
+  return result
+}
+
+function truncate(str: string) {
+  if (str.length > MAX_ARGS_STRING_LENGTH) {
+    return str.substring(0, MAX_ARGS_STRING_LENGTH) + '... (truncated)'
+  }
+
+  return str
+}
+
+async function traceEnter(logging: Logging, methodName: string, args: any[]) {
+  const stringArgs = truncate(String(args.map(safeStringify)))
+
+  await logging.debug(`-> ${methodName}(${stringArgs})`)
+}
+
+async function traceExit(logging: Logging, methodName: string, result: any, responseTime: string) {
+  if (result instanceof Promise) {
+    result.then(
+      async (value: any) =>
+        logging.debug(`<- ${methodName} <- ${truncate(safeStringify(value))} ${responseTime}ms`),
+      (err: any) => logging.debug(`-x- ${methodName} <- ${err} ${responseTime}ms`)
+    )
+  } else {
+    await logging.debug(
+      `${result instanceof Error ? '-x-' : '<-'} ${methodName} <- ${
+        result instanceof Error ? result : truncate(safeStringify(result))
+      } ${responseTime}ms`
+    )
+  }
 }
 
 const __test__ = {

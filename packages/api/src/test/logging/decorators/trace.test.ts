@@ -22,7 +22,7 @@ test('it instantiates a logger', (t) => {
   })()
 
   // Decorate the function
-  Trace({ runtime })(target, 'myMethodName', descriptor)
+  Trace({ runtime })(target, 'not used', descriptor)
 
   descriptor.value('its an arg!')
 
@@ -36,7 +36,7 @@ test('it returns the original value', (t) => {
   })()
 
   // Decorate the function
-  Trace({ runtime })(target, 'myMethodName', descriptor)
+  Trace({ runtime })(target, 'not used', descriptor)
 
   const input = 'its an arg!'
   const result = descriptor.value(input)
@@ -51,7 +51,7 @@ test('it honors debug mode in standard run mode', (t) => {
   })()
 
   // Decorate the function
-  Trace({ runtime })(target, 'myMethodName', descriptor)
+  Trace({ runtime })(target, 'not used', descriptor)
 
   descriptor.value('its an arg!')
 
@@ -65,7 +65,7 @@ test('it debugs in dev run mode by default', (t) => {
   })()
 
   // Decorate the function
-  Trace({ runtime })(target, 'myMethodName', descriptor)
+  Trace({ runtime })(target, 'not used', descriptor)
 
   descriptor.value('its an arg!')
 
@@ -79,7 +79,7 @@ test('it turns off debug in dev run mode when explicity set  to false', (t) => {
   })()
 
   // Decorate the function
-  Trace({ runtime })(target, 'myMethodName', descriptor)
+  Trace({ runtime })(target, 'not used', descriptor)
 
   descriptor.value('its an arg!')
 
@@ -93,7 +93,7 @@ test('it can be shut off', (t) => {
   })()
 
   // Decorate the function
-  Trace({ runtime })(target, 'myMethodName', descriptor)
+  Trace({ runtime })(target, 'not used', descriptor)
 
   descriptor.value('its an arg!')
 
@@ -117,7 +117,7 @@ test('it works with a promise', async (t) => {
   const myDescriptor = { value: myInputFn }
 
   // Decorate the function
-  Trace({ runtime, logging: logging as any })(target, 'myMethodName', myDescriptor)
+  Trace({ runtime, logging: logging as any })(target, 'not used', myDescriptor)
 
   await myDescriptor.value('its an arg!')
 })
@@ -141,7 +141,7 @@ test('it works with an exception', (t) => {
   const myDescriptor = { value: myInputFn }
 
   // Decorate the function
-  Trace({ runtime, logging: logging as any })(target, 'myMethodName', myDescriptor)
+  Trace({ runtime, logging: logging as any })(target, 'not used', myDescriptor)
 
   // Invoke the function
   let result: any
@@ -171,7 +171,7 @@ test('it works with a promise that throws an exception', async (t) => {
   const myDescriptor = { value: myInputFn }
 
   // Decorate the function
-  Trace({ runtime, logging: logging as any })(target, 'myMethodName', myDescriptor)
+  Trace({ runtime, logging: logging as any })(target, 'not used', myDescriptor)
 
   // Invoke the function
   let result: any
@@ -182,6 +182,87 @@ test('it works with a promise that throws an exception', async (t) => {
   }
 
   t.true(result instanceof Error)
+})
+
+test('it works with an undefined return value', (t) => {
+  t.plan(2)
+
+  const runtime = new Runtime({ runMode: RunMode.Dev })
+  const target = new (class MyTarget {
+    logging?: Logging
+  })()
+  const logging = new (class MyLogging {
+    debug(input: string) {
+      if (input.startsWith('<-')) {
+        t.true(input.startsWith('<- myInputFn <- undefined'))
+      } else {
+        t.true(input.startsWith('->'))
+      }
+    }
+  })()
+
+  const myInputFn = () => undefined
+  const myDescriptor = { value: myInputFn }
+
+  // Decorate the function
+  Trace({ runtime, logging: logging as any })(target, 'not used', myDescriptor)
+
+  // Invoke the function
+  myDescriptor.value()
+})
+
+test('it works with a symbol', (t) => {
+  t.plan(2)
+
+  const runtime = new Runtime({ runMode: RunMode.Dev })
+  const target = new (class MyTarget {
+    logging?: Logging
+  })()
+  const logging = new (class MyLogging {
+    debug(input: string) {
+      if (input.startsWith('<-')) {
+        t.true(input.startsWith('<- myInputFn <- Symbol(asdf)'))
+      } else {
+        t.true(input.startsWith('->'))
+      }
+    }
+  })()
+
+  const myInputFn = () => Symbol('asdf')
+  const myDescriptor = { value: myInputFn }
+
+  // Decorate the function
+  Trace({ runtime, logging: logging as any })(target, 'not used', myDescriptor)
+
+  // Invoke the function
+  myDescriptor.value()
+})
+
+test('it works with a bigint', (t) => {
+  t.plan(2)
+
+  const runtime = new Runtime({ runMode: RunMode.Dev })
+  const target = new (class MyTarget {
+    logging?: Logging
+  })()
+  const logging = new (class MyLogging {
+    debug(input: string) {
+      if (input.startsWith('<-')) {
+        t.true(input.startsWith('<- myInputFn <- 123'))
+      } else {
+        t.true(input.startsWith('->'))
+      }
+    }
+  })()
+
+  const myInputFn = () => BigInt(123)
+  const myDescriptor = { value: myInputFn }
+
+  // Decorate the function
+  Trace({ runtime, logging: logging as any })(target, 'not used', myDescriptor)
+
+  // Invoke the function
+  myDescriptor.value()
 })
 
 test('it preserves metadata', (t) => {
@@ -195,7 +276,7 @@ test('it preserves metadata', (t) => {
   Reflect.defineMetadata(metadataKey, 'wowow', metadataInputFn)
 
   // Decorate the function
-  Trace()(target, 'myMethodName', myDescriptor)
+  Trace()(target, 'not used', myDescriptor)
 
   // Invoke the function
   myDescriptor.value('its an arg!')
@@ -238,4 +319,39 @@ test('it truncates a long arg list', (t) => {
   Trace({ runtime, logging: logging as any })(target, 'not used', myDescriptor)
 
   myDescriptor.value(...argsList)
+})
+
+test('it truncates a long return value', (t) => {
+  t.plan(2)
+
+  const retVal = ''.padEnd(__test__.MAX_ARGS_STRING_LENGTH * 2, 'a')
+
+  const expected =
+    '<- myMethodName <- ' +
+    JSON.stringify(retVal).substring(0, __test__.MAX_ARGS_STRING_LENGTH) +
+    '... (truncated)'
+
+  const runtime = new Runtime({ runMode: RunMode.Dev })
+  const target = new (class MyTarget {
+    logging?: Logging
+  })()
+  const logging = new (class MyLogging {
+    debug(input: string) {
+      if (input.startsWith('<-')) {
+        t.true(input.startsWith(expected))
+      } else {
+        t.true(input.startsWith('->'))
+      }
+    }
+  })()
+
+  const myInputFn = function myMethodName() {
+    return retVal
+  }
+  const myDescriptor = { value: myInputFn }
+
+  // Decorate the function
+  Trace({ runtime, logging: logging as any })(target, 'not used', myDescriptor)
+
+  myDescriptor.value()
 })

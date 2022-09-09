@@ -97,7 +97,6 @@ export const getLibraryNavData = (params, libraryData) => {
 export const getRemoteMdxSource = withTrace(
   logging,
   async function getRemoteMdxSource(repoParams, mdxPath) {
-    logging.info(`Getting remote MDX for ${JSON.stringify(repoParams)} ${mdxPath}`)
     /**
      * @type {import('@/typedefs').GitHubContentResponse}
      */

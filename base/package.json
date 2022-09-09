@@ -1,6 +1,6 @@
 {
   "name": "@carbon-platform/base",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Base dependencies for all packages in the carbon platform monorepo",
   "license": "Apache-2.0",
   "author": "IBM",

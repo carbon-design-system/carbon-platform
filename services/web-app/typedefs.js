@@ -115,6 +115,38 @@
  */
 
 /**
+ * @typedef {object} CompiledSourceData
+ * @property {object} matter
+ */
+
+/**
+ * @typedef {object} CompiledSource
+ * @property {string} value
+ * @property {CompiledSourceData} data
+ */
+
+/**
+ * @typedef {object} CompiledSource
+ * @property {string} value
+ * @property {object} data
+ */
+
+/**
+ * @typedef {object} mdxError
+ * @property {string} name
+ * @property {string} message
+ * @property {string} stack
+ * @property {string} position
+ */
+
+/**
+ * @typedef {object} RemoteMdxSource
+ * @property {CompiledSource} compiledSource
+ * @property {mdxError} mdxError
+ * @property {string[]} warnings
+ */
+
+/**
  * @typedef {Array} Redirect
  * @property {string} 0 - Next.js redirect source
  * @property {string} 1 - Next.js redirect destination

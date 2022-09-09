@@ -1,12 +1,9 @@
-# Micromanage CLI Package
+# Micromanage CLI package
 
-Micromanage is a monorepo microservice orchestration utility. It uses npm workspaces as the
-foundation for individual packages and services which contribute to a base Docker image and
-cloud-deployed microservices, respectively.
+Docs for micromanage are located in the package's [README.md](../packages/micromanage-cli/README.md)
+file.
 
-# Commands
-
-## `deploy`
+## Legacy `deploy` docs (Deprecated)
 
 Use this command to deploy to _test_ and _production_ environments
 
@@ -78,38 +75,3 @@ variables specified below in order to perform a service deploy.
    provider.
 
 6. Make sure to push your service config file changes so the upstream is properly updated!
-
-## `docker`
-
-This command is used to build a base docker image for all services, as well as individual images for
-each service in the monorepo. It can also optionally push the built image directly to a container
-registry, but you must be logged into the registry prior to running the command to have the push
-work.
-
-## `publish`
-
-This command builds and publishes a specified non-private package via `npm publish`.
-
-## `version`
-
-This command updates the versions of all workspaces in the monorepo based on a generated changelog.
-It detects which workspaces have changed and only re-versions the ones that have.
-
-The versioning process divides workspaces into two groups: "packages" and "services". "Packages" are
-considered as dependencies of "services". This means that if any "package" has been updated, all
-"services" in the repo will get a version bump as well to pick up the changes.
-
-An optional configuration setting can be specified in a "package's" `package.json` file:
-
-```json
-{
-  "micromanage": {
-    "standalone": true
-  }
-}
-```
-
-Setting this config option marks the package as "standlone", which means that changes to it will not
-trigger a re-version of the "services" in the repo. This is intended for use when a package is
-contained in the carbon-platform monorepo, but is not used as a node dependency by any other
-workspace within the repo.

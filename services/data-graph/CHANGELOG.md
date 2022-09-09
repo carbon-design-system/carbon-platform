@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.47](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.46...@carbon-platform/data-graph@0.1.47) (2022-09-09)
+
+
+### Bug Fixes 🐛
+
+* trace imports in services ([3a0fc0f](https://github.com/carbon-design-system/carbon-platform/commit/3a0fc0fa0b377c695ed5abf9e2245d424484f9f9))
+
+
+### Misc. 🔮
+
+* add top-level clean script to handle tsbuildinfo ([a0da1b8](https://github.com/carbon-design-system/carbon-platform/commit/a0da1b86e96ab39e6131f2889f90d71fe8e4f691))
+* update node module major versions ([a30e04e](https://github.com/carbon-design-system/carbon-platform/commit/a30e04e2f89e547894208d8fda8747bb71008ae8))
+* update node module minor versions ([ebc5ac5](https://github.com/carbon-design-system/carbon-platform/commit/ebc5ac527813f26eba3a7aca74574320c1067f17))
+
+### [0.1.46](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.45...@carbon-platform/data-graph@0.1.46) (2022-09-08)
+
+### [0.1.45](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.42...@carbon-platform/data-graph@0.1.45) (2022-09-08)
+
+
+### Bug Fixes 🐛
+
+* resolve merge conflicts ([04aaa6b](https://github.com/carbon-design-system/carbon-platform/commit/04aaa6b4d27cbd4ed11e6c66845ab84f3eb39b5d))
+
+### [0.1.44](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.42...@carbon-platform/data-graph@0.1.44) (2022-09-08)
+
+
+### Bug Fixes 🐛
+
+* resolve merge conflicts ([04aaa6b](https://github.com/carbon-design-system/carbon-platform/commit/04aaa6b4d27cbd4ed11e6c66845ab84f3eb39b5d))
+
+### [0.1.43](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.42...@carbon-platform/data-graph@0.1.43) (2022-09-08)
+
+
+### Bug Fixes 🐛
+
+* resolve merge conflicts ([04aaa6b](https://github.com/carbon-design-system/carbon-platform/commit/04aaa6b4d27cbd4ed11e6c66845ab84f3eb39b5d))
+
 ### [0.1.42](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.41...@carbon-platform/data-graph@0.1.42) (2022-09-03)
 
 ### [0.1.41](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.40...@carbon-platform/data-graph@0.1.41) (2022-09-01)

@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/icons",
   "description": "Carbon platform icons",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
@@ -20,7 +20,7 @@
   "scripts": {
     "build": "npm run build:svg && tsc",
     "build:svg": "svgr --no-prettier --out-dir src/main/generated src/main/svg",
-    "clean": "rimraf dist src/main/generated '*.tsbuildinfo'",
+    "clean": "rimraf dist src/main/generated",
     "package:build": "npm run build"
   },
   "dependencies": {

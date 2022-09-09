@@ -7,7 +7,7 @@
 
 import { AspectRatio } from '@carbon/react'
 import clsx from 'clsx'
-import { isEmpty } from 'lodash'
+import isEmpty from 'lodash/isEmpty'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 

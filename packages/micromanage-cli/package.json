@@ -1,0 +1,37 @@
+{
+  "name": "micromanage-cli",
+  "version": "2.0.4",
+  "description": "The missing npm workspace management tool",
+  "license": "Apache-2.0",
+  "main": "./lib/index.js",
+  "author": "IBM",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+  },
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "engines": {
+    "node": "16",
+    "npm": "8"
+  },
+  "type": "module",
+  "bin": {
+    "micromanage": "./lib/index.js"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "scripts": {
+    "test": "echo 'No tests specified. Maybe you should add some!'"
+  },
+  "dependencies": {
+    "commander": "^9.4.0",
+    "standard-version": "^9.5.0"
+  }
+}

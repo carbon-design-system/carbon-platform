@@ -6,4 +6,16 @@ description:
 tabs: ['Library', 'Usage', 'Code', 'Contribute']
 ---
 
-<PictogramLibrary />
+<PictogramLibrary
+  pictogramCategoryMetadata={props.pictogramCategoryMetadata}
+  pictogramMetadata={props.pictogramMetadata}
+/>
+
+export const getStaticProps = async () => {
+  // This is not using ISR because it gets is data from a local dep that ends up bundled with the
+  // web-app. ISR would just pull from the same local dep. A future implementation might pull this
+  // from someplace like unpkg or directly from github instead
+  const metadata = await import('@carbon/pictograms/metadata.json')
+  const { icons: pictogramMetadata, categories: pictogramCategoryMetadata } = metadata
+  return { props: { pictogramMetadata, pictogramCategoryMetadata } }
+}

@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { unstable_TreeNode as TreeNode, unstable_TreeView as TreeView } from '@carbon/react'
+import { TreeNode, TreeView } from '@carbon/react'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
@@ -71,7 +71,9 @@ const NavTree = ({ activeItem, items = [], label }) => {
     return nodes.map((node) => {
       if (node.isSection) {
         return (
-          <h2 className={clsx(styles['section-heading'], styles['section-group'])}>{node.title}</h2>
+          <h2 className={clsx(styles['section-heading'], styles['section-group'])} key={node.title}>
+            {node.title}
+          </h2>
         )
       } else {
         return (

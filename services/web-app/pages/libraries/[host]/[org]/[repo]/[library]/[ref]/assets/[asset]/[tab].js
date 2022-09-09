@@ -5,8 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
-import { capitalCase } from 'change-case'
-import { get } from 'lodash'
 import { MDXRemote } from 'next-mdx-remote'
 import path from 'path'
 import { useContext, useEffect, useRef, useState } from 'react'
@@ -19,10 +17,9 @@ import PageTabs from '@/components/page-tabs'
 import { assetTypes } from '@/data/asset-types'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout/layout'
-import { getLibraryData, getRemoteMdxSource } from '@/lib/github'
-import { processMdxSource } from '@/utils/mdx'
-import { getAssetType } from '@/utils/schema'
-import { getSlug } from '@/utils/slug'
+import { getLibraryData } from '@/lib/github'
+import { getProcessedMdxSource } from '@/utils/mdx'
+import { getAssetTabs, getAssetType } from '@/utils/schema'
 import { createUrl } from '@/utils/string'
 
 import styles from './[tab].module.scss'
@@ -70,8 +67,8 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
             <PageHeader
               title={title}
               withTabs
-              bgColor={get(assetTypes, `[${assetData.content.type}].bgColor`)}
-              pictogram={get(assetTypes, `[${assetData.content.type}].icon`)}
+              bgColor={assetTypes[assetData.content.type]?.bgColor}
+              pictogram={assetTypes[assetData.content.type]?.icon}
             />
           )}
           <PageBreadcrumb items={breadcrumbItems} />
@@ -139,42 +136,9 @@ export const getStaticProps = async ({ params }) => {
     src = path.join(carbonYmlDirPath, src)
   }
 
-  let tabMdxSource = {}
-  let mdxSource
-  let pageUrl
-  try {
-    const response = await getRemoteMdxSource(params, src)
-    mdxSource = response.mdxSource
-    pageUrl = response.url
+  const tabMdxSource = await getProcessedMdxSource(params, src)
 
-    tabMdxSource = await processMdxSource(mdxSource, pageUrl)
-  } catch (err) {
-    tabMdxSource.mdxError = {
-      name: err.name,
-      message: err.message,
-      stack: err.stack
-    }
-  }
-
-  const pageTabs = [
-    {
-      name: 'Overview',
-      path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(assetData.content)}`
-    }
-  ]
-
-  const dynamicDocKeys = ['usage', 'style', 'code', 'accessibility']
-
-  dynamicDocKeys.forEach((docKey) => {
-    if (assetData.content.docs?.[`${docKey}Path`]) {
-      pageTabs.push({
-        name: capitalCase(docKey),
-        path: `/libraries/${assetData.params.library}/latest/assets/${getSlug(
-          assetData.content
-        )}/${docKey}`
-      })
-    }
-  })
+  const pageTabs = getAssetTabs(assetData)
 
   return {
     props: {

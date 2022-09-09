@@ -8,6 +8,7 @@
 /**
  * Redirects previously used by the carbon-website repository.
  * @see https://github.com/carbon-design-system/carbon-website/blob/main/conf.d/rewrite.conf
+ * @see https://github.com/carbon-design-system/carbon-website/blob/main/gatsby-node.js
  */
 const websiteRedirects = [
   // Guidelines rewrites
@@ -69,9 +70,106 @@ const websiteToPlatformRedirects = [
   ['/all-about-carbon/what-is-carbon', '/about-carbon/how-carbon-works'],
   ['/all-about-carbon/who-uses-carbon', '/about-carbon/how-carbon-works'],
   ['/case-studies/:slug*', '/about-carbon/case-studies/:slug*'],
-  ['/whats-happening/meetups', '/about-carbon/meetups'],
-  ['/whats-happening/news-and-articles', '/about-carbon/articles'],
-  ['/whats-happening/work-in-progress', '/assets/components?status[]=draft'],
+  ['/community/component-index', '/assets/components'],
+  ['/community/contribute-a-chart', '/contributing/schema'],
+  ['/contribute-a-component', '/contributing/schema'],
+  ['/domain-guidance', '/about-carbon/how-carbon-works'],
+  ['/community/how-to-contribute', '/contributing/schema'],
+  ['/community/overview', '/about-carbon/how-carbon-works'],
+  ['/community/patterns/:slug*', '/assets/patterns'],
+  // Component renames
+  ['/components/list/:slug', '/libraries/carbon-react/latest/assets/ordered-list/:slug'],
+  // Component removed code tabs
+  ['/components/accordion/code', '/libraries/carbon-react/latest/assets/accordion'],
+  ['/components/breadcrumb/code', '/libraries/carbon-react/latest/assets/breadcrumb'],
+  ['/components/button/code', '/libraries/carbon-react/latest/assets/button'],
+  ['/components/checkbox/code', '/libraries/carbon-react/latest/assets/checkbox'],
+  ['/components/code-snippet/code', '/libraries/carbon-react/latest/assets/code-snippet'],
+  ['/components/content-switcher/code', '/libraries/carbon-react/latest/assets/content-switcher'],
+  ['/components/content-switcher/code', '/libraries/carbon-react/latest/assets/content-switcher'],
+  ['/components/data-table/code', '/libraries/carbon-react/latest/assets/data-table'],
+  ['/components/date-picker/code', '/libraries/carbon-react/latest/assets/date-picker'],
+  ['/components/dropdown/code', '/libraries/carbon-react/latest/assets/dropdown'],
+  ['/components/file-uploader/code', '/libraries/carbon-react/latest/assets/file-uploader'],
+  ['/components/form/code', '/libraries/carbon-react/latest/assets/form'],
+  ['/components/inline-loading/code', '/libraries/carbon-react/latest/assets/inline-loading'],
+  ['/components/link/code', '/libraries/carbon-react/latest/assets/link'],
+  ['/components/list/code', '/libraries/carbon-react/latest/assets/ordered-list'],
+  ['/components/loading/code', '/libraries/carbon-react/latest/assets/loading'],
+  ['/components/modal/code', '/libraries/carbon-react/latest/assets/modal'],
+  ['/components/notification/code', '/libraries/carbon-react/latest/assets/notification'],
+  ['/components/number-input/code', '/libraries/carbon-react/latest/assets/number-input'],
+  ['/components/overflow-menu/code', '/libraries/carbon-react/latest/assets/overflow-menu'],
+  ['/components/pagination/code', '/libraries/carbon-react/latest/assets/pagination'],
+  ['/components/popover/code', '/libraries/carbon-react/latest/assets/popover'],
+  ['/components/progress-bar/code', '/libraries/carbon-react/latest/assets/progress-bar'],
+  [
+    '/components/progress-indicator/code',
+    '/libraries/carbon-react/latest/assets/progress-indicator'
+  ],
+  ['/components/radio-button/code', '/libraries/carbon-react/latest/assets/radio-button'],
+  ['/components/search/code', '/libraries/carbon-react/latest/assets/search'],
+  ['/components/select/code', '/libraries/carbon-react/latest/assets/select'],
+  ['/components/slider/code', '/libraries/carbon-react/latest/assets/slider'],
+  ['/components/structured-list/code', '/libraries/carbon-react/latest/assets/structured-list'],
+  ['/components/tabs/code', '/libraries/carbon-react/latest/assets/tabs'],
+  ['/components/tag/code', '/libraries/carbon-react/latest/assets/tag'],
+  ['/components/text-input/code', '/libraries/carbon-react/latest/assets/text-input'],
+  ['/components/tile/code', '/libraries/carbon-react/latest/assets/tile'],
+  ['/components/toggle/code', '/libraries/carbon-react/latest/assets/toggle'],
+  ['/components/toggletip/code', '/libraries/carbon-react/latest/assets/toggletip'],
+  ['/components/tooltip/code', '/libraries/carbon-react/latest/assets/tooltip'],
+  ['/components/tree-view/code', '/libraries/carbon-react/latest/assets/tree-view'],
+  // Component catalog
+  ['/components/overview', '/assets/components'],
+  // Component default redirect, must come after all other `/components` redirects
+  ['/components/:component/:slug', '/libraries/carbon-react/latest/assets/:component/:slug'],
+  ['/contributing/component', '/contributing/components'],
+  ['/contributing/contribute-icons', '/contributing/icons'],
+  ['/contributing/contribute-pictograms', '/contributing/pictograms'],
+  ['/contributing/documentation', '/contributing'],
+  ['/contributing/pattern', '/contributing/patterns'],
+  ['/data-visualization/chart-types', '/data-visualization'],
+  ['/data-visualization/complex-charts', '/data-visualization'],
+  ['/data-visualization/getting-started', '/data-visualization/get-started'],
+  ['/data-visualization/simple-charts', '/data-visualization'],
+  ['/designing/design-resources', '/design-kits'],
+  ['/designing/kits/adobe-xd', '/designing/adobe-xd'],
+  ['/designing/kits/axure', '/designing/axure'],
+  ['/designing/kits/figma', '/designing/figma'],
+  ['/designing/kits/sketch', '/designing/sketch'],
+  ['/designing/tutorials', '/designing'],
+  [
+    '/developing/angular-tutorial/:slug',
+    '/libraries/carbon-components-angular/latest/pages/tutorial/:slug'
+  ],
+  ['/developing/dev-resources', '/developing'],
+  ['/developing/frameworks/angular', '/libraries/carbon-components-angular'],
+  ['/developing/frameworks/lwc', '/developing'],
+  ['/developing/frameworks/other-frameworks', '/developing'],
+  ['/developing/frameworks/react', '/libraries/carbon-react'],
+  ['/developing/frameworks/svelte', '/libraries/carbon-components-svelte'],
+  ['/developing/frameworks/vanilla', '/libraries/carbon-components'],
+  ['/developing/frameworks/vue', '/libraries/carbon-components-vue'],
+  ['/developing/frameworks/web-components', '/developing'],
+  ['/developing/get-started', '/developing'],
+  ['/developing/react-tutorial/:slug', '/libraries/carbon-react/latest/pages/tutorial/:slug'],
+  [
+    '/developing/vue-tutorial/:slug',
+    '/libraries/carbon-components-vue/latest/pages/tutorial/:slug'
+  ],
+  ['/guidelines/2x-grid/:slug*', '/elements/2x-grid/:slug*'],
+  ['/guidelines/color/:slug*', '/elements/color/:slug*'],
+  ['/guidelines/icons/:slug*', '/elements/icons/:slug*'],
+  ['/guidelines/motion/:slug*', '/elements/motion/:slug*'],
+  ['/guidelines/pictograms/:slug*', '/elements/pictograms/:slug*'],
+  ['/guidelines/spacing/:slug*', '/elements/spacing/:slug*'],
+  ['/guidelines/themes/:slug*', '/elements/themes/:slug*'],
+  ['/guidelines/typography/:slug*', '/elements/typography/:slug*'],
+  ['/help/certificate-of-originality', '/about-carbon'],
+  ['/help/contact-us', '/about-carbon/contact'],
+  ['/help/faq', '/about-carbon/faq'],
+  ['/help/migration-guide/:slug', '/about-carbon'],
   ['/guidelines/icons/:slug*', '/elements/icons/:slug*'],
   ['/patterns/dialog-pattern', '/libraries/carbon-styles/latest/assets/dialogs/usage'],
   ['/patterns/disclosures-pattern', '/libraries/carbon-styles/latest/assets/disclosures/usage'],
@@ -80,10 +178,16 @@ const websiteToPlatformRedirects = [
   ['/patterns/login-pattern', '/libraries/carbon-styles/latest/assets/login/usage'],
   ['/patterns/notification-pattern', '/libraries/carbon-styles/latest/assets/notifications/usage'],
   ['/patterns/overview', '/assets/patterns'],
-  ['/status-indicator-pattern', '/libraries/carbon-styles/latest/assets/status-indicators/usage'],
-  ['/text-toolbar-pattern', '/libraries/carbon-styles/latest/assets/text-toolbar/usage'],
+  [
+    '/patterns/status-indicator-pattern',
+    '/libraries/carbon-styles/latest/assets/status-indicators/usage'
+  ],
+  ['/patterns/text-toolbar-pattern', '/libraries/carbon-styles/latest/assets/text-toolbar/usage'],
   ['/patterns/:slug', '/libraries/carbon-styles/latest/assets/:slug/usage'], // after all `/patterns/`
-  ['/test/list-section', '/']
+  ['/test/list-section', '/'],
+  ['/whats-happening/meetups', '/about-carbon/meetups'],
+  ['/whats-happening/news-and-articles', '/about-carbon/articles'],
+  ['/whats-happening/work-in-progress', '/assets/components?status[]=draft']
 ]
 
 /**

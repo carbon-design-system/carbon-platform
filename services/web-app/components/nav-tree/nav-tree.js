@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { unstable_TreeNode as TreeNode, unstable_TreeView as TreeView } from '@carbon/react'
+import { TreeNode, TreeView } from '@carbon/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import PropTypes from 'prop-types'

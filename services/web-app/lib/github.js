@@ -173,7 +173,6 @@ export const getRemoteMdxSource = withTrace(
  * @returns {Promise<string>} Repo's default branch, undefined if not found
  */
 const getRepoDefaultBranch = withTrace(logging, async function getRepoDefaultBranch(params = {}) {
-  logging.info(`Getting repo default branch for ${JSON.stringify(params)}`)
   try {
     const repo = await getResponse(params.host, 'GET /repos/{owner}/{repo}', {
       owner: params.org,
@@ -417,7 +416,6 @@ const validateAsset = (asset, library) => {
 export const getLibraryParams = withTrace(
   logging,
   async function getLibraryParams(libraryVersionSlug) {
-    logging.info(`Getting library params for ${libraryVersionSlug}`)
     const inheritParams = getLibraryVersionAsset(libraryVersionSlug)
 
     if (inheritParams.library && libraryAllowList[inheritParams.library]) {
@@ -478,7 +476,6 @@ const resolveDesignKitUrl = (params, key, value) => {
 const resolveSchemaReferences = withTrace(
   logging,
   async function resolveSchemaReferences(params, data) {
-    logging.info(`Resolving schema references for library ${data.library.name}`)
     if (data.library.designKits) {
       for await (const [key, value] of Object.entries(data.library.designKits)) {
         if (value.$ref) {
@@ -553,7 +550,6 @@ export const getLibraryRelatedLibs = withTrace(
 export const getAssetRelatedFrameworks = withTrace(
   logging,
   async function getAssetRelatedFrameworks(params, library) {
-    logging.info(`Getting related frameworks for asset for ${JSON.stringify(params)}`)
     const otherAssetFrameworks = []
     if (library.params.group) {
       for (const [slug, libraryParams] of Object.entries(libraryAllowList)) {
@@ -596,7 +592,6 @@ export const getAssetRelatedFrameworks = withTrace(
  * @returns {import('@/typedefs').DesignKit[]}
  */
 export const getDesignKitsData = withTrace(logging, async function getDesignKitsData(params = {}) {
-  logging.info(`Getting design kits data for ${JSON.stringify(params)}`)
   const designKitsParams = await validateDesignKitsParams(params)
 
   if (isEmpty(designKitsParams)) {
@@ -760,7 +755,6 @@ const addAssetDefaults = withTrace(logging, async function addAssetDefaults(libr
  * @returns {Promise<import('@/typedefs').Library>}
  */
 export const getLibraryData = withTrace(logging, async function getLibraryData(params = {}) {
-  logging.info(`Getting library data for ${JSON.stringify(params)}`)
   const libraryParams = await validateLibraryParams(params)
 
   if (isEmpty(libraryParams)) {
@@ -920,8 +914,6 @@ const getThumbnailPath = (libraryParams = {}, asset = {}) => {
  * @returns {Promise<import('@/typedefs').GitHubTreeResponse>}
  */
 const getGithubTree = withTrace(logging, async function getGithubTree(params = {}) {
-  logging.info(`Getting repo github tree, params: ${JSON.stringify(params)}`)
-
   const libraryParams = await validateLibraryParams(params)
 
   if (isEmpty(libraryParams)) {
@@ -977,8 +969,6 @@ const getGithubTree = withTrace(logging, async function getGithubTree(params = {
  * @returns {Promise<import('@/typedefs').Asset[]>}
  */
 const getLibraryAssets = withTrace(logging, async function getLibraryAssets(params = {}) {
-  logging.info(`Getting assets for library, params: ${JSON.stringify(params)}`)
-
   const libraryParams = await validateLibraryParams(params)
 
   if (isEmpty(libraryParams)) {
@@ -1172,7 +1162,6 @@ const addLibraryInheritedData = withTrace(logging, async function addLibraryInhe
  * @returns {number}
  */
 export const getAssetIssueCount = withTrace(logging, async function getAssetIssueCount(asset) {
-  logging.info(`Getting asset issue count ${getSlug(asset.content)}`)
   const { host, org, repo } = asset.params
 
   /**
@@ -1182,7 +1171,11 @@ export const getAssetIssueCount = withTrace(logging, async function getAssetIssu
 
   try {
     const query = `${asset.content.name}+repo:${org}/${repo}+is:issue+is:open+in:title`
-    logging.info(`Attempting to get asset issue response for host ${host}, query:  ${query}`)
+    logging.info(
+      `Attempting to get asset issue response for asset ${getSlug(
+        asset.content
+      )}, host ${host}, query:  ${query}`
+    )
     response = await getResponse(host, 'GET /search/issues', {
       q: query
     })
@@ -1203,7 +1196,6 @@ export const getAssetIssueCount = withTrace(logging, async function getAssetIssu
  * @returns {import('@/typedefs').DesignKit[]}
  */
 export const getAllDesignKits = withTrace(logging, async function getAllDesignKits() {
-  logging.info('Getting all design kits')
   const baseDesignKits = Object.entries(resources.designKits)
     .filter(([key]) => !!designKitAllowList[key])
     .map(([key, value]) => {
@@ -1234,7 +1226,6 @@ export const getAllDesignKits = withTrace(logging, async function getAllDesignKi
  * @returns {import('@/typedefs').Libraries}
  */
 export const getAllLibraries = withTrace(logging, async function getAllLibraries() {
-  logging.info('Getting all libraries')
   const promises = []
 
   for (const [slug, library] of Object.entries(libraryAllowList)) {
@@ -1264,11 +1255,6 @@ export const getAllLibraries = withTrace(logging, async function getAllLibraries
 const getPackageJsonContent = withTrace(
   logging,
   async function getPackageJsonContent(params = {}, packageJsonPath = '/package.json') {
-    logging.info(
-      `Getting package.json content for params:  ${JSON.stringify(
-        params
-      )}, path: ${packageJsonPath}`
-    )
     const libraryParams = await validateLibraryParams(params)
 
     if (isEmpty(libraryParams)) {

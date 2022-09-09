@@ -15,6 +15,11 @@ import { User } from './interfaces.js'
 
 let storeInstance: expressSession.Store
 
+type SessionWithPassport =
+  | (expressSession.SessionData & { passport?: { user?: User } })
+  | null
+  | undefined
+
 // TODO: For this file as a whole, wrap it up into a class that has its configuration "injected" so
 // it is not required to reach out to the runtime itself or use environment variables, since that
 // level of config-grabbing should be done at the top-level in the application.
@@ -68,13 +73,11 @@ const getStore = async (runtime: Runtime): Promise<expressSession.Store> => {
  * @returns {Promise<SessionData | null>} Promise that resolves to the session object
  *  (or null if not found)
  */
-const getUserSessionByKey = async (
-  sessionKey: string
-): Promise<expressSession.SessionData | null> => {
+const getUserSessionByKey = async (sessionKey: string): Promise<SessionWithPassport> => {
   const runtime = new Runtime()
   const retrievedStore = await getStore(runtime)
   return new Promise((resolve) => {
-    retrievedStore.get(sessionKey, (_: any, session: any) => {
+    retrievedStore.get(sessionKey, (_, session) => {
       if (session?.cookie?.expires) {
         const sessionExpireDate = new Date(session.cookie.expires)
         if (sessionExpireDate.getTime() <= Date.now()) {
@@ -99,12 +102,11 @@ const getUserSessionByKey = async (
  * Retrieves user information for a given session key
  *
  * @param {string} sessionKey Session Key
- * @returns {Promise<User | undefined>} Promise that resolves to User object
- * (or undefined if not found)
+ * @returns Promise that resolves to User object (or undefined if not found)
  */
-const getUserBySessionKey = (sessionKey: string): Promise<User | undefined> => {
-  return getUserSessionByKey(sessionKey).then((session: any) => {
-    return session?.passport?.user as User
+const getUserBySessionKey = (sessionKey: string) => {
+  return getUserSessionByKey(sessionKey).then((session: SessionWithPassport) => {
+    return session?.passport?.user
   })
 }
 
@@ -115,11 +117,14 @@ const getUserBySessionKey = (sessionKey: string): Promise<User | undefined> => {
  * @param {object} userInfo Additional/Updated user info
  * @returns {Promise<boolean>} Promise that resolves to boolean indicating success status
  */
-const updateUserBySessionKey = (sessionKey: string, userInfo: Object): Promise<boolean> => {
+const updateUserBySessionKey = (
+  sessionKey: string,
+  userInfo: Record<string, unknown>
+): Promise<boolean> => {
   const runtime = new Runtime()
   return new Promise((resolve) => {
     getUserSessionByKey(sessionKey)
-      .then((userSession: any) => {
+      .then((userSession: SessionWithPassport) => {
         if (userSession?.passport?.user) {
           const newSessionVal = {
             ...userSession,
@@ -129,7 +134,7 @@ const updateUserBySessionKey = (sessionKey: string, userInfo: Object): Promise<b
             }
           }
           getStore(runtime).then((retrievedStore) => {
-            retrievedStore.set(sessionKey, newSessionVal, (err: any) => {
+            retrievedStore.set(sessionKey, newSessionVal, (err) => {
               resolve(!err)
             })
           })
@@ -177,7 +182,7 @@ const getUserBySessionCookie = async (sessionCookie: string): Promise<User | und
  */
 const updateUserBySessionCookie = async (
   sessionCookie: string,
-  userInfo: any
+  userInfo: Record<string, unknown>
 ): Promise<boolean> => {
   const sessionId = unsignSessionCookie(sessionCookie)
   let success = false

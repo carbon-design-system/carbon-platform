@@ -18,7 +18,7 @@ const MAX_INPUT_DATA_LOG_SIZE = 500 // characters
 class RequestLogInterceptor implements NestInterceptor {
   public static getLogTextBuilder(
     handlerType: string
-  ): ((context: ExecutionContext, result: any, responseTime: string) => string) | undefined {
+  ): ((context: ExecutionContext, result: unknown, responseTime: string) => string) | undefined {
     switch (handlerType) {
       case 'http':
         return RequestLogInterceptor.buildHttpLogText
@@ -31,7 +31,7 @@ class RequestLogInterceptor implements NestInterceptor {
 
   public static buildHttpLogText(
     context: ExecutionContext,
-    result: any,
+    result: unknown,
     responseTime: string
   ): string {
     const httpContext = context.switchToHttp()
@@ -56,7 +56,7 @@ class RequestLogInterceptor implements NestInterceptor {
 
   public static buildRpcLogText(
     context: ExecutionContext,
-    result: any,
+    result: unknown,
     responseTime: string
   ): string {
     const rpcContext = context.switchToRpc()
@@ -82,7 +82,7 @@ class RequestLogInterceptor implements NestInterceptor {
     this.logging = config?.logging || new Logging({ component: 'RequestLogger' })
   }
 
-  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<unknown> {
     const performanceId = uuidv4()
     performance.mark(performanceId)
 

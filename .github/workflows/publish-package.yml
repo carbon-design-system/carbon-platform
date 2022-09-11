@@ -52,6 +52,9 @@ jobs:
       - name: Install Micromanage 🔬
         run: npm --workspace packages/micromanage-cli install
 
+      - name: Install base node modules 🏗
+        run: npx micromanage install --workspace @carbon-platform/base
+
       - name: Install package node modules 🏗
         run: npx micromanage install --workspace $PACKAGE_NAME
 

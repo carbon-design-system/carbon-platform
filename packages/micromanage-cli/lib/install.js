@@ -54,7 +54,7 @@ async function installWorkspace(workspace, isDryRun) {
 async function installPackagesIntoWorkspace(packageNames, workspace, isDryRun) {
   // For each package, if it doesn't have @latest on the end, put it on
   packageNames = packageNames.map((pkg) => {
-    if (!pkg.match(/.+@.+$/)) {
+    if (pkg.lastIndexOf('@') <= 0) {
       return pkg + '@latest'
     }
     return pkg

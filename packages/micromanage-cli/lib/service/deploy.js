@@ -30,7 +30,7 @@ function buildDeployCommand() {
 }
 
 async function handleDeployCommand(options) {
-  console.log('===== micromanage deploy =====')
+  console.log('===== micromanage service deploy (Deprecated) =====')
 
   if (!DEPLOY_TARGETS.includes(options.target)) {
     throw new Error(`Invalid deploy target: ${options.target}`)

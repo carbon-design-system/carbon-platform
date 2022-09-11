@@ -41,7 +41,8 @@ function handleVersionCommand(workspaceNames, opts) {
   const newVersions = versionWorkspaces(workspaces, opts.dryRun)
 
   if (!opts.dryRun) {
-    // Ensure lock file remains up-to-date
+    // Ensure lock file remains up-to-date. This is a limitation of standard-version and is not
+    // needed when using the out-of-box `npm version` command
     exec('npm install')
 
     exec('git commit --allow-empty -am "release: update package-lock.json with new versions"')
@@ -52,7 +53,7 @@ function handleVersionCommand(workspaceNames, opts) {
 
     // Commit the results as a single commit with an appropriate commit message
     exec(
-      "sed 's/Squashed commit of the following:/release: new package and service versions/' " +
+      "sed 's/Squashed commit of the following:/release: new workspace versions/' " +
         '.git/SQUASH_MSG | git commit -F -'
     )
 

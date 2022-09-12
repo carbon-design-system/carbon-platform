@@ -14,6 +14,7 @@ import { withPrefix } from '../utils.js'
 
 interface AnchorLinksProps {
   small?: boolean
+  children: JSX.Element | Array<JSX.Element>
 }
 
 /**
@@ -24,7 +25,7 @@ interface AnchorLinksProps {
  * For most pages, we recommend starting with a `PageDescription` followed by `AnchorLinks` if the
  * content is long enough.
  */
-const AnchorLinks: React.FC<AnchorLinksProps> = ({ children, small }) => {
+const AnchorLinks = ({ children, small }: AnchorLinksProps) => {
   const isColumn = Children.count(children) > 9
   const classNames = clsx({
     [withPrefix('list--small')]: small,

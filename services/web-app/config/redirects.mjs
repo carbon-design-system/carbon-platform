@@ -147,6 +147,7 @@ const websiteToPlatformRedirects = [
   ['/help/faq', '/about-carbon/help/faq'],
   ['/help/migration-guide/:slug', '/migrating'],
   ['/guidelines/icons/:slug*', '/elements/icons/:slug*'],
+  ['/guidelines/motion/resources', '/guidelines/motion'],
   ['/migrating/benefits', '/migrating/faq'],
   ['/patterns/dialog-pattern', '/libraries/carbon-styles/latest/assets/dialogs/usage'],
   ['/patterns/disclosures-pattern', '/libraries/carbon-styles/latest/assets/disclosures/usage'],
@@ -174,6 +175,7 @@ const websiteToPlatformRedirects = [
 const platformRedirects = [
   ['/about-carbon', '/about-carbon/how-carbon-works'],
   ['/about-carbon/case-studies', '/about-carbon/case-studies/overview'],
+  ['/about-carbon/help', '/about-carbon/help/faq'],
   ['/assets', '/assets/components'],
   ['/contributing', '/contributing/overview'],
   ['/elements', '/elements/2x-grid/overview'],
@@ -187,7 +189,9 @@ const platformRedirects = [
   ['/elements/typography', '/elements/typography/overview'],
   ['/guidelines', '/guidelines/accessibility/overview'],
   ['/guidelines/accessibility', '/guidelines/accessibility/overview'],
-  ['/guidelines/content', '/guidelines/content/overview']
+  ['/guidelines/content', '/guidelines/content/overview'],
+  ['/migrating', '/migrating/guide/overview'],
+  ['/migrating/guide', '/migrating/guide/overview']
 ]
 
 /**

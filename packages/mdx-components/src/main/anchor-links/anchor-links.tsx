@@ -8,13 +8,13 @@
 import { Column, Grid } from '@carbon/react'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
-import React, { Children } from 'react'
+import React, { Children, ReactNode } from 'react'
 
 import { withPrefix } from '../utils.js'
 
 interface AnchorLinksProps {
   small?: boolean
-  children: JSX.Element | Array<JSX.Element>
+  children: ReactNode
 }
 
 /**

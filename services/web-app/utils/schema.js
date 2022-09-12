@@ -95,7 +95,7 @@ export const getAssetType = (asset) => {
 
 /**
  * Gets the element status string value. If not found, defaults to 'draft'.
- * @param {import('../typedefs').Element} element
+ * @param {import('@/typedefs').Element} element
  * @returns {string} Element status value
  */
 export const getElementStatus = (element) => {

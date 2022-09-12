@@ -23,13 +23,23 @@ function buildVersionCommand() {
     )
     .option('--dry-run', 'Do not make any changes. Only output prospective updates')
     .option('--json', 'Output as a JSON array of new tags')
-    .argument('<workspace-name...>', 'List of workspace names (from package.json) to process')
+    .argument('[workspace-name...]', 'List of workspace names (from package.json) to process')
     .action(handleVersionCommand)
 }
 
 function handleVersionCommand(workspaceNames, opts) {
   // Note: stderr is used so stdout can be used by subsequent scripts
   console.error('===== micromanage version =====')
+
+  if (workspaceNames.length === 0) {
+    console.error('No workspaces specified. Nothing to do')
+
+    if (opts.json) {
+      console.log(JSON.stringify([]))
+    }
+
+    return
+  }
 
   const workspaces = workspaceNames.map((wsName) => getWorkspaceByName(wsName))
 

@@ -8,7 +8,6 @@
 import { Column, Grid, Link as CarbonLink, Tag } from '@carbon/react'
 import { RulerAlt } from '@carbon/react/icons'
 import { AnchorLink, AnchorLinks } from '@carbon-platform/mdx-components'
-import get from 'lodash/get'
 import groupBy from 'lodash/groupBy'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -119,7 +118,7 @@ const DesignKits = ({ libraryData, navData }) => {
                 </AnchorLinks>
                 {filteredDesignTools.map((item, i) => (
                   <>
-                    <H2 key={i}>{get(designTools, `[${item}].name`)}</H2>
+                    <H2 key={i}> {designTools?.[item]?.name}</H2>
                     <CardGroup>
                       {groupedDesignKits[`${item}`].map((kit, i) => (
                         <Column sm={4} md={4} lg={4} key={i}>
@@ -127,12 +126,12 @@ const DesignKits = ({ libraryData, navData }) => {
                             subTitle={kit.name}
                             href={kit.url}
                             component={
-                              <Tag type={get(designKitTypes, `[${kit.type}].tagType`)}>
-                                {get(designKitTypes, `[${kit.type}].name`)}
+                              <Tag type={designKitTypes?.[kit.type]?.tagType}>
+                                {designTools?.[kit.type]?.name}
                               </Tag>
                             }
                           >
-                            <MdxIcon name={get(designTools, `[${kit.tool}].icon`)} />
+                            <MdxIcon name={designTools?.[kit.tool]?.icon} />
                           </ResourceCard>
                         </Column>
                       ))}

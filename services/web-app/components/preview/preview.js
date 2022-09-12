@@ -20,8 +20,6 @@ const Preview = ({ className, title, height, src, style }) => (
     loading="lazy"
     title={title}
     height={height}
-    allowtransparency="true"
-    allowFullScreen="true"
     frameBorder="no"
     className={clsx(className, styles.preview)}
     style={style}

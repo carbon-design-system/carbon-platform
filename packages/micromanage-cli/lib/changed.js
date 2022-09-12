@@ -36,7 +36,7 @@ async function handleChangedCommand(opts) {
   for (const pkg of changedWorkspaces.filter(filters.PACKAGES)) {
     const dependentServices = await getDependentServices(pkg)
     dependentServices.forEach(
-      (dep) => !changedWorkspaces.includes(dep) && changedWorkspaces.add(dep)
+      (dep) => !changedWorkspaces.includes(dep) && changedWorkspaces.push(dep)
     )
   }
 

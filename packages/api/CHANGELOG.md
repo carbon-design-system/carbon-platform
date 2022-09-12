@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.30...@carbon-platform/api@0.4.0) (2022-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Move trace utilities from microservice to logging dir
+
+### Features 🌟
+
+* **api:** add withTrace utility ([d36962c](https://github.com/carbon-design-system/carbon-platform/commit/d36962cfbbe23c578ce5836de92a13004fa5b9c3))
+
+
+### Bug Fixes 🐛
+
+* trace imports in services ([3a0fc0f](https://github.com/carbon-design-system/carbon-platform/commit/3a0fc0fa0b377c695ed5abf9e2245d424484f9f9))
+
+
+### Tests 🧪
+
+* fix failing unit tests and linting ([d5beea3](https://github.com/carbon-design-system/carbon-platform/commit/d5beea3b042d7e69dd7f53c5f2cc1b0ef6754efe))
+
+
+### Misc. 🔮
+
+* add top-level clean script to handle tsbuildinfo ([a0da1b8](https://github.com/carbon-design-system/carbon-platform/commit/a0da1b86e96ab39e6131f2889f90d71fe8e4f691))
+* update node module major versions ([a30e04e](https://github.com/carbon-design-system/carbon-platform/commit/a30e04e2f89e547894208d8fda8747bb71008ae8))
+* update node module minor versions ([ebc5ac5](https://github.com/carbon-design-system/carbon-platform/commit/ebc5ac527813f26eba3a7aca74574320c1067f17))
+
+### [0.3.30](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.29...@carbon-platform/api@0.3.30) (2022-09-08)
+
+
+### Features 🌟
+
+* **logging:** use custom date format in console logs ([aeeded7](https://github.com/carbon-design-system/carbon-platform/commit/aeeded78be44f72809d13edb25c826efb6027aca))
+
 ### [0.3.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.28...@carbon-platform/api@0.3.29) (2022-08-25)
 
 

@@ -4,8 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Trace } from '../logging/index.js'
 import { MessagingClient } from '../messaging/messaging-client.js'
-import { Trace } from '../microservice/index.js'
 import { RunMode } from '../runtime/interfaces.js'
 import { Runtime } from '../runtime/runtime.js'
 import { DevDataset } from './dev-dataset.js'

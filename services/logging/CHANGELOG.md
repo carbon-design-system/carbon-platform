@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.42](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.41...@carbon-platform/logging@1.1.42) (2022-09-09)
+
+
+### Bug Fixes 🐛
+
+* **logging:** update trace import location ([1fd8880](https://github.com/carbon-design-system/carbon-platform/commit/1fd88801c80623d6a60439a73a8817b19379149b))
+
+
+### Misc. 🔮
+
+* add top-level clean script to handle tsbuildinfo ([a0da1b8](https://github.com/carbon-design-system/carbon-platform/commit/a0da1b86e96ab39e6131f2889f90d71fe8e4f691))
+
+### [1.1.41](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.40...@carbon-platform/logging@1.1.41) (2022-09-08)
+
 ### [1.1.40](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.38...@carbon-platform/logging@1.1.40) (2022-09-08)
 
 

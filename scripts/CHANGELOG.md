@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/scripts@0.2.0...@carbon-platform/scripts@0.2.1) (2022-09-09)
+
+
+### Misc. 🔮
+
+* add top-level clean script to handle tsbuildinfo ([a0da1b8](https://github.com/carbon-design-system/carbon-platform/commit/a0da1b86e96ab39e6131f2889f90d71fe8e4f691))
+
 ## 0.2.0 (2022-09-08)
 
 

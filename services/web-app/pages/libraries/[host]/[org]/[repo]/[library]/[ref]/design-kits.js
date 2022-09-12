@@ -80,7 +80,7 @@ const DesignKits = ({ libraryData, navData }) => {
         catalog to find more design kits or contact libray maintainers.
       </P>
       <CardGroup>
-        <Column lg={4} md={4}>
+        <Column sm={4} md={4} lg={4}>
           <ResourceCard subTitle="Design kit catalog" href="/design-kits">
             <RulerAlt size={32} />
           </ResourceCard>
@@ -122,7 +122,7 @@ const DesignKits = ({ libraryData, navData }) => {
                     <H2 key={i}>{get(designTools, `[${item}].name`)}</H2>
                     <CardGroup>
                       {groupedDesignKits[`${item}`].map((kit, i) => (
-                        <Column lg={4} md={4} key={i}>
+                        <Column sm={4} md={4} lg={4} key={i}>
                           <ResourceCard
                             subTitle={kit.name}
                             href={kit.url}

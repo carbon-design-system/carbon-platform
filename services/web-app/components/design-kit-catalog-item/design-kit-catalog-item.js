@@ -67,7 +67,7 @@ const DesignKitCatalogItem = ({ designKit }) => {
                   {name && <p className={styles.name}>{name}</p>}
                   {description && <p className={styles.description}>{description}</p>}
                   <div className={styles.icon} title={maintainerTitle}>
-                    {iconRender}
+                    {iconRender()}
                   </div>
                   {isSeparatedMeta && (
                     <>

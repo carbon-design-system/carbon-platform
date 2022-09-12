@@ -168,7 +168,7 @@ export const getDesignKitLicense = (designKit) => {
       : designKit.license === 'ibm-internal'
         ? 'MIT'
         : null
-  const { license = defaultLicense } = designKit.license ? designKit.license : designKit
+  const { license = defaultLicense } = designKit
   return license
 }
 

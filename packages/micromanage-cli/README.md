@@ -14,8 +14,10 @@ Options:
 Commands:
   build [options] <workspace-name>       Build a workspace
   changed [options]                      List changed workspaces
+  install [options] [package-name...]    Install workspace packages or packages into a workspace
   package                                Commands that operate on packages
   service                                Commands that operate on services
+  uninstall [options] <package-name...>  Uninstall packages from a workspace
   version [options] <workspace-name...>  Update workspace versions based on conventional commits
   help [command]                         display help for command
 ```
@@ -52,22 +54,22 @@ Options:
   -h, --help         display help for command
 ```
 
-## `version`
+## `install`
 
 ```
-Usage: micromanage version [options] <workspace-name...>
+Usage: micromanage install [options] [package-name...]
 
-Update the version of each provided workspace based on a conventional commits changelog. The
-version bump (major/minor/patch) is determined based on the conventional commits found since each
-workspace's most recent tag.
+If package arguments are supplied, installs the specified packages into the specified workspace.
+
+Otherwise, installs the workspace's dependencies via `npm install`.
 
 Arguments:
-  workspace-name  List of workspace names (from package.json) to process
+  package-name                      Optional list of packages to install
 
 Options:
-  --dry-run       Do not make any changes. Only output prospective updates
-  --json          Output as a JSON array of new tags
-  -h, --help      display help for command
+  --dry-run                         Do not make any changes. Only output install command
+  -w, --workspace <workspace-name>  Workspace for which to install packages
+  -h, --help                        display help for command
 ```
 
 ## `package`
@@ -158,4 +160,38 @@ Options:
   --dry-run          Do not make any changes. Only output prospective updates
   --target <target>  target environment for deploy: [test,prod]
   -h, --help         display help for command
+```
+
+## `uninstall`
+
+```
+Usage: micromanage uninstall [options] <package-name...>
+
+Uninstall packages from a workspace
+
+Arguments:
+  package-name                      List of packages to uninstall
+
+Options:
+  --dry-run                         Do not make any changes. Only output uninstall command
+  -w, --workspace <workspace-name>  Workspace for which to uninstall packages
+  -h, --help                        display help for command
+```
+
+## `version`
+
+```
+Usage: micromanage version [options] <workspace-name...>
+
+Update the version of each provided workspace based on a conventional commits changelog. The
+version bump (major/minor/patch) is determined based on the conventional commits found since each
+workspace's most recent tag.
+
+Arguments:
+  workspace-name  List of workspace names (from package.json) to process
+
+Options:
+  --dry-run       Do not make any changes. Only output prospective updates
+  --json          Output as a JSON array of new tags
+  -h, --help      display help for command
 ```

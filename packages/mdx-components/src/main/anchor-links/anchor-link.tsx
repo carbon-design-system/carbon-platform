@@ -12,7 +12,12 @@ import { withPrefix } from '../utils.js'
 
 const slugify = slugifyCjs.default
 
-const AnchorLink = ({ to, children }: any) => {
+interface AnchorLinkProps {
+  to?: string
+  children: string
+}
+
+const AnchorLink: React.FC<AnchorLinkProps> = ({ to, children }) => {
   const href = to || `#${slugify(children, { lower: true })}`
 
   return (
@@ -26,11 +31,7 @@ AnchorLink.propTypes = {
   /**
    * Provide the contents of your `AnchorLink`.
    */
-  children: PropTypes.node.isRequired,
-  /**
-   * Optional container class name.
-   */
-  className: PropTypes.string,
+  children: PropTypes.string.isRequired,
   /**
    * By default, the `AnchorLink` slugifys the children you pass in. Use the to prop to override
    * this target.

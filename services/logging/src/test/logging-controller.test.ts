@@ -12,7 +12,7 @@ import test from 'ava'
 import { LogDnaService } from '../main/log-dna-service.js'
 import { LoggingController } from '../main/logging-controller.js'
 
-let data: LogLoggedMessage
+let data: UnvalidatedMessage<LogLoggedMessage>
 
 test.beforeEach(() => {
   data = {
@@ -37,7 +37,7 @@ test.serial('logLogged handles its own exception when no component specified', (
   const logDnaService = new LogDnaService({})
   const loggingController = new LoggingController(logDnaService)
 
-  delete (data as UnvalidatedMessage).component
+  delete data.component
 
   loggingController.logLogged(data)
   t.pass()
@@ -47,7 +47,7 @@ test.serial('logLogged handles its own exception when no environment specified',
   const logDnaService = new LogDnaService({})
   const loggingController = new LoggingController(logDnaService)
 
-  delete (data as UnvalidatedMessage).environment
+  delete data.environment
 
   loggingController.logLogged(data)
   t.pass()
@@ -57,7 +57,7 @@ test.serial('logLogged handles its own exception when no level specified', (t) =
   const logDnaService = new LogDnaService({})
   const loggingController = new LoggingController(logDnaService)
 
-  delete (data as UnvalidatedMessage).level
+  delete data.level
 
   loggingController.logLogged(data)
   t.pass()
@@ -67,7 +67,7 @@ test.serial('logLogged handles its own exception when no message specified', (t)
   const logDnaService = new LogDnaService({})
   const loggingController = new LoggingController(logDnaService)
 
-  delete (data as UnvalidatedMessage).message
+  delete data.message
 
   loggingController.logLogged(data)
   t.pass()
@@ -77,7 +77,7 @@ test.serial('logLogged handles its own exception when no service specified', (t)
   const logDnaService = new LogDnaService({})
   const loggingController = new LoggingController(logDnaService)
 
-  delete (data as UnvalidatedMessage).service
+  delete data.service
 
   loggingController.logLogged(data)
   t.pass()
@@ -87,7 +87,7 @@ test.serial('logLogged handles its own exception when no timestamp specified', (
   const logDnaService = new LogDnaService({})
   const loggingController = new LoggingController(logDnaService)
 
-  delete (data as UnvalidatedMessage).timestamp
+  delete data.timestamp
 
   loggingController.logLogged(data)
   t.pass()

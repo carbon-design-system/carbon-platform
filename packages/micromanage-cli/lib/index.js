@@ -9,8 +9,10 @@ import { Command } from 'commander'
 
 import { buildBuildCommand } from './build.js'
 import { buildChangedCommand } from './changed.js'
+import { buildInstallCommand } from './install.js'
 import { buildPackageCommand } from './package/index.js'
 import { buildServiceCommand } from './service/index.js'
+import { buildUninstallCommand } from './uninstall.js'
 import { logErrorInfo } from './utils.js'
 import { buildVersionCommand } from './version.js'
 
@@ -19,8 +21,10 @@ async function main() {
     .configureHelp({ helpWidth: 100 })
     .addCommand(buildBuildCommand())
     .addCommand(buildChangedCommand())
+    .addCommand(buildInstallCommand())
     .addCommand(buildPackageCommand())
     .addCommand(buildServiceCommand())
+    .addCommand(buildUninstallCommand())
     .addCommand(buildVersionCommand())
 
   try {

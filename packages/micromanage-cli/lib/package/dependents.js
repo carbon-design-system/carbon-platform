@@ -19,7 +19,7 @@ function buildDependentsCommand() {
 
 async function handleDependentsCommand(workspaceName, opts) {
   // Note: stderr is used so stdout can be used by subsequent scripts
-  console.error('===== micromanage dependencies =====')
+  console.error('===== micromanage package dependents =====')
 
   const workspace = getWorkspaceByName(workspaceName)
   const deps = await getDependentServices(workspace)

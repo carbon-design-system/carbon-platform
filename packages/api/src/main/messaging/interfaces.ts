@@ -11,9 +11,7 @@ import { LogLoggedMessage } from '../logging/index.js'
  * An incoming message to a service is first treated as unvalidated. Once validated, the incoming
  * message type should be asserted as some type of [EventMessage or QueryMessage] payload.
  */
-interface UnvalidatedMessage {
-  [key: string]: any
-}
+type UnvalidatedMessage<T> = Partial<T>
 
 /**
  * EventMessages can be `emit()`ted by a `MessagingClient` and are sent to an exchange whose name is

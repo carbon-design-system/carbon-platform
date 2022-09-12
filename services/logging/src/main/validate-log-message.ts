@@ -14,7 +14,7 @@ import { InvalidInputException } from '@carbon-platform/api/microservice'
  * @param data Incoming log message data.
  * @returns true if the mesage is a valid LogLoggedMessage. Throws an Error otherwise.
  */
-function validateLogMessage(data: UnvalidatedMessage): LogLoggedMessage {
+function validateLogMessage(data: UnvalidatedMessage<LogLoggedMessage>): LogLoggedMessage {
   if (!data.component) {
     throw new InvalidInputException('component not specified')
   }

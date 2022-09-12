@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Trace } from '@carbon-platform/api/logging'
+import { LogLoggedMessage, Trace } from '@carbon-platform/api/logging'
 import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
 import { Runtime } from '@carbon-platform/api/runtime'
 import { Controller } from '@nestjs/common'
@@ -45,7 +45,7 @@ class LoggingController {
    */
   @Trace()
   @EventPattern('log_logged')
-  public logLogged(@Payload() data: UnvalidatedMessage) {
+  public logLogged(@Payload() data: UnvalidatedMessage<LogLoggedMessage>) {
     // This type of explicit catching of the error thrown by validateLogMessage is only needed
     // because the logging service disables remote logging to prevent infinite messaging loops.
     try {

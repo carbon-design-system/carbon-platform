@@ -38,6 +38,14 @@ const DesignKitCatalogItem = ({ designKit }) => {
   const type = designKit.type
   const anchorHref = designKit.url ?? designKit.url
 
+  const icon = onHover
+    ? <ArrowUpRight
+      className={clsx(styles['icon-external'], 'icon-maintainer')}
+      size={24}
+    />
+
+    : <MaintainerIcon className={styles['icon-maintainer']} size={24} />
+
   return (
     <Column as="li" sm={4} md={8} lg={12}>
       <Link href={anchorHref}>
@@ -59,16 +67,7 @@ const DesignKitCatalogItem = ({ designKit }) => {
                   {name && <p className={styles.name}>{name}</p>}
                   {description && <p className={styles.description}>{description}</p>}
                   <div className={styles.icon} title={maintainerTitle}>
-                    {onHover
-                      ? (
-                        <ArrowUpRight
-                          className={clsx(styles['icon-external'], 'icon-maintainer')}
-                          size={24}
-                        />
-                      )
-                      : (
-                        <MaintainerIcon className={styles['icon-maintainer']} size={24} />
-                      )}
+                    {icon}
                   </div>
                   {isSeparatedMeta && (
                     <>

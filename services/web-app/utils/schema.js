@@ -8,6 +8,7 @@
 import { capitalCase } from 'change-case'
 
 import { assetTypes } from '@/data/asset-types'
+import { designKitLicenses } from '@/data/design-kit-licenses'
 import { ORDER_BY_STATUS } from '@/data/sort'
 import { elementStatusLifecycle } from '@/data/status'
 import { tagsForCollection, tagsForType } from '@/data/tags'
@@ -158,17 +159,11 @@ export const getLicense = (asset) => {
 
 /**
  * Gets the license from a designKit
- * @param {import('../typedefs').DesignKit} designKit
+ * @param {import('@/typedefs').DesignKit} designKit
  * @returns {string} License
  */
 export const getDesignKitLicense = (designKit) => {
-  const defaultLicense =
-    designKit.license === 'ibm-internal'
-      ? 'IBM Internal'
-      : designKit.license === 'ibm-internal'
-        ? 'MIT'
-        : null
-  const { license = defaultLicense } = designKit
+  const license = designKitLicenses[designKit.license].name
   return license
 }
 

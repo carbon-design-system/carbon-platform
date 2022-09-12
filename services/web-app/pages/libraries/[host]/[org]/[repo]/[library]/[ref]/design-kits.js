@@ -39,10 +39,7 @@ const DesignKits = ({ libraryData, navData }) => {
 
   const { name, designKits } = libraryData.content
 
-  const groupedDesignKits = groupBy(
-    Object.values(designKits),
-    (kit) => kit.tool
-  )
+  const groupedDesignKits = groupBy(Object.values(designKits), (kit) => kit.tool)
 
   const groupedDesignKitsKeys = Object.keys(groupedDesignKits)
 
@@ -127,7 +124,7 @@ const DesignKits = ({ libraryData, navData }) => {
                             href={kit.url}
                             component={
                               <Tag type={designKitTypes?.[kit.type]?.tagType}>
-                                {designTools?.[kit.type]?.name}
+                                {designKitTypes?.[kit.type]?.name}
                               </Tag>
                             }
                           >

@@ -230,7 +230,7 @@ const validateDesignKitsParams = async (params = {}) => {
         returnParams.ref = repo.default_branch
       }
     } catch (err) {
-      logging.wanr(`Error retrieving repository info for ${JSON.stringify(params)}`)
+      logging.warn(`Error retrieving repository info for ${JSON.stringify(params)}`)
     }
   }
 

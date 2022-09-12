@@ -70,7 +70,6 @@ export const libraryPropTypes = PropTypes.shape({
 })
 
 export const designKitPropTypes = PropTypes.shape({
-  designKits: PropTypes.arrayOf.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   tool: PropTypes.oneOf(['adobe-ase', 'adobe-xd', 'axure', 'figma', 'invision-freehand', 'sketch']),

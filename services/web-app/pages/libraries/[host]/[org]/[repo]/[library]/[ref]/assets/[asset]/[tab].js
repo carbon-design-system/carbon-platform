@@ -26,7 +26,8 @@ import styles from './[tab].module.scss'
 
 const AssetTabPage = ({ source, tabs, assetData }) => {
   const [pageNavItems, setPageNavItems] = useState([])
-  const { title, description, keywords } = source.compiledSource.data.matter ?? {}
+  const frontmatter = source.compiledSource?.data?.matter || {}
+  const { title, description, keywords } = frontmatter
 
   const { setPrimaryNavData } = useContext(LayoutContext)
   const contentRef = useRef(null)
@@ -63,14 +64,14 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
     <div ref={contentRef}>
       <Grid>
         <Column sm={4} md={8} lg={{ span: 12, offset: 4 }}>
-          {title && (
+          {
             <PageHeader
-              title={title}
+              title={title ?? assetData.content.name}
               withTabs
               bgColor={assetTypes[assetData.content.type]?.bgColor}
               pictogram={assetTypes[assetData.content.type]?.icon}
             />
-          )}
+          }
           <PageBreadcrumb items={breadcrumbItems} />
         </Column>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
@@ -85,11 +86,13 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
             keywords={keywords}
             mdxError={source.mdxError}
             warnings={source.warnings}
-            seoTitle={title}
+            seoTitle={title ?? `${assetData.content.name} - Usage`}
           >
-            <div className={styles['page-content']}>
-              <MDXRemote compiledSource={source.compiledSource.value} />
-            </div>
+            {source.compiledSource && (
+              <div className={styles['page-content']}>
+                <MDXRemote compiledSource={source.compiledSource.value} />
+              </div>
+            )}
           </MdxPage>
         </Column>
       </Grid>

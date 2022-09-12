@@ -14,8 +14,8 @@ import { tagsForCollection, tagsForType } from '@/data/tags'
 import { getSlug } from '@/utils/slug'
 /**
  * Defines the sort order of an element by status
- * @param {import('../typedefs').Element} elementA
- * @param {import('../typedefs').Element} elementB
+ * @param {import('@/typedefs').Element} elementA
+ * @param {import('@/typedefs').Element} elementB
  * @returns {number} Sort order
  */
 export const statusSortComparator = (elementA, elementB) =>

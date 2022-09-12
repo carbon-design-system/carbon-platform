@@ -13,6 +13,15 @@
 
 .container {
   margin-bottom: spacing.$spacing-10;
+
+  .anchor {
+    width: calc(100% + 3.5rem);
+    height: 100%;
+    padding: 0.4375rem 0 0.4375rem 3.5rem;
+    margin-left: -3.5rem;
+    color: theme.$text-secondary;
+    text-decoration: none;
+  }
   // overide Carbon treeview
   :global(.cds--tree-node) {
     padding-left: spacing.$spacing-05;
@@ -23,6 +32,7 @@
     @include type.type-style('heading-01');
 
     position: relative;
+    padding: 0;
     cursor: pointer;
   }
 
@@ -78,6 +88,10 @@
     background-color: theme.$background-selected;
     color: theme.$text-primary;
     font-weight: bold;
+
+    .anchor {
+      color: theme.$text-primary;
+    }
   }
 
   :global(.cds--tree-node[aria-expanded='true'] > * > .cds--tree-parent-node__toggle::after) {

@@ -15,9 +15,10 @@
   margin-bottom: spacing.$spacing-10;
 
   .anchor {
-    width: 100%;
+    width: calc(100% + 3.5rem);
     height: 100%;
-    padding-top: spacing.$spacing-03;
+    padding: 0.4375rem 0 0.4375rem 3.5rem;
+    margin-left: -3.5rem;
     color: theme.$text-secondary;
     text-decoration: none;
   }
@@ -31,6 +32,7 @@
     @include type.type-style('heading-01');
 
     position: relative;
+    padding: 0;
     cursor: pointer;
   }
 

@@ -73,7 +73,6 @@ const websiteToPlatformRedirects = [
   ['/community/component-index', '/assets/components'],
   ['/community/contribute-a-chart', '/contributing/schema'],
   ['/contribute-a-component', '/contributing/schema'],
-  ['/domain-guidance', '/about-carbon/how-carbon-works'],
   ['/community/domain-guidance', '/about-carbon/community-sites'],
   ['/community/how-to-contribute', '/contributing/schema'],
   ['/community/overview', '/about-carbon/how-carbon-works'],

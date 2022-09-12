@@ -45,6 +45,10 @@ export const assetsNavData = [
         title: 'Releases'
       },
       {
+        path: '/about-carbon/community-sites',
+        title: 'Community sites'
+      },
+      {
         path: '/about-carbon/articles',
         title: 'Articles'
       },
@@ -127,6 +131,10 @@ export const assetsNavData = [
       {
         path: '/contributing/bugs-and-requests',
         title: 'Bugs and requests'
+      },
+      {
+        path: '/contributing/documentation',
+        title: 'Documentation'
       },
       {
         path: '/contributing/schema',

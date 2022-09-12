@@ -37,15 +37,7 @@ const DesignKits = ({ libraryData, navData }) => {
 
   const pageHeader = pageHeaders?.library ?? {}
 
-  const { name, designKits } = libraryData.content
-
-  const groupedDesignKits = groupBy(Object.values(designKits), (kit) => kit.tool)
-
-  const groupedDesignKitsKeys = Object.keys(groupedDesignKits)
-
-  const filteredDesignTools = Object.keys(designTools).filter((item) =>
-    groupedDesignKitsKeys.includes(item)
-  )
+  const { name } = libraryData.content
 
   const seo = {
     title: `${name} design kits`
@@ -68,22 +60,36 @@ const DesignKits = ({ libraryData, navData }) => {
     )
   }
 
-  const noDesignKits = (
-    <>
-      <PageDescription>This library contains no compatible design kits.</PageDescription>
-      <P>
-        It looks like there are no design kits compatible with this library. Explore the design kit
-        catalog to find more design kits or contact libray maintainers.
-      </P>
-      <CardGroup>
-        <Column sm={4} md={4} lg={4}>
-          <ResourceCard subTitle="Design kit catalog" href="/design-kits">
-            <RulerAlt size={32} />
-          </ResourceCard>
-        </Column>
-      </CardGroup>
-    </>
-  )
+  let groupedDesignKits
+  if (libraryData.content.designKits) {
+    groupedDesignKits = groupBy(Object.values(libraryData.content.designKits), (kit) => kit.tool)
+  }
+
+  let filteredDesignTools
+  if (libraryData.content.designKits) {
+    filteredDesignTools = Object.keys(designTools).filter((item) =>
+      Object.keys(groupedDesignKits).includes(item)
+    )
+  }
+
+  const NoDesignKits = () => {
+    return (
+      <>
+        <PageDescription>This library contains no compatible design kits.</PageDescription>
+        <P>
+          It looks like there are no design kits compatible with this library. Explore the design
+          kit catalog to find more design kits or contact libray maintainers.
+        </P>
+        <CardGroup>
+          <Column sm={4} md={4} lg={4}>
+            <ResourceCard subTitle="Design kit catalog" href="/design-kits">
+              <RulerAlt size={32} />
+            </ResourceCard>
+          </Column>
+        </CardGroup>
+      </>
+    )
+  }
 
   return (
     <>
@@ -92,8 +98,8 @@ const DesignKits = ({ libraryData, navData }) => {
       <Grid>
         <Column sm={4} md={8} lg={12}>
           <div className={pageStyles.content}>
-            {!designKits && noDesignKits}
-            {designKits && (
+            {!libraryData.content.designKits && <NoDesignKits />}
+            {libraryData.content.designKits && (
               <>
                 <PageDescription>
                   The following design kits are compatible with the {name} library. If you are new

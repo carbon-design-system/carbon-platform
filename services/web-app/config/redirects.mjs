@@ -79,49 +79,22 @@ const websiteToPlatformRedirects = [
   ['/community/overview', '/about-carbon/how-carbon-works'],
   ['/community/patterns/:slug*', '/assets/patterns'],
   // Component renames
-  ['/components/list/:slug', '/libraries/carbon-react/latest/assets/ordered-list/:slug'],
-  // Component removed code tabs
-  ['/components/accordion/code', '/libraries/carbon-react/latest/assets/accordion'],
-  ['/components/breadcrumb/code', '/libraries/carbon-react/latest/assets/breadcrumb'],
-  ['/components/button/code', '/libraries/carbon-react/latest/assets/button'],
-  ['/components/checkbox/code', '/libraries/carbon-react/latest/assets/checkbox'],
-  ['/components/code-snippet/code', '/libraries/carbon-react/latest/assets/code-snippet'],
-  ['/components/content-switcher/code', '/libraries/carbon-react/latest/assets/content-switcher'],
-  ['/components/content-switcher/code', '/libraries/carbon-react/latest/assets/content-switcher'],
-  ['/components/data-table/code', '/libraries/carbon-react/latest/assets/data-table'],
-  ['/components/date-picker/code', '/libraries/carbon-react/latest/assets/date-picker'],
-  ['/components/dropdown/code', '/libraries/carbon-react/latest/assets/dropdown'],
-  ['/components/file-uploader/code', '/libraries/carbon-react/latest/assets/file-uploader'],
-  ['/components/form/code', '/libraries/carbon-react/latest/assets/form'],
-  ['/components/inline-loading/code', '/libraries/carbon-react/latest/assets/inline-loading'],
-  ['/components/link/code', '/libraries/carbon-react/latest/assets/link'],
-  ['/components/list/code', '/libraries/carbon-react/latest/assets/ordered-list'],
-  ['/components/loading/code', '/libraries/carbon-react/latest/assets/loading'],
-  ['/components/modal/code', '/libraries/carbon-react/latest/assets/modal'],
-  ['/components/notification/code', '/libraries/carbon-react/latest/assets/notification'],
-  ['/components/number-input/code', '/libraries/carbon-react/latest/assets/number-input'],
-  ['/components/overflow-menu/code', '/libraries/carbon-react/latest/assets/overflow-menu'],
-  ['/components/pagination/code', '/libraries/carbon-react/latest/assets/pagination'],
-  ['/components/popover/code', '/libraries/carbon-react/latest/assets/popover'],
-  ['/components/popover/ComponentDemo', '/libraries/carbon-react/latest/assets/popover'],
-  ['/components/progress-bar/code', '/libraries/carbon-react/latest/assets/progress-bar'],
+  ['/components/list/:slug*', '/libraries/carbon-react/latest/assets/ordered-list/:slug*'],
+  // Component code tabs we are keeping
   [
-    '/components/progress-indicator/code',
-    '/libraries/carbon-react/latest/assets/progress-indicator'
+    '/components/ui-shell-header/code',
+    '/libraries/carbon-react/latest/assets/ui-shell-header/code'
   ],
-  ['/components/radio-button/code', '/libraries/carbon-react/latest/assets/radio-button'],
-  ['/components/search/code', '/libraries/carbon-react/latest/assets/search'],
-  ['/components/select/code', '/libraries/carbon-react/latest/assets/select'],
-  ['/components/slider/code', '/libraries/carbon-react/latest/assets/slider'],
-  ['/components/structured-list/code', '/libraries/carbon-react/latest/assets/structured-list'],
-  ['/components/tabs/code', '/libraries/carbon-react/latest/assets/tabs'],
-  ['/components/tag/code', '/libraries/carbon-react/latest/assets/tag'],
-  ['/components/text-input/code', '/libraries/carbon-react/latest/assets/text-input'],
-  ['/components/tile/code', '/libraries/carbon-react/latest/assets/tile'],
-  ['/components/toggle/code', '/libraries/carbon-react/latest/assets/toggle'],
-  ['/components/toggletip/code', '/libraries/carbon-react/latest/assets/toggletip'],
-  ['/components/tooltip/code', '/libraries/carbon-react/latest/assets/tooltip'],
-  ['/components/tree-view/code', '/libraries/carbon-react/latest/assets/tree-view'],
+  [
+    '/components/ui-shell-left-panel/code',
+    '/libraries/carbon-react/latest/assets/ui-shell-left-panel/code'
+  ],
+  [
+    '/components/ui-shell-right-panel/code',
+    '/libraries/carbon-react/latest/assets/ui-shell-right-panel/code'
+  ],
+  // Component removed code tabs, must come after the redirects that end in `/code`
+  ['/components/:component/code', '/libraries/carbon-react/latest/assets/:component'],
   // Component catalog
   ['/components/overview', '/assets/components'],
   // Component default redirect, must come after all other `/components` redirects

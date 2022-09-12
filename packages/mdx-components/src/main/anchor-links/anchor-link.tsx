@@ -17,7 +17,7 @@ interface AnchorLinkProps {
   children: string
 }
 
-const AnchorLink: React.FC<AnchorLinkProps> = ({ to, children }) => {
+const AnchorLink = ({ to, children }: AnchorLinkProps) => {
   const href = to || `#${slugify(children, { lower: true })}`
 
   return (

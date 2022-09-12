@@ -39,12 +39,12 @@ const DesignKitCatalogItem = ({ designKit }) => {
   const anchorHref = designKit.url ?? designKit.url
 
   const icon = onHover
-    ? <ArrowUpRight
-      className={clsx(styles['icon-external'], 'icon-maintainer')}
-      size={24}
-    />
-
-    : <MaintainerIcon className={styles['icon-maintainer']} size={24} />
+    ? (
+      <ArrowUpRight className={clsx(styles['icon-external'], 'icon-maintainer')} size={24} />
+    )
+    : (
+      <MaintainerIcon className={styles['icon-maintainer']} size={24} />
+    )
 
   return (
     <Column as="li" sm={4} md={8} lg={12}>

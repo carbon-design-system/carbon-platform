@@ -56,7 +56,7 @@ const filterDesignKitsBySearch = (designKits, search) => {
  * Sorts and filters an array of designKits given a filter, sort key, and search query. Until a
  * better solution is in place, the search is simply a filter to remove designKits that don't
  * match any part of the name or description.
- * @param {import('../../typedefs').DesignKit[]} designKits list of designKits to filter
+ * @param {import('@/typedefs').DesignKit[]} designKits list of designKits to filter
  * @param {object} filter filter object to apply to designKits
  * @param {string} sort sort type to apply to designKits
  * @param {string} search search string to match designKits against

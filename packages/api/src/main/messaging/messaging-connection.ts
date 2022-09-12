@@ -16,7 +16,7 @@ interface MessagingConnectionConfig {
   url: string
   retry: boolean
   socketOptions: {
-    [key: string]: any
+    [key: string]: unknown
   }
 }
 
@@ -119,7 +119,10 @@ class MessagingConnection {
     destroyPromise && delete this.channelPromise
   }
 
-  private async closeResource(closeable: { close: Function } | undefined, failureText: string) {
+  private async closeResource(
+    closeable: { close: () => PromiseLike<unknown> } | undefined,
+    failureText: string
+  ) {
     try {
       await closeable?.close()
     } catch (e) {

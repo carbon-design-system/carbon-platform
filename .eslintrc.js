@@ -18,6 +18,7 @@ module.exports = {
     'eslint:recommended',
     'standard',
     'plugin:@next/next/recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:node/recommended',
     path.join(__dirname, '.eslintrc.ava.js'),
@@ -36,9 +37,30 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'notice', 'simple-import-sort'],
   rules: {
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        types: {
+          Function: false // Allow Function type to be used
+        },
+        extendDefaults: true
+      }
+    ],
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-unused-vars': ['error', noUnusedVarsOptions],
     '@typescript-eslint/no-use-before-define': [
       'error',
       { functions: false, classes: true, variables: false }
+    ],
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/space-before-function-paren': [
+      'error',
+      {
+        anonymous: 'always',
+        named: 'never',
+        asyncArrow: 'always'
+      }
     ],
     'eslint-comments/require-description': 'error',
     indent: [
@@ -61,7 +83,7 @@ module.exports = {
     ],
     'no-implicit-globals': 'error',
     'no-use-before-define': 'off', // Disabled in favor of @typescript-eslint/no-use-before-define
-    'no-unused-vars': ['error', noUnusedVarsOptions],
+    'no-unused-vars': 'off', // Disabled in favor of @typescript-eslint/no-unused-vars
     'node/no-extraneous-import': [
       'error',
       {
@@ -85,21 +107,14 @@ module.exports = {
     ],
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
-    'space-before-function-paren': [
-      'error',
-      {
-        anonymous: 'always',
-        named: 'never',
-        asyncArrow: 'always'
-      }
-    ]
+    'space-before-function-paren': 'off' // Disabled in favor of @typescript-eslint/space-before-function-paren
   },
   overrides: [
     {
-      files: ['*.ts', '*.tsx'],
+      files: ['*.test.ts'],
       rules: {
-        'no-unused-vars': 'off', // Disabled in favor of @typescript-eslint/no-unused-vars
-        '@typescript-eslint/no-unused-vars': ['error', noUnusedVarsOptions]
+        // Test files can use 'any'
+        '@typescript-eslint/no-explicit-any': 'off'
       }
     },
     {

@@ -11,17 +11,19 @@ interface DataGraphMessage {
   }
 }
 
-interface DataGraphResponse<T = { [key: string]: any }> {
+interface DataGraphResponse<T = { [key: string]: unknown }> {
   data: T
-  errors?: Readonly<Array<any>>
+  errors?: Readonly<Array<unknown>>
 }
 
-interface DevDatasetEntry {
+interface DevDatasetEntry<> {
   name: string
   variables?: {
-    [key: string]: any
+    [key: string]: unknown
   }
-  response: any
+  response: {
+    [key: string]: unknown
+  }
 }
 
 interface DevDatasetJson {

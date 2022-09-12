@@ -12,6 +12,10 @@ import React, { Children } from 'react'
 
 import { withPrefix } from '../utils.js'
 
+interface AnchorLinksProps {
+  small?: boolean
+}
+
 /**
  * The `<AnchorLinks>` and `<AnchorLink>` components are used together to display a list of anchor
  * links for navigation within the page. Use these to link to `<h2>` or `<h3>` anywhere within your
@@ -20,7 +24,7 @@ import { withPrefix } from '../utils.js'
  * For most pages, we recommend starting with a `PageDescription` followed by `AnchorLinks` if the
  * content is long enough.
  */
-const AnchorLinks = ({ children, small }: any) => {
+const AnchorLinks: React.FC<AnchorLinksProps> = ({ children, small }) => {
   const isColumn = Children.count(children) > 9
   const classNames = clsx({
     [withPrefix('list--small')]: small,
@@ -41,14 +45,6 @@ const AnchorLinks = ({ children, small }: any) => {
 }
 
 AnchorLinks.propTypes = {
-  /**
-   * `<AnchorLink>` components.
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * Optional class name on the `ul`.
-   */
-  className: PropTypes.string,
   /**
    * Display small font size.
    */

@@ -20,7 +20,7 @@ function buildPublishCommand() {
 
 function handlePublishCommand(packageName, opts) {
   // Note: stderr is used so stdout can be used by subsequent scripts
-  console.error('===== micromanage publish =====')
+  console.error('===== micromanage package publish =====')
 
   const pkg = getWorkspaceByName(packageName)
   const dryRun = opts.dryRun ? '--dry-run' : ''

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.40](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.39...@carbon-platform/web-app@0.2.40) (2022-09-10)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** import treeview as stable ([173fb66](https://github.com/carbon-design-system/carbon-platform/commit/173fb66e4e5251a6643092e6bf3e1297eb386811))
+
 ### [0.2.39](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.38...@carbon-platform/web-app@0.2.39) (2022-09-09)
 
 

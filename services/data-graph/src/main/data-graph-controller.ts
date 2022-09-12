@@ -27,7 +27,7 @@ class DataGraphController {
   @Trace()
   @MessagePattern('data_graph')
   public async dataGraph(
-    @Payload() data: UnvalidatedMessage,
+    @Payload() data: UnvalidatedMessage<DataGraphMessage>,
     @Ctx() context: RmqContext
   ): Promise<DataGraphResponse> {
     // Lazy load the schema

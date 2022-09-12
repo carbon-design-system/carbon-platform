@@ -22,7 +22,7 @@ interface MdxProcessorConfig {
   components: {
     [key: string]: ReactElement
   }
-  fallbackComponent: (node: any) => string
+  fallbackComponent: (node: unknown) => string
   imageResolverPlugin: () => () => void | Promise<void>
   logger: {
     debug: Function
@@ -61,7 +61,7 @@ class MdxProcessor {
     let compiledSource
     try {
       compiledSource = await this.compileSource(mdxSource)
-    } catch (err: any) {
+    } catch (err) {
       this.config.logger.warn(err)
 
       if (err instanceof VFileMessage) {

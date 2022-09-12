@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-processor@0.1.4...@carbon-platform/mdx-processor@0.1.5) (2022-09-10)
+
+
+### Misc. 🔮
+
+* improve ts linting and type checking ([4a5a937](https://github.com/carbon-design-system/carbon-platform/commit/4a5a9370ef4985cd2393e9337c0fbe92ee982c9c))
+
 ### [0.1.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-processor@0.1.3...@carbon-platform/mdx-processor@0.1.4) (2022-09-09)
 
 

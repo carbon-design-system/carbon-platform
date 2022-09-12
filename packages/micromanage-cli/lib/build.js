@@ -14,8 +14,8 @@ const ENVVAR_PREFIX = 'CARBON_'
 
 function buildBuildCommand() {
   return new Command('build')
-    .description('Build a workspace')
     .configureHelp({ helpWidth: 100 })
+    .description('Build a workspace')
     .option(
       '--docker',
       'Build using Dockerfile from workspace, tagging the image as both "latest" and the version ' +

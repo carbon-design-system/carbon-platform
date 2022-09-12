@@ -33,7 +33,7 @@ jobs:
           node-version: '16'
           cache: 'npm'
 
-      - name: Install Micromanage 🏗
+      - name: Install Micromanage 🔬
         run: npm --workspace packages/micromanage-cli install
 
       - name: Install scripts package node modules 🏗

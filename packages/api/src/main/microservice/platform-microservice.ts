@@ -37,7 +37,7 @@ interface MicroserviceConfig {
    * The NestJS module that defines all of the controller and providers for this microservice. This
    * is defined as "any" to be in accordance with NestJS conventions.
    */
-  module: any
+  module: unknown
 
   /**
    * Whether or not to enable automatic removal of messages from the associated queue.
@@ -56,7 +56,7 @@ interface MicroserviceConfig {
 }
 
 class PlatformMicroservice {
-  private readonly module: any
+  private readonly module: unknown
   private readonly autoAck: boolean
   private readonly queueName: string
   private readonly runtime: Runtime
@@ -119,7 +119,7 @@ class PlatformMicroservice {
    *
    * @returns A promise that never resolves.
    */
-  public async start(): Promise<any> {
+  public async start(): Promise<unknown> {
     const application = await NestFactory.create(this.module)
 
     const { httpAdapter } = application.get(HttpAdapterHost)

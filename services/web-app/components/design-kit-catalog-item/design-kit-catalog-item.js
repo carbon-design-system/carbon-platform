@@ -13,11 +13,12 @@ import { useState } from 'react'
 import { designKitTypes } from '@/data/design-kit-types'
 import { teams } from '@/data/teams'
 import { designKitPropTypes } from '@/types'
+import { getDesignKitLicense } from '@/utils/schema'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
+import CatalogItemMeta from '../catalog-item-meta/index'
 import DesignKitIcon from '../design-kit-icon/design-kit-icon'
 import styles from './design-kit-catalog-item.module.scss'
-import DesignKitCatalogItemMeta from './design-kit-catalog-item-meta/index'
 
 const DesignKitCatalogItem = ({ designKit }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
@@ -71,19 +72,28 @@ const DesignKitCatalogItem = ({ designKit }) => {
                   </div>
                   {isSeparatedMeta && (
                     <>
-                      <DesignKitCatalogItemMeta designKit={designKit} properties={['license']} />
-                      <DesignKitCatalogItemMeta
-                        designKit={designKit}
+                      <CatalogItemMeta
+                        element={designKit}
+                        properties={['license']}
+                        license={getDesignKitLicense(designKit)}
+                        statusKey={designKit?.statusKey}
+                      />
+                      <CatalogItemMeta
+                        element={designKit}
                         className={styles['meta--absolute']}
                         properties={['status']}
+                        license={getDesignKitLicense(designKit)}
+                        statusKey={designKit?.statusKey}
                       />
                     </>
                   )}
                   {!isSeparatedMeta && (
-                    <DesignKitCatalogItemMeta
-                      designKit={designKit}
+                    <CatalogItemMeta
+                      element={designKit}
                       className={styles['meta--absolute']}
                       properties={['status', 'license']}
+                      license={getDesignKitLicense(designKit)}
+                      statusKey={designKit?.statusKey}
                     />
                   )}
                   <div className={styles.tags}>

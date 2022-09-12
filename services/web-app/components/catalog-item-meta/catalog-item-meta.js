@@ -10,20 +10,18 @@ import PropTypes from 'prop-types'
 
 import StatusIcon from '@/components/status-icon'
 import { status } from '@/data/status'
-import { designKitPropTypes } from '@/types'
-import { getDesignKitLicense } from '@/utils/schema'
 
-import styles from './design-kit-catalog-item-meta.module.scss'
+import styles from './catalog-item-meta.module.scss'
 
-const DesignKitCatalogItemMeta = ({ designKit, className, properties }) => {
+const ElementCatalogItemMeta = ({ className, properties, license, statusKey }) => {
   const renderStatus = () => {
-    const { name } = status[designKit?.statusKey]
+    const { name } = status[statusKey]
 
     if (!name) return null
 
     return (
       <span className={styles.container}>
-        <StatusIcon className={styles['meta-icon']} status={designKit?.statusKey} />
+        <StatusIcon className={styles['meta-icon']} status={statusKey} />
         <span>{name}</span>
       </span>
     )
@@ -31,10 +29,10 @@ const DesignKitCatalogItemMeta = ({ designKit, className, properties }) => {
 
   const renderLicense = () => {
     return (
-      designKit.license && (
+      license && (
         <span className={styles.container}>
           <Scales className={styles['meta-icon']} size={16} />
-          <span>{getDesignKitLicense(designKit)}</span>
+          <span>{license}</span>
         </span>
       )
     )
@@ -52,19 +50,23 @@ const DesignKitCatalogItemMeta = ({ designKit, className, properties }) => {
   )
 }
 
-DesignKitCatalogItemMeta.propTypes = {
+ElementCatalogItemMeta.propTypes = {
   /**
    * Optional container classname.
    */
   className: PropTypes.string,
   /**
-   * Design kit being passed in.
+   * Element license being passed in.
    */
-  designKit: designKitPropTypes,
+  license: PropTypes.string,
   /**
-   * Design kit properties / information.
+   * Element properties.
    */
-  properties: PropTypes.array
+  properties: PropTypes.array,
+  /**
+   * Element status key.
+   */
+  statusKey: PropTypes.array
 }
 
-export default DesignKitCatalogItemMeta
+export default ElementCatalogItemMeta

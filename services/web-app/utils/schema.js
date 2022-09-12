@@ -8,7 +8,7 @@
 import { capitalCase } from 'change-case'
 
 import { assetTypes } from '@/data/asset-types'
-import { designKitLicenses } from '@/data/design-kit-licenses'
+import { licenses } from '@/data/licenses'
 import { ORDER_BY_STATUS } from '@/data/sort'
 import { elementStatusLifecycle } from '@/data/status'
 import { tagsForCollection, tagsForType } from '@/data/tags'
@@ -150,7 +150,7 @@ export const collapseAssetGroups = (asset, filter) => {
  * @param {import('@/typedefs').Asset} asset
  * @returns {string} License
  */
-export const getLicense = (asset) => {
+export const getAssetLicense = (asset) => {
   const defaultLicense = asset.params.host === 'github.ibm.com' ? 'IBM internal' : 'No license'
   const { license = defaultLicense } = asset.library ? asset.library.content : asset.content
 
@@ -163,7 +163,7 @@ export const getLicense = (asset) => {
  * @returns {string} License
  */
 export const getDesignKitLicense = (designKit) => {
-  const license = designKitLicenses[designKit.license].name
+  const license = licenses[designKit.license]?.name
   return license
 }
 

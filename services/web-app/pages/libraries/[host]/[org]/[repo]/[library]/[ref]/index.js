@@ -35,7 +35,7 @@ import {
 } from '@/lib/github'
 import pageStyles from '@/pages/pages.module.scss'
 import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from '@/types'
-import { getLicense } from '@/utils/schema'
+import { getAssetLicense } from '@/utils/schema'
 
 import styles from './index.module.scss'
 
@@ -170,7 +170,7 @@ const Library = ({ libraryData, params, navData }) => {
                     </Column>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>License</dt>
-                      <dd className={dashboardStyles.meta}>{getLicense(libraryData)}</dd>
+                      <dd className={dashboardStyles.meta}>{getAssetLicense(libraryData)}</dd>
                     </Column>
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>Related libraries</dt>

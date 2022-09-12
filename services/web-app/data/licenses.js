@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export const designKitLicenses = {
+export const licenses = {
   'apache-2.0': {
     name: 'Apache 2.0'
   },

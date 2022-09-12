@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 import StatusIcon from '@/components/status-icon'
 import { status } from '@/data/status'
 import { assetPropTypes } from '@/types'
-import { getLicense } from '@/utils/schema'
+import { getAssetLicense } from '@/utils/schema'
 
 import styles from './asset-catalog-item-meta.module.scss'
 
@@ -33,7 +33,7 @@ const AssetCatalogItemMeta = ({ asset, className, properties }) => {
     return (
       <span className={styles.container}>
         <Scales className={styles['meta-icon']} size={16} />
-        <span>{getLicense(asset)}</span>
+        <span>{getAssetLicense(asset)}</span>
       </span>
     )
   }

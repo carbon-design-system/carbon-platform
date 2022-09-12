@@ -40,7 +40,7 @@ const DesignKits = ({ libraryData, navData }) => {
   const { name, designKits } = libraryData.content
 
   const groupedDesignKits = groupBy(
-    Object.entries(designKits).map((key) => ({ ...key[1] })),
+    Object.values(designKits),
     (kit) => kit.tool
   )
 

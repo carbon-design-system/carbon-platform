@@ -19,7 +19,7 @@ import useQueryState from '@/utils/use-query-state'
 
 /**
  * Returns true if a designKit should be included in the catalog results given the filter.
- * @param {import('../../typedefs').DesignKit} designKit
+ * @param {import('@/typedefs').DesignKit} designKit
  * @param {object} filter
  * @returns {boolean}
  */

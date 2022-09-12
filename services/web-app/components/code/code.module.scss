@@ -32,6 +32,7 @@
 
 // override carbon code styles
 .code :global(.cds--snippet-container) {
+  width: 100%;
   // override carbon inline style
   min-height: 24px !important;
 

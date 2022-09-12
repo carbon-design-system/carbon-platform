@@ -13,7 +13,7 @@
  * @param subs Array of substitutions in the template.
  * @returns A string representation of the inputs.
  */
-function gql(parts: TemplateStringsArray, ...subs: any[]): string {
+function gql(parts: TemplateStringsArray, ...subs: unknown[]): string {
   let result = parts[0] || ''
 
   subs.forEach((sub, i) => {

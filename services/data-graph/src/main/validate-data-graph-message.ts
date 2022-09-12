@@ -8,7 +8,7 @@ import { DataGraphMessage } from '@carbon-platform/api/data-graph'
 import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
 import { InvalidInputException } from '@carbon-platform/api/microservice'
 
-function validateDataGraphMessage(data: UnvalidatedMessage): DataGraphMessage {
+function validateDataGraphMessage(data: UnvalidatedMessage<DataGraphMessage>): DataGraphMessage {
   if (!data.query || typeof data.query !== 'string') {
     throw new InvalidInputException('query not specified')
   }

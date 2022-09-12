@@ -45,7 +45,9 @@ test('it throws when query is not specified', async (t) => {
 test('it throws when query is not a string', async (t) => {
   const controller = new DataGraphController({ get: () => mockModuleRef } as any)
 
-  const err = await t.throwsAsync(() => controller.dataGraph({ query: 123 }, mockContext as any))
+  const err = await t.throwsAsync(() =>
+    controller.dataGraph({ query: 123 } as any, mockContext as any)
+  )
 
   t.true(err instanceof InvalidInputException)
 })
@@ -54,7 +56,7 @@ test('throws when variables is not an object', async (t) => {
   const controller = new DataGraphController({ get: () => mockModuleRef } as any)
 
   const err = await t.throwsAsync(() =>
-    controller.dataGraph({ query: 'asdf', variables: 'asdf' }, mockContext as any)
+    controller.dataGraph({ query: 'asdf', variables: 'asdf' } as any, mockContext as any)
   )
 
   t.true(err instanceof InvalidInputException)

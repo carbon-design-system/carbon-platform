@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.43](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.42...@carbon-platform/logging@1.1.43) (2022-09-10)
+
+
+### Misc. 🔮
+
+* improve ts linting and type checking ([4a5a937](https://github.com/carbon-design-system/carbon-platform/commit/4a5a9370ef4985cd2393e9337c0fbe92ee982c9c))
+
 ### [1.1.42](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.41...@carbon-platform/logging@1.1.42) (2022-09-09)
 
 

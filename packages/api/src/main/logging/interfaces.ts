@@ -8,13 +8,13 @@ import { Environment } from '../runtime/index.js'
 
 type LogLevel = 'debug' | 'info' | 'warn' | 'error'
 
-type Loggable = string | number | boolean | Array<any> | Object | Error
+type Loggable = string | number | boolean | Array<unknown> | Record<string, unknown> | Error
 
 interface LogLoggedMessage {
   component: string
   environment: Environment
   level: LogLevel
-  message: any
+  message: unknown
   service: string
   timestamp: number
 }

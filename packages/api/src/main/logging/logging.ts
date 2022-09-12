@@ -60,7 +60,7 @@ class Logging {
    * Sets the global setting for whether or not remote logging is allowed to be enabled. This
    * supersedes all environment-based switches and instance-based overrides.
    */
-  public static isRemoteLoggingAllowed: boolean = true
+  public static isRemoteLoggingAllowed = true
 
   /**
    * The currently set component value for this logging instance. This can be manually re-set as

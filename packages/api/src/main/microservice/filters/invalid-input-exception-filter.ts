@@ -21,7 +21,7 @@ class InvalidInputExceptionFilter implements RpcExceptionFilter<InvalidInputExce
     this.logging = new Logging({ component: InvalidInputExceptionFilter.DEFAULT_COMPONENT_NAME })
   }
 
-  catch(exception: RpcException, host: ArgumentsHost): Observable<any> {
+  catch(exception: RpcException, host: ArgumentsHost): Observable<unknown> {
     const rpcArgHost = host.switchToRpc()
     const ctx = rpcArgHost.getContext<RmqContext>()
 

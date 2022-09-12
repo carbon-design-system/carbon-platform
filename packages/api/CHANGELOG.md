@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.4.0...@carbon-platform/api@0.4.1) (2022-09-10)
+
+
+### Bug Fixes 🐛
+
+* **logging:** truncate long return values in withTrace ([6ea9032](https://github.com/carbon-design-system/carbon-platform/commit/6ea90329fb73c50451ff7a9a3d4f4d2362fd6627))
+
+
+### Misc. 🔮
+
+* improve ts linting and type checking ([4a5a937](https://github.com/carbon-design-system/carbon-platform/commit/4a5a9370ef4985cd2393e9337c0fbe92ee982c9c))
+
 ## [0.4.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.3.30...@carbon-platform/api@0.4.0) (2022-09-09)
 
 

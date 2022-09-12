@@ -34,7 +34,7 @@ const designKitIsInFilter = (designKit, filter) => {
 /**
  * Finds and returns designKits that match a search criteria (name or description)
  * from an array of designKits
- * @param {import('../../typedefs').DesignKit[]} designKits list of designKits to filter
+ * @param {import('@/typedefs').DesignKit[]} designKits list of designKits to filter
  * @param {string} search search string to match designKits against
  * @returns {import('@/typedefs').DesignKit[]} array of designKits that match search criteria
  */

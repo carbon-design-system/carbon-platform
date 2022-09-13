@@ -16,7 +16,7 @@ export const designTools = {
   },
   'adobe-xd': {
     name: 'Adobe XD',
-    mdxIcon: 'xd'
+    mdxIcon: 'xd32'
   },
   axure: {
     name: 'Axure',

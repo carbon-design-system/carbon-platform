@@ -113,12 +113,13 @@ const DesignKits = ({ libraryData, navData }) => {
                   </Link>
                   .
                 </PageDescription>
-                <AnchorLinks>
-                  {filteredDesignTools.length > 2 &&
-                    filteredDesignTools.map((item, i) => (
+                {filteredDesignTools.length > 2 && (
+                  <AnchorLinks>
+                    {filteredDesignTools.map((item, i) => (
                       <AnchorLink key={i}>{designTools?.[item]?.name}</AnchorLink>
                     ))}
-                </AnchorLinks>
+                  </AnchorLinks>
+                )}
                 {filteredDesignTools.map((item, i) => (
                   <>
                     <H2 key={i}> {designTools?.[item]?.name}</H2>

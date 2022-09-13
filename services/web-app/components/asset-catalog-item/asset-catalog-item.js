@@ -81,7 +81,6 @@ const AssetCatalogItemContent = ({ asset, isGrid = false, otherFrameworkCount = 
               statusKey={asset?.statusKey}
             />
             <CatalogItemMeta
-              element={asset}
               className={styles['meta--absolute']}
               properties={['status']}
               license={getAssetLicense(asset)}

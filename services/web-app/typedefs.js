@@ -152,4 +152,8 @@
  * @property {string} 1 - Next.js redirect destination
  */
 
+/**
+ * @typedef {object} Element Object passed into CatalogItemMeta
+ */
+
 exports.unused = {}

@@ -1223,13 +1223,13 @@ export const getAllDesignKits = withTrace(logging, async function getAllDesignKi
   return [...designKits.filter((n) => n.length).flat(), ...baseDesignKits].map((designKit) => {
     return { ...designKit, statusKey: getElementStatus(designKit) }
   })
-}
-
+})
 /**
  * Iterates over all libraries in the allowlist and fetches library data with no ref so the default
  * branch is used.
  * @returns {import('@/typedefs').Libraries}
  */
+
 export const getAllLibraries = withTrace(logging, async function getAllLibraries() {
   const promises = []
 

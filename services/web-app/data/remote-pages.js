@@ -23,6 +23,9 @@ export const remotePages = {
   'about-carbon/case-studies/overview': {
     filePath: '/src/pages/case-studies/overview.mdx'
   },
+  'about-carbon/help/certificate-of-originality': {
+    filePath: '/src/pages/help/certificate-of-originality.mdx'
+  },
   'data-visualization/legends': {
     filePath: '/src/pages/data-visualization/legends/index.mdx',
     pageHeaderType: 'collection'
@@ -38,6 +41,8 @@ export const remotePages = {
   'contributing/patterns': {
     filePath: '/src/pages/contributing/pattern.mdx'
   },
+  'migrating/faq': {},
+  'migrating/guide/overview': {},
   'contributing/pictograms': {
     filePath: '/src/pages/contributing/contribute-pictograms.mdx'
   },

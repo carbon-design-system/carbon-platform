@@ -134,7 +134,7 @@ const DesignKits = ({ libraryData, navData }) => {
                               </Tag>
                             }
                           >
-                            <MdxIcon name={designTools?.[kit.tool]?.icon} />
+                            <MdxIcon name={designTools?.[kit.tool]?.mdxIcon} />
                           </ResourceCard>
                         </Column>
                       ))}

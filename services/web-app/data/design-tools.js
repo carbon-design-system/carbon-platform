@@ -8,22 +8,26 @@
 export const designTools = {
   figma: {
     name: 'Figma',
-    icon: 'figma'
+    mdxIcon: 'figma'
   },
   sketch: {
     name: 'Sketch',
-    icon: 'sketch'
+    mdxIcon: 'sketch'
   },
   'adobe-xd': {
     name: 'Adobe XD',
-    icon: 'xd'
+    mdxIcon: 'xd'
   },
   axure: {
     name: 'Axure',
-    icon: 'axure'
+    mdxIcon: 'axure'
+  },
+  'adobe-ase': {
+    name: 'Adobe Ase',
+    mdxIcon: 'zip'
   },
   'invision-freehand': {
     name: 'Invision Freehand',
-    icon: 'invision'
+    mdxIcon: 'invision'
   }
 }

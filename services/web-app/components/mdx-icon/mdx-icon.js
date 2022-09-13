@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Bee, CodeReference, LogoGithub } from '@carbon/react/icons'
+import { Bee, CodeReference, LogoGithub, Zip } from '@carbon/react/icons'
 import {
   Axure,
   Codesandbox,
@@ -73,7 +73,8 @@ const localIcons = {
 const carbonIcons = {
   github: LogoGithub,
   bee: Bee,
-  codereference: CodeReference
+  codereference: CodeReference,
+  zip: Zip
 }
 
 const iconColor = {

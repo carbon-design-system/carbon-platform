@@ -31,6 +31,7 @@ const ResourceCard = (props) => {
     aspectRatio: aspectRatioProp,
     actionIcon,
     className,
+    component,
     ...rest
   } = props
 
@@ -52,13 +53,15 @@ const ResourceCard = (props) => {
 
   const carbonTileclassNames = clsx(['cds--tile'], {
     'cds--tile--clickable': href !== undefined,
-    [styles['card-with-title']]: !!title
+    [styles['card-with-title']]: !!title,
+    [styles['card-with-component']]: !!component
   })
 
   const cardContent = (
     <>
       {subTitle && <h5 className={styles.subtitle}>{subTitle}</h5>}
       {title && <h4 className={styles.title}>{title}</h4>}
+      {component && <div className={styles['child-component']}>{component}</div>}
       <div className={styles['icon-img']}>{children}</div>
       <div className={styles['icon-action']}>
         {!disabled &&
@@ -120,6 +123,11 @@ ResourceCard.propTypes = {
    * set to "dark" for dark background card
    */
   color: PropTypes.oneOf(['light', 'dark']),
+
+  /**
+   * Optional component to render in top right
+   */
+  component: PropTypes.node,
 
   /**
    * Use for disabled card

@@ -76,7 +76,6 @@ const AssetCatalogItemContent = ({ asset, isGrid = false, otherFrameworkCount = 
         {isSeparatedMeta && (
           <>
             <CatalogItemMeta
-              element={asset}
               properties={['license']}
               license={getAssetLicense(asset)}
               statusKey={asset?.statusKey}

@@ -17,26 +17,32 @@ import {
 export const designTools = {
   figma: {
     name: 'Figma',
-    icon: Svg16Figma
+    icon: Svg16Figma,
+    mdxIcon: 'figma'
   },
   sketch: {
     name: 'Sketch',
-    icon: Svg16Sketch
+    icon: Svg16Sketch,
+    mdxIcon: 'sketch'
   },
   'adobe-xd': {
     name: 'Adobe XD',
-    icon: Svg16AdobeXd
+    icon: Svg16AdobeXd,
+    mdxIcon: 'xd32'
   },
   axure: {
     name: 'Axure',
-    icon: Svg16Axure
+    icon: Svg16Axure,
+    mdxIcon: 'axure'
   },
   'adobe-ase': {
     name: 'Adobe Ase',
-    icon: Svg16AdobeAse
+    icon: Svg16AdobeAse,
+    mdxIcon: 'zip'
   },
   'invision-freehand': {
     name: 'Invision Freehand',
-    icon: Svg16InvisionFreehand
+    icon: Svg16InvisionFreehand,
+    mdxIcon: 'invision'
   }
 }

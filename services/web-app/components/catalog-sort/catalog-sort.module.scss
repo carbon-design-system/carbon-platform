@@ -61,8 +61,10 @@
 
   // overide carbon color
   :global(.cds--label) {
-    padding-left: 0;
     color: theme.$text-primary;
+    @include breakpoint.breakpoint(md) {
+      padding-left: 0;
+    }
   }
 
   // overide carbon position, flex-grow

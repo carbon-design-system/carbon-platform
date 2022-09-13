@@ -13,7 +13,7 @@
 const websiteRedirects = [
   // Guidelines rewrites
   ['/guidelines/iconography/:slug*', '/guidelines/icons/:slug*'],
-  ['/guidelines/layout', '/guidelines/2x-grid/basics'],
+  ['/guidelines/layout', '/elements/2x-grid/overview'],
   ['/guidelines/content/glossary', '/guidelines/content/action-labels'],
   // Experimental -> Cloud, Data, and AI
   [
@@ -35,15 +35,15 @@ const websiteRedirects = [
   // IA updates 08/2020
   ['/get-started/about-carbon', '/all-about-carbon/what-is-carbon'],
   ['/contributing/governance', '/all-about-carbon/how-we-work'],
-  ['/get-started/design/:slug*', '/designing/get-started/kits/:slug*'],
+  ['/get-started/design/:slug*', '/designing/:slug*'],
   ['/how-to-contribute/:slug*', '/contributing/:slug*'],
-  ['/updates/whats-new', '/whats-happening/releases'],
-  ['/whats-happening/changelog-and-roadmap', '/whats-happening/releases'],
+  ['/updates/whats-new', '/about-carbon/releases'],
+  ['/whats-happening/changelog-and-roadmap', '/about-carbon/releases'],
   ['/updates/work-in-progress', '/whats-happening/work-in-progress'],
   ['/updates/migration-guide/:slug*', '/help/migration-guide/:slug*'],
   ['/help/support', '/help/contact-us'],
-  ['/get-started/develop/:slug*', '/developing/frameworks/:slug*'],
-  ['/resources', '/developing/developer-resource'],
+  ['/get-started/develop/:slug*', '/developing'],
+  ['/resources', '/developing'],
   ['/tutorial/angular/:slug*', '/developing/angular-tutorial/:slug*'],
   ['/tutorial/react/:slug*', '/developing/react-tutorial/:slug*'],
   ['/tutorial/vue/:slug*', '/developing/vue-tutorial/:slug*'],

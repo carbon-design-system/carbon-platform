@@ -184,4 +184,11 @@ const DesignKitsCatalog = ({ designKits }) => {
   )
 }
 
+DesignKitsCatalog.propTypes = {
+  /**
+   * Collection of designKits to display.
+   */
+  designKits: PropTypes.arrayOf(designKitPropTypes).isRequired
+}
+
 export default DesignKitsCatalog

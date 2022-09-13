@@ -219,7 +219,7 @@ const getOverviewMdxSource = async (assetData, libraryData) => {
   return overviewMdxSource
 }
 
-export const getServerSideProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
   const libraryData = await getLibraryData(params)
 
   if (!libraryData || !libraryData.assets || !libraryData.assets.length) {
@@ -240,7 +240,18 @@ export const getServerSideProps = async ({ params }) => {
       libraryData,
       overviewMdxSource,
       params
-    }
+    },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every hour
+    revalidate: 60 * 60 // In seconds
+  }
+}
+
+export const getStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: 'blocking'
   }
 }
 

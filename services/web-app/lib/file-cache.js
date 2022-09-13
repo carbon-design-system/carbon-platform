@@ -91,6 +91,7 @@ const _getResponse = async (host, route, options) => {
  */
 export const getDereferencedObjectResponse = (key, obj, dereferencer) => {
   return diskCache.wrap(key, () => {
+    logging.debug(`CACHE MISS for key ${key}`)
     return dereferencer(obj)
   })
 }
@@ -107,6 +108,7 @@ export const getResponse = (host, route, options) => {
   const responseKey = slugifyRequest(host, route, options)
 
   return diskCache.wrap(responseKey, () => {
+    logging.debug(`CACHE MISS for key ${responseKey}`)
     return _getResponse(host, route, options)
   })
 }
@@ -123,6 +125,7 @@ export const getSvgResponse = async (host, route, options = {}) => {
   const responseKey = slugifyRequest(host, route, options)
 
   return diskCache.wrap(responseKey, async () => {
+    logging.debug(`CACHE MISS for key ${responseKey}`)
     const data = await _getResponse(host, route, options)
 
     try {
@@ -135,9 +138,10 @@ export const getSvgResponse = async (host, route, options = {}) => {
         content: Buffer.from(optimizedSvgString, 'utf8').toString('base64')
       }
     } catch (err) {
-      logging.info(
+      logging.error(
         `Unable to optimize the SVG from ${host}/${options.owner}/${options.repo}/${options.path} with the ref ${options.ref}`
       )
+      logging.error(err)
 
       return data
     }

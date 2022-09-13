@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { AspectRatio, Column, Grid } from '@carbon/react'
-import { Events } from '@carbon/react/icons'
 import clsx from 'clsx'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
@@ -54,11 +53,12 @@ const AssetCatalogItemContent = ({ asset, isGrid = false, otherFrameworkCount = 
   const { name, description } = asset.content
   const { maintainer } = asset.params
 
-  const maintainerTitle = teams[maintainer]
-    ? `Maintained by ${teams[maintainer].name}`
-    : 'Community maintained'
+  const maintainerTitle =
+    teams[maintainer] === teams.community
+      ? 'Community maintained'
+      : `Maintained by ${teams[maintainer].name}`
 
-  const MaintainerIcon = teams[maintainer] ? teams[maintainer].icon : Events
+  const MaintainerIcon = teams[maintainer].icon
 
   const isSeparatedMeta = !isLg || isGrid
 

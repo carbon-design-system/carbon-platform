@@ -50,7 +50,7 @@ const ElementCatalogItemMeta = ({ className, properties, license, statusKey }) =
   )
 }
 
-ElementCatalogItemMeta.propTypes = {
+CatalogItemMeta.propTypes = {
   /**
    * Optional container classname.
    */

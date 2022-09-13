@@ -6,7 +6,6 @@
  */
 
 import { isEqual } from 'lodash'
-import PropTypes from 'prop-types'
 import { useState } from 'react'
 
 import Catalog from '@/components/catalog'
@@ -186,10 +185,3 @@ const DesignKitsCatalog = ({ designKits }) => {
 }
 
 export default DesignKitsCatalog
-
-DesignKitsCatalog.propTypes = {
-  /**
-   * Collection of designKits to display.
-   */
-  designKits: PropTypes.arrayOf(designKitPropTypes).isRequired
-}

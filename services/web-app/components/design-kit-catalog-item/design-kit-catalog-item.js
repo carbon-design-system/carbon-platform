@@ -73,7 +73,6 @@ const DesignKitCatalogItem = ({ designKit }) => {
                   {isSeparatedMeta && (
                     <>
                       <CatalogItemMeta
-                        element={designKit}
                         properties={['license']}
                         license={getDesignKitLicense(designKit)}
                         statusKey={designKit?.statusKey}

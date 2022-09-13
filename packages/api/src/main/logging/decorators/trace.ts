@@ -27,32 +27,35 @@ const MAX_ARGS_STRING_LENGTH = 500 // characters
  * @returns A decorated method.
  */
 function Trace(config?: { runtime?: Runtime; logging?: Logging }): MethodDecorator {
-  return function methodDecorator(
-    target: any,
-    _propertyKey: string | symbol,
-    descriptor: PropertyDescriptor
-  ) {
+  return function methodDecorator(target, _propertyKey, descriptor) {
     const runtime = config?.runtime || new Runtime()
     const shouldTrace = runtime.isDebugEnabled ?? runtime.runMode === RunMode.Dev
     if (!shouldTrace) {
       return
     }
 
-    if (!target.logging) {
-      target.logging =
-        config?.logging || new Logging({ component: target.name || target.constructor.name })
+    if (!descriptor.value) {
+      return
     }
 
-    const original = descriptor.value as Function
+    const traceableTarget = target as typeof target & { logging?: Logging; name?: string }
 
-    descriptor.value = withTrace(target.logging, original)
+    if (!traceableTarget.logging) {
+      traceableTarget.logging =
+        config?.logging ||
+        new Logging({ component: traceableTarget.name || target.constructor.name })
+    }
+
+    const original = descriptor.value as (...args: unknown[]) => unknown
+
+    descriptor.value = withTrace(traceableTarget.logging, original) as typeof descriptor.value
 
     // Preserve the original method name
     Object.defineProperty(descriptor.value, 'name', { value: original.name })
 
     // Preserve the original metadata
     Reflect.getMetadataKeys(original).forEach((key) => {
-      Reflect.defineMetadata(key, Reflect.getMetadata(key, original), descriptor.value)
+      Reflect.defineMetadata(key, Reflect.getMetadata(key, original), descriptor.value!)
     })
   }
 }
@@ -65,14 +68,17 @@ function Trace(config?: { runtime?: Runtime; logging?: Logging }): MethodDecorat
  *
  * @returns A wrapped function.
  */
-function withTrace<T extends Function>(logging: Logging, functionDef: T): T {
+function withTrace<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- need to accept any function args
+  T extends (...args: any[]) => unknown
+>(logging: Logging, functionDef: T): T {
   const functionName = functionDef.name || '(anonymous function)'
 
-  return function traced(this: any, ...args: any[]) {
+  return function traced(this: unknown, ...args: unknown[]) {
     traceEnter(logging, functionName, args)
 
     const performanceId = uuidv4()
-    let result: any
+    let result
 
     try {
       performance.mark(performanceId)
@@ -92,10 +98,10 @@ function withTrace<T extends Function>(logging: Logging, functionDef: T): T {
       performance.clearMarks(performanceId)
       performance.clearMeasures(performanceId)
     }
-  } as any
+  } as T
 }
 
-function safeStringify(arg: any): string {
+function safeStringify(arg: unknown): string {
   let result
 
   try {
@@ -117,18 +123,23 @@ function truncate(str: string) {
   return str
 }
 
-async function traceEnter(logging: Logging, methodName: string, args: any[]) {
+async function traceEnter(logging: Logging, methodName: string, args: unknown[]) {
   const stringArgs = truncate(String(args.map(safeStringify)))
 
   await logging.debug(`-> ${methodName}(${stringArgs})`)
 }
 
-async function traceExit(logging: Logging, methodName: string, result: any, responseTime: string) {
+async function traceExit(
+  logging: Logging,
+  methodName: string,
+  result: unknown,
+  responseTime: string
+) {
   if (result instanceof Promise) {
     result.then(
-      async (value: any) =>
+      async (value: unknown) =>
         logging.debug(`<- ${methodName} <- ${truncate(safeStringify(value))} ${responseTime}ms`),
-      (err: any) => logging.debug(`-x- ${methodName} <- ${err} ${responseTime}ms`)
+      (err: unknown) => logging.debug(`-x- ${methodName} <- ${err} ${responseTime}ms`)
     )
   } else {
     await logging.debug(

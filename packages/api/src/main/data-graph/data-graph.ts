@@ -40,7 +40,7 @@ class DataGraph {
 
     return {
       data: result
-    }
+    } as DataGraphResponse<ResponseType>
   }
 
   private queryStandardData<ResponseType>(

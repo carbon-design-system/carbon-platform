@@ -8,9 +8,14 @@
 import { Column, Grid } from '@carbon/react'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
-import React, { Children } from 'react'
+import React, { Children, ReactNode } from 'react'
 
 import { withPrefix } from '../utils.js'
+
+interface AnchorLinksProps {
+  small?: boolean
+  children: ReactNode
+}
 
 /**
  * The `<AnchorLinks>` and `<AnchorLink>` components are used together to display a list of anchor
@@ -20,7 +25,7 @@ import { withPrefix } from '../utils.js'
  * For most pages, we recommend starting with a `PageDescription` followed by `AnchorLinks` if the
  * content is long enough.
  */
-const AnchorLinks = ({ children, small }: any) => {
+const AnchorLinks = ({ children, small }: AnchorLinksProps) => {
   const isColumn = Children.count(children) > 9
   const classNames = clsx({
     [withPrefix('list--small')]: small,
@@ -41,14 +46,6 @@ const AnchorLinks = ({ children, small }: any) => {
 }
 
 AnchorLinks.propTypes = {
-  /**
-   * `<AnchorLink>` components.
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * Optional class name on the `ul`.
-   */
-  className: PropTypes.string,
   /**
    * Display small font size.
    */

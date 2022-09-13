@@ -12,7 +12,7 @@ import { User } from '../interfaces.js'
 function openIdAuthStrategy(
   _tokenset: TokenSet,
   userinfo: UserinfoResponse,
-  done: (err: any, user?: User) => void
+  done: (err: unknown, user?: User) => void
 ) {
   // this has more info, right now just saving name & email
   done(null, { name: userinfo.name || '', email: userinfo.email || '' })

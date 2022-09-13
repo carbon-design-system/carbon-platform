@@ -17,7 +17,14 @@ const RANDOM_QUEUE_NAME = ''
 const DEFAULT_ROUTING_KEY = ''
 const RETRY_INTERVAL = 5000
 
-type ReplyCallbacks = Map<string, (value: any) => void>
+type ReplyCallbacks = Map<
+  string,
+  (
+    value:
+      | QueryMessage[keyof QueryMessage]['response']
+      | Promise<QueryMessage[keyof QueryMessage]['response']>
+  ) => void
+>
 
 interface MessagingClientConfig {
   runtime: Runtime
@@ -233,6 +240,7 @@ class MessagingClient {
 
 const __test__ = {
   destroyInstance: () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This is a test hook
     const unlockedMessagingClient = MessagingClient as any
 
     if (unlockedMessagingClient.instance) {

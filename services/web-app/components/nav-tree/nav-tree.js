@@ -6,7 +6,7 @@
  */
 import { TreeNode, TreeView } from '@carbon/react'
 import clsx from 'clsx'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 import slugify from 'slugify'
@@ -16,7 +16,6 @@ import { dfs } from '@/utils/tree'
 import styles from './nav-tree.module.scss'
 
 const NavTree = ({ activeItem, items = [], label }) => {
-  const router = useRouter()
   const [itemNodes, setItemNodes] = useState([])
   const [treeActiveItem, setTreeActiveitem] = useState('')
 
@@ -76,12 +75,21 @@ const NavTree = ({ activeItem, items = [], label }) => {
           </h2>
         )
       } else {
+        if (node.path) {
+          label = (
+            <Link href={node.path}>
+              <a className={styles.anchor}>{node.title}</a>
+            </Link>
+          )
+        } else {
+          label = node.title
+        }
+
         return (
           <TreeNode
-            label={node.title}
+            label={label}
             id={getItemId(node)}
             key={node.title}
-            onClick={() => node.path && router.push(node.path)}
             isExpanded={isTreeNodeExpanded(node)}
             className={clsx({ [styles['section-group']]: node.sectionGroup })}
           >

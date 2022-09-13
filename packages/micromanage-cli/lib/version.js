@@ -23,13 +23,23 @@ function buildVersionCommand() {
     )
     .option('--dry-run', 'Do not make any changes. Only output prospective updates')
     .option('--json', 'Output as a JSON array of new tags')
-    .argument('<workspace-name...>', 'List of workspace names (from package.json) to process')
+    .argument('[workspace-name...]', 'List of workspace names (from package.json) to process')
     .action(handleVersionCommand)
 }
 
 function handleVersionCommand(workspaceNames, opts) {
   // Note: stderr is used so stdout can be used by subsequent scripts
   console.error('===== micromanage version =====')
+
+  if (workspaceNames.length === 0) {
+    console.error('No workspaces specified. Nothing to do')
+
+    if (opts.json) {
+      console.log(JSON.stringify([]))
+    }
+
+    return
+  }
 
   const workspaces = workspaceNames.map((wsName) => getWorkspaceByName(wsName))
 
@@ -41,7 +51,8 @@ function handleVersionCommand(workspaceNames, opts) {
   const newVersions = versionWorkspaces(workspaces, opts.dryRun)
 
   if (!opts.dryRun) {
-    // Ensure lock file remains up-to-date
+    // Ensure lock file remains up-to-date. This is a limitation of standard-version and is not
+    // needed when using the out-of-box `npm version` command
     exec('npm install')
 
     exec('git commit --allow-empty -am "release: update package-lock.json with new versions"')
@@ -52,7 +63,7 @@ function handleVersionCommand(workspaceNames, opts) {
 
     // Commit the results as a single commit with an appropriate commit message
     exec(
-      "sed 's/Squashed commit of the following:/release: new package and service versions/' " +
+      "sed 's/Squashed commit of the following:/release: new workspace versions/' " +
         '.git/SQUASH_MSG | git commit -F -'
     )
 

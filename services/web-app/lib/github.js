@@ -527,8 +527,9 @@ export const getLibraryRelatedLibs = withTrace(
             ...libraryParams
           })
           if (
-            relatedLibData?.content.id !== libData.content.id &&
-            !relatedLibData?.content?.noIndex
+            relatedLibData?.content &&
+            relatedLibData.content.id !== libData.content.id &&
+            !relatedLibData.content.noIndex
           ) {
             relatedLibs.push(relatedLibData)
           }

@@ -11,7 +11,7 @@ import { Observable, throwError } from 'rxjs'
 import { Logging } from '../../logging/index.js'
 
 interface UncaughtExceptionFilterConfig {
-  applicationRef?: HttpServer<any, any>
+  applicationRef?: HttpServer<unknown, unknown>
   logging?: Logging
 }
 
@@ -29,7 +29,7 @@ class UncaughtExceptionFilter extends BaseExceptionFilter {
     }
   }
 
-  override catch(exception: unknown): Observable<any> {
+  override catch(exception: unknown): Observable<unknown> {
     if (!this.logging) {
       this.logging = new Logging({ component: UncaughtExceptionFilter.DEFAULT_COMPONENT_NAME })
     }

@@ -26,7 +26,7 @@ interface AuthConfig {
 }
 
 class Auth {
-  private static isInitialized: boolean = false
+  private static isInitialized = false
   private runtime: Runtime
 
   constructor(config?: AuthConfig) {
@@ -91,7 +91,7 @@ class Auth {
    * @param authStrategy The pre-registered passport strategy to use for the authenticate.
    * @returns Passport authenticate middleware function
    */
-  public async authenticate(authStrategy?: AuthStrategy): Promise<any> {
+  public async authenticate(authStrategy?: AuthStrategy) {
     if (!authStrategy) {
       authStrategy = getAuthStrategyFromString(PASSPORT_STRATEGY_NAME)
     }

@@ -7,7 +7,11 @@ import { getAllDesignKits } from '@/lib/github'
 export const getStaticProps = async () => {
   const designKitsData = await getAllDesignKits()
   return {
-    props: { designKitsData }
+    props: { designKitsData },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every hour
+    revalidate: 60 * 60 // In seconds
   }
 }
 

@@ -88,7 +88,6 @@ const DesignKitCatalogItem = ({ designKit }) => {
                   )}
                   {!isSeparatedMeta && (
                     <CatalogItemMeta
-                      element={designKit}
                       className={styles['meta--absolute']}
                       properties={['status', 'license']}
                       license={getDesignKitLicense(designKit)}

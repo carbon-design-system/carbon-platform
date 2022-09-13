@@ -17,7 +17,7 @@ interface ColorBlockProps {
  * The `<ColorBlock>` component displays the color of the hex value.
  * Designed to be used within a page table for documentation.
  */
-const ColorBlock: React.FC<ColorBlockProps> = ({ children }) => {
+const ColorBlock = ({ children }: ColorBlockProps) => {
   const colorBlockStyles = {
     backgroundColor: children
   }

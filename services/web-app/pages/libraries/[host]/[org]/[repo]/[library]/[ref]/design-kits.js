@@ -60,10 +60,7 @@ const DesignKits = ({ libraryData, navData }) => {
   )
 }
 
-export const getServerSideProps = async ({ res, params }) => {
-  // page will be considered valid for an hour
-  // after that stale content will be served for 59s while it refreshes
-  res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=59')
+export const getStaticProps = async ({ params }) => {
   const libraryData = await getLibraryData(params)
 
   if (!libraryData) {
@@ -79,7 +76,18 @@ export const getServerSideProps = async ({ res, params }) => {
       libraryData,
       navData,
       params
-    }
+    },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every hour
+    revalidate: 60 * 60 // In seconds
+  }
+}
+
+export const getStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: 'blocking'
   }
 }
 

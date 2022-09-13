@@ -60,7 +60,7 @@ const filterDesignKitsBySearch = (designKits, search) => {
  * @param {object} filter filter object to apply to designKits
  * @param {string} sort sort type to apply to designKits
  * @param {string} search search string to match designKits against
- * @returns {import('../../typedefs').DesignKit[]} array of filtered designKits
+ * @returns {import(@/typedefs').DesignKit[]} array of filtered designKits
  */
 const getFilteredDesignKits = (designKits, filter, sort, search) => {
   const designKitsWithAppliedFilter = (designKits || []).filter((designKit) => {

@@ -56,7 +56,7 @@ const svgIcons = {
   axure24: Svg24Axure,
   adobe32: Svg32Adobe,
   axure32: Svg32Axure,
-  xd: Svg32AdobeXd,
+  xd32: Svg32AdobeXd,
   invision: Invision
 }
 

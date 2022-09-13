@@ -111,9 +111,6 @@ const DesignKitCatalogItem = ({ designKit }) => {
   )
 }
 
-DesignKitCatalogItem.defaultProps = {
-  designKit: designKitPropTypes.isRequired
-}
 
 DesignKitCatalogItem.propTypes = {
   /**

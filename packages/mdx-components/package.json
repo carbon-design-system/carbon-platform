@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/mdx-components",
   "description": "Carbon Platform MDX components",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,

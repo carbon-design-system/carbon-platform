@@ -64,7 +64,9 @@ const DesignKitCatalogItem = ({ designKit }) => {
             >
               <Grid className={styles.content}>
                 <Column sm={4} md={4} lg={7} xlg={6}>
-                  {designKit.name && <p className={styles.library}>{designKit.name}</p>}
+                  {teams[maintainer].name && (
+                    <p className={styles.library}>{teams[maintainer].name}</p>
+                  )}
                   {name && <p className={styles.name}>{name}</p>}
                   {description && <p className={styles.description}>{description}</p>}
                   <div className={styles.icon} title={maintainerTitle}>

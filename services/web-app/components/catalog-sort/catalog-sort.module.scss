@@ -61,6 +61,7 @@
 
   // overide carbon color
   :global(.cds--label) {
+    padding-left: 0;
     color: theme.$text-primary;
   }
 

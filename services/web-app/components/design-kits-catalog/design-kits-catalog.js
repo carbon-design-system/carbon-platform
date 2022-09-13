@@ -6,12 +6,14 @@
  */
 
 import { isEqual } from 'lodash'
+import PropTypes from 'prop-types'
 import { useState } from 'react'
 
 import Catalog from '@/components/catalog'
 import DesignKitCatalogItem from '@/components/design-kit-catalog-item'
 import { getDesignKitFilters } from '@/data/filters'
 import { sortItems } from '@/data/sort'
+import { designKitPropTypes } from '@/types'
 import { designKitSortComparator } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import useQueryState from '@/utils/use-query-state'

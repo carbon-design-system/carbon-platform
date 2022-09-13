@@ -78,7 +78,6 @@ const DesignKitCatalogItem = ({ designKit }) => {
                         statusKey={designKit?.statusKey}
                       />
                       <CatalogItemMeta
-                        element={designKit}
                         className={styles['meta--absolute']}
                         properties={['status']}
                         license={getDesignKitLicense(designKit)}

@@ -191,5 +191,5 @@ DesignKitsCatalog.propTypes = {
   /**
    * Collection of designKits to display.
    */
-  designKits: PropTypes.array.isRequired
+  designKits: PropTypes.arrayOf(designKitPropTypes).isRequired
 }

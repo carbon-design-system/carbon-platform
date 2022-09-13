@@ -69,4 +69,4 @@ CatalogItemMeta.propTypes = {
   statusKey: PropTypes.array
 }
 
-export default ElementCatalogItemMeta
+export default CatalogItemMeta

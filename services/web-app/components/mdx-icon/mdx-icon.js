@@ -5,11 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Bee, CodeReference, LogoGithub } from '@carbon/react/icons'
+import { Bee, CodeReference, LogoGithub, Zip } from '@carbon/react/icons'
 import {
+  Axure,
   Codesandbox,
   Figma,
   Illustrator,
+  Invision,
   Js,
   Medium,
   Sketch,
@@ -18,6 +20,7 @@ import {
   Svg24Adobe,
   Svg24Axure,
   Svg32Adobe,
+  Svg32AdobeXd,
   Svg32Axure,
   Svg32Npm,
   Vue,
@@ -37,6 +40,7 @@ import webcomponents from './icons/webcomponents.png'
 import styles from './mdx-icon.module.scss'
 
 const svgIcons = {
+  axure: Axure,
   sketch: Sketch,
   codesandbox: Codesandbox,
   illustrator: Illustrator,
@@ -51,7 +55,9 @@ const svgIcons = {
   adobe24: Svg24Adobe,
   axure24: Svg24Axure,
   adobe32: Svg32Adobe,
-  axure32: Svg32Axure
+  axure32: Svg32Axure,
+  xd32: Svg32AdobeXd,
+  invision: Invision
 }
 
 const localIcons = {
@@ -67,7 +73,8 @@ const localIcons = {
 const carbonIcons = {
   github: LogoGithub,
   bee: Bee,
-  codereference: CodeReference
+  codereference: CodeReference,
+  zip: Zip
 }
 
 const iconColor = {

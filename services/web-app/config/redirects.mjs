@@ -40,7 +40,7 @@ const websiteRedirects = [
   ['/updates/whats-new', '/about-carbon/releases'],
   ['/whats-happening/changelog-and-roadmap', '/about-carbon/releases'],
   ['/updates/work-in-progress', '/whats-happening/work-in-progress'],
-  ['/updates/migration-guide/:slug*', '/help/migration-guide/:slug*'],
+  ['/updates/migration-guide/:slug*', '/migrating/guide/overview'],
   ['/help/support', '/help/contact-us'],
   ['/get-started/develop/:slug*', '/developing'],
   ['/resources', '/developing'],

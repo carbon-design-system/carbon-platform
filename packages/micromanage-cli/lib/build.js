@@ -22,7 +22,7 @@ function buildBuildCommand() {
         'in its package.json file'
     )
     .option('--dry-run', 'Do not perform a build. Only output the image name and build command')
-    .option('--json', 'Output as a JSON array')
+    .option('--json', 'Output resulting docker images as a JSON array')
     .argument('<workspace-name>', 'Name of the workspace (from package.json)')
     .action(handleBuildCommand)
 }

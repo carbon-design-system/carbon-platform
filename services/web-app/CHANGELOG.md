@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.41](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.40...@carbon-platform/web-app@0.2.41) (2022-09-13)
+
+
+### Bug Fixes 🐛
+
+* anchor link styles ([a5b03b3](https://github.com/carbon-design-system/carbon-platform/commit/a5b03b3770ff8f315244a0a3c11267ce858a58d1))
+* nav styling ([a8debf6](https://github.com/carbon-design-system/carbon-platform/commit/a8debf67862977441f4edec1a56c901409c5dff1))
+* **web-app:** add anchor element to tree nav ([2605744](https://github.com/carbon-design-system/carbon-platform/commit/2605744bea715fdaa8fa5df6ff94200404b1b4e6)), closes [#1124](https://github.com/carbon-design-system/carbon-platform/issues/1124)
+* **web-app:** code snippet style bug ([5000d11](https://github.com/carbon-design-system/carbon-platform/commit/5000d11ddb9c2ae0b93ae56d727ff43852fb4176)), closes [#1196](https://github.com/carbon-design-system/carbon-platform/issues/1196)
+* **web-app:** fix nullPointer in assets tabs, refresh cached files ([613a09b](https://github.com/carbon-design-system/carbon-platform/commit/613a09b48499d6fc353fb31115705525bac9d5f8)), closes [#1219](https://github.com/carbon-design-system/carbon-platform/issues/1219)
+
 ### [0.2.40](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.39...@carbon-platform/web-app@0.2.40) (2022-09-10)
 
 

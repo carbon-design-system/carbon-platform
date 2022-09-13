@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.6...@carbon-platform/mdx-components@0.1.7) (2022-09-13)
+
+
+### Bug Fixes 🐛
+
+* **mdx-components:** remove usages of React.FC ([6da9d18](https://github.com/carbon-design-system/carbon-platform/commit/6da9d186112a3163e229632afc3fd7dc5d53c07b))
+* **mdx-components:** switch to ReactNode instead of JSX.Element ([5ab48f3](https://github.com/carbon-design-system/carbon-platform/commit/5ab48f392fc1bdba1389a5eddbdc7019dd65c65d))
+
 ### [0.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.5...@carbon-platform/mdx-components@0.1.6) (2022-09-10)
 
 

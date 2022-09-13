@@ -487,8 +487,9 @@ export const getLibraryRelatedLibs = async (libData) => {
           ...libraryParams
         })
         if (
-          relatedLibData?.content.id !== libData.content.id &&
-          !relatedLibData?.content?.noIndex
+          relatedLibData?.content &&
+          relatedLibData.content.id !== libData.content.id &&
+          !relatedLibData.content.noIndex
         ) {
           relatedLibs.push(relatedLibData)
         }

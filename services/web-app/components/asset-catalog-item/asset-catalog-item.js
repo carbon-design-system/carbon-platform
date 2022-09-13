@@ -90,7 +90,6 @@ const AssetCatalogItemContent = ({ asset, isGrid = false, otherFrameworkCount = 
         )}
         {!isSeparatedMeta && (
           <CatalogItemMeta
-            element={asset}
             className={styles['meta--absolute']}
             properties={['status', 'license']}
             license={getAssetLicense(asset)}

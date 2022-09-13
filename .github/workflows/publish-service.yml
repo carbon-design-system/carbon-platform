@@ -60,6 +60,8 @@ jobs:
           CARBON_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push 🔨 🚀
-        run: npx micromanage build --docker $SERVICE_NAME | xargs docker push
+        run: |
+          images_to_push=$(npx micromanage build --docker $SERVICE_NAME | xargs)
+          for img in $images_to_push; do docker push $img; done
         env:
           CARBON_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

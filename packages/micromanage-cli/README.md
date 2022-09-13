@@ -38,6 +38,7 @@ Options:
   --docker        Build using Dockerfile from workspace, tagging the image as both "latest" and the
                   version in its package.json file
   --dry-run       Do not perform a build. Only output the image name and build command
+  --json          Output resulting docker images as a JSON array
   -h, --help      display help for command
 ```
 

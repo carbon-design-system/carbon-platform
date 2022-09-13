@@ -61,7 +61,7 @@ The subject contains a succinct description of the change:
 Just as in the subject, use the imperative, present tense: "change" not "changed" nor "changes". The
 body should include the motivation for the change and contrast this with previous behavior.
 
-### Footer/Breaking Changes
+### Footer/breaking changes
 
 The footer should contain any information about Breaking Changes.
 
@@ -81,3 +81,31 @@ See the `type-enum` section of
 
 See the `scope-enum` section of
 [.commitlintrc.js](https://github.com/carbon-design-system/carbon-platform/blob/main/.commitlintrc.js).
+
+## Branch name conventions
+
+Branch names in the carbon-platform should take one of the two following forms:
+
+### Branches relating to one or more issues
+
+Pick the issue number that makes the most sense, put that at the front of the branch name, and use
+kebab case after that to give a description of it. For a feature branch in support of an epic, use
+the epic's issue number.
+
+**Examples:**
+
+Specific issue: `1234-fix-that-broken-thing`
+
+Relates to multiple issues (e.g. a feature branch): `994-mdx-sanitizer`
+
+### Branches with no associated issues
+
+Start the branch name with your name or GitHub userid and a slash (doesn't matter which as long as
+you're consistent). Then add a descriptive name for your branch after the slash. This branch name
+format is typically used for PoCs, research branches, etc.
+
+**Examples:**
+
+A PoC: `francine/remote-mdx-poc`
+
+An A-B research branch: `alison/nav-structure-options`

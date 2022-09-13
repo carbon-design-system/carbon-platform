@@ -30,14 +30,13 @@ function buildInstallCommand() {
 async function handleInstallCommand(packageNames, opts) {
   // Note: stderr is used so stdout can be used by subsequent scripts
   console.error('===== micromanage install =====')
-  const isDryRun = !!opts.dryRun
 
   const workspace = getWorkspaceByName(opts.workspace)
 
   if (packageNames.length > 0) {
-    await installPackagesIntoWorkspace(packageNames, workspace, isDryRun)
+    await installPackagesIntoWorkspace(packageNames, workspace, opts.dryRun)
   } else {
-    await installWorkspace(workspace, isDryRun)
+    await installWorkspace(workspace, opts.dryRun)
   }
 }
 

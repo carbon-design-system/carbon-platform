@@ -63,9 +63,7 @@ const filterDesignKitsBySearch = (designKits, search) => {
  * @returns {import(@/typedefs').DesignKit[]} array of filtered designKits
  */
 const getFilteredDesignKits = (designKits, filter, sort, search) => {
-  const designKitsWithAppliedFilter = (designKits || []).filter((designKit) => {
-    return designKitIsInFilter(designKit, filter)
-  })
+  const designKitsWithAppliedFilter = (designKits || []).filter((designKit) => designKitIsInFilter(designKit, filter))
   designKitsWithAppliedFilter.sort(designKitSortComparator(sort))
 
   return filterDesignKitsBySearch(designKitsWithAppliedFilter, search)

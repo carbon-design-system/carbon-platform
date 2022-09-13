@@ -13,7 +13,7 @@ import { status } from '@/data/status'
 
 import styles from './catalog-item-meta.module.scss'
 
-const ElementCatalogItemMeta = ({ className, properties, license, statusKey }) => {
+const CatalogItemMeta = ({ className, properties, license, statusKey }) => {
   const renderStatus = () => {
     const { name } = status[statusKey]
 

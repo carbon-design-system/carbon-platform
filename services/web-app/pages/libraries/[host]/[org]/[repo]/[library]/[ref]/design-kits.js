@@ -78,7 +78,7 @@ const DesignKits = ({ libraryData, navData }) => {
         <PageDescription>This library contains no compatible design kits.</PageDescription>
         <P>
           It looks like there are no design kits compatible with this library. Explore the design
-          kit catalog to find more design kits or contact libray maintainers.
+          kit catalog to find more design kits or contact library maintainers.
         </P>
         <CardGroup>
           <Column sm={4} md={4} lg={4}>

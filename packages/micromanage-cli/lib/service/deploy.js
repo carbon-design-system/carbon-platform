@@ -23,7 +23,7 @@ const RESOURCE_GROUP = 'Carbon Platform'
 function buildDeployCommand() {
   return new Command('deploy')
     .configureHelp({ helpWidth: 100 })
-    .description('Deploy all services to CodeEngine')
+    .description('Deploy all services to CodeEngine (deprecated)')
     .option('--dry-run', 'Do not make any changes. Only output prospective updates')
     .requiredOption('--target <target>', `target environment for deploy: [${DEPLOY_TARGETS}]`)
     .action(handleDeployCommand)

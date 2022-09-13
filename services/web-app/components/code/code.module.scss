@@ -45,6 +45,11 @@
   }
 }
 
+// override carbon code width to align on grid
+:global(.cds--snippet--multi).code {
+  max-width: none;
+}
+
 // override carbon tooltip colors
 .code :global(.cds--popover-content),
 .code :global(.cds--popover-caret) {

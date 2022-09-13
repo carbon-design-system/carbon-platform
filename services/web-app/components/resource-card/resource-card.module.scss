@@ -41,6 +41,7 @@
 
 .subtitle {
   @include type.type-style('heading-01');
+  @include mixins.line-clamp(3);
 
   color: theme.$text-primary;
   font-weight: 400;
@@ -105,4 +106,14 @@
     @include type.type-style('body-compact-02');
     @include mixins.line-clamp(2);
   }
+}
+
+.child-component {
+  position: absolute;
+  top: spacing.$spacing-05;
+  right: spacing.$spacing-05;
+}
+
+.resource-card .card-with-component {
+  padding-right: 50%;
 }

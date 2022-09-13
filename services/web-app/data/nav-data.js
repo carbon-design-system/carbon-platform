@@ -45,8 +45,16 @@ export const assetsNavData = [
         title: 'Releases'
       },
       {
+        path: '/about-carbon/community-sites',
+        title: 'Community sites'
+      },
+      {
         path: '/about-carbon/articles',
         title: 'Articles'
+      },
+      {
+        path: '/about-carbon/meetups',
+        title: 'Meetups'
       },
       {
         title: 'Case studies',
@@ -66,16 +74,21 @@ export const assetsNavData = [
         ]
       },
       {
-        path: '/about-carbon/meetups',
-        title: 'Meetups'
-      },
-      {
-        path: '/about-carbon/faq',
-        title: 'FAQ'
-      },
-      {
-        path: '/about-carbon/contact',
-        title: 'Contact'
+        title: 'Help',
+        items: [
+          {
+            path: '/about-carbon/help/faq',
+            title: 'FAQ'
+          },
+          {
+            path: '/about-carbon/help/certificate-of-originality',
+            title: 'Certificate of Originality'
+          },
+          {
+            path: '/about-carbon/help/contact',
+            title: 'Contact'
+          }
+        ]
       }
     ]
   },
@@ -120,6 +133,10 @@ export const assetsNavData = [
         title: 'Bugs and requests'
       },
       {
+        path: '/contributing/documentation',
+        title: 'Documentation'
+      },
+      {
         path: '/contributing/schema',
         title: 'Schema'
       },
@@ -146,6 +163,19 @@ export const assetsNavData = [
     ]
   },
   {
+    title: 'Migrating',
+    items: [
+      {
+        path: '/migrating/guide/overview',
+        title: 'Guide'
+      },
+      {
+        path: '/migrating/faq',
+        title: 'FAQ'
+      }
+    ]
+  },
+  {
     title: 'Elements',
     items: [
       {
@@ -155,37 +185,37 @@ export const assetsNavData = [
       },
       {
         path: '/elements/color/overview',
-        title: ' Color',
+        title: 'Color',
         hasTabs: true
       },
       {
         path: '/elements/icons/library',
-        title: ' Icons',
-        hasTabs: true
-      },
-      {
-        path: '/elements/pictograms/library',
-        title: ' Pictograms',
+        title: 'Icons',
         hasTabs: true
       },
       {
         path: '/elements/motion/overview',
-        title: ' Motion',
+        title: 'Motion',
+        hasTabs: true
+      },
+      {
+        path: '/elements/pictograms/library',
+        title: 'Pictograms',
         hasTabs: true
       },
       {
         path: '/elements/spacing/overview',
-        title: ' Spacing',
+        title: 'Spacing',
         hasTabs: true
       },
       {
         path: '/elements/themes/overview',
-        title: ' Themes',
+        title: 'Themes',
         hasTabs: true
       },
       {
         path: '/elements/typography/overview',
-        title: ' Typography',
+        title: 'Typography',
         hasTabs: true
       }
     ]
@@ -195,12 +225,12 @@ export const assetsNavData = [
     items: [
       {
         path: '/guidelines/accessibility/overview',
-        title: ' Accessibility',
+        title: 'Accessibility',
         hasTabs: true
       },
       {
         path: '/guidelines/content/overview',
-        title: ' Content',
+        title: 'Content',
         hasTabs: true
       }
     ]

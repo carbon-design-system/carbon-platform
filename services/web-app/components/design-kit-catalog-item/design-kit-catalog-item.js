@@ -16,7 +16,7 @@ import { designKitPropTypes } from '@/types'
 import { getDesignKitLicense } from '@/utils/schema'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
-import CatalogItemMeta from '../catalog-item-meta/index'
+import CatalogItemMeta from '../catalog-item-meta'
 import DesignKitIcon from '../design-kit-icon/design-kit-icon'
 import styles from './design-kit-catalog-item.module.scss'
 

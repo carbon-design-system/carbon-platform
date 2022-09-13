@@ -38,7 +38,7 @@ DesignKitIcon.propTypes = {
   className: PropTypes.string,
   /**
    * Design kits key from the schema. See:
-   * https://bit.ly/3BPZoTw
+   * https://bit.ly/3QzN7dr
    */
   designTool: PropTypes.oneOf(Object.keys(designTools))
 }

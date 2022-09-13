@@ -109,7 +109,6 @@ const DesignKitCatalogItem = ({ designKit }) => {
   )
 }
 
-
 DesignKitCatalogItem.propTypes = {
   /**
    * Design kit object to render visually

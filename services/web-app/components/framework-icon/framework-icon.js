@@ -41,7 +41,7 @@ FrameworkIcon.propTypes = {
   className: PropTypes.string,
   /**
    * Framework key from the asset schema. See:
-   * https://bit.ly/3BPZoTw
+   * https://bit.ly/3QzN7dr
    */
   framework: PropTypes.oneOf(Object.keys(frameworkMap)),
   /**

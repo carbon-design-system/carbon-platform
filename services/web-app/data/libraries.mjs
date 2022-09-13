@@ -331,4 +331,13 @@ const devLibraries = {
 const runtime = new Runtime()
 const libraryAllowList = runtime.runMode === RunMode.Standard ? prodLibraries : devLibraries
 
+/**
+ * libraries with no maintaining team default to `community`.
+ */
+Object.keys(libraryAllowList).forEach((library) => {
+  if (!libraryAllowList[library].maintainer) {
+    libraryAllowList[library].maintainer = 'community'
+  }
+})
+
 export { libraryAllowList }

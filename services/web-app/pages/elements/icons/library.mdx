@@ -14,5 +14,10 @@ export const getStaticProps = async () => {
   // from someplace like unpkg or directly from github instead
   const metadata = await import('@carbon/icons/metadata.json')
   const { icons: iconMetadata, categories: iconCategoryMetadata } = metadata
-  return { props: { iconMetadata, iconCategoryMetadata } }
+  return { props: { iconMetadata, iconCategoryMetadata },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every hour
+    revalidate: 60 * 60 // In seconds
+    }
 }

@@ -60,7 +60,11 @@ export const getStaticProps = async ({ params }) => {
           message: err.message,
           stack: err.stack
         }
-      }
+      },
+      // Next.js will attempt to re-generate the page:
+      // - When a request comes in
+      // - At most once every hour
+      revalidate: 60 * 60 // In seconds
     }
   }
 

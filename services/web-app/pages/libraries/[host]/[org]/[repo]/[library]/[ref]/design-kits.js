@@ -60,7 +60,10 @@ const DesignKits = ({ libraryData, navData }) => {
   )
 }
 
-export const getServerSideProps = async ({ params }) => {
+export const getServerSideProps = async ({ res, params }) => {
+  // page will be considered valid for an hour
+  // after that stale content will be served for 59s while it refreshes
+  res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=59')
   const libraryData = await getLibraryData(params)
 
   if (!libraryData) {

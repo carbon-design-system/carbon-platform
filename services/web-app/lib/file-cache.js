@@ -138,9 +138,10 @@ export const getSvgResponse = async (host, route, options = {}) => {
         content: Buffer.from(optimizedSvgString, 'utf8').toString('base64')
       }
     } catch (err) {
-      logging.info(
+      logging.error(
         `Unable to optimize the SVG from ${host}/${options.owner}/${options.repo}/${options.path} with the ref ${options.ref}`
       )
+      logging.error(err)
 
       return data
     }

@@ -22,6 +22,7 @@ function buildBuildCommand() {
         'in its package.json file'
     )
     .option('--dry-run', 'Do not perform a build. Only output the image name and build command')
+    .option('--json', 'Output as a JSON array')
     .argument('<workspace-name>', 'Name of the workspace (from package.json)')
     .action(handleBuildCommand)
 }
@@ -29,8 +30,6 @@ function buildBuildCommand() {
 async function handleBuildCommand(workspaceName, opts) {
   // Note: stderr is used so stdout can be used by subsequent scripts
   console.error('===== micromanage build =====')
-  const isDocker = !!opts.docker
-  const isDryRun = !!opts.dryRun
 
   const workspace = getWorkspaceByName(workspaceName)
 
@@ -38,11 +37,15 @@ async function handleBuildCommand(workspaceName, opts) {
     throw new Error('No such workspace: ' + workspaceName)
   }
 
-  if (isDocker) {
-    const resultingImage = await dockerBuild(workspace, isDryRun)
-    console.log(resultingImage)
+  if (opts.docker) {
+    const resultingImages = await dockerBuild(workspace, opts.dryRun)
+    if (opts.json) {
+      console.log(JSON.stringify(resultingImages))
+    } else {
+      console.log(resultingImages.join('\n'))
+    }
   } else {
-    await build(workspace, isDryRun)
+    await build(workspace, opts.dryRun)
   }
 }
 
@@ -81,7 +84,7 @@ async function dockerBuild(workspace, isDryRun) {
   console.error('Running tag command: ', tagCmd)
   !isDryRun && (await spawn(tagCmd))
 
-  return imageName
+  return [imageName, latestImageName]
 }
 
 function getEnvvarNames() {

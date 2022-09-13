@@ -21,7 +21,6 @@ function buildUninstallCommand() {
 async function handleUninstallCommand(packageNames, opts) {
   // Note: stderr is used so stdout can be used by subsequent scripts
   console.error('===== micromanage uninstall =====')
-  const isDryRun = !!opts.dryRun
 
   const workspace = getWorkspaceByName(opts.workspace)
 
@@ -29,7 +28,7 @@ async function handleUninstallCommand(packageNames, opts) {
 
   console.error(uninstallCommand)
 
-  if (!isDryRun) {
+  if (!opts.dryRun) {
     await spawn(uninstallCommand)
   }
 }

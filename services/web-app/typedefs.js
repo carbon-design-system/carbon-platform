@@ -153,7 +153,11 @@
  */
 
 /**
- * @typedef {object} Element Object passed into CatalogItemMeta
+ * /**
+ * @typedef {object} Element
+ * @property {('draft' | 'experimental' | 'status' | 'deprecated' | object)} status
+ * - Consumption expectations
+ * @property {string} statusKey - Status key
  */
 
 exports.unused = {}

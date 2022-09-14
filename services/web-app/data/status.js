@@ -26,4 +26,4 @@ export const status = {
   }
 }
 
-export const assetStatusLifecycle = ['draft', 'experimental', 'stable', 'deprecated']
+export const elementStatusLifecycle = ['draft', 'experimental', 'stable', 'deprecated']

@@ -4,6 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { designKitTypes } from '@/data/design-kit-types'
+import { designTools } from '@/data/design-tools'
 import { framework } from '@/data/framework'
 import { platform } from '@/data/platform'
 import { status } from '@/data/status'
@@ -77,6 +79,27 @@ export const getLibraryFilters = () => {
           name: 'No license'
         }
       }
+    }
+  }
+}
+
+export const getDesignKitFilters = () => {
+  return {
+    maintainer: {
+      name: 'Maintainer',
+      values: teams
+    },
+    tool: {
+      name: 'Tool',
+      values: designTools
+    },
+    type: {
+      name: 'Type',
+      values: designKitTypes
+    },
+    status: {
+      name: 'Status',
+      values: status
     }
   }
 }

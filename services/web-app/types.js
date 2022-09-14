@@ -69,6 +69,18 @@ export const libraryPropTypes = PropTypes.shape({
   response: PropTypes.object.isRequired
 })
 
+export const designKitPropTypes = PropTypes.shape({
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  tool: PropTypes.oneOf(['adobe-ase', 'adobe-xd', 'axure', 'figma', 'invision-freehand', 'sketch']),
+  type: PropTypes.oneOf(['elements', 'guidelines', 'ui', 'wireframes']),
+  status: PropTypes.oneOf(['draft', 'experimental', 'stable', 'deprecated']),
+  url: PropTypes.string.isRequired,
+  action: PropTypes.oneOf(['download', 'link']),
+  license: PropTypes.oneOf(['apache-2.0', 'ibm-internal', 'mit']),
+  noIndex: PropTypes.bool
+})
+
 export const secondaryNavDataPropTypes = PropTypes.shape({
   back: PropTypes.shape({
     path: PropTypes.string,

@@ -11,7 +11,7 @@ import Link from 'next/link'
 
 import { teams } from '@/data/teams'
 import { libraryPropTypes } from '@/types'
-import { getLicense } from '@/utils/schema'
+import { getAssetLicense } from '@/utils/schema'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './library-catalog-item.module.scss'
@@ -41,7 +41,7 @@ const LibraryCatalogItem = ({ library = {} }) => {
           <ul className={styles.meta}>
             <li className={styles['meta-item']}>
               <Scales className={styles['meta-icon']} size={16} />
-              <span>{getLicense(library)}</span>
+              <span>{getAssetLicense(library)}</span>
             </li>
           </ul>
           <div className={styles.icon} title={maintainerTitle}>

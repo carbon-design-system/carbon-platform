@@ -8,19 +8,20 @@
 import { capitalCase } from 'change-case'
 
 import { assetTypes } from '@/data/asset-types'
+import { licenses } from '@/data/licenses'
 import { ORDER_BY_STATUS } from '@/data/sort'
-import { assetStatusLifecycle } from '@/data/status'
+import { elementStatusLifecycle } from '@/data/status'
 import { tagsForCollection, tagsForType } from '@/data/tags'
-
-import { getSlug } from './slug'
+import { getSlug } from '@/utils/slug'
 /**
- * Defines the sort order of assets by status
- * @param {import('@/typedefs').Asset} assetA
- * @param {import('@/typedefs').Asset} assetB
+ * Defines the sort order of an element by status
+ * @param {import('@/typedefs').Element} elementA
+ * @param {import('@/typedefs').Element} elementB
  * @returns {number} Sort order
  */
-export const statusSortComparator = (assetA, assetB) =>
-  assetStatusLifecycle.indexOf(assetA.statusKey) > assetStatusLifecycle.indexOf(assetB.statusKey)
+export const statusSortComparator = (elementA, elementB) =>
+  elementStatusLifecycle.indexOf(elementA.statusKey) >
+  elementStatusLifecycle.indexOf(elementB.statusKey)
     ? 1
     : -1
 
@@ -39,6 +40,25 @@ export const assetSortComparator = (key) => (assetA, assetB) => {
       return statusSortComparator(assetA, assetB)
     } else {
       return assetA.content[sort] > assetB.content[sort] ? 1 : -1
+    }
+  }
+}
+
+/**
+ * Defines the sort order of designKits by a key
+ * @param {string} key
+ * @returns {number} Sort order
+ */
+export const designKitSortComparator = (key) => (designKitA, designKitB) => {
+  const sort = key === ORDER_BY_STATUS ? 'status' : 'name'
+
+  if (designKitA[sort] === designKitB[sort]) {
+    return 0
+  } else {
+    if (key === ORDER_BY_STATUS) {
+      return statusSortComparator(designKitA, designKitB)
+    } else {
+      return designKitA[sort] > designKitB[sort] ? 1 : -1
     }
   }
 }
@@ -75,12 +95,12 @@ export const getAssetType = (asset) => {
 }
 
 /**
- * Gets the asset status string value. If not found, defaults to 'draft'.
- * @param {import('@/typedefs').Asset} asset
- * @returns {string} Asset status value
+ * Gets the element status string value. If not found, defaults to 'draft'.
+ * @param {import('@/typedefs').Element} element
+ * @returns {string} Element status value
  */
-export const getAssetStatus = (asset) => {
-  return asset.content.status?.key || asset.content.status || 'draft'
+export const getElementStatus = (element) => {
+  return element.status?.key || element.status || 'draft'
 }
 
 /**
@@ -130,10 +150,20 @@ export const collapseAssetGroups = (asset, filter) => {
  * @param {import('@/typedefs').Asset} asset
  * @returns {string} License
  */
-export const getLicense = (asset) => {
+export const getAssetLicense = (asset) => {
   const defaultLicense = asset.params.host === 'github.ibm.com' ? 'IBM internal' : 'No license'
   const { license = defaultLicense } = asset.library ? asset.library.content : asset.content
 
+  return license
+}
+
+/**
+ * Gets the license from a designKit
+ * @param {import('@/typedefs').DesignKit} designKit
+ * @returns {string} License
+ */
+export const getDesignKitLicense = (designKit) => {
+  const license = licenses[designKit.license]?.name
   return license
 }
 

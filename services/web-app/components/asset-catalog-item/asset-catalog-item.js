@@ -14,11 +14,12 @@ import FrameworkIcon from '@/components/framework-icon'
 import TypeTag from '@/components/type-tag'
 import { teams } from '@/data/teams'
 import { assetPropTypes } from '@/types'
+import { getAssetLicense } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
+import CatalogItemMeta from '../catalog-item-meta/index'
 import styles from './asset-catalog-item.module.scss'
-import AssetCatalogItemMeta from './asset-catalog-item-meta'
 
 const AssetCatalogItemImage = ({ asset }) => {
   const [src, setSrc] = useState(
@@ -74,19 +75,25 @@ const AssetCatalogItemContent = ({ asset, isGrid = false, otherFrameworkCount = 
         </div>
         {isSeparatedMeta && (
           <>
-            <AssetCatalogItemMeta asset={asset} properties={['license']} />
-            <AssetCatalogItemMeta
-              asset={asset}
+            <CatalogItemMeta
+              properties={['license']}
+              license={getAssetLicense(asset)}
+              statusKey={asset?.statusKey}
+            />
+            <CatalogItemMeta
               className={styles['meta--absolute']}
               properties={['status']}
+              license={getAssetLicense(asset)}
+              statusKey={asset?.statusKey}
             />
           </>
         )}
         {!isSeparatedMeta && (
-          <AssetCatalogItemMeta
-            asset={asset}
+          <CatalogItemMeta
             className={styles['meta--absolute']}
             properties={['status', 'license']}
+            license={getAssetLicense(asset)}
+            statusKey={asset?.statusKey}
           />
         )}
         <div className={styles.tags}>

@@ -152,4 +152,12 @@
  * @property {string} 1 - Next.js redirect destination
  */
 
+/**
+ * /**
+ * @typedef {object} Element
+ * @property {('draft' | 'experimental' | 'status' | 'deprecated' | object)} status
+ * - Consumption expectations
+ * @property {string} statusKey - Status key
+ */
+
 exports.unused = {}

@@ -10,20 +10,18 @@ import PropTypes from 'prop-types'
 
 import StatusIcon from '@/components/status-icon'
 import { status } from '@/data/status'
-import { assetPropTypes } from '@/types'
-import { getAssetLicense } from '@/utils/schema'
 
-import styles from './asset-catalog-item-meta.module.scss'
+import styles from './catalog-item-meta.module.scss'
 
-const AssetCatalogItemMeta = ({ asset, className, properties }) => {
+const CatalogItemMeta = ({ className, properties, license, statusKey }) => {
   const renderStatus = () => {
-    const { name } = status[asset?.statusKey]
+    const { name } = status[statusKey]
 
     if (!name) return null
 
     return (
       <span className={styles.container}>
-        <StatusIcon className={styles['meta-icon']} status={asset?.statusKey} />
+        <StatusIcon className={styles['meta-icon']} status={statusKey} />
         <span>{name}</span>
       </span>
     )
@@ -31,10 +29,12 @@ const AssetCatalogItemMeta = ({ asset, className, properties }) => {
 
   const renderLicense = () => {
     return (
-      <span className={styles.container}>
-        <Scales className={styles['meta-icon']} size={16} />
-        <span>{getAssetLicense(asset)}</span>
-      </span>
+      license && (
+        <span className={styles.container}>
+          <Scales className={styles['meta-icon']} size={16} />
+          <span>{license}</span>
+        </span>
+      )
     )
   }
 
@@ -50,10 +50,23 @@ const AssetCatalogItemMeta = ({ asset, className, properties }) => {
   )
 }
 
-AssetCatalogItemMeta.propTypes = {
-  asset: assetPropTypes,
+CatalogItemMeta.propTypes = {
+  /**
+   * Optional container classname.
+   */
   className: PropTypes.string,
-  properties: PropTypes.array
+  /**
+   * Element license being passed in.
+   */
+  license: PropTypes.string,
+  /**
+   * Element properties.
+   */
+  properties: PropTypes.array,
+  /**
+   * Element status key.
+   */
+  statusKey: PropTypes.array
 }
 
-export default AssetCatalogItemMeta
+export default CatalogItemMeta

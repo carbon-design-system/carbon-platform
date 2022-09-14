@@ -1,0 +1,29 @@
+name: Automerge
+on:
+  push:
+    branches:
+      - 'main'
+
+concurrency:
+  group: automerge-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+
+      - name: Set up Git user 🤖
+        run: |
+          git config --global user.email 'carbon@us.ibm.com'
+          git config --global user.name 'Carbon Bot'
+
+      - name: Merge into next 🚀
+        uses: devmasx/merge-branch@1.4.0
+        with:
+          type: now
+          target_branch: 'next'
+        env:
+          GITHUB_TOKEN: ${{ secrets.CARBON_BOT_TOKEN }}

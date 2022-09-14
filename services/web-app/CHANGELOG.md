@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.43](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.42...@carbon-platform/web-app@0.2.43) (2022-09-14)
+
+
+### Features 🌟
+
+* add design kit licenses ([ae228eb](https://github.com/carbon-design-system/carbon-platform/commit/ae228eb9808f3a036e84117b1e37ede1c1bde4b8))
+* add element to typedef ([21aac50](https://github.com/carbon-design-system/carbon-platform/commit/21aac5061ddaa505df80d881dc6e597fcaae77a7))
+* created catalog item meta ([9ae7124](https://github.com/carbon-design-system/carbon-platform/commit/9ae7124c5fa20657bcb5963711e9e010fe1f0668))
+* design kit catalog ([69565da](https://github.com/carbon-design-system/carbon-platform/commit/69565da066c80ef3a448b06068dcb94780c23059))
+* fix renderIcon ([c32cee4](https://github.com/carbon-design-system/carbon-platform/commit/c32cee41539f794b5bf2ba7369e0bc924e02d522))
+
+
+### Bug Fixes 🐛
+
+* add element to typedefs ([ad4ddc2](https://github.com/carbon-design-system/carbon-platform/commit/ad4ddc2ad3b1ad541654e29a4de1d24253763551))
+* fix mobile label padding ([e115ad1](https://github.com/carbon-design-system/carbon-platform/commit/e115ad12cebf8fadf75d56789cc380627302b95e))
+* fix sort by  alignment and proptypes error ([64a42bf](https://github.com/carbon-design-system/carbon-platform/commit/64a42bf2d78c399916a3969a920a23aa55be2fcc))
+* lint ([1a2f1cd](https://github.com/carbon-design-system/carbon-platform/commit/1a2f1cdc4c51a7db2cdcd6d677dac4f368af8c4f))
+* update docs links ([572ab4f](https://github.com/carbon-design-system/carbon-platform/commit/572ab4fa137bba2408c12a545b0c452eef6f2a4a))
+
 ### [0.2.42](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.41...@carbon-platform/web-app@0.2.42) (2022-09-14)
 
 

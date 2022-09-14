@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.10...@carbon-platform/icons@0.1.11) (2022-09-14)
+
+
+### Features 🌟
+
+* design kit catalog ([69565da](https://github.com/carbon-design-system/carbon-platform/commit/69565da066c80ef3a448b06068dcb94780c23059))
+
+
+### Bug Fixes 🐛
+
+* cleanup svgs ([12acd61](https://github.com/carbon-design-system/carbon-platform/commit/12acd61be63487a34ec000620460940bc9591ec7))
+* design kit svgs ([fb74c10](https://github.com/carbon-design-system/carbon-platform/commit/fb74c105a605fc6e8733af89c0554c3ea70c9f9e))
+* svg cleanup ([927a944](https://github.com/carbon-design-system/carbon-platform/commit/927a944ca7b092350029b803499bc8b42700744b))
+
 ### [0.1.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.9...@carbon-platform/icons@0.1.10) (2022-09-14)
 
 

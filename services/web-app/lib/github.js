@@ -285,9 +285,6 @@ const populateLibraryParams = async (params = {}) => {
     returnParams.ref = await getRepoDefaultBranch(returnParams)
   }
 
-  logging.info(
-    `Populated library params for ${JSON.stringify(params)} into ${JSON.stringify(returnParams)}`
-  )
   return returnParams
 }
 
@@ -882,8 +879,6 @@ const getThumbnailPath = (libraryParams = {}, asset = {}) => {
     return ''
   }
   if (!asset.thumbnailPath) {
-    logging.warn(`Could not retrieve thumbnailPath for asset ${getSlug(asset)},
-      params: ${JSON.stringify(libraryParams)} due to invalid thumbnailPath`)
     return ''
   }
 

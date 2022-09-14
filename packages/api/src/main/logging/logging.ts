@@ -194,7 +194,10 @@ class Logging {
    * @param logEntry The log entry to log.
    */
   private async log(logEntry: LogLoggedMessage) {
-    this.logConsole(logEntry)
+    // Only log to the console in dev mode
+    if (this.runtime.runMode !== RunMode.Standard) {
+      this.logConsole(logEntry)
+    }
 
     if (this.isRemoteLoggingEnabled) {
       await this.logRemote(logEntry)

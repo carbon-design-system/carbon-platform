@@ -37,7 +37,7 @@ const mockModuleRef = {
 test('it throws when query is not specified', async (t) => {
   const controller = new DataGraphController({ get: () => mockModuleRef } as any)
 
-  const err = await t.throwsAsync(() => controller.dataGraph({}, mockContext as any))
+  const err = await t.throwsAsync(() => controller.queryDataGraph({}, mockContext as any))
 
   t.true(err instanceof InvalidInputException)
 })
@@ -46,7 +46,7 @@ test('it throws when query is not a string', async (t) => {
   const controller = new DataGraphController({ get: () => mockModuleRef } as any)
 
   const err = await t.throwsAsync(() =>
-    controller.dataGraph({ query: 123 } as any, mockContext as any)
+    controller.queryDataGraph({ query: 123 } as any, mockContext as any)
   )
 
   t.true(err instanceof InvalidInputException)
@@ -56,7 +56,7 @@ test('throws when variables is not an object', async (t) => {
   const controller = new DataGraphController({ get: () => mockModuleRef } as any)
 
   const err = await t.throwsAsync(() =>
-    controller.dataGraph({ query: 'asdf', variables: 'asdf' } as any, mockContext as any)
+    controller.queryDataGraph({ query: 'asdf', variables: 'asdf' } as any, mockContext as any)
   )
 
   t.true(err instanceof InvalidInputException)
@@ -78,7 +78,7 @@ test('it calls ack on the success path', async (t) => {
 
   const controller = new DataGraphController({ get: () => mockModuleRef } as any)
 
-  await controller.dataGraph({ query: '{}' }, myMockContext as any)
+  await controller.queryDataGraph({ query: '{}' }, myMockContext as any)
 })
 
 test('it calls nack on the validation error path', async (t) => {
@@ -98,6 +98,6 @@ test('it calls nack on the validation error path', async (t) => {
   const controller = new DataGraphController({ get: () => mockModuleRef } as any)
 
   try {
-    await controller.dataGraph({}, myMockContext as any)
+    await controller.queryDataGraph({}, myMockContext as any)
   } catch (e) {}
 })

@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.42](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.41...@carbon-platform/web-app@0.2.42) (2022-09-14)
+
+
+### Features 🌟
+
+* add about carbon redirects ([c36f979](https://github.com/carbon-design-system/carbon-platform/commit/c36f97968ff4e2555e38c514f59e0e1c3aa94d61))
+* add adobe ase zip icon to design tools ([c9bc7ed](https://github.com/carbon-design-system/carbon-platform/commit/c9bc7ed30fef17d083beeeffc9e3bcfbd88f37ac))
+* add all other legacy redirects ([eb8dee1](https://github.com/carbon-design-system/carbon-platform/commit/eb8dee1cd3ef354e86633f6da9e724021d8a8c80))
+* add domain guidance and documentation pages ([b3688fc](https://github.com/carbon-design-system/carbon-platform/commit/b3688fc07855f760c8f499e0f763caf2781e8dfe))
+* add index redirects ([7c13463](https://github.com/carbon-design-system/carbon-platform/commit/7c13463ec75f8ec06f8a53b25776ed2a9ec76388))
+* add legacy redirects ([4b20e37](https://github.com/carbon-design-system/carbon-platform/commit/4b20e37404f8e80ee727babf43a07a9bf7c31090))
+* add logic to only show anchor links if more than 2 on design kits ([ade7247](https://github.com/carbon-design-system/carbon-platform/commit/ade7247e3f510586b687351ae55d65bdb256a439))
+* add migrating and coo pages to web app ([59d4168](https://github.com/carbon-design-system/carbon-platform/commit/59d41688515fac91f791e6ee76a1bfb7a157330e))
+* add patterns redirects ([0f388f6](https://github.com/carbon-design-system/carbon-platform/commit/0f388f675ca4c64e52ebef5c0d9e5b6c0d283dd0))
+* add sorting to design kits ([132c807](https://github.com/carbon-design-system/carbon-platform/commit/132c807617aa93da81acde9ec1f97e2ffe53e12d))
+* consolidate code redirects into wildcard ([aa4c39a](https://github.com/carbon-design-system/carbon-platform/commit/aa4c39aa728d1a145f21338ebb48a0f750e35d3b))
+* design kit library page logic cleanup ([2f5517c](https://github.com/carbon-design-system/carbon-platform/commit/2f5517c65c405794aaa5575a028bd10e8061dd6f))
+* update redirects after design review ([a313075](https://github.com/carbon-design-system/carbon-platform/commit/a313075319d29ee52cb6ef2f935d53b965d81ade))
+* **web-app:** add design kit library page ([44484cc](https://github.com/carbon-design-system/carbon-platform/commit/44484cc8176ae137daf79e61da0436092dcc4f06))
+
+
+### Bug Fixes 🐛
+
+* cards at small breakpoint fix ([a4f4951](https://github.com/carbon-design-system/carbon-platform/commit/a4f4951ede3c2f6896c1a38e4e9ee37f6a1f5f0a))
+* community site page resource card layout ([f41d208](https://github.com/carbon-design-system/carbon-platform/commit/f41d208293703084927678c75bbd0e0d83985685))
+* legacy redirects to use new paths ([2135182](https://github.com/carbon-design-system/carbon-platform/commit/21351820643530dd3e4a18be374b41276d055757))
+* migration guide redirect ([165dba4](https://github.com/carbon-design-system/carbon-platform/commit/165dba47d0a8519f1ffd20a8c8e356368a14faf8))
+* remove get lodash from design-kits ([e00e282](https://github.com/carbon-design-system/carbon-platform/commit/e00e282048714893a5aa5db0026b2e2a4ff39328))
+* spelling error ([34beff6](https://github.com/carbon-design-system/carbon-platform/commit/34beff62bfb78bf81711e5b8197c7b9cecb63efb))
+* **web-app:** add multiple logging statements, refresh cached files ([51d23a4](https://github.com/carbon-design-system/carbon-platform/commit/51d23a4dd477a142cdcaee36ecd510510d27fa99))
+* **web-app:** cleanup new logs ([591be8c](https://github.com/carbon-design-system/carbon-platform/commit/591be8c98a4483f7016af14c84de0bbb80a92272))
+* **web-app:** code snippet width at md breakpoint ([b4ed936](https://github.com/carbon-design-system/carbon-platform/commit/b4ed9368206fd2fd80e0e57eed1d26b01dbc5b93)), closes [#1129](https://github.com/carbon-design-system/carbon-platform/issues/1129)
+* **web-app:** convert SSG pages to ISR ([5780f87](https://github.com/carbon-design-system/carbon-platform/commit/5780f87b619edff6d776a906bbbaacbc99d56cb0))
+* **web-app:** fixes undefined maintainer in library ([a70b944](https://github.com/carbon-design-system/carbon-platform/commit/a70b944a32e6d6be5ba58aba050abb85374598a1))
+* **web-app:** linter error ([afd1b8b](https://github.com/carbon-design-system/carbon-platform/commit/afd1b8b1fd2960dae7b0d7111be9c8a8ee3d8bed))
+* **web-app:** only include related library if not null and with content ([b1fa8f8](https://github.com/carbon-design-system/carbon-platform/commit/b1fa8f806fd7f8175b057d29c82af57688256176)), closes [#1217](https://github.com/carbon-design-system/carbon-platform/issues/1217)
+* **web-app:** reconcile cached files with main ([a5c3b47](https://github.com/carbon-design-system/carbon-platform/commit/a5c3b47327bc468543fa95db267fc36feab192a0))
+* **web-app:** remove some unnecessary logs ([c48a912](https://github.com/carbon-design-system/carbon-platform/commit/c48a912cd57f5e00c49bc46bf3cbee7c3e014734))
+* **web-app:** remove some unnecessary logs ([d7647cb](https://github.com/carbon-design-system/carbon-platform/commit/d7647cb955a004ea80dff324ed0f32400a7388e9))
+* **web-app:** revalidate statically generated pages, add cache for SSG ([471dc4a](https://github.com/carbon-design-system/carbon-platform/commit/471dc4a637fd088ec48c005112614da44d1fa711))
+* **web-app:** wrap async functions in withTrach in github.js ([623cd36](https://github.com/carbon-design-system/carbon-platform/commit/623cd36d63ccfc27aecc94c562a5884545da3467))
+
 ### [0.2.41](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.40...@carbon-platform/web-app@0.2.41) (2022-09-13)
 
 

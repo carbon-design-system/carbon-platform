@@ -16,7 +16,7 @@ interface DataGraphResponse<T = { [key: string]: unknown }> {
   errors?: Readonly<Array<unknown>>
 }
 
-interface DevDatasetEntry<> {
+interface DevDatasetEntry {
   name: string
   variables?: {
     [key: string]: unknown

@@ -26,7 +26,7 @@ class DataGraphController {
 
   @Trace()
   @MessagePattern('data_graph')
-  public async dataGraph(
+  public async queryDataGraph(
     @Payload() data: UnvalidatedMessage<DataGraphMessage>,
     @Ctx() context: RmqContext
   ): Promise<DataGraphResponse> {

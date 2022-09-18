@@ -13,14 +13,14 @@ class StatusController {
   @Trace()
   @Get('liveness')
   @HttpCode(204)
-  public liveness() {
+  public getLiveness() {
     return null
   }
 
   @Trace()
   @Get('readiness')
   @HttpCode(204)
-  public readiness() {
+  public getReadiness() {
     return null
   }
 }

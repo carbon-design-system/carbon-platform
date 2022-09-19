@@ -28,6 +28,7 @@ generated/
 
 # Web App
 services/web-app/public/data/
+services/web-app/public/prism.js
 
 # Enable config file linting
 !.*rc.js

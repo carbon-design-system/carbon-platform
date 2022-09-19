@@ -9,7 +9,6 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/motion' as motion;
-/* stylelint-disable declaration-no-important */
 
 // scoped to div code to override global reset styles
 :global(div) code {
@@ -27,22 +26,11 @@
   @include type.type-style('code-02');
 
   padding: 0;
-  color: theme.$text-primary;
 }
 
-// override carbon code styles
-.code :global(.cds--snippet-container) {
-  width: 100%;
-  // override carbon inline style
-  min-height: 24px !important;
-
-  pre {
-    padding-bottom: 0;
-  }
-
-  code {
-    background-color: theme.$layer-01;
-  }
+.code pre {
+  // Remove prism-added tabindex border around code blocks
+  outline: none;
 }
 
 // override carbon code width to align on grid

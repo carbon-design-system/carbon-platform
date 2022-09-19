@@ -756,114 +756,121 @@ const addAssetDefaults = async (library) => {
  * @param {import('@/typedefs').Params} params
  * @returns {Promise<import('@/typedefs').Library>}
  */
-export const getLibraryData = withTrace(logging, async function getLibraryData(params = {}) {
-  const libraryParams = await populateLibraryParams(params)
+export const getLibraryData = withTrace(
+  logging,
+  async function getLibraryData(params = {}, loadReferences = false) {
+    const libraryParams = await populateLibraryParams(params)
 
-  if (isEmpty(libraryParams)) {
-    logging.warn(
-      `Skipped library with params ${JSON.stringify(params)} because they could not be validated`
-    )
-    return null
-  }
-
-  /**
-   * @type {import('@/typedefs').GitHubContentResponse}
-   */
-  let response = {}
-
-  const { host, org, repo, path: libPath, ref } = libraryParams
-
-  const options = {
-    owner: org,
-    repo,
-    path: removeLeadingSlash(`${libPath}/carbon.yml`),
-    ref
-  }
-  try {
-    logging.debug(
-      `Attempting to obtain repository's carbon.yml file contents with options: ${JSON.stringify(
-        options
-      )}`
-    )
-    response = await getResponse(host, 'GET /repos/{owner}/{repo}/contents/{path}', options)
-  } catch (err) {
-    logging.warn(
-      `Error getting repository's carbon.yml with options: ${JSON.stringify(
-        options
-      )}, error: ${err}`
-    )
-    logging.warn(err)
-    // TODO: throw error instead
-    return null
-  }
-
-  let content
-  const dereferenceKey = slugifyRequest(
-    host,
-    'GET DEREFERENCED /repos/{owner}/{repo}/contents/{path}',
-    options
-  )
-  try {
-    const base64EncodedLib = await getDereferencedObjectResponse(
-      dereferenceKey,
-      yaml.load(Buffer.from(response.content, response.encoding).toString()),
-      resolveSchemaReferences.bind(null, libraryParams)
-    )
-    content = JSON.parse(Buffer.from(base64EncodedLib, 'base64').toString('utf-8'))
-  } catch (err) {
-    logging.warn(`Error parsing yaml content for library ${params.library}: ${err}`)
-    logging.warn(err)
-    // TODO: throw error
-    return null
-  }
-
-  /**
-   * @type {import('@/typedefs').LibraryContent}
-   */
-  const { library } = content
-
-  if (!library) {
-    logging.warn(`Could not retrieve ${libraryParams.library} library's content at this time`)
-    return null
-  }
-
-  if (!validateLibrary(library)) {
-    logging.warn(`Invalid library object, skipped: ${JSON.stringify(library)}`)
-    return null
-  }
-
-  // validate library design kits
-  Object.entries(library.designKits ?? []).forEach(([key, value]) => {
-    if (!validateDesignKit(value, `library ${getSlug(library)}`)) {
-      delete library.designKits[key]
+    if (isEmpty(libraryParams)) {
+      logging.warn(
+        `Skipped library with params ${JSON.stringify(params)} because they could not be validated`
+      )
+      return null
     }
-  })
 
-  const assets = await getLibraryAssets(libraryParams)
+    /**
+     * @type {import('@/typedefs').GitHubContentResponse}
+     */
+    let response = {}
 
-  const packageJsonContent = await getPackageJsonContent(params, library.packageJsonPath)
+    const { host, org, repo, path: libPath, ref } = libraryParams
 
-  const libraryResponse = {
-    params: libraryParams,
-    response,
-    content: {
-      ...packageJsonContent,
-      ...library, // spread last to use schema description if set
-      noIndex: !!library.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
-    },
-    assets: assets.map((asset) => {
-      return { ...asset, statusKey: getElementStatus(asset.content) }
+    const options = {
+      owner: org,
+      repo,
+      path: removeLeadingSlash(`${libPath}/carbon.yml`),
+      ref
+    }
+    try {
+      logging.debug(
+        `Attempting to obtain repository's carbon.yml file contents with options: ${JSON.stringify(
+          options
+        )}`
+      )
+      response = await getResponse(host, 'GET /repos/{owner}/{repo}/contents/{path}', options)
+    } catch (err) {
+      logging.warn(
+        `Error getting repository's carbon.yml with options: ${JSON.stringify(
+          options
+        )}, error: ${err}`
+      )
+      logging.warn(err)
+      // TODO: throw error instead
+      return null
+    }
+
+    let content
+    const dereferenceKey = slugifyRequest(
+      host,
+      'GET DEREFERENCED /repos/{owner}/{repo}/contents/{path}',
+      options
+    )
+    try {
+      if (loadReferences) {
+        const base64EncodedLib = await getDereferencedObjectResponse(
+          dereferenceKey,
+          yaml.load(Buffer.from(response.content, response.encoding).toString()),
+          resolveSchemaReferences.bind(null, libraryParams)
+        )
+        content = JSON.parse(Buffer.from(base64EncodedLib, 'base64').toString('utf-8'))
+      } else {
+        content = yaml.load(Buffer.from(response.content, response.encoding).toString())
+      }
+    } catch (err) {
+      logging.warn(`Error parsing yaml content for library ${params.library}: ${err}`)
+      logging.warn(err)
+      // TODO: throw error
+      return null
+    }
+
+    /**
+     * @type {import('@/typedefs').LibraryContent}
+     */
+    const { library } = content
+
+    if (!library) {
+      logging.warn(`Could not retrieve ${libraryParams.library} library's content at this time`)
+      return null
+    }
+
+    if (!validateLibrary(library)) {
+      logging.warn(`Invalid library object, skipped: ${JSON.stringify(library)}`)
+      return null
+    }
+
+    // validate library design kits
+    Object.entries(library.designKits ?? []).forEach(([key, value]) => {
+      if (!validateDesignKit(value, `library ${getSlug(library)}`)) {
+        delete library.designKits[key]
+      }
     })
+
+    const assets = await getLibraryAssets(libraryParams)
+
+    const packageJsonContent = await getPackageJsonContent(params, library.packageJsonPath)
+
+    const libraryResponse = {
+      params: libraryParams,
+      response,
+      content: {
+        ...packageJsonContent,
+        ...library, // spread last to use schema description if set
+        noIndex: !!library.noIndex && process.env.INDEX_ALL !== '1' // default to false if not specified
+      },
+      assets: assets.map((asset) => {
+        return { ...asset, statusKey: getElementStatus(asset.content) }
+      })
+    }
+
+    await addLibraryInheritedData(libraryResponse, loadReferences)
+
+    await addAssetDefaults(libraryResponse)
+
+    validateLibraryAssets(libraryResponse)
+
+    return libraryResponse
   }
-
-  await addLibraryInheritedData(libraryResponse)
-
-  await addAssetDefaults(libraryResponse)
-
-  validateLibraryAssets(libraryResponse)
-
-  return libraryResponse
-})
+)
 
 /**
  * Validates and returns an asset thumbnail path with the leading slash removed.
@@ -1137,21 +1144,24 @@ const validateLibraryAssets = (library) => {
  * @param {import('@/typedefs').Library} library
  * @returns {Promise<void>} A promise that resolves to void.
  */
-const addLibraryInheritedData = withTrace(logging, async function addLibraryInheritedData(library) {
-  if (library.content.inherits) {
-    const inheritParams = await getLibraryParams(library.content.inherits)
+const addLibraryInheritedData = withTrace(
+  logging,
+  async function addLibraryInheritedData(library, loadReferences = false) {
+    if (library.content.inherits) {
+      const inheritParams = await getLibraryParams(library.content.inherits)
 
-    if (!isEmpty(inheritParams)) {
-      const inheritLibrary = await getLibraryData(inheritParams)
+      if (!isEmpty(inheritParams)) {
+        const inheritLibrary = await getLibraryData(inheritParams, loadReferences)
 
-      library.assets = mergeInheritedAssets(library.assets, inheritLibrary.assets)
+        library.assets = mergeInheritedAssets(library.assets, inheritLibrary.assets)
 
-      if (!library.content.designKits && inheritLibrary.content.designKits) {
-        library.content.designKits = inheritLibrary.content.designKits
+        if (!library.content.designKits && inheritLibrary.content.designKits) {
+          library.content.designKits = inheritLibrary.content.designKits
+        }
       }
     }
   }
-})
+)
 
 /**
  * Gets the GitHub open issue count for an asset using the asset's name searching only issue title

@@ -152,7 +152,7 @@ const DesignKits = ({ libraryData, navData }) => {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const libraryData = await getLibraryData(params)
+  const libraryData = await getLibraryData(params, true)
 
   if (!libraryData) {
     return {

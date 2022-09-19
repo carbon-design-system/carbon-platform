@@ -66,7 +66,7 @@ function App({ Component, pageProps }) {
         type="text/javascript"
         async="async"
       ></Script>
-      <Script src="/prism.js" type="text/javascript" async="async"></Script>
+      <Script src="/vendor/prismjs/prism.min.js" type="text/javascript" async="async"></Script>
       <LayoutProvider>
         <Layout>
           <DefaultSeo {...defaultSeo} />

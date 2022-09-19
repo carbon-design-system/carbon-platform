@@ -30,11 +30,11 @@ env:
 
 jobs:
   publish:
-    name: Publish
     runs-on: ubuntu-latest
     env:
       PACKAGE_NAME: ${{ inputs.package_name || github.event.inputs.package_name }}
       PACKAGE_TAG: ${{ inputs.package_tag || github.event.inputs.package_tag }}
+    if: inputs.package_tag || github.event.inputs.package_tag
 
     steps:
       - name: Checkout 🛎

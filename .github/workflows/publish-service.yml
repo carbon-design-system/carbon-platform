@@ -29,12 +29,12 @@ env:
   CI: 'true'
 
 jobs:
-  build-and-push-service:
-    name: Build and push service
+  build-push:
     runs-on: ubuntu-latest
     env:
       SERVICE_NAME: ${{ inputs.service_name || github.event.inputs.service_name }}
       SERVICE_TAG: ${{ inputs.service_tag || github.event.inputs.service_tag }}
+    if: inputs.service_tag || github.event.inputs.service_tag
 
     steps:
       - name: Checkout 🛎
@@ -56,8 +56,6 @@ jobs:
 
       - name: Build base image 🔨
         run: npx micromanage build --docker --pull @carbon-platform/base
-        env:
-          CARBON_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push 🔨 🚀
         run: |

@@ -55,7 +55,7 @@ jobs:
         run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io
 
       - name: Build base image 🔨
-        run: npx micromanage build --docker @carbon-platform/base
+        run: npx micromanage build --docker --pull @carbon-platform/base
         env:
           CARBON_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

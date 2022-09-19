@@ -153,7 +153,6 @@
  */
 
 /**
- * /**
  * @typedef {object} Element
  * @property {('draft' | 'experimental' | 'status' | 'deprecated' | object)} status
  * - Consumption expectations

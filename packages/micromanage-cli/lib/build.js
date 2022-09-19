@@ -73,7 +73,7 @@ async function dockerBuild(workspace, isDryRun) {
 
   const buildArgs = getEnvvarNames().map((envvarName) => `--build-arg ${envvarName}`)
   const buildArgsStr = buildArgs.join(' ')
-  const buildCmd = `docker build --tag ${imageName} ${buildArgsStr} --file ${workspace.path}/Dockerfile .`
+  const buildCmd = `docker build --pull --tag ${imageName} ${buildArgsStr} --file ${workspace.path}/Dockerfile .`
 
   const latestImageName = imageName.split(':')[0] + ':latest'
   const tagCmd = `docker tag ${imageName} ${latestImageName}`

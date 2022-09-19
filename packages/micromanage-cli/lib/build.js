@@ -23,6 +23,7 @@ function buildBuildCommand() {
     )
     .option('--dry-run', 'Do not perform a build. Only output the image name and build command')
     .option('--json', 'Output resulting docker images as a JSON array')
+    .option('--pull', 'Add the `--pull` option when running the docker build command')
     .argument('<workspace-name>', 'Name of the workspace (from package.json)')
     .action(handleBuildCommand)
 }
@@ -38,7 +39,7 @@ async function handleBuildCommand(workspaceName, opts) {
   }
 
   if (opts.docker) {
-    const resultingImages = await dockerBuild(workspace, opts.dryRun)
+    const resultingImages = await dockerBuild(workspace, opts.dryRun, opts.pull)
     if (opts.json) {
       console.log(JSON.stringify(resultingImages))
     } else {
@@ -67,13 +68,14 @@ async function build(workspace, isDryRun) {
  * @param {import('./utils').Workspace} workspace
  * @param {boolean} isDryRun
  */
-async function dockerBuild(workspace, isDryRun) {
+async function dockerBuild(workspace, isDryRun, isPull) {
+  const pullOpt = isPull ? '--pull' : ''
   let imageName = workspace.name.startsWith('@') ? workspace.name.substring(1) : workspace.name
   imageName = `${REMOTE_REGISTRY}/${imageName}:${workspace.version}`
 
   const buildArgs = getEnvvarNames().map((envvarName) => `--build-arg ${envvarName}`)
   const buildArgsStr = buildArgs.join(' ')
-  const buildCmd = `docker build --pull --tag ${imageName} ${buildArgsStr} --file ${workspace.path}/Dockerfile .`
+  const buildCmd = `docker build ${pullOpt} --tag ${imageName} ${buildArgsStr} --file ${workspace.path}/Dockerfile .`
 
   const latestImageName = imageName.split(':')[0] + ':latest'
   const tagCmd = `docker tag ${imageName} ${latestImageName}`

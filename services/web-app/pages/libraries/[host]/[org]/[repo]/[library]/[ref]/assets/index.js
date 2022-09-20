@@ -21,22 +21,20 @@ import { ArrowRight } from '@carbon/react/icons'
 import { FilingCabinet } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect, useState } from 'react'
 
 import AssetCatalogItemMeta from '@/components/asset-catalog-item/asset-catalog-item-meta'
-import H1 from '@/components/markdown/h1'
 import H2 from '@/components/markdown/h2'
 import H3 from '@/components/markdown/h3'
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
+import WithLoading from '@/components/with-loading'
 import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
 import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData, getLibraryNavData } from '@/lib/github'
-import pageStyles from '@/pages/pages.module.scss'
 import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from '@/types'
 import { assetSortComparator } from '@/utils/schema'
 import { getAllTags } from '@/utils/schema.js'
@@ -73,24 +71,11 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
 
   const [sort, setSort] = useState(ALPHABETICAL_ORDER)
-  const router = useRouter()
 
   useEffect(() => {
     setPrimaryNavData(assetsNavData)
     setSecondaryNavData(navData)
   }, [setPrimaryNavData, navData, setSecondaryNavData])
-
-  if (router.isFallback) {
-    return (
-      <Grid>
-        <Column sm={4} md={8} lg={16}>
-          <div className={pageStyles.content}>
-            <H1>Loading...</H1>
-          </div>
-        </Column>
-      </Grid>
-    )
-  }
 
   const { description } = libraryData.content
 
@@ -283,8 +268,8 @@ export const getStaticProps = async ({ params }) => {
 export const getStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: true
   }
 }
 
-export default LibrayAssets
+export default WithLoading(LibrayAssets)

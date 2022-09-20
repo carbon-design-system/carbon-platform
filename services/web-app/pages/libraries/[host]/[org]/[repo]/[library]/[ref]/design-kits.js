@@ -10,18 +10,17 @@ import { RulerAlt } from '@carbon/react/icons'
 import { AnchorLink, AnchorLinks } from '@carbon-platform/mdx-components'
 import groupBy from 'lodash/groupBy'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
 import CardGroup from '@/components/card-group/card-group'
-import H1 from '@/components/markdown/h1'
 import H2 from '@/components/markdown/h2'
 import P from '@/components/markdown/p'
 import MdxIcon from '@/components/mdx-icon/mdx-icon'
 import PageDescription from '@/components/page-description/page-description'
 import PageHeader from '@/components/page-header'
 import ResourceCard from '@/components/resource-card/resource-card'
+import WithLoading from '@/components/with-loading'
 import { designKitTypes } from '@/data/design-kit-types'
 import { designTools } from '@/data/design-tools'
 import { assetsNavData } from '@/data/nav-data'
@@ -33,7 +32,6 @@ import pageStyles from '../../../../../../pages.module.scss'
 
 const DesignKits = ({ libraryData, navData }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
-  const router = useRouter()
 
   const pageHeader = pageHeaders?.library ?? {}
 
@@ -47,18 +45,6 @@ const DesignKits = ({ libraryData, navData }) => {
     setPrimaryNavData(assetsNavData)
     setSecondaryNavData(navData)
   }, [setPrimaryNavData, navData, setSecondaryNavData])
-
-  if (router.isFallback) {
-    return (
-      <Grid>
-        <Column sm={4} md={8} lg={16}>
-          <div className={pageStyles.content}>
-            <H1>Loading...</H1>
-          </div>
-        </Column>
-      </Grid>
-    )
-  }
 
   let groupedDesignKits
   if (libraryData.content.designKits) {
@@ -178,8 +164,8 @@ export const getStaticProps = async ({ params }) => {
 export const getStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: true
   }
 }
 
-export default DesignKits
+export default WithLoading(DesignKits)

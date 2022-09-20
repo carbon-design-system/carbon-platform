@@ -5,14 +5,28 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { useRouter } from 'next/router'
 import { MDXRemote } from 'next-mdx-remote'
 
 import MdxPage from '@/components/mdx-page/mdx-page'
+import PageHeader from '@/components/page-header'
+import PageLoading from '@/components/page-loading'
 import { defaultFilePathPrefix, defaultParams, remotePages } from '@/data/remote-pages'
 import { getRemoteMdxSource } from '@/lib/github'
 import { processMdxSource } from '@/utils/mdx'
 
 const RemoteMdxPage = ({ compiledSource, tabs, mdxError, warnings, pageHeaderType }) => {
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return (
+      <>
+        <PageHeader loading />
+        <PageLoading />
+      </>
+    )
+  }
+
   const frontmatter = compiledSource?.data?.matter || {}
   const { title, description, keywords } = frontmatter
 
@@ -96,7 +110,7 @@ export const getStaticPaths = async () => {
   })
   return {
     paths: allowedPaths,
-    fallback: 'blocking'
+    fallback: true
   }
 }
 

@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
+import { useRouter } from 'next/router'
 import { MDXRemote } from 'next-mdx-remote'
 import path from 'path'
 import { useContext, useEffect, useRef, useState } from 'react'
@@ -12,10 +13,12 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import MdxPage from '@/components/mdx-page/mdx-page'
 import PageBreadcrumb from '@/components/page-breadcrumb/page-breadcrumb'
 import PageHeader from '@/components/page-header/page-header'
+import PageLoading from '@/components/page-loading'
 import PageNav from '@/components/page-nav'
 import PageTabs from '@/components/page-tabs'
 import { assetTypes } from '@/data/asset-types'
 import { assetsNavData } from '@/data/nav-data'
+import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout/layout'
 import { getLibraryData } from '@/lib/github'
 import { getProcessedMdxSource } from '@/utils/mdx'
@@ -25,10 +28,8 @@ import { createUrl } from '@/utils/string'
 import styles from './[tab].module.scss'
 
 const AssetTabPage = ({ source, tabs, assetData }) => {
+  const router = useRouter()
   const [pageNavItems, setPageNavItems] = useState([])
-  const frontmatter = source.compiledSource?.data?.matter || {}
-  const { title, description, keywords } = frontmatter
-
   const { setPrimaryNavData } = useContext(LayoutContext)
   const contentRef = useRef(null)
 
@@ -48,8 +49,21 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
     setPrimaryNavData(assetsNavData)
   }, [setPrimaryNavData])
 
-  const { name } = assetData.content
+  if (router.isFallback) {
+    return (
+      <Grid>
+        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
+          {/* We don't know asset type yet, so use the library background color */}
+          <PageHeader bgColor={pageHeaders?.library?.bgColor} loading />
+          <PageLoading />
+        </Column>
+      </Grid>
+    )
+  }
 
+  const frontmatter = source.compiledSource?.data?.matter || {}
+  const { title, description, keywords } = frontmatter
+  const { name } = assetData.content
   const breadcrumbItems = [
     {
       name: getAssetType(assetData).namePlural,
@@ -159,7 +173,7 @@ export const getStaticProps = async ({ params }) => {
 export const getStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: true
   }
 }
 

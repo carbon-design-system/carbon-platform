@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { useRouter } from 'next/router'
 import { MDXRemote } from 'next-mdx-remote'
 import { NextSeo } from 'next-seo'
 import path from 'path'
@@ -11,7 +12,10 @@ import { useContext, useEffect } from 'react'
 import slugify from 'slugify'
 
 import MdxPage from '@/components/mdx-page/mdx-page'
+import PageHeader from '@/components/page-header'
+import PageLoading from '@/components/page-loading'
 import { assetsNavData } from '@/data/nav-data'
+import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout/layout'
 import { getLibraryData, getLibraryNavData, getRemoteMdxSource } from '@/lib/github'
 import { processMdxSource } from '@/utils/mdx'
@@ -19,10 +23,7 @@ import { createUrl } from '@/utils/string'
 import { dfs } from '@/utils/tree'
 
 const LibraryPage = ({ compiledSource, mdxError, warnings, navData, navTitle, libraryData }) => {
-  const seo = {
-    title: `${libraryData?.content?.name ?? ''} - ${navTitle}`
-  }
-
+  const router = useRouter()
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   useEffect(() => {
@@ -30,8 +31,21 @@ const LibraryPage = ({ compiledSource, mdxError, warnings, navData, navTitle, li
     setSecondaryNavData(navData)
   }, [setPrimaryNavData, navData, setSecondaryNavData])
 
+  if (router.isFallback) {
+    return (
+      <>
+        <PageHeader bgColor={pageHeaders?.library?.bgColor} loading />
+        <PageLoading />
+      </>
+    )
+  }
+
+  const seo = {
+    title: `${libraryData?.content?.name ?? ''} - ${navTitle}`
+  }
   const frontmatter = compiledSource?.data?.matter || {}
   const { title, description, keywords } = frontmatter
+
   return (
     <>
       <NextSeo {...seo} />
@@ -122,7 +136,7 @@ export const getStaticProps = async ({ params }) => {
 export const getStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: true
   }
 }
 

@@ -4,12 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Grid, Theme } from '@carbon/react'
+import { Column, Grid, SkeletonText, Theme } from '@carbon/react'
 import PropTypes from 'prop-types'
 
 import styles from './page-header.module.scss'
 
-const PageHeader = ({ bgColor, pictogram: Pictogram, title, withTabs }) => {
+const PageHeader = ({ bgColor, loading, pictogram: Pictogram, title, withTabs }) => {
   const headerHeight = withTabs ? '272px' : '320px'
 
   let containerStyle = {
@@ -27,9 +27,12 @@ const PageHeader = ({ bgColor, pictogram: Pictogram, title, withTabs }) => {
     <Theme className={styles.container} style={containerStyle} theme={bgColor ? 'white' : 'g100'}>
       <Grid className={styles.grid}>
         <Column className={styles.column} sm={4} md={6} lg={10}>
-          <h1 className={styles.title}>{title}</h1>
+          <div className={styles.section}>
+            {loading && <SkeletonText heading width="256px" />}
+            {!loading && <h1 className={styles.title}>{title}</h1>}
+          </div>
         </Column>
-        {Pictogram && <Pictogram className={styles.pictogram} />}
+        {!loading && Pictogram && <Pictogram className={styles.pictogram} />}
       </Grid>
     </Theme>
   )
@@ -37,8 +40,9 @@ const PageHeader = ({ bgColor, pictogram: Pictogram, title, withTabs }) => {
 
 PageHeader.propTypes = {
   bgColor: PropTypes.string,
+  loading: PropTypes.bool,
   pictogram: PropTypes.object,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   withTabs: PropTypes.bool
 }
 

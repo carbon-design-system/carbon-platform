@@ -15,12 +15,11 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
 import CardGroup from '@/components/card-group/card-group'
-import H1 from '@/components/markdown/h1'
-import H2 from '@/components/markdown/h2'
-import P from '@/components/markdown/p'
+import { H2, P } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon/mdx-icon'
 import PageDescription from '@/components/page-description/page-description'
 import PageHeader from '@/components/page-header'
+import PageLoading from '@/components/page-loading'
 import ResourceCard from '@/components/resource-card/resource-card'
 import { designKitTypes } from '@/data/design-kit-types'
 import { designTools } from '@/data/design-tools'
@@ -37,12 +36,6 @@ const DesignKits = ({ libraryData, navData }) => {
 
   const pageHeader = pageHeaders?.library ?? {}
 
-  const { name } = libraryData.content
-
-  const seo = {
-    title: `${name} design kits`
-  }
-
   useEffect(() => {
     setPrimaryNavData(assetsNavData)
     setSecondaryNavData(navData)
@@ -50,14 +43,17 @@ const DesignKits = ({ libraryData, navData }) => {
 
   if (router.isFallback) {
     return (
-      <Grid>
-        <Column sm={4} md={8} lg={16}>
-          <div className={pageStyles.content}>
-            <H1>Loading...</H1>
-          </div>
-        </Column>
-      </Grid>
+      <>
+        <PageHeader bgColor={pageHeader?.bgColor} loading />
+        <PageLoading />
+      </>
     )
+  }
+
+  const { name } = libraryData.content
+
+  const seo = {
+    title: `${name} design kits`
   }
 
   let groupedDesignKits
@@ -178,7 +174,7 @@ export const getStaticProps = async ({ params }) => {
 export const getStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: true
   }
 }
 

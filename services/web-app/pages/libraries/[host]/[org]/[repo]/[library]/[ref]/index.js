@@ -18,10 +18,11 @@ import CardGroup from '@/components/card-group'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import DemoLinks from '@/components/demo-links'
-import { H1, H2 } from '@/components/markdown'
+import { H2 } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import PageDescription from '@/components/page-description'
 import PageHeader from '@/components/page-header'
+import PageLoading from '@/components/page-loading'
 import ResourceCard from '@/components/resource-card'
 import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
@@ -33,7 +34,6 @@ import {
   getLibraryParams,
   getLibraryRelatedLibs
 } from '@/lib/github'
-import pageStyles from '@/pages/pages.module.scss'
 import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from '@/types'
 import { getAssetLicense } from '@/utils/schema'
 
@@ -49,21 +49,18 @@ const Library = ({ libraryData, params, navData }) => {
     setSecondaryNavData(navData)
   }, [setPrimaryNavData, navData, setSecondaryNavData])
 
+  const pageHeader = pageHeaders?.library ?? {}
+
   if (router.isFallback) {
     return (
-      <Grid>
-        <Column sm={4} md={8} lg={16}>
-          <div className={pageStyles.content}>
-            <H1>Loading...</H1>
-          </div>
-        </Column>
-      </Grid>
+      <>
+        <PageHeader bgColor={pageHeader?.bgColor} loading />
+        <PageLoading />
+      </>
     )
   }
 
   const { name, description } = libraryData.content
-
-  const pageHeader = pageHeaders?.library ?? {}
 
   const seo = {
     title: name,
@@ -298,7 +295,7 @@ export const getStaticProps = async ({ params }) => {
 export const getStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: true
   }
 }
 

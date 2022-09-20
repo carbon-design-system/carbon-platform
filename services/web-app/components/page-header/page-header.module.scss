@@ -41,8 +41,11 @@
   align-items: flex-end;
 }
 
-.title {
+.section {
   margin-bottom: spacing.$spacing-07;
+}
+
+.title {
   color: theme.$text-primary;
   @include type.type-style('fluid-display-01', true);
   @include mixins.line-clamp(2);

@@ -54,7 +54,7 @@ pre[class*='language-'] ::selection {
 }
 
 .token.class-name {
-  color: theme.$text-primary;
+  color: colors.$blue-40;
 }
 
 .token.boolean {
@@ -127,7 +127,7 @@ pre[class*='language-'] ::selection {
 }
 
 .token.variable {
-  color: theme.$text-inverse;
+  color: theme.$text-primary;
 }
 
 .token.operator {

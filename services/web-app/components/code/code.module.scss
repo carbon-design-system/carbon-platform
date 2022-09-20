@@ -10,39 +10,38 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/motion' as motion;
 
-// scoped to div code to override global reset styles
-:global(div) code {
-  padding: 0 spacing.$spacing-03;
-  background-color: theme.$layer-accent;
-  border-radius: 4px;
-  font-size: 0.875em;
-}
-
 .code {
+  :global(.cds--popover-content),
+  :global(.cds--popover-caret) {
+    // Override carbon tooltip colors
+    background: theme.$layer-accent-01;
+    color: theme.$text-primary;
+  }
+}
+
+// scoped to div code to override global reset styles
+.code:global(.cds--snippet--multi) {
   margin-top: spacing.$spacing-07;
-}
 
-.code code {
-  @include type.type-style('code-02');
+  :global(.cds--snippet-container) {
+    // override carbon snippet container width
+    width: 100%;
 
-  padding: 0;
-}
+    // override carbon snippet minimum height
+    /* stylelint-disable-next-line declaration-property-value-disallowed-list, declaration-no-important */
+    min-height: unset !important;
 
-.code pre {
-  // Remove prism-added tabindex border around code blocks
-  outline: none;
-}
+    pre {
+      // override carbon snippet pre padding
+      padding-bottom: 0;
+      // remove prism-added tabindex border around code blocks
+      outline: none;
+    }
+  }
 
-// override carbon code width to align on grid
-:global(.cds--snippet--multi).code {
-  max-width: none;
-}
-
-// override carbon tooltip colors
-.code :global(.cds--popover-content),
-.code :global(.cds--popover-caret) {
-  background: theme.$layer-accent-01;
-  color: theme.$text-primary;
+  code {
+    @include type.type-style('code-02');
+  }
 }
 
 .path-container {

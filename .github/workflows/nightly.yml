@@ -18,8 +18,10 @@ env:
   CI: 'true'
 
 jobs:
+  #
+  # Determine which workspaces have changed and re-version them
+  #
   update-versions:
-    name: Update versions
     runs-on: ubuntu-latest
     outputs:
       changed_workspaces: ${{ steps.version.outputs.changed_workspaces }}
@@ -52,80 +54,41 @@ jobs:
         name: Version 📆
         run: echo ::set-output name=changed_workspaces::$(npx micromanage changed | xargs npx micromanage version --json)
 
-
-  data-graph:
-    name: Publish data-graph service
+  #
+  # Build docker images for all changed services and push them to the container registry
+  #
+  services:
     needs: update-versions
-    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/data-graph']
     uses: ./.github/workflows/publish-service.yml
     with:
-      service_name: '@carbon-platform/data-graph'
-      service_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/data-graph'] }}
+      service_name:  ${{ matrix.service }}
+      service_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)[matrix.service] }}
+    strategy:
+      fail-fast: false
+      matrix:
+        service:
+          - '@carbon-platform/data-graph'
+          - '@carbon-platform/logging'
+          - '@carbon-platform/web-app'
     secrets:
       CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
 
-  logging:
-    name: Publish logging service
+  #
+  # Build all changed packages and publish them to npmjs
+  #
+  packages:
     needs: update-versions
-    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/logging']
-    uses: ./.github/workflows/publish-service.yml
-    with:
-      service_name: '@carbon-platform/logging'
-      service_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/logging'] }}
-    secrets:
-      CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
-
-  web-app:
-    name: Publish web-app service
-    needs: update-versions
-    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/web-app']
-    uses: ./.github/workflows/publish-service.yml
-    with:
-      service_name: '@carbon-platform/web-app'
-      service_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/web-app'] }}
-    secrets:
-      CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}
-
-  mdx-sanitizer:
-    name: Publish MDX Sanitizer package
-    needs: update-versions
-    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/mdx-sanitizer']
     uses: ./.github/workflows/publish-package.yml
     with:
-      package_name: '@carbon-platform/mdx-sanitizer'
-      package_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/mdx-sanitizer'] }}
-    secrets:
-      NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-
-  micromanage-cli:
-    name: Publish micromanage-cli package
-    needs: update-versions
-    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['micromanage-cli']
-    uses: ./.github/workflows/publish-package.yml
-    with:
-      package_name: 'micromanage-cli'
-      package_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['micromanage-cli'] }}
-    secrets:
-      NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-
-  resources:
-    name: Publish @carbon-platform/resources package
-    needs: update-versions
-    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/resources']
-    uses: ./.github/workflows/publish-package.yml
-    with:
-      package_name: '@carbon-platform/resources'
-      package_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/resources'] }}
-    secrets:
-      NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-
-  schemas:
-    name: Publish @carbon-platform/schemas package
-    needs: update-versions
-    if: fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/schemas']
-    uses: ./.github/workflows/publish-package.yml
-    with:
-      package_name: '@carbon-platform/schemas'
-      package_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)['@carbon-platform/schemas'] }}
+      package_name: ${{ matrix.package }}
+      package_tag: ${{ fromJSON(needs.update-versions.outputs.changed_workspaces)[matrix.package] }}
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - '@carbon-platform/mdx-sanitizer'
+          - '@carbon-platform/resources'
+          - '@carbon-platform/schemas'
+          - 'micromanage-cli'
     secrets:
       NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

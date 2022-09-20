@@ -12,7 +12,7 @@ the details of what happens.
    - This includes both public and private workspaces.
    - This accounts for services which depend on other packages.
 3. Pushed version tags result in the running of one or more `publish-package` and/or
-   `publish-version` workflows.
+   `publish-service` workflows.
    - For packages, they are built and published to npmjs (when appropriate).
    - For services, a base docker image is built, followed by a service's docker image. This uses the
      Dockerfile in each workspace's directory. Upon successful build, each service is then pushed to

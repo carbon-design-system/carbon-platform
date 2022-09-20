@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@3.0.0...micromanage-cli@3.1.0) (2022-09-20)
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** add pull arg to docker build command ([a05648e](https://github.com/carbon-design-system/carbon-platform/commit/a05648e0417652d2d6030e09643ebf472ac7a4c4))
+
+
+### Features 🌟
+
+* **micromanage:** add pull option to build command ([3caab44](https://github.com/carbon-design-system/carbon-platform/commit/3caab44223a1f481171a2662633ab534271daf13))
+
 ## [3.0.0](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@2.1.1...micromanage-cli@3.0.0) (2022-09-14)
 
 

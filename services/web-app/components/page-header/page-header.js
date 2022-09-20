@@ -28,7 +28,7 @@ const PageHeader = ({ bgColor, loading, pictogram: Pictogram, title, withTabs })
       <Grid className={styles.grid}>
         <Column className={styles.column} sm={4} md={6} lg={10}>
           <div className={styles.section}>
-            {loading && <SkeletonText heading width="256px" />}
+            {loading && <SkeletonText heading width="256px" className={styles.skeleton} />}
             {!loading && <h1 className={styles.title}>{title}</h1>}
           </div>
         </Column>

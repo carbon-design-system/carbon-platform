@@ -78,3 +78,10 @@
     display: none;
   }
 }
+
+.skeleton {
+  height: spacing.$spacing-07;
+  @include breakpoint.breakpoint(md) {
+    height: spacing.$spacing-09;
+  }
+}

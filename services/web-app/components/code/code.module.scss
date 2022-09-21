@@ -34,6 +34,7 @@
 
 // scoped to div code to override global reset styles
 .code:global(.cds--snippet--multi) {
+  max-width: none;
   margin-top: spacing.$spacing-07;
 
   :global(.cds--snippet-container) {

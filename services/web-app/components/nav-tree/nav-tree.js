@@ -62,12 +62,14 @@ const NavTree = ({ activeItem, items = [], label }) => {
     setTreeActiveitem(activeNode?.path ?? activeItem)
   }, [activeItem, isTreeNodeActive, items])
 
-  const renderTree = (nodes) => {
+  const renderTree = (nodes, parentNodeId = 'left_nav_tree') => {
     if (!nodes) {
       return
     }
 
     return nodes.map((node) => {
+      const nodeId = `${parentNodeId}_${node.title}`.toLocaleLowerCase().replace(/\s/g, '')
+
       if (node.isSection) {
         return (
           <h2 className={clsx(styles['section-heading'], styles['section-group'])} key={node.title}>
@@ -88,12 +90,12 @@ const NavTree = ({ activeItem, items = [], label }) => {
         return (
           <TreeNode
             label={label}
-            id={getItemId(node)}
-            key={node.title}
+            id={nodeId}
+            key={nodeId}
             isExpanded={isTreeNodeExpanded(node)}
             className={clsx({ [styles['section-group']]: node.sectionGroup })}
           >
-            {renderTree(node.items)}
+            {renderTree(node.items, nodeId)}
           </TreeNode>
         )
       }

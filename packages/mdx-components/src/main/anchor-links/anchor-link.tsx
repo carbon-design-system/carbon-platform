@@ -39,4 +39,5 @@ AnchorLink.propTypes = {
   to: PropTypes.string
 }
 
+export { AnchorLinkProps }
 export default AnchorLink

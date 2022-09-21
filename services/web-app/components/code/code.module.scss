@@ -10,6 +10,19 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/motion' as motion;
 
+// override carbon inline code snippet styles
+:global(.cds--snippet--inline) {
+  padding: 0;
+  border: none;
+  background-color: theme.$layer-accent;
+  vertical-align: baseline;
+
+  code {
+    font-size: 0.875rem;
+    letter-spacing: normal;
+  }
+}
+
 .code {
   :global(.cds--popover-content),
   :global(.cds--popover-caret) {

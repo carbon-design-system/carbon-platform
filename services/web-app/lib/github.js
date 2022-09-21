@@ -838,12 +838,15 @@ export const getLibraryData = withTrace(
       return null
     }
 
-    // validate library design kits
-    Object.entries(library.designKits ?? []).forEach(([key, value]) => {
-      if (!validateDesignKit(value, `library ${getSlug(library)}`)) {
-        delete library.designKits[key]
-      }
-    })
+    // skip DK validation if not loading references
+    if (loadReferences) {
+      // validate library design kits
+      Object.entries(library.designKits ?? []).forEach(([key, value]) => {
+        if (!validateDesignKit(value, `library ${getSlug(library)}`)) {
+          delete library.designKits[key]
+        }
+      })
+    }
 
     const assets = await getLibraryAssets(libraryParams)
 

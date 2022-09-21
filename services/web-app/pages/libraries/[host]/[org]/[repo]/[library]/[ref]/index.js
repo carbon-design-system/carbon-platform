@@ -9,7 +9,6 @@ import { ArrowRight, Launch } from '@carbon/react/icons'
 import { Svg32Github, Svg32Library, Svg64Community } from '@carbon-platform/icons'
 import { AnchorLink, AnchorLinks } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
@@ -100,9 +99,9 @@ const Library = ({ libraryData, params, navData }) => {
     .map((item, index) => (
       <>
         {index !== 0 && ', '}
-        <Link href={`/libraries/${item.params.library}`} passHref>
-          <CarbonLink size="lg">{item.content.name}</CarbonLink>
-        </Link>
+        <CarbonLink size="lg" href={`/libraries/${item.params.library}`}>
+          {item.content.name}
+        </CarbonLink>
       </>
     ))
 
@@ -169,9 +168,9 @@ const Library = ({ libraryData, params, navData }) => {
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>Design files</dt>
                       <dd className={dashboardStyles.meta}>
-                        <Link href={designKitPath} passHref>
-                          <CarbonLink size="lg">View compatible kits</CarbonLink>
-                        </Link>
+                        <CarbonLink size="lg" href={designKitPath}>
+                          View compatible kits
+                        </CarbonLink>
                       </dd>
                     </Column>
                   </Grid>

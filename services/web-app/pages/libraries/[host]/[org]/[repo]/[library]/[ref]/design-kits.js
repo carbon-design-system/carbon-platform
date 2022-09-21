@@ -94,10 +94,7 @@ const DesignKits = ({ libraryData, navData }) => {
                     <CarbonLink>design guidance</CarbonLink>
                   </Link>{' '}
                   to get started. You can also view all design kits in the{' '}
-                  <Link href="/design-kits" passHref>
-                    <CarbonLink>catalog</CarbonLink>
-                  </Link>
-                  .
+                  <CarbonLink href="/design-kits">catalog</CarbonLink>.
                 </PageDescription>
                 {filteredDesignTools.length > 2 && (
                   <AnchorLinks>

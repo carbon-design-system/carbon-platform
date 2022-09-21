@@ -9,7 +9,6 @@ import { Button, ButtonSet, Column, Grid, Link as CarbonLink } from '@carbon/rea
 import { ArrowRight, Launch } from '@carbon/react/icons'
 import { Svg32Github } from '@carbon-platform/icons'
 import clsx from 'clsx'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { MDXRemote } from 'next-mdx-remote'
 import PropTypes from 'prop-types'
@@ -49,12 +48,12 @@ const createOtherFrameworkLinks = (otherFrameworks) => {
     .map((frameworks, index) => (
       <>
         {index !== 0 && ', '}
-        <Link
+        <CarbonLink
+          size="lg"
           href={`/libraries/${frameworks.params.library}/${frameworks.params.ref}/assets/${frameworks.params.asset}`}
-          passHref
         >
-          <CarbonLink size="lg">{framework[frameworks.framework]?.name}</CarbonLink>
-        </Link>
+          {framework[frameworks.framework]?.name}
+        </CarbonLink>
       </>
     ))
 }
@@ -71,13 +70,11 @@ const AssetDetails = ({ library, asset }) => {
               <dl>
                 <dt className={dashboardStyles.label}>Library</dt>
                 <dd className={dashboardStyles['label--large']}>
-                  <Link href={library.path} passHref>
-                    <CarbonLink className={dashboardStyles['meta-link--large']}>
-                      {library.name}
-                      <br />
-                      {library.version}
-                    </CarbonLink>
-                  </Link>
+                  <CarbonLink className={dashboardStyles['meta-link--large']} href={library.path}>
+                    {library.name}
+                    <br />
+                    {library.version}
+                  </CarbonLink>
                 </dd>
               </dl>
               {createMaintainerIcon(library.maintainerIcon)}
@@ -125,9 +122,9 @@ const AssetDetails = ({ library, asset }) => {
                 <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                   <dt className={dashboardStyles.label}>Design files</dt>
                   <dd className={dashboardStyles.meta}>
-                    <Link href={library.designKitsPath} passHref>
-                      <CarbonLink size="lg">View compatible kits</CarbonLink>
-                    </Link>
+                    <CarbonLink size="lg" href={library.designKitsPath}>
+                      View compatible kits
+                    </CarbonLink>
                   </dd>
                 </Column>
               </Grid>

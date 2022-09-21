@@ -8,7 +8,6 @@
 import { Theme } from '@carbon/react'
 import { ArrowRight, Download, Email, Error, Launch } from '@carbon/react/icons'
 import clsx from 'clsx'
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 
 import styles from './article-card.module.scss'
@@ -71,11 +70,9 @@ const ArticleCard = (props) => {
     cardContainer = <div className={cardContentClassNames}>{cardContent}</div>
   } else {
     cardContainer = (
-      <Link href={href}>
-        <a href={href} className={cardContentClassNames} {...rest}>
-          {cardContent}
-        </a>
-      </Link>
+      <a href={href} className={cardContentClassNames} {...rest}>
+        {cardContent}
+      </a>
     )
   }
 

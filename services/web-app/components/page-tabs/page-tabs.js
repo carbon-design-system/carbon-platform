@@ -6,7 +6,6 @@
  */
 import { Column, Grid, Tab, TabList, Tabs } from '@carbon/react'
 import clsx from 'clsx'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 
@@ -16,11 +15,9 @@ const createTabs = ({ tabs }) => {
   return tabs.map((tab, i) => {
     return (
       <Tab as="span" key={i}>
-        <Link href={tab.path}>
-          <a href={tab.path} className={styles['tab-link']}>
-            {tab.name}
-          </a>
-        </Link>
+        <a href={tab.path} className={styles['tab-link']}>
+          {tab.name}
+        </a>
       </Tab>
     )
   })

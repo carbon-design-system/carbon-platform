@@ -20,7 +20,6 @@ import {
 import { ArrowRight } from '@carbon/react/icons'
 import { FilingCabinet } from '@carbon-platform/icons'
 import clsx from 'clsx'
-import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect, useState } from 'react'
 
@@ -107,15 +106,14 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
         ),
         tags: <span className={styles['truncated-text']}>{getTagStr(asset?.content?.tags)}</span>,
         link: (
-          <Link
+          <a
+            className={styles['row-anchor']}
             href={`/libraries/${asset.params.library}/${params.ref}/assets/${getSlug(
               asset.content
             )}`}
           >
-            <a className={styles['row-anchor']}>
-              <ArrowRight size={16} className={styles['arrow-icon']} />
-            </a>
-          </Link>
+            <ArrowRight size={16} className={styles['arrow-icon']} />
+          </a>
         )
       }
       if (asset.content.framework === 'design-only') {

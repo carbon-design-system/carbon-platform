@@ -9,52 +9,53 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/motion' as motion;
-/* stylelint-disable declaration-no-important */
 
-// scoped to div code to override global reset styles
-:global(div) code {
-  padding: 0 spacing.$spacing-03;
+// override carbon inline code snippet styles
+:global(.cds--snippet--inline) {
+  padding: 0;
+  border: none;
   background-color: theme.$layer-accent;
-  border-radius: 4px;
-  font-size: 0.875em;
+  vertical-align: baseline;
+
+  code {
+    font-size: 0.875rem;
+    letter-spacing: normal;
+  }
 }
 
 .code {
+  :global(.cds--popover-content),
+  :global(.cds--popover-caret) {
+    // Override carbon tooltip colors
+    background: theme.$layer-accent-01;
+    color: theme.$text-primary;
+  }
+}
+
+// scoped to div code to override global reset styles
+.code:global(.cds--snippet--multi) {
+  max-width: none;
   margin-top: spacing.$spacing-07;
-}
 
-.code code {
-  @include type.type-style('code-02');
+  :global(.cds--snippet-container) {
+    // override carbon snippet container width
+    width: 100%;
 
-  padding: 0;
-  color: theme.$text-primary;
-}
+    // override carbon snippet minimum height
+    /* stylelint-disable-next-line declaration-property-value-disallowed-list, declaration-no-important */
+    min-height: unset !important;
 
-// override carbon code styles
-.code :global(.cds--snippet-container) {
-  width: 100%;
-  // override carbon inline style
-  min-height: 24px !important;
-
-  pre {
-    padding-bottom: 0;
+    pre {
+      // override carbon snippet pre padding
+      padding-bottom: 0;
+      // remove prism-added tabindex border around code blocks
+      outline: none;
+    }
   }
 
   code {
-    background-color: theme.$layer-01;
+    @include type.type-style('code-02');
   }
-}
-
-// override carbon code width to align on grid
-:global(.cds--snippet--multi).code {
-  max-width: none;
-}
-
-// override carbon tooltip colors
-.code :global(.cds--popover-content),
-.code :global(.cds--popover-caret) {
-  background: theme.$layer-accent-01;
-  color: theme.$text-primary;
 }
 
 .path-container {

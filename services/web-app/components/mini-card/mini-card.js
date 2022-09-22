@@ -45,7 +45,7 @@ const MiniCard = ({ children, href, title, actionIcon, className, linkProps, ...
   return (
     <Column md={4} lg={4} sm={4} {...rest}>
       {isLink && (
-        <a to={href} href={href} className={'cds--tile--clickable'} {...linkProps}>
+        <a href={href} className={'cds--tile--clickable'} {...linkProps}>
           {cardContent}
         </a>
       )}

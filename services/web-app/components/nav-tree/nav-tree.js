@@ -36,15 +36,21 @@ const NavTree = ({ activeItem, items = [], label }) => {
       }
     })
 
-    // add id to each item
+    // Create hierarchical, unique node ids for all nodes in the nav tree
     dfs(newItemNodeArray, (evalNode) => {
-      if (!evalNode.parentNodeId) evalNode.parentNodeId = 'left_nav_tree'
-      evalNode.id = `${evalNode.parentNodeId}_${evalNode.title
-        .toLocaleLowerCase()
-        .replace(/\s/g, '')}`
+      if (!evalNode.parentNodeId) {
+        evalNode.parentNodeId = 'left_nav_tree'
+      }
+      
+      // Combine the parent's node id with the current node's id
+      const currentNodeId = evalNode.title.toLocaleLowerCase().replace(/\s/g, '')
+      evalNode.id = `${evalNode.parentNodeId}_${currentNodeId}`
+      
+      // Set the parent node id of each child of this node to the newly generated id
       evalNode.items?.forEach((child) => {
         child.parentNodeId = evalNode.id
       })
+      
       return false
     })
     setItemNodes(newItemNodeArray)

@@ -167,7 +167,8 @@ export const assetsNavData = [
     items: [
       {
         path: '/migrating/guide/overview',
-        title: 'Guide'
+        title: 'Guide',
+        hasTabs: true
       },
       {
         path: '/migrating/faq',

@@ -52,4 +52,5 @@ AnchorLinks.propTypes = {
   small: PropTypes.bool
 }
 
+export { AnchorLinksProps }
 export default AnchorLinks

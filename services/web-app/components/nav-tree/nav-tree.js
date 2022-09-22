@@ -41,16 +41,16 @@ const NavTree = ({ activeItem, items = [], label }) => {
       if (!evalNode.parentNodeId) {
         evalNode.parentNodeId = 'left_nav_tree'
       }
-      
+
       // Combine the parent's node id with the current node's id
       const currentNodeId = evalNode.title.toLocaleLowerCase().replace(/\s/g, '')
       evalNode.id = `${evalNode.parentNodeId}_${currentNodeId}`
-      
+
       // Set the parent node id of each child of this node to the newly generated id
       evalNode.items?.forEach((child) => {
         child.parentNodeId = evalNode.id
       })
-      
+
       return false
     })
     setItemNodes(newItemNodeArray)

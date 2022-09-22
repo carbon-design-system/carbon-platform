@@ -26,7 +26,10 @@
     border-top: 1px solid theme.$border-subtle;
   }
 
-  :global([class*='cds--lg:col-span-4']:first-child) .resource-card,
+  :global([class*='cds--lg:col-span-4']:first-child) .resource-card {
+    border-top: 0 solid transparent;
+  }
+
   :global([class*='cds--lg:col-span-4']:nth-child(2)) .resource-card {
     @include breakpoint.breakpoint('md') {
       border-top: 0 solid transparent;

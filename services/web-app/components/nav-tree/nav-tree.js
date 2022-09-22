@@ -48,8 +48,6 @@ const NavTree = ({ activeItem, items = [], label }) => {
       return false
     })
     setItemNodes(newItemNodeArray)
-
-    console.log(newItemNodeArray)
   }, [items])
 
   const getItemId = (item) => {

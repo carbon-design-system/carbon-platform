@@ -38,4 +38,5 @@ ColorBlock.propTypes = {
   children: Proptypes.string.isRequired
 }
 
+export { ColorBlockProps }
 export default ColorBlock

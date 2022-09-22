@@ -1,0 +1,166 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use '@carbon/react/scss/colors' as colors;
+@use '@carbon/react/scss/theme' as theme;
+
+/* Set the main properties of the code, code blocks, and inline code */
+code[class*='language-'],
+pre[class*='language-'] {
+  background: none;
+  color: colors.$white;
+}
+
+/* What the code looks like when highlighted */
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection,
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection,
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection {
+  background: #ffffff66;
+}
+
+/**
+ * Main highlighting tokens
+ */
+
+.token.comment {
+  color: theme.$text-secondary;
+}
+
+.token.prolog {
+  color: theme.$text-secondary;
+}
+
+.token.cdata {
+  color: theme.$text-secondary;
+}
+
+.token.doctype {
+  color: theme.$text-secondary;
+}
+
+.token.punctuation {
+  color: theme.$text-secondary;
+}
+
+.token.entity {
+  color: colors.$purple-40;
+  cursor: help;
+}
+
+.token.attr-name {
+  color: colors.$teal-20;
+}
+
+.token.class-name {
+  color: colors.$blue-40;
+}
+
+.token.boolean {
+  color: colors.$purple-40;
+}
+
+.token.constant {
+  color: theme.$text-primary;
+}
+
+.token.number {
+  color: theme.$text-primary;
+}
+
+.token.atrule {
+  color: colors.$purple-40;
+}
+
+.token.keyword {
+  color: colors.$purple-40;
+}
+
+.token.property {
+  color: colors.$teal-20;
+}
+
+.token.tag {
+  color: colors.$blue-40;
+}
+
+.token.symbol {
+  color: theme.$text-primary;
+}
+
+.token.deleted {
+  text-decoration-line: line-through;
+}
+
+.token.important {
+  color: colors.$blue-40;
+  font-weight: bold;
+}
+
+.token.selector {
+  color: colors.$purple-40;
+}
+
+.token.string {
+  color: colors.$magenta-40;
+}
+
+.token.char {
+  color: theme.$text-primary;
+}
+
+.token.builtin {
+  color: theme.$text-primary;
+}
+
+.token.inserted {
+  border-bottom: 1px dotted #c22dd5;
+}
+
+.token.regex {
+  color: colors.$purple-40;
+}
+
+.token.attr-value {
+  color: colors.$purple-40;
+}
+
+.token.variable {
+  color: theme.$text-primary;
+}
+
+.token.operator {
+  color: colors.$blue-40;
+}
+
+.token.function {
+  color: colors.$teal-20;
+}
+
+.token.url {
+  color: colors.$purple-40;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+/* Example language-specific override */
+// .language-css .token.important {
+//   color: unset;
+// }

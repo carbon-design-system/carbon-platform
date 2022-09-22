@@ -35,7 +35,21 @@ const NavTree = ({ activeItem, items = [], label }) => {
         }
       }
     })
+
+    // add id to each item
+    dfs(newItemNodeArray, (evalNode) => {
+      if (!evalNode.parentNodeId) evalNode.parentNodeId = 'left_nav_tree'
+      evalNode.id = `${evalNode.parentNodeId}_${evalNode.title
+        .toLocaleLowerCase()
+        .replace(/\s/g, '')}`
+      evalNode.items?.forEach((child) => {
+        child.parentNodeId = evalNode.id
+      })
+      return false
+    })
     setItemNodes(newItemNodeArray)
+
+    console.log(newItemNodeArray)
   }, [items])
 
   const getItemId = (item) => {
@@ -58,18 +72,16 @@ const NavTree = ({ activeItem, items = [], label }) => {
   }
 
   useEffect(() => {
-    const activeNode = dfs(items, isTreeNodeActive)
-    setTreeActiveitem(activeNode?.path ?? activeItem)
-  }, [activeItem, isTreeNodeActive, items])
+    const activeNode = dfs(itemNodes, isTreeNodeActive)
+    setTreeActiveitem(activeNode?.id ?? activeItem)
+  }, [activeItem, isTreeNodeActive, itemNodes])
 
-  const renderTree = (nodes, parentNodeId = 'left_nav_tree') => {
+  const renderTree = (nodes) => {
     if (!nodes) {
       return
     }
 
     return nodes.map((node) => {
-      const nodeId = `${parentNodeId}_${node.title}`.toLocaleLowerCase().replace(/\s/g, '')
-
       if (node.isSection) {
         return (
           <h2 className={clsx(styles['section-heading'], styles['section-group'])} key={node.title}>
@@ -90,12 +102,12 @@ const NavTree = ({ activeItem, items = [], label }) => {
         return (
           <TreeNode
             label={label}
-            id={nodeId}
-            key={nodeId}
+            id={node.id}
+            key={node.id}
             isExpanded={isTreeNodeExpanded(node)}
             className={clsx({ [styles['section-group']]: node.sectionGroup })}
           >
-            {renderTree(node.items, nodeId)}
+            {renderTree(node.items)}
           </TreeNode>
         )
       }

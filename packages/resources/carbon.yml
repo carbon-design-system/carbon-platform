@@ -358,7 +358,7 @@ designKits:
     status:
       key: draft
       note: In beta.
-    url:  https://www.figma.com/file/RB6yqMPPsGutYnGTSvwGR4/Carbon-for-IBM.com-(White-Theme)-Beta?node-id=475%3A372
+    url: https://www.figma.com/file/RB6yqMPPsGutYnGTSvwGR4/Carbon-for-IBM.com-(White-Theme)-Beta?node-id=475%3A372
     action: link
   ibm-dotcom-g10-figma:
     name: IBM.com Figma gray 10 theme

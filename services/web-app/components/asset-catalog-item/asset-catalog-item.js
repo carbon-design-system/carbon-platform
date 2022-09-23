@@ -6,7 +6,6 @@
  */
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 
@@ -153,65 +152,61 @@ const AssetCatalogItem = ({ asset, showImage, isGrid = false, otherFrameworkCoun
 
   const renderGrid = () => (
     <Column as="li" md={4}>
-      <Link href={anchorHref}>
-        <a className={anchorStyles}>
-          {showImage && (
-            <AspectRatio ratio="3x2">
-              <AssetCatalogItemImage asset={asset} />
-            </AspectRatio>
-          )}
-          <AspectRatio ratio="16x9">
-            <AssetCatalogItemContent
-              asset={asset}
-              otherFrameworkCount={otherFrameworkCount}
-              isGrid={isGrid}
-            />
+      <a className={anchorStyles} href={anchorHref}>
+        {showImage && (
+          <AspectRatio ratio="3x2">
+            <AssetCatalogItemImage asset={asset} />
           </AspectRatio>
-        </a>
-      </Link>
+        )}
+        <AspectRatio ratio="16x9">
+          <AssetCatalogItemContent
+            asset={asset}
+            otherFrameworkCount={otherFrameworkCount}
+            isGrid={isGrid}
+          />
+        </AspectRatio>
+      </a>
     </Column>
   )
 
   const renderList = () => (
     <Column as="li" sm={4} md={8} lg={12}>
-      <Link href={anchorHref}>
-        <a className={anchorStyles}>
-          <Grid narrow>
-            {showImage && (
-              <Column className={clsx(styles.column, styles['column--image'])} md={4}>
-                <AspectRatio ratio={imageAspectRatio()}>
-                  <AssetCatalogItemImage asset={asset} />
-                </AspectRatio>
-              </Column>
-            )}
-            <Column
-              className={clsx(styles.column, styles['column--content'])}
-              sm={4}
-              md={showImage ? 4 : 8}
-              lg={showImage ? 8 : 12}
-            >
-              {!isMd && (
-                <AspectRatio ratio="3x2">
-                  <AssetCatalogItemContent
-                    asset={asset}
-                    otherFrameworkCount={otherFrameworkCount}
-                    isGrid={isGrid}
-                    showImage={showImage}
-                  />
-                </AspectRatio>
-              )}
-              {isMd && (
+      <a className={anchorStyles} href={anchorHref}>
+        <Grid narrow>
+          {showImage && (
+            <Column className={clsx(styles.column, styles['column--image'])} md={4}>
+              <AspectRatio ratio={imageAspectRatio()}>
+                <AssetCatalogItemImage asset={asset} />
+              </AspectRatio>
+            </Column>
+          )}
+          <Column
+            className={clsx(styles.column, styles['column--content'])}
+            sm={4}
+            md={showImage ? 4 : 8}
+            lg={showImage ? 8 : 12}
+          >
+            {!isMd && (
+              <AspectRatio ratio="3x2">
                 <AssetCatalogItemContent
                   asset={asset}
                   otherFrameworkCount={otherFrameworkCount}
                   isGrid={isGrid}
                   showImage={showImage}
                 />
-              )}
-            </Column>
-          </Grid>
-        </a>
-      </Link>
+              </AspectRatio>
+            )}
+            {isMd && (
+              <AssetCatalogItemContent
+                asset={asset}
+                otherFrameworkCount={otherFrameworkCount}
+                isGrid={isGrid}
+                showImage={showImage}
+              />
+            )}
+          </Column>
+        </Grid>
+      </a>
     </Column>
   )
 

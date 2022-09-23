@@ -24,7 +24,6 @@ import BackToTop from '@/components/back-to-top'
 import Footer from '@/components/footer'
 import NavPrimary from '@/components/nav-primary'
 import NavSecondary from '@/components/nav-secondary'
-import NextLink from '@/components/next-link'
 import { globalNavData } from '@/data/nav-data'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
@@ -195,7 +194,7 @@ const Layout = ({ children }) => {
                               key={data.title}
                               isCurrentPage={router.pathname.startsWith(data.path)}
                               href={data.path}
-                              element={NextLink}
+                              element={HTMLAnchorElement}
                             >
                               {data.title}
                             </HeaderMenuItem>

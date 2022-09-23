@@ -35,9 +35,9 @@ const PageTable = (props) => {
   }
 
   return (
-    <Grid condensed>
+    <Grid condensed className={styles.container}>
       <Column sm={4} md={md} lg={lg}>
-        <div className={styles.container}>
+        <div>
           <table className={styles['page-table']}>{children}</table>
         </div>
       </Column>

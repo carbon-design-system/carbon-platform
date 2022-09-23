@@ -9,7 +9,7 @@ designKits:
     type: ui
     status: stable
     url: sketch://add-library/cloud/557b75ff-67d3-41ab-ada5-fa25447218c1
-    action: link
+    action: download
   carbon-g10-sketch:
     name: Sketch gray 10 theme
     description:
@@ -19,7 +19,7 @@ designKits:
     type: ui
     status: stable
     url: sketch://add-library/cloud/b4ea2a21-4b1a-4c64-99dc-a1365eff5d5f
-    action: link
+    action: download
   carbon-g90-sketch:
     name: Sketch gray 90 theme
     description:
@@ -29,7 +29,7 @@ designKits:
     type: ui
     status: stable
     url: sketch://add-library/cloud/a324c6dd-df97-435e-b79f-3a29e04922fc
-    action: link
+    action: download
   carbon-g100-sketch:
     name: Sketch gray 100 theme
     description:
@@ -39,7 +39,7 @@ designKits:
     type: ui
     status: stable
     url: sketch://add-library/cloud/9d47a4fd-70dd-44ff-bc57-22c79da8e477
-    action: link
+    action: download
   ibm-design-language-sketch:
     name: IBM Design Language
     description:
@@ -49,7 +49,7 @@ designKits:
     type: elements
     status: stable
     url: sketch://add-library/cloud/4f1cbe6c-6626-405e-8c46-a9ae41a30cba
-    action: link
+    action: download
   ibm-icons-16-20-sketch:
     name: IBM Icons (16px, 20px)
     description:
@@ -59,7 +59,7 @@ designKits:
     type: elements
     status: stable
     url: sketch://add-library/cloud/028e0598-591e-428c-a490-f6ec64b15ea7
-    action: link
+    action: download
   ibm-icons-24-32-sketch:
     name: IBM Icons (24px, 32px)
     description:
@@ -69,7 +69,7 @@ designKits:
     type: elements
     status: stable
     url: sketch://add-library/cloud/d530998a-c94c-4f1c-bc0e-c05417e067e3
-    action: link
+    action: download
   ibm-grid-sketch:
     name: IBM Grid template
     description:
@@ -338,7 +338,7 @@ designKits:
     type: wireframes
     status: stable
     url: sketch://add-library/cloud/e888aa99-4d88-46a4-9b33-3a033e7f5ca2
-    action: link
+    action: download
   carbon-wireframe-invision-freehand:
     name: Invision Freehand wireframe kit
     description: Quickly create and test low fidelity wireframes in InVision Freehand.

@@ -27,6 +27,7 @@ import Divider from '@/components/divider'
 import { FeatureCard } from '@/components/feature-card/feature-card'
 import Hero from '@/components/hero'
 import { H2, P } from '@/components/markdown'
+import markdownStyles from '@/components/markdown/markdown.module.scss'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
@@ -237,7 +238,7 @@ const PageContent = () => {
       <Divider>
         <Grid>
           <Column sm={4} md={4} lg={4}>
-            <h2>
+            <h2 className={markdownStyles.h2}>
               Better
               <br />
               discoverability
@@ -255,7 +256,7 @@ const PageContent = () => {
       <Divider>
         <Grid>
           <Column sm={4} md={4} lg={4}>
-            <h2>
+            <h2 className={markdownStyles.h2}>
               Easier
               <br />
               management

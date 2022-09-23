@@ -12,11 +12,6 @@
 @use '@carbon/react/scss/colors' as colors;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
-// MAIN CONTAINER
-.color-palette-wrapper {
-  margin-top: spacing.$spacing-06;
-}
-
 //needed to override global spacing on columns
 .color-palette-wrapper * {
   margin-top: 0;

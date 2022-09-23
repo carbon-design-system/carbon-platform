@@ -14,6 +14,7 @@ import PageBreadcrumb from '@/components/page-breadcrumb/page-breadcrumb'
 import PageHeader from '@/components/page-header/page-header'
 import PageNav from '@/components/page-nav'
 import PageTabs from '@/components/page-tabs'
+import WithLoading from '@/components/with-loading'
 import { assetTypes } from '@/data/asset-types'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout/layout'
@@ -159,8 +160,8 @@ export const getStaticProps = async ({ params }) => {
 export const getStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: true
   }
 }
 
-export default AssetTabPage
+export default WithLoading(AssetTabPage)

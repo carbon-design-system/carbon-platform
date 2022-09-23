@@ -8,7 +8,6 @@
 import { Button, SideNav } from '@carbon/react'
 import { ArrowLeft } from '@carbon/react/icons'
 import clsx from 'clsx'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 
@@ -55,23 +54,22 @@ const NavSecondary = ({ className, visible, onSlidePrimary }) => {
         {back?.title ?? 'Back'}
       </Button>
       {headings && (
-        <Link href={path ?? '/'}>
-          <a
-            className={clsx(
-              styles.heading,
-              router.pathname === '/libraries/[host]/[org]/[repo]/[library]/[ref]' &&
-                styles['heading--active']
-            )}
-          >
-            <h2>
-              {headings.map((heading, i) => (
-                <span className={styles['heading-item']} key={i}>
-                  {heading}
-                </span>
-              ))}
-            </h2>
-          </a>
-        </Link>
+        <a
+          className={clsx(
+            styles.heading,
+            router.pathname === '/libraries/[host]/[org]/[repo]/[library]/[ref]' &&
+              styles['heading--active']
+          )}
+          href={path ?? '/'}
+        >
+          <h2>
+            {headings.map((heading, i) => (
+              <span className={styles['heading-item']} key={i}>
+                {heading}
+              </span>
+            ))}
+          </h2>
+        </a>
       )}
       {items && <NavTree items={items} label="Secondary navigation" activeItem={router.asPath} />}
     </SideNav>

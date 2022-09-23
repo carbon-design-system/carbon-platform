@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.45](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.44...@carbon-platform/web-app@0.2.45) (2022-09-23)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** active nav state for migrating section ([b754353](https://github.com/carbon-design-system/carbon-platform/commit/b754353652179966c1734388f7895704007ce4c7)), closes [#1288](https://github.com/carbon-design-system/carbon-platform/issues/1288)
+* **web-app:** add markdown to prism langs ([bbce993](https://github.com/carbon-design-system/carbon-platform/commit/bbce99352e361aca9aa36e21a4588d96db2b7e42))
+* **web-app:** filter text font size ([ad15f23](https://github.com/carbon-design-system/carbon-platform/commit/ad15f235245890cdcdc0379dfe0e39156608ba8d)), closes [#1294](https://github.com/carbon-design-system/carbon-platform/issues/1294)
+* **web-app:** fix code snippet styling ([4123b7f](https://github.com/carbon-design-system/carbon-platform/commit/4123b7f769aeecf4d6a4a473ba651aa4447e32ca))
+* **web-app:** fix regression of tablet code snippet max width ([f218383](https://github.com/carbon-design-system/carbon-platform/commit/f21838307f445d0af082e4b61220de82d2880738))
+* **web-app:** gracefully handle prismjs crashes ([1584a6a](https://github.com/carbon-design-system/carbon-platform/commit/1584a6a9dcefc8c6143dc0ea2c05dbb5e5f74e0e))
+* **web-app:** linter ([2915f59](https://github.com/carbon-design-system/carbon-platform/commit/2915f59cc44bd64bd15447145af018a84ced643f))
+* **web-app:** move prismjs files to vendor folder ([d4f49df](https://github.com/carbon-design-system/carbon-platform/commit/d4f49df9fe5ee5b2f49a97bb1058ba88c5f547e2))
+* **web-app:** refine nodeId logic in nav-tree ([a0e679a](https://github.com/carbon-design-system/carbon-platform/commit/a0e679adceaf1a9aef9f737447e6fad0b740a502))
+* **web-app:** remove border-top resource card on mobile ([33cb91c](https://github.com/carbon-design-system/carbon-platform/commit/33cb91c972e5e4df7856d8569b7d31b78ec12aeb)), closes [#1297](https://github.com/carbon-design-system/carbon-platform/issues/1297)
+* **web-app:** remove console.log ([0fbc386](https://github.com/carbon-design-system/carbon-platform/commit/0fbc386a51d52692dda69ba7a6a0057992ca486a))
+* **web-app:** set unique id for treeview nodes ([20ad9ba](https://github.com/carbon-design-system/carbon-platform/commit/20ad9ba5fb9e36b51594e28ad624d6cbc1ba0ee8)), closes [#1285](https://github.com/carbon-design-system/carbon-platform/issues/1285)
+* **web-app:** table span 8 col at tablet ([b2cc603](https://github.com/carbon-design-system/carbon-platform/commit/b2cc603ef9855fd1e071223b8a1b34fbcb9e3bf3)), closes [#1308](https://github.com/carbon-design-system/carbon-platform/issues/1308)
+* **web-app:** update design kit catalog icon ([7799645](https://github.com/carbon-design-system/carbon-platform/commit/77996458150e26d0ade226a91a2b3770ec5ea96d)), closes [#1277](https://github.com/carbon-design-system/carbon-platform/issues/1277)
+* **web-app:** use inline code snippet in mdx pages ([5a92f56](https://github.com/carbon-design-system/carbon-platform/commit/5a92f560e23682436f93e58b264c160b6f1753ff))
+
 ### [0.2.44](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.43...@carbon-platform/web-app@0.2.44) (2022-09-14)
 
 

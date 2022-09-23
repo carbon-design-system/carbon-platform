@@ -9,7 +9,7 @@
 // ensure no thrashing occurred between the linters/formatters
 
 module.exports = {
-  '**/*.(js|jsx|ts|tsx)': [
+  '**/*.(js|cjs|mjs|jsx|ts|tsx)': [
     'prettier --write',
     'eslint --fix',
     'prettier --check',

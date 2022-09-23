@@ -35,6 +35,24 @@ const NavTree = ({ activeItem, items = [], label }) => {
         }
       }
     })
+
+    // Create hierarchical, unique node ids for all nodes in the nav tree
+    dfs(newItemNodeArray, (evalNode) => {
+      if (!evalNode.parentNodeId) {
+        evalNode.parentNodeId = 'left_nav_tree'
+      }
+
+      // Combine the parent's node id with the current node's id
+      const currentNodeId = evalNode.title.toLocaleLowerCase().replace(/\s/g, '')
+      evalNode.id = `${evalNode.parentNodeId}_${currentNodeId}`
+
+      // Set the parent node id of each child of this node to the newly generated id
+      evalNode.items?.forEach((child) => {
+        child.parentNodeId = evalNode.id
+      })
+
+      return false
+    })
     setItemNodes(newItemNodeArray)
   }, [items])
 
@@ -58,9 +76,9 @@ const NavTree = ({ activeItem, items = [], label }) => {
   }
 
   useEffect(() => {
-    const activeNode = dfs(items, isTreeNodeActive)
-    setTreeActiveitem(activeNode?.path ?? activeItem)
-  }, [activeItem, isTreeNodeActive, items])
+    const activeNode = dfs(itemNodes, isTreeNodeActive)
+    setTreeActiveitem(activeNode?.id ?? activeItem)
+  }, [activeItem, isTreeNodeActive, itemNodes])
 
   const renderTree = (nodes) => {
     if (!nodes) {
@@ -88,8 +106,8 @@ const NavTree = ({ activeItem, items = [], label }) => {
         return (
           <TreeNode
             label={label}
-            id={getItemId(node)}
-            key={node.title}
+            id={node.id}
+            key={node.id}
             isExpanded={isTreeNodeExpanded(node)}
             className={clsx({ [styles['section-group']]: node.sectionGroup })}
           >

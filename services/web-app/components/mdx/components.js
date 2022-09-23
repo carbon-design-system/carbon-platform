@@ -63,6 +63,9 @@ const components = {
   img: Image,
   table: PageTable,
   pre: Code,
+  code: ({ children }) => (
+    <mdxComponents.CodeSnippet type="inline">{children}</mdxComponents.CodeSnippet>
+  ),
   InlineError,
   FullPageError,
   /* Gatsby theme components */

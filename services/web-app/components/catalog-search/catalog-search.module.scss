@@ -44,12 +44,11 @@
 }
 
 .column-search {
-  @include breakpoint.breakpoint(lg) {
-    // override carbon so we can have narrow grid but 1px gutter between columns (condensed)
-    margin-right: convert.rem(1px);
-  }
+  border-right: 1px solid theme.$border-subtle;
+  margin-right: 0;
   @include breakpoint.breakpoint-down(md) {
     display: flex;
+    border-right: none;
   }
 }
 

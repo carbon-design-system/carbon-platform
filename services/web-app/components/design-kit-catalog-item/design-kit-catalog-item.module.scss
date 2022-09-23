@@ -55,7 +55,8 @@
     background: theme.$layer-hover;
   }
 
-  &:active {
+  &:active,
+  &:focus {
     outline: 2px solid theme.$focus;
     outline-offset: -2px;
   }

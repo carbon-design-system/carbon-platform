@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import clsx from 'clsx'
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 
 import styles from './page-breadcrumb.module.scss'
@@ -17,9 +16,9 @@ const PageBreadcrumb = ({ className, items = [] }) => {
         {items.map((item, i) => (
           <li className={styles.item} key={i}>
             {item.path && (
-              <Link href={item.path}>
-                <a className={clsx(styles.text, styles.link)}>{item.name}</a>
-              </Link>
+              <a href={item.path} className={clsx(styles.text, styles.link)}>
+                {item.name}
+              </a>
             )}
             {!item.path && <span className={styles.text}>{item.name}</span>}
           </li>

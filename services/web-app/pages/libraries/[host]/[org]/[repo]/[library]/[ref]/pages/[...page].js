@@ -11,6 +11,7 @@ import { useContext, useEffect } from 'react'
 import slugify from 'slugify'
 
 import MdxPage from '@/components/mdx-page/mdx-page'
+import WithLoading from '@/components/with-loading/with-loading'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout/layout'
 import { getLibraryData, getLibraryNavData, getRemoteMdxSource } from '@/lib/github'
@@ -122,8 +123,8 @@ export const getStaticProps = async ({ params }) => {
 export const getStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: true
   }
 }
 
-export default LibraryPage
+export default WithLoading(LibraryPage)

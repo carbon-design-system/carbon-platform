@@ -7,18 +7,17 @@
 
 import { Column, Grid } from '@carbon/react'
 import { Svg64Community } from '@carbon-platform/icons'
-import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import path from 'path'
 import PropTypes from 'prop-types'
 import { useContext, useEffect, useRef, useState } from 'react'
 
 import AssetDetails from '@/components/asset-details/asset-details'
-import { H1 } from '@/components/markdown'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import PageNav from '@/components/page-nav'
 import PageTabs from '@/components/page-tabs'
+import WithLoading from '@/components/with-loading'
 import { assetTypes } from '@/data/asset-types'
 import { framework } from '@/data/framework'
 import { assetsNavData } from '@/data/nav-data'
@@ -26,7 +25,6 @@ import { status } from '@/data/status'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
 import { getAssetIssueCount, getAssetRelatedFrameworks, getLibraryData } from '@/lib/github'
-import pageStyles from '@/pages/pages.module.scss'
 import { libraryPropTypes, paramsPropTypes } from '@/types'
 import { getProcessedMdxSource } from '@/utils/mdx'
 import { getAssetTabs, getAssetType } from '@/utils/schema'
@@ -41,19 +39,8 @@ const frameworkNameToIconMap = {
   'react-native': 'react'
 }
 
-const Fallback = () => (
-  <Grid>
-    <Column sm={4} md={8} lg={16}>
-      <div className={pageStyles.content}>
-        <H1>Loading...</H1>
-      </div>
-    </Column>
-  </Grid>
-)
-
 const Asset = ({ libraryData, overviewMdxSource, params }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
-  const router = useRouter()
   const contentRef = useRef(null)
   const [pageNavItems, setPageNavItems] = useState([
     {
@@ -88,10 +75,6 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
     navItems.push(...headers)
     setPageNavItems(navItems)
   }, [libraryData?.assets])
-
-  if (router.isFallback) {
-    return <Fallback />
-  }
 
   const [assetData] = libraryData.assets
   const { name, description } = assetData.content
@@ -251,8 +234,8 @@ export const getStaticProps = async ({ params }) => {
 export const getStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: true
   }
 }
 
-export default Asset
+export default WithLoading(Asset)

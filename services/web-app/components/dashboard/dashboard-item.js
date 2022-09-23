@@ -8,7 +8,6 @@
 import { AspectRatio } from '@carbon/react'
 import clsx from 'clsx'
 import isEmpty from 'lodash/isEmpty'
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
@@ -50,9 +49,9 @@ export const DashboardItem = ({
 
   if (href) {
     return (
-      <Link href={href}>
-        <a className={styles.anchor}>{renderElement()}</a>
-      </Link>
+      <a className={styles.anchor} href={href}>
+        {renderElement()}
+      </a>
     )
   }
 

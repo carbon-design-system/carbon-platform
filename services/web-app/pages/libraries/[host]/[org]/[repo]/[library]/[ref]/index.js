@@ -9,7 +9,6 @@ import { ArrowRight, Launch } from '@carbon/react/icons'
 import { Svg32Github, Svg32Library, Svg64Community } from '@carbon-platform/icons'
 import { AnchorLink, AnchorLinks } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
@@ -18,11 +17,12 @@ import CardGroup from '@/components/card-group'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import DemoLinks from '@/components/demo-links'
-import { H1, H2 } from '@/components/markdown'
+import { H2 } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import PageDescription from '@/components/page-description'
 import PageHeader from '@/components/page-header'
 import ResourceCard from '@/components/resource-card'
+import WithLoading from '@/components/with-loading'
 import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
 import { teams } from '@/data/teams'
@@ -33,7 +33,6 @@ import {
   getLibraryParams,
   getLibraryRelatedLibs
 } from '@/lib/github'
-import pageStyles from '@/pages/pages.module.scss'
 import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from '@/types'
 import { getAssetLicense } from '@/utils/schema'
 
@@ -48,18 +47,6 @@ const Library = ({ libraryData, params, navData }) => {
     setPrimaryNavData(assetsNavData)
     setSecondaryNavData(navData)
   }, [setPrimaryNavData, navData, setSecondaryNavData])
-
-  if (router.isFallback) {
-    return (
-      <Grid>
-        <Column sm={4} md={8} lg={16}>
-          <div className={pageStyles.content}>
-            <H1>Loading...</H1>
-          </div>
-        </Column>
-      </Grid>
-    )
-  }
 
   const { name, description } = libraryData.content
 
@@ -112,9 +99,9 @@ const Library = ({ libraryData, params, navData }) => {
     .map((item, index) => (
       <>
         {index !== 0 && ', '}
-        <Link href={`/libraries/${item.params.library}`} passHref>
-          <CarbonLink size="lg">{item.content.name}</CarbonLink>
-        </Link>
+        <CarbonLink size="lg" href={`/libraries/${item.params.library}`}>
+          {item.content.name}
+        </CarbonLink>
       </>
     ))
 
@@ -181,9 +168,9 @@ const Library = ({ libraryData, params, navData }) => {
                     <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                       <dt className={dashboardStyles.label}>Design files</dt>
                       <dd className={dashboardStyles.meta}>
-                        <Link href={designKitPath} passHref>
-                          <CarbonLink size="lg">View compatible kits</CarbonLink>
-                        </Link>
+                        <CarbonLink size="lg" href={designKitPath}>
+                          View compatible kits
+                        </CarbonLink>
                       </dd>
                     </Column>
                   </Grid>
@@ -298,8 +285,8 @@ export const getStaticProps = async ({ params }) => {
 export const getStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: true
   }
 }
 
-export default Library
+export default WithLoading(Library)

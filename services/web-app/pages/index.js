@@ -196,9 +196,9 @@ const PageContent = () => {
       <H2>Try featured libraries</H2>
       <P>
         Libraries are the means to contribute, install, and use one or many assets. Explore the{' '}
-        <Link href="/libraries" passHref>
-          <CarbonLink size="lg">library catalog</CarbonLink>
-        </Link>{' '}
+        <CarbonLink size="lg" href="/libraries">
+          library catalog
+        </CarbonLink>{' '}
         for all options.
       </P>
 

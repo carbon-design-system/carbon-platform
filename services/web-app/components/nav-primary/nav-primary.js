@@ -11,7 +11,6 @@ import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import { useContext } from 'react'
 
-import NextLink from '@/components/next-link'
 import { LayoutContext } from '@/layouts/layout'
 
 import NavTree from '../nav-tree'
@@ -37,7 +36,7 @@ const NavPrimary = ({ className, globalItems }) => {
               if (data.path) {
                 return (
                   <SideNavLink
-                    element={NextLink}
+                    element={HTMLAnchorElement}
                     href={data.path}
                     key={i}
                     tabIndex={isSecondaryNav ? '-1' : 0}

@@ -6,7 +6,6 @@
  */
 import { TreeNode, TreeView } from '@carbon/react'
 import clsx from 'clsx'
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 import slugify from 'slugify'
@@ -95,9 +94,9 @@ const NavTree = ({ activeItem, items = [], label }) => {
       } else {
         if (node.path) {
           label = (
-            <Link href={node.path}>
-              <a className={styles.anchor}>{node.title}</a>
-            </Link>
+            <a href={node.path} className={styles.anchor}>
+              {node.title}
+            </a>
           )
         } else {
           label = node.title

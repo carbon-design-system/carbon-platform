@@ -8,7 +8,6 @@
 import { AspectRatio, Theme } from '@carbon/react'
 import { ArrowRight, Calendar, Download, Email, Error, Launch } from '@carbon/react/icons'
 import clsx from 'clsx'
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
@@ -83,11 +82,9 @@ const ResourceCard = (props) => {
     cardContainer = <div className={carbonTileclassNames}>{cardContent}</div>
   } else {
     cardContainer = (
-      <Link href={href}>
-        <a className={carbonTileclassNames} {...rest}>
-          {cardContent}
-        </a>
-      </Link>
+      <a href={href} className={carbonTileclassNames} {...rest}>
+        {cardContent}
+      </a>
     )
   }
 

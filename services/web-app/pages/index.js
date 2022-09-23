@@ -196,7 +196,7 @@ const PageContent = () => {
       <H2>Try featured libraries</H2>
       <P>
         Libraries are the means to contribute, install, and use one or many assets. Explore the{' '}
-        <CarbonLink size="lg" href="/library">
+        <CarbonLink size="lg" href="/libraries">
           library catalog
         </CarbonLink>{' '}
         for all options.
@@ -282,7 +282,7 @@ const PageContent = () => {
         <CarbonLink
           size="lg"
           className={styles.link}
-          href="https://github.com/carbon-design-system/carbon-platform/blob/main/docs/resource-schemas.md#resource-schemas"
+          href="/contributing/schema"
           renderIcon={ArrowRight}
         >
           Get started

@@ -6,7 +6,7 @@
  */
 
 import { Column, Grid, Link as CarbonLink, Tag } from '@carbon/react'
-import { RulerAlt } from '@carbon/react/icons'
+import { ToolsAlt } from '@carbon/react/icons'
 import { AnchorLink, AnchorLinks } from '@carbon-platform/mdx-components'
 import groupBy from 'lodash/groupBy'
 import Link from 'next/link'
@@ -69,7 +69,7 @@ const DesignKits = ({ libraryData, navData }) => {
         <CardGroup>
           <Column sm={4} md={4} lg={4}>
             <ResourceCard subTitle="Design kit catalog" href="/design-kits">
-              <RulerAlt size={32} />
+              <ToolsAlt size={32} />
             </ResourceCard>
           </Column>
         </CardGroup>

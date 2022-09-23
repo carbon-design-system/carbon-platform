@@ -35,6 +35,10 @@ $breadcrumb-container-width: convert.rem(256px);
   @include mixins.line-clamp(2);
 }
 
+.link {
+  display: inline;
+}
+
 .item {
   position: relative;
   color: theme.$text-primary;

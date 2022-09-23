@@ -18,7 +18,7 @@ const PageBreadcrumb = ({ className, items = [] }) => {
           <li className={styles.item} key={i}>
             {item.path && (
               <Link href={item.path}>
-                <a className={styles.text}>{item.name}</a>
+                <a className={clsx(styles.text, styles.link)}>{item.name}</a>
               </Link>
             )}
             {!item.path && <span className={styles.text}>{item.name}</span>}

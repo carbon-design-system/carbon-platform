@@ -27,16 +27,9 @@ const PageTable = (props) => {
     lg = 8
   }
 
-  let md = ''
-  if (gridSize > 3) {
-    md = 8
-  } else {
-    md = 6
-  }
-
   return (
     <Grid condensed>
-      <Column sm={4} md={md} lg={lg}>
+      <Column sm={4} md={8} lg={lg}>
         <div className={styles.container}>
           <table className={styles['page-table']}>{children}</table>
         </div>

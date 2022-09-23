@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { CodeSnippet, Column, Grid, Theme } from '@carbon/react'
-import Highlight, { defaultProps } from 'prism-react-renderer'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
+import { useEffect } from 'react'
 
-import carbonTheme from './carbon-theme.js'
 import styles from './code.module.scss'
 import Path from './path'
 
@@ -16,8 +16,20 @@ const Code = ({ children }) => {
   const code = children.props.children
   const path = children.props.path
   const src = children.props.src
+  const language = children.props.className || 'language-plain'
 
-  const language = children.props.className?.replace('language-', '').trim()
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        // This could be improved by assigning a ref to the component and using
+        // Prism.highlightElement() instead.
+        window.Prism && window.Prism.highlightAll()
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }, [code])
+
   return (
     <Grid condensed>
       <Column sm={4} md={8} lg={8}>
@@ -27,20 +39,8 @@ const Code = ({ children }) => {
               {children}
             </Path>
           )}
-          <CodeSnippet type="multi" wrapText feedback="Copied!" className={styles.code}>
-            <Highlight {...defaultProps} code={code} language={language} theme={carbonTheme}>
-              {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                <pre className={className} style={{ ...style }}>
-                  {tokens.slice(0, -1).map((line, i) => (
-                    <div key={i} {...getLineProps({ line, key: i })}>
-                      {line.map((token, key) => (
-                        <span key={key} {...getTokenProps({ token, key })} />
-                      ))}
-                    </div>
-                  ))}
-                </pre>
-              )}
-            </Highlight>
+          <CodeSnippet type="multi" feedback="Copied!" className={clsx(styles.code, language)}>
+            {code}
           </CodeSnippet>
         </Theme>
       </Column>

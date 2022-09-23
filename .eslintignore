@@ -28,6 +28,7 @@ generated/
 
 # Web App
 services/web-app/public/data/
+services/web-app/public/vendor/prismjs/
 
 # Enable config file linting except for copyright file
 !.*.js

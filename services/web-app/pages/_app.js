@@ -38,38 +38,35 @@ function App({ Component, pageProps }) {
     <>
       <Script id="ibm-analytics" type="text/javascript">
         {`window._ibmAnalytics = {
-              settings: {
-
-                isSpa: true,
-
-                tealiumProfileName: 'ibm-web-app'
-              },
-              onLoad: [
-                ['ibmStats.pageview', []]
-              ]
-            };
-            window.digitalData = {
-              "page": {
-                 "pageInfo": {
-                    "language": 'en-US',
-                    "ibm": {
-                       "siteId": "CARBON_DESIGN_SYSTEM",
-                       "country": "US",
-                       "industry": "design",
-                       "owner": "carbon@us.ibm.com"
-                    }
-                 },
-                 "category": {
-                    "primaryCategory": "PC010"
-                 }
+          settings: {
+            isSpa: true,
+            tealiumProfileName: 'ibm-web-app'
+          },
+          onLoad: [['ibmStats.pageview', []]]
+        };
+        window.digitalData = {
+          page: {
+            pageInfo: {
+              language: 'en-US',
+              ibm: {
+                siteId: "CARBON_DESIGN_SYSTEM",
+                country: "US",
+                industry: "design",
+                owner: "carbon@us.ibm.com",
               }
-           };`}
+            },
+            category: {
+              primaryCategory: 'PC010',
+            }
+          }
+        };`}
       </Script>
       <Script
         src="//1.www.s81c.com/common/stats/ibm-common.js"
         type="text/javascript"
         async="async"
       ></Script>
+      <Script src="/vendor/prismjs/prism.min.js" type="text/javascript" async="async"></Script>
       <LayoutProvider>
         <Layout>
           <DefaultSeo {...defaultSeo} />

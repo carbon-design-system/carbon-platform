@@ -237,11 +237,11 @@ const PageContent = () => {
       <Divider>
         <Grid>
           <Column sm={4} md={4} lg={4}>
-            <H2>
+            <h2>
               Better
               <br />
               discoverability
-            </H2>
+            </h2>
           </Column>
           <Column sm={4} md={4} lg={7}>
             <P large>
@@ -255,11 +255,11 @@ const PageContent = () => {
       <Divider>
         <Grid>
           <Column sm={4} md={4} lg={4}>
-            <H2>
+            <h2>
               Easier
               <br />
               management
-            </H2>
+            </h2>
           </Column>
           <Column sm={4} md={4} lg={7}>
             <P large>

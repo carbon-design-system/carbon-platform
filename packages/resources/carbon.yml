@@ -356,9 +356,9 @@ designKits:
     tool: figma
     type: ui
     status:
-      key: deprecated
-      note: Figma kits are being refactored now that Carbon has released their Figma kits.
-    url: https://www.figma.com/file/O6R9yl3wXFyBry4l2tz6h4/%F0%9F%9A%ABCarbon-for-IBM.com-(White-Theme)-%5BTo-be-deprecated%5D
+      key: draft
+      note: In beta.
+    url: https://www.figma.com/file/RB6yqMPPsGutYnGTSvwGR4/Carbon-for-IBM.com-(White-Theme)-Beta?node-id=475%3A372
     action: link
   ibm-dotcom-g10-figma:
     name: IBM.com Figma gray 10 theme

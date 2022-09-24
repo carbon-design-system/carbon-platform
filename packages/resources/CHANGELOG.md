@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/resources@1.4.0...@carbon-platform/resources@1.4.1) (2022-09-24)
+
+
+### Bug Fixes 🐛
+
+* **resources:** download action in sketch DKs ([c76d403](https://github.com/carbon-design-system/carbon-platform/commit/c76d403052ac4c94321bfcbf02bbbf51900e2398))
+* **resources:** link to new figma kit for dotcom white theme ([c732422](https://github.com/carbon-design-system/carbon-platform/commit/c7324222b88f60a2298ac862a04f45e16619231e))
+* **resources:** prettier ([3f39519](https://github.com/carbon-design-system/carbon-platform/commit/3f395199abeb040ccc59de6daaf0e727398a9e83))
+
 ## [1.4.0](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/resources@1.3.0...@carbon-platform/resources@1.4.0) (2022-08-31)
 
 

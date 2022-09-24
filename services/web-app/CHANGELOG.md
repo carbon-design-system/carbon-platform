@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.46](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.45...@carbon-platform/web-app@0.2.46) (2022-09-24)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** border subtle in catalog search ([c82c75f](https://github.com/carbon-design-system/carbon-platform/commit/c82c75f15eaf7709ab3b888c2bdc50aed69916c0))
+* **web-app:** broken links ([93779e2](https://github.com/carbon-design-system/carbon-platform/commit/93779e26f48275c7c7e2c8fba2bcd4b8c18d2fb5)), closes [#1284](https://github.com/carbon-design-system/carbon-platform/issues/1284)
+* **web-app:** fallback true, use HOC to add loading ([7418060](https://github.com/carbon-design-system/carbon-platform/commit/7418060bed92078e7ad416b026b2d7bfe235c982))
+* **web-app:** merge with main ([1f1874a](https://github.com/carbon-design-system/carbon-platform/commit/1f1874a0cd34c5595ea16314a493e16c78606f71))
+* **web-app:** only load design kits from dk page ([1a86506](https://github.com/carbon-design-system/carbon-platform/commit/1a86506475f85736df050e467c6bc56f96c47e3f))
+* **web-app:** use anchor tag instead of next/link ([d19c466](https://github.com/carbon-design-system/carbon-platform/commit/d19c4660c6234fe8318b771bd475f51dd2282c13))
+
 ### [0.2.45](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.44...@carbon-platform/web-app@0.2.45) (2022-09-23)
 
 

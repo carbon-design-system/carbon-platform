@@ -11,7 +11,7 @@ import { useContext, useEffect } from 'react'
 import slugify from 'slugify'
 
 import MdxPage from '@/components/mdx-page/mdx-page'
-import WithLoading from '@/components/with-loading/with-loading'
+import withLoading from '@/components/with-loading/with-loading'
 import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout/layout'
@@ -128,6 +128,6 @@ export const getStaticPaths = async () => {
   }
 }
 
-export default WithLoading(LibraryPage, {
+export default withLoading(LibraryPage, {
   pageHeader: { bgColor: pageHeaders?.library?.bgColor }
 })

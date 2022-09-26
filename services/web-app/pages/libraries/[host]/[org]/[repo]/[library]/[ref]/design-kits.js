@@ -20,7 +20,7 @@ import MdxIcon from '@/components/mdx-icon/mdx-icon'
 import PageDescription from '@/components/page-description/page-description'
 import PageHeader from '@/components/page-header'
 import ResourceCard from '@/components/resource-card/resource-card'
-import WithLoading from '@/components/with-loading'
+import withLoading from '@/components/with-loading'
 import { designKitTypes } from '@/data/design-kit-types'
 import { designTools } from '@/data/design-tools'
 import { assetsNavData } from '@/data/nav-data'
@@ -165,6 +165,6 @@ export const getStaticPaths = async () => {
   }
 }
 
-export default WithLoading(DesignKits, {
+export default withLoading(DesignKits, {
   pageHeader: { bgColor: pageHeaders?.library?.bgColor }
 })

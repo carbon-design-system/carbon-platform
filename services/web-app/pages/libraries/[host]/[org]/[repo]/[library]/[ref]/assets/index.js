@@ -28,7 +28,7 @@ import H2 from '@/components/markdown/h2'
 import H3 from '@/components/markdown/h3'
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
-import WithLoading from '@/components/with-loading'
+import withLoading from '@/components/with-loading'
 import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
 import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
@@ -270,6 +270,6 @@ export const getStaticPaths = async () => {
   }
 }
 
-export default WithLoading(LibrayAssets, {
+export default withLoading(LibrayAssets, {
   pageHeader: { bgColor: pageHeaders?.library?.bgColor }
 })

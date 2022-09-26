@@ -12,33 +12,36 @@ import PageHeader from '@/components/page-header'
 import PageLoading from '@/components/page-loading'
 import { pageHeaderPropTypes } from '@/types'
 
-const Fallback = ({ config = {} }) => (
-  <Grid>
-    <Column sm={4} md={8} lg={8} {...config?.column}>
-      <PageHeader loading {...config?.pageHeader} />
-      <PageLoading />
-    </Column>
-  </Grid>
-)
+const withLoadingPropTypes = {
+  column: PropTypes.shape({
+    sm: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
+    md: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
+    lg: PropTypes.oneOfType([PropTypes.number, PropTypes.object])
+  }),
+  pageHeader: PropTypes.shape(pageHeaderPropTypes)
+}
 
-const WithLoading = (Component, config = {}) => {
-  const Loading = (props) => {
+const withLoading = (Component, config = {}) => {
+  PropTypes.checkPropTypes(withLoadingPropTypes, config, 'prop', 'withLoading')
+
+  const Wrapped = (props) => {
     const router = useRouter()
-    return router.isFallback ? <Fallback config={config} /> : <Component {...props} />
+
+    if (router.isFallback) {
+      return (
+        <Grid>
+          <Column sm={4} md={8} lg={8} {...config?.column}>
+            <PageHeader loading {...config?.pageHeader} />
+            <PageLoading />
+          </Column>
+        </Grid>
+      )
+    }
+
+    return <Component {...props} />
   }
-  return Loading
+
+  return Wrapped
 }
 
-WithLoading.propTypes = {
-  Component: PropTypes.element.isRequired,
-  config: PropTypes.shape({
-    column: PropTypes.shape({
-      sm: PropTypes.oneOf([PropTypes.number, PropTypes.object]),
-      md: PropTypes.oneOf([PropTypes.number, PropTypes.object]),
-      lg: PropTypes.oneOf([PropTypes.number, PropTypes.object])
-    }),
-    pageHeader: PropTypes.shape(pageHeaderPropTypes)
-  })
-}
-
-export default WithLoading
+export default withLoading

@@ -22,7 +22,7 @@ import MdxIcon from '@/components/mdx-icon'
 import PageDescription from '@/components/page-description'
 import PageHeader from '@/components/page-header'
 import ResourceCard from '@/components/resource-card'
-import WithLoading from '@/components/with-loading'
+import withLoading from '@/components/with-loading'
 import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
 import { teams } from '@/data/teams'
@@ -289,6 +289,6 @@ export const getStaticPaths = async () => {
   }
 }
 
-export default WithLoading(Library, {
+export default withLoading(Library, {
   pageHeader: { bgColor: pageHeaders?.library?.bgColor }
 })

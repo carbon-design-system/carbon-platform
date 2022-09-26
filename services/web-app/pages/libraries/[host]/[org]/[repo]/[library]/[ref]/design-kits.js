@@ -165,4 +165,6 @@ export const getStaticPaths = async () => {
   }
 }
 
-export default WithLoading(DesignKits)
+export default WithLoading(DesignKits, {
+  pageHeader: { bgColor: pageHeaders?.library?.bgColor }
+})

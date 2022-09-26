@@ -7,24 +7,22 @@
 import { Column, Grid } from '@carbon/react'
 import { useRouter } from 'next/router'
 
-import pageStyles from '@/pages/pages.module.scss'
+import PageHeader from '@/components/page-header'
+import PageLoading from '@/components/page-loading'
 
-import H1 from '../markdown/h1'
-
-const Fallback = () => (
+const Fallback = ({ config = {} }) => (
   <Grid>
-    <Column sm={4} md={8} lg={16}>
-      <div className={pageStyles.content}>
-        <H1>Loading...</H1>
-      </div>
+    <Column sm={4} md={8} lg={8} {...config?.column}>
+      <PageHeader loading {...config?.pageHeader} />
+      <PageLoading />
     </Column>
   </Grid>
 )
 
-const WithLoading = (Component) => {
+const WithLoading = (Component, config = {}) => {
   const Loading = (props) => {
     const router = useRouter()
-    return router.isFallback ? <Fallback /> : <Component {...props} />
+    return router.isFallback ? <Fallback config={config} /> : <Component {...props} />
   }
   return Loading
 }

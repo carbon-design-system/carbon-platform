@@ -270,4 +270,6 @@ export const getStaticPaths = async () => {
   }
 }
 
-export default WithLoading(LibrayAssets)
+export default WithLoading(LibrayAssets, {
+  pageHeader: { bgColor: pageHeaders?.library?.bgColor }
+})

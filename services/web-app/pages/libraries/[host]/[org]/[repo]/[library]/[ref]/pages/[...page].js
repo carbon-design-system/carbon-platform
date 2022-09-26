@@ -13,6 +13,7 @@ import slugify from 'slugify'
 import MdxPage from '@/components/mdx-page/mdx-page'
 import WithLoading from '@/components/with-loading/with-loading'
 import { assetsNavData } from '@/data/nav-data'
+import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout/layout'
 import { getLibraryData, getLibraryNavData, getRemoteMdxSource } from '@/lib/github'
 import { processMdxSource } from '@/utils/mdx'
@@ -127,4 +128,6 @@ export const getStaticPaths = async () => {
   }
 }
 
-export default WithLoading(LibraryPage)
+export default WithLoading(LibraryPage, {
+  pageHeader: { bgColor: pageHeaders?.library?.bgColor }
+})

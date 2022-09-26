@@ -17,6 +17,7 @@ import PageTabs from '@/components/page-tabs'
 import WithLoading from '@/components/with-loading'
 import { assetTypes } from '@/data/asset-types'
 import { assetsNavData } from '@/data/nav-data'
+import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout/layout'
 import { getLibraryData } from '@/lib/github'
 import { getProcessedMdxSource } from '@/utils/mdx'
@@ -164,4 +165,7 @@ export const getStaticPaths = async () => {
   }
 }
 
-export default WithLoading(AssetTabPage)
+export default WithLoading(AssetTabPage, {
+  column: { sm: 4, md: 8, lg: { start: 5, span: 12 } },
+  pageHeader: { bgColor: pageHeaders?.library?.bgColor }
+})

@@ -21,6 +21,7 @@ import WithLoading from '@/components/with-loading'
 import { assetTypes } from '@/data/asset-types'
 import { framework } from '@/data/framework'
 import { assetsNavData } from '@/data/nav-data'
+import { pageHeaders } from '@/data/page-headers'
 import { status } from '@/data/status'
 import { teams } from '@/data/teams'
 import { LayoutContext } from '@/layouts/layout'
@@ -238,4 +239,7 @@ export const getStaticPaths = async () => {
   }
 }
 
-export default WithLoading(Asset)
+export default WithLoading(Asset, {
+  column: { sm: 4, md: 8, lg: { start: 5, span: 12 } },
+  pageHeader: { bgColor: pageHeaders?.library?.bgColor }
+})

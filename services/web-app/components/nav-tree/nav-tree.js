@@ -79,7 +79,6 @@ const NavTree = ({ activeItem, items = [], label }) => {
   useEffect(() => {
     const activeNode = dfs(itemNodes, isTreeNodeActive)
     setTreeActiveitem(activeNode?.id ?? activeItem)
-    console.log(activeItem)
   }, [activeItem, isTreeNodeActive, itemNodes])
 
   const renderTree = (nodes) => {

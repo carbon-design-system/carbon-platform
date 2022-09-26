@@ -15,7 +15,6 @@
 // Row
 //---------------------------------------
 .do-dont-row [class*='grid'] {
-
   @include breakpoint.breakpoint('md') {
     margin-bottom: 0;
   }

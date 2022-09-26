@@ -61,11 +61,13 @@ const NavTree = ({ activeItem, items = [], label }) => {
 
   const popPathName = (path) => path?.split('/')?.slice(0, -1)?.join('/')
 
+  const removeHashAndQuery = (path) => path?.split('?')?.[0]?.split('#')?.[0]
+
   const isTreeNodeActive = useCallback(
     (node) => {
       return node.hasTabs
-        ? popPathName(node.path) === popPathName(activeItem)
-        : getItemId(node) === activeItem
+        ? popPathName(node.path) === popPathName(removeHashAndQuery(activeItem))
+        : getItemId(node) === removeHashAndQuery(activeItem)
     },
     [activeItem]
   )

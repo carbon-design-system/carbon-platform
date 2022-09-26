@@ -50,24 +50,16 @@
 
 .divider > [class*='grid'] {
   margin-top: 0;
-
-  @include breakpoint.breakpoint(md) {
-    margin-top: 0;
-  }
 }
 
 .divider > [class*='grid'] > *:not(:first-child) {
   margin-top: spacing.$spacing-06;
 
-  @include breakpoint.breakpoint(md) {
+  @include breakpoint.breakpoint(lg) {
     margin-top: 0;
   }
 }
 
 .divider [class*='column'] > *:first-child {
   margin-top: 0;
-
-  @include breakpoint.breakpoint(md) {
-    margin-top: 0;
-  }
 }

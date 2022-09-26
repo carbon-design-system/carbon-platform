@@ -7,7 +7,6 @@
 
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
@@ -31,22 +30,20 @@ export const FeatureCard = ({ href, children, description, title }) => {
   return (
     <Grid className={styles.container}>
       <Column sm={4} md={8} lg={12}>
-        <Link href={href}>
-          <a className={styles['feature-card']}>
-            <AspectRatio ratio={imageAspectRatio()} className={styles.image}>
-              {children}
-            </AspectRatio>
-            <Grid className={styles['grid-tile']} condensed={isMd}>
-              <Column sm={4} md={{ offset: 4, span: 4 }} lg={{ offset: 8, span: 4 }}>
-                <AspectRatio ratio={tileAspectRatio()} className={styles.tile}>
-                  <h5 className={styles.title}>{title}</h5>
-                  <p className={styles.description}>{description}</p>
-                  <ArrowRight className={styles['arrow-right']} size={20} />
-                </AspectRatio>
-              </Column>
-            </Grid>
-          </a>
-        </Link>
+        <a className={styles['feature-card']} href={href}>
+          <AspectRatio ratio={imageAspectRatio()} className={styles.image}>
+            {children}
+          </AspectRatio>
+          <Grid className={styles['grid-tile']} condensed={isMd}>
+            <Column sm={4} md={{ offset: 4, span: 4 }} lg={{ offset: 8, span: 4 }}>
+              <AspectRatio ratio={tileAspectRatio()} className={styles.tile}>
+                <h5 className={styles.title}>{title}</h5>
+                <p className={styles.description}>{description}</p>
+                <ArrowRight className={styles['arrow-right']} size={20} />
+              </AspectRatio>
+            </Column>
+          </Grid>
+        </a>
       </Column>
     </Grid>
   )

@@ -7,7 +7,6 @@
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import { Events, Scales } from '@carbon/react/icons'
 import isEmpty from 'lodash/isEmpty'
-import Link from 'next/link'
 
 import { teams } from '@/data/teams'
 import { libraryPropTypes } from '@/types'
@@ -54,12 +53,10 @@ const LibraryCatalogItem = ({ library = {} }) => {
 
   return (
     <Column as="li" sm={4} md={8} lg={12}>
-      <Link href={`/libraries/${library.params.library}`}>
-        <a className={styles.anchor}>
-          {isMd && <div>{renderContent()}</div>}
-          {!isMd && <AspectRatio ratio="3x2">{renderContent()}</AspectRatio>}
-        </a>
-      </Link>
+      <a className={styles.anchor} href={`/libraries/${library.params.library}`}>
+        {isMd && <div>{renderContent()}</div>}
+        {!isMd && <AspectRatio ratio="3x2">{renderContent()}</AspectRatio>}
+      </a>
     </Column>
   )
 }

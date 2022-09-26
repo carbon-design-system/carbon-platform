@@ -27,6 +27,7 @@ import Divider from '@/components/divider'
 import { FeatureCard } from '@/components/feature-card/feature-card'
 import Hero from '@/components/hero'
 import { H2, P } from '@/components/markdown'
+import markdownStyles from '@/components/markdown/markdown.module.scss'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
@@ -196,9 +197,9 @@ const PageContent = () => {
       <H2>Try featured libraries</H2>
       <P>
         Libraries are the means to contribute, install, and use one or many assets. Explore the{' '}
-        <Link href="/libraries" passHref>
-          <CarbonLink size="lg">library catalog</CarbonLink>
-        </Link>{' '}
+        <CarbonLink size="lg" href="/libraries">
+          library catalog
+        </CarbonLink>{' '}
         for all options.
       </P>
 
@@ -237,11 +238,11 @@ const PageContent = () => {
       <Divider>
         <Grid>
           <Column sm={4} md={4} lg={4}>
-            <H2>
+            <h2 className={markdownStyles.h2}>
               Better
               <br />
               discoverability
-            </H2>
+            </h2>
           </Column>
           <Column sm={4} md={4} lg={7}>
             <P large>
@@ -255,11 +256,11 @@ const PageContent = () => {
       <Divider>
         <Grid>
           <Column sm={4} md={4} lg={4}>
-            <H2>
+            <h2 className={markdownStyles.h2}>
               Easier
               <br />
               management
-            </H2>
+            </h2>
           </Column>
           <Column sm={4} md={4} lg={7}>
             <P large>

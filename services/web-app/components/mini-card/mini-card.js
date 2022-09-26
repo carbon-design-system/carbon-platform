@@ -7,7 +7,6 @@
 import { Column } from '@carbon/react'
 import { ArrowRight, Calendar, Download, Email, Launch } from '@carbon/react/icons'
 import clsx from 'clsx'
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 
 import * as styles from './mini-card.module.scss'
@@ -46,11 +45,9 @@ const MiniCard = ({ children, href, title, actionIcon, className, linkProps, ...
   return (
     <Column md={4} lg={4} sm={4} {...rest}>
       {isLink && (
-        <Link href={href} passHref>
-          <a to={href} className={'cds--tile--clickable'} {...linkProps}>
-            {cardContent}
-          </a>
-        </Link>
+        <a href={href} className={'cds--tile--clickable'} {...linkProps}>
+          {cardContent}
+        </a>
       )}
       {!isLink && (
         <a href={href} className={'cds--tile--clickable'} {...linkProps}>

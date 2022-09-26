@@ -6,9 +6,11 @@
  */
 import { Column, Grid } from '@carbon/react'
 import { useRouter } from 'next/router'
+import PropTypes from 'prop-types'
 
 import PageHeader from '@/components/page-header'
 import PageLoading from '@/components/page-loading'
+import { pageHeaderPropTypes } from '@/types'
 
 const Fallback = ({ config = {} }) => (
   <Grid>
@@ -25,6 +27,18 @@ const WithLoading = (Component, config = {}) => {
     return router.isFallback ? <Fallback config={config} /> : <Component {...props} />
   }
   return Loading
+}
+
+WithLoading.propTypes = {
+  Component: PropTypes.element.isRequired,
+  config: PropTypes.shape({
+    column: PropTypes.shape({
+      sm: PropTypes.oneOf([PropTypes.number, PropTypes.object]),
+      md: PropTypes.oneOf([PropTypes.number, PropTypes.object]),
+      lg: PropTypes.oneOf([PropTypes.number, PropTypes.object])
+    }),
+    pageHeader: PropTypes.shape(pageHeaderPropTypes)
+  })
 }
 
 export default WithLoading

@@ -15,8 +15,6 @@
 // Row
 //---------------------------------------
 .do-dont-row [class*='grid'] {
-  margin-top: spacing.$spacing-07;
-
   @include breakpoint.breakpoint('md') {
     margin-bottom: 0;
   }

@@ -6,6 +6,8 @@ description:
 pageHeaderType: collection
 ---
 
+import styles from './dataviz.module.scss'
+
 <PageDescription>
 
 The color palette for data visualizations is a select subset of the IBM Design Language color
@@ -110,7 +112,7 @@ For the full list of approved gradient options, see the IBM Design Language
 See the IBM Design color palette in action across multiple business units and applications.
 Deliberate hits of color are composed with rich neutrals for a well-balanced cohesive experience.
 
-<Grid>
+<Grid className={styles['image-gallery']}>
 <Column lg={6} md={4} sm={4}>
 
 ![example of a bubble chart](/data-visualization/color-palettes/color_gallery_1.png)

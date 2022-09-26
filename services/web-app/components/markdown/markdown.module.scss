@@ -17,8 +17,8 @@
   margin-top: spacing.$spacing-06;
 }
 
-.h4-container + div,
-.h4-container + * {
+.h4-container + *,
+.h4-container + div {
   margin-top: 0;
 }
 

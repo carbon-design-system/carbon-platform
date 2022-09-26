@@ -16,7 +16,7 @@ const PageBreadcrumb = ({ className, items = [] }) => {
         {items.map((item, i) => (
           <li className={styles.item} key={i}>
             {item.path && (
-              <a href={item.path} className={styles.text}>
+              <a href={item.path} className={clsx(styles.text, styles.link)}>
                 {item.name}
               </a>
             )}

@@ -24,6 +24,7 @@ import {
   Svg32Axure,
   Svg32Npm,
   Vue,
+  Yourlearning,
   Zenhub
 } from '@carbon-platform/icons'
 import clsx from 'clsx'
@@ -57,7 +58,8 @@ const svgIcons = {
   adobe32: Svg32Adobe,
   axure32: Svg32Axure,
   xd32: Svg32AdobeXd,
-  invision: Invision
+  invision: Invision,
+  yourlearning: Yourlearning
 }
 
 const localIcons = {

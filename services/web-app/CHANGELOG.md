@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.47](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.46...@carbon-platform/web-app@0.2.47) (2022-09-27)
+
+
+### Bug Fixes 🐛
+
+* add h2 styles to homepage ([1aa3147](https://github.com/carbon-design-system/carbon-platform/commit/1aa3147308804a8c1ba1abf32486099e7c879b96))
+* formatting remove important ([3e431e8](https://github.com/carbon-design-system/carbon-platform/commit/3e431e823118074e6ab8df0303b230bf8dec869d))
+* remove important css ([d7c1097](https://github.com/carbon-design-system/carbon-platform/commit/d7c1097d688e58dbe937be01d759d4f628210128))
+* **web-app:** add yourlearning to mdx icon component ([0a29b3a](https://github.com/carbon-design-system/carbon-platform/commit/0a29b3abd195d8eec3497470ac93a18058226c9a)), closes [#1290](https://github.com/carbon-design-system/carbon-platform/issues/1290)
+* **web-app:** focus state for catalog ([0f35269](https://github.com/carbon-design-system/carbon-platform/commit/0f35269d33f9d00ffad7d44c4210ab48cc1bcca5)), closes [#1306](https://github.com/carbon-design-system/carbon-platform/issues/1306)
+* **web-app:** make breadcrumb link inline ([aa92e35](https://github.com/carbon-design-system/carbon-platform/commit/aa92e358c0560240843e771c6eb6fe91f58a0114)), closes [#1307](https://github.com/carbon-design-system/carbon-platform/issues/1307)
+* **web-app:** padding for cite element inside blockquote ([c31c5af](https://github.com/carbon-design-system/carbon-platform/commit/c31c5afefe5d8f68fd85fd082514290d0d82598d)), closes [#1298](https://github.com/carbon-design-system/carbon-platform/issues/1298)
+* **web-app:** remove anchor links from homepage h2 ([431a5ad](https://github.com/carbon-design-system/carbon-platform/commit/431a5adde6a5f08d175911a1a272eff0158bd15b)), closes [#1305](https://github.com/carbon-design-system/carbon-platform/issues/1305)
+* **web-app:** remove hash and query from activeItem before comparing ([ec0d0e1](https://github.com/carbon-design-system/carbon-platform/commit/ec0d0e13cda8a3a6d0c78e5ee98ca69a201c0e27)), closes [#1286](https://github.com/carbon-design-system/carbon-platform/issues/1286)
+* **web-app:** sort by left padding on asset list ([830de37](https://github.com/carbon-design-system/carbon-platform/commit/830de37b4c7e13f77d0099729c4663e12e4983a9)), closes [#1339](https://github.com/carbon-design-system/carbon-platform/issues/1339)
+* **web-app:** spacing bugs ([b578217](https://github.com/carbon-design-system/carbon-platform/commit/b5782178f8cf2f669bb9001f3ceb2687f0f1d052)), closes [#1303](https://github.com/carbon-design-system/carbon-platform/issues/1303)
+
 ### [0.2.46](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.45...@carbon-platform/web-app@0.2.46) (2022-09-24)
 
 

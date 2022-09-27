@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.11...@carbon-platform/icons@0.1.12) (2022-09-27)
+
+
+### Features 🌟
+
+* **icons:** add yourlearning svg ([3a11876](https://github.com/carbon-design-system/carbon-platform/commit/3a118760abdc4ca1f88bd60cdb03145d1b308f1f))
+
 ### [0.1.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.10...@carbon-platform/icons@0.1.11) (2022-09-14)
 
 

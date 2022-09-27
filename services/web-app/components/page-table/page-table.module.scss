@@ -11,6 +11,7 @@
 @use '@carbon/react/scss/type' as type;
 
 .container {
+  margin-top: spacing.$spacing-06;
   overflow-x: auto;
 }
 

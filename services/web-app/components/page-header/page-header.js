@@ -5,8 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, SkeletonText, Theme } from '@carbon/react'
-
-import { pageHeaderPropTypes } from '@/types'
+import PropTypes from 'prop-types'
 
 import styles from './page-header.module.scss'
 
@@ -39,6 +38,12 @@ const PageHeader = ({ bgColor, loading, pictogram: Pictogram, title, withTabs })
   )
 }
 
-PageHeader.propTypes = pageHeaderPropTypes
+PageHeader.propTypes = {
+  bgColor: PropTypes.string,
+  loading: PropTypes.bool,
+  pictogram: PropTypes.object,
+  title: PropTypes.string,
+  withTabs: PropTypes.bool
+}
 
 export default PageHeader

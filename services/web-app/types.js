@@ -96,11 +96,3 @@ export const secondaryNavDataPropTypes = PropTypes.shape({
   ),
   path: PropTypes.string
 })
-
-export const pageHeaderPropTypes = {
-  bgColor: PropTypes.string,
-  loading: PropTypes.bool,
-  pictogram: PropTypes.object,
-  title: PropTypes.string,
-  withTabs: PropTypes.bool
-}

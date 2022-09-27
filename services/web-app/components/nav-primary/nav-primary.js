@@ -5,8 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { HeaderSideNavItems, SideNav, SideNavItems, SideNavLink } from '@carbon/react'
+import { HeaderSideNavItems, SideNav, SideNavItems, SideNavLink, SkeletonText } from '@carbon/react'
 import clsx from 'clsx'
+import isEmpty from 'lodash/isEmpty'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import { useContext } from 'react'
@@ -20,6 +21,7 @@ const NavPrimary = ({ className, globalItems }) => {
   const router = useRouter()
   const { isSideNavExpanded, primaryNavData, isSecondaryNav, setSideNavExpanded } =
     useContext(LayoutContext)
+  const isLoading = isEmpty(primaryNavData)
 
   return (
     <SideNav
@@ -54,8 +56,12 @@ const NavPrimary = ({ className, globalItems }) => {
             })}
           </HeaderSideNavItems>
         )}
-
-        {primaryNavData && primaryNavData.length > 0 && (
+        {isLoading && (
+          <div className={styles.skeleton}>
+            <SkeletonText paragraph />
+          </div>
+        )}
+        {!isLoading && primaryNavData && primaryNavData.length > 0 && (
           <NavTree items={primaryNavData} label="Main navigation" activeItem={router.asPath} />
         )}
       </SideNavItems>

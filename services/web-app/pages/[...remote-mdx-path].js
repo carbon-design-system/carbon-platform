@@ -8,7 +8,7 @@
 import { MDXRemote } from 'next-mdx-remote'
 
 import MdxPage from '@/components/mdx-page/mdx-page'
-import WithLoading from '@/components/with-loading'
+import withLoading from '@/components/with-loading'
 import { defaultFilePathPrefix, defaultParams, remotePages } from '@/data/remote-pages'
 import { getRemoteMdxSource } from '@/lib/github'
 import { processMdxSource } from '@/utils/mdx'
@@ -101,4 +101,4 @@ export const getStaticPaths = async () => {
   }
 }
 
-export default WithLoading(RemoteMdxPage)
+export default withLoading(RemoteMdxPage)

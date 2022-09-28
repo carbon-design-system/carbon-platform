@@ -20,7 +20,7 @@
 }
 
 .banner + div > :global(.cds--header),
-.banner + div + div :global(.cds--side-nav--expanded),
+.banner + div + div > :global(.cds--side-nav--expanded),
 .banner + div + :global([class*='layout_body']) {
   margin-top: 3rem;
 }

@@ -21,7 +21,7 @@ const Banner = () => {
       </p>
       <Button
         href="https://www.carbondesignsystem.com"
-        className={styles['button--purple']}
+        className={styles['button--banner']}
         kind="ghost"
         renderIcon={ArrowRight}
       >

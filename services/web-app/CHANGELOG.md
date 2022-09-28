@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.49](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.48...@carbon-platform/web-app@0.2.49) (2022-09-28)
+
+
+### Bug Fixes 🐛
+
+* remove nav skeletons ([e8ee457](https://github.com/carbon-design-system/carbon-platform/commit/e8ee45731545986ff45f5172173a4594b77ca206))
+
 ### [0.2.48](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.47...@carbon-platform/web-app@0.2.48) (2022-09-28)
 
 

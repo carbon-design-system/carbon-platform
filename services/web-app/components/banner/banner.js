@@ -20,7 +20,7 @@ const Banner = () => {
         </span>
       </p>
       <Button
-        href="http://www.carbondesignsystem.com"
+        href="https://www.carbondesignsystem.com"
         className={styles['button--purple']}
         kind="ghost"
         renderIcon={ArrowRight}

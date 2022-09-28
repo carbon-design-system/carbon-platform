@@ -6,27 +6,50 @@
  */
 import { Column, Grid } from '@carbon/react'
 import { useRouter } from 'next/router'
+import React from 'react'
 
-import pageStyles from '@/pages/pages.module.scss'
+import PageHeader from '@/components/page-header'
+import PageLoading from '@/components/page-loading'
 
-import H1 from '../markdown/h1'
-
-const Fallback = () => (
-  <Grid>
-    <Column sm={4} md={8} lg={16}>
-      <div className={pageStyles.content}>
-        <H1>Loading...</H1>
-      </div>
-    </Column>
-  </Grid>
-)
-
-const WithLoading = (Component) => {
-  const Loading = (props) => {
+/**
+ * Higher-Order Component (HOC) that renders a loading fallback on Incremental Static Regeneration
+ * (ISR) pages. You can pass in a config object to pass props to internal React components.
+ * @param {React.FC} Component - The original component
+ * @param {object} [config] - The configuration of internal component props
+ * @param {object} [config.column] - Column component prop, see Carbon for full docs
+ * @param {(string|object)} [config.column.xs]
+ * @param {(string|object)} [config.column.sm]
+ * @param {(string|object)} [config.column.md]
+ * @param {(string|object)} [config.column.lg]
+ * @param {(string|object)} [config.column.xlg]
+ * @param {(string|object)} [config.column.max]
+ * @param {object} [config.pageHeader] - PageHeader component prop
+ * @param {string} [config.pageHeader.bgColor]
+ * @param {boolean} [config.pageHeader.loading]
+ * @param {object} [config.pageHeader.pictogram]
+ * @param {string} [config.pageHeader.title]
+ * @param {boolean} [config.pageHeader.withTabs]
+ * @returns {React.ReactElement}
+ */
+const withLoading = (Component, config = {}) => {
+  const Wrapped = (props) => {
     const router = useRouter()
-    return router.isFallback ? <Fallback /> : <Component {...props} />
+
+    if (router.isFallback) {
+      return (
+        <Grid>
+          <Column sm={4} md={8} lg={8} {...config?.column}>
+            <PageHeader loading {...config?.pageHeader} />
+            <PageLoading />
+          </Column>
+        </Grid>
+      )
+    }
+
+    return <Component {...props} />
   }
-  return Loading
+
+  return Wrapped
 }
 
-export default WithLoading
+export default withLoading

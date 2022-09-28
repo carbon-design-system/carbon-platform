@@ -54,7 +54,6 @@ const NavPrimary = ({ className, globalItems }) => {
             })}
           </HeaderSideNavItems>
         )}
-
         {primaryNavData && primaryNavData.length > 0 && (
           <NavTree items={primaryNavData} label="Main navigation" activeItem={router.asPath} />
         )}

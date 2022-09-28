@@ -44,15 +44,17 @@ const NavSecondary = ({ className, visible, onSlidePrimary }) => {
       aria-hidden={visible ? 'false' : 'true'}
       onOverlayClick={() => setSideNavExpanded(false)}
     >
-      <Button
-        kind="ghost"
-        onClick={handleBack}
-        className={styles.back}
-        tabIndex={visible ? 0 : '-1'}
-      >
-        <ArrowLeft className={styles['back-icon']} size={16} />
-        {back?.title ?? 'Back'}
-      </Button>
+      {back && (
+        <Button
+          kind="ghost"
+          onClick={handleBack}
+          className={styles.back}
+          tabIndex={visible ? 0 : '-1'}
+        >
+          <ArrowLeft className={styles['back-icon']} size={16} />
+          {back?.title ?? 'Back'}
+        </Button>
+      )}
       {headings && (
         <a
           className={clsx(

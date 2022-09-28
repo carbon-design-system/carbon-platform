@@ -1,0 +1,74 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/colors' as colors;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '../../styles/variables' as variables;
+@use 'sass:map';
+
+// position of header, side nav and content
+// when banner is visible
+.banner + div + :global([class*='layout_body']) {
+  position: relative;
+}
+
+.banner + div > :global(.cds--header),
+.banner + div + div :global(.cds--side-nav--expanded),
+.banner + div + :global([class*='layout_body']) {
+  margin-top: 3rem;
+}
+
+@include breakpoint.breakpoint('lg') {
+  .banner + div + div :global(section[class*='layout_side-nav']) {
+    margin-top: 3rem;
+  }
+}
+
+// banner styles
+.banner {
+  position: fixed;
+  z-index: map.get(variables.$z-indexes, 'overlay');
+  display: flex;
+  width: 100%;
+  height: 48px;
+  justify-content: space-between;
+
+  background: colors.$purple-60;
+  color: theme.$text-on-color;
+}
+
+.banner--text {
+  display: none;
+
+  @include breakpoint.breakpoint('md') {
+    @include type.type-style('body-compact-01');
+
+    display: block;
+    padding: calc(spacing.$spacing-05 - 1px) 0 0 spacing.$spacing-05;
+  }
+}
+
+.banner--details {
+  display: none;
+
+  @include breakpoint.breakpoint('lg') {
+    display: inline;
+    padding-left: spacing.$spacing-03;
+  }
+}
+
+.button--purple {
+  color: theme.$text-on-color;
+
+  &:hover {
+    background: colors.$purple-60-hover;
+    color: theme.$text-on-color;
+  }
+}

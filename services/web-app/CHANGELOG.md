@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.48](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.47...@carbon-platform/web-app@0.2.48) (2022-09-28)
+
+
+### Features 🌟
+
+* add loading page with skeletons ([8caa8fe](https://github.com/carbon-design-system/carbon-platform/commit/8caa8fe08d241fa702ca43a0c6942b794ddc6835))
+
 ### [0.2.47](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.46...@carbon-platform/web-app@0.2.47) (2022-09-27)
 
 

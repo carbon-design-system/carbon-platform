@@ -94,6 +94,10 @@ const websiteToPlatformRedirects = [
   ],
   // Component removed code tabs, must come after the redirects that end in `/code`
   ['/components/:component/code', '/libraries/carbon-react/latest/assets/:component'],
+  [
+    '/libraries/carbon-react/latest/assets/ordered-list/code',
+    '/libraries/carbon-react/latest/assets/ordered-list'
+  ],
   // Component catalog
   ['/components/overview', '/assets/components'],
   // Component default redirect, must come after all other `/components` redirects

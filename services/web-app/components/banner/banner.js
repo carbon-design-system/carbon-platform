@@ -12,7 +12,7 @@ import styles from './banner.module.scss'
 
 const Banner = () => {
   return (
-    <div className={styles.banner}>
+    <div aria-label="banner" className={styles.banner}>
       <p className={styles['banner--text']}>
         <strong className={styles['banner-heading']}>Done exploring?</strong>
         <span className={styles['banner--details']}>

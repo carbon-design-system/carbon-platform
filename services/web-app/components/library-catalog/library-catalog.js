@@ -149,7 +149,11 @@ const LibraryCatalog = ({ libraries }) => {
   }
 
   const renderLibrary = (library, index) => (
-    <LibraryCatalogItem library={library} key={`${index}-${getSlug(library.content)}`} />
+    <LibraryCatalogItem
+      library={library}
+      index={index}
+      key={`${index}-${getSlug(library.content)}`}
+    />
   )
 
   return (

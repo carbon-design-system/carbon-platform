@@ -106,7 +106,7 @@ const SideNav = () => {
   })
 
   return (
-    <Column sm={4} md={8} lg={4} className={styles['side-nav-column']}>
+    <Column sm={4} md={8} lg={4}>
       <Theme theme="white">
         <section className={styles['side-nav']}>
           <div className={styles['side-nav-inner']}>

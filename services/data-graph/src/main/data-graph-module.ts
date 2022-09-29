@@ -35,7 +35,10 @@ class DataGraphModule {
           autoSchemaFile: config.schemaOutputFile || true,
           playground: config.isPlaygroundEnabled,
           introspection: config.isPlaygroundEnabled,
-          cache: 'bounded'
+          cache: 'bounded',
+          persistedQueries: {
+            ttl: null // Disable in-memory caching
+          }
         })
       ],
       providers: [RequestLogPlugin],

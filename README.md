@@ -49,7 +49,7 @@
 
 ## Deployments
 
-| Environment                               | URL                              |
+| Environment                               | Description                      |
 | ----------------------------------------- | -------------------------------- |
 | [Production](next.carbondesignsystem.com) | Main deployment. Updated weekly. |
 | [Test](next-test.carbondesignsystem.com)  | Test environment. Updated daily. |

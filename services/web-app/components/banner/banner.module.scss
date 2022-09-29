@@ -65,7 +65,13 @@
 }
 
 .button--purple {
+  width: 100%;
+  max-width: 100%;
   color: theme.$text-on-color;
+
+  @include breakpoint.breakpoint('md') {
+    width: auto;
+  }
 
   &:hover {
     background: colors.$purple-60-hover;

@@ -103,11 +103,6 @@ export const getRemoteMdxSource = withTrace(
     let response = {}
 
     if (!repoParams.ref || repoParams.ref === 'latest') {
-      logging.info(
-        `No Reference set in params, attempting to getRepoDefaultBranch for ${JSON.stringify(
-          repoParams
-        )}`
-      )
       repoParams.ref = await getRepoDefaultBranch(repoParams)
     }
 
@@ -277,11 +272,6 @@ const populateLibraryParams = async (params = {}) => {
 
   // get default branch if a branch isn't specified through params
   if (!returnParams.ref) {
-    logging.info(
-      `No Reference set in params, attempting to getRepoDefaultBranch for ${JSON.stringify(
-        returnParams
-      )}`
-    )
     returnParams.ref = await getRepoDefaultBranch(returnParams)
   }
 

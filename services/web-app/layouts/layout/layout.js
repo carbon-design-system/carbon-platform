@@ -169,7 +169,7 @@ const Layout = ({ children }) => {
         <>
           {router.pathname === '/' && <Banner />}
           <Theme theme="g100">
-            <Header aria-label="Carbon Design System">
+            <Header aria-label="Carbon Design System" className={styles.header}>
               <SkipToContent />
               {showSideNav && (
                 <div>

@@ -33,7 +33,9 @@ class DataGraphModule {
           driver: ApolloDriver,
           // Output the schema as a file in dev mode; or store it in memory otherwise
           autoSchemaFile: config.schemaOutputFile || true,
-          playground: config.isPlaygroundEnabled
+          playground: config.isPlaygroundEnabled,
+          introspection: config.isPlaygroundEnabled,
+          cache: 'bounded'
         })
       ],
       providers: [RequestLogPlugin],

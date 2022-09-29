@@ -31,7 +31,7 @@ class RequestLogPlugin implements ApolloServerPlugin {
     const { method, url, hostname, httpVersion, socket } = req
     const { remoteAddress, remotePort } = socket
     const { statusCode } = res
-    const fullUrl = url === '/' ? '/graphql' : url
+    const fullUrl = url === '/' ? '/graphql' : '/graphql' + url
 
     const logParts = [
       hostname,

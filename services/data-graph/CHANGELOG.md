@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.50](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.49...@carbon-platform/data-graph@0.1.50) (2022-09-30)
+
+
+### Misc. 🔮
+
+* docker infrastructure updates ([8e45ef7](https://github.com/carbon-design-system/carbon-platform/commit/8e45ef757f06ae5b4b75dd742f05f423a1ee104d))
+* rename controller handler methods ([1808b75](https://github.com/carbon-design-system/carbon-platform/commit/1808b75327b506904ee0ac470373cdfe4282f31a))
+
+
+### Features 🌟
+
+* **data-graph:** allow introspection in dev mode ([a14e7f1](https://github.com/carbon-design-system/carbon-platform/commit/a14e7f1abd483a2b7023727a054e55fa7e144050))
+
+
+### Bug Fixes 🐛
+
+* **data-graph:** disable query caching for now ([ab254eb](https://github.com/carbon-design-system/carbon-platform/commit/ab254eb8e822c5e18074cb1ad57ca3d1ac436636))
+* **data-graph:** improve request logging output ([bf97ac7](https://github.com/carbon-design-system/carbon-platform/commit/bf97ac712bdba590133b1ed7ecbf887a7172967b))
+* **data-graph:** improve request logging output ([be1bf8c](https://github.com/carbon-design-system/carbon-platform/commit/be1bf8ca0cc99fbc76ca7156a84a58b2cfd262fe))
+
 ### [0.1.49](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.48...@carbon-platform/data-graph@0.1.49) (2022-09-14)
 
 ### [0.1.48](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.47...@carbon-platform/data-graph@0.1.48) (2022-09-10)

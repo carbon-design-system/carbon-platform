@@ -18,6 +18,12 @@ the details of what happens.
      Dockerfile in each workspace's directory. Upon successful build, each service is then pushed to
      the IBM Container Registry.
 
+## Daily test environment
+
+Approximately one hour after the nightly workflow runs, a "daily" workflow runs against the
+Kubernetes cluster to update the test namespace with all of the latest services created during the
+nightly build.
+
 ## Manually triggering a nightly build
 
 The Github Action linked to the `nightly.yml` workflow can be manually triggered from the GitHub
@@ -28,3 +34,5 @@ user interface.
 This is useful under emergency conditions when a rebuild/republish/redeploy of packages and/or
 services is needed without waiting for the next nightly build to pick up the current changes on the
 main branch.
+
+> Note: Running a manual nightly does not cause a "daily" to run afterward.

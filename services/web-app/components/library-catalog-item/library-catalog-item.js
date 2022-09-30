@@ -6,7 +6,9 @@
  */
 import { AspectRatio, Column, Grid } from '@carbon/react'
 import { Events, Scales } from '@carbon/react/icons'
+import clsx from 'clsx'
 import isEmpty from 'lodash/isEmpty'
+import PropTypes from 'prop-types'
 
 import { teams } from '@/data/teams'
 import { libraryPropTypes } from '@/types'
@@ -15,7 +17,7 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './library-catalog-item.module.scss'
 
-const LibraryCatalogItem = ({ library = {} }) => {
+const LibraryCatalogItem = ({ library = {}, index }) => {
   const isMd = useMatchMedia(mediaQueries.md)
 
   if (isEmpty(library)) return null
@@ -53,7 +55,12 @@ const LibraryCatalogItem = ({ library = {} }) => {
 
   return (
     <Column as="li" sm={4} md={8} lg={12}>
-      <a className={styles.anchor} href={`/libraries/${library.params.library}`}>
+      <a
+        className={clsx(styles.anchor, {
+          [styles['no-border']]: index === 0
+        })}
+        href={`/libraries/${library.params.library}`}
+      >
         {isMd && <div>{renderContent()}</div>}
         {!isMd && <AspectRatio ratio="3x2">{renderContent()}</AspectRatio>}
       </a>
@@ -68,6 +75,10 @@ LibraryCatalogItem.defaultPropTypes = {
 }
 
 LibraryCatalogItem.propTypes = {
+  /**
+   * Index of item in list
+   */
+  index: PropTypes.number,
   /**
    * Library item to render.
    */

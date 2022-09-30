@@ -47,6 +47,13 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=carbon-design-system_carbon-platform&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=carbon-design-system_carbon-platform)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=carbon-design-system_carbon-platform&metric=coverage)](https://sonarcloud.io/summary/new_code?id=carbon-design-system_carbon-platform)
 
+## Deployments
+
+| Environment                               | Description                      |
+| ----------------------------------------- | -------------------------------- |
+| [Production](next.carbondesignsystem.com) | Main deployment. Updated weekly. |
+| [Test](next-test.carbondesignsystem.com)  | Test environment. Updated daily. |
+
 ## Getting started
 
 If you're just getting started, here are some links so you can learn more about what we're working
@@ -67,5 +74,3 @@ https://carbon-design-system.github.io/carbon-platform/
 ## Deployment Branches
 
 [deployed-services/production](https://github.com/carbon-design-system/carbon-platform/tree/deployed-services/production)
-
-[deployed-services/test](https://github.com/carbon-design-system/carbon-platform/tree/deployed-services/test)

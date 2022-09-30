@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-processor@0.1.5...@carbon-platform/mdx-processor@0.1.6) (2022-09-30)
+
+
+### Misc. 🔮
+
+* docker infrastructure updates ([8e45ef7](https://github.com/carbon-design-system/carbon-platform/commit/8e45ef757f06ae5b4b75dd742f05f423a1ee104d))
+
 ### [0.1.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-processor@0.1.4...@carbon-platform/mdx-processor@0.1.5) (2022-09-10)
 
 

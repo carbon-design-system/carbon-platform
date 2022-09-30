@@ -18,12 +18,22 @@ ENV CI=true
 RUN apk add --no-cache python3 make g++
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-COPY . .
+# Copy files needed to install deps
+COPY package.json .
+COPY package-lock.json .
+COPY base base
+COPY scripts scripts
 
 # Install base deps for all workspaces
 RUN npm -w base install
 
+# Copy build files needed by all workspaces
+COPY .npmrc .
+COPY esbuild.base.mjs .
+COPY tsconfig.base.json .
+
 # Install node modules for each "package"
+COPY packages packages
 RUN for file in packages/* ; do \
   npm --workspace "$file" install ; \
 done

@@ -37,6 +37,10 @@
   }
 }
 
+.no-border {
+  border-top: none;
+}
+
 .content {
   padding: spacing.$spacing-05 spacing.$spacing-05 spacing.$spacing-05 0;
   @include breakpoint.breakpoint(md) {

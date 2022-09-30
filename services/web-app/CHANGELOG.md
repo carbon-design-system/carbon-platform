@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.50](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.49...@carbon-platform/web-app@0.2.50) (2022-09-30)
+
+
+### Misc. 🔮
+
+* docker infrastructure updates ([8e45ef7](https://github.com/carbon-design-system/carbon-platform/commit/8e45ef757f06ae5b4b75dd742f05f423a1ee104d))
+
+
+### Bug Fixes 🐛
+
+* adobe xd icon ([0f87147](https://github.com/carbon-design-system/carbon-platform/commit/0f87147664f0ac9d9597a65d11badc221ba641d1))
+* **web-app:** open nav links with keyboard ([668e52f](https://github.com/carbon-design-system/carbon-platform/commit/668e52f969f8092ae9e586d52468f775d4d81f9a)), closes [#1291](https://github.com/carbon-design-system/carbon-platform/issues/1291)
+* **web-app:** remove top border in library catalog first item ([b9254e7](https://github.com/carbon-design-system/carbon-platform/commit/b9254e78098bfeea55bfc3611066a38a4b6a4696)), closes [#1301](https://github.com/carbon-design-system/carbon-platform/issues/1301)
+* website to platform redirect ([9ca6b6b](https://github.com/carbon-design-system/carbon-platform/commit/9ca6b6b7fbb36d2b180ba169b6fa40792d72600d))
+
 ### [0.2.49](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.48...@carbon-platform/web-app@0.2.49) (2022-09-28)
 
 

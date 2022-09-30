@@ -111,6 +111,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
             key={node.id}
             isExpanded={isTreeNodeExpanded(node)}
             className={clsx({ [styles['section-group']]: node.sectionGroup })}
+            onClick={() => node.path && window.open(node.path, '_self')}
           >
             {renderTree(node.items)}
           </TreeNode>

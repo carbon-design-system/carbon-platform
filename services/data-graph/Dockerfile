@@ -26,6 +26,6 @@ ENV CARBON_RUN_MODE=STANDARD
 COPY --from=builder /ibm/services/data-graph/dist/out.js dist/out.js
 
 # Allow a non-root user to work within the /ibm directory
-RUN chown -R 1000 /ibm
+RUN chown -R 10000 /ibm
 
 CMD ["node", "dist/out.js"]

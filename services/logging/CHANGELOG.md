@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.46](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.45...@carbon-platform/logging@1.1.46) (2022-09-30)
+
+
+### Misc. 🔮
+
+* update docker images to enable running as non-root users ([598a797](https://github.com/carbon-design-system/carbon-platform/commit/598a797fe1ef56281c75dc7419b2c4978197b24f))
+* update docker images to use even higher UIDs ([a73472c](https://github.com/carbon-design-system/carbon-platform/commit/a73472cf1626b555e4d9f08ed496fa2409687fb3))
+
 ### [1.1.45](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.44...@carbon-platform/logging@1.1.45) (2022-09-30)
 
 

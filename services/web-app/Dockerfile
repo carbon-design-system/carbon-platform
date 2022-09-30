@@ -38,5 +38,8 @@ COPY --from=builder /ibm/services/web-app/public .next/standalone/services/web-a
 COPY --from=builder /ibm/services/web-app/.next/static .next/standalone/services/web-app/.next/static
 COPY --from=builder /ibm/services/web-app/.carbon .next/standalone/services/web-app/.carbon
 
+# Allow a non-root user to work within the /ibm directory
+RUN chown -R 1000 /ibm
+
 # Run NextJS app concurrently with the express proxy server
 CMD ["npx", "concurrently", "--kill-others", "PORT=3000 node .next/standalone/services/web-app/server.js", "node dist/out.js"]

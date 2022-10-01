@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.52](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.51...@carbon-platform/data-graph@0.1.52) (2022-10-01)
+
+
+### Misc. 🔮
+
+* update dockerfiles of all services ([a54b4e7](https://github.com/carbon-design-system/carbon-platform/commit/a54b4e799bc122d89b0bee66858f99d39f723164))
+
 ### [0.1.51](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.50...@carbon-platform/data-graph@0.1.51) (2022-09-30)
 
 

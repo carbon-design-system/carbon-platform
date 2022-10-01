@@ -23,9 +23,10 @@ WORKDIR /ibm/services/logging
 ENV NODE_ENV=production
 ENV CARBON_RUN_MODE=STANDARD
 
-COPY --from=builder /ibm/services/logging/dist/out.js dist/out.js
-
-# Allow a non-root user to work within the /ibm directory
+# Make a non-root user that can work within the /ibm directory
+RUN adduser -D -u 10000 ibm-user
 RUN chown -R 10000 /ibm
+
+COPY --from=builder /ibm/services/logging/dist/out.js dist/out.js
 
 CMD ["node", "dist/out.js"]

@@ -30,16 +30,23 @@ ENV CARBON_RUN_MODE=STANDARD
 RUN apk add --no-cache python3 make g++
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
+# Make a non-root user that can work within the /ibm directory
+RUN adduser -D -u 10000 ibm-user
+RUN chown -R 10000 /ibm
+
+# Switch to the non-root user for the rest of the build
+USER 10000
+
 RUN CI=true npm install concurrently sharp
 
+# These files/directories are not written to at runtime, so they're left as root-owned
 COPY --from=builder /ibm/services/web-app/dist/out.js dist/out.js
-COPY --from=builder /ibm/services/web-app/.next/standalone .next/standalone
 COPY --from=builder /ibm/services/web-app/public .next/standalone/services/web-app/public
 COPY --from=builder /ibm/services/web-app/.next/static .next/standalone/services/web-app/.next/static
-COPY --from=builder /ibm/services/web-app/.carbon .next/standalone/services/web-app/.carbon
 
-# Allow a non-root user to work within the /ibm directory
-RUN chown -R 10000 /ibm
+# These directories are written to at runtime, so they're owned by the non-root user
+COPY --chown=10000 --from=builder /ibm/services/web-app/.next/standalone .next/standalone
+COPY --chown=10000 --from=builder /ibm/services/web-app/.carbon .next/standalone/services/web-app/.carbon
 
 # Run NextJS app concurrently with the express proxy server
 CMD ["npx", "concurrently", "--kill-others", "PORT=3000 node .next/standalone/services/web-app/server.js", "node dist/out.js"]

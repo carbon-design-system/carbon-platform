@@ -15,7 +15,7 @@ const createTabs = ({ tabs }) => {
   return tabs.map((tab, i) => {
     return (
       <Tab as="span" key={i}>
-        <a href={tab.path} className={styles['tab-link']}>
+        <a href={tab.path} className={styles['tab-link']} tabIndex="0">
           {tab.name}
         </a>
       </Tab>
@@ -34,6 +34,8 @@ const PageTabs = ({ className, tabs = [] }) => {
   const currTabSlug = getPathLeaf(router.asPath)
 
   const currTabIndex = tabs.findIndex((tab) => getPathLeaf(tab.path) === currTabSlug)
+
+  console.log(currTabIndex, 'boo')
 
   return (
     <Grid className={clsx(styles.container, className)} narrow>

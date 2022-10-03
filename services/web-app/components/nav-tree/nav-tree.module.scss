@@ -14,15 +14,7 @@
 .container {
   margin-bottom: spacing.$spacing-10;
 
-  .anchor {
-    width: calc(100% + 3.5rem);
-    height: 100%;
-    padding: 0.4375rem 0 0.4375rem 3.5rem;
-    margin-left: -3.5rem;
-    color: theme.$text-secondary;
-    text-decoration: none;
-  }
-  // overide Carbon treeview
+  // override carbon treeview
   :global(.cds--tree-node) {
     padding-left: spacing.$spacing-05;
     background: transparent;
@@ -36,8 +28,60 @@
     cursor: pointer;
   }
 
-  :global(.cds--tree-parent-node__toggle-icon) {
-    display: none;
+  :global(.cds--tree-node__label:hover) {
+    background-color: theme.$background-hover;
+  }
+
+  :global(.cds--tree-node--selected > .cds--tree-node__label),
+  :global(.cds--tree-node--selected > .cds--tree-node__label::before) {
+    background: transparent;
+  }
+
+  :global(.cds--tree-node__children .cds--tree-node__label) {
+    @include type.type-style('body-compact-01');
+  }
+
+  // top level anchor link
+  .anchor {
+    width: calc(100% + spacing.$spacing-05);
+    height: 2rem;
+    padding: 0.4375rem spacing.$spacing-05;
+    margin-left: -(spacing.$spacing-05);
+    color: theme.$text-secondary;
+    text-decoration: none;
+  }
+
+  // nested anchor link
+  :global(.cds--tree-node__children) .anchor {
+    width: calc(100% + spacing.$spacing-07);
+    padding-left: spacing.$spacing-07;
+    margin-left: -(spacing.$spacing-07);
+  }
+
+  :global(.cds--tree-node--selected > .cds--tree-node__label) .anchor {
+    @include type.type-style('heading-01');
+
+    position: relative;
+    padding-top: 0.375rem;
+    background-color: theme.$background-selected;
+    color: theme.$text-primary;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0.25rem;
+      height: 100%;
+      background-color: theme.$border-interactive;
+      content: '';
+    }
+  }
+
+  // nested 2 deep anchor link
+  :global(.cds--tree-node__children > li > .cds--tree-node__children) .anchor {
+    width: calc(100% + spacing.$spacing-09);
+    padding-left: spacing.$spacing-09;
+    margin-left: -(spacing.$spacing-09);
   }
 
   :global(.cds--tree-parent-node__toggle) {
@@ -60,68 +104,17 @@
     content: '';
   }
 
+  :global(.cds--tree-parent-node__toggle-icon) {
+    display: none;
+  }
+
+  // parent treenode open
   :global(.cds--tree-node[aria-expanded='true']) {
     color: theme.$text-primary;
   }
 
-  :global(.cds--tree-node__label:hover) {
-    background-color: theme.$background-hover;
-  }
-
-  :global(.cds--tree-node--selected > .cds--tree-node__label) {
-    background-color: theme.$background-selected;
-  }
-
-  :global(.cds--tree-node__children .cds--tree-node__label) {
-    @include type.type-style('body-compact-01');
-  }
-
-  :global(.cds--tree-node--selected > .cds--tree-node__label::before) {
-    left: spacing.$spacing-06;
-  }
-
-  :global(.cds--tree-node--selected > .cds--tree-node__label:hover) {
-    background-color: theme.$background-selected;
-  }
-
-  :global(.cds--tree-node--selected.cds--tree-node--active > .cds--tree-node__label) {
-    background-color: theme.$background-selected;
-    color: theme.$text-primary;
-    font-weight: bold;
-
-    .anchor {
-      color: theme.$text-primary;
-    }
-  }
-
-  :global(.cds--tree-node[aria-expanded='true'] > * > .cds--tree-parent-node__toggle::after) {
-    transform: rotate(180deg);
-  }
-
-  :global(.cds--tree-parent-node.cds--tree-node--selected > .cds--tree-node__label::before) {
-    left: 0;
-  }
-
-  :global(.cds--tree-node[aria-expanded='true']
-      > .cds--tree-node__label
-      .cds--tree-node__label__details) {
-    @include type.type-style('heading-compact-01');
-  }
-
-  :global(.cds--tree-node__children
-      .cds--tree-node__children
-      .cds--tree-node--selected
-      > .cds--tree-node__label::before) {
-    left: spacing.$spacing-06;
-  }
-
-  :global(.cds--tree-node__children
-      .cds--tree-node__children
-      .cds--tree-node--selected.cds--tree-node--active
-      .cds--tree-node__label) {
-    background-color: theme.$background-selected;
-    color: theme.$text-primary;
-    font-weight: bold;
+  :global(.cds--tree-node[aria-expanded='true'] > .cds--tree-node__label) {
+    @include type.type-style('heading-01');
   }
 
   .section-heading {

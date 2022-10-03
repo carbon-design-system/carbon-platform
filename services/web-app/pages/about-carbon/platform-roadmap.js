@@ -68,11 +68,11 @@ const PageContent = () => {
     },
     {
       version: 'v1.0',
-      release: 'Target release:',
-      date: 'September',
-      title: 'General availability',
+      release: 'Released:',
+      date: 'September 30',
+      title: 'Public beta',
       description:
-        'The platform’s first major release will help system users discover and learn about all ' +
+        'The platform’s first major release helps system users discover and learn about all ' +
         'the assets and libraries in the system with confidence in their completeness, who ' +
         'maintains them, and how to use them. System users can access documentation for all ' +
         'indexed assets and libraries without leaving the platform.',
@@ -84,8 +84,8 @@ const PageContent = () => {
       image: ReleaseThreeImg,
       captionHeading: 'v1.0 User experience',
       caption:
-        'This release will achieve content parity with Carbon’s current website — all 32 “core” ' +
-        'components will have complete asset detail pages.'
+        'This release achieves content parity with the current Carbon website — all 32 “core” ' +
+        'components have complete asset detail pages.'
     },
     {
       version: 'v1.x',

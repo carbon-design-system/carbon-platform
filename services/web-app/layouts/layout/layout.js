@@ -21,6 +21,7 @@ import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import BackToTop from '@/components/back-to-top'
+import Banner from '@/components/banner'
 import Footer from '@/components/footer'
 import NavPrimary from '@/components/nav-primary'
 import NavSecondary from '@/components/nav-secondary'
@@ -166,6 +167,7 @@ const Layout = ({ children }) => {
     <HeaderContainer
       render={() => (
         <>
+          {router.pathname === '/' && <Banner />}
           <Theme theme="g100">
             <Header aria-label="Carbon Design System" className={styles.header}>
               <SkipToContent />

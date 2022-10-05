@@ -25,7 +25,7 @@
     "build:storybook": "build-storybook -o .storybook-static",
     "build:watch": "nodemon --watch src/main --ext .ts,.tsx,.scss --exec 'npm run build'",
     "dev": "concurrently --kill-others 'npm run build:watch' 'npm run storybook'",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist tsconfig.tsbuildinfo",
     "package:build": "npm run build",
     "storybook": "start-storybook -p 6006",
     "test": "ava --config ../../ava.config.mjs"

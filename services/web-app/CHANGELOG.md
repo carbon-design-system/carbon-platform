@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.54](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.53...@carbon-platform/web-app@0.2.54) (2022-10-05)
+
+
+### Features 🌟
+
+* **web-app:** add banner component ([cae1e8a](https://github.com/carbon-design-system/carbon-platform/commit/cae1e8ae0bd6fddebe5af6b77101eae05b003bf7)), closes [#1365](https://github.com/carbon-design-system/carbon-platform/issues/1365)
+
+
+### Bug Fixes 🐛
+
+* add aria label ([c61bc69](https://github.com/carbon-design-system/carbon-platform/commit/c61bc693dbe060a42cc378abae89f6fedffd0d6e))
+* add class back ([ab5dfdc](https://github.com/carbon-design-system/carbon-platform/commit/ab5dfdc2e5380a42d11bf1db83db970128bd5477))
+* add comments ([b7d0894](https://github.com/carbon-design-system/carbon-platform/commit/b7d08949f181f6a47214f6ded140836f67e8c733))
+* css specificity ([8326df4](https://github.com/carbon-design-system/carbon-platform/commit/8326df45ce7e01b237c18ab2fe4c022079f259fc))
+* https for carbon link ([c3753b5](https://github.com/carbon-design-system/carbon-platform/commit/c3753b54fc91bb49ab50b814d2d654f0044d4033))
+* max width mobile button ([872e35f](https://github.com/carbon-design-system/carbon-platform/commit/872e35f3ceda05d70e8f14f0809bbab8f3007167))
+* merge conflicts ([7f41de8](https://github.com/carbon-design-system/carbon-platform/commit/7f41de886b8aa26cd70c721863fb40a0cd9fe95c))
+* remove extra class ([768c9b7](https://github.com/carbon-design-system/carbon-platform/commit/768c9b751939bb58322e7bb830b7a6891fc5657a))
+
 ### [0.2.53](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.52...@carbon-platform/web-app@0.2.53) (2022-10-04)
 
 

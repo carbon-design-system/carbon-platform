@@ -5,8 +5,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use '@carbon/react/scss/spacing' as spacing;
-
-.page-content {
-  padding-top: spacing.$spacing-09;
-}
+export { default } from './content-wrapper'

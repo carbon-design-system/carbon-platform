@@ -13,6 +13,7 @@ import { useRouter } from 'next/router'
 import { MDXRemote } from 'next-mdx-remote'
 import PropTypes from 'prop-types'
 
+import ContentWrapper from '@/components/content-wrapper'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import DemoLinks from '@/components/demo-links'
@@ -62,7 +63,7 @@ const AssetDetails = ({ library, asset }) => {
   const router = useRouter()
 
   return (
-    <>
+    <ContentWrapper>
       <section id="dashboard">
         <Dashboard className={styles.dashboard}>
           <Column className={dashboardStyles.column} sm={4}>
@@ -196,7 +197,7 @@ const AssetDetails = ({ library, asset }) => {
           <MDXRemote compiledSource={asset.overviewMdxSource.compiledSource.value} />
         )}
       </section>
-    </>
+    </ContentWrapper>
   )
 }
 

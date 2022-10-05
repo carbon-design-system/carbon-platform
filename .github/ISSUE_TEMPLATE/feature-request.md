@@ -15,7 +15,7 @@ assignees: ''
 
 > What value will this deliver?
 
-1. When _, I want to _, so I can \_.
+1. When \_, I want to \_, so I can \_.
 
 **Acceptance criteria**
 

@@ -14,6 +14,7 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
 import CardGroup from '@/components/card-group/card-group'
+import ContentWrapper from '@/components/content-wrapper'
 import H2 from '@/components/markdown/h2'
 import P from '@/components/markdown/p'
 import MdxIcon from '@/components/mdx-icon/mdx-icon'
@@ -27,8 +28,6 @@ import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData, getLibraryNavData } from '@/lib/github'
-
-import pageStyles from '../../../../../../pages.module.scss'
 
 const DesignKits = ({ libraryData, navData }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
@@ -81,9 +80,9 @@ const DesignKits = ({ libraryData, navData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader bgColor={pageHeader?.bgColor} title="Design kits" pictogram={pageHeader?.icon} />
-      <Grid>
-        <Column sm={4} md={8} lg={12}>
-          <div className={pageStyles.content}>
+      <ContentWrapper>
+        <Grid>
+          <Column sm={4} md={8} lg={12}>
             {!libraryData.content.designKits && <NoDesignKits />}
             {libraryData.content.designKits && (
               <>
@@ -127,9 +126,9 @@ const DesignKits = ({ libraryData, navData }) => {
                 ))}
               </>
             )}
-          </div>
-        </Column>
-      </Grid>
+          </Column>
+        </Grid>
+      </ContentWrapper>
     </>
   )
 }

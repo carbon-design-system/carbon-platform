@@ -8,17 +8,17 @@ assignees: ''
 
 **Summary**
 
-What problem (or opportunity) are we solving? Why are we solving it? Is there supporting user
-conversations or research?
+> What problem (or opportunity) are we solving? Why are we solving it? Is there supporting user
+> conversations or research?
 
 **Job stories**
 
-What value will this deliver?
+> What value will this deliver?
 
-1. When \_\_\_, I want to \_\_\_, so I can \_\_\_.
+1. When \_, I want to \_, so I can \_.
 
 **Acceptance criteria**
 
-What requirements must be met to complete this request?
+> What requirements must be met to complete this request?
 
 1. To do

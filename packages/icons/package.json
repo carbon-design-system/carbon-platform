@@ -24,7 +24,7 @@
     "package:build": "npm run build"
   },
   "dependencies": {
-    "@svgr/cli": "^6.3.1",
+    "@svgr/cli": "^6.4.0",
     "rimraf": "^3.0.2"
   },
   "peerDependencies": {

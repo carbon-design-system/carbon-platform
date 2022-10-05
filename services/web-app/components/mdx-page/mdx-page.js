@@ -4,9 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { MDXRemote } from 'next-mdx-remote'
 import { NextSeo } from 'next-seo'
 import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
@@ -57,7 +57,7 @@ const createMdxErrorContent = ({ mdxError }) => {
   return <Component mdxError={mdxError} />
 }
 
-const createPageContent = ({ children, mdxError, warnings }) => {
+const createPageContent = ({ source, mdxError, warnings }) => {
   if (mdxError) {
     return createMdxErrorContent({ mdxError })
   }
@@ -65,7 +65,7 @@ const createPageContent = ({ children, mdxError, warnings }) => {
   return (
     <div className={styles['page-content']}>
       {warnings?.length > 0 && <WarningsRollup warnings={warnings} />}
-      {children}
+      <MDXRemote compiledSource={source} />
     </div>
   )
 }
@@ -84,15 +84,15 @@ const createSeo = ({ title, description, keywords }) => {
 }
 
 const MdxPage = ({
-  title,
   description,
   keywords,
-  tabs,
   mdxError,
-  warnings,
-  children,
   pageHeaderType,
-  seoTitle
+  seoTitle,
+  source,
+  tabs,
+  title,
+  warnings
 }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
@@ -118,16 +118,12 @@ const MdxPage = ({
         />
       )}
       {areTabsPresent && <PageTabs title={title} tabs={getTabData(tabs, baseSegment)} />}
-      {createPageContent({ children, mdxError, warnings })}
+      {createPageContent({ source, mdxError, warnings })}
     </>
   )
 }
 
 MdxPage.propTypes = {
-  /**
-   * The component representing the actual MDX to render. This should have already been sanitized.
-   */
-  children: PropTypes.node,
   /**
    * Description of the page, typically from frontmatter.
    */
@@ -152,6 +148,10 @@ MdxPage.propTypes = {
    * title to use for SEO
    */
   seoTitle: PropTypes.string,
+  /**
+   * **Compiled and sanitized** MDX source of the page as executable JS.
+   */
+  source: PropTypes.string,
   /**
    * Tabs to display on the page.
    */

@@ -4,9 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-import { MDXRemote } from 'next-mdx-remote'
-
 import MdxPage from '@/components/mdx-page/mdx-page'
 import withLoading from '@/components/with-loading'
 import { defaultFilePathPrefix, defaultParams, remotePages } from '@/data/remote-pages'
@@ -23,12 +20,11 @@ const RemoteMdxPage = ({ compiledSource, tabs, mdxError, warnings, pageHeaderTyp
       description={description}
       keywords={keywords}
       tabs={tabs}
+      source={compiledSource?.value}
       mdxError={mdxError}
       warnings={warnings}
       pageHeaderType={pageHeaderType}
-    >
-      {compiledSource && <MDXRemote compiledSource={compiledSource.value} />}
-    </MdxPage>
+    />
   )
 }
 

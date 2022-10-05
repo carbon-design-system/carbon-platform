@@ -4,7 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { MDXRemote } from 'next-mdx-remote'
 import { NextSeo } from 'next-seo'
 import path from 'path'
 import { useContext, useEffect } from 'react'
@@ -41,12 +40,11 @@ const LibraryPage = ({ compiledSource, mdxError, warnings, navData, navTitle, li
         title={title}
         description={description}
         keywords={keywords}
+        source={compiledSource && compiledSource.value}
         mdxError={mdxError}
         warnings={warnings}
         pageHeaderType="library"
-      >
-        {compiledSource && <MDXRemote compiledSource={compiledSource.value} />}
-      </MdxPage>
+      />
     </>
   )
 }

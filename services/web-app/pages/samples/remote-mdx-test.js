@@ -4,8 +4,6 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { MDXRemote } from 'next-mdx-remote'
-
 import MdxPage from '@/components/mdx-page/mdx-page'
 import { getRemoteMdxSource } from '@/lib/github'
 import { processMdxSource } from '@/utils/mdx'
@@ -21,11 +19,10 @@ const RemoteMdxTest = ({ compiledSource, tabs, mdxError, warnings }) => {
       keywords={keywords}
       tabs={tabs}
       mdxError={mdxError}
+      source={compiledSource?.value}
       warnings={warnings}
       pageHeaderType={pageHeaderType}
-    >
-      {compiledSource && <MDXRemote compiledSource={compiledSource.value} />}
-    </MdxPage>
+    />
   )
 }
 

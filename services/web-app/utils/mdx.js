@@ -97,12 +97,11 @@ export async function processMdxSource(mdxSource, url) {
 }
 
 /**
- * Retrieves the remote mdx source content, processes it
- * and converts it into an object containing HTML value
+ * Retrieves the remote mdx source content, processes it and converts it into an object containing
+ * executable React JS.
  * @param {import('@/typedefs').Params} params
  * @param {string} url
- * @returns {Promise<import('@/typedefs').RemoteMdxSource>}
- * mdxSource or empty object
+ * @returns {Promise<import('@/typedefs').RemoteMdxSource>} mdxSource or empty object
  */
 export async function getProcessedMdxSource(params, url) {
   let processedMdx = {}

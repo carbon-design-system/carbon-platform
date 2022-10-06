@@ -10,6 +10,7 @@ import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
 
 interface AccordionProps {
@@ -20,7 +21,7 @@ interface AccordionProps {
  * The `<Accordion>` and `<AccordionItem>` components are used together to display a list of content
  * sections that can be toggled open by clicking the respective title of each section.
  */
-const Accordion = ({ className, ...rest }: AccordionProps) => (
+const Accordion: MdxComponent<AccordionProps> = ({ className, ...rest }) => (
   <Grid narrow>
     <Column sm={4} md={8} lg={8}>
       <CarbonAccordion size="xl" {...rest} className={clsx(className, withPrefix('accordion'))} />

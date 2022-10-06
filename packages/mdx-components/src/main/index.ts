@@ -6,6 +6,7 @@
  */
 export { default as AnchorLink, AnchorLinkProps } from './anchor-links/anchor-link.js'
 export { default as AnchorLinks, AnchorLinksProps } from './anchor-links/anchor-links.js'
+export { default as Caption, CaptionProps } from './caption/caption.js'
 export { default as ColorBlock, ColorBlockProps } from './color-block/color-block.js'
 
 // Carbon components

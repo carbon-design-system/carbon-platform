@@ -7,6 +7,7 @@
 import Proptypes from 'prop-types'
 import React from 'react'
 
+import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
 
 interface ColorBlockProps {
@@ -17,7 +18,7 @@ interface ColorBlockProps {
  * The `<ColorBlock>` component displays the color of the hex value.
  * Designed to be used within a page table for documentation.
  */
-const ColorBlock = ({ children }: ColorBlockProps) => {
+const ColorBlock: MdxComponent<ColorBlockProps> = ({ children }) => {
   const colorBlockStyles = {
     backgroundColor: children
   }

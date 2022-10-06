@@ -10,10 +10,11 @@ import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React, { Children, ReactNode } from 'react'
 
+import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
 
 interface AnchorLinksProps {
-  small?: boolean
+  small?: boolean | null
   children: ReactNode
 }
 
@@ -25,7 +26,7 @@ interface AnchorLinksProps {
  * For most pages, we recommend starting with a `PageDescription` followed by `AnchorLinks` if the
  * content is long enough.
  */
-const AnchorLinks = ({ children, small }: AnchorLinksProps) => {
+const AnchorLinks: MdxComponent<AnchorLinksProps> = ({ children, small }) => {
   const isColumn = Children.count(children) > 9
   const classNames = clsx({
     [withPrefix('list--small')]: small,
@@ -46,6 +47,10 @@ const AnchorLinks = ({ children, small }: AnchorLinksProps) => {
 }
 
 AnchorLinks.propTypes = {
+  /**
+   * A set of links to be rendered as part of this AnchorLinks component.
+   */
+  children: PropTypes.node,
   /**
    * Display small font size.
    */

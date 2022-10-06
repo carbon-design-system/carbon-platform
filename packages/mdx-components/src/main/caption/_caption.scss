@@ -11,7 +11,7 @@
 
 @use '../utils' as *;
 
-.#{with-prefix('container')} {
+.#{with-prefix('caption-container')} {
   margin-top: spacing.$spacing-05;
 }
 

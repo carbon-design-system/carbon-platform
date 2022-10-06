@@ -5,3 +5,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 declare module '@carbon/react'
+declare module '@carbon/react/icons'

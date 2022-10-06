@@ -7,8 +7,9 @@
 import { Validator } from 'prop-types'
 
 interface MdxComponent<P> {
-  (props: P): void
+  (props: P): JSX.Element | null
   propTypes: { [prop in keyof P]: Validator<P[prop]> }
+  defaultProps?: { [prop in keyof P]?: P[prop] }
 }
 
 export { MdxComponent }

@@ -6,6 +6,14 @@
  */
 const prefix = 'carbon-platform-mdx-components'
 
+/**
+ * Adds a prefix specific to the carbon platform mdx components to the provided string. This is
+ * often used in conjunction with the scss utility `with-prefix` to assign unique class names to
+ * styles for components.
+ *
+ * @param className The string to which to add a prefix.
+ * @returns A prefixed string.
+ */
 function withPrefix(className: string) {
   return prefix + '--' + className
 }

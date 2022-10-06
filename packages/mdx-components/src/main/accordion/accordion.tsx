@@ -14,7 +14,7 @@ import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
 
 interface AccordionProps {
-  className: string
+  className?: string | null
 }
 
 /**

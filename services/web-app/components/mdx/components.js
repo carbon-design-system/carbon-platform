@@ -42,7 +42,6 @@ import { Tab, Tabs } from '@/components/tabs'
 import Title from '@/components/title'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
-import Video from '@/components/video'
 
 const components = {
   ...mdxComponents,
@@ -102,8 +101,7 @@ const components = {
   Title,
   TypeScaleTable,
   TypesetStyle,
-  TypeWeight,
-  Video
+  TypeWeight
 }
 
 export default components

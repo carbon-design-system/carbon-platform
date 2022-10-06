@@ -71,7 +71,7 @@ Please revise your MDX content, remove all exports and try again.
 Sample:
 
 <div style={{ backgroundColor: 'lightgray', padding: '30px', borderRadius: '10px' }}>
-  <InlineError
+  <MdxNotification
     title="UnknownComponent not recognized"
     description="This component is not supported or there is a typo. Please update to a supported component or review any mistakes.
     It is referenced in your code at \`13:1-13:23\`"
@@ -93,7 +93,7 @@ visit our [component list](/TODO) to view an updated list of our supported compo
 Sample:
 
 <div style={{ backgroundColor: 'lightgray', padding: '30px', borderRadius: '10px' }}>
-  <InlineError
+  <MdxNotification
     title="[next-mdx-remote] error compiling MDX:"
     description="Expected a closing tag for `<div>` (13:1-13:6) before the end of `paragraph`"
   />
@@ -119,7 +119,7 @@ for a comprehensive list of common MDX parsing errors
 Sample:
 
 <div style={{ backgroundColor: 'lightgray', padding: '30px', borderRadius: '10px' }}>
-  <InlineError
+  <MdxNotification
     title="Component not rendering"
     description="Verify component usage documentation to make sure you're supplying all necessary information in the correct format"
     link="Get support"

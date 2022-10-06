@@ -15,13 +15,13 @@ import { getRemoteMdxSource } from '@/lib/github'
 import { mdxUrlResolver } from '@/utils/mdx-url-resolver'
 
 // TODO: link out to components storybook
-const fallbackComponent = (node) => `<InlineError
+const fallbackComponent = (node, errCount) => `<MdxNotification
 title="\`${node.name}\` not recognized"
 description="This component is not supported or there is a typo. Please update to a supported component or review any mistakes.
 It is referenced in your code at \`13:1-13:23\`"
-link="Supported components" href="/TODO" />`
+link="Supported components" href="/TODO" id="mdx-error-${errCount}" />`
 
-const getScriptReplacementSrc = (node) => {
+const getScriptReplacementSrc = (node, errCount) => {
   let content = ''
   const getChildrenContent = (nodeItem) => {
     nodeItem.children?.forEach((child) => {
@@ -40,21 +40,15 @@ const getScriptReplacementSrc = (node) => {
   const scriptString =
     '```\n' + '<script>\n  ' + content.replaceAll('\n', '\n  ') + '\n</script>' + '\n```'
   return `
-  <InlineError title="Script tag identified"
-  description="For security concerns, script tags are not allowed and should be removed. Remove script referenced below"/>
+  <MdxNotification title="Script tag identified"
+  description="For security concerns, script tags are not allowed and should be removed. Remove script referenced below" id="mdx-error-${errCount}" />
   ${scriptString}
   `
 }
 
 export async function processMdxSource(mdxSource, url) {
+  let errCount = 0
   const warnings = []
-
-  const replacementMapper = {
-    script: (node) => {
-      return getScriptReplacementSrc(node)
-    }
-  }
-
   let compiledSource = null
   let mdxError = null
 
@@ -64,8 +58,14 @@ export async function processMdxSource(mdxSource, url) {
     imageResolverPlugin: mdxUrlResolver.bind(null, url),
     components,
     allowedTags: HTMLTags,
-    fallbackComponent,
-    tagReplacements: replacementMapper,
+    fallbackComponent: (node) => {
+      return fallbackComponent(node, ++errCount)
+    },
+    tagReplacements: {
+      script: (node) => {
+        return getScriptReplacementSrc(node, ++errCount)
+      }
+    },
     logger: new Logging({ component: 'mdx-processor' }),
     onError: (err) => {
       warnings.push({

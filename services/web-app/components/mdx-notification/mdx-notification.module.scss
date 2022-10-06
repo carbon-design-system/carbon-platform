@@ -8,10 +8,17 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/theme' as theme;
 
-// override carbon display close button
-:global(.cds--inline-notification__close-button) {
-  display: none;
+// override carbon low contrast anchor
+:global(.cds--inline-notification:not(.cds--inline-notification--low-contrast) a) {
+  color: theme.$link-primary;
+}
+
+:global(.cds--icon-tooltip) {
+  position: absolute;
+  top: 16px;
+  right: 72px;
 }
 
 // override carbon - icon inline with title
@@ -25,6 +32,7 @@
 }
 
 .error-container {
+  position: relative;
   margin-top: spacing.$spacing-05;
 }
 
@@ -43,12 +51,14 @@
   @include type.type-style('heading-compact-01', true);
 
   padding-bottom: spacing.$spacing-01;
+  color: theme.$text-primary;
 }
 
 .link {
   position: absolute;
   right: 0;
   padding: 0 spacing.$spacing-07 0 spacing.$spacing-05;
+  color: theme.$link-primary;
   cursor: pointer;
 
   @include breakpoint.breakpoint-down(lg) {
@@ -62,15 +72,29 @@
   @include type.type-style('body-short-01', true);
 
   padding-bottom: spacing.$spacing-05;
+  color: theme.$text-primary;
 }
 
 .content {
   @include type.type-style('code-02', true);
+
+  color: theme.$text-primary;
 
   overflow-x: auto;
   white-space: nowrap;
 
   @include breakpoint.breakpoint-down(lg) {
     margin-bottom: spacing.$spacing-07;
+  }
+}
+
+.collapse-icon {
+  position: absolute;
+  // TODO: fix
+  z-index: 9000;
+  color: theme.$icon-primary;
+
+  &:hover {
+    background: transparent;
   }
 }

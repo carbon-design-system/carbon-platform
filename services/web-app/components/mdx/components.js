@@ -10,7 +10,6 @@ import { Accordion, AccordionItem } from '@/components/accordion'
 import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
-import Caption from '@/components/caption'
 import CardGroup from '@/components/card-group'
 import Code from '@/components/code'
 import ColorGrid from '@/components/color-grid'
@@ -74,7 +73,6 @@ const components = {
   ArtDirection,
   ArticleCard,
   Aside,
-  Caption,
   CardGroup,
   ColorGrid,
   ColorPalette,

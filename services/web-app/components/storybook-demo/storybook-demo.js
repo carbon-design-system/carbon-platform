@@ -6,11 +6,10 @@
  */
 
 import { Column, Dropdown, Grid, Link } from '@carbon/react'
+import { Caption } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-
-import Caption from '@/components/caption'
 
 import * as styles from './storybook-demo.module.scss'
 

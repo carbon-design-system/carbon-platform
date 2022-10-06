@@ -6,7 +6,6 @@
  */
 import * as mdxComponents from '@carbon-platform/mdx-components'
 
-import { Accordion, AccordionItem } from '@/components/accordion'
 import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Aside from '@/components/aside'
@@ -68,8 +67,6 @@ const components = {
   InlineError,
   FullPageError,
   /* Gatsby theme components */
-  Accordion,
-  AccordionItem,
   ArtDirection,
   ArticleCard,
   Aside,

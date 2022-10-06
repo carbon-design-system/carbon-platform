@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 export { default as Accordion, AccordionProps } from './accordion/accordion.js'
-export { default as AccordionItem, AccordionItemProps } from './accordion/accordion-item.js'
 export { default as AnchorLink, AnchorLinkProps } from './anchor-links/anchor-link.js'
 export { default as AnchorLinks, AnchorLinksProps } from './anchor-links/anchor-links.js'
 export { default as Caption, CaptionProps } from './caption/caption.js'
@@ -13,6 +12,7 @@ export { default as ColorBlock, ColorBlockProps } from './color-block/color-bloc
 
 // Carbon components
 export {
+  AccordionItem,
   Button,
   CodeSnippet,
   Layer,

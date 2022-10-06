@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/scripts@0.2.1...@carbon-platform/scripts@0.2.2) (2022-10-06)
+
+
+### Misc. 🔮
+
+* add tsconfig.tsbuildinfo to clean scripts for all ts workspaces ([edcdaaa](https://github.com/carbon-design-system/carbon-platform/commit/edcdaaa1a1175a34f16d97e497f8d51bfe827673))
+
 ### [0.2.1](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/scripts@0.2.0...@carbon-platform/scripts@0.2.1) (2022-09-09)
 
 

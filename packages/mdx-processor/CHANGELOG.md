@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-processor@0.1.6...@carbon-platform/mdx-processor@0.1.7) (2022-10-06)
+
+
+### Misc. 🔮
+
+* add tsconfig.tsbuildinfo to clean scripts for all ts workspaces ([edcdaaa](https://github.com/carbon-design-system/carbon-platform/commit/edcdaaa1a1175a34f16d97e497f8d51bfe827673))
+
 ### [0.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-processor@0.1.5...@carbon-platform/mdx-processor@0.1.6) (2022-09-30)
 
 

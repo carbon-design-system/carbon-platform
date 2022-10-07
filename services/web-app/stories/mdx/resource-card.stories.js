@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column } from '@carbon/react'
+import { CardGroup } from '@carbon-platform/mdx-components'
 import Image from 'next/image'
 
-import CardGroup from '@/components/card-group'
 import ResourceCard from '@/components/resource-card'
 
 const stories = {

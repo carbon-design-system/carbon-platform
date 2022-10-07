@@ -4,7 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import CardGroup from '@/components/card-group'
+import { CardGroup } from '@carbon-platform/mdx-components'
+
 import MdxIcon from '@/components/mdx-icon'
 import MiniCard from '@/components/mini-card'
 

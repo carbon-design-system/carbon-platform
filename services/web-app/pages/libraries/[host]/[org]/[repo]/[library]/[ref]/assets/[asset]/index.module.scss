@@ -23,7 +23,7 @@
     width: 100vw;
     height: convert.rem(48px);
     border-bottom: 1px solid theme.$layer-active-01;
-    background: theme.$background;
+    background: transparent;
     content: '';
   }
 }

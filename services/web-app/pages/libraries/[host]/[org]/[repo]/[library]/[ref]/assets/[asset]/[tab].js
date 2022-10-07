@@ -13,7 +13,7 @@ import MdxPage from '@/components/mdx-page/mdx-page'
 import PageBreadcrumb from '@/components/page-breadcrumb/page-breadcrumb'
 import PageHeader from '@/components/page-header/page-header'
 import PageNav from '@/components/page-nav'
-import PageTabs from '@/components/page-tabs'
+import PageTabs2 from '@/components/page-tabs-2'
 import withLoading from '@/components/with-loading'
 import { assetTypes } from '@/data/asset-types'
 import { assetsNavData } from '@/data/nav-data'
@@ -77,7 +77,7 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
           <PageBreadcrumb items={breadcrumbItems} />
         </Column>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
-          {tabs && <PageTabs className={styles['asset-tabs']} tabs={tabs} />}
+          {tabs && <PageTabs2 className={styles['asset-tabs']} tabs={tabs} title="asset tabs" />}
         </Column>
         <Column sm={4} md={8} lg={4}>
           <PageNav items={pageNavItems} contentRef={contentRef} scrollTopDistance={180} />

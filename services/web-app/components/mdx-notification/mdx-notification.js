@@ -30,7 +30,7 @@ export const MdxNotification = ({
 
   return (
     <Grid narrow className={styles['error-container']}>
-      <Column sm={4} md={6} lg={16}>
+      <Column sm={4} md={8} lg={8}>
         <ActionableNotification
           href={href}
           className={clsx(wrapperClassName)}

@@ -6,19 +6,27 @@
  */
 
 import { Column, Grid } from '@carbon/react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 
-import styles from './aside.module.scss'
+import { MdxComponent } from '../interfaces.js'
+import { withPrefix } from '../utils.js'
+
+interface AsideProps {
+  children: ReactNode
+  className?: string | null
+  hideRule?: boolean | null
+}
 
 /**
  * The `<Aside>` component is a wrapper component that adds styling to make the text display
  *  smaller than the default body text with a one column offset. It is designed to be used on
  * the side of the page within grid components. Add an aria-label for a11y.
  */
-const Aside = ({ children, className, hideRule, ...rest }) => {
-  const asideClasses = clsx(styles.aside, className, {
-    [styles['aside--no-rule']]: !!hideRule
+const Aside: MdxComponent<AsideProps> = ({ children, className, hideRule, ...rest }) => {
+  const asideClasses = clsx(withPrefix('aside'), className, {
+    [withPrefix('aside--no-rule')]: !!hideRule
   })
 
   return (
@@ -31,8 +39,6 @@ const Aside = ({ children, className, hideRule, ...rest }) => {
     </Grid>
   )
 }
-
-export default Aside
 
 Aside.propTypes = {
   /**
@@ -50,3 +56,6 @@ Aside.propTypes = {
    */
   hideRule: PropTypes.bool
 }
+
+export { AsideProps }
+export default Aside

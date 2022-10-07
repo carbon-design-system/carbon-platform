@@ -10,7 +10,9 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/type' as type;
 
-.aside {
+@use '../utils' as *;
+
+.#{with-prefix('aside')} {
   @include type.type-style('body-01');
 
   position: relative;
@@ -49,6 +51,6 @@
   }
 }
 
-.aside--no-rule::before {
+.#{with-prefix('aside--no-rule')}::before {
   content: none;
 }

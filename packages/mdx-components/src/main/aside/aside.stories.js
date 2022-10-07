@@ -6,10 +6,10 @@
  */
 import { Column, Grid } from '@carbon/react'
 
-import Aside from '@/components/aside'
+import { Aside } from '../../../dist/main/index'
 
-const stories = {
-  title: 'MDX/Aside',
+export default {
+  title: 'Components/Aside',
   component: Aside,
   argTypes: {
     children: {
@@ -20,8 +20,6 @@ const stories = {
     }
   }
 }
-
-export default stories
 
 const Template = (args) => (
   <Grid>

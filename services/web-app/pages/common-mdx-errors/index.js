@@ -107,7 +107,7 @@ const CommonMdxErrors = () => {
         </P>
         <H3>Error Example</H3>
         <Grid narrow>
-          <Column lg={8}>
+          <Column sm={4} md={6} lg={8}>
             <InlineError
               title="UnknownComponent not recognized"
               description="This component is not supported or there is a typo. Please update to a supported component or review any mistakes.
@@ -136,7 +136,7 @@ const CommonMdxErrors = () => {
         </P>
         <H3>Error Example</H3>
         <Grid>
-          <Column lg={8}>
+          <Column sm={4} md={6} lg={8}>
             <InlineError
               title="[next-mdx-remote] error compiling MDX:"
               description="Expected a closing tag for `<div>` (13:1-13:6) before the end of `paragraph`"
@@ -176,7 +176,7 @@ const CommonMdxErrors = () => {
         </UL>
         <H3>Error Example</H3>
         <Grid>
-          <Column lg={8}>
+          <Column sm={4} md={6} lg={8}>
             <InlineError
               title="Component not rendering"
               description="Verify component usage documentation to make sure you're supplying all necessary information in the correct format"

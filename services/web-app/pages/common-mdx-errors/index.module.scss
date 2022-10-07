@@ -6,6 +6,7 @@
  */
 
 @use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
 
 .content {
   padding-top: spacing.$spacing-09;
@@ -13,5 +14,5 @@
 
 .error-container {
   padding: 0 spacing.$spacing-09 spacing.$spacing-09;
-  background-color: #ffffff;
+  background-color: theme.$layer-01;
 }

@@ -15,10 +15,11 @@
   color: theme.$link-primary;
 }
 
+// override carbon tooltip
 :global(.cds--icon-tooltip) {
   position: absolute;
-  top: 16px;
-  right: 72px;
+  top: 1px;
+  right: 1px;
 }
 
 // override carbon - icon inline with title
@@ -29,6 +30,12 @@
 // override carbon max-width
 :global(.cds--inline-notification) {
   max-width: 100%;
+}
+
+// override carbon close button
+:global(.cds--actionable-notification--hide-close-button
+    .cds--actionable-notification__action-button.cds--btn--ghost) {
+  display: none;
 }
 
 .error-container {
@@ -89,12 +96,5 @@
 }
 
 .collapse-icon {
-  position: absolute;
-  // TODO: fix
-  z-index: 9000;
-  color: theme.$icon-primary;
-
-  &:hover {
-    background: transparent;
-  }
+  z-index: 1;
 }

@@ -30,20 +30,6 @@ export const MdxNotification = ({
 
   return (
     <Grid narrow className={styles['error-container']}>
-      {collapsible && (
-        <Button
-          className={styles['collapse-icon']}
-          kind="ghost"
-          onClick={() => {
-            setIsCollapsed(!collapsed)
-          }}
-          hasIconOnly
-          renderIcon={collapsed ? ChevronUp : ChevronDown}
-          iconDescription={collapsed ? 'Expand' : 'Collapse'}
-          tooltipAlignment="center"
-          tooltipPosition="bottom"
-        />
-      )}
       <Column sm={4} md={6} lg={16}>
         <ActionableNotification
           href={href}
@@ -54,6 +40,21 @@ export const MdxNotification = ({
           hideCloseButton
           kind={kind}
         >
+          {collapsible && (
+            <Button
+              className={styles['collapse-icon']}
+              kind="ghost"
+              size="lg"
+              onClick={() => {
+                setIsCollapsed(!collapsed)
+              }}
+              hasIconOnly
+              renderIcon={collapsed ? ChevronUp : ChevronDown}
+              iconDescription={collapsed ? 'Expand' : 'Collapse'}
+              tooltipAlignment="center"
+              tooltipPosition="bottom"
+            />
+          )}
           <Grid className={styles.grid}>
             <Column sm={4} md={6} lg={12}>
               <span className={styles.container}>

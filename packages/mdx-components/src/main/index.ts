@@ -9,6 +9,7 @@ export { default as AnchorLink, AnchorLinkProps } from './anchor-links/anchor-li
 export { default as AnchorLinks, AnchorLinksProps } from './anchor-links/anchor-links.js'
 export { default as Aside, AsideProps } from './aside/aside.js'
 export { default as Caption, CaptionProps } from './caption/caption.js'
+export { default as CardGroup, CardGroupProps } from './card-group/card-group.js'
 export { default as ColorBlock, ColorBlockProps } from './color-block/color-block.js'
 export { default as Video, VideoWithSrcProps, VideoWithVimeoIdProps } from './video/video.js'
 

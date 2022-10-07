@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.56](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.55...@carbon-platform/web-app@0.2.56) (2022-10-07)
+
+
+### Features 🌟
+
+* **web-app:** remove team photos ([f0c5119](https://github.com/carbon-design-system/carbon-platform/commit/f0c5119611cbe206ef46e6625fbd214176997794))
+
 ### [0.2.55](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.54...@carbon-platform/web-app@0.2.55) (2022-10-06)
 
 

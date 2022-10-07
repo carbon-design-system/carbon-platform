@@ -14,6 +14,7 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
 import CardGroup from '@/components/card-group'
+import ContentWrapper from '@/components/content-wrapper'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import DemoLinks from '@/components/demo-links'
@@ -116,127 +117,132 @@ const Library = ({ libraryData, params, navData }) => {
             pictogram={pageHeader?.icon}
           />
         </Column>
-        <Column sm={4} md={8} lg={8}>
-          <PageDescription className={styles['page-description']}>
-            {seo.description}
-          </PageDescription>
-          <AnchorLinks>
-            <AnchorLink>Dashboard</AnchorLink>
-            {libraryData.content.demoLinks && <AnchorLink>Demo links</AnchorLink>}
-            <AnchorLink>Resources</AnchorLink>
-          </AnchorLinks>
-        </Column>
-        <Column sm={4} md={8} lg={12}>
-          <div id="dashboard">
-            <Dashboard className={styles.dashboard}>
-              <Column className={dashboardStyles.column} sm={4}>
-                <DashboardItem aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}>
-                  <dl>
-                    <dt className={dashboardStyles.label}>Version</dt>
-                    <dd className={dashboardStyles['label--large']}>{getVersion()}</dd>
-                  </dl>
-                  {MaintainerIcon && (
-                    <MaintainerIcon
-                      className={clsx(
-                        dashboardStyles['position-bottom-left'],
-                        styles['maintainer-icon']
-                      )}
-                      size={64}
-                    />
-                  )}
-                </DashboardItem>
-              </Column>
-              <Column className={dashboardStyles.column} sm={4} lg={8}>
-                <DashboardItem aspectRatio={{ sm: '3x4', md: '3x4', lg: 'none', xlg: 'none' }}>
-                  <Grid as="dl" className={dashboardStyles.subgrid}>
-                    <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
-                      <dt className={dashboardStyles.label}>Maintainer</dt>
-                      <dd className={dashboardStyles.meta}>
-                        {teams[libraryData.params.maintainer]?.name || 'Community'}
-                      </dd>
-                    </Column>
-                    <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
-                      <dt className={dashboardStyles.label}>License</dt>
-                      <dd className={dashboardStyles.meta}>{getAssetLicense(libraryData)}</dd>
-                    </Column>
-                    <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
-                      <dt className={dashboardStyles.label}>Related libraries</dt>
-                      <dd className={dashboardStyles.meta}>
-                        {relatedLibraries.length > 0 ? relatedLibrariesLinks : '–'}
-                      </dd>
-                    </Column>
-                    <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
-                      <dt className={dashboardStyles.label}>Design files</dt>
-                      <dd className={dashboardStyles.meta}>
-                        <CarbonLink size="lg" href={designKitPath}>
-                          View compatible kits
-                        </CarbonLink>
-                      </dd>
-                    </Column>
-                  </Grid>
+      </Grid>
 
-                  <ButtonSet className={dashboardStyles['button-set']}>
-                    <Button
-                      className={dashboardStyles['dashboard-button']}
-                      onClick={() => {
-                        router.push(assetsPath)
-                      }}
-                    >
-                      View library assets
-                      <ArrowRight size={16} />
-                    </Button>{' '}
-                    <Button
-                      kind="tertiary"
-                      className={dashboardStyles['dashboard-button']}
-                      href={libraryData.content.externalDocsUrl}
-                    >
-                      View library docs
-                      <Launch size={16} />
-                    </Button>
-                  </ButtonSet>
-                </DashboardItem>
-              </Column>
-            </Dashboard>
-          </div>
-        </Column>
-        {libraryData.content.demoLinks && (
+      <ContentWrapper>
+        <Grid>
+          <Column sm={4} md={8} lg={8}>
+            <PageDescription className={styles['page-description']}>
+              {seo.description}
+            </PageDescription>
+            <AnchorLinks>
+              <AnchorLink>Dashboard</AnchorLink>
+              {libraryData.content.demoLinks && <AnchorLink>Demo links</AnchorLink>}
+              <AnchorLink>Resources</AnchorLink>
+            </AnchorLinks>
+          </Column>
+          <Column sm={4} md={8} lg={12}>
+            <div id="dashboard">
+              <Dashboard className={styles.dashboard}>
+                <Column className={dashboardStyles.column} sm={4}>
+                  <DashboardItem aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}>
+                    <dl>
+                      <dt className={dashboardStyles.label}>Version</dt>
+                      <dd className={dashboardStyles['label--large']}>{getVersion()}</dd>
+                    </dl>
+                    {MaintainerIcon && (
+                      <MaintainerIcon
+                        className={clsx(
+                          dashboardStyles['position-bottom-left'],
+                          styles['maintainer-icon']
+                        )}
+                        size={64}
+                      />
+                    )}
+                  </DashboardItem>
+                </Column>
+                <Column className={dashboardStyles.column} sm={4} lg={8}>
+                  <DashboardItem aspectRatio={{ sm: '3x4', md: '3x4', lg: 'none', xlg: 'none' }}>
+                    <Grid as="dl" className={dashboardStyles.subgrid}>
+                      <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                        <dt className={dashboardStyles.label}>Maintainer</dt>
+                        <dd className={dashboardStyles.meta}>
+                          {teams[libraryData.params.maintainer]?.name || 'Community'}
+                        </dd>
+                      </Column>
+                      <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                        <dt className={dashboardStyles.label}>License</dt>
+                        <dd className={dashboardStyles.meta}>{getAssetLicense(libraryData)}</dd>
+                      </Column>
+                      <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                        <dt className={dashboardStyles.label}>Related libraries</dt>
+                        <dd className={dashboardStyles.meta}>
+                          {relatedLibraries.length > 0 ? relatedLibrariesLinks : '–'}
+                        </dd>
+                      </Column>
+                      <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
+                        <dt className={dashboardStyles.label}>Design files</dt>
+                        <dd className={dashboardStyles.meta}>
+                          <CarbonLink size="lg" href={designKitPath}>
+                            View compatible kits
+                          </CarbonLink>
+                        </dd>
+                      </Column>
+                    </Grid>
+
+                    <ButtonSet className={dashboardStyles['button-set']}>
+                      <Button
+                        className={dashboardStyles['dashboard-button']}
+                        onClick={() => {
+                          router.push(assetsPath)
+                        }}
+                      >
+                        View library assets
+                        <ArrowRight size={16} />
+                      </Button>{' '}
+                      <Button
+                        kind="tertiary"
+                        className={dashboardStyles['dashboard-button']}
+                        href={libraryData.content.externalDocsUrl}
+                      >
+                        View library docs
+                        <Launch size={16} />
+                      </Button>
+                    </ButtonSet>
+                  </DashboardItem>
+                </Column>
+              </Dashboard>
+            </div>
+          </Column>
+          {libraryData.content.demoLinks && (
+            <Column sm={4} md={8} lg={8}>
+              <section>
+                <H2>Demo links</H2>
+                <DemoLinks links={libraryData?.content?.demoLinks || []} />
+              </section>
+            </Column>
+          )}
           <Column sm={4} md={8} lg={8}>
             <section>
-              <H2>Demo links</H2>
-              <DemoLinks links={libraryData?.content?.demoLinks || []} />
-            </section>
-          </Column>
-        )}
-        <Column sm={4} md={8} lg={8}>
-          <section>
-            <H2>Resources</H2>
+              <H2>Resources</H2>
 
-            <CardGroup>
-              {libraryData.content.inherits && libraryInheritanceCard()}
-              <Column sm={4} md={4} lg={4}>
-                <ResourceCard
-                  title={`${libraryData.params.org}/${libraryData.params.repo}`}
-                  subTitle={libraryData.params.host === 'github.com' ? 'GitHub' : 'IBM GitHub'}
-                  href={`https://${libraryData.params.host}/${libraryData.params.org}/${libraryData.params.repo}`}
-                >
-                  <Svg32Github />
-                </ResourceCard>
-              </Column>
-              {!libraryData.content.private && (
+              <CardGroup>
+                {libraryData.content.inherits && libraryInheritanceCard()}
                 <Column sm={4} md={4} lg={4}>
                   <ResourceCard
-                    title={libraryData.content.package}
-                    subTitle="Package"
-                    href={`https://npmjs.com/package/${libraryData.content.package}/v/${libraryData.content.version}`}
+                    title={`${libraryData.params.org}/${libraryData.params.repo}`}
+                    subTitle={libraryData.params.host === 'github.com' ? 'GitHub' : 'IBM GitHub'}
+                    href={`https://${libraryData.params.host}/${libraryData.params.org}/${libraryData.params.repo}`}
                   >
-                    <MdxIcon name="npm" />
+                    <Svg32Github />
                   </ResourceCard>
                 </Column>
-              )}
-            </CardGroup>
-          </section>
-        </Column>
-      </Grid>
+                {!libraryData.content.private && (
+                  <Column sm={4} md={4} lg={4}>
+                    <ResourceCard
+                      title={libraryData.content.package}
+                      subTitle="Package"
+                      href={`https://npmjs.com/package/${libraryData.content.package}/v/${libraryData.content.version}`}
+                    >
+                      <MdxIcon name="npm" />
+                    </ResourceCard>
+                  </Column>
+                )}
+              </CardGroup>
+            </section>
+          </Column>
+        </Grid>
+      </ContentWrapper>
     </>
   )
 }

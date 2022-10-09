@@ -63,16 +63,15 @@
 
 .link {
   position: absolute;
-  right: 0;
-  padding: 0 spacing.$spacing-07 0 spacing.$spacing-05;
+  top: 6px;
+  right: 1px;
+  padding: 0 spacing.$spacing-06;
   color: theme.$link-primary;
   cursor: pointer;
+}
 
-  @include breakpoint.breakpoint-down(lg) {
-    bottom: 0;
-    left: 0;
-    padding-top: spacing.$spacing-05;
-  }
+:global(.cds--actionable-notification a:hover) {
+  text-decoration: none;
 }
 
 .description {
@@ -97,4 +96,12 @@
 
 .collapse-icon {
   z-index: 1;
+
+  &:hover {
+    background-color: rgba(0, 157, 154, 0.1);
+  }
+}
+
+.content-wrapper {
+  margin-right: spacing.$spacing-08;
 }

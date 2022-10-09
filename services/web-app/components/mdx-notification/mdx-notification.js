@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { ActionableNotification, Button, Column, Grid, Link } from '@carbon/react'
+import { ActionableNotification, Button, Column, Grid } from '@carbon/react'
 import { ChevronDown, ChevronUp } from '@carbon/react/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
@@ -30,7 +30,7 @@ export const MdxNotification = ({
 
   return (
     <Grid narrow className={styles['error-container']}>
-      <Column sm={4} md={8} lg={8}>
+      <Column sm={4} md={8}>
         <ActionableNotification
           href={href}
           className={clsx(wrapperClassName)}
@@ -56,18 +56,20 @@ export const MdxNotification = ({
             />
           )}
           <Grid className={styles.grid}>
-            <Column sm={4} md={6} lg={12}>
+            <Column className={collapsible && styles['content-wrapper']} sm={4} md={link ? 5 : 8}>
               <span className={styles.container}>
                 <strong className={styles.title}>{title}</strong>
               </span>
               <p className={styles.description}>{description}</p>
               {!collapsed && <p className={styles.content}>{content}</p>}
             </Column>
-            <Column sm={4} md={6} lg={4}>
-              <Link className={styles.link} href={href}>
-                {link}
-              </Link>
-            </Column>
+            {link && (
+              <Column sm={4} md={3}>
+                <Button size="sm" kind="ghost" className={styles.link} href={href}>
+                  {link}
+                </Button>
+              </Column>
+            )}
           </Grid>
         </ActionableNotification>
       </Column>

@@ -2,6 +2,91 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.57](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.56...@carbon-platform/web-app@0.2.57) (2022-10-08)
+
+
+### Features 🌟
+
+* **web-app:** add global content wrapper for consistent spacing ([fcc17df](https://github.com/carbon-design-system/carbon-platform/commit/fcc17df9e463e0ff6d822f21158dc42ad7f23a15)), closes [#1215](https://github.com/carbon-design-system/carbon-platform/issues/1215)
+
+
+### Bug Fixes 🐛
+
+* dashboard spacing ([6085d50](https://github.com/carbon-design-system/carbon-platform/commit/6085d505a893ef68a2d15a2b9701f189dc3f6e55))
+* top spacing ([63d10a8](https://github.com/carbon-design-system/carbon-platform/commit/63d10a84b1c75689c285a750d482c53d46c1ed6a))
+
+### [0.2.56](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.55...@carbon-platform/web-app@0.2.56) (2022-10-07)
+
+
+### Features 🌟
+
+* **web-app:** remove team photos ([f0c5119](https://github.com/carbon-design-system/carbon-platform/commit/f0c5119611cbe206ef46e6625fbd214176997794))
+
+### [0.2.55](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.54...@carbon-platform/web-app@0.2.55) (2022-10-06)
+
+
+### Misc. 🔮
+
+* update node module minor/patch versions ([64b0ce7](https://github.com/carbon-design-system/carbon-platform/commit/64b0ce7d86a07ace4aca00f400649680b99a6da1))
+
+### [0.2.54](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.53...@carbon-platform/web-app@0.2.54) (2022-10-05)
+
+
+### Features 🌟
+
+* **web-app:** add banner component ([cae1e8a](https://github.com/carbon-design-system/carbon-platform/commit/cae1e8ae0bd6fddebe5af6b77101eae05b003bf7)), closes [#1365](https://github.com/carbon-design-system/carbon-platform/issues/1365)
+
+
+### Bug Fixes 🐛
+
+* add aria label ([c61bc69](https://github.com/carbon-design-system/carbon-platform/commit/c61bc693dbe060a42cc378abae89f6fedffd0d6e))
+* add class back ([ab5dfdc](https://github.com/carbon-design-system/carbon-platform/commit/ab5dfdc2e5380a42d11bf1db83db970128bd5477))
+* add comments ([b7d0894](https://github.com/carbon-design-system/carbon-platform/commit/b7d08949f181f6a47214f6ded140836f67e8c733))
+* css specificity ([8326df4](https://github.com/carbon-design-system/carbon-platform/commit/8326df45ce7e01b237c18ab2fe4c022079f259fc))
+* https for carbon link ([c3753b5](https://github.com/carbon-design-system/carbon-platform/commit/c3753b54fc91bb49ab50b814d2d654f0044d4033))
+* max width mobile button ([872e35f](https://github.com/carbon-design-system/carbon-platform/commit/872e35f3ceda05d70e8f14f0809bbab8f3007167))
+* merge conflicts ([7f41de8](https://github.com/carbon-design-system/carbon-platform/commit/7f41de886b8aa26cd70c721863fb40a0cd9fe95c))
+* remove extra class ([768c9b7](https://github.com/carbon-design-system/carbon-platform/commit/768c9b751939bb58322e7bb830b7a6891fc5657a))
+
+### [0.2.53](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.52...@carbon-platform/web-app@0.2.53) (2022-10-04)
+
+
+### Bug Fixes 🐛
+
+* heading styles ([136d22e](https://github.com/carbon-design-system/carbon-platform/commit/136d22ef839e6c8926f4aa7e58964ca3a31e4b8c))
+* update platform roadmap ([f3fbd2d](https://github.com/carbon-design-system/carbon-platform/commit/f3fbd2d8bfa80bbefbf278fb5d75744d8d6291e6))
+* **web-app:** nav active state style cleanup ([56a0e33](https://github.com/carbon-design-system/carbon-platform/commit/56a0e338ca1258bb650b11e6c82469d6d55fe660)), closes [#1287](https://github.com/carbon-design-system/carbon-platform/issues/1287)
+
+### [0.2.52](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.51...@carbon-platform/web-app@0.2.52) (2022-10-01)
+
+
+### Misc. 🔮
+
+* update dockerfiles of all services ([a54b4e7](https://github.com/carbon-design-system/carbon-platform/commit/a54b4e799bc122d89b0bee66858f99d39f723164))
+
+### [0.2.51](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.50...@carbon-platform/web-app@0.2.51) (2022-09-30)
+
+
+### Misc. 🔮
+
+* update docker images to enable running as non-root users ([598a797](https://github.com/carbon-design-system/carbon-platform/commit/598a797fe1ef56281c75dc7419b2c4978197b24f))
+* update docker images to use even higher UIDs ([a73472c](https://github.com/carbon-design-system/carbon-platform/commit/a73472cf1626b555e4d9f08ed496fa2409687fb3))
+
+### [0.2.50](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.49...@carbon-platform/web-app@0.2.50) (2022-09-30)
+
+
+### Misc. 🔮
+
+* docker infrastructure updates ([8e45ef7](https://github.com/carbon-design-system/carbon-platform/commit/8e45ef757f06ae5b4b75dd742f05f423a1ee104d))
+
+
+### Bug Fixes 🐛
+
+* adobe xd icon ([0f87147](https://github.com/carbon-design-system/carbon-platform/commit/0f87147664f0ac9d9597a65d11badc221ba641d1))
+* **web-app:** open nav links with keyboard ([668e52f](https://github.com/carbon-design-system/carbon-platform/commit/668e52f969f8092ae9e586d52468f775d4d81f9a)), closes [#1291](https://github.com/carbon-design-system/carbon-platform/issues/1291)
+* **web-app:** remove top border in library catalog first item ([b9254e7](https://github.com/carbon-design-system/carbon-platform/commit/b9254e78098bfeea55bfc3611066a38a4b6a4696)), closes [#1301](https://github.com/carbon-design-system/carbon-platform/issues/1301)
+* website to platform redirect ([9ca6b6b](https://github.com/carbon-design-system/carbon-platform/commit/9ca6b6b7fbb36d2b180ba169b6fa40792d72600d))
+
 ### [0.2.49](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.48...@carbon-platform/web-app@0.2.49) (2022-09-28)
 
 

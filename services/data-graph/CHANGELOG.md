@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.53](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.52...@carbon-platform/data-graph@0.1.53) (2022-10-06)
+
+
+### Misc. 🔮
+
+* add tsconfig.tsbuildinfo to clean scripts for all ts workspaces ([edcdaaa](https://github.com/carbon-design-system/carbon-platform/commit/edcdaaa1a1175a34f16d97e497f8d51bfe827673))
+* update node module minor/patch versions ([64b0ce7](https://github.com/carbon-design-system/carbon-platform/commit/64b0ce7d86a07ace4aca00f400649680b99a6da1))
+
+### [0.1.52](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.51...@carbon-platform/data-graph@0.1.52) (2022-10-01)
+
+
+### Misc. 🔮
+
+* update dockerfiles of all services ([a54b4e7](https://github.com/carbon-design-system/carbon-platform/commit/a54b4e799bc122d89b0bee66858f99d39f723164))
+
+### [0.1.51](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.50...@carbon-platform/data-graph@0.1.51) (2022-09-30)
+
+
+### Misc. 🔮
+
+* update docker images to enable running as non-root users ([598a797](https://github.com/carbon-design-system/carbon-platform/commit/598a797fe1ef56281c75dc7419b2c4978197b24f))
+* update docker images to use even higher UIDs ([a73472c](https://github.com/carbon-design-system/carbon-platform/commit/a73472cf1626b555e4d9f08ed496fa2409687fb3))
+
+### [0.1.50](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.49...@carbon-platform/data-graph@0.1.50) (2022-09-30)
+
+
+### Misc. 🔮
+
+* docker infrastructure updates ([8e45ef7](https://github.com/carbon-design-system/carbon-platform/commit/8e45ef757f06ae5b4b75dd742f05f423a1ee104d))
+* rename controller handler methods ([1808b75](https://github.com/carbon-design-system/carbon-platform/commit/1808b75327b506904ee0ac470373cdfe4282f31a))
+
+
+### Features 🌟
+
+* **data-graph:** allow introspection in dev mode ([a14e7f1](https://github.com/carbon-design-system/carbon-platform/commit/a14e7f1abd483a2b7023727a054e55fa7e144050))
+
+
+### Bug Fixes 🐛
+
+* **data-graph:** disable query caching for now ([ab254eb](https://github.com/carbon-design-system/carbon-platform/commit/ab254eb8e822c5e18074cb1ad57ca3d1ac436636))
+* **data-graph:** improve request logging output ([bf97ac7](https://github.com/carbon-design-system/carbon-platform/commit/bf97ac712bdba590133b1ed7ecbf887a7172967b))
+* **data-graph:** improve request logging output ([be1bf8c](https://github.com/carbon-design-system/carbon-platform/commit/be1bf8ca0cc99fbc76ca7156a84a58b2cfd262fe))
+
 ### [0.1.49](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.48...@carbon-platform/data-graph@0.1.49) (2022-09-14)
 
 ### [0.1.48](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.47...@carbon-platform/data-graph@0.1.48) (2022-09-10)

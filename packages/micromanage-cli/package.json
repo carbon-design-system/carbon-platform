@@ -1,6 +1,6 @@
 {
   "name": "micromanage-cli",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "The missing npm workspace management tool",
   "license": "Apache-2.0",
   "main": "./lib/index.js",
@@ -31,7 +31,7 @@
     "test": "echo 'No tests specified. Maybe you should add some!'"
   },
   "dependencies": {
-    "commander": "^9.4.0",
+    "commander": "^9.4.1",
     "standard-version": "^9.5.0"
   }
 }

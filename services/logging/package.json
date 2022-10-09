@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/logging",
   "description": "Carbon platform logging service",
-  "version": "1.1.44",
+  "version": "1.1.48",
   "license": "Apache-2.0",
   "private": true,
   "repository": {
@@ -17,7 +17,7 @@
   "scripts": {
     "build": "nest build",
     "bundle": "node esbuild.js",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist tsconfig.tsbuildinfo",
     "service:build": "npm run build",
     "start": "node dist/main/index.js",
     "start:dev": "nest start --watch",

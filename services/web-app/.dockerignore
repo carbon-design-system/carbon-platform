@@ -1,8 +1,0 @@
-Dockerfile
-.dockerignore
-.carbon/
-.env*
-.next/
-node_modules/
-pages/samples/
-public/data/

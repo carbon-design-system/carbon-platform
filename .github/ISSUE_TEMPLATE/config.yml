@@ -3,6 +3,9 @@ contact_links:
   - name: Carbon Platform roadmap
     url: https://app.zenhub.com/workspaces/platform-product-management-624ca9397d28730018df40c2/roadmap
     about: Learn what we're working on and what we have planned for the future.
-  - name: Carbon feedback
+  - name: Carbon Platform feedback
+    url: https://github.com/carbon-design-system/carbon-platform/discussions
+    about: Share your feedback with the Carbon Platform squad.
+  - name: Carbon System feedback
     url: https://github.com/carbon-design-system/carbon/discussions
-    about: Share your feedback with the Carbon team.
+    about: Share your feedback with the Carbon System squad.

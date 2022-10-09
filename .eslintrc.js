@@ -7,6 +7,12 @@
 const path = require('path')
 
 const noUnusedVarsOptions = { args: 'all', argsIgnorePattern: '^_', varsIgnorePattern: '^React' }
+const noExtraneousModulesOptions = {
+  allowModules: [
+    ...Object.keys(require('./base/package.json').dependencies),
+    ...Object.keys(require('./base/package.json').devDependencies)
+  ]
+}
 
 module.exports = {
   env: {
@@ -84,15 +90,8 @@ module.exports = {
     'no-implicit-globals': 'error',
     'no-use-before-define': 'off', // Disabled in favor of @typescript-eslint/no-use-before-define
     'no-unused-vars': 'off', // Disabled in favor of @typescript-eslint/no-unused-vars
-    'node/no-extraneous-import': [
-      'error',
-      {
-        allowModules: [
-          ...Object.keys(require('./base/package.json').dependencies),
-          ...Object.keys(require('./base/package.json').devDependencies)
-        ]
-      }
-    ],
+    'node/no-extraneous-import': ['error', noExtraneousModulesOptions],
+    'node/no-extraneous-require': ['error', noExtraneousModulesOptions],
     'node/no-missing-import': 'off', // Too restrictive in a monorepo
     'node/no-missing-require': 'off', // Too restrictive in a monorepo
     'node/no-unpublished-import': 'off', // Too restrictive in a monorepo

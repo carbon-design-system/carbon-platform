@@ -1,0 +1,41 @@
+name: Build and Deploy Storybook
+on:
+  push:
+    branches:
+      - main
+    paths: ["packages/mdx-components/src/main/**", "packages/mdx-components/.storybook/**"] # Trigger the action only when files change in the folders defined here
+
+  # Enable running this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  BUCKET_NAME: mdx-components-storybook
+  ENDPOINT_URL: https://s3.us-south.cloud-object-storage.appdomain.cloud
+  COS_REGION: us-south
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Setup Node 🏗
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install 🔧
+        run: npm install
+
+      - name: Build mdx-components Package 🔨
+        run: npm -w packages/mdx-components run build
+
+      - name: Build Storybook 🔨
+        run: npm -w packages/mdx-components run build:storybook
+
+      - name: Deploy static site to S3 bucket 🪣
+        run: aws --debug s3 sync --delete --endpoint-url $ENDPOINT_URL --region $COS_REGION packages/mdx-components/.storybook-static/ s3://$BUCKET_NAME/
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}

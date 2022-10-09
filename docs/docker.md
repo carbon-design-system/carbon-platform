@@ -2,16 +2,28 @@
 
 TODO: add more stuff
 
-## Docker run command for base image
+## Docker build command for base image
 
 ```
-docker build --tag local/carbon-platform/base:latest .
+npx micromanage build --docker --pull @carbon-platform/base
 ```
 
-## Docker run command for individual service
+## Docker build command for individual service
 
 ```
-docker build --tag us.icr.io/carbon-platform-test/logging:0.1.0 services/logging
+CARBON_SOME_ENV_VAR=val npx micromanage build --docker @carbon-platform/<name-of-service>
+```
+
+## Docker run command for a service
+
+```
+docker run --rm -ti [optional envvars] -p <some-port-num>:<port-num-the-container-uses> -u 10000 <name-of-docker-image>:<version-tag>
+```
+
+Example:
+
+```
+docker run --rm -ti -e GITHUB_TOKEN=$CARBON_GITHUB_TOKEN -p 8080:8080 -u 10000 us.icr.io/carbon-platform/web-app:0.1.123
 ```
 
 ## Docker run command for RabbitMQ messaging
@@ -46,8 +58,8 @@ https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started
 
 Run on CLI:
 
-- `CARBON_RUN_MODE=STANDARD CARBON_GITHUB_TOKEN=[token] npx micromanage build --docker --pull @carbon-platform/base`
-- `CARBON_RUN_MODE=STANDARD CARBON_GITHUB_TOKEN=[token] npx micromanage build --docker @carbon-platform/[SERVICE_NAME]`
+- `npx micromanage build --docker --pull @carbon-platform/base`
+- `CARBON_GITHUB_TOKEN=<token> npx micromanage build --docker @carbon-platform/<service-name>`
   - Note: Github token is only necessary when building web-app
 - `ibmcloud login —sso`
   - select y

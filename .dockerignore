@@ -1,14 +1,19 @@
 #
-# This .dockerignore file is used for base image builds
+# Copyright IBM Corp. 2022, 2022
+#
+# This source code is licensed under the Apache-2.0 license found in the
+# LICENSE file in the root directory of this source tree.
 #
 
 # Files
 /.*.js
 **/.*ignore
 **/.env*
-**/*.md
+**/CHANGELOG.md
 **/Dockerfile
-.tsbuildinfo
+**/README.md
+**/tsconfig.tsbuildinfo
+
 sonar-project.properties
 
 # Dirs
@@ -17,6 +22,8 @@ sonar-project.properties
 **/generated/
 **/node_modules/
 **/src/test/
+
+.git/
 .github/
 .husky/
 .vscode/
@@ -25,9 +32,13 @@ docs/
 #
 # Service-Specific
 #
+# Micromanage docker builds happen with the context at the root dir of the repo. That means this
+# .dockerignore file is the only one loaded during a service build, so the ignores for each service
+# are defined below.
+#
 
 # web-app
-**/.next/
+services/web-app/**/.next/
 services/web-app/.carbon/
 services/web-app/pages/samples/
 services/web-app/public/data/

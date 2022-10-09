@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.4.3...@carbon-platform/api@0.4.4) (2022-10-06)
+
+
+### Misc. 🔮
+
+* add tsconfig.tsbuildinfo to clean scripts for all ts workspaces ([edcdaaa](https://github.com/carbon-design-system/carbon-platform/commit/edcdaaa1a1175a34f16d97e497f8d51bfe827673))
+* update node module minor/patch versions ([64b0ce7](https://github.com/carbon-design-system/carbon-platform/commit/64b0ce7d86a07ace4aca00f400649680b99a6da1))
+
+### [0.4.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.4.2...@carbon-platform/api@0.4.3) (2022-09-30)
+
+
+### Misc. 🔮
+
+* **data-graph:** remove extraneous interface syntax ([4d0b771](https://github.com/carbon-design-system/carbon-platform/commit/4d0b7713969858ded227f96e440090d99d9f9606))
+* rename controller handler methods ([1808b75](https://github.com/carbon-design-system/carbon-platform/commit/1808b75327b506904ee0ac470373cdfe4282f31a))
+
 ### [0.4.2](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.4.1...@carbon-platform/api@0.4.2) (2022-09-14)
 
 

@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.48](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.47...@carbon-platform/logging@1.1.48) (2022-10-06)
+
+
+### Misc. 🔮
+
+* add tsconfig.tsbuildinfo to clean scripts for all ts workspaces ([edcdaaa](https://github.com/carbon-design-system/carbon-platform/commit/edcdaaa1a1175a34f16d97e497f8d51bfe827673))
+
+### [1.1.47](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.46...@carbon-platform/logging@1.1.47) (2022-10-01)
+
+
+### Misc. 🔮
+
+* update dockerfiles of all services ([a54b4e7](https://github.com/carbon-design-system/carbon-platform/commit/a54b4e799bc122d89b0bee66858f99d39f723164))
+
+### [1.1.46](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.45...@carbon-platform/logging@1.1.46) (2022-09-30)
+
+
+### Misc. 🔮
+
+* update docker images to enable running as non-root users ([598a797](https://github.com/carbon-design-system/carbon-platform/commit/598a797fe1ef56281c75dc7419b2c4978197b24f))
+* update docker images to use even higher UIDs ([a73472c](https://github.com/carbon-design-system/carbon-platform/commit/a73472cf1626b555e4d9f08ed496fa2409687fb3))
+
+### [1.1.45](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.44...@carbon-platform/logging@1.1.45) (2022-09-30)
+
+
+### Misc. 🔮
+
+* docker infrastructure updates ([8e45ef7](https://github.com/carbon-design-system/carbon-platform/commit/8e45ef757f06ae5b4b75dd742f05f423a1ee104d))
+
 ### [1.1.44](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.43...@carbon-platform/logging@1.1.44) (2022-09-14)
 
 ### [1.1.43](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.42...@carbon-platform/logging@1.1.43) (2022-09-10)

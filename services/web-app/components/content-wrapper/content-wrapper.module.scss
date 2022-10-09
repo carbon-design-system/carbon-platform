@@ -1,0 +1,25 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+
+.content-wrapper {
+  margin-top: spacing.$spacing-07;
+
+  @include breakpoint.breakpoint(lg) {
+    margin-top: spacing.$spacing-11;
+  }
+}
+
+//remove default spacing on first elements
+.content-wrapper > *:first-child,
+.content-wrapper > *:first-child > *:first-child,
+.content-wrapper > *:first-child > *:first-child > *:first-child,
+.content-wrapper > *:first-child > *:first-child > *:first-child > *:first-child {
+  margin-top: 0;
+}

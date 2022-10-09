@@ -9,6 +9,7 @@ import Image from 'next/image'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import ContentWrapper from '@/components/content-wrapper'
 import Divider from '@/components/divider/divider'
 import H2 from '@/components/markdown/h2'
 import H3 from '@/components/markdown/h3'
@@ -157,7 +158,7 @@ const PageContent = () => {
   ]
 
   return (
-    <div>
+    <ContentWrapper>
       <Grid>
         <Column sm={4} md={8}>
           <p className={styles['intro-copy']}>
@@ -231,7 +232,7 @@ const PageContent = () => {
           </Grid>
         </Divider>
       ))}
-    </div>
+    </ContentWrapper>
   )
 }
 

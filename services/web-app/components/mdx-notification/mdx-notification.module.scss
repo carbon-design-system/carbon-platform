@@ -33,12 +33,6 @@
   max-width: 100%;
 }
 
-// override carbon close button
-:global(.cds--actionable-notification--hide-close-button
-    .cds--actionable-notification__action-button.cds--btn--ghost) {
-  display: none;
-}
-
 .error-container {
   position: relative;
   margin-top: spacing.$spacing-05;
@@ -104,5 +98,8 @@
 }
 
 .content-wrapper {
-  margin-right: spacing.$spacing-08;
+  :global(.cds--actionable-notification--hide-close-button
+      .cds--actionable-notification__action-button.cds--btn--ghost) {
+    margin-right: spacing.$spacing-09;
+  }
 }

@@ -30,15 +30,20 @@ export const MdxNotification = ({
 
   return (
     <Grid narrow className={styles['error-container']}>
-      <Column sm={4} md={8}>
+      <Column sm={4} md={8} className={collapsible && styles['content-wrapper']}>
         <ActionableNotification
-          href={href}
           className={clsx(wrapperClassName)}
-          id={id}
+          actionButtonLabel={link}
+          ariaLabel="closes notification"
           inline
+          id={id}
           lowContrast
-          hideCloseButton
           kind={kind}
+          hideCloseButton
+          statusIconDescription="notification"
+          onActionButtonClick={() => {
+            window.open(href, '_self')
+          }}
         >
           {collapsible && (
             <Button
@@ -56,20 +61,13 @@ export const MdxNotification = ({
             />
           )}
           <Grid className={styles.grid}>
-            <Column className={collapsible && styles['content-wrapper']} sm={4} md={link ? 5 : 8}>
+            <Column sm={4} md={8}>
               <span className={styles.container}>
                 <strong className={styles.title}>{title}</strong>
               </span>
               <p className={styles.description}>{description}</p>
               {!collapsed && <p className={styles.content}>{content}</p>}
             </Column>
-            {link && (
-              <Column sm={4} md={3}>
-                <Button size="sm" kind="ghost" className={styles.link} href={href}>
-                  {link}
-                </Button>
-              </Column>
-            )}
           </Grid>
         </ActionableNotification>
       </Column>

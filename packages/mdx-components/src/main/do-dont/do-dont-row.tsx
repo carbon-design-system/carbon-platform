@@ -6,25 +6,33 @@
  */
 
 import { Grid } from '@carbon/react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 
-import styles from './do-dont.module.scss'
+import { MdxComponent } from '../interfaces.js'
+import { withPrefix } from '../utils.js'
+
+interface DoDontRowProps {
+  children: ReactNode
+  className?: string | null
+}
 
 /**
  * The `<DoDont>` component includes built in columns and is used within
  * the `<DoDontRow>` component. You can provide an image or video as children,
  * or text using the `text` prop.
  */
-const DoDontRow = ({ children, className }) => {
-  return <Grid className={clsx(className, styles['do-dont-row'])}>{children}</Grid>
+const DoDontRow: MdxComponent<DoDontRowProps> = ({ children, className }) => {
+  return <Grid className={clsx(className, withPrefix('do-dont-row'))}>{children}</Grid>
 }
 
 DoDontRow.propTypes = {
   /** set children */
   children: PropTypes.node.isRequired,
   /** set optional custom class */
-  className: PropTypes.string.isRequired
+  className: PropTypes.string
 }
 
+export { DoDontRowProps }
 export default DoDontRow

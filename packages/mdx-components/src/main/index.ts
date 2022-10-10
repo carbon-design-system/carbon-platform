@@ -12,6 +12,8 @@ export { default as Caption, CaptionProps } from './caption/caption.js'
 export { default as CardGroup, CardGroupProps } from './card-group/card-group.js'
 export { default as ColorBlock, ColorBlockProps } from './color-block/color-block.js'
 export { default as Divider, DividerProps } from './divider/divider.js'
+export { default as DoDont, DoDontProps } from './do-dont/do-dont.js'
+export { default as DoDontRow, DoDontRowProps } from './do-dont/do-dont-row.js'
 export { default as Video, VideoWithSrcProps, VideoWithVimeoIdProps } from './video/video.js'
 
 // Carbon components

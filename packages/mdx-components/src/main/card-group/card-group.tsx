@@ -50,4 +50,5 @@ CardGroup.propTypes = {
    */
   className: PropTypes.string
 }
+export { CardGroupProps }
 export default CardGroup

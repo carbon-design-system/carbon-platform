@@ -11,6 +11,7 @@ export { default as Aside, AsideProps } from './aside/aside.js'
 export { default as Caption, CaptionProps } from './caption/caption.js'
 export { default as CardGroup, CardGroupProps } from './card-group/card-group.js'
 export { default as ColorBlock, ColorBlockProps } from './color-block/color-block.js'
+export { default as Divider, DividerProps } from './divider/divider.js'
 export { default as Video, VideoWithSrcProps, VideoWithVimeoIdProps } from './video/video.js'
 
 // Carbon components

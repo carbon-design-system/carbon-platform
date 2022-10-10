@@ -9,7 +9,9 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 
-.divider {
+@use '../utils' as *;
+
+.#{with-prefix('divider')} {
   position: relative;
   padding-top: spacing.$spacing-06;
   margin-top: spacing.$spacing-09;
@@ -35,12 +37,12 @@
   }
 }
 
-.divider--empty {
+.#{with-prefix('divider--empty')} {
   height: 1px;
   padding: 0;
 }
 
-.divider--empty + div {
+.#{with-prefix('divider--empty')} + div {
   margin-top: spacing.$spacing-06;
 
   @include breakpoint.breakpoint(md) {
@@ -48,11 +50,11 @@
   }
 }
 
-.divider > [class*='grid'] {
+.#{with-prefix('divider')} > [class*='grid'] {
   margin-top: 0;
 }
 
-.divider > [class*='grid'] > *:not(:first-child) {
+.#{with-prefix('divider')} > [class*='grid'] > *:not(:first-child) {
   margin-top: spacing.$spacing-06;
 
   @include breakpoint.breakpoint(lg) {
@@ -60,6 +62,6 @@
   }
 }
 
-.divider [class*='column'] > *:first-child {
+.#{with-prefix('divider')} [class*='column'] > *:first-child {
   margin-top: 0;
 }

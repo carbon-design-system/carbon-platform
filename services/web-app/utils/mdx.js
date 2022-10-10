@@ -19,7 +19,7 @@ const fallbackComponent = (node, errCount) => `<MdxNotification
 title="\`${node.name}\` not recognized"
 description="This component is not supported or there is a typo. Please update to a supported component or review any mistakes.
 It is referenced in your code at \`13:1-13:23\`"
-link="Supported components" href="/TODO" id="mdx-error-${errCount}" />`
+link="URL documentation" href="/TODO" id="mdx-error-${errCount}" />`
 
 const getScriptReplacementSrc = (node, errCount) => {
   let content = ''

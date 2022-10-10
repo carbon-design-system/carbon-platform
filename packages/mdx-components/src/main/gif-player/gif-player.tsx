@@ -10,47 +10,57 @@ import {
   PlayOutline,
   PlayOutlineFilled
 } from '@carbon/react/icons'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
-import { Children, useState } from 'react'
+import React, { Children, ReactNode, useState } from 'react'
 
-import styles from './gif-player.module.scss'
+import { MdxComponent } from '../interfaces.js'
+import { withPrefix } from '../utils.js'
 
-const Pause = ({ hovering }) =>
+type Color = 'light' | 'dark'
+
+interface GifPlayerProps {
+  children: ReactNode
+  className?: string | null
+  color: Color
+  isInDialog?: boolean | null
+}
+
+const Pause = ({ hovering }: { hovering: boolean }) =>
   hovering ? <PauseOutlineFilled size={24} /> : <PauseOutline size={24} />
 
-const Play = ({ hovering }) =>
+const Play = ({ hovering }: { hovering: boolean }) =>
   hovering ? <PlayOutlineFilled size={24} /> : <PlayOutline size={24} />
 
-const ToggleIcon = ({ paused, hovering }) =>
+const ToggleIcon = ({ paused, hovering }: { hovering: boolean; paused: boolean }) =>
   paused ? <Play hovering={hovering} /> : <Pause hovering={hovering} />
 /**
  * The `<GifPlayer>` component is used to pause and play images that are gif’s.
  * It works by replacing the gif with a static image on pause.
  */
-const GifPlayer = ({ children, color, className, isInDialog }) => {
+const GifPlayer: MdxComponent<GifPlayerProps> = ({ children, color, className, isInDialog }) => {
   const [paused, setPaused] = useState(false)
 
   const [hovering, setHovering] = useState(false)
-  const onClick = (e) => {
+  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
     setPaused(!paused)
   }
 
-  const controlsClassNames = clsx(styles.controls, {
-    [styles.dark]: color === 'dark'
+  const controlsClassNames = clsx(withPrefix('controls'), {
+    [withPrefix('dark')]: color === 'dark'
   })
 
-  const containerClassNames = clsx(className, styles.container, {
-    [styles['gif-in-dialog']]: isInDialog
+  const containerClassNames = clsx(className, withPrefix('container'), {
+    [withPrefix('gif-in-dialog')]: isInDialog
   })
 
-  const staticImageClassNames = clsx(styles['img-hidden'], {
-    [styles['img-displayed']]: paused
+  const staticImageClassNames = clsx(withPrefix('img-hidden'), {
+    [withPrefix('img-displayed')]: paused
   })
 
-  const gifClassNames = clsx(styles['gif-displayed'], {
-    [styles['gif-hidden']]: paused
+  const gifClassNames = clsx(withPrefix('gif-displayed'), {
+    [withPrefix('gif-hidden')]: paused
   })
 
   const childrenArray = Children.toArray(children)
@@ -96,7 +106,7 @@ GifPlayer.propTypes = {
   /**
    * Specify if icon color should be "dark" or "light"
    */
-  color: PropTypes.oneOf(['light', 'dark']),
+  color: PropTypes.oneOf<Color>(['light', 'dark']).isRequired,
   /**
    * Specify if the gifPlayer is inside the expanded ImageGallery
    */
@@ -108,4 +118,5 @@ GifPlayer.defaultProps = {
   isInDialog: false
 }
 
+export { GifPlayerProps }
 export default GifPlayer

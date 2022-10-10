@@ -1,15 +1,19 @@
+// TODO: ask joe
+/* eslint-disable eslint-comments/disable-enable-pair -- bla */
+/* eslint-disable @next/next/no-img-element -- bla */
 /*
  * Copyright IBM Corp. 2022, 2022
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import Image from 'next/image'
 
-import GifPlayer from '@/components/gif-player'
+import { GifPlayer } from '../../../dist/main/index'
+import cloudGif from '../../res/cloud.gif'
+import cloudJpg from '../../res/cloud.jpg'
 
 const stories = {
-  title: 'MDX/GifPlayer',
+  title: 'Components/GifPlayer',
   component: GifPlayer,
   argTypes: {
     children: {
@@ -25,8 +29,8 @@ export default stories
 
 const Template = (args) => (
   <GifPlayer {...args}>
-    <Image alt="animated" src="mdx/cloud.gif" />
-    <Image alt="static" src="mdx/cloud.jpg" />
+    <img alt="animated" src={cloudGif} />
+    <img alt="static" src={cloudJpg} />
   </GifPlayer>
 )
 

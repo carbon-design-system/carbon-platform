@@ -13,7 +13,6 @@ import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
 import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
-import GifPlayer from '@/components/gif-player'
 import Glossary from '@/components/glossary'
 import { Column, Grid, Row } from '@/components/grid-transform'
 import ImageWrapper from '@/components/image-wrapper'
@@ -69,7 +68,6 @@ const components = {
   Column,
   ColorTokenTable,
   FilterableDesignKitTable,
-  GifPlayer,
   Glossary,
   Grid,
   IconLibrary,

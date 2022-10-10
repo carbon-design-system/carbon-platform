@@ -75,7 +75,7 @@ const DoDont: MdxComponent<DoDontProps> = ({
   let colMedium = 4
   if (colMd) colMedium = Number(colMd)
 
-  const renderCaption = (caption, captionTitle) => {
+  const renderCaption = (caption?: string | null, captionTitle?: string | null) => {
     if (caption || captionTitle) {
       return (
         <div className={withPrefix('caption')}>
@@ -84,6 +84,7 @@ const DoDont: MdxComponent<DoDontProps> = ({
         </div>
       )
     }
+    return null
   }
 
   return (

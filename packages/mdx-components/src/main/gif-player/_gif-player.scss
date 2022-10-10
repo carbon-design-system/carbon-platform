@@ -1,11 +1,13 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/spacing' as spacing;
 
-.container {
+@use '../utils' as *;
+
+.#{with-prefix('container')} {
   position: relative;
 }
 
-.controls {
+.#{with-prefix('controls')} {
   position: absolute;
   bottom: spacing.$spacing-05;
   left: spacing.$spacing-05;
@@ -17,39 +19,39 @@
   outline: none;
 }
 
-.controls svg {
+.#{with-prefix('controls')} svg {
   fill: theme.$icon-inverse;
 }
 
-.dark svg {
+.#{with-prefix('dark')} svg {
   fill: theme.$icon-primary;
 }
 
-.controls:focus svg {
+.#{with-prefix('controls')}:focus svg {
   outline: 2px solid theme.$focus;
   outline-offset: -2px;
 }
 
 //toggle static image
-.img-hidden {
+.#{with-prefix('img-hidden')} {
   display: none;
 }
 
-.img-displayed {
+.#{with-prefix('img-displayed')} {
   display: block;
 }
 
 //toggle gif
-.gif-displayed {
+.#{with-prefix('gif-displayed')} {
   display: block;
 }
 
-.gif-hidden {
+.#{with-prefix('gif-hidden')} {
   display: none;
 }
 
 //styles for gif player in image gallery
-.gif-in-dialog {
+.#{with-prefix('gif-in-dialog')} {
   top: 50%;
   transform: translateY(-50%);
 }

@@ -63,8 +63,8 @@
 
 .link {
   position: absolute;
-  top: 6px;
-  right: 1px;
+  top: convert.rem(8px);
+  right: convert.rem(8px);
   padding: 0 spacing.$spacing-06;
   color: theme.$link-primary;
   cursor: pointer;

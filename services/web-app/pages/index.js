@@ -14,6 +14,7 @@ import {
   Svg64Patterns,
   Svg64Templates
 } from '@carbon-platform/icons'
+import { Divider } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -23,7 +24,6 @@ import { useContext, useEffect } from 'react'
 import ArtDirection from '@/components/art-direction'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
-import Divider from '@/components/divider'
 import { FeatureCard } from '@/components/feature-card/feature-card'
 import Hero from '@/components/hero'
 import { H2, P } from '@/components/markdown'

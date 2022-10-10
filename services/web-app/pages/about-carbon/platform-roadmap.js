@@ -5,11 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, Link } from '@carbon/react'
+import { Divider } from '@carbon-platform/mdx-components'
 import Image from 'next/image'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import Divider from '@/components/divider/divider'
 import H2 from '@/components/markdown/h2'
 import H3 from '@/components/markdown/h3'
 import PageHeader from '@/components/page-header'

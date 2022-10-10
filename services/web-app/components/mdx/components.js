@@ -12,7 +12,6 @@ import Code from '@/components/code'
 import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
-import { DoDont, DoDontRow } from '@/components/do-dont'
 import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
 import GifPlayer from '@/components/gif-player'
 import Glossary from '@/components/glossary'
@@ -69,8 +68,6 @@ const components = {
   ColorPalette,
   Column,
   ColorTokenTable,
-  DoDont,
-  DoDontRow,
   FilterableDesignKitTable,
   GifPlayer,
   Glossary,

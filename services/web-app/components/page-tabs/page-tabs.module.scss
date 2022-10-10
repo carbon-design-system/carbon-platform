@@ -106,4 +106,8 @@
 .link:hover:not(:focus) {
   border-bottom: spacing.$spacing-02 solid theme.$layer-active-01;
   color: theme.$text-primary;
+
+  &:hover {
+    border-bottom: spacing.$spacing-02 solid theme.$border-interactive;
+  }
 }

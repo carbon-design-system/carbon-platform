@@ -9,6 +9,7 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/utilities/convert' as convert;
 
 // override carbon low contrast anchor
 :global(.cds--inline-notification:not(.cds--inline-notification--low-contrast) a) {

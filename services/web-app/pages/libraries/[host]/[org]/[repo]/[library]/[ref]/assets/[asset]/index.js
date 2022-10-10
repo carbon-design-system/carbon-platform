@@ -16,7 +16,7 @@ import AssetDetails from '@/components/asset-details/asset-details'
 import PageBreadcrumb from '@/components/page-breadcrumb'
 import PageHeader from '@/components/page-header'
 import PageNav from '@/components/page-nav'
-import PageTabs2 from '@/components/page-tabs-2'
+import PageTabs from '@/components/page-tabs'
 import WithLoading from '@/components/with-loading'
 import { assetTypes } from '@/data/asset-types'
 import { framework } from '@/data/framework'
@@ -125,7 +125,7 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
           <PageBreadcrumb items={breadcrumbItems} />
         </Column>
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }} className={styles['tabs-column']}>
-          <PageTabs2 className={styles['asset-tabs']} tabs={pageTabs} title="asset tabs" />
+          <PageTabs className={styles['asset-tabs']} tabs={pageTabs} title="asset tabs" />
         </Column>
         <Column sm={4} md={8} lg={4}>
           <PageNav items={pageNavItems} contentRef={contentRef} />

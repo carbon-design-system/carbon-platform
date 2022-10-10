@@ -8,6 +8,14 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/utilities/convert' as convert;
 @use '@carbon/react/scss/theme' as theme;
+@use 'sass:map';
+@use '~styles/variables' as variables;
+
+.tabs-column {
+  position: sticky;
+  z-index: map.get(variables.$z-indexes, 'overlay');
+  top: 3rem;
+}
 
 .asset-tabs {
   &::before {
@@ -16,7 +24,7 @@
     width: 100vw;
     height: convert.rem(48px);
     border-bottom: 1px solid theme.$layer-active-01;
-    background: transparent;
+    background: theme.$background;
     content: '';
   }
 }

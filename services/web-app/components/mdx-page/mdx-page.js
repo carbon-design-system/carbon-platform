@@ -25,7 +25,6 @@ import FallbackExceptionContent from './errors/fallback-exception-content'
 import ImportFoundExceptionContent from './errors/import-found-exception-content'
 import MdxCompileExceptionContent from './errors/mdx-compile-exception-content'
 import WarningsRollup from './errors/warnings-rollup/warnings-rollup'
-import styles from './mdx-page.module.scss'
 
 const getTabData = (tabs, baseSegment) => {
   return tabs.map((tab) => {

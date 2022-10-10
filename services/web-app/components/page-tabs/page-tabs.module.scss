@@ -85,6 +85,15 @@
     border-top motion.$duration-moderate-01 motion.$standard-easing;
 
   white-space: nowrap;
+
+  &:focus {
+    outline: 2px solid theme.$focus;
+    outline-offset: -2px;
+  }
+
+  &:hover {
+    border-bottom: spacing.$spacing-02 solid theme.$layer-active-01;
+  }
 }
 
 .selected-item .link {

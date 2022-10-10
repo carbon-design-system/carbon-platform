@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.57](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.56...@carbon-platform/web-app@0.2.57) (2022-10-08)
+
+
+### Features 🌟
+
+* **web-app:** add global content wrapper for consistent spacing ([fcc17df](https://github.com/carbon-design-system/carbon-platform/commit/fcc17df9e463e0ff6d822f21158dc42ad7f23a15)), closes [#1215](https://github.com/carbon-design-system/carbon-platform/issues/1215)
+
+
+### Bug Fixes 🐛
+
+* dashboard spacing ([6085d50](https://github.com/carbon-design-system/carbon-platform/commit/6085d505a893ef68a2d15a2b9701f189dc3f6e55))
+* top spacing ([63d10a8](https://github.com/carbon-design-system/carbon-platform/commit/63d10a84b1c75689c285a750d482c53d46c1ed6a))
+
 ### [0.2.56](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.55...@carbon-platform/web-app@0.2.56) (2022-10-07)
 
 

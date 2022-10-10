@@ -90,11 +90,7 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
             warnings={source.warnings}
             seoTitle={title ?? `${assetData.content.name} - Usage`}
           >
-            {source.compiledSource && (
-              <div className={styles['page-content']}>
-                <MDXRemote compiledSource={source.compiledSource.value} />
-              </div>
-            )}
+            {source.compiledSource && <MDXRemote compiledSource={source.compiledSource.value} />}
           </MdxPage>
         </Column>
       </Grid>

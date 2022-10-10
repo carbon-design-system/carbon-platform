@@ -12,6 +12,7 @@ import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
 import slugify from 'slugify'
 
+import ContentWrapper from '@/components/content-wrapper'
 import PageHeader from '@/components/page-header'
 import PageTabs from '@/components/page-tabs'
 import { assetsNavData } from '@/data/nav-data'
@@ -24,7 +25,6 @@ import FallbackExceptionContent from './errors/fallback-exception-content'
 import ImportFoundExceptionContent from './errors/import-found-exception-content'
 import MdxCompileExceptionContent from './errors/mdx-compile-exception-content'
 import WarningsRollup from './errors/warnings-rollup'
-import styles from './mdx-page.module.scss'
 
 const getTabData = (tabs, baseSegment) => {
   return tabs.map((tab) => {
@@ -63,10 +63,10 @@ const createPageContent = ({ children, mdxError, warnings }) => {
   }
 
   return (
-    <div className={styles['page-content']}>
+    <ContentWrapper>
       {warnings?.length > 0 && <WarningsRollup warnings={warnings} />}
       {children}
-    </div>
+    </ContentWrapper>
   )
 }
 

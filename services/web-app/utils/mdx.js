@@ -19,7 +19,7 @@ const fallbackComponent = (node) => `<InlineError
 title="\`${node.name}\` not recognized"
 description="This component is not supported or there is a typo. Please update to a supported component or review any mistakes.
 It is referenced in your code at \`13:1-13:23\`"
-link="Supported components" href="/TODO" />`
+link="Supported components" href="https://platform.carbondesignsystem.com" />`
 
 const getScriptReplacementSrc = (node) => {
   let content = ''

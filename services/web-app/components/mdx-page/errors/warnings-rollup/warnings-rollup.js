@@ -4,7 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import InlineError from '@/components/inline-error'
+
+import MdxNotification from '@/components/mdx-notification/index'
+
+import styles from './warnings-rollup.module.scss'
 
 const warningMap = {
   ComponentReplacedException: (componentName) => {
@@ -19,18 +22,22 @@ const createWarningText = ({ warning }) => {
   return warningMap[warning.name](warning.message)
 }
 
-// TODO: THIS IS MISSING DESIGN COMPLETION
 const WarningsRollup = ({ warnings }) => {
   return (
-    <InlineError
-      title={`This page has ${warnings.length} ${warnings.length === 1 ? 'error' : 'errors'}`}
+    <MdxNotification
+      kind="info"
+      title="Some content cannot be rendered"
+      description="Documentation maintainers can view individual errors below to learn how to display content correctly."
       content={
         <ul style={{ listStyle: 'disc' }}>
           {warnings.map((warning, index) => (
-            <li key={index}>{createWarningText({ warning })}</li>
+            <li key={index} className={styles['error-link']}>
+              <a href={`#mdx-error-${index + 1}`}>{createWarningText({ warning })}</a>
+            </li>
           ))}
         </ul>
       }
+      collapsible
     />
   )
 }

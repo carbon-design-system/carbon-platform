@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import InlineError from '@/components/inline-error/inline-error'
+import MdxNotification from '@/components/mdx-notification/mdx-notification'
 
 const FallbackExceptionContent = ({ mdxError }) => {
   const description =
@@ -13,7 +13,7 @@ const FallbackExceptionContent = ({ mdxError }) => {
   const Content = <div>{mdxError.message || 'No details available'}</div>
 
   return (
-    <InlineError
+    <MdxNotification
       title="Component not rendering"
       description={description}
       content={Content}

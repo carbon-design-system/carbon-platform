@@ -1,0 +1,115 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/utilities/convert' as convert;
+
+.error-container {
+  position: relative;
+  margin-top: spacing.$spacing-05;
+
+  // override carbon low contrast anchor
+  :global(.cds--inline-notification:not(.cds--inline-notification--low-contrast) a) {
+    color: theme.$link-primary;
+  }
+
+  // override carbon tooltip
+  :global(.cds--icon-tooltip) {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+  }
+
+  // override carbon - icon inline with title
+  :global(.cds--inline-notification__icon) {
+    margin-top: spacing.$spacing-05;
+  }
+
+  // override carbon max-width
+  :global(.cds--inline-notification) {
+    max-width: 100%;
+  }
+}
+
+.grid {
+  @include breakpoint.breakpoint-down(lg) {
+    position: relative;
+  }
+}
+
+.container {
+  display: inline;
+  width: 100%;
+}
+
+.title {
+  @include type.type-style('heading-compact-01', true);
+
+  padding-bottom: spacing.$spacing-01;
+  color: theme.$text-primary;
+}
+
+.link {
+  position: absolute;
+  top: convert.rem(8px);
+  right: convert.rem(8px);
+  padding: 0 spacing.$spacing-06;
+  color: theme.$link-primary;
+  cursor: pointer;
+}
+
+.description {
+  @include type.type-style('body-short-01', true);
+
+  padding-bottom: spacing.$spacing-05;
+  color: theme.$text-primary;
+}
+
+.content {
+  @include type.type-style('code-02', true);
+
+  color: theme.$text-primary;
+
+  overflow-x: auto;
+  white-space: nowrap;
+
+  @include breakpoint.breakpoint-down(lg) {
+    margin-bottom: spacing.$spacing-07;
+  }
+}
+
+.collapse-icon {
+  z-index: 1;
+
+  &:hover {
+    background-color: theme.$background-hover;
+  }
+}
+
+.no-link {
+  :global(.cds--actionable-notification__action-button.cds--btn--ghost) {
+    display: none;
+  }
+}
+
+// add padding when notifiation is collapsible and has no link
+.content-container {
+  .grid {
+    padding-right: spacing.$spacing-09;
+  }
+}
+
+// override carbon to prevent overlapping link and button
+.notification-wrapper {
+  :global(.cds--actionable-notification--hide-close-button
+      .cds--actionable-notification__action-button.cds--btn--ghost) {
+    margin-right: spacing.$spacing-09;
+  }
+}

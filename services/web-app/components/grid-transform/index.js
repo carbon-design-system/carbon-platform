@@ -4,10 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use '@carbon/react/scss/spacing' as spacing;
 
-@use '../utils' as *;
-
-.#{with-prefix('grid')} {
-  margin-top: spacing.$spacing-06;
-}
+export { default as Column } from './column'
+// export { default as Grid } from './grid'
+export { default as Row } from './row'

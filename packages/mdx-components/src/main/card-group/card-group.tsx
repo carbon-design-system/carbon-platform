@@ -9,11 +9,8 @@ import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React, { ReactNode } from 'react'
 
-// TODO: ask Joe - how can we use this in here? 🙋‍♀️
-// import { mediaQueries, useMatchMedia }
-// from '../../../../services/web-app/utils/use-match-media.js'
 import { MdxComponent } from '../interfaces.js'
-import { withPrefix } from '../utils.js'
+import { mediaQueries, useMatchMedia, withPrefix } from '../utils.js'
 
 interface CardGroupProps {
   children: ReactNode
@@ -28,9 +25,8 @@ interface CardGroupProps {
  * breakpoint.
  */
 const CardGroup: MdxComponent<CardGroupProps> = ({ children, className, ...rest }) => {
-  // todo: add this back
-  // const isSm = useMatchMedia(mediaQueries.sm)
-  const isSm = false
+  const isSm = useMatchMedia(mediaQueries.sm)
+
   return (
     <Grid className={clsx(className, withPrefix('card-group'))} condensed={isSm} {...rest}>
       <Column lg={8} md={8} sm={4}>

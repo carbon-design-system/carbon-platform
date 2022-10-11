@@ -14,6 +14,7 @@ import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
 import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
 import Glossary from '@/components/glossary'
+import { Column, Row } from '@/components/grid-transform'
 import ImageWrapper from '@/components/image-wrapper'
 import InlineError from '@/components/inline-error'
 import InlineNotification from '@/components/inline-notification'
@@ -59,6 +60,8 @@ const components = {
   InlineError,
   FullPageError,
   /* Gatsby theme components */
+  Column,
+  Row,
   ArtDirection,
   ArticleCard,
   ColorGrid,

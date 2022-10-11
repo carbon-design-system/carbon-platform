@@ -24,7 +24,7 @@ interface AccordionProps {
 const Accordion: MdxComponent<AccordionProps> = ({ className, ...rest }) => (
   <Grid narrow>
     <Column sm={4} md={8} lg={8}>
-      <CarbonAccordion size="xl" {...rest} className={clsx(className, withPrefix('accordion'))} />
+      <CarbonAccordion size="md" {...rest} className={clsx(className, withPrefix('accordion'))} />
     </Column>
   </Grid>
 )

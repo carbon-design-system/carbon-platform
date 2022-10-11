@@ -34,7 +34,6 @@ import StorybookDemo from '@/components/storybook-demo'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'
-import Title from '@/components/title'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
 
@@ -86,7 +85,6 @@ const components = {
   StorybookDemo,
   Tab,
   Tabs,
-  Title,
   TypeScaleTable,
   TypesetStyle,
   TypeWeight

@@ -15,14 +15,15 @@ export { default as Divider, DividerProps } from './divider/divider.js'
 export { default as DoDont, DoDontProps } from './do-dont/do-dont.js'
 export { default as DoDontRow, DoDontRowProps } from './do-dont/do-dont-row.js'
 export { default as GifPlayer, GifPlayerProps } from './gif-player/gif-player.js'
+// export { default as Column, ColumnProps } from './grid-transform/column.js'
+export { default as Grid, GridProps } from './grid-transform/grid.js'
+// export { default as Row, RowProps } from './grid-transform/row.js'
 export { default as P, ParagraphProps } from './markdown/p.js'
 export {
   default as PageDescription,
   PageDescriptionProps
 } from './page-description/page-description.js'
-// export { default as Column, ColumnProps } from './grid-transform/column.js'
-export { default as Grid, GridProps } from './grid-transform/grid.js'
-// export { default as Row, RowProps } from './grid-transform/row.js'
+export { default as Profile, ProfileProps } from './profile/profile.js'
 export { default as Video, VideoWithSrcProps, VideoWithVimeoIdProps } from './video/video.js'
 
 // Carbon components

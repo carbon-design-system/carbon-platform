@@ -26,7 +26,6 @@ import FullPageError from '@/components/mdx-page/errors/full-page-error'
 import MiniCard from '@/components/mini-card'
 import PageTable from '@/components/page-table'
 import Preview from '@/components/preview'
-import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
 import StatusIndicatorTable from '@/components/status-indicator-table'
 import StorybookDemo from '@/components/storybook-demo'
@@ -78,7 +77,6 @@ const components = {
   MiniCard,
   PictogramLibrary,
   Preview,
-  Profile,
   ResourceCard,
   StatusIndicatorTable,
   StorybookDemo,

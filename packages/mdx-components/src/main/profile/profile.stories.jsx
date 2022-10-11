@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Grid } from '@carbon/react'
-import Image from 'next/image'
 
-import Profile from '@/components/profile'
+import { Profile } from '../../../dist/main/index'
+import mattRosnoPng from '../../res/rosno_matt.png'
 
 const stories = {
-  title: 'MDX/Profile',
+  title: 'Components/Profile',
   component: Profile,
   argTypes: {
     children: {
@@ -24,9 +24,9 @@ export default stories
 const Template = (args) => (
   <Grid condensed>
     <Profile name="Matt Rosno" title="Product Manager" {...args}>
-      <Image
-        alt="Use markdown in mdx files. ![Matt Rosno headshot](/mdx/rosno_matt.png)"
-        src="mdx/rosno_matt.png"
+      <img
+        alt="Use markdown in mdx files. ![Matt Rosno headshot](/rosno_matt.png)"
+        src={mattRosnoPng}
       />
     </Profile>
   </Grid>

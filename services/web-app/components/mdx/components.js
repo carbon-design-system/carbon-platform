@@ -14,7 +14,6 @@ import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
 import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
 import Glossary from '@/components/glossary'
-import { Column, Grid, Row } from '@/components/grid-transform'
 import ImageWrapper from '@/components/image-wrapper'
 import InlineError from '@/components/inline-error'
 import InlineNotification from '@/components/inline-notification'
@@ -65,11 +64,9 @@ const components = {
   ArticleCard,
   ColorGrid,
   ColorPalette,
-  Column,
   ColorTokenTable,
   FilterableDesignKitTable,
   Glossary,
-  Grid,
   IconLibrary,
   Image,
   ImageWrapper,
@@ -82,7 +79,6 @@ const components = {
   Preview,
   Profile,
   ResourceCard,
-  Row,
   StatusIndicatorTable,
   StorybookDemo,
   Tab,

@@ -25,7 +25,6 @@ const createWarningText = ({ warning }) => {
 const WarningsRollup = ({ warnings }) => {
   return (
     <MdxNotification
-      href={'/TODO'}
       kind="info"
       title="Some content cannot be rendered"
       description="Documentation maintainers can view individual errors below to learn how to display content correctly."

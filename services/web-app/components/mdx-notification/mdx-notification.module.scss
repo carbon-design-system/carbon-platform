@@ -11,31 +11,32 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
-// override carbon low contrast anchor
-:global(.cds--inline-notification:not(.cds--inline-notification--low-contrast) a) {
-  color: theme.$link-primary;
-}
-
-// override carbon tooltip
-:global(.cds--icon-tooltip) {
-  position: absolute;
-  top: 1px;
-  right: 1px;
-}
-
-// override carbon - icon inline with title
-:global(.cds--inline-notification__icon) {
-  margin-top: spacing.$spacing-05;
-}
-
-// override carbon max-width
-:global(.cds--inline-notification) {
-  max-width: 100%;
-}
 
 .error-container {
   position: relative;
   margin-top: spacing.$spacing-05;
+
+  // override carbon low contrast anchor
+  :global(.cds--inline-notification:not(.cds--inline-notification--low-contrast) a) {
+    color: theme.$link-primary;
+  }
+
+  // override carbon tooltip
+  :global(.cds--icon-tooltip) {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+  }
+
+  // override carbon - icon inline with title
+  :global(.cds--inline-notification__icon) {
+    margin-top: spacing.$spacing-05;
+  }
+
+  // override carbon max-width
+  :global(.cds--inline-notification) {
+    max-width: 100%;
+  }
 }
 
 .grid {

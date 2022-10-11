@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.58](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.57...@carbon-platform/web-app@0.2.58) (2022-10-11)
+
+
+### Bug Fixes 🐛
+
+* update site contacts ([a7855a1](https://github.com/carbon-design-system/carbon-platform/commit/a7855a1a84dcc279f368f0f4ff904631c53fe4a8))
+* **web-app:** add storybook link to fallbackComponent ([4db3288](https://github.com/carbon-design-system/carbon-platform/commit/4db3288e80bd9467766597eb0adf7acbd0daf55e))
+* **web-app:** fix inlineError grid at sm/md and use color token ([e0f5adc](https://github.com/carbon-design-system/carbon-platform/commit/e0f5adc371724d1566994115f9dc5ec601bc29c2))
+
 ### [0.2.57](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.56...@carbon-platform/web-app@0.2.57) (2022-10-08)
 
 

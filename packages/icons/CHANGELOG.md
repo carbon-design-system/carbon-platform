@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.14...@carbon-platform/icons@0.1.15) (2022-10-11)
+
+
+### Bug Fixes 🐛
+
+* update contact icons ([05c8b7e](https://github.com/carbon-design-system/carbon-platform/commit/05c8b7e04f3e2b12dd24f9569abf4c8f0ce60092))
+* update site contacts ([a7855a1](https://github.com/carbon-design-system/carbon-platform/commit/a7855a1a84dcc279f368f0f4ff904631c53fe4a8))
+
 ### [0.1.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.13...@carbon-platform/icons@0.1.14) (2022-10-06)
 
 

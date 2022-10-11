@@ -117,7 +117,7 @@ const MdxPage = ({
           pictogram={pageHeader?.icon}
         />
       )}
-      {areTabsPresent && <PageTabs title="page tabs" tabs={getTabData(tabs, baseSegment)} />}
+      {areTabsPresent && <PageTabs title="Page tabs" tabs={getTabData(tabs, baseSegment)} />}
       {createPageContent({ children, mdxError, warnings })}
     </>
   )

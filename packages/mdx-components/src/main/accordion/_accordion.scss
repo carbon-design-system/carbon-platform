@@ -17,11 +17,11 @@
 }
 
 // override carbon, accordion right spacing
-.#{with-prefix('accordion')} :global(.cds--accordion__content) {
+.#{with-prefix('accordion')} .cds--accordion__content {
   padding-right: spacing.$spacing-10;
 }
 
 // override carbon, title font and spacing
-.#{with-prefix('accordion')} :global(.cds--accordion__title) {
+.#{with-prefix('accordion')} .cds--accordion__title {
   @include type.type-style('heading-02');
 }

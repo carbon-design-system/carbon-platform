@@ -6,18 +6,31 @@
  */
 
 import { Column, Grid } from '@carbon/react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 
-import styles from './page-description.module.scss'
+import { MdxComponent } from '../interfaces.js'
+import { withPrefix } from '../utils.js'
+
+interface PageDescriptionProps {
+  children: ReactNode
+  className?: string | null
+}
 
 /**
  * The `<PageDescription>` component is generally used for intro text at the top
  * of the page using the type token `fluid-heading-03`.
  */
-const PageDescription = ({ children, className, ...rest }) => (
+const PageDescription: MdxComponent<PageDescriptionProps> = ({ children, className, ...rest }) => (
   <Grid>
-    <Column sm={4} md={8} lg={8} className={clsx(styles['page-description'], className)} {...rest}>
+    <Column
+      sm={4}
+      md={8}
+      lg={8}
+      className={clsx(withPrefix('page-description'), className)}
+      {...rest}
+    >
       {children}
     </Column>
   </Grid>
@@ -34,4 +47,5 @@ PageDescription.propTypes = {
   className: PropTypes.string
 }
 
+export { PageDescriptionProps }
 export default PageDescription

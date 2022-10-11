@@ -101,8 +101,4 @@
   border-bottom: spacing.$spacing-02 solid theme.$border-interactive;
   color: theme.$text-primary;
   @include type.type-style('heading-02');
-
-  &:hover {
-    border-bottom: spacing.$spacing-02 solid theme.$layer-active-01;
-  }
 }

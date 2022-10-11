@@ -29,8 +29,15 @@ export const MdxNotification = ({
   const [collapsed, setIsCollapsed] = useState(false)
 
   return (
-    <Grid narrow className={styles['error-container']}>
-      <Column sm={4} md={8} className={collapsible && styles['content-wrapper']}>
+    <Grid
+      narrow
+      className={clsx(
+        !link && styles['no-link'],
+        collapsible && !link && styles['content-container'],
+        styles['error-container']
+      )}
+    >
+      <Column sm={4} md={8} className={collapsible && styles['notification-wrapper']}>
         <ActionableNotification
           className={clsx(wrapperClassName)}
           actionButtonLabel={link}

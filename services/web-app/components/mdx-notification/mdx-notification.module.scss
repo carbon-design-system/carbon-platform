@@ -65,10 +65,6 @@
   cursor: pointer;
 }
 
-:global(.cds--actionable-notification a:hover) {
-  text-decoration: none;
-}
-
 .description {
   @include type.type-style('body-short-01', true);
 
@@ -97,7 +93,21 @@
   }
 }
 
-.content-wrapper {
+.no-link {
+  :global(.cds--actionable-notification__action-button.cds--btn--ghost) {
+    display: none;
+  }
+}
+
+// add padding when notifiation is collapsible and has no link
+.content-container {
+  .grid {
+    padding-right: spacing.$spacing-09;
+  }
+}
+
+// override carbon to prevent overlapping link and button
+.notification-wrapper {
   :global(.cds--actionable-notification--hide-close-button
       .cds--actionable-notification__action-button.cds--btn--ghost) {
     margin-right: spacing.$spacing-09;

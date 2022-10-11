@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Column, Grid } from '../../../dist/main/index'
+import { Grid } from '../../../dist/main/index'
 
 export default {
   title: 'Components/Grid',
@@ -22,10 +22,10 @@ export default {
 
 const Template = () => (
   <Grid>
+    {/* <Column lg={4}>Span 4 of 16</Column>
     <Column lg={4}>Span 4 of 16</Column>
     <Column lg={4}>Span 4 of 16</Column>
-    <Column lg={4}>Span 4 of 16</Column>
-    <Column lg={4}>Span 4 of 16</Column>
+    <Column lg={4}>Span 4 of 16</Column> */}
   </Grid>
 )
 

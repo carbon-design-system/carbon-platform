@@ -5,9 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/breakpoint' as breakpoint;
 
-@use '../utils' as *;
-
-.#{with-prefix('grid')} {
+.grid {
   margin-top: spacing.$spacing-06;
 }

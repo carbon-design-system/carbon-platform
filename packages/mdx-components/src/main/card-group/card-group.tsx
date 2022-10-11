@@ -10,8 +10,7 @@ import PropTypes from 'prop-types'
 import React, { ReactNode } from 'react'
 
 import { MdxComponent } from '../interfaces.js'
-import { mediaQueries, useMatchMedia } from '../use-match-media.js'
-import { withPrefix } from '../utils.js'
+import { mediaQueries, useMatchMedia, withPrefix } from '../utils.js'
 
 interface CardGroupProps {
   children: ReactNode

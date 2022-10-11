@@ -26,17 +26,15 @@ export const MdxNotification = ({
     'cds--inline-notification': true
   })
 
+  const notificationClassNames = clsx(styles['error-container'], {
+    [styles['no-link']]: !link,
+    [styles['content-container']]: collapsible && !link
+  })
+
   const [collapsed, setIsCollapsed] = useState(false)
 
   return (
-    <Grid
-      narrow
-      className={clsx(
-        !link && styles['no-link'],
-        collapsible && !link && styles['content-container'],
-        styles['error-container']
-      )}
-    >
+    <Grid narrow className={notificationClassNames}>
       <Column sm={4} md={8} className={collapsible && styles['notification-wrapper']}>
         <ActionableNotification
           className={clsx(wrapperClassName)}

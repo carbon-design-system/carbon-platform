@@ -84,7 +84,7 @@ const GifPlayer: MdxComponent<GifPlayerProps> = ({ children, color, className, i
         onMouseLeave={() => setHovering(false)}
         onClick={onClick}
         onKeyDown={(e) => {
-          // Stop keyDown event from propogating to ImageGalleryImage component.
+          // Stop keyDown event from propagating to ImageGalleryImage component.
           e.stopPropagation()
         }}
       >

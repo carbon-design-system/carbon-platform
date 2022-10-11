@@ -11,7 +11,7 @@ import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import InlineError from '@/components/inline-notification/inline-notification'
+import MdxNotification from '@/components/mdx-notification'
 import H2 from '@/components/markdown/h2'
 import H3 from '@/components/markdown/h3'
 import { UL } from '@/components/markdown/index'

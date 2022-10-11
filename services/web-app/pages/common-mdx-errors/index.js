@@ -11,12 +11,12 @@ import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import MdxNotification from '@/components/mdx-notification'
 import H2 from '@/components/markdown/h2'
 import H3 from '@/components/markdown/h3'
 import { UL } from '@/components/markdown/index'
 import LI from '@/components/markdown/li'
 import P from '@/components/markdown/p'
+import MdxNotification from '@/components/mdx-notification'
 import FullPageError from '@/components/mdx-page/errors/full-page-error/full-page-error'
 import PageDescription from '@/components/page-description/page-description'
 import PageHeader from '@/components/page-header/page-header'
@@ -108,7 +108,7 @@ const CommonMdxErrors = () => {
         <H3>Error Example</H3>
         <Grid narrow>
           <Column sm={4} md={6} lg={8}>
-            <InlineError
+            <MdxNotification
               title="UnknownComponent not recognized"
               description="This component is not supported or there is a typo. Please update to a supported component or review any mistakes.
       It is referenced in your code at \`13:1-13:23\`"
@@ -137,7 +137,7 @@ const CommonMdxErrors = () => {
         <H3>Error Example</H3>
         <Grid>
           <Column sm={4} md={6} lg={8}>
-            <InlineError
+            <MdxNotification
               title="[next-mdx-remote] error compiling MDX:"
               description="Expected a closing tag for `<div>` (13:1-13:6) before the end of `paragraph`"
             />
@@ -177,7 +177,7 @@ const CommonMdxErrors = () => {
         <H3>Error Example</H3>
         <Grid>
           <Column sm={4} md={6} lg={8}>
-            <InlineError
+            <MdxNotification
               title="Component not rendering"
               description="Verify component usage documentation to make sure you're supplying all necessary information in the correct format"
               link="Get support"

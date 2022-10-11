@@ -89,7 +89,7 @@
   z-index: 1;
 
   &:hover {
-    background-color: rgba(0, 157, 154, 0.1);
+    background-color: theme.$background-hover;
   }
 }
 

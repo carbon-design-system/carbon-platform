@@ -9,28 +9,30 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/theme' as theme;
 
-.page-description {
+@use '../utils' as *;
+
+.#{with-prefix('page-description')} {
   margin-top: spacing.$spacing-07;
   color: theme.$text-primary;
 }
 
-.page-description,
-.page-description p,
-.page-description :global(.cds--link) {
+.#{with-prefix('page-description')},
+.#{with-prefix('page-description')} p,
+.#{with-prefix('page-description')} .cds--link {
   @include type.type-style('fluid-heading-03', true);
 
   display: inline;
 }
 
-.page-description > * {
+.#{with-prefix('page-description')} > * {
   margin-top: 0;
 }
 
-.page-description > * + * {
+.#{with-prefix('page-description')} > * + * {
   margin-top: spacing.$spacing-06;
 }
 
-.page-description code {
+.#{with-prefix('page-description')} code {
   font-size: 1.125rem;
   line-height: 1.25;
 }

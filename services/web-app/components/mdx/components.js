@@ -19,15 +19,13 @@ import ImageWrapper from '@/components/image-wrapper'
 import InlineError from '@/components/inline-error'
 import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
-import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
+import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, UL } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import MdxPage from '@/components/mdx-page'
 import FullPageError from '@/components/mdx-page/errors/full-page-error'
 import MiniCard from '@/components/mini-card'
-import PageDescription from '@/components/page-description'
 import PageTable from '@/components/page-table'
 import Preview from '@/components/preview'
-import Profile from '@/components/profile'
 import ResourceCard from '@/components/resource-card'
 import StatusIndicatorTable from '@/components/status-indicator-table'
 import StorybookDemo from '@/components/storybook-demo'
@@ -45,7 +43,7 @@ const components = {
   h4: H4,
   h5: H5,
   h6: H6,
-  p: P,
+  p: mdxComponents.P,
   ol: OL,
   li: LI,
   ul: UL,
@@ -76,10 +74,8 @@ const components = {
   MdxIcon,
   MdxPage,
   MiniCard,
-  PageDescription,
   PictogramLibrary,
   Preview,
-  Profile,
   ResourceCard,
   StatusIndicatorTable,
   StorybookDemo,

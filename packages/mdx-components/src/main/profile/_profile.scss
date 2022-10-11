@@ -1,0 +1,73 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/spacing' as spacing;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/type' as type;
+
+@use '../utils' as *;
+
+.#{with-prefix('profile')}:nth-child(3n + 2),
+.#{with-prefix('profile')}:nth-child(3n + 3) {
+  border-bottom: 1px solid theme.$border-subtle;
+  border-left: 1px solid theme.$border-subtle;
+}
+
+.#{with-prefix('profile')} {
+  &:nth-last-child(-n + 2) {
+    @include breakpoint.breakpoint('md') {
+      border-bottom: 0;
+    }
+  }
+
+  &:nth-last-child(-n + 3) {
+    @include breakpoint.breakpoint('lg') {
+      border-bottom: 0;
+    }
+  }
+
+  &:nth-child(3n + 1) {
+    border-bottom: 1px solid theme.$border-subtle;
+  }
+
+  .#{with-prefix('card')} {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: theme.$layer-01;
+  }
+
+  .#{with-prefix('content')} {
+    width: 100%;
+  }
+
+  .#{with-prefix('image')} {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .#{with-prefix('name')} {
+    @include type.type-style('heading-01');
+
+    padding-top: spacing.$spacing-05;
+    padding-left: spacing.$spacing-05;
+    color: theme.$text-primary;
+  }
+
+  .#{with-prefix('title')} {
+    @include type.type-style('label-01');
+
+    padding-right: spacing.$spacing-03;
+    padding-left: spacing.$spacing-05;
+    color: theme.$text-secondary;
+  }
+}

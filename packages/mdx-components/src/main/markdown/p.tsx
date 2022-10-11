@@ -5,18 +5,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 
-import styles from './markdown.module.scss'
+import { MdxComponent } from '../interfaces.js'
+import { withPrefix } from '../utils.js'
 
-const P = ({ children, className, large, ...rest }) => {
-  const classNames = clsx(styles.paragraph, {
-    [styles['paragraph--large']]: large
+interface ParagraphProps {
+  children: ReactNode
+  className?: string | null
+  large?: boolean | null
+}
+
+const P: MdxComponent<ParagraphProps> = ({ children, className, large, ...rest }) => {
+  const classNames = clsx(withPrefix('paragraph'), {
+    [withPrefix('paragraph--large')]: large
   })
 
   return (
-    <Grid className={clsx(className, styles['paragraph-container'])} {...rest}>
+    <Grid className={clsx(className, withPrefix('paragraph-container'))} {...rest}>
       <Column sm={4} md={8} lg={8}>
         <p className={classNames}>{children}</p>
       </Column>
@@ -39,4 +47,5 @@ P.propTypes = {
   large: PropTypes.bool
 }
 
+export { ParagraphProps }
 export default P

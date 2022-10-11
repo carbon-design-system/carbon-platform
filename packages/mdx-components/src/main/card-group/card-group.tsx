@@ -9,7 +9,7 @@ import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React, { ReactNode } from 'react'
 
-// TODO: ask Joe - how can we use this in here?
+// TODO: ask Joe - how can we use this in here? 🙋‍♀️
 // import { mediaQueries, useMatchMedia }
 // from '../../../../services/web-app/utils/use-match-media.js'
 import { MdxComponent } from '../interfaces.js'

@@ -6,15 +6,19 @@
  */
 
 import { Grid } from '@carbon/react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
-import { Children } from 'react'
+import React, { Children, ReactNode } from 'react'
 
-import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
+import { MdxComponent } from '../interfaces.js'
+import { mediaQueries, useMatchMedia, withPrefix } from '../utils.js'
 
-import styles from './grid.module.scss'
+interface RowProps {
+  children: ReactNode
+  className?: string | null
+}
 
-const Row = ({ children, className }) => {
+const Row: MdxComponent<RowProps> = ({ children, className }) => {
   const arrayChildren = Children.toArray(children)
 
   const isSm = useMatchMedia(mediaQueries.sm)
@@ -52,7 +56,7 @@ const Row = ({ children, className }) => {
   })
 
   return (
-    <Grid narrow={narrow} condensed={condensed} className={clsx(styles.grid, className)}>
+    <Grid narrow={narrow} condensed={condensed} className={clsx(withPrefix('grid'), className)}>
       {children}
     </Grid>
   )
@@ -63,4 +67,5 @@ Row.propTypes = {
   className: PropTypes.string
 }
 
+export { RowProps }
 export default Row

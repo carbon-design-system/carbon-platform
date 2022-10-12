@@ -1,21 +1,22 @@
 {
   "name": "@carbon-platform/mdx-sanitizer",
-  "version": "1.1.4",
   "description": "Strips out undesired content from MDX files",
+  "version": "1.1.4",
   "license": "Apache-2.0",
   "author": "IBM",
-  "type": "module",
   "publishConfig": {
     "access": "public"
   },
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git",
+    "directory": "packages/mdx-sanitizer"
   },
   "bugs": {
-    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues?q=is%3Aopen+is%3Aissue+label%3A%22package%3A+mdx-sanitizer+%F0%9F%A7%B9%22"
   },
-  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "type": "module",
   "exports": {
     "default": "./dist/main/index.js"
   },

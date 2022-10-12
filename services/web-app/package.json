@@ -1,18 +1,19 @@
 {
   "name": "@carbon-platform/web-app",
-  "version": "0.2.59",
   "description": "Carbon web application",
+  "version": "0.2.59",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
+  "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git",
+    "directory": "services/web-app"
   },
   "bugs": {
-    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues?q=is%3Aopen+is%3Aissue+label%3A%22service%3A+web-app+%F0%9F%8C%8E%22"
   },
-  "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/services/web-app#readme",
   "scripts": {
     "build": "npm run clean && next build",
     "build:storybook": "build-storybook -o .storybook-static",

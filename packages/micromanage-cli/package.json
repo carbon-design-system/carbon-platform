@@ -1,32 +1,44 @@
 {
   "name": "micromanage-cli",
-  "version": "3.1.1",
   "description": "The missing npm workspace management tool",
+  "version": "3.1.1",
   "license": "Apache-2.0",
-  "main": "./lib/index.js",
   "author": "IBM",
+  "keywords": [
+    "docker",
+    "lerna",
+    "microservice",
+    "npm",
+    "standard-version",
+    "version",
+    "workspace",
+    "workspaces",
+    "yarn"
+  ],
   "publishConfig": {
     "access": "public"
   },
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git",
+    "directory": "packages/micromanage-cli"
   },
   "bugs": {
-    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
-  },
-  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
-  "engines": {
-    "node": "16",
-    "npm": "8"
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues?q=is%3Aissue+label%3A%22package%3A+micromanage+%F0%9F%94%AC%22"
   },
   "type": "module",
+  "main": "./lib/index.js",
   "bin": {
     "micromanage": "./lib/index.js"
   },
   "files": [
     "lib/*"
   ],
+  "engines": {
+    "node": "16",
+    "npm": "8"
+  },
   "scripts": {
     "test": "echo 'No tests specified. Maybe you should add some!'"
   },

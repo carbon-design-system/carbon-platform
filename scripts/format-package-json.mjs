@@ -74,20 +74,25 @@ function sortScripts(packageJson) {
   return copy
 }
 
+function processFile(packageJsonPath) {
+  let packageJson = JSON.parse(fs.readFileSync(packageJsonPath))
+
+  packageJson = sortTopLevelKeys(packageJson)
+  packageJson = sortScripts(packageJson)
+
+  fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, undefined, '  ') + '\n')
+}
+
 //
 // Start of script
 //
+const args = process.argv.slice(2)
 
-const packageJsonPathStr = process.argv[2]
-
-if (!packageJsonPathStr) {
-  throw new Error('Must specify package.json path')
+if (args.length <= 0) {
+  throw new Error('Must specify at least one package.json path')
 }
 
-const packageJsonPath = path.resolve(packageJsonPathStr)
-let packageJson = JSON.parse(fs.readFileSync(packageJsonPath))
-
-packageJson = sortTopLevelKeys(packageJson)
-packageJson = sortScripts(packageJson)
-
-fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, undefined, '  ') + '\n')
+for (const arg of args) {
+  const packageJsonPath = path.resolve(arg)
+  processFile(packageJsonPath)
+}

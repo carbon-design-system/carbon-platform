@@ -1,19 +1,20 @@
 {
   "name": "@carbon-platform/mdx-processor",
-  "version": "0.1.7",
   "description": "Convert input MDX to safe-to-use React components",
+  "version": "0.1.7",
   "license": "Apache-2.0",
-  "type": "module",
   "author": "IBM",
   "private": true,
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git",
+    "directory": "packages/mdx-processor"
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
-  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "type": "module",
   "exports": {
     "default": "./dist/main/index.js"
   },

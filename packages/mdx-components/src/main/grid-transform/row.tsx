@@ -39,19 +39,28 @@ const Row: MdxComponent<RowProps> = ({ children, className }) => {
   let condensed = false
 
   Children.map(arrayChildren, (child) => {
+    if (typeof child === 'string') {
+      return
+    }
+    if (typeof child === 'number') {
+      return
+    }
+    if (!('props' in child)) {
+      return
+    }
     const condensedProps = Object.keys(child.props).filter(
       (prop) => prop.startsWith('noGutter') && !prop.endsWith('Left')
     )
     condensedProps.forEach((prop) => {
-      const size = prop.replace('noGutter', '')
-      condensed = sizeMappings[size]
+      const size = prop.replace('noGutter', '') as keyof typeof sizeMappings
+      condensed = sizeMappings[size] ?? false
     })
     const narrowProps = Object.keys(child.props).filter(
       (prop) => prop.startsWith('noGutter') && prop.endsWith('Left')
     )
     narrowProps.forEach((prop) => {
-      const size = prop.replace('noGutter', '').replace('Left', '')
-      narrow = sizeMappings[size]
+      const size = prop.replace('noGutter', '').replace('Left', '') as keyof typeof sizeMappings
+      narrow = sizeMappings[size] ?? false
     })
   })
 

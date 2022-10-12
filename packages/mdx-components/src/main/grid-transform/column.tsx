@@ -6,12 +6,29 @@
  */
 
 import { Column as CarbonColumn } from '@carbon/react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 
-import styles from './grid.module.scss'
+import { MdxComponent } from '../interfaces.js'
+import { withPrefix } from '../utils.js'
 
-const Column = ({
+interface ColumnProps {
+  children: ReactNode
+  className?: string | null
+  colSm: number
+  colMd: number
+  colLg: number
+  colXl?: number | null
+  colMax?: number | null
+  offsetSm?: number | null
+  offsetMd?: number | null
+  offsetLg?: number | null
+  offsetXl?: number | null
+  offsetMax?: number | null
+}
+
+const Column: MdxComponent<ColumnProps> = ({
   children,
   className,
   colSm,
@@ -43,7 +60,7 @@ const Column = ({
     }, {})
 
   return (
-    <CarbonColumn {...colSizes} {...cleanProps} className={clsx(styles.column, className)}>
+    <CarbonColumn {...colSizes} {...cleanProps} className={clsx(withPrefix('column'), className)}>
       {children}
     </CarbonColumn>
   )
@@ -58,10 +75,10 @@ Column.defaultProps = {
 Column.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  colLg: PropTypes.number,
+  colLg: PropTypes.number.isRequired,
   colMax: PropTypes.number,
-  colMd: PropTypes.number,
-  colSm: PropTypes.number,
+  colMd: PropTypes.number.isRequired,
+  colSm: PropTypes.number.isRequired,
   colXl: PropTypes.number,
   offsetLg: PropTypes.number,
   offsetMax: PropTypes.number,
@@ -69,4 +86,6 @@ Column.propTypes = {
   offsetSm: PropTypes.number,
   offsetXl: PropTypes.number
 }
+
+export { ColumnProps }
 export default Column

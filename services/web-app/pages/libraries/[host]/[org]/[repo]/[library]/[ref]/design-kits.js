@@ -7,15 +7,19 @@
 
 import { Column, Grid, Link as CarbonLink, Tag } from '@carbon/react'
 import { ToolsAlt } from '@carbon/react/icons'
-import { AnchorLink, AnchorLinks, PageDescription } from '@carbon-platform/mdx-components'
+import {
+  AnchorLink,
+  AnchorLinks,
+  CardGroup,
+  P,
+  PageDescription
+} from '@carbon-platform/mdx-components'
 import groupBy from 'lodash/groupBy'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import CardGroup from '@/components/card-group/card-group'
 import H2 from '@/components/markdown/h2'
-import P from '@/components/markdown/p'
 import MdxIcon from '@/components/mdx-icon/mdx-icon'
 import PageHeader from '@/components/page-header'
 import ResourceCard from '@/components/resource-card/resource-card'

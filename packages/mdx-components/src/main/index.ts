@@ -19,6 +19,7 @@ export { default as GifPlayer, GifPlayerProps } from './gif-player/gif-player.js
 export { default as Column, ColumnProps } from './grid-transform/column.js'
 export { default as Grid, GridProps } from './grid-transform/grid.js'
 export { default as Row, RowProps } from './grid-transform/row.js'
+export { default as ImageWrapper, ImageWrapperProps } from './image-wrapper/image-wrapper.js'
 export { default as P, ParagraphProps } from './markdown/p.js'
 export {
   default as PageDescription,

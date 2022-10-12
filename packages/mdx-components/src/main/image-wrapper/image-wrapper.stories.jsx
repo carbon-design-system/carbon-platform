@@ -4,12 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import Image from 'next/image'
 
-import ImageWrapper from '@/components/image-wrapper'
+import { ImageWrapper } from '../../../dist/main/index'
+import accordionStyle3Png from '../../res/accordion-style-3.png'
 
 const stories = {
-  title: 'MDX/ImageWrapper',
+  title: 'Components/ImageWrapper',
   component: ImageWrapper,
   argTypes: {
     children: {
@@ -22,7 +22,7 @@ export default stories
 
 const Template = (args) => (
   <ImageWrapper type="fixed" {...args}>
-    <Image alt="fixed demo" src="mdx/accordion-style-3.png" />
+    <img alt="fixed demo" src={accordionStyle3Png} />
   </ImageWrapper>
 )
 

@@ -5,19 +5,29 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 
-import styles from './image-wrapper.module.scss'
+import { MdxComponent } from '../interfaces.js'
+import { withPrefix } from '../utils.js'
+
+type ImageType = 'fixed'
+
+interface ImageWrapperProps {
+  children: ReactNode
+  className?: string | null
+  type: ImageType
+}
 
 /**
  * The `<ImageWrapper>` component allows the user to set a `type='fixed'`
  * which forces a fixed max width inside the container, and scales down
  * to smaller sizes at tablet and mobile.
  */
-const ImageWrapper = ({ children, className, type }) => {
+const ImageWrapper: MdxComponent<ImageWrapperProps> = ({ children, className, type }) => {
   const wrapperClassNames = clsx(className, {
-    [styles.fixed]: type === 'fixed'
+    [withPrefix('fixed')]: type === 'fixed'
   })
 
   return <div className={wrapperClassNames}>{children}</div>
@@ -29,7 +39,8 @@ ImageWrapper.propTypes = {
   /** set optional custom class */
   className: PropTypes.string,
   /** set type */
-  type: PropTypes.oneOf(['fixed']).isRequired
+  type: PropTypes.oneOf<ImageType>(['fixed']).isRequired
 }
 
+export { ImageWrapperProps }
 export default ImageWrapper

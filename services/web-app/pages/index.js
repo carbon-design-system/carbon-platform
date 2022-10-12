@@ -14,14 +14,13 @@ import {
   Svg64Patterns,
   Svg64Templates
 } from '@carbon-platform/icons'
-import { Divider } from '@carbon-platform/mdx-components'
+import { ArtDirection, Divider } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import ArtDirection from '@/components/art-direction'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import { FeatureCard } from '@/components/feature-card/feature-card'

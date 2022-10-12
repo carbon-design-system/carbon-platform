@@ -6,7 +6,6 @@
  */
 import * as mdxComponents from '@carbon-platform/mdx-components'
 
-import ArtDirection from '@/components/art-direction'
 import ArticleCard from '@/components/article-card'
 import Code from '@/components/code'
 import ColorGrid from '@/components/color-grid'
@@ -60,7 +59,6 @@ const components = {
   /* Gatsby theme components */
   Column,
   Row,
-  ArtDirection,
   ArticleCard,
   ColorGrid,
   ColorPalette,

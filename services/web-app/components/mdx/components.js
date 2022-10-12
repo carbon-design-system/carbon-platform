@@ -6,7 +6,6 @@
  */
 import * as mdxComponents from '@carbon-platform/mdx-components'
 
-import ArticleCard from '@/components/article-card'
 import Code from '@/components/code'
 import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
@@ -53,7 +52,6 @@ const components = {
   InlineError,
   FullPageError,
   /* Gatsby theme components */
-  ArticleCard,
   ColorGrid,
   ColorPalette,
   ColorTokenTable,

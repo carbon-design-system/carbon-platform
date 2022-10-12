@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
-import Image from 'next/image'
 
-import ArticleCard from '@/components/article-card'
+import { ArticleCard } from '../../../dist/main/index'
+import article06 from '../../res/article06.png'
 
 const stories = {
-  title: 'MDX/ArticleCard',
+  title: 'Components/ArticleCard',
   component: ArticleCard,
   argTypes: {
     children: {
@@ -36,7 +36,7 @@ const Template = (args) => (
         href="/"
         {...args}
       >
-        <Image src="mdx/Article_06.png" alt="" />
+        <img src={article06} alt="" />
       </ArticleCard>
     </Column>
   </Grid>

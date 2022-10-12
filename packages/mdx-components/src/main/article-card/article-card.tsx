@@ -7,16 +7,35 @@
 
 import { Theme } from '@carbon/react'
 import { ArrowRight, Download, Email, Error, Launch } from '@carbon/react/icons'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 
-import styles from './article-card.module.scss'
+import { MdxComponent } from '../interfaces.js'
+import { withPrefix } from '../utils.js'
 
 /**
  * The `<ArticleCard>` component should generally be used inside of `<Grid narrow>` and
  * `<Column>` components.
  */
-const ArticleCard = (props) => {
+type Color = 'light' | 'dark'
+type ActionIcon = 'launch' | 'arrowRight' | 'download' | 'email' | 'disabled'
+
+interface ArticleCardProps {
+  children?: ReactNode
+  href?: string | null
+  title?: string | null
+  subTitle?: string | null
+  author?: string | null
+  date?: string | null
+  readTime?: string | null
+  color?: Color
+  disabled?: boolean | null
+  actionIcon?: ActionIcon
+  className?: string | null
+}
+
+const ArticleCard: MdxComponent<ArticleCardProps> = (props) => {
   const {
     children,
     href,
@@ -32,8 +51,8 @@ const ArticleCard = (props) => {
     ...rest
   } = props
 
-  const ArticleCardClassNames = clsx(className, styles['article-card'], {
-    [styles.disabled]: disabled
+  const ArticleCardClassNames = clsx(className, withPrefix('article-card'), {
+    [withPrefix('disabled')]: disabled
   })
 
   const aspectRatioClassNames = clsx('cds--aspect-ratio', 'cds--aspect-ratio--2x1')
@@ -42,17 +61,17 @@ const ArticleCard = (props) => {
 
   const cardContent = (
     <>
-      <div className={styles.img}>{children}</div>
+      <div className={withPrefix('img')}>{children}</div>
       <div className={aspectRatioClassNames}>
-        <div className={clsx('cds--aspect-ratio--object', styles.tile)}>
-          {subTitle && <h5 className={styles.subtitle}>{subTitle}</h5>}
-          {title && <h4 className={styles.title}>{title}</h4>}
-          <div className={styles.info}>
+        <div className={clsx('cds--aspect-ratio--object', withPrefix('tile'))}>
+          {subTitle && <h5 className={withPrefix('subtitle')}>{subTitle}</h5>}
+          {title && <h4 className={withPrefix('title')}>{title}</h4>}
+          <div className={withPrefix('info')}>
             {author && <p>{author}</p>}
             {date && <p>{date}</p>}
             {readTime && <p>{readTime}</p>}
           </div>
-          <div className={styles['icon-action']}>
+          <div className={withPrefix('icon-action')}>
             {actionIcon === 'launch' && !disabled && <Launch size={20} aria-label="Open" />}
             {actionIcon === 'arrowRight' && !disabled && <ArrowRight size={20} aria-label="Open" />}
             {actionIcon === 'download' && !disabled && <Download size={20} aria-label="Download" />}
@@ -70,7 +89,7 @@ const ArticleCard = (props) => {
     cardContainer = <div className={cardContentClassNames}>{cardContent}</div>
   } else {
     cardContainer = (
-      <a href={href} className={cardContentClassNames} {...rest}>
+      <a href={href!} className={cardContentClassNames} {...rest}>
         {cardContent}
       </a>
     )
@@ -85,15 +104,15 @@ const ArticleCard = (props) => {
 
 ArticleCard.defaultProps = {
   color: 'light',
-  disabled: false,
-  actionIcon: ''
+  disabled: false
 }
 
 ArticleCard.propTypes = {
   /**
    * Action icon
    */
-  actionIcon: PropTypes.oneOf(['launch', 'arrowRight', 'download', 'email']),
+  actionIcon: PropTypes.oneOf<ActionIcon>(['launch', 'arrowRight', 'download', 'email', 'disabled'])
+    .isRequired,
   /**
    * Author
    */
@@ -112,7 +131,7 @@ ArticleCard.propTypes = {
   /**
    * set to "dark" for dark background card
    */
-  color: PropTypes.oneOf(['light', 'dark']),
+  color: PropTypes.oneOf<Color>(['light', 'dark']).isRequired,
 
   /**
    * date
@@ -145,4 +164,5 @@ ArticleCard.propTypes = {
   title: PropTypes.string
 }
 
+export { ArticleCardProps }
 export default ArticleCard

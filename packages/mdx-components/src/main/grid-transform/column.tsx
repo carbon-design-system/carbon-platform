@@ -26,6 +26,7 @@ interface ColumnProps {
   offsetLg?: number | null
   offsetXl?: number | null
   offsetMax?: number | null
+  [otherProp: string]: unknown
 }
 
 const Column: MdxComponent<ColumnProps> = ({
@@ -52,15 +53,14 @@ const Column: MdxComponent<ColumnProps> = ({
   }
 
   // remove 'noGutter' props to avoid react console error
-  const cleanProps = Object.keys(props)
-    .filter((key) => !key.startsWith('noGutter'))
-    .reduce((obj, key) => {
-      obj[key] = props[key]
-      return obj
-    }, {})
+  for (const key in Object.keys(props)) {
+    if (key.startsWith('noGutter')) {
+      delete props[key]
+    }
+  }
 
   return (
-    <CarbonColumn {...colSizes} {...cleanProps} className={clsx(withPrefix('column'), className)}>
+    <CarbonColumn {...colSizes} className={clsx(withPrefix('column'), className)}>
       {children}
     </CarbonColumn>
   )

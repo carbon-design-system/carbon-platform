@@ -6,9 +6,14 @@
  */
 
 import PropTypes from 'prop-types'
-import { Children } from 'react'
+import React, { Children, ReactNode } from 'react'
 
-import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
+import { MdxComponent } from '../interfaces.js'
+import { mediaQueries, useMatchMedia } from '../utils.js'
+
+interface ArtDirectionProps {
+  children: ReactNode
+}
 
 /**
  * On the web, art direction refers to changing the image rendered at different
@@ -19,7 +24,7 @@ import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
  * will be used for mobile, the second for tablet, and the third for desktop. If only
  * two images are provided, the second image will be used for both tablet and desktop.
  */
-const ArtDirection = ({ children }) => {
+const ArtDirection: MdxComponent<ArtDirectionProps> = ({ children }) => {
   const isMd = useMatchMedia(mediaQueries.md)
   const isLg = useMatchMedia(mediaQueries.lg)
 
@@ -45,4 +50,5 @@ ArtDirection.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired
 }
 
+export { ArtDirectionProps }
 export default ArtDirection

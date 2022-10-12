@@ -5,11 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column } from '@carbon/react'
-import { CardGroup } from '@carbon-platform/mdx-components'
+import { CardGroup, ResourceCard } from '@carbon-platform/mdx-components'
 import PropTypes from 'prop-types'
 
 import MdxIcon from '@/components/mdx-icon'
-import ResourceCard from '@/components/resource-card'
 import { getUrlWithProtocol } from '@/utils/string'
 
 const DemoLinks = ({ links = [] }) => {

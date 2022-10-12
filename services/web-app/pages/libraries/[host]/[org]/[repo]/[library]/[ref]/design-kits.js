@@ -12,7 +12,8 @@ import {
   AnchorLinks,
   CardGroup,
   P,
-  PageDescription
+  PageDescription,
+  ResourceCard
 } from '@carbon-platform/mdx-components'
 import groupBy from 'lodash/groupBy'
 import Link from 'next/link'
@@ -22,7 +23,6 @@ import { useContext, useEffect } from 'react'
 import H2 from '@/components/markdown/h2'
 import MdxIcon from '@/components/mdx-icon/mdx-icon'
 import PageHeader from '@/components/page-header'
-import ResourceCard from '@/components/resource-card/resource-card'
 import withLoading from '@/components/with-loading'
 import { designKitTypes } from '@/data/design-kit-types'
 import { designTools } from '@/data/design-tools'

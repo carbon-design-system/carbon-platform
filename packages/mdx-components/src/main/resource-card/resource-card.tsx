@@ -7,19 +7,35 @@
 
 import { AspectRatio, Theme } from '@carbon/react'
 import { ArrowRight, Calendar, Download, Email, Error, Launch } from '@carbon/react/icons'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 
-import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
+import { MdxComponent } from '../interfaces.js'
+import { mediaQueries, useMatchMedia, withPrefix } from '../utils.js'
 
-import styles from './resource-card.module.scss'
-import groupStyles from './resource-card-group.module.scss'
+type Color = 'light' | 'dark'
+type ActionIcon = 'launch' | 'arrowRight' | 'download' | 'email' | 'calendar'
+type AspectRatio = '2:1' | '1:1' | '16:9' | '4:3'
+
+interface ResourceCardProps {
+  children: ReactNode
+  component: ReactNode
+  className?: string | null
+  href?: string | null
+  subTitle?: string | null
+  title?: string | null
+  color?: Color | null
+  disabled?: boolean | null
+  actionIcon: ActionIcon
+  aspectRatio?: AspectRatio | null
+}
 
 /**
  * The `<ResourceCard>` component should be wrapped with `<Grid>` and `<Column>` components,
  * with a className of `resource-card-group` to allow correct border placement between cards.
  */
-const ResourceCard = (props) => {
+const ResourceCard: MdxComponent<ResourceCardProps> = (props) => {
   const {
     children,
     href,
@@ -37,14 +53,9 @@ const ResourceCard = (props) => {
   const isLg = useMatchMedia(mediaQueries.lg)
   const isXlg = useMatchMedia(mediaQueries.xlg)
 
-  const ResourceCardClassNames = clsx(
-    className,
-    styles['resource-card'],
-    groupStyles['resource-card'],
-    {
-      [styles.disabled]: disabled
-    }
-  )
+  const ResourceCardClassNames = clsx(className, withPrefix('resource-card'), {
+    [withPrefix('disabled')]: disabled
+  })
 
   // if aspectRatio is not specified and it's a card with title displaying at Lg breakpoint,
   // default aspectRatio to 16:9, all other cases default to 2:1
@@ -52,17 +63,17 @@ const ResourceCard = (props) => {
 
   const carbonTileclassNames = clsx(['cds--tile'], {
     'cds--tile--clickable': href !== undefined,
-    [styles['card-with-title']]: !!title,
-    [styles['card-with-component']]: !!component
+    [withPrefix('card-with-title')]: !!title,
+    [withPrefix('card-with-component')]: !!component
   })
 
   const cardContent = (
     <>
-      {subTitle && <h5 className={styles.subtitle}>{subTitle}</h5>}
-      {title && <h4 className={styles.title}>{title}</h4>}
-      {component && <div className={styles['child-component']}>{component}</div>}
-      <div className={styles['icon-img']}>{children}</div>
-      <div className={styles['icon-action']}>
+      {subTitle && <h5 className={withPrefix('subtitle')}>{subTitle}</h5>}
+      {title && <h4 className={withPrefix('title')}>{title}</h4>}
+      {component && <div className={withPrefix('child-component')}>{component}</div>}
+      <div className={withPrefix('icon-img')}>{children}</div>
+      <div className={withPrefix('icon-action')}>
         {!disabled &&
           {
             launch: <Launch size={20} aria-label="Open resource" />,
@@ -82,7 +93,7 @@ const ResourceCard = (props) => {
     cardContainer = <div className={carbonTileclassNames}>{cardContent}</div>
   } else {
     cardContainer = (
-      <a href={href} className={carbonTileclassNames} {...rest}>
+      <a href={href!} className={carbonTileclassNames} {...rest}>
         {cardContent}
       </a>
     )
@@ -103,11 +114,12 @@ ResourceCard.propTypes = {
   /**
    * Action icon
    */
-  actionIcon: PropTypes.oneOf(['launch', 'arrowRight', 'download', 'email', 'calendar', 'error']),
+  actionIcon: PropTypes.oneOf<ActionIcon>(['launch', 'arrowRight', 'download', 'email', 'calendar'])
+    .isRequired,
   /**
    * Set card aspect ratio
    */
-  aspectRatio: PropTypes.oneOf(['2:1', '1:1', '16:9', '4:3']),
+  aspectRatio: PropTypes.oneOf<AspectRatio>(['2:1', '1:1', '16:9', '4:3']),
   /**
    * Add an image to display in lower left
    */
@@ -119,7 +131,7 @@ ResourceCard.propTypes = {
   /**
    * set to "dark" for dark background card
    */
-  color: PropTypes.oneOf(['light', 'dark']),
+  color: PropTypes.oneOf<Color>(['light', 'dark']),
 
   /**
    * Optional component to render in top right
@@ -150,4 +162,5 @@ ResourceCard.defaultProps = {
   actionIcon: 'launch'
 }
 
+export { ResourceCardProps }
 export default ResourceCard

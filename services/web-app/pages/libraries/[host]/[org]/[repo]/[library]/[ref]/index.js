@@ -11,7 +11,8 @@ import {
   AnchorLink,
   AnchorLinks,
   CardGroup,
-  PageDescription
+  PageDescription,
+  ResourceCard
 } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
@@ -24,7 +25,6 @@ import DemoLinks from '@/components/demo-links'
 import { H2 } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import PageHeader from '@/components/page-header'
-import ResourceCard from '@/components/resource-card'
 import withLoading from '@/components/with-loading'
 import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'

@@ -5,13 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column } from '@carbon/react'
-import { CardGroup } from '@carbon-platform/mdx-components'
-import Image from 'next/image'
 
-import ResourceCard from '@/components/resource-card'
+import { CardGroup, ResourceCard } from '../../../dist/main/index'
+import sketchIconPng from '../../res/sketch-icon.png'
 
 const stories = {
-  title: 'MDX/ResourceCard',
+  title: 'Components/ResourceCard',
   component: ResourceCard,
   argTypes: {
     children: {
@@ -36,7 +35,7 @@ const Template = (args) => (
         href="https://www.carbondesignsystem.com"
         {...args}
       >
-        <Image src="mdx/sketch-icon.png" alt="sketch" />
+        <img src={sketchIconPng} alt="sketch" />
       </ResourceCard>
     </Column>
     <Column lg={4}>
@@ -46,7 +45,7 @@ const Template = (args) => (
         href="https://www.carbondesignsystem.com"
         {...args}
       >
-        <Image src="mdx/sketch-icon.png" alt="sketch" />
+        <img src={sketchIconPng} alt="sketch" />
       </ResourceCard>
     </Column>
     <Column lg={4}>
@@ -57,7 +56,7 @@ const Template = (args) => (
         href="https://www.carbondesignsystem.com"
         {...args}
       >
-        <Image src="mdx/sketch-icon.png" alt="sketch" />
+        <img src={sketchIconPng} alt="sketch" />
       </ResourceCard>
     </Column>
     <Column lg={4}>
@@ -67,7 +66,7 @@ const Template = (args) => (
         href="https://www.carbondesignsystem.com"
         {...args}
       >
-        <Image src="mdx/sketch-icon.png" alt="sketch" />
+        <img src={sketchIconPng} alt="sketch" />
       </ResourceCard>
     </Column>
   </CardGroup>

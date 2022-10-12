@@ -28,6 +28,7 @@ module.exports = {
         'micromanage',
         'resources',
         'schemas',
+        'scripts',
         'search',
         'web-app'
       ]

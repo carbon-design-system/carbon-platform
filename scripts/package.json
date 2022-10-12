@@ -1,18 +1,22 @@
 {
   "name": "@carbon-platform/scripts",
-  "version": "0.2.2",
   "description": "Scripts for managing the carbon platform monorepo",
+  "version": "0.2.2",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git",
+    "directory": "scripts"
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
-  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "bin": {
+    "format-package-json": "./format-package-json.mjs"
+  },
   "dependencies": {
     "octokit": "^2.0.7"
   }

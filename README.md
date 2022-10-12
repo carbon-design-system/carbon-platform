@@ -71,6 +71,6 @@ on and what we have planned for the future.
 
 https://carbon-design-system.github.io/carbon-platform/
 
-## Deployment Branches
+## Kubernetes config repo
 
-[deployed-services/production](https://github.com/carbon-design-system/carbon-platform/tree/deployed-services/production)
+[https://github.com/carbon-design-system/carbon-platform-k8s](https://github.com/carbon-design-system/carbon-platform-k8s)

@@ -4,13 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { CardGroup } from '@carbon-platform/mdx-components'
+import { CardGroup, MiniCard } from '../../../dist/main/index'
 
-import MdxIcon from '@/components/mdx-icon'
-import MiniCard from '@/components/mini-card'
+// TODO: add MdxIcon when migrated
+// import MdxIcon from '@/components/mdx-icon'
 
 const stories = {
-  title: 'MDX/MiniCard',
+  title: 'Components/MiniCard',
   component: MiniCard,
   parameters: {},
   argTypes: {
@@ -45,7 +45,7 @@ const Template = (args) => (
       actionIcon="arrowRight"
     />
     <MiniCard title="Angular tutorial" href="">
-      <MdxIcon name="angular" />
+      {/* <MdxIcon name="angular" /> */}
     </MiniCard>
     <MiniCard
       title="Tree view component"
@@ -53,7 +53,7 @@ const Template = (args) => (
       actionIcon="launch"
     />
     <MiniCard title="React tutorial" href="">
-      <MdxIcon name="react" />
+      {/* <MdxIcon name="react" /> */}
     </MiniCard>
   </CardGroup>
 )

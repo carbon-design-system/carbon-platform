@@ -6,12 +6,25 @@
  */
 import { Column } from '@carbon/react'
 import { ArrowRight, Calendar, Download, Email, Launch } from '@carbon/react/icons'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 
-import * as styles from './mini-card.module.scss'
+import { MdxComponent } from '../interfaces.js'
+import { withPrefix } from '../utils.js'
 
-const getIcon = ({ actionIcon }) => {
+type ActionIcon = 'arrowRight' | 'download' | 'email' | 'calendar' | 'launch'
+
+interface MiniCardProps {
+  children: ReactNode
+  href?: string | null
+  title: string | null
+  actionIcon: ActionIcon
+  linkProps?: object | null
+  className?: string | null
+}
+
+const getIcon = ({ actionIcon }: { actionIcon: ActionIcon }) => {
   switch (actionIcon) {
     case 'arrowRight':
       return <ArrowRight size={20} aria-label="Open resource" />
@@ -26,34 +39,32 @@ const getIcon = ({ actionIcon }) => {
   }
 }
 
-const MiniCard = ({ children, href, title, actionIcon, className, linkProps, ...rest }) => {
+const MiniCard: MdxComponent<MiniCardProps> = ({
+  children,
+  href,
+  title,
+  actionIcon,
+  className,
+  linkProps,
+  ...rest
+}) => {
   const cardContent = (
-    <div className={clsx(className, styles.card)}>
-      <div className={styles.wrapper}>
-        <div className={styles.title}>{title}</div>
-        {children === undefined && <div className={styles.icon}>{getIcon({ actionIcon })}</div>}
-        {children !== undefined && <div className={styles.image}>{children}</div>}
+    <div className={clsx(className, withPrefix('mini-card'))}>
+      <div className={withPrefix('wrapper')}>
+        <div className={withPrefix('title')}>{title}</div>
+        {children === undefined && (
+          <div className={withPrefix('icon')}>{getIcon({ actionIcon })}</div>
+        )}
+        {children !== undefined && <div className={withPrefix('image')}>{children}</div>}
       </div>
     </div>
   )
 
-  let isLink
-  if (href !== undefined) {
-    isLink = href.charAt(0) === '/'
-  }
-
   return (
     <Column md={4} lg={4} sm={4} {...rest}>
-      {isLink && (
-        <a href={href} className={'cds--tile--clickable'} {...linkProps}>
-          {cardContent}
-        </a>
-      )}
-      {!isLink && (
-        <a href={href} className={'cds--tile--clickable'} {...linkProps}>
-          {cardContent}
-        </a>
-      )}
+      <a href={href!} className={'cds--tile--clickable'} {...linkProps}>
+        {cardContent}
+      </a>
     </Column>
   )
 }
@@ -62,7 +73,8 @@ MiniCard.propTypes = {
   /**
    * Action icon to render.
    */
-  actionIcon: PropTypes.oneOf(['arrowRight', 'download', 'email', 'calendar', 'launch']),
+  actionIcon: PropTypes.oneOf<ActionIcon>(['arrowRight', 'download', 'email', 'calendar', 'launch'])
+    .isRequired,
   /**
    * Provide the contents of your `Card`.
    */
@@ -84,4 +96,6 @@ MiniCard.propTypes = {
    */
   title: PropTypes.string.isRequired
 }
+
+export { MiniCardProps }
 export default MiniCard

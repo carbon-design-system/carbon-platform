@@ -51,7 +51,7 @@ const GifPlayer: MdxComponent<GifPlayerProps> = ({ children, color, className, i
     [withPrefix('dark')]: color === 'dark'
   })
 
-  const containerClassNames = clsx(className, withPrefix('container'), {
+  const containerClassNames = clsx(className, withPrefix('gif-player-container'), {
     [withPrefix('gif-in-dialog')]: isInDialog
   })
 

@@ -21,6 +21,10 @@ export { default as Column, ColumnProps } from './grid-transform/column.js'
 export { default as Grid, GridProps } from './grid-transform/grid.js'
 export { default as Row, RowProps } from './grid-transform/row.js'
 export { default as ImageWrapper, ImageWrapperProps } from './image-wrapper/image-wrapper.js'
+export {
+  default as InlineNotification,
+  InlineNotificationProps
+} from './inline-notification/inline-notification.js'
 export { default as P, ParagraphProps } from './markdown/p.js'
 export { default as MiniCard, MiniCardProps } from './mini-card/mini-card.js'
 export {

@@ -7,10 +7,12 @@
 
 import { Column, Grid } from '@carbon/react'
 import { CheckmarkFilled, ErrorFilled, InformationFilled, WarningFilled } from '@carbon/react/icons'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 
-import styles from './inline-notification.module.scss'
+import { MdxComponent } from '../interfaces.js'
+import { withPrefix } from '../utils.js'
 
 const iconTypes = {
   error: ErrorFilled,
@@ -19,10 +21,21 @@ const iconTypes = {
   info: InformationFilled
 }
 
+type Kind = 'error' | 'info' | 'success' | 'warning'
+
+interface InlineNotificationProps {
+  children?: ReactNode
+  className?: string | null
+  kind: Kind
+}
 /**
  * The `<InlineNotification>` component is used to communicate important information to a user.
  */
-const InlineNotification = ({ children, className, kind = 'info' }) => {
+const InlineNotification: MdxComponent<InlineNotificationProps> = ({
+  children,
+  className,
+  kind = 'info'
+}) => {
   const containerClassName = clsx(className, {
     'cds--inline-notification': true,
     'cds--inline-notification--low-contrast': true,
@@ -33,14 +46,14 @@ const InlineNotification = ({ children, className, kind = 'info' }) => {
 
   return (
     <Grid>
-      <Column sm={4} md={8} lg={8} className={clsx(styles.notification, className)}>
+      <Column sm={4} md={8} lg={8} className={clsx(withPrefix('notification'), className)}>
         <div className={containerClassName}>
           <div className="cds--inline-notification__details">
             <IconForKind className="cds--inline-notification__icon" size={20}>
               <title>{`${kind} icon`}</title>
             </IconForKind>
             <div className="cds--inline-notification__text-wrapper">
-              <div className={styles.content}>{children}</div>
+              <div className={withPrefix('content')}>{children}</div>
             </div>
           </div>
         </div>
@@ -61,7 +74,8 @@ InlineNotification.propTypes = {
   /**
    * Notification kind
    */
-  kind: PropTypes.oneOf(['error', 'info', 'success', 'warning'])
+  kind: PropTypes.oneOf<Kind>(['error', 'info', 'success', 'warning']).isRequired
 }
 
+export { InlineNotificationProps }
 export default InlineNotification

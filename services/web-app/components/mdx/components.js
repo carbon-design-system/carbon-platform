@@ -13,7 +13,6 @@ import ColorTokenTable from '@/components/color-token-table'
 import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
 import Glossary from '@/components/glossary'
 import InlineError from '@/components/inline-error'
-import InlineNotification from '@/components/inline-notification'
 import Link from '@/components/link'
 import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, UL } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
@@ -59,7 +58,6 @@ const components = {
   Glossary,
   IconLibrary,
   Image,
-  InlineNotification,
   MdxIcon,
   MdxPage,
   PictogramLibrary,

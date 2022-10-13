@@ -60,7 +60,7 @@ const Column: MdxComponent<ColumnProps> = ({
   }
 
   return (
-    <CarbonColumn {...colSizes} className={clsx(withPrefix('column'), className)}>
+    <CarbonColumn {...colSizes} {...props} className={clsx(withPrefix('column'), className)}>
       {children}
     </CarbonColumn>
   )

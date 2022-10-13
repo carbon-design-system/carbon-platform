@@ -1,7 +1,7 @@
 {
   "name": "micromanage-cli",
   "description": "The missing npm workspace management tool",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "license": "Apache-2.0",
   "author": "IBM",
   "keywords": [

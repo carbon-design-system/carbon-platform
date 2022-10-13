@@ -49,10 +49,10 @@
 
 ## Deployments
 
-| Environment                               | Description                      |
-| ----------------------------------------- | -------------------------------- |
-| [Production](next.carbondesignsystem.com) | Main deployment. Updated weekly. |
-| [Test](next-test.carbondesignsystem.com)  | Test environment. Updated daily. |
+| Environment                                       | Description                      |
+| ------------------------------------------------- | -------------------------------- |
+| [Production](https://next.carbondesignsystem.com) | Main deployment. Updated weekly. |
+| [Test](https://next-test.carbondesignsystem.com)  | Test environment. Updated daily. |
 
 ## Getting started
 

@@ -10,7 +10,7 @@ import { CardGroup, MiniCard } from '../../../dist/main/index'
 // import MdxIcon from '@/components/mdx-icon'
 
 const stories = {
-  title: 'Components/MiniCard',
+  title: 'Components/Cards/MiniCard',
   component: MiniCard,
   parameters: {},
   argTypes: {

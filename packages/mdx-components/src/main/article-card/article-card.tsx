@@ -14,10 +14,6 @@ import React, { ReactNode } from 'react'
 import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
 
-/**
- * The `<ArticleCard>` component should generally be used inside of `<Grid narrow>` and
- * `<Column>` components.
- */
 type Color = 'light' | 'dark'
 type ActionIcon = 'launch' | 'arrowRight' | 'download' | 'email' | 'disabled'
 
@@ -35,6 +31,22 @@ interface ArticleCardProps {
   className?: string | null
 }
 
+/**
+ * The `<ArticleCard>` component should generally be used inside of
+ * `<Grid narrow>` and`<Column>` components.
+ *
+ * ```
+ * <Grid narrow>
+ * <Column lg={4}>
+ * <ArticleCard props>
+ *
+ * ![](img.png)
+ *
+ * </ArticleCard>
+ * </Column>
+ * </Grid>
+ * ```
+ */
 const ArticleCard: MdxComponent<ArticleCardProps> = (props) => {
   const {
     children,

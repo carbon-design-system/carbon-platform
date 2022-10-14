@@ -39,6 +39,18 @@ const getIcon = ({ actionIcon }: { actionIcon: ActionIcon }) => {
   }
 }
 
+/**
+ *The `<MiniCard>` component can be used in place of a `<ResourceCard>` if your content
+ allows it. Unless it is sitting beside your main content, it should always be wrapped
+ inside of a `<CardGroup>`. This allows the correct gutter and border placement between
+ a group of cards
+*
+ Although the mini-resource card has a similar geometry to the button component, they
+ should not be used in place of a button. Buttons encourage action from the user and
+ affect the website's front-end or back-end. The resource cards, both large and mini
+ are essentially links. They are used for navigation and actions that do not affect
+ the website.
+ **/
 const MiniCard: MdxComponent<MiniCardProps> = ({
   children,
   href,
@@ -76,7 +88,7 @@ MiniCard.propTypes = {
   actionIcon: PropTypes.oneOf<ActionIcon>(['arrowRight', 'download', 'email', 'calendar', 'launch'])
     .isRequired,
   /**
-   * Provide the contents of your `Card`.
+   * Use 32x32 image as child, will display in right-hand corner of the card
    */
   children: PropTypes.node,
   /**

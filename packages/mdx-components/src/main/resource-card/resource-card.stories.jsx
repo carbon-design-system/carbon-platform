@@ -35,7 +35,7 @@ const Template = (args) => (
         href="https://www.carbondesignsystem.com"
         {...args}
       >
-        <img src={sketchIconPng} alt="sketch" />
+        <img src={sketchIconPng} alt="Use markdown for images in mdx files. ![](img.png)" />
       </ResourceCard>
     </Column>
     <Column lg={4}>
@@ -45,7 +45,7 @@ const Template = (args) => (
         href="https://www.carbondesignsystem.com"
         {...args}
       >
-        <img src={sketchIconPng} alt="sketch" />
+        <img src={sketchIconPng} alt="Use markdown for images in mdx files. ![](img.png)" />
       </ResourceCard>
     </Column>
     <Column lg={4}>
@@ -56,7 +56,7 @@ const Template = (args) => (
         href="https://www.carbondesignsystem.com"
         {...args}
       >
-        <img src={sketchIconPng} alt="sketch" />
+        <img src={sketchIconPng} alt="Use markdown for images in mdx files. ![](img.png)" />
       </ResourceCard>
     </Column>
     <Column lg={4}>
@@ -66,7 +66,7 @@ const Template = (args) => (
         href="https://www.carbondesignsystem.com"
         {...args}
       >
-        <img src={sketchIconPng} alt="sketch" />
+        <img src={sketchIconPng} alt="Use markdown for images in mdx files. ![](img.png)" />
       </ResourceCard>
     </Column>
   </CardGroup>

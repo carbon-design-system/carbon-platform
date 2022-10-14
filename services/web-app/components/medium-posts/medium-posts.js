@@ -39,8 +39,6 @@ const dummyArticles = [
   }
 ]
 
-const imgSrcMatchString = /<img[^>]+src="?([^"\s]+)"?\s*\/>/g
-
 const MediumPosts = ({ postLimit = 3, cardProps, dummy, ...rest }) => {
   const isCancelled = useRef(false)
   const [allPosts, setAllPosts] = useState(dummy ? dummyArticles : [])
@@ -55,14 +53,12 @@ const MediumPosts = ({ postLimit = 3, cardProps, dummy, ...rest }) => {
         if (!isCancelled.current) {
           setAllPosts(
             articles.items.map((article) => {
-              imgSrcMatchString.lastIndex = 0
-              const imgSrc = imgSrcMatchString.exec(article['content:encoded'])
               return {
                 title: article.title,
                 author: article.creator,
                 link: article.link,
-                date: moment(new Date(article.isoDate)).format('MMMM Do, YYYY'),
-                thumbnail: imgSrc ? imgSrc[1] : null
+                date: moment(new Date(article.pubDate)).format('MMMM Do, YYYY'),
+                thumbnail: article.imgThumb
               }
             })
           )

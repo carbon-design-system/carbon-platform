@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { parse } from 'node-html-parser'
 import Parser from 'rss-parser'
 
 import { cacheResponse } from '@/lib/file-cache'
@@ -15,6 +16,9 @@ const getMediumFeed = async (_, res) => {
   const mediumArticles = await cacheResponse('https://medium.com/feed/carbondesign', () =>
     parser.parseURL('https://medium.com/feed/carbondesign')
   )
+  mediumArticles.items.forEach(async (item) => {
+    item.imgThumb = parse(item['content:encoded']).querySelector('img').getAttribute('src')
+  })
   res.json(mediumArticles)
 }
 

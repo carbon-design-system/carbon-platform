@@ -22,10 +22,18 @@ export default {
 
 const Template = () => (
   <Grid>
-    <Column lg={4}>Span 4 of 16</Column>
-    <Column lg={4}>Span 4 of 16</Column>
-    <Column lg={4}>Span 4 of 16</Column>
-    <Column lg={4}>Span 4 of 16</Column>
+    <Column sm={4} md={4} lg={4}>
+      Span 4
+    </Column>
+    <Column sm={4} md={4} lg={4}>
+      Span 4
+    </Column>
+    <Column sm={4} md={4} lg={4}>
+      Span 4
+    </Column>
+    <Column sm={4} md={4} lg={4}>
+      Span 4
+    </Column>
   </Grid>
 )
 

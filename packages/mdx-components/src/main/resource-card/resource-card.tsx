@@ -32,8 +32,8 @@ interface ResourceCardProps {
 }
 
 /**
- * The `<ResourceCard>` component should be wrapped with `<Grid>` and `<Column>` components,
- * with a className of `resource-card-group` to allow correct border placement between cards.
+ * The `<ResourceCard>` component should be wrapped within the `<CardGroup>` component,
+ * this grid wrapper component will add correct spacing and borders between cards.
  */
 const ResourceCard: MdxComponent<ResourceCardProps> = (props) => {
   const {

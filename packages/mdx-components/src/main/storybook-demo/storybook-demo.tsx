@@ -77,7 +77,6 @@ const StorybookDemo: MdxComponent<StorybookDemoProps> = ({
   }
 
   const multipleVariants = variants?.length > 1
-  console.log(' 🐬 ~ variants', variants)
 
   const variantsDefined = typeof variants !== 'undefined' && variants.length > 0
 

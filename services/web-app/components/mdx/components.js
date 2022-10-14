@@ -21,7 +21,6 @@ import FullPageError from '@/components/mdx-page/errors/full-page-error'
 import PageTable from '@/components/page-table'
 import Preview from '@/components/preview'
 import StatusIndicatorTable from '@/components/status-indicator-table'
-import StorybookDemo from '@/components/storybook-demo'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'
@@ -63,7 +62,6 @@ const components = {
   PictogramLibrary,
   Preview,
   StatusIndicatorTable,
-  StorybookDemo,
   Tab,
   Tabs,
   TypeScaleTable,

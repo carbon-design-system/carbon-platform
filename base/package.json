@@ -1,18 +1,19 @@
 {
   "name": "@carbon-platform/base",
-  "version": "0.0.16",
   "description": "Base dependencies for all packages in the carbon platform monorepo",
+  "version": "0.0.17",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git",
+    "directory": "base"
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
-  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "dependencies": {
     "@nestjs/cli": "^9.1.4",
     "@nestjs/common": "^9.1.4",

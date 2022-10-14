@@ -1,18 +1,19 @@
 {
   "name": "@carbon-platform/api",
   "description": "Carbon platform application programming interfaces to services",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git",
+    "directory": "packages/api"
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
-  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "type": "module",
   "exports": {
     "./auth": "./dist/main/auth/index.js",

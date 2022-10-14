@@ -1,18 +1,19 @@
 {
   "name": "@carbon-platform/data-graph",
   "description": "Carbon Platform Data Graph service",
-  "version": "0.1.53",
+  "version": "0.1.54",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git",
+    "directory": "services/data-graph"
   },
   "bugs": {
-    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues?q=is%3Aopen+is%3Aissue+label%3A%22service%3A+data-graph+%F0%9F%92%BE%22"
   },
-  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "type": "module",
   "main": "dist/main/index.js",
   "scripts": {
@@ -22,8 +23,8 @@
     "clean": "rimraf dist tsconfig.tsbuildinfo",
     "service:build": "npm run build",
     "start": "node dist/main/index.js",
-    "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
+    "start:dev": "nest start --watch",
     "test": "ava --config ../../ava.config.mjs"
   },
   "dependencies": {

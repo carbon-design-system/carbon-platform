@@ -12,13 +12,13 @@ import PropTypes from 'prop-types'
 import NextLink from '../next-link'
 import styles from './page-tabs.module.scss'
 
+const getPathLeaf = (fullPath) => {
+  // Get the last piece of the path without the query string
+  return fullPath.split('/').pop().split('?')[0].split('#')[0]
+}
+
 const PageTabs = ({ title, tabs, className }) => {
   const router = useRouter()
-
-  const getPathLeaf = (fullPath) => {
-    // Get the last piece of the path without the query string
-    return fullPath.split('/').pop().split('?')[0].split('#')[0]
-  }
 
   const currTabSlug = getPathLeaf(router.asPath)
 

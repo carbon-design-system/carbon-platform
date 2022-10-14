@@ -29,7 +29,7 @@
 
 // targets images on the page not nested inside other components
 // images should sit inside the grid at md and above
-:global([class*='mdx-page_page-content']) > .image-container {
+:global([class*='content-wrapper']) > .image-container {
   margin-top: spacing.$spacing-07;
 
   @include breakpoint.breakpoint('md') {

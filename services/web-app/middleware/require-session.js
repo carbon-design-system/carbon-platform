@@ -11,7 +11,7 @@ import cookieParser from 'cookie-parser'
 import expressSession from 'express-session'
 import nextConnect from 'next-connect'
 
-const logging = new Logging({ component: 'require-session' })
+const logging = new Logging({ component: 'requireSession' })
 
 /**
  * Bootstraps session into request, returns 404 if user is required for resource

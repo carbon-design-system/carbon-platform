@@ -66,7 +66,7 @@ export async function processMdxSource(mdxSource, url) {
         return getScriptReplacementSrc(node, ++errCount)
       }
     },
-    logger: new Logging({ component: 'mdx-processor' }),
+    logger: new Logging({ component: 'MdxProcessor' }),
     onError: (err) => {
       warnings.push({
         name: err.name || null,

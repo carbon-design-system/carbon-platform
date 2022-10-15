@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.61](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.60...@carbon-platform/web-app@0.2.61) (2022-10-15)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** adjust logging component name formats to match others ([2f897ab](https://github.com/carbon-design-system/carbon-platform/commit/2f897abab7ed0a7ea49ce666d3221646f1ff6519))
+* **web-app:** do dont top spacing ([a2da163](https://github.com/carbon-design-system/carbon-platform/commit/a2da1631a7df92e639f9f8a03f8227816a783dea)), closes [#1427](https://github.com/carbon-design-system/carbon-platform/issues/1427)
+* **web-app:** unested image styles ([60f221d](https://github.com/carbon-design-system/carbon-platform/commit/60f221dc89a9cc10fdd035df855602fd464a9ad8))
+
 ### [0.2.60](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.59...@carbon-platform/web-app@0.2.60) (2022-10-13)
 
 

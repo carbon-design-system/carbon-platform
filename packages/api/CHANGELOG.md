@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.4.5...@carbon-platform/api@0.4.6) (2022-10-15)
+
+
+### Features 🌟
+
+* **api:** allow message handlers to throw exceptions back to callers ([878de3c](https://github.com/carbon-design-system/carbon-platform/commit/878de3c11de9ecc093b052aec7c2c8789012cd94))
+
 ### [0.4.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.4.4...@carbon-platform/api@0.4.5) (2022-10-13)
 
 

@@ -35,7 +35,9 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Modules 🔧
-        run: npm install
+        run: |
+          npm -w base install
+          npm -w packages/eslint-plugin-carbon-platform install
 
       - name: Lint 🔎
         run: npm run lint

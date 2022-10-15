@@ -25,7 +25,7 @@ type ReplyCallbacks = Map<
         | QueryMessage[keyof QueryMessage]['response']
         | Promise<QueryMessage[keyof QueryMessage]['response']>
     ) => void
-    reject: (reason?: unknown) => void
+    reject: (reason?: { name: string; message: string }) => void
   }
 >
 
@@ -197,7 +197,8 @@ class MessagingClient {
    * @param queryType The type of the query message to send.
    * @param payload The body of the message.
    * @returns A promise that resolves to a response object for the specified queryType. The object
-   * represents a de-serialized version of the correlated reply received from the remote service.
+   * represents a de-serialized version of the correlated reply received from the remote service. In
+   * the event of an error, the promise will reject with details about the failure.
    */
   public async query<Type extends keyof QueryMessage>(
     queryType: Type,

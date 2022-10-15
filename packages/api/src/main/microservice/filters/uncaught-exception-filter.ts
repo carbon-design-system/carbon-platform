@@ -17,7 +17,7 @@ interface UncaughtExceptionFilterConfig {
 
 @Catch()
 class UncaughtExceptionFilter extends BaseExceptionFilter {
-  private static readonly DEFAULT_COMPONENT_NAME = 'uncaught-exception-filter'
+  private static readonly DEFAULT_COMPONENT_NAME = UncaughtExceptionFilter.name
 
   private logging?: Logging
 

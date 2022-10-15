@@ -7,8 +7,8 @@
 import test from 'ava'
 
 import { Logging } from '../../../main/logging/logging.js'
-import { InvalidInputException } from '../../../main/microservice/exceptions/invalid-input-exception.js'
-import { InvalidInputExceptionFilter } from '../../../main/microservice/filters/invalid-input-exception-filter.js'
+import { QueryMessageException } from '../../../main/microservice/exceptions/query-message-exception.js'
+import { QueryMessageExceptionFilter } from '../../../main/microservice/filters/query-message-exception-filter.js'
 
 test.before(() => {
   Logging.isRemoteLoggingAllowed = false
@@ -23,16 +23,20 @@ const rpcArgHost = {
 }
 
 test('catch', async (t) => {
-  const filter = new InvalidInputExceptionFilter()
+  t.plan(1)
 
-  const result = filter.catch(new InvalidInputException('a test!'), rpcArgHost as any)
+  const filter = new QueryMessageExceptionFilter()
 
-  try {
-    await result.forEach(() => undefined)
-  } catch (e) {
-    t.true(e instanceof InvalidInputException)
-    t.is((e as InvalidInputException).message, 'a test!')
-  }
+  const result = filter.catch(new QueryMessageException('a test!'), rpcArgHost as any)
+
+  await result.forEach((val) => {
+    t.deepEqual(val, {
+      __error: {
+        name: QueryMessageException.name,
+        message: 'a test!'
+      }
+    })
+  })
 })
 
 test('catch with no pattern does not crash', (t) => {
@@ -44,9 +48,9 @@ test('catch with no pattern does not crash', (t) => {
     })
   }
 
-  const filter = new InvalidInputExceptionFilter()
+  const filter = new QueryMessageExceptionFilter()
 
-  filter.catch(new InvalidInputException('a test!'), customRpcArgHost as any)
+  filter.catch(new QueryMessageException('a test!'), customRpcArgHost as any)
 
   t.pass()
 })

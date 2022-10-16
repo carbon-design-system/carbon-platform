@@ -31,6 +31,7 @@ export {
   default as PageDescription,
   PageDescriptionProps
 } from './page-description/page-description.js'
+export { default as Preview, PreviewProps } from './preview/preview.js'
 export { default as Profile, ProfileProps } from './profile/profile.js'
 export { default as ResourceCard, ResourceCardProps } from './resource-card/resource-card.js'
 export { default as Title, TitleProps } from './title/title.js'

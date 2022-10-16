@@ -19,7 +19,6 @@ import MdxIcon from '@/components/mdx-icon'
 import MdxPage from '@/components/mdx-page'
 import FullPageError from '@/components/mdx-page/errors/full-page-error'
 import PageTable from '@/components/page-table'
-import Preview from '@/components/preview'
 import StatusIndicatorTable from '@/components/status-indicator-table'
 import StorybookDemo from '@/components/storybook-demo'
 import IconLibrary from '@/components/svg-libraries/icon-library'
@@ -61,7 +60,6 @@ const components = {
   MdxIcon,
   MdxPage,
   PictogramLibrary,
-  Preview,
   StatusIndicatorTable,
   StorybookDemo,
   Tab,

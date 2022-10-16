@@ -10,7 +10,7 @@ import { ArticleCard } from '../../../dist/main/index'
 import article06 from '../../res/article06.png'
 
 const stories = {
-  title: 'Components/ArticleCard',
+  title: 'Components/Cards/ArticleCard',
   component: ArticleCard,
   argTypes: {
     children: {

@@ -14,13 +14,12 @@ import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
 import Glossary from '@/components/glossary'
 import InlineError from '@/components/inline-error'
 import Link from '@/components/link'
-import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, UL } from '@/components/markdown'
+import { Blockquote, Image, LI, OL, UL } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import MdxPage from '@/components/mdx-page'
 import FullPageError from '@/components/mdx-page/errors/full-page-error'
 import PageTable from '@/components/page-table'
 import StatusIndicatorTable from '@/components/status-indicator-table'
-import StorybookDemo from '@/components/storybook-demo'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'
@@ -29,12 +28,12 @@ import TypesetStyle from '@/components/typeset-style'
 
 const components = {
   ...mdxComponents,
-  h1: H1,
-  h2: H2,
-  h3: H3,
-  h4: H4,
-  h5: H5,
-  h6: H6,
+  h1: mdxComponents.H1,
+  h2: mdxComponents.H2,
+  h3: mdxComponents.H3,
+  h4: mdxComponents.H4,
+  h5: mdxComponents.H5,
+  h6: mdxComponents.H6,
   p: mdxComponents.P,
   ol: OL,
   li: LI,
@@ -61,7 +60,6 @@ const components = {
   MdxPage,
   PictogramLibrary,
   StatusIndicatorTable,
-  StorybookDemo,
   Tab,
   Tabs,
   TypeScaleTable,

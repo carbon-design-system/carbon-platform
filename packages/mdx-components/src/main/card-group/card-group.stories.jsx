@@ -6,10 +6,11 @@
  */
 import { Column } from '@carbon/react'
 
-import { CardGroup } from '../../../dist/main/index'
+import { CardGroup, ResourceCard } from '../../../dist/main/index'
+import sketchIconPng from '../../res/sketch-icon.png'
 
 export default {
-  title: 'Components/CardGroup',
+  title: 'Components/Cards/CardGroup',
   component: CardGroup,
   argTypes: {
     children: {
@@ -21,12 +22,51 @@ export default {
   }
 }
 
-const Template = () => (
+const Template = (args) => (
   <CardGroup>
-    <Column lg={4}>TODO: Add ResourceCard</Column>
-    <Column lg={4}>TODO: Add ResourceCard</Column>
-    <Column lg={4}>TODO: Add ResourceCard</Column>
-    <Column lg={4}>TODO: Add ResourceCard</Column>
+    <Column lg={4}>
+      <ResourceCard
+        subTitle="With subtitle"
+        title="Title"
+        aspectRatio="2:1"
+        actionIcon="arrowRight"
+        href="https://www.carbondesignsystem.com"
+        {...args}
+      >
+        <img src={sketchIconPng} alt="sketch" />
+      </ResourceCard>
+    </Column>
+    <Column lg={4}>
+      <ResourceCard
+        subTitle="With subtitle"
+        title="Title"
+        href="https://www.carbondesignsystem.com"
+        {...args}
+      >
+        <img src={sketchIconPng} alt="sketch" />
+      </ResourceCard>
+    </Column>
+    <Column lg={4}>
+      <ResourceCard
+        title="Title"
+        aspectRatio="2:1"
+        actionIcon="arrowRight"
+        href="https://www.carbondesignsystem.com"
+        {...args}
+      >
+        <img src={sketchIconPng} alt="sketch" />
+      </ResourceCard>
+    </Column>
+    <Column lg={4}>
+      <ResourceCard
+        subTitle="With subtitle"
+        title="Title"
+        href="https://www.carbondesignsystem.com"
+        {...args}
+      >
+        <img src={sketchIconPng} alt="sketch" />
+      </ResourceCard>
+    </Column>
   </CardGroup>
 )
 

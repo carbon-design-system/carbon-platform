@@ -10,7 +10,7 @@ import { CardGroup, ResourceCard } from '../../../dist/main/index'
 import sketchIconPng from '../../res/sketch-icon.png'
 
 const stories = {
-  title: 'Components/ResourceCard',
+  title: 'Components/Cards/ResourceCard',
   component: ResourceCard,
   argTypes: {
     children: {

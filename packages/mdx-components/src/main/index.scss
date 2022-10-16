@@ -8,6 +8,7 @@
 @use './anchor-links/anchor-links';
 @use './article-card/article-card';
 @use './aside/aside';
+@use './autolink-header/autolink-header';
 @use './caption/caption';
 @use './card-group/card-group';
 @use './color-block/color-block';
@@ -23,5 +24,6 @@
 @use './profile/profile';
 @use './page-description/page-description';
 @use './resource-card/resource-card';
+@use './storybook-demo/storybook-demo';
 @use './title/title';
 @use './video/video';

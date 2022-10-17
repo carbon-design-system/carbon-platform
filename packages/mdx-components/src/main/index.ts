@@ -42,6 +42,7 @@ export {
   default as PageDescription,
   PageDescriptionProps
 } from './page-description/page-description.js'
+export { default as PageTable, PageTableProps } from './page-table/page-table.js'
 export { default as Profile, ProfileProps } from './profile/profile.js'
 export { default as ResourceCard, ResourceCardProps } from './resource-card/resource-card.js'
 export { default as StorybookDemo, StorybookDemoProps } from './storybook-demo/storybook-demo.js'

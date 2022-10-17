@@ -14,7 +14,7 @@ import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
 import Glossary from '@/components/glossary'
 import InlineError from '@/components/inline-error'
 import Link from '@/components/link'
-import { Blockquote, Image, LI, OL, UL } from '@/components/markdown'
+import { Image, LI, OL, UL } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import MdxPage from '@/components/mdx-page'
 import FullPageError from '@/components/mdx-page/errors/full-page-error'
@@ -40,7 +40,7 @@ const components = {
   li: LI,
   ul: UL,
   a: Link,
-  blockquote: Blockquote,
+  blockquote: mdxComponents.Blockquote,
   img: Image,
   table: PageTable,
   pre: Code,

@@ -40,8 +40,9 @@ class DataGraphController {
     try {
       dataGraphMessage = validateDataGraphMessage(data)
     } catch (e) {
-      // Remove the message from the exchange with a negative ack
-      context.getChannelRef().nack()
+      // Reject the message and do not allow it to be re-queued
+      context.getChannelRef().reject(context.getMessage(), false)
+
       throw e
     }
 

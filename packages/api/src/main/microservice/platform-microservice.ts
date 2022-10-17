@@ -22,7 +22,7 @@ import {
 import { MessagingConnection } from '../messaging/messaging-connection.js'
 import { Runtime } from '../runtime/index.js'
 import { PORT } from './constants.js'
-import { InvalidInputExceptionFilter } from './filters/invalid-input-exception-filter.js'
+import { QueryMessageExceptionFilter } from './filters/query-message-exception-filter.js'
 import { UncaughtExceptionFilter } from './filters/uncaught-exception-filter.js'
 import { RequestLogInterceptor } from './interceptors/request-log-interceptor.js'
 
@@ -126,7 +126,7 @@ class PlatformMicroservice {
 
     application.useGlobalFilters(
       new UncaughtExceptionFilter({ applicationRef: httpAdapter }),
-      new InvalidInputExceptionFilter()
+      new QueryMessageExceptionFilter()
     )
 
     application.useGlobalInterceptors(new RequestLogInterceptor())

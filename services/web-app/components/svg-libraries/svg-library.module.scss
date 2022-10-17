@@ -10,7 +10,6 @@
 .svg-page {
   // prevent jank while importing icons
   min-height: 60vh;
-  padding-top: spacing.$spacing-07;
 }
 
 @media screen and (prefers-reduced-motion: reduce) {

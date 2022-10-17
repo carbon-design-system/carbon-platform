@@ -8,6 +8,17 @@ import { DataGraphMessage, DataGraphResponse } from '../data-graph/index.js'
 import { LogLoggedMessage } from '../logging/index.js'
 
 /**
+ * A utility type used to help define QueryMessage types. The first type argument is the payload
+ * type of the QueryMessage. The second type argument is the response type of the QueryMessage. The
+ * response type cannot be nullable, since a null or undefined query response is used to indicate an
+ * unknown failure.
+ */
+interface QueryDef<Payload, Response extends NonNullable<unknown>> {
+  payload: Payload
+  response: Response
+}
+
+/**
  * An incoming message to a service is first treated as unvalidated. Once validated, the incoming
  * message type should be asserted as some type of [EventMessage or QueryMessage] payload.
  */
@@ -32,10 +43,10 @@ interface EventMessage {
  * based on the QueryMessage key.
  */
 interface QueryMessage {
-  data_graph: { payload: DataGraphMessage; response: DataGraphResponse }
+  data_graph: QueryDef<DataGraphMessage, DataGraphResponse>
 
   // For testing purposes
-  ping: { payload: string; response: string }
+  ping: QueryDef<string, string>
 }
 
 /**

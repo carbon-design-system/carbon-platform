@@ -19,11 +19,14 @@ const RETRY_INTERVAL = 5000
 
 type ReplyCallbacks = Map<
   string,
-  (
-    value:
-      | QueryMessage[keyof QueryMessage]['response']
-      | Promise<QueryMessage[keyof QueryMessage]['response']>
-  ) => void
+  {
+    resolve: (
+      value:
+        | QueryMessage[keyof QueryMessage]['response']
+        | Promise<QueryMessage[keyof QueryMessage]['response']>
+    ) => void
+    reject: (reason?: { name: string; message: string }) => void
+  }
 >
 
 interface MessagingClientConfig {
@@ -99,13 +102,21 @@ class MessagingClient {
    */
   private handleReply(reply: amqp.ConsumeMessage | null) {
     const correlationId = reply?.properties.correlationId as string
-    const resolve = this.replyCallbacks.get(correlationId)
+    const callback = this.replyCallbacks.get(correlationId)
 
-    if (!resolve) {
+    if (!callback) {
       return
     }
 
-    resolve(reply?.content ? JSON.parse(reply.content.toString())?.response : undefined)
+    // Obtain the "response" from the message
+    const response = reply?.content ? JSON.parse(reply.content.toString())?.response : undefined
+
+    // Check the response for an error and reject the promise if found. Otherwise resolve it
+    if (!response || response?.__error) {
+      callback.reject(response?.__error)
+    } else {
+      callback.resolve(response)
+    }
 
     this.replyCallbacks.delete(correlationId)
   }
@@ -186,7 +197,8 @@ class MessagingClient {
    * @param queryType The type of the query message to send.
    * @param payload The body of the message.
    * @returns A promise that resolves to a response object for the specified queryType. The object
-   * represents a de-serialized version of the correlated reply received from the remote service.
+   * represents a de-serialized version of the correlated reply received from the remote service. In
+   * the event of an error, the promise will reject with details about the failure.
    */
   public async query<Type extends keyof QueryMessage>(
     queryType: Type,
@@ -201,8 +213,8 @@ class MessagingClient {
 
     // Create a new promise and store its resolve callback in the registry. Resolve is called later
     // on when a correlated response is received from the reply queue
-    const replyPromise = new Promise<QueryMessage[Type]['response']>((resolve) => {
-      this.replyCallbacks.set(correlationId, resolve)
+    const replyPromise = new Promise<QueryMessage[Type]['response']>((resolve, reject) => {
+      this.replyCallbacks.set(correlationId, { resolve, reject })
     })
 
     let done = false

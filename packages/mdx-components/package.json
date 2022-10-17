@@ -1,34 +1,35 @@
 {
   "name": "@carbon-platform/mdx-components",
   "description": "Carbon Platform MDX components",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git",
+    "directory": "packages/mdx-components"
   },
   "bugs": {
-    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues?q=is%3Aopen+is%3Aissue+label%3A%22package%3A+mdx-components+%F0%9F%A7%B0%22"
   },
-  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "type": "module",
-  "files": [
-    "./dist/main/**/*"
-  ],
   "exports": {
     ".": "./dist/main/index.js",
     "./styles": "./dist/main/index.css"
   },
+  "files": [
+    "./dist/main/**/*"
+  ],
   "scripts": {
     "build": "npm run build:react && npm run build:sass",
     "build:react": "tsc",
     "build:sass": "sass --load-path=../../node_modules/ src/main/index.scss dist/main/index.css",
     "build:storybook": "build-storybook -o .storybook-static",
     "build:watch": "nodemon --watch src/main --ext .ts,.tsx,.scss --exec 'npm run build'",
-    "dev": "concurrently --kill-others 'npm run build:watch' 'npm run storybook'",
     "clean": "rimraf dist tsconfig.tsbuildinfo",
+    "dev": "concurrently --kill-others 'npm run build:watch' 'npm run storybook'",
     "package:build": "npm run build",
     "storybook": "start-storybook -p 6006",
     "test": "ava --config ../../ava.config.mjs"

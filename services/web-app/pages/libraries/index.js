@@ -9,6 +9,7 @@ import { NextSeo } from 'next-seo'
 import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
 
+import ContentWrapper from '@/components/content-wrapper'
 import LibraryCatalog from '@/components/library-catalog/library-catalog'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
@@ -41,12 +42,14 @@ const Libraries = ({ librariesData }) => {
     <>
       <NextSeo {...seo} />
       <PageHeader bgColor={pageHeader?.bgColor} title={seo.title} pictogram={pageHeader?.icon} />
-      <PageDescription className={styles['library-description']}>
-        Libraries are 1:1 with code packages. All coded components, elements, patterns, or functions
-        belong to a library and have a maintainer. Design kits with compatible code also live in
-        libraries.
-      </PageDescription>
-      <LibraryCatalog libraries={libraries} />
+      <ContentWrapper>
+        <PageDescription className={styles['library-description']}>
+          Libraries are 1:1 with code packages. All coded components, elements, patterns, or
+          functions belong to a library and have a maintainer. Design kits with compatible code also
+          live in libraries.
+        </PageDescription>
+        <LibraryCatalog libraries={libraries} />
+      </ContentWrapper>
     </>
   )
 }

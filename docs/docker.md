@@ -29,7 +29,7 @@ docker run --rm -ti -e GITHUB_TOKEN=$CARBON_GITHUB_TOKEN -p 8080:8080 -u 10000 u
 ## Docker run command for RabbitMQ messaging
 
 ```
-docker run --rm --hostname rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.9
+docker run --rm --hostname rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.9-management
 ```
 
 ### Set up web UI in RabbitMQ

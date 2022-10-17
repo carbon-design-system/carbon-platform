@@ -29,6 +29,7 @@ export {
   default as InlineNotification,
   InlineNotificationProps
 } from './inline-notification/inline-notification.js'
+export { default as Blockquote, BlockquoteProps } from './markdown/blockquote.js'
 export { default as H1, H1Props } from './markdown/h1.js'
 export { default as H2, H2Props } from './markdown/h2.js'
 export { default as H3, H3Props } from './markdown/h3.js'
@@ -44,7 +45,7 @@ export {
   default as PageDescription,
   PageDescriptionProps
 } from './page-description/page-description.js'
-export { default as Preview, PreviewProps } from './preview/preview.js'
+export { default as PageTable, PageTableProps } from './page-table/page-table.js'
 export { default as Profile, ProfileProps } from './profile/profile.js'
 export { default as ResourceCard, ResourceCardProps } from './resource-card/resource-card.js'
 export { default as StorybookDemo, StorybookDemoProps } from './storybook-demo/storybook-demo.js'

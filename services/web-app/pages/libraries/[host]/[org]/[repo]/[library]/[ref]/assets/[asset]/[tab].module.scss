@@ -9,10 +9,6 @@
 @use '@carbon/react/scss/utilities/convert' as convert;
 @use '@carbon/react/scss/theme' as theme;
 
-.page-content {
-  padding-top: spacing.$spacing-09;
-}
-
 .asset-tabs {
   &::before {
     position: absolute;

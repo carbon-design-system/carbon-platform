@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
+import { H2 } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
-import H2 from '../markdown/h2'
 import styles from './catalog-list.module.scss'
 
 const CatalogList = ({

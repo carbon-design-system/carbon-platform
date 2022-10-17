@@ -6,13 +6,11 @@
  */
 
 import { Column, Grid } from '@carbon/react'
-import { AnchorLink, AnchorLinks, CodeSnippet } from '@carbon-platform/mdx-components'
+import { AnchorLink, AnchorLinks, CodeSnippet, H2, H3 } from '@carbon-platform/mdx-components'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import H2 from '@/components/markdown/h2'
-import H3 from '@/components/markdown/h3'
 import { UL } from '@/components/markdown/index'
 import LI from '@/components/markdown/li'
 import P from '@/components/markdown/p'

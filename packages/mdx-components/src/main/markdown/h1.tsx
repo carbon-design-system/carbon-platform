@@ -20,6 +20,26 @@ interface H1Props {
   [otherProp: string]: unknown
 }
 
+/**
+ * For MDX files, steer away from using JSX components
+ * for headings in favor of standard markdown syntax.
+ *
+ * It’s generally considered
+ * <a href="https://webaim.org/techniques/semanticstructure/#contentstructure">best practice</a>
+ *  to include just one h1 heading per page.
+ * This heading signals the title or primary subject matter of the content to your audience.
+ * Because the title component generated at the top of each page already uses an h1 heading,
+ *  we recommend using h2 tags for section headings within your content.
+ *
+ *```
+ * # This is a heading 1
+ * ## This is a heading 2
+ * ### This is a heading 3
+ * #### This is a heading 4
+ * ##### This is a heading 5
+ * ###### This is a heading 6
+ * ```
+ */
 const H1: MdxComponent<H1Props> = ({ children, className, headingClassName, ...rest }) => {
   return (
     <Grid className={clsx(withPrefix('h1-container'), className)} {...rest}>

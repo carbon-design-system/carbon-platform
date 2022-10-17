@@ -1,20 +1,21 @@
 {
   "name": "@carbon-platform/resources",
-  "version": "1.4.1",
   "description": "Indexed Carbon resources that use the schema",
+  "version": "1.4.2",
   "license": "Apache-2.0",
   "author": "IBM",
   "publishConfig": {
     "access": "public"
   },
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git",
+    "directory": "packages/resources"
   },
   "bugs": {
-    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues?q=is%3Aopen+is%3Aissue+label%3A%22package%3A+resources+%F0%9F%AA%B5%22"
   },
-  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "exports": {
     ".": "./carbon.yml"
   },

@@ -25,7 +25,7 @@
     "build:sass": "sass --load-path=../../node_modules/ src/main/index.scss dist/main/index.css",
     "build:storybook": "build-storybook -o .storybook-static",
     "build:watch": "nodemon --watch src/main --ext .ts,.tsx,.scss --exec 'npm run build'",
-    "clean": "rimraf dist tsconfig.tsbuildinfo",
+    "clean": "rimraf dist *.tsbuildinfo",
     "dev": "concurrently --kill-others 'npm run build:watch' 'npm run storybook'",
     "package:build": "npm run build",
     "storybook": "start-storybook -p 6006",

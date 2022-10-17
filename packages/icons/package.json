@@ -21,7 +21,7 @@
   "scripts": {
     "build": "npm run build:svg && tsc",
     "build:svg": "svgr --no-prettier --out-dir src/main/generated src/main/svg",
-    "clean": "rimraf dist src/main/generated tsconfig.tsbuildinfo",
+    "clean": "rimraf dist src/main/generated *.tsbuildinfo",
     "package:build": "npm run build"
   },
   "dependencies": {

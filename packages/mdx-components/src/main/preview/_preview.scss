@@ -7,6 +7,7 @@
 
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/spacing' as spacing;
+@use '../utils' as *;
 
 .preview {
   width: 100%;

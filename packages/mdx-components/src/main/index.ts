@@ -35,7 +35,10 @@ export { default as H3, H3Props } from './markdown/h3.js'
 export { default as H4, H4Props } from './markdown/h4.js'
 export { default as H5, H5Props } from './markdown/h5.js'
 export { default as H6, H6Props } from './markdown/h6.js'
+export { default as LI, LiProps } from './markdown/li.js'
+export { default as OL, OlProps } from './markdown/ol.js'
 export { default as P, ParagraphProps } from './markdown/p.js'
+export { default as UL, UlProps } from './markdown/ul.js'
 export { default as MiniCard, MiniCardProps } from './mini-card/mini-card.js'
 export {
   default as PageDescription,
@@ -54,13 +57,10 @@ export {
   Button,
   CodeSnippet,
   Layer,
-  ListItem,
-  OrderedList,
   StructuredListBody,
   StructuredListCell,
   StructuredListHead,
   StructuredListRow,
   StructuredListWrapper,
-  Tag,
-  UnorderedList
+  Tag
 } from '@carbon/react'

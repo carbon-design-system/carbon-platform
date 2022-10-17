@@ -4,14 +4,18 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Preview } from '../../../dist/main/index'
+import React from 'react'
+
+import { LI, UL } from '../../../dist/main/index'
 
 const stories = {
-  title: 'Components/Preview',
-  component: Preview,
-  parameters: {},
+  title: 'Components/Lists/UL',
+  component: UL,
   argTypes: {
-    title: {
+    children: {
+      control: false
+    },
+    className: {
       control: false
     }
   }
@@ -20,15 +24,11 @@ const stories = {
 export default stories
 
 const Template = (args) => (
-  <Preview
-    {...args}
-    height="400"
-    title="Carbon Tutorial Step 5"
-    src="https://react-step-6--carbon-tutorial.netlify.com"
-    frameborder="no"
-    allowtransparency="true"
-    allowfullscreen="true"
-  />
+  <UL {...args}>
+    <LI>list item 1</LI>
+    <LI>list item 2</LI>
+    <LI>list item 3</LI>
+  </UL>
 )
 
 export const Default = Template.bind({})

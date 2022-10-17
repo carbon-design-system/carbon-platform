@@ -6,17 +6,23 @@
  */
 
 import { Column, Grid } from '@carbon/react'
-import { AnchorLink, AnchorLinks, CodeSnippet, H2, H3 } from '@carbon-platform/mdx-components'
+import {
+  AnchorLink,
+  AnchorLinks,
+  CodeSnippet,
+  H2,
+  H3,
+  P,
+  PageDescription
+} from '@carbon-platform/mdx-components'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
 import { UL } from '@/components/markdown/index'
 import LI from '@/components/markdown/li'
-import P from '@/components/markdown/p'
 import MdxNotification from '@/components/mdx-notification'
 import FullPageError from '@/components/mdx-page/errors/full-page-error/full-page-error'
-import PageDescription from '@/components/page-description/page-description'
 import PageHeader from '@/components/page-header/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'

@@ -25,6 +25,7 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect, useState } from 'react'
 
 import AssetCatalogItemMeta from '@/components/asset-catalog-item/asset-catalog-item-meta'
+import ContentWrapper from '@/components/content-wrapper'
 import PageHeader from '@/components/page-header'
 import TypeTag from '@/components/type-tag'
 import withLoading from '@/components/with-loading'
@@ -140,92 +141,94 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
           />
         </Column>
         <Column sm={4} md={8} lg={12}>
-          <Grid>
-            <Column sm={4} md={8} lg={8}>
-              <H2 headingClassName={styles.subheading}>{description}</H2>
-            </Column>
-          </Grid>
-          <Grid condensed={!isLg} narrow={isLg}>
-            <Column className={styles['sort-column']} sm={4} md={4} lg={4}>
-              <Dropdown
-                id="catalog-sort"
-                className={styles.dropdown}
-                initialSelectedItem={sortItems.find((item) => item.id === sort)}
-                items={sortItems}
-                itemToString={(item) => (item ? item.text : '')}
-                onChange={({ selectedItem }) => {
-                  onSort(selectedItem.id)
-                }}
-                type="inline"
-                titleText="Sort by:"
-                label="A–Z"
-                size="lg"
-              />
-            </Column>
-          </Grid>
-          <Grid condensed={!isLg} narrow={isLg} className={styles.container}>
-            <Column sm={4} md={8} lg={12}>
-              <DataTable rows={assets} headers={headerData}>
-                {({ rows, headers, getHeaderProps, getTableProps }) => (
-                  <TableContainer>
-                    <Table {...getTableProps()}>
-                      <TableHead>
-                        <TableRow>
-                          {headers.map((header) => (
-                            <TableHeader {...getHeaderProps({ header })} key={header.id}>
-                              {header.header}
-                            </TableHeader>
-                          ))}
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {rows.length > 0 &&
-                          rows.map((row) => (
-                            <TableRow key={row.id} className={styles['asset-row']}>
-                              {row.cells.map((cell) => (
-                                <TableCell key={cell.id}>{cell.value}</TableCell>
-                              ))}
-                            </TableRow>
-                          ))}
-                        {rows.length <= 0 && (
+          <ContentWrapper>
+            <Grid>
+              <Column sm={4} md={8} lg={8}>
+                <H2 headingClassName={styles.subheading}>{description}</H2>
+              </Column>
+            </Grid>
+            <Grid condensed={!isLg} narrow={isLg}>
+              <Column className={styles['sort-column']} sm={4} md={4} lg={4}>
+                <Dropdown
+                  id="catalog-sort"
+                  className={styles.dropdown}
+                  initialSelectedItem={sortItems.find((item) => item.id === sort)}
+                  items={sortItems}
+                  itemToString={(item) => (item ? item.text : '')}
+                  onChange={({ selectedItem }) => {
+                    onSort(selectedItem.id)
+                  }}
+                  type="inline"
+                  titleText="Sort by:"
+                  label="A–Z"
+                  size="lg"
+                />
+              </Column>
+            </Grid>
+            <Grid condensed={!isLg} narrow={isLg} className={styles.container}>
+              <Column sm={4} md={8} lg={12}>
+                <DataTable rows={assets} headers={headerData}>
+                  {({ rows, headers, getHeaderProps, getTableProps }) => (
+                    <TableContainer>
+                      <Table {...getTableProps()}>
+                        <TableHead>
                           <TableRow>
-                            <TableCell colSpan={5}>
-                              <div className={styles['no-results-container']}>
-                                <FilingCabinet />
-                                <H2
-                                  narrow
-                                  className={styles['h2-container']}
-                                  headingClassName={styles['no-results-heading']}
-                                >
-                                  No assets in library.
-                                </H2>
-                                <H3
-                                  narrow
-                                  className={styles['h3-container']}
-                                  headingClassName={styles['no-results-subheading']}
-                                >
-                                  This library does not contain any assets.
-                                </H3>
-                                {/* library maintainers should be a link but leaving as text for
-                                now until we figure out contributors discussion */}
-                                <H3
-                                  narrow
-                                  className={styles['h3-container']}
-                                  headingClassName={styles['no-results-subheading']}
-                                >
-                                  Contact library maintainers for further details.
-                                </H3>
-                              </div>
-                            </TableCell>
+                            {headers.map((header) => (
+                              <TableHeader {...getHeaderProps({ header })} key={header.id}>
+                                {header.header}
+                              </TableHeader>
+                            ))}
                           </TableRow>
-                        )}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                )}
-              </DataTable>
-            </Column>
-          </Grid>
+                        </TableHead>
+                        <TableBody>
+                          {rows.length > 0 &&
+                            rows.map((row) => (
+                              <TableRow key={row.id} className={styles['asset-row']}>
+                                {row.cells.map((cell) => (
+                                  <TableCell key={cell.id}>{cell.value}</TableCell>
+                                ))}
+                              </TableRow>
+                            ))}
+                          {rows.length <= 0 && (
+                            <TableRow>
+                              <TableCell colSpan={5}>
+                                <div className={styles['no-results-container']}>
+                                  <FilingCabinet />
+                                  <H2
+                                    narrow
+                                    className={styles['h2-container']}
+                                    headingClassName={styles['no-results-heading']}
+                                  >
+                                    No assets in library.
+                                  </H2>
+                                  <H3
+                                    narrow
+                                    className={styles['h3-container']}
+                                    headingClassName={styles['no-results-subheading']}
+                                  >
+                                    This library does not contain any assets.
+                                  </H3>
+                                  {/* library maintainers should be a link but leaving as text for
+                                now until we figure out contributors discussion */}
+                                  <H3
+                                    narrow
+                                    className={styles['h3-container']}
+                                    headingClassName={styles['no-results-subheading']}
+                                  >
+                                    Contact library maintainers for further details.
+                                  </H3>
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          )}
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                  )}
+                </DataTable>
+              </Column>
+            </Grid>
+          </ContentWrapper>
         </Column>
       </Grid>
     </>

@@ -16,5 +16,6 @@ module.exports = {
     'eslint --max-warnings=0'
   ],
   '**/*.scss': ['prettier --write', 'stylelint --fix', 'prettier --check', 'stylelint'],
-  '!(*sass).md': ['prettier --write']
+  '!(*sass).md': ['prettier --write'],
+  '**/package.json': ['scripts/format-package-json.mjs']
 }

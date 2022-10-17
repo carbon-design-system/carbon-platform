@@ -36,7 +36,7 @@ const Template = (args) => (
         href="/"
         {...args}
       >
-        <img src={article06} alt="" />
+        <img src={article06} alt="Use markdown for images in mdx files. ![](img.png)" />
       </ArticleCard>
     </Column>
   </Grid>

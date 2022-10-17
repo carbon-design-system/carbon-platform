@@ -33,12 +33,12 @@ const Footer = ({ hasSideNav }) => {
 
   const colTwo = [
     {
-      text: 'Medium',
-      link: 'https://medium.com/design-ibm'
+      text: 'Contact',
+      link: '/about-carbon/help/contact'
     },
     {
-      text: 'Twitter',
-      link: 'https://twitter.com/ibmdesign'
+      text: 'Articles',
+      link: '/about-carbon/articles'
     }
   ]
 

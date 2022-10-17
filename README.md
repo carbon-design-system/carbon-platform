@@ -49,10 +49,10 @@
 
 ## Deployments
 
-| Environment                               | Description                      |
-| ----------------------------------------- | -------------------------------- |
-| [Production](next.carbondesignsystem.com) | Main deployment. Updated weekly. |
-| [Test](next-test.carbondesignsystem.com)  | Test environment. Updated daily. |
+| Environment                                       | Description                      |
+| ------------------------------------------------- | -------------------------------- |
+| [Production](https://next.carbondesignsystem.com) | Main deployment. Updated weekly. |
+| [Test](https://next-test.carbondesignsystem.com)  | Test environment. Updated daily. |
 
 ## Getting started
 
@@ -71,6 +71,6 @@ on and what we have planned for the future.
 
 https://carbon-design-system.github.io/carbon-platform/
 
-## Deployment Branches
+## Kubernetes config repo
 
-[deployed-services/production](https://github.com/carbon-design-system/carbon-platform/tree/deployed-services/production)
+[https://github.com/carbon-design-system/carbon-platform-k8s](https://github.com/carbon-design-system/carbon-platform-k8s)

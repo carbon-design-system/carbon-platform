@@ -12,10 +12,10 @@ import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
 import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
 import Glossary from '@/components/glossary'
-import InlineError from '@/components/inline-error'
 import Link from '@/components/link'
 import { Image, LI, OL, UL } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
+import MdxNotification from '@/components/mdx-notification/index'
 import MdxPage from '@/components/mdx-page'
 import FullPageError from '@/components/mdx-page/errors/full-page-error'
 import PageTable from '@/components/page-table'
@@ -47,7 +47,7 @@ const components = {
   code: ({ children }) => (
     <mdxComponents.CodeSnippet type="inline">{children}</mdxComponents.CodeSnippet>
   ),
-  InlineError,
+  MdxNotification,
   FullPageError,
   /* Gatsby theme components */
   ColorGrid,

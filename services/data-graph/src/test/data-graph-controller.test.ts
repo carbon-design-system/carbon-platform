@@ -12,7 +12,7 @@ import { DataGraphController } from '../main/data-graph-controller.js'
 
 const mockChannelRef = {
   ack: () => undefined,
-  nack: () => undefined
+  reject: () => undefined
 }
 const mockContext = {
   getChannelRef: () => mockChannelRef,
@@ -69,7 +69,7 @@ test('it calls ack on the success path', async (t) => {
     ack: () => {
       t.pass()
     },
-    nack: () => undefined
+    reject: () => undefined
   }
   const myMockContext = {
     getChannelRef: () => myMockChannelRef,
@@ -81,12 +81,12 @@ test('it calls ack on the success path', async (t) => {
   await controller.queryDataGraph({ query: '{}' }, myMockContext as any)
 })
 
-test('it calls nack on the validation error path', async (t) => {
+test('it calls reject on the validation error path', async (t) => {
   t.plan(1)
 
   const myMockChannelRef = {
     ack: () => undefined,
-    nack: () => {
+    reject: () => {
       t.pass()
     }
   }

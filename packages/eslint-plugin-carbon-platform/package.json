@@ -1,23 +1,24 @@
 {
   "name": "eslint-plugin-carbon-platform",
-  "version": "0.1.1",
   "description": "Carbon Platform recommended eslint rules",
+  "version": "0.1.5",
+  "license": "Apache-2.0",
+  "author": "IBM",
   "keywords": [
     "eslint",
     "eslintplugin",
     "eslint-plugin"
   ],
-  "author": "IBM",
-  "license": "Apache-2.0",
+  "private": true,
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carbon-design-system/carbon-platform.git"
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git",
+    "directory": "packages/eslint-plugin-carbon-platform"
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
-  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
-  "private": true,
   "main": "./lib/index.js",
   "exports": "./lib/index.js",
   "scripts": {

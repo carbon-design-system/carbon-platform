@@ -11,6 +11,7 @@ import {
   AnchorLink,
   AnchorLinks,
   CardGroup,
+  H2,
   PageDescription,
   ResourceCard
 } from '@carbon-platform/mdx-components'
@@ -22,7 +23,6 @@ import { useContext, useEffect } from 'react'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import DemoLinks from '@/components/demo-links'
-import { H2 } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
 import PageHeader from '@/components/page-header'
 import withLoading from '@/components/with-loading'

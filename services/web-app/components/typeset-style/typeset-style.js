@@ -6,6 +6,7 @@
  */
 import { baseFontSize, breakpoints as carbonBreakpoints } from '@carbon/elements'
 import { Column, Grid } from '@carbon/react'
+import { H4 } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import findLastIndex from 'lodash/findLastIndex'
 import PropTypes from 'prop-types'
@@ -15,7 +16,6 @@ import { typeScale } from '@/data/type-scale'
 import { typeSets } from '@/data/type-sets'
 import useEventListener from '@/utils/use-event-listener'
 
-import H4 from '../markdown/h4'
 import InputRange from './input-range'
 import StickyContainer from './sticky-container'
 import TypesetExample from './typeset-example'

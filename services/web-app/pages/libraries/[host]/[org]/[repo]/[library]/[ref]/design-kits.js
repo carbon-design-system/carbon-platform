@@ -11,6 +11,7 @@ import {
   AnchorLink,
   AnchorLinks,
   CardGroup,
+  H2,
   P,
   PageDescription,
   ResourceCard
@@ -20,7 +21,6 @@ import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import H2 from '@/components/markdown/h2'
 import MdxIcon from '@/components/mdx-icon/mdx-icon'
 import PageHeader from '@/components/page-header'
 import withLoading from '@/components/with-loading'

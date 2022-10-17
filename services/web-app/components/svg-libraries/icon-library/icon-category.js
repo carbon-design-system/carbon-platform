@@ -4,9 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { H2 } from '@carbon-platform/mdx-components'
 import PropTypes from 'prop-types'
 
-import H2 from '@/components/markdown/h2'
 import useIntersectionObserver from '@/utils/use-intersection-observer'
 
 import SvgCard from '../svg-card'

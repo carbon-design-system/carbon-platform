@@ -14,16 +14,15 @@ import Caption from '../caption/caption.js'
 import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
 
-/* eslint-disable  @typescript-eslint/no-explicit-any  -- TODO ask Joe how to fix this */
-type Variants = { [key: string]: any }
-/* eslint-enable @typescript-eslint/no-explicit-any  -- Re-enable rule */
-
 interface StorybookDemoProps {
   tall?: boolean | null
   themeSelector?: boolean | null
   wide?: boolean | null
   url: string
-  variants: Variants
+  variants?: Array<{
+    label: string
+    variant: string
+  }> | null
 }
 
 /**
@@ -32,7 +31,7 @@ interface StorybookDemoProps {
  * `wide` prop to span the full width, and `tall` for larger components. If you would like
  * to use the theme selector, please use the Carbon React Storybook url,
  * https://react.carbondesignsystem.com/?path=/story/components-button--default&globals=theme:g10
- *  as an example. The `themeSelctor` appends `&globals=theme:g10` to the url.
+ *  as an example. The `themeSelector` appends `&globals=theme:g10` to the url.
  */
 const StorybookDemo: MdxComponent<StorybookDemoProps> = ({
   tall,
@@ -76,13 +75,9 @@ const StorybookDemo: MdxComponent<StorybookDemoProps> = ({
     setTheme(item.selectedItem.src)
   }
 
-  const multipleVariants = variants?.length > 1
+  const multipleVariants = variants && variants.length > 1
 
-  const variantsDefined = typeof variants !== 'undefined' && variants.length > 0
-
-  const initialSetVariant = variantsDefined && variants[0].variant
-
-  const [variant, setVariant] = useState(initialSetVariant)
+  const [variant, setVariant] = useState(variants?.[0]?.variant)
 
   const onVariantChange = (item: { selectedItem: { variant: string } }) => {
     setVariant(item.selectedItem.variant)
@@ -111,7 +106,7 @@ const StorybookDemo: MdxComponent<StorybookDemoProps> = ({
             />
           </Column>
         )}
-        {variantsDefined && multipleVariants && (
+        {multipleVariants && (
           <Column sm={2} md={4}>
             <Dropdown
               id="variant-selector"
@@ -166,7 +161,12 @@ StorybookDemo.propTypes = {
   /**
    * Storybook demo variants for the specified component
    */
-  variants: PropTypes.object.isRequired,
+  variants: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      variant: PropTypes.string.isRequired
+    }).isRequired
+  ),
   /**
    * Storybook demo width
    */

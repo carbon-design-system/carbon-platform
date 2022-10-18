@@ -7,7 +7,7 @@
 import { P, Title } from '../../../dist/main/index.js'
 
 export default {
-  title: 'Components/Headings/Title',
+  title: 'Components/Title',
   component: Title,
   argTypes: {
     children: {

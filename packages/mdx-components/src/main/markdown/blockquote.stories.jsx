@@ -6,16 +6,20 @@
  */
 import { Blockquote, P } from '../../../dist/main/index'
 
-const stories = {
-  title: 'Components/Blockquote',
+export default {
+  title: 'Components/Markdown/Blockquote',
   component: Blockquote
 }
 
-export default stories
-
 const Template = (args) => (
   <Blockquote {...args}>
-    <P>This is a quote</P>
+    <P>
+      Without aesthetic, design is either the humdrum repetition of familiar clichés or a wild
+      scramble for novelty. Without aesthetic, the computer is but a mindless speed machine,
+      producing effects without substance, form without relevant content, or content without
+      meaningful form.
+    </P>
+    <cite>– Paul Rand</cite>
   </Blockquote>
 )
 

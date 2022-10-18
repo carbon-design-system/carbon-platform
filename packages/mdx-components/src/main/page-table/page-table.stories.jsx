@@ -7,7 +7,7 @@
 import { PageTable } from '../../../dist/main/index'
 
 const stories = {
-  title: 'Components/PageTable',
+  title: 'Components/Markdown/PageTable',
   component: PageTable,
   argTypes: {
     children: {

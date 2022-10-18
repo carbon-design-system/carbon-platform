@@ -7,7 +7,7 @@
 import { H1, H2, H3, H4, H5, H6 } from '../../../dist/main/index'
 
 export default {
-  title: 'Components/Headings',
+  title: 'Components/Markdown/Headings',
   component: H1,
   argTypes: {
     children: {

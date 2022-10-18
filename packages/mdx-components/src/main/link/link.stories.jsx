@@ -7,7 +7,7 @@
 import { Link } from '../../../dist/main/index'
 
 export default {
-  title: 'Components/Link',
+  title: 'Components/Markdown/Link',
   component: Link,
   argTypes: {
     className: {

@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.62](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.61...@carbon-platform/web-app@0.2.62) (2022-10-18)
+
+
+### Misc. 🔮
+
+* **web-app:** use nav for tabs instead of carbon tabs ([663f080](https://github.com/carbon-design-system/carbon-platform/commit/663f08012f2f0f76625e2c4d8e11993a5c83527a))
+
+
+### Bug Fixes 🐛
+
+* merge with main ([a43c98a](https://github.com/carbon-design-system/carbon-platform/commit/a43c98ac45c0d1b5dd0c37c6c2f55f99600e639d))
+* **web-app:** address page-tabs PR comments ([f1ae863](https://github.com/carbon-design-system/carbon-platform/commit/f1ae8634883b4aa48f3d7e8552a119c517793d91)), closes [#1292](https://github.com/carbon-design-system/carbon-platform/issues/1292)
+* **web-app:** change aria-label for pagetabs ([1084812](https://github.com/carbon-design-system/carbon-platform/commit/10848127f5471c26fdcda4536ff9dc80ac449b6d)), closes [#1292](https://github.com/carbon-design-system/carbon-platform/issues/1292)
+* **web-app:** cleanup css in page tabs component ([66ae5ff](https://github.com/carbon-design-system/carbon-platform/commit/66ae5fffcd1113aeace68a36c36288dc21b4ccbd)), closes [#1292](https://github.com/carbon-design-system/carbon-platform/issues/1292)
+* **web-app:** do not change copyright year in page-tabs.js ([659a769](https://github.com/carbon-design-system/carbon-platform/commit/659a7697e8d2233e64507a291bcd273424965eb8)), closes [#1292](https://github.com/carbon-design-system/carbon-platform/issues/1292)
+* **web-app:** make page tabs title sentence case ([deec6b1](https://github.com/carbon-design-system/carbon-platform/commit/deec6b1b9fbbe6de9bdd7efd7e51d3f5335ae752)), closes [#1292](https://github.com/carbon-design-system/carbon-platform/issues/1292)
+* **web-app:** new page tabs component cleanup ([fa9748d](https://github.com/carbon-design-system/carbon-platform/commit/fa9748dba2e437436f46b5487e5e33de8bc53689)), closes [#1292](https://github.com/carbon-design-system/carbon-platform/issues/1292)
+* **web-app:** remove hover state for activeItem in page tabs ([b487842](https://github.com/carbon-design-system/carbon-platform/commit/b487842f3ea1505a41fee006689b96e22a5d177f)), closes [#1292](https://github.com/carbon-design-system/carbon-platform/issues/1292)
+
 ### [0.2.61](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.60...@carbon-platform/web-app@0.2.61) (2022-10-15)
 
 

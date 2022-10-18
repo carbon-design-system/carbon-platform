@@ -10,7 +10,7 @@ import cloudGif from '../../res/cloud.gif'
 import cloudJpg from '../../res/cloud.jpg'
 
 const stories = {
-  title: 'Components/GifPlayer',
+  title: 'Components/Images & Video/GifPlayer',
   component: GifPlayer,
   argTypes: {
     children: {

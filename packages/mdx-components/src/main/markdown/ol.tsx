@@ -19,6 +19,16 @@ interface OlProps {
   [otherProp: string]: unknown
 }
 
+/**
+ * For MDX files, steer away from using JSX components
+ * for lists in favor of standard markdown syntax.
+ *
+ *```
+ * 1. First ordered list item
+ * 1. In markdown, the actual numbers don’t matter, just that it’s a number
+ * 2. In markdown, the actual numbers don’t matter, just that it’s a number
+ * ```
+ */
 const Ol: MdxComponent<OlProps> = ({ children, className, ...rest }) => {
   return (
     <LiConsumer>

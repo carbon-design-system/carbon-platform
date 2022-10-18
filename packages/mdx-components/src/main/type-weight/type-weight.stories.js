@@ -7,7 +7,7 @@
 import { TypeWeight } from '../../../dist/main/index'
 
 export default {
-  title: 'Internal/TypeWeight',
+  title: 'Internal Components/TypeWeight',
   component: TypeWeight,
   argTypes: {},
   parameters: {}

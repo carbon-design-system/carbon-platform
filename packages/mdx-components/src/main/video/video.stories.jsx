@@ -9,7 +9,7 @@ import localPoster from '../../res/local-poster.jpeg'
 import localVideo from '../../res/local-video.mp4'
 
 export default {
-  title: 'Components/Video',
+  title: 'Components/Images & Video/Video',
   component: Video,
   argTypes: {
     poster: {

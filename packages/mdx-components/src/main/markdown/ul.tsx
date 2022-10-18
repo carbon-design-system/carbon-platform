@@ -19,6 +19,17 @@ interface UlProps {
   [otherProp: string]: unknown
 }
 
+/**
+ * For MDX files, steer away from using JSX components
+ * for lists in favor of standard markdown syntax.
+ *
+ *```
+ * - Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ * - dolore magna aliqua. Pharetra massa massa ultricies mi quis.
+ * - Massa eget egestas purus viverra accumsan in nisl nisi.
+ * - Dolor sit amet consectetur adipiscing.
+ * ```
+ */
 const UL: MdxComponent<UlProps> = ({ children, className, ...rest }) => {
   return (
     <LiConsumer>

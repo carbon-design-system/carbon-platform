@@ -4,10 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Title } from '../../../dist/main/index.js'
+import { P, Title } from '../../../dist/main/index.js'
 
 export default {
-  title: 'Components/Title',
+  title: 'Components/Headings/Title',
   component: Title,
   argTypes: {
     children: {
@@ -19,17 +19,12 @@ export default {
   }
 }
 
-const Template = (args) => <Title {...args}>Lorem ipsum</Title>
-
-export const Default = Template.bind({})
-Default.args = {}
-
-const WithSiblingTemplate = (args) => (
+const Template = (args) => (
   <>
     <Title {...args}>Lorem ipsum</Title>
-    <div>This is the element after the title</div>
+    <P>This is the element after the title with its default top margin removed.</P>
   </>
 )
 
-export const WithSibling = WithSiblingTemplate.bind({})
-WithSibling.args = {}
+export const Default = Template.bind({})
+Default.args = {}

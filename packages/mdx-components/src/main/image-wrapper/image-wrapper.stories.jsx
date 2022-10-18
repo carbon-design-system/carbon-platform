@@ -9,7 +9,7 @@ import { ImageWrapper } from '../../../dist/main/index'
 import accordionStyle3Png from '../../res/accordion-style-3.png'
 
 const stories = {
-  title: 'Components/ImageWrapper',
+  title: 'Components/Images & Video/ImageWrapper',
   component: ImageWrapper,
   argTypes: {
     children: {

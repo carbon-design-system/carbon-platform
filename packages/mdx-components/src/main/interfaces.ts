@@ -5,11 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Validator } from 'prop-types'
+import { ReactElement, ReactPortal } from 'react'
 
 interface MdxComponent<P> {
   (props: P): JSX.Element | null
   propTypes: { [prop in keyof P]: Validator<P[prop]> }
   defaultProps?: { [prop in keyof P]?: P[prop] }
+  displayName?: string
 }
 
-export { MdxComponent }
+type NonScalarNode = ReactElement | ReactPortal | Array<ReactElement | ReactPortal>
+
+export { MdxComponent, NonScalarNode }

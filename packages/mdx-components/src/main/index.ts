@@ -29,6 +29,7 @@ export {
   default as InlineNotification,
   InlineNotificationProps
 } from './inline-notification/inline-notification.js'
+export { default as Link, LinkProps } from './link/link.js'
 export { default as Blockquote, BlockquoteProps } from './markdown/blockquote.js'
 export { default as H1, H1Props } from './markdown/h1.js'
 export { default as H2, H2Props } from './markdown/h2.js'

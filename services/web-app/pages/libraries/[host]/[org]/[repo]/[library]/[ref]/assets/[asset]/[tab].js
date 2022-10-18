@@ -76,8 +76,8 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
           }
           <PageBreadcrumb items={breadcrumbItems} />
         </Column>
-        <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
-          {tabs && <PageTabs className={styles['asset-tabs']} tabs={tabs} />}
+        <Column sm={4} md={8} lg={{ start: 5, span: 12 }} className={styles['tabs-column']}>
+          {tabs && <PageTabs className={styles['asset-tabs']} tabs={tabs} title="Page tabs" />}
         </Column>
         <Column sm={4} md={8} lg={4}>
           <PageNav items={pageNavItems} contentRef={contentRef} scrollTopDistance={180} />

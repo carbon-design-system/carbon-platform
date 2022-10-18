@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/mdx-processor",
   "description": "Convert input MDX to safe-to-use React components",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
@@ -21,7 +21,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "clean": "rimraf dist generated tsconfig.tsbuildinfo",
+    "clean": "rimraf dist generated *.tsbuildinfo",
     "package:build": "npm run build",
     "test": "ava --config ../../ava.config.mjs"
   },

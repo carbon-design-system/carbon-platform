@@ -5,9 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'sass:map';
+
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/utilities/convert' as convert;
 @use '@carbon/react/scss/theme' as theme;
+
+@use '~styles/variables' as variables;
+
+.tabs-column {
+  position: sticky;
+  z-index: map.get(variables.$z-indexes, 'overlay');
+  top: 3rem;
+}
 
 .asset-tabs {
   &::before {

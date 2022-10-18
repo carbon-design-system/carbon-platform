@@ -6,4 +6,3 @@
  */
 
 export { default as TypeScaleTable } from './type-scale-table'
-export { default as TypeWeight } from './type-weight'

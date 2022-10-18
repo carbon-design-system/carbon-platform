@@ -5,24 +5,34 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
+import React from 'react'
 
-import styles from './preview.module.scss'
+import { MdxComponent } from '../interfaces.js'
+import { withPrefix } from '../utils.js'
 
 /**
  * The `<Preview>` component is a simple wrapper for an `<iframe />` with
  * styling added to allow it to display responsively within the Platform.
  */
-const Preview = ({ className, title, height, src, style }) => (
+interface PreviewProps {
+  className?: string | null
+  title?: string | null
+  height?: string | null
+  src?: string | null
+  style?: object | null
+}
+
+const Preview: MdxComponent<PreviewProps> = ({ className, title, height, src, style }) => (
   <iframe
-    src={src}
+    src={src!}
     loading="lazy"
-    title={title}
-    height={height}
+    title={title!}
+    height={height!}
     frameBorder="no"
-    className={clsx(className, styles.preview)}
-    style={style}
+    className={clsx(className, withPrefix('preview'))}
+    style={style!}
     sandbox="allow-forms allow-scripts allow-same-origin"
   />
 )
@@ -54,4 +64,5 @@ Preview.propTypes = {
   title: PropTypes.string
 }
 
+export { PreviewProps }
 export default Preview

@@ -6,6 +6,5 @@
  */
 export { default as Blockquote } from './blockquote'
 export { default as Image } from './image'
-export { default as LI } from './li'
 export { default as OL } from './ol'
 export { default as UL } from './ul'

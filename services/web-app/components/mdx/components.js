@@ -18,8 +18,6 @@ import MdxIcon from '@/components/mdx-icon'
 import MdxNotification from '@/components/mdx-notification/index'
 import MdxPage from '@/components/mdx-page'
 import FullPageError from '@/components/mdx-page/errors/full-page-error'
-import PageTable from '@/components/page-table'
-import Preview from '@/components/preview'
 import StatusIndicatorTable from '@/components/status-indicator-table'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
@@ -42,7 +40,7 @@ const components = {
   a: Link,
   blockquote: mdxComponents.Blockquote,
   img: Image,
-  table: PageTable,
+  table: mdxComponents.PageTable,
   pre: Code,
   code: ({ children }) => (
     <mdxComponents.CodeSnippet type="inline">{children}</mdxComponents.CodeSnippet>
@@ -60,7 +58,6 @@ const components = {
   MdxIcon,
   MdxPage,
   PictogramLibrary,
-  Preview,
   StatusIndicatorTable,
   Tab,
   Tabs,

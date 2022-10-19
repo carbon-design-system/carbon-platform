@@ -15,9 +15,17 @@ const mediaQueries = {
   xlg: `(min-width: ${breakpoints.xlg.width})`,
   max: `(min-width: ${breakpoints.max.width})`
 }
+let globalIndex = 0
 
 const getMatchMedia = (query: string) => {
   return typeof window !== 'undefined' ? window.matchMedia(query) : null
+}
+
+const useId = (label: string) => {
+  // TODO: delete this hook and use react 18 useId instead.
+  const [id] = useState(++globalIndex)
+
+  return `cp__${label}__${id}`
 }
 
 const useMatchMedia = (query: string) => {
@@ -53,4 +61,4 @@ function withPrefix(className: string) {
   return prefix + '--' + className
 }
 
-export { mediaQueries, useMatchMedia, withPrefix }
+export { mediaQueries, useId, useMatchMedia, withPrefix }

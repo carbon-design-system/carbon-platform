@@ -25,7 +25,6 @@ import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import { FeatureCard } from '@/components/feature-card/feature-card'
 import Hero from '@/components/hero'
-import markdownStyles from '@/components/markdown/markdown.module.scss'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
@@ -236,11 +235,11 @@ const PageContent = () => {
       <Divider>
         <Grid>
           <Column sm={4} md={4} lg={4}>
-            <h2 className={markdownStyles.h2}>
+            <H2 noAnchor>
               Better
               <br />
               discoverability
-            </h2>
+            </H2>
           </Column>
           <Column sm={4} md={4} lg={7}>
             <P large>
@@ -254,11 +253,11 @@ const PageContent = () => {
       <Divider>
         <Grid>
           <Column sm={4} md={4} lg={4}>
-            <h2 className={markdownStyles.h2}>
+            <H2 noAnchor>
               Easier
               <br />
               management
-            </h2>
+            </H2>
           </Column>
           <Column sm={4} md={4} lg={7}>
             <P large>

@@ -21,7 +21,6 @@ import StatusIndicatorTable from '@/components/status-indicator-table'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { Tab, Tabs } from '@/components/tabs'
-import { TypeScaleTable } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
 
 const components = {
@@ -60,7 +59,6 @@ const components = {
   StatusIndicatorTable,
   Tab,
   Tabs,
-  TypeScaleTable,
   TypesetStyle
 }
 

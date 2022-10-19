@@ -6,7 +6,6 @@
  */
 import * as mdxComponents from '@carbon-platform/mdx-components'
 
-import Code from '@/components/code'
 import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
@@ -40,7 +39,7 @@ const components = {
   blockquote: mdxComponents.Blockquote,
   img: Image,
   table: mdxComponents.PageTable,
-  pre: Code,
+  pre: mdxComponents.Code,
   code: ({ children }) => (
     <mdxComponents.CodeSnippet type="inline">{children}</mdxComponents.CodeSnippet>
   ),

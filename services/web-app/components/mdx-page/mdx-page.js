@@ -103,6 +103,18 @@ const MdxPage = ({
   const pageHeader = pageHeaders[pageHeaderType] ?? {}
 
   useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        // This could be improved by assigning a ref to the component and using
+        // Prism.highlightElement() instead.
+        window.Prism && window.Prism.highlightAll()
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }, [])
+
+  useEffect(() => {
     setPrimaryNavData(assetsNavData)
   }, [setPrimaryNavData])
 

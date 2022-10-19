@@ -17,16 +17,26 @@ interface H2Props {
   children: string | string[]
   className?: string | null
   headingClassName?: string | null
+  noAnchor?: boolean | null
   [otherProp: string]: unknown
 }
 
-const H2: MdxComponent<H2Props> = ({ children, className, headingClassName, ...rest }) => {
+const H2: MdxComponent<H2Props> = ({
+  children,
+  className,
+  headingClassName,
+  noAnchor,
+  ...rest
+}) => {
   return (
     <Grid className={clsx(withPrefix('h2-container'), className)} {...rest}>
       <Column sm={4} md={8} lg={8}>
-        <AutolinkHeader is="h2" className={clsx(withPrefix('h2'), headingClassName)}>
-          {children}
-        </AutolinkHeader>
+        {noAnchor && <h2 className={clsx(withPrefix('h2'), headingClassName)}>{children}</h2>}
+        {!noAnchor && (
+          <AutolinkHeader is="h2" className={clsx(withPrefix('h2'), headingClassName)}>
+            {children}
+          </AutolinkHeader>
+        )}
       </Column>
     </Grid>
   )
@@ -47,7 +57,11 @@ H2.propTypes = {
   /**
    * Specify optional className for header element
    */
-  headingClassName: PropTypes.string
+  headingClassName: PropTypes.string,
+  /**
+   * Do not render the autolink anchor
+   */
+  noAnchor: PropTypes.bool
 }
 
 export { H2Props }

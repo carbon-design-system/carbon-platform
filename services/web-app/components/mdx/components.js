@@ -12,7 +12,7 @@ import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
 import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
 import Glossary from '@/components/glossary'
-import { Image, LI, OL, UL } from '@/components/markdown'
+import { Image } from '@/components/image'
 import MdxIcon from '@/components/mdx-icon'
 import MdxNotification from '@/components/mdx-notification/index'
 import MdxPage from '@/components/mdx-page'
@@ -33,9 +33,9 @@ const components = {
   h5: mdxComponents.H5,
   h6: mdxComponents.H6,
   p: mdxComponents.P,
-  ol: OL,
-  li: LI,
-  ul: UL,
+  ol: mdxComponents.OL,
+  li: mdxComponents.LI,
+  ul: mdxComponents.UL,
   a: mdxComponents.Link,
   blockquote: mdxComponents.Blockquote,
   img: Image,

@@ -16,6 +16,7 @@ export {
 } from './autolink-header/autolink-header.js'
 export { default as Caption, CaptionProps } from './caption/caption.js'
 export { default as CardGroup, CardGroupProps } from './card-group/card-group.js'
+export { default as Code, CodeProps } from './code/code.js'
 export { default as ColorBlock, ColorBlockProps } from './color-block/color-block.js'
 export { default as Divider, DividerProps } from './divider/divider.js'
 export { default as DoDont, DoDontProps } from './do-dont/do-dont.js'

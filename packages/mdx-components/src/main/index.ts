@@ -54,6 +54,7 @@ export { default as StorybookDemo, StorybookDemoProps } from './storybook-demo/s
 export { default as Tab, TabProps } from './tabs/tab.js'
 export { default as Tabs, TabsProps } from './tabs/tabs.js'
 export { default as Title, TitleProps } from './title/title.js'
+export { default as TypeScaleTable } from './type-scale-table/type-scale-table.js'
 export { default as TypeWeight, TypeWeightProps } from './type-weight/type-weight.js'
 export { default as Video, VideoWithSrcProps, VideoWithVimeoIdProps } from './video/video.js'
 

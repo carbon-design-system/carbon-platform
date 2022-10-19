@@ -4,16 +4,14 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { TypeScaleTable } from '@/components/type'
+import { TypeScaleTable } from '../../../dist/main/index.js'
 
-const stories = {
-  title: 'Platform/Components/TypeScaleTable',
+export default {
+  title: 'Internal Components/TypeScaleTable',
   component: TypeScaleTable,
   argTypes: {},
   parameters: {}
 }
-
-export default stories
 
 const Template = (args) => <TypeScaleTable {...args} />
 

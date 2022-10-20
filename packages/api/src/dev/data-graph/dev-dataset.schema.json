@@ -15,11 +15,11 @@
           "variables": {
             "type": "object"
           },
-          "response": {
+          "responseData": {
             "type": "object"
           }
         },
-        "required": ["name", "response"]
+        "required": ["name", "responseData"]
       }
     }
   }

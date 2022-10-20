@@ -3,7 +3,7 @@
   "queries": [
     {
       "name": "BasicExample",
-      "response": {
+      "responseData": {
         "hello": "world"
       }
     },
@@ -12,7 +12,7 @@
       "variables": {
         "varName": "var value"
       },
-      "response": {
+      "responseData": {
         "hello": "world"
       }
     }

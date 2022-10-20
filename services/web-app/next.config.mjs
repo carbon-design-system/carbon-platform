@@ -49,7 +49,7 @@ const nextConfig = withBundleAnalyzer(
         defaultLocale: 'en-US'
       },
       images: {
-        domains: ['raw.githubusercontent.com', 'github.com']
+        domains: ['raw.githubusercontent.com', 'github.com', 'cdn-images-1.medium.com']
       },
       swcMinify: true,
       webpack(config) {

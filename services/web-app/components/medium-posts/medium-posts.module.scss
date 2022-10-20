@@ -1,0 +1,13 @@
+@use '@carbon/react/scss/spacing' as spacing;
+
+.medium-posts-container {
+  margin-top: spacing.$spacing-06;
+}
+
+// Images pulled from the Medium RSS feed are different sizes and aspect ratios. This will make the cards different sizes. The class below fixes that issue.
+.image {
+  aspect-ratio: 16 / 9;
+  // override mdx image object-fit style
+  /* stylelint-disable-next-line declaration-no-important */
+  object-fit: cover !important;
+}

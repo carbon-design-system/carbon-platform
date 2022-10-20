@@ -6,12 +6,22 @@
  */
 import fs from 'fs'
 import { OperationDefinitionNode, parse } from 'graphql'
+import isEqual from 'lodash/isEqual.js'
 import path from 'path'
 
 import { DuplicateQueryException } from './exceptions/duplicate-query-exception.js'
 import { DataGraphMessage, DevDatasetEntry, DevDatasetJson } from './interfaces.js'
 
-const DATASET_SRC_DIR = path.join(process.cwd(), 'src', 'dev', 'data-graph')
+const DATASET_SRC_DIR = path.join(
+  process.cwd(),
+  '..',
+  '..',
+  'packages',
+  'api',
+  'src',
+  'dev',
+  'data-graph'
+)
 
 class DevDataset {
   private readonly db: Array<DevDatasetEntry>
@@ -23,13 +33,16 @@ class DevDataset {
   }
 
   private singleAdd(queryEntry: DevDatasetEntry) {
-    this.validateNewQueryName(queryEntry.name)
+    this.validateNewQuery(queryEntry)
 
     this.db.push(queryEntry)
   }
 
-  private validateNewQueryName(queryName: string) {
-    const existingEntry = this.db.find((queryEntry) => queryEntry.name === queryName)
+  private validateNewQuery(newQuery: DevDatasetEntry) {
+    const existingEntry = this.db.find(
+      (queryEntry) =>
+        queryEntry.name === newQuery.name && isEqual(queryEntry.variables, newQuery.variables)
+    )
 
     if (existingEntry) {
       throw new DuplicateQueryException(existingEntry.name)
@@ -45,7 +58,7 @@ class DevDataset {
     this.dynamicDb.push(...queryEntries)
   }
 
-  public get(queryInput: DataGraphMessage): DevDatasetEntry['response'] | undefined {
+  public get(queryInput: DataGraphMessage): DevDatasetEntry['responseData'] | undefined {
     const parsedQuery = parse(queryInput.query, { noLocation: true })
 
     const queryName = (parsedQuery.definitions[0] as OperationDefinitionNode).name?.value
@@ -55,7 +68,7 @@ class DevDataset {
         entry.name === queryName &&
         JSON.stringify(queryInput.variables) === JSON.stringify(entry.variables)
       )
-    })?.response
+    })?.responseData
   }
 
   public reload() {

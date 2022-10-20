@@ -30,6 +30,7 @@ import MdxIcon from '@/components/mdx-icon'
 import MdxNotification from '@/components/mdx-notification/index'
 import MdxPage from '@/components/mdx-page'
 import FullPageError from '@/components/mdx-page/errors/full-page-error'
+import MediumPosts from '@/components/medium-posts/medium-posts'
 import MiniCard from '@/components/mini-card'
 import PageDescription from '@/components/page-description'
 import PageTable from '@/components/page-table'
@@ -92,6 +93,7 @@ const components = {
   ImageWrapper,
   InlineNotification,
   MdxIcon,
+  MediumPosts,
   MdxPage,
   MiniCard,
   PageDescription,

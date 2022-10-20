@@ -29,6 +29,7 @@
     "packages/micromanage-cli",
     "packages/resources",
     "packages/schemas",
+    "services/blog",
     "services/data-graph",
     "services/logging",
     "services/web-app"

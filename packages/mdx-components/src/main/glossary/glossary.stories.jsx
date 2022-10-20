@@ -5,14 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Glossary from '@/components/glossary'
+import { Glossary } from '../../../dist/main/index'
 
-const stories = {
-  title: 'Platform/Components/Glossary',
+export default {
+  title: 'Internal Components/Glossary',
   component: Glossary
 }
-
-export default stories
 
 const Template = () => <Glossary />
 

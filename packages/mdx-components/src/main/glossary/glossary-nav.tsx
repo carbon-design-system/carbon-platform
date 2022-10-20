@@ -4,12 +4,11 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import clsx from 'clsx'
-import { useEffect, useState } from 'react'
 
-import useEventListener from '@/utils/use-event-listener'
+import { clsx } from 'clsx'
+import React, { useEffect, useState } from 'react'
 
-import styles from './glossary-nav.module.scss'
+import { useEventListener, withPrefix } from '../utils.js'
 
 const getPath = typeof window !== 'undefined' && window.location.hash.substring(1, 2).toUpperCase()
 
@@ -17,9 +16,9 @@ const GlossaryNav = () => {
   const [activeLetter, setActiveLetter] = useState(getPath)
   const [isReverseScroll, setIsReverseScroll] = useState(false)
   const [isFixed, setIsFixed] = useState(false)
-  const [letters, setLetters] = useState([])
+  const [letters, setLetters] = useState<any[]>([])
 
-  const getActiveItem = (windowScroll) => {
+  const getActiveItem = (windowScroll: number) => {
     let scrollLetter = activeLetter
 
     letters.forEach((letter) => {
@@ -32,8 +31,15 @@ const GlossaryNav = () => {
   }
 
   const getEntryPositions = () => {
-    const documentLetters = []
-    document.querySelectorAll('.glossary-entry').forEach((entry) => {
+    const documentLetters:
+      | ((prevState: never[]) => never[])
+      | { id: string; top: any; bottom: any }[] = []
+    // added Array.from below
+    const glossaryEntries = Array.from(
+      document.querySelectorAll('.carbon-platform-mdx-components--glossary-entry')
+    )
+
+    glossaryEntries?.forEach((entry: any) => {
       documentLetters.push({
         id: entry.id,
         top: entry.offsetTop,
@@ -44,7 +50,9 @@ const GlossaryNav = () => {
     setLetters(documentLetters)
   }
 
-  const updateActive = (evt) => {
+  const updateActive = (evt: {
+    target: { textContent: string | boolean | ((prevState: string | false) => string | false) }
+  }) => {
     setActiveLetter(evt.target.textContent)
     setIsReverseScroll(true)
   }
@@ -52,9 +60,12 @@ const GlossaryNav = () => {
   const handleScroll = () => {
     const windowScroll = isReverseScroll ? window.scrollY : window.scrollY + window.innerHeight
     const scrolledItem = getActiveItem(windowScroll)
-    const navHeight = document.querySelector('.glossary-nav').clientHeight - 160
+    const glossaryNavItem = document.querySelector(
+      '.carbon-platform-mdx-components--glossary-entry'
+    )!
+    const navHeight = glossaryNavItem.clientHeight - 160
 
-    const navTopPosition = document.querySelector('.glossary-nav').getBoundingClientRect().top
+    const navTopPosition = glossaryNavItem.getBoundingClientRect().top
 
     if (scrolledItem !== activeLetter) {
       setActiveLetter(scrolledItem)
@@ -69,7 +80,7 @@ const GlossaryNav = () => {
   }
 
   const renderGlossaryNavItems = () => {
-    const glossaryNavItems = []
+    const glossaryNavItems: JSX.Element[] = []
     letters.forEach((letter) => {
       const isActiveItem = letter.id === activeLetter
       glossaryNavItems.push(
@@ -77,8 +88,8 @@ const GlossaryNav = () => {
           key={letter.id}
           className={clsx({
             'glossary-nav__item': true,
-            [styles['cds--list__item']]: true,
-            [styles['glossary-nav__item--active']]: isActiveItem
+            [withPrefix('cds--list__item')]: true,
+            [withPrefix('glossary-nav__item--active')]: isActiveItem
           })}
         >
           <a href={`#${letter.id}`} onClick={updateActive}>
@@ -99,8 +110,8 @@ const GlossaryNav = () => {
     handleScroll()
 
     if (activeLetter) {
-      const currActiveLetter = document.querySelector(`#${activeLetter}`)
-      window.scrollTo(0, currActiveLetter.offsetTop)
+      const currActiveLetter = document.querySelector(`#${activeLetter}`) as HTMLElement
+      window.scrollTo(0, currActiveLetter?.offsetTop)
     }
     // we do NOT want this to run everytime activeLetter or handleScroll changes,
     // really just after the first render
@@ -109,9 +120,9 @@ const GlossaryNav = () => {
 
   const letterItems = renderGlossaryNavItems()
   const classNames = clsx({
-    [styles['glossary-nav']]: true,
-    [styles['glossary-nav--fixed']]: isFixed,
-    'glossary-nav': true
+    [withPrefix('glossary-nav')]: true,
+    [withPrefix('glossary-nav--fixed')]: isFixed,
+    [withPrefix('glossary-nav')]: true
   })
 
   return <ul className={classNames}>{letterItems}</ul>

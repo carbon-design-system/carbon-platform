@@ -54,6 +54,8 @@ export { default as Title, TitleProps } from './title/title.js'
 export { default as TypeScaleTable } from './type-scale-table/type-scale-table.js'
 export { default as TypeWeight, TypeWeightProps } from './type-weight/type-weight.js'
 export { default as Video, VideoWithSrcProps, VideoWithVimeoIdProps } from './video/video.js'
+export { default as Glossary } from './glossary/glossary.js'
+export { default as GlossaryList, GlossaryListProps } from './glossary/glossary-list.js'
 
 // Carbon components
 export {

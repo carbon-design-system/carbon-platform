@@ -11,7 +11,6 @@ import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
 import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
-import Glossary from '@/components/glossary'
 import { Image } from '@/components/image'
 import MdxIcon from '@/components/mdx-icon'
 import MdxNotification from '@/components/mdx-notification/index'
@@ -50,7 +49,6 @@ const components = {
   ColorPalette,
   ColorTokenTable,
   FilterableDesignKitTable,
-  Glossary,
   IconLibrary,
   Image,
   MdxIcon,

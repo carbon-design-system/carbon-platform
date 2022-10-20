@@ -1,15 +1,24 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/utilities/convert' as convert;
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 
-.glossary-entry {
+@use '../utils' as *;
+
+.#{with-prefix('glossary-entry')} {
   padding-top: convert.rem(36px);
   color: theme.$text-primary;
 }
 
-.glossary-entry__main-heading {
+.#{with-prefix('glossary-entry__main-heading')} {
   @include type.type-style('fluid-display-02', true);
 
   span {
@@ -17,12 +26,12 @@
   }
 }
 
-.glossary-entry__desc {
+.#{with-prefix('glossary-entry__desc')} {
   padding: 0;
   margin-top: spacing.$spacing-02;
 }
 
-.glossary-entry__subtext {
+.#{with-prefix('glossary-entry__subtext')} {
   @include type.type-style('body-compact-02');
 
   padding: 0;
@@ -32,8 +41,8 @@
   font-style: italic;
 }
 
-.h2-container {
-  &.h2-container {
+.#{with-prefix('h2-container')} {
+  &.#{with-prefix('h2-container')} {
     margin-top: 0;
   }
 
@@ -42,8 +51,8 @@
   }
 }
 
-.h4-container {
-  &.h4-container {
+.#{with-prefix('h4-container')} {
+  &.#{with-prefix('h4-container')} {
     margin-top: spacing.$spacing-06;
   }
 }

@@ -4,19 +4,24 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import React from 'react'
 import { Column, Grid } from '@carbon/react'
 
-import GlossaryList from './glossary-list'
-import GlossaryNav from './glossary-nav'
+import GlossaryList from './glossary-list.js'
+import GlossaryNav from './glossary-nav.js'
+import glossaryData from './data/glossary-data.js'
+
+import { withPrefix } from '../utils.js'
 
 const Glossary = () => {
-  const glossary = require('@/data/glossary')
   return (
     <Grid>
       <Column sm={4} md={6} lg={7}>
-        <div className="glossary">
-          <GlossaryNav />
-          <GlossaryList glossary={glossary} />
+        <div className={withPrefix('glossary')}>
+          <div>
+            <GlossaryNav />
+          </div>
+          <GlossaryList glossary={glossaryData} />
         </div>
       </Column>
     </Grid>

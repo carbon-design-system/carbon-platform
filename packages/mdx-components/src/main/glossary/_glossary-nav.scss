@@ -1,3 +1,10 @@
+/*
+ * Copyright IBM Corp. 2022, 2022
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/utilities/convert' as convert;
@@ -5,7 +12,9 @@
 @use '@carbon/react/scss/motion' as motion;
 @use '@carbon/react/scss/type' as type;
 
-.glossary-nav {
+@use '../utils' as *;
+
+.#{with-prefix('glossary-nav')} {
   position: absolute;
   right: spacing.$spacing-06;
   display: none;
@@ -19,37 +28,14 @@
   @include breakpoint.breakpoint('lg') {
     display: flex;
   }
+}
 
-  &--fixed {
-    position: fixed;
-    top: 0;
-  }
+.#{with-prefix('glossary-nav--fixed')} {
+  position: fixed;
+  top: 0;
 }
 
 // override carbon list item
-@media screen and (prefers-reduced-motion: reduce) {
-  .cds--list__item {
-    display: block;
-    width: 100%;
-    padding: 0;
-    list-style-type: none;
-    transition: none;
-
-    a {
-      @include type.type-style('body-compact-02');
-
-      display: block;
-
-      width: convert.rem(24px);
-      height: convert.rem(24px);
-      padding: convert.rem(1px) 0 0 0;
-      color: theme.$text-secondary;
-      text-align: center;
-      text-decoration: none;
-    }
-  }
-}
-
 .cds--list__item {
   display: block;
   width: 100%;
@@ -69,6 +55,9 @@
     text-align: center;
     text-decoration: none;
   }
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 // override carbon list
@@ -78,7 +67,7 @@
 }
 
 // override carbon list item
-.cds--list__item.glossary-nav__item--active a {
+.cds--list__item.#{with-prefix('glossary-nav__item--active')} a {
   background: theme.$layer-accent-01;
   color: theme.$text-primary;
 }

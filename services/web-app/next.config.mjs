@@ -11,6 +11,7 @@ import nextMdx from '@next/mdx'
 import withYaml from 'next-plugin-yaml'
 import path from 'path'
 import remarkGfm from 'remark-gfm'
+import remarkSmartpants from 'remark-smartypants'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import { fileURLToPath } from 'url'
 
@@ -29,7 +30,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 const withMDX = nextMdx({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [mdxWrapperPlugin, remarkGfm, remarkUnwrapImages],
+    remarkPlugins: [mdxWrapperPlugin, remarkGfm, remarkUnwrapImages, remarkSmartpants],
     rehypePlugins: [rehypeMetaAsAttributes],
     providerImportSource: '@mdx-js/react'
   }

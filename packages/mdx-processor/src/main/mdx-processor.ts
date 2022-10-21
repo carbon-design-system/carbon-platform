@@ -10,6 +10,7 @@ import * as runtime from 'react/jsx-runtime.js'
 import { renderToString } from 'react-dom/server.js'
 import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
+import remarkSmartyPants from 'remark-smartypants'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import { VFile } from 'vfile'
 import { matter } from 'vfile-matter'
@@ -106,7 +107,8 @@ class MdxProcessor {
           }
         ],
         remarkGfm,
-        remarkUnwrapImages
+        remarkUnwrapImages,
+        remarkSmartyPants
       ],
       rehypePlugins: [[rehypeUrls, this.config.imageResolverPlugin]]
     })

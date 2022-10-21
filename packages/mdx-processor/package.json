@@ -31,6 +31,7 @@
     "image-extensions": "^1.1.0",
     "rehype-urls": "^1.1.1",
     "remark-gfm": "^3.0.1",
+    "remark-smartypants": "^2.0.0",
     "remark-unwrap-images": "^3.0.1",
     "vfile": "^5.3.5",
     "vfile-matter": "^4.0.0",

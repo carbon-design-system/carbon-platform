@@ -53,9 +53,9 @@ export const teams = {
     name: 'IBM Accessibility',
     pictogram: Svg64AccessibilityAlt
   },
-  'ai-apps': {
+  'ibm-sustainability': {
     icon: Watson,
-    name: 'IBM AI Apps',
+    name: 'IBM Sustainability',
     pictogram: Svg64Watson
   },
   'ibm-brand': {

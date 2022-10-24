@@ -30,7 +30,6 @@ export const remotePages = {
     filePath: '/src/pages/data-visualization/legends/index.mdx',
     pageHeaderType: 'collection'
   },
-  'contributing/bugs-and-requests': {},
   'contributing/icons': {
     filePath: '/src/pages/contributing/contribute-icons.mdx'
   },

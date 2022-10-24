@@ -4,13 +4,14 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Bee as BeePictogram } from '@carbon/pictograms-react'
+import { Bee as BeePictogram, Growth } from '@carbon/pictograms-react'
 import {
   AccessibilityAlt,
   Bee as BeeIcon,
   Carbon,
   CarbonForIbmDotcom,
   CarbonForIbmProduct,
+  CropGrowth,
   Events,
   IbmCloud,
   IbmSecurity,
@@ -53,11 +54,6 @@ export const teams = {
     name: 'IBM Accessibility',
     pictogram: Svg64AccessibilityAlt
   },
-  'ai-apps': {
-    icon: Watson,
-    name: 'IBM AI Apps',
-    pictogram: Svg64Watson
-  },
   'ibm-brand': {
     icon: BeeIcon,
     name: 'IBM Brand',
@@ -77,6 +73,11 @@ export const teams = {
     icon: IbmSecurity,
     name: 'IBM Security',
     pictogram: Svg64Security
+  },
+  'ibm-sustainability': {
+    icon: CropGrowth,
+    name: 'IBM Sustainability',
+    pictogram: Growth
   },
   watson: {
     icon: Watson,

@@ -8,7 +8,9 @@
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 
-.color-grid {
+@use '../utils' as *;
+
+.#{with-prefix('color-grid')} {
   display: grid;
   margin: 0 spacing.$spacing-05;
   grid-template-columns: repeat(6, 1fr);
@@ -16,11 +18,11 @@
   @include breakpoint.breakpoint('md') {
     grid-template-columns: repeat(12, 1fr);
   }
-}
 
-.swatch::before {
-  display: block;
-  height: 0;
-  padding-bottom: 100%;
-  content: '';
+  .swatch::before {
+    display: block;
+    height: 0;
+    padding-bottom: 100%;
+    content: '';
+  }
 }

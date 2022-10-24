@@ -10,8 +10,10 @@
 @use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/motion' as motion;
 
+@use '../utils' as *;
+
 // override carbon inline code snippet styles
-:global(.cds--snippet--inline) {
+.cds--snippet--inline {
   padding: 0;
   border: none;
   background-color: theme.$layer-accent;
@@ -23,9 +25,9 @@
   }
 }
 
-.code {
-  :global(.cds--popover-content),
-  :global(.cds--popover-caret) {
+.#{with-prefix('code')} {
+  .cds--popover-content,
+  .cds--popover-caret {
     // Override carbon tooltip colors
     background: theme.$layer-accent-01;
     color: theme.$text-primary;
@@ -33,11 +35,11 @@
 }
 
 // scoped to div code to override global reset styles
-.code:global(.cds--snippet--multi) {
+.#{with-prefix('code')}.cds--snippet--multi {
   max-width: none;
   margin-top: spacing.$spacing-07;
 
-  :global(.cds--snippet-container) {
+  .cds--snippet-container {
     // override carbon snippet container width
     width: 100%;
 
@@ -58,7 +60,7 @@
   }
 }
 
-.path-container {
+.#{with-prefix('path-container')} {
   display: flex;
   width: 100%;
   height: 3rem;
@@ -71,11 +73,11 @@
   background: theme.$layer-01;
 }
 
-.path-container + .code {
+.#{with-prefix('path-container')} + .#{with-prefix('code')} {
   margin-top: 0;
 }
 
-.path {
+.#{with-prefix('path')} {
   @include type.type-style('code-02');
 
   overflow: hidden;
@@ -84,7 +86,7 @@
   white-space: nowrap;
 }
 
-.icon {
+.#{with-prefix('icon')} {
   display: flex;
   width: 32px;
   height: 32px;

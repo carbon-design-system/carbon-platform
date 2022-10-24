@@ -11,39 +11,41 @@
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
-.type-weight {
+@use '../utils' as *;
+
+.#{with-prefix('type-weight')} {
   padding: spacing.$spacing-05;
   margin: spacing.$spacing-07 0 spacing.$spacing-06;
   background: theme.$layer-01;
 
-  p {
+  p.#{with-prefix('type-weight_type')} {
     padding: 0;
     color: theme.$text-primary;
     font-size: convert.rem(48px);
     line-height: 1.25;
   }
-}
 
-.italic {
-  font-style: italic;
-}
+  .#{with-prefix('italic')} {
+    font-style: italic;
+  }
 
-.semibold {
-  font-weight: 600;
-}
+  .#{with-prefix('semibold')} {
+    font-weight: 600;
+  }
 
-.regular {
-  font-weight: 400;
-}
+  .#{with-prefix('regular')} {
+    font-weight: 400;
+  }
 
-.light {
-  font-weight: 300;
-}
+  .#{with-prefix('light')} {
+    font-weight: 300;
+  }
 
-.serif {
-  @include type.type-style('fluid-quotation-01', true);
-}
+  .#{with-prefix('serif')} {
+    @include type.type-style('fluid-quotation-01', true);
+  }
 
-.mono {
-  @include type.type-style('code-02');
+  .#{with-prefix('mono')} {
+    @include type.type-style('code-02');
+  }
 }

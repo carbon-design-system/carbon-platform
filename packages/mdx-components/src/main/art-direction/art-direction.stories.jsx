@@ -8,7 +8,7 @@
 import { ArtDirection } from '../../../dist/main/index'
 
 export default {
-  title: 'Components/ArtDirection',
+  title: 'Components/Images & Video/ArtDirection',
   component: ArtDirection,
   argTypes: {
     children: {

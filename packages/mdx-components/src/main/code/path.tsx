@@ -6,21 +6,29 @@
  */
 import { Launch } from '@carbon/react/icons'
 import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 
-import styles from './code.module.scss'
+import { MdxComponent } from '../interfaces.js'
+import { withPrefix } from '../utils.js'
 
-const Path = ({ src, path }) => {
+interface PathProps {
+  src?: string | null
+  path?: string | null
+  children: ReactNode
+}
+
+const Path: MdxComponent<PathProps> = ({ src, path }) => {
   if (!path) return null
   return (
-    <div className={styles['path-container']}>
-      <span className={styles.path}>{path}</span>
+    <div className={withPrefix('path-container')}>
+      <span className={withPrefix('path')}>{path}</span>
 
       {src && (
         <a
           target="_blank"
           rel="noopener noreferrer"
           title="View source"
-          className={styles.icon}
+          className={withPrefix('icon')}
           href={src}
         >
           <Launch alt="View source" />
@@ -31,10 +39,12 @@ const Path = ({ src, path }) => {
 }
 
 Path.propTypes = {
+  children: PropTypes.node,
   /** Provide path */
   path: PropTypes.string,
   /** Provide src link */
   src: PropTypes.string
 }
 
+export { PathProps }
 export default Path

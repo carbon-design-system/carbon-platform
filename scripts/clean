@@ -9,3 +9,6 @@ set -e
 
 echo "Removing .test-coverage folders"
 find . -name ".test-coverage" | xargs rm -rf
+
+echo "Running clean for all workspaces"
+npm --workspaces --if-present run clean

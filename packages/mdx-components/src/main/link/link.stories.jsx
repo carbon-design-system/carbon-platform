@@ -4,15 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { P, Title } from '../../../dist/main/index.js'
+import { Link } from '../../../dist/main/index'
 
 export default {
-  title: 'Components/Title',
-  component: Title,
+  title: 'Components/Markdown/Link',
+  component: Link,
   argTypes: {
-    children: {
-      control: false
-    },
     className: {
       control: false
     }
@@ -20,10 +17,9 @@ export default {
 }
 
 const Template = (args) => (
-  <>
-    <Title {...args}>Lorem ipsum</Title>
-    <P>This is the element after the title with its default top margin removed.</P>
-  </>
+  <Link href="https://platform.carbondesignsystem.com" {...args}>
+    Carbon Platform Storybook
+  </Link>
 )
 
 export const Default = Template.bind({})

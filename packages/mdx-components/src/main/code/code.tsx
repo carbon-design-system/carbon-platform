@@ -5,30 +5,35 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { CodeSnippet, Column, Grid, Theme } from '@carbon/react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
-import { useEffect } from 'react'
+import React, { ReactElement, ReactPortal } from 'react'
 
-import styles from './code.module.scss'
-import Path from './path'
+import { MdxComponent, NonScalarNode } from '../interfaces.js'
+import { withPrefix } from '../utils.js'
+import Path from './path.js'
 
-const Code = ({ children }) => {
+interface CodeProps {
+  children: Exclude<NonScalarNode, Array<ReactElement | ReactPortal>>
+}
+/**
+ *
+ * For MDX files, steer away from using JSX components
+ * for code in favor of standard markdown syntax.
+ *
+ *````
+ * ```
+ * const a = 16;
+ * ```
+ *````
+ */
+const Code: MdxComponent<CodeProps> = ({ children }) => {
   const code = children.props.children
   const path = children.props.path
   const src = children.props.src
   const language = children.props.className || 'language-plain'
 
-  useEffect(() => {
-    try {
-      if (typeof window !== 'undefined') {
-        // This could be improved by assigning a ref to the component and using
-        // Prism.highlightElement() instead.
-        window.Prism && window.Prism.highlightAll()
-      }
-    } catch (err) {
-      console.error(err)
-    }
-  }, [code])
+  console.log(children, code, typeof code, path, src, language)
 
   return (
     <Grid condensed>
@@ -39,7 +44,12 @@ const Code = ({ children }) => {
               {children}
             </Path>
           )}
-          <CodeSnippet type="multi" feedback="Copied!" className={clsx(styles.code, language)}>
+
+          <CodeSnippet
+            type="multi"
+            feedback="Copied!"
+            className={clsx(withPrefix('code'), language)}
+          >
             {code}
           </CodeSnippet>
         </Theme>
@@ -50,7 +60,8 @@ const Code = ({ children }) => {
 
 Code.propTypes = {
   /** Provide the contents of Code */
-  children: PropTypes.node.isRequired
+  children: PropTypes.element.isRequired
 }
 
+export { CodeProps }
 export default Code

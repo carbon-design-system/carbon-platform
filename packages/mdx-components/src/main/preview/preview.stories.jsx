@@ -6,7 +6,7 @@
  */
 import { Preview } from '../../../dist/main/index'
 
-const stories = {
+export default {
   title: 'Components/Preview',
   component: Preview,
   parameters: {},
@@ -16,8 +16,6 @@ const stories = {
     }
   }
 }
-
-export default stories
 
 const Template = (args) => (
   <Preview

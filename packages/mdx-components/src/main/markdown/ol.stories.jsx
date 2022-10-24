@@ -7,7 +7,7 @@
 import { LI, OL } from '../../../dist/main/index'
 
 const stories = {
-  title: 'Components/Lists/OL',
+  title: 'Components/Markdown/OL',
   component: OL,
   argTypes: {
     children: {

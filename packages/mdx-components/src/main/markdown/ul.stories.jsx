@@ -9,7 +9,7 @@ import React from 'react'
 import { LI, UL } from '../../../dist/main/index'
 
 const stories = {
-  title: 'Components/Lists/UL',
+  title: 'Components/Markdown/UL',
   component: UL,
   argTypes: {
     children: {

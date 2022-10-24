@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.12](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.11...@carbon-platform/mdx-components@0.1.12) (2022-10-18)
+
+
+### Misc. 🔮
+
+* improve clean scripts ([55da50d](https://github.com/carbon-design-system/carbon-platform/commit/55da50d5ba7ed9fac83ad09471152cd7c6c8d9a5))
+
 ### [0.1.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.10...@carbon-platform/mdx-components@0.1.11) (2022-10-13)
 
 

@@ -11,6 +11,7 @@
 @use './autolink-header/autolink-header';
 @use './caption/caption';
 @use './card-group/card-group';
+@use './code/code';
 @use './color-block/color-block';
 @use './color-grid/color-grid';
 @use './color-palette/color-palette';
@@ -20,6 +21,7 @@
 @use './grid-transform/grid';
 @use './image-wrapper/image-wrapper';
 @use './inline-notification/inline-notification';
+@use './link/link';
 @use './markdown/markdown';
 @use './mini-card/mini-card';
 @use './preview/preview';
@@ -28,5 +30,8 @@
 @use './page-table/page-table';
 @use './resource-card/resource-card';
 @use './storybook-demo/storybook-demo';
+@use './tabs/tabs';
 @use './title/title';
+@use './type-weight/type-weight';
+@use './type-scale-table/type-scale-table';
 @use './video/video';

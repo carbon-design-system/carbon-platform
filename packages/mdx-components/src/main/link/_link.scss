@@ -5,5 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export { default as TypeScaleTable } from './type-scale-table'
-export { default as TypeWeight } from './type-weight'
+@use '../utils' as *;
+
+.#{with-prefix('link')} {
+  font-size: inherit;
+}

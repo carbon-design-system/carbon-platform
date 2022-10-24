@@ -193,7 +193,7 @@ const devLibraries = {
     org: 'carbon-design-system',
     repo: 'carbon-charts',
     path: '/packages/core',
-    maintainer: 'ibm-sustainability',
+    maintainer: 'carbon',
     group: carbonChartsGroup
   },
   'carbon-charts-angular': {

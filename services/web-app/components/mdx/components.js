@@ -6,8 +6,6 @@
  */
 import * as mdxComponents from '@carbon-platform/mdx-components'
 
-import ColorGrid from '@/components/color-grid'
-import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
 import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
 import Glossary from '@/components/glossary'
@@ -16,7 +14,6 @@ import MdxIcon from '@/components/mdx-icon'
 import MdxNotification from '@/components/mdx-notification/index'
 import MdxPage from '@/components/mdx-page'
 import FullPageError from '@/components/mdx-page/errors/full-page-error'
-import StatusIndicatorTable from '@/components/status-indicator-table'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import TypesetStyle from '@/components/typeset-style'
@@ -44,8 +41,6 @@ const components = {
   MdxNotification,
   FullPageError,
   /* Gatsby theme components */
-  ColorGrid,
-  ColorPalette,
   ColorTokenTable,
   FilterableDesignKitTable,
   Glossary,
@@ -54,7 +49,6 @@ const components = {
   MdxIcon,
   MdxPage,
   PictogramLibrary,
-  StatusIndicatorTable,
   TypesetStyle
 }
 

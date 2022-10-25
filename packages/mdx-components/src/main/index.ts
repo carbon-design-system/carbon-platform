@@ -53,6 +53,10 @@ export { default as PageTable, PageTableProps } from './page-table/page-table.js
 export { default as Preview, PreviewProps } from './preview/preview.js'
 export { default as Profile, ProfileProps } from './profile/profile.js'
 export { default as ResourceCard, ResourceCardProps } from './resource-card/resource-card.js'
+export {
+  default as StatusIndicatorTable,
+  StatusIndicatorTableProps
+} from './status-indicator-table/status-indicator-table.js'
 export { default as StorybookDemo, StorybookDemoProps } from './storybook-demo/storybook-demo.js'
 export { default as Tab, TabProps } from './tabs/tab.js'
 export { default as Tabs, TabsProps } from './tabs/tabs.js'

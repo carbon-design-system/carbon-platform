@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.63](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.62...@carbon-platform/web-app@0.2.63) (2022-10-25)
+
+
+### Bug Fixes 🐛
+
+* links in bugs and requests page ([6071c26](https://github.com/carbon-design-system/carbon-platform/commit/6071c263ee1f5f6f9fb5b0df42bd548c3243a423))
+* remove cds.com links with relative urls ([b449320](https://github.com/carbon-design-system/carbon-platform/commit/b44932031dc127bfac5e77f1a7cae0521eadd4bb))
+* rename ai apps ([3fb7e22](https://github.com/carbon-design-system/carbon-platform/commit/3fb7e22dfa43362fccdef0380b22080679d45c0c))
+* revert prior test ([ab26fb7](https://github.com/carbon-design-system/carbon-platform/commit/ab26fb710f05c6bad7b6f0a978619f6d2d3d4252))
+* straight quotes on home page ([61f68ae](https://github.com/carbon-design-system/carbon-platform/commit/61f68ae22c8921f09b0e9ee40f3beb6eb0449d5d))
+* update design kit dependencies image ([3536ad7](https://github.com/carbon-design-system/carbon-platform/commit/3536ad77e2841093a89cff87ec380a4b9fe52332))
+
 ### [0.2.62](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.61...@carbon-platform/web-app@0.2.62) (2022-10-18)
 
 

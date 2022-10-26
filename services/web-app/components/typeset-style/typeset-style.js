@@ -9,7 +9,7 @@ import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
 import findLastIndex from 'lodash/findLastIndex'
 import PropTypes from 'prop-types'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import { typeScale } from '@/data/type-scale'
 import { typeSets } from '@/data/type-sets'
@@ -140,7 +140,7 @@ const TypesetStyle = ({
           .replace(', ', ',')
           .split(',')
           .map((typeset, i) => (
-            <>
+            <React.Fragment key={i}>
               {header && (
                 <H4 headingClassName={styles['typestyle-header']} narrow>
                   {typeset
@@ -156,7 +156,7 @@ const TypesetStyle = ({
                 typeSet={typeSets[typeset]}
                 typeScale={typeScale}
               />
-            </>
+            </React.Fragment>
           ))}
       </div>
     </div>

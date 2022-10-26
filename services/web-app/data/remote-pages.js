@@ -121,7 +121,14 @@ export const remotePages = {
     }
   },
   'elements/typography/styling-strategies': {
-    filePath: '/src/pages/guidelines/typography/styling-strategies.mdx'
+    filePath: '/src/pages/guidelines/typography/styling-strategies.mdx',
+    params: {
+      host: 'github.com',
+      org: 'carbon-design-system',
+      repo: 'carbon-website',
+      library: 'carbon-website',
+      ref: 'carbon-platform'
+    }
   },
   'elements/typography/type-sets': {
     filePath: '/src/pages/guidelines/typography/type-sets.mdx',

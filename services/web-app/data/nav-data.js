@@ -158,7 +158,7 @@ export const assetsNavData = [
       },
       {
         path: '/contributing/add-ons',
-        title: 'Add-ons'
+        title: 'Add–ons'
       }
     ]
   },

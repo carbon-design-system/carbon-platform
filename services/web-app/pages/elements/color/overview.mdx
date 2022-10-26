@@ -39,7 +39,7 @@ foundation as we strive to achieve balance and harmony through our User Interfac
 ## Introduction
 
 Application of the color palette brings a unified and recognizable consistency to IBM's array of
-digital products and interfaces. This consistency is grounded in a set of well-defined rules about
+digital products and interfaces. This consistency is grounded in a set of well–defined rules about
 how to work with the Carbon component library in the context of dark and light themes.
 
 <GifPlayer color="dark">
@@ -92,13 +92,13 @@ The layering model differs between the _light_ and _dark_ themes.
 
 ## Implementing color
 
-Carbon uses tokens and themes to manage color. Tokens are role-based, and themes specify the color
+Carbon uses tokens and themes to manage color. Tokens are role–based, and themes specify the color
 values that serve those roles in the UI.
 
 | Term    | Definition                                                                                                                                                                      |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | _Theme_ | A theme is a collection of colors designed to create a specific aesthetic. Themes control the color value assigned to a token. For example, Gray 100 theme.                     |
-| _Token_ | A token is the role-based identifier that assigns a color. Unlike hex codes, tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`. |
+| _Token_ | A token is the role–based identifier that assigns a color. Unlike hex codes, tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`. |
 | _Role_  | A role is the systematic usage of a color assigned to a token. Roles cannot be changed between themes.                                                                          |
 | _Value_ | A value is the unique visual attribute (hex code, rgba value) assigned to a token through the use of themes.                                                                    |
 
@@ -197,8 +197,7 @@ There are two light themes in Carbon: White and Gray 10. For enabled UI colors l
 primarily use the color range of White to Gray 20, and for text and icons uses the color range
 between Gray 100 and Gray 60.
 
-All of the themes are available in
-[Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
+All of the themes are available in [Design kits](/design-kits).
 
 #### Layering model
 
@@ -206,7 +205,7 @@ In the light themes, layers alternate between White and Gray 10.
 
 - **White theme**: uses White as the global background color and is layered first with components
   using Gray 10 backgrounds. The second layer uses White and the third layer used Gray 10.
-- **Gray 10 theme:** uses Gray 10 as the global background color and is layered first with
+- **Gray 10 theme:** uses Gray 10 as the global background color and is layered first with
   components using White backgrounds. The second layer uses Gray 10 and the third layer used White.
 
 <Tabs>
@@ -246,8 +245,7 @@ There are two dark themes: Gray 90 and Gray 100. For enabled UI colors, dark the
 the color range of Gray 100 through Gray 70, and for text and icons uses the color range between
 White and Gray 50.
 
-All of the themes are available in
-[Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
+All of the themes are available in [Design kits](/design-kits).
 
 #### Layering model
 
@@ -256,7 +254,7 @@ In the dark themes, layers become one step lighter with each added layer.
 - **Gray 90 theme**: uses Gray 90 as the global background color and is layered first with
   components using Gray 80 backgrounds. The second layer uses Gray 70 and the third layer used
   Gray 60.
-- **Gray 100 theme:** uses Gray 100 as the global background color and is layered first with
+- **Gray 100 theme:** uses Gray 100 as the global background color and is layered first with
   components using Gray 90 backgrounds. The second layer uses Gray 80 and the third layer used
   Gray 70.
 
@@ -328,7 +326,7 @@ dark mode.
 Each token is assigned a role and a value. The role determines what element to apply a token too and
 the value is the actual color (hex code) that appears in the assigned theme. Color token names and
 roles are the same across themes, only the assigned value will change with the theme. For example,
-under the hood the `$text-secondary` token can dynamically map to `Gray 70` or `Gray 30` depending
+under the hood the `$text-secondary` token can dynamically map to `Gray 70` or `Gray 30` depending
 on the theme.
 
 See the [color usage](/elements/color/usage) tab for the full list of color tokens.
@@ -337,8 +335,8 @@ See the [color usage](/elements/color/usage) tab for the full list of color toke
 
 For quick reference, the role of a token is represented in the token name itself to help you
 correctly apply tokens. The first part of the token name references the general UI element the color
-is being applied to, like `background`, `text`, or `border`. The second part of token name will
-specify its unique role within the element group like `$border-subtle` or `$text-primary`.
+is being applied to, like `background`, `text`, or `border`. The second part of token name will
+specify its unique role within the element group like `$border-subtle` or `$text-primary`.
 Additionally, some tokens include aninteraction state at the end, like `$background-hover`.
 
 <Row>
@@ -362,7 +360,7 @@ Color tokens that can be applied across components are called _core tokens_. The
 groups of core color tokens. They are grouped by the common UI element that they are applied to.
 Token groups makes it easier to find and apply color tokens. Interaction state tokens are included
 in the group along side their enabled state tokens. There are a few core tokens that do not belong
-to the a group and stand as individual tokens like `$overlay`, `$highlight`, and `$interactive`.
+to the a group and stand as individual tokens like `$overlay`, `$highlight`, and `$interactive`.
 
 Some core tokens are part of an additional token group called _layering tokens_. These tokens are
 used to implement the layering model onto components. For more information, see the
@@ -398,7 +396,7 @@ To see how the tokens are applied in the components themselves, visit the compon
 
 ## Interaction states
 
-In addition to the core set of enabled-state tokens, there are five other interaction states defined
+In addition to the core set of enabled–state tokens, there are five other interaction states defined
 with tokens for each theme. Interaction tokens are signified by the addition of a state name added
 to the end of the base token name. For example, the `$background` hover state token is
 `$background-hover`.
@@ -421,8 +419,8 @@ The color layering model for interaction tokens is as follows:
 ### Hover
 
 Hover is a subtle visual change that appears when a mouse cursor moves over an interactive element.
-Hover states have their own tokens and are identified by `-hover` added to the end of the base token
-name, such as `$background-hover`.
+Hover states have their own tokens and are identified by `-hover` added to the end of the base token
+name, such as `$background-hover`.
 
 In the IBM themes, hover states token values are “half steps” between two adjacent colors on the IBM
 core color palette steps. These values fall outside of the IBM core color palette steps and have
@@ -543,9 +541,9 @@ the focus border and the element itself.
 ### Disabled
 
 A disabled state is applied to a component when the user is not allowed to interact with the
-component due to either permissions, dependencies, or pre-requisites. Disabled states completely
+component due to either permissions, dependencies, or pre–requisites. Disabled states completely
 remove the interactive function of a component and therefore don't receive hover or focus. Disabled
-state styling is not subject to WC3 contrast compliance standards and is intentionally de-emphasized
+state styling is not subject to WC3 contrast compliance standards and is intentionally de–emphasized
 in a faded fashion.
 
 Disabled elements are always styled in the Gray family no matter its base color. A component's
@@ -558,7 +556,7 @@ grouped together and share a disabled token like `$text-disabled`.
 
 ## Accessibility
 
-Using various forms of contrast is the most important consideration when making user-friendly color
+Using various forms of contrast is the most important consideration when making user–friendly color
 and interface choices. Awareness of standards and best practices is the key to accessible color
 selections.
 
@@ -603,7 +601,7 @@ ratios between any two colors.
 <Column colLg={8}>
 <ArtDirection>
 
-![color grades - Mobile image](/elements/color/colorgrades_table_mobile.png)
+![color grades – Mobile image](/elements/color/colorgrades_table_mobile.png)
 ![color grades graphic](/elements/color/colorgrades_table.png)
 
 </ArtDirection>

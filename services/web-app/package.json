@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/web-app",
   "description": "Carbon web application",
-  "version": "0.2.62",
+  "version": "0.2.63",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,

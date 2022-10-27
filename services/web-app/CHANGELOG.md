@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.64](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.63...@carbon-platform/web-app@0.2.64) (2022-10-27)
+
+
+### Features 🌟
+
+* **web-app:** update to new grid ([afe70f2](https://github.com/carbon-design-system/carbon-platform/commit/afe70f28f6510b241f9e4dc0fee83abf35b8ab71))
+
+
+### Bug Fixes 🐛
+
+* add figma icons ([0d0bdd5](https://github.com/carbon-design-system/carbon-platform/commit/0d0bdd518d3c603a839a2a2c08819c6dd928a632))
+* add images ([54cb237](https://github.com/carbon-design-system/carbon-platform/commit/54cb2372826c674c39ac9cd6c71e5858383bf8ee))
+* add images ([169d385](https://github.com/carbon-design-system/carbon-platform/commit/169d3859839bc9fb0aa7ddf4cd935674f037bf3b))
+* add internal and external figma guidance ([f8abefe](https://github.com/carbon-design-system/carbon-platform/commit/f8abefe7872722f9d4e837fb8fda2194cbcee4cd))
+* add text ([9742689](https://github.com/carbon-design-system/carbon-platform/commit/974268917ba972b8a97a5adc50aa4b310fdceb20))
+* link to v10 kits ([6d6c3f5](https://github.com/carbon-design-system/carbon-platform/commit/6d6c3f5595e69d57cff01ea57a20bdef3a70af31))
+* linting ([7d53402](https://github.com/carbon-design-system/carbon-platform/commit/7d53402dbd6f48f19bdf99ce41e2934c00690351))
+* update figma tutorial ([f6d3cce](https://github.com/carbon-design-system/carbon-platform/commit/f6d3cceee51bf3850079d1e1e113e65e3da2d358))
+* **web-app:** resource card nth-child selector ([2783b4f](https://github.com/carbon-design-system/carbon-platform/commit/2783b4f11113ccc28b363de536be06b55f30026a))
+
 ### [0.2.63](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.62...@carbon-platform/web-app@0.2.63) (2022-10-25)
 
 

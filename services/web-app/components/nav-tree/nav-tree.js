@@ -14,7 +14,7 @@ import { dfs } from '@/utils/tree'
 
 import styles from './nav-tree.module.scss'
 
-const NavTree = ({ activeItem, items = [], label }) => {
+const NavTree = ({ activeItem, items = [], label, visible = true }) => {
   const [itemNodes, setItemNodes] = useState([])
   const [treeActiveItem, setTreeActiveitem] = useState('')
 
@@ -54,6 +54,15 @@ const NavTree = ({ activeItem, items = [], label }) => {
     })
     setItemNodes(newItemNodeArray)
   }, [items])
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      // Remove tabstop from headings
+      document
+        .querySelectorAll('[class*=section-group]')
+        .forEach((heading) => heading.setAttribute('tabindex', '-1'))
+    })
+  }, [])
 
   const getItemId = (item) => {
     return item.path || slugify(item.title, { lower: true, strict: true })
@@ -96,7 +105,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
       } else {
         if (node.path) {
           label = (
-            <a href={node.path} className={styles.anchor}>
+            <a href={node.path} className={styles.anchor} tabIndex={visible ? 0 : '-1'}>
               {node.title}
             </a>
           )
@@ -112,6 +121,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
             isExpanded={isTreeNodeExpanded(node)}
             className={clsx({ [styles['section-group']]: node.sectionGroup })}
             onClick={() => node.path && window.open(node.path, '_self')}
+            disabled={!visible}
           >
             {renderTree(node.items)}
           </TreeNode>
@@ -143,7 +153,8 @@ NavTree.propTypes = {
       items: PropTypes.array
     })
   ),
-  label: PropTypes.string
+  label: PropTypes.string,
+  visible: PropTypes.bool
 }
 
 export default NavTree

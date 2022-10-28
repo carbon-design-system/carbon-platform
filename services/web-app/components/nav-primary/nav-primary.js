@@ -16,17 +16,16 @@ import { LayoutContext } from '@/layouts/layout'
 import NavTree from '../nav-tree'
 import styles from './nav-primary.module.scss'
 
-const NavPrimary = ({ className, globalItems }) => {
+const NavPrimary = ({ className, globalItems, visible }) => {
   const router = useRouter()
-  const { isSideNavExpanded, primaryNavData, isSecondaryNav, setSideNavExpanded } =
-    useContext(LayoutContext)
+  const { isSideNavExpanded, primaryNavData, setSideNavExpanded } = useContext(LayoutContext)
 
   return (
     <SideNav
       aria-label="Side navigation"
       expanded={isSideNavExpanded}
       className={clsx(className, styles['side-nav'])}
-      aria-hidden={isSecondaryNav ? 'true' : 'false'}
+      aria-hidden={visible ? 'false' : 'true'}
       onOverlayClick={() => setSideNavExpanded(false)}
     >
       <SideNavItems>
@@ -39,7 +38,7 @@ const NavPrimary = ({ className, globalItems }) => {
                     element={HTMLAnchorElement}
                     href={data.path}
                     key={i}
-                    tabIndex={isSecondaryNav ? '-1' : 0}
+                    tabIndex={!visible ? '-1' : 0}
                   >
                     {data.title}
                   </SideNavLink>
@@ -55,7 +54,12 @@ const NavPrimary = ({ className, globalItems }) => {
           </HeaderSideNavItems>
         )}
         {primaryNavData && primaryNavData.length > 0 && (
-          <NavTree items={primaryNavData} label="Main navigation" activeItem={router.asPath} />
+          <NavTree
+            items={primaryNavData}
+            label="Main navigation"
+            activeItem={router.asPath}
+            visible={visible}
+          />
         )}
       </SideNavItems>
     </SideNav>
@@ -69,7 +73,8 @@ NavPrimary.propTypes = {
       title: PropTypes.string.isRequired,
       path: PropTypes.string
     })
-  )
+  ),
+  visible: PropTypes.bool
 }
 
 export default NavPrimary

@@ -15,7 +15,7 @@ import {
 } from '@carbon/react'
 import PropTypes from 'prop-types'
 
-import yaml from '@/data/status-indicators/status-indicators.yaml'
+import StatusIndicators from '@/data/status-indicators/status-indicators'
 
 import styles from './status-indicator.module.scss'
 import StatusIndicatorRow from './status-indicator-row'
@@ -56,7 +56,7 @@ const StatusIndicatorTable = ({ attention }) => (
             </StructuredListRow>
           </StructuredListHead>
           <StructuredListBody>
-            {yaml[attention].map((indicator, i) => (
+            {StatusIndicators[attention].map((indicator, i) => (
               <StatusIndicatorRow
                 key={`${indicator.name}-${i}`}
                 attention={attention}

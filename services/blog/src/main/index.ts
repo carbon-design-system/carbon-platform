@@ -19,7 +19,7 @@ async function start() {
     module: BlogModule
   })
 
-  await pm.bind<QueryMessage>('data_graph')
+  await pm.bind<QueryMessage>('medium_feed')
 
   await pm.start()
 }

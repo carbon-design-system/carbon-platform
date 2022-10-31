@@ -7,6 +7,7 @@
 import { StatusController } from '@carbon-platform/api/microservice'
 import { Module } from '@nestjs/common'
 
+import { BlogController } from './blog-controller.js'
 import { MediumService } from './medium-service.js'
 
 @Module({

@@ -69,12 +69,44 @@
   font-style: normal;
 }
 
-.start-heading--designing span {
-  color: colors.$purple-60;
+.start-heading--designing {
+  span {
+    color: colors.$purple-60;
+  }
+
+  svg circle {
+    fill: colors.$purple-60;
+  }
 }
 
-.start-heading--developing span {
-  color: colors.$blue-60;
+.start-heading--developing {
+  span {
+    color: theme.$link-primary;
+  }
+
+  svg circle {
+    fill: theme.$link-primary;
+  }
+}
+
+.start-heading--designing:hover {
+  span {
+    color: colors.$purple-60-hover;
+  }
+
+  svg circle {
+    fill: colors.$purple-60-hover;
+  }
+}
+
+.start-heading--developing:hover {
+  span {
+    color: theme.$link-primary-hover;
+  }
+
+  svg circle {
+    fill: theme.$link-primary-hover;
+  }
 }
 
 /**

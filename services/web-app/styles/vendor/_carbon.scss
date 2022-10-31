@@ -5,5 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use '@carbon/react/scss/config' with (
+  $use-akamai-cdn: true
+);
 @use '@carbon/react';
 @use '@carbon-platform/mdx-components/styles';

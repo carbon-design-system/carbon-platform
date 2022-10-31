@@ -1,7 +1,7 @@
 ---
 name: Feature technical design
 about: A detailed technical breakdown of a feature.
-title: ''
+title: '[tech design] '
 labels: 'role: dev 🤖, type: tech design 🏗️'
 assignees: ''
 ---

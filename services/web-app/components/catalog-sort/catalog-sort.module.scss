@@ -98,9 +98,10 @@
 }
 
 .selected {
+  background: var(--cds-layer-selected-inverse);
+  --cds-icon-primary: var(--cds-icon-inverse);
   // override background
-  &:not(:hover),
-  &:not(:focus) {
+  &:hover {
     background: var(--cds-layer-selected-inverse);
     --cds-icon-primary: var(--cds-icon-inverse);
   }

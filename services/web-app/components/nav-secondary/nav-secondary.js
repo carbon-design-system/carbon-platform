@@ -63,6 +63,7 @@ const NavSecondary = ({ className, visible, onSlidePrimary }) => {
               styles['heading--active']
           )}
           href={path ?? '/'}
+          tabIndex={visible ? 0 : '-1'}
         >
           <h2>
             {headings.map((heading, i) => (
@@ -73,7 +74,14 @@ const NavSecondary = ({ className, visible, onSlidePrimary }) => {
           </h2>
         </a>
       )}
-      {items && <NavTree items={items} label="Secondary navigation" activeItem={router.asPath} />}
+      {items && (
+        <NavTree
+          visible={visible}
+          items={items}
+          label="Secondary navigation"
+          activeItem={router.asPath}
+        />
+      )}
     </SideNav>
   )
 }

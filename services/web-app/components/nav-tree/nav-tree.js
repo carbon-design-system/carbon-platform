@@ -82,12 +82,12 @@ const NavTree = ({ activeItem, items = [], label, visible = true }) => {
   )
 
   const isTreeNodeExpanded = (node) => {
-    return !!dfs([node], (evalNode) => evalNode.items?.some((item) => isTreeNodeActive(item)))
+    return !!dfs([node], (evalNode) => evalNode.items?.some((item) => item.id === treeActiveItem))
   }
 
   useEffect(() => {
     const activeNode = dfs(itemNodes, isTreeNodeActive)
-    setTreeActiveitem(activeNode?.id ?? activeItem)
+    setTreeActiveitem(activeNode?.id)
   }, [activeItem, isTreeNodeActive, itemNodes])
 
   const renderTree = (nodes) => {
@@ -119,9 +119,13 @@ const NavTree = ({ activeItem, items = [], label, visible = true }) => {
             id={node.id}
             key={node.id}
             isExpanded={isTreeNodeExpanded(node)}
-            className={clsx({ [styles['section-group']]: node.sectionGroup })}
-            onClick={() => node.path && window.open(node.path, '_self')}
             disabled={!visible}
+            className={clsx({
+              [styles['section-group']]: node.sectionGroup,
+              'cds--tree-node--active': node.id === treeActiveItem,
+              'cds--tree-node--selected': node.id === treeActiveItem
+            })}
+            onClick={() => node.path && setTreeActiveitem(node.id)}
           >
             {renderTree(node.items)}
           </TreeNode>

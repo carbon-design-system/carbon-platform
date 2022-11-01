@@ -11,8 +11,8 @@ const ContentNotFoundExceptionContent = ({ mdxError }) => {
   return (
     <FullPageError
       title="The page you are looking for cannot be found."
-      subtitle="Supplied Github route does not exist. Update to a valid route."
-      link="See common errors for further information on valid urls"
+      subtitle="Supplied GitHub route does not exist. Update to a valid route."
+      link="See common errors for further information on valid URLs."
       href="/common-mdx-errors#the-page-you're-looking-for-cannot-be-found"
     >
       <p>{mdxError.message}</p>

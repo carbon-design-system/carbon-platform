@@ -1,0 +1,623 @@
+
+import { getAllDesignKits } from '@/lib/github'
+
+export const getStaticProps = async () => {
+  const designKitsData = await getAllDesignKits()
+  console.log(designKitsData)
+  return {
+    props: { designKitsData },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every hour
+    revalidate: 60 * 60 // In seconds
+  }
+}
+
+  # H1
+  # This is an H1
+
+  # H2
+  ## This is an H2
+
+  # H3
+  ### This is an H3
+
+  # H4
+  #### This is an H4
+
+  # H5
+  ##### This is an H5
+
+  # H6
+  ###### This is an H6
+
+  # P
+
+  This is a paragraph
+
+  # OL
+
+  1. LI 1
+  2. LI 2
+  3. LI 3
+
+  # UL
+
+  * Apples
+  * Oranges
+  * Berries
+    * Strawberries
+    * Raspberries
+
+  # Link
+
+  [eBay](https://ebay.com)
+
+  # Blockquote
+> So we beat on, boats against the current, borne back ceaselessly into the past.
+
+
+  # Image
+  ![this image](https://github.com/carbon-design-system/carbon-platform/blob/main/services/web-app/public/carbon.png?raw=true)
+
+
+  # PageTable
+
+  | Name | Type | Description |
+  | ---- | ---- | ----------- |
+  | name | string | Name of the resource |
+  | path | string | Path to the resource |
+
+
+  # pre (Code)
+
+  `some code`
+
+  # Code
+
+  ```yaml
+  # yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
+  ---
+  docs:
+    usagePath: 'https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/components/accordion/usage.mdx'
+    stylePath: './components/accordion/styles.mdx'
+    codePath: './components/accordion/code.mdx'
+    accessibilityPath: './components/accordion/accessibility.mdx'
+    overviewPath: './components/accordion/overview.mdx'
+  ```
+
+  # MdxNotification
+
+  <MdxNotification
+    title="Component not rendering"
+    description="This is the description"
+    content="This is the content"
+    link="Get support"
+    href="/TODO"/>
+
+  # FullPageError
+
+   <FullPageError
+      title="The page you are looking for cannot be found."
+      subtitle="Supplied Github route does not exist. Update to a valid route."
+      link="See common errors for further information on valid urls"
+      href="/common-mdx-errors#the-page-you're-looking-for-cannot-be-found"
+    >
+      <p>The error message here</p>
+    </FullPageError>
+
+# Accordion
+
+<Accordion>
+  <AccordionItem title="Title 1">Content Section</AccordionItem>
+  <AccordionItem title="Title 2">Content Section</AccordionItem>
+  <AccordionItem title="Title 3">Content Section</AccordionItem>
+</Accordion>
+
+# ArtDirection
+
+<ArtDirection>
+
+Mobile
+
+Tablet
+
+Desktop
+
+</ArtDirection>
+
+# Article Card
+
+<Row>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      subTitle="subTitle"
+      title="Title"
+      author="Josh Black"
+      date="April 29, 2019"
+      readTime="Read time: 5 min"
+      href="/"
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      title="Explore & Create"
+      author="Josh Black"
+      href="https://www.ibm.com"
+      actionIcon="arrowRight"
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      title="Explore & Create a longer title example in this space"
+      href="https://www.ibm.com"
+      disabled
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      title="Explore & Create"
+      color="dark"
+      href="https://www.ibm.com"
+      actionIcon="download"
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      subTitle="subTitle"
+      title="Explore & Create"
+      author="Josh Black"
+      readTime="Read time: 5 min"
+      color="dark"
+      href="https://www.ibm.com"
+      actionIcon="email"
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      subTitle="subTitle"
+      title="Explore & Create"
+      author="Josh Black"
+      date="April 29, 2019"
+      readTime="Read time: 5 min"
+      color="dark"
+      disabled
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+</Row>
+
+# Aside
+
+<Grid>
+<Column md={5} lg={8}>
+
+<Title>With hanging rule</Title>
+
+</Column>
+<Column md={3} lg={4}>
+<Aside aria-label="Example aside">
+
+**Good design is always good design.**
+
+What we borrow from our own design history is not a mid-century aesthetic in stylistic terms, but
+the modernist attitudes and approach used at the time.
+
+</Aside>
+</Column>
+</Grid>
+
+<Grid>
+<Column md={5} lg={8}>
+
+<Title>Without hanging rule</Title>
+
+</Column>
+<Column md={3} lg={4}>
+<Aside aria-label="Example aside" hideRule>
+
+A by-product of every experience with IBM should be time—time saved or time well-spent.
+
+</Aside>
+</Column>
+</Grid>
+
+# Caption
+
+<Caption>Lorem ipsum dolor sit amet Lorem Lorem Lorem Lorem Lorem Lorem ipsum.</Caption>
+
+# Card Group
+
+<CardGroup>
+  <MiniCard title="Figma tutorial" href="https://next.carbondesignsystem.com/designing/figma">
+    <MdxIcon name="figma" />
+  </MiniCard>
+  <MiniCard title="Sketch tutorial" href="https://next.carbondesignsystem.com/designing/sketch">
+    <MdxIcon name="sketch" />
+  </MiniCard>
+  <MiniCard title="Adobe XD tutorial" href="https://next.carbondesignsystem.com/designing/adobe-xd">
+    <MdxIcon name="adobe24" />
+  </MiniCard>
+  <MiniCard title="Axure tutorial" href="https://next.carbondesignsystem.com/designing/axure">
+    <MdxIcon name="axure32" />
+  </MiniCard>
+</CardGroup>
+
+# ColorGrid
+
+<Grid>
+  <Column>
+    <ColorGrid colorFamily="blue" />
+    <ColorGrid colorFamily="gray" />
+  </Column>
+  <Column>
+    <ColorGrid colorFamily="alerts" style={{ marginTop: '2rem' }} />
+    <Caption>Alert Colors</Caption>
+  </Column>
+</Grid>
+
+# ColorPalette
+
+## categorical
+
+<ColorPalette type="categorical" />
+
+## grouped
+
+<ColorPalette type="grouped" />
+
+## sequential mono
+
+<ColorPalette type="sequential" isMono />
+
+## sequential diverging
+
+<ColorPalette type="sequential" isDiverging />
+
+## alert
+
+<ColorPalette twoColumn type="alert" />
+
+## status
+
+<ColorPalette twoColumn type="status" />
+
+## status-extended with out controls
+
+<ColorPalette type="status-extended" shouldShowControls={false} />
+
+# Grid
+
+## Gatsby grid examples
+
+### Example
+
+<Row>
+  <Column colMd={4} colLg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Row>
+
+### No gutter left -> translate to narrow grid mode
+
+<Row>
+  <Column colMd={4} colLg={4} noGutterMdLeft>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4} noGutterMdLeft>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4} noGutterMdLeft>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Row>
+
+### No gutter -> translate to condensed grid mode
+
+<Row>
+  <Column colMd={4} colLg={4} noGutterSm>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Row>
+
+### Offset
+
+<Row>
+  <Column colMd={4} colLg={4} offsetLg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column colMd={4} colLg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Row>
+
+## CSS Grid examples
+
+### Default
+
+<Grid>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Grid>
+
+### Narrow
+
+<Grid narrow>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Grid>
+
+### Condensed
+
+<Grid condensed>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Grid>
+
+### Offset
+
+<Grid>
+  <Column md={4} lg={{ span: 4, offset: 4 }}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Grid>
+
+# ColorTokenTable
+
+<ColorTokenTable />
+
+# DoDont
+
+<DoDontRow>
+
+<DoDont aspectRatio="1:1">
+
+![Alt text](/mdx/light-theme.jpg)
+
+</DoDont>
+
+<DoDont aspectRatio="1:1" type="dont">
+
+![Alt text](/mdx/light-theme.jpg)
+
+</DoDont>
+
+</DoDontRow>
+
+<DoDontRow>
+
+<DoDont aspectRatio="1:1" text="This is some text" />
+
+<DoDont type="dont" aspectRatio="1:1" text="This is some text" color="dark" />
+
+</DoDontRow>
+
+<DoDontRow>
+
+<DoDont
+  text="This is some text that is 8 columns"
+  color="dark"
+  captionTitle="Caption title"
+  caption="Caption"
+  colLg="8"
+/>
+
+</DoDontRow>
+
+<DoDontRow>
+
+<DoDont aspectRatio="4:3" text="4:3" />
+
+<DoDont aspectRatio="16:9" text="16:9" />
+
+<DoDont aspectRatio="2:1" text="2:1" />
+
+</DoDontRow>
+
+<DoDontRow>
+
+<DoDont aspectRatio="9:16" text="9:16" />
+
+<DoDont aspectRatio="1:2" text="1:2" />
+
+<DoDont aspectRatio="3:4" text="3:4" />
+
+</DoDontRow>
+<DoDontRow>
+
+<DoDont aspectRatio="1:1" text="1:1" />
+
+</DoDontRow>
+
+## Video example coming soon
+
+<DoDontRow>
+
+<DoDont colLg='8'>
+
+<Video title="Video example" vimeoId="310583077" />
+
+</DoDont>
+
+</DoDontRow>
+
+# Divider
+
+<Divider>
+  <Grid>
+    <Column sm={4} md={2} lg={4}>
+      <h3>
+        <strong>v1.0</strong>
+      </h3>
+      <h2>
+        Target release: <div>June</div>
+      </h2>
+    </Column>
+    <Column sm={4} md={6} lg={8}>
+    The platform's first major release will help system users discover and learn about all the assets
+    and libraries in the system with confidence in their completeness, who maintains them, and how to
+    use them. System users can access documentation for all indexed assets and libraries without leaving
+    the platform.
+
+    The platform's first major release will help system users discover and learn about all the assets
+    and libraries in the system with confidence in their completeness, who maintains them, and how to
+    use them. System users can access documentation for all indexed assets and libraries without leaving
+    the platform.
+
+    </Column>
+
+  </Grid>
+</Divider>
+
+# FilterableDesignKitTable
+
+<FilterableDesignKitTable
+  designKitsData={props.designKitsData}
+  designTools={['Figma', 'Sketch', 'Adobe XD', 'Axure']}
+  designKitIds={[
+    'axure-widget-library',
+    'ibm-accessibility-figma',
+    'ibm-icons-16-20-sketch',
+    'ibm-icons-24-32-sketch',
+    'ibm-grid-sketch',
+    'carbon-white-sketch',
+    'carbon-g10-sketch',
+    'carbon-g90-sketch',
+    'carbon-g100-sketch',
+    'ibm-accessibility-sketch',
+    'carbon-white-adobe-xd',
+    'carbon-g10-adobe-xd',
+    'carbon-g90-adobe-xd',
+    'carbon-g100-adobe-xd',
+    'ibm-icons-adobe-xd',
+    'carbon-template-axure',
+    'ibm-design-language-sketch',
+    'carbon-g10-axure',
+    'carbon-mid-fi-sketch',
+    'figma-v11-white-theme',
+    'figma-v11-gray-10-theme',
+    'figma-v11-gray-90-theme',
+    'figma-v11-gray-100-theme',
+    'ibm-pictograms-figma',
+    'ibm-icons-figma',
+    'v11-text-styles-figma',
+    'color-styles-figma'
+  ]}
+/>
+
+# GifPlayer
+
+<Column colLg='4'>
+<GifPlayer>
+
+![IBM Cloud Pictograms](/mdx/cloud.gif)
+
+![IBM Cloud Pictograms](/mdx/cloud.jpg)
+
+</GifPlayer>
+</Column>
+
+<Column colLg='4'>
+    <GifPlayer>
+
+    <Image src="/mdx/cloud.gif" />
+    <Image src="/mdx/cloud.jpg" />
+
+    </GifPlayer>
+
+</Column>
+
+
+# ImageWrapper
+
+Fixed image demo.
+
+<ImageWrapper type="fixed">
+
+![demo fixed image](/mdx/accordion-style-3.png)
+
+</ImageWrapper>
+
+# MdxIcon
+
+<Grid>
+  <Column>
+    <MdxIcon name="figma" />
+  </Column>
+  <Column>
+    <MdxIcon name="sketch" />
+  </Column>
+  <Column>
+    <MdxIcon name="ase" />
+  </Column>
+</Grid>
+
+## MdxIcon Inverse
+
+<Grid style={{ background: 'gray' }}>
+  <Column>
+    <MdxIcon name="github" color="inverse" />
+  </Column>
+  <Column>
+    <MdxIcon name="bee" color="inverse" />
+  </Column>
+</Grid>

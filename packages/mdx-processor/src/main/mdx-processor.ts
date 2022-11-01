@@ -7,7 +7,7 @@
 import { compile, run } from '@mdx-js/mdx'
 import { ReactElement } from 'react'
 import * as runtime from 'react/jsx-runtime.js'
-import { renderToString } from 'react-dom/server.js'
+import { renderToStaticMarkup, renderToString } from 'react-dom/server.js'
 import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
 import remarkUnwrapImages from 'remark-unwrap-images'
@@ -86,6 +86,63 @@ class MdxProcessor {
         JSON.stringify(compiledSource.data)
     )
     return { value: compiledSource.value, data: compiledSource.data }
+  }
+
+  /**
+   * Process a provided vFile, turning it into executable JS and frontmatter.
+   *
+   * @param mdxSource The input mdx source, as a vFile.
+   *
+   * @returns An vFile-like object containing a value (the JS) and a data object which contains
+   * frontmatter, if available.
+   */
+  public async processToHTML(mdxSource: VFile) {
+    this.config.logger.debug('-> process() input length: ' + mdxSource.value.length)
+
+    // Insert the frontmatter into the VFile
+    matter(mdxSource, { strip: true })
+
+    let compiledSource
+    try {
+      compiledSource = await this.compileSource(mdxSource)
+    } catch (err) {
+      this.config.logger.warn(err)
+
+      if (err instanceof VFileMessage) {
+        throw new MdxCompileException(err.reason, err.position || undefined)
+      }
+
+      throw err
+    }
+
+    try {
+      await this.checkRuntimeErrors(compiledSource)
+    } catch (err) {
+      this.config.logger.warn(err)
+      throw err
+    }
+
+    // A pseudo-vfile
+    this.config.logger.debug(
+      '<- process() output length: ' +
+          compiledSource.value.length +
+          ', data: ' +
+          JSON.stringify(compiledSource.data)
+    )
+
+    const { default: MdxContent } = await run(compiledSource, {
+      ...runtime,
+      // This is needed because of the providerImportSource prop. In this package, a provider isn't
+      // used, so this hook can be a no-op and defer to the provided components object
+      useMDXComponents: () => undefined
+    })
+
+    const html = renderToStaticMarkup(
+      MdxContent({
+        components: this.config.components
+      })
+    )
+    return { value: compiledSource.value, data: compiledSource.data, html }
   }
 
   private compileSource(mdxSource: VFile) {

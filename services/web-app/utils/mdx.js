@@ -78,7 +78,7 @@ export async function processMdxSource(mdxSource, url) {
   })
 
   try {
-    compiledSource = await processor.process(f)
+    compiledSource = await processor.processToHTML(f)
   } catch (err) {
     // Use null so these can be serialized to JSON
     mdxError = {

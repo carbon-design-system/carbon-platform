@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.66](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.65...@carbon-platform/web-app@0.2.66) (2022-11-02)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** remove tab strops from hidden sidenav ([5d31a25](https://github.com/carbon-design-system/carbon-platform/commit/5d31a25b26c2ef1a0b80afa89e758bc5c988b691)), closes [#1296](https://github.com/carbon-design-system/carbon-platform/issues/1296)
+
 ### [0.2.65](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.64...@carbon-platform/web-app@0.2.65) (2022-11-01)
 
 

@@ -18,6 +18,6 @@
     "format-package-json": "./format-package-json.mjs"
   },
   "dependencies": {
-    "octokit": "^2.0.7"
+    "octokit": "^2.0.10"
   }
 }

@@ -23,9 +23,14 @@
 // side nav and content
 // when banner is visible
 .banner + div > :global(.cds--header),
-.banner + div + div :global(.cds--side-nav--expanded),
 .banner + div + :global([class*='layout_body']) {
   margin-top: 3rem;
+}
+
+.banner + div + div :global(.cds--side-nav--expanded) {
+  @include breakpoint.breakpoint-down(lg) {
+    margin-top: 3rem;
+  }
 }
 
 @include breakpoint.breakpoint('lg') {

@@ -24,18 +24,18 @@
 // when banner is visible
 .banner + div > :global(.cds--header),
 .banner + div + :global([class*='layout_body']) {
-  margin-top: 3rem;
+  margin-top: spacing.$spacing-09;
 }
 
 @include breakpoint.breakpoint-down(lg) {
   .banner + div + div :global(.cds--side-nav--expanded) {
-    margin-top: 3rem;
+    margin-top: spacing.$spacing-09;
   }
 }
 
 @include breakpoint.breakpoint('lg') {
   .banner + div + div :global(section[class*='layout_side-nav']) {
-    margin-top: 3rem;
+    margin-top: spacing.$spacing-09;
   }
 }
 

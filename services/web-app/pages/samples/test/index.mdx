@@ -1,9 +1,10 @@
 
 import { getAllDesignKits } from '@/lib/github'
+import localVideo from './local-video.mp4'
+import localPoster from './local-poster.jpeg'
 
 export const getStaticProps = async () => {
   const designKitsData = await getAllDesignKits()
-  console.log(designKitsData)
   return {
     props: { designKitsData },
     // Next.js will attempt to re-generate the page:
@@ -621,3 +622,518 @@ Fixed image demo.
     <MdxIcon name="bee" color="inverse" />
   </Column>
 </Grid>
+
+# Preview
+
+<Preview
+  height="400"
+  title="Carbon Tutorial Step 5"
+  src="https://react-step-6--carbon-tutorial.netlify.com"
+  frameborder="no"
+  allowtransparency="true"
+  allowfullscreen="true"
+/>
+
+# Profile
+
+<Grid condensed>
+<Profile name="Abbey Hart" title="Front–end Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Alessandra Davila" title="Front–end Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Alison Joseph" title="Development Manager">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Andrea Cardona" title="Front–end Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Anna Gonzales" title="Senior Visual Designer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="D.A. Kahn" title="Front–end Developer, Accessibility Advocate">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Francine Lucca" title="Front–end Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Jeannie Servaas" title="IBM Design Principal">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="John Bister" title="Motion Designer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Josh Black" title="Software Developer, Technical Lead">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Joe Harvey" title="Full–stack Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Josefina Mancilla"  title="Front–end Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Lauren Rice" title="Visual Designer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Matt Rosno" title="Product Manager">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Scott Strubberg" title="Development Manager">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Taylor Jones" title="Software Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Thy Do" title="Visual Designer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="TJ Egan" title="Front–end Developer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+<Profile name="Tracey King" title="Senior Visual Designer">
+
+![Matt Rosno headshot](/mdx/rosno_matt.png)
+
+</Profile>
+</Grid>
+
+# ResourceCard
+
+<CardGroup>
+  <Column md={4} lg={4}>
+      <ResourceCard
+        subTitle="With subtitle"
+        title="Title"
+        aspectRatio="2:1"
+        actionIcon="arrowRight"
+        href="https://gatsby.carbondesignsystem.com"
+        >
+
+![Sketch icon](/mdx/sketch-icon.png)
+
+    </ResourceCard>
+
+  </Column>
+  <Column md={4} lg={4}>
+      <ResourceCard
+        subTitle="Only subtitle"
+        actionIcon="download"
+        aspectRatio="2:1"
+        href="https://gatsby.carbondesignsystem.com"
+        >
+
+![Sketch icon](/mdx/sketch-icon.png)
+
+    </ResourceCard>
+
+  </Column>
+  <Column md={4} lg={4}>
+      <ResourceCard
+        subTitle="Alternate color"
+        title="Dark"
+        aspectRatio="2:1"
+        color="dark"
+        actionIcon="email"
+        href="https://gatsby.carbondesignsystem.com"
+        >
+
+![Sketch icon](/mdx/sketch-icon.png)
+
+    </ResourceCard>
+
+  </Column>
+  <Column md={4} lg={4}>
+      <ResourceCard
+        title="Disabled card"
+        aspectRatio="2:1"
+        disabled
+        href="https://gatsby.carbondesignsystem.com"
+        >
+
+![Sketch icon](/mdx/sketch-icon.png)
+
+    </ResourceCard>
+
+  </Column>
+</CardGroup>
+
+# InlineNotification
+
+#### Info
+
+<InlineNotification>
+
+**Lorem ipsum:** dolor sit amet, [consectetur adipiscing](/components/InlineNotification) elit.
+Curabitur ac odio arcu. Vestibulum egestas eleifend porttitor. Quisque malesuada pulvinar
+pellentesque. Nunc dictum odio eu enim venenatis fringilla. Nunc finibus enim dui, a tempus quam
+commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
+
+</InlineNotification>
+
+#### Error
+
+<InlineNotification kind="error">
+
+**Error:** dolor sit amet, [consectetur adipiscing](/components/InlineNotification) elit. Curabitur
+ac odio arcu. Vestibulum egestas eleifend porttitor. Quisque malesuada pulvinar pellentesque. Nunc
+dictum odio eu enim venenatis fringilla. Nunc finibus enim dui, a tempus quam commodo vitae. Donec
+non eros gravida dolor porta suscipit non vel quam.
+
+</InlineNotification>
+
+#### Warning
+
+<InlineNotification kind="warning">
+
+**Warning:** dolor sit amet, [consectetur adipiscing](/components/InlineNotification) elit.
+Curabitur ac odio arcu. Vestibulum egestas eleifend porttitor. Quisque malesuada pulvinar
+pellentesque. Nunc dictum odio eu enim venenatis fringilla. Nunc finibus enim dui, a tempus quam
+commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
+
+</InlineNotification>
+
+#### Success
+
+<InlineNotification kind="success">
+
+**Success:** dolor sit amet, [consectetur adipiscing](/components/InlineNotification) elit.
+Curabitur ac odio arcu. Vestibulum egestas eleifend porttitor. Quisque malesuada pulvinar
+pellentesque. Nunc dictum odio eu enim venenatis fringilla. Nunc finibus enim dui, a tempus quam
+commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
+
+</InlineNotification>
+
+
+# PageDescription
+
+<PageDescription>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
+tempor in. Maecenas ultrices sem nec blandit dictum. [Pellentesque]() fermentum ullamcorper pretium.
+Duis turpis elit, facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus.
+Cras euismod facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In
+hac habitasse platea dictumst.
+
+</PageDescription>
+
+# Status Indicator
+
+<StatusIndicatorTable attention="high" />
+
+<StatusIndicatorTable attention="medium" />
+
+<StatusIndicatorTable attention="low" />
+
+# StorybookDemo
+
+## 8 Column / small
+
+<StorybookDemo
+  themeSelector
+  url="https://react.carbondesignsystem.com"
+  variants={[
+    {
+      label: 'Button',
+      variant: 'components-button--default'
+    },
+    {
+      label: 'Secondary',
+      variant: 'components-button--secondary'
+    },
+    {
+      label: 'Tertiary',
+      variant: 'components-button--tertiary'
+    },
+    {
+      label: 'Ghost',
+      variant: 'components-button--ghost'
+    },
+    {
+      label: 'Danger',
+      variant: 'components-button--danger'
+    },
+    {
+      label: 'Icon button',
+      variant: 'components-button--icon-button'
+    },
+    {
+      label: 'Set of buttons',
+      variant: 'components-button--set-of-buttons'
+    },
+    {
+      label: 'Skeleton',
+      variant: 'components-button--skeleton'
+    }
+  ]}
+/>
+
+## 8 Column / small -- tall
+
+<StorybookDemo
+  themeSelector
+  tall
+  url="https://react.carbondesignsystem.com"
+  variants={[
+    {
+      label: 'Button',
+      variant: 'components-button--default'
+    }
+  ]}
+/>
+
+## 12 Column / large
+
+<StorybookDemo
+  themeSelector
+  wide
+  url="https://react.carbondesignsystem.com"
+  variants={[
+    {
+      label: 'Button',
+      variant: 'components-button--default'
+    },
+    {
+      label: 'Secondary',
+      variant: 'components-button--secondary'
+    }
+  ]}
+/>
+
+## 12 Column / large -- tall
+
+<StorybookDemo
+  themeSelector
+  wide
+  tall
+  url="https://react.carbondesignsystem.com"
+  variants={[
+    {
+      label: 'Button',
+      variant: 'components-button--default'
+    },
+    {
+      label: 'Secondary',
+      variant: 'components-button--secondary'
+    }
+  ]}
+/>
+
+## No themeSelector
+
+<StorybookDemo
+  url="https://react.carbondesignsystem.com"
+  variants={[
+    {
+      label: 'Button',
+      variant: 'components-button--default'
+    },
+    {
+      label: 'Secondary',
+      variant: 'components-button--secondary'
+    }
+  ]}
+/>
+
+## No variants
+
+<StorybookDemo
+  wide
+  tall
+  themeSelector
+  url="https://react.carbondesignsystem.com"
+  variants={[
+    {
+      label: 'Button',
+      variant: 'components-button--default'
+    }
+  ]}
+/>
+
+## Carbon for ibm.com
+
+<StorybookDemo
+  url="https://www.ibm.com/standards/carbon/web-components"
+  tall
+  variants={[
+    {
+      label: 'Card',
+      variant: 'components-card--default'
+    },
+    {
+      label: 'Pictogram',
+      variant: 'components-card--pictogram'
+    },
+    {
+      label: 'Static',
+      variant: 'components-card--static'
+    },
+    {
+      label: 'Logo',
+      variant: 'components-card--logo'
+    }
+  ]}
+/>
+
+## Carbon for IBM Products
+
+<StorybookDemo
+  url="https://carbon-for-ibm-products.netlify.app"
+  variants={[
+    {
+      label: 'Five tags',
+      variant: 'ibm-products-components-tag-set-tagset--five-tags'
+    },
+    {
+      label: 'Many tags',
+      variant: 'ibm-products-components-tag-set-tagset--many-tags'
+    },
+    {
+      label: 'Multiline tags',
+      variant: 'ibm-products-components-tag-set-tagset--multiline-tags'
+    },
+    {
+      label: 'Hundreds of tags',
+      variant: 'ibm-products-components-tag-set-tagset--hundreds-of-tags'
+    }
+  ]}
+/>
+
+# Tabs
+
+<Tabs>
+
+    <Tab label="Text">
+
+    The tab component can be used for a variety of content. From text, to images, to
+    columns. If you want to have multiple columns, you’ll need to use our `Row` and
+    `Column` helpers as demonstrated in the "Two images" tab.
+
+    </Tab>
+
+    <Tab label="Single image">
+    If your content is full width, you don’t need `Row` and `Column` ![carbon logo](/carbon.png)
+    </Tab>
+
+</Tabs>
+
+<Tabs>
+
+    <Tab label="Text">
+
+    The tab component can be used for a variety of content. From text, to images, to
+    columns. If you want to have multiple columns, you’ll need to use our `Row` and
+    `Column` helpers as demonstrated in the "Two images" tab.
+
+    </Tab>
+
+    <Tab label="Single image">
+    If your content is full width, you don’t need `Row` and `Column` ![carbon logo](/carbon.png)
+    </Tab>
+
+</Tabs>
+
+# Title
+
+<Title>Lorem ipsum dolor sit amet</Title>
+
+# TypeScaleTable
+
+<TypeScaleTable />
+
+# TypesetStyle
+
+<TypesetStyle typesets="smallStyle" />
+<TypesetStyle typesets="body" />
+<TypesetStyle typesets="fixedHeadings" />
+<TypesetStyle typesets="fluidHeadings" breakpointControls={true} />
+<TypesetStyle typesets="fluidCallouts,fluidDisplay" breakpointControls={true} />
+
+# TypeWeight
+
+<TypeWeight />
+
+<TypeWeight type="types" />
+
+<TypeWeight type="italic" />
+
+# Video
+
+<Video title="Carbon homepage video" vimeoId="322021187" />
+
+<Video src="/videos/hero-video.mp4" poster="/videos/poster.png">
+  <track kind="captions" default src="/videos/hero-video.vtt" srcLang="en" />
+</Video>
+
+<Video src={localVideo} poster={localPoster} />
+
+# AnchorLinks
+
+<AnchorLinks>
+  <AnchorLink>Link 1</AnchorLink>
+  <AnchorLink>Link 2</AnchorLink>
+  <AnchorLink>Link 3</AnchorLink>
+  <AnchorLink>Link 4</AnchorLink>
+  <AnchorLink>Link 5</AnchorLink>
+  <AnchorLink>Link 6</AnchorLink>
+  <AnchorLink>Link 7</AnchorLink>
+</AnchorLinks>
+
+<AnchorLinks small>
+  <AnchorLink>Small link 1</AnchorLink>
+  <AnchorLink>Small link 2</AnchorLink>
+  <AnchorLink>Small link 3</AnchorLink>
+</AnchorLinks>
+
+<div id="link-7">Hey</div>
+
+# ColorBlock
+
+<Grid>
+  <Column>
+    <ColorBlock size="xs">#ffffff</ColorBlock>
+    <ColorBlock size="xs">#f4f4f4</ColorBlock>
+    <ColorBlock size="xs">#282828</ColorBlock>
+    <ColorBlock size="xs">#171717</ColorBlock>
+  </Column>
+</Grid>
+
+# Glossary
+
+<Glossary />

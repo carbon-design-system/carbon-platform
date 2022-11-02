@@ -12,6 +12,17 @@ test('it throws when adding a query with a duplicate name', (t) => {
   const devDataset = new DevDataset()
 
   t.throws(() =>
-    devDataset.addDynamic({ name: 'dup', response: {} }, { name: 'dup', response: {} })
+    devDataset.addDynamic({ name: 'dup', responseData: {} }, { name: 'dup', responseData: {} })
+  )
+})
+
+test('it does not throw when adding a query with the same name and different variables', (t) => {
+  const devDataset = new DevDataset()
+
+  t.notThrows(() =>
+    devDataset.addDynamic(
+      { name: 'dup', variables: { different: 'yeah' }, responseData: {} },
+      { name: 'dup', variables: {}, responseData: {} }
+    )
   )
 })

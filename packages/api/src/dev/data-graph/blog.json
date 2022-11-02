@@ -1,0 +1,35 @@
+{
+  "$schema": "./dev-dataset.schema.json",
+  "queries": [
+    {
+      "name": "MediumArticles",
+      "responseData": {
+        "blog": {
+          "mediumPosts": [
+            {
+              "title": "Dummy Title",
+              "author": "Jane Doe",
+              "link": "",
+              "date": 1643785342000,
+              "thumbnail": "/carbon.png"
+            },
+            {
+              "title": "Dummy Title",
+              "author": "Jane Doe",
+              "link": "",
+              "date": 1643785342000,
+              "thumbnail": "/carbon.png"
+            },
+            {
+              "title": "Dummy Title",
+              "author": "Jane Doe",
+              "link": "",
+              "date": 1643785342000,
+              "thumbnail": "/carbon.png"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

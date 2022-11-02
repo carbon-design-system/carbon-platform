@@ -21,7 +21,7 @@ interface DevDatasetEntry {
   variables?: {
     [key: string]: unknown
   }
-  response: {
+  responseData: {
     [key: string]: unknown
   }
 }

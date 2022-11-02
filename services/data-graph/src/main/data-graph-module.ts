@@ -11,6 +11,7 @@ import { GraphQLModule } from '@nestjs/graphql'
 
 import { DataGraphController } from './data-graph-controller.js'
 import { LibrariesModule } from './libraries/libraries-module.js'
+import { MediumPostsModule } from './medium-posts/medium-posts-module.js'
 import { RequestLogPlugin } from './request-log-plugin.js'
 import { UsersModule } from './users/users-module.js'
 
@@ -28,6 +29,7 @@ class DataGraphModule {
         // Resolver modules
         LibrariesModule,
         UsersModule,
+        MediumPostsModule,
 
         GraphQLModule.forRoot<ApolloDriverConfig>({
           driver: ApolloDriver,

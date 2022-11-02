@@ -19,7 +19,7 @@ systems.
 
 ## Latest news
 
-Read our latest articles on [Medium](https://medium.com/carbondesign).
+<MediumPosts cardProps={{ color: 'light' }} posts={props.mediumPosts} />
 
 ## Books and articles
 
@@ -85,3 +85,31 @@ Read our latest articles on [Medium](https://medium.com/carbondesign).
   </ArticleCard>
 </Column>
 </Row>
+
+import { DataGraph, gql } from '@carbon-platform/api/data-graph'
+
+export const getStaticProps = async () => {
+  const dataGraph = new DataGraph()
+  const response = await dataGraph.queryData({
+    query: gql`
+      query MediumArticles {
+        blog {
+          mediumPosts(publicationName: carbondesign, limit: 3, order: descending) {
+            title
+            author
+            link
+            date
+            thumbnail
+          }
+        }
+      }
+    `
+  })
+  return {
+    props: { mediumPosts: response.data.blog.mediumPosts },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every hour
+    revalidate: 60 * 60 // In seconds
+  }
+}

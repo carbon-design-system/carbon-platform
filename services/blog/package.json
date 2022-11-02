@@ -1,0 +1,33 @@
+{
+  "name": "@carbon-platform/blog",
+  "description": "Carbon Platform Blog service",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "author": "IBM",
+  "private": true,
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git",
+    "directory": "services/blog"
+  },
+  "bugs": {
+    "url": "TODO"
+  },
+  "type": "module",
+  "main": "dist/main/index.js",
+  "scripts": {
+    "build": "nest build",
+    "bundle": "node esbuild.js",
+    "clean": "rimraf dist *.tsbuildinfo",
+    "service:build": "npm run build",
+    "start": "node dist/main/index.js",
+    "start:debug": "nest start --debug --watch",
+    "start:dev": "nest start --watch",
+    "test": "echo 'No tests defined yet! Maybe you should add some"
+  },
+  "dependencies": {
+    "node-html-parser": "^6.1.1",
+    "rss-parser": "^3.12.0"
+  }
+}

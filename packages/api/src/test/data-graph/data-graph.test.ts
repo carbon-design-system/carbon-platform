@@ -69,7 +69,7 @@ test('it can get a dynamically added dev dataset entry', async (t) => {
   const runtime = new Runtime({ runMode: RunMode.Dev })
   const dataGraph = new DataGraph({ runtime })
 
-  dataGraph.addDevDataset([{ name: 'wowtest', response: { hello: 'world' } }])
+  dataGraph.addDevDataset([{ name: 'wowtest', responseData: { hello: 'world' } }])
 
   const result = await dataGraph.queryData<any>({ query: 'query wowtest { asdf { id } }' })
 

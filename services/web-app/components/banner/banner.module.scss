@@ -27,8 +27,8 @@
   margin-top: 3rem;
 }
 
-.banner + div + div :global(.cds--side-nav--expanded) {
-  @include breakpoint.breakpoint-down(lg) {
+@include breakpoint.breakpoint-down(lg) {
+  .banner + div + div :global(.cds--side-nav--expanded) {
     margin-top: 3rem;
   }
 }

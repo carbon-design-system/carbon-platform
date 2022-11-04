@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.14](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.13...@carbon-platform/mdx-components@0.1.14) (2022-11-04)
+
+
+### Misc. 🔮
+
+* rebuild lock file, hoist @carbon/react to base workspace ([453c26c](https://github.com/carbon-design-system/carbon-platform/commit/453c26ccbc1cfb9079c326b6d173c3c3e419ece4))
+
 ### [0.1.13](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.12...@carbon-platform/mdx-components@0.1.13) (2022-11-03)
 
 

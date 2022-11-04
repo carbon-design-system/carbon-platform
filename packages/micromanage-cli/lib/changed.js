@@ -42,31 +42,47 @@ async function handleChangedCommand(opts) {
   // Get changed workspaces based on commits
   const changedWorkspaces = getChangedWorkspaces(opts.since)
 
-  console.error('Checking for dependent services\n')
+  // Get changed workspaces based on cascading dependencies
+  const additional = await getChangedDependentWorkspaces(changedWorkspaces, opts.baseWorkspace)
 
-  // Add in services that depend on changed packages
-  for (const pkg of changedWorkspaces.filter(filters.PACKAGES)) {
-    const dependentServices = await getDependentServices(pkg)
-    dependentServices.forEach(
-      (dep) => !changedWorkspaces.includes(dep) && changedWorkspaces.push(dep)
-    )
-  }
-
-  // If a base workspace was provided and it has changed, mark all other workspaces as changed
-  if (opts.baseWorkspace && changedWorkspaces.find((ws) => ws.name === opts.baseWorkspace)) {
-    console.error('Base workspace has changed. Marking all workspaces as changed\n')
-    getWorkspaces().forEach(
-      (dep) => !changedWorkspaces.includes(dep) && changedWorkspaces.push(dep)
-    )
-  }
+  additional.forEach((ws) => {
+    !changedWorkspaces.includes(ws) && changedWorkspaces.push(ws)
+  })
 
   const results = changedWorkspaces.map((dep) => dep.name)
+
+  // Put some space between the progress output and the actual stdout results
+  console.error()
 
   if (opts.json) {
     console.log(JSON.stringify(results))
   } else {
     console.log(results.join('\n'))
   }
+}
+
+async function getChangedDependentWorkspaces(changedWorkspaces, baseWorkspaceName) {
+  const additional = []
+
+  // Add in services that depend on changed packages
+  console.error('Checking for dependent services')
+  for (const pkg of changedWorkspaces.filter(filters.PACKAGES)) {
+    const dependentServices = await getDependentServices(pkg)
+    dependentServices.forEach((dep) => !additional.includes(dep) && additional.push(dep))
+  }
+
+  // If a base workspace was provided and it has changed, mark all other workspaces as changed
+  if (baseWorkspaceName) {
+    console.error('Checking for base workspace changes')
+
+    if (changedWorkspaces.find((ws) => ws.name === baseWorkspaceName)) {
+      console.error('Base workspace has changed. Marking all workspaces as changed')
+
+      getWorkspaces().forEach((dep) => !additional.includes(dep) && additional.push(dep))
+    }
+  }
+
+  return additional
 }
 
 function getChangedWorkspaces(sinceRef) {
@@ -95,4 +111,4 @@ function getChangedWorkspaces(sinceRef) {
   })
 }
 
-export { buildChangedCommand, getChangedWorkspaces }
+export { buildChangedCommand, getChangedDependentWorkspaces, getChangedWorkspaces }

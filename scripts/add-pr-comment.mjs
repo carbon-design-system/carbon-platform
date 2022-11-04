@@ -6,7 +6,10 @@
  */
 import { Octokit } from 'octokit'
 
-import { getChangedWorkspaces } from '../packages/micromanage-cli/lib/changed.js'
+import {
+  getChangedDependentWorkspaces,
+  getChangedWorkspaces
+} from '../packages/micromanage-cli/lib/changed.js'
 import { exec, getWorkspaceForFile } from '../packages/micromanage-cli/lib/utils.js'
 
 const commitTypes = ['fix', 'feat', 'breaking']
@@ -15,10 +18,13 @@ const remote = 'origin'
 const accessToken = process.env.PR_COMMENT_BOT_TOKEN
 const headRef = process.env.GITHUB_HEAD_REF
 const baseRef = process.env.GITHUB_BASE_REF
-const prNumber = process.env.GITHUB_REF.split('/')[2] // refs/pull/<pr_number>/merge
-const [repoOwner, repoName] = process.env.GITHUB_REPOSITORY.split('/')
+const prNumber = process.env.GITHUB_REF?.split('/')?.[2] // refs/pull/<pr_number>/merge
+const [repoOwner, repoName] = process.env.GITHUB_REPOSITORY?.split('/') || [undefined, undefined]
 
 function checkVars() {
+  if (!accessToken) {
+    throw new Error('No access token found in PR_COMMENT_BOT_TOKEN environment variable')
+  }
   if (!headRef) {
     throw new Error('No head ref found in GITHUB_HEAD_REF environment variable')
   }
@@ -167,7 +173,16 @@ console.log()
 
 const updatedWorkspaces = {}
 
-getChangedWorkspaces(`${remote}/${baseRef}`).forEach((ws) => {
+const changedWorkspaces = getChangedWorkspaces(`${remote}/${baseRef}`)
+const changedDependentWorkspaces = await getChangedDependentWorkspaces(
+  changedWorkspaces,
+  '@carbon-platform/base'
+)
+
+changedWorkspaces.forEach((ws) => {
+  updatedWorkspaces[ws.name] = 'fix'
+})
+changedDependentWorkspaces.forEach((ws) => {
   updatedWorkspaces[ws.name] = 'fix'
 })
 

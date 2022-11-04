@@ -52,7 +52,7 @@ jobs:
 
       - id: version
         name: Version 📆
-        run: echo ::set-output name=changed_workspaces::$(npx micromanage changed | xargs npx micromanage version --json)
+        run: echo ::set-output name=changed_workspaces::$(npx micromanage changed --base-workspace=@carbon-platform/base | xargs npx micromanage version --json)
 
   #
   # Build docker images for all changed services and push them to the container registry

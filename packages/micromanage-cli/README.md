@@ -18,7 +18,7 @@ Commands:
   package                                Commands that operate on packages
   service                                Commands that operate on services
   uninstall [options] <package-name...>  Uninstall packages from a workspace
-  version [options] <workspace-name...>  Update workspace versions based on conventional commits
+  version [options] [workspace-name...]  Update workspace versions based on conventional commits
   help [command]                         display help for command
 ```
 
@@ -39,6 +39,7 @@ Options:
                   version in its package.json file
   --dry-run       Do not perform a build. Only output the image name and build command
   --json          Output resulting docker images as a JSON array
+  --pull          Add the `--pull` option when running the docker build command
   -h, --help      display help for command
 ```
 
@@ -47,12 +48,14 @@ Options:
 ```
 Usage: micromanage changed [options]
 
-List each workspace that has changed since its most recent tag
+List each workspace that has changed since its most recent tag. An optional base workspace name can
+be provided which will be considered as a dependency of all other workspaces.
 
 Options:
-  --base <base_ref>  Compare workspaces to a ref instead
-  --json             Output as a JSON array
-  -h, --help         display help for command
+  --base-workspace <workspace_name>  Workspace considered as the "base" on which all others depend
+  --since <git_ref>                  Compare workspaces to a ref instead
+  --json                             Output as a JSON array
+  -h, --help                         display help for command
 ```
 
 ## `install`
@@ -131,7 +134,6 @@ Options:
 
 Commands:
   dependencies [options] <workspace-name>  List the package dependencies of a given service
-  deploy [options]                         Deploy all services to CodeEngine
   help [command]                           display help for command
 ```
 
@@ -148,19 +150,6 @@ Arguments:
 Options:
   --json          Output as a JSON array
   -h, --help      display help for command
-```
-
-### `deploy` (Deprecated)
-
-```
-Usage: micromanage service deploy [options]
-
-Deploy all services to CodeEngine
-
-Options:
-  --dry-run          Do not make any changes. Only output prospective updates
-  --target <target>  target environment for deploy: [test,prod]
-  -h, --help         display help for command
 ```
 
 ## `uninstall`
@@ -182,7 +171,7 @@ Options:
 ## `version`
 
 ```
-Usage: micromanage version [options] <workspace-name...>
+Usage: micromanage version [options] [workspace-name...]
 
 Update the version of each provided workspace based on a conventional commits changelog. The
 version bump (major/minor/patch) is determined based on the conventional commits found since each

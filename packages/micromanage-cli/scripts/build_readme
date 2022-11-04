@@ -1,0 +1,83 @@
+#!/bin/sh
+#
+# Copyright IBM Corp. 2022, 2022
+#
+# This source code is licensed under the Apache-2.0 license found in the
+# LICENSE file in the root directory of this source tree.
+#
+set -e
+
+cat << EOF
+# micromanage-cli
+
+> The missing npm workspace management tool.
+
+Micromanage uses npm 8 workspaces as the foundation for managing various packages and services
+across a monorepo.
+
+\`\`\`
+$(npx micromanage --help)
+\`\`\`
+
+# Commands
+
+## \`build\`
+
+\`\`\`
+$(npx micromanage build --help)
+\`\`\`
+
+## \`changed\`
+
+\`\`\`
+$(npx micromanage changed --help)
+\`\`\`
+
+## \`install\`
+
+\`\`\`
+$(npx micromanage install --help)
+\`\`\`
+
+## \`package\`
+
+\`\`\`
+$(npx micromanage package --help)
+\`\`\`
+
+### \`dependents\`
+
+\`\`\`
+$(npx micromanage package dependents --help)
+\`\`\`
+
+### \`publish\`
+
+\`\`\`
+$(npx micromanage package publish --help)
+\`\`\`
+
+## \`service\`
+
+\`\`\`
+$(npx micromanage service --help)
+\`\`\`
+
+### \`dependencies\`
+
+\`\`\`
+$(npx micromanage service dependencies --help)
+\`\`\`
+
+## \`uninstall\`
+
+\`\`\`
+$(npx micromanage uninstall --help)
+\`\`\`
+
+## \`version\`
+
+\`\`\`
+$(npx micromanage version --help)
+\`\`\`
+EOF

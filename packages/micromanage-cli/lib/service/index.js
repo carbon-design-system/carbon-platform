@@ -7,14 +7,12 @@
 import { Command } from 'commander'
 
 import { buildDependenciesCommand } from './dependencies.js'
-import { buildDeployCommand } from './deploy.js'
 
 function buildServiceCommand() {
   return new Command('service')
     .configureHelp({ helpWidth: 100 })
     .description('Commands that operate on services')
     .addCommand(buildDependenciesCommand())
-    .addCommand(buildDeployCommand())
 }
 
 export { buildServiceCommand }

@@ -37,7 +37,6 @@
     "@carbon/layout": "^11.7.0",
     "@carbon/pictograms": "^12.7.0",
     "@carbon/pictograms-react": "^11.33.0",
-    "@carbon/react": "^1.17.0-rc.0",
     "@mdx-js/loader": "^2.1.5",
     "@mdx-js/mdx": "^2.1.5",
     "@mdx-js/react": "^2.1.5",

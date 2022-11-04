@@ -15,6 +15,7 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "dependencies": {
+    "@carbon/react": "^1.17.0-rc.0",
     "@nestjs/cli": "^9.1.5",
     "@nestjs/common": "^9.1.6",
     "@nestjs/core": "^9.1.6",

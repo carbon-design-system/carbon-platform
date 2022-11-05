@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.69](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.68...@carbon-platform/web-app@0.2.69) (2022-11-05)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add https to ibm-common.js script ([b8175c9](https://github.com/carbon-design-system/carbon-platform/commit/b8175c925dfc97ba0f1c7aaa292ed145daae558f))
+
 ### [0.2.68](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.67...@carbon-platform/web-app@0.2.68) (2022-11-04)
 
 

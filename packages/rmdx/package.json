@@ -1,0 +1,31 @@
+{
+  "name": "@carbon-platform/rmdx",
+  "description": "Convert remote MDX to safe-to-use React components",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "author": "IBM",
+  "private": true,
+  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbon-design-system/carbon-platform.git",
+    "directory": "packages/rmdx"
+  },
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+  },
+  "type": "module",
+  "exports": {
+    "default": "./dist/main/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "clean": "rimraf dist generated *.tsbuildinfo",
+    "package:build": "npm run build",
+    "test": "ava --config ../../ava.config.mjs"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {}
+}

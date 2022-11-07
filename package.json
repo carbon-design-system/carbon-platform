@@ -28,6 +28,7 @@
     "packages/mdx-sanitizer",
     "packages/micromanage-cli",
     "packages/resources",
+    "packages/rmdx",
     "packages/schemas",
     "services/data-graph",
     "services/logging",

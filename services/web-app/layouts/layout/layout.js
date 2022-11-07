@@ -111,7 +111,11 @@ const SideNav = () => {
         <section className={styles['side-nav']}>
           <div className={styles['side-nav-inner']}>
             <div className={cnSlide}>
-              <NavPrimary className={styles['side-nav-item']} globalItems={globalNavData} />
+              <NavPrimary
+                className={styles['side-nav-item']}
+                globalItems={globalNavData}
+                visible={!isSecondaryNav}
+              />
               <NavSecondary
                 className={styles['side-nav-item']}
                 visible={isSecondaryNav}

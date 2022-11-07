@@ -62,7 +62,7 @@ function App({ Component, pageProps }) {
         };`}
       </Script>
       <Script
-        src="//1.www.s81c.com/common/stats/ibm-common.js"
+        src="https://1.www.s81c.com/common/stats/ibm-common.js"
         type="text/javascript"
         async="async"
       ></Script>

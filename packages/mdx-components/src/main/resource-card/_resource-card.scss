@@ -135,8 +135,8 @@
   .cds--css-grid-column {
     margin-bottom: 0;
   }
-
-  [class*='cds--lg:col-span-4']:nth-child(3n) {
+  // items: 3,5,7,9...
+  [class*='cds--lg:col-span-4']:nth-child(2n + 3) {
     @include breakpoint.breakpoint('lg') {
       grid-column-start: 1;
     }

@@ -14,7 +14,7 @@ import { dfs } from '@/utils/tree'
 
 import styles from './nav-tree.module.scss'
 
-const NavTree = ({ activeItem, items = [], label }) => {
+const NavTree = ({ activeItem, items = [], label, visible = true }) => {
   const [itemNodes, setItemNodes] = useState([])
   const [treeActiveItem, setTreeActiveitem] = useState('')
 
@@ -55,6 +55,15 @@ const NavTree = ({ activeItem, items = [], label }) => {
     setItemNodes(newItemNodeArray)
   }, [items])
 
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      // Remove tabstop from headings
+      document
+        .querySelectorAll('[class*=section-group]')
+        .forEach((heading) => heading.setAttribute('tabindex', '-1'))
+    })
+  }, [])
+
   const getItemId = (item) => {
     return item.path || slugify(item.title, { lower: true, strict: true })
   }
@@ -73,12 +82,12 @@ const NavTree = ({ activeItem, items = [], label }) => {
   )
 
   const isTreeNodeExpanded = (node) => {
-    return !!dfs([node], (evalNode) => evalNode.items?.some((item) => isTreeNodeActive(item)))
+    return !!dfs([node], (evalNode) => evalNode.items?.some((item) => item.id === treeActiveItem))
   }
 
   useEffect(() => {
     const activeNode = dfs(itemNodes, isTreeNodeActive)
-    setTreeActiveitem(activeNode?.id ?? activeItem)
+    setTreeActiveitem(activeNode?.id)
   }, [activeItem, isTreeNodeActive, itemNodes])
 
   const renderTree = (nodes) => {
@@ -96,7 +105,7 @@ const NavTree = ({ activeItem, items = [], label }) => {
       } else {
         if (node.path) {
           label = (
-            <a href={node.path} className={styles.anchor}>
+            <a href={node.path} className={styles.anchor} tabIndex={visible ? 0 : '-1'}>
               {node.title}
             </a>
           )
@@ -110,8 +119,13 @@ const NavTree = ({ activeItem, items = [], label }) => {
             id={node.id}
             key={node.id}
             isExpanded={isTreeNodeExpanded(node)}
-            className={clsx({ [styles['section-group']]: node.sectionGroup })}
-            onClick={() => node.path && window.open(node.path, '_self')}
+            disabled={!visible}
+            className={clsx({
+              [styles['section-group']]: node.sectionGroup,
+              'cds--tree-node--active': node.id === treeActiveItem,
+              'cds--tree-node--selected': node.id === treeActiveItem
+            })}
+            onClick={() => node.path && setTreeActiveitem(node.id)}
           >
             {renderTree(node.items)}
           </TreeNode>
@@ -143,7 +157,8 @@ NavTree.propTypes = {
       items: PropTypes.array
     })
   ),
-  label: PropTypes.string
+  label: PropTypes.string,
+  visible: PropTypes.bool
 }
 
 export default NavTree

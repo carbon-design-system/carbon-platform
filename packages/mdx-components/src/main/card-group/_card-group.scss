@@ -5,12 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use '@carbon/react/scss/theme' as theme;
 @use '@carbon/react/scss/breakpoint' as breakpoint;
+@use '@carbon/react/scss/theme' as theme;
+@use '@carbon/react/scss/spacing' as spacing;
 
 @use '../utils' as *;
 
-// Sets gray border on the top of cards at the smallest breakpoint and removes the margin set by the <Column> in the Grid component.
+.#{with-prefix('card-group')} {
+  margin-top: spacing.$spacing-07;
+}
+
+// Sets gray border on the top of cards at the smallest breakpoint and
+// removes the margin set by the <Column> in the Grid component.
 .#{with-prefix('card-group')} [class*='column'] {
   border-top: 1px solid theme.$border-subtle;
   margin-bottom: 0;

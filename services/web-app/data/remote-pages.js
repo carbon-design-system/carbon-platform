@@ -30,7 +30,6 @@ export const remotePages = {
     filePath: '/src/pages/data-visualization/legends/index.mdx',
     pageHeaderType: 'collection'
   },
-  'contributing/bugs-and-requests': {},
   'contributing/icons': {
     filePath: '/src/pages/contributing/contribute-icons.mdx'
   },
@@ -121,8 +120,8 @@ export const remotePages = {
       ref: 'carbon-platform'
     }
   },
-  'elements/typography/styling-strategies': {
-    filePath: '/src/pages/guidelines/typography/styling-strategies.mdx'
+  'elements/typography/style-strategies': {
+    filePath: '/src/pages/guidelines/typography/style-strategies.mdx'
   },
   'elements/typography/type-sets': {
     filePath: '/src/pages/guidelines/typography/type-sets.mdx',

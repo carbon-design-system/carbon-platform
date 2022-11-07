@@ -39,7 +39,7 @@ separately. See our [get started](/get-started/develop/react) guide to start bui
 ## Under the hood
 
 Our grid is built with Flexbox and closely mirrors Bootstrap's grid in that it uses containers, rows
-and columns to layout and align content. Below is an in-depth look at how it all comes together.
+and columns to layout and align content. Below is an in–depth look at how it all comes together.
 
 If you’re new to Flexbox, this
 [CSS Tricks Flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) will provide
@@ -117,7 +117,7 @@ the UI Shell.
 
 ### Basic grid explainer
 
-The below example creates four equal-width columns at small, medium, large, and extra large
+The below example creates four equal–width columns at small, medium, large, and extra large
 breakpoints using our predefined grid classes. The columns are centered in the page within the
 parent container.
 
@@ -169,13 +169,13 @@ breakpoint on up. See the auto-layout columns for more on this.
 | Breakpoints             | Class prefix     | # of cols | Gutter width\* |
 | ----------------------- | ---------------- | --------- | -------------- |
 | Small (&#60; 672)       | `.cds--col-sm-`  | 4         | 32px           |
-| Medium (672 - 1056px)   | `.cds--col-md-`  | 8         | 32px           |
-| Large (1056 - 1312px)   | `.cds--col-lg-`  | 16        | 32px           |
-| X-Large (1312 - 1584px) | `.cds--col-xlg-` | 16        | 32px           |
+| Medium (672 – 1056px)   | `.cds--col-md-`  | 8         | 32px           |
+| Large (1056 – 1312px)   | `.cds--col-lg-`  | 16        | 32px           |
+| X–Large (1312 – 1584px) | `.cds--col-xlg-` | 16        | 32px           |
 | Max (&#x3e; 1584)       | `.cds--col-max-` | 16        | 32px           |
 
 <Caption>
-  * Gutter width is 32px — with 16px on each side of a column — at every breakpoint.
+  \* Gutter width is 32px — with 16px on each side of a column — at every breakpoint.
 </Caption>
 
 <br />
@@ -353,7 +353,7 @@ instances, you are allowed to generate a three columns within our system.
 
 Use these classes for easy column sizing when you want to maintain the same grid tiers at every
 breakpoint. In the example below, the grid layouts apply to every breakpoint: from `sm` to `max`.
-Add any number of unit-less classes per row you need and every column will be the same width.
+Add any number of unit–less classes per row you need and every column will be the same width.
 
 <div className={styles['grid-demo']}>
   <Grid condensed>
@@ -499,7 +499,7 @@ here.
 #### Usage
 
 Use the Wide grid mode when you are dealing with separate pieces of information with separate
-destinations. This grid mode is also good for text-heavy situations, where maximum breathing room
+destinations. This grid mode is also good for text–heavy situations, where maximum breathing room
 helps provide clarity and legibility. Also, basic images (without text on them) always use this grid
 mode.
 
@@ -964,7 +964,7 @@ heights and spacers.
 ### Full bleed content
 
 By default, the grid maintains a max width of 1584px, but allows content to span infinitely. When
-you want background colors or an image to go edge-to-edge, you will need to create a wrapping node
+you want background colors or an image to go edge–to–edge, you will need to create a wrapping node
 around your grid with the color that you are looking to apply. In this example, we create an outer
 div and give it the class name bleed which we then style with a background color.
 
@@ -1184,22 +1184,22 @@ Image size can change ratios when the breakpoint changes.
 ![When combining tiles, or tiles and images, do give each a designated aspect ratio.](/elements/2x-grid/AR_do_1.png)
 
   </DoDont>
-  <DoDont type="dont" caption="Do not shoe-horn each tile / tile and image into a combined aspect ratio.">
+  <DoDont type="dont" caption="Do not shoe–horn each tile / tile and image into a combined aspect ratio.">
 
-![Do not shoe-horn each tile / tile and image into a combined aspect ratio.](/elements/2x-grid/AR_dont_1.png)
+![Do not shoe–horn each tile / tile and image into a combined aspect ratio.](/elements/2x-grid/AR_dont_1.png)
 
   </DoDont>
 </DoDontRow>
 
 <DoDontRow>
-  <DoDont caption="Do use a designated aspect ratio for a grid of same-size fixed ratio tiles.">
+  <DoDont caption="Do use a designated aspect ratio for a grid of same–size fixed ratio tiles.">
 
-![Do use a designated aspect ratio for a grid of same-size fixed ratio tiles.](/elements/2x-grid/AR_do_2.png)
+![Do use a designated aspect ratio for a grid of same–size fixed ratio tiles.](/elements/2x-grid/AR_do_2.png)
 
   </DoDont>
-  <DoDont type="dont" caption="Do not start with a random aspect ratio for a grid of same-size fixed ratio tiles.">
+  <DoDont type="dont" caption="Do not start with a random aspect ratio for a grid of same–size fixed ratio tiles.">
 
-![Don’t start with a random aspect ratio for a grid of same-size fixed ratio tiles.](/elements/2x-grid/AR_dont_2.png)
+![Don’t start with a random aspect ratio for a grid of same–size fixed ratio tiles.](/elements/2x-grid/AR_dont_2.png)
 
   </DoDont>
 </DoDontRow>

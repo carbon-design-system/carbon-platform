@@ -32,9 +32,10 @@ const TypesetExample = (props) => (
 
       const currentBreakpointPx = Object.values(breakpoints)[indexOfClosestLargerBreakpoint]
 
-      const currentBreakpointName = Object.keys(breakpoints).find(
-        (val) => val === currentBreakpointPx
-      )
+      const currentBreakpointName = Object.entries(breakpoints).find(
+        ([_, val]) => val === currentBreakpointPx
+      )[0]
+
       const getCurrentCompoundStylesForBreakpoint = (breakpointName) => {
         const typeKeys = Object.keys(breakpoints)
         const typeStylesUntilCurrentBreakpoint = []

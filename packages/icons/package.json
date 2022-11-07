@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/icons",
   "description": "Carbon platform icons",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
@@ -25,7 +25,7 @@
     "package:build": "npm run build"
   },
   "dependencies": {
-    "@svgr/cli": "^6.4.0",
+    "@svgr/cli": "^6.5.1",
     "rimraf": "^3.0.2"
   },
   "peerDependencies": {

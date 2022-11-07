@@ -190,6 +190,7 @@ const platformRedirects = [
   ['/elements/spacing', '/elements/spacing/overview'],
   ['/elements/themes', '/elements/themes/overview'],
   ['/elements/typography', '/elements/typography/overview'],
+  ['/elements/typography/styling-strategies', '/elements/typography/style-strategies'],
   ['/guidelines', '/guidelines/accessibility/overview'],
   ['/guidelines/accessibility', '/guidelines/accessibility/overview'],
   ['/guidelines/content', '/guidelines/content/overview'],

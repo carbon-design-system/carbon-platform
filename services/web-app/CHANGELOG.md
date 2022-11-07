@@ -2,6 +2,86 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.69](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.68...@carbon-platform/web-app@0.2.69) (2022-11-05)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add https to ibm-common.js script ([b8175c9](https://github.com/carbon-design-system/carbon-platform/commit/b8175c925dfc97ba0f1c7aaa292ed145daae558f))
+
+### [0.2.68](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.67...@carbon-platform/web-app@0.2.68) (2022-11-04)
+
+
+### Misc. 🔮
+
+* rebuild lock file, hoist @carbon/react to base workspace ([453c26c](https://github.com/carbon-design-system/carbon-platform/commit/453c26ccbc1cfb9079c326b6d173c3c3e419ece4))
+
+### [0.2.67](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.66...@carbon-platform/web-app@0.2.67) (2022-11-03)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** nav position onclick ([2107ec5](https://github.com/carbon-design-system/carbon-platform/commit/2107ec5ebb18413d50d1d21792f91c95e49a0690)), closes [#1476](https://github.com/carbon-design-system/carbon-platform/issues/1476)
+
+
+### Misc. 🔮
+
+* update node module minor versions ([8a57897](https://github.com/carbon-design-system/carbon-platform/commit/8a578978d5342d0ae06c8e789ebeba43461cd824))
+
+### [0.2.66](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.65...@carbon-platform/web-app@0.2.66) (2022-11-02)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** remove tab strops from hidden sidenav ([5d31a25](https://github.com/carbon-design-system/carbon-platform/commit/5d31a25b26c2ef1a0b80afa89e758bc5c988b691)), closes [#1296](https://github.com/carbon-design-system/carbon-platform/issues/1296)
+
+### [0.2.65](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.64...@carbon-platform/web-app@0.2.65) (2022-11-01)
+
+
+### Bug Fixes 🐛
+
+* indexed path for style strategies page ([6bb962f](https://github.com/carbon-design-system/carbon-platform/commit/6bb962f796dd0a79afb279e70ff35a7125d588ba))
+* revert previous commit ([b0feb69](https://github.com/carbon-design-system/carbon-platform/commit/b0feb69f45422458a0e51c57f010794a5ad75af8))
+* uniformly use IBM in tables ([d39f533](https://github.com/carbon-design-system/carbon-platform/commit/d39f533d0c591211a6d4b7e7cc27b962860240d1))
+* use akamai plex CDN ([1bbbe60](https://github.com/carbon-design-system/carbon-platform/commit/1bbbe60374e6ccc278b75c2ac9063ca8d5e382ea))
+* **web-app:** add hover state start designing start developing ([b23737a](https://github.com/carbon-design-system/carbon-platform/commit/b23737a6bf03d2c3822343043d5091abd27315be)), closes [#1246](https://github.com/carbon-design-system/carbon-platform/issues/1246)
+* **web-app:** broken logic in typesets component ([9e4cdf6](https://github.com/carbon-design-system/carbon-platform/commit/9e4cdf682edb27df4009c8918ddeb66f6817c8c5)), closes [#1341](https://github.com/carbon-design-system/carbon-platform/issues/1341)
+* **web-app:** catalog view icon hover and focus stlye fix ([04a54fc](https://github.com/carbon-design-system/carbon-platform/commit/04a54fc039d526f9533e7770b700669e17608b91)), closes [#1433](https://github.com/carbon-design-system/carbon-platform/issues/1433)
+* **web-app:** side nav homepage mobile position ([abe58e7](https://github.com/carbon-design-system/carbon-platform/commit/abe58e7e7f8a0acd738cd773e642281bc65788d2))
+* **web-app:** sidenav, keep active item on parent selection ([cb1cddf](https://github.com/carbon-design-system/carbon-platform/commit/cb1cddf633f03e9f9d7969ebbd4793a850b67ed2)), closes [#1361](https://github.com/carbon-design-system/carbon-platform/issues/1361)
+
+### [0.2.64](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.63...@carbon-platform/web-app@0.2.64) (2022-10-27)
+
+
+### Features 🌟
+
+* **web-app:** update to new grid ([afe70f2](https://github.com/carbon-design-system/carbon-platform/commit/afe70f28f6510b241f9e4dc0fee83abf35b8ab71))
+
+
+### Bug Fixes 🐛
+
+* add figma icons ([0d0bdd5](https://github.com/carbon-design-system/carbon-platform/commit/0d0bdd518d3c603a839a2a2c08819c6dd928a632))
+* add images ([54cb237](https://github.com/carbon-design-system/carbon-platform/commit/54cb2372826c674c39ac9cd6c71e5858383bf8ee))
+* add images ([169d385](https://github.com/carbon-design-system/carbon-platform/commit/169d3859839bc9fb0aa7ddf4cd935674f037bf3b))
+* add internal and external figma guidance ([f8abefe](https://github.com/carbon-design-system/carbon-platform/commit/f8abefe7872722f9d4e837fb8fda2194cbcee4cd))
+* add text ([9742689](https://github.com/carbon-design-system/carbon-platform/commit/974268917ba972b8a97a5adc50aa4b310fdceb20))
+* link to v10 kits ([6d6c3f5](https://github.com/carbon-design-system/carbon-platform/commit/6d6c3f5595e69d57cff01ea57a20bdef3a70af31))
+* linting ([7d53402](https://github.com/carbon-design-system/carbon-platform/commit/7d53402dbd6f48f19bdf99ce41e2934c00690351))
+* update figma tutorial ([f6d3cce](https://github.com/carbon-design-system/carbon-platform/commit/f6d3cceee51bf3850079d1e1e113e65e3da2d358))
+* **web-app:** resource card nth-child selector ([2783b4f](https://github.com/carbon-design-system/carbon-platform/commit/2783b4f11113ccc28b363de536be06b55f30026a))
+
+### [0.2.63](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.62...@carbon-platform/web-app@0.2.63) (2022-10-25)
+
+
+### Bug Fixes 🐛
+
+* links in bugs and requests page ([6071c26](https://github.com/carbon-design-system/carbon-platform/commit/6071c263ee1f5f6f9fb5b0df42bd548c3243a423))
+* remove cds.com links with relative urls ([b449320](https://github.com/carbon-design-system/carbon-platform/commit/b44932031dc127bfac5e77f1a7cae0521eadd4bb))
+* rename ai apps ([3fb7e22](https://github.com/carbon-design-system/carbon-platform/commit/3fb7e22dfa43362fccdef0380b22080679d45c0c))
+* revert prior test ([ab26fb7](https://github.com/carbon-design-system/carbon-platform/commit/ab26fb710f05c6bad7b6f0a978619f6d2d3d4252))
+* straight quotes on home page ([61f68ae](https://github.com/carbon-design-system/carbon-platform/commit/61f68ae22c8921f09b0e9ee40f3beb6eb0449d5d))
+* update design kit dependencies image ([3536ad7](https://github.com/carbon-design-system/carbon-platform/commit/3536ad77e2841093a89cff87ec380a4b9fe52332))
+
 ### [0.2.62](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.61...@carbon-platform/web-app@0.2.62) (2022-10-18)
 
 

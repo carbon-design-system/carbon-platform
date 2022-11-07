@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/scripts@0.2.5...@carbon-platform/scripts@0.2.6) (2022-11-05)
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** more comprehensive changed workspace output ([5e8bbb9](https://github.com/carbon-design-system/carbon-platform/commit/5e8bbb9aa4c183f303a3ccfd7be256c87232ee6d))
+
+### [0.2.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/scripts@0.2.4...@carbon-platform/scripts@0.2.5) (2022-11-03)
+
+
+### Misc. 🔮
+
+* update node module minor versions ([8a57897](https://github.com/carbon-design-system/carbon-platform/commit/8a578978d5342d0ae06c8e789ebeba43461cd824))
+
 ### [0.2.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/scripts@0.2.3...@carbon-platform/scripts@0.2.4) (2022-10-18)
 
 

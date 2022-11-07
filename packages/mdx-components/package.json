@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/mdx-components",
   "description": "Carbon Platform MDX components",
-  "version": "0.1.12",
+  "version": "0.1.14",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
@@ -48,17 +48,17 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.3",
-    "@storybook/addon-actions": "^6.5.12",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-interactions": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/builder-webpack5": "^6.5.12",
-    "@storybook/manager-webpack5": "^6.5.12",
-    "@storybook/react": "^6.5.12",
+    "@babel/core": "^7.19.6",
+    "@storybook/addon-actions": "^6.5.13",
+    "@storybook/addon-essentials": "^6.5.13",
+    "@storybook/addon-interactions": "^6.5.13",
+    "@storybook/addon-links": "^6.5.13",
+    "@storybook/builder-webpack5": "^6.5.13",
+    "@storybook/manager-webpack5": "^6.5.13",
+    "@storybook/react": "^6.5.13",
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5",
-    "concurrently": "^7.4.0",
+    "concurrently": "^7.5.0",
     "nodemon": "^2.0.20"
   }
 }

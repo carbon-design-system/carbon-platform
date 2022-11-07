@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@3.1.2...micromanage-cli@4.0.0) (2022-11-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **micromanage:** - "--base" option in "changed" command has been replaced with "--since"
+- deprecated "deploy" command has been removed
+
+### Features 🌟
+
+* **micromanage:** allow base workspace to be passed to changed command ([daca9b3](https://github.com/carbon-design-system/carbon-platform/commit/daca9b31fd9a8c995c830d1230d4b8a913a4d498))
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** more comprehensive changed workspace output ([5e8bbb9](https://github.com/carbon-design-system/carbon-platform/commit/5e8bbb9aa4c183f303a3ccfd7be256c87232ee6d))
+
 ### [3.1.2](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@3.1.1...micromanage-cli@3.1.2) (2022-10-13)
 
 

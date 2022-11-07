@@ -188,46 +188,46 @@ const prodLibraries = {
  * mock libraries that hit edge cases and then use this data set in our test suite.
  */
 const devLibraries = {
-  'carbon-charts': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon-charts',
-    path: '/packages/core',
-    maintainer: 'carbon',
-    group: carbonChartsGroup
-  },
-  'carbon-charts-angular': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon-charts',
-    path: '/packages/angular',
-    maintainer: 'carbon',
-    group: carbonChartsGroup
-  },
-  'carbon-charts-react': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon-charts',
-    path: '/packages/react',
-    maintainer: 'carbon',
-    group: carbonChartsGroup
-  },
-  'carbon-charts-svelte': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon-charts',
-    path: '/packages/svelte',
-    maintainer: 'carbon',
-    group: carbonChartsGroup
-  },
-  'carbon-charts-vue': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon-charts',
-    path: '/packages/vue',
-    maintainer: 'carbon',
-    group: carbonChartsGroup
-  },
+  // 'carbon-charts': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-charts',
+  //   path: '/packages/core',
+  //   maintainer: 'carbon',
+  //   group: carbonChartsGroup
+  // },
+  // 'carbon-charts-angular': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-charts',
+  //   path: '/packages/angular',
+  //   maintainer: 'carbon',
+  //   group: carbonChartsGroup
+  // },
+  // 'carbon-charts-react': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-charts',
+  //   path: '/packages/react',
+  //   maintainer: 'carbon',
+  //   group: carbonChartsGroup
+  // },
+  // 'carbon-charts-svelte': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-charts',
+  //   path: '/packages/svelte',
+  //   maintainer: 'carbon',
+  //   group: carbonChartsGroup
+  // },
+  // 'carbon-charts-vue': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-charts',
+  //   path: '/packages/vue',
+  //   maintainer: 'carbon',
+  //   group: carbonChartsGroup
+  // },
   'carbon-styles': {
     host: 'github.com',
     org: 'carbon-design-system',
@@ -238,94 +238,95 @@ const devLibraries = {
   },
   'carbon-react': {
     host: 'github.com',
-    org: 'carbon-design-system',
+    org: 'mattrosno',
     repo: 'carbon',
     path: '/packages/react',
     maintainer: 'carbon',
-    group: carbonComponentsGroup
-  },
-  'carbon-components-vue': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon-components-vue',
-    path: '/packages/core/src',
-    packageJsonPath: '/../package.json',
-    group: carbonComponentsGroup
-  },
-  'carbon-components-angular': {
-    host: 'github.com',
-    org: 'IBM',
-    repo: 'carbon-components-angular',
-    path: '/src',
-    group: carbonComponentsGroup
-  },
-  'carbon-components-svelte': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon-components-svelte',
-    path: '/',
-    group: carbonComponentsGroup
-  },
-  'ibm-cloud-cognitive': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'ibm-cloud-cognitive',
-    path: '/packages/cloud-cognitive',
-    maintainer: 'ibm-products'
-  },
-  'ibm-security': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'ibm-cloud-cognitive',
-    path: '/packages/security',
-    maintainer: 'ibm-security'
-  },
-  'carbon-components': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon',
-    path: '/packages/components',
     group: carbonComponentsGroup,
-    ref: 'v10'
-  },
-  'ibmdotcom-react': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon-for-ibm-dotcom',
-    path: '/packages/react',
-    maintainer: 'ibm-dotcom',
-    group: ibmdotcomGroup
-  },
-  'ibmdotcom-web-components': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon-for-ibm-dotcom',
-    path: '/packages/web-components',
-    maintainer: 'ibm-dotcom',
-    group: ibmdotcomGroup
-  },
-  'ibmdotcom-services': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon-for-ibm-dotcom',
-    path: '/packages/services',
-    maintainer: 'ibm-dotcom'
-  },
-  'ibmdotcom-styles': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon-for-ibm-dotcom',
-    path: '/packages/styles',
-    maintainer: 'ibm-dotcom',
-    group: ibmdotcomGroup
-  },
-  'ibmdotcom-utilities': {
-    host: 'github.com',
-    org: 'carbon-design-system',
-    repo: 'carbon-for-ibm-dotcom',
-    path: '/packages/utilities',
-    maintainer: 'ibm-dotcom'
+    ref: 'index-contained-list'
   }
+  // 'carbon-components-vue': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-components-vue',
+  //   path: '/packages/core/src',
+  //   packageJsonPath: '/../package.json',
+  //   group: carbonComponentsGroup
+  // },
+  // 'carbon-components-angular': {
+  //   host: 'github.com',
+  //   org: 'IBM',
+  //   repo: 'carbon-components-angular',
+  //   path: '/src',
+  //   group: carbonComponentsGroup
+  // },
+  // 'carbon-components-svelte': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-components-svelte',
+  //   path: '/',
+  //   group: carbonComponentsGroup
+  // },
+  // 'ibm-cloud-cognitive': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'ibm-cloud-cognitive',
+  //   path: '/packages/cloud-cognitive',
+  //   maintainer: 'ibm-products'
+  // },
+  // 'ibm-security': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'ibm-cloud-cognitive',
+  //   path: '/packages/security',
+  //   maintainer: 'ibm-security'
+  // },
+  // 'carbon-components': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon',
+  //   path: '/packages/components',
+  //   group: carbonComponentsGroup,
+  //   ref: 'v10'
+  // },
+  // 'ibmdotcom-react': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-for-ibm-dotcom',
+  //   path: '/packages/react',
+  //   maintainer: 'ibm-dotcom',
+  //   group: ibmdotcomGroup
+  // },
+  // 'ibmdotcom-web-components': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-for-ibm-dotcom',
+  //   path: '/packages/web-components',
+  //   maintainer: 'ibm-dotcom',
+  //   group: ibmdotcomGroup
+  // },
+  // 'ibmdotcom-services': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-for-ibm-dotcom',
+  //   path: '/packages/services',
+  //   maintainer: 'ibm-dotcom'
+  // },
+  // 'ibmdotcom-styles': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-for-ibm-dotcom',
+  //   path: '/packages/styles',
+  //   maintainer: 'ibm-dotcom',
+  //   group: ibmdotcomGroup
+  // },
+  // 'ibmdotcom-utilities': {
+  //   host: 'github.com',
+  //   org: 'carbon-design-system',
+  //   repo: 'carbon-for-ibm-dotcom',
+  //   path: '/packages/utilities',
+  //   maintainer: 'ibm-dotcom'
+  // }
 }
 
 const runtime = new Runtime()

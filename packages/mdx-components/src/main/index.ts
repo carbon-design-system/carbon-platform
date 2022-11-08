@@ -17,9 +17,6 @@ export {
 export { default as Caption, CaptionProps } from './caption/caption.js'
 export { default as CardGroup, CardGroupProps } from './card-group/card-group.js'
 export { default as Code, CodeProps } from './code/code.js'
-export { default as ColorBlock, ColorBlockProps } from './color-block/color-block.js'
-export { default as ColorGrid, ColorGridProps } from './color-grid/color-grid.js'
-export { default as ColorPalette, ColorPaletteProps } from './color-palette/color-palette.js'
 export { default as Divider, DividerProps } from './divider/divider.js'
 export { default as DoDont, DoDontProps } from './do-dont/do-dont.js'
 export { default as DoDontRow, DoDontRowProps } from './do-dont/do-dont-row.js'
@@ -51,18 +48,11 @@ export {
 } from './page-description/page-description.js'
 export { default as PageTable, PageTableProps } from './page-table/page-table.js'
 export { default as Preview, PreviewProps } from './preview/preview.js'
-export { default as Profile, ProfileProps } from './profile/profile.js'
 export { default as ResourceCard, ResourceCardProps } from './resource-card/resource-card.js'
-export {
-  default as StatusIndicatorTable,
-  StatusIndicatorTableProps
-} from './status-indicator-table/status-indicator-table.js'
 export { default as StorybookDemo, StorybookDemoProps } from './storybook-demo/storybook-demo.js'
 export { default as Tab, TabProps } from './tabs/tab.js'
 export { default as Tabs, TabsProps } from './tabs/tabs.js'
 export { default as Title, TitleProps } from './title/title.js'
-export { default as TypeScaleTable } from './type-scale-table/type-scale-table.js'
-export { default as TypeWeight, TypeWeightProps } from './type-weight/type-weight.js'
 export { default as Video, VideoWithSrcProps, VideoWithVimeoIdProps } from './video/video.js'
 
 // Carbon components

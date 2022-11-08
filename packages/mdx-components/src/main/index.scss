@@ -12,9 +12,6 @@
 @use './caption/caption';
 @use './card-group/card-group';
 @use './code/code';
-@use './color-block/color-block';
-@use './color-grid/color-grid';
-@use './color-palette/color-palette';
 @use './divider/divider';
 @use './do-dont/do-dont';
 @use './gif-player/gif-player';
@@ -25,14 +22,10 @@
 @use './markdown/markdown';
 @use './mini-card/mini-card';
 @use './preview/preview';
-@use './profile/profile';
 @use './page-description/page-description';
 @use './page-table/page-table';
 @use './resource-card/resource-card';
-@use './status-indicator-table/status-indicator-table';
 @use './storybook-demo/storybook-demo';
 @use './tabs/tabs';
 @use './title/title';
-@use './type-weight/type-weight';
-@use './type-scale-table/type-scale-table';
 @use './video/video';

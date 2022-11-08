@@ -8,16 +8,10 @@ import { cleanup, render } from '@testing-library/react'
 import test from 'ava'
 import React from 'react'
 
-import { AnchorLink, AnchorLinks, ColorBlock } from '../main/index.js'
+import { AnchorLink, AnchorLinks } from '../main/index.js'
 
 test.afterEach(() => {
   cleanup()
-})
-
-test.serial('color block renders without crashing', (t) => {
-  const result = render(<ColorBlock>#0066ff</ColorBlock>)
-
-  t.snapshot(result.baseElement.innerHTML)
 })
 
 test.serial('anchor links renders without crashing', (t) => {

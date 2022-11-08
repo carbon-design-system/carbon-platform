@@ -6,6 +6,7 @@
  */
 
 import { DoDont, DoDontRow } from '../../../dist/main/index'
+import lightTheme from '../../res/light-theme.jpg'
 
 export default {
   title: 'Components/DoDont',
@@ -31,10 +32,7 @@ const Template = (args) => (
       {...args}
     ></DoDont>
     <DoDont aspectRatio="1:1" type="dont" {...args}>
-      <img
-        alt="Use markdown in mdx files. ![](dodont.png)"
-        src="static/media/src/res/light-theme.jpg"
-      />
+      <img alt="Use markdown in mdx files. ![](dodont.png)" src={lightTheme} />
     </DoDont>
   </DoDontRow>
 )

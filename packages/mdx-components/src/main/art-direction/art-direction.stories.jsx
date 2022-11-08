@@ -6,6 +6,9 @@
  */
 
 import { ArtDirection } from '../../../dist/main/index'
+import desktop from '../../res/desktop.jpg'
+import mobile from '../../res/mobile.jpg'
+import tablet from '../../res/tablet.jpg'
 
 export default {
   title: 'Components/Images & Video/ArtDirection',
@@ -20,9 +23,9 @@ export default {
 const Template = (args) => (
   <div style={{ minHeight: '500px' }}>
     <ArtDirection {...args}>
-      <img alt="mobile" src="static/media/src/res/mobile.jpg" />
-      <img alt="tablet" src="static/media/src/res/tablet.jpg" />
-      <img alt="desktop" src="static/media/src/res/desktop.jpg" />
+      <img alt="mobile" src={mobile} />
+      <img alt="tablet" src={tablet} />
+      <img alt="desktop" src={desktop} />
     </ArtDirection>
   </div>
 )

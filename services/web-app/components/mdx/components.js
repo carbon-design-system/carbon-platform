@@ -6,6 +6,7 @@
  */
 import * as mdxComponents from '@carbon-platform/mdx-components'
 
+import ColorBlock from '@/components/color-block'
 import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
@@ -46,6 +47,7 @@ const components = {
   MdxNotification,
   FullPageError,
   /* Gatsby theme components */
+  ColorBlock,
   ColorGrid,
   ColorPalette,
   ColorTokenTable,

@@ -5,3 +5,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 export { process } from './process.js'
+export { RmdxNode } from './rmdx-node.js'

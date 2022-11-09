@@ -25,7 +25,12 @@
     "package:build": "npm run build",
     "test": "ava --config ../../ava.config.mjs"
   },
-  "dependencies": {},
-  "peerDependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@mdx-js/mdx": "^2.1.5",
+    "mdast-util-mdx-jsx": "^2.1.0",
+    "unist-util-visit": "^4.1.1"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2"
+  }
 }

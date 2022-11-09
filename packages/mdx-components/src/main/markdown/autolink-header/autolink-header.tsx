@@ -10,8 +10,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import slugifyCjs from 'slugify'
 
-import { MdxComponent } from '../interfaces.js'
-import { mediaQueries, useMatchMedia, withPrefix } from '../utils.js'
+import { MdxComponent } from '../../interfaces.js'
+import { mediaQueries, useMatchMedia, withPrefix } from '../../utils.js'
 
 const slugify = slugifyCjs.default
 

@@ -10,10 +10,6 @@ export { default as AnchorLinks, AnchorLinksProps } from './anchor-links/anchor-
 export { default as ArtDirection, ArtDirectionProps } from './art-direction/art-direction.js'
 export { default as ArticleCard, ArticleCardProps } from './article-card/article-card.js'
 export { default as Aside, AsideProps } from './aside/aside.js'
-export {
-  default as AutolinkHeader,
-  AutolinkHeaderProps
-} from './autolink-header/autolink-header.js'
 export { default as Caption, CaptionProps } from './caption/caption.js'
 export { default as CardGroup, CardGroupProps } from './card-group/card-group.js'
 export { default as Code, CodeProps } from './code/code.js'
@@ -56,15 +52,4 @@ export { default as Title, TitleProps } from './title/title.js'
 export { default as Video, VideoWithSrcProps, VideoWithVimeoIdProps } from './video/video.js'
 
 // Carbon components
-export {
-  AccordionItem,
-  Button,
-  CodeSnippet,
-  Layer,
-  StructuredListBody,
-  StructuredListCell,
-  StructuredListHead,
-  StructuredListRow,
-  StructuredListWrapper,
-  Tag
-} from '@carbon/react'
+export { AccordionItem, Button, Layer } from '@carbon/react'

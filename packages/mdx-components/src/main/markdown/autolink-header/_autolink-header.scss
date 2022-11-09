@@ -9,7 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/breakpoint' as breakpoint;
 
-@use '../utils' as *;
+@use '../../utils' as *;
 
 .#{with-prefix('header')} {
   position: relative;

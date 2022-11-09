@@ -20,14 +20,14 @@ type AspectRatio = '2:1' | '1:1' | '16:9' | '4:3'
 
 interface ResourceCardProps {
   children: ReactNode
-  component: ReactNode
+  component?: ReactNode | null
   className?: string | null
   href?: string | null
   subTitle?: string | null
   title?: string | null
   color?: Color | null
   disabled?: boolean | null
-  actionIcon: ActionIcon
+  actionIcon?: ActionIcon | null
   aspectRatio?: AspectRatio | null
 }
 
@@ -87,6 +87,7 @@ const ResourceCard: MdxComponent<ResourceCardProps> = (props) => {
       <div className={withPrefix('icon-img')}>{children}</div>
       <div className={withPrefix('icon-action')}>
         {!disabled &&
+          actionIcon &&
           {
             launch: <Launch size={20} aria-label="Open resource" />,
             arrowRight: <ArrowRight size={20} aria-label="Open resource" />,

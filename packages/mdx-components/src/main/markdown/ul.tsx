@@ -11,10 +11,10 @@ import React from 'react'
 
 import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
-import { LiConsumer } from './li.js'
+import { LiConsumer, LiProps } from './li.js'
 
 interface UlProps {
-  children: string | string[]
+  children: ReturnType<MdxComponent<LiProps>> | ReturnType<MdxComponent<LiProps>>[]
   className?: string | null
   [otherProp: string]: unknown
 }
@@ -67,11 +67,11 @@ const UL: MdxComponent<UlProps> = ({ children, className, ...rest }) => {
 
 UL.propTypes = {
   /**
-   * String title for Header
+   * Child LI elements
    */
   children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    PropTypes.string.isRequired
+    PropTypes.arrayOf(PropTypes.element.isRequired).isRequired,
+    PropTypes.element.isRequired
   ]).isRequired,
   /**
    * Specify optional className for container element

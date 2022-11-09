@@ -10,6 +10,7 @@
 @use '@carbon/react/scss/type' as type;
 
 @use '../utils' as *;
+@use './autolink-header/autolink-header';
 
 /*  Spacing */
 .#{with-prefix('h1-container')} + *,

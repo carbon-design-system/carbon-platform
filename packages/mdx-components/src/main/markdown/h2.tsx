@@ -9,9 +9,9 @@ import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import AutolinkHeader from '../autolink-header/autolink-header.js'
 import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
+import AutolinkHeader from './autolink-header/autolink-header.js'
 
 interface H2Props {
   children: string | string[]

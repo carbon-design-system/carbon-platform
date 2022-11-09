@@ -16,9 +16,9 @@ import { withPrefix } from '../utils.js'
 interface ColumnProps {
   children: ReactNode
   className?: string | null
-  colSm: number
-  colMd: number
-  colLg: number
+  colSm?: number | null
+  colMd?: number | null
+  colLg?: number | null
   colXl?: number | null
   colMax?: number | null
   offsetSm?: number | null

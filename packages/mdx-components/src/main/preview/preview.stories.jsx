@@ -23,9 +23,6 @@ const Template = (args) => (
     height="400"
     title="Carbon Tutorial Step 5"
     src="https://react-step-6--carbon-tutorial.netlify.com"
-    frameborder="no"
-    allowtransparency="true"
-    allowfullscreen="true"
   />
 )
 

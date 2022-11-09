@@ -16,7 +16,7 @@ import { withPrefix } from '../utils.js'
 type ActionIcon = 'arrowRight' | 'download' | 'email' | 'calendar' | 'launch'
 
 interface MiniCardProps {
-  children: ReactNode
+  children?: ReactNode | null
   href?: string | null
   title: string | null
   actionIcon: ActionIcon

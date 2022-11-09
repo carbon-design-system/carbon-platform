@@ -21,7 +21,7 @@ interface DoDontProps {
   text?: string | null
   aspectRatio?: string | null
   color?: string | null
-  type?: string | null
+  type: 'do' | 'dont'
   className?: string | null
   colLg?: number | null
   colMd?: number | null
@@ -111,7 +111,6 @@ const DoDont: MdxComponent<DoDontProps> = ({
 }
 
 DoDont.defaultProps = {
-  type: 'do',
   colLg: 4,
   colMd: 4,
   color: 'light'
@@ -137,7 +136,7 @@ DoDont.propTypes = {
   /** text displayed in the example card */
   text: PropTypes.string,
   /** set card type */
-  type: PropTypes.oneOf(['do', 'dont'])
+  type: PropTypes.oneOf<DoDontProps['type']>(['do', 'dont']).isRequired
 }
 
 export { DoDontProps }

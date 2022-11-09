@@ -22,7 +22,7 @@ type Color = 'light' | 'dark'
 interface GifPlayerProps {
   children: ReactNode
   className?: string | null
-  color: Color
+  color?: Color | null
   isInDialog?: boolean | null
 }
 
@@ -106,7 +106,7 @@ GifPlayer.propTypes = {
   /**
    * Specify if icon color should be "dark" or "light"
    */
-  color: PropTypes.oneOf<Color>(['light', 'dark']).isRequired,
+  color: PropTypes.oneOf<Color>(['light', 'dark']),
   /**
    * Specify if the gifPlayer is inside the expanded ImageGallery
    */

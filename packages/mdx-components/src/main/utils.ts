@@ -18,7 +18,7 @@ const mediaQueries = {
 let globalIndex = 0
 
 const getMatchMedia = (query: string) => {
-  return typeof window !== 'undefined' ? window.matchMedia(query) : null
+  return typeof window !== 'undefined' && window.matchMedia ? window.matchMedia(query) : null
 }
 
 const useId = (label: string) => {

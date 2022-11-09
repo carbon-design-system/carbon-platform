@@ -5,11 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Column, Grid } from '@carbon/react'
+import { CodeSnippet, Column, Grid } from '@carbon/react'
 import {
   AnchorLink,
   AnchorLinks,
-  CodeSnippet,
   H2,
   H3,
   LI,

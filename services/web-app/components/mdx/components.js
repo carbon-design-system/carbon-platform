@@ -4,6 +4,15 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import {
+  CodeSnippet,
+  StructuredListBody,
+  StructuredListCell,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListWrapper,
+  Tag
+} from '@carbon/react'
 import * as mdxComponents from '@carbon-platform/mdx-components'
 
 import ColorBlock from '@/components/color-block'
@@ -41,9 +50,7 @@ const components = {
   img: Image,
   table: mdxComponents.PageTable,
   pre: mdxComponents.Code,
-  code: ({ children }) => (
-    <mdxComponents.CodeSnippet type="inline">{children}</mdxComponents.CodeSnippet>
-  ),
+  code: ({ children }) => <CodeSnippet type="inline">{children}</CodeSnippet>,
   MdxNotification,
   FullPageError,
   /* Gatsby theme components */
@@ -62,7 +69,16 @@ const components = {
   StatusIndicatorTable,
   TypeScaleTable,
   TypesetStyle,
-  TypeWeight
+  TypeWeight,
+  /* Carbon components */
+  /* SOON TO BE REMOVED */
+  CodeSnippet,
+  StructuredListBody,
+  StructuredListCell,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListWrapper,
+  Tag
 }
 
 export default components

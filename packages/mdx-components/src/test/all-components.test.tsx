@@ -38,11 +38,16 @@ test.serial('accordion renders without crashing', (t) => {
 
 test.serial('art direction renders without crashing', (t) => {
   const result = render(
-    <Mdx.ArtDirection>
-      <img alt="mobile" src="mobile" />
-      <img alt="tablet" src="tablet" />
-      <img alt="desktop" src="desktop" />
-    </Mdx.ArtDirection>
+    <>
+      <Mdx.ArtDirection>
+        <img alt="mobile" src="mobile" />
+        <img alt="tablet" src="tablet" />
+        <img alt="desktop" src="desktop" />
+      </Mdx.ArtDirection>
+      <Mdx.ArtDirection>
+        <img alt="mobile" src="mobile" />
+      </Mdx.ArtDirection>
+    </>
   )
 
   t.snapshot(result.baseElement.innerHTML)
@@ -301,11 +306,16 @@ test.serial('ul renders without crashing', (t) => {
 
 test.serial('mini card renders without crashing', (t) => {
   const result = render(
-    <Mdx.MiniCard
-      title="Tree view component"
-      href="https://carbon-website-git-fork-designertyler-treeview03092020.carbon-design-system.now.sh/components/tree-view/usage"
-      actionIcon="arrowRight"
-    />
+    <>
+      <Mdx.MiniCard
+        title="Tree view component"
+        href="https://carbon-website-git-fork-designertyler-treeview03092020.carbon-design-system.now.sh/components/tree-view/usage"
+        actionIcon="arrowRight"
+      />
+      <Mdx.MiniCard title="React tutorial" href="">
+        {'something'}
+      </Mdx.MiniCard>
+    </>
   )
 
   t.snapshot(result.baseElement.innerHTML)

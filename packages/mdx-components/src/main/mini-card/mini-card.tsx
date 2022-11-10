@@ -19,7 +19,7 @@ interface MiniCardProps {
   children?: ReactNode | null
   href?: string | null
   title: string | null
-  actionIcon: ActionIcon
+  actionIcon?: ActionIcon | null
   linkProps?: object | null
   className?: string | null
 }
@@ -64,7 +64,7 @@ const MiniCard: MdxComponent<MiniCardProps> = ({
     <div className={clsx(className, withPrefix('mini-card'))}>
       <div className={withPrefix('wrapper')}>
         <div className={withPrefix('title')}>{title}</div>
-        {children === undefined && (
+        {children === undefined && actionIcon && (
           <div className={withPrefix('icon')}>{getIcon({ actionIcon })}</div>
         )}
         {children !== undefined && <div className={withPrefix('image')}>{children}</div>}

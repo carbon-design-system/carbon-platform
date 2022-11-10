@@ -26,7 +26,7 @@ const Select: MdxComponent<SelectProps> = ({ children, _id }) => {
 
   return (
     <Dropdown
-      size="xl"
+      size="md"
       onChange={({ selectedItem }: { selectedItem: { index: number } }) =>
         setActiveTab(selectedItem.index)
       }

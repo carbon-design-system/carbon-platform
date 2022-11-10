@@ -7,10 +7,10 @@
 import { Validator } from 'prop-types'
 import { ReactElement, ReactPortal } from 'react'
 
-interface MdxComponent<P> {
-  (props: P): JSX.Element | null
-  propTypes: { [prop in keyof P]: Validator<P[prop]> }
-  defaultProps?: { [prop in keyof P]?: P[prop] }
+interface MdxComponent<Props> {
+  (props: Props): ReactElement<Props> | null
+  propTypes: { [prop in keyof Props]: Validator<Props[prop]> }
+  defaultProps?: { [prop in keyof Props]?: Props[prop] }
   displayName?: string
 }
 

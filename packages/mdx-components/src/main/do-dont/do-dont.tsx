@@ -49,17 +49,12 @@ const DoDont: MdxComponent<DoDontProps> = ({
     [withPrefix('icon-incorrect')]: type === 'dont'
   })
 
+  const aspectRatios = ['1:1', '2:1', '1:2', '4:3', '3:4', '9:16', '16:9']
+
   const wrapperClassNames = clsx(className, withPrefix('example'), {
     [withPrefix('correct')]: type === 'do',
     [withPrefix('incorrect')]: type === 'dont',
-    [withPrefix('ratio')]:
-      aspectRatio === '1:1' ||
-      aspectRatio === '2:1' ||
-      aspectRatio === '1:2' ||
-      aspectRatio === '4:3' ||
-      aspectRatio === '3:4' ||
-      aspectRatio === '9:16' ||
-      aspectRatio === '16:9',
+    [withPrefix('ratio')]: aspectRatio && aspectRatios.includes(aspectRatio),
     [withPrefix('ratio1x1')]: aspectRatio === '1:1',
     [withPrefix('ratio2x1')]: aspectRatio === '2:1',
     [withPrefix('ratio1x2')]: aspectRatio === '1:2',

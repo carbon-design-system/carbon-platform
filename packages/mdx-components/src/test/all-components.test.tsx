@@ -35,24 +35,6 @@ test.serial('accordion renders without crashing', (t) => {
 
   t.snapshot(result.baseElement.innerHTML)
 })
-
-test.serial('art direction renders without crashing', (t) => {
-  const result = render(
-    <>
-      <Mdx.ArtDirection>
-        <img alt="mobile" src="mobile" />
-        <img alt="tablet" src="tablet" />
-        <img alt="desktop" src="desktop" />
-      </Mdx.ArtDirection>
-      <Mdx.ArtDirection>
-        <img alt="mobile" src="mobile" />
-      </Mdx.ArtDirection>
-    </>
-  )
-
-  t.snapshot(result.baseElement.innerHTML)
-})
-
 test.serial('article card renders without crashing', (t) => {
   const result = render(
     <Mdx.ArticleCard
@@ -132,6 +114,7 @@ test.serial('do dont renders without crashing', (t) => {
         captionTitle="Caption title"
         caption="This is a caption."
         type="do"
+        color="dark"
       >
         wow do this and don&apos;t do that
       </Mdx.DoDont>
@@ -161,19 +144,6 @@ test.serial('grid renders without crashing', (t) => {
         Span 4
       </Mdx.Column>
     </Mdx.Grid>
-  )
-
-  t.snapshot(result.baseElement.innerHTML)
-})
-
-test.serial('row renders without crashing', (t) => {
-  const result = render(
-    <Mdx.Row>
-      <Mdx.Column colSm={2} colMd={4} colLg={4}>
-        #### 1. Contained button A. Text label <br /> B. Container <br /> C. Icon (optional) #### 3.
-        Ghost button A. Text label <br /> C. Icon (optional)
-      </Mdx.Column>
-    </Mdx.Row>
   )
 
   t.snapshot(result.baseElement.innerHTML)
@@ -273,7 +243,11 @@ test.serial('ol renders without crashing', (t) => {
     <Mdx.OL>
       <Mdx.LI>list item 1</Mdx.LI>
       <Mdx.LI>list item 2</Mdx.LI>
-      <Mdx.LI>list item 3</Mdx.LI>
+      <Mdx.LI>
+        <Mdx.OL>
+          <Mdx.LI>list item 1</Mdx.LI>
+        </Mdx.OL>
+      </Mdx.LI>
     </Mdx.OL>
   )
 
@@ -297,7 +271,11 @@ test.serial('ul renders without crashing', (t) => {
     <Mdx.UL>
       <Mdx.LI>list item 1</Mdx.LI>
       <Mdx.LI>list item 2</Mdx.LI>
-      <Mdx.LI>list item 3</Mdx.LI>
+      <Mdx.LI>
+        <Mdx.UL>
+          <Mdx.LI>list item 1</Mdx.LI>
+        </Mdx.UL>
+      </Mdx.LI>
     </Mdx.UL>
   )
 

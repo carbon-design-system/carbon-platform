@@ -108,7 +108,7 @@ const ArticleCard: MdxComponent<ArticleCardProps> = (props) => {
   }
 
   return (
-    <Theme theme={color === 'dark' && 'g100'}>
+    <Theme theme={color === 'dark' ? 'g100' : undefined}>
       <div className={ArticleCardClassNames}>{cardContainer}</div>
     </Theme>
   )

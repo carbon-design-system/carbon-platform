@@ -85,8 +85,13 @@ MiniCard.propTypes = {
   /**
    * Action icon to render.
    */
-  actionIcon: PropTypes.oneOf<ActionIcon>(['arrowRight', 'download', 'email', 'calendar', 'launch'])
-    .isRequired,
+  actionIcon: PropTypes.oneOf<ActionIcon>([
+    'arrowRight',
+    'download',
+    'email',
+    'calendar',
+    'launch'
+  ]),
   /**
    * Use 32x32 image as child, will display in right-hand corner of the card
    */

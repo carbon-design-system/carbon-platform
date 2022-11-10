@@ -453,11 +453,7 @@ test.serial('title renders without crashing', (t) => {
 })
 
 test.serial('video renders without crashing', (t) => {
-  const result = render(
-    <Mdx.Video src="wowsrc" poster="wowposter">
-      hi
-    </Mdx.Video>
-  )
+  const result = render(<Mdx.Video src="wowsrc" poster="wowposter" />)
 
   t.snapshot(result.baseElement.innerHTML)
 })

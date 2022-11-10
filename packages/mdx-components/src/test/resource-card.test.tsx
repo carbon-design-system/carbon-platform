@@ -39,7 +39,7 @@ test.serial('component', (t) => {
       aspectRatio="2:1"
       actionIcon="arrowRight"
       href="https://www.carbondesignsystem.com"
-      component={() => null}
+      component={<div>Hey</div>}
     >
       <img src="" alt="Use markdown for images in mdx files. ![](img.png)" />
     </ResourceCard>

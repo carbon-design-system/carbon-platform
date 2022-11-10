@@ -84,7 +84,7 @@ const DoDont: MdxComponent<DoDontProps> = ({
 
   return (
     <Column sm={4} md={colMedium} lg={colLarge}>
-      <Theme theme={color === 'dark' && 'g100'}>
+      <Theme theme={color === 'dark' ? 'g100' : undefined}>
         <div className={withPrefix('do-dont')}>
           <div className={wrapperClassNames}>
             <div className={withPrefix('card')}>

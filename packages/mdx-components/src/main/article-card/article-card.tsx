@@ -27,7 +27,7 @@ interface ArticleCardProps {
   readTime?: string | null
   color?: Color
   disabled?: boolean | null
-  actionIcon?: ActionIcon
+  actionIcon?: ActionIcon | null
   className?: string | null
 }
 
@@ -123,8 +123,13 @@ ArticleCard.propTypes = {
   /**
    * Action icon
    */
-  actionIcon: PropTypes.oneOf<ActionIcon>(['launch', 'arrowRight', 'download', 'email', 'disabled'])
-    .isRequired,
+  actionIcon: PropTypes.oneOf<ActionIcon>([
+    'launch',
+    'arrowRight',
+    'download',
+    'email',
+    'disabled'
+  ]),
   /**
    * Author
    */

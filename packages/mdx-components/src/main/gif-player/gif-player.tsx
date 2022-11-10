@@ -98,7 +98,10 @@ GifPlayer.propTypes = {
   /**
    * Only pass in the 2 images to be rendered, first must be gif, second must be static image
    */
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element.isRequired,
+    PropTypes.arrayOf(PropTypes.element.isRequired)
+  ]).isRequired,
   /**
    * Specify optional className
    */

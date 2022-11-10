@@ -47,10 +47,10 @@ ArtDirection.propTypes = {
    * will be used for mobile, the second for tablet, and the third for desktop. If only
    * two images are provided, the second image will be used for both tablet and desktop.
    */
-  children: PropTypes.oneOf([
+  children: PropTypes.oneOfType([
     PropTypes.element.isRequired,
     PropTypes.arrayOf(PropTypes.element).isRequired
-  ])
+  ]).isRequired
 }
 
 export { ArtDirectionProps }

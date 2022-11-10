@@ -15,7 +15,7 @@ test.afterEach(() => {
 })
 
 test.serial('vimeo', (t) => {
-  const result = render(<Video vimeoId="abc123">hi</Video>)
+  const result = render(<Video vimeoId="abc123" />)
 
   t.snapshot(result.baseElement.innerHTML)
 })

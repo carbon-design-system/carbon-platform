@@ -41,7 +41,10 @@ const Select: MdxComponent<SelectProps> = ({ children, _id }) => {
 
 Select.propTypes = {
   _id: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired
+  children: PropTypes.oneOfType([
+    PropTypes.element.isRequired,
+    PropTypes.arrayOf(PropTypes.element.isRequired).isRequired
+  ]).isRequired
 }
 
 export default Select

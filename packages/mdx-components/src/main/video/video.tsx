@@ -15,7 +15,7 @@ import { withPrefix } from '../utils.js'
 
 interface VideoProps {
   autoPlay?: boolean | null
-  children: ReactNode
+  children?: ReactNode | null
   muted?: boolean | null
   poster?: string | { src: string } | null
   src?: string | null

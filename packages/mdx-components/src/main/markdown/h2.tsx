@@ -29,7 +29,7 @@ const H2: MdxComponent<H2Props> = ({
   ...rest
 }) => {
   return (
-    <Grid className={clsx(withPrefix('h2-container'), className)} {...rest}>
+    <Grid className={clsx(withPrefix('header'), withPrefix('h2-container'), className)} {...rest}>
       <Column sm={4} md={8} lg={8}>
         {noAnchor && <h2 className={clsx(withPrefix('h2'), headingClassName)}>{children}</h2>}
         {!noAnchor && (

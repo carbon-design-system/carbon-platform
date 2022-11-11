@@ -22,7 +22,7 @@ interface H3Props {
 
 const H3: MdxComponent<H3Props> = ({ children, className, headingClassName, ...rest }) => {
   return (
-    <Grid className={clsx(withPrefix('h3-container'), className)} {...rest}>
+    <Grid className={clsx(withPrefix('header'), withPrefix('h3-container'), className)} {...rest}>
       <Column sm={4} md={8} lg={8}>
         <AutolinkHeader is="h3" className={clsx(withPrefix('h3'), headingClassName)}>
           {children}

@@ -4,13 +4,11 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Grid } from '@carbon/react'
-import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React, { ReactNode } from 'react'
 
+import { H4 } from '../index.js'
 import { MdxComponent } from '../interfaces.js'
-import { withPrefix } from '../utils.js'
 
 interface TitleProps {
   children: ReactNode
@@ -23,11 +21,9 @@ interface TitleProps {
  * techniques for bolded text (h4s) to preserve page structure and heading hierarchy.
  */
 const Title: MdxComponent<TitleProps> = ({ children, className }) => (
-  <Grid className={clsx(className, withPrefix('title'))}>
-    <Column sm={4} md={8} lg={8}>
-      <p className={withPrefix('h4')}>{children}</p>
-    </Column>
-  </Grid>
+  <H4 autolink={false} className={className}>
+    {children}
+  </H4>
 )
 
 Title.propTypes = {

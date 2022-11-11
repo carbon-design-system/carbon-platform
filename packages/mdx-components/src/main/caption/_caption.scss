@@ -13,6 +13,10 @@
 
 .#{with-prefix('caption-container')} {
   margin-top: spacing.$spacing-05;
+
+  .#{with-prefix('header')} + & {
+    margin-top: spacing.$spacing-06;
+  }
 }
 
 .#{with-prefix('caption')},

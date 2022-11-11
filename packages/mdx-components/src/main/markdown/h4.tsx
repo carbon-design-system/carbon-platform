@@ -13,23 +13,33 @@ import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
 
 interface H4Props {
+  autolink?: boolean | null
   children: ReactNode
   className?: string | null
   headingClassName?: string | null
   [otherProp: string]: unknown
 }
 
-const H4: MdxComponent<H4Props> = ({ children, className, headingClassName, ...rest }) => {
+const H4: MdxComponent<H4Props> = ({
+  autolink = true,
+  children,
+  className,
+  headingClassName,
+  ...rest
+}) => {
+  const Component = autolink ? 'h4' : 'p'
+
   return (
-    <Grid className={clsx(withPrefix('h4-container'), className)} {...rest}>
+    <Grid className={clsx(withPrefix('header'), withPrefix('h4-container'), className)} {...rest}>
       <Column sm={4} md={8} lg={8}>
-        <h4 className={clsx(withPrefix('h4'), headingClassName)}>{children}</h4>
+        <Component className={clsx(withPrefix('h4'), headingClassName)}>{children}</Component>
       </Column>
     </Grid>
   )
 }
 
 H4.propTypes = {
+  autolink: PropTypes.bool,
   /**
    * String title for Header
    */

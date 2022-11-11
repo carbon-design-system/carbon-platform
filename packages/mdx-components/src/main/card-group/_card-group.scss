@@ -13,6 +13,10 @@
 
 .#{with-prefix('card-group')} {
   margin-top: spacing.$spacing-07;
+
+  .#{with-prefix('header')} + & {
+    margin-top: spacing.$spacing-06;
+  }
 }
 
 // Sets gray border on the top of cards at the smallest breakpoint and

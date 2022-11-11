@@ -23,13 +23,13 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'standard',
-    'plugin:@next/next/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:node/recommended',
     path.join(__dirname, '.eslintrc.ava.js'),
     path.join(__dirname, '.eslintrc.carbon-platform.js'),
     path.join(__dirname, '.eslintrc.jsdoc.js'),
+    path.join(__dirname, '.eslintrc.next.js'),
     path.join(__dirname, '.eslintrc.react.js'),
     path.join(__dirname, '.eslintrc.storybook.js')
   ],

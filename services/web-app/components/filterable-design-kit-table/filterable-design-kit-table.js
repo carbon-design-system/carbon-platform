@@ -19,11 +19,11 @@ import {
   Tag
 } from '@carbon/react'
 import { Download, Launch } from '@carbon/react/icons'
+import { P } from '@carbon-platform/mdx-components'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 
-import { P } from '@/components/markdown'
 import { teams } from '@/data/teams'
 
 import styles from './filterable-design-kit-table.module.scss'

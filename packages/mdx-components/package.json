@@ -19,6 +19,9 @@
     ".": "./dist/main/index.js",
     "./styles": "./dist/main/index.css"
   },
+  "files": [
+    "./dist/main/**/*"
+  ],
   "scripts": {
     "build": "npm run build:react && npm run build:sass",
     "build:react": "tsc",
@@ -32,6 +35,8 @@
     "test": "ava --config ../../ava.config.mjs"
   },
   "dependencies": {
+    "@carbon/colors": "^11.7.0",
+    "@carbon/layout": "^11.7.0",
     "clsx": "^1.2.1",
     "prop-types": "^15.8.1",
     "rimraf": "^3.0.2",

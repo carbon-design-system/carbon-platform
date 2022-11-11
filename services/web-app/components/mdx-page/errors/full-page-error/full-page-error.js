@@ -5,9 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, Link } from '@carbon/react'
+import { H1 } from '@carbon-platform/mdx-components'
 import PropTypes from 'prop-types'
-
-import H1 from '@/components/markdown/h1'
 
 import styles from './full-page-error.module.scss'
 

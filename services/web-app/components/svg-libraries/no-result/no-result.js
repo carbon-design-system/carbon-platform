@@ -7,12 +7,10 @@
 import { Column, Grid } from '@carbon/react'
 import { LogoGithub } from '@carbon/react/icons'
 import { Svg32Illustrator } from '@carbon-platform/icons'
+import { H2, P, ResourceCard } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
-import H2 from '@/components/markdown/h2'
-import markdownStyles from '@/components/markdown/markdown.module.scss'
-import ResourceCard from '@/components/resource-card'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from '../svg-library.module.scss'
@@ -49,10 +47,10 @@ const NoResult = ({
       {!allIconResults && (
         <>
           <H2>No result found</H2>
-          <p className={markdownStyles.paragraph}>
+          <P>
             It appears we don’t have an icon that matches your search. Try different search terms or
             give us a hand—submit your own design to the library!
-          </p>
+          </P>
           <Grid className="resource-card-group" condensed={isSm}>
             <Column sm={4} md={4} lg={4}>
               <ResourceCard

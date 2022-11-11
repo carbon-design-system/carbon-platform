@@ -4,6 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+// Putting this at the top allows individual components to override markdown-specific styles
+@use './markdown/markdown';
+
 @use './accordion/accordion';
 @use './anchor-links/anchor-links';
 @use './article-card/article-card';
@@ -18,7 +21,6 @@
 @use './image-wrapper/image-wrapper';
 @use './inline-notification/inline-notification';
 @use './link/link';
-@use './markdown/markdown';
 @use './mini-card/mini-card';
 @use './preview/preview';
 @use './page-description/page-description';

@@ -7,7 +7,7 @@
 import { Link } from '@carbon/react/icons'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import slugifyCjs from 'slugify'
 
 import { MdxComponent } from '../../interfaces.js'
@@ -18,17 +18,17 @@ const slugify = slugifyCjs.default
 interface AutolinkHeaderProps {
   is: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   className?: string | null
-  children: string | string[]
+  children: ReactNode
   [otherProp: string]: unknown
 }
 
 const Anchor = ({
   id,
-  string,
+  ariaLabel,
   position
 }: {
   id: string
-  string: string
+  ariaLabel: string
   position: 'left' | 'right'
 }) => {
   const anchorClasses = clsx(withPrefix('anchor'), {
@@ -37,7 +37,7 @@ const Anchor = ({
   })
 
   return (
-    <a className={anchorClasses} href={`#${id}`} aria-label={`${string} permalink`}>
+    <a className={anchorClasses} href={`#${id}`} aria-label={`${ariaLabel} permalink`}>
       <Link size={20} />
     </a>
   )
@@ -51,16 +51,16 @@ const AutolinkHeader: MdxComponent<AutolinkHeaderProps> = ({
 }) => {
   const isSm = useMatchMedia(mediaQueries.sm)
 
-  const string = typeof children === 'string' ? children : children.join('')
+  const ariaLabel = React.Children.toArray(children).join('')
 
-  const id = `${slugify(string, { lower: true })}`
+  const id = `${slugify(ariaLabel, { lower: true })}`
 
   const anchorPosition = () => (isSm ? 'left' : 'right')
 
   return (
     <Component className={clsx(withPrefix('header'), className)} {...props} id={id}>
       {children}
-      <Anchor id={id} string={string} position={anchorPosition()} />
+      <Anchor id={id} ariaLabel={ariaLabel} position={anchorPosition()} />
     </Component>
   )
 }
@@ -69,10 +69,7 @@ AutolinkHeader.propTypes = {
   /**
    * String title for Header
    */
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    PropTypes.string.isRequired
-  ]).isRequired,
+  children: PropTypes.node.isRequired,
   /**
    * Specify optional className
    */

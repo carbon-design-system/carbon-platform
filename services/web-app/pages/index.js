@@ -276,16 +276,18 @@ const PageContent = () => {
         experience. To help you get started, our team will reach out to document your library’s
         metadata in the structured format we have provided.
       </P>
-      <P>
-        <CarbonLink
-          size="lg"
-          className={styles.link}
-          href="/contributing/schema"
-          renderIcon={ArrowRight}
-        >
-          Get started
-        </CarbonLink>
-      </P>
+      <Grid>
+        <Column sm={4} md={8} lg={8}>
+          <CarbonLink
+            size="lg"
+            className={styles.link}
+            href="/contributing/schema"
+            renderIcon={ArrowRight}
+          >
+            Get started
+          </CarbonLink>
+        </Column>
+      </Grid>
       <H2>Platform roadmap</H2>
       <P>
         Check out the{' '}

@@ -7,14 +7,14 @@
 import { Column, Grid } from '@carbon/react'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
 import AutolinkHeader from './autolink-header/autolink-header.js'
 
 interface H3Props {
-  children: string | string[]
+  children: ReactNode
   className?: string | null
   headingClassName?: string | null
   [otherProp: string]: unknown
@@ -36,10 +36,7 @@ H3.propTypes = {
   /**
    * String title for Header
    */
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    PropTypes.string.isRequired
-  ]).isRequired,
+  children: PropTypes.node.isRequired,
   /**
    * Specify optional className for container element
    */

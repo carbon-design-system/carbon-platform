@@ -83,21 +83,21 @@
 
   // Disabled
   // override carbon tile
-  .#{with-prefix('disabled')} .cds--tile:hover {
+  &.#{with-prefix('disabled')} .cds--tile:hover {
     background: theme.$layer-01;
     cursor: not-allowed;
   }
 
-  .#{with-prefix('disabled')} .#{with-prefix('title')},
-  .#{with-prefix('disabled')} .#{with-prefix('subtitle')} {
+  &.#{with-prefix('disabled')} .#{with-prefix('title')},
+  &.#{with-prefix('disabled')} .#{with-prefix('subtitle')} {
     color: theme.$text-on-color-disabled;
   }
 
-  .#{with-prefix('disabled')} .#{with-prefix('icon-action')} svg {
+  &.#{with-prefix('disabled')} .#{with-prefix('icon-action')} svg {
     fill: theme.$icon-disabled;
   }
 
-  .#{with-prefix('disabled')} .#{with-prefix('icon-img')} {
+  &.#{with-prefix('disabled')} .#{with-prefix('icon-img')} {
     filter: grayscale(100%);
     opacity: 0.5;
   }

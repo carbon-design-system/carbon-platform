@@ -2,6 +2,68 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.70](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.69...@carbon-platform/web-app@0.2.70) (2022-11-12)
+
+
+### Features 🌟
+
+* color grid and color palette convert ([b0a7128](https://github.com/carbon-design-system/carbon-platform/commit/b0a71285e7a4e036721fb4f23fe3b05b6bc748d6))
+* inline notification mdx ([bdf7281](https://github.com/carbon-design-system/carbon-platform/commit/bdf7281f9b50e5014d9d779965cb6d7acac36433))
+* **mdx-components:** add art direction ([3ad4a3f](https://github.com/carbon-design-system/carbon-platform/commit/3ad4a3f62b0679df2d53d0992097cedcfcd9e9c5))
+* **mdx-components:** add aside component ([771a571](https://github.com/carbon-design-system/carbon-platform/commit/771a571b340157839eb011de96c1ded288567956))
+* **mdx-components:** add column ([8d40847](https://github.com/carbon-design-system/carbon-platform/commit/8d40847f951141035b72ec397651c72643508dc6))
+* **mdx-components:** add divider ([3d8920a](https://github.com/carbon-design-system/carbon-platform/commit/3d8920aa5fbc8fb521451c9148d51008ca2b570b))
+* **mdx-components:** add do dont ([5bda2ad](https://github.com/carbon-design-system/carbon-platform/commit/5bda2ad0d62eb77f324d67d8569c0f72fd635c99))
+* **mdx-components:** add Link component ([a1d6d9e](https://github.com/carbon-design-system/carbon-platform/commit/a1d6d9e09fe89835b83faff23787b003abcb7993)), closes [#1103](https://github.com/carbon-design-system/carbon-platform/issues/1103)
+* **mdx-components:** add row ([58832b5](https://github.com/carbon-design-system/carbon-platform/commit/58832b5c55f9e15aef5cc95dc0f49feeb5283eec))
+* **mdx-components:** add storybook demo ([2597588](https://github.com/carbon-design-system/carbon-platform/commit/25975883b8132100be9a80d07de535808b22bac6))
+* **mdx-components:** add typescaletable ([08c33ae](https://github.com/carbon-design-system/carbon-platform/commit/08c33aedc99448dd0b7488c3a0ec6a6b7bf8d113))
+* **mdx-components:** add typeweight ([8bb3557](https://github.com/carbon-design-system/carbon-platform/commit/8bb355702804d08c30cf343f201aaa237f7326c6))
+* **mdx-components:** convert video component ([93be93f](https://github.com/carbon-design-system/carbon-platform/commit/93be93faf7bd90f3e80149d60ca1a5a4cd8b09eb))
+* **mdx-components:** migrate blockquote ([5872093](https://github.com/carbon-design-system/carbon-platform/commit/5872093f8c3b860da84b8053aaf35d20ac672c58)), closes [#1103](https://github.com/carbon-design-system/carbon-platform/issues/1103)
+* **mdx-components:** migrate GifPlayer component into mdx-components ([cb24708](https://github.com/carbon-design-system/carbon-platform/commit/cb2470819be49339f150eab60adcda726f3d0e42)), closes [#1103](https://github.com/carbon-design-system/carbon-platform/issues/1103)
+* **mdx-components:** migrate headings markdown comps ([e1e81ee](https://github.com/carbon-design-system/carbon-platform/commit/e1e81ee353d9e99e36549362249fa37ca2d9a271)), closes [#1103](https://github.com/carbon-design-system/carbon-platform/issues/1103)
+* **mdx-components:** migrate image wrapper component ([5e72dcf](https://github.com/carbon-design-system/carbon-platform/commit/5e72dcf3c613aa5b357a3cffae59165abea3aac0)), closes [#1103](https://github.com/carbon-design-system/carbon-platform/issues/1103)
+* **mdx-components:** migrate MiniCard ([3351b1d](https://github.com/carbon-design-system/carbon-platform/commit/3351b1d72354ac9729fef919b61f5e485511f7e7))
+* **mdx-components:** migrate PageTable component ([6c9abce](https://github.com/carbon-design-system/carbon-platform/commit/6c9abce8f7909f2c070dc2dfe7c89f8e0b121000)), closes [#1103](https://github.com/carbon-design-system/carbon-platform/issues/1103)
+* **mdx-components:** migrate paragraph and pageDescription components ([853d0fd](https://github.com/carbon-design-system/carbon-platform/commit/853d0fdea300bce23b86788b99aa69530ac98b20)), closes [#1103](https://github.com/carbon-design-system/carbon-platform/issues/1103)
+* **mdx-components:** migrate Profile component ([8919ec1](https://github.com/carbon-design-system/carbon-platform/commit/8919ec1e33d729ed59c910c4ab42a2b97fcad76a)), closes [#1103](https://github.com/carbon-design-system/carbon-platform/issues/1103)
+* **mdx-components:** migrate resource card ([d2a2418](https://github.com/carbon-design-system/carbon-platform/commit/d2a24184a50939b85d9889342e0e283fd8eec36b)), closes [#1103](https://github.com/carbon-design-system/carbon-platform/issues/1103)
+* migrate article card ([9a4b99b](https://github.com/carbon-design-system/carbon-platform/commit/9a4b99bbaee5d09d32f13c36c837a4148c72500b))
+* preview component ([9c1debc](https://github.com/carbon-design-system/carbon-platform/commit/9c1debc9aaa315fcb091163459d461a3f20e6937))
+* status indicator mdx ([e546b80](https://github.com/carbon-design-system/carbon-platform/commit/e546b809574c4b45be397d94e9b13a8893f95a30))
+* ul ol and li markdown ([da89576](https://github.com/carbon-design-system/carbon-platform/commit/da8957638a97e5536fbb77d83e1843dd40ad931e))
+* **web-app:** component cleanup ([b91cb05](https://github.com/carbon-design-system/carbon-platform/commit/b91cb051f11061b7d31e89dcc8dc8bd9eb93bbae))
+* **web-app:** remove accordion component ([416b049](https://github.com/carbon-design-system/carbon-platform/commit/416b049735c7aa85df49e64ddcdd4726606df26c))
+* **web-app:** remove art direction ([9535e4f](https://github.com/carbon-design-system/carbon-platform/commit/9535e4fa7f52130e738d3e68bcab1028d3895767))
+* **web-app:** remove aside component ([b9a31c6](https://github.com/carbon-design-system/carbon-platform/commit/b9a31c6d4de53dc77a33a365ce646c5e41e1a58f))
+* **web-app:** remove caption ([4557f5f](https://github.com/carbon-design-system/carbon-platform/commit/4557f5f899ae203e0cbf7a4519da5bd4f4918d1c))
+* **web-app:** remove caption mdx component ([05f0090](https://github.com/carbon-design-system/carbon-platform/commit/05f00909b81c994c317b642fa332f9056462a9cf))
+* **web-app:** remove card-group ([4acca8c](https://github.com/carbon-design-system/carbon-platform/commit/4acca8c3b1f6f52365fedd10032a657e4342f586))
+* **web-app:** remove divider from web app ([fa7c3f6](https://github.com/carbon-design-system/carbon-platform/commit/fa7c3f63c146bbeee988d0b75b1d604a2eb72eb2))
+* **web-app:** remove do dont ([ccb77b0](https://github.com/carbon-design-system/carbon-platform/commit/ccb77b0789ceec22ed15171a10a36aa588966c99))
+* **web-app:** remove grid transform ([8dc48ef](https://github.com/carbon-design-system/carbon-platform/commit/8dc48ef23405d19af2498f4c1fc30119b32840ec))
+* **web-app:** remove storybook demo ([2da677f](https://github.com/carbon-design-system/carbon-platform/commit/2da677f8aeb8cec2a253b7321fd5c8f4c5404712))
+* **web-app:** remove tabs component ([870ca6a](https://github.com/carbon-design-system/carbon-platform/commit/870ca6a3a05d002250e144239b06d497a00a0f09))
+* **web-app:** remove title component ([5255fba](https://github.com/carbon-design-system/carbon-platform/commit/5255fbab44e6936dd7bfb7479a63b1aee73187a8))
+* **web-app:** remove typescaletable ([d32993c](https://github.com/carbon-design-system/carbon-platform/commit/d32993c17bff7f80ac6a1e93094a47bb84f7375e))
+
+
+### Bug Fixes 🐛
+
+* imports ([5e3c82b](https://github.com/carbon-design-system/carbon-platform/commit/5e3c82b0f2f292cc032b1b010ec69e6b8c65119a))
+* **mdx-components:** visual consistency fixes and remove some warnings ([73ffd8e](https://github.com/carbon-design-system/carbon-platform/commit/73ffd8ea448b34280d45d69f07f7b0815e98ff86))
+* merge conflict ([a606f6d](https://github.com/carbon-design-system/carbon-platform/commit/a606f6d8c36e1f9d315654c721bc1bfb602f2fe8))
+* **web-app:** export colorblock from mdx components ([59fc52a](https://github.com/carbon-design-system/carbon-platform/commit/59fc52a455be71cfbe7c70f7fe111638c392cb9f))
+* **web-app:** export one-off carbon components from web app ([2c54c63](https://github.com/carbon-design-system/carbon-platform/commit/2c54c63137c93e1ddc3b34f567757a959723cd5c))
+* **web-app:** import headings from mdx-components ([988d21e](https://github.com/carbon-design-system/carbon-platform/commit/988d21ebe5c4b1d76db617fd7821769dbfcbd481)), closes [#1103](https://github.com/carbon-design-system/carbon-platform/issues/1103)
+* **web-app:** incorrect import ([206119a](https://github.com/carbon-design-system/carbon-platform/commit/206119afc3f1546deb09189d3f48a59ede22ee8f))
+* **web-app:** pull Link component from mdx-components package ([e264ee7](https://github.com/carbon-design-system/carbon-platform/commit/e264ee7bc7307fd7df208443c0fcced913a65d1e)), closes [#1103](https://github.com/carbon-design-system/carbon-platform/issues/1103)
+* **web-app:** pull paragraph and pagedescription from mdx-components pkg ([c0986e0](https://github.com/carbon-design-system/carbon-platform/commit/c0986e0320ef7f37483f20c5d088b36990578172)), closes [#1103](https://github.com/carbon-design-system/carbon-platform/issues/1103)
+* **web-app:** reintroduce deleted stories ([4361c5b](https://github.com/carbon-design-system/carbon-platform/commit/4361c5b6abb9aeb670b864dca8403a997e3df7ba))
+* **web-app:** reintroduce one-off components ([509ea8b](https://github.com/carbon-design-system/carbon-platform/commit/509ea8ba887f5f6090eee4e6bb3336da3b086ff6))
+* **web-app:** use Code component from mdx-components pckg ([98eca88](https://github.com/carbon-design-system/carbon-platform/commit/98eca88a744ae05f5dbf379ce5354e6d5b52a747)), closes [#1103](https://github.com/carbon-design-system/carbon-platform/issues/1103)
+
 ### [0.2.69](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.68...@carbon-platform/web-app@0.2.69) (2022-11-05)
 
 

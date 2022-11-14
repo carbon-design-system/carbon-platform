@@ -4,15 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { MdxJsxTextElement } from 'mdast-util-mdx-jsx'
 import { Data, Node } from 'unist'
 import { Parent, VisitorResult } from 'unist-util-visit'
 
 type Scalar = string | number | boolean
 
 type Renderable<T> = T & RmdxNodeLike
-
-type JsxLike = MdxJsxTextElement
 
 type RmdxRoot = RmdxScalar | RmdxElement
 
@@ -37,4 +34,4 @@ interface NodeHandler {
   ): VisitorResult
 }
 
-export { JsxLike, NodeHandler, Renderable, RmdxElement, RmdxNodeLike, RmdxRoot, RmdxScalar, Scalar }
+export { NodeHandler, Renderable, RmdxElement, RmdxNodeLike, RmdxRoot, RmdxScalar, Scalar }

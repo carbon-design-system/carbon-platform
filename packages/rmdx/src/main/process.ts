@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { createProcessor } from '@mdx-js/mdx'
-import { Heading } from 'mdast'
+import { Heading, Link } from 'mdast'
 import { MdxJsxTextElement } from 'mdast-util-mdx-jsx'
 import { Data, Node } from 'unist'
 import { Parent, SKIP, visit, Visitor, VisitorResult } from 'unist-util-visit'
@@ -53,6 +53,17 @@ const nodeHandlers: {
     parent: Parent | null
   ) => VisitorResult
 } = {
+  link: (node) => {
+    const link = node as Partial<Link>
+
+    node.nodeType = 'link'
+    node.props = {
+      href: link?.url || ''
+    }
+
+    delete link.url
+    delete link.title
+  },
   emphasis: (node) => {
     node.nodeType = 'emphasis'
   },
@@ -110,8 +121,6 @@ function process(srcMdx: string) {
   const result = processor.parse(srcMdx)
 
   visit(result, visitor)
-
-  console.log(JSON.stringify(result, undefined, 2))
 
   return result as Renderable<typeof result> & RmdxRoot
 }

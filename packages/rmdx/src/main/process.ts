@@ -6,15 +6,18 @@
  */
 import { createProcessor } from '@mdx-js/mdx'
 import { Heading, Link } from 'mdast'
-import { MdxJsxTextElement } from 'mdast-util-mdx-jsx'
-import { Data, Node } from 'unist'
-import { Parent, SKIP, visit, Visitor, VisitorResult } from 'unist-util-visit'
+import { MdxJsxFlowElement, MdxJsxTextElement } from 'mdast-util-mdx-jsx'
+import { SKIP, visit, Visitor } from 'unist-util-visit'
 
 import { convertAttributesToProps } from './convert-attributes-to-props.js'
-import { Renderable, RmdxRoot } from './interfaces.js'
+import { NodeHandler, Renderable, RmdxRoot } from './interfaces.js'
 
 // TODO: if something ends up with no component, it needs to be removed from the AST
 // TODO: enforce max length
+
+interface NodeHandlers {
+  [key: string]: NodeHandler
+}
 
 const processor = createProcessor()
 
@@ -46,13 +49,7 @@ const visitor: Visitor = function visitor(node, index, parent) {
 //   }
 // }
 
-const nodeHandlers: {
-  [key: string]: (
-    node: Renderable<Partial<Node<Data>>>,
-    index: number | null,
-    parent: Parent | null
-  ) => VisitorResult
-} = {
+const nodeHandlers: NodeHandlers = {
   link: (node) => {
     const link = node as Partial<Link>
 
@@ -88,12 +85,29 @@ const nodeHandlers: {
 
     return index
   },
+  mdxJsxFlowElement: (node) => {
+    const mdxJsxFlowElement = node as Partial<MdxJsxFlowElement>
+
+    if (!mdxJsxFlowElement.name) {
+      // TODO: probably shouldn't just bail
+      throw new Error('MdxJsxFlowElement was missing a component name')
+    }
+
+    node.nodeType = mdxJsxFlowElement.name
+
+    if (mdxJsxFlowElement.attributes) {
+      node.props = convertAttributesToProps(mdxJsxFlowElement.attributes)
+    }
+
+    delete mdxJsxFlowElement.attributes
+    delete mdxJsxFlowElement.name
+  },
   mdxJsxTextElement: (node) => {
     const mdxJsxTextElement = node as Partial<MdxJsxTextElement>
 
     if (!mdxJsxTextElement.name) {
       // TODO: probably shouldn't just bail
-      throw new Error('mdxJsxTextElement was missing a component name')
+      throw new Error('MdxJsxTextElement was missing a component name')
     }
 
     node.nodeType = mdxJsxTextElement.name

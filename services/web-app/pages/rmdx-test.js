@@ -4,117 +4,62 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import {
-  Accordion,
-  AccordionItem,
-  Column,
-  Divider,
-  Grid,
-  H1,
-  H2,
-  H3,
-  H4,
-  H5,
-  H6,
-  Link,
-  P,
-  Preview,
-  Row
-} from '@carbon-platform/mdx-components'
 import { process, RmdxNode } from '@carbon-platform/rmdx'
 import React from 'react'
 
-const UniversalMapper = ({ children }) => children
+import { AccordionMapper } from '@/utils/mappers/accordion.mapper'
+import { AccordionItemMapper } from '@/utils/mappers/accordion-item.mapper'
+import { ColumnMapper } from '@/utils/mappers/column.mapper'
+import { DivMapper } from '@/utils/mappers/div.mapper'
+import { DividerMapper } from '@/utils/mappers/divider.mapper'
+import { GridMapper } from '@/utils/mappers/grid.mapper'
+import { H1Mapper } from '@/utils/mappers/h1.mapper'
+import { H2Mapper } from '@/utils/mappers/h2.mapper'
+import { H3Mapper } from '@/utils/mappers/h3.mapper'
+import { H4Mapper } from '@/utils/mappers/h4.mapper'
+import { H5Mapper } from '@/utils/mappers/h5.mapper'
+import { H6Mapper } from '@/utils/mappers/h6.mapper'
+import { ImgMapper } from '@/utils/mappers/img.mapper'
+import { LinkMapper } from '@/utils/mappers/link.mapper'
+import { ParagraphMapper } from '@/utils/mappers/paragraph.mapper'
+import { PreviewMapper } from '@/utils/mappers/preview.mapper'
+import { RowMapper } from '@/utils/mappers/row.mapper'
+import { SpanMapper } from '@/utils/mappers/span.mapper'
+import { StrongMapper } from '@/utils/mappers/strong.mapper'
+import { UniversalMapper } from '@/utils/mappers/universal.mapper'
 
 const components = {
   // html
   document: UniversalMapper,
-  div: ({ children }) => <div>{children}</div>,
-  'heading-1': ({ children }) => <H1>{children}</H1>,
-  'heading-2': ({ children, noAnchor }) => <H2 noAnchor={noAnchor}>{children}</H2>,
-  'heading-3': ({ children }) => <H3>{children}</H3>,
-  'heading-4': ({ children, autoLink }) => <H4 autoLink={autoLink}>{children}</H4>,
-  'heading-5': ({ children }) => <H5>{children}</H5>,
-  'heading-6': ({ children }) => <H6>{children}</H6>,
-  link: ({ children, href, inline, disabled, visited, size }) => (
-    <Link href={href} inline={inline} disabled={disabled} visited={visited} size={size}>
-      {children}
-    </Link>
-  ),
-  paragraph: ({ children, large }) => <P large={large}>{children}</P>,
-  span: ({ children }) => <span>{children}</span>,
-  strong: ({ children }) => <strong>{children}</strong>,
+  div: DivMapper,
+  'heading-1': H1Mapper,
+  'heading-2': H2Mapper,
+  'heading-3': H3Mapper,
+  'heading-4': H4Mapper,
+  'heading-5': H5Mapper,
+  'heading-6': H6Mapper,
+  img: ImgMapper,
+  image: ImgMapper,
+  link: LinkMapper,
+  paragraph: ParagraphMapper,
+  span: SpanMapper,
+  strong: StrongMapper,
   text: UniversalMapper,
   // components
-  Accordion: ({ align, children, disabled, isFlush }) => (
-    <Accordion disabled={disabled} isFlush={isFlush} align={align}>
-      {children}
-    </Accordion>
-  ),
-  AccordionItem: ({ children, disabled, open, title }) => (
-    <AccordionItem disabled={disabled} open={open} title={title}>
-      {children}
-    </AccordionItem>
-  ),
-  Column: ({
-    children,
-    colSm,
-    colMd,
-    colLg,
-    colXl,
-    colMax,
-    offsetSm,
-    offsetMd,
-    offsetLg,
-    offsetXl,
-    offsetMax,
-    as,
-    lg,
-    max,
-    md,
-    sm,
-    xlg
-  }) => (
-    <Column
-      colSm={colSm}
-      colMd={colMd}
-      colLg={colLg}
-      colXl={colXl}
-      colMax={colMax}
-      offsetSm={offsetSm}
-      offsetMd={offsetMd}
-      offsetLg={offsetLg}
-      offsetXl={offsetXl}
-      offsetMax={offsetMax}
-      as={as}
-      lg={lg}
-      max={max}
-      md={md}
-      sm={sm}
-      xlg={xlg}
-    >
-      {children}
-    </Column>
-  ),
-  Divider: ({ children }) => <Divider>{children}</Divider>,
-  Grid: ({ children, condensed, fullWidth, narrow, as }) => (
-    <Grid condensed={condensed} fullWidth={fullWidth} narrow={narrow} as={as}>
-      {children}
-    </Grid>
-  ),
-  H1: ({ children }) => <H1>{children}</H1>,
-  H2: ({ children, noAnchor }) => <H2 noAnchor={noAnchor}>{children}</H2>,
-  H3: ({ children }) => <H3>{children}</H3>,
-  H4: ({ children, autoLink }) => <H4 autoLink={autoLink}>{children}</H4>,
-  H5: ({ children }) => <H5>{children}</H5>,
-  H6: ({ children }) => <H6>{children}</H6>,
-  Link: ({ children, href, inline, disabled, visited, size }) => (
-    <Link href={href} inline={inline} disabled={disabled} visited={visited} size={size}>
-      {children}
-    </Link>
-  ),
-  Preview: ({ title, height, src }) => <Preview title={title} height={height} src={src} />,
-  Row: ({ children }) => <Row>{children}</Row>
+  Accordion: AccordionMapper,
+  AccordionItem: AccordionItemMapper,
+  Column: ColumnMapper,
+  Divider: DividerMapper,
+  Grid: GridMapper,
+  H1: H1Mapper,
+  H2: H2Mapper,
+  H3: H3Mapper,
+  H4: H4Mapper,
+  H5: H5Mapper,
+  H6: H6Mapper,
+  Link: LinkMapper,
+  Preview: PreviewMapper,
+  Row: RowMapper
 }
 
 const mdx = `
@@ -137,10 +82,6 @@ const mdx = `
 
 <div>hi</div>
 
-`
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- ignore
-const testLater = `
 ## Accordion
 
 <Accordion>
@@ -160,17 +101,128 @@ const testLater = `
   allowfullscreen="true"
 />
 
+## Grid
+
+### Example
+
+<Row>
+  <Column colMd={4} colLg={4}>
+    Hi
+  </Column>
+  <Column colMd={4} colLg={4}>
+    Hi
+  </Column>
+  <Column colMd={4} colLg={4}>
+    Hi
+  </Column>
+</Row>
+
+### No gutter left -> translate to narrow grid mode
+
+<Row>
+  <Column colMd={4} colLg={4} noGutterMdLeft>
+    Hi
+  </Column>
+  <Column colMd={4} colLg={4} noGutterMdLeft>
+    Hi
+  </Column>
+  <Column colMd={4} colLg={4} noGutterMdLeft>
+    Hi
+  </Column>
+</Row>
+
+### No gutter -> translate to condensed grid mode
+
+<Row>
+  <Column colMd={4} colLg={4} noGutterSm>
+    Hi
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    Hi
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    Hi
+  </Column>
+</Row>
+
+### Offset
+
+<Row>
+  <Column colMd={4} colLg={4} offsetLg={4}>
+    Hi
+  </Column>
+  <Column colMd={4} colLg={4}>
+    Hi
+  </Column>
+</Row>
+
+## CSS Grid examples
+
+### Default
+
+<Grid>
+  <Column md={4} lg={4}>
+    Hi
+  </Column>
+  <Column md={4} lg={4}>
+    Hi
+  </Column>
+  <Column md={4} lg={4}>
+    Hi
+  </Column>
+</Grid>
+
+### Narrow
+
+<Grid narrow>
+  <Column md={4} lg={4}>
+    Hi
+  </Column>
+  <Column md={4} lg={4}>
+    Hi
+  </Column>
+  <Column md={4} lg={4}>
+    Hi
+  </Column>
+</Grid>
+
+### Condensed
+
+<Grid condensed>
+  <Column md={4} lg={4}>
+    Hi
+  </Column>
+  <Column md={4} lg={4}>
+    Hi
+  </Column>
+  <Column md={4} lg={4}>
+    Hi
+  </Column>
+</Grid>
+
+### Offset
+
+<Grid>
+  <Column md={4} lg={{ span: 4, offset: 4 }}>
+    Hi
+  </Column>
+  <Column md={4} lg={4}>
+    Hi
+  </Column>
+</Grid>
+
+
 ## Divider
 
 <Divider>
   <Grid>
     <Column sm={4} md={2} lg={4}>
-      <h3>
+      <div>
         <strong>v1.0</strong>
-      </h3>
-      <h2>
+      </div>
+      <div>
         Target release: <div>June</div>
-      </h2>
+      </div>
     </Column>
     <Column sm={4} md={6} lg={8}>
     The platform's first major release will help system users discover and learn about all the assets
@@ -188,12 +240,10 @@ const testLater = `
   </Grid>
 </Divider>
 
-## Row
-<Row>one row</Row>
 `
 
 const RmdxTest = () => {
-  const ast = process(mdx)
+  const ast = process(mdx, Object.keys(components))
 
   console.log(JSON.stringify(ast, undefined, 2))
 

@@ -12,7 +12,6 @@ import { MdxComponent } from '../interfaces.js'
 
 interface TitleProps {
   children: ReactNode
-  className?: string | null
 }
 
 /**
@@ -20,21 +19,13 @@ interface TitleProps {
  * (table, image, video, code block). The Title should be used in favor of other
  * techniques for bolded text (h4s) to preserve page structure and heading hierarchy.
  */
-const Title: MdxComponent<TitleProps> = ({ children, className }) => (
-  <H4 autolink={false} className={className}>
-    {children}
-  </H4>
-)
+const Title: MdxComponent<TitleProps> = ({ children }) => <H4 autolink={false}>{children}</H4>
 
 Title.propTypes = {
   /**
    * Provide the contents of Title
    */
-  children: PropTypes.node.isRequired,
-  /**
-   * Optional class name on the title.
-   */
-  className: PropTypes.string
+  children: PropTypes.node.isRequired
 }
 
 export { TitleProps }

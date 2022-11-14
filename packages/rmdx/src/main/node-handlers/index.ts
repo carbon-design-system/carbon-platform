@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 export { emphasis } from './emphasis.js'
+export { heading } from './heading.js'
 export { link } from './link.js'
 export { mdxFlowExpression } from './mdx-flow-expression.js'
 export { mdxJsxFlowElement } from './mdx-jsx-flow-element.js'

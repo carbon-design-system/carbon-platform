@@ -12,7 +12,7 @@
     "directory": "packages/rmdx"
   },
   "bugs": {
-    "url": "https://github.com/carbon-design-system/carbon-platform/issues"
+    "url": "https://github.com/carbon-design-system/carbon-platform/issues?q=is%3Aopen+is%3Aissue+label%3A%22package%3A+rmdx+%F0%9F%96%8B%EF%B8%8F%22"
   },
   "type": "module",
   "exports": {

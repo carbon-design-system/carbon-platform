@@ -29,6 +29,7 @@ const Template = (args) => (
       text="DoDont example"
       captionTitle="Caption title"
       caption="This is a caption."
+      type="do"
       {...args}
     ></DoDont>
     <DoDont aspectRatio="1:1" type="dont" {...args}>

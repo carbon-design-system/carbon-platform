@@ -6,8 +6,8 @@
  */
 import { NodeHandler } from '../interfaces.js'
 
-const paragraph: NodeHandler = (node) => {
-  node.nodeType = 'paragraph'
+const paragraph: NodeHandler = (data) => {
+  data.node.nodeType = 'paragraph'
 }
 
 export { paragraph }

@@ -6,8 +6,8 @@
  */
 import { NodeHandler } from '../interfaces.js'
 
-const emphasis: NodeHandler = (node) => {
-  node.nodeType = 'emphasis'
+const emphasis: NodeHandler = (data) => {
+  data.node.nodeType = 'emphasis'
 }
 
 export { emphasis }

@@ -7,11 +7,13 @@
 import { NodeHandler } from '../interfaces.js'
 
 /**
- * This node handler is a passthrough of the provided text value
- * @param node The incoming node in the AST.
+ * This node handler is a passthrough of the provided text value.
+ *
+ * @param data The incoming data for this AST node.
+ * @returns A VisitorResult.
  */
-const text: NodeHandler = (node) => {
-  node.nodeType = 'text'
+const text: NodeHandler = (data) => {
+  data.node.nodeType = 'text'
 }
 
 export { text }

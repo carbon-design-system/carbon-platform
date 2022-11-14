@@ -8,16 +8,22 @@ import { SKIP } from 'unist-util-visit'
 
 import { NodeHandler } from '../interfaces.js'
 
-const mdxFlowExpression: NodeHandler = (_node, index, parent) => {
+/**
+ * Removes the mdxFlowExpression from the AST.
+ *
+ * @param data Incoming data for this node.
+ * @returns a VisitorResult.
+ */
+const mdxFlowExpression: NodeHandler = (data) => {
   // TODO: store an error entry
 
-  if (!index || !parent) {
+  if (!data.index || !data.parent) {
     return SKIP
   }
 
-  parent.children.splice(index, 1)
+  data.parent.children.splice(data.index, 1)
 
-  return index
+  return data.index
 }
 
 export { mdxFlowExpression }

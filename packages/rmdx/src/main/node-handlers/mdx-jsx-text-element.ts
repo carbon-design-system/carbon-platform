@@ -9,18 +9,23 @@ import { MdxJsxTextElement } from 'mdast-util-mdx-jsx'
 import { convertAttributesToProps } from '../convert-attributes-to-props.js'
 import { NodeHandler } from '../interfaces.js'
 
-const mdxJsxTextElement: NodeHandler = (node) => {
-  const mdxJsxTextElement = node as Partial<MdxJsxTextElement>
+const mdxJsxTextElement: NodeHandler = (data) => {
+  const mdxJsxTextElement = data.node as Partial<MdxJsxTextElement>
 
   if (!mdxJsxTextElement.name) {
     // TODO: probably shouldn't just bail
     throw new Error('MdxJsxTextElement missing component name')
   }
 
-  node.nodeType = mdxJsxTextElement.name
+  if (!data.allowedComponents.includes(mdxJsxTextElement.name)) {
+    // TODO: probably shouldn't just bail
+    throw new Error('Unrecognized JSX component: ' + mdxJsxTextElement.name)
+  }
+
+  data.node.nodeType = mdxJsxTextElement.name
 
   if (mdxJsxTextElement.attributes) {
-    node.props = convertAttributesToProps(mdxJsxTextElement.attributes)
+    data.node.props = convertAttributesToProps(mdxJsxTextElement.attributes)
   }
 
   delete mdxJsxTextElement.attributes

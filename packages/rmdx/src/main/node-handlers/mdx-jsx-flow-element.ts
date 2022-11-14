@@ -9,18 +9,23 @@ import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx'
 import { convertAttributesToProps } from '../convert-attributes-to-props.js'
 import { NodeHandler } from '../interfaces.js'
 
-const mdxJsxFlowElement: NodeHandler = (node) => {
-  const mdxJsxFlowElement = node as Partial<MdxJsxFlowElement>
+const mdxJsxFlowElement: NodeHandler = (data) => {
+  const mdxJsxFlowElement = data.node as Partial<MdxJsxFlowElement>
 
   if (!mdxJsxFlowElement.name) {
     // TODO: probably shouldn't just bail
     throw new Error('MdxJsxFlowElement missing component name')
   }
 
-  node.nodeType = mdxJsxFlowElement.name
+  if (!data.allowedComponents.includes(mdxJsxFlowElement.name)) {
+    // TODO: probably shouldn't just bail
+    throw new Error('Unrecognized JSX component: ' + mdxJsxFlowElement.name)
+  }
+
+  data.node.nodeType = mdxJsxFlowElement.name
 
   if (mdxJsxFlowElement.attributes) {
-    node.props = convertAttributesToProps(mdxJsxFlowElement.attributes)
+    data.node.props = convertAttributesToProps(mdxJsxFlowElement.attributes)
   }
 
   delete mdxJsxFlowElement.attributes

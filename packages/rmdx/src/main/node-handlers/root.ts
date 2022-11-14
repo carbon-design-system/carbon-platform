@@ -6,8 +6,8 @@
  */
 import { NodeHandler } from '../interfaces.js'
 
-const root: NodeHandler = (node) => {
-  node.nodeType = 'document'
+const root: NodeHandler = (data) => {
+  data.node.nodeType = 'document'
 }
 
 export { root }

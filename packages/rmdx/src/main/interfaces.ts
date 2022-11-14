@@ -4,14 +4,15 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Data, Node } from 'unist'
-import { Parent, VisitorResult } from 'unist-util-visit'
+import { Node, Parent, VisitorResult } from 'unist-util-visit'
 
 type Scalar = string | number | boolean
 
 type Renderable<T> = T & RmdxNodeLike
 
 type RmdxRoot = RmdxScalar | RmdxElement
+
+type AllowedComponents = Array<string>
 
 interface RmdxNodeLike {
   nodeType?: string
@@ -27,11 +28,21 @@ interface RmdxElement extends RmdxNodeLike {
 }
 
 interface NodeHandler {
-  (
-    node: Renderable<Partial<Node<Data>>>,
-    index: number | null,
-    parent: Parent | null
-  ): VisitorResult
+  (data: {
+    node: Renderable<Partial<Node>>
+    index?: number
+    parent?: Parent
+    allowedComponents: AllowedComponents
+  }): VisitorResult
 }
 
-export { NodeHandler, Renderable, RmdxElement, RmdxNodeLike, RmdxRoot, RmdxScalar, Scalar }
+export {
+  AllowedComponents,
+  NodeHandler,
+  Renderable,
+  RmdxElement,
+  RmdxNodeLike,
+  RmdxRoot,
+  RmdxScalar,
+  Scalar
+}

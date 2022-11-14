@@ -8,11 +8,11 @@ import { Link } from 'mdast'
 
 import { NodeHandler } from '../interfaces.js'
 
-const link: NodeHandler = (node) => {
-  const link = node as Partial<Link>
+const link: NodeHandler = (data) => {
+  const link = data.node as Partial<Link>
 
-  node.nodeType = 'link'
-  node.props = {
+  data.node.nodeType = 'link'
+  data.node.props = {
     href: link?.url || ''
   }
 

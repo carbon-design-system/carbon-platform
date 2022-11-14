@@ -6,8 +6,8 @@
  */
 import { NodeHandler } from '../interfaces.js'
 
-const strong: NodeHandler = (node) => {
-  node.nodeType = 'strong'
+const strong: NodeHandler = (data) => {
+  data.node.nodeType = 'strong'
 }
 
 export { strong }

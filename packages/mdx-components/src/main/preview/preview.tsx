@@ -17,47 +17,32 @@ import { withPrefix } from '../utils.js'
  * styling added to allow it to display responsively within the Platform.
  */
 interface PreviewProps {
-  className?: string | null
   title?: string | null
   height?: string | null
   src?: string | null
-  style?: object | null
 }
 
-const Preview: MdxComponent<PreviewProps> = ({ className, title, height, src, style }) => (
+const Preview: MdxComponent<PreviewProps> = ({ title, height, src }) => (
   <iframe
     src={src!}
     loading="lazy"
     title={title!}
     height={height!}
     frameBorder="no"
-    className={clsx(className, withPrefix('preview'))}
-    style={style!}
+    className={clsx(withPrefix('preview'))}
     sandbox="allow-forms allow-scripts allow-same-origin"
   />
 )
 
 Preview.propTypes = {
   /**
-   * Specify a custom class
-   */
-  className: PropTypes.string,
-
-  /**
    * Provide the height for the iframe
    */
   height: PropTypes.string,
-
   /**
    * Provide the url for the iframe
    */
   src: PropTypes.string,
-
-  /**
-   * Provide custom inline styles for the iframe
-   */
-  style: PropTypes.object,
-
   /**
    * Provide the title for the iframe
    */

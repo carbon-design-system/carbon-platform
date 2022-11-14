@@ -15,25 +15,16 @@ import AutolinkHeader from './autolink-header/autolink-header.js'
 
 interface H2Props {
   children: ReactNode
-  className?: string | null
-  headingClassName?: string | null
   noAnchor?: boolean | null
-  [otherProp: string]: unknown
 }
 
-const H2: MdxComponent<H2Props> = ({
-  children,
-  className,
-  headingClassName,
-  noAnchor,
-  ...rest
-}) => {
+const H2: MdxComponent<H2Props> = ({ children, noAnchor }) => {
   return (
-    <Grid className={clsx(withPrefix('header'), withPrefix('h2-container'), className)} {...rest}>
+    <Grid className={clsx(withPrefix('header'), withPrefix('h2-container'))}>
       <Column sm={4} md={8} lg={8}>
-        {noAnchor && <h2 className={clsx(withPrefix('h2'), headingClassName)}>{children}</h2>}
+        {noAnchor && <h2 className={clsx(withPrefix('h2'))}>{children}</h2>}
         {!noAnchor && (
-          <AutolinkHeader is="h2" className={clsx(withPrefix('h2'), headingClassName)}>
+          <AutolinkHeader is="h2" className={clsx(withPrefix('h2'))}>
             {children}
           </AutolinkHeader>
         )}
@@ -47,14 +38,6 @@ H2.propTypes = {
    * String title for Header
    */
   children: PropTypes.node.isRequired,
-  /**
-   * Specify optional className for container element
-   */
-  className: PropTypes.string,
-  /**
-   * Specify optional className for header element
-   */
-  headingClassName: PropTypes.string,
   /**
    * Do not render the autolink anchor
    */

@@ -14,17 +14,16 @@ import { withPrefix } from '../utils.js'
 
 interface ParagraphProps {
   children: ReactNode
-  className?: string | null
   large?: boolean | null
 }
 
-const P: MdxComponent<ParagraphProps> = ({ children, className, large, ...rest }) => {
+const P: MdxComponent<ParagraphProps> = ({ children, large }) => {
   const classNames = clsx(withPrefix('paragraph'), {
     [withPrefix('paragraph--large')]: large
   })
 
   return (
-    <Grid className={clsx(className, withPrefix('paragraph-container'))} {...rest}>
+    <Grid className={clsx(withPrefix('paragraph-container'))}>
       <Column sm={4} md={8} lg={8}>
         <p className={classNames}>{children}</p>
       </Column>
@@ -37,10 +36,6 @@ P.propTypes = {
    * `Paragraph text.
    */
   children: PropTypes.node.isRequired,
-  /**
-   * Optional class name on the wrapper grid.
-   */
-  className: PropTypes.string,
   /**
    * Display large font size.
    */

@@ -8,14 +8,13 @@
 import { Column as CarbonColumn } from '@carbon/react'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
-import React, { ReactNode } from 'react'
+import React, { ElementType, ReactNode } from 'react'
 
 import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
 
 interface ColumnProps {
   children: ReactNode
-  className?: string | null
   colSm?: number | null
   colMd?: number | null
   colLg?: number | null
@@ -26,12 +25,16 @@ interface ColumnProps {
   offsetLg?: number | null
   offsetXl?: number | null
   offsetMax?: number | null
-  [otherProp: string]: unknown
+  as?: string | ElementType | null
+  lg?: number | null
+  max?: number | null
+  md?: number | null
+  sm?: number | null
+  xlg?: number | null
 }
 
 const Column: MdxComponent<ColumnProps> = ({
   children,
-  className,
   colSm,
   colMd,
   colLg,
@@ -42,25 +45,23 @@ const Column: MdxComponent<ColumnProps> = ({
   offsetLg,
   offsetXl,
   offsetMax,
-  ...props
+  as,
+  lg,
+  max,
+  md,
+  sm,
+  xlg
 }) => {
   const colSizes = {
-    sm: offsetSm ? { span: colSm, offset: offsetSm } : colSm,
-    md: offsetMd ? { span: colMd, offset: offsetMd } : colMd,
-    lg: offsetLg ? { span: colLg, offset: offsetLg } : colLg,
-    xlg: offsetXl ? { span: colXl, offset: offsetXl } : colXl,
-    max: offsetMax ? { span: colMax, offset: offsetMax } : colMax
-  }
-
-  // remove 'noGutter' props to avoid react console error
-  for (const key in Object.keys(props)) {
-    if (key.startsWith('noGutter')) {
-      delete props[key]
-    }
+    sm: offsetSm ? { span: colSm ?? sm, offset: offsetSm } : colSm ?? sm,
+    md: offsetMd ? { span: colMd ?? md, offset: offsetMd } : colMd ?? md,
+    lg: offsetLg ? { span: colLg ?? lg, offset: offsetLg } : colLg ?? lg,
+    xlg: offsetXl ? { span: colXl ?? xlg, offset: offsetXl } : colXl ?? xlg,
+    max: offsetMax ? { span: colMax ?? max, offset: offsetMax } : colMax ?? max
   }
 
   return (
-    <CarbonColumn {...colSizes} {...props} className={clsx(withPrefix('column'), className)}>
+    <CarbonColumn {...colSizes} as={as} className={clsx(withPrefix('column'))}>
       {children}
     </CarbonColumn>
   )
@@ -69,22 +70,46 @@ const Column: MdxComponent<ColumnProps> = ({
 Column.defaultProps = {
   colSm: 4,
   colMd: 8,
-  colLg: 12
+  colLg: 12,
+  as: 'div'
 }
 
 Column.propTypes = {
+  as: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.elementType.isRequired]),
+  /**
+   * Specify children passed into the Column component
+   */
   children: PropTypes.node,
-  className: PropTypes.string,
+  /**
+   * Specify total columns and viewport large
+   */
   colLg: PropTypes.number.isRequired,
+  /**
+   * Specify total columns and viewport max
+   */
   colMax: PropTypes.number,
+  /**
+   * Specify total columns and viewport medium
+   */
   colMd: PropTypes.number.isRequired,
+  /**
+   * Specify total columns and viewport sall
+   */
   colSm: PropTypes.number.isRequired,
+  /**
+   * Specify total columns and viewport extra large
+   */
   colXl: PropTypes.number,
+  lg: PropTypes.number,
+  max: PropTypes.number,
+  md: PropTypes.number,
   offsetLg: PropTypes.number,
   offsetMax: PropTypes.number,
   offsetMd: PropTypes.number,
   offsetSm: PropTypes.number,
-  offsetXl: PropTypes.number
+  offsetXl: PropTypes.number,
+  sm: PropTypes.number,
+  xlg: PropTypes.number
 }
 
 export { ColumnProps }

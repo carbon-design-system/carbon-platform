@@ -14,7 +14,6 @@ import { withPrefix } from '../utils.js'
 
 interface DividerProps {
   children: ReactNode
-  className?: string | null
 }
 
 /**
@@ -23,22 +22,18 @@ interface DividerProps {
  * used without children `<Divider />` to provide a horizontal
  * rule with correct spacing.
  */
-const Divider: MdxComponent<DividerProps> = ({ children, className }) => {
-  const classNames = clsx(className, withPrefix('divider'), {
+const Divider: MdxComponent<DividerProps> = ({ children }) => {
+  clsx(withPrefix('divider'), {
     [withPrefix('divider--empty')]: children === undefined
   })
-  return <div className={classNames}>{children}</div>
+  return <div>{children}</div>
 }
 
 Divider.propTypes = {
   /**
    * Pass in the children that will be rendered within the divider
    */
-  children: PropTypes.node,
-  /**
-   * Optional class name on the divider.
-   */
-  className: PropTypes.string
+  children: PropTypes.node
 }
 
 export { DividerProps }

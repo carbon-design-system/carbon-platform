@@ -15,10 +15,9 @@ import { mediaQueries, useMatchMedia, withPrefix } from '../utils.js'
 
 interface RowProps {
   children: ReactNode
-  className?: string | null
 }
 
-const Row: MdxComponent<RowProps> = ({ children, className }) => {
+const Row: MdxComponent<RowProps> = ({ children }) => {
   const arrayChildren = Children.toArray(children)
 
   const isSm = useMatchMedia(mediaQueries.sm)
@@ -65,15 +64,17 @@ const Row: MdxComponent<RowProps> = ({ children, className }) => {
   })
 
   return (
-    <Grid narrow={narrow} condensed={condensed} className={clsx(withPrefix('grid'), className)}>
+    <Grid narrow={narrow} condensed={condensed} className={clsx(withPrefix('grid'))}>
       {children}
     </Grid>
   )
 }
 
 Row.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string
+  /**
+   * Pass in content that will be rendered within the Row
+   */
+  children: PropTypes.node
 }
 
 export { RowProps }

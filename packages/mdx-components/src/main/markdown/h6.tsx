@@ -14,16 +14,13 @@ import { withPrefix } from '../utils.js'
 
 interface H6Props {
   children: ReactNode
-  className?: string | null
-  headingClassName?: string | null
-  [otherProp: string]: unknown
 }
 
-const H6: MdxComponent<H6Props> = ({ children, className, headingClassName, ...rest }) => {
+const H6: MdxComponent<H6Props> = ({ children }) => {
   return (
-    <Grid className={clsx(withPrefix('h6-container'), className)} {...rest}>
+    <Grid className={clsx(withPrefix('h6-container'))}>
       <Column sm={4} md={8} lg={8}>
-        <h6 className={clsx(withPrefix('h6'), headingClassName)}>{children}</h6>
+        <h6 className={clsx(withPrefix('h6'))}>{children}</h6>
       </Column>
     </Grid>
   )
@@ -33,15 +30,7 @@ H6.propTypes = {
   /**
    * String title for Header
    */
-  children: PropTypes.node.isRequired,
-  /**
-   * Specify optional className for container element
-   */
-  className: PropTypes.string,
-  /**
-   * Specify optional className for header element
-   */
-  headingClassName: PropTypes.string
+  children: PropTypes.node.isRequired
 }
 
 export { H6Props }

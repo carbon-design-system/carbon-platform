@@ -14,16 +14,13 @@ import { withPrefix } from '../utils.js'
 
 interface H5Props {
   children: ReactNode
-  className?: string | null
-  headingClassName?: string | null
-  [otherProp: string]: unknown
 }
 
-const H5: MdxComponent<H5Props> = ({ children, className, headingClassName, ...rest }) => {
+const H5: MdxComponent<H5Props> = ({ children }) => {
   return (
-    <Grid className={clsx(withPrefix('h5-container'), className)} {...rest}>
+    <Grid className={clsx(withPrefix('h5-container'))}>
       <Column sm={4} md={8} lg={8}>
-        <h5 className={clsx(withPrefix('h5'), headingClassName)}>{children}</h5>
+        <h5 className={clsx(withPrefix('h5'))}>{children}</h5>
       </Column>
     </Grid>
   )
@@ -33,15 +30,7 @@ H5.propTypes = {
   /**
    * String title for Header
    */
-  children: PropTypes.node.isRequired,
-  /**
-   * Specify optional className for container element
-   */
-  className: PropTypes.string,
-  /**
-   * Specify optional className for header element
-   */
-  headingClassName: PropTypes.string
+  children: PropTypes.node.isRequired
 }
 
 export { H5Props }

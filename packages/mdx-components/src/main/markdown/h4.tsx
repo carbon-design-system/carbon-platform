@@ -15,43 +15,29 @@ import { withPrefix } from '../utils.js'
 interface H4Props {
   autolink?: boolean | null
   children: ReactNode
-  className?: string | null
-  headingClassName?: string | null
-  [otherProp: string]: unknown
 }
 
-const H4: MdxComponent<H4Props> = ({
-  autolink = true,
-  children,
-  className,
-  headingClassName,
-  ...rest
-}) => {
+const H4: MdxComponent<H4Props> = ({ autolink = true, children }) => {
   const Component = autolink ? 'h4' : 'p'
 
   return (
-    <Grid className={clsx(withPrefix('header'), withPrefix('h4-container'), className)} {...rest}>
+    <Grid className={clsx(withPrefix('header'), withPrefix('h4-container'))}>
       <Column sm={4} md={8} lg={8}>
-        <Component className={clsx(withPrefix('h4'), headingClassName)}>{children}</Component>
+        <Component className={clsx(withPrefix('h4'))}>{children}</Component>
       </Column>
     </Grid>
   )
 }
 
 H4.propTypes = {
+  /**
+   * Specify autolink
+   */
   autolink: PropTypes.bool,
   /**
    * String title for Header
    */
-  children: PropTypes.node.isRequired,
-  /**
-   * Specify optional className for container element
-   */
-  className: PropTypes.string,
-  /**
-   * Specify optional className for header element
-   */
-  headingClassName: PropTypes.string
+  children: PropTypes.node.isRequired
 }
 
 export { H4Props }

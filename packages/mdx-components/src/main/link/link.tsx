@@ -8,14 +8,19 @@
 import { Link as CarbonLink } from '@carbon/react'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
 
 interface LinkProps {
-  className?: string | null
-  [otherProp: string]: unknown
+  children: ReactNode
+  inline?: boolean | null
+  disabled?: boolean | null
+  size?: 'sm' | 'md' | 'lg' | null
+  visited?: boolean | null
+  href: string
+  // renderIcon <-- TODOASKJOE
 }
 
 /**
@@ -26,15 +31,52 @@ interface LinkProps {
  * > [Carbon Platform Storybook](https://platform.carbondesignsystem.com)
  * ```
  */
-const Link: MdxComponent<LinkProps> = ({ className, ...rest }) => (
-  <CarbonLink inline {...rest} className={clsx(className, withPrefix('link'))} />
+const Link: MdxComponent<LinkProps> = ({ href, children, inline, disabled, size, visited }) => (
+  <CarbonLink
+    href={href}
+    className={clsx(withPrefix('link'))}
+    inline={inline}
+    disabled={disabled}
+    size={size}
+    visited={visited}
+  >
+    {children}
+  </CarbonLink>
 )
+
+Link.defaultProps = {
+  disabled: false,
+  inline: false,
+  visited: false,
+  size: 'md'
+}
 
 Link.propTypes = {
   /**
-   * Specify optional className
+   * Specify optional children
    */
-  className: PropTypes.string
+  children: PropTypes.node.isRequired,
+  /**
+   * Specify if the control should be disabled, or not
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Provide the href attribute for the <a> node
+   */
+  href: PropTypes.string.isRequired,
+  /**
+   * Specify whether you want the inline version of this control
+   */
+  inline: PropTypes.bool,
+  /**
+   * Specify the size of the Link.
+   * Currently supports either sm, 'md' (default) or 'lg` as an option.
+   */
+  size: PropTypes.oneOf<LinkProps['size']>(['lg', 'sm', 'md']),
+  /**
+   * Specify whether you want the link to receive visited styles after the link has been clicked
+   */
+  visited: PropTypes.bool
 }
 
 export { LinkProps }

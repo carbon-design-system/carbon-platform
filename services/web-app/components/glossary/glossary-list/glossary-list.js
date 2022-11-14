@@ -4,12 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { H2, H4 } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import Markdown from 'markdown-it'
 import PropTypes from 'prop-types'
-
-import H2 from '@/components/markdown/h2'
-import H4 from '@/components/markdown/h4'
 
 import styles from './glossary-list.module.scss'
 

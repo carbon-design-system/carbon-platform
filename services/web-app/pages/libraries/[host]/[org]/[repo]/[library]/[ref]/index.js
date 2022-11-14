@@ -7,22 +7,25 @@
 import { Button, ButtonSet, Column, Grid, Link as CarbonLink } from '@carbon/react'
 import { ArrowRight, Launch } from '@carbon/react/icons'
 import { Svg32Github, Svg32Library, Svg64Community } from '@carbon-platform/icons'
-import { AnchorLink, AnchorLinks } from '@carbon-platform/mdx-components'
+import {
+  AnchorLink,
+  AnchorLinks,
+  CardGroup,
+  H2,
+  PageDescription,
+  ResourceCard
+} from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import CardGroup from '@/components/card-group'
 import ContentWrapper from '@/components/content-wrapper'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import DemoLinks from '@/components/demo-links'
-import { H2 } from '@/components/markdown'
 import MdxIcon from '@/components/mdx-icon'
-import PageDescription from '@/components/page-description'
 import PageHeader from '@/components/page-header'
-import ResourceCard from '@/components/resource-card'
 import withLoading from '@/components/with-loading'
 import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'

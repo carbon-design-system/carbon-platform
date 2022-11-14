@@ -14,20 +14,17 @@ import {
   Svg64Patterns,
   Svg64Templates
 } from '@carbon-platform/icons'
+import { ArtDirection, Divider, H2, P } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
-import ArtDirection from '@/components/art-direction'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
-import Divider from '@/components/divider'
 import { FeatureCard } from '@/components/feature-card/feature-card'
 import Hero from '@/components/hero'
-import { H2, P } from '@/components/markdown'
-import markdownStyles from '@/components/markdown/markdown.module.scss'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
@@ -238,11 +235,11 @@ const PageContent = () => {
       <Divider>
         <Grid>
           <Column sm={4} md={4} lg={4}>
-            <h2 className={markdownStyles.h2}>
+            <H2 noAnchor>
               Better
               <br />
               discoverability
-            </h2>
+            </H2>
           </Column>
           <Column sm={4} md={4} lg={7}>
             <P large>
@@ -256,11 +253,11 @@ const PageContent = () => {
       <Divider>
         <Grid>
           <Column sm={4} md={4} lg={4}>
-            <h2 className={markdownStyles.h2}>
+            <H2 noAnchor>
               Easier
               <br />
               management
-            </h2>
+            </H2>
           </Column>
           <Column sm={4} md={4} lg={7}>
             <P large>
@@ -279,16 +276,18 @@ const PageContent = () => {
         experience. To help you get started, our team will reach out to document your library’s
         metadata in the structured format we have provided.
       </P>
-      <P>
-        <CarbonLink
-          size="lg"
-          className={styles.link}
-          href="/contributing/schema"
-          renderIcon={ArrowRight}
-        >
-          Get started
-        </CarbonLink>
-      </P>
+      <Grid>
+        <Column sm={4} md={8} lg={8}>
+          <CarbonLink
+            size="lg"
+            className={styles.link}
+            href="/contributing/schema"
+            renderIcon={ArrowRight}
+          >
+            Get started
+          </CarbonLink>
+        </Column>
+      </Grid>
       <H2>Platform roadmap</H2>
       <P>
         Check out the{' '}

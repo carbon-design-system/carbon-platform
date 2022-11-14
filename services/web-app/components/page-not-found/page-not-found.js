@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
+import { H1 } from '@carbon-platform/mdx-components'
 
-import H1 from '../markdown/h1'
 import styles from './page-not-found.module.scss'
 
 export const PageNotFound = () => {

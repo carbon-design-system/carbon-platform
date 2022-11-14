@@ -13,10 +13,10 @@ import {
   Switch,
   Theme
 } from '@carbon/react'
+import { H3 } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { H3 } from '@/components/markdown'
 import tableStyles from '@/components/page-table/page-table.module.scss'
 import StickyContainer from '@/components/typeset-style/sticky-container'
 import colorTokens from '@/data/color-tokens'

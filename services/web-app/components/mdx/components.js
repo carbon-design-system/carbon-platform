@@ -4,111 +4,81 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import {
+  CodeSnippet,
+  StructuredListBody,
+  StructuredListCell,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListWrapper,
+  Tag
+} from '@carbon/react'
 import * as mdxComponents from '@carbon-platform/mdx-components'
 
-import { Accordion, AccordionItem } from '@/components/accordion'
-import ArtDirection from '@/components/art-direction'
-import ArticleCard from '@/components/article-card'
-import Aside from '@/components/aside'
-import Caption from '@/components/caption'
-import CardGroup from '@/components/card-group'
-import Code from '@/components/code'
+import ColorBlock from '@/components/color-block'
 import ColorGrid from '@/components/color-grid'
 import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
-import Divider from '@/components/divider'
-import { DoDont, DoDontRow } from '@/components/do-dont'
 import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
-import GifPlayer from '@/components/gif-player'
 import Glossary from '@/components/glossary'
-import { Column, Grid, Row } from '@/components/grid-transform'
-import ImageWrapper from '@/components/image-wrapper'
-import InlineNotification from '@/components/inline-notification'
-import Link from '@/components/link'
-import { Blockquote, H1, H2, H3, H4, H5, H6, Image, LI, OL, P, UL } from '@/components/markdown'
+import { Image } from '@/components/image'
 import MdxIcon from '@/components/mdx-icon'
 import MdxNotification from '@/components/mdx-notification/index'
 import MdxPage from '@/components/mdx-page'
 import FullPageError from '@/components/mdx-page/errors/full-page-error'
-import MiniCard from '@/components/mini-card'
-import PageDescription from '@/components/page-description'
-import PageTable from '@/components/page-table'
-import Preview from '@/components/preview'
 import Profile from '@/components/profile'
-import ResourceCard from '@/components/resource-card'
 import StatusIndicatorTable from '@/components/status-indicator-table'
-import StorybookDemo from '@/components/storybook-demo'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
-import { Tab, Tabs } from '@/components/tabs'
-import Title from '@/components/title'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
-import Video from '@/components/video'
 
 const components = {
   ...mdxComponents,
-  h1: H1,
-  h2: H2,
-  h3: H3,
-  h4: H4,
-  h5: H5,
-  h6: H6,
-  p: P,
-  ol: OL,
-  li: LI,
-  ul: UL,
-  a: Link,
-  blockquote: Blockquote,
+  h1: mdxComponents.H1,
+  h2: mdxComponents.H2,
+  h3: mdxComponents.H3,
+  h4: mdxComponents.H4,
+  h5: mdxComponents.H5,
+  h6: mdxComponents.H6,
+  p: mdxComponents.P,
+  ol: mdxComponents.OL,
+  li: mdxComponents.LI,
+  ul: mdxComponents.UL,
+  a: mdxComponents.Link,
+  blockquote: mdxComponents.Blockquote,
   img: Image,
-  table: PageTable,
-  pre: Code,
-  code: ({ children }) => (
-    <mdxComponents.CodeSnippet type="inline">{children}</mdxComponents.CodeSnippet>
-  ),
+  table: mdxComponents.PageTable,
+  pre: mdxComponents.Code,
+  code: ({ children }) => <CodeSnippet type="inline">{children}</CodeSnippet>,
   MdxNotification,
   FullPageError,
   /* Gatsby theme components */
-  Accordion,
-  AccordionItem,
-  ArtDirection,
-  ArticleCard,
-  Aside,
-  Caption,
-  CardGroup,
+  ColorBlock,
   ColorGrid,
   ColorPalette,
-  Column,
   ColorTokenTable,
-  DoDont,
-  DoDontRow,
-  Divider,
   FilterableDesignKitTable,
-  GifPlayer,
   Glossary,
-  Grid,
   IconLibrary,
   Image,
-  ImageWrapper,
-  InlineNotification,
   MdxIcon,
   MdxPage,
-  MiniCard,
-  PageDescription,
   PictogramLibrary,
-  Preview,
   Profile,
-  ResourceCard,
-  Row,
   StatusIndicatorTable,
-  StorybookDemo,
-  Tab,
-  Tabs,
-  Title,
   TypeScaleTable,
   TypesetStyle,
   TypeWeight,
-  Video
+  /* Carbon components */
+  /* SOON TO BE REMOVED */
+  CodeSnippet,
+  StructuredListBody,
+  StructuredListCell,
+  StructuredListHead,
+  StructuredListRow,
+  StructuredListWrapper,
+  Tag
 }
 
 export default components

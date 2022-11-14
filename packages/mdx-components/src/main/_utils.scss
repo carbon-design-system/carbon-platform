@@ -9,3 +9,10 @@ $carbon-platform-prefix: 'carbon-platform-mdx-components';
 @function with-prefix($input) {
   @return $carbon-platform-prefix + '--' + $input;
 }
+
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+}

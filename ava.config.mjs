@@ -16,7 +16,11 @@ export default {
   files: ['src/test/**/*'],
 
   // Run TypeScript tests by using the ts-node esm loader
-  nodeArguments: ['--loader=ts-node/esm'],
+  nodeArguments: [
+    // TODO: remove if/when https://github.com/carbon-design-system/carbon/pull/12331 is available
+    '--experimental-specifier-resolution=node',
+    '--loader=ts-node/esm'
+  ],
 
   // Used for RTL testing
   require: ['jsdom-global/register'],

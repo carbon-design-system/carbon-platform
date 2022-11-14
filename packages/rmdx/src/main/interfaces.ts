@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { MdxJsxTextElement } from 'mdast-util-mdx-jsx'
+import { Data, Node } from 'unist'
+import { Parent, VisitorResult } from 'unist-util-visit'
 
 type Scalar = string | number | boolean
 
@@ -27,4 +29,12 @@ interface RmdxElement extends RmdxNodeLike {
   children: Array<RmdxRoot>
 }
 
-export { JsxLike, Renderable, RmdxElement, RmdxNodeLike, RmdxRoot, RmdxScalar, Scalar }
+interface NodeHandler {
+  (
+    node: Renderable<Partial<Node<Data>>>,
+    index: number | null,
+    parent: Parent | null
+  ): VisitorResult
+}
+
+export { JsxLike, NodeHandler, Renderable, RmdxElement, RmdxNodeLike, RmdxRoot, RmdxScalar, Scalar }

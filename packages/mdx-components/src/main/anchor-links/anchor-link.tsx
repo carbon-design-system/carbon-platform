@@ -19,6 +19,7 @@ interface AnchorLinkProps {
 }
 
 const AnchorLink: MdxComponent<AnchorLinkProps> = ({ to, children }) => {
+  // TODOASKJOE <- children coming in as RmdxNode instead of the string
   const href = to || `#${slugify(children, { lower: true })}`
 
   return (

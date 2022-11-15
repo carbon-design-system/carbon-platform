@@ -6,14 +6,14 @@
  */
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
 
 interface BlockquoteProps {
-  className?: string | null
-  [otherProp: string]: unknown
+  children: ReactNode
+  cite?: string | null
 }
 
 /**
@@ -29,15 +29,21 @@ interface BlockquoteProps {
  * > <cite>– Paul Rand</cite>
  * ```
  */
-const Blockquote: MdxComponent<BlockquoteProps> = ({ className, ...rest }) => (
-  <blockquote className={clsx(className, withPrefix('blockquote'))} {...rest} />
+const Blockquote: MdxComponent<BlockquoteProps> = ({ cite, children }) => (
+  <blockquote cite={cite === null ? undefined : cite} className={clsx(withPrefix('blockquote'))}>
+    {children}
+  </blockquote>
 )
 
 Blockquote.propTypes = {
   /**
-   * Specify optional className for container element
+   * Provide the contents of the Blockquote
    */
-  className: PropTypes.string
+  children: PropTypes.node,
+  /**
+   * Specify optional blockquote cite
+   */
+  cite: PropTypes.string
 }
 
 export { BlockquoteProps }

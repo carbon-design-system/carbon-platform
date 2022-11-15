@@ -15,7 +15,6 @@ import { withPrefix } from '../utils.js'
 
 interface AsideProps {
   children: ReactNode
-  className?: string | null
   hideRule?: boolean | null
 }
 
@@ -24,8 +23,8 @@ interface AsideProps {
  *  smaller than the default body text with a one column offset. It is designed to be used on
  * the side of the page within grid components. Add an aria-label for a11y.
  */
-const Aside: MdxComponent<AsideProps> = ({ children, className, hideRule, ...rest }) => {
-  const asideClasses = clsx(withPrefix('aside'), className, {
+const Aside: MdxComponent<AsideProps> = ({ children, hideRule, ...rest }) => {
+  const asideClasses = clsx(withPrefix('aside'), {
     [withPrefix('aside--no-rule')]: !!hideRule
   })
 
@@ -45,12 +44,6 @@ Aside.propTypes = {
    * Child of the Aside.
    */
   children: PropTypes.node,
-
-  /**
-   * Optional class name.
-   */
-  className: PropTypes.string,
-
   /**
    * Hide the rule above the text.
    */

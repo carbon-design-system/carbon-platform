@@ -7,16 +7,20 @@
 import { Logging } from '@carbon-platform/api/logging'
 import { EventMessage, Queue } from '@carbon-platform/api/messaging'
 import { PlatformMicroservice } from '@carbon-platform/api/microservice'
+import { Runtime } from '@carbon-platform/api/runtime'
 
 import { LoggingModule } from './logging-module.js'
 
 async function start() {
+  const runtime = new Runtime()
+
   // Disable remote logging entirely for the logging service
   Logging.isRemoteLoggingAllowed = false
 
   const pm = new PlatformMicroservice({
     queue: Queue.Logging,
     module: LoggingModule,
+    runtime,
     autoAck: true // Remove messages immediately from the queue without explicit ack
   })
 

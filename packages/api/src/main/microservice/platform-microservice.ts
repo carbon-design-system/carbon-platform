@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { DynamicModule, Type } from '@nestjs/common'
 import { HttpAdapterHost, NestFactory } from '@nestjs/core'
 import { RmqOptions, Transport } from '@nestjs/microservices'
 
@@ -25,6 +26,7 @@ import { PORT } from './constants.js'
 import { QueryMessageExceptionFilter } from './filters/query-message-exception-filter.js'
 import { UncaughtExceptionFilter } from './filters/uncaught-exception-filter.js'
 import { RequestLogInterceptor } from './interceptors/request-log-interceptor.js'
+import { RuntimeModule } from './runtime-module.js'
 
 type BindableMessage = EventMessage | QueryMessage
 
@@ -35,12 +37,13 @@ type BindableMessageKey<T extends BindableMessage> = T extends EventMessage
 interface MicroserviceConfig {
   /**
    * The NestJS module that defines all of the controller and providers for this microservice. This
-   * is defined as "any" to be in accordance with NestJS conventions.
+   * type loosely matches what is expected by a NestJS "imports" directive.
    */
-  module: unknown
+  module: Type<unknown> | DynamicModule | Promise<DynamicModule>
 
   /**
-   * Whether or not to enable automatic removal of messages from the associated queue.
+   * Whether or not to enable automatic removal of messages from the associated queue. Defaults to
+   * false if not specified.
    */
   autoAck?: boolean
 
@@ -56,7 +59,7 @@ interface MicroserviceConfig {
 }
 
 class PlatformMicroservice {
-  private readonly module: unknown
+  private readonly module: MicroserviceConfig['module']
   private readonly autoAck: boolean
   private readonly queueName: string
   private readonly runtime: Runtime
@@ -70,6 +73,19 @@ class PlatformMicroservice {
     this.logging = new Logging({ component: 'PlatformMicroservice', runtime: this.runtime })
     // Use a queue name that is environment-specific
     this.queueName = this.runtime.withEnvironment(config.queue)
+  }
+
+  /**
+   * Creates a dynamic module containing the provided module along with a RuntimeModule based on the
+   * provided runtime object.
+   *
+   * @returns The dynamic module object.
+   */
+  private createRootModule(): DynamicModule {
+    return {
+      module: class PlatformMicroserviceRootModule {},
+      imports: [RuntimeModule.register(this.runtime), this.module]
+    }
   }
 
   /**
@@ -120,7 +136,7 @@ class PlatformMicroservice {
    * @returns A promise that never resolves.
    */
   public async start(): Promise<unknown> {
-    const application = await NestFactory.create(this.module)
+    const application = await NestFactory.create(this.createRootModule())
 
     const { httpAdapter } = application.get(HttpAdapterHost)
 

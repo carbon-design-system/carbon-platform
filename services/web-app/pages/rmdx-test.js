@@ -17,6 +17,8 @@ import { CaptionMapper } from '@/utils/mappers/caption.mapper'
 import { ColumnMapper } from '@/utils/mappers/column.mapper'
 import { DivMapper } from '@/utils/mappers/div.mapper'
 import { DividerMapper } from '@/utils/mappers/divider.mapper'
+import { DoDontMapper } from '@/utils/mappers/do-dont.mapper'
+import { DoDontRowMapper } from '@/utils/mappers/do-dont-row.mapper'
 import { GridMapper } from '@/utils/mappers/grid.mapper'
 import { H1Mapper } from '@/utils/mappers/h1.mapper'
 import { H2Mapper } from '@/utils/mappers/h2.mapper'
@@ -34,6 +36,8 @@ import { PreviewMapper } from '@/utils/mappers/preview.mapper'
 import { RowMapper } from '@/utils/mappers/row.mapper'
 import { SpanMapper } from '@/utils/mappers/span.mapper'
 import { StrongMapper } from '@/utils/mappers/strong.mapper'
+import { TabMapper } from '@/utils/mappers/tab.mapper'
+import { TabsMapper } from '@/utils/mappers/tabs.mapper'
 import { TitleMapper } from '@/utils/mappers/title.mapper'
 import { UniversalMapper } from '@/utils/mappers/universal.mapper'
 
@@ -68,6 +72,8 @@ const components = {
   Caption: CaptionMapper,
   Column: ColumnMapper,
   Divider: DividerMapper,
+  DoDont: DoDontMapper,
+  DoDontRow: DoDontRowMapper,
   Grid: GridMapper,
   H1: H1Mapper,
   H2: H2Mapper,
@@ -81,6 +87,8 @@ const components = {
   PageTable: PageTableMapper,
   Preview: PreviewMapper,
   Row: RowMapper,
+  Tab: TabMapper,
+  Tabs: TabsMapper,
   Title: TitleMapper
 }
 
@@ -328,6 +336,71 @@ pellentesque. Nunc dictum odio eu enim venenatis fringilla. Nunc finibus enim du
 commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
 
 </InlineNotification>
+
+## DoDont
+
+<DoDontRow>
+
+<DoDont type="do" aspectRatio="1:1" text="This is some text" />
+
+<DoDont type="dont" aspectRatio="1:1" text="This is some text" color="dark" />
+
+</DoDontRow>
+
+<DoDontRow>
+
+<DoDont
+  text="This is some text that is 8 columns"
+  color="dark"
+  captionTitle="Caption title"
+  caption="Caption"
+  colLg="8"
+  type="do"
+/>
+
+</DoDontRow>
+
+<DoDontRow>
+
+<DoDont aspectRatio="4:3" text="4:3"  type="do" />
+
+<DoDont aspectRatio="16:9" text="16:9" type="do" />
+
+<DoDont aspectRatio="2:1" text="2:1" type="do" />
+
+</DoDontRow>
+
+<DoDontRow>
+
+<DoDont aspectRatio="9:16" text="9:16" type="do" />
+
+<DoDont aspectRatio="1:2" text="1:2" type="do" />
+
+<DoDont aspectRatio="3:4" text="3:4" type="do" />
+
+</DoDontRow>
+<DoDontRow>
+
+<DoDont aspectRatio="1:1" text="1:1" type="do" />
+
+</DoDontRow>
+
+## Tabs
+
+<Tabs>
+
+    <Tab label="Bla bla">
+
+    bla bla bla bla bla bla bla bla bla.
+
+    </Tab>
+
+    <Tab label="More bla">
+    bla bla bla bla bla bla bla bla bla.
+    </Tab>
+
+</Tabs>
+
 
 
 `

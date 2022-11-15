@@ -22,7 +22,6 @@ interface DoDontProps {
   aspectRatio?: string | null
   color?: string | null
   type: 'do' | 'dont'
-  className?: string | null
   colLg?: number | null
   colMd?: number | null
 }
@@ -40,7 +39,6 @@ const DoDont: MdxComponent<DoDontProps> = ({
   aspectRatio,
   color,
   type,
-  className,
   colLg,
   colMd
 }) => {
@@ -51,7 +49,7 @@ const DoDont: MdxComponent<DoDontProps> = ({
 
   const aspectRatios = ['1:1', '2:1', '1:2', '4:3', '3:4', '9:16', '16:9']
 
-  const wrapperClassNames = clsx(className, withPrefix('example'), {
+  const wrapperClassNames = clsx(withPrefix('example'), {
     [withPrefix('correct')]: type === 'do',
     [withPrefix('incorrect')]: type === 'dont',
     [withPrefix('ratio')]: aspectRatio && aspectRatios.includes(aspectRatio),
@@ -120,8 +118,6 @@ DoDont.propTypes = {
   captionTitle: PropTypes.string,
   /** Provide the contents of the DoDont, can be an image or video */
   children: PropTypes.node.isRequired,
-  /** set optional custom class */
-  className: PropTypes.string,
   /** set how many columns wide at large breakpoint  */
   colLg: PropTypes.number,
   /** set how many columns wide at medium breakpoint  */

@@ -31,7 +31,7 @@ interface TabsProps {
 /**
  * The `<Tabs>` and `<Tab>` components are used together to display and swap between content.
  */
-const Tabs: MdxComponent<TabsProps> = (props) => {
+const Tabs: MdxComponent<TabsProps> = ({ children }) => {
   const tabList = useRef([])
   const [activeTab, setActiveTab] = useState(0)
   const isMd = useMatchMedia(mediaQueries.md)
@@ -44,9 +44,9 @@ const Tabs: MdxComponent<TabsProps> = (props) => {
 
   return (
     <TabContext.Provider value={{ setActiveTab, activeTab, tabList: tabList.current }}>
-      {isMd && <TabList _id={id}>{props.children}</TabList>}
-      {!isMd && <Select _id={id}>{props.children}</Select>}
-      {React.Children.map(props.children, (child, index) => {
+      {isMd && <TabList _id={id}>{children}</TabList>}
+      {!isMd && <Select _id={id}>{children}</Select>}
+      {React.Children.map(children, (child, index) => {
         return React.cloneElement(child, {
           _id: `${id}__${index}`,
           active: activeTab === index,

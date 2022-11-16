@@ -53,33 +53,6 @@
   }
 }
 
-.dropdown {
-  // override carbon display, grid-gap
-  position: relative;
-  display: flex;
-  width: 100%;
-
-  grid-gap: 0;
-
-  // overide carbon color
-  :global(.cds--label) {
-    color: theme.$text-primary;
-  }
-
-  // overide carbon position, flex-grow
-  :global(.cds--dropdown) {
-    z-index: 1;
-    flex-grow: 1;
-    border: none;
-  }
-
-  // overide carbon max-width
-  :global(.cds--list-box__field),
-  :global(.cds--list-box__menu) {
-    max-width: none;
-  }
-}
-
 .tag {
   display: inline;
 }

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.16](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.15...@carbon-platform/mdx-components@0.1.16) (2022-11-16)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add do type to do-dont story ([3010882](https://github.com/carbon-design-system/carbon-platform/commit/30108828685add4b5e9e7287ef51144f97834b9a))
+
 ### [0.1.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.14...@carbon-platform/mdx-components@0.1.15) (2022-11-12)
 
 

@@ -1,6 +1,6 @@
 # Data-Graph service
 
-### Service
+## Service
 
 The data-graph service provides a GraphQL endpoint accessible via both REST HTTP calls and RabbitMQ
 messaging. It provides access to all of the disparate data sources across the platform.

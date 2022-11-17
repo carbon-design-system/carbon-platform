@@ -71,4 +71,4 @@ Here's the steps you need to do to create a new microservice on the Carbon Platf
 7. Add docs!
 8. Add tests!
 9. Add an entry to [.commitlintrc.js](/.commitlintrc.js) for the new service's name.
-10. TODO: docs for how to deploy the app
+10. When ready, add the appropriate k8s configuration files in the k8s repo.

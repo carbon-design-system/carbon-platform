@@ -81,6 +81,23 @@ Or, to be safe and rebuild all packages:
 $ npm run packages:build
 ```
 
+## Adding a new workspace (package or service) to the monorepo
+
+For instructions on how to add a new platform microservice, see:
+[Creating a microservice](./platform-microservices.md#creating-a-microservice)
+
+**Generally, the steps are:**
+
+1. Create the workspace folder under either `packages` or `services`.
+2. Create a `package.json` file with a unique name for the package (typically prefixed with
+   `@carbon-platform/`).
+3. Add the workspace folder to the top-level `package.json` file.
+4. Run `CI=true npm install && npm install` to sync the lock file
+   - The install command is run twice because of a bug in npm where it doesn't pick up all of the
+     metadata in the lockfile after the first run
+5. Add an entry to the packages or services matrix (if applicable) in the
+   [nightly workflow](/.github/workflows/nightly.yml).
+
 ## Before you push!
 
 There's a few things you should do prior to committing/pushing a change to GitHub for review to help

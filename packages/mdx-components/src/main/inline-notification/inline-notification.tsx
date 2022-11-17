@@ -25,18 +25,13 @@ type Kind = 'error' | 'info' | 'success' | 'warning'
 
 interface InlineNotificationProps {
   children?: ReactNode
-  className?: string | null
   kind: Kind
 }
 /**
  * The `<InlineNotification>` component is used to communicate important information to a user.
  */
-const InlineNotification: MdxComponent<InlineNotificationProps> = ({
-  children,
-  className,
-  kind = 'info'
-}) => {
-  const containerClassName = clsx(className, {
+const InlineNotification: MdxComponent<InlineNotificationProps> = ({ children, kind = 'info' }) => {
+  const containerClassName = clsx({
     'cds--inline-notification': true,
     'cds--inline-notification--low-contrast': true,
     [`cds--inline-notification--${kind}`]: kind,
@@ -46,7 +41,7 @@ const InlineNotification: MdxComponent<InlineNotificationProps> = ({
 
   return (
     <Grid>
-      <Column sm={4} md={8} lg={8} className={clsx(withPrefix('notification'), className)}>
+      <Column sm={4} md={8} lg={8} className={clsx(withPrefix('notification'))}>
         <div className={containerClassName}>
           <div className="cds--inline-notification__details">
             <IconForKind className="cds--inline-notification__icon" size={20}>
@@ -67,10 +62,6 @@ InlineNotification.propTypes = {
    * Provide the contents of the InlineNotification
    */
   children: PropTypes.node,
-  /**
-   * Specify an optional className to be applied to the container node
-   */
-  className: PropTypes.string,
   /**
    * Notification kind
    */

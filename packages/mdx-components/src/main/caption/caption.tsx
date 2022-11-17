@@ -15,14 +15,13 @@ import { withPrefix } from '../utils.js'
 
 interface CaptionProps {
   children: ReactNode
-  className?: string | null
 }
 
 /**
  * The `<Caption>` component is typically used below images or videos.
  */
-const Caption: MdxComponent<CaptionProps> = ({ children, className }) => (
-  <Grid className={clsx(className, withPrefix('caption-container'))}>
+const Caption: MdxComponent<CaptionProps> = ({ children }) => (
+  <Grid className={clsx(withPrefix('caption-container'))}>
     <Column sm={4} md={6} lg={6}>
       <p className={withPrefix('caption')}>{children}</p>
     </Column>
@@ -30,8 +29,10 @@ const Caption: MdxComponent<CaptionProps> = ({ children, className }) => (
 )
 
 Caption.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string
+  /**
+   * Speficy any children passed into the Caption component
+   */
+  children: PropTypes.node
 }
 
 export { CaptionProps }

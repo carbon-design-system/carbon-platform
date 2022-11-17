@@ -23,10 +23,10 @@ interface DividerProps {
  * rule with correct spacing.
  */
 const Divider: MdxComponent<DividerProps> = ({ children }) => {
-  clsx(withPrefix('divider'), {
+  const classNames = clsx(withPrefix('divider'), {
     [withPrefix('divider--empty')]: children === undefined
   })
-  return <div>{children}</div>
+  return <div className={classNames}>{children}</div>
 }
 
 Divider.propTypes = {

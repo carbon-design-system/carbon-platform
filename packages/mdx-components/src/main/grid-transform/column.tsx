@@ -31,6 +31,8 @@ interface ColumnProps {
   md?: number | null
   sm?: number | null
   xlg?: number | null
+  NoGutterSm?: boolean | null
+  NoGutterMdLeft?: boolean | null
 }
 
 const Column: MdxComponent<ColumnProps> = ({
@@ -74,41 +76,84 @@ Column.defaultProps = {
   as: 'div'
 }
 
+// TODOASKJOE: span proptype
+
 Column.propTypes = {
+  /**
+   * Renders column within a narrow grid (legacy)
+   */
+  NoGutterMdLeft: PropTypes.bool,
+  /**
+   * Renders column within a condensed grid (legacy)
+   */
+  NoGutterSm: PropTypes.bool,
+  /**
+   * Provide a custom element to render instead of the default
+   */
   as: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.elementType.isRequired]),
   /**
    * Specify children passed into the Column component
    */
   children: PropTypes.node,
   /**
-   * Specify total columns and viewport large
+   * Specify total columns at viewport large (legacy)
    */
-  colLg: PropTypes.number.isRequired,
+  colLg: PropTypes.number,
   /**
-   * Specify total columns and viewport max
+   * Specify total columns at viewport max (legacy)
    */
   colMax: PropTypes.number,
   /**
-   * Specify total columns and viewport medium
+   * Specify total columns at viewport medium (legacy)
    */
-  colMd: PropTypes.number.isRequired,
+  colMd: PropTypes.number,
   /**
-   * Specify total columns and viewport sall
+   * Specify total columns at viewport small (legacy)
    */
-  colSm: PropTypes.number.isRequired,
+  colSm: PropTypes.number,
   /**
-   * Specify total columns and viewport extra large
+   * Specify total columns at viewport extra large (legacy)
    */
   colXl: PropTypes.number,
+  /**
+   * Specify total columns at viewport large
+   */
   lg: PropTypes.number,
+  /**
+   * Specify total columns at viewport max
+   */
   max: PropTypes.number,
+  /**
+   * Specify total columns at viewport medium
+   */
   md: PropTypes.number,
+  /**
+   * Specify total column offset at viewport large (legacy)
+   */
   offsetLg: PropTypes.number,
+  /**
+   * Specify total column offset at viewport max (legacy)
+   */
   offsetMax: PropTypes.number,
+  /**
+   * Specify total column offset at viewport medium (legacy)
+   */
   offsetMd: PropTypes.number,
+  /**
+   * Specify total column offset at viewport small (legacy)
+   */
   offsetSm: PropTypes.number,
+  /**
+   * Specify total column offset at viewport extra large (legacy)
+   */
   offsetXl: PropTypes.number,
+  /**
+   * Specify total columns at viewport small
+   */
   sm: PropTypes.number,
+  /**
+   * Specify total columns at viewport extra large
+   */
   xlg: PropTypes.number
 }
 

@@ -6,7 +6,7 @@
  */
 import { LogLoggedMessage } from '@carbon-platform/api/logging'
 import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
-import { Environment } from '@carbon-platform/api/runtime'
+import { Environment, RunMode, Runtime } from '@carbon-platform/api/runtime'
 import test from 'ava'
 
 import { LogDnaService } from '../main/log-dna-service.js'
@@ -26,7 +26,9 @@ test.beforeEach(() => {
 })
 
 test.serial('logLogged runs without crashing', (t) => {
-  const logDnaService = new LogDnaService({})
+  const logDnaService = new LogDnaService(
+    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  )
   const loggingController = new LoggingController(logDnaService)
 
   loggingController.logLogged(data)
@@ -34,7 +36,9 @@ test.serial('logLogged runs without crashing', (t) => {
 })
 
 test.serial('logLogged handles its own exception when no component specified', (t) => {
-  const logDnaService = new LogDnaService({})
+  const logDnaService = new LogDnaService(
+    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  )
   const loggingController = new LoggingController(logDnaService)
 
   delete data.component
@@ -44,7 +48,9 @@ test.serial('logLogged handles its own exception when no component specified', (
 })
 
 test.serial('logLogged handles its own exception when no environment specified', (t) => {
-  const logDnaService = new LogDnaService({})
+  const logDnaService = new LogDnaService(
+    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  )
   const loggingController = new LoggingController(logDnaService)
 
   delete data.environment
@@ -54,7 +60,9 @@ test.serial('logLogged handles its own exception when no environment specified',
 })
 
 test.serial('logLogged handles its own exception when no level specified', (t) => {
-  const logDnaService = new LogDnaService({})
+  const logDnaService = new LogDnaService(
+    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  )
   const loggingController = new LoggingController(logDnaService)
 
   delete data.level
@@ -64,7 +72,9 @@ test.serial('logLogged handles its own exception when no level specified', (t) =
 })
 
 test.serial('logLogged handles its own exception when no message specified', (t) => {
-  const logDnaService = new LogDnaService({})
+  const logDnaService = new LogDnaService(
+    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  )
   const loggingController = new LoggingController(logDnaService)
 
   delete data.message
@@ -74,7 +84,9 @@ test.serial('logLogged handles its own exception when no message specified', (t)
 })
 
 test.serial('logLogged handles its own exception when no service specified', (t) => {
-  const logDnaService = new LogDnaService({})
+  const logDnaService = new LogDnaService(
+    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  )
   const loggingController = new LoggingController(logDnaService)
 
   delete data.service
@@ -84,7 +96,9 @@ test.serial('logLogged handles its own exception when no service specified', (t)
 })
 
 test.serial('logLogged handles its own exception when no timestamp specified', (t) => {
-  const logDnaService = new LogDnaService({})
+  const logDnaService = new LogDnaService(
+    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  )
   const loggingController = new LoggingController(logDnaService)
 
   delete data.timestamp

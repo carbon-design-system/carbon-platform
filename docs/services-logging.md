@@ -1,6 +1,6 @@
 # Logging service
 
-### Service
+## Service
 
 The logging service provides a common logging mechanism for all packages and services.
 
@@ -12,6 +12,41 @@ This includes all relevant FFDC (First Failure Data Capture) information.
 
 The purpose of FFDC is to collect enough information during the first occurrence of an issue to
 provide a fix without needing to reproduce the failure and perform additional debug of the problem.
+
+## How to be a good logger!
+
+_Here's a random assortment of things to think about when you're writing logs and traces in your
+code._
+
+- `Info` logs at the top of methods/functions could probably instead be covered by `@Trace()` or
+  `withTrace` which would implicitly capture the args.
+
+- `Info` logs are generally more useful in the middle-ish of methods/functions when you have more
+  interesting data in-hand to log all at once.
+
+- Generally, for small methods/functions, zero-to-one `info` log(s) is plenty.
+
+- Removing useful, but noisy logs is almost never a good idea.
+
+- If a single log statement in a function causes a ton of logs all on its own to the point where
+  it's no longer useful, it often means the _code_ is too complex, not the logging. Consider
+  factoring out relevant code into its own package or service entirely.
+
+- If `A` calls `B` and it's nearly impossible for things to fail between those, only log in one of
+  the two places.
+
+- `Debug` logs can be used anywhere and it's okay for them to be somewhat noisy. This includes using
+  them outside of `@Trace()` or `withTrace`-decorated functions.
+
+- You can turn off debug logging by exporting `CARBON_DEBUG=false` prior to running your service.
+
+- Regarding gSSP and gSP, the `proxy-server`'s request logger will provide a rough indication that
+  gSSP will _eventually_ be called, so it's probably not super useful to have info logs in gSSP and
+  gSP that log the arguments received.
+
+- `Info`, `warn`, and `error` should almost always be past-tense (e.g "server is listening on port
+  3000"). Though sometimes it's useful to have a "doing this thing" right before it actually
+  happens, but typically that would be a `debug` log as opposed to an `info` log.
 
 ## Package APIs
 

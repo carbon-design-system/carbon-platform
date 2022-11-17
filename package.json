@@ -32,6 +32,7 @@
     "packages/schemas",
     "services/data-graph",
     "services/logging",
+    "services/rmdx-processing",
     "services/web-app"
   ],
   "scripts": {

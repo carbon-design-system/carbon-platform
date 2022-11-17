@@ -6,21 +6,16 @@
  */
 import { QueryMessage, Queue } from '@carbon-platform/api/messaging'
 import { PlatformMicroservice } from '@carbon-platform/api/microservice'
-import { RunMode, Runtime } from '@carbon-platform/api/runtime'
 
-import { DataGraphModule } from './data-graph-module.js'
+import { RmdxProcessingModule } from './rmdx-processing-module.js'
 
 async function start() {
-  const runtime = new Runtime()
-  const isPlaygroundEnabled = runtime.runMode === RunMode.Dev
-
   const pm = new PlatformMicroservice({
-    queue: Queue.DataGraph,
-    module: DataGraphModule.register({ isPlaygroundEnabled }),
-    runtime
+    queue: Queue.Rmdx,
+    module: RmdxProcessingModule
   })
 
-  await pm.bind<QueryMessage>('data_graph')
+  await pm.bind<QueryMessage>('rmdx')
 
   await pm.start()
 }

@@ -21,6 +21,7 @@
     "./logging": "./dist/main/logging/index.js",
     "./messaging": "./dist/main/messaging/index.js",
     "./microservice": "./dist/main/microservice/index.js",
+    "./rmdx": "./dist/main/rmdx/index.js",
     "./runtime": "./dist/main/runtime/index.js"
   },
   "scripts": {

@@ -45,6 +45,12 @@ APIs and utilities used to build and manage Platform Microservices.
 
 See [Platform microservices](./platform-microservices.md).
 
+## rmdx
+
+APIs to convert MDX into RMDX.
+
+See [RMDX processing service](./services-rmdx-processing.md).
+
 ## runtime
 
 A set of modules relating to runtime configuration of services on the platform.

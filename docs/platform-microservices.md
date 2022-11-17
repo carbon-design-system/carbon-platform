@@ -59,11 +59,16 @@ Here's the steps you need to do to create a new microservice on the Carbon Platf
    baseline.
 2. Define the programmatic APIs the service will provide and include them as a sub-folder in the API
    package.
+   - Add an `exports` directive to the API package's `package.json`, if needed.
 3. Define a queue name in the [interfaces.ts](/packages/api/src/main/messaging/interfaces.ts) file.
 4. If the service handles new message or query types, define them in the
    [interfaces.ts](/packages/api/src/main/messaging/interfaces.ts) file.
+   - The input/output message formats should be defined in the corresponding sub-folder in the API
+     package.
 5. Create a `Dockerfile` and `esbuild.js` file specific to the new service.
-6. Add a job to the [nightly workflow](/.github/workflows/nightly.yml) file for the new service.
-7. TODO: docs for how to deploy the app
-8. Add docs!
-9. Add tests!
+6. Add an entry to the services matrix in the [nightly workflow](/.github/workflows/nightly.yml) for
+   the new service.
+7. Add docs!
+8. Add tests!
+9. Add an entry to [.commitlintrc.js](/.commitlintrc.js) for the new service's name.
+10. When ready, add the appropriate k8s configuration files in the k8s repo.

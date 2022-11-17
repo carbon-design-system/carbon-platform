@@ -4,12 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Column, Dropdown, Grid, IconButton } from '@carbon/react'
+import { Column, Grid, IconButton } from '@carbon/react'
 import { Grid as GridIcon, List as ListIcon } from '@carbon/react/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
+import SortByDropdown from '@/components/sort-by-dropdown'
 import { GRID_VIEW, LIST_VIEW } from '@/data/view'
 import useEventListener from '@/utils/use-event-listener'
 
@@ -48,19 +49,11 @@ const CatalogSort = ({
     >
       <Grid className={styles.grid} narrow>
         <Column className={styles.column} sm={4} md={8} lg={4}>
-          <Dropdown
-            id="catalog-sort"
-            className={styles.dropdown}
-            initialSelectedItem={sortOptions.find((item) => item.id === sortId)}
-            items={sortOptions}
-            itemToString={(item) => (item ? item.text : '')}
-            onChange={({ selectedItem }) => {
-              onSort(selectedItem.id)
-            }}
-            type="inline"
-            titleText="Sort by:"
-            label={sortOptions[defaultSortIndex].text}
-            size="lg"
+          <SortByDropdown
+            onSort={onSort}
+            sortOptions={sortOptions}
+            defaultSortIndex={defaultSortIndex}
+            sortId={sortId}
           />
         </Column>
         <Column className={`${styles.column} ${styles['column--switcher']}`} lg={8}>

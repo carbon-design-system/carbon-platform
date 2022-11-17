@@ -7,7 +7,6 @@
 import {
   Column,
   DataTable,
-  Dropdown,
   Grid,
   Table,
   TableBody,
@@ -27,6 +26,7 @@ import { useContext, useEffect, useState } from 'react'
 import AssetCatalogItemMeta from '@/components/asset-catalog-item/asset-catalog-item-meta'
 import ContentWrapper from '@/components/content-wrapper'
 import PageHeader from '@/components/page-header'
+import SortByDropdown from '@/components/sort-by-dropdown'
 import TypeTag from '@/components/type-tag'
 import withLoading from '@/components/with-loading'
 import { assetsNavData } from '@/data/nav-data'
@@ -149,19 +149,11 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
             </Grid>
             <Grid condensed={!isLg} narrow={isLg}>
               <Column className={styles['sort-column']} sm={4} md={4} lg={4}>
-                <Dropdown
-                  id="catalog-sort"
-                  className={styles.dropdown}
-                  initialSelectedItem={sortItems.find((item) => item.id === sort)}
-                  items={sortItems}
-                  itemToString={(item) => (item ? item.text : '')}
-                  onChange={({ selectedItem }) => {
-                    onSort(selectedItem.id)
-                  }}
-                  type="inline"
-                  titleText="Sort by:"
-                  label="A–Z"
-                  size="lg"
+                <SortByDropdown
+                  onSort={onSort}
+                  sortOptions={sortItems}
+                  defaultSortIndex={0}
+                  sortId={sort}
                 />
               </Column>
             </Grid>

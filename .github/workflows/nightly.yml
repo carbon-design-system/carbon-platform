@@ -69,6 +69,7 @@ jobs:
         service:
           - '@carbon-platform/data-graph'
           - '@carbon-platform/logging'
+          - '@carbon-platform/rmdx-processing'
           - '@carbon-platform/web-app'
     secrets:
       CONTAINER_REGISTRY_API_KEY: ${{ secrets.CONTAINER_REGISTRY_API_KEY }}

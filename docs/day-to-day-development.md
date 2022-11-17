@@ -1,51 +1,5 @@
 # Day to day development
 
-Here are some of the normal tasks a developer would expect to run on a day-to-day basis while
-working on the Carbon Platform.
-
-> Note: The monorepo is using npm 8 "workspaces", which simplify the dependency management across
-> projects through the use of many top-level commands which target specific workspaces.
-
-## Prerequisites
-
-Before developing the Carbon Platform project, you must have the following installed:
-
-- Node.js version 16 (available through [nodejs.org](https://nodejs.org/en/download/) or the Node
-  Version Manager, [nvm](https://github.com/nvm-sh/nvm)).
-- NPM version 8. This is typically distributed along with Node v16.
-
-You can validate that you are running the correct versions of these utilities by running:
-
-```
-$ npm --version
-```
-
-and
-
-```
-$ node --version
-```
-
-## Cloning the repo
-
-All of the projects are stored in a single monorepo located at
-https://github.com/carbon-design-system/carbon-platform. To get started, clone this repository
-locally.
-
-## Installing project dependencies
-
-It is a good idea each time after cloning or pulling from the upstream repository to install the
-project dependencies. From the top-level directory of the project, this can be done by running:
-
-```
-$ npm install
-```
-
-This will install the dependencies across _all_ workspaces in the monorepo.
-
-This will _also_ build all of the `packages` in the repo, since these are required to run any
-services that depend on them.
-
 ## Working with npm dependencies
 
 For information about installing and managing repo-wide dependencies, see

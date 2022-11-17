@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Blockquote, H1, H2, H3, H4, H5, H6 } from '@carbon-platform/mdx-components'
 import { process, RmdxNode } from '@carbon-platform/rmdx'
 import React from 'react'
 
@@ -12,7 +13,6 @@ import { AccordionItemMapper } from '@/utils/mappers/accordion-item.mapper'
 import { AnchorLinkMapper } from '@/utils/mappers/anchor-link.mapper'
 import { AnchorLinksMapper } from '@/utils/mappers/anchor-links.mapper'
 import { AsideMapper } from '@/utils/mappers/aside.mapper'
-import { BlockquoteMapper } from '@/utils/mappers/blockquote.mapper'
 import { CaptionMapper } from '@/utils/mappers/caption.mapper'
 import { ColumnMapper } from '@/utils/mappers/column.mapper'
 import { DivMapper } from '@/utils/mappers/div.mapper'
@@ -43,15 +43,15 @@ import { UniversalMapper } from '@/utils/mappers/universal.mapper'
 
 const components = {
   // html
-  blockquote: BlockquoteMapper,
+  blockquote: Blockquote,
   document: UniversalMapper,
   div: DivMapper,
-  'heading-1': H1Mapper,
-  'heading-2': H2Mapper,
-  'heading-3': H3Mapper,
-  'heading-4': H4Mapper,
-  'heading-5': H5Mapper,
-  'heading-6': H6Mapper,
+  'heading-1': H1,
+  'heading-2': H2,
+  'heading-3': H3,
+  'heading-4': H4,
+  'heading-5': H5,
+  'heading-6': H6,
   img: ImgMapper,
   image: ImgMapper,
   link: LinkMapper,
@@ -402,12 +402,7 @@ commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
 </Tabs>
 
 
-
-`
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- will remove later
-const toTest = `
-## AnchorLinks <- children issue
+## AnchorLinks
 
 <AnchorLinks>
   <AnchorLink>Link 1</AnchorLink>
@@ -425,14 +420,21 @@ const toTest = `
   <AnchorLink>Small link 3</AnchorLink>
 </AnchorLinks>
 
-## Blockquote <- no handler
+## Blockquote
 
- > Without aesthetic, design is either the humdrum repetition of familiar clichés
- > or a wild scramble for novelty. Without aesthetic, the computer is but a
- > mindless speed machine, producing effects without substance, form without
- > relevant content, or content without meaningful form.
- >
- > <cite>– Paul Rand</cite>
+> Without aesthetic, design is either the humdrum repetition of familiar clichés
+> or a wild scramble for novelty. Without aesthetic, the computer is but a
+> mindless speed machine, producing effects without substance, form without
+> relevant content, or content without meaningful form.
+
+
+`
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- will remove later
+const toTest = `
+## img
+
+![duckie](https://m.media-amazon.com/images/I/51VXgNZFIoL._AC_SL1424_.jpg)
 
  ## PageTable <- problem with children
 

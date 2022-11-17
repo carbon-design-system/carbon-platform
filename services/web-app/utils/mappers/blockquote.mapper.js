@@ -1,4 +1,4 @@
-import { AnchorLink } from '@carbon-platform/mdx-components'
+import { Blockquote } from '@carbon-platform/mdx-components'
 
 /*
  * Copyright IBM Corp. 2022, 2022
@@ -7,5 +7,5 @@ import { AnchorLink } from '@carbon-platform/mdx-components'
  * LICENSE file in the root directory of this source tree.
  */
 export const BlockquoteMapper = ({ cite, children }) => (
-  <AnchorLink cite={cite}>{children}</AnchorLink>
+  <Blockquote cite={cite}>{children}</Blockquote>
 )

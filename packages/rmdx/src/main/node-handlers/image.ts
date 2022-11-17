@@ -6,15 +6,21 @@
  */
 import { Image } from 'mdast'
 
-import { NodeHandler } from '../interfaces.js'
+import { NodeHandler, RmdxScalar } from '../interfaces.js'
 
 const image: NodeHandler = (data) => {
-  const image = data.node as Partial<Image>
+  const nodeAsImage = data.node as Partial<Image>
+  const nodeAsRmdxScalar = data.node as RmdxScalar
+
   data.node.nodeType = 'image'
   data.node.props = {
-    alt: image.alt || '',
-    src: image.url || ''
+    alt: nodeAsImage.alt || ''
   }
+  nodeAsRmdxScalar.value = nodeAsImage.url || ''
+
+  delete nodeAsImage.alt
+  delete nodeAsImage.title
+  delete nodeAsImage.url
 }
 
 export { image }

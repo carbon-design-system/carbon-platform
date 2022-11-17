@@ -9,10 +9,10 @@ import { Heading } from 'mdast'
 import { NodeHandler } from '../interfaces.js'
 
 const heading: NodeHandler = (data) => {
-  const heading = data.node as Partial<Heading>
-  data.node.nodeType = 'heading-' + heading.depth
+  const nodeAsHeading = data.node as Partial<Heading>
+  data.node.nodeType = 'heading-' + nodeAsHeading.depth
 
-  delete heading.depth
+  delete nodeAsHeading.depth
 }
 
 export { heading }

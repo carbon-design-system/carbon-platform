@@ -10,26 +10,26 @@ import { convertAttributesToProps } from '../convert-attributes-to-props.js'
 import { NodeHandler } from '../interfaces.js'
 
 const mdxJsxFlowElement: NodeHandler = (data) => {
-  const mdxJsxFlowElement = data.node as Partial<MdxJsxFlowElement>
+  const nodeAsMdxJsxFlowElement = data.node as Partial<MdxJsxFlowElement>
 
-  if (!mdxJsxFlowElement.name) {
+  if (!nodeAsMdxJsxFlowElement.name) {
     // TODO: probably shouldn't just bail
     throw new Error('MdxJsxFlowElement missing component name')
   }
 
-  if (!data.allowedComponents.includes(mdxJsxFlowElement.name)) {
+  if (!data.allowedComponents.includes(nodeAsMdxJsxFlowElement.name)) {
     // TODO: probably shouldn't just bail
-    throw new Error('Unrecognized JSX component: ' + mdxJsxFlowElement.name)
+    throw new Error('Unrecognized JSX component: ' + nodeAsMdxJsxFlowElement.name)
   }
 
-  data.node.nodeType = mdxJsxFlowElement.name
+  data.node.nodeType = nodeAsMdxJsxFlowElement.name
 
-  if (mdxJsxFlowElement.attributes) {
-    data.node.props = convertAttributesToProps(mdxJsxFlowElement.attributes)
+  if (nodeAsMdxJsxFlowElement.attributes) {
+    data.node.props = convertAttributesToProps(nodeAsMdxJsxFlowElement.attributes)
   }
 
-  delete mdxJsxFlowElement.attributes
-  delete mdxJsxFlowElement.name
+  delete nodeAsMdxJsxFlowElement.attributes
+  delete nodeAsMdxJsxFlowElement.name
 }
 
 export { mdxJsxFlowElement }

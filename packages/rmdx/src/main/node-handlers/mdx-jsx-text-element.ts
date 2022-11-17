@@ -10,26 +10,26 @@ import { convertAttributesToProps } from '../convert-attributes-to-props.js'
 import { NodeHandler } from '../interfaces.js'
 
 const mdxJsxTextElement: NodeHandler = (data) => {
-  const mdxJsxTextElement = data.node as Partial<MdxJsxTextElement>
+  const nodeAsMdxJsxTextElement = data.node as Partial<MdxJsxTextElement>
 
-  if (!mdxJsxTextElement.name) {
+  if (!nodeAsMdxJsxTextElement.name) {
     // TODO: probably shouldn't just bail
     throw new Error('MdxJsxTextElement missing component name')
   }
 
-  if (!data.allowedComponents.includes(mdxJsxTextElement.name)) {
+  if (!data.allowedComponents.includes(nodeAsMdxJsxTextElement.name)) {
     // TODO: probably shouldn't just bail
-    throw new Error('Unrecognized JSX component: ' + mdxJsxTextElement.name)
+    throw new Error('Unrecognized JSX component: ' + nodeAsMdxJsxTextElement.name)
   }
 
-  data.node.nodeType = mdxJsxTextElement.name
+  data.node.nodeType = nodeAsMdxJsxTextElement.name
 
-  if (mdxJsxTextElement.attributes) {
-    data.node.props = convertAttributesToProps(mdxJsxTextElement.attributes)
+  if (nodeAsMdxJsxTextElement.attributes) {
+    data.node.props = convertAttributesToProps(nodeAsMdxJsxTextElement.attributes)
   }
 
-  delete mdxJsxTextElement.attributes
-  delete mdxJsxTextElement.name
+  delete nodeAsMdxJsxTextElement.attributes
+  delete nodeAsMdxJsxTextElement.name
 }
 
 export { mdxJsxTextElement }

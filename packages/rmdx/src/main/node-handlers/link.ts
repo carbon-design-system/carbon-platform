@@ -9,15 +9,15 @@ import { Link } from 'mdast'
 import { NodeHandler } from '../interfaces.js'
 
 const link: NodeHandler = (data) => {
-  const link = data.node as Partial<Link>
+  const nodeAsLink = data.node as Partial<Link>
 
   data.node.nodeType = 'link'
   data.node.props = {
-    href: link?.url || ''
+    href: nodeAsLink?.url || ''
   }
 
-  delete link.url
-  delete link.title
+  delete nodeAsLink.url
+  delete nodeAsLink.title
 }
 
 export { link }

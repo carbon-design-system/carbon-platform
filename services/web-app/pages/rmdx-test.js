@@ -4,92 +4,41 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Blockquote, H1, H2, H3, H4, H5, H6 } from '@carbon-platform/mdx-components'
+import * as MdxComponents from '@carbon-platform/mdx-components'
 import { process, RmdxNode } from '@carbon-platform/rmdx'
+import Link from 'next/link'
 import React from 'react'
 
-import { AccordionMapper } from '@/utils/mappers/accordion.mapper'
-import { AccordionItemMapper } from '@/utils/mappers/accordion-item.mapper'
-import { AnchorLinkMapper } from '@/utils/mappers/anchor-link.mapper'
-import { AnchorLinksMapper } from '@/utils/mappers/anchor-links.mapper'
-import { AsideMapper } from '@/utils/mappers/aside.mapper'
-import { CaptionMapper } from '@/utils/mappers/caption.mapper'
-import { ColumnMapper } from '@/utils/mappers/column.mapper'
 import { DivMapper } from '@/utils/mappers/div.mapper'
-import { DividerMapper } from '@/utils/mappers/divider.mapper'
-import { DoDontMapper } from '@/utils/mappers/do-dont.mapper'
-import { DoDontRowMapper } from '@/utils/mappers/do-dont-row.mapper'
-import { GridMapper } from '@/utils/mappers/grid.mapper'
-import { H1Mapper } from '@/utils/mappers/h1.mapper'
-import { H2Mapper } from '@/utils/mappers/h2.mapper'
-import { H3Mapper } from '@/utils/mappers/h3.mapper'
-import { H4Mapper } from '@/utils/mappers/h4.mapper'
-import { H5Mapper } from '@/utils/mappers/h5.mapper'
-import { H6Mapper } from '@/utils/mappers/h6.mapper'
 import { ImgMapper } from '@/utils/mappers/img.mapper'
-import { InlineNotificationMapper } from '@/utils/mappers/inline-notification.mapper'
-import { LinkMapper } from '@/utils/mappers/link.mapper'
-import { PageDescriptionMapper } from '@/utils/mappers/page-description.mapper'
-import { PageTableMapper } from '@/utils/mappers/page-table.mapper'
 import { ParagraphMapper } from '@/utils/mappers/paragraph.mapper'
-import { PreviewMapper } from '@/utils/mappers/preview.mapper'
-import { RowMapper } from '@/utils/mappers/row.mapper'
 import { SpanMapper } from '@/utils/mappers/span.mapper'
 import { StrongMapper } from '@/utils/mappers/strong.mapper'
-import { TabMapper } from '@/utils/mappers/tab.mapper'
-import { TabsMapper } from '@/utils/mappers/tabs.mapper'
-import { TitleMapper } from '@/utils/mappers/title.mapper'
 import { UniversalMapper } from '@/utils/mappers/universal.mapper'
 
 const components = {
+  ...MdxComponents,
   // html
-  blockquote: Blockquote,
+  blockquote: MdxComponents.Blockquote,
   document: UniversalMapper,
   div: DivMapper,
-  'heading-1': H1,
-  'heading-2': H2,
-  'heading-3': H3,
-  'heading-4': H4,
-  'heading-5': H5,
-  'heading-6': H6,
+  'heading-1': MdxComponents.H1,
+  'heading-2': MdxComponents.H2,
+  'heading-3': MdxComponents.H3,
+  'heading-4': MdxComponents.H4,
+  'heading-5': MdxComponents.H5,
+  'heading-6': MdxComponents.H6,
   img: ImgMapper,
   image: ImgMapper,
-  link: LinkMapper,
+  link: Link,
   paragraph: ParagraphMapper,
   span: SpanMapper,
   strong: StrongMapper,
-  table: PageTableMapper,
+  table: MdxComponents.PageTable,
   text: UniversalMapper,
   td: ({ children }) => <td>{children}</td>,
   th: ({ children }) => <th>{children}</th>,
-  tr: ({ children }) => <tr>{children}</tr>,
-  // components
-  Accordion: AccordionMapper,
-  AccordionItem: AccordionItemMapper,
-  AnchorLink: AnchorLinkMapper,
-  AnchorLinks: AnchorLinksMapper,
-  Aside: AsideMapper,
-  Caption: CaptionMapper,
-  Column: ColumnMapper,
-  Divider: DividerMapper,
-  DoDont: DoDontMapper,
-  DoDontRow: DoDontRowMapper,
-  Grid: GridMapper,
-  H1: H1Mapper,
-  H2: H2Mapper,
-  H3: H3Mapper,
-  H4: H4Mapper,
-  H5: H5Mapper,
-  H6: H6Mapper,
-  InlineNotification: InlineNotificationMapper,
-  Link: LinkMapper,
-  PageDescription: PageDescriptionMapper,
-  PageTable: PageTableMapper,
-  Preview: PreviewMapper,
-  Row: RowMapper,
-  Tab: TabMapper,
-  Tabs: TabsMapper,
-  Title: TitleMapper
+  tr: ({ children }) => <tr>{children}</tr>
 }
 
 const mdx = `

@@ -15,8 +15,7 @@ import { LiConsumer, LiProps } from './li.js'
 
 interface OlProps {
   children: ReturnType<MdxComponent<LiProps>> | ReturnType<MdxComponent<LiProps>>[]
-  className?: string | null
-  [otherProp: string]: unknown
+  native?: boolean | null
 }
 
 /**
@@ -29,7 +28,7 @@ interface OlProps {
  * 2. In markdown, the actual numbers don’t matter, just that it’s a number
  * ```
  */
-const Ol: MdxComponent<OlProps> = ({ children, className, ...rest }) => {
+const Ol: MdxComponent<OlProps> = ({ children, native }) => {
   return (
     <LiConsumer>
       {(value) => {
@@ -37,9 +36,9 @@ const Ol: MdxComponent<OlProps> = ({ children, className, ...rest }) => {
           return (
             <OrderedList
               isExpressive
-              className={clsx(className, withPrefix('list'), withPrefix('ol'))}
+              className={clsx(withPrefix('list'), withPrefix('ol'))}
               nested
-              {...rest}
+              native={native}
             >
               {children}
             </OrderedList>
@@ -50,8 +49,8 @@ const Ol: MdxComponent<OlProps> = ({ children, className, ...rest }) => {
               <Column sm={4} md={8} lg={8}>
                 <OrderedList
                   isExpressive
-                  className={clsx(className, withPrefix('list'), withPrefix('ol'))}
-                  {...rest}
+                  className={clsx(withPrefix('list'), withPrefix('ol'))}
+                  native={native}
                 >
                   {children}
                 </OrderedList>
@@ -73,9 +72,9 @@ Ol.propTypes = {
     PropTypes.element.isRequired
   ]).isRequired,
   /**
-   * Specify optional className for container element
+   * Specify whether this ordered list should use native list styles instead of custom counter
    */
-  className: PropTypes.string
+  native: PropTypes.bool
 }
 
 export { OlProps }

@@ -17,16 +17,14 @@ const { Provider, Consumer: LiConsumer } = React.createContext<LiContext>({
 
 interface LiProps {
   children: ReactNode
-  className?: string | null
-  [otherProp: string]: unknown
 }
 
 interface LiContext {
   hasListItemParent: boolean
 }
 
-const LI: MdxComponent<LiProps> = ({ children, className, ...rest }) => (
-  <ListItem className={clsx(className, withPrefix('list-item'))} {...rest}>
+const LI: MdxComponent<LiProps> = ({ children }) => (
+  <ListItem className={clsx(withPrefix('list-item'))}>
     <Provider value={{ hasListItemParent: true }}>{children}</Provider>
   </ListItem>
 )
@@ -35,11 +33,7 @@ LI.propTypes = {
   /**
    * String title for Header
    */
-  children: PropTypes.node.isRequired,
-  /**
-   * Specify optional className for container element
-   */
-  className: PropTypes.string
+  children: PropTypes.node.isRequired
 }
 
 export { LiProps }

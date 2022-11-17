@@ -15,8 +15,6 @@ import { LiConsumer, LiProps } from './li.js'
 
 interface UlProps {
   children: ReturnType<MdxComponent<LiProps>> | ReturnType<MdxComponent<LiProps>>[]
-  className?: string | null
-  [otherProp: string]: unknown
 }
 
 /**
@@ -30,7 +28,7 @@ interface UlProps {
  * - Dolor sit amet consectetur adipiscing.
  * ```
  */
-const UL: MdxComponent<UlProps> = ({ children, className, ...rest }) => {
+const UL: MdxComponent<UlProps> = ({ children }) => {
   return (
     <LiConsumer>
       {(value) => {
@@ -38,9 +36,8 @@ const UL: MdxComponent<UlProps> = ({ children, className, ...rest }) => {
           return (
             <UnorderedList
               isExpressive
-              className={clsx(className, withPrefix('list'), withPrefix('ul'))}
+              className={clsx(withPrefix('list'), withPrefix('ul'))}
               nested
-              {...rest}
             >
               {children}
             </UnorderedList>
@@ -49,11 +46,7 @@ const UL: MdxComponent<UlProps> = ({ children, className, ...rest }) => {
           return (
             <Grid className={withPrefix('list-container')}>
               <Column sm={4} md={8} lg={8}>
-                <UnorderedList
-                  isExpressive
-                  className={clsx(className, withPrefix('list'), withPrefix('ul'))}
-                  {...rest}
-                >
+                <UnorderedList isExpressive className={clsx(withPrefix('list'), withPrefix('ul'))}>
                   {children}
                 </UnorderedList>
               </Column>
@@ -72,11 +65,7 @@ UL.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element.isRequired).isRequired,
     PropTypes.element.isRequired
-  ]).isRequired,
-  /**
-   * Specify optional className for container element
-   */
-  className: PropTypes.string
+  ]).isRequired
 }
 
 export { UlProps }

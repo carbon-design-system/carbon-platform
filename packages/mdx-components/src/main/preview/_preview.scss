@@ -9,7 +9,7 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '../utils' as *;
 
-.preview {
+.#{with-prefix('preview')} {
   width: 100%;
   border: 1px solid theme.$border-subtle;
   margin-top: spacing.$spacing-07;

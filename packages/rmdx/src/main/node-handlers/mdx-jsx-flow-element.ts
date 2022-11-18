@@ -25,7 +25,10 @@ const mdxJsxFlowElement: NodeHandler = (data) => {
   data.node.nodeType = nodeAsMdxJsxFlowElement.name
 
   if (nodeAsMdxJsxFlowElement.attributes) {
-    data.node.props = convertAttributesToProps(nodeAsMdxJsxFlowElement.attributes)
+    data.node.props = {
+      ...data.node.props,
+      ...convertAttributesToProps(nodeAsMdxJsxFlowElement.attributes)
+    }
   }
 
   delete nodeAsMdxJsxFlowElement.attributes

@@ -15,17 +15,17 @@ type Renderable<T> = T & AstNodeLike
 
 type AstNode = AstScalar | AstElement
 
-type NodeMapper = JSXElementConstructor<DefaultProps & { children?: unknown }>
+type NodeMapper = JSXElementConstructor<RmdxProps & { children?: unknown }>
 
 type NodeMappers = Record<string, NodeMapper>
 
-interface DefaultProps {
+interface RmdxProps {
   parentNodeType: string
 }
 
 interface AstNodeLike {
   nodeType: string
-  props: DefaultProps & Record<string, Scalar>
+  props: RmdxProps & Record<string, Scalar>
 }
 
 interface AstScalar extends AstNodeLike {
@@ -51,7 +51,6 @@ export {
   AstNode,
   AstNodeLike,
   AstScalar,
-  DefaultProps,
   NodeHandler,
   NodeMapper,
   NodeMappers,

@@ -6,10 +6,10 @@
  */
 import { MdxJsxAttribute, MdxJsxExpressionAttribute } from 'mdast-util-mdx-jsx'
 
-import { Renderable } from './interfaces.js'
+import { Scalar } from './interfaces.js'
 
 function convertAttributesToProps(attributes: Array<MdxJsxAttribute | MdxJsxExpressionAttribute>) {
-  const props: Renderable<unknown>['props'] = {}
+  const props: Record<string, Scalar> = {}
 
   attributes.forEach((attr) => {
     // Guard - disregard expression attrs with no name

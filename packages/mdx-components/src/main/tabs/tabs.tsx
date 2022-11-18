@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 import React, { createContext, useEffect, useRef, useState } from 'react'
 
 import { MdxComponent, NonScalarNode } from '../interfaces.js'
-import { mediaQueries, useId, useMatchMedia } from '../utils.js'
+import { mediaQueries, useMatchMedia } from '../utils.js'
 import Select from './select.js'
 import TabList from './tab-list.js'
 
@@ -26,16 +26,17 @@ const TabContext = createContext<TabContextInterface>({
 
 interface TabsProps {
   children: NonScalarNode
+  idPrefix: string
 }
 
 /**
  * The `<Tabs>` and `<Tab>` components are used together to display and swap between content.
  */
-const Tabs: MdxComponent<TabsProps> = ({ children }) => {
+const Tabs: MdxComponent<TabsProps> = ({ children, idPrefix }) => {
+  console.log(children)
   const tabList = useRef([])
   const [activeTab, setActiveTab] = useState(0)
   const isMd = useMatchMedia(mediaQueries.md)
-  const id = useId('tabs')
 
   // clear tablist when unmounted (switching between Select and TabList)
   useEffect(() => () => {
@@ -44,22 +45,18 @@ const Tabs: MdxComponent<TabsProps> = ({ children }) => {
 
   return (
     <TabContext.Provider value={{ setActiveTab, activeTab, tabList: tabList.current }}>
-      {isMd && <TabList _id={id}>{children}</TabList>}
-      {!isMd && <Select _id={id}>{children}</Select>}
-      {React.Children.map(children, (child, index) => {
-        return React.cloneElement(child, {
-          _id: `${id}__${index}`,
-          active: activeTab === index,
-          index
-        })
-      })}
+      {isMd && <TabList _id={idPrefix}>{children}</TabList>}
+      {!isMd && <Select _id={idPrefix}>{children}</Select>}
+      {children}
     </TabContext.Provider>
   )
 }
 
 Tabs.propTypes = {
   /** Provide tab children */
-  children: PropTypes.array.isRequired
+  children: PropTypes.array.isRequired,
+  /** Provide tabs id prefix */
+  idPrefix: PropTypes.string.isRequired
 }
 
 Tabs.displayName = 'Tabs'

@@ -9,6 +9,7 @@ import React, { useContext } from 'react'
 
 import { MdxComponent, NonScalarNode } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
+import TabItem from './tab-item.js'
 import { TabContext } from './tabs.js'
 
 interface TabListProps {
@@ -22,12 +23,14 @@ const TabList: MdxComponent<TabListProps> = ({ _id, children }) => {
   return (
     <ul className={withPrefix('tab-list')} role="tablist">
       {React.Children.map(children, (child, index) => {
-        return React.cloneElement(child, {
-          _id: `${_id}__${index}`,
-          active: activeTab === index,
-          index,
-          tab: true
-        })
+        return (
+          <TabItem
+            _id={`${_id}__${index}`}
+            active={activeTab === index}
+            index={index}
+            label={child.props.astNode.props.label}
+          />
+        )
       })}
     </ul>
   )

@@ -29,11 +29,21 @@ function convertAttributesToProps(attributes: Array<MdxJsxAttribute | MdxJsxExpr
       return
     }
 
+    // String
     if (typeof attr.value === 'string') {
       props[attr.name] = attr.value
+      return
     }
 
-    // TODO: account for numbers and booleans provided as mdxJsxAttributeValueExpressions
+    // Boolean
+    if (attr.value.value === 'true' || attr.value.value === 'false') {
+      props[attr.name] = attr.value.value === 'true'
+    }
+
+    // Number
+    if (attr.value.value === String(Number.parseFloat(attr.value.value))) {
+      props[attr.name] = Number.parseFloat(attr.value.value)
+    }
   })
 
   return props

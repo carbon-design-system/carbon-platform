@@ -4,27 +4,36 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { JSXElementConstructor } from 'react'
 import { Node, Parent, VisitorResult } from 'unist-util-visit'
-
-type Scalar = string | number | boolean
-
-type Renderable<T> = T & RmdxNodeLike
-
-type RmdxRoot = RmdxScalar | RmdxElement
 
 type AllowedComponents = Array<string>
 
-interface RmdxNodeLike {
-  nodeType?: string
-  props?: Record<string, Scalar>
+type Scalar = string | number | boolean
+
+type Renderable<T> = T & AstNodeLike
+
+type AstNode = AstScalar | AstElement
+
+type NodeMapper = JSXElementConstructor<DefaultProps & { children?: unknown }>
+
+type NodeMappers = Record<string, NodeMapper>
+
+interface DefaultProps {
+  parentNodeType: string
 }
 
-interface RmdxScalar extends RmdxNodeLike {
+interface AstNodeLike {
+  nodeType: string
+  props: DefaultProps & Record<string, Scalar>
+}
+
+interface AstScalar extends AstNodeLike {
   value: Scalar
 }
 
-interface RmdxElement extends RmdxNodeLike {
-  children: Array<RmdxRoot>
+interface AstElement extends AstNodeLike {
+  children: Array<AstNode>
 }
 
 interface NodeHandler {
@@ -38,11 +47,14 @@ interface NodeHandler {
 
 export {
   AllowedComponents,
+  AstElement,
+  AstNode,
+  AstNodeLike,
+  AstScalar,
+  DefaultProps,
   NodeHandler,
+  NodeMapper,
+  NodeMappers,
   Renderable,
-  RmdxElement,
-  RmdxNodeLike,
-  RmdxRoot,
-  RmdxScalar,
   Scalar
 }

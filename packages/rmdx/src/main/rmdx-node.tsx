@@ -4,24 +4,21 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React, { JSXElementConstructor } from 'react'
+import React from 'react'
 
-import { RmdxRoot } from './interfaces.js'
+import { AstNode, NodeMappers } from './interfaces.js'
 
 interface RmdxNodeProps {
-  components: Record<string, JSXElementConstructor<{ children: unknown }>>
-  astNode: RmdxRoot
+  components: NodeMappers
+  astNode: AstNode
 }
 
 const RmdxNode = ({ components, astNode }: RmdxNodeProps) => {
-  if (!astNode.nodeType) {
-    throw new Error('No nodeType specified')
-  }
-
-  // Node with a "value" are handled in the innerContent map below, so this is only used to filter
-  // a complex type down to a simpler one
   if ('value' in astNode) {
-    return null
+    // To satisfy type constraints which disallow the direct return of a string, the return value
+    // is wrapped in a Fragment
+    // eslint-disable-next-line react/jsx-no-useless-fragment -- See above
+    return <>{astNode.value}</>
   }
 
   const Component = components[astNode.nodeType]
@@ -29,19 +26,23 @@ const RmdxNode = ({ components, astNode }: RmdxNodeProps) => {
     throw new Error('No component mapping for nodeType ' + astNode.nodeType)
   }
 
-  const innerContent = astNode.children.map((childAstNode, index) => {
-    if ('value' in childAstNode) {
-      return childAstNode.value
-    }
+  let innerContent
 
-    return <RmdxNode key={index} components={components} astNode={childAstNode} />
-  })
+  if ('children' in astNode) {
+    innerContent = astNode.children.map((childAstNode, index) => {
+      return <RmdxNode key={index} components={components} astNode={childAstNode} />
+    })
+  }
 
-  return (
-    <Component {...astNode.props}>
-      {innerContent.length === 1 ? innerContent[0] : innerContent}
-    </Component>
-  )
+  if (innerContent) {
+    return (
+      <Component {...astNode.props}>
+        {innerContent.length === 1 ? innerContent[0] : innerContent}
+      </Component>
+    )
+  }
+
+  return <Component {...astNode.props} />
 }
 
 export { RmdxNode }

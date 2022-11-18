@@ -5,9 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { createProcessor } from '@mdx-js/mdx'
+import remarkGfm from 'remark-gfm'
 import { visit, Visitor } from 'unist-util-visit'
 
-import { AllowedComponents, NodeHandler, Renderable, RmdxRoot } from './interfaces.js'
+import { AllowedComponents, AstNode, NodeHandler, Renderable } from './interfaces.js'
 import * as nodeHandlers from './node-handlers/index.js'
 
 // TODO: if something ends up with no component, it needs to be removed from the AST
@@ -15,7 +16,9 @@ import * as nodeHandlers from './node-handlers/index.js'
 
 type NodeHandlers = Record<keyof typeof nodeHandlers, NodeHandler>
 
-const processor = createProcessor()
+const processor = createProcessor({
+  remarkPlugins: [remarkGfm]
+})
 
 /**
  * The actual top-level visitor/node handler.
@@ -33,6 +36,10 @@ const visitor: NodeHandler = (data) => {
   const result = handler(data)
   const partialNode = data.node as Partial<typeof data.node>
 
+  // Ensure all nodes have a parent node type set
+  data.node.props.parentNodeType =
+    (data.parent as Renderable<typeof data.parent> | undefined)?.nodeType || ''
+
   delete partialNode.position
   delete partialNode.type
 
@@ -48,9 +55,14 @@ const visitor: NodeHandler = (data) => {
  */
 function createVisitor(allowedComponents: AllowedComponents): Visitor {
   return (node, index, parent) => {
+    const renderable = node as Renderable<typeof node>
+    renderable.props = {
+      parentNodeType: '' // Default to '' since this is overridden by each node handler
+    }
+
     return visitor({
       allowedComponents,
-      node,
+      node: renderable,
       index: index || undefined,
       parent: parent || undefined
     })
@@ -69,7 +81,7 @@ function process(srcMdx: string, allowedComponents: AllowedComponents) {
 
   visit(result, createVisitor(allowedComponents))
 
-  return result as Renderable<typeof result> & RmdxRoot
+  return result as Renderable<typeof result> & AstNode
 }
 
 export { process }

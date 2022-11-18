@@ -11,10 +11,6 @@ import { NodeHandler } from '../interfaces.js'
 const listItem: NodeHandler = (data) => {
   const nodeAsList = data.node as Partial<ListItem>
   data.node.nodeType = 'list-item'
-  data.node.props = {
-    spread: nodeAsList.spread ?? false,
-    checked: nodeAsList.checked ?? false
-  }
 
   delete nodeAsList.spread
   delete nodeAsList.checked

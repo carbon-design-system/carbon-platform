@@ -12,9 +12,9 @@ import React from 'react'
 import { AnchorLinkMapper } from '@/utils/mappers/anchor-link.mapper'
 import { DivMapper } from '@/utils/mappers/div.mapper'
 import { ImgMapper } from '@/utils/mappers/img.mapper'
-import { ParagraphMapper } from '@/utils/mappers/paragraph.mapper'
 import { SpanMapper } from '@/utils/mappers/span.mapper'
 import { StrongMapper } from '@/utils/mappers/strong.mapper'
+import { TabsMapper } from '@/utils/mappers/tabs.mapper'
 import { UniversalMapper } from '@/utils/mappers/universal.mapper'
 
 /** @type {import('@carbon-platform/rmdx').NodeMappers} */
@@ -37,14 +37,15 @@ const components = {
   img: ImgMapper,
   image: ImgMapper,
   link: Link,
-  paragraph: ParagraphMapper,
+  paragraph: MdxComponents.P,
   span: SpanMapper,
   strong: StrongMapper,
   table: MdxComponents.PageTable,
   text: UniversalMapper,
   td: ({ children }) => <td>{children}</td>,
   th: ({ children }) => <th>{children}</th>,
-  tr: ({ children }) => <tr>{children}</tr>
+  tr: ({ children }) => <tr>{children}</tr>,
+  Tabs: TabsMapper
 }
 
 const mdx = `
@@ -351,7 +352,7 @@ commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
     </Tab>
 
     <Tab label="More bla">
-    bla bla bla bla bla bla bla bla bla.
+    bla bla bla bla bla bla bla bla bla. but this is the second bla
     </Tab>
 
 </Tabs>
@@ -386,6 +387,31 @@ commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
 
 ![RIP Roberto](/carbon.png)
 
+## List
+
+### UL
+
+- LI
+- LI > UL
+  - Unordered Nested
+  - Unordered Nested
+- LI > OL
+  1. Ordered Nested
+  2. Ordered Nested
+
+### OL
+
+1. LI
+2. LI > UL
+   - Unordered Nested
+   - Unordered Nested
+   - Unordered Nested
+3. LI > OL
+   1. Ordered Nested
+   2. Ordered Nested
+   3. LI > OL > UL
+      - Unordered Double Nested
+
 `
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- will remove later
@@ -417,13 +443,12 @@ const toTest = `
   </tr>
 </table>
 
-
 `
 
 const RmdxTest = () => {
   const ast = process(mdx, Object.keys(components))
 
-  console.log(JSON.stringify(ast, undefined, 2))
+  // console.log(JSON.stringify(ast, undefined, 2))
 
   return <RmdxNode components={components} astNode={ast} />
 }

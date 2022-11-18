@@ -33,7 +33,6 @@ interface TabsProps {
  * The `<Tabs>` and `<Tab>` components are used together to display and swap between content.
  */
 const Tabs: MdxComponent<TabsProps> = ({ children, idPrefix }) => {
-  console.log(children)
   const tabList = useRef([])
   const [activeTab, setActiveTab] = useState(0)
   const isMd = useMatchMedia(mediaQueries.md)

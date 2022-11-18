@@ -369,46 +369,16 @@ test.serial('resource card renders without crashing', (t) => {
 
 test.serial('storybook demo renders without crashing', (t) => {
   const result = render(
-    <Mdx.StorybookDemo
-      themeSelector={true}
-      wide
-      tall
-      url="https://react.carbondesignsystem.com"
-      variants={[
-        {
-          label: 'Button',
-          variant: 'components-button--default'
-        },
-        {
-          label: 'Secondary',
-          variant: 'components-button--secondary'
-        },
-        {
-          label: 'Tertiary',
-          variant: 'components-button--tertiary'
-        },
-        {
-          label: 'Ghost',
-          variant: 'components-button--ghost'
-        },
-        {
-          label: 'Danger',
-          variant: 'components-button--danger'
-        },
-        {
-          label: 'Icon button',
-          variant: 'components-button--icon-button'
-        },
-        {
-          label: 'Set of buttons',
-          variant: 'components-button--set-of-buttons'
-        },
-        {
-          label: 'Skeleton',
-          variant: 'components-button--skeleton'
-        }
-      ]}
-    />
+    <Mdx.StorybookDemo themeSelector={true} wide tall url="https://react.carbondesignsystem.com">
+      <Mdx.Variant label="Skeleton" variant="components-button--skeleton" />
+      <Mdx.Variant label="Set of buttons" variant="components-button--set-of-buttons" />
+      <Mdx.Variant label="Icon button" variant="components-button--icon-button" />
+      <Mdx.Variant label="Danger" variant="components-button--danger" />
+      <Mdx.Variant label="Ghost" variant="components-button--ghost" />
+      <Mdx.Variant label="Tertiary" variant="components-button--tertiary" />
+      <Mdx.Variant label="Secondary" variant="components-button--secondary" />
+      <Mdx.Variant label="Button" variant="components-button--default" />
+    </Mdx.StorybookDemo>
   )
 
   t.snapshot(result.baseElement.innerHTML)
@@ -416,20 +386,20 @@ test.serial('storybook demo renders without crashing', (t) => {
 
 test.serial('tabs renders without crashing', (t) => {
   const result = render(
-    <Mdx.Tabs>
-      <Mdx.Tab label="Tab 1" _id="1" index={1}>
+    <Mdx.Tabs idPrefix="test">
+      <Mdx.Tab astNode={{ props: { label: 'Tab 1' } }} _id="2" index={3}>
         Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
         facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras
         euismod facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi.
         In hac habitasse platea dictumst.
       </Mdx.Tab>
-      <Mdx.Tab label="Tab 2" _id="2" index={2}>
+      <Mdx.Tab astNode={{ props: { label: 'Tab 1' } }} _id="2" index={3}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in
         tincidunt ipsum tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper
         pretium. Duis turpis elit, facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim
         euismod maximus. Cras euismod facilisis rutrum.
       </Mdx.Tab>
-      <Mdx.Tab label="Tab 3" _id="3" index={3}>
+      <Mdx.Tab astNode={{ props: { label: 'Tab 1' } }} _id="2" index={3}>
         Duis turpis elit, facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod
         maximus. Cras euismod facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel,
         ullamcorper sed mi. In hac habitasse platea dictumst. Lorem ipsum dolor sit amet,

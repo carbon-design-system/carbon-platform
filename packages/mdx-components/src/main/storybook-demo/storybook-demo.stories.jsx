@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { StorybookDemo } from '../../../dist/main/index'
+import { StorybookDemo, Variant } from '../../../dist/main/index'
 
 export default {
   title: 'Components/StorybookDemo',
@@ -18,41 +18,16 @@ const Template = (args) => (
     wide
     tall
     url="https://react.carbondesignsystem.com"
-    variants={[
-      {
-        label: 'Button',
-        variant: 'components-button--default'
-      },
-      {
-        label: 'Secondary',
-        variant: 'components-button--secondary'
-      },
-      {
-        label: 'Tertiary',
-        variant: 'components-button--tertiary'
-      },
-      {
-        label: 'Ghost',
-        variant: 'components-button--ghost'
-      },
-      {
-        label: 'Danger',
-        variant: 'components-button--danger'
-      },
-      {
-        label: 'Icon button',
-        variant: 'components-button--icon-button'
-      },
-      {
-        label: 'Set of buttons',
-        variant: 'components-button--set-of-buttons'
-      },
-      {
-        label: 'Skeleton',
-        variant: 'components-button--skeleton'
-      }
-    ]}
-  />
+  >
+    <Variant label="Skeleton" variant="components-button--skeleton" />
+    <Variant label="Set of buttons" variant="components-button--set-of-buttons" />
+    <Variant label="Icon button" variant="components-button--icon-button" />
+    <Variant label="Danger" variant="components-button--danger" />
+    <Variant label="Ghost" variant="components-button--ghost" />
+    <Variant label="Tertiary" variant="components-button--tertiary" />
+    <Variant label="Secondary" variant="components-button--secondary" />
+    <Variant label="Button" variant="components-button--default" />
+  </StorybookDemo>
 )
 
 export const Default = Template.bind({})

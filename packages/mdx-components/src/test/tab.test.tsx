@@ -16,7 +16,7 @@ test.afterEach(() => {
 
 test.serial('tabs renders without crashing', (t) => {
   const result = render(
-    <Tab label="Tab 1" _id="1" index={1} tab>
+    <Tab astNode={{ props: { label: 'Tab 1' } }} _id="1" index={1}>
       wow tab
     </Tab>
   )

@@ -15,6 +15,7 @@ interface TabProps {
   _id: string
   children: ReactNode
   index: number
+  astNode?: { props: { label: string } } | null
 }
 
 export const Tab: MdxComponent<TabProps> = ({ _id, children, index }) => {

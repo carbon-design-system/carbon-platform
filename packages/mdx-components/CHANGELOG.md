@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.17...@carbon-platform/mdx-components@0.1.18) (2022-11-19)
+
+
+### Bug Fixes 🐛
+
+* **mdx-components:** add bottom margin to article card ([d5605dd](https://github.com/carbon-design-system/carbon-platform/commit/d5605ddcf61774a2bad18c15e2232219d43f3510)), closes [#1512](https://github.com/carbon-design-system/carbon-platform/issues/1512)
+
 ### [0.1.17](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.16...@carbon-platform/mdx-components@0.1.17) (2022-11-18)
 
 

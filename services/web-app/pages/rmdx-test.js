@@ -13,6 +13,7 @@ import { AnchorLinkMapper } from '@/utils/mappers/anchor-link.mapper'
 import { DivMapper } from '@/utils/mappers/div.mapper'
 import { ImgMapper } from '@/utils/mappers/img.mapper'
 import { ParagraphMapper } from '@/utils/mappers/paragraph.mapper'
+import { RowMapper } from '@/utils/mappers/row.mapper'
 import { SpanMapper } from '@/utils/mappers/span.mapper'
 import { StorybookDemoMapper } from '@/utils/mappers/storybook-demo.mapper'
 import { StrongMapper } from '@/utils/mappers/strong.mapper'
@@ -20,12 +21,16 @@ import { TabsMapper } from '@/utils/mappers/tabs.mapper'
 import { UniversalMapper } from '@/utils/mappers/universal.mapper'
 
 /** @type {import('@carbon-platform/rmdx').NodeMappers} */
+// TODOASKJOE: I have some html elements here
 const components = {
   ...MdxComponents,
   AnchorLink: AnchorLinkMapper,
   'unordered-list': MdxComponents.UL,
   'ordered-list': MdxComponents.OL,
   'list-item': MdxComponents.LI,
+  Row: RowMapper,
+  StorybookDemo: StorybookDemoMapper,
+  Tabs: TabsMapper,
   // html
   blockquote: MdxComponents.Blockquote,
   document: UniversalMapper,
@@ -47,8 +52,9 @@ const components = {
   td: ({ children }) => <td>{children}</td>,
   th: ({ children }) => <th>{children}</th>,
   tr: ({ children }) => <tr>{children}</tr>,
-  StorybookDemo: StorybookDemoMapper,
-  Tabs: TabsMapper
+  track: ({ src, srcLang, kind, default: defaultTrackProp }) => (
+    <track src={src} srcLang={srcLang} kind={kind} default={defaultTrackProp} />
+  )
 }
 
 const mdx = `
@@ -92,17 +98,19 @@ const mdx = `
 
 ## Grid
 
+## Gatsby grid examples
+
 ### Example
 
 <Row>
   <Column colMd={4} colLg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column colMd={4} colLg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column colMd={4} colLg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
 </Row>
 
@@ -110,13 +118,13 @@ const mdx = `
 
 <Row>
   <Column colMd={4} colLg={4} noGutterMdLeft>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column colMd={4} colLg={4} noGutterMdLeft>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column colMd={4} colLg={4} noGutterMdLeft>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
 </Row>
 
@@ -124,13 +132,13 @@ const mdx = `
 
 <Row>
   <Column colMd={4} colLg={4} noGutterSm>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column colMd={4} colLg={4} noGutterSm>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column colMd={4} colLg={4} noGutterSm>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
 </Row>
 
@@ -138,10 +146,10 @@ const mdx = `
 
 <Row>
   <Column colMd={4} colLg={4} offsetLg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column colMd={4} colLg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
 </Row>
 
@@ -151,13 +159,13 @@ const mdx = `
 
 <Grid>
   <Column md={4} lg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column md={4} lg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column md={4} lg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
 </Grid>
 
@@ -165,13 +173,13 @@ const mdx = `
 
 <Grid narrow>
   <Column md={4} lg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column md={4} lg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column md={4} lg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
 </Grid>
 
@@ -179,13 +187,13 @@ const mdx = `
 
 <Grid condensed>
   <Column md={4} lg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column md={4} lg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column md={4} lg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
 </Grid>
 
@@ -193,10 +201,10 @@ const mdx = `
 
 <Grid>
   <Column md={4} lg={{ span: 4, offset: 4 }}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column md={4} lg={4}>
-    Hi
+    ![Grid Example](/mdx/Article_05.jpg)
   </Column>
 </Grid>
 
@@ -433,6 +441,34 @@ commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
       <Variant label="Button" variant="components-button--default" />
     </StorybookDemo>
 
+    ## Video
+
+    <Video title="Carbon homepage video" vimeoId="322021187" />
+
+    <Video src="/videos/hero-video.mp4" poster="/videos/poster.png">
+      <track kind="captions" default src="/videos/hero-video.vtt" srcLang="en" />
+    </Video>
+
+    <Video src="/videos/hero-video.mp4" poster="/videos/poster.png" />
+
+    ### inside of DoDont
+
+    <DoDontRow>
+
+    <DoDont aspectRatio="1:1" type="do">
+
+    <Video src="/videos/hero-video.mp4" poster="/videos/poster.png" />
+
+    </DoDont>
+
+    <DoDont aspectRatio="1:1" type="dont">
+
+    <Video src="/videos/hero-video.mp4" poster="/videos/poster.png" />
+
+    </DoDont>
+
+    </DoDontRow>
+
 `
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- will remove later
@@ -463,6 +499,17 @@ const toTest = `
     <td>Mexico</td>
   </tr>
 </table>
+
+### Offset <- TODOASKJOE: doesn't work with object
+
+<Grid>
+  <Column md={4} lg={{ span: 4, offset: 4 }}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+  <Column md={4} lg={4}>
+    ![Grid Example](/mdx/Article_05.jpg)
+  </Column>
+</Grid>
 
 `
 

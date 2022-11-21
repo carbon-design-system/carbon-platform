@@ -41,8 +41,7 @@ const Video: MdxComponent<VideoWithSrcProps | VideoWithVimeoIdProps> = ({
   title,
   src,
   poster,
-  muted,
-  ...rest
+  muted
 }) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -151,7 +150,6 @@ const Video: MdxComponent<VideoWithSrcProps | VideoWithVimeoIdProps> = ({
               ref={videoRef}
               onEnded={onEnded}
               poster={typeof poster === 'object' ? poster?.src : poster}
-              {...rest}
             >
               <source src={src} type="video/mp4" />
               {children}

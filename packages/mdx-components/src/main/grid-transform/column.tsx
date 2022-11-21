@@ -13,6 +13,8 @@ import React, { ElementType, ReactNode } from 'react'
 import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
 
+type ColumnSpan = boolean | number | { span: number; offset: number }
+
 interface ColumnProps {
   children: ReactNode
   colSm?: number | null
@@ -26,11 +28,11 @@ interface ColumnProps {
   offsetXl?: number | null
   offsetMax?: number | null
   as?: string | ElementType | null
-  lg?: number | null
-  max?: number | null
-  md?: number | null
-  sm?: number | null
-  xlg?: number | null
+  lg?: ColumnSpan | null
+  max?: ColumnSpan | null
+  md?: ColumnSpan | null
+  sm?: ColumnSpan | null
+  xlg?: ColumnSpan | null
   NoGutterSm?: boolean | null
   NoGutterMdLeft?: boolean | null
 }
@@ -76,6 +78,15 @@ Column.defaultProps = {
   as: 'div'
 }
 
+const spanPropType = PropTypes.oneOfType([
+  PropTypes.bool.isRequired,
+  PropTypes.number.isRequired,
+  PropTypes.shape({
+    span: PropTypes.number.isRequired,
+    offset: PropTypes.number.isRequired
+  }).isRequired
+])
+
 // TODOASKJOE: span proptype
 
 Column.propTypes = {
@@ -118,15 +129,15 @@ Column.propTypes = {
   /**
    * Specify total columns at viewport large
    */
-  lg: PropTypes.number,
+  lg: spanPropType,
   /**
    * Specify total columns at viewport max
    */
-  max: PropTypes.number,
+  max: spanPropType,
   /**
    * Specify total columns at viewport medium
    */
-  md: PropTypes.number,
+  md: spanPropType,
   /**
    * Specify total column offset at viewport large (legacy)
    */
@@ -150,11 +161,11 @@ Column.propTypes = {
   /**
    * Specify total columns at viewport small
    */
-  sm: PropTypes.number,
+  sm: spanPropType,
   /**
    * Specify total columns at viewport extra large
    */
-  xlg: PropTypes.number
+  xlg: spanPropType
 }
 
 export { ColumnProps }

@@ -370,14 +370,14 @@ test.serial('resource card renders without crashing', (t) => {
 test.serial('storybook demo renders without crashing', (t) => {
   const result = render(
     <Mdx.StorybookDemo themeSelector={true} wide tall url="https://react.carbondesignsystem.com">
-      <Mdx.Variant label="Skeleton" variant="components-button--skeleton" />
-      <Mdx.Variant label="Set of buttons" variant="components-button--set-of-buttons" />
-      <Mdx.Variant label="Icon button" variant="components-button--icon-button" />
-      <Mdx.Variant label="Danger" variant="components-button--danger" />
-      <Mdx.Variant label="Ghost" variant="components-button--ghost" />
-      <Mdx.Variant label="Tertiary" variant="components-button--tertiary" />
-      <Mdx.Variant label="Secondary" variant="components-button--secondary" />
       <Mdx.Variant label="Button" variant="components-button--default" />
+      <Mdx.Variant label="Secondary" variant="components-button--secondary" />
+      <Mdx.Variant label="Tertiary" variant="components-button--tertiary" />
+      <Mdx.Variant label="Ghost" variant="components-button--ghost" />
+      <Mdx.Variant label="Danger" variant="components-button--danger" />
+      <Mdx.Variant label="Icon button" variant="components-button--icon-button" />
+      <Mdx.Variant label="Set of buttons" variant="components-button--set-of-buttons" />
+      <Mdx.Variant label="Skeleton" variant="components-button--skeleton" />
     </Mdx.StorybookDemo>
   )
 

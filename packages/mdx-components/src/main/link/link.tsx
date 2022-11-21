@@ -15,7 +15,6 @@ import { withPrefix } from '../utils.js'
 
 interface LinkProps {
   children: ReactNode
-  inline?: boolean | null
   disabled?: boolean | null
   size?: 'sm' | 'md' | 'lg' | null
   visited?: boolean | null
@@ -31,11 +30,11 @@ interface LinkProps {
  * > [Carbon Platform Storybook](https://platform.carbondesignsystem.com)
  * ```
  */
-const Link: MdxComponent<LinkProps> = ({ href, children, inline, disabled, size, visited }) => (
+const Link: MdxComponent<LinkProps> = ({ href, children, disabled, size, visited }) => (
   <CarbonLink
     href={href}
     className={clsx(withPrefix('link'))}
-    inline={inline}
+    inline
     disabled={disabled}
     size={size}
     visited={visited}
@@ -46,9 +45,7 @@ const Link: MdxComponent<LinkProps> = ({ href, children, inline, disabled, size,
 
 Link.defaultProps = {
   disabled: false,
-  inline: false,
-  visited: false,
-  size: 'md'
+  visited: false
 }
 
 Link.propTypes = {
@@ -64,10 +61,6 @@ Link.propTypes = {
    * Provide the href attribute for the <a> node
    */
   href: PropTypes.string.isRequired,
-  /**
-   * Specify whether you want the inline version of this control
-   */
-  inline: PropTypes.bool,
   /**
    * Specify the size of the Link.
    * Currently supports either sm, 'md' (default) or 'lg` as an option.

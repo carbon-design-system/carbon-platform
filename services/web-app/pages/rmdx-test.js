@@ -469,6 +469,40 @@ commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
 
     </DoDontRow>
 
+    ## Aside
+
+    <Grid>
+    <Column md={5} lg={8}>
+
+    <Title>With hanging rule</Title>
+
+    </Column>
+    <Column md={3} lg={4}>
+    <Aside aria-label="Example aside">
+
+    **Good design is always good design.**
+
+    What we borrow from our own design history is not a mid-century aesthetic in stylistic terms, but
+    the modernist attitudes and approach used at the time.
+
+    </Aside>
+    </Column>
+    </Grid>
+
+    <Grid>
+    <Column md={5} lg={8}>
+
+    <Title>Without hanging rule</Title>
+
+    </Column>
+    <Column md={3} lg={4}>
+    <Aside aria-label="Example aside" hideRule>
+
+    A by-product of every experience with IBM should be time—time saved or time well-spent.
+
+    </Aside>
+    </Column>
+    </Grid>
 `
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- will remove later

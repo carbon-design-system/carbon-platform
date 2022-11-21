@@ -9,9 +9,9 @@ import { process, RmdxNode } from '@carbon-platform/rmdx'
 import Link from 'next/link'
 import React from 'react'
 
+import Image from '@/components/image/image'
 import { AnchorLinkMapper } from '@/utils/mappers/anchor-link.mapper'
 import { DivMapper } from '@/utils/mappers/div.mapper'
-import { ImgMapper } from '@/utils/mappers/img.mapper'
 import { ParagraphMapper } from '@/utils/mappers/paragraph.mapper'
 import { RowMapper } from '@/utils/mappers/row.mapper'
 import { SpanMapper } from '@/utils/mappers/span.mapper'
@@ -25,9 +25,7 @@ import { UniversalMapper } from '@/utils/mappers/universal.mapper'
 const components = {
   ...MdxComponents,
   AnchorLink: AnchorLinkMapper,
-  'unordered-list': MdxComponents.UL,
-  'ordered-list': MdxComponents.OL,
-  'list-item': MdxComponents.LI,
+  Image,
   Row: RowMapper,
   StorybookDemo: StorybookDemoMapper,
   Tabs: TabsMapper,
@@ -41,9 +39,10 @@ const components = {
   'heading-4': MdxComponents.H4,
   'heading-5': MdxComponents.H5,
   'heading-6': MdxComponents.H6,
-  img: ImgMapper,
-  image: ImgMapper,
+  image: Image,
   link: Link,
+  'list-item': MdxComponents.LI,
+  'ordered-list': MdxComponents.OL,
   paragraph: ParagraphMapper,
   span: SpanMapper,
   strong: StrongMapper,
@@ -54,7 +53,8 @@ const components = {
   tr: ({ children }) => <tr>{children}</tr>,
   track: ({ src, srcLang, kind, default: defaultTrackProp }) => (
     <track src={src} srcLang={srcLang} kind={kind} default={defaultTrackProp} />
-  )
+  ),
+  'unordered-list': MdxComponents.UL
 }
 
 const mdx = `
@@ -503,6 +503,29 @@ commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
     </Aside>
     </Column>
     </Grid>
+
+    ## GifPlayer
+
+<Column colLg='4'>
+<GifPlayer>
+
+![IBM Cloud Pictograms](/mdx/cloud.gif)
+
+![IBM Cloud Pictograms](/mdx/cloud.jpg)
+
+</GifPlayer>
+</Column>
+
+<Column colLg='4'>
+    <GifPlayer>
+
+    <Image src="/mdx/cloud.gif" />
+    <Image src="/mdx/cloud.jpg" />
+
+    </GifPlayer>
+
+</Column>
+
 `
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- will remove later

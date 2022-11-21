@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from '@/components/image/image'
 
 /*
  * Copyright IBM Corp. 2022, 2022
@@ -6,4 +6,4 @@ import Image from 'next/image'
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export const ImgMapper = ({ src, alt }) => <Image src={src} alt={alt} layout="fill" />
+export const ImgMapper = ({ src, alt }) => <Image src={src} alt={alt} />

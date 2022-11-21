@@ -6,7 +6,11 @@ import { P } from '@carbon-platform/mdx-components'
  * LICENSE file in the root directory of this source tree.
  */
 export const ParagraphMapper = ({ children, large, parentNodeType }) => {
-  if (parentNodeType === 'list-item') {
+  // TODOASKJOE: we cool with this? unwrapping images from paragraphs
+  if (
+    parentNodeType === 'list-item' ||
+    (!Array.isArray(children) && children?.props?.astNode?.nodeType === 'image')
+  ) {
     return children
   } else {
     return <P large={large}>{children}</P>

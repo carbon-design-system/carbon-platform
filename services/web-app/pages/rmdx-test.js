@@ -12,6 +12,7 @@ import React from 'react'
 import { AnchorLinkMapper } from '@/utils/mappers/anchor-link.mapper'
 import { DivMapper } from '@/utils/mappers/div.mapper'
 import { ImgMapper } from '@/utils/mappers/img.mapper'
+import { ParagraphMapper } from '@/utils/mappers/paragraph.mapper'
 import { SpanMapper } from '@/utils/mappers/span.mapper'
 import { StorybookDemoMapper } from '@/utils/mappers/storybook-demo.mapper'
 import { StrongMapper } from '@/utils/mappers/strong.mapper'
@@ -38,7 +39,7 @@ const components = {
   img: ImgMapper,
   image: ImgMapper,
   link: Link,
-  paragraph: MdxComponents.P,
+  paragraph: ParagraphMapper,
   span: SpanMapper,
   strong: StrongMapper,
   table: MdxComponents.PageTable,

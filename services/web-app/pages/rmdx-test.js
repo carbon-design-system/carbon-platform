@@ -13,6 +13,7 @@ import { AnchorLinkMapper } from '@/utils/mappers/anchor-link.mapper'
 import { DivMapper } from '@/utils/mappers/div.mapper'
 import { ImgMapper } from '@/utils/mappers/img.mapper'
 import { SpanMapper } from '@/utils/mappers/span.mapper'
+import { StorybookDemoMapper } from '@/utils/mappers/storybook-demo.mapper'
 import { StrongMapper } from '@/utils/mappers/strong.mapper'
 import { TabsMapper } from '@/utils/mappers/tabs.mapper'
 import { UniversalMapper } from '@/utils/mappers/universal.mapper'
@@ -45,6 +46,7 @@ const components = {
   td: ({ children }) => <td>{children}</td>,
   th: ({ children }) => <th>{children}</th>,
   tr: ({ children }) => <tr>{children}</tr>,
+  StorybookDemo: StorybookDemoMapper,
   Tabs: TabsMapper
 }
 
@@ -411,6 +413,24 @@ commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
    2. Ordered Nested
    3. LI > OL > UL
       - Unordered Double Nested
+
+## StorybookDemo
+
+  <StorybookDemo
+      wide
+      tall
+      url="https://react.carbondesignsystem.com"
+      themeSelector
+    >
+      <Variant label="Skeleton" variant="components-button--skeleton" />
+      <Variant label="Set of buttons" variant="components-button--set-of-buttons" />
+      <Variant label="Icon button" variant="components-button--icon-button" />
+      <Variant label="Danger" variant="components-button--danger" />
+      <Variant label="Ghost" variant="components-button--ghost" />
+      <Variant label="Tertiary" variant="components-button--tertiary" />
+      <Variant label="Secondary" variant="components-button--secondary" />
+      <Variant label="Button" variant="components-button--default" />
+    </StorybookDemo>
 
 `
 

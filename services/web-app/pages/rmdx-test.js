@@ -526,6 +526,17 @@ commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
 
 </Column>
 
+
+## ImageWrapper
+
+Fixed image demo.
+
+<ImageWrapper type="fixed">
+
+![demo fixed image](/mdx/accordion-style-3.png)
+
+</ImageWrapper>
+
 `
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- will remove later

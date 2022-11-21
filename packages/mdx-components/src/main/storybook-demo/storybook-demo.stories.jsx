@@ -19,14 +19,14 @@ const Template = (args) => (
     tall
     url="https://react.carbondesignsystem.com"
   >
-    <Variant label="Skeleton" variant="components-button--skeleton" />
-    <Variant label="Set of buttons" variant="components-button--set-of-buttons" />
-    <Variant label="Icon button" variant="components-button--icon-button" />
-    <Variant label="Danger" variant="components-button--danger" />
-    <Variant label="Ghost" variant="components-button--ghost" />
-    <Variant label="Tertiary" variant="components-button--tertiary" />
-    <Variant label="Secondary" variant="components-button--secondary" />
     <Variant label="Button" variant="components-button--default" />
+    <Variant label="Secondary" variant="components-button--secondary" />
+    <Variant label="Tertiary" variant="components-button--tertiary" />
+    <Variant label="Ghost" variant="components-button--ghost" />
+    <Variant label="Danger" variant="components-button--danger" />
+    <Variant label="Icon button" variant="components-button--icon-button" />
+    <Variant label="Set of buttons" variant="components-button--set-of-buttons" />
+    <Variant label="Skeleton" variant="components-button--skeleton" />
   </StorybookDemo>
 )
 

@@ -70,9 +70,9 @@ const Column: MdxComponent<ColumnProps> = ({
 }
 
 Column.defaultProps = {
-  colSm: 4,
-  colMd: 8,
-  colLg: 12,
+  sm: 4,
+  md: 8,
+  lg: 12,
   as: 'div'
 }
 

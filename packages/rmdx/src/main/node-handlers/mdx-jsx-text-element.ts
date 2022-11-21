@@ -25,7 +25,10 @@ const mdxJsxTextElement: NodeHandler = (data) => {
   data.node.nodeType = nodeAsMdxJsxTextElement.name
 
   if (nodeAsMdxJsxTextElement.attributes) {
-    data.node.props = convertAttributesToProps(nodeAsMdxJsxTextElement.attributes)
+    data.node.props = {
+      ...data.node.props,
+      ...convertAttributesToProps(nodeAsMdxJsxTextElement.attributes)
+    }
   }
 
   delete nodeAsMdxJsxTextElement.attributes

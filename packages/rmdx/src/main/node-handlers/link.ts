@@ -12,9 +12,7 @@ const link: NodeHandler = (data) => {
   const nodeAsLink = data.node as Partial<Link>
 
   data.node.nodeType = 'link'
-  data.node.props = {
-    href: nodeAsLink?.url || ''
-  }
+  data.node.props.href = nodeAsLink?.url || ''
 
   delete nodeAsLink.url
   delete nodeAsLink.title

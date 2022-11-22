@@ -4,5 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { CodeSnippet } from '@carbon/react'
+
 /** @type {import('@carbon-platform/rmdx').NodeMapper} */
-export const StrongMapper = ({ children }) => <strong>{children}</strong>
+export const InlineCodeMapper = ({ code }) => <CodeSnippet type="inline">{code}</CodeSnippet>

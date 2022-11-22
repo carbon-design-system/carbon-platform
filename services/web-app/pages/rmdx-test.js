@@ -12,13 +12,19 @@ import React from 'react'
 import Image from '@/components/image/image'
 import mdxIcon from '@/components/mdx-icon/mdx-icon'
 import { AnchorLinkMapper } from '@/utils/mappers/anchor-link.mapper'
+import { CodeMapper } from '@/utils/mappers/code.mapper'
 import { DivMapper } from '@/utils/mappers/div.mapper'
+import { InlineCodeMapper } from '@/utils/mappers/inline-code.mapper'
 import { ParagraphMapper } from '@/utils/mappers/paragraph.mapper'
 import { RowMapper } from '@/utils/mappers/row.mapper'
 import { SpanMapper } from '@/utils/mappers/span.mapper'
 import { StorybookDemoMapper } from '@/utils/mappers/storybook-demo.mapper'
 import { StrongMapper } from '@/utils/mappers/strong.mapper'
+import { TableDetailMapper } from '@/utils/mappers/table-detail.mapper'
+import { TableHeaderMapper } from '@/utils/mappers/table-header.mapper'
+import { TableRowMapper } from '@/utils/mappers/table-row.mapper'
 import { TabsMapper } from '@/utils/mappers/tabs.mapper'
+import { TrackMapper } from '@/utils/mappers/track.mapper'
 import { UniversalMapper } from '@/utils/mappers/universal.mapper'
 
 /** @type {import('@carbon-platform/rmdx').NodeMappers} */
@@ -35,6 +41,7 @@ const components = {
   Tabs: TabsMapper,
   // html
   blockquote: MdxComponents.Blockquote,
+  code: CodeMapper,
   document: UniversalMapper,
   div: DivMapper,
   'heading-1': MdxComponents.H1,
@@ -43,6 +50,7 @@ const components = {
   'heading-4': MdxComponents.H4,
   'heading-5': MdxComponents.H5,
   'heading-6': MdxComponents.H6,
+  'inline-code': InlineCodeMapper,
   image: Image,
   img: Image,
   link: Link,
@@ -53,14 +61,59 @@ const components = {
   strong: StrongMapper,
   table: MdxComponents.PageTable,
   text: UniversalMapper,
-  td: ({ children }) => <td>{children}</td>,
-  th: ({ children }) => <th>{children}</th>,
-  tr: ({ children }) => <tr>{children}</tr>,
-  track: ({ src, srcLang, kind, default: defaultTrackProp }) => (
-    <track src={src} srcLang={srcLang} kind={kind} default={defaultTrackProp} />
-  ),
+  td: TableDetailMapper,
+  th: TableHeaderMapper,
+  tr: TableRowMapper,
+  track: TrackMapper,
   'unordered-list': MdxComponents.UL
 }
+
+const code =
+  '```' +
+  `js path=/directory/file.mdx src=https://gatsby.carbondesignsystem.com
+// This has path and src
+
+const codeBlock = () => {
+  // does something
+}
+` +
+  '```\n\n' +
+  '```' +
+  `jsx
+const FeedbackDialog = ({ props }) => {
+  const onSubmit = data => {
+    fetch(process.env.API_ENDPOINT, {
+      method: 'POST',
+      body: JSON.stringify(data),
+  });
+
+  return <ThemeFeedbackDialog {...props} onSubmit={onSubmit} />;
+};
+` +
+  '```\n\n' +
+  '```' +
+  `markdown
+# Code snippet with show more button. No src or path.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
+tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
+facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras euismod
+facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In hac habitasse
+platea dictumst.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
+tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
+facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras euismod
+facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In hac habitasse
+platea dictumst.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
+tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
+facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras euismod
+facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In hac habitasse
+platea dictumst.
+` +
+  '```\n\n'
 
 const mdx = `
 ## Headings
@@ -719,6 +772,18 @@ Fixed image demo.
 </Column>
 </Row>
 
+  ## Code
+  <PageDescription>
+
+  This is \`inline code\` inside of a PageDescription component. ipsum dolor sit amet, consectetur
+  adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum tempor in.
+
+  </PageDescription>
+
+  This is an example of \`inline code\` inside of a paragraph. Etiam nisi sem, malesuada auctor pretium
+  vel, ullamcorper sed mi. In hac habitasse platea dictumst.
+
+  ${code}
 
 `
 

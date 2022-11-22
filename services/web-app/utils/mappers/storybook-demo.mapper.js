@@ -7,6 +7,7 @@
 import { StorybookDemo, Variant } from '@carbon-platform/mdx-components'
 import React from 'react'
 
+/** @type {import('@carbon-platform/rmdx').NodeMapper} */
 export const StorybookDemoMapper = ({ children, tall, themeSelector, wide, url }) => {
   return (
     <StorybookDemo tall={tall} themeSelector={themeSelector} wide={wide} url={url}>

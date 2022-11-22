@@ -5,4 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 /** @type {import('@carbon-platform/rmdx').NodeMapper} */
-export const StrongMapper = ({ children }) => <strong>{children}</strong>
+export const TrackMapper = ({ src, srcLang, kind, default: defaultTrackProp }) => (
+  <track src={src} srcLang={srcLang} kind={kind} default={defaultTrackProp} />
+)

@@ -28,7 +28,6 @@ interface ArticleCardProps {
   color?: Color
   disabled?: boolean | null
   actionIcon?: ActionIcon | null
-  className?: string | null
 }
 
 /**
@@ -48,22 +47,10 @@ interface ArticleCardProps {
  * ```
  */
 const ArticleCard: MdxComponent<ArticleCardProps> = (props) => {
-  const {
-    children,
-    href,
-    title,
-    subTitle,
-    author,
-    date,
-    readTime,
-    color,
-    disabled,
-    actionIcon,
-    className,
-    ...rest
-  } = props
+  const { children, href, title, subTitle, author, date, readTime, color, disabled, actionIcon } =
+    props
 
-  const ArticleCardClassNames = clsx(className, withPrefix('article-card'), {
+  const ArticleCardClassNames = clsx(withPrefix('article-card'), {
     [withPrefix('disabled')]: disabled
   })
 
@@ -101,7 +88,7 @@ const ArticleCard: MdxComponent<ArticleCardProps> = (props) => {
     cardContainer = <div className={cardContentClassNames}>{cardContent}</div>
   } else {
     cardContainer = (
-      <a href={href!} className={cardContentClassNames} {...rest}>
+      <a href={href!} className={cardContentClassNames}>
         {cardContent}
       </a>
     )
@@ -134,47 +121,34 @@ ArticleCard.propTypes = {
    * Author
    */
   author: PropTypes.string,
-
   /**
    * Provide an image to display above card
    */
   children: PropTypes.node,
-
-  /**
-   * Specify a custom class
-   */
-  className: PropTypes.string,
-
   /**
    * set to "dark" for dark background card
    */
   color: PropTypes.oneOf<Color>(['light', 'dark']).isRequired,
-
   /**
    * date
    */
   date: PropTypes.string,
-
   /**
    * Use for disabled card
    */
   disabled: PropTypes.bool,
-
   /**
    * Set url for card
    */
   href: PropTypes.string,
-
   /**
    * Reat time of article
    */
   readTime: PropTypes.string,
-
   /**
    * sub title
    */
   subTitle: PropTypes.string,
-
   /**
    * Title
    */

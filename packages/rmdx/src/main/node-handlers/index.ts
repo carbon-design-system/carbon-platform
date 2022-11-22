@@ -5,9 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 export { blockquote } from './blockquote.js'
+export { code } from './code.js'
 export { emphasis } from './emphasis.js'
 export { heading } from './heading.js'
 export { image } from './image.js'
+export { inlineCode } from './inline-code.js'
 export { link } from './link.js'
 export { list } from './list.js'
 export { listItem } from './list-item.js'

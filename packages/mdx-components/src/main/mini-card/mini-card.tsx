@@ -21,7 +21,6 @@ interface MiniCardProps {
   title: string | null
   actionIcon?: ActionIcon | null
   linkProps?: object | null
-  className?: string | null
 }
 
 const getIcon = ({ actionIcon }: { actionIcon: ActionIcon }) => {
@@ -56,24 +55,23 @@ const MiniCard: MdxComponent<MiniCardProps> = ({
   href,
   title,
   actionIcon,
-  className,
-  linkProps,
-  ...rest
+  linkProps
 }) => {
   const cardContent = (
-    <div className={clsx(className, withPrefix('mini-card'))}>
+    <div className={clsx(withPrefix('mini-card'))}>
       <div className={withPrefix('wrapper')}>
         <div className={withPrefix('title')}>{title}</div>
-        {children === undefined && actionIcon && (
-          <div className={withPrefix('icon')}>{getIcon({ actionIcon })}</div>
+        {(children === undefined || (Array.isArray(children) && children.length === 0)) &&
+          actionIcon && <div className={withPrefix('icon')}>{getIcon({ actionIcon })}</div>}
+        {children !== undefined && !(Array.isArray(children) && children.length === 0) && (
+          <div className={withPrefix('image')}>{children}</div>
         )}
-        {children !== undefined && <div className={withPrefix('image')}>{children}</div>}
       </div>
     </div>
   )
 
   return (
-    <Column md={4} lg={4} sm={4} {...rest}>
+    <Column md={4} lg={4} sm={4}>
       <a href={href!} className={'cds--tile--clickable'} {...linkProps}>
         {cardContent}
       </a>
@@ -96,10 +94,6 @@ MiniCard.propTypes = {
    * Use 32x32 image as child, will display in right-hand corner of the card
    */
   children: PropTypes.node,
-  /**
-   * Optional container class name.
-   */
-  className: PropTypes.string,
   /**
    * url to link to on click
    */

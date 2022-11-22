@@ -7,14 +7,16 @@
 import { Column, Grid } from '@carbon/react'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
-import React, { ReactNode } from 'react'
+import React, { ElementType, ReactNode } from 'react'
 
 import { MdxComponent } from '../interfaces.js'
 import { mediaQueries, useMatchMedia, withPrefix } from '../utils.js'
 
 interface CardGroupProps {
   children: ReactNode
-  className?: string | null
+  fullWidth?: boolean | null
+  narrow?: boolean | null
+  as?: string | ElementType | null
 }
 
 /**
@@ -24,11 +26,17 @@ interface CardGroupProps {
  * above breakpoints, and set the grid to condensed at the small
  * breakpoint.
  */
-const CardGroup: MdxComponent<CardGroupProps> = ({ children, className, ...rest }) => {
+const CardGroup: MdxComponent<CardGroupProps> = ({ children, fullWidth, narrow, as }) => {
   const isSm = useMatchMedia(mediaQueries.sm)
 
   return (
-    <Grid className={clsx(className, withPrefix('card-group'))} condensed={isSm} {...rest}>
+    <Grid
+      className={clsx(withPrefix('card-group'))}
+      condensed={isSm}
+      fullWidth={fullWidth}
+      narrow={narrow}
+      as={as}
+    >
       <Column lg={8} md={8} sm={4}>
         <Grid condensed>{children}</Grid>
       </Column>
@@ -38,13 +46,22 @@ const CardGroup: MdxComponent<CardGroupProps> = ({ children, className, ...rest 
 
 CardGroup.propTypes = {
   /**
+   * Provide a custom element to render instead of the default
+   */
+  as: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.elementType.isRequired]),
+  /**
    * Provide the contents of your `Card`.
    */
   children: PropTypes.node.isRequired,
   /**
-   * Optional container class name.
+   * Remove the default max width that the grid has set
    */
-  className: PropTypes.string
+  fullWidth: PropTypes.bool,
+  /**
+   * Container hangs 16px into the gutter.
+   * Useful for typographic alignment with and without containers.
+   */
+  narrow: PropTypes.bool
 }
 export { CardGroupProps }
 export default CardGroup

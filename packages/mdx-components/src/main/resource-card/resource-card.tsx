@@ -20,8 +20,8 @@ type AspectRatio = '2:1' | '1:1' | '16:9' | '4:3'
 
 interface ResourceCardProps {
   children: ReactNode
+  // TODOASKJOE: should we kill this?
   component?: ReactNode | null
-  className?: string | null
   href?: string | null
   subTitle?: string | null
   title?: string | null
@@ -57,15 +57,13 @@ const ResourceCard: MdxComponent<ResourceCardProps> = (props) => {
     disabled,
     aspectRatio: aspectRatioProp,
     actionIcon,
-    className,
-    component,
-    ...rest
+    component
   } = props
 
   const isLg = useMatchMedia(mediaQueries.lg)
   const isXlg = useMatchMedia(mediaQueries.xlg)
 
-  const ResourceCardClassNames = clsx(className, withPrefix('resource-card'), {
+  const ResourceCardClassNames = clsx(withPrefix('resource-card'), {
     [withPrefix('disabled')]: disabled
   })
 
@@ -106,7 +104,7 @@ const ResourceCard: MdxComponent<ResourceCardProps> = (props) => {
     cardContainer = <div className={carbonTileclassNames}>{cardContent}</div>
   } else {
     cardContainer = (
-      <a href={href!} className={carbonTileclassNames} {...rest}>
+      <a href={href!} className={carbonTileclassNames}>
         {cardContent}
       </a>
     )
@@ -137,10 +135,6 @@ ResourceCard.propTypes = {
    * Add an image to display in lower left
    */
   children: PropTypes.node,
-  /**
-   * Optional class name
-   */
-  className: PropTypes.string,
   /**
    * set to "dark" for dark background card
    */

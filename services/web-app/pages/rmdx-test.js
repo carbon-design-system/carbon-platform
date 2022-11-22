@@ -10,6 +10,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import Image from '@/components/image/image'
+import mdxIcon from '@/components/mdx-icon/mdx-icon'
 import { AnchorLinkMapper } from '@/utils/mappers/anchor-link.mapper'
 import { DivMapper } from '@/utils/mappers/div.mapper'
 import { ParagraphMapper } from '@/utils/mappers/paragraph.mapper'
@@ -26,6 +27,9 @@ const components = {
   ...MdxComponents,
   AnchorLink: AnchorLinkMapper,
   Image,
+  // TODOASKJOE: is MdxIcon ok here? it is not on @carbon-platform/mdx-components,
+  // but in web-app instead
+  MdxIcon: mdxIcon,
   Row: RowMapper,
   StorybookDemo: StorybookDemoMapper,
   Tabs: TabsMapper,
@@ -536,6 +540,88 @@ Fixed image demo.
 ![demo fixed image](/mdx/accordion-style-3.png)
 
 </ImageWrapper>
+
+## ResourceCard
+
+<CardGroup>
+  <Column md={4} lg={4}>
+      <ResourceCard
+        subTitle="With subtitle"
+        title="Title"
+        aspectRatio="2:1"
+        actionIcon="arrowRight"
+        href="https://gatsby.carbondesignsystem.com"
+        >
+
+![Sketch icon](/mdx/sketch-icon.png)
+
+    </ResourceCard>
+
+  </Column>
+  <Column md={4} lg={4}>
+      <ResourceCard
+        subTitle="Only subtitle"
+        actionIcon="download"
+        aspectRatio="2:1"
+        href="https://gatsby.carbondesignsystem.com"
+        >
+
+![Sketch icon](/mdx/sketch-icon.png)
+
+    </ResourceCard>
+
+  </Column>
+  <Column md={4} lg={4}>
+      <ResourceCard
+        subTitle="Alternate color"
+        title="Dark"
+        aspectRatio="2:1"
+        color="dark"
+        actionIcon="email"
+        href="https://gatsby.carbondesignsystem.com"
+        >
+
+![Sketch icon](/mdx/sketch-icon.png)
+
+    </ResourceCard>
+
+  </Column>
+  <Column md={4} lg={4}>
+      <ResourceCard
+        title="Disabled card"
+        aspectRatio="2:1"
+        disabled
+        href="https://gatsby.carbondesignsystem.com"
+        >
+
+![Sketch icon](/mdx/sketch-icon.png)
+
+    </ResourceCard>
+
+  </Column>
+</CardGroup>
+
+## Minicard
+
+<CardGroup>
+  <MiniCard
+    title="Tree view component"
+    href="https://carbon-website-git-fork-designertyler-treeview03092020.carbon-design-system.now.sh/components/tree-view/usage"
+    actionIcon="arrowRight"
+  />
+  <MiniCard title="Angular tutorial" href="">
+    <MdxIcon name="angular" />
+  </MiniCard>
+  <MiniCard
+    title="Tree view component"
+    href="https://carbon-website-git-fork-designertyler-treeview03092020.carbon-design-system.now.sh/components/tree-view/usage"
+    actionIcon="launch"
+  />
+  <MiniCard title="React tutorial" href="">
+    <MdxIcon name="react" />
+  </MiniCard>
+</CardGroup>
+
 
 `
 

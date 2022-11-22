@@ -87,11 +87,11 @@ const iconColor = {
   inverse: 'icon-inverse'
 }
 
-const MdxIcon = ({ name, className, color }) => {
+const MdxIcon = ({ name, color }) => {
   if (svgIcons[name]) {
     const SvgComponent = svgIcons[name]
     return (
-      <div className={clsx(className, styles['mdx-icon'])}>
+      <div className={clsx(styles['mdx-icon'])}>
         <SvgComponent />
       </div>
     )
@@ -99,7 +99,7 @@ const MdxIcon = ({ name, className, color }) => {
 
   if (localIcons[name]) {
     return (
-      <div className={clsx(className, styles['mdx-icon'])}>
+      <div className={clsx(styles['mdx-icon'])}>
         <Image alt={`${name} icon`} src={localIcons[name]} />
       </div>
     )
@@ -107,9 +107,7 @@ const MdxIcon = ({ name, className, color }) => {
 
   if (carbonIcons[name]) {
     const Icon = carbonIcons[name]
-    return (
-      <Icon className={clsx(className, styles['mdx-icon'], styles[iconColor[color]])} size={32} />
-    )
+    return <Icon className={clsx(styles['mdx-icon'], styles[iconColor[color]])} size={32} />
   }
 
   return null
@@ -122,10 +120,6 @@ const acceptedCompNames = [
 ]
 
 MdxIcon.propTypes = {
-  /**
-   * Optional class name.
-   */
-  className: PropTypes.string,
   /**
    * Optional: can supply color "icon-inverse" for carbonIcons.
    */

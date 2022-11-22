@@ -44,6 +44,7 @@ const components = {
   'heading-5': MdxComponents.H5,
   'heading-6': MdxComponents.H6,
   image: Image,
+  img: Image,
   link: Link,
   'list-item': MdxComponents.LI,
   'ordered-list': MdxComponents.OL,
@@ -622,13 +623,107 @@ Fixed image demo.
   </MiniCard>
 </CardGroup>
 
+## ArtDirection
+
+<ArtDirection>
+
+![Mobile image](/mdx/mobile.jpg)
+
+![Tablet image](/mdx/tablet.jpg)
+
+![Desktop image](/mdx/desktop.jpg)
+
+</ArtDirection>
+
+## ArticleCard
+
+<Row>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      subTitle="subTitle"
+      title="Title"
+      author="Josh Black"
+      date="April 29, 2019"
+      readTime="Read time: 5 min"
+      href="/"
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      title="Explore & Create"
+      author="Josh Black"
+      href="https://www.ibm.com"
+      actionIcon="arrowRight"
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      title="Explore & Create a longer title example in this space"
+      href="https://www.ibm.com"
+      disabled
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      title="Explore & Create"
+      color="dark"
+      href="https://www.ibm.com"
+      actionIcon="download"
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      subTitle="subTitle"
+      title="Explore & Create"
+      author="Josh Black"
+      readTime="Read time: 5 min"
+      color="dark"
+      href="https://www.ibm.com"
+      actionIcon="email"
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterMdLeft>
+    <ArticleCard
+      subTitle="subTitle"
+      title="Explore & Create"
+      author="Josh Black"
+      date="April 29, 2019"
+      readTime="Read time: 5 min"
+      color="dark"
+      disabled
+      >
+
+![Dark article layout mockup](/mdx/Article_06.png)
+
+  </ArticleCard>
+</Column>
+</Row>
+
 
 `
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- will remove later
 const toTest = `
-
-
  ## PageTable <- problem with children
 
 | Header 1 | Header 2 | Header 3 |
@@ -664,6 +759,19 @@ const toTest = `
     ![Grid Example](/mdx/Article_05.jpg)
   </Column>
 </Grid>
+
+### Resource Card <- component won't render
+
+<ResourceCard
+  subTitle="With subtitle"
+  title="Title"
+  aspectRatio="2:1"
+  actionIcon="arrowRight"
+  href="https://www.carbondesignsystem.com"
+  component={<div>Hey</div>}
+>
+  <img src="/" alt="Use markdown for images in mdx files. ![](img.png)" />
+</ResourceCard>
 
 `
 

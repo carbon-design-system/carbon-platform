@@ -20,7 +20,9 @@ import { RowMapper } from '@/utils/mappers/row.mapper'
 import { SpanMapper } from '@/utils/mappers/span.mapper'
 import { StorybookDemoMapper } from '@/utils/mappers/storybook-demo.mapper'
 import { StrongMapper } from '@/utils/mappers/strong.mapper'
+import { TableBodyMapper } from '@/utils/mappers/table-body.mapper'
 import { TableDetailMapper } from '@/utils/mappers/table-detail.mapper'
+import { TableHeadMapper } from '@/utils/mappers/table-head.mapper'
 import { TableHeaderMapper } from '@/utils/mappers/table-header.mapper'
 import { TableRowMapper } from '@/utils/mappers/table-row.mapper'
 import { TabsMapper } from '@/utils/mappers/tabs.mapper'
@@ -61,6 +63,8 @@ const components = {
   strong: StrongMapper,
   table: MdxComponents.PageTable,
   'table-cell': TableDetailMapper,
+  'table-header': TableHeadMapper,
+  'table-body': TableBodyMapper,
   'table-row': TableRowMapper,
   text: UniversalMapper,
   td: TableDetailMapper,
@@ -799,28 +803,6 @@ Fixed image demo.
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- will remove later
 const toTest = `
-
-<table>
-<thead>
-  <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-</tbody>
-</table>
 
 `
 

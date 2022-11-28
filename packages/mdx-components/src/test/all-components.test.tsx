@@ -313,7 +313,7 @@ test.serial('page description renders without crashing', (t) => {
 
 test.serial('page table renders without crashing', (t) => {
   const result = render(
-    <Mdx.PageTable>
+    <Mdx.PageTable columns={3}>
       <thead>
         <tr>
           <th>Header 1</th>

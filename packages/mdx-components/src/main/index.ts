@@ -4,6 +4,14 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+/*
+This file exports all possible components that can be used when translating/rendering RMDX on the
+Carbon Platform. This includes re-exports of some Carbon components, mostly because this allows the
+RMDX processor to get a list of all possible "keys" (i.e. "component names") that should show up in
+the resulting RMDX output AST.
+*/
+
 export { default as Accordion, AccordionProps } from './accordion/accordion.js'
 export { default as AnchorLink, AnchorLinkProps } from './anchor-links/anchor-link.js'
 export { default as AnchorLinks, AnchorLinksProps } from './anchor-links/anchor-links.js'

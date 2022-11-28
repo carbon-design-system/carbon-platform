@@ -6,14 +6,10 @@
  */
 
 import { Column as CarbonColumn } from '@carbon/react'
-import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React, { ElementType, ReactNode } from 'react'
 
 import { MdxComponent } from '../interfaces.js'
-import { withPrefix } from '../utils.js'
-
-type ColumnSpan = boolean | number | { span: number; offset: number }
 
 interface ColumnProps {
   children: ReactNode
@@ -28,11 +24,11 @@ interface ColumnProps {
   offsetXl?: number | null
   offsetMax?: number | null
   as?: string | ElementType | null
-  lg?: ColumnSpan | null
-  max?: ColumnSpan | null
-  md?: ColumnSpan | null
-  sm?: ColumnSpan | null
-  xlg?: ColumnSpan | null
+  lg?: number | boolean | null
+  max?: number | boolean | null
+  md?: number | boolean | null
+  sm?: number | boolean | null
+  xlg?: number | boolean | null
   NoGutterSm?: boolean | null
   NoGutterMdLeft?: boolean | null
 }
@@ -65,7 +61,7 @@ const Column: MdxComponent<ColumnProps> = ({
   }
 
   return (
-    <CarbonColumn {...colSizes} as={as} className={clsx(withPrefix('column'))}>
+    <CarbonColumn {...colSizes} as={as}>
       {children}
     </CarbonColumn>
   )
@@ -78,16 +74,7 @@ Column.defaultProps = {
   as: 'div'
 }
 
-const spanPropType = PropTypes.oneOfType([
-  PropTypes.bool.isRequired,
-  PropTypes.number.isRequired,
-  PropTypes.shape({
-    span: PropTypes.number.isRequired,
-    offset: PropTypes.number.isRequired
-  }).isRequired
-])
-
-// TODOASKJOE: span proptype
+const spanPropType = PropTypes.oneOfType([PropTypes.bool.isRequired, PropTypes.number.isRequired])
 
 Column.propTypes = {
   /**

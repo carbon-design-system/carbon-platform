@@ -53,6 +53,10 @@
   margin-top: 0;
 }
 
+.#{with-prefix('as-paragraph')} {
+  margin-top: spacing.$spacing-03;
+}
+
 .#{with-prefix('paragraph-container')} {
   margin-top: spacing.$spacing-06;
 }

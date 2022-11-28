@@ -21,7 +21,11 @@ const H4: MdxComponent<H4Props> = ({ autolink = true, children }) => {
   const Component = autolink ? 'h4' : 'p'
 
   return (
-    <Grid className={clsx(withPrefix('header'), withPrefix('h4-container'))}>
+    <Grid
+      className={clsx(withPrefix('header'), withPrefix('h4-container'), {
+        [withPrefix('as-paragraph')]: !autolink
+      })}
+    >
       <Column sm={4} md={8} lg={8}>
         <Component className={clsx(withPrefix('h4'))}>{children}</Component>
       </Column>

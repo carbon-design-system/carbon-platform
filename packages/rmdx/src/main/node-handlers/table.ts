@@ -8,10 +8,10 @@ import { Table, TableRow } from 'mdast'
 
 import { NodeHandler } from '../interfaces.js'
 
-interface PartitionedTable {
+interface HtmlTable {
   children?: [
     {
-      type: 'tableHeader'
+      type: 'tableHead'
       children: [TableRow]
     },
     {
@@ -23,9 +23,9 @@ interface PartitionedTable {
 
 const table: NodeHandler = (data) => {
   const nodeAsTable = data.node as Partial<Table>
-  const nodeAsPartitionedTable = data.node as PartitionedTable
-  data.node.nodeType = 'table'
+  const nodeAsHtmlTable = data.node as HtmlTable
 
+  data.node.nodeType = 'table'
   data.node.props.columns = nodeAsTable.align?.length || 0
 
   const headerChild = nodeAsTable.children?.[0]
@@ -36,9 +36,9 @@ const table: NodeHandler = (data) => {
     throw new Error('Table was missing either a header row or body rows')
   }
 
-  nodeAsPartitionedTable.children = [
+  nodeAsHtmlTable.children = [
     {
-      type: 'tableHeader',
+      type: 'tableHead',
       children: [headerChild]
     },
     {

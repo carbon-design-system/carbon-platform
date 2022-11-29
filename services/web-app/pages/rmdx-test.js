@@ -23,7 +23,7 @@ import { StrongMapper } from '@/utils/mappers/strong.mapper'
 import { TableBodyMapper } from '@/utils/mappers/table-body.mapper'
 import { TableDetailMapper } from '@/utils/mappers/table-detail.mapper'
 import { TableHeadMapper } from '@/utils/mappers/table-head.mapper'
-import { TableHeaderMapper } from '@/utils/mappers/table-header.mapper'
+import { TableHeaderCellMapper } from '@/utils/mappers/table-header-cell.mapper'
 import { TableRowMapper } from '@/utils/mappers/table-row.mapper'
 import { TabsMapper } from '@/utils/mappers/tabs.mapper'
 import { TrackMapper } from '@/utils/mappers/track.mapper'
@@ -63,13 +63,12 @@ const components = {
   strong: StrongMapper,
   table: MdxComponents.PageTable,
   'table-cell': TableDetailMapper,
-  'table-header': TableHeadMapper,
+  'table-head': TableHeadMapper,
+  'table-header-cell': TableHeaderCellMapper,
+  'table-header-row': TableRowMapper,
   'table-body': TableBodyMapper,
   'table-row': TableRowMapper,
   text: UniversalMapper,
-  td: TableDetailMapper,
-  th: TableHeaderMapper,
-  tr: TableRowMapper,
   track: TrackMapper,
   'unordered-list': MdxComponents.UL
 }

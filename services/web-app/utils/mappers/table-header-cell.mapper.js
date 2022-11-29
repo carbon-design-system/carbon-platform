@@ -5,4 +5,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 /** @type {import('@carbon-platform/rmdx').NodeMapper} */
-export const TableHeaderMapper = ({ children }) => <th>{children}</th>
+export const TableHeaderCellMapper = ({ children }) => <th>{children}</th>

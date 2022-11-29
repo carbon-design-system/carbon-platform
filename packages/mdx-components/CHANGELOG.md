@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.18](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.17...@carbon-platform/mdx-components@0.1.18) (2022-11-19)
+
+
+### Bug Fixes 🐛
+
+* **mdx-components:** add bottom margin to article card ([d5605dd](https://github.com/carbon-design-system/carbon-platform/commit/d5605ddcf61774a2bad18c15e2232219d43f3510)), closes [#1512](https://github.com/carbon-design-system/carbon-platform/issues/1512)
+
+### [0.1.17](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.16...@carbon-platform/mdx-components@0.1.17) (2022-11-18)
+
+
+### Bug Fixes 🐛
+
+* **mdx-components:** add withPrefix util to preview class ([6437e1b](https://github.com/carbon-design-system/carbon-platform/commit/6437e1bbd01641b1d9c0294f669aad2073deaeb6))
+
+### [0.1.16](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.15...@carbon-platform/mdx-components@0.1.16) (2022-11-16)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add do type to do-dont story ([3010882](https://github.com/carbon-design-system/carbon-platform/commit/30108828685add4b5e9e7287ef51144f97834b9a))
+
 ### [0.1.15](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.14...@carbon-platform/mdx-components@0.1.15) (2022-11-12)
 
 

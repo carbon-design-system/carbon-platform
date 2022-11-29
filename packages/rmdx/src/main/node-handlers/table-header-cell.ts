@@ -6,8 +6,8 @@
  */
 import { NodeHandler } from '../interfaces.js'
 
-const tableHeader: NodeHandler = (data) => {
-  data.node.nodeType = 'table-header'
+const tableHeaderCell: NodeHandler = (data) => {
+  data.node.nodeType = 'table-header-cell'
 }
 
-export { tableHeader }
+export { tableHeaderCell }

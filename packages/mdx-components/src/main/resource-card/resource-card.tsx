@@ -20,8 +20,6 @@ type AspectRatio = '2:1' | '1:1' | '16:9' | '4:3'
 
 interface ResourceCardProps {
   children: ReactNode
-  // TODOASKJOE: should we kill this?
-  component?: ReactNode | null
   href?: string | null
   subTitle?: string | null
   title?: string | null
@@ -56,8 +54,7 @@ const ResourceCard: MdxComponent<ResourceCardProps> = (props) => {
     color,
     disabled,
     aspectRatio: aspectRatioProp,
-    actionIcon,
-    component
+    actionIcon
   } = props
 
   const isLg = useMatchMedia(mediaQueries.lg)
@@ -73,15 +70,13 @@ const ResourceCard: MdxComponent<ResourceCardProps> = (props) => {
 
   const carbonTileclassNames = clsx(['cds--tile'], {
     'cds--tile--clickable': href !== undefined,
-    [withPrefix('card-with-title')]: !!title,
-    [withPrefix('card-with-component')]: !!component
+    [withPrefix('card-with-title')]: !!title
   })
 
   const cardContent = (
     <>
       {subTitle && <h5 className={withPrefix('subtitle')}>{subTitle}</h5>}
       {title && <h4 className={withPrefix('title')}>{title}</h4>}
-      {component && <div className={withPrefix('child-component')}>{component}</div>}
       <div className={withPrefix('icon-img')}>{children}</div>
       <div className={withPrefix('icon-action')}>
         {!disabled &&
@@ -139,11 +134,6 @@ ResourceCard.propTypes = {
    * set to "dark" for dark background card
    */
   color: PropTypes.oneOf<Color>(['light', 'dark']),
-
-  /**
-   * Optional component to render in top right
-   */
-  component: PropTypes.node,
 
   /**
    * Use for disabled card

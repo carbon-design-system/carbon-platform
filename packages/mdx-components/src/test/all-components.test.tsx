@@ -52,6 +52,12 @@ test.serial('article card renders without crashing', (t) => {
   t.snapshot(result.baseElement.innerHTML)
 })
 
+test.serial('arrow right button renders without crashing', (t) => {
+  const result = render(<Mdx.ArrowRightButton>Button Text</Mdx.ArrowRightButton>)
+
+  t.snapshot(result.baseElement.innerHTML)
+})
+
 test.serial('aside renders without crashing', (t) => {
   const result = render(<Mdx.Aside aria-label="Example aside">Wow aside text</Mdx.Aside>)
 
@@ -168,6 +174,12 @@ test.serial('inline notification renders without crashing', (t) => {
       porta suscipit non vel quam.
     </Mdx.InlineNotification>
   )
+
+  t.snapshot(result.baseElement.innerHTML)
+})
+
+test.serial('launch button renders without crashing', (t) => {
+  const result = render(<Mdx.LaunchButton>Button Text</Mdx.LaunchButton>)
 
   t.snapshot(result.baseElement.innerHTML)
 })

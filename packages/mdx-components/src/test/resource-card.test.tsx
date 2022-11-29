@@ -31,23 +31,6 @@ test.serial('disabled', (t) => {
   t.snapshot(result.baseElement.innerHTML)
 })
 
-test.serial('component', (t) => {
-  const result = render(
-    <ResourceCard
-      subTitle="With subtitle"
-      title="Title"
-      aspectRatio="2:1"
-      actionIcon="arrowRight"
-      href="https://www.carbondesignsystem.com"
-      component={<div>Hey</div>}
-    >
-      <img src="" alt="Use markdown for images in mdx files. ![](img.png)" />
-    </ResourceCard>
-  )
-
-  t.snapshot(result.baseElement.innerHTML)
-})
-
 test.serial('color', (t) => {
   const result = render(
     <ResourceCard

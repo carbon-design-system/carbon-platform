@@ -19,7 +19,6 @@ interface LinkProps {
   size?: 'sm' | 'md' | 'lg' | null
   visited?: boolean | null
   href: string
-  // renderIcon <-- TODOASKJOE
 }
 
 /**

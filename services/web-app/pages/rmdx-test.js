@@ -20,7 +20,9 @@ import { RowMapper } from '@/utils/mappers/row.mapper'
 import { SpanMapper } from '@/utils/mappers/span.mapper'
 import { StorybookDemoMapper } from '@/utils/mappers/storybook-demo.mapper'
 import { StrongMapper } from '@/utils/mappers/strong.mapper'
+import { TableBodyMapper } from '@/utils/mappers/table-body.mapper'
 import { TableDetailMapper } from '@/utils/mappers/table-detail.mapper'
+import { TableHeadMapper } from '@/utils/mappers/table-head.mapper'
 import { TableHeaderMapper } from '@/utils/mappers/table-header.mapper'
 import { TableRowMapper } from '@/utils/mappers/table-row.mapper'
 import { TabsMapper } from '@/utils/mappers/tabs.mapper'
@@ -60,6 +62,10 @@ const components = {
   span: SpanMapper,
   strong: StrongMapper,
   table: MdxComponents.PageTable,
+  'table-cell': TableDetailMapper,
+  'table-header': TableHeadMapper,
+  'table-body': TableBodyMapper,
+  'table-row': TableRowMapper,
   text: UniversalMapper,
   td: TableDetailMapper,
   th: TableHeaderMapper,
@@ -258,7 +264,7 @@ const mdx = `
 ### Offset
 
 <Grid>
-  <Column md={4} lg={{ span: 4, offset: 4 }}>
+  <Column md={4} lg={4} offsetLg={4}>
     ![Grid Example](/mdx/Article_05.jpg)
   </Column>
   <Column md={4} lg={4}>
@@ -785,58 +791,18 @@ Fixed image demo.
 
   ${code}
 
+
+  ## PageTable
+
+  | Header 1 | Header 2 | Header 3 |
+  | ---- | ---- | ----------- |
+  | Cell 1-1 | Cell 1-2 | Cell 1-3 |
+  | Cell 2-1 | Cell 2-2 | Cell 2-3 |
+
 `
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- will remove later
 const toTest = `
- ## PageTable <- problem with children
-
-| Header 1 | Header 2 | Header 3 |
-| ---- | ---- | ----------- |
-| Cell 1-1 | Cell 1-2 | Cell 1-3 |
-| Cell 2-1 | Cell 2-2 | Cell 2-3 |
-
-<table>
-  <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-</table>
-
-### Offset <- TODOASKJOE: doesn't work with object
-
-<Grid>
-  <Column md={4} lg={{ span: 4, offset: 4 }}>
-    ![Grid Example](/mdx/Article_05.jpg)
-  </Column>
-  <Column md={4} lg={4}>
-    ![Grid Example](/mdx/Article_05.jpg)
-  </Column>
-</Grid>
-
-### Resource Card <- component won't render
-
-<ResourceCard
-  subTitle="With subtitle"
-  title="Title"
-  aspectRatio="2:1"
-  actionIcon="arrowRight"
-  href="https://www.carbondesignsystem.com"
-  component={<div>Hey</div>}
->
-  <img src="/" alt="Use markdown for images in mdx files. ![](img.png)" />
-</ResourceCard>
 
 `
 

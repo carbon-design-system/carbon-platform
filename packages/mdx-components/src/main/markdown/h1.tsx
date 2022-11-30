@@ -39,7 +39,7 @@ interface H1Props {
  */
 const H1: MdxComponent<H1Props> = ({ children }) => {
   return (
-    <Grid className={clsx(withPrefix('header'), withPrefix('h2-container'))}>
+    <Grid className={clsx(withPrefix('header'), withPrefix('h1-container'))}>
       <Column sm={4} md={8} lg={8}>
         <AutolinkHeader is="h1" className={clsx(withPrefix('h1'))}>
           {children}

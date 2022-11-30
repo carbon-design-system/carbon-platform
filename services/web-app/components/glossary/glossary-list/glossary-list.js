@@ -4,10 +4,12 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { H2, H4 } from '@carbon-platform/mdx-components'
+import { Column, Grid } from '@carbon/react'
 import clsx from 'clsx'
 import Markdown from 'markdown-it'
 import PropTypes from 'prop-types'
+
+import AutolinkHeader from '@/components/autolink-header'
 
 import styles from './glossary-list.module.scss'
 
@@ -24,13 +26,17 @@ const renderGlossaryEntry = (glossary, glossaryEntry) => {
       key={glossaryEntry}
       className={clsx(styles['glossary-entry'], 'glossary-entry')}
     >
-      <H2
-        headingClassName={styles['glossary-entry__main-heading']}
-        className={styles['h2-container']}
-      >
-        {glossaryEntry}
-        <span>{glossaryEntry}</span>
-      </H2>
+      <Grid className={clsx(styles['h2-container'])}>
+        <Column sm={4} md={8} lg={8}>
+          <AutolinkHeader
+            is="h2"
+            className={clsx(styles.h2, styles['glossary-entry__main-heading'])}
+          >
+            {glossaryEntry}
+            <span>{glossaryEntry}</span>
+          </AutolinkHeader>
+        </Column>
+      </Grid>
       {Object.keys(entry).map((list, i) => {
         const listItems = Object.keys(entry[list]).map((word) => {
           counter += 1
@@ -43,7 +49,11 @@ const renderGlossaryEntry = (glossary, glossaryEntry) => {
           }
           return (
             <div id={wordId} key={word} className={styles['glossary-entry__word']}>
-              <H4 className={styles['h4-container']}>{word}</H4>
+              <Grid className={clsx(styles.header, styles['h4-container'])}>
+                <Column sm={4} md={8} lg={8}>
+                  <h4 className={clsx(styles.h4)}>{word}</h4>
+                </Column>
+              </Grid>
               <p
                 className={clsx(styles['glossary-entry__desc'], 'page-p')}
                 dangerouslySetInnerHTML={{ __html: desc }}

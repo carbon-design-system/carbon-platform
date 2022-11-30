@@ -8,10 +8,6 @@
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
 
-.title {
-  @include type.type-style('heading-05', true);
-}
-
 .subtitle {
   @include type.type-style('heading-03', true);
 }
@@ -29,11 +25,22 @@
 }
 
 .h1-container {
+  margin-top: spacing.$spacing-12;
+
   &.h1-container {
     margin-top: spacing.$spacing-10;
   }
 
   + * {
     margin-top: spacing.$spacing-10;
+  }
+}
+
+/* Headings */
+.h1 {
+  @include type.type-style('fluid-heading-05', true);
+
+  &.title {
+    @include type.type-style('heading-05', true);
   }
 }

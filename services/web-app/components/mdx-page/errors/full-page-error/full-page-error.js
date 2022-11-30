@@ -5,8 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, Link } from '@carbon/react'
-import { H1 } from '@carbon-platform/mdx-components'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
+
+import AutolinkHeader from '@/components/autolink-header'
 
 import styles from './full-page-error.module.scss'
 
@@ -14,9 +16,13 @@ export const FullPageError = ({ children, title, subtitle, link, href }) => {
   return (
     <Grid>
       <Column sm={4} md={8} lg={8}>
-        <H1 headingClassName={styles.title} className={styles['h1-container']}>
-          {title}
-        </H1>
+        <Grid className={clsx(styles.header, styles['h1-container'])}>
+          <Column sm={4} md={8} lg={8}>
+            <AutolinkHeader is="h1" className={clsx(styles.h1, styles.title)}>
+              {title}
+            </AutolinkHeader>
+          </Column>
+        </Grid>
         <p className={styles.subtitle}>{subtitle}</p>
         <div className={styles.content}>{children}</div>
         <Link className={styles.link} href={href}>

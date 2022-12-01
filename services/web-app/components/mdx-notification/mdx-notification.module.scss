@@ -108,8 +108,10 @@
 
 // override carbon to prevent overlapping link and button
 .notification-wrapper {
-  :global(.cds--actionable-notification--hide-close-button
-      .cds--actionable-notification__action-button.cds--btn--ghost) {
+  :global(
+      .cds--actionable-notification--hide-close-button
+        .cds--actionable-notification__action-button.cds--btn--ghost
+    ) {
     margin-right: spacing.$spacing-09;
   }
 }

@@ -40,7 +40,7 @@
     "@mdx-js/loader": "^2.1.5",
     "@mdx-js/mdx": "^2.1.5",
     "@mdx-js/react": "^2.1.5",
-    "@next/bundle-analyzer": "^12.3.4",
+    "@next/bundle-analyzer": "^13.0.5",
     "@next/mdx": "^12.3.4",
     "@octokit/core": "^4.1.0",
     "ajv": "^8.11.2",

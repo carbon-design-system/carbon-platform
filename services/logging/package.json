@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@logdna/logger": "^2.6.6",
-    "@types/amqplib": "^0.8.2",
+    "@types/amqplib": "^0.10.0",
     "rimraf": "^3.0.2"
   }
 }

@@ -7,3 +7,5 @@
 export { Trace, withTrace } from './decorators/trace.js'
 export { LogLoggedMessage } from './interfaces.js'
 export { Logging } from './logging.js'
+export { requestLogMiddleware } from './request-log-middleware.js'
+export { safeStringify } from './safe-stringify.js'

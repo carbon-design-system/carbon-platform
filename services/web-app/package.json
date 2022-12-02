@@ -31,12 +31,12 @@
   },
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.1.0",
-    "@carbon/colors": "^11.8.0",
-    "@carbon/elements": "^11.14.0",
-    "@carbon/icons": "^11.11.0",
-    "@carbon/layout": "^11.7.0",
-    "@carbon/pictograms": "^12.8.0",
-    "@carbon/pictograms-react": "^11.34.0",
+    "@carbon/colors": "^11.9.0",
+    "@carbon/elements": "^11.15.0",
+    "@carbon/icons": "^11.12.0",
+    "@carbon/layout": "^11.8.0",
+    "@carbon/pictograms": "^12.9.0",
+    "@carbon/pictograms-react": "^11.35.0",
     "@mdx-js/loader": "^2.1.5",
     "@mdx-js/mdx": "^2.1.5",
     "@mdx-js/react": "^2.1.5",
@@ -85,13 +85,13 @@
     "vfile-matter": "^4.0.0"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^6.5.13",
-    "@storybook/addon-essentials": "^6.5.13",
-    "@storybook/addon-links": "^6.5.13",
+    "@storybook/addon-actions": "^6.5.14",
+    "@storybook/addon-essentials": "^6.5.14",
+    "@storybook/addon-links": "^6.5.14",
     "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/builder-webpack5": "^6.5.13",
-    "@storybook/manager-webpack5": "^6.5.13",
-    "@storybook/react": "^6.5.13",
+    "@storybook/builder-webpack5": "^6.5.14",
+    "@storybook/manager-webpack5": "^6.5.14",
+    "@storybook/react": "^6.5.14",
     "sass-loader": "^13.2.0",
     "storybook-addon-next-router": "^4.0.1"
   }

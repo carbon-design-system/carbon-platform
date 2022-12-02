@@ -37,10 +37,10 @@ Removing dependencies works the same way with the `npm uninstall` command.
 
 ## Updating node modules
 
-To update the node modules across all workspaces, from the top-level in the repo, run:
+To update the node modules across all workspaces, from the top-level in the repo, run the following
+command. **Be sure to answer "no" each time it asks if you want to run an `npm install`.**
 
 ```
-npm update
 npx --workspaces --include-workspace-root ncu --upgrade --interactive --target=minor
 CI=true npm install && npm install
 ```
@@ -50,11 +50,21 @@ CI=true npm install && npm install
 > Note: Running npm install twice during this helps to eliminate wildcard versions from showing up
 > in the package-lock.json file.
 
+> Note: Avoid picking up "rc" releases of Carbon packages, if possible.
+
 To update the node modules only for a specific workspace, from the top-level in the repo, run:
 
 ```
 $ npm --workspace <workspace_path> update
 ```
+
+### Things to check/run after updating node modules
+
+- Run the project-wide linter/formatter (`lint`)
+- Run project-wide unit tests (`test`)
+- Build all packages and services (`all:build`)
+- Spot check of the web-app running locally
+- (Optional) Docker builds of the services
 
 ## Info about the "base" workspace
 

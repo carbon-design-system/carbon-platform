@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-sanitizer@1.1.7...@carbon-platform/mdx-sanitizer@1.1.8) (2022-12-02)
+
+
+### Misc. 🔮
+
+* update minor dependencies ([34d80b1](https://github.com/carbon-design-system/carbon-platform/commit/34d80b1fe1c8e39a1b6aac6fdf0447c40cd0d0ba))
+
 ### [1.1.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-sanitizer@1.1.6...@carbon-platform/mdx-sanitizer@1.1.7) (2022-11-03)
 
 

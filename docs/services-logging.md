@@ -164,7 +164,7 @@ try {
 error(`processImage encountered a checksum mismatch. Expected: ${expected}, Was: ${actual}`)
 ```
 
-### Decorators
+### Decorators and helpers
 
 #### `@Trace()`
 
@@ -175,3 +175,17 @@ return value of the method.
 
 A higher-order decoration function similar to `@Trace()`, but for use outside of classes and/or in
 JS instead of TS.
+
+#### `safeStringify`
+
+A utility function to safely convert any object to a string representation, covering all edge cases
+of JS to prevent exceptions from being thrown in the process.
+
+> Note: This utility function is only useful to core logging infrastructure which needs to accept
+> and log any arbitrary input from other code. It should not be used for any other type of logging
+> and is not required in order to log data via the `Logging` class.
+
+#### `requestLogMiddleware`
+
+An ExpressJS middleware which can be `use`d to provide logging for all requests coming through an
+express server.

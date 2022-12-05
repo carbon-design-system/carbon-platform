@@ -8,7 +8,7 @@ import { DynamicModule, Type } from '@nestjs/common'
 import { HttpAdapterHost, NestFactory } from '@nestjs/core'
 import { RmqOptions, Transport } from '@nestjs/microservices'
 
-import { Logging } from '../logging/index.js'
+import { Logging, requestLogMiddleware } from '../logging/index.js'
 import {
   CARBON_MESSAGE_QUEUE_URL,
   DEFAULT_BIND_PATTERN,
@@ -23,9 +23,9 @@ import {
 import { MessagingConnection } from '../messaging/messaging-connection.js'
 import { Runtime } from '../runtime/index.js'
 import { PORT } from './constants.js'
-import { QueryMessageExceptionFilter } from './filters/query-message-exception-filter.js'
-import { UncaughtExceptionFilter } from './filters/uncaught-exception-filter.js'
-import { RequestLogInterceptor } from './interceptors/request-log-interceptor.js'
+import { QueryMessageExceptionInterceptor } from './interceptors/query-message-exception-interceptor.js'
+import { RpcRequestLogInterceptor } from './interceptors/rpc-request-log-interceptor.js'
+import { UncaughtExceptionInterceptor } from './interceptors/uncaught-exception-interceptor.js'
 import { RuntimeModule } from './runtime-module.js'
 
 type BindableMessage = EventMessage | QueryMessage
@@ -140,12 +140,14 @@ class PlatformMicroservice {
 
     const { httpAdapter } = application.get(HttpAdapterHost)
 
-    application.useGlobalFilters(
-      new UncaughtExceptionFilter({ applicationRef: httpAdapter }),
-      new QueryMessageExceptionFilter()
-    )
+    httpAdapter.use(requestLogMiddleware())
 
-    application.useGlobalInterceptors(new RequestLogInterceptor())
+    // Order matters!
+    application.useGlobalInterceptors(
+      new UncaughtExceptionInterceptor(),
+      new RpcRequestLogInterceptor(),
+      new QueryMessageExceptionInterceptor()
+    )
 
     application.connectMicroservice<RmqOptions>(
       {

@@ -15,6 +15,9 @@ import { graphql, GraphQLSchema } from 'graphql'
 
 import { validateDataGraphMessage } from './validate-data-graph-message.js'
 
+/**
+ * Handles incoming data-graph messages from rabbitmq.
+ */
 @Controller()
 class DataGraphController {
   private moduleRef: ModuleRef

@@ -10,6 +10,7 @@ import test from 'ava'
 
 import { __test__, Trace } from '../../../main/logging/decorators/trace.js'
 import { Logging } from '../../../main/logging/logging.js'
+import { safeStringify } from '../../../main/logging/safe-stringify.js'
 import { RunMode, Runtime } from '../../../main/runtime/index.js'
 
 const inputFn = (arg: string) => arg + 'hello'
@@ -293,7 +294,7 @@ test('it truncates a long arg list', (t) => {
   }
   const expected =
     '-> myMethodName(' +
-    String(argsList.map(__test__.safeStringify)).substring(0, __test__.MAX_ARGS_STRING_LENGTH) +
+    String(argsList.map(safeStringify)).substring(0, __test__.MAX_ARGS_STRING_LENGTH) +
     '... (truncated))'
 
   const runtime = new Runtime({ runMode: RunMode.Dev })

@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { RunMode, Runtime } from '../../runtime/index.js'
 import { Logging } from '../index.js'
+import { safeStringify } from '../safe-stringify.js'
 
 const MAX_ARGS_STRING_LENGTH = 500 // characters
 
@@ -91,7 +92,7 @@ function withTrace<
       result = err
       throw err
     } finally {
-      const responseTime = performance.measure(performanceId, performanceId)?.duration?.toFixed(4)
+      const responseTime = performance.measure(performanceId, performanceId)?.duration?.toFixed(2)
 
       traceExit(logging, functionName, result, responseTime)
 
@@ -99,20 +100,6 @@ function withTrace<
       performance.clearMeasures(performanceId)
     }
   } as T
-}
-
-function safeStringify(arg: unknown): string {
-  let result
-
-  try {
-    result = JSON.stringify(arg)
-  } catch {}
-
-  if (!result) {
-    result = String(arg)
-  }
-
-  return result
 }
 
 function truncate(str: string) {
@@ -151,7 +138,6 @@ async function traceExit(
 }
 
 const __test__ = {
-  safeStringify,
   MAX_ARGS_STRING_LENGTH
 }
 

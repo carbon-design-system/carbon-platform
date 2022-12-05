@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.75](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.74...@carbon-platform/web-app@0.2.75) (2022-12-03)
+
+
+### Misc. 🔮
+
+* improve global logging infrastructure and consistency ([daa63fd](https://github.com/carbon-design-system/carbon-platform/commit/daa63fd3a5b0df21338358dee3e2d94a4679e4f9))
+* rebuild lock file and update deps ([f3dfd64](https://github.com/carbon-design-system/carbon-platform/commit/f3dfd648208c47fd335c6d379bda05811c82aabe))
+
 ### [0.2.74](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.73...@carbon-platform/web-app@0.2.74) (2022-12-02)
 
 

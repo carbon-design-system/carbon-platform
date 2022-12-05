@@ -31,7 +31,7 @@
   }
 }
 
-.release-subheading {
+.h3-container .release-subheading {
   @include type.type-style('heading-02');
 }
 
@@ -77,4 +77,13 @@
   + * {
     margin-top: 0;
   }
+}
+
+.h3-container,
+.paragraph-container + .h3-container {
+  margin-top: spacing.$spacing-10;
+}
+
+.h3 {
+  @include type.type-style('fluid-heading-03', true);
 }

@@ -5,11 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, Link } from '@carbon/react'
-import { Divider, H2, H3 } from '@carbon-platform/mdx-components'
+import { Divider, H2 } from '@carbon-platform/mdx-components'
+import clsx from 'clsx'
 import Image from 'next/image'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import AutolinkHeader from '@/components/autolink-header'
 import ContentWrapper from '@/components/content-wrapper'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
@@ -186,12 +188,16 @@ const PageContent = () => {
             <Column sm={4} md={8}>
               <div className={styles['release-content']}>
                 {release.title && (
-                  <H3
-                    className={styles['h3-container']}
-                    headingClassName={styles['release-subheading']}
-                  >
-                    {release.title}
-                  </H3>
+                  <Grid className={clsx(styles.header, styles['h3-container'])}>
+                    <Column sm={4} md={8} lg={8}>
+                      <AutolinkHeader
+                        is="h3"
+                        className={clsx(styles.h3, styles['release-subheading'])}
+                      >
+                        {release.title}
+                      </AutolinkHeader>
+                    </Column>
+                  </Grid>
                 )}
                 {release.subtitle && <p className={styles['release-copy']}>{release.subtitle}</p>}
                 {release.description && (

@@ -18,7 +18,6 @@ import {
 } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
 import { FilingCabinet } from '@carbon-platform/icons'
-import { H3 } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect, useState } from 'react'
@@ -206,22 +205,34 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
                                       </AutolinkHeader>
                                     </Column>
                                   </Grid>
-                                  <H3
+                                  <Grid
                                     narrow
-                                    className={styles['h3-container']}
-                                    headingClassName={styles['no-results-subheading']}
+                                    className={clsx(styles.header, styles['h3-container'])}
                                   >
-                                    This library does not contain any assets.
-                                  </H3>
+                                    <Column sm={4} md={8} lg={8}>
+                                      <AutolinkHeader
+                                        is="h3"
+                                        className={clsx(styles.h3, styles['no-results-subheading'])}
+                                      >
+                                        This library does not contain any assets.
+                                      </AutolinkHeader>
+                                    </Column>
+                                  </Grid>
                                   {/* library maintainers should be a link but leaving as text for
                                 now until we figure out contributors discussion */}
-                                  <H3
+                                  <Grid
                                     narrow
-                                    className={styles['h3-container']}
-                                    headingClassName={styles['no-results-subheading']}
+                                    className={clsx(styles.header, styles['h3-container'])}
                                   >
-                                    Contact library maintainers for further details.
-                                  </H3>
+                                    <Column sm={4} md={8} lg={8}>
+                                      <AutolinkHeader
+                                        is="h3"
+                                        className={clsx(styles.h3, styles['no-results-subheading'])}
+                                      >
+                                        Contact library maintainers for further details.
+                                      </AutolinkHeader>
+                                    </Column>
+                                  </Grid>
                                 </div>
                               </TableCell>
                             </TableRow>

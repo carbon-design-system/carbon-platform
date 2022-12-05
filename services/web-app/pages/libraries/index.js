@@ -43,11 +43,13 @@ const Libraries = ({ librariesData }) => {
       <NextSeo {...seo} />
       <PageHeader bgColor={pageHeader?.bgColor} title={seo.title} pictogram={pageHeader?.icon} />
       <ContentWrapper>
-        <PageDescription className={styles['library-description']}>
-          Libraries are 1:1 with code packages. All coded components, elements, patterns, or
-          functions belong to a library and have a maintainer. Design kits with compatible code also
-          live in libraries.
-        </PageDescription>
+        <div className={styles['library-description']}>
+          <PageDescription>
+            Libraries are 1:1 with code packages. All coded components, elements, patterns, or
+            functions belong to a library and have a maintainer. Design kits with compatible code
+            also live in libraries.
+          </PageDescription>
+        </div>
         <LibraryCatalog libraries={libraries} />
       </ContentWrapper>
     </>

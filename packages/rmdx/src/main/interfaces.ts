@@ -11,9 +11,11 @@ type AllowedComponents = Array<string>
 
 type Scalar = string | number | boolean
 
-type Renderable<T> = T & AstNodeLike
-
-type AstNode = AstScalar | AstElement
+type AstNode = Partial<Node> &
+  (AstScalar | AstElement) & {
+    nodeType: string
+    props: RmdxProps & Record<string, Scalar>
+  }
 
 type NodeMapper = JSXElementConstructor<RmdxProps & { children?: unknown }>
 
@@ -23,22 +25,17 @@ interface RmdxProps {
   parentNodeType: string
 }
 
-interface AstNodeLike {
-  nodeType: string
-  props: RmdxProps & Record<string, Scalar>
-}
-
-interface AstScalar extends AstNodeLike {
+interface AstScalar {
   value: Scalar
 }
 
-interface AstElement extends AstNodeLike {
+interface AstElement {
   children: Array<AstNode>
 }
 
 interface NodeHandler {
   (data: {
-    node: Renderable<Partial<Node>>
+    node: AstNode
     index?: number
     parent?: Parent
     allowedComponents: AllowedComponents
@@ -49,11 +46,10 @@ export {
   AllowedComponents,
   AstElement,
   AstNode,
-  AstNodeLike,
   AstScalar,
   NodeHandler,
   NodeMapper,
   NodeMappers,
-  Renderable,
+  RmdxProps,
   Scalar
 }

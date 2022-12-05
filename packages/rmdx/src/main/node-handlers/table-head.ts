@@ -9,11 +9,11 @@ import { Parent } from 'unist-util-visit'
 import { NodeHandler } from '../interfaces.js'
 
 const tableHead: NodeHandler = (data) => {
-  const nodeAsParentNode = data.node as Partial<Parent>
+  const nodeAsParent = data.node as Partial<Parent>
 
   data.node.nodeType = 'table-head'
 
-  nodeAsParentNode.children?.forEach((child) => {
+  nodeAsParent.children?.forEach((child) => {
     child.type = 'tableHeaderRow'
   })
 }

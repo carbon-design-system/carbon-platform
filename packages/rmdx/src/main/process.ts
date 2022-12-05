@@ -8,7 +8,7 @@ import { createProcessor } from '@mdx-js/mdx'
 import remarkGfm from 'remark-gfm'
 import { visit, Visitor } from 'unist-util-visit'
 
-import { AllowedComponents, AstNode, NodeHandler, Renderable } from './interfaces.js'
+import { AllowedComponents, AstNode, NodeHandler } from './interfaces.js'
 import * as nodeHandlers from './node-handlers/index.js'
 
 // TODO: if something ends up with no component, it needs to be removed from the AST
@@ -34,14 +34,13 @@ const visitor: NodeHandler = (data) => {
   }
 
   const result = handler(data)
-  const partialNode = data.node as Partial<typeof data.node>
+  // const partialNode = data.node as Partial<typeof data.node>
 
   // Ensure all nodes have a parent node type set
-  data.node.props.parentNodeType =
-    (data.parent as Renderable<typeof data.parent> | undefined)?.nodeType || ''
+  data.node.props.parentNodeType = (data.parent as AstNode | undefined)?.nodeType || ''
 
-  delete partialNode.position
-  delete partialNode.type
+  delete data.node.position
+  delete data.node.type
 
   return result
 }
@@ -55,14 +54,14 @@ const visitor: NodeHandler = (data) => {
  */
 function createVisitor(allowedComponents: AllowedComponents): Visitor {
   return (node, index, parent) => {
-    const renderable = node as Renderable<typeof node>
-    renderable.props = {
+    const nodeAsAstNode = node as AstNode
+    nodeAsAstNode.props = {
       parentNodeType: '' // Default to '' since this is overridden by each node handler
     }
 
     return visitor({
       allowedComponents,
-      node: renderable,
+      node: nodeAsAstNode,
       index: index || undefined,
       parent: parent || undefined
     })
@@ -81,7 +80,7 @@ function process(srcMdx: string, allowedComponents: AllowedComponents) {
 
   visit(result, createVisitor(allowedComponents))
 
-  return result as Renderable<typeof result> & AstNode
+  return result as AstNode
 }
 
 export { process }

@@ -416,7 +416,7 @@ test.serial('tabs renders without crashing', (t) => {
   const result = render(
     <Mdx.Tabs>
       <Mdx.Tab label="Tab 1" _id="1" index={1}>
-        Maecena ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
+        Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
         facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras
         euismod facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi.
         In hac habitasse platea dictumst.

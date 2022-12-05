@@ -10,9 +10,7 @@ import React from 'react'
 
 import * as Mdx from '../main/index.js'
 
-test.afterEach(() => {
-  cleanup()
-})
+test.afterEach(cleanup)
 
 test.serial('anchor links renders without crashing', (t) => {
   const result = render(
@@ -21,7 +19,7 @@ test.serial('anchor links renders without crashing', (t) => {
     </Mdx.AnchorLinks>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('accordion renders without crashing', (t) => {
@@ -33,7 +31,7 @@ test.serial('accordion renders without crashing', (t) => {
     </Mdx.Accordion>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 test.serial('article card renders without crashing', (t) => {
   const result = render(
@@ -49,19 +47,19 @@ test.serial('article card renders without crashing', (t) => {
     </Mdx.ArticleCard>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('aside renders without crashing', (t) => {
   const result = render(<Mdx.Aside aria-label="Example aside">Wow aside text</Mdx.Aside>)
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('caption renders without crashing', (t) => {
   const result = render(<Mdx.Caption>Lorem Lorem Lorem Lorem Lorem Lorem Lorem.</Mdx.Caption>)
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('card group renders without crashing', (t) => {
@@ -86,7 +84,7 @@ test.serial('card group renders without crashing', (t) => {
     </Mdx.CardGroup>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('code renders without crashing', (t) => {
@@ -96,13 +94,13 @@ test.serial('code renders without crashing', (t) => {
     </Mdx.Code>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('divider renders without crashing', (t) => {
   const result = render(<Mdx.Divider>Some stuff inside of the divider</Mdx.Divider>)
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('do dont renders without crashing', (t) => {
@@ -124,7 +122,7 @@ test.serial('do dont renders without crashing', (t) => {
     </Mdx.DoDontRow>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('gif player renders without crashing', (t) => {
@@ -134,7 +132,7 @@ test.serial('gif player renders without crashing', (t) => {
     </Mdx.GifPlayer>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('grid renders without crashing', (t) => {
@@ -146,7 +144,7 @@ test.serial('grid renders without crashing', (t) => {
     </Mdx.Grid>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('image wrapper renders without crashing', (t) => {
@@ -156,7 +154,7 @@ test.serial('image wrapper renders without crashing', (t) => {
     </Mdx.ImageWrapper>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('inline notification renders without crashing', (t) => {
@@ -169,7 +167,7 @@ test.serial('inline notification renders without crashing', (t) => {
     </Mdx.InlineNotification>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('link renders without crashing', (t) => {
@@ -177,7 +175,7 @@ test.serial('link renders without crashing', (t) => {
     <Mdx.Link href="https://platform.carbondesignsystem.com">Carbon Platform Storybook</Mdx.Link>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('blockquote renders without crashing', (t) => {
@@ -193,49 +191,49 @@ test.serial('blockquote renders without crashing', (t) => {
     </Mdx.Blockquote>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('h1 renders without crashing', (t) => {
   const result = render(<Mdx.H1>This is a Heading 1</Mdx.H1>)
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('h2 renders without crashing', (t) => {
   const result = render(<Mdx.H2>This is a Heading 2</Mdx.H2>)
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('h3 renders without crashing', (t) => {
   const result = render(<Mdx.H3>This is a Heading 3</Mdx.H3>)
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('h4 renders without crashing', (t) => {
   const result = render(<Mdx.H4>This is a Heading 4</Mdx.H4>)
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('h5 renders without crashing', (t) => {
   const result = render(<Mdx.H5>This is a Heading 5</Mdx.H5>)
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('h6 renders without crashing', (t) => {
   const result = render(<Mdx.H6>This is a Heading 6</Mdx.H6>)
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('li renders without crashing', (t) => {
   const result = render(<Mdx.LI>list item 1</Mdx.LI>)
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('ol renders without crashing', (t) => {
@@ -251,7 +249,7 @@ test.serial('ol renders without crashing', (t) => {
     </Mdx.OL>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('p renders without crashing', (t) => {
@@ -263,7 +261,7 @@ test.serial('p renders without crashing', (t) => {
     </Mdx.P>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('ul renders without crashing', (t) => {
@@ -279,7 +277,7 @@ test.serial('ul renders without crashing', (t) => {
     </Mdx.UL>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('mini card renders without crashing', (t) => {
@@ -296,7 +294,7 @@ test.serial('mini card renders without crashing', (t) => {
     </>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('page description renders without crashing', (t) => {
@@ -308,7 +306,7 @@ test.serial('page description renders without crashing', (t) => {
     </Mdx.PageDescription>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('page table renders without crashing', (t) => {
@@ -336,7 +334,7 @@ test.serial('page table renders without crashing', (t) => {
     </Mdx.PageTable>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('preview renders without crashing', (t) => {
@@ -348,7 +346,7 @@ test.serial('preview renders without crashing', (t) => {
     />
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('resource card renders without crashing', (t) => {
@@ -364,7 +362,7 @@ test.serial('resource card renders without crashing', (t) => {
     </Mdx.ResourceCard>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('storybook demo renders without crashing', (t) => {
@@ -411,7 +409,7 @@ test.serial('storybook demo renders without crashing', (t) => {
     />
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('tabs renders without crashing', (t) => {
@@ -438,7 +436,7 @@ test.serial('tabs renders without crashing', (t) => {
     </Mdx.Tabs>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('title renders without crashing', (t) => {
@@ -449,11 +447,11 @@ test.serial('title renders without crashing', (t) => {
     </>
   )
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })
 
 test.serial('video renders without crashing', (t) => {
   const result = render(<Mdx.Video src="wowsrc" poster="wowposter" />)
 
-  t.snapshot(result.baseElement.innerHTML)
+  t.snapshot(result.container.innerHTML)
 })

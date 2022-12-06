@@ -4,17 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React from 'react'
+import React, { ReactElement } from 'react'
 
-import { AstNode, Renderer } from './interfaces.js'
-
-interface RmdxNodeProps {
-  // Allow the components prop to accept a map of Renderers specifying any arbitrary props on the
-  // components
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- See above
-  components: Record<string, Renderer<any>>
-  astNode: AstNode
-}
+import { RmdxNodeProps } from './interfaces.js'
 
 function RmdxNode({ components, astNode }: RmdxNodeProps) {
   const Component = components[astNode.nodeType]

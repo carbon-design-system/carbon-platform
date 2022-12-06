@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { QueryMessage, Queue } from '@carbon-platform/api/messaging'
-import { PlatformMicroservice } from '@carbon-platform/api/microservice'
+import { PlatformMicroservice, RuntimeModule } from '@carbon-platform/api/microservice'
 import { RunMode, Runtime } from '@carbon-platform/api/runtime'
 
 import { DataGraphModule } from './data-graph-module.js'
@@ -17,6 +17,7 @@ async function start() {
   const pm = new PlatformMicroservice({
     queue: Queue.DataGraph,
     module: DataGraphModule.register({ isPlaygroundEnabled }),
+    imports: [RuntimeModule.register(runtime)],
     runtime
   })
 

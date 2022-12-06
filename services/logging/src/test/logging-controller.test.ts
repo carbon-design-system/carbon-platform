@@ -26,20 +26,18 @@ test.beforeEach(() => {
 })
 
 test.serial('logLogged runs without crashing', (t) => {
-  const logDnaService = new LogDnaService(
-    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
-  )
-  const loggingController = new LoggingController(logDnaService)
+  const runtime = new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  const logDnaService = new LogDnaService(runtime)
+  const loggingController = new LoggingController(logDnaService, runtime)
 
   loggingController.logLogged(data)
   t.pass()
 })
 
 test.serial('logLogged handles its own exception when no component specified', (t) => {
-  const logDnaService = new LogDnaService(
-    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
-  )
-  const loggingController = new LoggingController(logDnaService)
+  const runtime = new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  const logDnaService = new LogDnaService(runtime)
+  const loggingController = new LoggingController(logDnaService, runtime)
 
   delete data.component
 
@@ -48,10 +46,9 @@ test.serial('logLogged handles its own exception when no component specified', (
 })
 
 test.serial('logLogged handles its own exception when no environment specified', (t) => {
-  const logDnaService = new LogDnaService(
-    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
-  )
-  const loggingController = new LoggingController(logDnaService)
+  const runtime = new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  const logDnaService = new LogDnaService(runtime)
+  const loggingController = new LoggingController(logDnaService, runtime)
 
   delete data.environment
 
@@ -60,10 +57,9 @@ test.serial('logLogged handles its own exception when no environment specified',
 })
 
 test.serial('logLogged handles its own exception when no level specified', (t) => {
-  const logDnaService = new LogDnaService(
-    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
-  )
-  const loggingController = new LoggingController(logDnaService)
+  const runtime = new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  const logDnaService = new LogDnaService(runtime)
+  const loggingController = new LoggingController(logDnaService, runtime)
 
   delete data.level
 
@@ -72,10 +68,9 @@ test.serial('logLogged handles its own exception when no level specified', (t) =
 })
 
 test.serial('logLogged handles its own exception when no message specified', (t) => {
-  const logDnaService = new LogDnaService(
-    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
-  )
-  const loggingController = new LoggingController(logDnaService)
+  const runtime = new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  const logDnaService = new LogDnaService(runtime)
+  const loggingController = new LoggingController(logDnaService, runtime)
 
   delete data.message
 
@@ -84,10 +79,9 @@ test.serial('logLogged handles its own exception when no message specified', (t)
 })
 
 test.serial('logLogged handles its own exception when no service specified', (t) => {
-  const logDnaService = new LogDnaService(
-    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
-  )
-  const loggingController = new LoggingController(logDnaService)
+  const runtime = new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  const logDnaService = new LogDnaService(runtime)
+  const loggingController = new LoggingController(logDnaService, runtime)
 
   delete data.service
 
@@ -96,10 +90,9 @@ test.serial('logLogged handles its own exception when no service specified', (t)
 })
 
 test.serial('logLogged handles its own exception when no timestamp specified', (t) => {
-  const logDnaService = new LogDnaService(
-    new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
-  )
-  const loggingController = new LoggingController(logDnaService)
+  const runtime = new Runtime({ runMode: RunMode.Dev, environment: Environment.Test })
+  const logDnaService = new LogDnaService(runtime)
+  const loggingController = new LoggingController(logDnaService, runtime)
 
   delete data.timestamp
 

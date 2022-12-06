@@ -4,5 +4,5 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-/** @type {import('@carbon-platform/rmdx').NodeMapper} */
-export const TableHeaderCellMapper = ({ children }) => <th>{children}</th>
+/** @type {import('@carbon-platform/rmdx').Renderer} */
+export const TableHeaderCellRenderer = ({ children }) => <th>{children}</th>

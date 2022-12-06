@@ -6,5 +6,7 @@
  */
 import { CodeSnippet } from '@carbon/react'
 
-/** @type {import('@carbon-platform/rmdx').NodeMapper} */
-export const InlineCodeMapper = ({ code }) => <CodeSnippet type="inline">{code}</CodeSnippet>
+/** @type {import('@carbon-platform/rmdx').Renderer} */
+export const InlineCodeRenderer = ({ children }) => (
+  <CodeSnippet type="inline">{children}</CodeSnippet>
+)

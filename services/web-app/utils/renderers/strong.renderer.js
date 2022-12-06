@@ -4,6 +4,5 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export { AllowedComponents, AstNode, Renderer } from './interfaces.js'
-export { process } from './process.js'
-export { RmdxNode } from './rmdx-node.js'
+/** @type {import('@carbon-platform/rmdx').Renderer} */
+export const StrongRenderer = ({ children }) => <strong>{children}</strong>

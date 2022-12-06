@@ -6,7 +6,7 @@
  */
 import { AnchorLink } from '@carbon-platform/mdx-components'
 
-/** @type {import('@carbon-platform/rmdx').NodeMapper} */
-export const AnchorLinkMapper = ({ children }) => (
+/** @type {import('@carbon-platform/rmdx').Renderer} */
+export const AnchorLinkRenderer = ({ children }) => (
   <AnchorLink>{children?.props?.astNode?.value}</AnchorLink>
 )

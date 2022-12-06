@@ -14,11 +14,13 @@ import { withPrefix } from '../utils.js'
 interface PathProps {
   src?: string | null
   path?: string | null
-  children: ReactNode
 }
 
 const Path: MdxComponent<PathProps> = ({ src, path }) => {
-  if (!path) return null
+  if (!path) {
+    return null
+  }
+
   return (
     <div className={withPrefix('path-container')}>
       <span className={withPrefix('path')}>{path}</span>
@@ -39,7 +41,6 @@ const Path: MdxComponent<PathProps> = ({ src, path }) => {
 }
 
 Path.propTypes = {
-  children: PropTypes.node,
   /** Provide path */
   path: PropTypes.string,
   /** Provide src link */

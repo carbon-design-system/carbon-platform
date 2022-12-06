@@ -11,114 +11,67 @@ import React from 'react'
 
 import Image from '@/components/image/image'
 import mdxIcon from '@/components/mdx-icon/mdx-icon'
-import { AnchorLinkMapper } from '@/utils/mappers/anchor-link.mapper'
-import { CodeMapper } from '@/utils/mappers/code.mapper'
-import { DivMapper } from '@/utils/mappers/div.mapper'
-import { InlineCodeMapper } from '@/utils/mappers/inline-code.mapper'
-import { ParagraphMapper } from '@/utils/mappers/paragraph.mapper'
-import { RowMapper } from '@/utils/mappers/row.mapper'
-import { SpanMapper } from '@/utils/mappers/span.mapper'
-import { StorybookDemoMapper } from '@/utils/mappers/storybook-demo.mapper'
-import { StrongMapper } from '@/utils/mappers/strong.mapper'
-import { TableBodyMapper } from '@/utils/mappers/table-body.mapper'
-import { TableDetailMapper } from '@/utils/mappers/table-detail.mapper'
-import { TableHeadMapper } from '@/utils/mappers/table-head.mapper'
-import { TableHeaderCellMapper } from '@/utils/mappers/table-header-cell.mapper'
-import { TableRowMapper } from '@/utils/mappers/table-row.mapper'
-import { TabsMapper } from '@/utils/mappers/tabs.mapper'
-import { TrackMapper } from '@/utils/mappers/track.mapper'
-import { UniversalMapper } from '@/utils/mappers/universal.mapper'
+import { AnchorLinkRenderer } from '@/utils/renderers/anchor-link.renderer'
+import { CodeRenderer } from '@/utils/renderers/code.renderer'
+import { DivRenderer } from '@/utils/renderers/div.renderer'
+import { DocumentRenderer } from '@/utils/renderers/document.renderer'
+import { InlineCodeRenderer } from '@/utils/renderers/inline-code.renderer'
+import { ParagraphRenderer } from '@/utils/renderers/paragraph.renderer'
+import { RowRenderer } from '@/utils/renderers/row.renderer'
+import { SpanRenderer } from '@/utils/renderers/span.renderer'
+import { StorybookDemoRenderer } from '@/utils/renderers/storybook-demo.renderer'
+import { StrongRenderer } from '@/utils/renderers/strong.renderer'
+import { TableBodyRenderer } from '@/utils/renderers/table-body.renderer'
+import { TableDetailRenderer } from '@/utils/renderers/table-detail.renderer'
+import { TableHeadRenderer } from '@/utils/renderers/table-head.renderer'
+import { TableHeaderCellRenderer } from '@/utils/renderers/table-header-cell.renderer'
+import { TableRowRenderer } from '@/utils/renderers/table-row.renderer'
+import { TabsRenderer } from '@/utils/renderers/tabs.renderer'
+import { TextRenderer } from '@/utils/renderers/text.renderer'
+import { TrackRenderer } from '@/utils/renderers/track.renderer'
 
-/** @type {import('@carbon-platform/rmdx').NodeMappers} */
 // TODOASKJOE: I have some html elements here
 const components = {
   ...MdxComponents,
-  AnchorLink: AnchorLinkMapper,
+  AnchorLink: AnchorLinkRenderer,
   Image,
   // TODOASKJOE: is MdxIcon ok here? it is not on @carbon-platform/mdx-components,
   // but in web-app instead
   MdxIcon: mdxIcon,
-  Row: RowMapper,
-  StorybookDemo: StorybookDemoMapper,
-  Tabs: TabsMapper,
+  Row: RowRenderer,
+  StorybookDemo: StorybookDemoRenderer,
+  Tabs: TabsRenderer,
   // html
   blockquote: MdxComponents.Blockquote,
-  code: CodeMapper,
-  document: UniversalMapper,
-  div: DivMapper,
+  code: CodeRenderer,
+  document: DocumentRenderer,
+  div: DivRenderer,
   'heading-1': MdxComponents.H1,
   'heading-2': MdxComponents.H2,
   'heading-3': MdxComponents.H3,
   'heading-4': MdxComponents.H4,
   'heading-5': MdxComponents.H5,
   'heading-6': MdxComponents.H6,
-  'inline-code': InlineCodeMapper,
+  'inline-code': InlineCodeRenderer,
   image: Image,
   img: Image,
   link: Link,
   'list-item': MdxComponents.LI,
   'ordered-list': MdxComponents.OL,
-  paragraph: ParagraphMapper,
-  span: SpanMapper,
-  strong: StrongMapper,
+  paragraph: ParagraphRenderer,
+  span: SpanRenderer,
+  strong: StrongRenderer,
   table: MdxComponents.PageTable,
-  'table-cell': TableDetailMapper,
-  'table-head': TableHeadMapper,
-  'table-header-cell': TableHeaderCellMapper,
-  'table-header-row': TableRowMapper,
-  'table-body': TableBodyMapper,
-  'table-row': TableRowMapper,
-  text: UniversalMapper,
-  track: TrackMapper,
+  'table-cell': TableDetailRenderer,
+  'table-head': TableHeadRenderer,
+  'table-header-cell': TableHeaderCellRenderer,
+  'table-header-row': TableRowRenderer,
+  'table-body': TableBodyRenderer,
+  'table-row': TableRowRenderer,
+  text: TextRenderer,
+  track: TrackRenderer,
   'unordered-list': MdxComponents.UL
 }
-
-const code =
-  '```' +
-  `js path=/directory/file.mdx src=https://gatsby.carbondesignsystem.com
-// This has path and src
-
-const codeBlock = () => {
-  // does something
-}
-` +
-  '```\n\n' +
-  '```' +
-  `jsx
-const FeedbackDialog = ({ props }) => {
-  const onSubmit = data => {
-    fetch(process.env.API_ENDPOINT, {
-      method: 'POST',
-      body: JSON.stringify(data),
-  });
-
-  return <ThemeFeedbackDialog {...props} onSubmit={onSubmit} />;
-};
-` +
-  '```\n\n' +
-  '```' +
-  `markdown
-# Code snippet with show more button. No src or path.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
-tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
-facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras euismod
-facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In hac habitasse
-platea dictumst.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
-tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
-facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras euismod
-facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In hac habitasse
-platea dictumst.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
-tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
-facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras euismod
-facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In hac habitasse
-platea dictumst.
-` +
-  '```\n\n'
 
 const mdx = `
 ## Headings
@@ -777,36 +730,77 @@ Fixed image demo.
 </Column>
 </Row>
 
-  ## Code
-  <PageDescription>
+## Code
+<PageDescription>
 
-  This is \`inline code\` inside of a PageDescription component. ipsum dolor sit amet, consectetur
-  adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum tempor in.
+This is \`inline code\` inside of a PageDescription component. ipsum dolor sit amet, consectetur
+adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum tempor in.
 
-  </PageDescription>
+</PageDescription>
 
-  This is an example of \`inline code\` inside of a paragraph. Etiam nisi sem, malesuada auctor pretium
-  vel, ullamcorper sed mi. In hac habitasse platea dictumst.
+This is an example of \`inline code\` inside of a paragraph. Etiam nisi sem, malesuada auctor pretium
+vel, ullamcorper sed mi. In hac habitasse platea dictumst.
 
-  ${code}
+\`\`\`js path=/directory/file.mdx src=https://gatsby.carbondesignsystem.com
+// This has path and src
+
+const codeBlock = () => {
+  // does something
+}
+\`\`\`
+
+\`\`\`jsx
+const FeedbackDialog = ({ props }) => {
+  const onSubmit = data => {
+    fetch(process.env.API_ENDPOINT, {
+      method: 'POST',
+      body: JSON.stringify(data),
+  });
+
+  return <ThemeFeedbackDialog {...props} onSubmit={onSubmit} />;
+};
+\`\`\`
+
+\`\`\`markdown
+# Code snippet with show more button. No src or path.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
+tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
+facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras euismod
+facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In hac habitasse
+platea dictumst.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
+tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
+facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras euismod
+facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In hac habitasse
+platea dictumst.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in tincidunt ipsum
+tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
+facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras euismod
+facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi. In hac habitasse
+platea dictumst.
+\`\`\`
 
 
-  ## PageTable
+## PageTable
 
-  | Header 1 | Header 2 | Header 3 |
-  | ---- | ---- | ----------- |
-  | Cell 1-1 | Cell 1-2 | Cell 1-3 |
-  | Cell 2-1 | Cell 2-2 | Cell 2-3 |
+| Header 1 | Header 2 | Header 3 |
+| ---- | ---- | ----------- |
+| Cell 1-1 | Cell 1-2 | Cell 1-3 |
+| Cell 2-1 | Cell 2-2 | Cell 2-3 |
 
 `
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- will remove later
 const toTest = `
-
 `
 
 const RmdxTest = () => {
   const ast = process(mdx, Object.keys(components))
+
+  console.log(ast)
 
   // console.log(JSON.stringify(ast, undefined, 2))
 

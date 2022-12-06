@@ -8,7 +8,7 @@ import { createProcessor } from '@mdx-js/mdx'
 import remarkGfm from 'remark-gfm'
 import { visit, Visitor } from 'unist-util-visit'
 
-import { AllowedComponents, AstNode, NodeHandler } from './interfaces.js'
+import { AllowedComponents, AstNode, NodeHandler, RenderableAstNode } from './interfaces.js'
 import * as nodeHandlers from './node-handlers/index.js'
 
 // TODO: if something ends up with no component, it needs to be removed from the AST
@@ -80,7 +80,9 @@ function process(srcMdx: string, allowedComponents: AllowedComponents) {
 
   visit(result, createVisitor(allowedComponents))
 
-  return result as AstNode
+  // Consider the unist node as a renderable ast node instead since we modified it as such in the
+  // tree
+  return result as unknown as RenderableAstNode
 }
 
 export { process }

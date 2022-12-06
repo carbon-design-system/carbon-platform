@@ -125,9 +125,7 @@ const Library = ({ libraryData, params, navData }) => {
       <ContentWrapper>
         <Grid>
           <Column sm={4} md={8} lg={8}>
-            <PageDescription className={styles['page-description']}>
-              {seo.description}
-            </PageDescription>
+            <PageDescription>{seo.description}</PageDescription>
             <AnchorLinks>
               <AnchorLink>Dashboard</AnchorLink>
               {libraryData.content.demoLinks && <AnchorLink>Demo links</AnchorLink>}

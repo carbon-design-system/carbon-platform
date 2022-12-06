@@ -12,6 +12,19 @@
 @use '@carbon/react/scss/colors' as colors;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
+/* Paragraph */
+.paragraph {
+  @include type.type-style('body-long-02');
+}
+
+.paragraph-container {
+  margin-top: spacing.$spacing-06;
+}
+
+.paragraph--large {
+  @include type.type-style('fluid-heading-03', true);
+}
+
 /**
  * Global
  */

@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/mdx-processor",
   "description": "Convert input MDX to safe-to-use React components",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,

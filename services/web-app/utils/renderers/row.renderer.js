@@ -8,8 +8,8 @@ import { Column, Row } from '@carbon-platform/mdx-components'
 import { RmdxNode } from '@carbon-platform/rmdx'
 import React from 'react'
 
-/** @type {import('@carbon-platform/rmdx').NodeMapper} */
-export const RowMapper = ({ children }) => {
+/** @type {import('@carbon-platform/rmdx').Renderer} */
+export const RowRenderer = ({ children }) => {
   // TODOASKJOE: dis good?
   return (
     <Row>

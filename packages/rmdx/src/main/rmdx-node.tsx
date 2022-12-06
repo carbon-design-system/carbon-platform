@@ -6,35 +6,33 @@
  */
 import React from 'react'
 
-import { AstNode, NodeMappers } from './interfaces.js'
+import { AstNode, Renderer } from './interfaces.js'
 
 interface RmdxNodeProps {
-  components: NodeMappers
+  // Allow the components prop to accept a map of Renderers specifying any arbitrary props on the
+  // components
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- See above
+  components: Record<string, Renderer<any>>
   astNode: AstNode
 }
 
-const RmdxNode = ({ components, astNode }: RmdxNodeProps) => {
-  if ('value' in astNode) {
-    // To satisfy type constraints which disallow the direct return of a string, the return value
-    // is wrapped in a Fragment
-    // eslint-disable-next-line react/jsx-no-useless-fragment -- See above
-    return <>{astNode.value}</>
-  }
-
+function RmdxNode({ components, astNode }: RmdxNodeProps) {
   const Component = components[astNode.nodeType]
+
+  // Guard - specified component not found in mapping
   if (!Component) {
     throw new Error('No component mapping for nodeType ' + astNode.nodeType)
   }
 
-  let innerContent
-
-  if ('children' in astNode) {
-    innerContent = astNode.children.map((childAstNode, index) => {
-      return <RmdxNode key={index} components={components} astNode={childAstNode} />
-    })
+  if (astNode.value) {
+    return <Component {...astNode.props}>{astNode.value}</Component>
   }
 
-  if (innerContent) {
+  if (astNode.children) {
+    const innerContent = astNode.children.map((childAstNode, index) => {
+      return <RmdxNode key={index} components={components} astNode={childAstNode} />
+    })
+
     return (
       <Component {...astNode.props}>
         {innerContent.length === 1 ? innerContent[0] : innerContent}

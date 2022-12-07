@@ -13,22 +13,22 @@ import TabItem from './tab-item.js'
 import { TabContext } from './tabs.js'
 
 interface TabListProps {
-  _id: string
+  idPrefix: string
   children: NonScalarNode
 }
 
-const TabList: MdxComponent<TabListProps> = ({ _id, children }) => {
-  const { activeTab } = useContext(TabContext)
+const TabList: MdxComponent<TabListProps> = ({ idPrefix, children }) => {
+  const { activeTab, tabLabels } = useContext(TabContext)
 
   return (
     <ul className={withPrefix('tab-list')} role="tablist">
-      {React.Children.map(children, (child, index) => {
+      {React.Children.map(children, (_, index) => {
         return (
           <TabItem
-            _id={`${_id}__${index}`}
+            _id={`${idPrefix}__${index}`}
             active={activeTab === index}
             index={index}
-            label={child.props.astNode.props.label}
+            label={tabLabels[index] || ''}
           />
         )
       })}
@@ -37,8 +37,8 @@ const TabList: MdxComponent<TabListProps> = ({ _id, children }) => {
 }
 
 TabList.propTypes = {
-  _id: PropTypes.string.isRequired,
-  children: PropTypes.array.isRequired
+  children: PropTypes.array.isRequired,
+  idPrefix: PropTypes.string.isRequired
 }
 
 export default TabList

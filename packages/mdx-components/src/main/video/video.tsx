@@ -21,6 +21,7 @@ interface VideoProps {
   src?: string | null
   title?: string | null
   vimeoId?: string | null
+  ['aria-label']?: string | null
 }
 
 interface VideoWithSrcProps extends VideoProps {
@@ -41,7 +42,8 @@ const Video: MdxComponent<VideoWithSrcProps | VideoWithVimeoIdProps> = ({
   title,
   src,
   poster,
-  muted
+  muted,
+  ...props
 }) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -75,6 +77,7 @@ const Video: MdxComponent<VideoWithSrcProps | VideoWithVimeoIdProps> = ({
                   frameBorder="0"
                   allowFullScreen
                   sandbox="allow-forms allow-scripts  allow-same-origin"
+                  aria-label={props['aria-label'] ?? ''}
                 />
               </div>
             </div>
@@ -164,6 +167,10 @@ const Video: MdxComponent<VideoWithSrcProps | VideoWithVimeoIdProps> = ({
 }
 
 Video.propTypes = {
+  /**
+   * aria-label for iframe element.
+   */
+  'aria-label': PropTypes.string,
   /**
    * Set video autoplay.
    */

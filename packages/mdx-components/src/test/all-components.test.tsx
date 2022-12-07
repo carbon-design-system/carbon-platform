@@ -395,21 +395,23 @@ test.serial('storybook demo renders without crashing', (t) => {
 })
 
 test.serial('tabs renders without crashing', (t) => {
+  const labels = ['Tab 1', 'Tab 2', 'Tab 3']
+
   const result = render(
-    <Mdx.Tabs idPrefix="test">
-      <Mdx.Tab astNode={{ props: { label: 'Tab 1' } }} _id="2" index={3}>
+    <Mdx.Tabs tabLabels={labels} idPrefix="test">
+      <Mdx.Tab label={labels[0]!} _id="1" index={1}>
         Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
         facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras
         euismod facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi.
         In hac habitasse platea dictumst.
       </Mdx.Tab>
-      <Mdx.Tab astNode={{ props: { label: 'Tab 1' } }} _id="2" index={3}>
+      <Mdx.Tab label={labels[1]!} _id="2" index={2}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in
         tincidunt ipsum tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper
         pretium. Duis turpis elit, facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim
         euismod maximus. Cras euismod facilisis rutrum.
       </Mdx.Tab>
-      <Mdx.Tab astNode={{ props: { label: 'Tab 1' } }} _id="2" index={3}>
+      <Mdx.Tab label={labels[2]!} _id="3" index={3}>
         Duis turpis elit, facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod
         maximus. Cras euismod facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel,
         ullamcorper sed mi. In hac habitasse platea dictumst. Lorem ipsum dolor sit amet,

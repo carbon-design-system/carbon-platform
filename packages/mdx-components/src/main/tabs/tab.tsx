@@ -12,13 +12,16 @@ import { withPrefix } from '../utils.js'
 import { TabContext } from './tabs.js'
 
 interface TabProps {
-  _id: string
   children: ReactNode
   index: number
-  astNode?: { props: { label: string } } | null
+  label: string
 }
 
-export const Tab: MdxComponent<TabProps> = ({ _id, children, index }) => {
+interface PrivateTabProps {
+  _id: string
+}
+
+export const Tab: MdxComponent<TabProps & PrivateTabProps> = ({ _id, children, index }) => {
   const { activeTab } = useContext(TabContext)
   return (
     <section
@@ -39,7 +42,9 @@ Tab.propTypes = {
   /** Provide the contents of the tab */
   children: PropTypes.node,
   /** tab index */
-  index: PropTypes.number.isRequired
+  index: PropTypes.number.isRequired,
+  /** tab label */
+  label: PropTypes.string.isRequired
 }
 
 Tab.defaultProps = {

@@ -14,9 +14,16 @@ import { useId } from '../use-id'
 export const TabsRenderer = ({ children }) => {
   const id = useId('tabs')
 
+  const tabLabels = []
+
   React.Children.forEach(children, (child, index) => {
+    tabLabels.push(peek(child).props.label)
     peek(child).props._id = `${id}__${index}`
     peek(child).props.index = index
   })
-  return <Tabs idPrefix={id}>{children}</Tabs>
+  return (
+    <Tabs tabLabels={tabLabels} idPrefix={id}>
+      {children}
+    </Tabs>
+  )
 }

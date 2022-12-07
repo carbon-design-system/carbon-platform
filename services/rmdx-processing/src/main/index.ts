@@ -5,14 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { QueryMessage, Queue } from '@carbon-platform/api/messaging'
-import { PlatformMicroservice } from '@carbon-platform/api/microservice'
+import { PlatformMicroservice, RuntimeModule } from '@carbon-platform/api/microservice'
+import { Runtime } from '@carbon-platform/api/runtime'
 
 import { RmdxProcessingModule } from './rmdx-processing-module.js'
 
 async function start() {
+  const runtime = new Runtime()
+
   const pm = new PlatformMicroservice({
     queue: Queue.Rmdx,
-    module: RmdxProcessingModule
+    module: RmdxProcessingModule,
+    imports: [RuntimeModule.register(runtime)],
+    runtime
   })
 
   await pm.bind<QueryMessage>('rmdx')

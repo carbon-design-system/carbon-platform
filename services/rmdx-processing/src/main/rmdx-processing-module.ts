@@ -12,7 +12,13 @@ import { RmdxService } from './rmdx-service.js'
 
 @Module({
   controllers: [RmdxProcessingController, StatusController],
-  providers: [RmdxService]
+  providers: [
+    RmdxService,
+    {
+      provide: 'ALLOWED_COMPONENTS',
+      useValue: []
+    }
+  ]
 })
 class RmdxProcessingModule {}
 

@@ -35,4 +35,20 @@ interface NodeHandler {
   }): VisitorResult
 }
 
-export { AllowedComponents, AstNode, NodeHandler, RenderableAstNode, Renderer, Scalar }
+interface RmdxNodeProps {
+  // Allow the components prop to accept a map of Renderers specifying any arbitrary props on the
+  // components
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- See above
+  components: Record<string, Renderer<any>>
+  astNode: AstNode
+}
+
+export {
+  AllowedComponents,
+  AstNode,
+  NodeHandler,
+  RenderableAstNode,
+  Renderer,
+  RmdxNodeProps,
+  Scalar
+}

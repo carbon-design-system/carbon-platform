@@ -6,7 +6,7 @@
  */
 import { Logging } from '@carbon-platform/api/logging'
 import { EventMessage, Queue } from '@carbon-platform/api/messaging'
-import { PlatformMicroservice } from '@carbon-platform/api/microservice'
+import { PlatformMicroservice, RuntimeModule } from '@carbon-platform/api/microservice'
 import { Runtime } from '@carbon-platform/api/runtime'
 
 import { LoggingModule } from './logging-module.js'
@@ -21,7 +21,8 @@ async function start() {
     queue: Queue.Logging,
     module: LoggingModule,
     runtime,
-    autoAck: true // Remove messages immediately from the queue without explicit ack
+    autoAck: true, // Remove messages immediately from the queue without explicit ack
+    imports: [RuntimeModule.register(runtime)]
   })
 
   await pm.bind<EventMessage>('log_logged')

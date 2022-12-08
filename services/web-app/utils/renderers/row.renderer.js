@@ -10,7 +10,6 @@ import React from 'react'
 
 /** @type {import('@carbon-platform/rmdx').Renderer} */
 export const RowRenderer = ({ children }) => {
-  // TODOASKJOE: dis good?
   return (
     <Row>
       {React.Children.map(children, (child) => (

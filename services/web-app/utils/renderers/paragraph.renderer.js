@@ -5,14 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { P } from '@carbon-platform/mdx-components'
+import { peek } from '@carbon-platform/rmdx'
+import React from 'react'
 
 /** @type {import('@carbon-platform/rmdx').Renderer} */
 export const ParagraphRenderer = ({ children, large, parentNodeType }) => {
-  // TODOASKJOE: we cool with this? unwrapping images from paragraphs
-  if (
-    parentNodeType === 'list-item' ||
-    (!Array.isArray(children) && children?.props?.astNode?.nodeType === 'image')
-  ) {
+  const wrapsImages = React.Children.map(children, (child) => {
+    return peek(child).nodeType === 'image'
+  }).some((val) => !!val)
+
+  const isWrappedByListItem = parentNodeType === 'list-item'
+
+  if (isWrappedByListItem || wrapsImages) {
     return children
   } else {
     return <P large={large}>{children}</P>

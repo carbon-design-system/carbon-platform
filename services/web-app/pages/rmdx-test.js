@@ -10,15 +10,12 @@ import Link from 'next/link'
 import React from 'react'
 
 import Image from '@/components/image/image'
-import mdxIcon from '@/components/mdx-icon/mdx-icon'
 import { AnchorLinkRenderer } from '@/utils/renderers/anchor-link.renderer'
 import { CodeRenderer } from '@/utils/renderers/code.renderer'
-import { DivRenderer } from '@/utils/renderers/div.renderer'
 import { DocumentRenderer } from '@/utils/renderers/document.renderer'
 import { InlineCodeRenderer } from '@/utils/renderers/inline-code.renderer'
 import { ParagraphRenderer } from '@/utils/renderers/paragraph.renderer'
 import { RowRenderer } from '@/utils/renderers/row.renderer'
-import { SpanRenderer } from '@/utils/renderers/span.renderer'
 import { StorybookDemoRenderer } from '@/utils/renderers/storybook-demo.renderer'
 import { StrongRenderer } from '@/utils/renderers/strong.renderer'
 import { TableBodyRenderer } from '@/utils/renderers/table-body.renderer'
@@ -28,16 +25,11 @@ import { TableHeaderCellRenderer } from '@/utils/renderers/table-header-cell.ren
 import { TableRowRenderer } from '@/utils/renderers/table-row.renderer'
 import { TabsRenderer } from '@/utils/renderers/tabs.renderer'
 import { TextRenderer } from '@/utils/renderers/text.renderer'
-import { TrackRenderer } from '@/utils/renderers/track.renderer'
 
-// TODOASKJOE: I have some html elements here
 const components = {
   ...MdxComponents,
   AnchorLink: AnchorLinkRenderer,
   Image,
-  // TODOASKJOE: is MdxIcon ok here? it is not on @carbon-platform/mdx-components,
-  // but in web-app instead
-  MdxIcon: mdxIcon,
   Row: RowRenderer,
   StorybookDemo: StorybookDemoRenderer,
   Tabs: TabsRenderer,
@@ -45,7 +37,6 @@ const components = {
   blockquote: MdxComponents.Blockquote,
   code: CodeRenderer,
   document: DocumentRenderer,
-  div: DivRenderer,
   'heading-1': MdxComponents.H1,
   'heading-2': MdxComponents.H2,
   'heading-3': MdxComponents.H3,
@@ -54,12 +45,10 @@ const components = {
   'heading-6': MdxComponents.H6,
   'inline-code': InlineCodeRenderer,
   image: Image,
-  img: Image,
   link: Link,
   'list-item': MdxComponents.LI,
   'ordered-list': MdxComponents.OL,
   paragraph: ParagraphRenderer,
-  span: SpanRenderer,
   strong: StrongRenderer,
   table: MdxComponents.PageTable,
   'table-cell': TableDetailRenderer,
@@ -69,7 +58,6 @@ const components = {
   'table-body': TableBodyRenderer,
   'table-row': TableRowRenderer,
   text: TextRenderer,
-  track: TrackRenderer,
   'unordered-list': MdxComponents.UL
 }
 
@@ -89,9 +77,6 @@ const mdx = `
 [This is a link](https://ibm.com)
 <Link href="https://ibm.com" disabled>This is also a link</Link>
 
-## Div
-
-<div>hi</div>
 
 ## Accordion
 
@@ -230,12 +215,6 @@ const mdx = `
 <Divider>
   <Grid>
     <Column sm={4} md={2} lg={4}>
-      <div>
-        <strong>v1.0</strong>
-      </div>
-      <div>
-        Target release: <div>June</div>
-      </div>
     </Column>
     <Column sm={4} md={6} lg={8}>
     The platform's first major release will help system users discover and learn about all the assets
@@ -462,7 +441,6 @@ commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
     <Video title="Carbon homepage video" vimeoId="322021187" />
 
     <Video src="/videos/hero-video.mp4" poster="/videos/poster.png">
-      <track kind="captions" default src="/videos/hero-video.vtt" srcLang="en" />
     </Video>
 
     <Video src="/videos/hero-video.mp4" poster="/videos/poster.png" />
@@ -530,16 +508,6 @@ commodo vitae. Donec non eros gravida dolor porta suscipit non vel quam.
 ![IBM Cloud Pictograms](/mdx/cloud.jpg)
 
 </GifPlayer>
-</Column>
-
-<Column colLg='4'>
-    <GifPlayer>
-
-    <Image src="/mdx/cloud.gif" />
-    <Image src="/mdx/cloud.jpg" />
-
-    </GifPlayer>
-
 </Column>
 
 
@@ -622,7 +590,7 @@ Fixed image demo.
     actionIcon="arrowRight"
   />
   <MiniCard title="Angular tutorial" href="">
-    <MdxIcon name="angular" />
+  HI
   </MiniCard>
   <MiniCard
     title="Tree view component"
@@ -630,7 +598,7 @@ Fixed image demo.
     actionIcon="launch"
   />
   <MiniCard title="React tutorial" href="">
-    <MdxIcon name="react" />
+  HI
   </MiniCard>
 </CardGroup>
 
@@ -798,9 +766,9 @@ const toTest = `
 `
 
 const RmdxTest = () => {
-  const ast = process(mdx, Object.keys(components))
+  const ast = process(mdx, Object.keys(MdxComponents))
 
-  console.log(ast)
+  // console.log(ast)
 
   // console.log(JSON.stringify(ast, undefined, 2))
 

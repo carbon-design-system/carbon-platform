@@ -5,18 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { StorybookDemo, Variant } from '@carbon-platform/mdx-components'
+import { peek } from '@carbon-platform/rmdx'
 import React from 'react'
 
 /** @type {import('@carbon-platform/rmdx').Renderer} */
 export const StorybookDemoRenderer = ({ children, tall, themeSelector, wide, url }) => {
   return (
     <StorybookDemo tall={tall} themeSelector={themeSelector} wide={wide} url={url}>
-      {/* TODOASKJOE: is this what you meant? */}
       {React.Children.map(children, (child) => (
-        <Variant
-          label={child.props.astNode.props.label}
-          variant={child.props.astNode.props.variant}
-        />
+        <Variant label={peek(child).props.label} variant={peek(child).props.variant} />
       ))}
     </StorybookDemo>
   )

@@ -29,8 +29,6 @@ interface ColumnProps {
   md?: number | boolean | null
   sm?: number | boolean | null
   xlg?: number | boolean | null
-  NoGutterSm?: boolean | null
-  NoGutterMdLeft?: boolean | null
 }
 
 const Column: MdxComponent<ColumnProps> = ({
@@ -77,14 +75,6 @@ Column.defaultProps = {
 const spanPropType = PropTypes.oneOfType([PropTypes.bool.isRequired, PropTypes.number.isRequired])
 
 Column.propTypes = {
-  /**
-   * Renders column within a narrow grid (legacy)
-   */
-  NoGutterMdLeft: PropTypes.bool,
-  /**
-   * Renders column within a condensed grid (legacy)
-   */
-  NoGutterSm: PropTypes.bool,
   /**
    * Provide a custom element to render instead of the default
    */

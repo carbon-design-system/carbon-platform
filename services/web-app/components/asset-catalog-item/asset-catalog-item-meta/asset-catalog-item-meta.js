@@ -40,8 +40,8 @@ const AssetCatalogItemMeta = ({ asset, className, properties }) => {
 
   return (
     <ul className={clsx(styles.meta, className)}>
-      {properties.map((prop, i) => (
-        <li className={styles['meta-item']} key={i}>
+      {properties.map((prop) => (
+        <li className={styles['meta-item']} key={prop}>
           {prop === 'status' && renderStatus()}
           {prop === 'license' && renderLicense()}
         </li>

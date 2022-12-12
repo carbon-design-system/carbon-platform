@@ -88,7 +88,7 @@ const ArticleCard: MdxComponent<ArticleCardProps> = (props) => {
     cardContainer = <div className={cardContentClassNames}>{cardContent}</div>
   } else {
     cardContainer = (
-      <a href={href!} className={cardContentClassNames}>
+      <a href={href || undefined} className={cardContentClassNames}>
         {cardContent}
       </a>
     )

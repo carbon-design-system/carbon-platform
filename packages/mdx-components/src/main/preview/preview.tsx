@@ -27,8 +27,7 @@ const Preview: MdxComponent<PreviewProps> = ({ title, height, src }) => (
     src={src!}
     loading="lazy"
     title={title!}
-    height={height!}
-    frameBorder="no"
+    height={height || undefined}
     className={clsx(withPrefix('preview'))}
     sandbox="allow-forms allow-scripts allow-same-origin"
   />

@@ -30,7 +30,7 @@ const Caption: MdxComponent<CaptionProps> = ({ children }) => (
 
 Caption.propTypes = {
   /**
-   * Speficy any children passed into the Caption component
+   * Specify any children passed into the Caption component
    */
   children: PropTypes.node
 }

@@ -51,7 +51,7 @@ jobs:
 
       - id: version
         name: Version 📆
-        run: echo "changed_workspaces=$(npx micromanage changed --base-workspace=@carbon-platform/base | xargs npx micromanage version --json)" >> $GITHUB_OUTPUT
+        run: echo "changed_workspaces=$(npx micromanage changed | xargs npx micromanage version --json)" >> $GITHUB_OUTPUT
 
   #
   # Build docker images for all changed services and push them to the container registry

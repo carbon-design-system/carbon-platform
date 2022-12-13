@@ -88,7 +88,6 @@ package-lock.json file. To remedy this and rebuild the lockfile, do the followin
 rm package-lock.json
 rm -rf node_modules
 find . -name node_modules | xargs rm -rf
-CI=true npm --workspace base install
 CI=true npm install && npm install
 ```
 

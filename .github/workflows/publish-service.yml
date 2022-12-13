@@ -54,12 +54,12 @@ jobs:
       - name: Setup Docker 🐳
         run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io
 
-      - name: Build base image 🔨
-        run: npx micromanage build --docker --pull @carbon-platform/base
+      - name: Build root image 🔨
+        run: npx micromanage docker build --pull @carbon-platform/root
 
       - name: Build and push 🔨 🚀
         run: |
-          images_to_push=$(npx micromanage build --docker $SERVICE_NAME | xargs)
+          images_to_push=$(npx micromanage docker build $SERVICE_NAME | xargs)
           for img in $images_to_push; do docker push $img; done
         env:
           CARBON_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

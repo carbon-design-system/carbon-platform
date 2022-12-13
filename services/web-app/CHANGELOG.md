@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.77](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.76...@carbon-platform/web-app@0.2.77) (2022-12-10)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** chevron up on treeview expanded ([3787860](https://github.com/carbon-design-system/carbon-platform/commit/37878600e6ba8985ecd0746987db76c75438d4b3))
+
 ### [0.2.76](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.75...@carbon-platform/web-app@0.2.76) (2022-12-06)
 
 

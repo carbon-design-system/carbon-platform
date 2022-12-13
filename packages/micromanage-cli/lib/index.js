@@ -9,6 +9,7 @@ import { Command } from 'commander'
 
 import { buildBuildCommand } from './build.js'
 import { buildChangedCommand } from './changed.js'
+import { buildDockerCommand } from './docker/index.js'
 import { buildInstallCommand } from './install.js'
 import { buildPackageCommand } from './package/index.js'
 import { buildServiceCommand } from './service/index.js'
@@ -21,6 +22,7 @@ async function main() {
     .configureHelp({ helpWidth: 100 })
     .addCommand(buildBuildCommand())
     .addCommand(buildChangedCommand())
+    .addCommand(buildDockerCommand())
     .addCommand(buildInstallCommand())
     .addCommand(buildPackageCommand())
     .addCommand(buildServiceCommand())

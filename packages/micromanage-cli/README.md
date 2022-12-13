@@ -12,8 +12,9 @@ Options:
   -h, --help                             display help for command
 
 Commands:
-  build [options] <workspace-name>       Build a workspace
+  build [options] <workspace-name>       Build a workspace by its workspace name
   changed [options]                      List changed workspaces
+  docker                                 Commands to assist with Docker operations
   install [options] [package-name...]    Install workspace packages or packages into a workspace
   package                                Commands that operate on packages
   service                                Commands that operate on services
@@ -29,17 +30,13 @@ Commands:
 ```
 Usage: micromanage build [options] <workspace-name>
 
-Build a workspace
+Build a workspace by its workspace name
 
 Arguments:
   workspace-name  Name of the workspace (from package.json)
 
 Options:
-  --docker        Build using Dockerfile from workspace, tagging the image as both "latest" and the
-                  version in its package.json file
-  --dry-run       Do not perform a build. Only output the image name and build command
-  --json          Output resulting docker images as a JSON array
-  --pull          Add the `--pull` option when running the docker build command
+  --dry-run       Do not perform a build. Only output the build command
   -h, --help      display help for command
 ```
 
@@ -48,14 +45,47 @@ Options:
 ```
 Usage: micromanage changed [options]
 
-List each workspace that has changed since its most recent tag. An optional base workspace name can
-be provided which will be considered as a dependency of all other workspaces.
+List each workspace that has changed since its most recent tag. The root workspace is considered
+for changes as well. Any change to the root workspace triggers a "change" to all other workspaces.
+The root workspace is considered as "changed" if any file from the `files` array in its
+package.json has changed.
 
 Options:
-  --base-workspace <workspace_name>  Workspace considered as the "base" on which all others depend
-  --since <git_ref>                  Compare workspaces to a ref instead
-  --json                             Output as a JSON array
-  -h, --help                         display help for command
+  --since <git_ref>  Compare workspaces to a ref instead
+  --json             Output as a JSON array
+  -h, --help         display help for command
+```
+
+## `docker`
+
+```
+Usage: micromanage docker [options] [command]
+
+Commands to assist with Docker operations
+
+Options:
+  -h, --help                        display help for command
+
+Commands:
+  build [options] <workspace-name>  Build a docker image for a workspace
+  help [command]                    display help for command
+```
+
+### `build`
+
+```
+Usage: micromanage docker build [options] <workspace-name>
+
+Build a docker image for a workspace
+
+Arguments:
+  workspace-name  Name of the workspace (from package.json)
+
+Options:
+  --dry-run       Do not perform a build. Only output the image name(s) and build command
+  --json          Output resulting docker images as a JSON array
+  --pull          Add the `--pull` option when running the docker build command
+  -h, --help      display help for command
 ```
 
 ## `install`
@@ -72,6 +102,7 @@ Arguments:
 
 Options:
   --dry-run                         Do not make any changes. Only output install command
+  --save-dev                        Install specified packages as devDependencies
   -w, --workspace <workspace-name>  Workspace for which to install packages
   -h, --help                        display help for command
 ```

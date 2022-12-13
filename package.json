@@ -14,7 +14,7 @@
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
   "engines": {
-    "node": "16",
+    "node": "^16.15.0",
     "npm": "^8.8.0"
   },
   "workspaces": [

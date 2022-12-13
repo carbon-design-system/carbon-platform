@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.11](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.4.10...@carbon-platform/api@0.4.11) (2022-12-06)
+
+
+### Tests 🧪
+
+* update major deps, enforce node version ^16.15.0 ([207a994](https://github.com/carbon-design-system/carbon-platform/commit/207a994672dfa811cc052475d8e289fee9efbad7))
+
+### [0.4.10](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.4.9...@carbon-platform/api@0.4.10) (2022-12-03)
+
+
+### Misc. 🔮
+
+* improve global logging infrastructure and consistency ([daa63fd](https://github.com/carbon-design-system/carbon-platform/commit/daa63fd3a5b0df21338358dee3e2d94a4679e4f9))
+
+### [0.4.9](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.4.8...@carbon-platform/api@0.4.9) (2022-12-02)
+
+
+### Misc. 🔮
+
+* update minor dependencies ([34d80b1](https://github.com/carbon-design-system/carbon-platform/commit/34d80b1fe1c8e39a1b6aac6fdf0447c40cd0d0ba))
+
 ### [0.4.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.4.7...@carbon-platform/api@0.4.8) (2022-11-03)
 
 

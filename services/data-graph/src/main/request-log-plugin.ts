@@ -8,59 +8,39 @@ import { Logging } from '@carbon-platform/api/logging'
 import { Plugin } from '@nestjs/apollo'
 import {
   ApolloServerPlugin,
-  GraphQLRequestContext,
+  BaseContext,
+  GraphQLRequestContextWillSendResponse,
   GraphQLRequestListener
 } from 'apollo-server-plugin-base'
-import { Request, Response } from 'express'
-import { v4 as uuidv4 } from 'uuid'
 
+const MAX_INPUT_DATA_LOG_SIZE = 500 // characters
+
+/**
+ * Performs basic logging of incoming data-graph graphql queries.
+ */
 @Plugin()
 class RequestLogPlugin implements ApolloServerPlugin {
   private readonly logging: Logging
 
   constructor() {
-    this.logging = new Logging({ component: 'RequestLogger' })
+    this.logging = new Logging({ component: 'DataGraphRequestLogger' })
   }
 
-  private async log(requestContext: GraphQLRequestContext, performanceId: string) {
-    const responseTime = performance.measure(performanceId, performanceId)?.duration?.toFixed(4)
+  private async log(requestContext: GraphQLRequestContextWillSendResponse<BaseContext>) {
+    let query =
+      requestContext.request.query?.replace(/\s+/g, ' ').trim() || 'unable to find incoming query'
 
-    const req = requestContext.context.req as Request
-    const res = req.res as Response
+    if (query.length > MAX_INPUT_DATA_LOG_SIZE) {
+      query = query.substring(0, MAX_INPUT_DATA_LOG_SIZE) + '... (truncated)'
+    }
 
-    const { method, url, hostname, httpVersion, socket } = req
-    const { remoteAddress, remotePort } = socket
-    const { statusCode } = res
-    const fullUrl = url === '/' ? '/graphql' : '/graphql' + url
-
-    const logParts = [
-      hostname,
-      '"' + method + ' ' + fullUrl + ' HTTP/' + httpVersion + '"',
-      statusCode,
-      responseTime + 'ms',
-      '[' + remoteAddress + ']:' + remotePort,
-      '"' + req.get('User-Agent') + '"',
-      'in: ' + requestContext.request.query?.replace(/\s+/g, ' ').trim(),
-      'out: ' + typeof requestContext.response?.data
-    ]
-
-    await this.logging.info(logParts.join(' '))
-
-    this.cleanupPerformance(performanceId)
-  }
-
-  private cleanupPerformance(performanceId: string) {
-    performance.clearMarks(performanceId)
-    performance.clearMeasures(performanceId)
+    await this.logging.info(query)
   }
 
   async requestDidStart(): Promise<GraphQLRequestListener> {
-    const performanceId = uuidv4()
-    performance.mark(performanceId)
-
     return {
       willSendResponse: async (requestContext) => {
-        this.log(requestContext, performanceId)
+        this.log(requestContext)
       }
     }
   }

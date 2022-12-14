@@ -7,7 +7,7 @@
 import { Command, Help } from 'commander'
 
 import { getDependentServices } from './package/dependents.js'
-import { exec, filters, getTags, getWorkspaces } from './utils.js'
+import { exec, filters, getPackageJson, getTags, getWorkspaces } from './utils.js'
 
 function buildChangedCommand() {
   return new Command('changed')
@@ -15,16 +15,13 @@ function buildChangedCommand() {
     .summary('List changed workspaces')
     .description(
       new Help().wrap(
-        'List each workspace that has changed since its most recent tag. An optional base ' +
-          'workspace name can be provided which will be considered as a dependency of all other ' +
-          'workspaces.',
+        'List each workspace that has changed since its most recent tag. The root workspace is ' +
+          'considered for changes as well. Any change to the root workspace triggers a "change" ' +
+          'to all other workspaces. The root workspace is considered as "changed" if any file ' +
+          'from the `files` array in its package.json has changed.',
         100,
         0
       )
-    )
-    .option(
-      '--base-workspace <workspace_name>',
-      'Workspace considered as the "base" on which all others depend'
     )
     .option('--since <git_ref>', 'Compare workspaces to a ref instead')
     .option('--json', 'Output as a JSON array')
@@ -43,7 +40,7 @@ async function handleChangedCommand(opts) {
   const changedWorkspaces = getChangedWorkspaces(opts.since)
 
   // Get changed workspaces based on cascading dependencies
-  const additional = await getChangedDependentWorkspaces(changedWorkspaces, opts.baseWorkspace)
+  const additional = await getChangedDependentWorkspaces(changedWorkspaces)
 
   additional.forEach((ws) => {
     !changedWorkspaces.includes(ws) && changedWorkspaces.push(ws)
@@ -61,7 +58,7 @@ async function handleChangedCommand(opts) {
   }
 }
 
-async function getChangedDependentWorkspaces(changedWorkspaces, baseWorkspaceName) {
+async function getChangedDependentWorkspaces(changedWorkspaces) {
   const additional = []
 
   // Add in services that depend on changed packages
@@ -69,17 +66,6 @@ async function getChangedDependentWorkspaces(changedWorkspaces, baseWorkspaceNam
   for (const pkg of changedWorkspaces.filter(filters.PACKAGES)) {
     const dependentServices = await getDependentServices(pkg)
     dependentServices.forEach((dep) => !additional.includes(dep) && additional.push(dep))
-  }
-
-  // If a base workspace was provided and it has changed, mark all other workspaces as changed
-  if (baseWorkspaceName) {
-    console.error('Checking for base workspace changes')
-
-    if (changedWorkspaces.find((ws) => ws.name === baseWorkspaceName)) {
-      console.error('Base workspace has changed. Marking all workspaces as changed')
-
-      getWorkspaces().forEach((dep) => !additional.includes(dep) && additional.push(dep))
-    }
   }
 
   return additional
@@ -98,16 +84,28 @@ function getChangedWorkspaces(sinceRef) {
 
     const compareRef = sinceRef || latestTag
 
+    const hasRootChanged = sinceRef && hasRootWorkspaceChanged(sinceRef)
+
     const changed =
       !latestTag || !!exec(`git diff --quiet HEAD ${compareRef} -- ${ws.path} || echo changed`)
 
-    if (changed) {
-      console.error(`❗ ${ws.name} has changed since ${compareRef}`)
+    if (changed || hasRootChanged) {
+      const rootChangedText = hasRootChanged ? ' (root workspace changed)' : ''
+      console.error(`❗ ${ws.name} has changed since ${compareRef}${rootChangedText}`)
       return true
     } else {
       console.error(`✅ No changes in ${ws.name} since ${compareRef}`)
       return false
     }
+  })
+}
+
+function hasRootWorkspaceChanged(sinceRef) {
+  const rootFiles = getPackageJson().files
+  const fileList = exec(`git diff --name-only HEAD ${sinceRef} | xargs`).split(' ')
+
+  return !!fileList.find((changedFile) => {
+    return rootFiles.includes(changedFile)
   })
 }
 

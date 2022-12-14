@@ -22,6 +22,7 @@ function buildInstallCommand() {
       )
     )
     .option('--dry-run', 'Do not make any changes. Only output install command')
+    .option('--save-dev', 'Install specified packages as devDependencies')
     .requiredOption('-w, --workspace <workspace-name>', 'Workspace for which to install packages')
     .argument('[package-name...]', 'Optional list of packages to install')
     .action(handleInstallCommand)
@@ -33,8 +34,12 @@ async function handleInstallCommand(packageNames, opts) {
 
   const workspace = getWorkspaceByName(opts.workspace)
 
+  if (!workspace) {
+    throw new Error('No such workspace: ' + opts.workspace)
+  }
+
   if (packageNames.length > 0) {
-    await installPackagesIntoWorkspace(packageNames, workspace, opts.dryRun)
+    await installPackagesIntoWorkspace(packageNames, workspace, opts.saveDev, opts.dryRun)
   } else {
     await installWorkspace(workspace, opts.dryRun)
   }
@@ -50,7 +55,7 @@ async function installWorkspace(workspace, isDryRun) {
   }
 }
 
-async function installPackagesIntoWorkspace(packageNames, workspace, isDryRun) {
+async function installPackagesIntoWorkspace(packageNames, workspace, isSaveDev, isDryRun) {
   // For each package, if it doesn't have @latest on the end, put it on
   packageNames = packageNames.map((pkg) => {
     if (pkg.lastIndexOf('@') <= 0) {
@@ -59,7 +64,11 @@ async function installPackagesIntoWorkspace(packageNames, workspace, isDryRun) {
     return pkg
   })
 
-  const installCommand = `npm --workspace ${workspace.path} install ${packageNames.join(' ')}`
+  const saveDevPart = isSaveDev ? '--save-dev' : ''
+
+  const installCommand = `npm --workspace ${
+    workspace.path
+  } install ${saveDevPart} ${packageNames.join(' ')}`
 
   console.error(installCommand)
 

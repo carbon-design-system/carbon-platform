@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/mdx-components",
   "description": "Carbon Platform MDX components",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
@@ -35,8 +35,8 @@
     "test": "ava --config ../../ava.config.mjs"
   },
   "dependencies": {
-    "@carbon/colors": "^11.9.0",
-    "@carbon/layout": "^11.8.0",
+    "@carbon/colors": "^11.10.0",
+    "@carbon/layout": "^11.9.0",
     "clsx": "^1.2.1",
     "prop-types": "^15.8.1",
     "rimraf": "^3.0.2",

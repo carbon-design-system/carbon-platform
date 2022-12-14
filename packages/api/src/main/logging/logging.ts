@@ -194,8 +194,8 @@ class Logging {
    * @param logEntry The log entry to log.
    */
   private async log(logEntry: LogLoggedMessage) {
-    // Only log to the console in dev mode
-    if (this.runtime.runMode !== RunMode.Standard) {
+    // Only log to the console when debug logging is enabled
+    if (this.isDebugLoggingEnabled) {
       this.logConsole(logEntry)
     }
 

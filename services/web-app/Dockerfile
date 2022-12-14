@@ -4,7 +4,7 @@
 # This source code is licensed under the Apache-2.0 license found in the
 # LICENSE file in the root directory of this source tree.
 #
-FROM us.icr.io/carbon-platform/base:latest AS builder
+FROM us.icr.io/carbon-platform/root:latest AS builder
 
 WORKDIR /ibm
 
@@ -28,7 +28,6 @@ ENV CARBON_RUN_MODE=STANDARD
 
 # Dependencies required for node-gyp to run on Alpine Linux. This is needed for "sharp"
 RUN apk add --no-cache python3 make g++
-RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Make a non-root user that can work within the /ibm directory
 RUN adduser -D -u 10000 ibm-user

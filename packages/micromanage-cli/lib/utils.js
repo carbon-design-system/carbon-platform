@@ -25,6 +25,17 @@ const workspacesCache = new Map()
  * @property {string} version - the version from package.json
  */
 
+function buildWorkspaceEntry(packageJson, workspacePath) {
+  return {
+    name: packageJson.name,
+    dependencies: packageJson.dependencies,
+    devDependencies: packageJson.devDependencies,
+    path: workspacePath,
+    private: !!packageJson.private,
+    version: packageJson.version
+  }
+}
+
 function buildCurlUrlParams(params) {
   const encodedParams = Object.entries(params).map(([key, val]) => {
     return `${key}=${encodeURIComponent(val)}`
@@ -104,10 +115,17 @@ async function spawn(cmd, options = {}) {
  * Given a workspace name, find the corresponding package.json object.
  *
  * @param {string} workspaceName The name of the workspace to find.
+ * @param {boolean} includeRoot Whether or not to include the root workspace's name when searching.
  * @returns A workspace with the corresponding name; or undefined if one was not found.
  */
-function getWorkspaceByName(workspaceName) {
-  return getWorkspaces().find((ws) => ws.name === workspaceName)
+function getWorkspaceByName(workspaceName, includeRoot) {
+  const workspaces = getWorkspaces()
+
+  if (includeRoot) {
+    workspaces.unshift(buildWorkspaceEntry(getPackageJson(), '.'))
+  }
+
+  return workspaces.find((ws) => ws.name === workspaceName)
 }
 
 /**
@@ -166,14 +184,7 @@ function getWorkspaces() {
     const pJson = getPackageJson(workspacePath)
 
     if (!workspacesCache.has(pJson.name)) {
-      workspacesCache.set(pJson.name, {
-        name: pJson.name,
-        dependencies: pJson.dependencies,
-        devDependencies: pJson.devDependencies,
-        path: workspacePath,
-        private: !!pJson.private,
-        version: pJson.version
-      })
+      workspacesCache.set(pJson.name, buildWorkspaceEntry(pJson, workspacePath))
     }
 
     return workspacesCache.get(pJson.name)
@@ -201,9 +212,10 @@ function getTags() {
  * @returns {Promise<boolean>} Whether or not the package is used by the workspace
  */
 async function isDependencyOf(pkg, ws) {
+  const regex = `['\\"]${pkg.name}(/.*){0,}['\\"]`
   let isUsed = false
   try {
-    await spawn(`git ls-tree -r HEAD --name-only | xargs egrep "'${pkg.name}.*'" > /dev/null`, {
+    await spawn(`git ls-tree -r HEAD --name-only | xargs egrep "${regex}" > /dev/null`, {
       cwd: ws.path
     })
 

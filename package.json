@@ -1,7 +1,7 @@
 {
-  "name": "carbon-platform-monorepo",
-  "description": "Carbon platform monorepo",
-  "version": "0.0.0",
+  "name": "@carbon-platform/root",
+  "description": "Carbon platform monorepo root workspace",
+  "version": "0.1.0",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
@@ -13,12 +13,17 @@
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
+  "files": [
+    ".npmrc",
+    "esbuild.base.mjs",
+    "package-lock.json",
+    "tsconfig.base.json"
+  ],
   "engines": {
     "node": "^16.15.0",
     "npm": "^8.8.0"
   },
   "workspaces": [
-    "base",
     "scripts",
     "packages/api",
     "packages/eslint-plugin-carbon-platform",
@@ -42,5 +47,59 @@
     "prepare": "scripts/prepare",
     "services:build": "npm --workspaces --if-present run service:build",
     "test": "c8 --config=.c8rc.json npm --workspaces --if-present run test"
+  },
+  "dependencies": {
+    "@carbon/react": "^1.19.0",
+    "@nestjs/cli": "^9.1.5",
+    "@nestjs/common": "^9.2.1",
+    "@nestjs/core": "^9.2.1",
+    "@nestjs/graphql": "^10.1.7",
+    "@nestjs/microservices": "^9.2.1",
+    "@types/node": "^16.18.9",
+    "@types/react": "^17.0.52",
+    "@types/react-dom": "^17.0.18",
+    "esbuild": "~0.16.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "sass": "^1.56.2",
+    "typescript": "^4.9.4"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@graphql-eslint/eslint-plugin": "^3.13.1",
+    "@nestjs/testing": "^9.2.1",
+    "@next/eslint-plugin-next": "^12.3.4",
+    "@testing-library/react": "^12.1.5",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "ava": "^5.1.0",
+    "c8": "^7.12.0",
+    "eslint": "^8.29.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-import-resolver-node": "^0.3.6",
+    "eslint-plugin-ava": "^13.2.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-eslint-plugin": "^5.0.6",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsdoc": "^39.6.4",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-notice": "^0.9.10",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "eslint-plugin-storybook": "^0.6.8",
+    "graphql-config": "^4.3.6",
+    "husky": "^8.0.2",
+    "jsdom": "^20.0.3",
+    "jsdom-global": "^3.0.2",
+    "lint-staged": "^13.1.0",
+    "npm-check-updates": "^16.5.6",
+    "prettier": "^2.8.1",
+    "stylelint": "^14.16.0",
+    "stylelint-config-carbon": "~1.11.0",
+    "supertest": "^6.3.3",
+    "ts-node": "^10.9.1"
   }
 }

@@ -132,6 +132,11 @@ function getWorkspaces() {
   })
 }
 
+/**
+ * Return the root workspace's package.json data.
+ *
+ * @returns {Workspace} The root workspace.
+ */
 function getRootWorkspace() {
   const pJson = getPackageJson()
 
@@ -147,7 +152,7 @@ function getRootWorkspace() {
  *
  * @param {string} workspaceName The name of the workspace to find.
  * @param {boolean} includeRoot Whether or not to include the root workspace's name when searching.
- * @returns A workspace with the corresponding name; or undefined if one was not found.
+ * @returns {Workspace} A workspace with the corresponding name; or undefined if one was not found.
  */
 function getWorkspaceByName(workspaceName, includeRoot) {
   const workspaces = getWorkspaces()

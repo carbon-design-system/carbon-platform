@@ -121,8 +121,8 @@ const PageContent = () => {
             <dl>
               <dt className={styles['dashboard-label']}>Components</dt>
               <dd className={styles['dashboard-content']}>
-                Building blocks that have been designed and coded to solve a specific user interface
-                problem.
+                Building blocks (such as buttons, links, and dropdown menus) that have been designed
+                and coded to solve a specific user interface problem.
               </dd>
             </dl>
             <Svg64Components className={styles['dashboard-icon']} />

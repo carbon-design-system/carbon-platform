@@ -37,7 +37,7 @@ class RequestLogPlugin implements ApolloServerPlugin {
     await this.logging.info(query)
   }
 
-  async requestDidStart(): Promise<GraphQLRequestListener> {
+  async requestDidStart(): Promise<GraphQLRequestListener<BaseContext>> {
     return {
       willSendResponse: async (requestContext) => {
         this.log(requestContext)

@@ -49,21 +49,21 @@
     "test": "c8 --config=.c8rc.json npm --workspaces --if-present run test"
   },
   "dependencies": {
-    "@carbon/react": "^1.18.0",
+    "@carbon/react": "^1.19.0",
     "@nestjs/cli": "^9.1.5",
     "@nestjs/common": "^9.2.1",
     "@nestjs/core": "^9.2.1",
-    "@nestjs/graphql": "^10.1.6",
+    "@nestjs/graphql": "^10.1.7",
     "@nestjs/microservices": "^9.2.1",
-    "@types/node": "^16.18.4",
+    "@types/node": "^16.18.9",
     "@types/react": "^17.0.52",
     "@types/react-dom": "^17.0.18",
-    "esbuild": "~0.15.18",
+    "esbuild": "~0.16.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
-    "sass": "^1.56.1",
-    "typescript": "^4.9.3"
+    "sass": "^1.56.2",
+    "typescript": "^4.9.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
@@ -72,7 +72,7 @@
     "@nestjs/testing": "^9.2.1",
     "@next/eslint-plugin-next": "^12.3.4",
     "@testing-library/react": "^12.1.5",
-    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
     "ava": "^5.1.0",
     "c8": "^7.12.0",
     "eslint": "^8.29.0",
@@ -95,11 +95,11 @@
     "jsdom": "^20.0.3",
     "jsdom-global": "^3.0.2",
     "lint-staged": "^13.1.0",
-    "npm-check-updates": "^16.4.3",
-    "prettier": "^2.8.0",
+    "npm-check-updates": "^16.5.6",
+    "prettier": "^2.8.1",
     "stylelint": "^14.16.0",
     "stylelint-config-carbon": "~1.11.0",
-    "supertest": "^6.3.2",
+    "supertest": "^6.3.3",
     "ts-node": "^10.9.1"
   }
 }

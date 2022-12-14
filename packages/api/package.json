@@ -41,7 +41,7 @@
     "@types/uuid": "^9.0.0",
     "amqp-connection-manager": "^4.1.9",
     "amqplib": "^0.10.3",
-    "chalk": "^5.1.2",
+    "chalk": "^5.2.0",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "cookie-signature": "^1.2.0",

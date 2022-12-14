@@ -35,8 +35,8 @@
     "test": "ava --config ../../ava.config.mjs"
   },
   "dependencies": {
-    "@carbon/colors": "^11.9.0",
-    "@carbon/layout": "^11.8.0",
+    "@carbon/colors": "^11.10.0",
+    "@carbon/layout": "^11.9.0",
     "clsx": "^1.2.1",
     "prop-types": "^15.8.1",
     "rimraf": "^3.0.2",

@@ -8,7 +8,10 @@ const path = require('path')
 
 const noUnusedVarsOptions = { args: 'all', argsIgnorePattern: '^_', varsIgnorePattern: '^React' }
 const noExtraneousModulesOptions = {
-  allowModules: []
+  allowModules: [
+    ...Object.keys(require('./package.json').dependencies),
+    ...Object.keys(require('./package.json').devDependencies)
+  ]
 }
 
 module.exports = {

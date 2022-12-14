@@ -56,6 +56,12 @@ test.serial('arrow right button renders without crashing', (t) => {
   t.snapshot(result.baseElement.innerHTML)
 })
 
+test.serial('launch button renders without crashing', (t) => {
+  const result = render(<Mdx.LaunchButton>Button Text</Mdx.LaunchButton>)
+
+  t.snapshot(result.baseElement.innerHTML)
+})
+
 test.serial('aside renders without crashing', (t) => {
   const result = render(<Mdx.Aside aria-label="Example aside">Wow aside text</Mdx.Aside>)
 
@@ -176,15 +182,19 @@ test.serial('inline notification renders without crashing', (t) => {
   t.snapshot(result.container.innerHTML)
 })
 
-test.serial('launch button renders without crashing', (t) => {
-  const result = render(<Mdx.LaunchButton>Button Text</Mdx.LaunchButton>)
-
-  t.snapshot(result.baseElement.innerHTML)
-})
-
 test.serial('link renders without crashing', (t) => {
   const result = render(
     <Mdx.Link href="https://platform.carbondesignsystem.com">Carbon Platform Storybook</Mdx.Link>
+  )
+
+  t.snapshot(result.container.innerHTML)
+})
+
+test.serial('arrow-right-link renders without crashing', (t) => {
+  const result = render(
+    <Mdx.ArrowRightLink href="https://platform.carbondesignsystem.com">
+      Arrow right link!
+    </Mdx.ArrowRightLink>
   )
 
   t.snapshot(result.container.innerHTML)

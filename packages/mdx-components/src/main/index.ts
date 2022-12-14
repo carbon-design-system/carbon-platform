@@ -41,7 +41,10 @@ export {
   default as InlineNotification,
   InlineNotificationProps
 } from './inline-notification/inline-notification.js'
-export { default as Link, LinkProps } from './link/link.js'
+export {
+  default as ArrowRightLink,
+  ArrowRightLinkProps
+} from './links/arrow-right-link/arrow-right-link.js'
 export { default as Blockquote, BlockquoteProps } from './markdown/blockquote.js'
 export { default as H1, H1Props } from './markdown/h1.js'
 export { default as H2, H2Props } from './markdown/h2.js'
@@ -50,6 +53,7 @@ export { default as H4, H4Props } from './markdown/h4.js'
 export { default as H5, H5Props } from './markdown/h5.js'
 export { default as H6, H6Props } from './markdown/h6.js'
 export { default as LI, LiProps } from './markdown/li.js'
+export { default as Link, LinkProps } from './markdown/link.js'
 export { default as OL, OlProps } from './markdown/ol.js'
 export { default as P, ParagraphProps } from './markdown/p.js'
 export { default as UL, UlProps } from './markdown/ul.js'

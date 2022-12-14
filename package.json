@@ -13,16 +13,19 @@
   "bugs": {
     "url": "https://github.com/carbon-design-system/carbon-platform/issues"
   },
-  "files": [
-    ".npmrc",
-    "esbuild.base.mjs",
-    "package-lock.json",
-    "tsconfig.base.json"
-  ],
   "engines": {
     "node": "^16.15.0",
     "npm": "^8.8.0"
   },
+  "files": [
+    ".dockerignore",
+    ".npmrc",
+    "Dockerfile",
+    "esbuild.base.mjs",
+    "LICENSE",
+    "package.json",
+    "tsconfig.base.json"
+  ],
   "workspaces": [
     "scripts",
     "packages/api",

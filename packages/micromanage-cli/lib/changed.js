@@ -7,7 +7,7 @@
 import { Command, Help } from 'commander'
 
 import { getDependentServices } from './package/dependents.js'
-import { exec, filters, getPackageJson, getTags, getWorkspaces } from './utils.js'
+import { exec, filters, getRootWorkspace, getTags, getWorkspaces } from './utils.js'
 
 function buildChangedCommand() {
   return new Command('changed')
@@ -74,17 +74,13 @@ async function getChangedDependentWorkspaces(changedWorkspaces) {
 function getChangedWorkspaces(sinceRef) {
   const allTags = getTags()
 
+  const hasRootChanged = hasRootWorkspaceChanged(sinceRef, allTags)
+
   // Find all workspace packages/services with updates since their latest tag
-  return getWorkspaces().filter((ws) => {
-    const tags = allTags.filter((tag) => {
-      const taggedWorkspaceName = tag.substring(0, tag.lastIndexOf('@'))
-      return taggedWorkspaceName === ws.name
-    })
-    const latestTag = tags[tags.length - 1]
+  const resultSet = getWorkspaces().filter((ws) => {
+    const latestTag = getLatestWorkspaceTag(ws, allTags)
 
     const compareRef = sinceRef || latestTag
-
-    const hasRootChanged = compareRef && hasRootWorkspaceChanged(compareRef)
 
     const changed =
       !latestTag || !!exec(`git diff --quiet HEAD ${compareRef} -- ${ws.path} || echo changed`)
@@ -93,20 +89,49 @@ function getChangedWorkspaces(sinceRef) {
       const rootChangedText = hasRootChanged ? ' (root workspace changed)' : ''
       console.error(`❗ ${ws.name} has changed since ${compareRef}${rootChangedText}`)
       return true
-    } else {
-      console.error(`✅ No changes in ${ws.name} since ${compareRef}`)
-      return false
     }
+
+    console.error(`✅ No changes in ${ws.name} since ${compareRef}`)
+    return false
+  })
+
+  // Add in the root workspace if it has changed
+  if (hasRootChanged) {
+    resultSet.push(getRootWorkspace())
+  }
+
+  return resultSet
+}
+
+/**
+ * Checks if the root workspace has changed either since the provided ref or since its latest tag.
+ */
+function hasRootWorkspaceChanged(sinceRef, allTags) {
+  const rootWorkspace = getRootWorkspace()
+  const latestTag = getLatestWorkspaceTag(rootWorkspace, allTags)
+  const compareRef = sinceRef || latestTag
+
+  // Regardless of sinceRef, if there's no existing tag for the workspace, it is considered changed
+  if (!latestTag) {
+    return true
+  }
+
+  // Root workspace changes are based on changes to the files in the `files` array in the top-level
+
+  const fileList = exec(`git diff --name-only HEAD ${compareRef} | xargs`).split(' ')
+
+  return !!fileList.find((changedFile) => {
+    return rootWorkspace.files.includes(changedFile)
   })
 }
 
-function hasRootWorkspaceChanged(sinceRef) {
-  const rootFiles = getPackageJson().files
-  const fileList = exec(`git diff --name-only HEAD ${sinceRef} | xargs`).split(' ')
-
-  return !!fileList.find((changedFile) => {
-    return rootFiles.includes(changedFile)
+function getLatestWorkspaceTag(workspace, allTags) {
+  const tags = allTags.filter((tag) => {
+    const taggedWorkspaceName = tag.substring(0, tag.lastIndexOf('@'))
+    return taggedWorkspaceName === workspace.name
   })
+
+  return tags[tags.length - 1]
 }
 
 export { buildChangedCommand, getChangedDependentWorkspaces, getChangedWorkspaces }

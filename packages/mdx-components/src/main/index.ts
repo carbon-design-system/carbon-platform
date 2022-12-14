@@ -73,4 +73,4 @@ export { default as Title, TitleProps } from './title/title.js'
 export { default as Video, VideoWithSrcProps, VideoWithVimeoIdProps } from './video/video.js'
 
 // Carbon components
-export { AccordionItem, Button, Layer } from '@carbon/react'
+export { AccordionItem, Layer } from '@carbon/react'

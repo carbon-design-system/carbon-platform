@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@4.0.3...micromanage-cli@5.0.0) (2022-12-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **micromanage:** the `--docker`, `--pull`, and `--json` options have been removed from the top-level build command
+and replaced with a new `docker` sub-command. If previously you used
+`micromanage build --docker --pull my-workspace`, you would instead now use
+`micromanage docker build --pull my-workspace`. Non-docker workspace builds are unchanged.
+
+The `changed` command's `--base-workspace` option has been removed. The npm root workspace is now
+considered the base workspace. See the command help for more info.
+
+### Features 🌟
+
+* **micromanage:** refactor build, docker, and changed commands ([a547925](https://github.com/carbon-design-system/carbon-platform/commit/a54792550242132e9adb9129f158335eadc8489d))
+
 ### [4.0.3](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@4.0.2...micromanage-cli@4.0.3) (2022-12-06)
 
 ### [4.0.2](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@4.0.1...micromanage-cli@4.0.2) (2022-12-03)

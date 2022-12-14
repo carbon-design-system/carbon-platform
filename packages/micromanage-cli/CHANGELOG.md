@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.1](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@5.0.0...micromanage-cli@5.0.1) (2022-12-14)
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** correctly calculate root workspace changes ([130f524](https://github.com/carbon-design-system/carbon-platform/commit/130f52401410bbd0d1c6cc43ef2751bbd1d3e3ba))
+
 ## [5.0.0](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@4.0.3...micromanage-cli@5.0.0) (2022-12-14)
 
 

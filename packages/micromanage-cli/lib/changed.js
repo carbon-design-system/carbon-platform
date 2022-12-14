@@ -84,7 +84,7 @@ function getChangedWorkspaces(sinceRef) {
 
     const compareRef = sinceRef || latestTag
 
-    const hasRootChanged = sinceRef && hasRootWorkspaceChanged(sinceRef)
+    const hasRootChanged = compareRef && hasRootWorkspaceChanged(compareRef)
 
     const changed =
       !latestTag || !!exec(`git diff --quiet HEAD ${compareRef} -- ${ws.path} || echo changed`)

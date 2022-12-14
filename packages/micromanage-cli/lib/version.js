@@ -41,7 +41,7 @@ function handleVersionCommand(workspaceNames, opts) {
     return
   }
 
-  const workspaces = workspaceNames.map((wsName) => getWorkspaceByName(wsName))
+  const workspaces = workspaceNames.map((wsName) => getWorkspaceByName(wsName, true))
 
   if (!opts.dryRun) {
     // We have work to do so change branch to a temp one

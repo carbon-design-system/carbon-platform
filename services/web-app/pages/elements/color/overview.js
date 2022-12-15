@@ -22,6 +22,7 @@ import {
   P,
   PageDescription,
   PageTable,
+  ResourceCard,
   Row,
   Tab,
   Tabs,
@@ -40,7 +41,6 @@ import Image from '@/components/image'
 import MdxIcon from '@/components/mdx-icon/mdx-icon'
 import PageHeader from '@/components/page-header'
 import PageTabs from '@/components/page-tabs'
-import ResourceCard from '@/components/resource-card/resource-card'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { useId } from '@/utils/use-id'

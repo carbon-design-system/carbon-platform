@@ -39,17 +39,17 @@ const getIcon = ({ actionIcon }: { actionIcon: ActionIcon }) => {
 }
 
 /**
- *The `<MiniCard>` component can be used in place of a `<ResourceCard>` if your content
- allows it. Unless it is sitting beside your main content, it should always be wrapped
- inside of a `<CardGroup>`. This allows the correct gutter and border placement between
- a group of cards
-*
- Although the mini-resource card has a similar geometry to the button component, they
- should not be used in place of a button. Buttons encourage action from the user and
- affect the website's front-end or back-end. The resource cards, both large and mini
- are essentially links. They are used for navigation and actions that do not affect
- the website.
- **/
+ * The `<MiniCard>` component can be used in place of a `<ResourceCard>` if your content
+ * allows it. Unless it is sitting beside your main content, it should always be wrapped
+ * inside of a `<CardGroup>`. This allows the correct gutter and border placement between
+ * a group of cards
+ *
+ * Although the mini-resource card has a similar geometry to the button component, they
+ * should not be used in place of a button. Buttons encourage action from the user and
+ * affect the website's front-end or back-end. The resource cards, both large and mini
+ * are essentially links. They are used for navigation and actions that do not affect
+ * the website.
+ */
 const MiniCard: MdxComponent<MiniCardProps> = ({
   children,
   href,
@@ -57,15 +57,16 @@ const MiniCard: MdxComponent<MiniCardProps> = ({
   actionIcon,
   linkProps
 }) => {
+  const childrenArray = React.Children.toArray(children)
+
   const cardContent = (
     <div className={clsx(withPrefix('mini-card'))}>
       <div className={withPrefix('wrapper')}>
         <div className={withPrefix('title')}>{title}</div>
-        {(children === undefined || (Array.isArray(children) && children.length === 0)) &&
-          actionIcon && <div className={withPrefix('icon')}>{getIcon({ actionIcon })}</div>}
-        {children !== undefined && !(Array.isArray(children) && children.length === 0) && (
-          <div className={withPrefix('image')}>{children}</div>
+        {childrenArray.length === 0 && actionIcon && (
+          <div className={withPrefix('icon')}>{getIcon({ actionIcon })}</div>
         )}
+        {childrenArray.length > 0 && <div className={withPrefix('image')}>{children}</div>}
       </div>
     </div>
   )

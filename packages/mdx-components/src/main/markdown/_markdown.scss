@@ -12,7 +12,7 @@
 @use '../utils' as *;
 @use './autolink-header/autolink-header';
 
-/*  Spacing */
+/* Spacing */
 .#{with-prefix('h1-container')} + *,
 .#{with-prefix('h2-container')} + *,
 .#{with-prefix('h3-container')} + *,
@@ -136,4 +136,8 @@
   margin-top: spacing.$spacing-02;
   font-style: italic;
   text-indent: 0;
+}
+
+.#{with-prefix('link')} {
+  font-size: inherit;
 }

@@ -6,7 +6,6 @@
  */
 import * as MdxComponents from '@carbon-platform/mdx-components'
 import { process, RmdxNode } from '@carbon-platform/rmdx'
-import Link from 'next/link'
 import React from 'react'
 
 import Image from '@/components/image/image'
@@ -14,6 +13,7 @@ import { AnchorLinkRenderer } from '@/utils/renderers/anchor-link.renderer'
 import { CodeRenderer } from '@/utils/renderers/code.renderer'
 import { DocumentRenderer } from '@/utils/renderers/document.renderer'
 import { InlineCodeRenderer } from '@/utils/renderers/inline-code.renderer'
+import { LinkRenderer } from '@/utils/renderers/link.renderer'
 import { ParagraphRenderer } from '@/utils/renderers/paragraph.renderer'
 import { RowRenderer } from '@/utils/renderers/row.renderer'
 import { StorybookDemoRenderer } from '@/utils/renderers/storybook-demo.renderer'
@@ -45,7 +45,7 @@ const components = {
   'heading-6': MdxComponents.H6,
   'inline-code': InlineCodeRenderer,
   image: Image,
-  link: Link,
+  link: LinkRenderer,
   'list-item': MdxComponents.LI,
   'ordered-list': MdxComponents.OL,
   paragraph: ParagraphRenderer,
@@ -72,10 +72,17 @@ const mdx = `
 ###### sixth level heading
 <H2 noAnchor> second level no anchor </H2>
 
-## Link
+## Links
 
-[This is a link](https://ibm.com)
-<Link href="https://ibm.com" disabled>This is also a link</Link>
+[This is a link](https://ibm.com) <Link href="https://ibm.com" disabled>This is also a link</Link>
+
+<ArrowRightLink href="https://ibm.com">this is an arrow right link</ArrowRightLink>
+
+## Buttons
+
+<ArrowRightButton href="https://ibm.com">this is an arrow right button</ArrowRightButton>
+<LaunchButton href="https://ibm.com">this is a launch button</LaunchButton>
+
 
 
 ## Accordion

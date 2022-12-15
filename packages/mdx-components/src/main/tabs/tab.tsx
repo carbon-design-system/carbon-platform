@@ -13,12 +13,12 @@ import { TabContext } from './tabs.js'
 
 interface TabProps {
   children: ReactNode
-  index: number
   label: string
 }
 
 interface PrivateTabProps {
   _id: string
+  index: number
 }
 
 export const Tab: MdxComponent<TabProps & PrivateTabProps> = ({ _id, children, index }) => {

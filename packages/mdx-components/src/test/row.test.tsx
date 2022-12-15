@@ -17,11 +17,11 @@ test.afterEach(() => {
 test.serial('row renders without crashing', (t) => {
   const result = render(
     <Row>
-      <Column colSm={2} colMd={4} colLg={4} NoGutterSm>
+      <Column colSm={2} colMd={4} colLg={4}>
         #### 1. Contained button A. Text label <br /> B. Container <br /> C. Icon (optional) #### 3.
         Ghost button A. Text label <br /> C. Icon (optional)
       </Column>
-      <Column colSm={2} colMd={4} colLg={4} NoGutterMdLeft>
+      <Column colSm={2} colMd={4} colLg={4}>
         #### 1. Contained button A. Text label <br /> B. Container <br /> C. Icon (optional) #### 3.
         Ghost button A. Text label <br /> C. Icon (optional)
       </Column>

@@ -6,25 +6,16 @@
  */
 
 import { Track, Video } from '../../../dist/main/index'
-import localPoster from '../../res/local-poster.jpeg'
-import localVideo from '../../res/local-video.mp4'
 
 export default {
   title: 'Components/Images & Video/Track',
   component: Track
 }
 
-// TODOASKJOE: this does not work, why?
 const Template = (args) => {
   return (
-    <Video src={localVideo} poster={localPoster}>
-      <Track
-        kind="captions"
-        default
-        src="static/media/src/res/hero-video.vtt"
-        srcLang="en"
-        {...args}
-      />
+    <Video src="/res/local-video.mp4" poster="/res/local-poster.jpeg">
+      <Track kind="captions" default src="/res/hero-video.vtt" srcLang="en" {...args} />
     </Video>
   )
 }

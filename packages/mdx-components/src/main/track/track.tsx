@@ -20,14 +20,14 @@ interface TrackProps {
 const Track: MdxComponent<TrackProps> = ({
   src,
   srcLang,
-  default: TrackIsDefault,
+  default: isTrackDefault,
   kind,
   label
 }) => {
   return (
     <track
       kind={kind}
-      default={TrackIsDefault ?? false}
+      default={isTrackDefault ?? false}
       src={src}
       srcLang={srcLang ?? ''}
       label={label ?? ''}

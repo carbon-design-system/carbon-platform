@@ -70,6 +70,7 @@ export { default as Variant, VariantProps } from './storybook-demo/variant.js'
 export { default as Tab, TabProps } from './tabs/tab.js'
 export { default as Tabs, TabsProps } from './tabs/tabs.js'
 export { default as Title, TitleProps } from './title/title.js'
+export { default as Track, TrackProps } from './track/track.js'
 export { default as Video, VideoWithSrcProps, VideoWithVimeoIdProps } from './video/video.js'
 
 // Carbon components

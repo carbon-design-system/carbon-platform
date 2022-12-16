@@ -58,6 +58,7 @@ const components = {
   'table-body': TableBodyRenderer,
   'table-row': TableRowRenderer,
   text: TextRenderer,
+  track: MdxComponents.Track,
   'unordered-list': MdxComponents.UL
 }
 
@@ -766,14 +767,16 @@ platea dictumst.
 | Cell 1-1 | Cell 1-2 | Cell 1-3 |
 | Cell 2-1 | Cell 2-2 | Cell 2-3 |
 
-`
+## Track
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- will remove later
-const toTest = `
+<Video src="/videos/hero-video.mp4" poster="/videos/poster.png">
+  <track kind="captions" default src="/videos/hero-video.vtt" srcLang="en" />
+</Video>
 `
 
 const RmdxTest = () => {
-  const ast = process(mdx, Object.keys(MdxComponents))
+  // TODOASKJOE: this ok?
+  const ast = process(mdx, [...Object.keys(MdxComponents), 'track'])
 
   // console.log(ast)
 

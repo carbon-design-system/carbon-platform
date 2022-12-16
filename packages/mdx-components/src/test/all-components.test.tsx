@@ -444,6 +444,14 @@ test.serial('title renders without crashing', (t) => {
   t.snapshot(result.container.innerHTML)
 })
 
+test.serial('track renders without crashing', (t) => {
+  const result = render(
+    <Mdx.Track src="wowsrc" default kind="captions" label="thelabel" srcLang="en" />
+  )
+
+  t.snapshot(result.container.innerHTML)
+})
+
 test.serial('video renders without crashing', (t) => {
   const result = render(<Mdx.Video src="wowsrc" poster="wowposter" />)
 

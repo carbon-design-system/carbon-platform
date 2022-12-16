@@ -6,7 +6,7 @@
  */
 
 import { Link as CarbonLink } from '@carbon/react'
-import { ArrowRight } from '@carbon/react/icons'
+import { ArrowRight } from '@carbon/react/icons/index.js'
 import PropTypes from 'prop-types'
 import React, { ReactNode } from 'react'
 

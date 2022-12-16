@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column } from '@carbon/react'
-import { ArrowRight, Calendar, Download, Email, Launch } from '@carbon/react/icons'
+import { ArrowRight, Calendar, Download, Email, Launch } from '@carbon/react/icons/index.js'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React, { ReactNode } from 'react'

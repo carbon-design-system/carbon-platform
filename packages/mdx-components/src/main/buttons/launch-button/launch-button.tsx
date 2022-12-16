@@ -6,7 +6,7 @@
  */
 
 import { Button } from '@carbon/react'
-import { Launch } from '@carbon/react/icons'
+import { Launch } from '@carbon/react/icons/index.js'
 import PropTypes from 'prop-types'
 import React, { ReactNode } from 'react'
 

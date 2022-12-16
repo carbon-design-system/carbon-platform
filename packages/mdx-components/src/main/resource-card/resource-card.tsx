@@ -6,7 +6,7 @@
  */
 
 import { AspectRatio, Theme } from '@carbon/react'
-import { ArrowRight, Calendar, Download, Email, Error, Launch } from '@carbon/react/icons'
+import { ArrowRight, Calendar, Download, Email, Error, Launch } from '@carbon/react/icons/index.js'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React, { ReactNode } from 'react'

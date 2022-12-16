@@ -6,7 +6,12 @@
  */
 
 import { Column, Grid } from '@carbon/react'
-import { CheckmarkFilled, ErrorFilled, InformationFilled, WarningFilled } from '@carbon/react/icons'
+import {
+  CheckmarkFilled,
+  ErrorFilled,
+  InformationFilled,
+  WarningFilled
+} from '@carbon/react/icons/index.js'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React, { ReactNode } from 'react'

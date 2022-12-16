@@ -6,3 +6,4 @@
  */
 export { MAX_INPUT_SIZE } from './constants.js'
 export { RmdxMessage, RmdxResponse } from './interfaces.js'
+export { Rmdx } from './rmdx.js'

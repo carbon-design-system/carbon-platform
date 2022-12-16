@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { StatusController } from '@carbon-platform/api/microservice'
+import * as MdxComponents from '@carbon-platform/mdx-components'
 import { Module } from '@nestjs/common'
 
 import { RmdxProcessingController } from './rmdx-processing-controller.js'
@@ -16,7 +17,7 @@ import { RmdxService } from './rmdx-service.js'
     RmdxService,
     {
       provide: 'ALLOWED_COMPONENTS',
-      useValue: []
+      useValue: [...Object.keys(MdxComponents)]
     }
   ]
 })

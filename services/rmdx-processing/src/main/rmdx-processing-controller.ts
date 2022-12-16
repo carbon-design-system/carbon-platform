@@ -8,7 +8,7 @@ import { Logging, Trace } from '@carbon-platform/api/logging'
 import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
 import { RmdxMessage, RmdxResponse } from '@carbon-platform/api/rmdx'
 import { Controller } from '@nestjs/common'
-import { MessagePattern, Payload } from '@nestjs/microservices'
+import { Ctx, MessagePattern, Payload, RmqContext } from '@nestjs/microservices'
 
 import { RmdxService } from './rmdx-service.js'
 import { validateRmdxMessage } from './validate-rmdx-message.js'
@@ -34,11 +34,29 @@ class RmdxProcessingController {
    */
   @Trace()
   @MessagePattern('rmdx')
-  public queryRmdx(@Payload() data: UnvalidatedMessage<RmdxMessage>): RmdxResponse {
-    validateRmdxMessage(data)
+  public queryRmdx(
+    @Payload() data: UnvalidatedMessage<RmdxMessage>,
+    @Ctx() context: RmqContext
+  ): RmdxResponse {
+    let rmdxMessage: RmdxMessage
 
-    // TODO
-    return {} as RmdxResponse
+    try {
+      rmdxMessage = validateRmdxMessage(data)
+    } catch (e) {
+      context.getChannelRef().reject(context.getMessage(), false)
+
+      throw e
+    }
+
+    const processed = this.rmdxService.process(rmdxMessage.srcMdx)
+
+    // Ack the message since we have a valid response
+    context.getChannelRef().ack(context.getMessage())
+
+    return {
+      ast: processed,
+      errors: []
+    }
   }
 }
 

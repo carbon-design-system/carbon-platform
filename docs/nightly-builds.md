@@ -14,7 +14,7 @@ the details of what happens.
 3. Pushed version tags result in the running of one or more `publish-package` and/or
    `publish-service` workflows.
    - For packages, they are built and published to npmjs (when appropriate).
-   - For services, a base docker image is built, followed by a service's docker image. This uses the
+   - For services, a root docker image is built, followed by a service's docker image. This uses the
      Dockerfile in each workspace's directory. Upon successful build, each service is then pushed to
      the IBM Container Registry.
 

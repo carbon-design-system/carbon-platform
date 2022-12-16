@@ -33,6 +33,18 @@ $(npx micromanage build --help)
 $(npx micromanage changed --help)
 \`\`\`
 
+## \`docker\`
+
+\`\`\`
+$(npx micromanage docker --help)
+\`\`\`
+
+### \`build\`
+
+\`\`\`
+$(npx micromanage docker build --help)
+\`\`\`
+
 ## \`install\`
 
 \`\`\`

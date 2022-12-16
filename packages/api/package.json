@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/api",
   "description": "Carbon platform application programming interfaces to services",
-  "version": "0.4.11",
+  "version": "0.4.13",
   "license": "Apache-2.0",
   "author": "IBM",
   "private": true,
@@ -41,7 +41,7 @@
     "@types/uuid": "^9.0.0",
     "amqp-connection-manager": "^4.1.9",
     "amqplib": "^0.10.3",
-    "chalk": "^5.1.2",
+    "chalk": "^5.2.0",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "cookie-signature": "^1.2.0",

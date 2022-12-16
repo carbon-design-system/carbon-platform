@@ -1,7 +1,7 @@
 {
   "name": "@carbon-platform/mdx-sanitizer",
   "description": "Strips out undesired content from MDX files",
-  "version": "1.1.10",
+  "version": "1.1.12",
   "license": "Apache-2.0",
   "author": "IBM",
   "publishConfig": {

@@ -24,6 +24,7 @@ const beginningKeys = [
   'main',
   'bin',
   'exports',
+  'engines',
   'files'
 ]
 const endKeys = ['scripts', 'dependencies', 'peerDependencies', 'devDependencies']

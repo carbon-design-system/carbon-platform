@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.57](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.56...@carbon-platform/logging@1.1.57) (2022-12-14)
+
+### [1.1.56](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.55...@carbon-platform/logging@1.1.56) (2022-12-14)
+
+
+### Misc. 🔮
+
+* remove "base" package in favor of npm root workspace ([f4000d0](https://github.com/carbon-design-system/carbon-platform/commit/f4000d0b61cebb0a13a4192676928c0980db36cb))
+
 ### [1.1.55](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.54...@carbon-platform/logging@1.1.55) (2022-12-06)
 
 ### [1.1.54](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.53...@carbon-platform/logging@1.1.54) (2022-12-03)

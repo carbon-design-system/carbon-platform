@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.79](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.78...@carbon-platform/web-app@0.2.79) (2022-12-14)
+
+### [0.2.78](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.77...@carbon-platform/web-app@0.2.78) (2022-12-14)
+
+
+### Misc. 🔮
+
+* remove "base" package in favor of npm root workspace ([f4000d0](https://github.com/carbon-design-system/carbon-platform/commit/f4000d0b61cebb0a13a4192676928c0980db36cb))
+* update minor versions ([c2fc1df](https://github.com/carbon-design-system/carbon-platform/commit/c2fc1df29e5dfbe3a568407b1bc278f74f12e3b4))
+
+### [0.2.77](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.76...@carbon-platform/web-app@0.2.77) (2022-12-10)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** chevron up on treeview expanded ([3787860](https://github.com/carbon-design-system/carbon-platform/commit/37878600e6ba8985ecd0746987db76c75438d4b3))
+
 ### [0.2.76](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.75...@carbon-platform/web-app@0.2.76) (2022-12-06)
 
 

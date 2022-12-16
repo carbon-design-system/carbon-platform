@@ -110,6 +110,10 @@
 
   // parent treenode open
   :global(.cds--tree-node[aria-expanded='true']) {
+    :global(.cds--tree-parent-node__toggle::after) {
+      transform: rotate(180deg);
+    }
+
     color: theme.$text-primary;
   }
 

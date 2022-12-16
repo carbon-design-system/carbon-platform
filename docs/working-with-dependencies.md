@@ -66,29 +66,40 @@ $ npm --workspace <workspace_path> update
 - Spot check of the web-app running locally
 - (Optional) Docker builds of the services
 
-## Info about the "base" workspace
-
-The `base` workspace contains dependencies that are used across multiple other workspaces in the
-repo. Because of this, there should never be a `node_modules` folder inside of this workspace. If
-there is, then this means that the lockfile needs to be rebuilt. Having a `node_modules` folder in
-the `base` workspace means that one of the base dependencies has a second, out-of-sync version of a
-package installed someplace else in the monorepo. This is not good because it circumvents the base
-as the authoritative source for common packages.
+## Info about the "root" workspace
 
 When a node module is used in more than one workspace, it's often a good idea to move it to the
-`base` workspace if it should be considered as a core module for all workspaces. An example of this
-is the version of TypeScript that is used across the monorepo.
+`root` workspace if it should be considered as a core module for all workspaces.
+
+An example of this is the version of TypeScript that is used across the monorepo. Individual
+workspaces do not install TypeScript directly. They get it implicitly from the `root` workspace.
+When the `root` workspace version of TypeScript is updated, so too are the workspaces which depend
+on it. This is true for **any** module installed in the `root` workspace.
+
+Individual workspaces can _override_ the `root` workspace version of a dependency by explicitly
+installng it in their package.json, but this is not advisable because it circumvents the `root`
+workspace as the authoritative source for these core (common) packages.
+
+Since the `root` workspace contains dependencies that are used across multiple other workspaces in
+the repo, these dependencies should only appear in the top-level `node_modules` folder and **not**
+in the `node_modules` folders of individual packages/services/workspaces. Dependencies in individual
+workspace `node_modules` folders should only be present if the workspace requires a specific version
+of a dependency which diverges from the "common" one available in the top-level `node_modules`
+folder.
+
+It's a good idea to periodically check all of these folders to make sure what's in there is
+expected.
 
 ## Rebuilding the lockfile
 
 From time to time, the sequence of dependency installations may result in undesirable results in the
-package-lock.json file. To remedy this and rebuild the lockfile, do the following:
+package-lock.json file or individual `node_modules` folders. To remedy this and rebuild the
+lockfile, do the following:
 
 ```
 rm package-lock.json
 rm -rf node_modules
 find . -name node_modules | xargs rm -rf
-CI=true npm --workspace base install
 CI=true npm install && npm install
 ```
 

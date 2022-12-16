@@ -6,7 +6,7 @@
  */
 import { Command, Help } from 'commander'
 
-import { exec, getWorkspaceByName } from './utils.js'
+import { exec, getRootWorkspace, getWorkspaceByName } from './utils.js'
 
 function buildVersionCommand() {
   return new Command('version')
@@ -41,7 +41,7 @@ function handleVersionCommand(workspaceNames, opts) {
     return
   }
 
-  const workspaces = workspaceNames.map((wsName) => getWorkspaceByName(wsName))
+  const workspaces = workspaceNames.map((wsName) => getWorkspaceByName(wsName, true))
 
   if (!opts.dryRun) {
     // We have work to do so change branch to a temp one
@@ -102,13 +102,16 @@ function handleVersionCommand(workspaceNames, opts) {
  */
 function versionWorkspaces(updatedWorkspaces, isDryRun) {
   const dryRun = isDryRun ? '--dry-run' : ''
+  const rootWorkspaceName = getRootWorkspace().name
 
   return updatedWorkspaces.map((ws) => {
+    const skipChangelog = ws.name === rootWorkspaceName ? '--skip.changelog' : ''
     // Create the new version and changelog
     // TODO: standard-version is deprecated
     const versionOutput = exec(
       `npx standard-version \
       ${dryRun} \
+      ${skipChangelog} \
       --path . \
       --tag-prefix="${ws.name}@" \
       --releaseCommitMessageFormat="release: ${ws.name}@{{currentTag}}"`,

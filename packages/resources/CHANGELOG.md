@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/resources@1.4.6...@carbon-platform/resources@1.4.7) (2022-12-14)
+
+### [1.4.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/resources@1.4.5...@carbon-platform/resources@1.4.6) (2022-12-14)
+
+### [1.4.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/resources@1.4.4...@carbon-platform/resources@1.4.5) (2022-12-06)
+
 ### [1.4.4](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/resources@1.4.3...@carbon-platform/resources@1.4.4) (2022-12-03)
 
 ### [1.4.3](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/resources@1.4.2...@carbon-platform/resources@1.4.3) (2022-12-02)

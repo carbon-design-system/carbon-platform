@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.3](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@5.0.2...micromanage-cli@5.0.3) (2022-12-15)
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** avoid generating changelog for root workspace ([27d5fd9](https://github.com/carbon-design-system/carbon-platform/commit/27d5fd94cf4285b3b82fa745c33c25ebefce800a))
+
+### [5.0.2](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@5.0.1...micromanage-cli@5.0.2) (2022-12-14)
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** allow root workspace to be versioned ([6f0a350](https://github.com/carbon-design-system/carbon-platform/commit/6f0a350d2dd7a96d90a79662a32763e00313484a))
+* **micromanage:** logic errors in root workspace change calculations ([d57eb9a](https://github.com/carbon-design-system/carbon-platform/commit/d57eb9afdb4028fc5e07ca499fb82358b68d797c))
+
+### [5.0.1](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@5.0.0...micromanage-cli@5.0.1) (2022-12-14)
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** correctly calculate root workspace changes ([130f524](https://github.com/carbon-design-system/carbon-platform/commit/130f52401410bbd0d1c6cc43ef2751bbd1d3e3ba))
+
+## [5.0.0](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@4.0.3...micromanage-cli@5.0.0) (2022-12-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **micromanage:** the `--docker`, `--pull`, and `--json` options have been removed from the top-level build command
+and replaced with a new `docker` sub-command. If previously you used
+`micromanage build --docker --pull my-workspace`, you would instead now use
+`micromanage docker build --pull my-workspace`. Non-docker workspace builds are unchanged.
+
+The `changed` command's `--base-workspace` option has been removed. The npm root workspace is now
+considered the base workspace. See the command help for more info.
+
+### Features 🌟
+
+* **micromanage:** refactor build, docker, and changed commands ([a547925](https://github.com/carbon-design-system/carbon-platform/commit/a54792550242132e9adb9129f158335eadc8489d))
+
+### [4.0.3](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@4.0.2...micromanage-cli@4.0.3) (2022-12-06)
+
 ### [4.0.2](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@4.0.1...micromanage-cli@4.0.2) (2022-12-03)
 
 ### [4.0.1](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@4.0.0...micromanage-cli@4.0.1) (2022-12-02)

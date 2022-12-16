@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.22...@carbon-platform/mdx-components@0.1.23) (2022-12-14)
+
+### [0.1.22](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.21...@carbon-platform/mdx-components@0.1.22) (2022-12-14)
+
+
+### Misc. 🔮
+
+* update minor versions ([c2fc1df](https://github.com/carbon-design-system/carbon-platform/commit/c2fc1df29e5dfbe3a568407b1bc278f74f12e3b4))
+
+
+### Tests 🧪
+
+* **mdx-components:** update snapshots WRT new carbon/react version ([f0345d6](https://github.com/carbon-design-system/carbon-platform/commit/f0345d69f4175f359a93a55ced6166ce67b72ecb))
+
+### [0.1.21](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.20...@carbon-platform/mdx-components@0.1.21) (2022-12-06)
+
+
+### Tests 🧪
+
+* **mdx-components:** fix failing snapshot test ([5c61c5a](https://github.com/carbon-design-system/carbon-platform/commit/5c61c5ad0e5f80e4483f9715025eff6247372294))
+* **mdx-components:** fix one snapshot failing all subsequent ones ([04374b2](https://github.com/carbon-design-system/carbon-platform/commit/04374b21c47f6a8b28aa80ef565bca514c97453c))
+* update major deps, enforce node version ^16.15.0 ([207a994](https://github.com/carbon-design-system/carbon-platform/commit/207a994672dfa811cc052475d8e289fee9efbad7))
+
 ### [0.1.20](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.19...@carbon-platform/mdx-components@0.1.20) (2022-12-03)
 
 

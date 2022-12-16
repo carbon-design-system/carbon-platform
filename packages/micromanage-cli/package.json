@@ -1,7 +1,7 @@
 {
   "name": "micromanage-cli",
   "description": "The missing npm workspace management tool",
-  "version": "4.0.2",
+  "version": "5.0.3",
   "license": "Apache-2.0",
   "author": "IBM",
   "keywords": [
@@ -32,13 +32,13 @@
   "bin": {
     "micromanage": "./lib/index.js"
   },
-  "files": [
-    "lib/*"
-  ],
   "engines": {
     "node": "16",
     "npm": "8"
   },
+  "files": [
+    "lib/*"
+  ],
   "scripts": {
     "test": "echo 'No tests specified. Maybe you should add some!'"
   },

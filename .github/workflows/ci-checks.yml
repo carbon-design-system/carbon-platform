@@ -36,8 +36,8 @@ jobs:
 
       - name: Install Node Modules 🔧
         run: |
-          npm -w base install
-          npm -w packages/eslint-plugin-carbon-platform install
+          npm --workspaces=false install
+          npm ---workspace packages/eslint-plugin-carbon-platform install
 
       - name: Lint 🔎
         run: npm run lint

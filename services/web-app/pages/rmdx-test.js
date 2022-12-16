@@ -4,8 +4,10 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Rmdx } from '@carbon-platform/api/rmdx'
+import { RunMode, Runtime } from '@carbon-platform/api/runtime'
 import * as MdxComponents from '@carbon-platform/mdx-components'
-import { process, RmdxNode } from '@carbon-platform/rmdx'
+import { RmdxNode } from '@carbon-platform/rmdx'
 import React from 'react'
 
 import Image from '@/components/image/image'
@@ -58,7 +60,6 @@ const components = {
   'table-body': TableBodyRenderer,
   'table-row': TableRowRenderer,
   text: TextRenderer,
-  track: MdxComponents.Track,
   'unordered-list': MdxComponents.UL
 }
 
@@ -770,19 +771,33 @@ platea dictumst.
 ## Track
 
 <Video src="/videos/hero-video.mp4" poster="/videos/poster.png">
-  <track kind="captions" default src="/videos/hero-video.vtt" srcLang="en" />
+  <Track kind="captions" default src="/videos/hero-video.vtt" srcLang="en" />
 </Video>
 `
 
-const RmdxTest = () => {
-  // TODOASKJOE: this ok?
-  const ast = process(mdx, [...Object.keys(MdxComponents), 'track'])
+const RmdxTest = ({ ast }) => {
+  // const ast = process(mdx, Object.keys(MdxComponents))
 
   // console.log(ast)
 
   // console.log(JSON.stringify(ast, undefined, 2))
 
   return <RmdxNode components={components} astNode={ast} />
+}
+
+/*
+ * To hook this up to actual messaging and the rmdx-processing service:
+ */
+
+export const getStaticProps = async () => {
+  const rmdx = new Rmdx({ runtime: new Runtime({ runMode: RunMode.Standard }) })
+  const response = await rmdx.queryRmdx(mdx)
+
+  return {
+    props: {
+      ast: response.ast
+    }
+  }
 }
 
 export default RmdxTest

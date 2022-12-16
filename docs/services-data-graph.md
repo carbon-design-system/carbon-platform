@@ -62,6 +62,25 @@ if (responseJson.errors) {
 const data = responseJson.data
 ```
 
+### Viewing the GraphQL playground in a local dev environment
+
+To view and query the data graph via its REST endpoint in a local environment, do the following:
+
+1. Start up [rabbitmq](./docker.md#docker-run-command-for-rabbitmq-messaging) locally
+2. Start up the data-graph service `npm -w services/data-graph run start:dev`
+3. Navigate to http://localhost:3000/graphql
+4. Enter queries on the left hand side.
+
+### Example GraphQL query
+
+```gql
+query {
+  users {
+    id
+  }
+}
+```
+
 ## Package APIs
 
 ### `` gql`...` ``

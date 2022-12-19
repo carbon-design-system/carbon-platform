@@ -13,6 +13,7 @@ import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { MDXRemote } from 'next-mdx-remote'
 import PropTypes from 'prop-types'
+import { useCallback } from 'react'
 
 import ContentWrapper from '@/components/content-wrapper'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
@@ -61,6 +62,10 @@ const createOtherFrameworkLinks = (otherFrameworks) => {
 
 const AssetDetails = ({ library, asset }) => {
   const router = useRouter()
+
+  const handleViewLibraryAssetsClicked = useCallback(() => {
+    router.push(library.assetsPath)
+  }, [library.assetsPath, router])
 
   return (
     <ContentWrapper>
@@ -132,9 +137,7 @@ const AssetDetails = ({ library, asset }) => {
               <ButtonSet className={dashboardStyles['button-set']}>
                 <Button
                   className={dashboardStyles['dashboard-button']}
-                  onClick={() => {
-                    router.push(library.assetsPath)
-                  }}
+                  onClick={handleViewLibraryAssetsClicked}
                 >
                   View library assets
                   <ArrowRight size={16} />

@@ -5,13 +5,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Column, Grid, Tag } from '@carbon/react'
+import { Column, Grid, Tag as CarbonTag } from '@carbon/react'
 import isEmpty from 'lodash/isEmpty'
 import PropTypes from 'prop-types'
+import { useCallback } from 'react'
 
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
 import styles from './catalog-filters.module.scss'
+
+const Tag = ({ item, filterKey, name, onClick }) => {
+  const handleTagClick = useCallback(() => {
+    return onClick(item, filterKey, 'remove')
+  }, [item, filterKey, onClick])
+
+  return (
+    <CarbonTag filter onClick={handleTagClick}>
+      {name}
+    </CarbonTag>
+  )
+}
 
 const CatalogFilters = ({ availableFilters = {}, filter = {}, onFilter }) => {
   const isLg = useMatchMedia(mediaQueries.lg)
@@ -23,11 +36,17 @@ const CatalogFilters = ({ availableFilters = {}, filter = {}, onFilter }) => {
       <Column sm={4} md={8} lg={12}>
         <div className={styles.section}>
           {Object.keys(filter).map((item) =>
-            filter[item].map((key, i) => (
-              <Tag key={i} filter onClick={() => onFilter(item, key, 'remove')}>
-                {availableFilters[item].values[key].name}
-              </Tag>
-            ))
+            filter[item].map((filterKey) => {
+              return (
+                <Tag
+                  item={item}
+                  key={filterKey}
+                  filterKey={filterKey}
+                  name={availableFilters[item].values[filterKey].name}
+                  onClick={onFilter}
+                />
+              )
+            })
           )}
         </div>
       </Column>

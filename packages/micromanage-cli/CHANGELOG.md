@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.3](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@5.0.2...micromanage-cli@5.0.3) (2022-12-15)
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** avoid generating changelog for root workspace ([27d5fd9](https://github.com/carbon-design-system/carbon-platform/commit/27d5fd94cf4285b3b82fa745c33c25ebefce800a))
+
+### [5.0.2](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@5.0.1...micromanage-cli@5.0.2) (2022-12-14)
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** allow root workspace to be versioned ([6f0a350](https://github.com/carbon-design-system/carbon-platform/commit/6f0a350d2dd7a96d90a79662a32763e00313484a))
+* **micromanage:** logic errors in root workspace change calculations ([d57eb9a](https://github.com/carbon-design-system/carbon-platform/commit/d57eb9afdb4028fc5e07ca499fb82358b68d797c))
+
+### [5.0.1](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@5.0.0...micromanage-cli@5.0.1) (2022-12-14)
+
+
+### Bug Fixes 🐛
+
+* **micromanage:** correctly calculate root workspace changes ([130f524](https://github.com/carbon-design-system/carbon-platform/commit/130f52401410bbd0d1c6cc43ef2751bbd1d3e3ba))
+
 ## [5.0.0](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@4.0.3...micromanage-cli@5.0.0) (2022-12-14)
 
 

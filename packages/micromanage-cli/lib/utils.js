@@ -21,6 +21,7 @@ const workspacesCache = new Map()
  * @property {object} dependencies - the dependencies object from package.json
  * @property {object} devDependencies - the devDependencies object from package.json
  * @property {string} path - the path of the workspace relative to the workspace root
+ * @property {string} files - the files array from package.json
  * @property {boolean} private - the "private" boolean from package.json
  * @property {string} version - the version from package.json
  */
@@ -31,6 +32,7 @@ function buildWorkspaceEntry(packageJson, workspacePath) {
     dependencies: packageJson.dependencies,
     devDependencies: packageJson.devDependencies,
     path: workspacePath,
+    files: packageJson.files,
     private: !!packageJson.private,
     version: packageJson.version
   }
@@ -112,17 +114,51 @@ async function spawn(cmd, options = {}) {
 }
 
 /**
+ * Get an object for each workspace, as defined in the top-level package.json file.
+ *
+ * @returns {Array<Workspace>} Array of workspace info objects.
+ */
+function getWorkspaces() {
+  const workspacePaths = getPackageJson().workspaces
+
+  return workspacePaths.map((workspacePath) => {
+    const pJson = getPackageJson(workspacePath)
+
+    if (!workspacesCache.has(pJson.name)) {
+      workspacesCache.set(pJson.name, buildWorkspaceEntry(pJson, workspacePath))
+    }
+
+    return workspacesCache.get(pJson.name)
+  })
+}
+
+/**
+ * Return the root workspace's package.json data.
+ *
+ * @returns {Workspace} The root workspace.
+ */
+function getRootWorkspace() {
+  const pJson = getPackageJson()
+
+  if (!workspacesCache.has(pJson.name)) {
+    workspacesCache.set(pJson.name, buildWorkspaceEntry(pJson, '.'))
+  }
+
+  return workspacesCache.get(pJson.name)
+}
+
+/**
  * Given a workspace name, find the corresponding package.json object.
  *
  * @param {string} workspaceName The name of the workspace to find.
  * @param {boolean} includeRoot Whether or not to include the root workspace's name when searching.
- * @returns A workspace with the corresponding name; or undefined if one was not found.
+ * @returns {Workspace} A workspace with the corresponding name; or undefined if one was not found.
  */
 function getWorkspaceByName(workspaceName, includeRoot) {
   const workspaces = getWorkspaces()
 
   if (includeRoot) {
-    workspaces.unshift(buildWorkspaceEntry(getPackageJson(), '.'))
+    workspaces.unshift(getRootWorkspace())
   }
 
   return workspaces.find((ws) => ws.name === workspaceName)
@@ -170,25 +206,6 @@ function getPackageJson(workspacePath) {
   const p = path.join(process.cwd(), workspacePath || '', 'package.json')
 
   return JSON.parse(readFileSync(p))
-}
-
-/**
- * Get an object for each workspace, as defined in the top-level package.json file.
- *
- * @returns {Array<Workspace>} Array of workspace info objects.
- */
-function getWorkspaces() {
-  const workspacePaths = getPackageJson().workspaces
-
-  return workspacePaths.map((workspacePath) => {
-    const pJson = getPackageJson(workspacePath)
-
-    if (!workspacesCache.has(pJson.name)) {
-      workspacesCache.set(pJson.name, buildWorkspaceEntry(pJson, workspacePath))
-    }
-
-    return workspacesCache.get(pJson.name)
-  })
 }
 
 /**
@@ -242,6 +259,7 @@ export {
   filters,
   getFiles,
   getPackageJson,
+  getRootWorkspace,
   getTags,
   getWorkspaceByName,
   getWorkspaceForFile,

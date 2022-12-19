@@ -118,9 +118,11 @@ designKits:
 
 ## Library schema
 
-Libraries are the means to contribute, install, and use one or many assets in products and digital
-experiences. To index your library with Carbon, create a `carbon.yml` metadata file and place it in
-the same directory as your library's `package.json` file.
+Libraries package up and distribute coded assets, as every asset belongs to a library. Libraries are
+published as code packages and have compatible design kits.
+
+To index your library with Carbon, create a `carbon.yml` metadata file and place it in the same
+directory as your library's `package.json` file.
 
 <AnchorLinks small>
 
@@ -211,7 +213,8 @@ asset key to override the inherited default.
 
 ## Asset schema
 
-Assets are reusable units of work that are used in products and digital experiences. Every asset
+Assets are reusable resources such as components, patterns, functions, and templates. Assets often
+have usage and accessibililty guidance, as well as styling specifications and code. Every asset
 belongs to a library.
 
 <AnchorLinks small>
@@ -286,12 +289,12 @@ assets:
 Asset type is used for primary categorization in asset catalogs. The `type` key can have the
 following values:
 
-| Type        | Description                                                                                                                                                                                            |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `component` | Building blocks that have been designed and coded to solve a specific user interface problem.                                                                                                          |
-| `function`  | Code that performs a single action or actions and has no user interface.                                                                                                                               |
-| `pattern`   | Best practice solution for how a user achieves a goal through reusable combinations of components and content with sequences and flows which are too complex to be encapsulated in a single component. |
-| `template`  | Layout example that specifies patterns and component order and placement to compose a specific view.                                                                                                   |
+| Type        | Description                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------- |
+| `component` | Building blocks that have been designed and coded to solve a specific user interface problem. |
+| `function`  | Coded logic that performs one or many actions and has no user interface.                      |
+| `pattern`   | Reusable combinations of components and content with sequences and flows.                     |
+| `template`  | Order and placement of patterns and components to compose a specific view.                    |
 
 ### Component tags
 
@@ -393,8 +396,8 @@ docs:
 
 ## Design kit schema
 
-Design kits contain elements, guidelines, user interface components and patterns, and wireframes for
-various design tools as the design counterpart to coded assets. Design kits are indexed in the
+Design kits are the design counterpart to coded assets. Design kits are also used for creating
+wireframes and guidelines. Design kits are indexed in the
 [carbon-platform](https://github.com/carbon-design-system/carbon-platform) repository
 [`carbon.yml`](https://github.com/carbon-design-system/carbon-platform/blob/main/packages/resources/carbon.yml)
 data file.

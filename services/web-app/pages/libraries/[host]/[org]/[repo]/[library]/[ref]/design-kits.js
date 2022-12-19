@@ -17,7 +17,6 @@ import {
   ResourceCard
 } from '@carbon-platform/mdx-components'
 import groupBy from 'lodash/groupBy'
-import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
@@ -90,13 +89,8 @@ const DesignKits = ({ libraryData, navData }) => {
             {libraryData.content.designKits && (
               <>
                 <PageDescription>
-                  The following design kits are compatible with the {name} library. If you are new
-                  to Carbon, check out the{' '}
-                  <Link href="/designing/get-started" passHref>
-                    <CarbonLink>design guidance</CarbonLink>
-                  </Link>{' '}
-                  to get started. You can also view all design kits in the{' '}
-                  <CarbonLink href="/design-kits">catalog</CarbonLink>.
+                  The following design kits are compatible with the {name} library. You can also
+                  view all design kits in the <CarbonLink href="/design-kits">catalog</CarbonLink>.
                 </PageDescription>
                 {filteredDesignTools.length > 2 && (
                   <AnchorLinks>

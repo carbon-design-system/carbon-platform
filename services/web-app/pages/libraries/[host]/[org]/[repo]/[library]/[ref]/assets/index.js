@@ -21,7 +21,7 @@ import { FilingCabinet } from '@carbon-platform/icons'
 import { H2, H3 } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import { NextSeo } from 'next-seo'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 
 import AssetCatalogItemMeta from '@/components/asset-catalog-item/asset-catalog-item-meta'
 import ContentWrapper from '@/components/content-wrapper'
@@ -127,7 +127,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
       return assetRow
     }) ?? []
 
-  const onSort = (sortOrder) => setSort(sortOrder)
+  const onSort = useCallback((sortOrder) => setSort(sortOrder), [setSort])
 
   return (
     <>

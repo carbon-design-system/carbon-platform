@@ -10,7 +10,7 @@ import isEqual from 'lodash/isEqual'
 import set from 'lodash/set'
 import minimatch from 'minimatch'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import AssetCatalogItem from '@/components/asset-catalog-item'
 import Catalog from '@/components/catalog'
@@ -72,7 +72,7 @@ const getUniqueAssetsById = (assets) => {
  * @param {string} search search string to match assets against
  * @returns {import('@/typedefs').Asset[]} array of assets that match search criteria
  */
-const filterAssetsBysearch = (assets, search) => {
+const filterAssetsBySearch = (assets, search) => {
   return assets.filter((asset) => {
     const { description = '', name = '' } = asset.content
 
@@ -124,7 +124,7 @@ const getFilteredAssets = (assets, filter, sort, search) => {
   assetsWithAppliedFilter.push(...getUniqueAssetsById(assetsNotInCanonical))
   assetsWithAppliedFilter.sort(assetSortComparator(sort))
 
-  return filterAssetsBysearch(assetsWithAppliedFilter, search)
+  return filterAssetsBySearch(assetsWithAppliedFilter, search)
 }
 
 /**
@@ -249,48 +249,60 @@ const AssetsCatalog = ({ collection, glob = {}, libraries, showImage, type }) =>
     )
   )
 
-  const filterAssets = (sort, search) => {
-    setFilteredAssets(getFilteredAssets(assets, filter, sort, search))
-  }
+  const filterAssets = useCallback(
+    (sort, search) => {
+      setFilteredAssets(getFilteredAssets(assets, filter, sort, search))
+    },
+    [assets, filter]
+  )
 
-  const updateFilter = (updatedFilterVals) => {
-    if (!isEqual(updatedFilterVals.maintainer, filter.maintainer)) {
-      setMaintainer(updatedFilterVals.maintainer)
-    }
-    if (!isEqual(updatedFilterVals.platform, filter.platform)) {
-      setPlatform(updatedFilterVals.platform)
-    }
-    if (!isEqual(updatedFilterVals.status, filter.status)) setStatus(updatedFilterVals.status)
-    if (!isEqual(updatedFilterVals.tags, filter.tags)) setTags(updatedFilterVals.tags)
-    if (!isEqual(updatedFilterVals.framework, filter.framework)) {
-      setFramework(updatedFilterVals.framework)
-    }
+  const updateFilter = useCallback(
+    (updatedFilterVals) => {
+      if (!isEqual(updatedFilterVals.maintainer, filter.maintainer)) {
+        setMaintainer(updatedFilterVals.maintainer)
+      }
+      if (!isEqual(updatedFilterVals.platform, filter.platform)) {
+        setPlatform(updatedFilterVals.platform)
+      }
+      if (!isEqual(updatedFilterVals.status, filter.status)) setStatus(updatedFilterVals.status)
+      if (!isEqual(updatedFilterVals.tags, filter.tags)) setTags(updatedFilterVals.tags)
+      if (!isEqual(updatedFilterVals.framework, filter.framework)) {
+        setFramework(updatedFilterVals.framework)
+      }
 
-    const cleanFilter = Object.fromEntries(
-      Object.entries(updatedFilterVals).filter(([_, v]) => !!v)
-    )
+      const cleanFilter = Object.fromEntries(
+        Object.entries(updatedFilterVals).filter(([_, v]) => !!v)
+      )
 
-    if (!isEqual(cleanFilter, filter)) {
-      setFilter(cleanFilter)
-    }
-  }
+      if (!isEqual(cleanFilter, filter)) {
+        setFilter(cleanFilter)
+      }
+    },
+    [filter, setFramework, setMaintainer, setPlatform, setStatus, setTags]
+  )
 
-  const getAssetOtherFrameworkCount = (asset) => {
-    const baseIdentifier = getBaseIdentifier(asset)
+  const getAssetOtherFrameworkCount = useCallback(
+    (asset) => {
+      const baseIdentifier = getBaseIdentifier(asset)
 
-    return collapseAssetGroups(asset, filter) ? get(groupedAssets, baseIdentifier, 0) - 1 : 0
-  }
+      return collapseAssetGroups(asset, filter) ? get(groupedAssets, baseIdentifier, 0) - 1 : 0
+    },
+    [filter, groupedAssets]
+  )
 
-  const renderAsset = (asset, index, isGrid) => (
-    <AssetCatalogItem
-      groupedAssets={groupedAssets}
-      asset={asset}
-      filter={filter}
-      key={`${index}-${getSlug(asset.content)}`}
-      isGrid={isGrid}
-      otherFrameworkCount={getAssetOtherFrameworkCount(asset)}
-      showImage={showImage}
-    />
+  const renderAsset = useCallback(
+    (asset, index, isGrid) => (
+      <AssetCatalogItem
+        groupedAssets={groupedAssets}
+        asset={asset}
+        filter={filter}
+        key={`${index}-${getSlug(asset.content)}`}
+        isGrid={isGrid}
+        otherFrameworkCount={getAssetOtherFrameworkCount(asset)}
+        showImage={showImage}
+      />
+    ),
+    [filter, getAssetOtherFrameworkCount, groupedAssets, showImage]
   )
 
   return (

@@ -10,6 +10,7 @@ interface RmdxMessage {
 
 // TODO: make this more specific
 interface RmdxResponse {
+  frontmatter: Record<string, unknown>
   ast: Record<string, unknown>
   errors: Array<unknown>
 }

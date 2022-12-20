@@ -40,6 +40,7 @@ class Rmdx {
 
   private async queryDevRmdx(): Promise<RmdxResponse> {
     return {
+      frontmatter: {},
       ast: {
         children: [
           {

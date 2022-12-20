@@ -10,8 +10,6 @@ import { RmdxNodeProps } from './interfaces.js'
 import { RmdxNode } from './rmdx-node.js'
 
 function unwrap(node: ReactElement<RmdxNodeProps>) {
-  console.log(node)
-
   // Guard - make sure you're not passing in an array of children
   if (Array.isArray(node)) {
     throw new Error('Can only unwrap a single node and not an array of nodes')

@@ -95,14 +95,9 @@ const Video: MdxComponent<VideoWithSrcProps | VideoWithVimeoIdProps> = ({
       return undefined
     }
 
-    return videoRef.current
-      ?.play()
-      .then(() => {
-        setIsPlaying(true)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    return videoRef.current?.play().then(() => {
+      setIsPlaying(true)
+    })
   }
 
   function onEnded() {
@@ -117,14 +112,9 @@ const Video: MdxComponent<VideoWithSrcProps | VideoWithVimeoIdProps> = ({
         setIsPlaying(false)
         return undefined
       }
-      return videoRef.current
-        ?.play()
-        .then(() => {
-          setIsPlaying(true)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      return videoRef.current?.play().then(() => {
+        setIsPlaying(true)
+      })
     }
 
     return undefined

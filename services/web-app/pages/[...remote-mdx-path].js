@@ -5,17 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { MDXRemote } from 'next-mdx-remote'
+import * as MdxComponents from '@carbon-platform/mdx-components'
+import { process, RmdxNode } from '@carbon-platform/rmdx'
 
 import MdxPage from '@/components/mdx-page/mdx-page'
 import withLoading from '@/components/with-loading'
 import { defaultFilePathPrefix, defaultParams, remotePages } from '@/data/remote-pages'
 import { getRemoteMdxSource } from '@/lib/github'
-import { processMdxSource } from '@/utils/mdx'
 
-const RemoteMdxPage = ({ compiledSource, tabs, mdxError, warnings, pageHeaderType }) => {
-  const frontmatter = compiledSource?.data?.matter || {}
-  const { title, description, keywords } = frontmatter
+import { components } from './rmdx-test'
+
+const RemoteMdxPage = ({ ast, tabs, mdxError, warnings, frontmatter }) => {
+  const { title, description, keywords, pageHeaderType } = frontmatter
 
   return (
     <MdxPage
@@ -25,9 +26,9 @@ const RemoteMdxPage = ({ compiledSource, tabs, mdxError, warnings, pageHeaderTyp
       tabs={tabs}
       mdxError={mdxError}
       warnings={warnings}
-      pageHeaderType={pageHeaderType}
+      pageHeaderType={pageHeaderType ?? null}
     >
-      {compiledSource && <MDXRemote compiledSource={compiledSource.value} />}
+      {ast && <RmdxNode astNode={ast} components={components} />}
     </MdxPage>
   )
 }
@@ -44,7 +45,6 @@ export const getStaticProps = async ({ params }) => {
   }
 
   let mdxSource
-  let url
 
   const pageParams = pageData.params || defaultParams
   const filePath = pageData.filePath || `${defaultFilePathPrefix}/${pageRoute}.mdx`
@@ -52,7 +52,6 @@ export const getStaticProps = async ({ params }) => {
   try {
     const response = await getRemoteMdxSource(pageParams, filePath)
     mdxSource = response.mdxSource
-    url = response.url
   } catch (err) {
     return {
       props: {
@@ -69,17 +68,16 @@ export const getStaticProps = async ({ params }) => {
     }
   }
 
-  const safeSource = await processMdxSource(mdxSource, url)
+  const processedMdx = process(mdxSource, Object.keys(MdxComponents))
 
   // TODO: query GH for the actual tabs and have one supersede the other
-  const tabs = safeSource?.compiledSource?.data?.matter?.tabs || []
+  const tabs = processedMdx.frontmatter.tabs || []
 
   return {
     props: {
-      ...safeSource,
+      ast: processedMdx.ast,
       tabs,
-      pageHeaderType:
-        pageData.pageHeaderType ?? safeSource?.compiledSource?.data?.matter?.pageHeaderType ?? null
+      frontmatter: processedMdx.frontmatter
     }, // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every hour

@@ -4,14 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Rmdx } from '@carbon-platform/api/rmdx'
-import { RunMode, Runtime } from '@carbon-platform/api/runtime'
 import * as MdxComponents from '@carbon-platform/mdx-components'
-import { RmdxNode } from '@carbon-platform/rmdx'
+import { process, RmdxNode } from '@carbon-platform/rmdx'
 import React from 'react'
 
 import Image from '@/components/image/image'
 import { AnchorLinkRenderer } from '@/utils/renderers/anchor-link.renderer'
+import { AnchorLinksRenderer } from '@/utils/renderers/anchor-links.renderer'
 import { CodeRenderer } from '@/utils/renderers/code.renderer'
 import { DocumentRenderer } from '@/utils/renderers/document.renderer'
 import { InlineCodeRenderer } from '@/utils/renderers/inline-code.renderer'
@@ -31,6 +30,7 @@ import { TextRenderer } from '@/utils/renderers/text.renderer'
 const components = {
   ...MdxComponents,
   AnchorLink: AnchorLinkRenderer,
+  AnchorLinks: AnchorLinksRenderer,
   Image,
   Row: RowRenderer,
   StorybookDemo: StorybookDemoRenderer,
@@ -63,7 +63,15 @@ const components = {
   'unordered-list': MdxComponents.UL
 }
 
-const mdx = `
+const mdx = `---
+wowfrontmatter: heheheheh
+title: Pictograms
+description:
+  Pictograms are visual symbols used to represent ideas, objects, or narratives at a glance. They
+  work well in presentations and marketing communications.
+tabs: ['Library', 'Usage', 'Code', 'Contribute']
+---
+
 ## Headings
 
 # first level heading
@@ -775,29 +783,30 @@ platea dictumst.
 </Video>
 `
 
-const RmdxTest = ({ ast }) => {
-  // const ast = process(mdx, Object.keys(MdxComponents))
+const RmdxTest = () => {
+  const processedMdx = process(mdx, Object.keys(MdxComponents))
 
-  // console.log(ast)
+  // console.log(processedMdx)
 
   // console.log(JSON.stringify(ast, undefined, 2))
 
-  return <RmdxNode components={components} astNode={ast} />
+  return <RmdxNode components={components} astNode={processedMdx.ast} />
 }
 
 /*
  * To hook this up to actual messaging and the rmdx-processing service:
  */
 
-export const getStaticProps = async () => {
-  const rmdx = new Rmdx({ runtime: new Runtime({ runMode: RunMode.Standard }) })
-  const response = await rmdx.queryRmdx(mdx)
+// export const getStaticProps = async () => {
+//   const rmdx = new Rmdx({ runtime: new Runtime({ runMode: RunMode.Standard }) })
+//   const response = await rmdx.queryRmdx(mdx)
 
-  return {
-    props: {
-      ast: response.ast
-    }
-  }
-}
+//   return {
+//     props: {
+//       ast: response.ast
+//     }
+//   }
+// }
 
 export default RmdxTest
+export { components }

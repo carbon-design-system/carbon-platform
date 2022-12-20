@@ -24,6 +24,11 @@ type AstNode = Partial<Node> & {
 
 type RenderableAstNode = Omit<AstNode, 'data' | 'position' | 'type'>
 
+type ProcessedMdx = {
+  frontmatter: Record<string, unknown>
+  ast: RenderableAstNode
+}
+
 type Renderer<Props = unknown> = JSXElementConstructor<Props & AdditionalProps>
 
 interface NodeHandler {
@@ -47,6 +52,7 @@ export {
   AllowedComponents,
   AstNode,
   NodeHandler,
+  ProcessedMdx,
   RenderableAstNode,
   Renderer,
   RmdxNodeProps,

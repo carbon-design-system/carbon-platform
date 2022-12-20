@@ -7,8 +7,16 @@
 import { createProcessor } from '@mdx-js/mdx'
 import remarkGfm from 'remark-gfm'
 import { visit, Visitor } from 'unist-util-visit'
+import { VFile } from 'vfile'
+import { matter } from 'vfile-matter'
 
-import { AllowedComponents, AstNode, NodeHandler, RenderableAstNode } from './interfaces.js'
+import {
+  AllowedComponents,
+  AstNode,
+  NodeHandler,
+  ProcessedMdx,
+  RenderableAstNode
+} from './interfaces.js'
 import * as nodeHandlers from './node-handlers/index.js'
 
 // TODO: if something ends up with no component, it needs to be removed from the AST
@@ -75,14 +83,21 @@ function createVisitor(allowedComponents: AllowedComponents): Visitor {
  * @param allowedComponents List of allowable JSX components that can be used in the input MDX.
  * @returns An RMDX AST for use by `<AstNode />`.
  */
-function process(srcMdx: string, allowedComponents: AllowedComponents) {
-  const result = processor.parse(srcMdx)
+function process(srcMdx: string, allowedComponents: AllowedComponents): ProcessedMdx {
+  // Extract the frontmatter from the source MDX
+  const f = new VFile(srcMdx)
+  matter(f, { strip: true })
+  const frontmatter = f.data?.matter || {}
 
+  // Process the remaining mdx
+  const result = processor.parse(f.value)
   visit(result, createVisitor(allowedComponents))
 
-  // Consider the unist node as a renderable ast node instead since we modified it as such in the
-  // tree
-  return result as unknown as RenderableAstNode
+  return {
+    frontmatter: frontmatter as Record<string, unknown>,
+    // Consider the unist node as a renderable ast node since we modified it as such in the tree
+    ast: result as unknown as RenderableAstNode
+  }
 }
 
 export { process }

@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.81](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.80...@carbon-platform/web-app@0.2.81) (2022-12-20)
+
+
+### Bug Fixes 🐛
+
+* add examples back into component description ([9ba2039](https://github.com/carbon-design-system/carbon-platform/commit/9ba2039085c9d84431b3e48abd203f9b70bedccd))
+* clean up copy ([97cdabf](https://github.com/carbon-design-system/carbon-platform/commit/97cdabf9bf6da277cf96c120ed9fc086595a9e0c))
+* clean up library description ([6e3fc55](https://github.com/carbon-design-system/carbon-platform/commit/6e3fc5500810d32cf1212a3b4b35b5e9235e8879))
+* emphasis words with bold ([7eeeebc](https://github.com/carbon-design-system/carbon-platform/commit/7eeeebc0bebecd5e24335edecc65f545b10af0bb))
+* hypen in reusable ([b684940](https://github.com/carbon-design-system/carbon-platform/commit/b684940b2a86543e78a9c216c32008ecfc8b9846))
+* specify carbon team maintains platform ([f143d8d](https://github.com/carbon-design-system/carbon-platform/commit/f143d8df1dd40729e4c5992f568eda7a0070daa1))
+* update design kit and library definitions ([4d5dde9](https://github.com/carbon-design-system/carbon-platform/commit/4d5dde98460dac91f7dd5f9a99a828a6cdfe34e3))
+* update design kit description ([a8bc804](https://github.com/carbon-design-system/carbon-platform/commit/a8bc8040acad095e634f9381b6f6e5558c0e973a))
+* **web-app:** reduce some sonarlint violations ([28fc4af](https://github.com/carbon-design-system/carbon-platform/commit/28fc4af533ad2d0d3b1e9595a71da54328bd9d11))
+
 ### [0.2.80](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.79...@carbon-platform/web-app@0.2.80) (2022-12-17)
 
 

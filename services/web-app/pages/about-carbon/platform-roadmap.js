@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid, Link } from '@carbon/react'
-import { Divider, H2 } from '@carbon-platform/mdx-components'
+import { Divider } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { NextSeo } from 'next-seo'
@@ -13,6 +13,7 @@ import { useContext, useEffect } from 'react'
 
 import AutolinkHeader from '@/components/autolink-header'
 import ContentWrapper from '@/components/content-wrapper'
+import H2 from '@/components/markdown/h2'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'

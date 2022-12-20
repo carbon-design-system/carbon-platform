@@ -14,8 +14,6 @@ import {
   DoDont,
   DoDontRow,
   GifPlayer,
-  H2,
-  H3,
   H4,
   LI,
   Link,
@@ -38,6 +36,8 @@ import ColorBlock from '@/components/color-block'
 import ColorGrid from '@/components/color-grid'
 import ContentWrapper from '@/components/content-wrapper'
 import Image from '@/components/image'
+import H2 from '@/components/markdown/h2'
+import H3 from '@/components/markdown/h3'
 import MdxIcon from '@/components/mdx-icon/mdx-icon'
 import PageHeader from '@/components/page-header'
 import PageTabs from '@/components/page-tabs'

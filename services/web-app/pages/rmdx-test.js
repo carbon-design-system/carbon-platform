@@ -13,6 +13,9 @@ import { AnchorLinkRenderer } from '@/utils/renderers/anchor-link.renderer'
 import { AnchorLinksRenderer } from '@/utils/renderers/anchor-links.renderer'
 import { CodeRenderer } from '@/utils/renderers/code.renderer'
 import { DocumentRenderer } from '@/utils/renderers/document.renderer'
+import { Heading1Renderer } from '@/utils/renderers/heading-1.renderer'
+import { Heading2Renderer } from '@/utils/renderers/heading-2.renderer'
+import { Heading3Renderer } from '@/utils/renderers/heading-3.renderer'
 import { InlineCodeRenderer } from '@/utils/renderers/inline-code.renderer'
 import { LinkRenderer } from '@/utils/renderers/link.renderer'
 import { ParagraphRenderer } from '@/utils/renderers/paragraph.renderer'
@@ -39,9 +42,9 @@ const components = {
   blockquote: MdxComponents.Blockquote,
   code: CodeRenderer,
   document: DocumentRenderer,
-  'heading-1': MdxComponents.H1,
-  'heading-2': MdxComponents.H2,
-  'heading-3': MdxComponents.H3,
+  'heading-1': Heading1Renderer,
+  'heading-2': Heading2Renderer,
+  'heading-3': Heading3Renderer,
   'heading-4': MdxComponents.H4,
   'heading-5': MdxComponents.H5,
   'heading-6': MdxComponents.H6,

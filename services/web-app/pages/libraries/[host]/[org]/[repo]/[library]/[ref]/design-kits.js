@@ -11,7 +11,6 @@ import {
   AnchorLink,
   AnchorLinks,
   CardGroup,
-  H2,
   P,
   PageDescription
 } from '@carbon-platform/mdx-components'
@@ -21,6 +20,7 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
 import ContentWrapper from '@/components/content-wrapper'
+import H2 from '@/components/markdown/h2'
 import MdxIcon from '@/components/mdx-icon/mdx-icon'
 import PageHeader from '@/components/page-header'
 import ResourceCard from '@/components/resource-card'

@@ -5,19 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
-import {
-  H2,
-  H3,
-  Link,
-  P,
-  PageDescription,
-  PageTable,
-  ResourceCard
-} from '@carbon-platform/mdx-components'
+import { Link, P, PageDescription, PageTable, ResourceCard } from '@carbon-platform/mdx-components'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
 import ContentWrapper from '@/components/content-wrapper/content-wrapper'
+import H2 from '@/components/markdown/h2'
+import H3 from '@/components/markdown/h3'
 import MdxIcon from '@/components/mdx-icon/mdx-icon'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'

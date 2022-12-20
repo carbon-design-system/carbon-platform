@@ -7,10 +7,11 @@
 import { Column, Grid } from '@carbon/react'
 import { LogoGithub } from '@carbon/react/icons'
 import { Svg32Illustrator } from '@carbon-platform/icons'
-import { H2, P } from '@carbon-platform/mdx-components'
+import { P } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
+import H2 from '@/components/markdown/h2'
 import ResourceCard from '@/components/resource-card'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 

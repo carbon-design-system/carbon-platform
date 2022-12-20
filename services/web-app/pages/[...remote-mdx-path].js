@@ -15,7 +15,7 @@ import { getRemoteMdxSource } from '@/lib/github'
 
 import { components } from './rmdx-test'
 
-const RemoteMdxPage = ({ ast, tabs, mdxError, warnings, frontmatter }) => {
+const RemoteMdxPage = ({ ast, tabs, mdxError, warnings, frontmatter = {} }) => {
   const { title, description, keywords, pageHeaderType } = frontmatter
 
   return (

@@ -11,7 +11,6 @@ import {
   AnchorLink,
   AnchorLinks,
   CardGroup,
-  H2,
   PageDescription
 } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
@@ -23,6 +22,7 @@ import ContentWrapper from '@/components/content-wrapper'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import DemoLinks from '@/components/demo-links'
+import H2 from '@/components/markdown/h2'
 import MdxIcon from '@/components/mdx-icon'
 import PageHeader from '@/components/page-header'
 import ResourceCard from '@/components/resource-card'

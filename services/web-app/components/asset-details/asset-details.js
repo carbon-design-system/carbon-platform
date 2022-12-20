@@ -8,7 +8,6 @@
 import { Button, ButtonSet, Column, Grid, Link as CarbonLink } from '@carbon/react'
 import { ArrowRight, Launch } from '@carbon/react/icons'
 import { Svg32Github } from '@carbon-platform/icons'
-import { H2 } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { MDXRemote } from 'next-mdx-remote'
@@ -24,6 +23,7 @@ import { framework } from '@/data/framework'
 import { assetContentPropTypes, paramsPropTypes } from '@/types'
 import { createUrl } from '@/utils/string'
 
+import H2 from '../markdown/h2'
 import styles from './asset-details.module.scss'
 
 const createMaintainerIcon = (MaintainerIcon) => {

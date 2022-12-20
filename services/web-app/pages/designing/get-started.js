@@ -11,8 +11,6 @@ import {
   ArtDirection,
   CardGroup,
   Column,
-  H2,
-  H3,
   Link,
   MiniCard,
   P,
@@ -26,6 +24,8 @@ import { useContext, useEffect } from 'react'
 import ContentWrapper from '@/components/content-wrapper'
 import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
 import Image from '@/components/image'
+import H2 from '@/components/markdown/h2'
+import H3 from '@/components/markdown/h3'
 import MdxIcon from '@/components/mdx-icon/mdx-icon'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'

@@ -13,7 +13,6 @@ import {
   Switch,
   Theme
 } from '@carbon/react'
-import { H3 } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -22,6 +21,7 @@ import StickyContainer from '@/components/typeset-style/sticky-container'
 import colorTokens from '@/data/color-tokens'
 import useEventListener from '@/utils/use-event-listener'
 
+import H3 from '../markdown/h3'
 import styles from './color-token-table.module.scss'
 
 const ColorTokenTable = () => {

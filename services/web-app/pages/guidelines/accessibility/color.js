@@ -9,8 +9,6 @@ import {
   AnchorLink,
   AnchorLinks,
   Column,
-  H2,
-  H3,
   H4,
   Link,
   P,
@@ -24,6 +22,8 @@ import { useContext, useEffect } from 'react'
 
 import ContentWrapper from '@/components/content-wrapper'
 import Image from '@/components/image'
+import H2 from '@/components/markdown/h2'
+import H3 from '@/components/markdown/h3'
 import PageHeader from '@/components/page-header'
 import PageTabs from '@/components/page-tabs/page-tabs'
 import { assetsNavData } from '@/data/nav-data'

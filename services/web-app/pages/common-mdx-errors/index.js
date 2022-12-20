@@ -9,8 +9,6 @@ import { CodeSnippet, Column, Grid } from '@carbon/react'
 import {
   AnchorLink,
   AnchorLinks,
-  H2,
-  H3,
   LI,
   P,
   PageDescription,
@@ -20,6 +18,8 @@ import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
+import H2 from '@/components/markdown/h2'
+import H3 from '@/components/markdown/h3'
 import MdxNotification from '@/components/mdx-notification'
 import FullPageError from '@/components/mdx-page/errors/full-page-error/full-page-error'
 import PageHeader from '@/components/page-header/page-header'

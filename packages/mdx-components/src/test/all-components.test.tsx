@@ -217,19 +217,19 @@ test.serial('blockquote renders without crashing', (t) => {
 })
 
 test.serial('h1 renders without crashing', (t) => {
-  const result = render(<Mdx.H1>This is a Heading 1</Mdx.H1>)
+  const result = render(<Mdx.H1 fullText="This is a Heading 1">This is a Heading 1</Mdx.H1>)
 
   t.snapshot(result.container.innerHTML)
 })
 
 test.serial('h2 renders without crashing', (t) => {
-  const result = render(<Mdx.H2>This is a Heading 2</Mdx.H2>)
+  const result = render(<Mdx.H2 fullText={'This is a Heading 2'}>This is a Heading 2</Mdx.H2>)
 
   t.snapshot(result.container.innerHTML)
 })
 
 test.serial('h3 renders without crashing', (t) => {
-  const result = render(<Mdx.H3>This is a Heading 3</Mdx.H3>)
+  const result = render(<Mdx.H3 fullText="This is a Heading 3">This is a Heading 3</Mdx.H3>)
 
   t.snapshot(result.container.innerHTML)
 })

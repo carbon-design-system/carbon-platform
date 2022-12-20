@@ -16,6 +16,7 @@ import { mediaQueries, useMatchMedia, withPrefix } from '../../utils.js'
 const slugify = slugifyCjs.default
 
 interface AutolinkHeaderProps {
+  ariaLabel: string
   is: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   className?: string | null
   children: ReactNode
@@ -47,18 +48,16 @@ const AutolinkHeader: MdxComponent<AutolinkHeaderProps> = ({
   is: Component,
   className,
   children,
-  ...props
+  ariaLabel
 }) => {
   const isSm = useMatchMedia(mediaQueries.sm)
-
-  const ariaLabel = React.Children.toArray(children).join('')
 
   const id = `${slugify(ariaLabel, { lower: true })}`
 
   const anchorPosition = () => (isSm ? 'left' : 'right')
 
   return (
-    <Component className={clsx(withPrefix('header'), className)} {...props} id={id}>
+    <Component className={clsx(withPrefix('header'), className)} id={id}>
       {children}
       <Anchor id={id} ariaLabel={ariaLabel} position={anchorPosition()} />
     </Component>
@@ -66,6 +65,10 @@ const AutolinkHeader: MdxComponent<AutolinkHeaderProps> = ({
 }
 
 AutolinkHeader.propTypes = {
+  /**
+   * String aria label
+   */
+  ariaLabel: PropTypes.string.isRequired,
   /**
    * String title for Header
    */

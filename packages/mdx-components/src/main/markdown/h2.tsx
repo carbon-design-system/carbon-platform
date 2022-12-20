@@ -16,15 +16,16 @@ import AutolinkHeader from './autolink-header/autolink-header.js'
 interface H2Props {
   children: ReactNode
   noAnchor?: boolean | null
+  fullText?: string | null
 }
 
-const H2: MdxComponent<H2Props> = ({ children, noAnchor }) => {
+const H2: MdxComponent<H2Props> = ({ children, noAnchor, fullText }) => {
   return (
     <Grid className={clsx(withPrefix('header'), withPrefix('h2-container'))}>
       <Column sm={4} md={8} lg={8}>
         {noAnchor && <h2 className={clsx(withPrefix('h2'))}>{children}</h2>}
         {!noAnchor && (
-          <AutolinkHeader is="h2" className={clsx(withPrefix('h2'))}>
+          <AutolinkHeader ariaLabel={fullText ?? ''} is="h2" className={clsx(withPrefix('h2'))}>
             {children}
           </AutolinkHeader>
         )}
@@ -38,6 +39,10 @@ H2.propTypes = {
    * String title for Header
    */
   children: PropTypes.node.isRequired,
+  /**
+   * String aria label
+   */
+  fullText: PropTypes.string,
   /**
    * Do not render the autolink anchor
    */

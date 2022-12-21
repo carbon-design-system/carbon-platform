@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.82](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.81...@carbon-platform/web-app@0.2.82) (2022-12-21)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add specifity to chevron up nav tree class ([d33b59e](https://github.com/carbon-design-system/carbon-platform/commit/d33b59e5906f981b55e2da74fbfdfb6f4e3dc2d7))
+
 ### [0.2.81](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.80...@carbon-platform/web-app@0.2.81) (2022-12-20)
 
 

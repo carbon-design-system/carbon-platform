@@ -71,7 +71,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
-    "@graphql-eslint/eslint-plugin": "^3.13.1",
+    "@graphql-eslint/eslint-plugin": "^3.14.3",
     "@nestjs/testing": "^9.2.1",
     "@next/eslint-plugin-next": "^12.3.4",
     "@testing-library/react": "^12.1.5",

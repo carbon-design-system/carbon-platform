@@ -61,7 +61,7 @@
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
     "markdown-it": "^13.0.1",
-    "minimatch": "^5.1.1",
+    "minimatch": "^5.1.2",
     "next": "^12.3.4",
     "next-connect": "^0.13.0",
     "next-mdx-remote": "^4.2.0",

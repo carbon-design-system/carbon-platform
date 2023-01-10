@@ -62,6 +62,19 @@ const CatalogMultiselectFilter = ({
     return sum + filter[item].length
   }, 0)
 
+  const addSpacerColumns = () => {
+    if (Object.keys(availableFilters).length % columns > 0) {
+      const spacerCols = []
+      for (let i = 0; i < columns - (Object.keys(availableFilters).length % columns); i++) {
+        spacerCols.push(
+          <Column className={styles.column} key={i + Object.keys(availableFilters).length} sm={1} />
+        )
+      }
+      return spacerCols
+    }
+    return null
+  }
+
   return (
     <Popover
       align="bottom-right"
@@ -144,6 +157,7 @@ const CatalogMultiselectFilter = ({
                   </ul>
                 </Column>
               ))}
+              {addSpacerColumns()}
             </Grid>
           </Column>
         </div>

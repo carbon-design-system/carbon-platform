@@ -63,11 +63,12 @@ const CatalogMultiselectFilter = ({
   }, 0)
 
   const addSpacerColumns = () => {
-    if (Object.keys(availableFilters).length % columns > 0) {
+    const availableFiltersLength = Object.keys(availableFilters).length
+    if (availableFiltersLength % columns > 0) {
       const spacerCols = []
-      for (let i = 0; i < columns - (Object.keys(availableFilters).length % columns); i++) {
+      for (let i = 0; i < columns - (availableFiltersLength % columns); i++) {
         spacerCols.push(
-          <Column className={styles.column} key={i + Object.keys(availableFilters).length} sm={1} />
+          <Column className={styles.column} key={i + availableFiltersLength} sm={1} />
         )
       }
       return spacerCols

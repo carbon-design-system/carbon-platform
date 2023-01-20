@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.84](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.83...@carbon-platform/web-app@0.2.84) (2023-01-18)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add spacer columns to catalog multiselect filter ([c1db40a](https://github.com/carbon-design-system/carbon-platform/commit/c1db40a0224efcc4582b25ab8b7404dd95291d9a))
+* **web-app:** cleanup addSpacerColumns in multiselect filter ([0ca1efa](https://github.com/carbon-design-system/carbon-platform/commit/0ca1efad83cf2ab7522275a1a34369b50695ec10))
+
+### [0.2.83](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.82...@carbon-platform/web-app@0.2.83) (2023-01-13)
+
+
+### Misc. 🔮
+
+* update minor dependencies across repo ([5902b8b](https://github.com/carbon-design-system/carbon-platform/commit/5902b8b82a8b5a168b5d96aa80421e902ce1163c))
+
 ### [0.2.82](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.81...@carbon-platform/web-app@0.2.82) (2022-12-21)
 
 

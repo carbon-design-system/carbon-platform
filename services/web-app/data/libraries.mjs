@@ -230,21 +230,19 @@ const devLibraries = {
   },
   'carbon-styles': {
     host: 'github.com',
-    org: 'francinelucca',
+    org: 'carbon-design-system',
     repo: 'carbon',
     path: '/packages/styles',
     maintainer: 'carbon',
-    group: carbonComponentsGroup,
-    ref: 'carbon-platform-test'
+    group: carbonComponentsGroup
   },
   'carbon-react': {
     host: 'github.com',
-    org: 'francinelucca',
+    org: 'carbon-design-system',
     repo: 'carbon',
     path: '/packages/react',
     maintainer: 'carbon',
-    group: carbonComponentsGroup,
-    ref: 'carbon-platform-test'
+    group: carbonComponentsGroup
   },
   'carbon-components-vue': {
     host: 'github.com',

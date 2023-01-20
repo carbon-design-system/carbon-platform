@@ -7,10 +7,10 @@
 
 export const defaultParams = {
   host: 'github.com',
-  org: 'francinelucca',
+  org: 'carbon-design-system',
   repo: 'carbon-website',
   library: 'carbon-website',
-  ref: 'update-carbon-platform-branch'
+  ref: 'carbon-platform'
 }
 export const defaultFilePathPrefix = '/src/pages'
 export const remotePages = {

@@ -18,7 +18,6 @@ import { ArtDirection, Divider, H2, P } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
-import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
@@ -309,17 +308,12 @@ const PageContent = () => {
 const Index = () => {
   const { setPrimaryNavData } = useContext(LayoutContext)
 
-  const seo = {
-    title: 'Carbon Design System'
-  }
-
   useEffect(() => {
     setPrimaryNavData(assetsNavData)
   }, [setPrimaryNavData])
 
   return (
     <>
-      <NextSeo {...seo} />
       <Hero
         title="Build consistent & scalable experiences with confidence."
         section="homepage"

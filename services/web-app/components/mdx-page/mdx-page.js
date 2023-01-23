@@ -15,7 +15,7 @@ import slugify from 'slugify'
 import ContentWrapper from '@/components/content-wrapper'
 import PageHeader from '@/components/page-header'
 import PageTabs from '@/components/page-tabs'
-import { assetsNavData } from '@/data/nav-data'
+import { assetsNavData, getMetaTitle } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout'
 
@@ -92,7 +92,7 @@ const MdxPage = ({
   warnings,
   children,
   pageHeaderType,
-  seoTitle
+  metaTitle
 }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
@@ -118,9 +118,17 @@ const MdxPage = ({
     setPrimaryNavData(assetsNavData)
   }, [setPrimaryNavData])
 
+  // All page titles need to be unique for optimal SEO. We can't just rely on the markdown
+  // frontmatter; we have to use the router and nav data to ensure uniqueness.
+  const fullTitle = getMetaTitle(router.asPath) || metaTitle || title
+
+  // console.log('getMetaTitle', getMetaTitle(router.asPath))
+  // console.log('metaTitle', metaTitle)
+  // console.log('title', title)
+
   return (
     <>
-      {createSeo({ title: seoTitle ?? title, description, keywords })}
+      {createSeo({ title: fullTitle, description, keywords })}
       {title && (
         <PageHeader
           title={title}
@@ -157,19 +165,19 @@ MdxPage.propTypes = {
     stack: PropTypes.string
   }),
   /**
-   * page header type that determines background color and pictogram
+   * Title to use for SEO
+   */
+  metaTitle: PropTypes.string,
+  /**
+   * Page header type that determines background color and pictogram
    */
   pageHeaderType: PropTypes.string,
-  /**
-   * title to use for SEO
-   */
-  seoTitle: PropTypes.string,
   /**
    * Tabs to display on the page.
    */
   tabs: PropTypes.arrayOf(PropTypes.string),
   /**
-   * Title of the page, typically from frontmatter.
+   * Title of the page, typically from frontmatter
    */
   title: PropTypes.string,
   /**

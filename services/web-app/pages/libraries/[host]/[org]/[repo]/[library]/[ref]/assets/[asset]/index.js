@@ -95,8 +95,18 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
   const designKitsPath = `/libraries/${params.library}/${params.ref}/design-kits`
   const githubRepoUrl = `https://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
 
+  let seoTitle = `Overview - ${name} - ${libraryData.content.name}`
+
+  if (
+    libraryData.params.ref !== 'main' &&
+    libraryData.params.ref !== 'master' &&
+    libraryData.params.ref !== 'latest'
+  ) {
+    seoTitle += ` v${libraryData.content.version}`
+  }
+
   const seo = {
-    title: name,
+    title: seoTitle,
     description
   }
 
@@ -118,7 +128,7 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <PageHeader
             bgColor={assetTypes[assetData.content.type]?.bgColor}
-            title={seo.title}
+            title={name}
             pictogram={assetTypes[assetData.content.type]?.icon}
             withTabs
           />

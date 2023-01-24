@@ -235,7 +235,7 @@ const devLibraries = {
     path: '/packages/styles',
     maintainer: 'carbon',
     group: carbonComponentsGroup,
-    ref: 'index-from-carbon-platform-branch'
+    ref: 'index-component-docs-from-carbon-platform-branch'
   },
   'carbon-react': {
     host: 'github.com',
@@ -244,7 +244,7 @@ const devLibraries = {
     path: '/packages/react',
     maintainer: 'carbon',
     group: carbonComponentsGroup,
-    ref: 'index-from-carbon-platform-branch'
+    ref: 'index-component-docs-from-carbon-platform-branch'
   },
   'carbon-components-vue': {
     host: 'github.com',

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.85](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.84...@carbon-platform/web-app@0.2.85) (2023-01-24)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** convert pictograms to a js page ([b092851](https://github.com/carbon-design-system/carbon-platform/commit/b092851af2a02e55b8c771424107954a8722394b))
+
 ### [0.2.84](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.83...@carbon-platform/web-app@0.2.84) (2023-01-18)
 
 

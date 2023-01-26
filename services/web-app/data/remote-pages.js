@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2022, 2022
+ * Copyright IBM Corp. 2022, 2023
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -10,7 +10,7 @@ export const defaultParams = {
   org: 'carbon-design-system',
   repo: 'carbon-website',
   library: 'carbon-website',
-  ref: 'main'
+  ref: 'carbon-platform'
 }
 export const defaultFilePathPrefix = '/src/pages'
 export const remotePages = {
@@ -67,14 +67,7 @@ export const remotePages = {
     filePath: '/src/pages/guidelines/color/implementation.mdx'
   },
   'elements/color/usage': {
-    filePath: '/src/pages/guidelines/color/usage.mdx',
-    params: {
-      host: 'github.com',
-      org: 'carbon-design-system',
-      repo: 'carbon-website',
-      library: 'carbon-website',
-      ref: 'carbon-platform'
-    }
+    filePath: '/src/pages/guidelines/color/usage.mdx'
   },
   'elements/icons/code': {
     filePath: '/src/pages/guidelines/icons/code.mdx'
@@ -89,14 +82,7 @@ export const remotePages = {
     filePath: '/src/pages/guidelines/motion/code.mdx'
   },
   'elements/motion/overview': {
-    filePath: '/src/pages/guidelines/motion/overview.mdx',
-    params: {
-      host: 'github.com',
-      org: 'carbon-design-system',
-      repo: 'carbon-website',
-      library: 'carbon-website',
-      ref: 'carbon-platform'
-    }
+    filePath: '/src/pages/guidelines/motion/overview.mdx'
   },
   'elements/pictograms/code': {
     filePath: '/src/pages/guidelines/pictograms/code.mdx'
@@ -111,27 +97,13 @@ export const remotePages = {
     filePath: '/src/pages/guidelines/typography/code.mdx'
   },
   'elements/typography/overview': {
-    filePath: '/src/pages/guidelines/typography/overview.mdx',
-    params: {
-      host: 'github.com',
-      org: 'carbon-design-system',
-      repo: 'carbon-website',
-      library: 'carbon-website',
-      ref: 'carbon-platform'
-    }
+    filePath: '/src/pages/guidelines/typography/overview.mdx'
   },
   'elements/typography/style-strategies': {
     filePath: '/src/pages/guidelines/typography/style-strategies.mdx'
   },
   'elements/typography/type-sets': {
-    filePath: '/src/pages/guidelines/typography/type-sets.mdx',
-    params: {
-      host: 'github.com',
-      org: 'carbon-design-system',
-      repo: 'carbon-website',
-      library: 'carbon-website',
-      ref: 'carbon-platform'
-    }
+    filePath: '/src/pages/guidelines/typography/type-sets.mdx'
   },
   'guidelines/accessibility/developers': {},
   'guidelines/accessibility/keyboard': {},

@@ -1,25 +1,35 @@
 /*
- * Copyright IBM Corp. 2021, 2022
+ * Copyright IBM Corp. 2021, 2023
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
 import { Dropdown } from '@carbon/react'
 import PropTypes from 'prop-types'
+import { useCallback } from 'react'
 
 import styles from './sort-by-dropdown.module.scss'
 
+const convertItemToString = (item) => {
+  return item ? item.text : ''
+}
+
 const SortByDropdown = ({ defaultSortIndex = 0, onSort, sortId, sortOptions = [] }) => {
+  const handleDropdownChange = useCallback(
+    ({ selectedItem }) => {
+      onSort(selectedItem.id)
+    },
+    [onSort]
+  )
+
   return (
     <Dropdown
       id="sort-by-dropdown"
       className={styles.dropdown}
       initialSelectedItem={sortOptions.find((item) => item.id === sortId)}
       items={sortOptions}
-      itemToString={(item) => (item ? item.text : '')}
-      onChange={({ selectedItem }) => {
-        onSort(selectedItem.id)
-      }}
+      itemToString={convertItemToString}
+      onChange={handleDropdownChange}
       type="inline"
       titleText="Sort by:"
       label={sortOptions[defaultSortIndex].text}

@@ -2,6 +2,70 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.86](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.85...@carbon-platform/web-app@0.2.86) (2023-01-26)
+
+
+### Tests 🧪
+
+* **web-app:** pull libraries and pages from test carbon platform branch ([54e98bc](https://github.com/carbon-design-system/carbon-platform/commit/54e98bc40169c08a824e96ceaec7325f7d1ce2c6))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** notice header ([35ced29](https://github.com/carbon-design-system/carbon-platform/commit/35ced29d000bf8da282f6869ba3d1137182bf524))
+* **web-app:** pull in remote pages from carbon-platform branch ([543e464](https://github.com/carbon-design-system/carbon-platform/commit/543e46442898b829d91efa43427d18c59134852e))
+
+### [0.2.85](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.84...@carbon-platform/web-app@0.2.85) (2023-01-24)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** convert pictograms to a js page ([b092851](https://github.com/carbon-design-system/carbon-platform/commit/b092851af2a02e55b8c771424107954a8722394b))
+
+### [0.2.84](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.83...@carbon-platform/web-app@0.2.84) (2023-01-18)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add spacer columns to catalog multiselect filter ([c1db40a](https://github.com/carbon-design-system/carbon-platform/commit/c1db40a0224efcc4582b25ab8b7404dd95291d9a))
+* **web-app:** cleanup addSpacerColumns in multiselect filter ([0ca1efa](https://github.com/carbon-design-system/carbon-platform/commit/0ca1efad83cf2ab7522275a1a34369b50695ec10))
+
+### [0.2.83](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.82...@carbon-platform/web-app@0.2.83) (2023-01-13)
+
+
+### Misc. 🔮
+
+* update minor dependencies across repo ([5902b8b](https://github.com/carbon-design-system/carbon-platform/commit/5902b8b82a8b5a168b5d96aa80421e902ce1163c))
+
+### [0.2.82](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.81...@carbon-platform/web-app@0.2.82) (2022-12-21)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** add specifity to chevron up nav tree class ([d33b59e](https://github.com/carbon-design-system/carbon-platform/commit/d33b59e5906f981b55e2da74fbfdfb6f4e3dc2d7))
+
+### [0.2.81](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.80...@carbon-platform/web-app@0.2.81) (2022-12-20)
+
+
+### Bug Fixes 🐛
+
+* add examples back into component description ([9ba2039](https://github.com/carbon-design-system/carbon-platform/commit/9ba2039085c9d84431b3e48abd203f9b70bedccd))
+* clean up copy ([97cdabf](https://github.com/carbon-design-system/carbon-platform/commit/97cdabf9bf6da277cf96c120ed9fc086595a9e0c))
+* clean up library description ([6e3fc55](https://github.com/carbon-design-system/carbon-platform/commit/6e3fc5500810d32cf1212a3b4b35b5e9235e8879))
+* emphasis words with bold ([7eeeebc](https://github.com/carbon-design-system/carbon-platform/commit/7eeeebc0bebecd5e24335edecc65f545b10af0bb))
+* hypen in reusable ([b684940](https://github.com/carbon-design-system/carbon-platform/commit/b684940b2a86543e78a9c216c32008ecfc8b9846))
+* specify carbon team maintains platform ([f143d8d](https://github.com/carbon-design-system/carbon-platform/commit/f143d8df1dd40729e4c5992f568eda7a0070daa1))
+* update design kit and library definitions ([4d5dde9](https://github.com/carbon-design-system/carbon-platform/commit/4d5dde98460dac91f7dd5f9a99a828a6cdfe34e3))
+* update design kit description ([a8bc804](https://github.com/carbon-design-system/carbon-platform/commit/a8bc8040acad095e634f9381b6f6e5558c0e973a))
+* **web-app:** reduce some sonarlint violations ([28fc4af](https://github.com/carbon-design-system/carbon-platform/commit/28fc4af533ad2d0d3b1e9595a71da54328bd9d11))
+
+### [0.2.80](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.79...@carbon-platform/web-app@0.2.80) (2022-12-17)
+
+
+### Bug Fixes 🐛
+
+* update undefined status icon svg ([c9d1159](https://github.com/carbon-design-system/carbon-platform/commit/c9d1159a0470162ecff74bc50c8affa032465756))
+
 ### [0.2.79](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.78...@carbon-platform/web-app@0.2.79) (2022-12-14)
 
 ### [0.2.78](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.77...@carbon-platform/web-app@0.2.78) (2022-12-14)

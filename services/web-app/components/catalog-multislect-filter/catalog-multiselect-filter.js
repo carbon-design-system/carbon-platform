@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2021, 2022
+ * Copyright IBM Corp. 2021, 2023
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -61,6 +61,20 @@ const CatalogMultiselectFilter = ({
   const count = Object.keys(filter).reduce((sum, item) => {
     return sum + filter[item].length
   }, 0)
+
+  const addSpacerColumns = () => {
+    const availableFiltersLength = Object.keys(availableFilters).length
+    if (availableFiltersLength % columns > 0) {
+      const spacerCols = []
+      for (let i = 0; i < columns - (availableFiltersLength % columns); i++) {
+        spacerCols.push(
+          <Column className={styles.column} key={i + availableFiltersLength} sm={1} />
+        )
+      }
+      return spacerCols
+    }
+    return null
+  }
 
   return (
     <Popover
@@ -144,6 +158,7 @@ const CatalogMultiselectFilter = ({
                   </ul>
                 </Column>
               ))}
+              {addSpacerColumns()}
             </Grid>
           </Column>
         </div>

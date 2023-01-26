@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2022, 2022
+ * Copyright IBM Corp. 2022, 2023
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -20,7 +20,7 @@ import { ArrowRight } from '@carbon/react/icons'
 import { FilingCabinet } from '@carbon-platform/icons'
 import clsx from 'clsx'
 import { NextSeo } from 'next-seo'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 
 import AssetCatalogItemMeta from '@/components/asset-catalog-item/asset-catalog-item-meta'
 import AutolinkHeader from '@/components/autolink-header'
@@ -127,7 +127,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
       return assetRow
     }) ?? []
 
-  const onSort = (sortOrder) => setSort(sortOrder)
+  const onSort = useCallback((sortOrder) => setSort(sortOrder), [setSort])
 
   return (
     <>

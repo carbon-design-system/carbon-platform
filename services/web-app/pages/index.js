@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2021, 2022
+ * Copyright IBM Corp. 2021, 2023
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -122,9 +122,8 @@ const PageContent = () => {
 
       <H2>Search asset catalogs</H2>
       <P>
-        Asset catalogs allow you to search across all open and inner source resources and apply
-        complex filters for any scenario — so that you can apply other teams’ knowledge to your own
-        work.
+        Asset catalogs allow you to search across all open-source Carbon resources and apply complex
+        filters for any scenario — so that you can apply other teams’ knowledge to your own work.
       </P>
 
       <Dashboard>
@@ -136,8 +135,8 @@ const PageContent = () => {
             <dl>
               <dt className={styles['dashboard-label']}>Components</dt>
               <dd className={styles['dashboard-content']}>
-                Building blocks (such as buttons, links, and dropdown menus) that are pre-built and
-                ready to use when creating new experiences.
+                Building blocks (such as buttons, links, and dropdown menus) that have been designed
+                and coded to solve a specific user interface problem.
               </dd>
             </dl>
             <Svg64Components className={styles['dashboard-icon']} />
@@ -173,7 +172,7 @@ const PageContent = () => {
             <dl>
               <dt className={styles['dashboard-label']}>Functions</dt>
               <dd className={styles['dashboard-content']}>
-                Code that performs a single action and has no user interface.
+                Coded logic that performs one or many actions and has no user interface.
               </dd>
             </dl>
             <Svg64Functions className={styles['dashboard-icon']} />
@@ -192,8 +191,7 @@ const PageContent = () => {
             <dl>
               <dt className={styles['dashboard-label']}>Templates</dt>
               <dd className={styles['dashboard-content']}>
-                Templates specify order and placement of patterns and components for a given
-                scenario.
+                Order and placement of patterns and components to compose a specific view.
               </dd>
             </dl>
             <Svg64Templates className={styles['dashboard-icon']} />
@@ -216,7 +214,7 @@ const PageContent = () => {
 
       <FeatureCard
         href="/libraries/carbon-react"
-        title="Carbon React library"
+        title="Carbon React"
         description="Build user interfaces with core components using Carbon’s primary library."
       >
         <ArtDirection>
@@ -242,7 +240,7 @@ const PageContent = () => {
       <Grid className={clsx(styles['paragraph-container'], styles['intro-paragraph'])}>
         <Column sm={4} md={8} lg={8}>
           <p className={styles.paragraph}>
-            By standardizing and surfacing our assets, the new site helps makers find assets that{' '}
+            By standardizing and surfacing our assets, the new site helps creators find assets that{' '}
             <mark>comply</mark> with platform requirements, are <mark>convenient</mark> to
             implement, and are <mark>consistent</mark> with design patterns across the company.
             <br />↓
@@ -265,7 +263,7 @@ const PageContent = () => {
                 <p className={clsx(styles.paragraph, styles['paragraph--large'])}>
                   <strong>For designers and developers:</strong>
                   <br />A unified discovery experience helps designers and developers find and
-                  access components, patterns, and functions across all IBM teams.
+                  access components, patterns, functions, and templates across all IBM teams.
                 </p>
               </Column>
             </Grid>
@@ -286,7 +284,7 @@ const PageContent = () => {
               <Column sm={4} md={8} lg={8}>
                 <p className={clsx(styles.paragraph, styles['paragraph--large'])}>
                   <strong>For contributors and maintainers:</strong>
-                  <br />A common schema helps PAL maintainers more easily manage their assets, keep
+                  <br />A common schema helps maintainers more easily manage their assets, keep
                   content fresh in a live index, and add version control to their libraries.
                 </p>
               </Column>
@@ -298,9 +296,9 @@ const PageContent = () => {
 
       <H2>How PAL teams can prepare</H2>
       <P>
-        Ensure your components, patterns, and functions are indexed in our unified asset discovery
-        experience. To help you get started, our team will reach out to document your library’s
-        metadata in the structured format we have provided.
+        Ensure your Pattern and Asset Library (PAL) components and patterns are indexed in our
+        unified asset discovery experience. To help you get started, our team will reach out to
+        document your library’s metadata in the structured format we have provided.
       </P>
       <Grid>
         <Column sm={4} md={8} lg={8}>

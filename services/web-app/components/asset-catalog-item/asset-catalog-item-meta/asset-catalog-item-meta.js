@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2022, 2022
+ * Copyright IBM Corp. 2022, 2023
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -40,8 +40,8 @@ const AssetCatalogItemMeta = ({ asset, className, properties }) => {
 
   return (
     <ul className={clsx(styles.meta, className)}>
-      {properties.map((prop, i) => (
-        <li className={styles['meta-item']} key={i}>
+      {properties.map((prop) => (
+        <li className={styles['meta-item']} key={prop}>
           {prop === 'status' && renderStatus()}
           {prop === 'license' && renderLicense()}
         </li>

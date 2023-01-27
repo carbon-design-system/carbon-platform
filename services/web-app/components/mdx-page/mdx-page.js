@@ -15,9 +15,10 @@ import slugify from 'slugify'
 import ContentWrapper from '@/components/content-wrapper'
 import PageHeader from '@/components/page-header'
 import PageTabs from '@/components/page-tabs'
-import { assetsNavData, getMetaTitle } from '@/data/nav-data'
+import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout'
+import useMetaTitle from '@/utils/use-meta-title'
 
 import ContentNotFoundExceptionContent from './errors/content-not-found-exception-content'
 import ExportFoundExceptionContent from './errors/export-found-exception-content'
@@ -96,6 +97,7 @@ const MdxPage = ({
 }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
+  const defaultMetaTitle = useMetaTitle()
   const areTabsPresent = tabs && tabs.length > 0
   const pathSegments = router.asPath.split('/').filter(Boolean)
   pathSegments.pop()
@@ -118,13 +120,10 @@ const MdxPage = ({
     setPrimaryNavData(assetsNavData)
   }, [setPrimaryNavData])
 
-  // All page titles need to be unique for optimal SEO. We can't just rely on the markdown
-  // frontmatter; we have to use the router and nav data to ensure uniqueness.
-  const fullTitle = getMetaTitle(router.asPath) || metaTitle || title
-
-  // console.log('getMetaTitle', getMetaTitle(router.asPath))
-  // console.log('metaTitle', metaTitle)
-  // console.log('title', title)
+  // First see if a meta title is available using the router path and nav data. If that's not
+  // availble, try the meta title passed into the MdxPage component. If that's not available,
+  // use the title that's shown in the PageHeader.
+  const fullTitle = defaultMetaTitle || metaTitle || title
 
   return (
     <>

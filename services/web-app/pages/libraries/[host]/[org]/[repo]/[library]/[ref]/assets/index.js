@@ -35,8 +35,7 @@ import { ALPHABETICAL_ORDER, sortItems } from '@/data/sort'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData, getLibraryNavData } from '@/lib/github'
 import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from '@/types'
-import { assetSortComparator } from '@/utils/schema'
-import { getAllTags } from '@/utils/schema.js'
+import { assetSortComparator, getAllTags, getLibraryDisplayNameVersion } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { mediaQueries, useMatchMedia } from '@/utils/use-match-media'
 
@@ -81,7 +80,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
   const pageHeader = pageHeaders?.library ?? {}
 
   const seo = {
-    title: 'Assets',
+    title: `Assets - ${getLibraryDisplayNameVersion(libraryData)}`,
     description
   }
 
@@ -134,11 +133,7 @@ const LibrayAssets = ({ libraryData, params, navData }) => {
       <NextSeo {...seo} />
       <Grid className={styles['library-assets-container']}>
         <Column sm={4} md={8} lg={12}>
-          <PageHeader
-            bgColor={pageHeader?.bgColor}
-            title={seo.title}
-            pictogram={pageHeader?.icon}
-          />
+          <PageHeader bgColor={pageHeader?.bgColor} title="Assets" pictogram={pageHeader?.icon} />
         </Column>
         <Column sm={4} md={8} lg={12}>
           <ContentWrapper>

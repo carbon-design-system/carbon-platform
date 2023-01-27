@@ -28,7 +28,7 @@ import { LayoutContext } from '@/layouts/layout'
 import { getAssetIssueCount, getAssetRelatedFrameworks, getLibraryData } from '@/lib/github'
 import { libraryPropTypes, paramsPropTypes } from '@/types'
 import { getProcessedMdxSource } from '@/utils/mdx'
-import { getAssetTabs, getAssetType } from '@/utils/schema'
+import { getAssetTabs, getAssetType, getLibraryDisplayNameVersion } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { createUrl } from '@/utils/string'
 
@@ -95,18 +95,8 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
   const designKitsPath = `/libraries/${params.library}/${params.ref}/design-kits`
   const githubRepoUrl = `https://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
 
-  let seoTitle = `Overview - ${name} - ${libraryData.content.name}`
-
-  if (
-    libraryData.params.ref !== 'main' &&
-    libraryData.params.ref !== 'master' &&
-    libraryData.params.ref !== 'latest'
-  ) {
-    seoTitle += ` v${libraryData.content.version}`
-  }
-
   const seo = {
-    title: seoTitle,
+    title: `Overview - ${name} - ${getLibraryDisplayNameVersion(libraryData)}`,
     description
   }
 

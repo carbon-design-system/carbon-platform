@@ -250,7 +250,9 @@ export const getAssetTabs = (asset) => {
   const tabs = [
     {
       name: 'Overview',
-      path: `/libraries/${asset.params.library}/latest/assets/${getSlug(asset.content)}`
+      path: `/libraries/${asset.params.library}/${asset.params.ref}/assets/${getSlug(
+        asset.content
+      )}`
     }
   ]
   const dynamicDocKeys = ['usage', 'style', 'code', 'accessibility']
@@ -259,7 +261,9 @@ export const getAssetTabs = (asset) => {
     if (asset.content.docs?.[`${docKey}Path`]) {
       tabs.push({
         name: capitalCase(docKey),
-        path: `/libraries/${asset.params.library}/latest/assets/${getSlug(asset.content)}/${docKey}`
+        path: `/libraries/${asset.params.library}/${asset.params.ref}/assets/${getSlug(
+          asset.content
+        )}/${docKey}`
       })
     }
   })

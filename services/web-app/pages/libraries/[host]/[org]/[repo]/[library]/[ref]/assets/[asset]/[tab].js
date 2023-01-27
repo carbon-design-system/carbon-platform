@@ -22,12 +22,12 @@ import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout/layout'
 import { getLibraryData } from '@/lib/github'
 import { getProcessedMdxSource } from '@/utils/mdx'
-import { getAssetTabs, getAssetType } from '@/utils/schema'
+import { getAssetTabs, getAssetType, getLibraryDisplayNameVersion } from '@/utils/schema'
 import { createUrl } from '@/utils/string'
 
 import styles from './[tab].module.scss'
 
-const AssetTabPage = ({ source, tabs = [], assetData }) => {
+const AssetTabPage = ({ source, tabs = [], assetData, libraryData }) => {
   const router = useRouter()
   const [pageNavItems, setPageNavItems] = useState([])
   const frontmatter = source.compiledSource?.data?.matter || {}
@@ -93,7 +93,7 @@ const AssetTabPage = ({ source, tabs = [], assetData }) => {
         </Column>
         <Column sm={4} md={8} lg={12}>
           <MdxPage
-            metaTitle={`${tabName} - ${title}`}
+            metaTitle={`${tabName} - ${title} - ${getLibraryDisplayNameVersion(libraryData)}`}
             description={description}
             keywords={keywords}
             mdxError={source.mdxError}
@@ -154,7 +154,8 @@ export const getStaticProps = async ({ params }) => {
     props: {
       source: tabMdxSource,
       tabs: pageTabs,
-      assetData
+      assetData,
+      libraryData
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in

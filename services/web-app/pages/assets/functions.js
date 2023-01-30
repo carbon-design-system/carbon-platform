@@ -15,14 +15,16 @@ import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 import { libraryPropTypes } from '@/types'
+import useMetaTitle from '@/utils/use-meta-title'
 
 const Functions = ({ librariesData }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
+  const metaTitle = useMetaTitle()
 
   const { function: func } = assetTypes
 
   const seo = {
-    title: 'Functions'
+    title: metaTitle
   }
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const Functions = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader bgColor={func.bgColor} title={seo.title} pictogram={func.icon} />
+      <PageHeader bgColor={func.bgColor} title="Functions" pictogram={func.icon} />
       <AssetsCatalog libraries={librariesData.libraries} type="function" showImage={false} />
     </>
   )

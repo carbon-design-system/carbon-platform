@@ -27,7 +27,7 @@ import ImportFoundExceptionContent from './errors/import-found-exception-content
 import MdxCompileExceptionContent from './errors/mdx-compile-exception-content'
 import WarningsRollup from './errors/warnings-rollup/warnings-rollup'
 
-const getTabData = (tabs, baseSegment) => {
+const getTabData = (tabs = [], baseSegment) => {
   return tabs.map((tab) => {
     if (tab?.name && tab?.path) {
       return tab
@@ -97,11 +97,14 @@ const MdxPage = ({
 }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
-  const defaultMetaTitle = useMetaTitle()
   const areTabsPresent = tabs && tabs.length > 0
+  let defaultMetaTitle = useMetaTitle([], areTabsPresent)
+
   const pathSegments = router.asPath.split('/').filter(Boolean)
   pathSegments.pop()
   const baseSegment = pathSegments.join('/')
+  const tabsData = getTabData(tabs, baseSegment)
+
   const pageHeader = pageHeaders[pageHeaderType] ?? {}
 
   useEffect(() => {
@@ -120,6 +123,20 @@ const MdxPage = ({
     setPrimaryNavData(assetsNavData)
   }, [setPrimaryNavData])
 
+  // If the page's path matches nav data, and the page has tabs, append the tab name
+  if (defaultMetaTitle && areTabsPresent) {
+    const tabName = tabsData.reduce((str, tab) => {
+      if (tab.path === router.asPath) {
+        return tab.name
+      }
+      return str
+    }, '')
+
+    if (tabName) {
+      defaultMetaTitle = `${tabName} - ${defaultMetaTitle}`
+    }
+  }
+
   // First see if a meta title is available using the router path and nav data. If that's not
   // availble, try the meta title passed into the MdxPage component. If that's not available,
   // use the title that's shown in the PageHeader.
@@ -136,7 +153,7 @@ const MdxPage = ({
           pictogram={pageHeader?.icon}
         />
       )}
-      {areTabsPresent && <PageTabs title="Page tabs" tabs={getTabData(tabs, baseSegment)} />}
+      {areTabsPresent && <PageTabs title="Page tabs" tabs={tabsData} />}
       {createPageContent({ children, mdxError, warnings })}
     </>
   )

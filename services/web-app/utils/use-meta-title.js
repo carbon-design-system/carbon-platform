@@ -14,12 +14,13 @@ import { getMetaTitle } from '@/utils/seo'
  * reduce the number of imports on pages that don't use `next/router`.
  *
  * @param {Array} navData - optional nav data for dynamic side navs, e.g. libraries
+ * @param {boolean} hasTabs - if the page has page tabs
  * @returns {string}
  */
-const useMetaTitle = (navData = []) => {
+const useMetaTitle = (navData = [], hasTabs = false) => {
   const router = useRouter()
 
-  return getMetaTitle(router.asPath, navData)
+  return getMetaTitle(router.asPath, navData, hasTabs)
 }
 
 export default useMetaTitle

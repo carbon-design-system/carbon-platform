@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.86](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.85...@carbon-platform/web-app@0.2.86) (2023-01-26)
+
+
+### Tests 🧪
+
+* **web-app:** pull libraries and pages from test carbon platform branch ([54e98bc](https://github.com/carbon-design-system/carbon-platform/commit/54e98bc40169c08a824e96ceaec7325f7d1ce2c6))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** notice header ([35ced29](https://github.com/carbon-design-system/carbon-platform/commit/35ced29d000bf8da282f6869ba3d1137182bf524))
+* **web-app:** pull in remote pages from carbon-platform branch ([543e464](https://github.com/carbon-design-system/carbon-platform/commit/543e46442898b829d91efa43427d18c59134852e))
+
+### [0.2.85](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.84...@carbon-platform/web-app@0.2.85) (2023-01-24)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** convert pictograms to a js page ([b092851](https://github.com/carbon-design-system/carbon-platform/commit/b092851af2a02e55b8c771424107954a8722394b))
+
 ### [0.2.84](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.83...@carbon-platform/web-app@0.2.84) (2023-01-18)
 
 

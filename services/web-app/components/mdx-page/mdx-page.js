@@ -27,19 +27,6 @@ import ImportFoundExceptionContent from './errors/import-found-exception-content
 import MdxCompileExceptionContent from './errors/mdx-compile-exception-content'
 import WarningsRollup from './errors/warnings-rollup/warnings-rollup'
 
-const getTabData = (tabs = [], baseSegment) => {
-  return tabs.map((tab) => {
-    if (tab?.name && tab?.path) {
-      return tab
-    }
-    const tabSlug = slugify(tab, { strict: true, lower: true })
-    return {
-      name: tab,
-      path: baseSegment ? `/${baseSegment}/${tabSlug}` : `/${tabSlug}`
-    }
-  })
-}
-
 const errorMap = {
   ContentNotFoundException: ContentNotFoundExceptionContent,
   ImportFoundException: ImportFoundExceptionContent,
@@ -103,7 +90,17 @@ const MdxPage = ({
   const pathSegments = router.asPath.split('/').filter(Boolean)
   pathSegments.pop()
   const baseSegment = pathSegments.join('/')
-  const tabsData = getTabData(tabs, baseSegment)
+
+  const tabsData = tabs.map((tab) => {
+    if (tab?.name && tab?.path) {
+      return tab
+    }
+    const tabSlug = slugify(tab, { strict: true, lower: true })
+    return {
+      name: tab,
+      path: baseSegment ? `/${baseSegment}/${tabSlug}` : `/${tabSlug}`
+    }
+  })
 
   const pageHeader = pageHeaders[pageHeaderType] ?? {}
 

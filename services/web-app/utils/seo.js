@@ -14,13 +14,13 @@ import { assetsNavData, globalNavData, standardsNavData } from '@/data/nav-data'
  * @param {boolean} hasTabs
  * @returns {string}
  */
-const getSideNavPath = (path, hasTabs) => hasTabs ? path?.split('/')?.slice(0, -1)?.join('/') : path
+const getSideNavPath = (path, hasTabs) =>
+  hasTabs ? path?.split('/')?.slice(0, -1)?.join('/') : path
 
 /**
- * For a given side nav path like `/about-carbon/how-carbon-works`,
- *  if that matches any supplied nav data,
- * construct a title like "How Carbon works - About Carbon" to ensure all titles are unique. The
- * lowest node in the tree is shown first in the meta title.
+ * For a given side nav path like `/about-carbon/how-carbon-works`, if that matches any supplied nav
+ * data, construct a title like "How Carbon works - About Carbon" to ensure all titles are unique.
+ * The lowest node in the tree is shown first in the meta title.
  *
  * @param {Array} navData - array of all nav items to find sideNavPath in
  * @param {string} sideNavPath - path to side nav item to find

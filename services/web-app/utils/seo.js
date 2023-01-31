@@ -8,19 +8,13 @@
 import { assetsNavData, globalNavData, standardsNavData } from '@/data/nav-data'
 
 /**
- * Helper function to conditionally remove the last portion of a path.
+ * Helper function to determine the corresponding sideNav path from a given page path.
  *
  * @param {string} path
- * @param {boolean} popPath
+ * @param {boolean} hasTabs
  * @returns {string}
  */
-const getPath = (path, popPath) => {
-  if (popPath) {
-    return path?.split('/')?.slice(0, -1)?.join('/')
-  }
-
-  return path
-}
+const getSideNavPath = (path, hasTabs) => hasTabs ? path?.split('/')?.slice(0, -1)?.join('/') : path
 
 /**
  * For a given path like `/about-carbon/how-carbon-works`, if that matches any known nav data,

@@ -91,7 +91,7 @@ const MdxPage = ({
   pathSegments.pop()
   const baseSegment = pathSegments.join('/')
 
-  const tabsData = tabs.map((tab) => {
+  const tabsData = tabs?.map((tab) => {
     if (tab?.name && tab?.path) {
       return tab
     }

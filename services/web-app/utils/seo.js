@@ -17,6 +17,32 @@ import { assetsNavData, globalNavData, standardsNavData } from '@/data/nav-data'
 const getSideNavPath = (path, hasTabs) => hasTabs ? path?.split('/')?.slice(0, -1)?.join('/') : path
 
 /**
+ * For a given side nav path like `/about-carbon/how-carbon-works`,
+ *  if that matches any supplied nav data,
+ * construct a title like "How Carbon works - About Carbon" to ensure all titles are unique. The
+ * lowest node in the tree is shown first in the meta title.
+ *
+ * @param {Array} navData - array of all nav items to find sideNavPath in
+ * @param {string} sideNavPath - path to side nav item to find
+ * @param {boolean} hasTabs - if the page has page tabs
+ * @returns {string} title
+ */
+const getPageTitle = (navData, sideNavPath, hasTabs, parentTitle = '') => {
+  for (const navItem of navData) {
+    const navItemTitle = parentTitle ? `${navItem.title} - ${parentTitle}` : navItem.title
+    if (getSideNavPath(navItem.path, hasTabs) === sideNavPath) {
+      return navItemTitle
+    }
+    if (Array.isArray(navItem.items)) {
+      const title = getPageTitle(navItem.items, sideNavPath, hasTabs, navItemTitle)
+      if (title) {
+        return title
+      }
+    }
+  }
+}
+
+/**
  * For a given path like `/about-carbon/how-carbon-works`, if that matches any known nav data,
  * construct a title like "How Carbon works - About Carbon" to ensure all titles are unique. The
  * lowest node in the tree is shown first in the meta title.

@@ -276,12 +276,11 @@ const devLibraries = {
   },
   'carbon-web-components': {
     host: 'github.com',
-    org: 'francinelucca',
+    org: 'carbon-design-system',
     repo: 'carbon-for-ibm-dotcom',
     path: '/packages/carbon-web-components',
     maintainer: 'ibm-dotcom',
-    group: carbonComponentsGroup,
-    ref: 'chore/cwc-carbon-platform-index'
+    group: carbonComponentsGroup
   },
   'ibm-cloud-cognitive': {
     host: 'github.com',

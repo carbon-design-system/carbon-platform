@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.87](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.86...@carbon-platform/web-app@0.2.87) (2023-02-01)
+
+
+### Features 🌟
+
+* add unique meta titles to libraries ([6bfbd38](https://github.com/carbon-design-system/carbon-platform/commit/6bfbd38ab032693443c2a4eaa700b142ad4e8157))
+* make meta title getter recursive ([aabc76e](https://github.com/carbon-design-system/carbon-platform/commit/aabc76e4e15c6ddc942b6984e8dc046ce5ab66b5))
+* set meta title for pages with tabs ([06741fd](https://github.com/carbon-design-system/carbon-platform/commit/06741fd54e0cdbbf7e5f098ab70679bba22d2a34))
+* update meta title helper ([3107b7b](https://github.com/carbon-design-system/carbon-platform/commit/3107b7b32408ea1135543b15809528e21c8dca2f))
+* update meta titles ([a709bab](https://github.com/carbon-design-system/carbon-platform/commit/a709babba9858ea4206a27be3dd78ba896b39c8f))
+* use new helper function for meta titles ([dcfeb11](https://github.com/carbon-design-system/carbon-platform/commit/dcfeb110e82d1998bf01fed82f65ad23c4aea7c7))
+
+
+### Bug Fixes 🐛
+
+* add optional chaining to the mdx page ([c113759](https://github.com/carbon-design-system/carbon-platform/commit/c113759f95939ebbf1b6bfd01245642803405d58))
+* ref in asset page tabs ([539890b](https://github.com/carbon-design-system/carbon-platform/commit/539890bed33419d3135ab459ad13e6551d342014))
+* remove code smell ([8ee7b2c](https://github.com/carbon-design-system/carbon-platform/commit/8ee7b2cf70a25da77b8e5ae0fdd2ffbf7a5d782a))
+
 ### [0.2.86](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.85...@carbon-platform/web-app@0.2.86) (2023-01-26)
 
 

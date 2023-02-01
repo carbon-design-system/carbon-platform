@@ -1,7 +1,7 @@
 {
-  "title": "Carbon Design System",
-  "titleTemplate": "%s - Carbon Design System",
-  "description": "Carbon Design System for IBM makers.",
+  "defaultTitle": "Carbon Design System",
+  "titleTemplate": "%s | Carbon Design System",
+  "description": "Carbon is IBM’s open source design system for products and digital experiences. With the IBM Design Language as its foundation, the system consists of working code, design tools and resources, human interface guidelines, and a vibrant community of contributors.",
   "additionalLinkTags": [
     {
       "rel": "icon",

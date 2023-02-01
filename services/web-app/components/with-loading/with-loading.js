@@ -6,6 +6,7 @@
  */
 import { Column, Grid } from '@carbon/react'
 import { useRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 import React from 'react'
 
 import PageHeader from '@/components/page-header'
@@ -39,6 +40,7 @@ const withLoading = (Component, config = {}) => {
       return (
         <Grid>
           <Column sm={4} md={8} lg={8} {...config?.column}>
+            <NextSeo title="Loading..." />
             <PageHeader loading {...config?.pageHeader} />
             <PageLoading />
           </Column>

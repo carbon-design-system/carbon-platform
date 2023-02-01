@@ -14,14 +14,16 @@ import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
+import useMetaTitle from '@/utils/use-meta-title'
 
 const DataVisualization = ({ librariesData }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
+  const metaTitle = useMetaTitle()
 
   const pageHeader = pageHeaders?.collection ?? {}
 
   const seo = {
-    title: 'Data visualization'
+    title: metaTitle
   }
 
   useEffect(() => {
@@ -31,7 +33,11 @@ const DataVisualization = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader bgColor={pageHeader?.bgColor} title={seo.title} pictogram={pageHeader?.icon} />
+      <PageHeader
+        bgColor={pageHeader?.bgColor}
+        title="Data visualization"
+        pictogram={pageHeader?.icon}
+      />
       <AssetsCatalog
         collection="data-visualization"
         libraries={librariesData.libraries}

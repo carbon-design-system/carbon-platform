@@ -25,14 +25,17 @@ import FullPageError from '@/components/mdx-page/errors/full-page-error/full-pag
 import PageHeader from '@/components/page-header/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
+import useMetaTitle from '@/utils/use-meta-title'
 
 import styles from './index.module.scss'
 
 const CommonMdxErrors = () => {
   const { setPrimaryNavData } = useContext(LayoutContext)
+  const metaTitle = useMetaTitle()
 
+  const title = 'Common MDX errors'
   const seo = {
-    title: 'Common Mdx Errors'
+    title: metaTitle || title
   }
 
   useEffect(() => {
@@ -42,7 +45,7 @@ const CommonMdxErrors = () => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} />
+      <PageHeader title={title} />
       <div className={styles.content}>
         <PageDescription>
           {' '}

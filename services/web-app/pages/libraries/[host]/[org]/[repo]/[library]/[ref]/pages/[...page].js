@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { MDXRemote } from 'next-mdx-remote'
-import { NextSeo } from 'next-seo'
 import path from 'path'
 import { useContext, useEffect } from 'react'
 import slugify from 'slugify'
@@ -17,15 +16,14 @@ import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout/layout'
 import { getLibraryData, getLibraryNavData, getRemoteMdxSource } from '@/lib/github'
 import { processMdxSource } from '@/utils/mdx'
+import { getLibraryDisplayNameVersion } from '@/utils/schema'
 import { createUrl } from '@/utils/string'
 import { dfs } from '@/utils/tree'
+import useMetaTitle from '@/utils/use-meta-title'
 
-const LibraryPage = ({ compiledSource, mdxError, warnings, navData, navTitle, libraryData }) => {
-  const seo = {
-    title: `${libraryData?.content?.name ?? ''} - ${navTitle}`
-  }
-
+const LibraryPage = ({ compiledSource, mdxError, warnings, navData, libraryData }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
+  const defaultMetaTitle = useMetaTitle(navData?.items ?? [])
 
   useEffect(() => {
     setPrimaryNavData(assetsNavData)
@@ -34,20 +32,19 @@ const LibraryPage = ({ compiledSource, mdxError, warnings, navData, navTitle, li
 
   const frontmatter = compiledSource?.data?.matter || {}
   const { title, description, keywords } = frontmatter
+
   return (
-    <>
-      <NextSeo {...seo} />
-      <MdxPage
-        title={title}
-        description={description}
-        keywords={keywords}
-        mdxError={mdxError}
-        warnings={warnings}
-        pageHeaderType="library"
-      >
-        {compiledSource && <MDXRemote compiledSource={compiledSource.value} />}
-      </MdxPage>
-    </>
+    <MdxPage
+      title={title}
+      metaTitle={`${defaultMetaTitle} - ${getLibraryDisplayNameVersion(libraryData)}`}
+      description={description}
+      keywords={keywords}
+      mdxError={mdxError}
+      warnings={warnings}
+      pageHeaderType="library"
+    >
+      {compiledSource && <MDXRemote compiledSource={compiledSource.value} />}
+    </MdxPage>
   )
 }
 
@@ -62,7 +59,6 @@ export const getStaticProps = async ({ params }) => {
   const navData = getLibraryNavData(params, libraryData)
 
   let pageSrc = ''
-  let navTitle = ''
 
   // traverse items subtree and remove hidden nodes
   dfs(libraryData.content.navData, (item) => {
@@ -76,7 +72,6 @@ export const getStaticProps = async ({ params }) => {
     }
     if (itemPath === params.page.join('/')) {
       pageSrc = item.src
-      navTitle = item.title
       return true
     }
   })
@@ -112,8 +107,7 @@ export const getStaticProps = async ({ params }) => {
       libraryData,
       navData,
       params,
-      ...safeSource,
-      navTitle
+      ...safeSource
     }, // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every hour

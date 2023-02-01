@@ -14,6 +14,7 @@ import ContentWrapper from '@/components/content-wrapper'
 import PageHeader from '@/components/page-header'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
+import useMetaTitle from '@/utils/use-meta-title'
 
 import ReleaseOneImg from './images/roadmap-v0.1.png'
 import ReleaseTwoImg from './images/roadmap-v0.2.png'
@@ -236,9 +237,11 @@ const PageContent = () => {
 
 const PlatformRoadmap = () => {
   const { setPrimaryNavData } = useContext(LayoutContext)
+  const metaTitle = useMetaTitle()
 
+  const title = 'Platform roadmap'
   const seo = {
-    title: 'Platform roadmap'
+    title: metaTitle || title
   }
 
   useEffect(() => {
@@ -248,7 +251,7 @@ const PlatformRoadmap = () => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader title={seo.title} />
+      <PageHeader title={title} />
       <PageContent />
     </>
   )

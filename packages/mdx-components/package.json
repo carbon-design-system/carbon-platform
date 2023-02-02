@@ -35,8 +35,8 @@
     "test": "ava --config ../../ava.config.mjs"
   },
   "dependencies": {
-    "@carbon/colors": "^11.10.0",
-    "@carbon/layout": "^11.9.0",
+    "@carbon/colors": "^11.12.0",
+    "@carbon/layout": "^11.11.0",
     "clsx": "^1.2.1",
     "prop-types": "^15.8.1",
     "rimraf": "^3.0.2",
@@ -48,15 +48,15 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
-    "@storybook/addon-actions": "^6.5.15",
-    "@storybook/addon-essentials": "^6.5.15",
-    "@storybook/addon-interactions": "^6.5.15",
-    "@storybook/addon-links": "^6.5.15",
-    "@storybook/builder-webpack5": "^6.5.15",
-    "@storybook/manager-webpack5": "^6.5.15",
-    "@storybook/react": "^6.5.15",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
-    "babel-loader": "^9.1.0",
+    "babel-loader": "^9.1.2",
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.20"
   }

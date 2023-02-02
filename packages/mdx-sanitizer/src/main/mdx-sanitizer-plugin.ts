@@ -65,7 +65,7 @@ function getMdAstNodeFromSrc(src: string): MdxJsxFlowElement {
 function sanitizeAst(config: Config, tree: Parent) {
   visit(
     tree,
-    (node) => !!node,
+    (node: Node): boolean => !!node,
     (node: Node, index: number | null, parent: Parent | null) => {
       detectImports(config, node)
       detectExports(config, node)

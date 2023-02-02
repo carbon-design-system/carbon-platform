@@ -18,16 +18,18 @@ import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 import { libraryPropTypes } from '@/types'
 import { librarySortComparator } from '@/utils/schema'
+import useMetaTitle from '@/utils/use-meta-title'
 
 import styles from './index.module.scss'
 
 const Libraries = ({ librariesData }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
+  const metaTitle = useMetaTitle()
 
   const pageHeader = pageHeaders?.library ?? {}
 
   const seo = {
-    title: 'Libraries'
+    title: metaTitle
   }
 
   useEffect(() => {
@@ -41,7 +43,7 @@ const Libraries = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader bgColor={pageHeader?.bgColor} title={seo.title} pictogram={pageHeader?.icon} />
+      <PageHeader bgColor={pageHeader?.bgColor} title="Libraries" pictogram={pageHeader?.icon} />
       <ContentWrapper>
         <PageDescription className={styles['library-description']}>
           Libraries are 1:1 with code packages. All coded components, elements, patterns, or

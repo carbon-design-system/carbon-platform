@@ -30,16 +30,16 @@ import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout'
 import { getLibraryData, getLibraryNavData } from '@/lib/github'
+import { getLibraryDisplayNameVersion } from '@/utils/schema'
 
 const DesignKits = ({ libraryData, navData }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
 
   const pageHeader = pageHeaders?.library ?? {}
-
   const { name } = libraryData.content
 
   const seo = {
-    title: `${name} design kits`
+    title: `Design kits - ${getLibraryDisplayNameVersion(libraryData)}`
   }
 
   useEffect(() => {

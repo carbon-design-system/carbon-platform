@@ -16,14 +16,16 @@ import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllDesignKits } from '@/lib/github'
 import { designKitPropTypes } from '@/types'
+import useMetaTitle from '@/utils/use-meta-title'
 
 const DesignKits = ({ designKitsData }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
+  const metaTitle = useMetaTitle()
 
   const pageHeader = pageHeaders?.designKit ?? {}
 
   const seo = {
-    title: 'Design kits'
+    title: metaTitle
   }
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const DesignKits = ({ designKitsData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader bgColor={pageHeader?.bgColor} title={seo.title} pictogram={pageHeader?.icon} />
+      <PageHeader bgColor={pageHeader?.bgColor} title="Design kits" pictogram={pageHeader?.icon} />
       <DesignKitsCatalog designKits={designKitsData} />
     </>
   )

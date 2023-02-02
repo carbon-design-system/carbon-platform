@@ -15,14 +15,16 @@ import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 import { getAllLibraries } from '@/lib/github'
 import { libraryPropTypes } from '@/types'
+import useMetaTitle from '@/utils/use-meta-title'
 
 const Patterns = ({ librariesData }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
+  const metaTitle = useMetaTitle()
 
   const { pattern } = assetTypes
 
   const seo = {
-    title: 'Patterns'
+    title: metaTitle
   }
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const Patterns = ({ librariesData }) => {
   return (
     <>
       <NextSeo {...seo} />
-      <PageHeader bgColor={pattern.bgColor} title={seo.title} pictogram={pattern.icon} />
+      <PageHeader bgColor={pattern.bgColor} title="Patterns" pictogram={pattern.icon} />
       {/* this probably eventually gets replaced  by a parentsCatalog */}
       <AssetsCatalog libraries={librariesData.libraries} type="pattern" />
     </>

@@ -18,6 +18,7 @@ import PageTabs from '@/components/page-tabs'
 import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout'
+import useMetaTitle from '@/utils/use-meta-title'
 
 import ContentNotFoundExceptionContent from './errors/content-not-found-exception-content'
 import ExportFoundExceptionContent from './errors/export-found-exception-content'
@@ -25,19 +26,6 @@ import FallbackExceptionContent from './errors/fallback-exception-content'
 import ImportFoundExceptionContent from './errors/import-found-exception-content'
 import MdxCompileExceptionContent from './errors/mdx-compile-exception-content'
 import WarningsRollup from './errors/warnings-rollup/warnings-rollup'
-
-const getTabData = (tabs, baseSegment) => {
-  return tabs.map((tab) => {
-    if (tab?.name && tab?.path) {
-      return tab
-    }
-    const tabSlug = slugify(tab, { strict: true, lower: true })
-    return {
-      name: tab,
-      path: baseSegment ? `/${baseSegment}/${tabSlug}` : `/${tabSlug}`
-    }
-  })
-}
 
 const errorMap = {
   ContentNotFoundException: ContentNotFoundExceptionContent,
@@ -92,14 +80,28 @@ const MdxPage = ({
   warnings,
   children,
   pageHeaderType,
-  seoTitle
+  metaTitle
 }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
   const router = useRouter()
   const areTabsPresent = tabs && tabs.length > 0
+  let defaultMetaTitle = useMetaTitle([], areTabsPresent)
+
   const pathSegments = router.asPath.split('/').filter(Boolean)
   pathSegments.pop()
   const baseSegment = pathSegments.join('/')
+
+  const tabsData = tabs?.map((tab) => {
+    if (tab?.name && tab?.path) {
+      return tab
+    }
+    const tabSlug = slugify(tab, { strict: true, lower: true })
+    return {
+      name: tab,
+      path: baseSegment ? `/${baseSegment}/${tabSlug}` : `/${tabSlug}`
+    }
+  })
+
   const pageHeader = pageHeaders[pageHeaderType] ?? {}
 
   useEffect(() => {
@@ -118,9 +120,28 @@ const MdxPage = ({
     setPrimaryNavData(assetsNavData)
   }, [setPrimaryNavData])
 
+  // If the page's path matches nav data, and the page has tabs, append the tab name
+  if (defaultMetaTitle && areTabsPresent) {
+    const tabName = tabsData.reduce((str, tab) => {
+      if (tab.path === router.asPath) {
+        return tab.name
+      }
+      return str
+    }, '')
+
+    if (tabName) {
+      defaultMetaTitle = `${tabName} - ${defaultMetaTitle}`
+    }
+  }
+
+  // First see if a meta title is available using the router path and nav data. If that's not
+  // availble, try the meta title passed into the MdxPage component. If that's not available,
+  // use the title that's shown in the PageHeader.
+  const fullTitle = defaultMetaTitle || metaTitle || title
+
   return (
     <>
-      {createSeo({ title: seoTitle ?? title, description, keywords })}
+      {createSeo({ title: fullTitle, description, keywords })}
       {title && (
         <PageHeader
           title={title}
@@ -129,7 +150,7 @@ const MdxPage = ({
           pictogram={pageHeader?.icon}
         />
       )}
-      {areTabsPresent && <PageTabs title="Page tabs" tabs={getTabData(tabs, baseSegment)} />}
+      {areTabsPresent && <PageTabs title="Page tabs" tabs={tabsData} />}
       {createPageContent({ children, mdxError, warnings })}
     </>
   )
@@ -157,19 +178,19 @@ MdxPage.propTypes = {
     stack: PropTypes.string
   }),
   /**
-   * page header type that determines background color and pictogram
+   * Title to use for SEO
+   */
+  metaTitle: PropTypes.string,
+  /**
+   * Page header type that determines background color and pictogram
    */
   pageHeaderType: PropTypes.string,
-  /**
-   * title to use for SEO
-   */
-  seoTitle: PropTypes.string,
   /**
    * Tabs to display on the page.
    */
   tabs: PropTypes.arrayOf(PropTypes.string),
   /**
-   * Title of the page, typically from frontmatter.
+   * Title of the page, typically from frontmatter
    */
   title: PropTypes.string,
   /**

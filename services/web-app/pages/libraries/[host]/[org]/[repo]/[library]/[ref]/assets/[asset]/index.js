@@ -28,7 +28,7 @@ import { LayoutContext } from '@/layouts/layout'
 import { getAssetIssueCount, getAssetRelatedFrameworks, getLibraryData } from '@/lib/github'
 import { libraryPropTypes, paramsPropTypes } from '@/types'
 import { getProcessedMdxSource } from '@/utils/mdx'
-import { getAssetTabs, getAssetType } from '@/utils/schema'
+import { getAssetTabs, getAssetType, getLibraryDisplayNameVersion } from '@/utils/schema'
 import { getSlug } from '@/utils/slug'
 import { createUrl } from '@/utils/string'
 
@@ -96,7 +96,7 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
   const githubRepoUrl = `https://${assetData.params.host}/${assetData.params.org}/${assetData.params.repo}`
 
   const seo = {
-    title: name,
+    title: `Overview - ${name} - ${getLibraryDisplayNameVersion(libraryData)}`,
     description
   }
 
@@ -118,7 +118,7 @@ const Asset = ({ libraryData, overviewMdxSource, params }) => {
         <Column sm={4} md={8} lg={{ start: 5, span: 12 }}>
           <PageHeader
             bgColor={assetTypes[assetData.content.type]?.bgColor}
-            title={seo.title}
+            title={name}
             pictogram={assetTypes[assetData.content.type]?.icon}
             withTabs
           />

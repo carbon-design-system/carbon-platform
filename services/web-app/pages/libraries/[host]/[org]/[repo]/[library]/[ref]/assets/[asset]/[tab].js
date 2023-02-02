@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
+import { useRouter } from 'next/router'
 import { MDXRemote } from 'next-mdx-remote'
 import path from 'path'
 import { useContext, useEffect, useRef, useState } from 'react'
@@ -21,12 +22,13 @@ import { pageHeaders } from '@/data/page-headers'
 import { LayoutContext } from '@/layouts/layout/layout'
 import { getLibraryData } from '@/lib/github'
 import { getProcessedMdxSource } from '@/utils/mdx'
-import { getAssetTabs, getAssetType } from '@/utils/schema'
+import { getAssetTabs, getAssetType, getLibraryDisplayNameVersion } from '@/utils/schema'
 import { createUrl } from '@/utils/string'
 
 import styles from './[tab].module.scss'
 
-const AssetTabPage = ({ source, tabs, assetData }) => {
+const AssetTabPage = ({ source, tabs = [], assetData, libraryData }) => {
+  const router = useRouter()
   const [pageNavItems, setPageNavItems] = useState([])
   const frontmatter = source.compiledSource?.data?.matter || {}
   const { title, description, keywords } = frontmatter
@@ -51,6 +53,13 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
   }, [setPrimaryNavData])
 
   const { name } = assetData.content
+
+  const tabName = tabs.reduce((str, tab) => {
+    if (tab.path === router.asPath) {
+      return tab.name
+    }
+    return str
+  }, '')
 
   const breadcrumbItems = [
     {
@@ -84,11 +93,11 @@ const AssetTabPage = ({ source, tabs, assetData }) => {
         </Column>
         <Column sm={4} md={8} lg={12}>
           <MdxPage
+            metaTitle={`${tabName} - ${title} - ${getLibraryDisplayNameVersion(libraryData)}`}
             description={description}
             keywords={keywords}
             mdxError={source.mdxError}
             warnings={source.warnings}
-            seoTitle={title ?? `${assetData.content.name} - Usage`}
           >
             {source.compiledSource && <MDXRemote compiledSource={source.compiledSource.value} />}
           </MdxPage>
@@ -145,7 +154,8 @@ export const getStaticProps = async ({ params }) => {
     props: {
       source: tabMdxSource,
       tabs: pageTabs,
-      assetData
+      assetData,
+      libraryData
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in

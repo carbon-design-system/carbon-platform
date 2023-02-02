@@ -13,6 +13,7 @@ import { ORDER_BY_STATUS } from '@/data/sort'
 import { elementStatusLifecycle } from '@/data/status'
 import { tagsForCollection, tagsForType } from '@/data/tags'
 import { getSlug } from '@/utils/slug'
+
 /**
  * Defines the sort order of an element by status
  * @param {import('@/typedefs').Element} elementA
@@ -249,7 +250,9 @@ export const getAssetTabs = (asset) => {
   const tabs = [
     {
       name: 'Overview',
-      path: `/libraries/${asset.params.library}/latest/assets/${getSlug(asset.content)}`
+      path: `/libraries/${asset.params.library}/${asset.params.ref}/assets/${getSlug(
+        asset.content
+      )}`
     }
   ]
   const dynamicDocKeys = ['usage', 'style', 'code', 'accessibility']
@@ -258,10 +261,45 @@ export const getAssetTabs = (asset) => {
     if (asset.content.docs?.[`${docKey}Path`]) {
       tabs.push({
         name: capitalCase(docKey),
-        path: `/libraries/${asset.params.library}/latest/assets/${getSlug(asset.content)}/${docKey}`
+        path: `/libraries/${asset.params.library}/${asset.params.ref}/assets/${getSlug(
+          asset.content
+        )}/${docKey}`
       })
     }
   })
 
   return tabs
+}
+
+/**
+ * Gets the library's version and returns in a display format e.g. `v0.0.0` or `Latest`
+ * @param {import('@/typedefs').Library} library
+ * @returns {string} Library version
+ */
+export const getLibraryDisplayVersion = (library) => {
+  const ref = library?.params?.ref ?? ''
+  const version = library?.content?.version ?? ''
+
+  if (!version || ref === 'main' || ref === 'master' || ref === 'latest') {
+    return 'Latest'
+  }
+
+  return `v${version}`
+}
+
+/**
+ * Returns the library name and version in a display format e.g. `Carbon React v0.0.0` or
+ * `Carbon React`
+ * @param {import('@/typedefs').Library} library
+ * @returns {string} Library name and version
+ */
+export const getLibraryDisplayNameVersion = (library) => {
+  const libraryName = library?.content?.name ?? ''
+  const libraryVersion = getLibraryDisplayVersion(library)
+
+  if (libraryVersion !== 'Latest') {
+    return `${libraryName} ${libraryVersion}`
+  }
+
+  return libraryName
 }

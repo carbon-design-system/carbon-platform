@@ -38,46 +38,65 @@ import {
   getLibraryRelatedLibs
 } from '@/lib/github'
 import { libraryPropTypes, paramsPropTypes, secondaryNavDataPropTypes } from '@/types'
-import { getAssetLicense } from '@/utils/schema'
+import {
+  getAssetLicense,
+  getLibraryDisplayNameVersion,
+  getLibraryDisplayVersion
+} from '@/utils/schema'
 
 import styles from './index.module.scss'
 
 const Library = ({ libraryData, params, navData }) => {
   const { setPrimaryNavData, setSecondaryNavData } = useContext(LayoutContext)
-
   const router = useRouter()
+
+  const pageHeader = pageHeaders?.library ?? {}
+  const { name, description, otherLibraries: relatedLibraries } = libraryData.content
+  const libraryVersion = getLibraryDisplayVersion(libraryData)
+
+  /**
+   * Paths
+   */
+
+  const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
+  const designKitPath = `/libraries/${params.library}/${params.ref}/design-kits`
+
+  /**
+   * SEO
+   */
+
+  const seo = {
+    title: getLibraryDisplayNameVersion(libraryData),
+    description
+  }
+
+  /**
+   * Maintainers
+   */
+
+  const { maintainer } = libraryData.params
+  const MaintainerIcon = teams[maintainer] ? teams[maintainer].pictogram : Svg64Community
+
+  /**
+   * Nav data
+   */
 
   useEffect(() => {
     setPrimaryNavData(assetsNavData)
     setSecondaryNavData(navData)
   }, [setPrimaryNavData, navData, setSecondaryNavData])
 
-  const { name, description } = libraryData.content
+  /**
+   * Local components
+   */
 
-  const pageHeader = pageHeaders?.library ?? {}
+  const renderInheritanceCard = () => {
+    const inherits = libraryData?.content?.inherits
 
-  const seo = {
-    title: name,
-    description
-  }
+    if (!inherits) return null
 
-  const { maintainer } = libraryData.params
-  const MaintainerIcon = teams[maintainer] ? teams[maintainer].pictogram : Svg64Community
+    const [library, version] = inherits.split('@')
 
-  const assetsPath = `/libraries/${params.library}/${params.ref}/assets`
-
-  const designKitPath = `/libraries/${params.library}/${params.ref}/design-kits`
-
-  const getVersion = () => {
-    if (params.ref === 'main' || params.ref === 'master' || params.ref === 'latest') {
-      return 'Latest'
-    }
-
-    return `v${libraryData.content.version}`
-  }
-
-  const libraryInheritanceCard = () => {
-    const [library, version] = libraryData.content.inherits.split('@')
     return (
       <Column sm={4} md={4} lg={4}>
         <ResourceCard
@@ -96,9 +115,7 @@ const Library = ({ libraryData, params, navData }) => {
     )
   }
 
-  const relatedLibraries = libraryData.content.otherLibraries
-
-  const relatedLibrariesLinks = relatedLibraries
+  const renderRelatedLibrariesLinks = relatedLibraries
     .sort((a, b) => a.content.name.localeCompare(b.content.name))
     .map((item, index) => (
       <>
@@ -114,14 +131,9 @@ const Library = ({ libraryData, params, navData }) => {
       <NextSeo {...seo} />
       <Grid>
         <Column sm={4} md={8} lg={12}>
-          <PageHeader
-            bgColor={pageHeader?.bgColor}
-            title={seo.title}
-            pictogram={pageHeader?.icon}
-          />
+          <PageHeader bgColor={pageHeader?.bgColor} title={name} pictogram={pageHeader?.icon} />
         </Column>
       </Grid>
-
       <ContentWrapper>
         <Grid>
           <Column sm={4} md={8} lg={8}>
@@ -141,7 +153,7 @@ const Library = ({ libraryData, params, navData }) => {
                   <DashboardItem aspectRatio={{ sm: '2x1', md: '1x1', lg: '3x4', xlg: '1x1' }}>
                     <dl>
                       <dt className={dashboardStyles.label}>Version</dt>
-                      <dd className={dashboardStyles['label--large']}>{getVersion()}</dd>
+                      <dd className={dashboardStyles['label--large']}>{libraryVersion}</dd>
                     </dl>
                     {MaintainerIcon && (
                       <MaintainerIcon
@@ -170,7 +182,7 @@ const Library = ({ libraryData, params, navData }) => {
                       <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
                         <dt className={dashboardStyles.label}>Related libraries</dt>
                         <dd className={dashboardStyles.meta}>
-                          {relatedLibraries.length > 0 ? relatedLibrariesLinks : '–'}
+                          {relatedLibraries.length > 0 ? renderRelatedLibrariesLinks : '–'}
                         </dd>
                       </Column>
                       <Column className={dashboardStyles.subcolumn} sm={2} lg={4}>
@@ -182,7 +194,6 @@ const Library = ({ libraryData, params, navData }) => {
                         </dd>
                       </Column>
                     </Grid>
-
                     <ButtonSet className={dashboardStyles['button-set']}>
                       <Button
                         className={dashboardStyles['dashboard-button']}
@@ -218,9 +229,8 @@ const Library = ({ libraryData, params, navData }) => {
           <Column sm={4} md={8} lg={8}>
             <section>
               <H2>Resources</H2>
-
               <CardGroup>
-                {libraryData.content.inherits && libraryInheritanceCard()}
+                {renderInheritanceCard()}
                 <Column sm={4} md={4} lg={4}>
                   <ResourceCard
                     title={`${libraryData.params.org}/${libraryData.params.repo}`}

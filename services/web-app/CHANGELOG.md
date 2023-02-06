@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.88](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.87...@carbon-platform/web-app@0.2.88) (2023-02-06)
+
+
+### Features 🌟
+
+* **web-app:** index carbon-web-components ([f73abbd](https://github.com/carbon-design-system/carbon-platform/commit/f73abbd18a0c72271798f5ae6adb17a65192291f))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** refrech carbon-for-ibm-dotcom cache ([459cfd9](https://github.com/carbon-design-system/carbon-platform/commit/459cfd99272186add139adb57c683db4a2d2f108))
+* **web-app:** update reference for carbon-web-components index ([5ed9b91](https://github.com/carbon-design-system/carbon-platform/commit/5ed9b914f8af6e022a78b10cc067f6ae87dd01b2))
+
 ### [0.2.87](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.86...@carbon-platform/web-app@0.2.87) (2023-02-01)
 
 

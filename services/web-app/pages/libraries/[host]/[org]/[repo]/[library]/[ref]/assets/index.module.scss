@@ -17,7 +17,7 @@
  * Subheading
  */
 
-.subheading {
+.h2.subheading {
   padding: 0 spacing.$spacing-05 spacing.$spacing-11 0;
   @include type.type-style('fluid-heading-03', true);
 
@@ -142,6 +142,23 @@
   }
 }
 
-.no-results-heading {
+.h2.no-results-heading {
   margin-bottom: spacing.$spacing-06;
+}
+
+.h2-container + * {
+  margin-top: spacing.$spacing-06;
+}
+
+.h2-container,
+.paragraph-container + .h2-container {
+  margin-top: spacing.$spacing-09;
+
+  @include breakpoint.breakpoint(md) {
+    margin-top: spacing.$spacing-11;
+  }
+}
+
+.h2 {
+  @include type.type-style('fluid-heading-04', true);
 }

@@ -16,7 +16,6 @@ type ImageType = 'fixed'
 
 interface ImageWrapperProps {
   children: ReactNode
-  className?: string | null
   type: ImageType
 }
 
@@ -25,8 +24,8 @@ interface ImageWrapperProps {
  * which forces a fixed max width inside the container, and scales down
  * to smaller sizes at tablet and mobile.
  */
-const ImageWrapper: MdxComponent<ImageWrapperProps> = ({ children, className, type }) => {
-  const wrapperClassNames = clsx(className, {
+const ImageWrapper: MdxComponent<ImageWrapperProps> = ({ children, type }) => {
+  const wrapperClassNames = clsx({
     [withPrefix('fixed')]: type === 'fixed'
   })
 
@@ -36,8 +35,6 @@ const ImageWrapper: MdxComponent<ImageWrapperProps> = ({ children, className, ty
 ImageWrapper.propTypes = {
   /** set children */
   children: PropTypes.node.isRequired,
-  /** set optional custom class */
-  className: PropTypes.string,
   /** set type */
   type: PropTypes.oneOf<ImageType>(['fixed']).isRequired
 }

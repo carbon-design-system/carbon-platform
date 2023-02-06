@@ -1,0 +1,46 @@
+name: Publish RMDX web-app
+on:
+  push:
+    branches:
+      - 1492-create-rmdx-processing-microservice
+
+#
+# Limit workflow to a single running instance at a time
+#
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: 'true'
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+
+      - name: Setup Node 🏗
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Install Micromanage 🔬
+        run: npm --workspace packages/micromanage-cli install
+
+      - name: Setup Docker 🐳
+        run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io
+
+      - name: Build root image 🔨
+        run: npx micromanage docker build --pull @carbon-platform/root
+
+      - name: Build and push 🔨 🚀
+        run: |
+          npx micromanage docker build @carbon-platform/web-app
+          docker tag us.icr.io/carbon-platform/web-app:latest us.icr.io/carbon-platform-test/web-app:rmdx-latest
+          docker push us.icr.io/carbon-platform-test/web-app:rmdx-latest
+        env:
+          CARBON_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

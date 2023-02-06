@@ -1,6 +1,6 @@
 # Data-Graph service
 
-### Service
+## Service
 
 The data-graph service provides a GraphQL endpoint accessible via both REST HTTP calls and RabbitMQ
 messaging. It provides access to all of the disparate data sources across the platform.
@@ -60,6 +60,25 @@ if (responseJson.errors) {
 }
 
 const data = responseJson.data
+```
+
+### Viewing the GraphQL playground in a local dev environment
+
+To view and query the data graph via its REST endpoint in a local environment, do the following:
+
+1. Start up [rabbitmq](./docker.md#docker-run-command-for-rabbitmq-messaging) locally
+2. Start up the data-graph service `npm -w services/data-graph run start:dev`
+3. Navigate to http://localhost:3000/graphql
+4. Enter queries on the left hand side.
+
+### Example GraphQL query
+
+```gql
+query {
+  users {
+    id
+  }
+}
 ```
 
 ## Package APIs

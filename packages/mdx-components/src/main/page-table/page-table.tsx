@@ -14,6 +14,7 @@ import { withPrefix } from '../utils.js'
 
 interface PageTableProps {
   children: ReactNode[]
+  columns: number
 }
 
 /**
@@ -28,33 +29,10 @@ interface PageTableProps {
  * ```
  */
 const PageTable: MdxComponent<PageTableProps> = (props) => {
-  const { children } = props
-
-  if (!children[1]) {
-    return null
-  }
-  if (typeof children[1] === 'string') {
-    return null
-  }
-  if (typeof children[1] === 'boolean') {
-    return null
-  }
-  if (typeof children[1] === 'number') {
-    return null
-  }
-  if (!('props' in children[1])) {
-    return null
-  }
-
-  let gridSize
-  if (Array.isArray(children[1].props.children)) {
-    gridSize = children[1].props.children[0].props.children.length
-  } else {
-    gridSize = children[1].props.children.props.children.length
-  }
+  const { children, columns } = props
 
   let lg = null
-  if (gridSize > 3) {
+  if (columns > 3) {
     lg = 12
   } else {
     lg = 8
@@ -73,7 +51,9 @@ const PageTable: MdxComponent<PageTableProps> = (props) => {
 
 PageTable.propTypes = {
   /** Provide the contents of the PageTable */
-  children: PropTypes.arrayOf(PropTypes.node.isRequired).isRequired
+  children: PropTypes.arrayOf(PropTypes.node.isRequired).isRequired,
+  /** Number of columns contained in table */
+  columns: PropTypes.number.isRequired
 }
 
 export { PageTableProps }

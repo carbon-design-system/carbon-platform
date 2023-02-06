@@ -9,10 +9,10 @@ import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
 import { InvalidInputException } from '@carbon-platform/api/microservice'
 
 /**
- * Validates an incoming log message to ensure all required fields have been specified.
+ * Validates an incoming log message.
  *
  * @param data Incoming log message data.
- * @returns true if the mesage is a valid LogLoggedMessage. Throws an Error otherwise.
+ * @returns The input data if it passes validation. Throws an Error otherwise.
  */
 function validateLogMessage(data: UnvalidatedMessage<LogLoggedMessage>): LogLoggedMessage {
   if (!data.component) {

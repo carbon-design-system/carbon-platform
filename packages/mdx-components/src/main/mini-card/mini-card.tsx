@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column } from '@carbon/react'
-import { ArrowRight, Calendar, Download, Email, Launch } from '@carbon/react/icons'
+import { ArrowRight, Calendar, Download, Email, Launch } from '@carbon/react/icons/index.js'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React, { ReactNode } from 'react'
@@ -21,7 +21,6 @@ interface MiniCardProps {
   title: string | null
   actionIcon?: ActionIcon | null
   linkProps?: object | null
-  className?: string | null
 }
 
 const getIcon = ({ actionIcon }: { actionIcon: ActionIcon }) => {
@@ -40,40 +39,40 @@ const getIcon = ({ actionIcon }: { actionIcon: ActionIcon }) => {
 }
 
 /**
- *The `<MiniCard>` component can be used in place of a `<ResourceCard>` if your content
- allows it. Unless it is sitting beside your main content, it should always be wrapped
- inside of a `<CardGroup>`. This allows the correct gutter and border placement between
- a group of cards
-*
- Although the mini-resource card has a similar geometry to the button component, they
- should not be used in place of a button. Buttons encourage action from the user and
- affect the website's front-end or back-end. The resource cards, both large and mini
- are essentially links. They are used for navigation and actions that do not affect
- the website.
- **/
+ * The `<MiniCard>` component can be used in place of a `<ResourceCard>` if your content
+ * allows it. Unless it is sitting beside your main content, it should always be wrapped
+ * inside of a `<CardGroup>`. This allows the correct gutter and border placement between
+ * a group of cards
+ *
+ * Although the mini-resource card has a similar geometry to the button component, they
+ * should not be used in place of a button. Buttons encourage action from the user and
+ * affect the website's front-end or back-end. The resource cards, both large and mini
+ * are essentially links. They are used for navigation and actions that do not affect
+ * the website.
+ */
 const MiniCard: MdxComponent<MiniCardProps> = ({
   children,
   href,
   title,
   actionIcon,
-  className,
-  linkProps,
-  ...rest
+  linkProps
 }) => {
+  const childrenArray = React.Children.toArray(children)
+
   const cardContent = (
-    <div className={clsx(className, withPrefix('mini-card'))}>
+    <div className={clsx(withPrefix('mini-card'))}>
       <div className={withPrefix('wrapper')}>
         <div className={withPrefix('title')}>{title}</div>
-        {children === undefined && actionIcon && (
+        {childrenArray.length === 0 && actionIcon && (
           <div className={withPrefix('icon')}>{getIcon({ actionIcon })}</div>
         )}
-        {children !== undefined && <div className={withPrefix('image')}>{children}</div>}
+        {childrenArray.length > 0 && <div className={withPrefix('image')}>{children}</div>}
       </div>
     </div>
   )
 
   return (
-    <Column md={4} lg={4} sm={4} {...rest}>
+    <Column md={4} lg={4} sm={4}>
       <a href={href!} className={'cds--tile--clickable'} {...linkProps}>
         {cardContent}
       </a>
@@ -96,10 +95,6 @@ MiniCard.propTypes = {
    * Use 32x32 image as child, will display in right-hand corner of the card
    */
   children: PropTypes.node,
-  /**
-   * Optional container class name.
-   */
-  className: PropTypes.string,
   /**
    * url to link to on click
    */

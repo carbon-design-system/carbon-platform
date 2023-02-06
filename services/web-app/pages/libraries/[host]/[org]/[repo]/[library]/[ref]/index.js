@@ -11,9 +11,7 @@ import {
   AnchorLink,
   AnchorLinks,
   CardGroup,
-  H2,
-  PageDescription,
-  ResourceCard
+  PageDescription
 } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
@@ -24,8 +22,10 @@ import ContentWrapper from '@/components/content-wrapper'
 import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import DemoLinks from '@/components/demo-links'
+import H2 from '@/components/markdown/h2'
 import MdxIcon from '@/components/mdx-icon'
 import PageHeader from '@/components/page-header'
+import ResourceCard from '@/components/resource-card'
 import withLoading from '@/components/with-loading'
 import { assetsNavData } from '@/data/nav-data'
 import { pageHeaders } from '@/data/page-headers'
@@ -137,9 +137,7 @@ const Library = ({ libraryData, params, navData }) => {
       <ContentWrapper>
         <Grid>
           <Column sm={4} md={8} lg={8}>
-            <PageDescription className={styles['page-description']}>
-              {seo.description}
-            </PageDescription>
+            <PageDescription>{seo.description}</PageDescription>
             <AnchorLinks>
               <AnchorLink>Dashboard</AnchorLink>
               {libraryData.content.demoLinks && <AnchorLink>Demo links</AnchorLink>}

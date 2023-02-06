@@ -30,12 +30,6 @@ test("it doesn't crash", (t) => {
   t.not(app, undefined)
 })
 
-test('gets /liveness and returns 204', async (t) => {
-  const response = await request(app.getHttpServer()).get('/liveness')
-
-  t.is(response.statusCode, 204)
-})
-
 test('gets /readiness and returns 204', async (t) => {
   const response = await request(app.getHttpServer()).get('/readiness')
 

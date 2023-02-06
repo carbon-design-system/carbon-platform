@@ -4,9 +4,11 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { H2 } from '@carbon-platform/mdx-components'
+import { Column, Grid } from '@carbon/react'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
+import AutolinkHeader from '@/components/autolink-header'
 import useIntersectionObserver from '@/utils/use-intersection-observer'
 
 import SvgCard from '../svg-card'
@@ -16,7 +18,13 @@ const IconCategory = ({ category, icons, columnCount }) => {
   const [subCategoryRef, containerIsVisible] = useIntersectionObserver()
   return (
     <section className={styles['svg-category']}>
-      <H2 className={styles['h2-container']}>{category}</H2>
+      <Grid className={clsx(styles.header, styles['h2-container'])}>
+        <Column sm={4} md={8} lg={8}>
+          <AutolinkHeader is="h2" className={clsx(styles.h2)}>
+            {category}
+          </AutolinkHeader>
+        </Column>
+      </Grid>
       <ul ref={subCategoryRef}>
         <ul className={styles['svg-grid']}>
           {icons.map((icon, i) => (

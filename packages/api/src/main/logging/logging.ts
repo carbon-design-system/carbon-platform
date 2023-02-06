@@ -101,7 +101,8 @@ class Logging {
     this.service = config.service || CARBON_SERVICE_NAME
 
     if (this.isRemoteLoggingEnabled) {
-      this.messagingClient = config.messagingClient || MessagingClient.getInstance()
+      this.messagingClient =
+        config.messagingClient || MessagingClient.getInstance({ runtime: this.runtime })
     }
   }
 

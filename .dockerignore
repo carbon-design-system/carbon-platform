@@ -41,4 +41,5 @@ docs/
 services/web-app/**/.next/
 services/web-app/.carbon/
 services/web-app/pages/samples/
+services/web-app/pages/mdx/
 services/web-app/public/data/

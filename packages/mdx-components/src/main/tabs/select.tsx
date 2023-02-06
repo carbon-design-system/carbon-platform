@@ -18,10 +18,10 @@ interface SelectProps {
 }
 
 const Select: MdxComponent<SelectProps> = ({ children, _id }) => {
-  const { setActiveTab } = useContext(TabContext)
-  const items = React.Children.map(children, (child, index) => ({
+  const { setActiveTab, tabLabels } = useContext(TabContext)
+  const items = React.Children.map(children, (_, index) => ({
     index,
-    label: child.props.label
+    label: tabLabels[index]
   }))
 
   return (

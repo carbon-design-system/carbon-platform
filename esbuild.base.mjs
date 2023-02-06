@@ -8,15 +8,5 @@ export default {
   platform: 'node',
   target: 'es2021',
   bundle: true,
-  external: [
-    '@grpc/*',
-    '@nestjs/websockets/*',
-    'class-transformer',
-    'class-validator',
-    'fsevents',
-    'ioredis',
-    'kafkajs',
-    'mqtt',
-    'nats'
-  ]
+  external: ['@grpc/*', '@nestjs/websockets/*', 'fsevents', 'ioredis', 'kafkajs', 'mqtt', 'nats']
 }

@@ -14,7 +14,7 @@ import {
   Svg64Patterns,
   Svg64Templates
 } from '@carbon-platform/icons'
-import { ArtDirection, Divider, H2, P } from '@carbon-platform/mdx-components'
+import { ArtDirection, Divider, P } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -24,6 +24,7 @@ import { Dashboard, DashboardItem } from '@/components/dashboard'
 import dashboardStyles from '@/components/dashboard/dashboard.module.scss'
 import { FeatureCard } from '@/components/feature-card/feature-card'
 import Hero from '@/components/hero'
+import H2 from '@/components/markdown/h2'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
@@ -42,11 +43,15 @@ import styles from './index/index.module.scss'
 const PageContent = () => {
   return (
     <div className={styles.container}>
-      <P className={styles['intro-paragraph']}>
-        Carbon is IBM’s design system for digital experiences. The new website is your pathway to
-        accessing components, patterns, functions, templates, and other assets across IBM.
-        <br />↓
-      </P>
+      <Grid className={clsx(styles['paragraph-container'], styles['intro-paragraph'])}>
+        <Column sm={4} md={8} lg={8}>
+          <p className={styles.paragraph}>
+            Carbon is IBM’s design system for digital experiences. The new website is your pathway
+            to accessing components, patterns, functions, templates, and other assets across IBM.
+            <br />↓
+          </p>
+        </Column>
+      </Grid>
 
       <Divider />
 
@@ -75,10 +80,15 @@ const PageContent = () => {
             </h2>
           </Column>
           <Column sm={4} md={6} lg={7}>
-            <P large>
-              Learn how design kits are used to build consistent, scalable user interfaces — and get
-              started with your design tool of choice, including Figma, Sketch, Adobe XD, or Axure.
-            </P>
+            <Grid className={clsx(styles['paragraph-container'])}>
+              <Column sm={4} md={8} lg={8}>
+                <p className={clsx(styles.paragraph, styles['paragraph--large'])}>
+                  Learn how design kits are used to build consistent, scalable user interfaces — and
+                  get started with your design tool of choice, including Figma, Sketch, Adobe XD, or
+                  Axure.
+                </p>
+              </Column>
+            </Grid>
           </Column>
         </Grid>
       </Divider>
@@ -96,10 +106,14 @@ const PageContent = () => {
             </h2>
           </Column>
           <Column sm={4} md={6} lg={7}>
-            <P large>
-              Learn about libraries and access everything you need to get up and running with your
-              preferred framework — React, Angular, Web Components, Vue, or Svelte.
-            </P>
+            <Grid className={clsx(styles['paragraph-container'])}>
+              <Column sm={4} md={8} lg={8}>
+                <p className={clsx(styles.paragraph, styles['paragraph--large'])}>
+                  Learn about libraries and access everything you need to get up and running with
+                  your preferred framework — React, Angular, Web Components, Vue, or Svelte.
+                </p>
+              </Column>
+            </Grid>
           </Column>
         </Grid>
       </Divider>
@@ -222,12 +236,16 @@ const PageContent = () => {
 
       <Divider />
 
-      <P className={styles['intro-paragraph']}>
-        By standardizing and surfacing our assets, the new site helps creators find assets that{' '}
-        <mark>comply</mark> with platform requirements, are <mark>convenient</mark> to implement,
-        and are <mark>consistent</mark> with design patterns across the company.
-        <br />↓
-      </P>
+      <Grid className={clsx(styles['paragraph-container'], styles['intro-paragraph'])}>
+        <Column sm={4} md={8} lg={8}>
+          <p className={styles.paragraph}>
+            By standardizing and surfacing our assets, the new site helps creators find assets that{' '}
+            <mark>comply</mark> with platform requirements, are <mark>convenient</mark> to
+            implement, and are <mark>consistent</mark> with design patterns across the company.
+            <br />↓
+          </p>
+        </Column>
+      </Grid>
 
       <Divider>
         <Grid>
@@ -239,11 +257,15 @@ const PageContent = () => {
             </H2>
           </Column>
           <Column sm={4} md={4} lg={7}>
-            <P large>
-              <strong>For designers and developers:</strong>
-              <br />A unified discovery experience helps designers and developers find and access
-              components, patterns, functions, and templates across all IBM teams.
-            </P>
+            <Grid className={clsx(styles['paragraph-container'])}>
+              <Column sm={4} md={8} lg={8}>
+                <p className={clsx(styles.paragraph, styles['paragraph--large'])}>
+                  <strong>For designers and developers:</strong>
+                  <br />A unified discovery experience helps designers and developers find and
+                  access components, patterns, functions, and templates across all IBM teams.
+                </p>
+              </Column>
+            </Grid>
           </Column>
         </Grid>
       </Divider>
@@ -257,11 +279,15 @@ const PageContent = () => {
             </H2>
           </Column>
           <Column sm={4} md={4} lg={7}>
-            <P large>
-              <strong>For contributors and maintainers:</strong>
-              <br />A common schema helps maintainers more easily manage their assets, keep content
-              fresh in a live index, and add version control to their libraries.
-            </P>
+            <Grid className={clsx(styles['paragraph-container'])}>
+              <Column sm={4} md={8} lg={8}>
+                <p className={clsx(styles.paragraph, styles['paragraph--large'])}>
+                  <strong>For contributors and maintainers:</strong>
+                  <br />A common schema helps maintainers more easily manage their assets, keep
+                  content fresh in a live index, and add version control to their libraries.
+                </p>
+              </Column>
+            </Grid>
           </Column>
         </Grid>
       </Divider>

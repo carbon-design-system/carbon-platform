@@ -7,15 +7,19 @@
 import { CodeSnippet, Column, Grid, Theme } from '@carbon/react'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
-import React, { ReactElement, ReactPortal } from 'react'
+import React, { ReactElement } from 'react'
 
-import { MdxComponent, NonScalarNode } from '../interfaces.js'
+import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
 import Path from './path.js'
 
 interface CodeProps {
-  children: Exclude<NonScalarNode, Array<ReactElement | ReactPortal>>
+  src?: string | null
+  path?: string | null
+  lang?: string | null
+  children: ReactElement
 }
+
 /**
  *
  * For MDX files, steer away from using JSX components
@@ -27,28 +31,16 @@ interface CodeProps {
  * ```
  *````
  */
-const Code: MdxComponent<CodeProps> = ({ children }) => {
-  const code = children.props.children
-  const path = children.props.path
-  const src = children.props.src
-  const language = children.props.className || 'language-plain'
+const Code: MdxComponent<CodeProps> = ({ children, src, path, lang }) => {
+  lang = lang ? `language-${lang}` : 'language-plain'
 
   return (
     <Grid condensed>
       <Column sm={4} md={8} lg={8}>
         <Theme theme={'g100'}>
-          {path && (
-            <Path src={src} path={path}>
-              {children}
-            </Path>
-          )}
-
-          <CodeSnippet
-            type="multi"
-            feedback="Copied!"
-            className={clsx(withPrefix('code'), language)}
-          >
-            {code}
+          <Path src={src} path={path} />
+          <CodeSnippet type="multi" feedback="Copied!" className={clsx(withPrefix('code'), lang)}>
+            {children}
           </CodeSnippet>
         </Theme>
       </Column>
@@ -58,7 +50,13 @@ const Code: MdxComponent<CodeProps> = ({ children }) => {
 
 Code.propTypes = {
   /** Provide the contents of Code */
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
+  /** Language of the code */
+  lang: PropTypes.string,
+  /** Path of the code */
+  path: PropTypes.string,
+  /** Source of the code */
+  src: PropTypes.string
 }
 
 export { CodeProps }

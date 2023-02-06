@@ -14,5 +14,6 @@ module.exports = {
     postcss: false
   },
   framework: '@storybook/react',
-  stories: ['./*.stories.jsx', '../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)']
+  stories: ['./*.stories.jsx', '../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  staticDirs: [{ from: '../src/res', to: '/res' }]
 }

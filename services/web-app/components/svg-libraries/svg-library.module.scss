@@ -336,3 +336,20 @@ $svg-card-border: 1px solid theme.$border-subtle-01;
 .h2-container + * {
   margin-top: 0;
 }
+
+.h2-container {
+  margin-top: spacing.$spacing-06;
+}
+
+.h2-container,
+.paragraph-container + .h2-container {
+  margin-top: spacing.$spacing-09;
+
+  @include breakpoint.breakpoint(md) {
+    margin-top: spacing.$spacing-11;
+  }
+}
+
+.h2 {
+  @include type.type-style('fluid-heading-04', true);
+}

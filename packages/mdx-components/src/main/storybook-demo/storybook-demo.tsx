@@ -13,16 +13,14 @@ import React, { useState } from 'react'
 import Caption from '../caption/caption.js'
 import { MdxComponent } from '../interfaces.js'
 import { withPrefix } from '../utils.js'
+import { VariantProps } from './variant.js'
 
 interface StorybookDemoProps {
   tall?: boolean | null
   themeSelector?: boolean | null
   wide?: boolean | null
   url: string
-  variants?: Array<{
-    label: string
-    variant: string
-  }> | null
+  children: ReturnType<MdxComponent<VariantProps>> | ReturnType<MdxComponent<VariantProps>>[]
 }
 
 /**
@@ -38,7 +36,7 @@ const StorybookDemo: MdxComponent<StorybookDemoProps> = ({
   themeSelector,
   wide,
   url,
-  variants
+  children
 }) => {
   const themeItems = [
     {
@@ -62,6 +60,13 @@ const StorybookDemo: MdxComponent<StorybookDemoProps> = ({
       src: 'g100'
     }
   ]
+
+  const variants = React.Children.map(children, (child) => {
+    return {
+      label: child?.props.label,
+      variant: child?.props.variant
+    }
+  })
 
   const columnWidth = wide ? 12 : 8
 
@@ -147,6 +152,13 @@ const StorybookDemo: MdxComponent<StorybookDemoProps> = ({
 
 StorybookDemo.propTypes = {
   /**
+   * Child Variant elements
+   */
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element.isRequired).isRequired,
+    PropTypes.element.isRequired
+  ]).isRequired,
+  /**
    * Storybook demo height
    */
   tall: PropTypes.bool,
@@ -158,15 +170,6 @@ StorybookDemo.propTypes = {
    * Storybook demo url to change themes and variants
    */
   url: PropTypes.string.isRequired,
-  /**
-   * Storybook demo variants for the specified component
-   */
-  variants: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      variant: PropTypes.string.isRequired
-    }).isRequired
-  ),
   /**
    * Storybook demo width
    */

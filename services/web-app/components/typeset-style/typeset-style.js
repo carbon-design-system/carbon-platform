@@ -6,7 +6,6 @@
  */
 import { baseFontSize, breakpoints as carbonBreakpoints } from '@carbon/elements'
 import { Column, Grid } from '@carbon/react'
-import { H4 } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import findLastIndex from 'lodash/findLastIndex'
 import PropTypes from 'prop-types'
@@ -45,15 +44,7 @@ const isWithinBreakpoint = (viewportWidth, currentBreakpoint) => {
 /**
  * The `<TypeSetStyle>` component displays all of the type styles provided by Carbon.
  */
-const TypesetStyle = ({
-  navBar,
-  banner,
-  secondary,
-  top,
-  breakpointControls = false,
-  header = false,
-  typesets
-}) => {
+const TypesetStyle = ({ navBar, banner, secondary, top, breakpointControls = false, typesets }) => {
   const containerRef = useRef(null)
   const [simulatedScreenWidth, setSimulatedScreenWidth] = useState(1056)
   const [sticky, setSticky] = useState(false)
@@ -141,14 +132,6 @@ const TypesetStyle = ({
           .split(',')
           .map((typeset, i) => (
             <React.Fragment key={i}>
-              {header && (
-                <H4 headingClassName={styles['typestyle-header']} narrow>
-                  {typeset
-                    .replace(/fixed/g, '')
-                    .replace(/([a-z])([A-Z])/g, '$1 $2')
-                    .toLowerCase()}
-                </H4>
-              )}
               <TypesetExample
                 key={i}
                 simulatedScreenWidth={simulatedScreenWidth}
@@ -174,11 +157,6 @@ TypesetStyle.propTypes = {
    * show / hide breakpoint controls
    */
   breakpointControls: PropTypes.bool,
-
-  /**
-   * show / hide the header
-   */
-  header: PropTypes.bool,
 
   /**
    * if page navBar is showing / hiding, toggle this on/off

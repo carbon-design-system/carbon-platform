@@ -50,6 +50,18 @@ test.serial('article card renders without crashing', (t) => {
   t.snapshot(result.container.innerHTML)
 })
 
+test.serial('arrow right button renders without crashing', (t) => {
+  const result = render(<Mdx.ArrowRightButton>Button Text</Mdx.ArrowRightButton>)
+
+  t.snapshot(result.baseElement.innerHTML)
+})
+
+test.serial('launch button renders without crashing', (t) => {
+  const result = render(<Mdx.LaunchButton>Button Text</Mdx.LaunchButton>)
+
+  t.snapshot(result.baseElement.innerHTML)
+})
+
 test.serial('aside renders without crashing', (t) => {
   const result = render(<Mdx.Aside aria-label="Example aside">Wow aside text</Mdx.Aside>)
 
@@ -178,6 +190,16 @@ test.serial('link renders without crashing', (t) => {
   t.snapshot(result.container.innerHTML)
 })
 
+test.serial('arrow-right-link renders without crashing', (t) => {
+  const result = render(
+    <Mdx.ArrowRightLink href="https://platform.carbondesignsystem.com">
+      Arrow right link!
+    </Mdx.ArrowRightLink>
+  )
+
+  t.snapshot(result.container.innerHTML)
+})
+
 test.serial('blockquote renders without crashing', (t) => {
   const result = render(
     <Mdx.Blockquote>
@@ -195,19 +217,19 @@ test.serial('blockquote renders without crashing', (t) => {
 })
 
 test.serial('h1 renders without crashing', (t) => {
-  const result = render(<Mdx.H1>This is a Heading 1</Mdx.H1>)
+  const result = render(<Mdx.H1 fullText="This is a Heading 1">This is a Heading 1</Mdx.H1>)
 
   t.snapshot(result.container.innerHTML)
 })
 
 test.serial('h2 renders without crashing', (t) => {
-  const result = render(<Mdx.H2>This is a Heading 2</Mdx.H2>)
+  const result = render(<Mdx.H2 fullText={'This is a Heading 2'}>This is a Heading 2</Mdx.H2>)
 
   t.snapshot(result.container.innerHTML)
 })
 
 test.serial('h3 renders without crashing', (t) => {
-  const result = render(<Mdx.H3>This is a Heading 3</Mdx.H3>)
+  const result = render(<Mdx.H3 fullText="This is a Heading 3">This is a Heading 3</Mdx.H3>)
 
   t.snapshot(result.container.innerHTML)
 })
@@ -311,7 +333,7 @@ test.serial('page description renders without crashing', (t) => {
 
 test.serial('page table renders without crashing', (t) => {
   const result = render(
-    <Mdx.PageTable>
+    <Mdx.PageTable columns={3}>
       <thead>
         <tr>
           <th>Header 1</th>
@@ -367,67 +389,39 @@ test.serial('resource card renders without crashing', (t) => {
 
 test.serial('storybook demo renders without crashing', (t) => {
   const result = render(
-    <Mdx.StorybookDemo
-      themeSelector={true}
-      wide
-      tall
-      url="https://react.carbondesignsystem.com"
-      variants={[
-        {
-          label: 'Button',
-          variant: 'components-button--default'
-        },
-        {
-          label: 'Secondary',
-          variant: 'components-button--secondary'
-        },
-        {
-          label: 'Tertiary',
-          variant: 'components-button--tertiary'
-        },
-        {
-          label: 'Ghost',
-          variant: 'components-button--ghost'
-        },
-        {
-          label: 'Danger',
-          variant: 'components-button--danger'
-        },
-        {
-          label: 'Icon button',
-          variant: 'components-button--icon-button'
-        },
-        {
-          label: 'Set of buttons',
-          variant: 'components-button--set-of-buttons'
-        },
-        {
-          label: 'Skeleton',
-          variant: 'components-button--skeleton'
-        }
-      ]}
-    />
+    <Mdx.StorybookDemo themeSelector={true} wide tall url="https://react.carbondesignsystem.com">
+      <Mdx.Variant label="Button" variant="components-button--default" />
+      <Mdx.Variant label="Secondary" variant="components-button--secondary" />
+      <Mdx.Variant label="Tertiary" variant="components-button--tertiary" />
+      <Mdx.Variant label="Ghost" variant="components-button--ghost" />
+      <Mdx.Variant label="Danger" variant="components-button--danger" />
+      <Mdx.Variant label="Icon button" variant="components-button--icon-button" />
+      <Mdx.Variant label="Set of buttons" variant="components-button--set-of-buttons" />
+      <Mdx.Variant label="Skeleton" variant="components-button--skeleton" />
+    </Mdx.StorybookDemo>
   )
 
   t.snapshot(result.container.innerHTML)
 })
 
 test.serial('tabs renders without crashing', (t) => {
+  const labels = ['Tab 1', 'Tab 2', 'Tab 3']
+
   const result = render(
-    <Mdx.Tabs>
-      <Mdx.Tab label="Tab 1" _id="1" index={1}>
+    <Mdx.Tabs tabLabels={labels} idPrefix="test">
+      <Mdx.Tab label={labels[0]!} _id="1" index={1}>
         Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper pretium. Duis turpis elit,
         facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod maximus. Cras
         euismod facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel, ullamcorper sed mi.
         In hac habitasse platea dictumst.
       </Mdx.Tab>
-      <Mdx.Tab label="Tab 2" _id="2" index={2}>
+      <Mdx.Tab label={labels[1]!} _id="2" index={2}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat ex massa, in
         tincidunt ipsum tempor in. Maecenas ultrices sem nec blandit dictum. ermentum ullamcorper
         pretium. Duis turpis elit, facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim
         euismod maximus. Cras euismod facilisis rutrum.
       </Mdx.Tab>
-      <Mdx.Tab label="Tab 3" _id="3" index={3}>
+      <Mdx.Tab label={labels[2]!} _id="3" index={3}>
         Duis turpis elit, facilisis nec elit id, fermentum porttitor nisl. Nulla dignissim euismod
         maximus. Cras euismod facilisis rutrum. Etiam nisi sem, malesuada auctor pretium vel,
         ullamcorper sed mi. In hac habitasse platea dictumst. Lorem ipsum dolor sit amet,
@@ -445,6 +439,14 @@ test.serial('title renders without crashing', (t) => {
       <Mdx.Title>Lorem ipsum</Mdx.Title>
       <Mdx.P>This is the element after the title with its default top margin removed.</Mdx.P>
     </>
+  )
+
+  t.snapshot(result.container.innerHTML)
+})
+
+test.serial('track renders without crashing', (t) => {
+  const result = render(
+    <Mdx.Track src="wowsrc" default kind="captions" label="thelabel" srcLang="en" />
   )
 
   t.snapshot(result.container.innerHTML)

@@ -15,16 +15,14 @@ import AutolinkHeader from './autolink-header/autolink-header.js'
 
 interface H3Props {
   children: ReactNode
-  className?: string | null
-  headingClassName?: string | null
-  [otherProp: string]: unknown
+  fullText: string
 }
 
-const H3: MdxComponent<H3Props> = ({ children, className, headingClassName, ...rest }) => {
+const H3: MdxComponent<H3Props> = ({ children, fullText }) => {
   return (
-    <Grid className={clsx(withPrefix('header'), withPrefix('h3-container'), className)} {...rest}>
+    <Grid className={clsx(withPrefix('header'), withPrefix('h3-container'))}>
       <Column sm={4} md={8} lg={8}>
-        <AutolinkHeader is="h3" className={clsx(withPrefix('h3'), headingClassName)}>
+        <AutolinkHeader ariaLabel={fullText} is="h3" className={clsx(withPrefix('h3'))}>
           {children}
         </AutolinkHeader>
       </Column>
@@ -38,13 +36,9 @@ H3.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * Specify optional className for container element
+   * String aria label
    */
-  className: PropTypes.string,
-  /**
-   * Specify optional className for header element
-   */
-  headingClassName: PropTypes.string
+  fullText: PropTypes.string.isRequired
 }
 
 export { H3Props }

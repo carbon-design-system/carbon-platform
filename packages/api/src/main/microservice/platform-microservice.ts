@@ -4,6 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { DynamicModule, ModuleMetadata, Type } from '@nestjs/common'
 import { HttpAdapterHost, NestFactory } from '@nestjs/core'
 import { RmqOptions, Transport } from '@nestjs/microservices'
 
@@ -32,15 +33,16 @@ type BindableMessageKey<T extends BindableMessage> = T extends EventMessage
   ? keyof EventMessage
   : keyof QueryMessage
 
-interface MicroserviceConfig {
+interface MicroserviceConfig extends ModuleMetadata {
   /**
    * The NestJS module that defines all of the controller and providers for this microservice. This
-   * is defined as "any" to be in accordance with NestJS conventions.
+   * type loosely matches what is expected by a NestJS "imports" directive.
    */
-  module: unknown
+  module: Type<unknown> | DynamicModule | Promise<DynamicModule>
 
   /**
-   * Whether or not to enable automatic removal of messages from the associated queue.
+   * Whether or not to enable automatic removal of messages from the associated queue. Defaults to
+   * false if not specified.
    */
   autoAck?: boolean
 
@@ -52,11 +54,14 @@ interface MicroserviceConfig {
   /**
    * Runtime configuration object.
    */
-  runtime?: Runtime
+  runtime: Runtime
 }
 
 class PlatformMicroservice {
-  private readonly module: unknown
+  private readonly module: MicroserviceConfig['module']
+  private readonly imports: NonNullable<MicroserviceConfig['imports']>
+  private readonly controllers: NonNullable<MicroserviceConfig['controllers']>
+  private readonly providers: NonNullable<MicroserviceConfig['providers']>
   private readonly autoAck: boolean
   private readonly queueName: string
   private readonly runtime: Runtime
@@ -65,11 +70,30 @@ class PlatformMicroservice {
 
   constructor(config: MicroserviceConfig) {
     this.module = config.module
+    this.imports = config.imports || []
+    this.controllers = config.controllers || []
+    this.providers = config.providers || []
+
     this.autoAck = config.autoAck || false
-    this.runtime = config.runtime || new Runtime()
+    this.runtime = config.runtime
     this.logging = new Logging({ component: 'PlatformMicroservice', runtime: this.runtime })
     // Use a queue name that is environment-specific
     this.queueName = this.runtime.withEnvironment(config.queue)
+  }
+
+  /**
+   * Creates a dynamic module containing the provided module along with a RuntimeModule based on the
+   * provided runtime object.
+   *
+   * @returns The dynamic module object.
+   */
+  private createRootModule(): DynamicModule {
+    return {
+      module: class PlatformMicroserviceRootModule {},
+      imports: [this.module, ...this.imports],
+      controllers: this.controllers,
+      providers: this.providers
+    }
   }
 
   /**
@@ -120,12 +144,13 @@ class PlatformMicroservice {
    * @returns A promise that never resolves.
    */
   public async start(): Promise<unknown> {
-    const application = await NestFactory.create(this.module)
+    const application = await NestFactory.create(this.createRootModule())
+
     const { httpAdapter } = application.get(HttpAdapterHost)
 
     httpAdapter.use(requestLogMiddleware())
 
-    // Order matters!
+    // Order matters! (LIFO)
     application.useGlobalInterceptors(
       new UncaughtExceptionInterceptor(),
       new RpcRequestLogInterceptor(),

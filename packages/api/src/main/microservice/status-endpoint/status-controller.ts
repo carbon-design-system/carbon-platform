@@ -11,13 +11,6 @@ import { Trace } from '../../logging/decorators/trace.js'
 @Controller()
 class StatusController {
   @Trace()
-  @Get('liveness')
-  @HttpCode(204)
-  public getLiveness() {
-    return null
-  }
-
-  @Trace()
   @Get('readiness')
   @HttpCode(204)
   public getReadiness() {

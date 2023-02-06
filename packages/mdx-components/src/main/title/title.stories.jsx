@@ -12,9 +12,6 @@ export default {
   argTypes: {
     children: {
       control: false
-    },
-    className: {
-      control: false
     }
   }
 }

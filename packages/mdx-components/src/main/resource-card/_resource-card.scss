@@ -114,16 +114,6 @@
       @include line-clamp(2);
     }
   }
-
-  .#{with-prefix('child-component')} {
-    position: absolute;
-    top: spacing.$spacing-05;
-    right: spacing.$spacing-05;
-  }
-
-  .#{with-prefix('card-with-component')} {
-    padding-right: 50%;
-  }
 }
 
 // Resource card group

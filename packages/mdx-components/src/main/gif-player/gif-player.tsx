@@ -9,7 +9,7 @@ import {
   PauseOutlineFilled,
   PlayOutline,
   PlayOutlineFilled
-} from '@carbon/react/icons'
+} from '@carbon/react/icons/index.js'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React, { Children, ReactNode, useState } from 'react'
@@ -21,7 +21,6 @@ type Color = 'light' | 'dark'
 
 interface GifPlayerProps {
   children: ReactNode
-  className?: string | null
   color?: Color | null
   isInDialog?: boolean | null
 }
@@ -38,7 +37,7 @@ const ToggleIcon = ({ paused, hovering }: { hovering: boolean; paused: boolean }
  * The `<GifPlayer>` component is used to pause and play images that are gif’s.
  * It works by replacing the gif with a static image on pause.
  */
-const GifPlayer: MdxComponent<GifPlayerProps> = ({ children, color, className, isInDialog }) => {
+const GifPlayer: MdxComponent<GifPlayerProps> = ({ children, color, isInDialog }) => {
   const [paused, setPaused] = useState(false)
 
   const [hovering, setHovering] = useState(false)
@@ -51,7 +50,7 @@ const GifPlayer: MdxComponent<GifPlayerProps> = ({ children, color, className, i
     [withPrefix('dark')]: color === 'dark'
   })
 
-  const containerClassNames = clsx(className, withPrefix('gif-player-container'), {
+  const containerClassNames = clsx(withPrefix('gif-player-container'), {
     [withPrefix('gif-in-dialog')]: isInDialog
   })
 
@@ -102,10 +101,6 @@ GifPlayer.propTypes = {
     PropTypes.element.isRequired,
     PropTypes.arrayOf(PropTypes.element.isRequired)
   ]).isRequired,
-  /**
-   * Specify optional className
-   */
-  className: PropTypes.string,
   /**
    * Specify if icon color should be "dark" or "light"
    */

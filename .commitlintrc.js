@@ -27,6 +27,8 @@ module.exports = {
         'messaging',
         'micromanage',
         'resources',
+        'rmdx',
+        'rmdx-processing',
         'schemas',
         'scripts',
         'search',

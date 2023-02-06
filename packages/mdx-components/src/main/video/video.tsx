@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Column, Grid } from '@carbon/react'
-import { Pause, Play } from '@carbon/react/icons'
+import { Pause, Play } from '@carbon/react/icons/index.js'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React, { KeyboardEvent, MouseEvent, ReactNode, useEffect, useRef, useState } from 'react'
@@ -21,6 +21,7 @@ interface VideoProps {
   src?: string | null
   title?: string | null
   vimeoId?: string | null
+  ['aria-label']?: string | null
 }
 
 interface VideoWithSrcProps extends VideoProps {
@@ -42,7 +43,7 @@ const Video: MdxComponent<VideoWithSrcProps | VideoWithVimeoIdProps> = ({
   src,
   poster,
   muted,
-  ...rest
+  ...props
 }) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -76,6 +77,7 @@ const Video: MdxComponent<VideoWithSrcProps | VideoWithVimeoIdProps> = ({
                   frameBorder="0"
                   allowFullScreen
                   sandbox="allow-forms allow-scripts  allow-same-origin"
+                  aria-label={props['aria-label'] ?? ''}
                 />
               </div>
             </div>
@@ -93,14 +95,9 @@ const Video: MdxComponent<VideoWithSrcProps | VideoWithVimeoIdProps> = ({
       return undefined
     }
 
-    return videoRef.current
-      ?.play()
-      .then(() => {
-        setIsPlaying(true)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    return videoRef.current?.play().then(() => {
+      setIsPlaying(true)
+    })
   }
 
   function onEnded() {
@@ -115,14 +112,9 @@ const Video: MdxComponent<VideoWithSrcProps | VideoWithVimeoIdProps> = ({
         setIsPlaying(false)
         return undefined
       }
-      return videoRef.current
-        ?.play()
-        .then(() => {
-          setIsPlaying(true)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      return videoRef.current?.play().then(() => {
+        setIsPlaying(true)
+      })
     }
 
     return undefined
@@ -151,7 +143,6 @@ const Video: MdxComponent<VideoWithSrcProps | VideoWithVimeoIdProps> = ({
               ref={videoRef}
               onEnded={onEnded}
               poster={typeof poster === 'object' ? poster?.src : poster}
-              {...rest}
             >
               <source src={src} type="video/mp4" />
               {children}
@@ -166,6 +157,10 @@ const Video: MdxComponent<VideoWithSrcProps | VideoWithVimeoIdProps> = ({
 }
 
 Video.propTypes = {
+  /**
+   * aria-label for iframe element.
+   */
+  'aria-label': PropTypes.string,
   /**
    * Set video autoplay.
    */

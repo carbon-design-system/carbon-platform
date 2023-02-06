@@ -32,13 +32,13 @@
   "bin": {
     "micromanage": "./lib/index.js"
   },
-  "files": [
-    "lib/*"
-  ],
   "engines": {
     "node": "16",
     "npm": "8"
   },
+  "files": [
+    "lib/*"
+  ],
   "scripts": {
     "test": "echo 'No tests specified. Maybe you should add some!'"
   },

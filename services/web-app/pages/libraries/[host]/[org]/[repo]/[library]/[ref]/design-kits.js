@@ -11,18 +11,18 @@ import {
   AnchorLink,
   AnchorLinks,
   CardGroup,
-  H2,
   P,
-  PageDescription,
-  ResourceCard
+  PageDescription
 } from '@carbon-platform/mdx-components'
 import groupBy from 'lodash/groupBy'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 
 import ContentWrapper from '@/components/content-wrapper'
+import H2 from '@/components/markdown/h2'
 import MdxIcon from '@/components/mdx-icon/mdx-icon'
 import PageHeader from '@/components/page-header'
+import ResourceCard from '@/components/resource-card'
 import withLoading from '@/components/with-loading'
 import { designKitTypes } from '@/data/design-kit-types'
 import { designTools } from '@/data/design-tools'

@@ -21,7 +21,7 @@ import ColorPalette from '@/components/color-palette'
 import ColorTokenTable from '@/components/color-token-table'
 import FilterableDesignKitTable from '@/components/filterable-design-kit-table'
 import Glossary from '@/components/glossary'
-import { Image } from '@/components/image'
+import Image from '@/components/image'
 import MdxIcon from '@/components/mdx-icon'
 import MdxNotification from '@/components/mdx-notification/index'
 import MdxPage from '@/components/mdx-page'
@@ -33,11 +33,15 @@ import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
 import TypesetStyle from '@/components/typeset-style'
 
+import H1 from '../markdown/h1'
+import H2 from '../markdown/h2'
+import H3 from '../markdown/h3'
+
 const components = {
   ...mdxComponents,
-  h1: mdxComponents.H1,
-  h2: mdxComponents.H2,
-  h3: mdxComponents.H3,
+  h1: H1,
+  h2: H2,
+  h3: H3,
   h4: mdxComponents.H4,
   h5: mdxComponents.H5,
   h6: mdxComponents.H6,

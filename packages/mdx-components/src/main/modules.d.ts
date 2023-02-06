@@ -6,5 +6,5 @@
  */
 declare module '@carbon/layout'
 declare module '@carbon/react'
-declare module '@carbon/react/icons'
+declare module '@carbon/react/icons/index.js'
 declare module '@carbon/colors'

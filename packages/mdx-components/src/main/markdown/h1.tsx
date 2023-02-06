@@ -15,9 +15,7 @@ import AutolinkHeader from './autolink-header/autolink-header.js'
 
 interface H1Props {
   children: ReactNode
-  className?: string | null
-  headingClassName?: string | null
-  [otherProp: string]: unknown
+  fullText: string
 }
 
 /**
@@ -40,11 +38,11 @@ interface H1Props {
  * ###### This is a heading 6
  * ```
  */
-const H1: MdxComponent<H1Props> = ({ children, className, headingClassName, ...rest }) => {
+const H1: MdxComponent<H1Props> = ({ children, fullText }) => {
   return (
-    <Grid className={clsx(withPrefix('header'), withPrefix('h2-container'), className)} {...rest}>
+    <Grid className={clsx(withPrefix('header'), withPrefix('h1-container'))}>
       <Column sm={4} md={8} lg={8}>
-        <AutolinkHeader is="h1" className={clsx(withPrefix('h1'), headingClassName)}>
+        <AutolinkHeader ariaLabel={fullText} is="h1" className={clsx(withPrefix('h1'))}>
           {children}
         </AutolinkHeader>
       </Column>
@@ -58,13 +56,9 @@ H1.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * Specify optional className for container element
+   * String aria label
    */
-  className: PropTypes.string,
-  /**
-   * Specify optional className for header element
-   */
-  headingClassName: PropTypes.string
+  fullText: PropTypes.string.isRequired
 }
 
 export { H1Props }

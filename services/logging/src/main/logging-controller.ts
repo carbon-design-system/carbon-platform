@@ -16,17 +16,16 @@ import { validateLogMessage } from './validate-log-message.js'
 @Controller()
 class LoggingController {
   private readonly logDnaService: LogDnaService
+  private readonly runtime: Runtime
 
   private logMessagePartial = {
     service: 'logging',
-    component: 'logging.controller',
-    // TODO: This is bad and should be injected at a higher level or obtained from a config
-    // service
-    environment: new Runtime().environment
+    component: 'logging.controller'
   }
 
-  constructor(logDnaService: LogDnaService) {
+  constructor(logDnaService: LogDnaService, runtime: Runtime) {
     this.logDnaService = logDnaService
+    this.runtime = runtime
 
     // This is only needed since this is the logging service. Other services would just call
     // `logging.info` directly.
@@ -34,6 +33,7 @@ class LoggingController {
       ...this.logMessagePartial,
       level: 'info',
       timestamp: Date.now(),
+      environment: this.runtime.environment,
       message: 'Logging controller successfully instantiated'
     })
   }
@@ -58,6 +58,7 @@ class LoggingController {
           ...this.logMessagePartial,
           level: 'warn',
           timestamp: Date.now(),
+          environment: this.runtime.environment,
           message: err.message
         })
       }

@@ -8,6 +8,12 @@ import { DataGraphMessage } from '@carbon-platform/api/data-graph'
 import { UnvalidatedMessage } from '@carbon-platform/api/messaging'
 import { InvalidInputException } from '@carbon-platform/api/microservice'
 
+/**
+ * Validates an incoming data-graph message.
+ *
+ * @param data Incoming data-graph message data.
+ * @returns The input data if it passes validation. Throws an Error otherwise.
+ */
 function validateDataGraphMessage(data: UnvalidatedMessage<DataGraphMessage>): DataGraphMessage {
   if (!data.query || typeof data.query !== 'string') {
     throw new InvalidInputException('query not specified')

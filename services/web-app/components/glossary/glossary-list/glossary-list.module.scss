@@ -9,7 +9,7 @@
   color: theme.$text-primary;
 }
 
-.glossary-entry__main-heading {
+.h2.glossary-entry__main-heading {
   @include type.type-style('fluid-display-02', true);
 
   span {
@@ -46,4 +46,26 @@
   &.h4-container {
     margin-top: spacing.$spacing-06;
   }
+}
+
+.h2-container,
+.paragraph-container + .h2-container {
+  margin-top: spacing.$spacing-09;
+
+  @include breakpoint.breakpoint(md) {
+    margin-top: spacing.$spacing-11;
+  }
+}
+
+.h2 {
+  @include type.type-style('fluid-heading-04', true);
+}
+
+.h4-container,
+.paragraph-container + .h4-container {
+  margin-top: spacing.$spacing-07;
+}
+
+.h4 {
+  @include type.type-style('heading-02');
 }

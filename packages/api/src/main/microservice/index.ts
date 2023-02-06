@@ -6,4 +6,5 @@
  */
 export { InvalidInputException } from './exceptions/invalid-input-exception.js'
 export { PlatformMicroservice } from './platform-microservice.js'
+export { RuntimeModule } from './runtime-module.js'
 export { StatusController } from './status-endpoint/status-controller.js'

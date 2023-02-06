@@ -6,7 +6,7 @@
  */
 
 import { AspectRatio, Theme } from '@carbon/react'
-import { ArrowRight, Calendar, Download, Email, Error, Launch } from '@carbon/react/icons'
+import { ArrowRight, Calendar, Download, Email, Error, Launch } from '@carbon/react/icons/index.js'
 import { clsx } from 'clsx'
 import PropTypes from 'prop-types'
 import React, { ReactNode } from 'react'
@@ -20,8 +20,6 @@ type AspectRatio = '2:1' | '1:1' | '16:9' | '4:3'
 
 interface ResourceCardProps {
   children: ReactNode
-  component?: ReactNode | null
-  className?: string | null
   href?: string | null
   subTitle?: string | null
   title?: string | null
@@ -56,16 +54,13 @@ const ResourceCard: MdxComponent<ResourceCardProps> = (props) => {
     color,
     disabled,
     aspectRatio: aspectRatioProp,
-    actionIcon,
-    className,
-    component,
-    ...rest
+    actionIcon
   } = props
 
   const isLg = useMatchMedia(mediaQueries.lg)
   const isXlg = useMatchMedia(mediaQueries.xlg)
 
-  const ResourceCardClassNames = clsx(className, withPrefix('resource-card'), {
+  const ResourceCardClassNames = clsx(withPrefix('resource-card'), {
     [withPrefix('disabled')]: disabled
   })
 
@@ -75,15 +70,13 @@ const ResourceCard: MdxComponent<ResourceCardProps> = (props) => {
 
   const carbonTileclassNames = clsx(['cds--tile'], {
     'cds--tile--clickable': href !== undefined,
-    [withPrefix('card-with-title')]: !!title,
-    [withPrefix('card-with-component')]: !!component
+    [withPrefix('card-with-title')]: !!title
   })
 
   const cardContent = (
     <>
       {subTitle && <h5 className={withPrefix('subtitle')}>{subTitle}</h5>}
       {title && <h4 className={withPrefix('title')}>{title}</h4>}
-      {component && <div className={withPrefix('child-component')}>{component}</div>}
       <div className={withPrefix('icon-img')}>{children}</div>
       <div className={withPrefix('icon-action')}>
         {!disabled &&
@@ -106,7 +99,7 @@ const ResourceCard: MdxComponent<ResourceCardProps> = (props) => {
     cardContainer = <div className={carbonTileclassNames}>{cardContent}</div>
   } else {
     cardContainer = (
-      <a href={href!} className={carbonTileclassNames} {...rest}>
+      <a href={href!} className={carbonTileclassNames}>
         {cardContent}
       </a>
     )
@@ -138,18 +131,9 @@ ResourceCard.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Optional class name
-   */
-  className: PropTypes.string,
-  /**
    * set to "dark" for dark background card
    */
   color: PropTypes.oneOf<Color>(['light', 'dark']),
-
-  /**
-   * Optional component to render in top right
-   */
-  component: PropTypes.node,
 
   /**
    * Use for disabled card

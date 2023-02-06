@@ -15,22 +15,15 @@ import { withPrefix } from '../utils.js'
 
 interface PageDescriptionProps {
   children: ReactNode
-  className?: string | null
 }
 
 /**
  * The `<PageDescription>` component is generally used for intro text at the top
  * of the page using the type token `fluid-heading-03`.
  */
-const PageDescription: MdxComponent<PageDescriptionProps> = ({ children, className, ...rest }) => (
+const PageDescription: MdxComponent<PageDescriptionProps> = ({ children }) => (
   <Grid>
-    <Column
-      sm={4}
-      md={8}
-      lg={8}
-      className={clsx(withPrefix('page-description'), className)}
-      {...rest}
-    >
+    <Column sm={4} md={8} lg={8} className={clsx(withPrefix('page-description'))}>
       {children}
     </Column>
   </Grid>
@@ -40,11 +33,7 @@ PageDescription.propTypes = {
   /**
    * Provide the contents of PageDescription
    */
-  children: PropTypes.node,
-  /**
-   * Optional class name.
-   */
-  className: PropTypes.string
+  children: PropTypes.node
 }
 
 export { PageDescriptionProps }

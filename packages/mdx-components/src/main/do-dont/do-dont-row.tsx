@@ -15,7 +15,6 @@ import { withPrefix } from '../utils.js'
 
 interface DoDontRowProps {
   children: ReactNode
-  className?: string | null
 }
 
 /**
@@ -23,15 +22,13 @@ interface DoDontRowProps {
  * the `<DoDontRow>` component. You can provide an image or video as children,
  * or text using the `text` prop.
  */
-const DoDontRow: MdxComponent<DoDontRowProps> = ({ children, className }) => {
-  return <Grid className={clsx(className, withPrefix('do-dont-row'))}>{children}</Grid>
+const DoDontRow: MdxComponent<DoDontRowProps> = ({ children }) => {
+  return <Grid className={clsx(withPrefix('do-dont-row'))}>{children}</Grid>
 }
 
 DoDontRow.propTypes = {
   /** set children */
-  children: PropTypes.node.isRequired,
-  /** set optional custom class */
-  className: PropTypes.string
+  children: PropTypes.node.isRequired
 }
 
 export { DoDontRowProps }

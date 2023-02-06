@@ -13,6 +13,10 @@ import { UnknownDevDatasetQueryException } from './exceptions/unknown-dev-datase
 import { DataGraphMessage, DataGraphResponse, DevDatasetEntry } from './interfaces.js'
 
 interface DataGraphConfig {
+  /**
+   * A runtime config instance to facilitate modifying the behavior of the data graph via dependency
+   * injection.
+   */
   runtime?: Runtime
 }
 

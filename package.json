@@ -36,9 +36,11 @@
     "packages/mdx-sanitizer",
     "packages/micromanage-cli",
     "packages/resources",
+    "packages/rmdx",
     "packages/schemas",
     "services/data-graph",
     "services/logging",
+    "services/rmdx-processing",
     "services/web-app"
   ],
   "scripts": {
@@ -61,6 +63,8 @@
     "@types/node": "^16.18.11",
     "@types/react": "^17.0.52",
     "@types/react-dom": "^17.0.18",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
     "esbuild": "~0.16.13",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

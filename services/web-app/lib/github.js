@@ -318,20 +318,6 @@ const mergeInheritedAssets = (assets = [], inheritAssets = []) => {
 }
 
 /**
- * Ensures an asset has default properties if not set
- * @param {import('@/typedefs').AssetContent} assetContent
- * @returns {import('@/typedefs').AssetContent}
- */
-const mergeAssetContentDefaults = (assetContent = {}) => {
-  return {
-    ...assetContent,
-    noIndex: !!assetContent.noIndex && process.env.INDEX_ALL !== '1', // default to false if not specified
-    framework: assetContent?.framework ?? 'design-only',
-    tags: assetContent?.tags ?? []
-  }
-}
-
-/**
  * Validates a design kit's structure and content and logs any validation errors as warnings
  * @param {import('@/typedefs').DesignKit} designKit
  * @returns {boolean} whether the design kit is valid or not
@@ -554,7 +540,6 @@ export const getAssetRelatedFrameworks = withTrace(
           const relatedLibData = await getLibraryData(libParams)
           if (
             relatedLibData?.content.id !== library.content.id &&
-            !relatedLibData?.content?.noIndex &&
             relatedLibData.assets?.length &&
             !relatedLibData.assets[0].content?.noIndex &&
             relatedLibData.assets[0].content?.framework
@@ -684,10 +669,28 @@ const addAssetDefaults = async (library) => {
 
   const docsKeys = ['overviewPath', 'accessibilityPath', 'codePath', 'usagePath', 'stylePath']
 
-  if (!libraryTree?.tree?.length) return
-
-  // add docs defaults
   library.assets.forEach((asset) => {
+    // ---- add default noIndex ------
+    if (process.env.INDEX_ALL === '1') {
+      asset.content.noIndex = false
+    } else {
+      asset.content.noIndex =
+        'noIndex' in asset.content ? !!asset.content.noIndex : !!library.content.noIndex
+    }
+
+    // ----- add default design-only framework ------
+    if (!asset.content.framework) {
+      asset.content.framework = 'design-only'
+    }
+
+    // ----- add default empty tags array ------
+    if (!asset.content.tags) {
+      asset.content.tags = []
+    }
+
+    // ------ add docs defaults -------
+    if (!libraryTree?.tree?.length) return
+
     const assetDocsKeys = Object.keys(asset.content.docs ?? {})
 
     // if asset docs has all path keys, skip this iteration
@@ -1072,10 +1075,10 @@ const getLibraryAssets = withTrace(logging, async function getLibraryAssets(para
         return {
           params: libraryParams,
           response,
-          content: mergeAssetContentDefaults({
+          content: {
             id: assetKey,
             ...asset
-          })
+          }
         }
       })
     )

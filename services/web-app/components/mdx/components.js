@@ -31,7 +31,6 @@ import StatusIndicatorTable from '@/components/status-indicator-table'
 import IconLibrary from '@/components/svg-libraries/icon-library'
 import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
-import TypesetStyle from '@/components/typeset-style'
 
 const components = {
   ...mdxComponents,
@@ -68,7 +67,6 @@ const components = {
   Profile,
   StatusIndicatorTable,
   TypeScaleTable,
-  TypesetStyle,
   TypeWeight,
   /* Carbon components */
   /* SOON TO BE REMOVED */

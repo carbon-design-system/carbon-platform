@@ -659,15 +659,75 @@ export const getDesignKitsData = withTrace(logging, async function getDesignKits
 })
 
 /**
+ * Adds default validated docs to a given asset
+ * @param {import('@/typedefs').Asset} asset
+ * @param {import('@/typedefs').GitHubTreeResponse} libraryTree
+ * @returns {void}
+ */
+const addAssetDocsDefaults = (asset, libraryTree) => {
+  const docsKeys = ['overviewPath', 'accessibilityPath', 'codePath', 'usagePath', 'stylePath']
+
+  // ------ add docs defaults -------
+  if (!libraryTree?.tree?.length) return
+
+  const assetDocsKeys = Object.keys(asset.content.docs ?? {})
+
+  // if asset docs has all path keys, skip this iteration
+  if (docsKeys.every((key) => assetDocsKeys.includes(key))) {
+    return
+  }
+
+  const carbonYmlDirPath = asset.response.path.split('/').slice(0, -1).join('/')
+
+  const defaultOverviewPath = path.join('./' + carbonYmlDirPath, './overview.mdx')
+  const defaultAccessibilityPath = path.join('./' + carbonYmlDirPath, './accessibility.mdx')
+  const defaultCodePath = path.join('./' + carbonYmlDirPath, './code.mdx')
+  const defaultStylePath = path.join('./' + carbonYmlDirPath, './style.mdx')
+  const defaultUsagePath = path.join('./' + carbonYmlDirPath, './usage.mdx')
+
+  const docsDefaults = {
+    overviewPath: {
+      path: defaultOverviewPath,
+      default: './overview.mdx'
+    },
+    accessibilityPath: {
+      path: defaultAccessibilityPath,
+      default: './accessibility.mdx'
+    },
+    codePath: {
+      path: defaultCodePath,
+      default: './code.mdx'
+    },
+    stylePath: {
+      path: defaultStylePath,
+      default: './style.mdx'
+    },
+    usagePath: {
+      path: defaultUsagePath,
+      default: './usage.mdx'
+    }
+  }
+
+  libraryTree.tree.forEach((file) => {
+    docsKeys.forEach((key) => {
+      // if assets docs doesn't have path and the file matches the default path, add it
+      if (!asset.content.docs?.[key] && file.path === docsDefaults[key].path) {
+        if (!asset.content.docs) {
+          asset.content.docs = {}
+        }
+        asset.content.docs[key] = docsDefaults[key].default
+      }
+    })
+  })
+}
+
+/**
  * Adds default attributes to each asset in a library as per necessary (e.g.: docs)
  * @param {import('@/typedefs').Library} library
  * @returns {Promise<void>} A promise that resolves to void.
  */
 const addAssetDefaults = async (library) => {
-  const { params } = library
-  const libraryTree = await getGithubTree(params)
-
-  const docsKeys = ['overviewPath', 'accessibilityPath', 'codePath', 'usagePath', 'stylePath']
+  const libraryTree = await getGithubTree(library.params)
 
   library.assets.forEach((asset) => {
     // ---- add default noIndex ------
@@ -688,58 +748,7 @@ const addAssetDefaults = async (library) => {
       asset.content.tags = []
     }
 
-    // ------ add docs defaults -------
-    if (!libraryTree?.tree?.length) return
-
-    const assetDocsKeys = Object.keys(asset.content.docs ?? {})
-
-    // if asset docs has all path keys, skip this iteration
-    if (docsKeys.every((key) => assetDocsKeys.includes(key))) {
-      return
-    }
-
-    const carbonYmlDirPath = asset.response.path.split('/').slice(0, -1).join('/')
-
-    const defaultOverviewPath = path.join('./' + carbonYmlDirPath, './overview.mdx')
-    const defaultAccessibilityPath = path.join('./' + carbonYmlDirPath, './accessibility.mdx')
-    const defaultCodePath = path.join('./' + carbonYmlDirPath, './code.mdx')
-    const defaultStylePath = path.join('./' + carbonYmlDirPath, './style.mdx')
-    const defaultUsagePath = path.join('./' + carbonYmlDirPath, './usage.mdx')
-
-    const docsDefaults = {
-      overviewPath: {
-        path: defaultOverviewPath,
-        default: './overview.mdx'
-      },
-      accessibilityPath: {
-        path: defaultAccessibilityPath,
-        default: './accessibility.mdx'
-      },
-      codePath: {
-        path: defaultCodePath,
-        default: './code.mdx'
-      },
-      stylePath: {
-        path: defaultStylePath,
-        default: './style.mdx'
-      },
-      usagePath: {
-        path: defaultUsagePath,
-        default: './usage.mdx'
-      }
-    }
-
-    libraryTree.tree.forEach((file) => {
-      docsKeys.forEach((key) => {
-        // if assets docs doesn't have path and the file matches the default path, add it
-        if (!asset.content.docs?.[key] && file.path === docsDefaults[key].path) {
-          if (!asset.content.docs) {
-            asset.content.docs = {}
-          }
-          asset.content.docs[key] = docsDefaults[key].default
-        }
-      })
-    })
+    addAssetDocsDefaults(asset, libraryTree)
   })
 }
 

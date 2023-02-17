@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.91](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.90...@carbon-platform/web-app@0.2.91) (2023-02-17)
+
+
+### Features 🌟
+
+* **web-app:** make typesetstyle a JS page ([b8b19d2](https://github.com/carbon-design-system/carbon-platform/commit/b8b19d294aff6a2e5a9045400c237f295340bd92))
+
 ### [0.2.90](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.89...@carbon-platform/web-app@0.2.90) (2023-02-08)
 
 

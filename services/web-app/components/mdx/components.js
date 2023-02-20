@@ -28,8 +28,6 @@ import MdxPage from '@/components/mdx-page'
 import FullPageError from '@/components/mdx-page/errors/full-page-error'
 import Profile from '@/components/profile'
 import StatusIndicatorTable from '@/components/status-indicator-table'
-import IconLibrary from '@/components/svg-libraries/icon-library'
-import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
 import { TypeScaleTable, TypeWeight } from '@/components/type'
 
 const components = {
@@ -59,11 +57,9 @@ const components = {
   ColorTokenTable,
   FilterableDesignKitTable,
   Glossary,
-  IconLibrary,
   Image,
   MdxIcon,
   MdxPage,
-  PictogramLibrary,
   Profile,
   StatusIndicatorTable,
   TypeScaleTable,

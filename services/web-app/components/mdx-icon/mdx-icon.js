@@ -25,6 +25,7 @@ import {
   Svg32Discord,
   Svg32Npm,
   Svg32Slack,
+  Svg32Stackblitz,
   Vue,
   Yourlearning,
   Zenhub
@@ -63,7 +64,8 @@ const svgIcons = {
   invision: Invision,
   yourlearning: Yourlearning,
   discord: Svg32Discord,
-  slack: Svg32Slack
+  slack: Svg32Slack,
+  stackblitz: Svg32Stackblitz
 }
 
 const localIcons = {

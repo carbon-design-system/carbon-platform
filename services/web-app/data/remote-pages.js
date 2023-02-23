@@ -102,9 +102,6 @@ export const remotePages = {
   'elements/typography/style-strategies': {
     filePath: '/src/pages/guidelines/typography/style-strategies.mdx'
   },
-  'elements/typography/type-sets': {
-    filePath: '/src/pages/guidelines/typography/type-sets.mdx'
-  },
   'guidelines/accessibility/developers': {},
   'guidelines/accessibility/keyboard': {},
   'guidelines/content/overview': {},

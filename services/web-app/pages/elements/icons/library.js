@@ -62,7 +62,7 @@ const TypeSets = ({ iconCategoryMetadata, iconMetadata }) => {
 export const getStaticProps = async () => {
   // This is not using ISR because it gets is data from a local dep that ends up bundled with the
   // web-app. ISR would just pull from the same local dep. A future implementation might pull this
-  // from someplace like unpkg or directly from github instead
+  // from some place like unpkg or directly from github instead.
   const metadata = await import('@carbon/icons/metadata.json')
   const { icons: iconMetadata, categories: iconCategoryMetadata } = metadata
   return {

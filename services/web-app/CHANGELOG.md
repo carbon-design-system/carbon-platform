@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.92](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.91...@carbon-platform/web-app@0.2.92) (2023-02-24)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** handle noIndex at asset level,inherit default from library ([3c86bd7](https://github.com/carbon-design-system/carbon-platform/commit/3c86bd7b7c9f0acb503554bf44521f57e98ed213))
+* **web-app:** reduce cognitive complexity ([4a90ce2](https://github.com/carbon-design-system/carbon-platform/commit/4a90ce23e25194e0db5f7523bc519914501ec686))
+* **web-app:** refresh cached files ([5955b00](https://github.com/carbon-design-system/carbon-platform/commit/5955b00fc509143d0b828163f2a138146b6f5c08))
+* **web-app:** run prettier ([6b70d67](https://github.com/carbon-design-system/carbon-platform/commit/6b70d67d6bb2e4437bd0340f54955b59f69b8994))
+* **web-app:** update develop migration guide ([bc0ca1d](https://github.com/carbon-design-system/carbon-platform/commit/bc0ca1dd727876ae58df61d9d9e7997b137fb6f7)), closes [#1595](https://github.com/carbon-design-system/carbon-platform/issues/1595)
+
 ### [0.2.91](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.90...@carbon-platform/web-app@0.2.91) (2023-02-17)
 
 

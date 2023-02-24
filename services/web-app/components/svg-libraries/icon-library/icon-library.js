@@ -98,7 +98,7 @@ const IconLibrary = ({ iconMetadata, iconCategoryMetadata }) => {
           <FilterRow
             categoryList={categoryList}
             selectedCategory={selectedCategory}
-            onSearchChange={(e) => debouncedSetSearchInputValue(e.currentTarget.value)}
+            onSearchChange={(e) => debouncedSetSearchInputValue(e.currentTarget?.value)}
             onDropdownChange={({ selectedItem }) => setSelectedCategory(selectedItem)}
           />
           {shouldShowNoResult && (

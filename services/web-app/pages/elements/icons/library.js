@@ -10,37 +10,37 @@ import { useContext, useEffect } from 'react'
 import ContentWrapper from '@/components/content-wrapper'
 import PageHeader from '@/components/page-header'
 import PageTabs from '@/components/page-tabs'
-import PictogramLibrary from '@/components/svg-libraries/pictogram-library'
+import IconLibrary from '@/components/svg-libraries/icon-library/icon-library'
 import { assetsNavData } from '@/data/nav-data'
 import { LayoutContext } from '@/layouts/layout'
 
 const tabs = [
   {
     name: 'Library',
-    path: '/elements/pictograms/library'
+    path: '/elements/icons/library'
   },
   {
     name: 'Usage',
-    path: '/elements/pictograms/usage'
+    path: '/elements/icons/usage'
   },
   {
     name: 'Code',
-    path: '/elements/pictograms/code'
+    path: '/elements/icons/code'
   },
   {
     name: 'Contribute',
-    path: '/elements/pictograms/contribute'
+    path: '/elements/icons/contribute'
   }
 ]
 
-const Library = ({ pictogramCategoryMetadata, pictogramMetadata }) => {
+const TypeSets = ({ iconCategoryMetadata, iconMetadata }) => {
   const { setPrimaryNavData } = useContext(LayoutContext)
 
   const seo = {
-    title: 'Pictograms',
+    title: 'Icons',
     description:
-      'Pictograms are visual symbols used to represent ideas, objects, or narratives at a glance. They ' +
-      'work well in presentations and marketing communications.'
+      'Icons are visual symbols used to represent ideas, objects, or actions. They communicate messages' +
+      ' at a glance, afford interactivity, and draw attention to important information.'
   }
 
   useEffect(() => {
@@ -53,10 +53,7 @@ const Library = ({ pictogramCategoryMetadata, pictogramMetadata }) => {
       <PageHeader title={seo.title} withTabs />
       <PageTabs title="Page tabs" tabs={tabs} />
       <ContentWrapper>
-        <PictogramLibrary
-          pictogramCategoryMetadata={pictogramCategoryMetadata}
-          pictogramMetadata={pictogramMetadata}
-        />
+        <IconLibrary iconCategoryMetadata={iconCategoryMetadata} iconMetadata={iconMetadata} />
       </ContentWrapper>
     </>
   )
@@ -66,10 +63,10 @@ export const getStaticProps = async () => {
   // This is not using ISR because it gets is data from a local dep that ends up bundled with the
   // web-app. ISR would just pull from the same local dependency. A future implementation might
   // pull this from some place like unpkg or directly from github instead.
-  const metadata = await import('@carbon/pictograms/metadata.json')
-  const { icons: pictogramMetadata, categories: pictogramCategoryMetadata } = metadata
+  const metadata = await import('@carbon/icons/metadata.json')
+  const { icons: iconMetadata, categories: iconCategoryMetadata } = metadata
   return {
-    props: { pictogramMetadata, pictogramCategoryMetadata },
+    props: { iconMetadata, iconCategoryMetadata },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every hour
@@ -77,4 +74,4 @@ export const getStaticProps = async () => {
   }
 }
 
-export default Library
+export default TypeSets

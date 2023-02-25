@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.93](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.92...@carbon-platform/web-app@0.2.93) (2023-02-25)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** convert IconLibrary to JS page ([d8c32c9](https://github.com/carbon-design-system/carbon-platform/commit/d8c32c9d1ba9e82c9555144775e23f1cf3436fb2))
+* **web-app:** update comment ([62ba6ca](https://github.com/carbon-design-system/carbon-platform/commit/62ba6cab1d7d66b249320c4ed10dceef7ae550e5))
+
 ### [0.2.92](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.91...@carbon-platform/web-app@0.2.92) (2023-02-24)
 
 

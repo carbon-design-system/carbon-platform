@@ -55,7 +55,6 @@ const components = {
   ColorPalette,
   ColorTokenTable,
   FilterableDesignKitTable,
-  IconLibrary,
   Image,
   MdxIcon,
   MdxPage,

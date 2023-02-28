@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.94](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.93...@carbon-platform/web-app@0.2.94) (2023-02-28)
+
+
+### Features 🌟
+
+* **web-app:** add Stackblitz Icon ([3968fe3](https://github.com/carbon-design-system/carbon-platform/commit/3968fe3d9e17b5054a87be3854a2b6fcd51824f2)), closes [#1606](https://github.com/carbon-design-system/carbon-platform/issues/1606)
+* **web-app:** make action-labels a JS page ([49f1c68](https://github.com/carbon-design-system/carbon-platform/commit/49f1c6817ebf975445a53280bad27cb63f9d7da3))
+
+
+### Bug Fixes 🐛
+
+* **web-app:** re-add glossary story ([e2e322a](https://github.com/carbon-design-system/carbon-platform/commit/e2e322af22f5c568465fad41f7566507b4f65bb1))
+* **web-app:** remove unnecessary declaration ([d9da434](https://github.com/carbon-design-system/carbon-platform/commit/d9da43456d6c5e31550a2ebfc2271d7ed2b58906))
+
 ### [0.2.93](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.92...@carbon-platform/web-app@0.2.93) (2023-02-25)
 
 

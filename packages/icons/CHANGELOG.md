@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.28](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.27...@carbon-platform/icons@0.1.28) (2023-02-28)
+
+
+### Features 🌟
+
+* **web-app:** add Stackblitz Icon ([3968fe3](https://github.com/carbon-design-system/carbon-platform/commit/3968fe3d9e17b5054a87be3854a2b6fcd51824f2)), closes [#1606](https://github.com/carbon-design-system/carbon-platform/issues/1606)
+
 ### [0.1.27](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/icons@0.1.26...@carbon-platform/icons@0.1.27) (2023-02-08)
 
 

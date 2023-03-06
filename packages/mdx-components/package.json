@@ -35,11 +35,11 @@
     "test": "ava --config ../../ava.config.mjs"
   },
   "dependencies": {
-    "@carbon/colors": "^11.12.0",
-    "@carbon/layout": "^11.11.0",
+    "@carbon/colors": "^11.13.0",
+    "@carbon/layout": "^11.12.0",
     "clsx": "^1.2.1",
     "prop-types": "^15.8.1",
-    "rimraf": "^4.1.2",
+    "rimraf": "^4.3.1",
     "slugify": "^1.6.5"
   },
   "peerDependencies": {
@@ -47,7 +47,7 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
+    "@babel/core": "^7.21.0",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
@@ -58,6 +58,6 @@
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^9.1.2",
     "concurrently": "^7.6.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.21"
   }
 }

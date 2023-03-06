@@ -28,6 +28,6 @@
   "dependencies": {
     "@logdna/logger": "^2.6.6",
     "@types/amqplib": "^0.10.1",
-    "rimraf": "^4.1.2"
+    "rimraf": "^4.3.1"
   }
 }

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.95](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.94...@carbon-platform/web-app@0.2.95) (2023-03-10)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** update carbon roadmap link and icon ([c79b340](https://github.com/carbon-design-system/carbon-platform/commit/c79b3406dfd2763fb5f46754d874ae23577d337a))
+
 ### [0.2.94](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.93...@carbon-platform/web-app@0.2.94) (2023-02-28)
 
 

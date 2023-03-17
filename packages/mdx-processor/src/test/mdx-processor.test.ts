@@ -11,7 +11,7 @@ import { VFileMessage } from 'vfile-message'
 import { MdxCompileException } from '../main/exceptions/mdx-compile-exception.js'
 import { MdxProcessor } from '../main/mdx-processor.js'
 
-test('it runs without crashing', async (t) => {
+test.serial('it runs without crashing', async (t) => {
   const processor = new MdxProcessor({
     allowedTags: [],
     components: {},
@@ -33,7 +33,7 @@ test('it runs without crashing', async (t) => {
   t.truthy(result)
 })
 
-test('it can propagate a compile exception', async (t) => {
+test.serial('it can propagate a compile exception', async (t) => {
   const processor = new MdxProcessor({
     allowedTags: [],
     components: {},
@@ -57,7 +57,7 @@ test('it can propagate a compile exception', async (t) => {
   })
 })
 
-test('it can propagate an unexpected exception', async (t) => {
+test.serial('it can propagate an unexpected exception', async (t) => {
   class MyCustomError extends Error {}
 
   const processor = new MdxProcessor({
@@ -83,7 +83,7 @@ test('it can propagate an unexpected exception', async (t) => {
   })
 })
 
-test('it can propagate a runtime error', async (t) => {
+test.serial('it can propagate a runtime error', async (t) => {
   const processor = new MdxProcessor({
     allowedTags: [],
     components: {},
@@ -103,4 +103,34 @@ test('it can propagate a runtime error', async (t) => {
   await t.throwsAsync(() => processor.process(new VFile('<Wrong />')), {
     instanceOf: Error
   })
+})
+
+test.serial('it fails when using the wrong jsx runtime', async (t) => {
+  const old = process.env.NODE_ENV
+
+  try {
+    process.env.NODE_ENV = 'development'
+
+    const processor = new MdxProcessor({
+      allowedTags: [],
+      components: {},
+      fallbackComponent: () => '',
+      imageResolverPlugin: () => () => undefined,
+      logger: {
+        debug: () => undefined,
+        info: () => undefined,
+        warn: () => undefined,
+        error: () => undefined
+      },
+      onError: () => undefined,
+      sanitizerPlugin: () => () => undefined,
+      tagReplacements: {}
+    })
+
+    await t.throwsAsync(() => processor.process(new VFile('<Wrong />')), {
+      instanceOf: Error
+    })
+  } finally {
+    process.env.NODE_ENV = old
+  }
 })

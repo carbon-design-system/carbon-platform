@@ -74,6 +74,7 @@
     "remark-gfm": "^3.0.1",
     "remark-mdx": "^2.3.0",
     "remark-parse": "^10.0.1",
+    "remark-smartypants": "^2.0.0",
     "remark-unwrap-images": "^3.0.1",
     "rimraf": "^4.4.0",
     "slugify": "^1.6.5",

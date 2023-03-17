@@ -6,7 +6,6 @@
  */
 import { compile, run } from '@mdx-js/mdx'
 import { ReactElement } from 'react'
-import * as runtime from 'react/jsx-runtime.js'
 import { renderToString } from 'react-dom/server.js'
 import rehypeUrls from 'rehype-urls'
 import remarkGfm from 'remark-gfm'
@@ -113,6 +112,10 @@ class MdxProcessor {
   }
 
   private async checkRuntimeErrors(compiledSource: VFile) {
+    const runtime = await import(
+      process.env.NODE_ENV === 'production' ? 'react/jsx-runtime.js' : 'react/jsx-dev-runtime.js'
+    )
+
     const { default: MdxContent } = await run(compiledSource, {
       ...runtime,
       // This is needed because of the providerImportSource prop. In this package, a provider isn't

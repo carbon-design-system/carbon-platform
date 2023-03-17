@@ -41,6 +41,7 @@ To update the node modules across all workspaces, from the top-level in the repo
 command. **Be sure to answer "no" each time it asks if you want to run an `npm install`.**
 
 ```
+npm update
 npx --workspaces --include-workspace-root ncu --upgrade --interactive --target=minor
 CI=true npm install && npm install
 ```

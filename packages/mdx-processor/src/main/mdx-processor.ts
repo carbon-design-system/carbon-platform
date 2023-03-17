@@ -113,7 +113,7 @@ class MdxProcessor {
 
   private async checkRuntimeErrors(compiledSource: VFile) {
     const runtime = await import(
-      process.env.NODE_ENV === 'production' ? 'react/jsx-runtime.js' : 'react/jsx-dev-runtime.js'
+      process.env.NODE_ENV === 'development' ? 'react/jsx-dev-runtime.js' : 'react/jsx-runtime.js'
     )
 
     const { default: MdxContent } = await run(compiledSource, {

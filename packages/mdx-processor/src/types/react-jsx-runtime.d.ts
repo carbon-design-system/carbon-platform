@@ -12,3 +12,7 @@
 declare module 'react/jsx-runtime.js' {
   export * from 'react/jsx-runtime'
 }
+
+declare module 'react/jsx-dev-runtime.js' {
+  export * from 'react/jsx-dev-runtime'
+}

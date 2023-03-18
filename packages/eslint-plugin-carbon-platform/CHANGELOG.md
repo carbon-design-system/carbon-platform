@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.15](https://github.com/carbon-design-system/carbon-platform/compare/eslint-plugin-carbon-platform@0.1.14...eslint-plugin-carbon-platform@0.1.15) (2023-03-18)
+
 ### [0.1.14](https://github.com/carbon-design-system/carbon-platform/compare/eslint-plugin-carbon-platform@0.1.13...eslint-plugin-carbon-platform@0.1.14) (2023-02-08)
 
 ### [0.1.13](https://github.com/carbon-design-system/carbon-platform/compare/eslint-plugin-carbon-platform@0.1.12...eslint-plugin-carbon-platform@0.1.13) (2023-02-07)

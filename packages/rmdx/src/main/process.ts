@@ -10,6 +10,7 @@ import { visit, Visitor } from 'unist-util-visit'
 import { VFile } from 'vfile'
 import { matter } from 'vfile-matter'
 
+import { ProcessingException } from './errors/processing-exception.js'
 import {
   AllowedComponents,
   AstNode,
@@ -34,14 +35,14 @@ const processor = createProcessor({
  * @param data kwArgs input data
  * @returns The result of calling a specific node handler with the input data.
  */
-const visitor: NodeHandler = (data) => {
+const visitor: NodeHandler = (data, callbacks) => {
   const handler = nodeHandlers[data.node.type as keyof NodeHandlers]
   if (!handler) {
     // TODO: better error handling
     throw new Error('no handler found for node type ' + data.node.type)
   }
 
-  const result = handler(data)
+  const result = handler(data, callbacks)
   // const partialNode = data.node as Partial<typeof data.node>
 
   // Ensure all nodes have a parent node type set
@@ -60,19 +61,29 @@ const visitor: NodeHandler = (data) => {
  * @param allowedComponents List of allowed components
  * @returns a curried Visitor function.
  */
-function createVisitor(allowedComponents: AllowedComponents): Visitor {
+function createVisitor(
+  allowedComponents: AllowedComponents,
+  errors: Array<ProcessingException>
+): Visitor {
   return (node, index, parent) => {
     const nodeAsAstNode = node as AstNode
     nodeAsAstNode.props = {
       parentNodeType: '' // Default to '' since this is overridden by each node handler
     }
 
-    return visitor({
-      allowedComponents,
-      node: nodeAsAstNode,
-      index: index || undefined,
-      parent: parent || undefined
-    })
+    return visitor(
+      {
+        allowedComponents,
+        node: nodeAsAstNode,
+        index: index || undefined,
+        parent: parent || undefined
+      },
+      {
+        onError(err: ProcessingException) {
+          errors.push(err)
+        }
+      }
+    )
   }
 }
 
@@ -84,6 +95,8 @@ function createVisitor(allowedComponents: AllowedComponents): Visitor {
  * @returns An RMDX AST for use by `<AstNode />`.
  */
 function process(srcMdx: string, allowedComponents: AllowedComponents): ProcessedMdx {
+  const errors: Array<ProcessingException> = []
+
   // Extract the frontmatter from the source MDX
   const f = new VFile(srcMdx)
   matter(f, { strip: true })
@@ -91,12 +104,13 @@ function process(srcMdx: string, allowedComponents: AllowedComponents): Processe
 
   // Process the remaining mdx
   const result = processor.parse(f.value)
-  visit(result, createVisitor(allowedComponents))
+  visit(result, createVisitor(allowedComponents, errors))
 
   return {
     frontmatter: frontmatter as Record<string, unknown>,
     // Consider the unist node as a renderable ast node since we modified it as such in the tree
-    ast: result as unknown as RenderableAstNode
+    ast: result as unknown as RenderableAstNode,
+    errors
   }
 }
 

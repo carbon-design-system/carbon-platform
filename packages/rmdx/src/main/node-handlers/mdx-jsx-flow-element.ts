@@ -9,6 +9,14 @@ import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx'
 import { convertAttributesToProps } from '../convert-attributes-to-props.js'
 import { NodeHandler } from '../interfaces.js'
 
+/**
+ * Handles an mdxJsxFlowElement by parsing it and filtering out disallowed props.
+ *
+ * Example: `<Wowow />'`
+ *
+ * @param data Incoming data for this node.
+ * @returns a VisitorResult
+ */
 const mdxJsxFlowElement: NodeHandler = (data) => {
   const nodeAsMdxJsxFlowElement = data.node as Partial<MdxJsxFlowElement>
 

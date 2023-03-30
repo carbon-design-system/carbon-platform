@@ -19,6 +19,7 @@ test('it can process a table', (t) => {
   )
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {
@@ -112,6 +113,7 @@ test('it can process a table with no body rows', (t) => {
   )
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

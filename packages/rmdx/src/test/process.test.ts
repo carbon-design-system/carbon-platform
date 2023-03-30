@@ -12,6 +12,7 @@ test('it runs without crashing', (t) => {
   const result = process('', [])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: { nodeType: 'document', children: [], props: { parentNodeType: '' } }
   })
 })
@@ -38,6 +39,7 @@ value: 7
       front: 'matter',
       value: 7,
       wow: ['factor']
-    }
+    },
+    errors: []
   })
 })

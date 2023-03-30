@@ -6,20 +6,25 @@
  */
 // import { SKIP } from 'unist-util-visit'
 
+import { MalformedMdxException } from '../errors/malformed-mdx-exception.js'
+import { RestrictedSyntaxException } from '../errors/restricted-syntax-exception.js'
 import { NodeHandler } from '../interfaces.js'
 
 /**
  * Handles an mdxFlowExpression node by removing it from the AST.
  *
+ * Example: `{x+y}`
+ *
  * @param data Incoming data for this node.
  * @returns a VisitorResult.
  */
-const mdxFlowExpression: NodeHandler = (data) => {
-  // TODO: store an error entry
+const mdxFlowExpression: NodeHandler = (data, { onError }) => {
+  // mdxFlowExpressions are not allowed, so store an error
+  onError(new RestrictedSyntaxException('Filtered out an mdxFlowExpression', data.node))
 
   if (!data.parent) {
     // TODO: make this better
-    throw new Error('MDX flow expression had no parent element')
+    throw new MalformedMdxException('MDX flow expression had no parent element', data.node)
   }
 
   const index = data.index || 0

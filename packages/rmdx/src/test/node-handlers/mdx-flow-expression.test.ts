@@ -6,52 +6,61 @@
  */
 import test from 'ava'
 
-import { process } from '../../main/index.js'
+import { process, RestrictedSyntaxException } from '../../main/index.js'
 
 test('it removes mdx flow expressions', (t) => {
   const result = process('asdf\n{x+y}', [])
-  t.deepEqual(result, {
-    frontmatter: {},
-    ast: {
-      children: [
-        {
-          children: [{ value: 'asdf', props: { parentNodeType: 'paragraph' }, nodeType: 'text' }],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
-        }
-      ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
-    }
+
+  t.deepEqual(result.ast, {
+    children: [
+      {
+        children: [{ value: 'asdf', props: { parentNodeType: 'paragraph' }, nodeType: 'text' }],
+        props: { parentNodeType: 'document' },
+        nodeType: 'paragraph'
+      }
+    ],
+    props: { parentNodeType: '' },
+    nodeType: 'document'
   })
+
+  t.deepEqual(result.frontmatter, {})
+
+  t.true(result.errors.length === 1)
+  t.true(result.errors[0] instanceof RestrictedSyntaxException)
 })
 
 test('it removes first-node mdx flow expressions', (t) => {
   const result = process('{x+y}\nasdf', [])
-  t.deepEqual(result, {
-    frontmatter: {},
-    ast: {
-      children: [
-        {
-          children: [{ value: 'asdf', props: { parentNodeType: 'paragraph' }, nodeType: 'text' }],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
-        }
-      ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
-    }
+
+  t.deepEqual(result.ast, {
+    children: [
+      {
+        children: [{ value: 'asdf', props: { parentNodeType: 'paragraph' }, nodeType: 'text' }],
+        props: { parentNodeType: 'document' },
+        nodeType: 'paragraph'
+      }
+    ],
+    props: { parentNodeType: '' },
+    nodeType: 'document'
   })
+
+  t.deepEqual(result.frontmatter, {})
+
+  t.true(result.errors.length === 1)
+  t.true(result.errors[0] instanceof RestrictedSyntaxException)
 })
 
 test('it removes mdx flow expressions when they are the only node', (t) => {
   const result = process('{x+y}', [])
-  t.deepEqual(result, {
-    frontmatter: {},
-    ast: {
-      children: [],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
-    }
+
+  t.deepEqual(result.ast, {
+    children: [],
+    props: { parentNodeType: '' },
+    nodeType: 'document'
   })
+
+  t.deepEqual(result.frontmatter, {})
+
+  t.true(result.errors.length === 1)
+  t.true(result.errors[0] instanceof RestrictedSyntaxException)
 })

@@ -19,6 +19,7 @@ test('it can process ordered lists', (t) => {
   )
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

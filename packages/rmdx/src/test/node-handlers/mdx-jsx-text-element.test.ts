@@ -12,6 +12,7 @@ test('it allows text elements from the allowed components list', (t) => {
   const result = process('Hello <World />', ['World'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {
@@ -37,6 +38,7 @@ test('it ignores attrs with no name', (t) => {
   const result = process('Hello <Wow {...cantDoThis} />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {
@@ -58,6 +60,7 @@ test('it ignores undefined attr values', (t) => {
   const result = process('Hello <Wow asdf={undefined} />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {
@@ -80,6 +83,7 @@ test('it ignores complex attr values', (t) => {
   const result = process('Hello <Wow foo={() => 7} bar={`hello ${world}`} />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {
@@ -101,6 +105,7 @@ test('it converts null attr values to true', (t) => {
   const result = process('Hello <Wow asdf />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {
@@ -122,6 +127,7 @@ test('it allows string attr values', (t) => {
   let result = process("Hello <Wow asdf='someString' />", ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {
@@ -145,6 +151,7 @@ test('it allows string attr values', (t) => {
   result = process('Hello <Wow asdf="someString" />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {
@@ -170,6 +177,7 @@ test('it allows boolean attr values', (t) => {
   const result = process('Hello <Wow yes={true} no={false} />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {
@@ -195,6 +203,7 @@ test('it allows numeric attr values', (t) => {
   const result = process('Hello <Wow foo={123} bar={0.123} />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

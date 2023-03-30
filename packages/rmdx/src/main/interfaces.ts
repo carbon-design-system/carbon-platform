@@ -8,6 +8,8 @@ import { JSXElementConstructor } from 'react'
 import { Node, Parent } from 'unist'
 import { VisitorResult } from 'unist-util-visit'
 
+import { ProcessingException } from './errors/processing-exception.js'
+
 type AllowedComponents = Array<string>
 
 type Scalar = string | number | boolean
@@ -28,17 +30,25 @@ type RenderableAstNode = Omit<AstNode, 'data' | 'position' | 'type'>
 type ProcessedMdx = {
   frontmatter: Record<string, unknown>
   ast: RenderableAstNode
+  errors: Array<ProcessingException>
 }
 
 type Renderer<Props = unknown> = JSXElementConstructor<Props & AdditionalProps>
 
+interface NodeHandlerData {
+  node: AstNode
+  index?: number
+  parent?: Parent
+  allowedComponents: AllowedComponents
+}
+
 interface NodeHandler {
-  (data: {
-    node: AstNode
-    index?: number
-    parent?: Parent
-    allowedComponents: AllowedComponents
-  }): VisitorResult
+  (
+    data: NodeHandlerData,
+    callbacks: {
+      onError(err: ProcessingException): void
+    }
+  ): VisitorResult
 }
 
 interface RmdxNodeProps {
@@ -53,6 +63,7 @@ export {
   AllowedComponents,
   AstNode,
   NodeHandler,
+  NodeHandlerData,
   ProcessedMdx,
   RenderableAstNode,
   Renderer,

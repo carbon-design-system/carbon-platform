@@ -12,6 +12,7 @@ test('it can process images', (t) => {
   const result = process('![image alt text](./path/to/image.jpg)', [])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

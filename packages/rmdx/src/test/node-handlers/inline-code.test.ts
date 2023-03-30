@@ -12,6 +12,7 @@ test('it can process inline code', (t) => {
   const result = process('`this is inline code`', [])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

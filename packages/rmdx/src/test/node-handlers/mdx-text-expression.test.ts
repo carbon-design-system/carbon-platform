@@ -12,6 +12,7 @@ test('it removes mdx text expressions', (t) => {
   const result = process("asdf {'some text'}", [])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {
@@ -30,6 +31,7 @@ test('it removes first-node mdx text expressions', (t) => {
   const result = process("{'some text'} asdf", [])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

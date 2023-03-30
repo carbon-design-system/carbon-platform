@@ -19,6 +19,7 @@ test('it can process unordered lists', (t) => {
   )
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

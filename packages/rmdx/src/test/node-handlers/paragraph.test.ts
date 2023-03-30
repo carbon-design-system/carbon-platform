@@ -12,6 +12,7 @@ test('it can process a paragraph', (t) => {
   const result = process('a', [])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

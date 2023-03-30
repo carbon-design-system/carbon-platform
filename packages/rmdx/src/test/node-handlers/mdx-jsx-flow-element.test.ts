@@ -12,6 +12,7 @@ test('it allows flow elements from the allowed components list', (t) => {
   const result = process('<Wowow />', ['Wowow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [{ children: [], props: { parentNodeType: 'document' }, nodeType: 'Wowow' }],
       props: { parentNodeType: '' },
@@ -28,6 +29,7 @@ test('it ignores attrs with no name', (t) => {
   const result = process('<Wow {...cantDoThis} />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [{ children: [], props: { parentNodeType: 'document' }, nodeType: 'Wow' }],
       props: { parentNodeType: '' },
@@ -40,6 +42,7 @@ test('it ignores undefined attr values', (t) => {
   const result = process('<Wow asdf={undefined} />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [{ children: [], props: { parentNodeType: 'document' }, nodeType: 'Wow' }],
       props: { parentNodeType: '' },
@@ -53,6 +56,7 @@ test('it ignores complex attr values', (t) => {
   const result = process('<Wow foo={() => 7} bar={`hello ${world}`} />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [{ children: [], props: { parentNodeType: 'document' }, nodeType: 'Wow' }],
       props: { parentNodeType: '' },
@@ -65,6 +69,7 @@ test('it converts null attr values to true', (t) => {
   const result = process('<Wow asdf />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         { children: [], props: { parentNodeType: 'document', asdf: true }, nodeType: 'Wow' }
@@ -79,6 +84,7 @@ test('it allows string attr values', (t) => {
   let result = process("<Wow asdf='someString' />", ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         { children: [], props: { parentNodeType: 'document', asdf: 'someString' }, nodeType: 'Wow' }
@@ -91,6 +97,7 @@ test('it allows string attr values', (t) => {
   result = process('<Wow asdf="someString" />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         { children: [], props: { parentNodeType: 'document', asdf: 'someString' }, nodeType: 'Wow' }
@@ -105,6 +112,7 @@ test('it allows boolean attr values', (t) => {
   const result = process('<Wow yes={true} no={false} />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {
@@ -123,6 +131,7 @@ test('it allows numeric attr values', (t) => {
   const result = process('<Wow foo={123} bar={0.123} />', ['Wow'])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

@@ -22,6 +22,7 @@ test('it can process headings', (t) => {
   )
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {
@@ -65,6 +66,7 @@ test('it can process code inside of a heading', (t) => {
   const result = process('# wow `code in a heading`', [])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

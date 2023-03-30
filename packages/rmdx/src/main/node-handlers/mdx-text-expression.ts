@@ -9,6 +9,8 @@ import { NodeHandler } from '../interfaces.js'
 /**
  * Handles an mdxTextExpression node by removing it from the AST.
  *
+ * Example: `Hello {'some text'}`
+ *
  * @param data Incoming data for this node.
  * @returns a VisitorResult.
  */

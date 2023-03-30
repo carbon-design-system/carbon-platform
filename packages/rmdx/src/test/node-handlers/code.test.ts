@@ -12,6 +12,7 @@ test('it can process inline a code block', (t) => {
   const result = process('```\nSystem.out.println("Hello, world!")\n```', [])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

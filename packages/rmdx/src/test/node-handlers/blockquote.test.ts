@@ -12,6 +12,7 @@ test('it can process a blockquote', (t) => {
   const result = process('> This is a blockquote', [])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       nodeType: 'document',
       children: [

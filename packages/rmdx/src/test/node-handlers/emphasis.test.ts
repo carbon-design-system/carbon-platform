@@ -12,6 +12,7 @@ test('it can process an emphasis', (t) => {
   const result = process('*wow!*', [])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

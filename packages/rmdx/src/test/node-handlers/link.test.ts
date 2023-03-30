@@ -12,6 +12,7 @@ test('it can process links', (t) => {
   const result = process('[this is link text](./this/is/a/link.html)', [])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

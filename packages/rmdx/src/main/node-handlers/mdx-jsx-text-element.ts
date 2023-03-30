@@ -9,6 +9,14 @@ import { MdxJsxTextElement } from 'mdast-util-mdx-jsx'
 import { convertAttributesToProps } from '../convert-attributes-to-props.js'
 import { NodeHandler } from '../interfaces.js'
 
+/**
+ * Handles an mdxJsxTextElement by parsing it and filtering out disallowed props.
+ *
+ * Example: `Hello <World />`
+ *
+ * @param data Incoming data for this node.
+ * @returns a VisitorResult
+ */
 const mdxJsxTextElement: NodeHandler = (data) => {
   const nodeAsMdxJsxTextElement = data.node as Partial<MdxJsxTextElement>
 

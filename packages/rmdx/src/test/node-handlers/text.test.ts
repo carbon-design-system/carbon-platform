@@ -12,6 +12,7 @@ test('it can process plain text', (t) => {
   const result = process('boring, but necessary', [])
   t.deepEqual(result, {
     frontmatter: {},
+    errors: [],
     ast: {
       children: [
         {

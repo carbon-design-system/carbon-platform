@@ -8,7 +8,7 @@ import { JSXElementConstructor } from 'react'
 import { Node, Parent } from 'unist'
 import { VisitorResult } from 'unist-util-visit'
 
-import { ProcessingException } from './errors/processing-exception.js'
+import { ProcessingException } from './exceptions/processing-exception.js'
 
 type AllowedComponents = Array<string>
 
@@ -27,20 +27,7 @@ type AstNode = Partial<Node> & {
 
 type RenderableAstNode = Omit<AstNode, 'data' | 'position' | 'type'>
 
-type ProcessedMdx = {
-  frontmatter: Record<string, unknown>
-  ast: RenderableAstNode
-  errors: Array<ProcessingException>
-}
-
 type Renderer<Props = unknown> = JSXElementConstructor<Props & AdditionalProps>
-
-interface NodeHandlerData {
-  node: AstNode
-  index?: number
-  parent?: Parent
-  allowedComponents: AllowedComponents
-}
 
 interface NodeHandler {
   (
@@ -49,6 +36,19 @@ interface NodeHandler {
       onError(err: ProcessingException): void
     }
   ): VisitorResult
+}
+
+interface NodeHandlerData {
+  node: AstNode
+  index?: number
+  parent?: Parent
+  allowedComponents: AllowedComponents
+}
+
+interface ProcessedMdx {
+  frontmatter: Record<string, unknown>
+  ast: RenderableAstNode
+  errors: Array<ProcessingException>
 }
 
 interface RmdxNodeProps {

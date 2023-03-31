@@ -6,7 +6,11 @@
  */
 import { NodeHandlerData } from '../interfaces.js'
 
-class ProcessingException extends Error {
+/**
+ * Base class from which all other processing exceptions inherit. This class is obstract since it is
+ * intended to be sub-classed rather than used directly.
+ */
+abstract class ProcessingException extends Error {
   private node: NodeHandlerData['node']
   private position: NodeHandlerData['node']['position']
 

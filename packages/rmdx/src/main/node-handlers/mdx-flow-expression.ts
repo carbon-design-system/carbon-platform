@@ -4,10 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-// import { SKIP } from 'unist-util-visit'
-
-import { MalformedMdxException } from '../errors/malformed-mdx-exception.js'
-import { RestrictedSyntaxException } from '../errors/restricted-syntax-exception.js'
+import { MalformedMdxException } from '../exceptions/malformed-mdx-exception.js'
+import { RestrictedSyntaxException } from '../exceptions/restricted-syntax-exception.js'
 import { NodeHandler } from '../interfaces.js'
 
 /**
@@ -23,7 +21,6 @@ const mdxFlowExpression: NodeHandler = (data, { onError }) => {
   onError(new RestrictedSyntaxException('Filtered out an mdxFlowExpression', data.node))
 
   if (!data.parent) {
-    // TODO: make this better
     throw new MalformedMdxException('MDX flow expression had no parent element', data.node)
   }
 

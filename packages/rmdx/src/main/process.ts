@@ -10,7 +10,7 @@ import { visit, Visitor } from 'unist-util-visit'
 import { VFile } from 'vfile'
 import { matter } from 'vfile-matter'
 
-import { ProcessingException } from './errors/processing-exception.js'
+import { ProcessingException } from './exceptions/processing-exception.js'
 import {
   AllowedComponents,
   AstNode,
@@ -90,9 +90,15 @@ function createVisitor(
 /**
  * Processes a source MDX string and turns it into an RMDX AST. The contents of this AST is
  * considered "safe" for use by React components when rendered via `<AstNode />`.
+ *
+ * There are two types of errors that processing can manifest:
+ * - Unrecoverable errors manifest as thrown exceptions that inherit from `ProcessingException`.
+ * - Recoverable errors are returned in the result object's `errors` key as exception objects that
+ *   inherit from `ProcessingException`s.
+ *
  * @param srcMdx Input MDX string.
  * @param allowedComponents List of allowable JSX components that can be used in the input MDX.
- * @returns An RMDX AST for use by `<AstNode />`.
+ * @returns An RMDX result object containing an AST for use by `<AstNode />`.
  */
 function process(srcMdx: string, allowedComponents: AllowedComponents): ProcessedMdx {
   const errors: Array<ProcessingException> = []

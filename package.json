@@ -55,7 +55,7 @@
     "@carbon/react": "^1.25.0",
     "@nestjs/cli": "^9.3.0",
     "@nestjs/common": "^9.3.10",
-    "@nestjs/core": "^9.3.10",
+    "@nestjs/core": "^9.3.12",
     "@nestjs/graphql": "^10.2.0",
     "@nestjs/microservices": "^9.3.10",
     "@types/node": "^16.18.16",

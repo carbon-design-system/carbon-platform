@@ -57,7 +57,7 @@
     "@nestjs/common": "^9.3.10",
     "@nestjs/core": "^9.3.10",
     "@nestjs/graphql": "^10.2.0",
-    "@nestjs/microservices": "^9.3.10",
+    "@nestjs/microservices": "^9.3.12",
     "@types/node": "^16.18.16",
     "@types/react": "^17.0.53",
     "@types/react-dom": "^17.0.19",

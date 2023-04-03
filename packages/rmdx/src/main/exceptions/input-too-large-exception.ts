@@ -6,6 +6,6 @@
  */
 import { ProcessingException } from './processing-exception.js'
 
-class RestrictedSyntaxException extends ProcessingException {}
+class InputTooLargeException extends ProcessingException {}
 
-export { RestrictedSyntaxException }
+export { InputTooLargeException }

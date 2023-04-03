@@ -9,7 +9,11 @@ import remarkGfm from 'remark-gfm'
 import { visit, Visitor } from 'unist-util-visit'
 import { VFile } from 'vfile'
 import { matter } from 'vfile-matter'
+import { VFileMessage } from 'vfile-message'
 
+import { InputTooLargeException } from './exceptions/input-too-large-exception.js'
+import { MalformedMdxException } from './exceptions/malformed-mdx-exception.js'
+import { NoSuchHandlerException } from './exceptions/no-such-handler-exception.js'
 import { ProcessingException } from './exceptions/processing-exception.js'
 import {
   AllowedComponents,
@@ -20,8 +24,7 @@ import {
 } from './interfaces.js'
 import * as nodeHandlers from './node-handlers/index.js'
 
-// TODO: if something ends up with no component, it needs to be removed from the AST
-// TODO: enforce max length
+const MAX_INPUT_LENGTH = 1000000 // bytes
 
 type NodeHandlers = Record<keyof typeof nodeHandlers, NodeHandler>
 
@@ -38,8 +41,7 @@ const processor = createProcessor({
 const visitor: NodeHandler = (data, callbacks) => {
   const handler = nodeHandlers[data.node.type as keyof NodeHandlers]
   if (!handler) {
-    // TODO: better error handling
-    throw new Error('no handler found for node type ' + data.node.type)
+    throw new NoSuchHandlerException(data.node.type || '', data.node.position)
   }
 
   const result = handler(data, callbacks)
@@ -80,7 +82,7 @@ function createVisitor(
       },
       {
         onError(err: ProcessingException) {
-          errors.push(err)
+          return errors.push(err) - 1
         }
       }
     )
@@ -92,7 +94,8 @@ function createVisitor(
  * considered "safe" for use by React components when rendered via `<AstNode />`.
  *
  * There are two types of errors that processing can manifest:
- * - Unrecoverable errors manifest as thrown exceptions that inherit from `ProcessingException`.
+ * - Unrecoverable errors manifest as thrown exceptions, most (but not all) of which inherit from
+ *   `ProcessingException`.
  * - Recoverable errors are returned in the result object's `errors` key as exception objects that
  *   inherit from `ProcessingException`s.
  *
@@ -101,6 +104,11 @@ function createVisitor(
  * @returns An RMDX result object containing an AST for use by `<AstNode />`.
  */
 function process(srcMdx: string, allowedComponents: AllowedComponents): ProcessedMdx {
+  // Guard - max input length
+  if (srcMdx.length > MAX_INPUT_LENGTH) {
+    throw new InputTooLargeException(`srcMdx exceeded max length of ${MAX_INPUT_LENGTH} bytes`)
+  }
+
   const errors: Array<ProcessingException> = []
 
   // Extract the frontmatter from the source MDX
@@ -109,14 +117,24 @@ function process(srcMdx: string, allowedComponents: AllowedComponents): Processe
   const frontmatter = f.data?.matter || {}
 
   // Process the remaining mdx
-  const result = processor.parse(f.value)
+  let result
+  try {
+    result = processor.parse(f.value)
+  } catch (err) {
+    if (err instanceof VFileMessage) {
+      throw new MalformedMdxException(err.reason, err.position || undefined)
+    }
+
+    throw err
+  }
+
   visit(result, createVisitor(allowedComponents, errors))
 
   return {
     frontmatter: frontmatter as Record<string, unknown>,
     // Consider the unist node as a renderable ast node since we modified it as such in the tree
     ast: result as unknown as RenderableAstNode,
-    errors
+    errors: errors.map((err) => err.serialize())
   }
 }
 

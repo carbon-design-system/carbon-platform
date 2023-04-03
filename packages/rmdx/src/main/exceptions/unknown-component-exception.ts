@@ -6,6 +6,6 @@
  */
 import { ProcessingException } from './processing-exception.js'
 
-class RestrictedSyntaxException extends ProcessingException {}
+class UnknownComponentException extends ProcessingException {}
 
-export { RestrictedSyntaxException }
+export { UnknownComponentException }

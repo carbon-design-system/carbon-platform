@@ -12,18 +12,30 @@ test('it removes mdx text expressions', (t) => {
   const result = process("asdf {'some text'}", [])
   t.deepEqual(result, {
     frontmatter: {},
-    errors: [],
     ast: {
       children: [
         {
-          children: [{ value: 'asdf ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' }],
+          children: [
+            { value: 'asdf ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' },
+            { type: '__error__', data: { errorIndex: 0 } }
+          ],
           props: { parentNodeType: 'document' },
           nodeType: 'paragraph'
         }
       ],
       props: { parentNodeType: '' },
       nodeType: 'document'
-    }
+    },
+    errors: [
+      {
+        type: 'RestrictedSyntaxException',
+        position: {
+          start: { line: 1, column: 6, offset: 5 },
+          end: { line: 1, column: 19, offset: 18 }
+        },
+        src: "{'some text'}"
+      }
+    ]
   })
 })
 
@@ -31,17 +43,29 @@ test('it removes first-node mdx text expressions', (t) => {
   const result = process("{'some text'} asdf", [])
   t.deepEqual(result, {
     frontmatter: {},
-    errors: [],
     ast: {
       children: [
         {
-          children: [{ value: ' asdf', props: { parentNodeType: 'paragraph' }, nodeType: 'text' }],
+          children: [
+            { type: '__error__', data: { errorIndex: 0 } },
+            { value: ' asdf', props: { parentNodeType: 'paragraph' }, nodeType: 'text' }
+          ],
           props: { parentNodeType: 'document' },
           nodeType: 'paragraph'
         }
       ],
       props: { parentNodeType: '' },
       nodeType: 'document'
-    }
+    },
+    errors: [
+      {
+        type: 'RestrictedSyntaxException',
+        position: {
+          start: { line: 1, column: 1, offset: 0 },
+          end: { line: 1, column: 14, offset: 13 }
+        },
+        src: "{'some text'}"
+      }
+    ]
   })
 })

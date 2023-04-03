@@ -6,6 +6,7 @@
  */
 import { Table, TableRow } from 'mdast'
 
+import { MalformedMdxException } from '../exceptions/malformed-mdx-exception.js'
 import { NodeHandler } from '../interfaces.js'
 
 interface HtmlTable {
@@ -32,8 +33,7 @@ const table: NodeHandler = (data) => {
   const bodyRows = nodeAsTable.children?.slice(1) || []
 
   if (!headerRow) {
-    // TODO: make this better
-    throw new Error('Table was missing a header row')
+    throw new MalformedMdxException('Table was missing a header row', data.node.position)
   }
 
   // Propagate align values to header row

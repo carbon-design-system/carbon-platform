@@ -4,9 +4,13 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { MalformedMdxException } from '../exceptions/malformed-mdx-exception.js'
+import { MdxFlowExpression } from 'mdast-util-mdx-expression'
+
+import { ErrorNode } from '../error-node.js'
+import { NoParentNodeException } from '../exceptions/no-parent-element-exception.js'
 import { RestrictedSyntaxException } from '../exceptions/restricted-syntax-exception.js'
 import { NodeHandler } from '../interfaces.js'
+import { replaceNode } from '../replace-node.js'
 
 /**
  * Handles an mdxFlowExpression node by removing it from the AST.
@@ -17,18 +21,18 @@ import { NodeHandler } from '../interfaces.js'
  * @returns a VisitorResult.
  */
 const mdxFlowExpression: NodeHandler = (data, { onError }) => {
-  // mdxFlowExpressions are not allowed, so store an error
-  onError(new RestrictedSyntaxException('Filtered out an mdxFlowExpression', data.node))
+  const nodeAsMdxFlowExpression = data.node as Partial<MdxFlowExpression>
 
   if (!data.parent) {
-    throw new MalformedMdxException('MDX flow expression had no parent element', data.node)
+    throw new NoParentNodeException(`{${nodeAsMdxFlowExpression.value}}`, data.node.position)
   }
 
-  const index = data.index || 0
+  // mdxFlowExpressions are not allowed, so store an error
+  const errorIndex = onError(
+    new RestrictedSyntaxException(`{${nodeAsMdxFlowExpression.value}}`, data.node.position)
+  )
 
-  data.parent.children.splice(index, 1)
-
-  return index
+  return replaceNode(data, new ErrorNode(errorIndex).serialize())
 }
 
 export { mdxFlowExpression }

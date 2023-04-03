@@ -30,8 +30,36 @@ test('it allows text elements from the allowed components list', (t) => {
   })
 })
 
-test('it throws when unknown components are provided', (t) => {
-  t.throws(() => process('Hello <World />', []))
+test('it replaces an unknown component with error node', (t) => {
+  const result = process('Hello <World />', [])
+
+  t.deepEqual(result, {
+    frontmatter: {},
+    ast: {
+      children: [
+        {
+          children: [
+            { value: 'Hello ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' },
+            { type: '__error__', data: { errorIndex: 0 } }
+          ],
+          props: { parentNodeType: 'document' },
+          nodeType: 'paragraph'
+        }
+      ],
+      props: { parentNodeType: '' },
+      nodeType: 'document'
+    },
+    errors: [
+      {
+        type: 'UnknownComponentException',
+        position: {
+          start: { line: 1, column: 7, offset: 6 },
+          end: { line: 1, column: 16, offset: 15 }
+        },
+        src: 'World'
+      }
+    ]
+  })
 })
 
 test('it ignores attrs with no name', (t) => {

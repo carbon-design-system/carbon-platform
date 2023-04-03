@@ -21,8 +21,36 @@ test('it allows flow elements from the allowed components list', (t) => {
   })
 })
 
-test('it throws when unknown components are provided', (t) => {
-  t.throws(() => process('<NotHere />', []))
+test('it replaces an unknown component with an error node', (t) => {
+  const result = process('<NotHere />', [])
+
+  t.deepEqual(result, {
+    ast: {
+      children: [
+        {
+          type: '__error__',
+          data: {
+            errorIndex: 0
+          }
+        }
+      ],
+      nodeType: 'document',
+      props: {
+        parentNodeType: ''
+      }
+    },
+    errors: [
+      {
+        type: 'UnknownComponentException',
+        position: {
+          start: { column: 1, line: 1, offset: 0 },
+          end: { column: 12, line: 1, offset: 11 }
+        },
+        src: 'NotHere'
+      }
+    ],
+    frontmatter: {}
+  })
 })
 
 test('it ignores attrs with no name', (t) => {

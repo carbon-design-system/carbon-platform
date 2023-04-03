@@ -43,3 +43,37 @@ value: 7
     errors: []
   })
 })
+
+test('it can produce more than one error at a time', (t) => {
+  const result = process('<NotARealComponent />\n{x+y}', [])
+
+  t.deepEqual(result, {
+    frontmatter: {},
+    ast: {
+      children: [
+        { type: '__error__', data: { errorIndex: 0 } },
+        { type: '__error__', data: { errorIndex: 1 } }
+      ],
+      props: { parentNodeType: '' },
+      nodeType: 'document'
+    },
+    errors: [
+      {
+        type: 'UnknownComponentException',
+        position: {
+          start: { line: 1, column: 1, offset: 0 },
+          end: { line: 1, column: 22, offset: 21 }
+        },
+        src: 'NotARealComponent'
+      },
+      {
+        type: 'RestrictedSyntaxException',
+        position: {
+          start: { line: 2, column: 1, offset: 22 },
+          end: { line: 2, column: 6, offset: 27 }
+        },
+        src: '{x+y}'
+      }
+    ]
+  })
+})

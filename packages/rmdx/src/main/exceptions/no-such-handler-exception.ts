@@ -4,8 +4,9 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { ProcessingException } from './processing-exception.js'
 
-class RestrictedSyntaxException extends ProcessingException {}
+class NoSuchHandlerException extends ProcessingException {}
 
-export { RestrictedSyntaxException }
+export { NoSuchHandlerException }

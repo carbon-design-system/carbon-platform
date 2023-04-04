@@ -16,15 +16,15 @@ test('it removes mdx text expressions', (t) => {
       children: [
         {
           children: [
-            { value: 'asdf ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' },
+            { value: 'asdf ', props: { parentType: 'paragraph' }, type: 'text' },
             { type: '__error__', data: { errorIndex: 0 } }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     },
     errors: [
       {
@@ -48,14 +48,14 @@ test('it removes first-node mdx text expressions', (t) => {
         {
           children: [
             { type: '__error__', data: { errorIndex: 0 } },
-            { value: ' asdf', props: { parentNodeType: 'paragraph' }, nodeType: 'text' }
+            { value: ' asdf', props: { parentType: 'paragraph' }, type: 'text' }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     },
     errors: [
       {

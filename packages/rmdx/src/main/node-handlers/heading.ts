@@ -10,7 +10,8 @@ import { NodeHandler } from '../interfaces.js'
 
 const heading: NodeHandler = (data) => {
   const nodeAsHeading = data.node as Partial<Heading>
-  data.node.nodeType = 'heading-' + nodeAsHeading.depth
+
+  data.node.type = 'heading-' + nodeAsHeading.depth
 
   // Return a full-text representation of the children of this heading as a prop
   const childValues = data.node.children?.map((child) => {

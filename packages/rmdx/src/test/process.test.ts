@@ -13,7 +13,7 @@ test('it runs without crashing', (t) => {
   t.deepEqual(result, {
     frontmatter: {},
     errors: [],
-    ast: { nodeType: 'document', children: [], props: { parentNodeType: '' } }
+    ast: { type: 'document', children: [], props: { parentType: '' } }
   })
 })
 
@@ -30,9 +30,9 @@ value: 7
   t.deepEqual(result, {
     ast: {
       children: [],
-      nodeType: 'document',
+      type: 'document',
       props: {
-        parentNodeType: ''
+        parentType: ''
       }
     },
     frontmatter: {
@@ -54,8 +54,8 @@ test('it can produce more than one error at a time', (t) => {
         { type: '__error__', data: { errorIndex: 0 } },
         { type: '__error__', data: { errorIndex: 1 } }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     },
     errors: [
       {

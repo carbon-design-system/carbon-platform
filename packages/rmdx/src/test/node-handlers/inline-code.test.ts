@@ -19,16 +19,16 @@ test('it can process inline code', (t) => {
           children: [
             {
               value: 'this is inline code',
-              props: { parentNodeType: 'paragraph' },
-              nodeType: 'inline-code'
+              props: { parentType: 'paragraph' },
+              type: 'inline-code'
             }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })

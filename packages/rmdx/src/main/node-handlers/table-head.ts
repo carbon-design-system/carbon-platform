@@ -11,7 +11,7 @@ import { NodeHandler } from '../interfaces.js'
 const tableHead: NodeHandler = (data) => {
   const nodeAsParent = data.node as Partial<Parent>
 
-  data.node.nodeType = 'table-head'
+  data.node.type = 'table-head'
 
   nodeAsParent.children?.forEach((child) => {
     child.type = 'tableHeaderRow'

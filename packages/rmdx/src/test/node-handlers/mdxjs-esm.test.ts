@@ -15,8 +15,8 @@ test('it replaces an mdxjsEsm import expression with an error node', (t) => {
     frontmatter: {},
     ast: {
       children: [{ type: '__error__', data: { errorIndex: 0 } }],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     },
     errors: [
       {
@@ -37,9 +37,9 @@ test('it replaces an mdxjsEsm export expression with an error node', (t) => {
   t.deepEqual(result, {
     ast: {
       children: [{ type: '__error__', data: { errorIndex: 0 } }],
-      nodeType: 'document',
+      type: 'document',
       props: {
-        parentNodeType: ''
+        parentType: ''
       }
     },
     errors: [

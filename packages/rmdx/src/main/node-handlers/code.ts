@@ -11,7 +11,7 @@ import { NodeHandler } from '../interfaces.js'
 const code: NodeHandler = (data) => {
   const nodeAsCode = data.node as Partial<Code>
 
-  data.node.nodeType = 'code'
+  data.node.type = 'code'
 
   data.node.props.meta = nodeAsCode.meta || ''
   data.node.props.lang = nodeAsCode.lang || ''

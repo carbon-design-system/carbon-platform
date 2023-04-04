@@ -9,7 +9,7 @@ import { NodeHandler } from '../interfaces.js'
 type RowData = { align: Array<string | null> } | undefined
 
 const tableRow: NodeHandler = (data) => {
-  data.node.nodeType = 'table-row'
+  data.node.type = 'table-row'
 
   data.node.children?.forEach((cell, index) => {
     cell.data ||= {}

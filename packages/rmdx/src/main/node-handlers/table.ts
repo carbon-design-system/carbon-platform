@@ -26,7 +26,7 @@ const table: NodeHandler = (data) => {
   const nodeAsTable = data.node as Partial<Table>
   const nodeAsHtmlTable = data.node as HtmlTable
 
-  data.node.nodeType = 'table'
+  data.node.type = 'table'
   data.node.props.columns = nodeAsTable.align?.length || 0
 
   const headerRow = nodeAsTable.children?.[0]

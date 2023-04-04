@@ -9,11 +9,11 @@ import React from 'react'
 import { RmdxNodeProps } from './interfaces.js'
 
 function RmdxNode({ components, astNode }: RmdxNodeProps) {
-  const Component = components[astNode.nodeType]
+  const Component = components[astNode.type]
 
   // Guard - specified component not found in mapping
   if (!Component) {
-    throw new Error('No component mapping for nodeType ' + astNode.nodeType)
+    throw new Error('No component mapping for nodeType ' + astNode.type)
   }
 
   if (astNode.value) {

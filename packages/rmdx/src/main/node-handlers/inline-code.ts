@@ -7,7 +7,7 @@
 import { NodeHandler } from '../interfaces.js'
 
 const inlineCode: NodeHandler = (data) => {
-  data.node.nodeType = 'inline-code'
+  data.node.type = 'inline-code'
 }
 
 export { inlineCode }

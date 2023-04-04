@@ -16,14 +16,14 @@ test('it replaces an mdx flow expression with an error node', (t) => {
     ast: {
       children: [
         {
-          children: [{ value: 'asdf', props: { parentNodeType: 'paragraph' }, nodeType: 'text' }],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          children: [{ value: 'asdf', props: { parentType: 'paragraph' }, type: 'text' }],
+          props: { parentType: 'document' },
+          type: 'paragraph'
         },
         { type: '__error__', data: { errorIndex: 0 } }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     },
     errors: [
       {
@@ -47,13 +47,13 @@ test('it removes first-node mdx flow expressions', (t) => {
       children: [
         { type: '__error__', data: { errorIndex: 0 } },
         {
-          children: [{ value: 'asdf', props: { parentNodeType: 'paragraph' }, nodeType: 'text' }],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          children: [{ value: 'asdf', props: { parentType: 'paragraph' }, type: 'text' }],
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     },
     errors: [
       {
@@ -75,8 +75,8 @@ test('it removes mdx flow expressions when they are the only node', (t) => {
     frontmatter: {},
     ast: {
       children: [{ type: '__error__', data: { errorIndex: 0 } }],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     },
     errors: [
       {

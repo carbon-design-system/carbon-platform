@@ -19,18 +19,18 @@ test('it can process links', (t) => {
           children: [
             {
               children: [
-                { value: 'this is link text', props: { parentNodeType: 'link' }, nodeType: 'text' }
+                { value: 'this is link text', props: { parentType: 'link' }, type: 'text' }
               ],
-              props: { parentNodeType: 'paragraph', href: './this/is/a/link.html' },
-              nodeType: 'link'
+              props: { parentType: 'paragraph', href: './this/is/a/link.html' },
+              type: 'link'
             }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })

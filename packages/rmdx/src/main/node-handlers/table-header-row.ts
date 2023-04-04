@@ -13,7 +13,7 @@ type RowData = { align: Array<string | null> } | undefined
 const tableHeaderRow: NodeHandler = (data) => {
   const nodeAsParent = data.node as Partial<Parent>
 
-  data.node.nodeType = 'table-header-row'
+  data.node.type = 'table-header-row'
 
   nodeAsParent.children?.forEach((cell, index) => {
     cell.type = 'tableHeaderCell'

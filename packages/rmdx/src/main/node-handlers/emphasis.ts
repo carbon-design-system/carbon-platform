@@ -7,7 +7,7 @@
 import { NodeHandler } from '../interfaces.js'
 
 const emphasis: NodeHandler = (data) => {
-  data.node.nodeType = 'emphasis'
+  data.node.type = 'emphasis'
 }
 
 export { emphasis }

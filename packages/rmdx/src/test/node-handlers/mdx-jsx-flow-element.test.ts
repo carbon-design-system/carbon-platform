@@ -14,9 +14,9 @@ test('it allows flow elements from the allowed components list', (t) => {
     frontmatter: {},
     errors: [],
     ast: {
-      children: [{ children: [], props: { parentNodeType: 'document' }, nodeType: 'Wowow' }],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      children: [{ children: [], props: { parentType: 'document' }, type: 'Wowow' }],
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -34,9 +34,9 @@ test('it replaces an unknown component with an error node', (t) => {
           }
         }
       ],
-      nodeType: 'document',
+      type: 'document',
       props: {
-        parentNodeType: ''
+        parentType: ''
       }
     },
     errors: [
@@ -59,9 +59,9 @@ test('it ignores attrs with no name', (t) => {
     frontmatter: {},
     errors: [],
     ast: {
-      children: [{ children: [], props: { parentNodeType: 'document' }, nodeType: 'Wow' }],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      children: [{ children: [], props: { parentType: 'document' }, type: 'Wow' }],
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -72,9 +72,9 @@ test('it ignores undefined attr values', (t) => {
     frontmatter: {},
     errors: [],
     ast: {
-      children: [{ children: [], props: { parentNodeType: 'document' }, nodeType: 'Wow' }],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      children: [{ children: [], props: { parentType: 'document' }, type: 'Wow' }],
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -86,9 +86,9 @@ test('it ignores complex attr values', (t) => {
     frontmatter: {},
     errors: [],
     ast: {
-      children: [{ children: [], props: { parentNodeType: 'document' }, nodeType: 'Wow' }],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      children: [{ children: [], props: { parentType: 'document' }, type: 'Wow' }],
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -99,11 +99,9 @@ test('it converts null attr values to true', (t) => {
     frontmatter: {},
     errors: [],
     ast: {
-      children: [
-        { children: [], props: { parentNodeType: 'document', asdf: true }, nodeType: 'Wow' }
-      ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      children: [{ children: [], props: { parentType: 'document', asdf: true }, type: 'Wow' }],
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -115,10 +113,10 @@ test('it allows string attr values', (t) => {
     errors: [],
     ast: {
       children: [
-        { children: [], props: { parentNodeType: 'document', asdf: 'someString' }, nodeType: 'Wow' }
+        { children: [], props: { parentType: 'document', asdf: 'someString' }, type: 'Wow' }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 
@@ -128,10 +126,10 @@ test('it allows string attr values', (t) => {
     errors: [],
     ast: {
       children: [
-        { children: [], props: { parentNodeType: 'document', asdf: 'someString' }, nodeType: 'Wow' }
+        { children: [], props: { parentType: 'document', asdf: 'someString' }, type: 'Wow' }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -145,12 +143,12 @@ test('it allows boolean attr values', (t) => {
       children: [
         {
           children: [],
-          props: { parentNodeType: 'document', yes: true, no: false },
-          nodeType: 'Wow'
+          props: { parentType: 'document', yes: true, no: false },
+          type: 'Wow'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -164,12 +162,12 @@ test('it allows numeric attr values', (t) => {
       children: [
         {
           children: [],
-          props: { parentNodeType: 'document', foo: 123, bar: 0.123 },
-          nodeType: 'Wow'
+          props: { parentType: 'document', foo: 123, bar: 0.123 },
+          type: 'Wow'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })

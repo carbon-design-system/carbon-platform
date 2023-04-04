@@ -41,7 +41,7 @@ const mdxJsxFlowElement: NodeHandler = (data, { onError }) => {
     return replaceNode(data, new ErrorNode(errorIndex).serialize())
   }
 
-  data.node.nodeType = nodeAsMdxJsxFlowElement.name
+  data.node.type = nodeAsMdxJsxFlowElement.name
 
   if (nodeAsMdxJsxFlowElement.attributes) {
     data.node.props = {

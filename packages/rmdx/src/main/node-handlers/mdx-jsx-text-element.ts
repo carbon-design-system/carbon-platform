@@ -41,7 +41,7 @@ const mdxJsxTextElement: NodeHandler = (data, { onError }) => {
     return replaceNode(data, new ErrorNode(errorIndex).serialize())
   }
 
-  data.node.nodeType = nodeAsMdxJsxTextElement.name
+  data.node.type = nodeAsMdxJsxTextElement.name
 
   if (nodeAsMdxJsxTextElement.attributes) {
     data.node.props = {

@@ -13,7 +13,7 @@ import { NodeHandler } from '../interfaces.js'
  * @returns A VisitorResult.
  */
 const text: NodeHandler = (data) => {
-  data.node.nodeType = 'text'
+  data.node.type = 'text'
 }
 
 export { text }

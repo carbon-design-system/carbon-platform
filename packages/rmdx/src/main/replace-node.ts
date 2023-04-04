@@ -9,7 +9,7 @@ import { Node } from 'unist'
 import { CONTINUE } from 'unist-util-visit'
 
 import { NoParentNodeException } from './exceptions/no-parent-element-exception.js'
-import { NodeHandlerData } from './interfaces.js'
+import { AstNode, NodeHandlerData } from './interfaces.js'
 
 function replaceNode(data: NodeHandlerData, replacement: Node) {
   // Guard - no parent node
@@ -23,8 +23,8 @@ function replaceNode(data: NodeHandlerData, replacement: Node) {
   const index = data.index || 0
   const numChildren = data.parent.children.length
 
-  // Replace the node
-  data.parent.children[index] = replacement
+  // The replacement needs assertion as an AstNode because it hasn't been processed yet
+  data.parent.children[index] = replacement as AstNode
 
   // No other children left, so just continue
   if (index + 1 >= numChildren) {

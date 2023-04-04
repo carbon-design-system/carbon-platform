@@ -19,19 +19,47 @@ test('it can process images', (t) => {
           children: [
             {
               props: {
-                parentNodeType: 'paragraph',
+                parentType: 'paragraph',
                 alt: 'image alt text',
                 src: './path/to/image.jpg'
               },
-              nodeType: 'image'
+              type: 'image'
             }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
+    }
+  })
+})
+
+test('it can process an image with no alt text or url', (t) => {
+  const result = process('![]()', [])
+  t.deepEqual(result, {
+    frontmatter: {},
+    errors: [],
+    ast: {
+      children: [
+        {
+          children: [
+            {
+              props: {
+                parentType: 'paragraph',
+                alt: '',
+                src: ''
+              },
+              type: 'image'
+            }
+          ],
+          props: { parentType: 'document' },
+          type: 'paragraph'
+        }
+      ],
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })

@@ -7,7 +7,7 @@
 import { NodeHandler } from '../interfaces.js'
 
 const tableBody: NodeHandler = (data) => {
-  data.node.nodeType = 'table-body'
+  data.node.type = 'table-body'
 }
 
 export { tableBody }

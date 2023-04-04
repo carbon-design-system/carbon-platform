@@ -7,7 +7,7 @@
 import { NodeHandler } from '../interfaces.js'
 
 const root: NodeHandler = (data) => {
-  data.node.nodeType = 'document'
+  data.node.type = 'document'
 }
 
 export { root }

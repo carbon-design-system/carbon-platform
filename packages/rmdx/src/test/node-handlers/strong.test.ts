@@ -18,17 +18,17 @@ test('it can process a strong', (t) => {
         {
           children: [
             {
-              children: [{ value: 'wow!', props: { parentNodeType: 'strong' }, nodeType: 'text' }],
-              props: { parentNodeType: 'paragraph' },
-              nodeType: 'strong'
+              children: [{ value: 'wow!', props: { parentType: 'strong' }, type: 'text' }],
+              props: { parentType: 'paragraph' },
+              type: 'strong'
             }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })

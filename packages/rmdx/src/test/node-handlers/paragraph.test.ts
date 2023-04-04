@@ -16,13 +16,13 @@ test('it can process a paragraph', (t) => {
     ast: {
       children: [
         {
-          children: [{ value: 'a', props: { parentNodeType: 'paragraph' }, nodeType: 'text' }],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          children: [{ value: 'a', props: { parentType: 'paragraph' }, type: 'text' }],
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })

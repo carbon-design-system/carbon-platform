@@ -11,7 +11,7 @@ import { NodeHandler } from '../interfaces.js'
 const image: NodeHandler = (data) => {
   const nodeAsImage = data.node as Partial<Image>
 
-  data.node.nodeType = 'image'
+  data.node.type = 'image'
   data.node.props.alt = nodeAsImage.alt || ''
   data.node.props.src = nodeAsImage.url || ''
 

@@ -32,31 +32,31 @@ test('it can process a table', (t) => {
                       children: [
                         {
                           value: 'first col',
-                          props: { parentNodeType: 'table-header-cell' },
-                          nodeType: 'text'
+                          props: { parentType: 'table-header-cell' },
+                          type: 'text'
                         }
                       ],
-                      props: { parentNodeType: 'table-header-row', textAlign: 'right' },
-                      nodeType: 'table-header-cell'
+                      props: { parentType: 'table-header-row', textAlign: 'right' },
+                      type: 'table-header-cell'
                     },
                     {
                       children: [
                         {
                           value: 'second col',
-                          props: { parentNodeType: 'table-header-cell' },
-                          nodeType: 'text'
+                          props: { parentType: 'table-header-cell' },
+                          type: 'text'
                         }
                       ],
-                      props: { parentNodeType: 'table-header-row' },
-                      nodeType: 'table-header-cell'
+                      props: { parentType: 'table-header-row' },
+                      type: 'table-header-cell'
                     }
                   ],
-                  props: { parentNodeType: 'table-head' },
-                  nodeType: 'table-header-row'
+                  props: { parentType: 'table-head' },
+                  type: 'table-header-row'
                 }
               ],
-              props: { parentNodeType: 'table' },
-              nodeType: 'table-head'
+              props: { parentType: 'table' },
+              type: 'table-head'
             },
             {
               children: [
@@ -66,39 +66,39 @@ test('it can process a table', (t) => {
                       children: [
                         {
                           value: 'cell 1',
-                          props: { parentNodeType: 'table-cell' },
-                          nodeType: 'text'
+                          props: { parentType: 'table-cell' },
+                          type: 'text'
                         }
                       ],
-                      props: { parentNodeType: 'table-row', textAlign: 'right' },
-                      nodeType: 'table-cell'
+                      props: { parentType: 'table-row', textAlign: 'right' },
+                      type: 'table-cell'
                     },
                     {
                       children: [
                         {
                           value: 'cell 2',
-                          props: { parentNodeType: 'table-cell' },
-                          nodeType: 'text'
+                          props: { parentType: 'table-cell' },
+                          type: 'text'
                         }
                       ],
-                      props: { parentNodeType: 'table-row' },
-                      nodeType: 'table-cell'
+                      props: { parentType: 'table-row' },
+                      type: 'table-cell'
                     }
                   ],
-                  props: { parentNodeType: 'table-body' },
-                  nodeType: 'table-row'
+                  props: { parentType: 'table-body' },
+                  type: 'table-row'
                 }
               ],
-              props: { parentNodeType: 'table' },
-              nodeType: 'table-body'
+              props: { parentType: 'table' },
+              type: 'table-body'
             }
           ],
-          props: { parentNodeType: 'document', columns: 2 },
-          nodeType: 'table'
+          props: { parentType: 'document', columns: 2 },
+          type: 'table'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -126,40 +126,40 @@ test('it can process a table with no body rows', (t) => {
                       children: [
                         {
                           value: 'first col',
-                          props: { parentNodeType: 'table-header-cell' },
-                          nodeType: 'text'
+                          props: { parentType: 'table-header-cell' },
+                          type: 'text'
                         }
                       ],
-                      props: { parentNodeType: 'table-header-row', textAlign: 'right' },
-                      nodeType: 'table-header-cell'
+                      props: { parentType: 'table-header-row', textAlign: 'right' },
+                      type: 'table-header-cell'
                     },
                     {
                       children: [
                         {
                           value: 'second col',
-                          props: { parentNodeType: 'table-header-cell' },
-                          nodeType: 'text'
+                          props: { parentType: 'table-header-cell' },
+                          type: 'text'
                         }
                       ],
-                      props: { parentNodeType: 'table-header-row' },
-                      nodeType: 'table-header-cell'
+                      props: { parentType: 'table-header-row' },
+                      type: 'table-header-cell'
                     }
                   ],
-                  props: { parentNodeType: 'table-head' },
-                  nodeType: 'table-header-row'
+                  props: { parentType: 'table-head' },
+                  type: 'table-header-row'
                 }
               ],
-              props: { parentNodeType: 'table' },
-              nodeType: 'table-head'
+              props: { parentType: 'table' },
+              type: 'table-head'
             },
-            { children: [], props: { parentNodeType: 'table' }, nodeType: 'table-body' }
+            { children: [], props: { parentType: 'table' }, type: 'table-body' }
           ],
-          props: { parentNodeType: 'document', columns: 2 },
-          nodeType: 'table'
+          props: { parentType: 'document', columns: 2 },
+          type: 'table'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })

@@ -19,6 +19,7 @@ import {
   AllowedComponents,
   AstNode,
   NodeHandler,
+  ParentAstNode,
   ProcessedMdx,
   RenderableAstNode
 } from './interfaces.js'
@@ -45,13 +46,11 @@ const visitor: NodeHandler = (data, callbacks) => {
   }
 
   const result = handler(data, callbacks)
-  // const partialNode = data.node as Partial<typeof data.node>
 
   // Ensure all nodes have a parent node type set
-  data.node.props.parentNodeType = (data.parent as AstNode | undefined)?.nodeType || ''
+  data.node.props.parentType = data.parent?.type || ''
 
   delete data.node.position
-  delete data.node.type
 
   return result
 }
@@ -69,8 +68,10 @@ function createVisitor(
 ): Visitor {
   return (node, index, parent) => {
     const nodeAsAstNode = node as AstNode
+    const parentAsParentAstNode = parent as ParentAstNode
+
     nodeAsAstNode.props = {
-      parentNodeType: '' // Default to '' since this is overridden by each node handler
+      parentType: '' // Default to '' since this is overridden by each node handler
     }
 
     return visitor(
@@ -78,7 +79,7 @@ function createVisitor(
         allowedComponents,
         node: nodeAsAstNode,
         index: index || undefined,
-        parent: parent || undefined
+        parent: parentAsParentAstNode || undefined
       },
       {
         onError(err: ProcessingException) {

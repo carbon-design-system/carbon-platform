@@ -26,38 +26,38 @@ test('it can process headings', (t) => {
     ast: {
       children: [
         {
-          children: [{ value: 'one', props: { parentNodeType: 'heading-1' }, nodeType: 'text' }],
-          props: { parentNodeType: 'document', fullText: 'one' },
-          nodeType: 'heading-1'
+          children: [{ value: 'one', props: { parentType: 'heading-1' }, type: 'text' }],
+          props: { parentType: 'document', fullText: 'one' },
+          type: 'heading-1'
         },
         {
-          children: [{ value: 'two', props: { parentNodeType: 'heading-2' }, nodeType: 'text' }],
-          props: { parentNodeType: 'document', fullText: 'two' },
-          nodeType: 'heading-2'
+          children: [{ value: 'two', props: { parentType: 'heading-2' }, type: 'text' }],
+          props: { parentType: 'document', fullText: 'two' },
+          type: 'heading-2'
         },
         {
-          children: [{ value: 'three', props: { parentNodeType: 'heading-3' }, nodeType: 'text' }],
-          props: { parentNodeType: 'document', fullText: 'three' },
-          nodeType: 'heading-3'
+          children: [{ value: 'three', props: { parentType: 'heading-3' }, type: 'text' }],
+          props: { parentType: 'document', fullText: 'three' },
+          type: 'heading-3'
         },
         {
-          children: [{ value: 'four', props: { parentNodeType: 'heading-4' }, nodeType: 'text' }],
-          props: { parentNodeType: 'document', fullText: 'four' },
-          nodeType: 'heading-4'
+          children: [{ value: 'four', props: { parentType: 'heading-4' }, type: 'text' }],
+          props: { parentType: 'document', fullText: 'four' },
+          type: 'heading-4'
         },
         {
-          children: [{ value: 'five', props: { parentNodeType: 'heading-5' }, nodeType: 'text' }],
-          props: { parentNodeType: 'document', fullText: 'five' },
-          nodeType: 'heading-5'
+          children: [{ value: 'five', props: { parentType: 'heading-5' }, type: 'text' }],
+          props: { parentType: 'document', fullText: 'five' },
+          type: 'heading-5'
         },
         {
-          children: [{ value: 'six', props: { parentNodeType: 'heading-6' }, nodeType: 'text' }],
-          props: { parentNodeType: 'document', fullText: 'six' },
-          nodeType: 'heading-6'
+          children: [{ value: 'six', props: { parentType: 'heading-6' }, type: 'text' }],
+          props: { parentType: 'document', fullText: 'six' },
+          type: 'heading-6'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -71,19 +71,19 @@ test('it can process code inside of a heading', (t) => {
       children: [
         {
           children: [
-            { value: 'wow ', props: { parentNodeType: 'heading-1' }, nodeType: 'text' },
+            { value: 'wow ', props: { parentType: 'heading-1' }, type: 'text' },
             {
               value: 'code in a heading',
-              props: { parentNodeType: 'heading-1' },
-              nodeType: 'inline-code'
+              props: { parentType: 'heading-1' },
+              type: 'inline-code'
             }
           ],
-          props: { parentNodeType: 'document', fullText: 'wow code in a heading' },
-          nodeType: 'heading-1'
+          props: { parentType: 'document', fullText: 'wow code in a heading' },
+          type: 'heading-1'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })

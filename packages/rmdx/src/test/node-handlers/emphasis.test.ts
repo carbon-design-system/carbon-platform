@@ -18,19 +18,17 @@ test('it can process an emphasis', (t) => {
         {
           children: [
             {
-              children: [
-                { value: 'wow!', props: { parentNodeType: 'emphasis' }, nodeType: 'text' }
-              ],
-              props: { parentNodeType: 'paragraph' },
-              nodeType: 'emphasis'
+              children: [{ value: 'wow!', props: { parentType: 'emphasis' }, type: 'text' }],
+              props: { parentType: 'paragraph' },
+              type: 'emphasis'
             }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })

@@ -10,7 +10,8 @@ import { NodeHandler } from '../interfaces.js'
 
 const list: NodeHandler = (data) => {
   const nodeAsList = data.node as Partial<List>
-  data.node.nodeType = nodeAsList.ordered ? 'ordered-list' : 'unordered-list'
+
+  data.node.type = nodeAsList.ordered ? 'ordered-list' : 'unordered-list'
 
   delete nodeAsList.spread
   delete nodeAsList.start

@@ -13,6 +13,6 @@ test('it converts the root node to a "document" node', (t) => {
   t.deepEqual(result, {
     frontmatter: {},
     errors: [],
-    ast: { children: [], props: { parentNodeType: '' }, nodeType: 'document' }
+    ast: { children: [], props: { parentType: '' }, type: 'document' }
   })
 })

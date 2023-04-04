@@ -27,11 +27,9 @@ test('it can process unordered lists', (t) => {
             {
               children: [
                 {
-                  children: [
-                    { value: 'first', props: { parentNodeType: 'paragraph' }, nodeType: 'text' }
-                  ],
-                  props: { parentNodeType: 'list-item' },
-                  nodeType: 'paragraph'
+                  children: [{ value: 'first', props: { parentType: 'paragraph' }, type: 'text' }],
+                  props: { parentType: 'list-item' },
+                  type: 'paragraph'
                 },
                 {
                   children: [
@@ -41,45 +39,43 @@ test('it can process unordered lists', (t) => {
                           children: [
                             {
                               value: 'indented',
-                              props: { parentNodeType: 'paragraph' },
-                              nodeType: 'text'
+                              props: { parentType: 'paragraph' },
+                              type: 'text'
                             }
                           ],
-                          props: { parentNodeType: 'list-item' },
-                          nodeType: 'paragraph'
+                          props: { parentType: 'list-item' },
+                          type: 'paragraph'
                         }
                       ],
-                      props: { parentNodeType: 'unordered-list' },
-                      nodeType: 'list-item'
+                      props: { parentType: 'unordered-list' },
+                      type: 'list-item'
                     }
                   ],
-                  props: { parentNodeType: 'list-item' },
-                  nodeType: 'unordered-list'
+                  props: { parentType: 'list-item' },
+                  type: 'unordered-list'
                 }
               ],
-              props: { parentNodeType: 'unordered-list' },
-              nodeType: 'list-item'
+              props: { parentType: 'unordered-list' },
+              type: 'list-item'
             },
             {
               children: [
                 {
-                  children: [
-                    { value: 'second', props: { parentNodeType: 'paragraph' }, nodeType: 'text' }
-                  ],
-                  props: { parentNodeType: 'list-item' },
-                  nodeType: 'paragraph'
+                  children: [{ value: 'second', props: { parentType: 'paragraph' }, type: 'text' }],
+                  props: { parentType: 'list-item' },
+                  type: 'paragraph'
                 }
               ],
-              props: { parentNodeType: 'unordered-list' },
-              nodeType: 'list-item'
+              props: { parentType: 'unordered-list' },
+              type: 'list-item'
             }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'unordered-list'
+          props: { parentType: 'document' },
+          type: 'unordered-list'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })

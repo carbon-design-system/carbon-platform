@@ -7,7 +7,7 @@
 import { NodeHandler } from '../interfaces.js'
 
 const blockquote: NodeHandler = (data) => {
-  data.node.nodeType = 'blockquote'
+  data.node.type = 'blockquote'
 }
 
 export { blockquote }

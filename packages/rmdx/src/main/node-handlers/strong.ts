@@ -7,7 +7,7 @@
 import { NodeHandler } from '../interfaces.js'
 
 const strong: NodeHandler = (data) => {
-  data.node.nodeType = 'strong'
+  data.node.type = 'strong'
 }
 
 export { strong }

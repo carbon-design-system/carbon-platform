@@ -9,9 +9,9 @@ import { NodeHandler } from '../interfaces.js'
 type CellData = { align: string | null } | undefined
 
 const tableCell: NodeHandler = (data) => {
-  data.node.nodeType = 'table-cell'
-
   const cellData = data.node.data as CellData
+
+  data.node.type = 'table-cell'
 
   if (cellData?.align) {
     data.node.props.textAlign = cellData.align

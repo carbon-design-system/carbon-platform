@@ -17,12 +17,12 @@ test('it can process inline a code block', (t) => {
       children: [
         {
           value: 'System.out.println("Hello, world!")',
-          props: { parentNodeType: 'document', meta: '', lang: '' },
-          nodeType: 'code'
+          props: { parentType: 'document', meta: '', lang: '' },
+          type: 'code'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })

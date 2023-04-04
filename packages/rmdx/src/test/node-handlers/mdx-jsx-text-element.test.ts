@@ -17,15 +17,15 @@ test('it allows text elements from the allowed components list', (t) => {
       children: [
         {
           children: [
-            { value: 'Hello ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' },
-            { children: [], props: { parentNodeType: 'paragraph' }, nodeType: 'World' }
+            { value: 'Hello ', props: { parentType: 'paragraph' }, type: 'text' },
+            { children: [], props: { parentType: 'paragraph' }, type: 'World' }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -39,15 +39,15 @@ test('it replaces an unknown component with error node', (t) => {
       children: [
         {
           children: [
-            { value: 'Hello ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' },
+            { value: 'Hello ', props: { parentType: 'paragraph' }, type: 'text' },
             { type: '__error__', data: { errorIndex: 0 } }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     },
     errors: [
       {
@@ -71,15 +71,15 @@ test('it ignores attrs with no name', (t) => {
       children: [
         {
           children: [
-            { value: 'Hello ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' },
-            { children: [], props: { parentNodeType: 'paragraph' }, nodeType: 'Wow' }
+            { value: 'Hello ', props: { parentType: 'paragraph' }, type: 'text' },
+            { children: [], props: { parentType: 'paragraph' }, type: 'Wow' }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -93,15 +93,15 @@ test('it ignores undefined attr values', (t) => {
       children: [
         {
           children: [
-            { value: 'Hello ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' },
-            { children: [], props: { parentNodeType: 'paragraph' }, nodeType: 'Wow' }
+            { value: 'Hello ', props: { parentType: 'paragraph' }, type: 'text' },
+            { children: [], props: { parentType: 'paragraph' }, type: 'Wow' }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -116,15 +116,15 @@ test('it ignores complex attr values', (t) => {
       children: [
         {
           children: [
-            { value: 'Hello ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' },
-            { children: [], props: { parentNodeType: 'paragraph' }, nodeType: 'Wow' }
+            { value: 'Hello ', props: { parentType: 'paragraph' }, type: 'text' },
+            { children: [], props: { parentType: 'paragraph' }, type: 'Wow' }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -138,15 +138,15 @@ test('it converts null attr values to true', (t) => {
       children: [
         {
           children: [
-            { value: 'Hello ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' },
-            { children: [], props: { parentNodeType: 'paragraph', asdf: true }, nodeType: 'Wow' }
+            { value: 'Hello ', props: { parentType: 'paragraph' }, type: 'text' },
+            { children: [], props: { parentType: 'paragraph', asdf: true }, type: 'Wow' }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -160,19 +160,19 @@ test('it allows string attr values', (t) => {
       children: [
         {
           children: [
-            { value: 'Hello ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' },
+            { value: 'Hello ', props: { parentType: 'paragraph' }, type: 'text' },
             {
               children: [],
-              props: { parentNodeType: 'paragraph', asdf: 'someString' },
-              nodeType: 'Wow'
+              props: { parentType: 'paragraph', asdf: 'someString' },
+              type: 'Wow'
             }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 
@@ -184,19 +184,19 @@ test('it allows string attr values', (t) => {
       children: [
         {
           children: [
-            { value: 'Hello ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' },
+            { value: 'Hello ', props: { parentType: 'paragraph' }, type: 'text' },
             {
               children: [],
-              props: { parentNodeType: 'paragraph', asdf: 'someString' },
-              nodeType: 'Wow'
+              props: { parentType: 'paragraph', asdf: 'someString' },
+              type: 'Wow'
             }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -210,19 +210,19 @@ test('it allows boolean attr values', (t) => {
       children: [
         {
           children: [
-            { value: 'Hello ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' },
+            { value: 'Hello ', props: { parentType: 'paragraph' }, type: 'text' },
             {
               children: [],
-              props: { parentNodeType: 'paragraph', yes: true, no: false },
-              nodeType: 'Wow'
+              props: { parentType: 'paragraph', yes: true, no: false },
+              type: 'Wow'
             }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })
@@ -236,19 +236,19 @@ test('it allows numeric attr values', (t) => {
       children: [
         {
           children: [
-            { value: 'Hello ', props: { parentNodeType: 'paragraph' }, nodeType: 'text' },
+            { value: 'Hello ', props: { parentType: 'paragraph' }, type: 'text' },
             {
               children: [],
-              props: { parentNodeType: 'paragraph', foo: 123, bar: 0.123 },
-              nodeType: 'Wow'
+              props: { parentType: 'paragraph', foo: 123, bar: 0.123 },
+              type: 'Wow'
             }
           ],
-          props: { parentNodeType: 'document' },
-          nodeType: 'paragraph'
+          props: { parentType: 'document' },
+          type: 'paragraph'
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })

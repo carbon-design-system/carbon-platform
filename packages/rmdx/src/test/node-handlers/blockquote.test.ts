@@ -14,34 +14,34 @@ test('it can process a blockquote', (t) => {
     frontmatter: {},
     errors: [],
     ast: {
-      nodeType: 'document',
+      type: 'document',
       children: [
         {
-          nodeType: 'blockquote',
+          type: 'blockquote',
           children: [
             {
-              nodeType: 'paragraph',
+              type: 'paragraph',
               children: [
                 {
-                  nodeType: 'text',
+                  type: 'text',
                   value: 'This is a blockquote',
                   props: {
-                    parentNodeType: 'paragraph'
+                    parentType: 'paragraph'
                   }
                 }
               ],
               props: {
-                parentNodeType: 'blockquote'
+                parentType: 'blockquote'
               }
             }
           ],
           props: {
-            parentNodeType: 'document'
+            parentType: 'document'
           }
         }
       ],
       props: {
-        parentNodeType: ''
+        parentType: ''
       }
     }
   })

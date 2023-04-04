@@ -16,19 +16,19 @@ test('it can process plain text', (t) => {
     ast: {
       children: [
         {
-          nodeType: 'paragraph',
-          props: { parentNodeType: 'document' },
+          type: 'paragraph',
+          props: { parentType: 'document' },
           children: [
             {
               value: 'boring, but necessary',
-              props: { parentNodeType: 'paragraph' },
-              nodeType: 'text'
+              props: { parentType: 'paragraph' },
+              type: 'text'
             }
           ]
         }
       ],
-      props: { parentNodeType: '' },
-      nodeType: 'document'
+      props: { parentType: '' },
+      type: 'document'
     }
   })
 })

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { JSXElementConstructor } from 'react'
-import { Node, Parent, Position } from 'unist'
+import { Node, Position } from 'unist'
 import { VisitorResult } from 'unist-util-visit'
 
 import { ProcessingException } from './exceptions/processing-exception.js'
@@ -15,12 +15,11 @@ type AllowedComponents = Array<string>
 type Scalar = string | number | boolean
 
 type AdditionalProps = {
-  parentNodeType: string
+  parentType: string
 }
 
-type AstNode = Partial<Node> & {
+type AstNode = Node & {
   children?: Array<AstNode>
-  nodeType: string
   props: { [prop: string]: Scalar } & AdditionalProps
   value?: Scalar
 }
@@ -47,8 +46,12 @@ interface NodeHandler {
 interface NodeHandlerData {
   node: AstNode
   index?: number
-  parent?: Parent
+  parent?: ParentAstNode
   allowedComponents: AllowedComponents
+}
+
+interface ParentAstNode extends AstNode {
+  children: NonNullable<AstNode['children']>
 }
 
 interface ProcessedMdx {
@@ -76,6 +79,7 @@ export {
   AstNode,
   NodeHandler,
   NodeHandlerData,
+  ParentAstNode,
   ProcessedMdx,
   RenderableAstNode,
   Renderer,

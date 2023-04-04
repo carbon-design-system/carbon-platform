@@ -6,18 +6,19 @@
  */
 import React, { ReactElement } from 'react'
 
+import { UnknownComponentException } from './exceptions/unknown-component-exception.js'
 import { RmdxNodeProps } from './interfaces.js'
 
 function peek(child: ReactElement<RmdxNodeProps>) {
-  const Component = child.props.components[child.props.astNode.nodeType]
+  const Component = child.props.components[child.props.astNode.type]
 
   // Guard - specified component not found in mapping
   if (!Component) {
-    throw new Error('No component mapping for nodeType ' + child.props.astNode.nodeType)
+    throw new UnknownComponentException(child.props.astNode.type)
   }
 
   return {
-    nodeType: child.props.astNode.nodeType,
+    nodeType: child.props.astNode.type,
     component: Component,
     props: child.props.astNode.props
   }

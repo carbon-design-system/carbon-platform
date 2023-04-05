@@ -72,7 +72,7 @@ problematic if you're dealing with untrusted MDX written by someone else.
 
 Using RMDX, that same input would result in the following AST output:
 
-```
+```json
 {
   "frontmatter": {},
   "ast": {

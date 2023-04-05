@@ -12,7 +12,7 @@ import {
 } from '../packages/micromanage-cli/lib/changed.js'
 import { exec, getWorkspaceForFile } from '../packages/micromanage-cli/lib/utils.js'
 
-const commitTypes = ['fix', 'feat', 'breaking']
+const commitTypes = ['patch', 'minor', 'major']
 const commentingUserLogin = 'carbon-bot'
 const accessToken = process.env.PR_COMMENT_BOT_TOKEN
 const headRef = process.env.GITHUB_HEAD_REF
@@ -54,8 +54,10 @@ function getCommitData() {
 
       if (fullCommitText.includes('BREAKING CHANGE')) {
         type = 'breaking'
-      } else {
-        type = commitTitle.match(/^(feat|fix)(\(.*\))?:/)?.[1]
+      } else if (commitTitle.startsWith('feat')) {
+        type = 'minor'
+      } else if (commitTitle.startsWith('fix')) {
+        type = 'patch'
       }
 
       return { ref, type }
@@ -104,13 +106,13 @@ function getResultText(workspacesMap) {
     })
     .forEach(([wsName, type]) => {
       switch (type) {
-        case 'fix':
+        case 'patch':
           text += `🐛 PATCH release: \`${wsName}\`\n`
           break
-        case 'feat':
+        case 'minor':
           text += `🌟 MINOR release: \`${wsName}\`\n`
           break
-        case 'breaking':
+        case 'major':
           text += `💣 MAJOR release: \`${wsName}\`\n`
           break
         default:
@@ -176,11 +178,12 @@ const changedDependentWorkspaces = await getChangedDependentWorkspaces(
   '@carbon-platform/base'
 )
 
+// Default to patch for all changed workspaces
 changedWorkspaces.forEach((ws) => {
-  updatedWorkspaces[ws.name] = 'fix'
+  updatedWorkspaces[ws.name] = 'patch'
 })
 changedDependentWorkspaces.forEach((ws) => {
-  updatedWorkspaces[ws.name] = 'fix'
+  updatedWorkspaces[ws.name] = 'patch'
 })
 
 applyCommitData(updatedWorkspaces, commitData)
@@ -190,4 +193,5 @@ const resultText = getResultText(updatedWorkspaces)
 const response = await addPrComment(resultText)
 console.log(response)
 
+console.log()
 console.log(resultText)

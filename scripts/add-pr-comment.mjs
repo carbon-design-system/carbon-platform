@@ -14,7 +14,6 @@ import { exec, getWorkspaceForFile } from '../packages/micromanage-cli/lib/utils
 
 const commitTypes = ['fix', 'feat', 'breaking']
 const commentingUserLogin = 'carbon-bot'
-const remote = 'origin'
 const accessToken = process.env.PR_COMMENT_BOT_TOKEN
 const headRef = process.env.GITHUB_HEAD_REF
 const baseRef = process.env.GITHUB_BASE_REF
@@ -44,9 +43,7 @@ function checkVars() {
 
 function getCommitData() {
   // Get the commits between the current ref and the base ref
-  const commits = exec(
-    `git log --format=format:"%H %s" ${remote}/${headRef} ^${remote}/${baseRef}`
-  ).split('\n')
+  const commits = exec(`git log --format=format:"%H %s" ${headRef} ^${baseRef}`).split('\n')
 
   // determine the type (feat, fix, or breaking) of each commit and store it along with its ref
   return commits
@@ -173,7 +170,7 @@ console.log()
 
 const updatedWorkspaces = {}
 
-const changedWorkspaces = getChangedWorkspaces(`${remote}/${baseRef}`)
+const changedWorkspaces = getChangedWorkspaces(baseRef)
 const changedDependentWorkspaces = await getChangedDependentWorkspaces(
   changedWorkspaces,
   '@carbon-platform/base'

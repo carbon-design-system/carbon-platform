@@ -26,6 +26,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Fetch additional branches 🐕
+        run: |
+          git fetch origin ${GITHUB_HEAD_REF}:${GITHUB_HEAD_REF}
+          git fetch origin ${GITHUB_BASE_REF}:${GITHUB_BASE_REF}
 
       - name: Setup Node 🏗
         uses: actions/setup-node@v3

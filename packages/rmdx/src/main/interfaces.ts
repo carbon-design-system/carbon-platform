@@ -10,6 +10,9 @@ import { VisitorResult } from 'unist-util-visit'
 
 import { ProcessingException } from './exceptions/processing-exception.js'
 
+/**
+ * An array of strings representing component names which are allowed to exist in any output ASTs.
+ */
 type AllowedComponents = Array<string>
 
 type Scalar = string | number | boolean
@@ -26,6 +29,25 @@ type AstNode = Node & {
 
 type RenderableAstNode = Omit<AstNode, 'data' | 'position' | 'type'>
 
+/**
+ * Utility type used by components/functions which consume `ProcessedMdx` and convert
+ * `RenderableAstNode`s into React component trees. This type is generic so more specific component
+ * props can be defined.
+ *
+ * Example:
+ *
+ * ```
+ * import { Renderer} from '@carbon-platform/rmdx'
+ *
+ * const LinkRenderer: Renderer = ({ children, href }) => {
+ *   return (
+ *     <MyCustomLink href={href}>
+ *       <a>{children}</a>
+ *     </MyCustomLink>
+ *   )
+ * }
+ * ```
+ */
 type Renderer<Props = unknown> = JSXElementConstructor<Props & AdditionalProps>
 
 interface NodeHandler {

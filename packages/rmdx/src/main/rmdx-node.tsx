@@ -8,6 +8,15 @@ import React from 'react'
 
 import { RmdxNodeProps } from './interfaces.js'
 
+/**
+ * A react component which renders an RMDX AST as a tree of React components.
+ *
+ * @param props
+ * @param props.components Map of react components used to render various node types found in the
+ * provided AST.
+ * @param props.astNode The RMDX AST, created via `process(...)`.
+ * @returns A renderable React component
+ */
 function RmdxNode({ components, astNode }: RmdxNodeProps) {
   const Component = components[astNode.type]
 

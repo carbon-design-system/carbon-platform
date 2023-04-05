@@ -37,13 +37,13 @@ type RenderableAstNode = Omit<AstNode, 'data' | 'position' | 'type'>
  * Example:
  *
  * ```
- * import { Renderer} from '@carbon-platform/rmdx'
+ * import { Renderer } from '@carbon-platform/rmdx'
  *
  * const LinkRenderer: Renderer = ({ children, href }) => {
  *   return (
- *     <MyCustomLink href={href}>
- *       <a>{children}</a>
- *     </MyCustomLink>
+ *     <MyCustomLinkWrapper>
+ *       <a href={href}>{children}</a>
+ *     </MyCustomLinkWrapper>
  *   )
  * }
  * ```

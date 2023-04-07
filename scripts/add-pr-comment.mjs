@@ -12,9 +12,8 @@ import {
 } from '../packages/micromanage-cli/lib/changed.js'
 import { exec, getWorkspaceForFile } from '../packages/micromanage-cli/lib/utils.js'
 
-const commitTypes = ['fix', 'feat', 'breaking']
+const commitTypes = ['patch', 'minor', 'major']
 const commentingUserLogin = 'carbon-bot'
-const remote = 'origin'
 const accessToken = process.env.PR_COMMENT_BOT_TOKEN
 const headRef = process.env.GITHUB_HEAD_REF
 const baseRef = process.env.GITHUB_BASE_REF
@@ -44,9 +43,7 @@ function checkVars() {
 
 function getCommitData() {
   // Get the commits between the current ref and the base ref
-  const commits = exec(
-    `git log --format=format:"%H %s" ${remote}/${headRef} ^${remote}/${baseRef}`
-  ).split('\n')
+  const commits = exec(`git log --format=format:"%H %s" ${headRef} ^${baseRef}`).split('\n')
 
   // determine the type (feat, fix, or breaking) of each commit and store it along with its ref
   return commits
@@ -57,8 +54,10 @@ function getCommitData() {
 
       if (fullCommitText.includes('BREAKING CHANGE')) {
         type = 'breaking'
-      } else {
-        type = commitTitle.match(/^(feat|fix)(\(.*\))?:/)?.[1]
+      } else if (commitTitle.startsWith('feat')) {
+        type = 'minor'
+      } else if (commitTitle.startsWith('fix')) {
+        type = 'patch'
       }
 
       return { ref, type }
@@ -107,13 +106,13 @@ function getResultText(workspacesMap) {
     })
     .forEach(([wsName, type]) => {
       switch (type) {
-        case 'fix':
+        case 'patch':
           text += `🐛 PATCH release: \`${wsName}\`\n`
           break
-        case 'feat':
+        case 'minor':
           text += `🌟 MINOR release: \`${wsName}\`\n`
           break
-        case 'breaking':
+        case 'major':
           text += `💣 MAJOR release: \`${wsName}\`\n`
           break
         default:
@@ -169,21 +168,21 @@ const commitData = getCommitData()
 
 console.log('Considering the following commits:')
 commitData.forEach((commit) => console.log(commit))
-console.log()
 
 const updatedWorkspaces = {}
 
-const changedWorkspaces = getChangedWorkspaces(`${remote}/${baseRef}`)
+const changedWorkspaces = getChangedWorkspaces(baseRef)
 const changedDependentWorkspaces = await getChangedDependentWorkspaces(
   changedWorkspaces,
   '@carbon-platform/base'
 )
 
+// Default to patch for all changed workspaces
 changedWorkspaces.forEach((ws) => {
-  updatedWorkspaces[ws.name] = 'fix'
+  updatedWorkspaces[ws.name] = 'patch'
 })
 changedDependentWorkspaces.forEach((ws) => {
-  updatedWorkspaces[ws.name] = 'fix'
+  updatedWorkspaces[ws.name] = 'patch'
 })
 
 applyCommitData(updatedWorkspaces, commitData)
@@ -191,6 +190,6 @@ applyCommitData(updatedWorkspaces, commitData)
 const resultText = getResultText(updatedWorkspaces)
 
 const response = await addPrComment(resultText)
-console.log(response)
+console.log('\n' + response)
 
-console.log(resultText)
+console.log('\n' + resultText)

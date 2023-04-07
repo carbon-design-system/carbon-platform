@@ -1,6 +1,6 @@
 # RMDX (Remote MDX)
 
-A set of utilities that allow remote MDX to be safely rendered as a component tree in a react app.
+A set of utilities that allow remote MDX to be safely rendered as a component tree in a React app.
 
 **The general flow is:**
 

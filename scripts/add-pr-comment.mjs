@@ -168,7 +168,6 @@ const commitData = getCommitData()
 
 console.log('Considering the following commits:')
 commitData.forEach((commit) => console.log(commit))
-console.log()
 
 const updatedWorkspaces = {}
 
@@ -191,7 +190,6 @@ applyCommitData(updatedWorkspaces, commitData)
 const resultText = getResultText(updatedWorkspaces)
 
 const response = await addPrComment(resultText)
-console.log(response)
+console.log('\n' + response)
 
-console.log()
-console.log(resultText)
+console.log('\n' + resultText)

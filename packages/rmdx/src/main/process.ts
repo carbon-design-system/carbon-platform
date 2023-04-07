@@ -36,7 +36,8 @@ const processor = createProcessor({
 /**
  * The actual top-level visitor/node handler.
  *
- * @param data kwArgs input data
+ * @param data Input data object containing details about the node, its parent, and some contextual
+ * data.
  * @returns The result of calling a specific node handler with the input data.
  */
 const visitor: NodeHandler = (data, callbacks) => {

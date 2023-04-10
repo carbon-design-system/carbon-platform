@@ -43,7 +43,7 @@ command. **Be sure to answer "no" each time it asks if you want to run an `npm i
 ```
 npm update
 npx --workspaces --include-workspace-root ncu --upgrade --interactive --target=minor
-CI=true npm install && npm install
+npm install --ignore-scripts && npm install
 ```
 
 > Note: An ncu target of `latest` or `patch` can also be used, depending on the objective.
@@ -101,7 +101,7 @@ lockfile, do the following:
 rm package-lock.json
 rm -rf node_modules
 find . -name node_modules | xargs rm -rf
-CI=true npm install && npm install
+npm install --ignore-scripts && npm install
 ```
 
 > Note: this will result in updates to the node modules across the project (if any are available).

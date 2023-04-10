@@ -10,7 +10,7 @@ WORKDIR /ibm
 
 COPY services/data-graph services/data-graph
 
-RUN npm -w services/data-graph install
+RUN npm -w services/data-graph install --ignore-scripts
 RUN npm -w services/data-graph run build
 RUN npm -w services/data-graph run bundle
 

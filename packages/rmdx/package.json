@@ -28,6 +28,9 @@
   "exports": {
     "default": "./dist/main/index.js"
   },
+  "files": [
+    "./dist/"
+  ],
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",

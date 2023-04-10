@@ -3,9 +3,6 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
-env:
-  CI: 'true'
-
 #
 # Limit workflow to a single running instance at a time
 #
@@ -38,10 +35,10 @@ jobs:
           cache: 'npm'
 
       - name: Install Micromanage 🔬
-        run: npm --workspace packages/micromanage-cli install
+        run: npm --workspace packages/micromanage-cli install --ignore-scripts
 
       - name: Install scripts package node modules 🏗
-        run: npm --workspace scripts install
+        run: npm --workspace scripts install --ignore-scripts
 
       - name: Run comment script 💬
         run: node scripts/add-pr-comment.mjs

@@ -25,9 +25,6 @@ on:
         required: true
         type: string
 
-env:
-  CI: 'true'
-
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -50,10 +47,10 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install Micromanage 🔬
-        run: npm --workspace packages/micromanage-cli install
+        run: npm --workspace packages/micromanage-cli install --ignore-scripts
 
       - name: Install base node modules 🏗
-        run: npm --workspaces=false install
+        run: npm --workspaces=false install --ignore-scripts
 
       - name: Install package node modules 🏗
         run: npx micromanage install --workspace $PACKAGE_NAME

@@ -7,9 +7,6 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
-env:
-  CI: 'true'
-
 #
 # Limit workflow to a single running instance at a time
 #
@@ -36,8 +33,8 @@ jobs:
 
       - name: Install Node Modules 🔧
         run: |
-          npm --workspaces=false install
-          npm ---workspace packages/eslint-plugin-carbon-platform install
+          npm --workspaces=false install --ignore-scripts
+          npm ---workspace packages/eslint-plugin-carbon-platform install --ignore-scripts
 
       - name: Lint 🔎
         run: npm run lint
@@ -59,7 +56,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Modules 🔧
-        run: npm install
+        run: npm install --ignore-scripts
 
       - name: Build 🔨
         run: npm run all:build
@@ -81,7 +78,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Modules 🔧
-        run: npm install
+        run: npm install --ignore-scripts
 
       - name: Build packages 🔨
         run: npm run packages:build

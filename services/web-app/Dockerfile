@@ -13,7 +13,7 @@ ARG GITHUB_TOKEN=${CARBON_GITHUB_TOKEN}
 
 COPY services/web-app services/web-app
 
-RUN npm -w services/web-app install
+RUN npm -w services/web-app install --ignore-scripts
 RUN npm -w services/web-app run build
 RUN npm -w services/web-app run bundle
 
@@ -36,7 +36,7 @@ RUN chown -R 10000 /ibm
 # Switch to the non-root user for the rest of the build
 USER 10000
 
-RUN CI=true npm install concurrently sharp
+RUN npm install --ignore-scripts concurrently sharp
 
 # These files/directories are not written to at runtime, so they're left as root-owned
 COPY --from=builder /ibm/services/web-app/dist/out.js dist/out.js

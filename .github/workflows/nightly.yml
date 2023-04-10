@@ -87,6 +87,7 @@ jobs:
         package:
           - '@carbon-platform/mdx-sanitizer'
           - '@carbon-platform/resources'
+          - '@carbon-platform/rmdx'
           - '@carbon-platform/schemas'
           - 'micromanage-cli'
     secrets:

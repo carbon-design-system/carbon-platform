@@ -1,0 +1,19 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## 1.1.0 (2023-04-08)
+
+
+### Features 🌟
+
+* **rmdx:** fully serialize ast/result output ([84c5c9e](https://github.com/carbon-design-system/carbon-platform/commit/84c5c9e4734b0c7cfba8b28f8aaec68853ea1926))
+* **rmdx:** logic first pass ([aefc298](https://github.com/carbon-design-system/carbon-platform/commit/aefc29878d8d6bfe7a998a8ea11953629abb92f3))
+* **rmdx:** simplify resulting ast format and interface ([243ce30](https://github.com/carbon-design-system/carbon-platform/commit/243ce301e2d0cac8c0d5c945df36f191a3bb0529))
+* **rmdx:** start adding error aggregation and reporting ([93e89eb](https://github.com/carbon-design-system/carbon-platform/commit/93e89ebc7c37a2bcd7af3122848e387630776112))
+
+
+### Misc. 🔮
+
+* **rmdx:** move rmdx package to 1.0 ([7adc597](https://github.com/carbon-design-system/carbon-platform/commit/7adc5978a23a20a866e94e72afab9d6cdb3e9d67))
+* **rmdx:** shuffle around some classes ([5b88dc9](https://github.com/carbon-design-system/carbon-platform/commit/5b88dc9483c88f20267db0e624f5e010f86cab69))

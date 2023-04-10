@@ -43,8 +43,9 @@ Info.args = {
   kind: 'info'
 }
 
-export const Error = Template.bind({})
-Error.args = {
+// Note: This is a lowercase "e" so it doesn't collide with the built-in JS Error class
+export const error = Template.bind({})
+error.args = {
   kind: 'error'
 }
 

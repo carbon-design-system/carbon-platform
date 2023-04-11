@@ -53,7 +53,7 @@ jobs:
         run: npm --workspaces=false install --ignore-scripts
 
       - name: Install package node modules 🏗
-        run: npx micromanage install --workspace $PACKAGE_NAME
+        run: npx micromanage install --workspace $PACKAGE_NAME --ignore-scripts
 
       - name: Build package 🔨
         run: npx micromanage build $PACKAGE_NAME

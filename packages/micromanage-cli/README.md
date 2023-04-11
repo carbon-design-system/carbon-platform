@@ -102,6 +102,7 @@ Arguments:
 
 Options:
   --dry-run                         Do not make any changes. Only output install command
+  --ignore-scripts                  Do not trigger any post-install, prepare, etc. scripts
   --save-dev                        Install specified packages as devDependencies
   -w, --workspace <workspace-name>  Workspace for which to install packages
   -h, --help                        display help for command

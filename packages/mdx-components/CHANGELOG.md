@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.30](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.29...@carbon-platform/mdx-components@0.1.30) (2023-04-11)
+
+
+### Tests 🧪
+
+* **mdx-components:** remove storybook story name collision with Error ([1a3a5a4](https://github.com/carbon-design-system/carbon-platform/commit/1a3a5a421420abfde2c6b7e96a5f6ef36c309c87))
+
+
+### Misc. 🔮
+
+* update node module minor versions ([281688d](https://github.com/carbon-design-system/carbon-platform/commit/281688deeefd949e78df6d9f903a6b8092ebd947))
+
 ### [0.1.29](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.28...@carbon-platform/mdx-components@0.1.29) (2023-04-08)
 
 ### [0.1.28](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.27...@carbon-platform/mdx-components@0.1.28) (2023-03-18)

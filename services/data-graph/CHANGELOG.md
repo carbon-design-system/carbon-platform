@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.69](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.68...@carbon-platform/data-graph@0.1.69) (2023-04-11)
+
+
+### Misc. 🔮
+
+* update node module minor versions ([281688d](https://github.com/carbon-design-system/carbon-platform/commit/281688deeefd949e78df6d9f903a6b8092ebd947))
+
 ### [0.1.68](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.67...@carbon-platform/data-graph@0.1.68) (2023-04-08)
 
 ### [0.1.67](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.66...@carbon-platform/data-graph@0.1.67) (2023-03-18)

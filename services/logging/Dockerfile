@@ -10,7 +10,7 @@ WORKDIR /ibm
 
 COPY services/logging services/logging
 
-RUN npm -w services/logging install --ignore-scripts
+RUN npm -w services/logging install
 RUN npm -w services/logging run build
 RUN npm -w services/logging run bundle
 

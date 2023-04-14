@@ -25,6 +25,9 @@ on:
         required: true
         type: string
 
+env:
+  CI: 'true'
+
 jobs:
   build-push:
     runs-on: ubuntu-latest
@@ -46,7 +49,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Micromanage 🔬
-        run: npm --workspace packages/micromanage-cli install --ignore-scripts
+        run: npm --workspace packages/micromanage-cli install
 
       - name: Setup Docker 🐳
         run: docker login -u iamapikey -p ${{ secrets.CONTAINER_REGISTRY_API_KEY }} us.icr.io

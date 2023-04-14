@@ -14,6 +14,9 @@ on:
   # Enable running this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  CI: 'true'
+
 jobs:
   #
   # Determine which workspaces have changed and re-version them
@@ -44,7 +47,7 @@ jobs:
       # A full install is done here since micromanage does an install internally to keep the
       # lockfile up to date.
       - name: Install Node Modules 🔧
-        run: npm install --ignore-scripts
+        run: npm install
 
       - id: version
         name: Version 📆

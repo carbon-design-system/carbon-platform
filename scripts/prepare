@@ -8,6 +8,11 @@
 
 set -e
 
+if [ "$CI" = "true" ]; then
+  echo '🤖 Running in a CI environment. Skipping prepare steps.'
+  exit 0
+fi
+
 npx husky install
 
 echo '🏗️ Building packages and APIs...'

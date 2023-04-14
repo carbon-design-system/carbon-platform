@@ -42,7 +42,7 @@ commands.
 
 ```
 npm update --save
-npm install --ignore-scripts && npm install
+CI=true npm install && npm install
 ```
 
 > Note: Running npm install twice during this helps to eliminate wildcard versions from showing up
@@ -57,7 +57,7 @@ run the following commands. **Be sure to answer "no" each time it asks if you wa
 
 ```
 npx --workspaces --include-workspace-root ncu --upgrade --interactive --target=latest
-npm install --ignore-scripts && npm install
+CI=true npm install && npm install
 ```
 
 > Note: An ncu target of `latest` or `patch` can also be used, depending on the objective.
@@ -112,7 +112,7 @@ lockfile, do the following:
 rm package-lock.json
 rm -rf node_modules
 find . -name node_modules | xargs rm -rf
-npm install --ignore-scripts && npm install
+CI=true npm install && npm install
 ```
 
 > Note: this will result in updates to the node modules across the project (if any are available).

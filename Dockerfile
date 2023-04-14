@@ -18,6 +18,7 @@ WORKDIR /ibm
 ENV NODE_ENV=production
 ENV CARBON_RUN_MODE=STANDARD
 ENV CARBON_ENVIRONMENT=BUILD
+ENV CI=true
 
 # Dependencies required for node-gyp to run on Alpine Linux
 RUN apk add --no-cache python3 make g++
@@ -28,7 +29,7 @@ COPY package-lock.json .
 COPY scripts scripts
 
 # Install base deps for all workspaces
-RUN npm --workspaces=false install --ignore-scripts
+RUN npm --workspaces=false install
 
 # Copy build files needed by all workspaces
 COPY .npmrc .
@@ -38,7 +39,7 @@ COPY tsconfig.base.json .
 # Install node modules for each "package"
 COPY packages packages
 RUN for file in packages/* ; do \
-  npm --workspace "$file" install --ignore-scripts ; \
+  npm --workspace "$file" install ; \
 done
 
 RUN npm run packages:build

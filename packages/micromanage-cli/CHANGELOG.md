@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@5.0.10...micromanage-cli@5.1.0) (2023-04-12)
+
+
+### Features 🌟
+
+* **micromanage:** add ignore-scripts option ([b72bc82](https://github.com/carbon-design-system/carbon-platform/commit/b72bc8260c2e1f2d0428633128ecbe65bbb8aaa3))
+
 ### [5.0.10](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@5.0.9...micromanage-cli@5.0.10) (2023-04-11)
 
 ### [5.0.9](https://github.com/carbon-design-system/carbon-platform/compare/micromanage-cli@5.0.8...micromanage-cli@5.0.9) (2023-04-08)

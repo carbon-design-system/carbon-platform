@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.65](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.64...@carbon-platform/logging@1.1.65) (2023-04-15)
+
+
+### Misc. 🔮
+
+* Revert "ci: use --ignore-scripts instead of CI=true" ([bb123e8](https://github.com/carbon-design-system/carbon-platform/commit/bb123e858e331b4be08247326dec52b894aac904))
+
 ### [1.1.64](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/logging@1.1.63...@carbon-platform/logging@1.1.64) (2023-04-11)
 
 

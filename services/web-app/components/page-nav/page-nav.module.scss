@@ -18,7 +18,8 @@
 
   @include breakpoint.breakpoint(lg) {
     position: sticky;
-    top: calc(spacing.$spacing-11 + spacing.$spacing-10);
+    // 9rem when no banner
+    top: 12rem;
     margin: spacing.$spacing-11 0 spacing.$spacing-13;
     margin-left: -(spacing.$spacing-06);
   }

@@ -14,11 +14,13 @@
   // position above CatalogSort
   position: sticky;
   z-index: 2;
-  top: spacing.$spacing-09 + spacing.$spacing-05;
+  // 4rem when no banner
+  top: 7rem;
   background: theme.$background;
 
   @include breakpoint.breakpoint-down(md) {
-    top: spacing.$spacing-09;
+    // 3rem when no banner
+    top: 6rem;
   }
 
   // gray background above search when scrolled

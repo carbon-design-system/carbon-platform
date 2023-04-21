@@ -17,7 +17,8 @@
 .container {
   position: sticky;
   z-index: map.get(variables.$z-indexes, 'floating');
-  top: 3rem;
+  // 3rem when no banner
+  top: 6rem;
 
   &::before {
     position: absolute;

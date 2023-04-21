@@ -13,7 +13,8 @@
 .tabs-column {
   position: sticky;
   z-index: map.get(variables.$z-indexes, 'overlay');
-  top: 3rem;
+  // 3rem when no banner
+  top: 6rem;
 }
 
 .asset-tabs {

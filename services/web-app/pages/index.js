@@ -7,8 +7,8 @@
 import { Column, Grid, Link as CarbonLink } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
 import {
-  StartDesigningArrow,
-  StartDevArrow,
+  // StartDesigningArrow,
+  // StartDevArrow,
   Svg64Components,
   Svg64Functions,
   Svg64Patterns,
@@ -17,7 +17,7 @@ import {
 import { ArtDirection, Divider, H2, P } from '@carbon-platform/mdx-components'
 import clsx from 'clsx'
 import Image from 'next/image'
-import Link from 'next/link'
+// import Link from 'next/link'
 import { useContext, useEffect } from 'react'
 
 import { Dashboard, DashboardItem } from '@/components/dashboard'
@@ -30,13 +30,13 @@ import { LayoutContext } from '@/layouts/layout'
 import ReactImgMax from './index/images/carbon-react_max-lg.png'
 import ReactImgMd from './index/images/carbon-react_md.png'
 import ReactImgSm from './index/images/carbon-react_sm.png'
-import EcosystemImgMax from './index/images/ecosystem_max-md.png'
-import EcosystemImgSm from './index/images/ecosystem_sm.png'
+// import EcosystemImgMax from './index/images/ecosystem_max-md.png'
+// import EcosystemImgSm from './index/images/ecosystem_sm.png'
 import DotComImgMax from './index/images/ibmdotcom_max-lg.png'
 import DotComImgMd from './index/images/ibmdotcom_md.png'
 import DotComImgSm from './index/images/ibmdotcom_sm.png'
-import RoadmapMax from './index/images/roadmap_max-lg.png'
-import RoadmapSm from './index/images/roadmap_sm.png'
+// import RoadmapMax from './index/images/roadmap_max-lg.png'
+// import RoadmapSm from './index/images/roadmap_sm.png'
 import styles from './index/index.module.scss'
 
 const PageContent = () => {
@@ -50,7 +50,7 @@ const PageContent = () => {
 
       <Divider />
 
-      <FeatureCard
+      {/* <FeatureCard
         href="/about-carbon/how-carbon-works"
         title="How Carbon works"
         description="Learn more about the Carbon ecosystem."
@@ -59,9 +59,9 @@ const PageContent = () => {
           <Image alt={'image'} src={EcosystemImgSm} layout="responsive" objectFit="cover" />
           <Image alt={'image'} src={EcosystemImgMax} layout="responsive" objectFit="cover" />
         </ArtDirection>
-      </FeatureCard>
+      </FeatureCard> */}
 
-      <Divider>
+      {/* <Divider>
         <Grid>
           <Column sm={4} md={2} lg={4}>
             <h2 className={clsx(styles['start-heading'], styles['start-heading--designing'])}>
@@ -103,7 +103,7 @@ const PageContent = () => {
           </Column>
         </Grid>
       </Divider>
-      <Divider />
+      <Divider /> */}
 
       <H2>Search asset catalogs</H2>
       <P>
@@ -285,7 +285,7 @@ const PageContent = () => {
           </CarbonLink>
         </Column>
       </Grid>
-      <H2>Platform roadmap</H2>
+      {/* <H2>Platform roadmap</H2>
       <P>
         Check out the{' '}
         <Link href="/about-carbon/platform-roadmap" passHref>
@@ -300,7 +300,7 @@ const PageContent = () => {
             <Image alt={'image'} src={RoadmapMax} layout="responsive" objectFit="cover" />
           </ArtDirection>
         </Column>
-      </Grid>
+      </Grid> */}
     </div>
   )
 }

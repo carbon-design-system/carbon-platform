@@ -142,6 +142,7 @@
     padding-bottom: spacing.$spacing-03;
     border-bottom: 1px solid theme.$layer-accent;
     margin: 0 spacing.$spacing-05 spacing.$spacing-03;
+    color: theme.$text-secondary;
     @include type.type-style('label-01');
   }
 

@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { TreeNode, TreeView } from '@carbon/react'
+import { Theme, TreeNode, TreeView } from '@carbon/react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
@@ -135,16 +135,17 @@ const NavTree = ({ activeItem, items = [], label, visible = true }) => {
   }
 
   return (
-    <TreeView
-      className={styles.container}
-      label={label}
-      hideLabel
-      key={treeActiveItem}
-      active={treeActiveItem}
-      selected={[treeActiveItem]}
-    >
-      {itemNodes.map((itemNode) => renderTree(itemNode.isDummy ? itemNode.items : [itemNode]))}
-    </TreeView>
+    <Theme className={styles.container} theme="g10">
+      <TreeView
+        label={label}
+        hideLabel
+        key={treeActiveItem}
+        active={treeActiveItem}
+        selected={[treeActiveItem]}
+      >
+        {itemNodes.map((itemNode) => renderTree(itemNode.isDummy ? itemNode.items : [itemNode]))}
+      </TreeView>
+    </Theme>
   )
 }
 

@@ -171,7 +171,7 @@ const Layout = ({ children }) => {
     <HeaderContainer
       render={() => (
         <>
-          {router.pathname === '/' && <Banner />}
+          <Banner />
           <Theme theme="g100">
             <Header aria-label="Carbon Design System">
               <SkipToContent />

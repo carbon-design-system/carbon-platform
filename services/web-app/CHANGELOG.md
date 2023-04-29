@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.100](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.99...@carbon-platform/web-app@0.2.100) (2023-04-29)
+
+
+### Features 🌟
+
+* always show banner ([a1dfce3](https://github.com/carbon-design-system/carbon-platform/commit/a1dfce3c2ede9d616798ea43a24416116f376511))
+* hide home page content ([c728210](https://github.com/carbon-design-system/carbon-platform/commit/c72821073fff7a48265f0d9e3b94367c85721d7b))
+* wrap tree view in g10 theme ([3a1197f](https://github.com/carbon-design-system/carbon-platform/commit/3a1197f049909318e8e815757cc27e1c10c86183))
+
+
+### Bug Fixes 🐛
+
+* heading color in tree nav ([c8d4e87](https://github.com/carbon-design-system/carbon-platform/commit/c8d4e87580d6f22a5f1ec0cec9396c8f13786f5f))
+* tree view style overrides ([02b1422](https://github.com/carbon-design-system/carbon-platform/commit/02b142222c7f480257f3b91a84779410bbe573a0))
+
 ### [0.2.99](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.98...@carbon-platform/web-app@0.2.99) (2023-04-15)
 
 

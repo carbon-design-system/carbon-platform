@@ -4,14 +4,14 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Logging } from '@carbon-platform/api/logging'
-import { Plugin } from '@nestjs/apollo'
 import {
   ApolloServerPlugin,
   BaseContext,
   GraphQLRequestContextWillSendResponse,
   GraphQLRequestListener
-} from 'apollo-server-plugin-base'
+} from '@apollo/server'
+import { Logging } from '@carbon-platform/api/logging'
+import { Plugin } from '@nestjs/apollo'
 
 const MAX_INPUT_DATA_LOG_SIZE = 500 // characters
 

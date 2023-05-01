@@ -26,7 +26,7 @@
     "test": "ava --config ../../ava.config.mjs"
   },
   "dependencies": {
-    "@logdna/logger": "^2.6.6",
+    "@logdna/logger": "^2.6.7",
     "@types/amqplib": "^0.10.1",
     "rimraf": "^4.4.1"
   }

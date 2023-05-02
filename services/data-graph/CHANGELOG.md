@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.71](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.70...@carbon-platform/data-graph@0.1.71) (2023-05-02)
+
+
+### Misc. 🔮
+
+* **data-graph:** update apollo server deps ([0a2e232](https://github.com/carbon-design-system/carbon-platform/commit/0a2e23242881a22678c748a9305011e17e73629d))
+* update minor versions ([16e1da1](https://github.com/carbon-design-system/carbon-platform/commit/16e1da1e8141a0c65e8957f6c2853bd073d526ed))
+
 ### [0.1.70](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.69...@carbon-platform/data-graph@0.1.70) (2023-04-15)
 
 

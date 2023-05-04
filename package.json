@@ -53,7 +53,8 @@
     "test": "c8 --config=.c8rc.json npm --workspaces --if-present run test"
   },
   "dependencies": {
-    "@carbon/react": "^1.28.0",
+    "@carbon/react": "1.27.0",
+    "@carbon/styles": "1.27.0",
     "@nestjs/cli": "^9.4.2",
     "@nestjs/common": "^9.4.0",
     "@nestjs/core": "^9.4.0",

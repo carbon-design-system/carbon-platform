@@ -1,0 +1,9 @@
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata/
+vendor/
+
+# These are not needed on GH Pages, but are used for local doc development
+Gemfile
+Gemfile.lock

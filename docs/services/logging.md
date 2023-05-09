@@ -1,3 +1,7 @@
+---
+parent: Services
+---
+
 # Logging service
 
 ### Service

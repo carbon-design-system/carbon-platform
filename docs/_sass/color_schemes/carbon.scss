@@ -1,0 +1,41 @@
+// @import './color_schemes/dark';
+
+$carbon-blue-30: #a6c8ff;
+$carbon-blue-40: #78a9ff;
+$carbon-blue-60: #0f62fe;
+$carbon-gray-0: #ffffff;
+$carbon-gray-10: #f4f4f4;
+$carbon-gray-50: #8d8d8d;
+$carbon-gray-90: #262626;
+$carbon-gray-100: #161616;
+
+$body-background-color: $carbon-gray-0;
+// $body-heading-color: $grey-dk-300 !default;
+$body-text-color: $carbon-gray-100;
+$code-background-color: $carbon-gray-10;
+$sidebar-color: $carbon-gray-10;
+// $nav-child-link-color: $carbon-blue-30;
+
+$body-font-family: 'IBM Plex Sans', sans-serif;
+$mono-font-family: 'IBM Plex Mono', monospace;
+
+$link-color: $carbon-blue-60;
+
+pre {
+  line-height: 1.2;
+}
+
+h4 code {
+  font-size: 0.75rem;
+  letter-spacing: normal;
+}
+
+blockquote p {
+  color: $carbon-gray-50;
+}
+
+// $base-button-color: #f7f7f7 !default;
+// $btn-primary-color: $purple-100 !default;
+// $table-background-color: $white !default;
+// $search-background-color: $white !default;
+// $search-result-preview-color: $grey-dk-000 !default;

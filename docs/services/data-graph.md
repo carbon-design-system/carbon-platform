@@ -1,3 +1,7 @@
+---
+parent: Services
+---
+
 # Data-Graph service
 
 ### Service

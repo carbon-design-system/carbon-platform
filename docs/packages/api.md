@@ -1,3 +1,7 @@
+---
+parent: Packages
+---
+
 # API package
 
 A package that exports common API utilities used across various other packages and services. These

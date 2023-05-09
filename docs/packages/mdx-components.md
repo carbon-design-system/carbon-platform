@@ -1,3 +1,7 @@
+---
+parent: Packages
+---
+
 # MDX Components package
 
 The set of components renderable in MDX files on the Carbon Platform.

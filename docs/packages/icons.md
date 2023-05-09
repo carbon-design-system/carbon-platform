@@ -1,3 +1,7 @@
+---
+parent: Packages
+---
+
 # Icons package
 
 This package bundles all project-specific SVG icons in a node module.

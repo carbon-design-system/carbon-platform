@@ -13,7 +13,7 @@ test.serial.beforeEach(() => {
   Logging.isRemoteLoggingAllowed = true
 })
 
-test.serial('it does not emit log messages in dev mode', async (t) => {
+test.serial('it does not emit log messages in dev mode', (t) => {
   let hasEmitBeenCalled = false
   const runtime = new Runtime({ runMode: RunMode.Dev })
 
@@ -30,15 +30,20 @@ test.serial('it does not emit log messages in dev mode', async (t) => {
     messagingClient
   })
 
-  await logging.debug('this is a test')
-  await logging.info('this is a test')
-  await logging.warn('this is a test')
-  await logging.error('this is a test')
+  logging.debug('this is a test')
+  logging.info('this is a test')
+  logging.warn('this is a test')
+  logging.error('this is a test')
 
-  t.is(hasEmitBeenCalled, false)
+  return new Promise((resolve) => {
+    setImmediate(() => {
+      t.is(hasEmitBeenCalled, false)
+      resolve(undefined)
+    })
+  })
 })
 
-test.serial('it does not emit a debug log message in standard mode', async (t) => {
+test.serial('it does not emit a debug log message in standard mode', (t) => {
   let hasEmitBeenCalled = false
   const runtime = new Runtime({ runMode: RunMode.Standard })
 
@@ -55,21 +60,26 @@ test.serial('it does not emit a debug log message in standard mode', async (t) =
     messagingClient
   })
 
-  await logging.debug('this is a test')
+  logging.debug('this is a test')
 
-  t.is(hasEmitBeenCalled, false)
+  return new Promise((resolve) => {
+    setImmediate(() => {
+      t.is(hasEmitBeenCalled, false)
+      resolve(undefined)
+    })
+  })
 })
 
-test.serial('it emits once per message type in standard mode', async (t) => {
-  t.plan(3)
+test.serial('it emits once per message type in standard mode', (t) => {
+  t.plan(1)
 
   const runtime = new Runtime({ runMode: RunMode.Standard })
 
   const messagingClient: any = {
-    emit: (): Promise<void> => {
-      t.pass()
-      return Promise.resolve()
-    }
+    emit: () => {
+      messagingClient.count++
+    },
+    count: 0
   }
 
   const logging = new Logging({
@@ -78,12 +88,19 @@ test.serial('it emits once per message type in standard mode', async (t) => {
     messagingClient
   })
 
-  await logging.info('this is a test')
-  await logging.warn('this is a test')
-  await logging.error('this is a test')
+  logging.info('this is a test')
+  logging.warn('this is a test')
+  logging.error('this is a test')
+
+  return new Promise((resolve) => {
+    setImmediate(() => {
+      t.is(messagingClient.count, 3)
+      resolve(undefined)
+    })
+  })
 })
 
-test.serial('it respects the global remote logging allowed setting', async (t) => {
+test.serial('it respects the global remote logging allowed setting', (t) => {
   let hasEmitBeenCalled = false
   const runtime = new Runtime({ runMode: RunMode.Dev })
   const messagingClient: any = {
@@ -101,12 +118,17 @@ test.serial('it respects the global remote logging allowed setting', async (t) =
     messagingClient
   })
 
-  await logging.info('this is a test')
+  logging.info('this is a test')
 
-  t.is(hasEmitBeenCalled, false)
+  return new Promise((resolve) => {
+    setImmediate(() => {
+      t.is(hasEmitBeenCalled, false)
+      resolve(undefined)
+    })
+  })
 })
 
-test.serial('error accepts error objects', async (t) => {
+test.serial('error accepts error objects', (t) => {
   let hasEmitBeenCalled = false
   const runtime = new Runtime({ runMode: RunMode.Standard })
 
@@ -123,12 +145,17 @@ test.serial('error accepts error objects', async (t) => {
     messagingClient
   })
 
-  await logging.error(new Error("wow it's an error"))
+  logging.error(new Error("wow it's an error"))
 
-  t.is(hasEmitBeenCalled, true)
+  return new Promise((resolve) => {
+    setImmediate(() => {
+      t.is(hasEmitBeenCalled, true)
+      resolve(undefined)
+    })
+  })
 })
 
-test.serial('debug accepts non-string, non-error objects', async (t) => {
+test.serial('debug accepts non-string, non-error objects', (t) => {
   let hasEmitBeenCalled = false
   const runtime = new Runtime({ runMode: RunMode.Standard, isDebugEnabled: true })
 
@@ -145,7 +172,12 @@ test.serial('debug accepts non-string, non-error objects', async (t) => {
     messagingClient
   })
 
-  await logging.debug(['a', 'b', 'c'])
+  logging.debug(['a', 'b', 'c'])
 
-  t.is(hasEmitBeenCalled, true)
+  return new Promise((resolve) => {
+    setImmediate(() => {
+      t.is(hasEmitBeenCalled, true)
+      resolve(undefined)
+    })
+  })
 })

@@ -77,11 +77,11 @@ logging.debug(`Pre-filter list size: ${orig.length}, Post-filter list size: ${fi
 
 ```ts
 function someImportantOperation(inputValue: string): boolean {
-  await logging.debug(`-> someImportantOperation args: ${inputValue}`)
+  logging.debug(`-> someImportantOperation args: ${inputValue}`)
 
   // ...
 
-  await logging.debug(`<- someImportantOperation returns: ${result}`)
+  logging.debug(`<- someImportantOperation returns: ${result}`)
   return result
 }
 ```
@@ -95,7 +95,7 @@ endpoint becoming available, etc.
 **Examples**
 
 ```ts
-await logging.info(`Web server now listening on port ${port}`)
+logging.info(`Web server now listening on port ${port}`)
 ```
 
 ### `Logging#warn(message: string | Error): Promise<void>`
@@ -108,7 +108,7 @@ deprecated APIs, an operation taking longer than expected, etc.
 **Examples**
 
 ```ts
-await logging.warn(`Database collection ${collection.name} was empty. Recreating`)
+logging.warn(`Database collection ${collection.name} was empty. Recreating`)
 ```
 
 ### `Logging#error(message: string | Error): Promise<void>`
@@ -124,8 +124,8 @@ try {
   const dbConnection = db.connect()
   dbConnection.query('stuff')
 } catch (err) {
-  await logging.error('Could not connect to database')
-  await logging.error(err)
+  logging.error('Could not connect to database')
+  logging.error(err)
 }
 ```
 

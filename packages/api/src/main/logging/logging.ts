@@ -119,13 +119,13 @@ class Logging {
    *
    * @param message The message to log.
    */
-  public async debug(message: Loggable) {
+  public debug(message: Loggable) {
     if (!this.isDebugLoggingEnabled) {
       return
     }
 
     const logEntry = this.createMessage(message, 'debug')
-    await this.log(logEntry)
+    this.log(logEntry)
   }
 
   /**
@@ -135,9 +135,9 @@ class Logging {
    *
    * @param message The message to log.
    */
-  public async info(message: string) {
+  public info(message: string) {
     const logEntry = this.createMessage(message, 'info')
-    await this.log(logEntry)
+    this.log(logEntry)
   }
 
   /**
@@ -148,9 +148,9 @@ class Logging {
    *
    * @param message The message to log.
    */
-  public async warn(message: string | Error) {
+  public warn(message: string | Error) {
     const logEntry = this.createMessage(message, 'warn')
-    await this.log(logEntry)
+    this.log(logEntry)
   }
 
   /**
@@ -160,9 +160,9 @@ class Logging {
    *
    * @param message The message to log.
    */
-  public async error(message: string | Error) {
+  public error(message: string | Error) {
     const logEntry = this.createMessage(message, 'error')
-    await this.log(logEntry)
+    this.log(logEntry)
   }
 
   /**
@@ -193,14 +193,14 @@ class Logging {
    *
    * @param logEntry The log entry to log.
    */
-  private async log(logEntry: LogLoggedMessage) {
+  private log(logEntry: LogLoggedMessage) {
     // Only log to the console when debug logging is enabled
     if (this.isDebugLoggingEnabled) {
-      this.logConsole(logEntry)
+      setImmediate(this.logConsole.bind(this), logEntry)
     }
 
     if (this.isRemoteLoggingEnabled) {
-      await this.logRemote(logEntry)
+      setImmediate(this.logRemote.bind(this), logEntry)
     }
   }
 
@@ -252,7 +252,7 @@ class Logging {
    * @param logEntry The log entry to log.
    */
   private async logRemote(logEntry: LogLoggedMessage) {
-    await this.messagingClient?.emit('log_logged', logEntry)
+    return this.messagingClient?.emit('log_logged', logEntry)
   }
 }
 

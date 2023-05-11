@@ -110,18 +110,13 @@ function truncate(str: string) {
   return str
 }
 
-async function traceEnter(logging: Logging, methodName: string, args: unknown[]) {
+function traceEnter(logging: Logging, methodName: string, args: unknown[]) {
   const stringArgs = truncate(String(args.map(safeStringify)))
 
-  await logging.debug(`-> ${methodName}(${stringArgs})`)
+  logging.debug(`-> ${methodName}(${stringArgs})`)
 }
 
-async function traceExit(
-  logging: Logging,
-  methodName: string,
-  result: unknown,
-  responseTime: string
-) {
+function traceExit(logging: Logging, methodName: string, result: unknown, responseTime: string) {
   if (result instanceof Promise) {
     result.then(
       async (value: unknown) =>
@@ -129,7 +124,7 @@ async function traceExit(
       (err: unknown) => logging.debug(`-x- ${methodName} <- ${err} ${responseTime}ms`)
     )
   } else {
-    await logging.debug(
+    logging.debug(
       `${result instanceof Error ? '-x-' : '<-'} ${methodName} <- ${
         result instanceof Error ? result : truncate(safeStringify(result))
       } ${responseTime}ms`

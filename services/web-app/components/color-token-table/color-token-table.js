@@ -85,12 +85,12 @@ const ColorTokenTable = () => {
       bgColor = `rgba(${hexToRgb(hex).r}, ${hexToRgb(hex).g}, ${hexToRgb(hex).b}, 0.5)`
     }
 
-    const copyToken = () => {
-      window.navigator.clipboard.writeText(token)
+    const copyToken = async () => {
+      await window.navigator.clipboard.writeText(token)
     }
 
-    const copyHex = () => {
-      window.navigator.clipboard.writeText(value[currentTheme].hex)
+    const copyHex = async () => {
+      await window.navigator.clipboard.writeText(value[currentTheme].hex)
     }
 
     return (

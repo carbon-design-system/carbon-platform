@@ -69,12 +69,12 @@ class RpcRequestLogInterceptor implements NestInterceptor {
     )
   }
 
-  private async measureAndLog(context: ExecutionContext, result: string, performanceId: string) {
+  private measureAndLog(context: ExecutionContext, result: string, performanceId: string) {
     const responseTime = performance.measure(performanceId, performanceId)?.duration?.toFixed(2)
 
     const logText = RpcRequestLogInterceptor.buildRpcLogText(context, result, responseTime)
 
-    logText && (await this.logging.info(logText))
+    logText && this.logging.info(logText)
 
     performance.clearMarks(performanceId)
     performance.clearMeasures(performanceId)

@@ -25,4 +25,4 @@ async function start() {
   await pm.start()
 }
 
-start()
+await start()

@@ -34,7 +34,7 @@ class RequestLogPlugin implements ApolloServerPlugin {
       query = query.substring(0, MAX_INPUT_DATA_LOG_SIZE) + '... (truncated)'
     }
 
-    await this.logging.info(query)
+    this.logging.info(query)
   }
 
   async requestDidStart(): Promise<GraphQLRequestListener<BaseContext>> {

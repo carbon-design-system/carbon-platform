@@ -48,12 +48,12 @@ const ActionBar = ({
     return window.URL.createObjectURL(blob)
   }
 
-  const handleCopy = () => {
+  const handleCopy = async () => {
     setCopyText('Copied!')
     setTimeout(() => {
       setCopyText(`Copy ${component}`)
     }, 2000)
-    window.navigator.clipboard.writeText(component)
+    await window.navigator.clipboard.writeText(component)
   }
 
   return (

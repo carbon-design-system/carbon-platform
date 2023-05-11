@@ -16,7 +16,8 @@ async function start() {
 
   const pm = new PlatformMicroservice({
     queue: Queue.DataGraph,
-    module: DataGraphModule.register({ isPlaygroundEnabled })
+    module: DataGraphModule.register({ isPlaygroundEnabled }),
+    runtime
   })
 
   await pm.bind<QueryMessage>('data_graph')

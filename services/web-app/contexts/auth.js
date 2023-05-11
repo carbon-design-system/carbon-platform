@@ -22,8 +22,8 @@ const AuthProvider = ({ children }) => {
     })
   }, [])
 
-  const login = (next) => {
-    fetch(`/api/login?next=${next}`)
+  const login = async (next) => {
+    await fetch(`/api/login?next=${next}`)
   }
 
   const logout = async () => {

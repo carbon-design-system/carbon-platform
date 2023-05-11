@@ -26,7 +26,7 @@ class RequestLogPlugin implements ApolloServerPlugin {
     this.logging = new Logging({ component: 'DataGraphRequestLogger' })
   }
 
-  private async log(requestContext: GraphQLRequestContextWillSendResponse<BaseContext>) {
+  private log(requestContext: GraphQLRequestContextWillSendResponse<BaseContext>) {
     let query =
       requestContext.request.query?.replace(/\s+/g, ' ').trim() || 'unable to find incoming query'
 

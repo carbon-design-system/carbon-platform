@@ -13,14 +13,13 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    async function loadUser() {
+    setImmediate(async function loadUser() {
       const userResponse = await fetch('/api/user')
       if (userResponse.ok) {
         setUser(await userResponse.json())
       }
       setLoading(false)
-    }
-    loadUser()
+    })
   }, [])
 
   const login = (next) => {

@@ -20,4 +20,4 @@ async function generateSchema() {
   await app.init()
 }
 
-generateSchema()
+await generateSchema()

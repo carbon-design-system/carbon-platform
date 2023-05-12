@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.24](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.4.23...@carbon-platform/api@0.4.24) (2023-05-12)
+
+
+### Bug Fixes 🐛
+
+* address unawaited promises ([53e31ba](https://github.com/carbon-design-system/carbon-platform/commit/53e31bafff17af9fa46ecb36cd8914f0dde447b7))
+* **logging:** use setImmediate instead of unattended promises ([e3e72b7](https://github.com/carbon-design-system/carbon-platform/commit/e3e72b7dc4900ac1d48e78bd309c28d59de30cda))
+
 ### [0.4.23](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.4.22...@carbon-platform/api@0.4.23) (2023-05-10)
 
 ### [0.4.22](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/api@0.4.21...@carbon-platform/api@0.4.22) (2023-05-02)

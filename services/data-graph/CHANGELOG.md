@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.73](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.72...@carbon-platform/data-graph@0.1.73) (2023-05-12)
+
+
+### Bug Fixes 🐛
+
+* address sonar async issues ([93a3d0c](https://github.com/carbon-design-system/carbon-platform/commit/93a3d0ce92d6c075f378ee2fb370a990ccf59e89))
+* address unawaited promises ([53e31ba](https://github.com/carbon-design-system/carbon-platform/commit/53e31bafff17af9fa46ecb36cd8914f0dde447b7))
+* **data-graph:** add runtime to microservice instantiation ([43ff2ce](https://github.com/carbon-design-system/carbon-platform/commit/43ff2ce96c322b10a2636f68e13b70f842f786d6))
+
 ### [0.1.72](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.71...@carbon-platform/data-graph@0.1.72) (2023-05-10)
 
 ### [0.1.71](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/data-graph@0.1.70...@carbon-platform/data-graph@0.1.71) (2023-05-02)

@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.103](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.102...@carbon-platform/web-app@0.2.103) (2023-05-12)
+
+
+### Bug Fixes 🐛
+
+* address sonar async issues ([93a3d0c](https://github.com/carbon-design-system/carbon-platform/commit/93a3d0ce92d6c075f378ee2fb370a990ccf59e89))
+* address unawaited promises ([53e31ba](https://github.com/carbon-design-system/carbon-platform/commit/53e31bafff17af9fa46ecb36cd8914f0dde447b7))
+* **web-app:** await promise ([8b4f96c](https://github.com/carbon-design-system/carbon-platform/commit/8b4f96c4b85b4541787fc9c8990779e5b50ffd69))
+
 ### [0.2.102](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.101...@carbon-platform/web-app@0.2.102) (2023-05-10)
 
 ### [0.2.101](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.100...@carbon-platform/web-app@0.2.101) (2023-05-02)

@@ -29,7 +29,7 @@
     "default": "./dist/main/index.js"
   },
   "files": [
-    "./dist/"
+    "./dist/main/"
   ],
   "scripts": {
     "build": "tsc",

@@ -15,7 +15,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/carbon-design-system/carbon-platform#readme",
+  "homepage": "https://github.com/carbon-design-system/carbon-platform/tree/main/packages/rmdx#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/carbon-design-system/carbon-platform.git",

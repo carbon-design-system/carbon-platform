@@ -53,6 +53,52 @@ const Page = () => {
 }
 ```
 
+## How it works
+
+There are two parts to the process.
+
+Part 1 is converting an MDX string into an AST (the `process(...)` function). This is handled
+automatically and the only configurable input to this function is a list of JSX component tags that
+are allowed to exist in the source MDX string.
+
+This part of the processing does not depend on any React or UI framework. It will work on both the
+server side and the client side of an application.
+
+The output of this function is a JSON object containing the frontmatter from the source string and
+an AST representation of the source string. This AST is meant to be passed directly to "part 2" of
+the process.
+
+Part 2 of the process is translating the AST from part 1 into a tree of react components. As a user
+of this library, you accomplish this by defining how various AST node types should be rendered. You
+then provide this set of component mappings as a prop to the `RmdxNode` React component, and finally
+render that React component in your application.
+
+In the example above, `document`, `paragraph`, and `heading-1` renderers are defined to handle each
+of these three node types. For a list of all possible node types that may be encountered in the AST,
+check out the [node-handlers](./src/main/node-handlers) folder. In the example, the `heading-1`
+renderer returns an `h1` element with the provided `children` inside of it.
+
+In most cases, it is expected that a renderer will render the provided `children` prop as some point
+in its return value. It should be noted that though this props is called "children" it is only a
+_representation_ of the actual child components, and therefore can't be worked with directly as
+would typically be allowable in React. More specifically, each child is wrapped in its own RmdxNode
+and the group of children is wrapped in a singular `RmdxNode` as well. There are a set of utility
+functions provided that make working with children easier, should the need arise to investigate them
+during rendering.
+
+### `unwrap(node: ReactElement<RmdxNodeProps>)`
+
+Given a `children` object provided to a `Renderer` when rendering an RMDX AST, return `RmdxNode`s
+for each of the actual child nodes from the RMDX AST. This is useful to interrogate the children
+being passed along to RMDX `Renderer`s since by default they are wrapped in a singular `RmdxNode` as
+opposed to an array of React nodes.
+
+### `peek(child: ReactElement<RmdxNodeProps>)`
+
+Given an `RmdxNode`, returns the to-be-rendered component, its props, and the associated RMDX node
+type. This is useful in a `Renderer` to investigate details about an incoming child which has been
+wrapped in an `RmdxNode`.
+
 ## Security considerations
 
 This package is purposefully restrictive with regards to what types of Markdown and MDX are

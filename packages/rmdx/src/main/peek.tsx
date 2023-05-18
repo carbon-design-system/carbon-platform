@@ -10,9 +10,9 @@ import { UnknownComponentException } from './exceptions/unknown-component-except
 import { RmdxNodeProps } from './interfaces.js'
 
 /**
- * Given an RmdxNode, returns the to-be-rendered component, its props, and the associated RMDX node
- * type. This is useful in a Renderer to investigate details about an incoming child which has been
- * wrapped in an RmdxNode.
+ * Given an `RmdxNode`, returns the to-be-rendered component, its props, and the associated RMDX
+ * node type. This is useful in a `Renderer` to investigate details about an incoming child which
+ * has been wrapped in an `RmdxNode`.
  *
  * @param child The node to unwrap.
  * @returns An object representing the "unwrapped" node.

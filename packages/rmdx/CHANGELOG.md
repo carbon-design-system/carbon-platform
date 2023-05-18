@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/rmdx@1.1.5...@carbon-platform/rmdx@1.1.6) (2023-05-18)
+
+
+### Bug Fixes 🐛
+
+* **rmdx:** include only dist/main in package ([d745f8f](https://github.com/carbon-design-system/carbon-platform/commit/d745f8f4211a955558f93f3806e403a852447585))
+* **rmdx:** update readme uri in package.json ([487e99b](https://github.com/carbon-design-system/carbon-platform/commit/487e99bb947d04c77cd4cbf1558e5307f55d146d))
+
 ### [1.1.5](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/rmdx@1.1.4...@carbon-platform/rmdx@1.1.5) (2023-05-17)
 
 

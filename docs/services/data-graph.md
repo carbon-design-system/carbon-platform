@@ -25,7 +25,7 @@ const dataGraph = new DataGraph()
 const response = await dataGraph.queryData({
   query: gql`
     ...
-  `
+  `,
   variables: {
     ...
   }

@@ -68,7 +68,7 @@ The output of this function is a JSON object containing the frontmatter from the
 an AST representation of the source string. This AST is meant to be passed directly to "part 2" of
 the process.
 
-Part 2 of the process is translating the AST from part 1 into a tree of react components. As a user
+Part 2 of the process is translating the AST from part 1 into a tree of React components. As a user
 of this library, you accomplish this by defining how various AST node types should be rendered. You
 then provide this set of component mappings as a prop to the `RmdxNode` React component, and finally
 render that React component in your application.
@@ -78,13 +78,13 @@ of these three node types. For a list of all possible node types that may be enc
 check out the [node-handlers](./src/main/node-handlers) folder. In the example, the `heading-1`
 renderer returns an `h1` element with the provided `children` inside of it.
 
-In most cases, it is expected that a renderer will render the provided `children` prop as some point
-in its return value. It should be noted that though this props is called "children" it is only a
+In most cases, it is expected that a renderer will render the provided `children` prop at some point
+in its return value. It should be noted that though this prop is called "children" it is only a
 _representation_ of the actual child components, and therefore can't be worked with directly as
-would typically be allowable in React. More specifically, each child is wrapped in its own RmdxNode
-and the group of children is wrapped in a singular `RmdxNode` as well. There are a set of utility
-functions provided that make working with children easier, should the need arise to investigate them
-during rendering.
+would typically be allowable in React. More specifically, each child is wrapped in its own
+`RmdxNode` and the group of children is wrapped in a singular `RmdxNode` as well. There are a set of
+utility functions provided that make working with children easier, should the need arise to
+investigate them during rendering.
 
 ### `unwrap(node: ReactElement<RmdxNodeProps>)`
 
@@ -126,6 +126,9 @@ Using RMDX, that same input would result in the following AST output:
     "children": [
       {
         "type": "paragraph",
+        "props": {
+          "parentType": "document"
+        },
         "children": [
           {
             "type": "text",
@@ -147,10 +150,7 @@ Using RMDX, that same input would result in the following AST output:
               "parentType": "paragraph"
             }
           }
-        ],
-        "props": {
-          "parentType": "document"
-        }
+        ]
       }
     ],
     "props": {

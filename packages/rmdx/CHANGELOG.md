@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.8](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/rmdx@1.1.7...@carbon-platform/rmdx@1.1.8) (2023-05-24)
+
 ### [1.1.7](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/rmdx@1.1.6...@carbon-platform/rmdx@1.1.7) (2023-05-19)
 
 ### [1.1.6](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/rmdx@1.1.5...@carbon-platform/rmdx@1.1.6) (2023-05-18)

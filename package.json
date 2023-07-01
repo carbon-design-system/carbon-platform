@@ -71,7 +71,7 @@
     "typescript": "^4.9.5"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.6.1",
+    "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.1",
     "@graphql-eslint/eslint-plugin": "^3.18.0",
     "@nestjs/testing": "^9.4.0",

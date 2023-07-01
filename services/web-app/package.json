@@ -33,7 +33,7 @@
     "@apidevtools/json-schema-ref-parser": "^10.1.0",
     "@carbon/colors": "^11.14.0",
     "@carbon/elements": "^11.22.0",
-    "@carbon/icons": "^11.19.0",
+    "@carbon/icons": "^11.21.0",
     "@carbon/layout": "^11.13.0",
     "@carbon/pictograms": "^12.16.0",
     "@carbon/pictograms-react": "^11.42.0",

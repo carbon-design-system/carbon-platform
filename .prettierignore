@@ -19,6 +19,7 @@ CHANGELOG.md
 generated/
 .test-coverage/
 .dev/
+_site/
 
 # Github workflows
 .github/workflows/

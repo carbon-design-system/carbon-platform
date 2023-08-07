@@ -6,6 +6,7 @@ package*.json
 .carbon/
 .next/
 dist/
+_site/
 
 # Changelogs
 CHANGELOG.md

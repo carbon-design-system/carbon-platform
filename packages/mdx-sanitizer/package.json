@@ -34,9 +34,9 @@
     "@mdx-js/mdx": "^2.3.0",
     "html-comment-regex": "^1.1.2",
     "mdast": "^3.0.0",
-    "mdast-util-mdx-jsx": "^2.1.2",
+    "mdast-util-mdx-jsx": "^2.1.4",
     "remark-mdx": "^2.3.0",
-    "remark-parse": "^10.0.1",
+    "remark-parse": "^10.0.2",
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.2",
     "vfile": "^5.3.7"

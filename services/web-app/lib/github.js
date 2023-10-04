@@ -539,6 +539,7 @@ export const getAssetRelatedFrameworks = withTrace(
           }
           const relatedLibData = await getLibraryData(libParams)
           if (
+            relatedLibData &&
             relatedLibData?.content.id !== library.content.id &&
             relatedLibData.assets?.length &&
             !relatedLibData.assets[0].content?.noIndex &&

@@ -101,6 +101,7 @@ const prodLibraries = {
     host: 'github.com',
     org: 'carbon-design-system',
     repo: 'carbon-components-vue',
+    ref: 'vue2',
     path: '/packages/core/src',
     packageJsonPath: '/../package.json',
     group: carbonComponentsGroup
@@ -256,6 +257,7 @@ const devLibraries = {
     host: 'github.com',
     org: 'carbon-design-system',
     repo: 'carbon-components-vue',
+    ref: 'vue2',
     path: '/packages/core/src',
     packageJsonPath: '/../package.json',
     group: carbonComponentsGroup

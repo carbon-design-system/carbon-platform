@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.105](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.104...@carbon-platform/web-app@0.2.105) (2023-10-04)
+
+
+### Bug Fixes 🐛
+
+* **web-app:** gracefully handle library ref not found ([2d244b4](https://github.com/carbon-design-system/carbon-platform/commit/2d244b49cea193c1456b34856ef0ced1b46a4074))
+
 ### [0.2.104](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.103...@carbon-platform/web-app@0.2.104) (2023-08-08)
 
 

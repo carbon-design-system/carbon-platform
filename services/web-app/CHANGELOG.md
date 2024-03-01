@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.107](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.106...@carbon-platform/web-app@0.2.107) (2024-03-01)
+
+
+### Bug Fixes 🐛
+
+* add readiness prove, correct test callback ([44e385d](https://github.com/carbon-design-system/carbon-platform/commit/44e385d75d03f4a6fcd18045ad810383bd328b51))
+
 ### [0.2.106](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.105...@carbon-platform/web-app@0.2.106) (2024-03-01)
 
 

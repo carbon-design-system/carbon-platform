@@ -14,7 +14,7 @@ import cookie from 'cookie'
  * @returns {string} serialized auth cookie
  */
 function getAuthCookie(req) {
-  const sessionCookie = req.cookies['connect.sid']
+  const sessionCookie = req.cookies.get('connect.sid')
   return sessionCookie ? cookie.serialize('connect.sid', sessionCookie) : ''
 }
 

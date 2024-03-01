@@ -8,7 +8,6 @@
 import { Column, Grid, Theme } from '@carbon/react'
 import { IbmLogo } from '@carbon-platform/icons'
 import clsx from 'clsx'
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 
 import { currentYear } from '@/utils/date'
@@ -43,11 +42,11 @@ const Footer = ({ hasSideNav }) => {
   ]
 
   const getColList = (col) =>
-    col.map((item, i) => (
+    col.map((item) => (
       <li key={item.text}>
-        <Link href={item.link} key={i}>
-          <a className={clsx(styles.text, styles.link, styles['list-link'])}>{item.text}</a>
-        </Link>
+        <a href={item.link} className={clsx(styles.text, styles.link, styles['list-link'])}>
+          {item.text}
+        </a>
       </li>
     ))
 

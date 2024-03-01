@@ -16,7 +16,6 @@ import {
   Theme
 } from '@carbon/react'
 import clsx from 'clsx'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
 
@@ -185,9 +184,10 @@ const Layout = ({ children }) => {
                 </div>
               )}
               <div className={styles['header-name']}>
-                <Link href="/">
-                  <a className="cds--header__name">Carbon Design System</a>
-                </Link>
+                {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- no prefetching */}
+                <a href="/" className="cds--header__name">
+                  Carbon Design System
+                </a>
               </div>
               <Grid narrow className={styles['header-grid']}>
                 <Column sm={0} lg={{ span: 8, offset: 4 }}>

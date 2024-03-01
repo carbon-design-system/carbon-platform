@@ -14,6 +14,7 @@ import { useEffect } from 'react'
 
 import components from '@/components/mdx'
 import defaultSeo from '@/config/seo.json'
+import { AuthProvider } from '@/contexts/auth'
 import Layout, { LayoutProvider } from '@/layouts/layout'
 
 function useNormalScrollRoutes() {
@@ -67,14 +68,16 @@ function App({ Component, pageProps }) {
         async="async"
       ></Script>
       <Script src="/vendor/prismjs/prism.min.js" type="text/javascript" async="async"></Script>
-      <LayoutProvider>
-        <Layout>
-          <DefaultSeo {...defaultSeo} />
-          <MDXProvider components={components}>
-            <Component {...pageProps} />
-          </MDXProvider>
-        </Layout>
-      </LayoutProvider>
+      <AuthProvider>
+        <LayoutProvider>
+          <Layout>
+            <DefaultSeo {...defaultSeo} />
+            <MDXProvider components={components}>
+              <Component {...pageProps} />
+            </MDXProvider>
+          </Layout>
+        </LayoutProvider>
+      </AuthProvider>
     </>
   )
 }

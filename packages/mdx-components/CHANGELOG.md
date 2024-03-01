@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.35](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.34...@carbon-platform/mdx-components@0.1.35) (2024-03-01)
+
+
+### Features 🌟
+
+* **mdx-components:** add footer and common js for ibm compliance ([ebbee98](https://github.com/carbon-design-system/carbon-platform/commit/ebbee987af21046b1d12b77fcb54ad66003a0a60))
+
 ### [0.1.34](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/mdx-components@0.1.33...@carbon-platform/mdx-components@0.1.34) (2023-08-08)
 
 

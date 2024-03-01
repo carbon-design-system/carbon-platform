@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.106](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.105...@carbon-platform/web-app@0.2.106) (2024-03-01)
+
+
+### Bug Fixes 🐛
+
+* readd authentication to web-app ([2bff52d](https://github.com/carbon-design-system/carbon-platform/commit/2bff52d20b004eecf11ec2b18857a447ecc92e90))
+* **web-app:** update diskstore cache ([fed8f65](https://github.com/carbon-design-system/carbon-platform/commit/fed8f6550479c6f1441e821883a25cc01c41c288))
+
 ### [0.2.105](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.104...@carbon-platform/web-app@0.2.105) (2023-10-04)
 
 

@@ -44,7 +44,7 @@ const OIDC_REDIRECT_URI = (() => {
   if (runtime.runMode === RunMode.Dev) {
     return 'https://localhost:8443/api/auth-callback'
   } else if (runtime.environment === Environment.Test) {
-    return 'https://web-app.j73b4w218e4.us-south.codeengine.appdomain.cloud/api/auth-callback'
+    return 'https://next-test.carbondesignsystem.com/api/auth-callback'
   }
   return 'https://next.carbondesignsystem.com/api/auth-callback'
 })()

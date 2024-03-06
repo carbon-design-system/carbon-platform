@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
 
@@ -14,6 +15,15 @@
 
 .h1-container {
   &.h1-container {
+    margin-top: spacing.$spacing-10;
+  }
+}
+
+// override carbon max-width and padding-right
+.button {
+  margin-top: spacing.$spacing-07;
+
+  @include breakpoint.breakpoint('md') {
     margin-top: spacing.$spacing-10;
   }
 }

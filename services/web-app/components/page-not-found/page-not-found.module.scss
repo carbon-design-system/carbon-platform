@@ -11,6 +11,8 @@
 
 .title {
   @include type.type-style('fluid-display-01', true);
+
+  margin-top: 0;
 }
 
 .h1-container {
@@ -19,11 +21,6 @@
   }
 }
 
-// override carbon max-width and padding-right
 .button {
   margin-top: spacing.$spacing-07;
-
-  @include breakpoint.breakpoint('md') {
-    margin-top: spacing.$spacing-10;
-  }
 }

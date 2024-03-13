@@ -32,6 +32,7 @@ export const PageNotFound = () => {
         </H1>
         {!isAuthorized && (
           <>
+            <div className={styles.title}>↓</div>
             <h2 className={styles.title}>Log in to view all pages.</h2>
             <Grid>
               <Column sm={4}>

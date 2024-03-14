@@ -6,6 +6,7 @@
  */
 import { Button, Column, Grid } from '@carbon/react'
 import { ArrowRight } from '@carbon/react/icons'
+import { H1 } from '@carbon-platform/mdx-components'
 import { useEffect, useState } from 'react'
 
 import { useAuth } from '@/contexts/auth'
@@ -26,15 +27,17 @@ export const PageNotFound = () => {
   return (
     <Grid className={styles.grid}>
       <Column className={styles.column} sm={4} md={8} lg={6}>
-        <h1 className={styles.title}>Page not found.</h1>
+        <H1 headingClassName={styles.title} className={styles['h1-container']}>
+          Page not found.
+        </H1>
         {!isAuthorized && (
           <>
+            <div className={styles.title}>↓</div>
             <h2 className={styles.title}>Log in to view all pages.</h2>
             <Grid>
               <Column sm={4}>
-                <Button className={styles.button} as="a" href="/api/login">
+                <Button className={styles.button} as="a" href="/api/login" renderIcon={ArrowRight}>
                   Log in
-                  <ArrowRight size={16} />
                 </Button>
               </Column>
             </Grid>

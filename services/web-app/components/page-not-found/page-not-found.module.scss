@@ -5,15 +5,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use '@carbon/react/scss/breakpoint' as breakpoint;
 @use '@carbon/react/scss/spacing' as spacing;
 @use '@carbon/react/scss/type' as type;
 
 .title {
   @include type.type-style('fluid-display-01', true);
+
+  margin-top: 0;
 }
 
 .h1-container {
   &.h1-container {
     margin-top: spacing.$spacing-10;
   }
+}
+
+.button {
+  margin-top: spacing.$spacing-07;
 }

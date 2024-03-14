@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.108](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.107...@carbon-platform/web-app@0.2.108) (2024-03-14)
+
+
+### Bug Fixes 🐛
+
+* page not found styling ([898a136](https://github.com/carbon-design-system/carbon-platform/commit/898a136839c14f0c9fe1729d59455b762389f297))
+* **web-app:** fix page not found vertical spacing ([655e8d3](https://github.com/carbon-design-system/carbon-platform/commit/655e8d39c7b26b17254abbbd97f0a606d347c9a8))
+
 ### [0.2.107](https://github.com/carbon-design-system/carbon-platform/compare/@carbon-platform/web-app@0.2.106...@carbon-platform/web-app@0.2.107) (2024-03-01)
 
 

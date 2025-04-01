@@ -32,7 +32,7 @@ jobs:
           git fetch origin ${GITHUB_BASE_REF}:${GITHUB_BASE_REF}
 
       - name: Setup Node 🏗
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '16'
           cache: 'npm'

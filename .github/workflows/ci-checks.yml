@@ -90,7 +90,7 @@ jobs:
         run: npm run test
 
       - name: Upload test coverage reports 🛫
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-coverage
           path: '**/.test-coverage/lcov.info'
